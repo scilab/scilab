@@ -15,14 +15,34 @@ sb.gui
 sb.doc
 
 // Access the contained diagram's fields
-diag = sb.model.rpar
-diag.props
+sb.model.rpar
+sb.model.rpar.props
 
-objs = diag.objs
-objs(1).graphics
-objs(1).model
-objs(2).graphics
-objs(2).model
+sb.model.rpar.objs
+sb.model.rpar.objs(1).graphics
+sb.model.rpar.objs(1).model
+sb.model.rpar.objs(2).graphics
+sb.model.rpar.objs(2).model
 
-diag.version
-diag.contrib
+sb.model.rpar.version
+sb.model.rpar.contrib
+
+clk = CLOCK_c("define")
+clk.graphics
+clk.model
+clk.model.rpar
+clk.model.rpar.props
+
+clk.model.rpar.objs
+clk.model.rpar.objs(1).graphics
+clk.model.rpar.objs(1).model
+clk.model.rpar.objs(2).graphics
+clk.model.rpar.objs(2).model
+clk.model.rpar.objs(3).from
+clk.model.rpar.objs(3).to
+clk.model.rpar.objs(4).graphics
+clk.model.rpar.objs(4).model
+clk.model.rpar.objs(5).from
+clk.model.rpar.objs(5).to
+clk.model.rpar.objs(6).from
+clk.model.rpar.objs(6).to

@@ -40,9 +40,9 @@ public:
     types::InternalType* clone();
 
     std::vector<double> getFrom() const;
-    bool setFrom(ScicosID id, const std::vector<double>& v, Controller& controller);
+    bool setFrom(ScicosID id, const std::vector<double>& v, Controller& controller, bool model_level = true);
     std::vector<double> getTo() const;
-    bool setTo(ScicosID id, const std::vector<double>& v, Controller& controller);
+    bool setTo(ScicosID id, const std::vector<double>& v, Controller& controller, bool model_level = true);
 private:
     std::vector<double> from_content;
     std::vector<double> to_content;

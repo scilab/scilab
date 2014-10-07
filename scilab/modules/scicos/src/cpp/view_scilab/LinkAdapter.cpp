@@ -450,18 +450,6 @@ static void setLinkEnd(ScicosID id, Controller& controller, object_properties_t 
     {
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
-    // Only keep the Blocks of 'children'
-    for (std::vector<ScicosID>::iterator it = children.begin(); it != children.end();)
-    {
-        if (controller.getObject(*it)->kind() != BLOCK)
-        {
-            children.erase(it);
-        }
-        else
-        {
-            ++it;
-        }
-    }
 
     // Connect the new one
     int blk  = static_cast<int>(v[0]);
@@ -479,6 +467,12 @@ static void setLinkEnd(ScicosID id, Controller& controller, object_properties_t 
         return; // Trying to link to a non-existing block
     }
     ScicosID blkID = children[blk - 1];
+
+    // Check that the ID designates a BLOCK (and not an ANNOTATION)
+    if (controller.getObject(blkID)->kind() != BLOCK)
+    {
+        return;
+    }
 
     std::vector<ScicosID> sourceBlockPorts;
     int nBlockPorts;
@@ -664,6 +658,9 @@ struct from
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         std::vector<double> from_content;
         from_content = adaptor.getFrom();
         double* data;
@@ -686,15 +683,19 @@ struct from
 
         types::Double* current = v->getAs<types::Double>();
 
-        if (current->getSize() != 0 && current->getSize() != 3)
+        if (current->getSize() != 0 && current->getSize() != 2 && current->getSize() != 3)
         {
             return false;
         }
         std::vector<double> from_content (3, 0);
-        if (current->getSize() == 3)
+        if (current->getSize() >= 2)
         {
+            // By default of the third element, 'from' designates an output, so from_content[2] = 0
             from_content[0] = current->get(0);
             from_content[1] = current->get(1);
+        }
+        if (current->getSize() == 3)
+        {
             from_content[2] = current->get(2);
         }
 
@@ -707,6 +708,9 @@ struct to
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
+        // silent unused parameter warnings
+        (void) controller;
+
         std::vector<double> to_content;
         to_content = adaptor.getTo();
         double* data;
@@ -729,15 +733,20 @@ struct to
 
         types::Double* current = v->getAs<types::Double>();
 
-        if (current->getSize() != 0 && current->getSize() != 3)
+        if (current->getSize() != 0 && current->getSize() != 2 && current->getSize() != 3)
         {
             return false;
         }
         std::vector<double> to_content (3, 0);
-        if (current->getSize() == 3)
+        if (current->getSize() >= 2)
         {
+            // By default of the third element, 'from' designates an output, so to_content[2] = 1
             to_content[0] = current->get(0);
             to_content[1] = current->get(1);
+            to_content[2] = 1;
+        }
+        if (current->getSize() == 3)
+        {
             to_content[2] = current->get(2);
         }
 
@@ -797,7 +806,7 @@ std::vector<double> LinkAdapter::getFrom() const
     return from_content;
 }
 
-bool LinkAdapter::setFrom(ScicosID id, const std::vector<double>& v, Controller& controller)
+bool LinkAdapter::setFrom(ScicosID id, const std::vector<double>& v, Controller& controller, bool model_level)
 {
     if (v.size() >= 2)
     {
@@ -827,7 +836,7 @@ bool LinkAdapter::setFrom(ScicosID id, const std::vector<double>& v, Controller&
     ScicosID parentDiagram;
     controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
 
-    if (parentDiagram != 0)
+    if (parentDiagram != 0 && model_level)
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
@@ -842,7 +851,7 @@ std::vector<double> LinkAdapter::getTo() const
     return to_content;
 }
 
-bool LinkAdapter::setTo(ScicosID id, const std::vector<double>& v, Controller& controller)
+bool LinkAdapter::setTo(ScicosID id, const std::vector<double>& v, Controller& controller, bool model_level)
 {
     if (v.size() >= 2)
     {
@@ -872,7 +881,7 @@ bool LinkAdapter::setTo(ScicosID id, const std::vector<double>& v, Controller& c
     ScicosID parentDiagram;
     controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
 
-    if (parentDiagram != 0)
+    if (parentDiagram != 0 && model_level)
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
