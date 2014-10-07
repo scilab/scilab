@@ -196,7 +196,8 @@ am__objects_2 = src/cpp/libscihdf5_algo_la-H5Attribute.lo \
 	src/cpp/libscihdf5_algo_la-H5CompoundData.lo \
 	src/cpp/libscihdf5_algo_la-H5ArrayData.lo \
 	src/cpp/libscihdf5_algo_la-H5VlenData.lo \
-	src/cpp/libscihdf5_algo_la-H5Options.lo
+	src/cpp/libscihdf5_algo_la-H5Options.lo \
+	src/c/libscihdf5_algo_la-DllmainHdf5.lo
 am_libscihdf5_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscihdf5_algo_la_OBJECTS = $(am_libscihdf5_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -639,7 +640,8 @@ HDF5_CXX_SOURCES = \
     src/cpp/H5CompoundData.cpp \
     src/cpp/H5ArrayData.cpp \
     src/cpp/H5VlenData.cpp \
-    src/cpp/H5Options.cpp
+    src/cpp/H5Options.cpp \
+    src/c/DllmainHdf5.c
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/hdf5_gw.cpp \
@@ -722,7 +724,7 @@ noinst_LTLIBRARIES = libscihdf5-algo.la
 # When Scilab is built with HDF5, we need some libraries for a workaround
 libscihdf5_la_LDFLAGS = $(AM_LDFLAGS)
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES)  
+libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -1026,6 +1028,8 @@ src/cpp/libscihdf5_algo_la-H5VlenData.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscihdf5_algo_la-H5Options.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/c/libscihdf5_algo_la-DllmainHdf5.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscihdf5-algo.la: $(libscihdf5_algo_la_OBJECTS) $(libscihdf5_algo_la_DEPENDENCIES) $(EXTRA_libscihdf5_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscihdf5_algo_la_OBJECTS) $(libscihdf5_algo_la_LIBADD) $(LIBS)
@@ -1167,6 +1171,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihdf5_la-sci_percent_H5Object_e.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihdf5_la-sci_percent_H5Object_fieldnames.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihdf5_la-sci_percent_H5Object_p.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscihdf5_algo_la-DllmainHdf5.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscihdf5_algo_la-h5_fileManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscihdf5_algo_la-h5_readDataFromFile_v1.Plo@am__quote@
@@ -1247,6 +1252,13 @@ src/c/libscihdf5_algo_la-h5_readDataFromFile_v1.lo: src/c/h5_readDataFromFile_v1
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/h5_readDataFromFile_v1.c' object='src/c/libscihdf5_algo_la-h5_readDataFromFile_v1.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscihdf5_algo_la-h5_readDataFromFile_v1.lo `test -f 'src/c/h5_readDataFromFile_v1.c' || echo '$(srcdir)/'`src/c/h5_readDataFromFile_v1.c
+
+src/c/libscihdf5_algo_la-DllmainHdf5.lo: src/c/DllmainHdf5.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscihdf5_algo_la-DllmainHdf5.lo -MD -MP -MF src/c/$(DEPDIR)/libscihdf5_algo_la-DllmainHdf5.Tpo -c -o src/c/libscihdf5_algo_la-DllmainHdf5.lo `test -f 'src/c/DllmainHdf5.c' || echo '$(srcdir)/'`src/c/DllmainHdf5.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscihdf5_algo_la-DllmainHdf5.Tpo src/c/$(DEPDIR)/libscihdf5_algo_la-DllmainHdf5.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/DllmainHdf5.c' object='src/c/libscihdf5_algo_la-DllmainHdf5.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihdf5_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscihdf5_algo_la-DllmainHdf5.lo `test -f 'src/c/DllmainHdf5.c' || echo '$(srcdir)/'`src/c/DllmainHdf5.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

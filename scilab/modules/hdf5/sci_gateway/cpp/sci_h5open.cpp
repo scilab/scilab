@@ -202,7 +202,6 @@ int sci_h5open(char *fname, int* pvApiCtx)
 
     try
     {
-        Initialize();
         if (driver.empty() || driver == "sec2" || driver == "stdio")
         {
             h5file = new H5File(path, "/", access, driver);
