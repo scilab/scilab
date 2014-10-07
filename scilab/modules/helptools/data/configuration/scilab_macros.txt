@@ -486,7 +486,6 @@ chsolve
 conjgrad
 gmres
 issparse
-pcg
 qmr
 sp2adj
 speye
