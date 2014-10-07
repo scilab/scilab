@@ -12,6 +12,7 @@ Removed Functions
 
 * mfft removed. Please use fft instead.
 
+* IsAScalar removed. Please use isscalar instead.
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================

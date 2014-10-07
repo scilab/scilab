@@ -1967,7 +1967,6 @@ warnobsolete
 %sp_gsort
 %sp_max
 %sp_min
-IsAScalar
 acosd
 acosh
 acoshm
