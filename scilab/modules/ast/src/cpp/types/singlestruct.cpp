@@ -50,7 +50,8 @@ SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
     for (iterFieldData = Data.begin(); iterFieldData != Data.end() ; iterFieldData++, iterFieldName++)
     {
         m_wstFields.push_back(*iterFieldName);
-        m_Data.push_back((*iterFieldData)->clone());
+        m_Data.push_back(*iterFieldData);
+        m_Data.back()->IncreaseRef();
     }
 }
 
