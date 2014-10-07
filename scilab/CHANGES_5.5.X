@@ -14,6 +14,8 @@ Removed Functions
 
 * IsAScalar removed. Please use isscalar instead.
 
+* msd removed. Please use stdev instead.
+
 * pcg removed. Please use conjgrad instead.
 
 * milk_drop removed.
