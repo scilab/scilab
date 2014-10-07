@@ -35,7 +35,6 @@ help
 help_from_sci
 help_skeleton
 manedit
-xmltochm
 xmltoformat
 xmltohtml
 xmltojar

@@ -203,8 +203,6 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "tclsci", "modules\tclsci\tc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Javasci", "modules\javasci\Javasci.vcxproj", "{0BD503EF-5CB6-4277-BAC4-8955C97F247D}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "BuildChm", "modules\helptools\src\BuildChm\BuildChm.vcxproj", "{D319F719-F429-4842-A6F9-B1227FE2A54D}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "time", "modules\time\time.vcxproj", "{05D8F60B-332A-4161-B946-B8AB30ED439C}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sound", "modules\sound\sound.vcxproj", "{03773159-155A-48E0-9B26-119D0BF35B2B}"
