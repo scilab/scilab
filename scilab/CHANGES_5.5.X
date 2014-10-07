@@ -6,8 +6,9 @@ Removed Functions
 
 * xmltochm removed.
 
-* jmat removed.
+* jmat removed. Please use flipdim instead.
 
+* %asn removed. Please use delip instead.
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================

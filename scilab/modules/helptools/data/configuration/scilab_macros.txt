@@ -492,7 +492,6 @@ sp2adj
 speye
 sprand
 spzeros
-%asn
 %k
 %sn
 analpf
