@@ -14,6 +14,8 @@ Removed Functions
 
 * IsAScalar removed. Please use isscalar instead.
 
+* milk_drop removed.
+
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
 

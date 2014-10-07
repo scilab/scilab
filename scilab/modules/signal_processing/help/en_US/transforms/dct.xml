@@ -393,8 +393,12 @@
         
         <para>2-D dct</para>
         <programlisting role="example"><![CDATA[
+  function [z]=__milk_drop(x,y)
+      sq=x.^2+y.^2;
+      z= exp( exp(-sq).*(exp(cos(sq).^20)+8*sin(sq).^20+2*sin(2*(sq)).^8) );
+  endfunction
   x=-2:0.1:2;
-  A=eval3d(milk_drop,x,x);
+  A=eval3d(__milk_drop,x,x);
   d=dct(A);
   d(abs(d)<1)=0;
   size(find(d<>0),'*')
