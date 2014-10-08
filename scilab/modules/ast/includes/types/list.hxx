@@ -75,6 +75,12 @@ public :
         else
         {
             InternalType * _out = extract(&in);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
+
             List* pList = _out->getAs<types::List>();
             for (int i = 0; i < pList->getSize(); i++)
             {

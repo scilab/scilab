@@ -55,37 +55,11 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
         return Function::Error;
     }
 
-    //first string is the tlist type
-    list<wstring> fieldNames;
-    for (int i = 1 ; i < pS->getSize() ; i++)
-    {
-        list<wstring>::iterator it;
-        for (it = fieldNames.begin() ; it != fieldNames.end() ; it++)
-        {
-            if (*it == wstring(pS->get(i)))
-            {
-                char* pstFunName = wide_string_to_UTF8(_pstrFunName);
-                Scierror(999, _("%s : Fields names must be unique"), pstFunName);
-                FREE(pstFunName);
-                return Function::Error;
-            }
-        }
-        fieldNames.push_back(pS->get(i));
-    }
-
     pRetVal = new TorMList();
     for (unsigned int i = 0 ; i < in.size() ; i++)
     {
         pRetVal->append(in[i]);
     }
-
-    //fill empty field with []
-    InternalType* pITEmpty = Double::Empty();
-    while (pRetVal->getSize() < pS->getSize())
-    {
-        pRetVal->append(pITEmpty);
-    }
-    pITEmpty->killMe();
 
     out.push_back(pRetVal);
     return Function::OK;

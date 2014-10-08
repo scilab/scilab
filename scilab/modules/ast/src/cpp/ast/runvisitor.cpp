@@ -156,6 +156,13 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (ok)
     {
+        if (pReturn == NULL)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ScilabError(os.str(), 999, e.getLocation());
+        }
+
         setResult(pReturn);
         pValue->killMe();
     }
@@ -175,8 +182,24 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         in.push_back(pS);
         in.push_back(pValue);
+        Callable::ReturnValue Ret = Callable::Error;
 
-        Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
+        try
+        {
+            Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
+        }
+        catch (ast::ScilabError & se)
+        {
+            // TList or Mlist
+            if (pValue->isList())
+            {
+                Ret = Overload::call(L"%l_e", in, 1, out, this);
+            }
+            else
+            {
+                throw se;
+            }
+        }
 
         if (Ret != Callable::OK)
         {

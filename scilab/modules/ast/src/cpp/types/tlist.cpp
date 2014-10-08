@@ -91,6 +91,11 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
         if (arg->isDouble() || arg->isInt() || arg->isBool() || arg->isImplicitList() || arg->isColon() || arg->isDollar())
         {
             _out = List::extract(&in);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
 
             List* pList = _out->getAs<types::List>();
             for (int i = 0; i < pList->getSize(); i++)
@@ -110,6 +115,11 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             }
 
             _out = extractStrings(stFields);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
 
             List* pList = _out->getAs<types::List>();
             for (int i = 0; i < pList->getSize(); i++)
@@ -120,7 +130,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             delete pList;
         }
 
-        if (!out.empty())
+        if (out.empty() == false)
         {
             return true;
         }
@@ -203,7 +213,14 @@ InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
 
     for (it = _stFields.begin() ; it != _stFields.end() ; it++, i++)
     {
-        pLResult->set(i, getField(*it));
+        InternalType* pIT = getField(*it);
+        if (pIT == NULL)
+        {
+            delete pLResult;
+            return NULL;
+        }
+
+        pLResult->set(i, pIT);
     }
 
     return pLResult;
