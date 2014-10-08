@@ -51,11 +51,15 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     int* piIndex = 0;
     int iValues = 0;
 
-    types::GenericType* pGT = in[0]->getAs<types::GenericType>();
-    if (in[0]->isGenericType())
+    if (in[0]->isGenericType() == false)
     {
-        piIndex = new int[pGT->getSize()];
+        //call overload for other types
+        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_find";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
+
+    types::GenericType* pGT = in[0]->getAs<types::GenericType>();
+    piIndex = new int[pGT->getSize()];
 
     if (in[0]->isBool())
     {
@@ -118,6 +122,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
+        delete[] piIndex;
+
         //call overload for other types
         std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_find";
         return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
@@ -199,6 +205,8 @@ types::Function::ReturnValue sci_find(types::typed_list &in, int _iRetCount, typ
         }
         delete[] piCoord;
     }
+
+    delete[] piIndex;
     return types::Function::OK;
 }
 

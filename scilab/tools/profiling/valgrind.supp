@@ -16,4 +16,12 @@
    ...
    fun:tgetstr
 }
+{
+   dlerror leak thread local storage memory
+   Memcheck:Leak
+   match-leak-kinds: reachable
+   fun:calloc
+   fun:_dlerror_run
+   fun:dlclose
+}
 
