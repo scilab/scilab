@@ -11,7 +11,6 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6512
 //
 // <-- Short Description -->
-// %asn tagged as obsolete
 // Check that findm is still ok
 res = findm(1);
 assert_checktrue(%k(1-res)/%k(res)-1<1e-8);

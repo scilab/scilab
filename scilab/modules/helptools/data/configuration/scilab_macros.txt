@@ -35,7 +35,6 @@ help
 help_from_sci
 help_skeleton
 manedit
-xmltochm
 xmltoformat
 xmltohtml
 xmltojar
@@ -493,7 +492,6 @@ sp2adj
 speye
 sprand
 spzeros
-%asn
 %k
 %sn
 analpf
@@ -536,7 +534,6 @@ iirgroup
 iirlp
 iirmod
 intdec
-jmat
 kalm
 lattn
 lattp
@@ -544,7 +541,6 @@ lev
 levin
 lindquist
 mese
-mfft
 mrfit
 phc
 pspect
@@ -1852,7 +1848,6 @@ legend
 legends
 locate
 mesh
-milk_drop
 name2rgb
 nf3d
 oceancolormap
@@ -1971,7 +1966,6 @@ warnobsolete
 %sp_gsort
 %sp_max
 %sp_min
-IsAScalar
 acosd
 acosh
 acoshm

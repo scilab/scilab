@@ -13,7 +13,6 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6512
 //
 // <-- Short Description -->
-// %asn tagged as obsolete
 // Check that findm is still ok
 
 res = findm(1);
