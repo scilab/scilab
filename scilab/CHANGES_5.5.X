@@ -1,7 +1,20 @@
                      Changes between version 5.5.1 and 5.5.2
                      =======================================
 
+Removed Functions
+=================
 
+* xmltochm removed.
+
+* jmat removed. Please use flipdim instead.
+
+* %asn removed. Please use delip instead.
+
+* mfft removed. Please use fft instead.
+
+* IsAScalar removed. Please use isscalar instead.
+
+* milk_drop removed.
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
@@ -36,7 +49,7 @@ Scilab Bug Fixes
 * Bug #8646 fixed - The datatips contextual menu opened a selection list which
                     was not ergonomic.
 
-* Bug #8781 fixed - There was no error message when error was called with 
+* Bug #8781 fixed - There was no error message when error was called with
                     a complex value.
 
 * Bug #8898 fixed - getdate help page improved.
@@ -104,7 +117,7 @@ Scilab Bug Fixes
 * Bug #13321 fixed - Default figure "visible" property was ignored when creating
                      a new figure.
 
-* Bug #13324 fixed - Legends display were completely modified when an item was clicked 
+* Bug #13324 fixed - Legends display were completely modified when an item was clicked
                      and modified.
 
 * Bug #13330 fixed - gtk2-oxygen theme engine (used by KDE) crashed Scilab.
@@ -115,7 +128,7 @@ Scilab Bug Fixes
 * Bug #13333 fixed - Selecting "Offline mode" in Scilab installer installed
                      Scilab in "Command line mode" (without GUI modules).
 
-* Bug #13336 fixed - In SciNotes, it was not possible to complete brackets only at the 
+* Bug #13336 fixed - In SciNotes, it was not possible to complete brackets only at the
                      end of a line.
 
 * Bug #13339 fixed - Kronecker tensor product now works on hypermatrices.
