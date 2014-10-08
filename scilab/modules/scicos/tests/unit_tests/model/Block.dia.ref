@@ -42,8 +42,10 @@ propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
@@ -135,7 +137,9 @@ propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 6 , PORT )
@@ -200,8 +204,10 @@ propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 8 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
@@ -286,7 +292,9 @@ propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 9 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 10 , PORT )
@@ -351,8 +359,10 @@ propertyUpdated( 12 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 12 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
@@ -436,7 +446,9 @@ propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 14 , PORT )
@@ -505,8 +517,10 @@ propertyUpdated( 16 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 16 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
@@ -592,8 +606,10 @@ propertyUpdated( 19 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 20 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 18 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 18 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 18 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
@@ -694,7 +710,9 @@ propertyUpdated( 21 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 21 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 21 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 21 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 22 , PORT )
@@ -739,8 +757,10 @@ propertyUpdated( 22 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 23 , PORT , DATATYPE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
@@ -754,3 +774,158 @@ scicos_Block type :
   model
   gui
   doc
+// Test 'opar' and 'odstate'
+o = LOGIC("define")
+objectCreated( 24 , BLOCK )
+propertyUpdated( 24 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 24 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 25 , PORT )
+propertyUpdated( 25 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 25 , PORT , PORT_KIND ) : SUCCESS
+objectCreated( 26 , PORT )
+propertyUpdated( 26 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 26 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 24 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 27 , PORT )
+propertyUpdated( 27 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 27 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 24 , BLOCK , OUTPUTS ) : SUCCESS
+objectCreated( 28 , PORT )
+propertyUpdated( 28 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 28 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 24 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 25 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 26 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 27 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 25 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 26 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 27 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 26 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 25 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 26 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 27 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 28 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 24 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , OPAR ) : SUCCESS
+propertyUpdated( 24 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 24 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+o  = 
+scicos_Block type :
+  graphics
+  model
+  gui
+  doc
+o.model.opar
+ ans  =
+     (1)
+  0
+  0
+  0
+  1
+typeof(o.model.opar(1))
+ ans  =
+ int8
+o.model.opar = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 28 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , OPAR ) : SUCCESS
+propertyUpdated( 24 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
+o.model.opar
+ ans  =
+     (1)
+    1.    2.    3.
+    4.    5.    6.
+     (2)
+!Hello  world!  !
+!               !
+!Test   123     !
+     (3)
+    i      2.    3.i
+    4.    5.i    6.
+     (4)
+  32  32
+  32  32
+o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 25 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 26 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 27 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 28 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , ODSTATE ) : SUCCESS
+propertyUpdated( 24 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
+o.model.odstate
+ ans  =
+     (1)
+    1.    2.    3.
+    4.    5.    6.
+     (2)
+!Hello  world!  !
+!               !
+!Test   123     !
+     (3)
+    i      2.    3.i
+    4.    5.i    6.
+     (4)
+  32  32
+  32  32

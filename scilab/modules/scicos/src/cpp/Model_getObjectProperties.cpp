@@ -465,8 +465,14 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case SIM_DEP_UT:
                 o->getSimDepUT(v);
                 return true;
+            case ODSTATE:
+                o->getODState(v);
+                return true;
             case IPAR:
                 o->getIpar(v);
+                return true;
+            case OPAR:
+                o->getOpar(v);
                 return true;
             default:
                 break;

@@ -84,3 +84,13 @@ function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_ge
 endfunction
 funcprot(p);
 o = CSCOPE("set", o)
+
+// Test 'opar' and 'odstate'
+o = LOGIC("define")
+o.model.opar
+typeof(o.model.opar(1))
+o.model.opar = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+o.model.opar
+
+o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+o.model.odstate
