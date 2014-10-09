@@ -96,7 +96,7 @@ Double::~Double()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -117,7 +117,7 @@ Double::Double(int _iRows, int _iCols, bool _bComplex, bool _bZComplex)
 
     setViewAsInteger(false);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -140,7 +140,7 @@ Double::Double(double _dblReal)
     //create(piDims, 2, &pdblVal, NULL);
     //pdblVal[0] = _dblReal;
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -156,7 +156,7 @@ Double::Double(double _dblReal, double _dblImg)
     pdblR[0] = _dblReal;
     pdblI[0] = _dblImg;
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -168,7 +168,7 @@ Double::Double(int _iRows, int _iCols, double **_pdblReal)
     create(piDims, 2, _pdblReal, NULL);
 
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -180,7 +180,7 @@ Double::Double(int _iRows, int _iCols, double **_pdblReal, double **_pdblImg)
     create(piDims, 2, _pdblReal, _pdblImg);
 
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -201,7 +201,7 @@ Double::Double(int _iDims, int* _piDims, bool _bComplex, bool _bZComplex)
     }
 
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

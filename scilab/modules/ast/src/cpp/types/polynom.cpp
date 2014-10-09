@@ -24,7 +24,7 @@ namespace types
 Polynom::Polynom()
 {
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -57,7 +57,7 @@ Polynom::~Polynom()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -76,7 +76,7 @@ void Polynom::createPoly(std::wstring _szVarName, int _iDims, int* _piDims, cons
         }
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

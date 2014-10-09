@@ -38,7 +38,7 @@ GraphicHandle::GraphicHandle(long long _handle)
     create(piDims, 2, &pH, NULL);
     pH[0] = _handle;
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -48,7 +48,7 @@ GraphicHandle::GraphicHandle(int _iRows, int _iCols)
     long long* pH = NULL;
     create(piDims, 2, &pH, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -57,7 +57,7 @@ GraphicHandle::GraphicHandle(int _iDims, int* _piDims)
     long long* pH = NULL;
     create(_piDims, _iDims, &pH, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -74,7 +74,7 @@ GraphicHandle::~GraphicHandle()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 

@@ -26,7 +26,7 @@ Struct::Struct()
     int piDims[2] = {0, 0};
     create(piDims, 2, &pIT, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -43,7 +43,7 @@ Struct::Struct(int _iRows, int _iCols)
     }
     delete p;
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -59,7 +59,7 @@ Struct::Struct(int _iDims, int* _piDims)
         delete p;
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -86,7 +86,7 @@ Struct::~Struct()
         }
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -105,7 +105,7 @@ Struct::Struct(Struct *_oStructCopyMe)
         pIT[i] = _oStructCopyMe->get(i)->clone();
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

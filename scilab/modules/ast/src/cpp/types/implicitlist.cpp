@@ -70,7 +70,7 @@ ImplicitList::~ImplicitList()
         }
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -87,7 +87,7 @@ ImplicitList::ImplicitList()
     m_pDblEnd   = NULL;
 
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -108,7 +108,7 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
     setEnd(_poEnd);
     compute();
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

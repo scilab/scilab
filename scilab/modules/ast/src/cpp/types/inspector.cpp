@@ -10,28 +10,27 @@
 *
 */
 
+#include <string>
+#include <iostream>
+#include <map>
+
 #include "inspector.hxx"
 #include "types.hxx"
-
-extern "C"
-{
-#include <stdio.h>
-}
 
 namespace types
 {
 #ifndef NDEBUG
 std::vector<InternalType*> Inspector::m_vIT;
 
-int Inspector::getItemCount()
+size_t Inspector::getItemCount()
 {
-    return (int)m_vIT.size();
+    return m_vIT.size();
 }
 
-int Inspector::getUnreferencedItemCount()
+size_t Inspector::getUnreferencedItemCount()
 {
     int iCount = 0;
-    for (int i = 0 ; i < m_vIT.size() ; i++)
+    for (size_t i = 0 ; i < m_vIT.size() ; i++)
     {
         if (m_vIT[i]->getRef() == 0)
         {
@@ -81,7 +80,7 @@ void Inspector::removeItem(InternalType* _pIT)
     }
 }
 
-InternalType* Inspector::getItem(int _iPos)
+InternalType* Inspector::getItem(size_t _iPos)
 {
     if (_iPos >= m_vIT.size())
     {
@@ -90,10 +89,10 @@ InternalType* Inspector::getItem(int _iPos)
     return m_vIT[_iPos];
 }
 
-InternalType* Inspector::getUnreferencedItem(int _iPos)
+InternalType* Inspector::getUnreferencedItem(size_t _iPos)
 {
-    int iCount = 0;
-    for (int i = 0 ; i < m_vIT.size() ; i++)
+    size_t iCount = 0;
+    for (size_t i = 0 ; i < m_vIT.size() ; i++)
     {
         if (m_vIT[i]->getRef() == 0)
         {
@@ -109,7 +108,7 @@ InternalType* Inspector::getUnreferencedItem(int _iPos)
     return NULL;
 }
 
-std::wstring Inspector::showItem(int _iPos)
+std::wstring Inspector::showItem(size_t _iPos)
 {
     std::wstring st;
     InternalType* pIT = getItem(_iPos);
@@ -124,7 +123,7 @@ std::wstring Inspector::showItem(int _iPos)
     return st;
 }
 
-std::wstring Inspector::showUnreferencedItem(int _iPos)
+std::wstring Inspector::showUnreferencedItem(size_t _iPos)
 {
     std::wstring st;
     InternalType* pIT = getUnreferencedItem(_iPos);
@@ -144,13 +143,13 @@ void Inspector::deleteItems()
     InternalType** pIT = new InternalType*[m_vIT.size()];
 
     //copy item values
-    for (int i = 0 ; i < m_vIT.size() ; i++)
+    for (size_t i = 0 ; i < m_vIT.size() ; i++)
     {
         pIT[i] = m_vIT[i];
     }
 
     //delete each item
-    for (int i = 0 ; i < m_vIT.size() ; i++)
+    for (size_t i = 0 ; i < m_vIT.size() ; i++)
     {
         delete pIT[i];
     }
@@ -161,5 +160,49 @@ void Inspector::deleteItems()
         printf("Oo\n");
     }
 }
+
+void Inspector::displayMemleak()
+{
+    std::map<std::wstring, size_t> statistics;
+
+    if (m_vIT.size() != 0)
+    {
+        // construct the statistic map
+        for (size_t i = 0; i < m_vIT.size(); ++i)
+        {
+            statistics[m_vIT[i]->getTypeStr()]++;
+        }
+
+        // display the result
+        std::wcerr << L"Memory leaked, please file a bug on http://bugzilla.scilab.org" << std::endl;
+        for (auto it = statistics.begin(); it != statistics.end(); ++it)
+        {
+            std::wcerr << L"    " << it->second << L" " << it->first;
+
+            // list the not free-ed pointers
+            std::wcerr << L" : ";
+            bool isFirst = true;
+            for (size_t i = 0; i < m_vIT.size(); ++i)
+            {
+                if (it->first == m_vIT[i]->getTypeStr())
+                {
+                    if (isFirst)
+                    {
+                        isFirst = false;
+                    }
+                    else
+                    {
+                        std::wcerr << " , ";
+                    }
+                    std::wcerr << m_vIT[i];
+                }
+            }
+
+            std::wcerr << std::endl;
+        }
+
+    }
+}
+
 #endif
 }

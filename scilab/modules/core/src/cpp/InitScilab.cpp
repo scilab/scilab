@@ -14,7 +14,7 @@
 #include <string>
 #include <libxml/parser.h>
 
-
+#include "inspector.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
 #include "string.hxx"
@@ -339,6 +339,10 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     //destroy context
     symbol::Context::destroyInstance();
 
+#ifndef NDEBUG
+    types::Inspector::displayMemleak();
+#endif
+
     //from ExitScilab()
     saveCWDInPreferences();
     clearScilabPreferences();
@@ -349,7 +353,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         TerminateGraphics();
         TerminateJVM();
     }
-
     /* TerminateCorePart2 */
 
     //clear opened files

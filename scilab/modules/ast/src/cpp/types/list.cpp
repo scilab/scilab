@@ -39,7 +39,7 @@ List::List() : Container()
 {
     m_plData = new std::vector<InternalType *>();
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -56,7 +56,7 @@ List::~List()
         delete m_plData;
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -75,7 +75,7 @@ List::List(List *_oListCopyMe)
 
     m_iSize = static_cast<int>(m_plData->size());
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

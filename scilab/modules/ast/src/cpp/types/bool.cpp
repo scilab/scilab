@@ -30,7 +30,7 @@ Bool::~Bool()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -40,7 +40,7 @@ Bool::Bool(int _iRows, int _iCols)
     int *piBool = NULL;
     create(piDims, 2, &piBool, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -51,7 +51,7 @@ Bool::Bool(int _iReal)
     create(piDims, 2, &piBool, NULL);
     piBool[0] = _iReal == 0 ? 0 : 1;
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -60,7 +60,7 @@ Bool::Bool(int _iRows, int _iCols, int **_piData)
     int piDims[2] = {_iRows, _iCols};
     create(piDims, 2, _piData, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -69,7 +69,7 @@ Bool::Bool(int _iDims, int* _piDims)
     int* piData = NULL;
     create(_piDims, _iDims, &piData, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
