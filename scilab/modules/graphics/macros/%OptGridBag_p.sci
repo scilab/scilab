@@ -5,7 +5,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-function %OptBorde_p(t)
-    printf("Border Layout Options\n");
-    printf("  Padding : %s\n", sci2exp(t.padding));
+function %OptGridBag_p(t)
+    printf("Gridbag Layout Options\n");
+    printf("  No option\n");
 endfunction
