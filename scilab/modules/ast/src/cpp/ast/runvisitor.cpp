@@ -157,6 +157,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     if (ok)
     {
         setResult(pReturn);
+        pValue->killMe();
     }
     else if (pValue->isFieldExtractionOverloadable())
     {
@@ -193,8 +194,6 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         os_swprintf(szError, bsiz, _W("Attempt to reference field of non-structure array.\n").c_str());
         throw ScilabError(szError, 999, e.getLocation());
     }
-
-    pValue->killMe();
 }
 
 template <class T>
