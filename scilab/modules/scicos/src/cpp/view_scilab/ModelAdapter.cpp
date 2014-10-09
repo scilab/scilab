@@ -717,11 +717,11 @@ struct odstate
  * When setting a diagram in 'rpar', the Superblock's ports must be consistent with the "port blocks" inside it.
  * By "port blocks", we mean IN_f, OUT_f, CLKIN_f, CLKOUT_f, CLKINV_f, CLKOUTV_f, INIMPL_f and OUTIMPL_f.
  */
-static bool setInnerBlocksRefs(ModelAdapter& adaptor, std::vector<ScicosID>& children, Controller& controller)
+bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& children, Controller& controller)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
-    for (std::vector<ScicosID>::iterator it = children.begin(); it != children.end(); ++it)
+    for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
         if (controller.getObject(*it)->kind() == BLOCK) // Rule out Annotations and Links
         {
@@ -889,7 +889,7 @@ struct rpar
     }
 };
 
-static double toDouble(const int a)
+double toDouble(const int a)
 {
     return static_cast<double>(a);
 }

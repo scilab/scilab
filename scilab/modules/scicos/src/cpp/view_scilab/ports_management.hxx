@@ -40,7 +40,7 @@ namespace view_scilab
  * Return a Scilab encoded value for a property.
  */
 template<typename Adaptor, object_properties_t p>
-types::InternalType* get_ports_property(const Adaptor& adaptor, object_properties_t port_kind, const Controller& controller)
+types::InternalType* get_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, const Controller& controller)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -154,7 +154,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
  * \note this method will ignore or return false if one of the ports does not exist, depending on the property setted.
  */
 template<typename Adaptor, object_properties_t p>
-bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, Controller& controller, types::InternalType* v)
+bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -322,7 +322,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
  * \return true on success, false otherwise
  */
 template<typename Adaptor, object_properties_t p>
-inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, double* d)
+inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, const double* d)
 {
     for (std::vector<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
     {
@@ -353,7 +353,7 @@ inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>
  * \param deletedObjects trash used to delete objects
  */
 template<typename Adaptor, object_properties_t p>
-inline bool updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
+inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& controller,
                           std::vector<ScicosID>& children, std::vector<ScicosID>& deletedObjects)
 {
     if (p == CONNECTED_SIGNALS)
@@ -439,7 +439,7 @@ inline bool updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
  * \return true on success, false otherwise
  */
 template<typename Adaptor, object_properties_t p>
-inline bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& children,	Controller& controller)
+inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<ScicosID>& children, Controller& controller)
 {
     bool status = true;
     if (p == CONNECTED_SIGNALS)
@@ -485,7 +485,7 @@ inline bool addNewPort(ScicosID newPortID, int newPort, const std::vector<Scicos
  * Create ports if needed, remove ports if needed and set a default property on each port.
  */
 template<typename Adaptor, object_properties_t p>
-bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind,  Controller& controller, types::InternalType* v)
+bool update_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -619,7 +619,6 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
 
     return true;
 }
-
 
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
