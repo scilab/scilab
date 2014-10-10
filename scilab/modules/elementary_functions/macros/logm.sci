@@ -46,7 +46,7 @@ function x=logm(a)
         end
         x = u * diag(w1) * u';
         if r then
-            if and(s >= 0) then
+            if and(real(s) >= 0) then
                 x = real(x);
             end
         end
