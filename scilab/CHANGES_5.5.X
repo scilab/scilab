@@ -25,6 +25,8 @@ Scilab Bug Fixes
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
+* Bug #13605 fixed - harmean returned an inverted result when called with parameters "r" or "c".
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
@@ -42,6 +44,7 @@ Scilab Bug Fixes
 * Bug #13695 fixed - Scilab used bash-specific features in scripts.
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
+
 
 
                      Changes between version 5.5.0 and 5.5.1
