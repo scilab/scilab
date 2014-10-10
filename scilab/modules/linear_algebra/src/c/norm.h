@@ -27,5 +27,7 @@ LINEAR_ALGEBRA_IMPEXP double normPC (doublecomplex *A, int iRows, int iCols, dou
 
 #ifdef _MSC_VER
 LINEAR_ALGEBRA_IMPEXP int la_isinf(double dbl);
+#else
+#define la_isinf isinf
 #endif
 
