@@ -528,6 +528,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case EXPRS:
                 o->getExprs(v);
                 return true;
+            case EQUATIONS:
+                o->getEquations(v);
+                return true;
             default:
                 break;
         }

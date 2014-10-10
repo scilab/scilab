@@ -48,7 +48,6 @@ public:
 
 private:
     types::InternalType* rpar_content;
-
     types::InternalType* doc_content;
 };
 

@@ -137,6 +137,7 @@ propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 6 , PORT )
 propertyUpdated( 6 , PORT , FIRING ) : NO_CHANGES
@@ -302,6 +303,7 @@ propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 10 , PORT )
 propertyUpdated( 10 , PORT , FIRING ) : NO_CHANGES
@@ -467,6 +469,7 @@ propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 14 , PORT )
 propertyUpdated( 14 , PORT , FIRING ) : NO_CHANGES
@@ -758,6 +761,7 @@ propertyUpdated( 21 , BLOCK , ODSTATE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 21 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 22 , PORT )
 propertyUpdated( 22 , PORT , FIRING ) : NO_CHANGES
@@ -984,8 +988,74 @@ o.model.odstate
        ans(4)
   32  32
   32  32
-// Check that all the model items are freed
-clear
+// Test 'equations'
+o = VsourceAC("define")
+objectCreated( 29 , BLOCK )
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 30 , PORT )
+propertyUpdated( 30 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 30 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 29 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 31 , PORT )
+propertyUpdated( 31 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 31 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 29 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 30 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 31 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 30 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 31 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 31 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 29 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 29 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EQUATIONS ) : SUCCESS
+propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 30 , PORT , IMPLICIT ) : SUCCESS
+propertyUpdated( 31 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 30 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 31 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 30 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 31 , PORT , IMPLICIT ) : SUCCESS
+propertyUpdated( 30 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 31 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 24 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1007,3 +1077,77 @@ propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : SUCCESS
 propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 28 , PORT )
 objectDeleted( 24 , BLOCK )
+o  = 
+o.model.equations
+ ans  =
+       ans(1)
+!modelica  model  inputs  outputs  parameters  !
+       ans(2)
+ VsourceAC
+       ans(3)
+ p
+       ans(4)
+ n
+       ans(5)
+        ans(5)(1)
+!VA  !
+!    !
+!f   !
+        ans(5)(2)
+         ans(5)(2)(1)
+    220.
+         ans(5)(2)(2)
+    50.
+o.model.equations = modelica();
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+o.model.equations
+ ans  =
+       ans(1)
+!modelica  model  inputs  outputs  parameters  !
+       ans(2)
+ VsourceAC
+       ans(3)
+ p
+       ans(4)
+ n
+       ans(5)
+        ans(5)(1)
+!VA  !
+!    !
+!f   !
+        ans(5)(2)
+         ans(5)(2)(1)
+    220.
+         ans(5)(2)(2)
+    50.
+// Check that all the model items are freed
+clear
+propertyUpdated( 29 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 29 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 30 , PORT )
+propertyUpdated( 29 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 29 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 31 , PORT )
+objectDeleted( 29 , BLOCK )

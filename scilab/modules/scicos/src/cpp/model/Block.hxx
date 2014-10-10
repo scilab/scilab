@@ -405,6 +405,22 @@ private:
         return SUCCESS;
     }
 
+    void getEquations(std::vector<std::string>& data) const
+    {
+        data = m_equations;
+    }
+
+    update_status_t setEquations(const std::vector<std::string>& data)
+    {
+        if (data == m_equations)
+        {
+            return NO_CHANGES;
+        }
+
+        m_equations = data;
+        return SUCCESS;
+    }
+
     void getUID(std::string& data) const
     {
         data = m_uid;
@@ -650,7 +666,6 @@ private:
     std::string m_style;
     int m_nzcross;
     int m_nmode;
-    // FIXME: find an appropriate way to store 'equations'
     std::vector<std::string> m_equations;
     std::string m_uid;
 

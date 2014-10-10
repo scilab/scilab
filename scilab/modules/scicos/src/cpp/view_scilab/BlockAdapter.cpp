@@ -69,7 +69,6 @@ struct model
         {
             // Decrease rpar_content's ref count to counter the increases from the other Adapters
             rpar_content->DecreaseRef();
-            rpar_content->DecreaseRef();
             ret->set(rpar, rpar_content);
         }
 

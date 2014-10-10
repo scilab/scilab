@@ -478,6 +478,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case EXPRS:
                 return o->setExprs(v);
+            case EQUATIONS:
+                return o->setEquations(v);
             default:
                 break;
         }
