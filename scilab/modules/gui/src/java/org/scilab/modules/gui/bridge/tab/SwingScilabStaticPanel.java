@@ -224,7 +224,7 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
      */
     public void setEventHandler(String funName) {
         disableEventHandler();
-        eventHandler = new ScilabEventListener(funName, getId());
+        eventHandler = new ScilabEventListener(funName, getId(), false);
         if (eventEnabled) {
             editorEventHandler.setEnable(false);
             enableEventHandler();

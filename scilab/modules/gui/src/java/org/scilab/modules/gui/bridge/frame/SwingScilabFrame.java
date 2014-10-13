@@ -29,6 +29,12 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_STRING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_UI_VALUE__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
+
+
+
+
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -77,6 +83,7 @@ import org.scilab.modules.gui.console.Console;
 import org.scilab.modules.gui.dockable.Dockable;
 import org.scilab.modules.gui.editbox.EditBox;
 import org.scilab.modules.gui.editor.EditorEventListener;
+import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.frame.Frame;
 import org.scilab.modules.gui.frame.SimpleFrame;
@@ -113,6 +120,8 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     private Border defaultBorder = null;
     private SwingScilabCanvas canvas = null;
     private EditorEventListener editorEventHandler = null;
+    private ScilabEventListener eventHandler;
+    private boolean eventEnabled = false;
 
     /**
      * Constructor
@@ -1018,6 +1027,16 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
                 }
                 break;
             }
+            case __GO_EVENTHANDLER_ENABLE__ : {
+                Boolean enabled = (Boolean) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_ENABLE__);
+                setEventHandlerEnabled(enabled);
+                break;
+            }
+            case __GO_EVENTHANDLER_NAME__: {
+                String eventHandlerName = (String) GraphicController.getController().getProperty(getId(), __GO_EVENTHANDLER_NAME__);
+                setEventHandler(eventHandlerName);
+                break;
+            }
             default:
                 SwingViewWidget.update(this, property, value);
                 break;
@@ -1090,4 +1109,60 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
             repaint();
         }
     }
+    
+    /**
+     * Set the event handler of the Canvas
+     * @param funName the name of the Scilab function to call
+     */
+    public void setEventHandler(String funName) {
+        disableEventHandler();
+        eventHandler = new ScilabEventListener(funName, getId());
+        if (eventEnabled) {
+            editorEventHandler.setEnable(false);
+            enableEventHandler();
+        }
+    }
+
+    /**
+     * Set the status of the event handler of the Canvas
+     * @param status is true to set the event handler active
+     */
+    public void setEventHandlerEnabled(boolean status) {
+        if (status && eventEnabled) {
+            return;
+        }
+
+        if (status) {
+            editorEventHandler.setEnable(false);
+            enableEventHandler();
+            eventEnabled = true;
+        } else {
+            editorEventHandler.setEnable(true);
+            disableEventHandler();
+            eventEnabled = false;
+        }
+    }
+    
+    /**
+     * Turn on event handling.
+     */
+    private void enableEventHandler() {
+        if (canvas != null) {
+            canvas.addEventHandlerKeyListener(eventHandler);
+            canvas.addEventHandlerMouseListener(eventHandler);
+            canvas.addEventHandlerMouseMotionListener(eventHandler);
+        }
+    }
+
+    /**
+     * Turn off event handling.
+     */
+    private void disableEventHandler() {
+        if (eventHandler != null && canvas != null) {
+            canvas.removeEventHandlerKeyListener(eventHandler);
+            canvas.removeEventHandlerMouseListener(eventHandler);
+            canvas.removeEventHandlerMouseMotionListener(eventHandler);
+        }
+    }
+
 }
