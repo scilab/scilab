@@ -328,6 +328,11 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\model\BaseObject.hxx" />
     <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\LoggerView.hxx" />
+    <ClInclude Include="..\cpp\model\Annotation.hxx" />
+    <ClInclude Include="..\cpp\model\Block.hxx" />
+    <ClInclude Include="..\cpp\model\Diagram.hxx" />
+    <ClInclude Include="..\cpp\model\Link.hxx" />
+    <ClInclude Include="..\cpp\model\Port.hxx" />
     <ClInclude Include="..\cpp\view_scilab\Adapters.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BaseAdapter.hxx" />
     <ClInclude Include="..\cpp\view_scilab\BlockAdapter.hxx" />

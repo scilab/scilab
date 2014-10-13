@@ -586,16 +586,16 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::IN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_IN);
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::OUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_OUT);
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EIN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EIN);
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EOUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EOUT);
                     break;
                 default:
                     return false;

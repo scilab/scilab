@@ -354,7 +354,7 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
         {
             int kind;
             controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
-            if (kind == model::IN || kind == model::EIN)
+            if (kind == model::PORT_IN || kind == model::PORT_EIN)
             {
                 data[2] = 1;
             }
@@ -477,7 +477,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     std::vector<ScicosID> sourceBlockPorts;
     int nBlockPorts;
     bool newPortIsImplicit = false;
-    int newPortKind = static_cast<int>(model::UNDEF);
+    int newPortKind = static_cast<int>(model::PORT_UNDEF);
     int linkType;
     controller.getObjectProperty(id, LINK, KIND, linkType);
     if (linkType == model::activation)
@@ -491,24 +491,24 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         {
             if (otherPort != 0)
             {
-                if (!checkConnectivity(model::EIN, otherPort, blkID, controller))
+                if (!checkConnectivity(model::PORT_EIN, otherPort, blkID, controller))
                 {
                     return;
                 }
             }
-            newPortKind = static_cast<int>(model::EOUT);
+            newPortKind = static_cast<int>(model::PORT_EOUT);
             sourceBlockPorts = evtout;
         }
         else
         {
             if (otherPort != 0)
             {
-                if (!checkConnectivity(model::EOUT, otherPort, blkID, controller))
+                if (!checkConnectivity(model::PORT_EOUT, otherPort, blkID, controller))
                 {
                     return;
                 }
             }
-            newPortKind = static_cast<int>(model::EIN);
+            newPortKind = static_cast<int>(model::PORT_EIN);
             sourceBlockPorts = evtin;
         }
 
@@ -526,24 +526,24 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             {
                 if (otherPort != 0)
                 {
-                    if (!checkConnectivity(model::IN, otherPort, blkID, controller))
+                    if (!checkConnectivity(model::PORT_IN, otherPort, blkID, controller))
                     {
                         return;
                     }
                 }
-                newPortKind = static_cast<int>(model::OUT);
+                newPortKind = static_cast<int>(model::PORT_OUT);
                 sourceBlockPorts = out;
             }
             else
             {
                 if (otherPort != 0)
                 {
-                    if (!checkConnectivity(model::OUT, otherPort, blkID, controller))
+                    if (!checkConnectivity(model::PORT_OUT, otherPort, blkID, controller))
                     {
                         return;
                     }
                 }
-                newPortKind = static_cast<int>(model::IN);
+                newPortKind = static_cast<int>(model::PORT_IN);
                 sourceBlockPorts = in;
             }
 
