@@ -1,62 +1,101 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ * Copyright (C) 2014 - Samuel Gougeon : extension to hypermatrices
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="en">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="kron" xml:lang="pt">
     <refnamediv>
         <refname>kron</refname>
         <refpurpose>produto de Kronecker (.*.) </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Seqüência de Chamamento</title>
+        <title>SeqÃ¼Ãªncia de Chamamento</title>
         <synopsis>kron(A,B)
             A.*.B
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Descrição</title>
+        <title>DescriÃ§Ã£o</title>
         <para>
             <literal>kron(A,B)</literal> ou <literal>A.*.B</literal> retorna o
-            produto tensorial de Kronecker entre duas matrizes <literal>A</literal> e
+            produto tensorial de Kronecker entre duas matrizes ou hypermatrizes <literal>A</literal> e
             <literal>B</literal>. A matriz resultante tem a seguinte forma de blocos:
         </para>
-        <programlisting role=""><![CDATA[ 
-              | A(1,1) B ..... A(1,n) B |
-              |   .              .      |
-    A .*. B = |   .              .      |   
-              |   .              .      |
-              | A(m,1) B ..... A(m,n) B |
- ]]></programlisting>
+        <informalequation>
+            <mediaobject>
+                <imageobject>
+                    <imagedata fileref="../../mml/kron_equation_1.mml"/>
+                </imageobject>
+            </mediaobject>
+        </informalequation>
         <para>
-            Se <literal>A</literal> é uma matriz <literal>m x n</literal> e
-            <literal>B</literal> é uma matriz <literal>p x q</literal> , então
-            <literal>A.*.B</literal> é uma matriz <literal>(m*p) x
-                (n*q)
+            Se <literal>A</literal> Ã© uma matriz <literal>m x n</literal> e
+            <literal>B</literal> Ã© uma hypermatriz <literal>p x q x r</literal> , entÃ£o
+            <literal>A.*.B</literal> Ã© uma hypermatriz <literal>(m*p) x (n*q) x (1*r)
             </literal>
             .
         </para>
         <para>
-            <literal>A</literal> e <literal>B</literal> podem ser matrizes
-            esparsas.
+            <literal>A</literal> e <literal>B</literal> podem ser matrizes esparsas, mas o produto de Kronecker nÃ£o Ã© definida entre uma matriz e uma hipermatriz.
         </para>
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[ 
-A=[1,2;3,4];
+        <programlisting role="example"><![CDATA[
+A = [1,2;3,4];
 kron(A,A)
 A.*.A
 sparse(A).*.sparse(A)
-A(1,1)=%i;
+A(1,1) = %i;
 kron(A,A)
+
+// com hypermatrizes
+// -----------------
+b = hypermat([4 3 2], 1:24);
+
+// row .*. hypermat
+clc
+a = 1:2, b
+a.*.b
+
+// hypermat .*. row
+clc
+b,a
+b .*. a
+
+// column .*. hypermat
+clc
+a = [1;2], b
+a.*.b
+
+// matrix .*. hypermat
+clc
+a = [-1 -2; 2 1], b
+a.*.b
+
+// hypermat .*. hypermat
+clc
+a = hypermat([1 2 2],[-1,-2, 1 2]), b
+a.*.b
  ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.1</revnumber>
+                <revdescription>
+                    <para>ExtensÃ£o ao hypermatrizes</para>
+                </revdescription>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

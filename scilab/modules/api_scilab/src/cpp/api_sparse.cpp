@@ -13,6 +13,8 @@
  * still available and supported in Scilab 6.
  */
 #include "sparse.hxx"
+#include "context.hxx"
+#include "gatewaystruct.hxx"
 
 extern "C"
 {
@@ -136,81 +138,51 @@ SciErr allocComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 SciErr allocCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg)
 {
     SciErr sciErr = sciErrInit();
-
-#if 0
-    int iNewPos     = Top - Rhs + _iVar;
-    int iAddr       = *Lstk(iNewPos);
-    int	iTotalSize  = 0;
-    int iOffset     = 0;
-    int* piAddr     = NULL;
-
-    //return empty matrix
-    if (_iRows == 0 && _iCols == 0)
-    {
-        double dblReal = 0;
-        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
-        if (sciErr.iErr)
-        {
-            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
-        }
-        return sciErr;
-    }
-
-    //header + offset
-    int iMemSize = (5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2)) / 2;
-    //+ items size
-    iMemSize += _iNbItem * (_iComplex + 1);
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
-
-    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-
-    sciErr = fillCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
-    if (sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_ALLOC_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "allocComplexSparseMatrix" : "allocSparseMatrix");
-        return sciErr;
-    }
-
-    iOffset	= 5;//4 for header + 1 for NbItem
-    iOffset		+= _iRows + _iNbItem + !((_iRows + _iNbItem) % 2);
-
-    updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + iOffset));
-    updateLstk(iNewPos, sadr(iadr(iAddr) + iOffset), iTotalSize);
-#endif
+    // We cant rewrite this function in YaSp
+    // because sparses are not stored like scilab 5.
+    // We cant return pointer to _piNbItemRow and
+    // _piColPos and let user fill it.
     return sciErr;
 }
 
-SciErr fillCommonSparseMatrix(void* _pvCtx, int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos, double** _pdblReal, double** _pdblImg, int* _piTotalSize)
+SciErr fillCommonSparseMatrix(void* _pvCtx, int *_piAddress, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg, int* _piTotalSize)
 {
     SciErr sciErr = sciErrInit();
+
     if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillCommonSparseMatrix");
         return sciErr;
     }
 
-    _piAddress[0] = sci_sparse;
-    _piAddress[1] = std::min(_iRows, _iRows * _iCols);
-    _piAddress[2] = std::min(_iCols, _iRows * _iCols);
-    _piAddress[3] = _iComplex;
+    Sparse* pSparse = (Sparse*)_piAddress;
 
-    _piAddress[4] = _iNbItem;
-
-    *_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
-    *_piColPos = *_piNbItemRow + _iRows;
-    *_pdblReal = (double*)(*_piColPos + _iNbItem + !((_iRows + _iNbItem) % 2));
-
-    if (_iComplex == 1)
+    if (_iComplex)
     {
-        *_pdblImg = *_pdblReal + _iNbItem;
+        for (int i = 0; i < _iRows; i++)
+        {
+            for (int j = 0; j < _piNbItemRow[i]; j++)
+            {
+                int iIndex = (*_piColPos++ - 1) * _iRows + i;
+                std::complex<double> cplx(*_pdblReal++, *_pdblImg++);
+                pSparse->set(iIndex, cplx);
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < _iRows; i++)
+        {
+            for (int j = 0; j < _piNbItemRow[i]; j++)
+            {
+                int iIndex = (*_piColPos++ - 1) * _iRows + i;
+                pSparse->set(iIndex, *_pdblReal++);
+            }
+        }
     }
 
-    *_piTotalSize = _iNbItem * (_iComplex + 1);
+    *_piTotalSize = (int)pSparse->nonZeros();
+
     return sciErr;
 }
 
@@ -226,16 +198,12 @@ SciErr createComplexSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 
 SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos, const double* _pdblReal, const double* _pdblImg)
 {
-    int* piNbItemRow    = NULL;
-    int* piColPos       = NULL;
-    int iOne            = 1;
-    double* pdblReal    = NULL;
-    double* pdblImg     = NULL;
+    SciErr sciErr = sciErrInit();
 
     if (_iRows == 0 && _iCols == 0)
     {
         double dblReal = 0;
-        SciErr sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
         if (sciErr.iErr)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -243,20 +211,21 @@ SciErr createCommonSparseMatrix(void* _pvCtx, int _iVar, int _iComplex, int _iRo
         return sciErr;
     }
 
-    SciErr sciErr = allocCommonSparseMatrix(_pvCtx, _iVar, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg);
-    if (sciErr.iErr)
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    InternalType** out = pStr->m_pOut;
+
+    types::Sparse* pSparse = new Sparse(_iRows, _iCols, _iComplex == 1);
+    if (pSparse == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
+        addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SPARSE, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createComplexSparseMatrix" : "createSparseMatrix");
         return sciErr;
     }
 
-    memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
-    memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
-    C2F(dcopy)(&_iNbItem, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
-    if (_iComplex)
-    {
-        C2F(dcopy)(&_iNbItem, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
-    }
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+    out[rhs - 1] = pSparse;
+
+    int iTotalSize = 0;
+    sciErr = fillCommonSparseMatrix(_pvCtx, (int*)pSparse, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
     return sciErr;
 }
 
@@ -274,19 +243,7 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 {
     SciErr sciErr = sciErrInit();
 
-#if 0
-    int iVarID[nsiz];
-    int iSaveRhs        = Rhs;
-    int iSaveTop        = Top;
-    int iTotalSize      = 0;
-    int iPos            = 0;
-
-    int* piAddr         = NULL;
-    int* piNbItemRow    = NULL;
-    int* piColPos       = NULL;
-    int iOne            = 1;
-    double* pdblReal    = NULL;
-    double* pdblImg     = NULL;
+    wchar_t* pwstName = to_wide_string(_pstName);
 
     //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
@@ -306,51 +263,18 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
         return sciErr;
     }
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
-
-    //header + offset
-    int iMemSize = (5 + _iRows + _iNbItem + !((_iRows + _iNbItem) % 2)) / 2;
-    //+ items size
-    iMemSize += _iNbItem * (_iComplex + 1);
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
-
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-
-    sciErr = fillCommonSparseMatrix(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos, &pdblReal, &pdblImg, &iTotalSize);
-    if (sciErr.iErr)
+    types::Sparse* pSparse = new Sparse(_iRows, _iCols, _iComplex == 1);
+    if (pSparse == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_SPARSE, _("%s: Unable to create %s named \"%s\""), _iComplex ? "createNamedComplexSparseMatrix" : "createNamedSparseMatrix", _("sparse matrix"), _pstName);
         return sciErr;
     }
 
-    memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
-    memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
-    C2F(dcopy)(&_iNbItem, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
-    if (_iComplex)
-    {
-        C2F(dcopy)(&_iNbItem, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
-    }
+    int iTotalSize = 0;
+    sciErr = fillCommonSparseMatrix(_pvCtx, (int*)pSparse, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
-    iPos	= 5;//4 for header + 1 for NbItem
-    iPos += _iRows + _iNbItem;
-
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + iPos, iTotalSize);
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
-#endif
-
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pSparse);
+    FREE(pwstName);
     return sciErr;
 }
 

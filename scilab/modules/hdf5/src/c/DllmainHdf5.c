@@ -10,26 +10,58 @@
  *
  */
 
+#include "gw_hdf5.h"
+
+#ifdef _MSC_VER
 #include <windows.h>
+
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 #pragma comment(lib,"../../../../bin/hdf5dll.lib")
 #pragma comment(lib,"../../../../bin/hdf5_hldll.lib")
 /*--------------------------------------------------------------------------*/
-int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
+int WINAPI DllMain(HINSTANCE hinstDLL, DWORD flag, LPVOID reserved)
 {
-    switch (reason)
+    switch (flag)
     {
-        case DLL_PROCESS_ATTACH:
+        case DLL_PROCESS_ATTACH :
+        {
+            Initialize();
             break;
-        case DLL_PROCESS_DETACH:
+        }
+        case DLL_PROCESS_DETACH :
+        {
+            Finalize();
             break;
-        case DLL_THREAD_ATTACH:
+        }
+        case DLL_THREAD_ATTACH :
+        {
             break;
-        case DLL_THREAD_DETACH:
+        }
+        case DLL_THREAD_DETACH :
+        {
             break;
+        }
+        default :
+        {
+            return 0;
+        }
     }
     return 1;
 }
+#else
+void __attribute__ ((constructor)) load(void);
+void __attribute__ ((destructor)) unload(void);
+
+void load(void)
+{
+    Initialize();
+}
+
+void unload(void)
+{
+    Finalize();
+}
+#endif
 /*--------------------------------------------------------------------------*/
 

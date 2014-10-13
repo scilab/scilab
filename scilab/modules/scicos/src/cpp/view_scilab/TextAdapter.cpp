@@ -202,7 +202,7 @@ struct model
 
         // Return an empty "model"-typed mlist because this field isn't used.
         types::MList* o = new types::MList();
-        types::String* MListFields = new types::String(4, 1);
+        types::String* MListFields = new types::String(1, 4);
 
         MListFields->set(0, Model.c_str());
         MListFields->set(1, sim.c_str());
@@ -211,7 +211,9 @@ struct model
 
         o->set(0, MListFields);
         // 'sim' field needs to be defined for the console display.
-        o->set(1, new types::Double(0, 0));
+        o->set(1, types::Double::Empty());
+        o->set(2, types::Double::Empty());
+        o->set(3, types::Double::Empty());
         return o;
     }
 
@@ -237,7 +239,7 @@ struct dummy_property
         (void) controller;
 
         // Return an empty matrix because this field isn't used.
-        return new types::Double(0, 0);
+        return types::Double::Empty();
     }
 
     static bool set(TextAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -256,11 +258,8 @@ struct dummy_property
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
-TextAdapter::TextAdapter(const TextAdapter& o) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(o) {}
-
-TextAdapter::TextAdapter(org_scilab_modules_scicos::model::Annotation* o) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(o)
+TextAdapter::TextAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Annotation* adaptee) :
+    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(ownAdaptee, adaptee)
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {

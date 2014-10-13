@@ -16,12 +16,15 @@ o = scicos_model()
 
 // allocate an Annotation
 o = TEXT_f("define");
+clear o;
 
 // allocate a Block
 o = scicos_block()
+clear o;
 
 // allocate a Link
 o = scicos_link()
+clear o;
 
 // allocate a Diagram
 scs_m = scicos_diagram()

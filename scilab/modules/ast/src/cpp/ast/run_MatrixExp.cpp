@@ -20,22 +20,24 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 {
     try
     {
-        std::list<MatrixLineExp *>::const_iterator row;
-        std::list<Exp *>::const_iterator col;
+        exps_t::const_iterator row;
+        exps_t::const_iterator col;
         InternalType *poResult = NULL;
         list<InternalType*> rowList;
 
-        if (e.getLines().size() == 0)
+        exps_t lines = e.getLines();
+        if (lines.size() == 0)
         {
             setResult(Double::Empty());
             return;
         }
 
         //do all [x,x]
-        for (row = e.getLines().begin() ; row != e.getLines().end() ; row++)
+        for (row = lines.begin() ; row != lines.end() ; row++)
         {
             InternalType* poRow = NULL;
-            for (col = (*row)->getColumns().begin() ; col != (*row)->getColumns().end() ; col++)
+            exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
+            for (col = cols.begin() ; col != cols.end() ; col++)
             {
                 setResult(NULL); // Reset value on loop re-start
                 (*col)->accept(*this);

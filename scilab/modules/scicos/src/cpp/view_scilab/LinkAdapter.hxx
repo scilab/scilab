@@ -27,8 +27,7 @@ namespace view_scilab
 class LinkAdapter : public BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>
 {
 public:
-    LinkAdapter(const LinkAdapter& o);
-    LinkAdapter(org_scilab_modules_scicos::model::Link* o);
+    LinkAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Link* adaptee);
     ~LinkAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -38,6 +37,15 @@ public:
 
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
+    types::InternalType* clone();
+
+    std::vector<double> getFrom() const;
+    bool setFrom(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level = true);
+    std::vector<double> getTo() const;
+    bool setTo(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level = true);
+private:
+    std::vector<double> from_content;
+    std::vector<double> to_content;
 };
 
 } /* namespace view_scilab */

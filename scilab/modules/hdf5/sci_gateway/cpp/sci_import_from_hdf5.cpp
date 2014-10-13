@@ -1202,13 +1202,14 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     // get data of first item for check the type of mlist
     char** pstData = new char*[iSize];
     iRet = readStringMatrix(iItemDataset, pstData);
-    freeStringMatrix(iItemDataset, pstData);
     if (iRet || strcmp(pstData[0], "hm") != 0)
     {
+        freeStringMatrix(iItemDataset, pstData);
         delete[] pstData;
         return false;
     }
 
+    freeStringMatrix(iItemDataset, pstData);
     delete[] pstData;
     pstData = NULL;
 

@@ -15,6 +15,7 @@
 
 #include "listdelete.hxx"
 #include "localization.h"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -35,6 +36,7 @@ InternalType* ListDelete::clone(void)
 bool ListDelete::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

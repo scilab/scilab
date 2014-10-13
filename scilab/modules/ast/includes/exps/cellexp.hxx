@@ -37,16 +37,16 @@ public:
     ** \param body EXP LIST intruction
     */
     CellExp (const Location& location,
-             std::list<MatrixLineExp *>& lines)
+             exps_t& lines)
         : MatrixExp (location, lines)
     {
     }
 
     virtual CellExp* clone()
     {
-        std::list<MatrixLineExp *>* lines = new std::list<MatrixLineExp *>;
-        std::copy(getLines().begin(), getLines().end(), lines->begin());
-        CellExp* cloned = new CellExp(getLocation(), *lines);
+        exps_t lines;
+        std::copy(getLines().begin(), getLines().end(), lines.begin());
+        CellExp* cloned = new CellExp(getLocation(), lines);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

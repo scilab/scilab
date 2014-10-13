@@ -18,6 +18,8 @@
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
 #include "localization.hxx"
+#include "scilabWrite.hxx"
+#include "types_tools.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -111,44 +113,41 @@ InternalType *List::clone()
     return new List(this);
 }
 
-GenericType* List::getColumnValues(int /*_iPos*/)
-{
-    return NULL;
-}
-
 /**
 ** toString to display Lists
-** FIXME : Find a better indentation process
 */
 bool List::toString(std::wostringstream& ostr)
 {
-    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
-    ostr.str(L"");
-
     if (getSize() == 0)
     {
-        ostr << wcsVarName << L"()" << std::endl;
+        ostr.str(L"");
+        ostr << L"     ()" << std::endl;
+        scilabWriteW(ostr.str().c_str());
     }
     else
     {
+        wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
-            //maange lines
-            (*itValues)->toString(ostr);
-            ostr << std::endl;
+            std::wostringstream nextVarName;
+            ostr.str(L"");
+            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
+            ostr << std::endl << nextVarName.str() << std::endl << std::endl;
+            scilabWriteW(ostr.str().c_str());
+            VariableToString(*itValues, nextVarName.str().c_str());
         }
+
+        free(wcsVarName);
     }
 
-    free(wcsVarName);
     return true;
 }
 
-std::vector<InternalType*>	List::extract(typed_list* _pArgs)
+InternalType* List::extract(typed_list* _pArgs)
 {
-    std::vector<InternalType*> outList;
+    List* outList = new List();
     //check input param
     if (_pArgs->size() != 1)
     {
@@ -173,11 +172,12 @@ std::vector<InternalType*>	List::extract(typed_list* _pArgs)
         int idx = (int)pArg[0]->getAs<Double>()->get(i);
         if (idx > getSize() || idx < 1)
         {
-            outList.clear();
+            delete outList;
+            outList = NULL;
             break;
         }
         InternalType* pIT = (*m_plData)[idx - 1];
-        outList.push_back(pIT);
+        outList->set(i, pIT);
     }
 
     //free pArg content
@@ -328,23 +328,32 @@ bool List::set(const int _iIndex, InternalType* _pIT)
         return false;
     }
 
-    while ((int)m_plData->size() <= _iIndex)
+    while ((int)m_plData->size() < _iIndex)
     {
         //incease list size and fill with "Undefined"
         m_plData->push_back(new ListUndefined());
         m_iSize = getSize();
     }
 
-    InternalType* pOld = (*m_plData)[_iIndex];
-
-    _pIT->IncreaseRef();
-    (*m_plData)[_iIndex] = _pIT;
-
-    //manage ref on the old value
-    if (pOld)
+    if ((int)m_plData->size() == _iIndex)
     {
-        pOld->DecreaseRef();
-        pOld->killMe();
+        _pIT->IncreaseRef();
+        m_plData->push_back(_pIT);
+        m_iSize = getSize();
+    }
+    else
+    {
+        InternalType* pOld = (*m_plData)[_iIndex];
+
+        _pIT->IncreaseRef();
+        (*m_plData)[_iIndex] = _pIT;
+
+        //manage ref on the old value
+        if (pOld)
+        {
+            pOld->DecreaseRef();
+            pOld->killMe();
+        }
     }
 
     return true;

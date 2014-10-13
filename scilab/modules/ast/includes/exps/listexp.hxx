@@ -43,11 +43,15 @@ public:
     ListExp (const Location& location,
              Exp& start, Exp& step, Exp& end, bool explicitStep = false)
         : Exp (location),
-          _start (&start),
-          _step (&step),
-          _end (&end),
           _explicitStep(explicitStep)
     {
+        start.setParent(this);
+        step.setParent(this);
+        end.setParent(this);
+        _exps.push_back(&start);
+        _exps.push_back(&step);
+        _exps.push_back(&end);
+
         values[0] = std::numeric_limits<double>::quiet_NaN();
         values[1] = std::numeric_limits<double>::quiet_NaN();
         values[2] = std::numeric_limits<double>::quiet_NaN();
@@ -62,9 +66,6 @@ public:
     ** Delete left and right, see constructor. */
     virtual ~ListExp ()
     {
-        delete _start;
-        delete _step;
-        delete _end;
     }
     /** \} */
 
@@ -97,34 +98,46 @@ public:
     /** \brief Return the expression (read only) */
     const Exp& getStart () const
     {
-        return *_start;
+        return *_exps[0];
     }
     /** \brief Return the expression (read and write) */
     Exp& getStart ()
     {
-        return *_start;
+        return *_exps[0];
     }
 
     /** \brief Return the expression (read only) */
     const Exp& getStep () const
     {
-        return *_step;
+        return *_exps[1];
     }
     /** \brief Return the expression (read and write) */
     Exp& getStep ()
     {
-        return *_step;
+        return *_exps[1];
     }
 
     /** \brief Return the expression (read only) */
     const Exp& getEnd () const
     {
-        return *_end;
+        return *_exps[2];
     }
     /** \brief Return the expression (read and write) */
     Exp& getEnd ()
     {
-        return *_end;
+        return *_exps[2];
+    }
+
+    inline void setValues(double start, double step, double end)
+    {
+        values[0] = start;
+        values[1] = step;
+        values[2] = end;
+    }
+
+    inline const double * getValues() const
+    {
+        return values;
     }
 
     inline virtual bool is_list_exp() const
@@ -161,13 +174,6 @@ public:
     }
 
 protected:
-    /** \brief start expression of the list. */
-    Exp* _start;
-    /** \brief step expression of the list. */
-    Exp* _step;
-    /** \brief end expression of the list. */
-    Exp* _end;
-
     double values[3];
     bool is_values_int[3];
     /** \brief has list explicit step. */

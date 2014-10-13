@@ -25,7 +25,6 @@ namespace ast
 class Ast;
 
 class Exp;
-typedef std::list<Exp *> exps_t;
 // Low Level Expressions.
 
 // Const Exp
@@ -81,6 +80,9 @@ class FunctionDec;
 
 // Type dedicated Exp
 class ListExp;
+
+class OptimizedExp;
+class DAXPYExp;
 
 } // namespace ast
 

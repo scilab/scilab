@@ -17,6 +17,7 @@
 #include "double.hxx"
 #include "gatewaystruct.hxx"
 #include "configvariable.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -115,7 +116,7 @@ bool Function::toString(std::wostringstream& ostr)
 {
     // FIXME : Implement me.
     ostr << L"FIXME : Implement Function::toString" << std::endl;
-
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

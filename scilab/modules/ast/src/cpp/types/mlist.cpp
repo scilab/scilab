@@ -31,7 +31,7 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
     else if (in.size() == 1)
     {
         InternalType * arg = in[0];
-        std::vector<InternalType *> _out;
+        InternalType* _out = NULL;
         if (arg->isString())
         {
             std::list<std::wstring> stFields;
@@ -42,11 +42,18 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             }
 
             _out = extractStrings(stFields);
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+
+            delete pList;
         }
 
-        if (!_out.empty())
+        if (!out.empty())
         {
-            out.swap(_out);
             return true;
         }
     }

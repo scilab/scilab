@@ -39,6 +39,8 @@ import org.scilab.modules.gui.SwingViewObject;
 import org.scilab.modules.gui.SwingViewWidget;
 import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
+import org.scilab.modules.gui.editor.EditorEventListener;
+import org.scilab.modules.gui.events.ScilabEventListener;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.textbox.TextBox;
@@ -56,15 +58,25 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     private String parentWindowId;
     private JLayeredPane uiContentPane;
     private JLayeredPane layeredPane;
+    private boolean eventEnabled = false;
     private ComponentListener componentListener;
     private HierarchyBoundsListener ancestorListener;
+
+    /** The listener for event handling */
+    private ScilabEventListener eventHandler;
+    private EditorEventListener editorEventHandler = null;
 
     private SwingScilabCanvas contentCanvas;
     protected boolean hasLayout;
     private Dimension deltaSize = null;
 
+    private CommonCallBack callback;
+
     public SwingScilabStaticPanel(String figureTitle, Integer figureId, Figure figure) {
         super(new JLayeredPane(), new JLayeredPane(), figure);
+
+        editorEventHandler = new EditorEventListener(figure.getIdentifier());
+
         uiContentPane = (JLayeredPane) getUIComponent();
         layeredPane = (JLayeredPane) getGlobalComponent();
         setVisible(true);
@@ -142,6 +154,28 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         addComponentListener(componentListener);
     }
 
+    /**
+     * Turn on event handling.
+     */
+    private void enableEventHandler() {
+        if (contentCanvas != null) {
+            contentCanvas.addEventHandlerKeyListener(eventHandler);
+            contentCanvas.addEventHandlerMouseListener(eventHandler);
+            contentCanvas.addEventHandlerMouseMotionListener(eventHandler);
+        }
+    }
+
+    /**
+     * Turn off event handling.
+     */
+    private void disableEventHandler() {
+        if (eventHandler != null && contentCanvas != null) {
+            contentCanvas.removeEventHandlerKeyListener(eventHandler);
+            contentCanvas.removeEventHandlerMouseListener(eventHandler);
+            contentCanvas.removeEventHandlerMouseMotionListener(eventHandler);
+        }
+    }
+
     public void setId(Integer id) {
         this.id = id;
     }
@@ -184,11 +218,39 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         this.toolBar = toolBar;
     }
 
-    public void setEventHandler(String eventHandler) {
+    /**
+     * Set the event handler of the Canvas
+     * @param funName the name of the Scilab function to call
+     */
+    public void setEventHandler(String funName) {
+        disableEventHandler();
+        eventHandler = new ScilabEventListener(funName, getId());
+        if (eventEnabled) {
+            editorEventHandler.setEnable(false);
+            enableEventHandler();
+        }
     }
 
-    public void setEventHandlerEnabled(boolean enabled) {
+    /**
+     * Set the status of the event handler of the Canvas
+     * @param status is true to set the event handler active
+     */
+    public void setEventHandlerEnabled(boolean status) {
+        if (status && eventEnabled) {
+            return;
+        }
+
+        if (status) {
+            editorEventHandler.setEnable(false);
+            enableEventHandler();
+            eventEnabled = true;
+        } else {
+            editorEventHandler.setEnable(true);
+            disableEventHandler();
+            eventEnabled = false;
+        }
     }
+
 
     public void setParentWindowId(String parentWindowId) {
         this.parentWindowId = parentWindowId;
@@ -202,6 +264,14 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
         if (member instanceof SwingScilabAxes) {
             if (contentCanvas == null) {
                 contentCanvas = new SwingScilabCanvas((Figure) GraphicController.getController().getObjectFromId(((SwingScilabAxes) member).getFigureId()));
+                contentCanvas.addEventHandlerKeyListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseListener(editorEventHandler);
+                contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                if (eventEnabled) {
+                    editorEventHandler.setEnable(false);
+                    enableEventHandler();
+                }
+
                 layeredPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
                 setCanvas(contentCanvas);
             }
@@ -224,8 +294,11 @@ public class SwingScilabStaticPanel extends SwingScilabScrollPane implements Swi
     }
 
     public void setCallback(CommonCallBack callback) {
-        // TODO Auto-generated method stub
+        this.callback = callback;
+    }
 
+    public CommonCallBack getCallback() {
+        return callback;
     }
 
     public Container getContentPane() {

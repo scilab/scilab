@@ -19,11 +19,15 @@
 #define AST_EXP_HXX
 
 #include <list>
+#include <vector>
 
 #include "ast.hxx"
 
 namespace ast
 {
+
+/** \brief Define a shorthand for list of Exp* manipulation. */
+typedef std::vector<Exp *> exps_t;
 
 /** \brief Abstract an Expression node. */
 class Exp : public Ast
@@ -42,12 +46,27 @@ public:
           _bReturn(false),
           _bReturnable(false),
           _bContinue(false),
-          _bContinuable(false)
+          _bContinuable(false),
+          parent(NULL),
+          original(NULL)
     {
+        original = this;
     }
     /** \brief Destroys an Expression node. */
     virtual ~Exp ()
     {
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
+        {
+            if (*it != NULL)
+            {
+                delete *it;
+            }
+        }
+
+        if (original && original != this)
+        {
+            delete original;
+        }
     }
     /** \} */
 
@@ -173,6 +192,7 @@ public:
         BOOLEXP,
         STRINGEXP,
         COMMENTEXP,
+        CONSTEXP,
         NILEXP,
         CALLEXP,
         CELLCALLEXP,
@@ -211,6 +231,12 @@ public:
         return static_cast<T*>(this);
     }
 
+    template <class T>
+    inline const T* getAs(void) const
+    {
+        return static_cast<const T*>(this);
+    }
+
     inline virtual bool isSimpleVar() const
     {
         return false;
@@ -247,6 +273,11 @@ public:
     }
 
     inline virtual bool isCommentExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isConstExp() const
     {
         return false;
     }
@@ -386,14 +417,63 @@ public:
         return false;
     }
 
-    inline virtual bool is_list_exp() const
+    inline virtual bool isOptimizedExp() const
     {
         return false;
     }
 
-    inline virtual bool is_double_exp() const
+    Exp* getParent() const
     {
-        return false;
+        return parent;
+    }
+
+    Exp* getParent()
+    {
+        return parent;
+    }
+
+    void setParent(Exp* _ast)
+    {
+        parent = _ast;
+    }
+
+    Exp* getOriginal() const
+    {
+        return original;
+    }
+
+    Exp* getOriginal()
+    {
+        return original;
+    }
+
+    void setOriginal(Exp* _ast)
+    {
+        original = _ast;
+    }
+
+    void replace(Exp* _new)
+    {
+        if (parent && _new)
+        {
+            parent->replace(this, _new);
+        }
+    }
+
+    void replace(Exp* _old, Exp* _new)
+    {
+        if (_old && _new)
+        {
+            for (exps_t::iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
+            {
+                if (*it == _old)
+                {
+                    _new->setOriginal(*it);
+                    *it = _new;
+                    _new->setParent(this);
+                }
+            }
+        }
     }
 
 private:
@@ -404,11 +484,11 @@ private:
     bool _bReturnable;
     bool _bContinue;
     bool _bContinuable;
+protected:
+    exps_t _exps;
+    Exp* parent;
+    Exp* original;
 };
-
-/** \brief Define a shorthand for list of Exp* manipulation. */
-typedef std::list<Exp *> exps_t;
-
 } // namespace ast
 
 #endif // !AST_EXP_HXX

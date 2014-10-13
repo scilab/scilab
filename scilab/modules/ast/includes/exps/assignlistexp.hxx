@@ -35,20 +35,20 @@ public:
     ** \param body EXP LIST intruction
     */
     AssignListExp (const Location& location,
-                   std::list<Exp *>& exps) :
+                   exps_t& exps) :
         ArrayListExp (location, exps)
     {
     }
 
     virtual AssignListExp* clone()
     {
-        std::list<Exp *>* exps = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = _exps->begin() ; it != _exps->end() ; ++it)
+        exps_t exps;
+        for (exps_t::const_iterator it = _exps.begin() ; it != _exps.end() ; ++it)
         {
-            exps->push_back((*it)->clone());
+            exps.push_back((*it)->clone());
         }
 
-        AssignListExp* cloned = new AssignListExp(getLocation(), *exps);
+        AssignListExp* cloned = new AssignListExp(getLocation(), exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

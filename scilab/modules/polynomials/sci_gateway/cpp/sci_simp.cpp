@@ -27,8 +27,8 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Polynom* pNumOut = NULL;
-    types::Polynom* pDenOut = NULL;
+    types::InternalType* pNumOut = NULL;
+    types::InternalType* pDenOut = NULL;
 
     bool bComplex   = false;
     int iDouble     = 0;
@@ -119,8 +119,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     return types::Function::Error;
                 }
 
-                pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
+                types::Polynom* pPolyDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
 
                 iMaxDegrNum = pNum->getMaxRank();
                 iMaxDegrDen = pDen->getMaxRank();
@@ -166,8 +166,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
                     memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));
 
-                    pNumOut->set(i, pSPNum);
-                    pDenOut->set(i, pSPDen);
+                    pPolyNumOut->set(i, pSPNum);
+                    pPolyDenOut->set(i, pSPDen);
 
                     delete pdblNumTmp;
                     delete pdblDenTmp;
@@ -178,138 +178,16 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                 delete pdblWork;
                 delete pNum;
                 delete pDen;
+
+                pNumOut = pPolyNumOut;
+                pDenOut = pPolyDenOut;
                 break;
             }
             case 1 : // sim(double, poly)
-            {
-                types::Double* pNum  = in[0]->clone()->getAs<types::Double>();
-                types::Polynom* pDen = in[1]->clone()->getAs<types::Polynom>();
-
-                wstrName    = pDen->getVariableName();
-                iMaxDegrDen = pDen->getMaxRank();
-
-                pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-
-                int iMax = max(iMaxDegrNum, iMaxDegrDen) + 1;
-                int iSizeWork = 2 * (iMaxDegrNum + iMaxDegrDen) +
-                                min(iMaxDegrNum, iMaxDegrDen) +
-                                10 * iMax + 3 * iMax * iMax + 4;
-                double* pdblWork = new double[iSizeWork];
-
-                for (int i = 0; i < iSize; i++)
-                {
-                    double dblNum   = pNum->get(i);
-                    double* pdblDen = pDen->get(i)->get();
-                    int iDegreeNum  = 0;
-                    int iDegreeDen  = pDen->get(i)->getRank();
-
-                    double* pdblNumOut = NULL;
-                    double* pdblDenOut = NULL;
-
-                    double* pdblNumTmp = new double[1];
-                    double* pdblDenTmp = new double[iDegreeDen + 1];
-
-                    int iRankNumOut = 0;
-                    int iRankDenOut = 0;
-
-                    iErr = iSizeWork;
-
-                    C2F(dpsimp)(&dblNum, &iDegreeNum, pdblDen, &iDegreeDen,
-                                pdblNumTmp, &iRankNumOut, pdblDenTmp, &iRankDenOut,
-                                pdblWork, &iErr);
-
-                    if (iErr)
-                    {
-                        delete pdblNumTmp;
-                        delete pdblDenTmp;
-                        break;
-                    }
-
-                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
-                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
-
-                    memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
-                    memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));
-
-                    pNumOut->set(i, pSPNum);
-                    pDenOut->set(i, pSPDen);
-
-                    delete pdblNumTmp;
-                    delete pdblDenTmp;
-                    delete pSPNum;
-                    delete pSPDen;
-                }
-
-                delete pdblWork;
-                delete pNum;
-                delete pDen;
-                break;
-            }
             case 2 : // sim(poly, double)
             {
-                types::Polynom* pNum = in[0]->clone()->getAs<types::Polynom>();
-                types::Double* pDen  = in[1]->clone()->getAs<types::Double>();
-
-                wstrName    = pNum->getVariableName();
-                iMaxDegrNum = pNum->getMaxRank();
-
-                pNumOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-                pDenOut = new types::Polynom(wstrName, pNum->getRows(), pNum->getCols());
-
-                int iMax = max(iMaxDegrNum, iMaxDegrDen) + 1;
-                int iSizeWork = 2 * (iMaxDegrNum + iMaxDegrDen) +
-                                min(iMaxDegrNum, iMaxDegrDen) +
-                                10 * iMax + 3 * iMax * iMax + 4;
-                double* pdblWork = new double[iSizeWork];
-
-                for (int i = 0; i < iSize; i++)
-                {
-                    double* pdblNum = pNum->get(i)->get();
-                    double dblDen   = pDen->get(i);
-                    int iDegreeNum  = pNum->get(i)->getRank();
-                    int iDegreeDen  = 0;
-
-                    double* pdblNumOut = NULL;
-                    double* pdblDenOut = NULL;
-
-                    double* pdblNumTmp = new double[iDegreeNum + 1];
-                    double* pdblDenTmp = new double[1];
-
-                    int iRankNumOut = 0;
-                    int iRankDenOut = 0;
-
-                    iErr = iSizeWork;
-
-                    C2F(dpsimp)(pdblNum, &iDegreeNum, &dblDen, &iDegreeDen,
-                                pdblNumTmp, &iRankNumOut, pdblDenTmp, &iRankDenOut,
-                                pdblWork, &iErr);
-
-                    if (iErr)
-                    {
-                        delete pdblNumTmp;
-                        delete pdblDenTmp;
-                        break;
-                    }
-
-                    types::SinglePoly* pSPNum = new types::SinglePoly(&pdblNumOut, iRankNumOut - 1);
-                    types::SinglePoly* pSPDen = new types::SinglePoly(&pdblDenOut, iRankDenOut - 1);
-
-                    memcpy(pdblNumOut, pdblNumTmp, iRankNumOut * sizeof(double));
-                    memcpy(pdblDenOut, pdblDenTmp, iRankDenOut * sizeof(double));
-
-                    pNumOut->set(i, pSPNum);
-                    pDenOut->set(i, pSPDen);
-
-                    delete pdblNumTmp;
-                    delete pdblDenTmp;
-                    delete pSPNum;
-                    delete pSPDen;
-                }
-
-                delete pdblWork;
-                delete pNum;
-                delete pDen;
+                pNumOut = in[0];
+                pDenOut = in[1];
                 break;
             }
         }
@@ -317,9 +195,6 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
     if (iErr)
     {
-        delete pNumOut;
-        delete pDenOut;
-
         Scierror(999, _("%s: Wrong value for input argument #%d: A non null denominator expected.\n"), "simp", 2);
         return types::Function::Error;
     }

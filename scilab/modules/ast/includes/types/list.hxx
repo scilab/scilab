@@ -56,8 +56,6 @@ public :
     */
     InternalType*                   clone();
 
-    GenericType*                    getColumnValues(int _iPos);
-
     bool                            toString(std::wostringstream& ostr);
 
     bool                            isList()
@@ -66,7 +64,7 @@ public :
     }
 
     InternalType*                   insert(typed_list* _pArgs, InternalType* _pSource);
-    std::vector<InternalType*>      extract(typed_list* _pArgs);
+    InternalType*                   extract(typed_list* _pArgs);
 
     virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & /*e*/)
     {
@@ -76,8 +74,19 @@ public :
         }
         else
         {
-            std::vector<InternalType *> _out = extract(&in);
-            out.swap(_out);
+            InternalType * _out = extract(&in);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+            delete pList;
         }
 
         return true;

@@ -646,6 +646,15 @@
     <ClInclude Include="includes\analysis\TIType.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
+    <ClInclude Include="includes\operations\types_dotdivide.hxx">
+      <Filter>Header Files\operations</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\optimizedexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\exps\daxpyexp.hxx">
+      <Filter>Header Files\exps</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -935,6 +944,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\jit\jit_windows.cpp">
       <Filter>Source Files\jit</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\operations\types_dotdivide.cpp">
+      <Filter>Source Files\operations</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

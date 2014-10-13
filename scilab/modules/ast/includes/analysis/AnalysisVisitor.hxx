@@ -26,6 +26,7 @@
 #include "ForList.hxx"
 #include "Result.hxx"
 #include "SymInfo.hxx"
+#include "execvisitor.hxx"
 
 namespace analysis
 {
@@ -281,7 +282,7 @@ private:
     {
         symbol::Symbol & sym = e.getSymbol();
         TIType typ = get_ti(sym);
-        e.getDecorator().res = Result(typ, false);
+        e.getDecorator().res = Result(typ, false, false);
         setResult(e.getDecorator().res);
         set_sym_use(e.getSymbol(), SymInfo::READ);
     }
@@ -298,8 +299,8 @@ private:
 
     void visit(ast::ArrayListVar & e)
     {
-        const std::list<ast::Var *> & vars = e.getVars();
-        for (std::list<ast::Var *>::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
+        const ast::exps_t vars = e.getVars();
+        for (ast::exps_t::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
         {
             (*i)->accept(*this);
         }
@@ -307,19 +308,19 @@ private:
 
     void visit(ast::DoubleExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::DOUBLE, 1, 1), false);
+        e.getDecorator().res = Result(TIType(TIType::DOUBLE, 1, 1), false, true);
         setResult(e.getDecorator().res);
     }
 
     void visit(ast::BoolExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::BOOLEAN, 1, 1), false);
+        e.getDecorator().res = Result(TIType(TIType::BOOLEAN, 1, 1), false, true);
         setResult(e.getDecorator().res);
     }
 
     void visit(ast::StringExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::STRING, 1, 1), false);
+        e.getDecorator().res = Result(TIType(TIType::STRING, 1, 1), false, true);
         setResult(e.getDecorator().res);
     }
 
@@ -336,8 +337,8 @@ private:
     void visit(ast::CallExp & e)
     {
         e.getName().accept(*this);
-        const std::list<ast::Exp *> & args = e.getArgs();
-        for (std::list<ast::Exp *>::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
+        const ast::exps_t args = e.getArgs();
+        for (ast::exps_t::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
         {
             (*i)->accept(*this);
         }
@@ -354,35 +355,51 @@ private:
         Result LR = getResult();
         e.getRight().accept(*this);
         Result & RR = getResult();
-        const TIType & LT = LR.getType();
-        const TIType & RT = RR.getType();
+        const TIType & LType = LR.getType();
+        const TIType & RType = RR.getType();
         TIType resT;
         bool allocTmp = false;
 
         // We can released the temp vars
         if (LR.isTemp())
         {
-            add_tmp(LT, -1);
+            add_tmp(LType, -1);
         }
         if (RR.isTemp())
         {
-            add_tmp(RT, -1);
+            add_tmp(RType, -1);
+        }
+
+        //if left and right are constant, result is constant too
+        if (e.getLeft().getDecorator().res.isConstant() && e.getRight().getDecorator().res.isConstant())
+        {
+            if (execAndReplace(e))
+            {
+                return;
+            }
         }
 
         switch (e.getOper())
         {
             case ast::OpExp::plus :
+            {
+                if (replaceDAXPY(e))
+                {
+                    return;
+                }
+                //continue in generic case
+            }
             case ast::OpExp::minus :
             case ast::OpExp::dottimes :
             {
                 // TODO: check if the rules for addition and subtraction are the same
-                resT = check_add(LT, RT);
+                resT = check_add(LType, RType);
                 break;
             }
             case ast::OpExp::times :
             {
                 // multiplication is not commutative for matrice pxq
-                resT = check_times(LT, RT);
+                resT = check_times(LType, RType);
                 break;
             }
         }
@@ -394,7 +411,7 @@ private:
             allocTmp = true;
         }
 
-        e.getDecorator().res = Result(resT, allocTmp);
+        e.getDecorator().res = Result(resT, allocTmp, false);
         setResult(e.getDecorator().res);
     }
 
@@ -444,10 +461,10 @@ private:
         e.getVardec().accept(*this);
         e.getBody().accept(*this);
 
-        MapSymInfo::const_iterator it = symsinfo.find(e.getVardec().getSymbol());
+        MapSymInfo::const_iterator it = symsinfo.find(e.getVardec().getAs<ast::VarDec>()->getSymbol());
         if (it->second.read)
         {
-            e.getVardec().getListInfo().setReadInLoop(true);
+            e.getVardec().getAs<ast::VarDec>()->getListInfo().setReadInLoop(true);
         }
     }
 
@@ -470,8 +487,8 @@ private:
     void visit(ast::SelectExp & e)
     {
         e.getSelect()->accept(*this);
-        ast::cases_t * cases = e.getCases();
-        for (ast::cases_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
+        ast::exps_t* cases = e.getCases();
+        for (ast::exps_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
         {
             (*i)->accept(*this);
         }
@@ -509,20 +526,38 @@ private:
 
     void visit(ast::MatrixExp & e)
     {
-        const std::list<ast::MatrixLineExp *> & lines = e.getLines();
-        for (std::list<ast::MatrixLineExp *>::const_iterator i = lines.begin(), end = lines.end(); i != end; ++i)
+        const ast::exps_t lines = e.getLines();
+        bool constant = true;
+        for (ast::exps_t::const_iterator i = lines.begin(), itEnd = lines.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
+            if ((*i)->getDecorator().res.isConstant() == false)
+            {
+                constant = false;
+            }
+        }
+
+        if (constant)
+        {
+            execAndReplace(e);
         }
     }
 
     void visit(ast::MatrixLineExp & e)
     {
-        const std::list<ast::Exp *> & columns = e.getColumns();
-        for (std::list<ast::Exp *>::const_iterator i = columns.begin(), end = columns.end(); i != end; ++i)
+        const ast::exps_t columns = e.getColumns();
+        bool constant = true;
+        for (ast::exps_t::const_iterator i = columns.begin(), itEnd = columns.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
+            if ((*i)->getDecorator().res.isConstant() == false)
+            {
+                constant = false;
+            }
         }
+
+        e.getDecorator().res = Result(e.getDecorator().res.getType(), e.getDecorator().res.isTemp(), constant);
+
     }
 
     void visit(ast::CellExp & e)
@@ -532,7 +567,8 @@ private:
 
     void visit(ast::SeqExp & e)
     {
-        for (std::list<ast::Exp *>::const_iterator i = e.getExps().begin(), end = e.getExps().end(); i != end; ++i)
+        const ast::exps_t exps = e.getExps();
+        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -540,8 +576,8 @@ private:
 
     void visit(ast::ArrayListExp & e)
     {
-        const std::list<ast::Exp *> & exps = e.getExps();
-        for (std::list<ast::Exp *>::const_iterator i = exps.begin(), end = exps.end(); i != end; ++i)
+        const ast::exps_t exps = e.getExps();
+        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
         {
             (*i)->accept(*this);
         }
@@ -605,7 +641,88 @@ private:
             end = static_cast<ast::DoubleExp &>(e.getEnd()).getValue();
         }
 
-        const_cast<ast::ListExp &>(e).set_values(start, step, end);
+        const_cast<ast::ListExp &>(e).setValues(start, step, end);
+    }
+
+    /* optimized */
+    void visit(ast::OptimizedExp & e)
+    {
+        //gné ??? Oo
+    }
+
+    void visit(ast::DAXPYExp & e)
+    {
+        //gné ??? Oo
+    }
+
+    bool replaceDAXPY(ast::OpExp& e)
+    {
+        bool ret = false;
+
+        if (e.getOper() == ast::OpExp::plus)
+        {
+            ast::Exp& le = e.getLeft();
+            ast::Exp& re = e.getRight();
+            ast::Exp* a = NULL;
+            ast::Exp* x = NULL;
+            ast::Exp* y = NULL;
+
+            // a * x(i,j) + y(i,j) or y(i,j) + a * x(i,j)
+
+            if (le.isOpExp() && le.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
+            {
+                ast::OpExp* dt = le.getAs<ast::OpExp>();
+                y = &le;
+                a = &dt->getLeft();
+                x = &dt->getRight();
+            }
+            else if (re.isOpExp() && re.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
+            {
+                ast::OpExp* rt = re.getAs<ast::OpExp>();
+                y = &re;
+                a = &rt->getLeft();
+                x = &rt->getRight();
+            }
+
+            if (a && x && y)
+            {
+                //checks dimensions of x and y
+                ast::Exp* exp = new ast::DAXPYExp(e.getLocation(), *a, *x, *y);
+                exp->setVerbose(e.isVerbose());
+                exp->getDecorator().res = e.getDecorator().res;
+                e.replace(exp);
+                ret = true;
+            }
+        }
+        return ret;
+    }
+
+    bool execAndReplace(ast::Exp& e)
+    {
+        //exec operation and substitute exp by result
+        ast::ExecVisitor exec;
+
+        try
+        {
+            e.accept(exec);
+            InternalType* result = exec.getResult();
+            ast::Exp* exp = result->getExp(e.getLocation());
+            if (exp)
+            {
+                exp->setVerbose(e.isVerbose());
+                e.replace(exp);
+                exp->getDecorator().res = Result(e.getDecorator().res.getType(), e.getDecorator().res.isTemp(), true);
+                setResult(exp->getDecorator().res);
+                return true;
+            }
+        }
+        catch (const ast::ScilabException& /*se*/)
+        {
+            //nothing to do, stop optimization phase and continue.
+            std::cout << "optimization failed !" << std::endl;
+        }
+
+        return false;
     }
 };
 

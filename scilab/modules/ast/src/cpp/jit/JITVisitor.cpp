@@ -345,11 +345,11 @@ void JITVisitor::visit(const ast::WhileExp &e)
 void JITVisitor::visit(const ast::ForExp &e)
 {
     //e.vardec_get().accept(*this);
-    const ast::VarDec & vardec = e.getVardec();
+    const ast::VarDec & vardec = *e.getVardec().getAs<ast::VarDec>();
     symbol::Symbol & varName = vardec.getSymbol();
     const ast::Exp & init = vardec.getInit();
 
-    if (init.is_list_exp())
+    if (init.isListExp())
     {
         const ast::ListExp & list = static_cast<const ast::ListExp &>(init);
         const analysis::ForList64 & list_info = vardec.getListInfo();
@@ -567,7 +567,7 @@ void JITVisitor::visit(const ast::CellExp &e)
 
 void JITVisitor::visit(const ast::SeqExp &e)
 {
-    for (std::list<ast::Exp *>::const_iterator i = e.getExps().begin(), end = e.getExps().end(); i != end; ++i)
+    for (ast::exps_t::const_iterator i = e.getExps().begin(), end = e.getExps().end(); i != end; ++i)
     {
         setResult(std::shared_ptr<JITVal>(nullptr));
         (*i)->accept(*this);
@@ -595,6 +595,16 @@ void JITVisitor::visit(const ast::FunctionDec &e)
 }
 
 void JITVisitor::visit(const ast::ListExp &e)
+{
+
+}
+
+void JITVisitor::visit(const ast::OptimizedExp &e)
+{
+
+}
+
+void JITVisitor::visit(const ast::DAXPYExp &e)
 {
 
 }

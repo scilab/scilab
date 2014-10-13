@@ -15,6 +15,7 @@
 
 #include "void.hxx"
 #include "localization.h"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -35,6 +36,7 @@ InternalType* Void::clone(void)
 bool Void::toString(std::wostringstream& ostr)
 {
     ostr << L"" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

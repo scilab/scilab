@@ -228,7 +228,7 @@ union YYSTYPE
 
     LineBreakStr*               mute;
 
-    ast::vars_t*                t_list_var;
+    ast::exps_t*                t_list_var;
     ast::exps_t*                t_list_exp;
     ast::Exp*                   t_exp;
 
@@ -241,7 +241,7 @@ union YYSTYPE
     ast::TryCatchExp*           t_try_exp;
     ast::SelectExp*             t_select_exp;
     ast::CaseExp*               t_case_exp;
-    ast::cases_t*               t_list_case;
+    ast::exps_t*                t_list_case;
 
     ast::CallExp*               t_call_exp;
 
@@ -259,8 +259,7 @@ union YYSTYPE
 
     ast::MatrixExp*             t_matrix_exp;
     ast::MatrixLineExp*         t_matrixline_exp;
-    std::list<ast::MatrixLineExp *>*            \
-                                t_list_mline;
+    ast::exps_t*                t_list_mline;
 
     ast::CellExp*               t_cell_exp;
 

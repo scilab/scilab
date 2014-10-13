@@ -13,6 +13,8 @@
 #ifndef __YASPIO_HXX__
 #define __YASPIO_HXX__
 
+#define SPACES_LIST L"      "
+
 #include "dynlib_output_stream.h"
 
 #ifdef __cplusplus

@@ -539,6 +539,9 @@
 /* With the UMFPACK library */
 #undef WITH_UMFPACK
 
+/* with XCos */
+#undef WITH_XCOS
+
 /* If leading underscores */
 #undef WLU
 

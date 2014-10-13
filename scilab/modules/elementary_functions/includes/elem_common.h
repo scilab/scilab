@@ -92,5 +92,5 @@ extern void C2F(dad) (double *a, int *na, int *i1, int *i2, int *j1, int *j2, do
 extern int C2F(entier) (int *_iSize, double *_pdbl, int *_pi);
 extern int C2F(simple) (int *_iSize, double *_pdbl, float *_pf);
 extern double C2F(nearfloat) (double*, double*);
-
+extern int C2F(daxpy)(int* N, double* DA, double* DX, int* INCX, double* DY, int* INCY);
 #endif /* __COMMON_H__ */

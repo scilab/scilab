@@ -36,33 +36,29 @@ public:
     ** \param columns EXP LIST intruction
     */
     MatrixLineExp (const Location& location,
-                   std::list<Exp *>& columns)
-        : MathExp (location),
-          _columns (&columns)
+                   exps_t& columns)
+        : MathExp (location)
     {
+        for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
+        {
+            (*it)->setParent(this);
+            _exps.push_back(*it);
+        }
     }
 
     virtual ~MatrixLineExp ()
     {
-        std::list<Exp *>::const_iterator it = _columns->begin();
-        std::list<Exp *>::const_iterator itEnd = _columns->end();
-        for (; it != itEnd ; ++it)
-        {
-            delete *it;
-        }
-
-        delete _columns;
     }
 
     virtual MatrixLineExp* clone()
     {
-        std::list<Exp *>* columns = new std::list<Exp *>;
-        for (std::list<Exp *>::const_iterator it = getColumns().begin() ; it != getColumns().end() ; ++it)
+        exps_t columns;
+        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
         {
-            columns->push_back((*it)->clone());
+            columns.push_back((*it)->clone());
         }
 
-        MatrixLineExp* cloned = new MatrixLineExp(getLocation(), *columns);
+        MatrixLineExp* cloned = new MatrixLineExp(getLocation(), columns);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -86,14 +82,14 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const std::list<Exp *>&	getColumns() const
+    const exps_t&	getColumns() const
     {
-        return *_columns;
+        return _exps;
     }
 
-    std::list<Exp *>& getColumns()
+    exps_t& getColumns()
     {
-        return *_columns;
+        return _exps;
     }
     /** \} */
 
@@ -106,8 +102,6 @@ public:
     {
         return true;
     }
-protected:
-    std::list<Exp *>* _columns;
 };
 
 } // namespace ast

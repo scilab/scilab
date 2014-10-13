@@ -314,10 +314,10 @@ public :
     {
     }
 
-    types::typed_list* GetArgumentList(std::list<Exp *>const& _plstArg)
+    types::typed_list* GetArgumentList(exps_t const & _plstArg)
     {
         types::typed_list* pArgs = new types::typed_list();
-        for (std::list<Exp *>::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
+        for (exps_t::const_iterator it = _plstArg.begin() ; it != _plstArg.end() ; ++it)
         {
             (*it)->accept(*this);
             if (getResultSize() > 1)
@@ -364,40 +364,42 @@ public :
     void visitprivate(const MatrixExp &e);
     void visitprivate(const CallExp &e);
     void visitprivate(const CellCallExp &e);
+    void visitprivate(const OptimizedExp &e);
+    void visitprivate(const DAXPYExp &e);
 
     void visitprivate(const StringExp &e)
     {
-        if (e.getBigString() == NULL)
+        if (e.getConstant() == NULL)
         {
             types::String *psz = new types::String(e.getValue().c_str());
-            (const_cast<StringExp *>(&e))->setBigString(psz);
+            (const_cast<StringExp *>(&e))->setConstant(psz);
 
         }
-        setResult(e.getBigString());
+        setResult(e.getConstant());
     }
 
 
     void visitprivate(const DoubleExp  &e)
     {
-        if (e.getBigDouble() == NULL)
+        if (e.getConstant() == NULL)
         {
             Double *pdbl = new Double(e.getValue());
-            (const_cast<DoubleExp *>(&e))->setBigDouble(pdbl);
+            (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
 
         }
-        setResult(e.getBigDouble());
+        setResult(e.getConstant());
     }
 
 
     void visitprivate(const BoolExp  &e)
     {
-        if (e.getBigBool() == NULL)
+        if (e.getConstant() == NULL)
         {
             Bool *pB = new Bool(e.getValue());
-            (const_cast<BoolExp *>(&e))->setBigBool(pB);
+            (const_cast<BoolExp *>(&e))->setConstant(pB);
 
         }
-        setResult(e.getBigBool());
+        setResult(e.getConstant());
     }
 
 
@@ -419,7 +421,9 @@ public :
                 ostr << e.getSymbol().getName() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
-                VariableToString(pI, e.getSymbol().getName().c_str());
+                std::wostringstream ostrName;
+                ostrName << SPACES_LIST << e.getSymbol().getName();
+                VariableToString(pI, ostrName.str().c_str());
             }
         }
         else
@@ -487,7 +491,7 @@ public :
 
     void visitprivate(const ArrayListExp  &e)
     {
-        std::list<Exp *>::const_iterator it;
+        exps_t::const_iterator it;
         int i = 0;
 
         std::list<InternalType*> lstIT;
@@ -515,60 +519,6 @@ public :
         catch (ScilabError error)
         {
             throw error;
-        }
-    }
-
-    void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
-    {
-        std::wostringstream ostr;
-
-        if (pIT->isMList() || pIT->isTList() || pIT->hasToString() == false)
-        {
-            //call overload %type_p
-            types::typed_list in;
-            types::typed_list out;
-
-            pIT->IncreaseRef();
-            in.push_back(pIT);
-
-            try
-            {
-                if (Overload::generateNameAndCall(L"p", in, 1, out, this) != Function::OK)
-                    //if (Overload::call(L"%" + pIT->getAs<TList>()->getShortTypeStr() + L"_p", in, 1, out, this) != Function::OK)
-                {
-                    throw ScilabError();
-                }
-            }
-            catch (ScilabError /*&e*/)
-            {
-                ostr << wcsVarName;
-                pIT->toString(ostr);
-                scilabWriteW(ostr.str().c_str());
-            }
-
-            pIT->DecreaseRef();
-        }
-        else
-        {
-            //to manage lines information
-            int iLines = ConfigVariable::getConsoleLines();
-
-            bool bFinish = false;
-            do
-            {
-                //block by block
-                bFinish = pIT->toString(ostr);
-                scilabWriteW(ostr.str().c_str());
-                if (bFinish == false && iLines != 0)
-                {
-                    //show message on prompt
-                    bFinish = linesmore() == 1;
-                }
-                ostr.str(L"");
-            }
-            while (bFinish == false);
-
-            pIT->clearPrintState();
         }
     }
 

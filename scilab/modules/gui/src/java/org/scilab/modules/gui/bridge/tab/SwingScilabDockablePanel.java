@@ -68,6 +68,10 @@ import org.scilab.modules.gui.bridge.canvas.SwingScilabCanvas;
 import org.scilab.modules.gui.bridge.console.SwingScilabConsole;
 import org.scilab.modules.gui.bridge.helpbrowser.SwingScilabHelpBrowser;
 import org.scilab.modules.gui.bridge.menubar.SwingScilabMenuBar;
+import org.scilab.modules.gui.bridge.popupmenu.SwingScilabPopupMenu;
+import org.scilab.modules.gui.bridge.pushbutton.SwingScilabPushButton;
+import org.scilab.modules.gui.bridge.radiobutton.SwingScilabRadioButton;
+import org.scilab.modules.gui.bridge.slider.SwingScilabScroll;
 import org.scilab.modules.gui.bridge.tree.SwingScilabTree;
 import org.scilab.modules.gui.bridge.uidisplaytree.SwingScilabUiDisplayTree;
 import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
@@ -617,6 +621,10 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
                 contentCanvas.addEventHandlerKeyListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseListener(editorEventHandler);
                 contentCanvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                if (eventEnabled) {
+                    editorEventHandler.setEnable(false);
+                    enableEventHandler();
+                }
 
                 layeredPane.add(contentCanvas, JLayeredPane.FRAME_CONTENT_LAYER);
 

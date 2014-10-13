@@ -63,27 +63,27 @@ public :
     }
 
     /*commun functions*/
-    inline int                         getCols()
+    inline int                  getCols()
     {
         return m_iCols;
     }
 
-    inline int                         getRows()
+    inline int                  getRows()
     {
         return m_iRows;
     }
 
-    inline int                         getSize()
+    inline int                  getSize()
     {
         return m_iSize;
     }
 
-    inline int                         getDims()
+    inline int                  getDims()
     {
         return m_iDims;
     }
 
-    inline int*                        getDimsArray()
+    inline int*                 getDimsArray()
     {
         return m_piDims;
     }
@@ -92,13 +92,15 @@ public :
 
     std::wstring                DimToString();
 
-    inline bool                        isGenericType()
+    inline bool                 isGenericType()
     {
         return true;
     }
 
-    /* FIXME : should be : virtual GenericType*	get(int _iPos) = 0; */
-    virtual GenericType*        getColumnValues(int _iPos) = 0;
+    virtual GenericType*        getColumnValues(int /*_iPos*/)
+    {
+        return NULL;
+    }
 
     bool                        isIdentity(void);
     virtual bool                isAssignable(void)
@@ -106,7 +108,7 @@ public :
         return true;
     }
 
-    virtual ScilabType            getType(void)
+    virtual ScilabType          getType(void)
     {
         return ScilabGeneric;
     }
@@ -127,38 +129,39 @@ public :
         return NULL;
     }
 
-    virtual bool                resize(int* _piDims, int _iDims)
+    virtual bool                resize(int* /*_piDims*/, int /*_iDims*/)
     {
-        // silent unused parameters warnings
-        (void) _piDims;
-        (void) _iDims;
-
-        return false;
-    }
-    virtual bool                resize(int _iNewRows, int _iNewCols)
-    {
-        // silent unused parameters warnings
-        (void) _iNewRows;
-        (void) _iNewCols;
-
         return false;
     }
 
-    virtual bool                reshape(int* _piDims, int _iDims)
+    virtual bool                resize(int /*_iNewRows*/, int /*_iNewCols*/)
     {
-        // silent unused parameters warnings
-        (void) _piDims;
-        (void) _iDims;
-
         return false;
     }
-    virtual bool                reshape(int _iNewRows, int _iNewCols)
-    {
-        // silent unused parameters warnings
-        (void) _iNewRows;
-        (void) _iNewCols;
 
+    virtual bool                reshape(int* /*_piDims*/, int /*_iDims*/)
+    {
         return false;
+    }
+
+    virtual bool                reshape(int /*_iNewRows*/, int /*_iNewCols*/)
+    {
+        return false;
+    }
+
+    virtual InternalType*       insert(typed_list* /*_pArgs*/, InternalType* /*_pSource*/)
+    {
+        return NULL;
+    }
+
+    virtual bool                extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    {
+        return false;
+    }
+
+    virtual InternalType*       extract(typed_list* /*_pArgs*/)
+    {
+        return NULL;
     }
 
 };

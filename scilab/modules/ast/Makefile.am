@@ -31,6 +31,7 @@ libsciast_la_SOURCES = \
     src/cpp/operations/types_comparison_eq.cpp \
     src/cpp/operations/types_multiplication.cpp \
     src/cpp/operations/types_dotmultiplication.cpp \
+    src/cpp/operations/types_dotdivide.cpp \
     src/cpp/operations/types_comparison_lt_le_gt_ge.cpp \
     src/cpp/operations/types_or.cpp \
     src/cpp/operations/types_and.cpp \

@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: pl\n"
 
 #, c-format
@@ -121,7 +121,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -902,6 +903,10 @@ msgstr ""
 "Nieprawidłowy typ własności '%s': oczekiwana jest wartość całkowita.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1299,6 +1304,30 @@ msgstr ""
 
 msgid "Customize your complex function"
 msgstr "Dostosowywanie funkcji zespolonej"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr ""
@@ -1718,75 +1747,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-msgid "Delete all datatips"
-msgstr ""
-
-msgid "Delete all datatips for the selected curve"
-msgstr ""
-
-msgid "Delete nearest datatip"
-msgstr ""
-
-msgid "Delete last datatip"
-msgstr ""
-
-msgid "Delete selected datatip"
-msgstr ""
-
-msgid "Open curve tip style editor"
-msgstr ""
-
-msgid "Redraw all datatips"
-msgstr ""
-
-msgid "Edit the curve tip display function"
-msgstr ""
-
-msgid "select the curve tip display function"
-msgstr ""
-
-msgid "Enable interpolation"
-msgstr "Włącz interpolację"
-
-msgid "Disable interpolation"
-msgstr "Wyłącz interpolację"
-
-msgid "Multiple datatips mode"
-msgstr ""
-
-msgid "Unique datatip mode"
-msgstr ""
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: znaleziono puste menu kaskadowe"
-
-msgid "automatic"
-msgstr "automatyczne"
-
-msgid "lower left"
-msgstr "dolny lewy"
-
-msgid "lower right"
-msgstr "dolny prawy"
-
-msgid "upper left"
-msgstr "górny lewy"
-
-msgid "upper right"
-msgstr "górny prawy"
-
-msgid "Select tip orientation"
-msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
-
-msgid "The selected file cannot be executed"
-msgstr ""
-
-msgid "The selected file defines more than one function"
-msgstr "Wybrany plik definiuje więcej niz jedną funkcję"
 
 msgid "'datatips' property"
 msgstr ""
@@ -1796,23 +1762,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ parametru wejściowego nr %d: Oczekiwano uchwytu "
 "(handle) graficznego.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwano tablicy z "
-"%d elementów.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1923,6 +1872,32 @@ msgid "Allow multiple datatips?"
 msgstr ""
 
 msgid "Edit label generator"
+msgstr ""
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
 msgstr ""
 
 #, c-format

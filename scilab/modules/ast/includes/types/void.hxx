@@ -14,11 +14,10 @@
 #define __VOID_HXX__
 
 #include "types.hxx"
-#include "void.hxx"
 
 namespace types
 {
-class Void : public InternalType
+class EXTERN_AST Void : public InternalType
 {
 public :
     Void() {};

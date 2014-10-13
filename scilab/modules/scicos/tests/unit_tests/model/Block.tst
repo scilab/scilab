@@ -20,29 +20,35 @@ p = funcprot();
 funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [1;1];
+    sgn = [1; 1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 
 o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
 // Now use scicos_getvalue to modify the 'exprs' and 'rpar' fields to "[-1;-1]" and '[-1;-1]'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;-1];
+    sgn = [-1; -1];
     exprs = sci2exp(sgn);
 endfunction
+funcprot(p);
 
 o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
 // Now modify the block's entry port #2 to '1' and add a new one with value '1'
+p = funcprot();
+funcprot(0);
 function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
     ok = %t;
-    sgn = [-1;1;1];
+    sgn = [-1; 1; 1];
     exprs = sci2exp(sgn);
 endfunction
 funcprot(p);
@@ -76,4 +82,15 @@ function [ok,clrs,win,wpos,wdim,ymin,ymax,per,N,heritance,nom,exprs] = scicos_ge
     nom = model.label
     exprs = graphics.exprs;
 endfunction
+funcprot(p);
 o = CSCOPE("set", o)
+
+// Test 'opar' and 'odstate'
+o = LOGIC("define")
+o.model.opar
+typeof(o.model.opar(1))
+o.model.opar = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+o.model.opar
+
+o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+o.model.odstate

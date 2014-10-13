@@ -80,61 +80,6 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     return pResult;
 }
 
-InternalType *GenericDotLDivide(InternalType *_pLeftOperand, InternalType *_pRightOperand)
-{
-    InternalType *pResult       = NULL;
-    GenericType::ScilabType TypeL = _pLeftOperand->getType();
-    GenericType::ScilabType TypeR = _pRightOperand->getType();
-
-    int iResult = 0;
-
-    if (_pLeftOperand->isDouble() && _pLeftOperand->getAs<Double>()->isEmpty())
-    {
-        return Double::Empty();
-    }
-
-    if (_pRightOperand->isDouble() && _pRightOperand->getAs<Double>()->isEmpty())
-    {
-        return Double::Empty();
-    }
-
-    /*
-    ** DOUBLE .\ DOUBLE
-    */
-    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabDouble)
-    {
-        Double *pL  = _pLeftOperand->getAs<Double>();
-        Double *pR  = _pRightOperand->getAs<Double>();
-
-        // left .\ rigth => rigth ./ left
-        iResult = DotRDivideDoubleByDouble(pR, pL, (Double**)&pResult);
-    }
-
-    //manage errors
-    if (iResult)
-    {
-        switch (iResult)
-        {
-            case 1 :
-                throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-            case 2 :
-                throw ast::ScilabError(_W("With NaN or Inf a left division by scalar expected.\n"));
-            case 3 :
-                throw ast::ScilabError(_W("Left division by zero...\n"));
-            case 4 :
-                sciprint(_("Warning : Left division by zero...\n"));
-                break;
-            default :
-                sciprint(_("Operator .\\ : Error %d not yet managed.\n"), iResult);
-        }
-    }
-
-    /*
-    ** Default case : Return NULL will Call Overloading.
-    */
-    return pResult;
-}
-
 int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubleOut)
 {
     int iErr = 0;

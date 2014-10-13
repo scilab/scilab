@@ -66,20 +66,14 @@ function y=asciimat(x)
                 y(l(1:$-1), i) = asciimat(x(l(:), i))
             end
         else // 2D matrix case | [97 98 99;100 101 102] => ["abc";"def"]
-            x=x';
-            a = ascii(x(:));
-            aSize = length(a); // a is a scalar string
-            secondDim = dims(2);
-            if modulo(aSize, secondDim)
+            y = ascii(x');
+            // a is a scalar string
+            if modulo(length(y), dims(2))
                 error(msprintf(gettext("%s: Wrong input argument #%d: Inconsistent size.\n"),"asciimat", 1));
             end
-            dims(2) = [];
-            p = prod(dims);
-            if modulo(aSize, p)
-                error(msprintf(gettext("%s: Wrong input argument #%d: Inconsistent size.\n"),"asciimat", 1));
+            if dims(1) <> 1 && dims(2) <> 1 then
+                y=strsplit(y, cumsum(dims(2) * ones(1,dims(1)-1)));
             end
-            a=strsplit(a,cumsum(secondDim * ones(1,p-1)))
-            y = matrix(a, dims);
         end
     end
 endfunction

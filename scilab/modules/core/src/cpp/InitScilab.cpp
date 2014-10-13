@@ -181,6 +181,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     InitializeLaunchScilabSignal();
 
     /* Scilab Startup */
+    xmlInitParser();
     InitializeEnvironnement();
 
     if (_pSEI->pstLang)
@@ -337,8 +338,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
-    //destroy function manager
-    destroyfunctionManagerInstance();
 
     //from ExitScilab()
     saveCWDInPreferences();
@@ -356,17 +355,28 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     //clear opened files
     FileManager::destroy();
 
-    /*
-    * Cleanup function for the XML library.
-    */
-    xmlCleanupParser();
-
     /* Remove TMPDIR before exit */
     clearTMPDIR();
 
     //Unload dynamic modules
     UnloadModules();
+
+    //destroy function manager
+    destroyfunctionManagerInstance();
     /* TerminateCorePart2 end */
+
+    /*
+     * History manager cleanup
+     */
+    TerminateHistoryManager();
+
+    /*
+    * Cleanup function for the XML library.
+    */
+    xmlCleanupParser();
+
+    /* Cleanup the parser state */
+    Parser::cleanup();
 
 #ifdef _MSC_VER
     TerminateWindows_tools();
@@ -537,6 +547,7 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
+    FREE(command);
     return ConfigVariable::getExitStatus();
 }
 
@@ -724,8 +735,8 @@ static void Add_All_Variables(void)
 
 static void Add_Nan(void)
 {
-    double dbl1 = 1.0;
-    double dbl0 = dbl1 - dbl1;
+    double dbl1 = -1.0;
+    double dbl0 = fabs(dbl1 - dbl1);
 
     Add_Double_Constant(L"%nan", dbl0 / dbl0, 0, false);
 }

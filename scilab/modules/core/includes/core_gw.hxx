@@ -66,5 +66,6 @@ CPP_GATEWAY_PROTOTYPE(sci_intppty);
 CPP_GATEWAY_PROTOTYPE(sci_newfun);
 CPP_GATEWAY_PROTOTYPE(sci_clearfun);
 CPP_GATEWAY_PROTOTYPE(sci_funptr);
+CPP_GATEWAY_PROTOTYPE(sci_analyzeroptions);
 
 #endif /* __CORE_GW_HXX__ */

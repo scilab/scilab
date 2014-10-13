@@ -376,6 +376,21 @@
     <ClInclude Include="..\..\includes\model\BaseObject.hxx">
       <Filter>Header Files\MVC\model</Filter>
     </ClInclude>
+    <ClInclude Include="..\cpp\model\Annotation.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\model\Block.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\model\Diagram.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\model\Link.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\model\Port.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Dynamic_link_Import.def">

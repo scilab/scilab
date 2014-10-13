@@ -23,6 +23,7 @@
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "types_tools.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -196,8 +197,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         return Function::Error;
     }
 
-    std::list<Exp *>::iterator j;
-    std::list<Exp *>LExp = ((SeqExp*)pExp)->getExps();
+    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
     char pstPrompt[64];
     //get prompt
@@ -219,11 +219,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     ConfigVariable::setPromptMode(promptMode);
 
-    for (j = LExp.begin() ; j != LExp.end() ; j++)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
     {
         try
         {
-            std::list<Exp *>::iterator k = j;
+            ast::exps_t::iterator k = j;
             //mode == 0, print new variable but not command
             if (ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
             {
@@ -252,7 +252,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
 
 
-            std::list<Exp *>::iterator p = j;
+            ast::exps_t::iterator p = j;
             for (; p != k; p++)
             {
                 bool bImplicitCall = false;
@@ -360,7 +360,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
-                        execMe.VariableToString(pITAns, L"ans");
+                        std::wostringstream ostrName;
+                        ostrName << SPACES_LIST << L"ans";
+                        VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
             }
@@ -647,7 +649,11 @@ std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPro
         {
             (*_piLine)++;
             std::getline(_File, _stPreviousBuffer);
-            printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
+            // dont print empty line of function body
+            if (_stPreviousBuffer.size() != 0)
+            {
+                printLine(_stPrompt, _stPreviousBuffer.c_str(), false);
+            }
         }
 
         //last line

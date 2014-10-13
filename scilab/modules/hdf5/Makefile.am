@@ -45,7 +45,8 @@ HDF5_CXX_SOURCES = \
     src/cpp/H5CompoundData.cpp \
     src/cpp/H5ArrayData.cpp \
     src/cpp/H5VlenData.cpp \
-    src/cpp/H5Options.cpp
+    src/cpp/H5Options.cpp \
+    src/c/DllmainHdf5.c
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/hdf5_gw.cpp \
@@ -138,7 +139,7 @@ noinst_LTLIBRARIES += libscihdf5-algo.la
 libscihdf5_la_LDFLAGS = $(AM_LDFLAGS)
 
 libscihdf5_algo_la_SOURCES = $(HDF5_SOURCES) $(HDF5_CXX_SOURCES)
-libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES)  
+libscihdf5_la_SOURCES = $(GATEWAY_CXX_SOURCES)
 libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 
 # For the code check (splint)

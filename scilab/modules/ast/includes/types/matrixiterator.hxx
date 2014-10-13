@@ -84,25 +84,25 @@ template<> std::complex<double> get(types::Sparse SPARSE_CONST& s, int r, int c)
     return s.get(r, c);
 }
 
-template<> double get(Eigen::SparseMatrix<double, 0, int> SPARSE_CONST&s, int r, int c)
+template<> double get(types::Sparse::RealSparse_t SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c);
 }
-template<> std::complex<double> get(Eigen::SparseMatrix<double, 0, int> SPARSE_CONST&s, int r, int c)
+template<> std::complex<double> get(types::Sparse::RealSparse_t SPARSE_CONST&s, int r, int c)
 {
     return std::complex<double>(s.coeff(r, c), 0.);
 }
 
-template<> bool get(Eigen::SparseMatrix<bool> SPARSE_CONST& d, int r, int c)
+template<> bool get(types::SparseBool::BoolSparse_t SPARSE_CONST& d, int r, int c)
 {
     return d.coeff(r, c);
 }
 
-template<> double get(Eigen::SparseMatrix<std::complex<double>, 0, int> SPARSE_CONST&s, int r, int c)
+template<> double get(types::Sparse::CplxSparse_t SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c).real();
 }
-template<> std::complex<double> get(Eigen::SparseMatrix<std::complex<double>, 0, int> SPARSE_CONST&s, int r, int c)
+template<> std::complex<double> get(types::Sparse::CplxSparse_t SPARSE_CONST&s, int r, int c)
 {
     return s.coeff(r, c);
 }
@@ -160,7 +160,7 @@ template<> bool set(types::SparseBool & d, int r, int c, int v)
 /*
  * TODO report possible bug in Eigen when inserting 0. invalidates Eigen::InnerIterator
  */
-template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, double v)
+template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, double v)
 {
     if (v != 0.)
     {
@@ -169,7 +169,7 @@ template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, double
     return true;
 }
 
-template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, std::complex<double> v)
+template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, std::complex<double> v)
 {
     if ( v.real() != 0.)
     {
@@ -178,7 +178,7 @@ template<> bool set(Eigen::SparseMatrix<double, 0, int>& s, int r, int c, std::c
     return  true;
 }
 // should we make this a compile error ?
-template<> bool set(Eigen::SparseMatrix<std::complex<double>, 0, int>& s, int r, int c, double v)
+template<> bool set(types::Sparse::CplxSparse_t& s, int r, int c, double v)
 {
     if (v != 0.)
     {
@@ -191,7 +191,7 @@ namespace
 {
 std::complex<double> const cplxZero(0., 0.);
 }
-template<> bool set(Eigen::SparseMatrix<std::complex<double>, 0, int>& s, int r, int c, std::complex<double> v)
+template<> bool set(types::Sparse::CplxSparse_t& s, int r, int c, std::complex<double> v)
 {
     if (v != cplxZero)
     {
@@ -200,7 +200,7 @@ template<> bool set(Eigen::SparseMatrix<std::complex<double>, 0, int>& s, int r,
     return true;
 }
 
-template<> bool set(Eigen::SparseMatrix<bool>& s, int r, int c, bool v)
+template<> bool set(types::SparseBool::BoolSparse_t& s, int r, int c, bool v)
 {
     if (v)
     {

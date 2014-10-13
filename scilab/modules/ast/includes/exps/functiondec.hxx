@@ -48,25 +48,26 @@ public:
     */
     FunctionDec (const Location& location,
                  symbol::Symbol& name,
-                 ArrayListVar& args,
-                 ArrayListVar& returns,
+                 Exp& args,
+                 Exp& returns,
                  Exp& body)
         : Dec (location),
           _name (name),
-          _args (&args),
-          _returns (&returns),
-          _body (&body),
           _stack(NULL)
     {
+        args.setParent(this);
+        returns.setParent(this);
+        body.setParent(this);
+        _exps.push_back(&args);
+        _exps.push_back(&returns);
+        _exps.push_back(&body);
     }
 
     virtual ~FunctionDec ()
     {
         //body will be deleted by types::Macro
-        //delete _body;
-        delete _args;
-        delete _returns;
-        delete &_name;
+        //so replace by NULL to avoir delete in ~Exp()
+        _exps[2] = NULL;
     }
 
     virtual FunctionDec* clone()
@@ -99,37 +100,37 @@ public:
 
     const Exp& getBody(void) const
     {
-        return *_body;
+        return *_exps[2];
     }
 
     Exp& getBody (void)
     {
-        return *_body;
+        return *_exps[2];
     }
 
-    const ArrayListVar& getArgs() const
+    const Exp& getArgs() const
     {
-        return *_args;
+        return *_exps[0];
     }
 
-    ArrayListVar& getArgs()
+    Exp& getArgs()
     {
-        return *_args;
+        return *_exps[0];
     }
 
-    const ArrayListVar& getReturns() const
+    const Exp& getReturns() const
     {
-        return *_returns;
+        return *_exps[1];
     }
 
-    ArrayListVar& getReturns()
+    Exp& getReturns()
     {
-        return *_returns;
+        return *_exps[1];
     }
 
     void setBody(Exp *body)
     {
-        _body = body;
+        _exps[2] = body;
     }
 
     symbol::Variable* getStack()
@@ -151,12 +152,8 @@ public:
         return true;
     }
 protected:
-    symbol::Symbol&     _name;
-    ArrayListVar*       _args;
-    ArrayListVar*       _returns;
-    Exp*                _body;
-    symbol::Variable*   _stack;
-
+    symbol::Symbol& _name;
+    symbol::Variable* _stack;
 };
 
 } // namespace ast

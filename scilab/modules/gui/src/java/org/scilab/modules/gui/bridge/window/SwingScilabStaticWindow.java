@@ -24,6 +24,7 @@ import org.scilab.modules.action_binding.InterpreterManagement;
 import org.scilab.modules.graphic_objects.graphicController.GraphicController;
 import org.scilab.modules.gui.bridge.tab.SwingScilabPanel;
 import org.scilab.modules.gui.bridge.tab.SwingScilabStaticPanel;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 
 public class SwingScilabStaticWindow extends SwingScilabWindow {
 
@@ -41,7 +42,12 @@ public class SwingScilabStaticWindow extends SwingScilabWindow {
                     InterpreterManagement.putCommandInScilabQueue(closeCommand);
                 } else {
                     //GraphicController.getController().deleteObject(panel.getId());
-                    GraphicController.getController().removeRelationShipAndDelete(panel.getId());
+                    CommonCallBack callback = panel.getCallback();
+                    if (callback != null) {
+                        callback.actionPerformed(null);
+                    } else {
+                        GraphicController.getController().removeRelationShipAndDelete(panel.getId());
+                    }
                 }
             }
         });

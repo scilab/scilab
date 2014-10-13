@@ -125,11 +125,6 @@ struct EXTERN_AST Sparse : GenericType
     **/
     bool zero_set();
 
-    Sparse* getColumnValues(int /*_iPos*/)
-    {
-        return NULL;
-    }
-
     /*
       Config management and GenericType methods overrides
     */
@@ -331,6 +326,12 @@ struct EXTERN_AST Sparse : GenericType
      */
     Sparse* dotMultiply(Sparse SPARSE_CONST& o) const;
 
+    /* create a new matrix containing the result of an ./
+      @param o sparse matrix to ./
+      @return ptr to the new matrix, 0 in case of failure
+    */
+    Sparse* dotDivide(Sparse SPARSE_CONST& o) const;
+
     bool neg(InternalType *& out);
 
     bool transpose(InternalType *& out)
@@ -364,6 +365,7 @@ struct EXTERN_AST Sparse : GenericType
 
     int* getNbItemByRow(int* _piNbItemByRows);
     int* getColPos(int* _piColPos);
+    int  getNbItemByCol(int* _piNbItemByCols, int* _piRowPos);
 
     /**
        "in-place" cast into a sparse matrix of comlpex values
@@ -494,8 +496,8 @@ struct EXTERN_AST Sparse : GenericType
 
     SparseBool* newLesserThan(Sparse const&o);
 
-    typedef Eigen::SparseMatrix<double >   RealSparse_t;
-    typedef Eigen::SparseMatrix<std::complex<double > >    CplxSparse_t;
+    typedef Eigen::SparseMatrix<double, Eigen::RowMajor>                 RealSparse_t;
+    typedef Eigen::SparseMatrix<std::complex<double>, Eigen::RowMajor>   CplxSparse_t;
     /**
        One and only one of the args should be 0.
        @param realSp ptr to an Eigen sparse matrix of double values
@@ -629,11 +631,6 @@ struct EXTERN_AST SparseBool : GenericType
         return 1;
     }
 
-    SparseBool* getColumnValues(int /*_iPos*/)
-    {
-        return NULL;
-    }
-
     bool transpose(InternalType *& out)
     {
         out = new SparseBool(new BoolSparse_t(matrixBool->transpose()));
@@ -713,7 +710,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* newLogicalOr(SparseBool const&o) const;
     SparseBool* newLogicalAnd(SparseBool const&o) const;
 
-    typedef Eigen::SparseMatrix<bool> BoolSparse_t;
+    typedef Eigen::SparseMatrix<bool, Eigen::RowMajor> BoolSparse_t;
     SparseBool(BoolSparse_t* o);
     BoolSparse_t* matrixBool;
 

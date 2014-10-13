@@ -23,8 +23,8 @@
 
 #include "Controller.hxx"
 #include "LinkAdapter.hxx"
-#include "model/Port.hxx"
 #include "model/Link.hxx"
+#include "model/Port.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -37,6 +37,10 @@ namespace view_scilab
 {
 namespace
 {
+
+const std::string split ("split");
+const std::string lsplit ("lsplit");
+const std::string limpsplit ("limpsplit");
 
 struct xx
 {
@@ -74,14 +78,23 @@ struct xx
         std::vector<double> controlPoints;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
-        if (current->getSize() != static_cast<int>(controlPoints.size() / 2))
+        int newXSize = current->getSize();
+        int oldXSize = static_cast<int>(controlPoints.size() / 2);
+        std::vector<double> newControlPoints (controlPoints);
+
+        if (newXSize == oldXSize)
         {
-            return false;
+            std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
+        }
+        else
+        {
+            newControlPoints.resize(2 * current->getSize(), 0);
+
+            std::copy(current->getReal(), current->getReal() + newXSize, newControlPoints.begin());
+            std::copy(controlPoints.begin() + oldXSize, controlPoints.begin() + oldXSize + std::min(newXSize, oldXSize), newControlPoints.begin() + newXSize);
         }
 
-        std::copy(current->getReal(), current->getReal() + current->getSize(), controlPoints.begin());
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
-
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, newControlPoints);
         return true;
     }
 };
@@ -122,14 +135,26 @@ struct yy
         std::vector<double> controlPoints;
         controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
 
-        if (current->getSize() != static_cast<int>(controlPoints.size() / 2))
+        int newYSize = current->getSize();
+        int oldYSize = static_cast<int>(controlPoints.size() / 2);
+        std::vector<double> newControlPoints (controlPoints);
+
+        if (newYSize == oldYSize)
         {
-            return false;
+            std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
+        }
+        else
+        {
+            newControlPoints.resize(2 * current->getSize());
+
+            std::copy(current->getReal(), current->getReal() + newYSize, newControlPoints.begin() + newYSize);
+            if (newYSize > oldYSize)
+            {
+                std::fill(newControlPoints.begin() + oldYSize, newControlPoints.begin() + oldYSize + newYSize, 0);
+            }
         }
 
-        std::copy(current->getReal(), current->getReal() + current->getSize(), controlPoints.begin() + controlPoints.size() / 2);
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
-
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, newControlPoints);
         return true;
     }
 };
@@ -265,7 +290,7 @@ struct ct
     }
 };
 
-static types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, object_properties_t end)
+types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, const object_properties_t end)
 {
     model::Link* adaptee = adaptor.getAdaptee();
 
@@ -293,19 +318,34 @@ static types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& c
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
         data[0] = static_cast<double>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
 
+        // To find the port index from its 'endID' ID, search through all the block's ports lists
         std::vector<ScicosID> sourceBlockPorts;
-        switch (end)
+        controller.getObjectProperty(sourceBlock, BLOCK, INPUTS, sourceBlockPorts);
+
+        std::vector<ScicosID>::iterator found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+        if (found == sourceBlockPorts.end()) // Not found in the data inputs
         {
-            case SOURCE_PORT:
-                controller.getObjectProperty(sourceBlock, BLOCK, OUTPUTS, sourceBlockPorts);
-                break;
-            case DESTINATION_PORT:
-                controller.getObjectProperty(sourceBlock, BLOCK, INPUTS, sourceBlockPorts);
-                break;
-            default:
-                return 0;
+            sourceBlockPorts.clear();
+            controller.getObjectProperty(sourceBlock, BLOCK, OUTPUTS, sourceBlockPorts);
+            found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+            if (found == sourceBlockPorts.end()) // Not found in the data outputs
+            {
+                sourceBlockPorts.clear();
+                controller.getObjectProperty(sourceBlock, BLOCK, EVENT_INPUTS, sourceBlockPorts);
+                found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+                if (found == sourceBlockPorts.end()) // Not found in the event inputs
+                {
+                    sourceBlockPorts.clear();
+                    controller.getObjectProperty(sourceBlock, BLOCK, EVENT_OUTPUTS, sourceBlockPorts);
+                    found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
+                    if (found == sourceBlockPorts.end()) // Not found in the event outputs
+                    {
+                        return 0;
+                    }
+                }
+            }
         }
-        data[1] = static_cast<double>(std::distance(sourceBlockPorts.begin(), std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID)) + 1);
+        data[1] = static_cast<double>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
         bool isImplicit;
         controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
@@ -314,7 +354,7 @@ static types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& c
         {
             int kind;
             controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
-            if (kind == model::IN || kind == model::EIN)
+            if (kind == model::PORT_IN || kind == model::PORT_EIN)
             {
                 data[2] = 1;
             }
@@ -330,26 +370,42 @@ enum startOrEnd
     End = 1
 };
 
-static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_properties_t end, types::InternalType* v)
+/*
+ * Connectivity is ensured if 'port' is of the desired type or if either of the concerned blocks is a split block,
+ * because they are connectable to anything
+ */
+bool checkConnectivity(const int neededType, const ScicosID port, const ScicosID blk1, Controller& controller)
 {
-    model::Link* adaptee = adaptor.getAdaptee();
+    int portKind;
+    controller.getObjectProperty(port, PORT, PORT_KIND, portKind);
 
-    if (v->getType() != types::InternalType::ScilabDouble)
+    if (portKind != neededType)
     {
-        return false;
+        // Last chance if one of the connecting blocks is just a split block
+        std::string name1;
+        controller.getObjectProperty(blk1, BLOCK, SIM_FUNCTION_NAME, name1);
+        if (name1 != split && name1 != lsplit && name1 != limpsplit)
+        {
+            ScicosID blk2;
+            controller.getObjectProperty(port, PORT, SOURCE_BLOCK, blk2);
+            std::string name2;
+            controller.getObjectProperty(blk2, BLOCK, SIM_FUNCTION_NAME, name2);
+            if (name2 != split && name2 != lsplit && name2 != limpsplit)
+            {
+                return false;
+            }
+        }
     }
+    return true;
+}
 
-    types::Double* current = v->getAs<types::Double>();
-
-    if ((current->getRows() != 1 || current->getCols() != 3) && current->getSize() != 0)
-    {
-        return false; // Must be [] or [x y z]
-    }
+void setLinkEnd(const ScicosID id, Controller& controller, const object_properties_t end, const std::vector<double>& v)
+{
 
     ScicosID from;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), SOURCE_PORT, from);
+    controller.getObjectProperty(id, LINK, SOURCE_PORT, from);
     ScicosID to;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), DESTINATION_PORT, to);
+    controller.getObjectProperty(id, LINK, DESTINATION_PORT, to);
     ScicosID concernedPort;
     ScicosID otherPort;
     object_properties_t otherEnd;
@@ -366,42 +422,29 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
             otherEnd = SOURCE_PORT;
             break;
         default:
-            return false;
+            return;
     }
     ScicosID unconnected = 0;
 
-    if (current->getSize() == 0 || (current->get(0) == 0 || current->get(1) == 0))
+    if (v.size() == 0 || (v[0] == 0 || v[1] == 0))
     {
         // We want to set an empty link
         if (concernedPort == 0)
         {
             // In this case, the link was already empty, do a dummy call to display the console status.
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), end, concernedPort);
+            controller.setObjectProperty(id, LINK, end, concernedPort);
         }
         else
         {
-            // Untie the old link on both ends and set the 2 concerned ports as unconnected
-            controller.setObjectProperty(from, PORT, CONNECTED_SIGNALS, unconnected);
-            controller.setObjectProperty(to, PORT, CONNECTED_SIGNALS, unconnected);
-
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SOURCE_PORT, unconnected);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DESTINATION_PORT, unconnected);
+            // Untie the old link on the concerned end and set its port as unconnected
+            controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+            controller.setObjectProperty(id, LINK, end, unconnected);
         }
-        return true;
-    }
-
-    if (current->get(2) != 0 && current->get(2) != 1)
-    {
-        return false;
-    }
-
-    if (floor(current->get(0)) != current->get(0) || floor(current->get(1)) != current->get(1))
-    {
-        return false; // Must be an integer value
+        return;
     }
 
     ScicosID parentDiagram;
-    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+    controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
     std::vector<ScicosID> children;
     if (parentDiagram != 0)
     {
@@ -409,28 +452,34 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     }
 
     // Connect the new one
-    int blk  = static_cast<int>(current->get(0));
-    int port = static_cast<int>(current->get(1));
-    int kind = static_cast<int>(current->get(2));
+    int blk  = static_cast<int>(v[0]);
+    int port = static_cast<int>(v[1]);
+    int kind = static_cast<int>(v[2]);
     if (kind != Start && kind != End)
     {
-        return false;
+        return;
     }
     // kind == 0: trying to set the start of the link (output port)
     // kind == 1: trying to set the end of the link (input port)
 
-    if (blk < 0 || blk > static_cast<int>(children.size()))
+    if (blk > static_cast<int>(children.size()))
     {
-        return false; // Trying to link to a non-existing block
+        return; // Trying to link to a non-existing block
     }
     ScicosID blkID = children[blk - 1];
+
+    // Check that the ID designates a BLOCK (and not an ANNOTATION)
+    if (controller.getObject(blkID)->kind() != BLOCK)
+    {
+        return;
+    }
 
     std::vector<ScicosID> sourceBlockPorts;
     int nBlockPorts;
     bool newPortIsImplicit = false;
-    int newPortKind = static_cast<int>(model::UNDEF);
+    int newPortKind = static_cast<int>(model::PORT_UNDEF);
     int linkType;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), KIND, linkType);
+    controller.getObjectProperty(id, LINK, KIND, linkType);
     if (linkType == model::activation)
     {
         std::vector<ScicosID> evtin;
@@ -442,30 +491,24 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
         {
             if (otherPort != 0)
             {
-                // The other end must be an input
-                int otherPortKind;
-                controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
-                if (otherPortKind != model::EIN)
+                if (!checkConnectivity(model::PORT_EIN, otherPort, blkID, controller))
                 {
-                    return false;
+                    return;
                 }
             }
-            newPortKind = static_cast<int>(model::EOUT);
+            newPortKind = static_cast<int>(model::PORT_EOUT);
             sourceBlockPorts = evtout;
         }
         else
         {
             if (otherPort != 0)
             {
-                // The other end must be an output
-                int otherPortKind;
-                controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
-                if (otherPortKind != model::EOUT)
+                if (!checkConnectivity(model::PORT_EOUT, otherPort, blkID, controller))
                 {
-                    return false;
+                    return;
                 }
             }
-            newPortKind = static_cast<int>(model::EIN);
+            newPortKind = static_cast<int>(model::PORT_EIN);
             sourceBlockPorts = evtin;
         }
 
@@ -483,30 +526,24 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
             {
                 if (otherPort != 0)
                 {
-                    // The other end must be an input
-                    int otherPortKind;
-                    controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
-                    if (otherPortKind != model::IN)
+                    if (!checkConnectivity(model::PORT_IN, otherPort, blkID, controller))
                     {
-                        return false;
+                        return;
                     }
                 }
-                newPortKind = static_cast<int>(model::OUT);
+                newPortKind = static_cast<int>(model::PORT_OUT);
                 sourceBlockPorts = out;
             }
             else
             {
                 if (otherPort != 0)
                 {
-                    // The other end must be an output
-                    int otherPortKind = 1;
-                    controller.getObjectProperty(otherPort, PORT, PORT_KIND, otherPortKind);
-                    if (otherPortKind != model::OUT)
+                    if (!checkConnectivity(model::PORT_OUT, otherPort, blkID, controller))
                     {
-                        return false;
+                        return;
                     }
                 }
-                newPortKind = static_cast<int>(model::IN);
+                newPortKind = static_cast<int>(model::PORT_IN);
                 sourceBlockPorts = in;
             }
 
@@ -560,9 +597,9 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
             controller.setObjectProperty(concernedPort, PORT, PORT_KIND, newPortKind);
             controller.setObjectProperty(concernedPort, PORT, SOURCE_BLOCK, blkID);
             controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
+            // Set the default dataType so it is saved in the model
             std::vector<int> dataType;
             controller.getObjectProperty(concernedPort, PORT, DATATYPE, dataType);
-            dataType[0] = -1; // Default number of rows for new ports
             controller.setObjectProperty(concernedPort, PORT, DATATYPE, dataType);
 
             std::vector<ScicosID> concernedPorts;
@@ -612,9 +649,8 @@ static bool setLinkEnd(LinkAdapter& adaptor, Controller& controller, object_prop
     }
 
     // Connect the new source and destination ports together
-    controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, adaptee->id());
-    controller.setObjectProperty(adaptee->id(), adaptee->kind(), end, concernedPort);
-    return true;
+    controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, id);
+    controller.setObjectProperty(id, LINK, end, concernedPort);
 }
 
 struct from
@@ -622,12 +658,48 @@ struct from
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        return getLinkEnd(adaptor, controller, SOURCE_PORT);
+        // silent unused parameter warnings
+        (void) controller;
+
+        std::vector<double> from_content;
+        from_content = adaptor.getFrom();
+        double* data;
+        types::Double* o = new types::Double(1, 3, &data);
+
+        data[0] = from_content[0];
+        data[1] = from_content[1];
+        data[2] = from_content[2];
+        return o;
     }
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setLinkEnd(adaptor, controller, SOURCE_PORT, v);
+        model::Link* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+
+        types::Double* current = v->getAs<types::Double>();
+
+        if (current->getSize() != 0 && current->getSize() != 2 && current->getSize() != 3)
+        {
+            return false;
+        }
+        std::vector<double> from_content (3, 0);
+        if (current->getSize() >= 2)
+        {
+            // By default of the third element, 'from' designates an output, so from_content[2] = 0
+            from_content[0] = current->get(0);
+            from_content[1] = current->get(1);
+        }
+        if (current->getSize() == 3)
+        {
+            from_content[2] = current->get(2);
+        }
+
+        return adaptor.setFrom(adaptee->id(), from_content, controller);
     }
 };
 
@@ -636,12 +708,49 @@ struct to
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        return getLinkEnd(adaptor, controller, DESTINATION_PORT);
+        // silent unused parameter warnings
+        (void) controller;
+
+        std::vector<double> to_content;
+        to_content = adaptor.getTo();
+        double* data;
+        types::Double* o = new types::Double(1, 3, &data);
+
+        data[0] = to_content[0];
+        data[1] = to_content[1];
+        data[2] = to_content[2];
+        return o;
     }
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setLinkEnd(adaptor, controller, DESTINATION_PORT, v);
+        model::Link* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() != types::InternalType::ScilabDouble)
+        {
+            return false;
+        }
+
+        types::Double* current = v->getAs<types::Double>();
+
+        if (current->getSize() != 0 && current->getSize() != 2 && current->getSize() != 3)
+        {
+            return false;
+        }
+        std::vector<double> to_content (3, 0);
+        if (current->getSize() >= 2)
+        {
+            // By default of the third element, 'from' designates an output, so to_content[2] = 1
+            to_content[0] = current->get(0);
+            to_content[1] = current->get(1);
+            to_content[2] = 1;
+        }
+        if (current->getSize() == 3)
+        {
+            to_content[2] = current->get(2);
+        }
+
+        return adaptor.setTo(adaptee->id(), to_content, controller);
     }
 };
 
@@ -649,11 +758,8 @@ struct to
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
-LinkAdapter::LinkAdapter(const LinkAdapter& o) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o) {}
-
-LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(o)
+LinkAdapter::LinkAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Link* adaptee) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(ownAdaptee, adaptee)
 {
     if (property<LinkAdapter>::properties_have_not_been_set())
     {
@@ -666,6 +772,20 @@ LinkAdapter::LinkAdapter(org_scilab_modules_scicos::model::Link* o) :
         property<LinkAdapter>::add_property(L"from", &from::get, &from::set);
         property<LinkAdapter>::add_property(L"to", &to::get, &to::set);
     }
+
+    from_content = std::vector<double> (3);
+    to_content   = std::vector<double> (3);
+
+    // If the Link has been added to a diagram, the following lines will dig up its information at model-level
+    Controller controller = Controller();
+    types::Double* modelFrom = getLinkEnd(*this, controller, SOURCE_PORT);
+    types::Double* modelTo   = getLinkEnd(*this, controller, DESTINATION_PORT);
+    from_content[0] = modelFrom->get(0);
+    from_content[1] = modelFrom->get(1);
+    from_content[2] = modelFrom->get(2);
+    to_content[0]   = modelTo->get(0);
+    to_content[1]   = modelTo->get(1);
+    to_content[2]   = modelTo->get(2);
 }
 
 LinkAdapter::~LinkAdapter()
@@ -679,6 +799,109 @@ std::wstring LinkAdapter::getTypeStr()
 std::wstring LinkAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
+}
+
+std::vector<double> LinkAdapter::getFrom() const
+{
+    return from_content;
+}
+
+bool LinkAdapter::setFrom(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level)
+{
+    if (v.size() >= 2)
+    {
+        if (floor(v[0]) != v[0] || floor(v[1]) != v[1])
+        {
+            return false; // Must be an integer value
+        }
+        if (v[0] < 0 || v[1] < 0)
+        {
+            return false; // Must be positive
+        }
+    }
+    if (v.size() == 3)
+    {
+        if (floor(v[2]) != v[2])
+        {
+            return false; // Must be an integer value
+        }
+        if (v[2] < 0)
+        {
+            return false; // Must be positive
+        }
+    }
+
+    from_content = v;
+
+    ScicosID parentDiagram;
+    controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
+
+    if (parentDiagram != 0 && model_level)
+    {
+        // If the Link has been added to a diagram, do the linking at model-level
+        // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
+        setLinkEnd(id, controller, SOURCE_PORT, v);
+    }
+
+    return true;
+}
+
+std::vector<double> LinkAdapter::getTo() const
+{
+    return to_content;
+}
+
+bool LinkAdapter::setTo(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level)
+{
+    if (v.size() >= 2)
+    {
+        if (floor(v[0]) != v[0] || floor(v[1]) != v[1])
+        {
+            return false; // Must be an integer value
+        }
+        if (v[0] < 0 || v[1] < 0)
+        {
+            return false; // Must be positive
+        }
+    }
+    if (v.size() == 3)
+    {
+        if (floor(v[2]) != v[2])
+        {
+            return false; // Must be an integer value
+        }
+        if (v[2] < 0)
+        {
+            return false; // Must be positive
+        }
+    }
+
+    to_content = v;
+
+    ScicosID parentDiagram;
+    controller.getObjectProperty(id, LINK, PARENT_DIAGRAM, parentDiagram);
+
+    if (parentDiagram != 0 && model_level)
+    {
+        // If the Link has been added to a diagram, do the linking at model-level
+        // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
+        setLinkEnd(id, controller, DESTINATION_PORT, v);
+    }
+
+    return true;
+}
+
+types::InternalType* LinkAdapter::clone()
+{
+    Controller controller = Controller();
+    ScicosID clone = controller.cloneObject(getAdaptee()->id());
+    LinkAdapter* ret = new LinkAdapter(false, static_cast<org_scilab_modules_scicos::model::Link*>(controller.getObject(clone)));
+
+    // When cloning a LinkAdapter, clone its 'from' and 'to' information as well.
+    // setFrom() will propagate the information at model-level if necessary.
+    ret->setFrom(clone, this->getFrom(), controller);
+    ret->setTo(clone, this->getTo(), controller);
+    return ret;
 }
 
 } /* namespace view_scilab */

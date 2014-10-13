@@ -15,16 +15,22 @@
 #include <algorithm>
 #include <sstream>
 
-#include "list.hxx"
-#include "mlist.hxx"
+#include "int.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "list.hxx"
+#include "user.hxx"
 
 #include "Controller.hxx"
+#include "Adapters.hxx"
 #include "ModelAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "ports_management.hxx"
+#include "utilities.hxx"
 
 extern "C" {
+#include "wchar.h"
+#include "string.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -36,7 +42,10 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring diagram (L"diagram");
+const std::string input ("input");
+const std::string output ("output");
+const std::string inimpl ("inimpl");
+const std::string outimpl ("outimpl");
 
 struct sim
 {
@@ -338,46 +347,462 @@ struct dstate
     }
 };
 
+types::InternalType* getField(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t property)
+{
+    model::Block* adaptee = adaptor.getAdaptee();
+
+    std::vector<int> prop_content;
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), property, prop_content);
+
+    if (prop_content.size() == 0)
+    {
+        return types::Double::Empty();
+    }
+
+    types::List* o = new types::List();
+
+    int fieldIndex = 1; // Index to each element of the returned list
+
+    for (int i = 0; i < prop_content[0]; ++i) // 'o' must have exactly 'prop_content[0]' elements
+    {
+        int m, n, numberOfIntNeeded = 0;
+        switch (prop_content[fieldIndex])
+        {
+            case types::InternalType::ScilabDouble:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                int isComplex = prop_content[fieldIndex + 3];
+
+                double* real;
+                types::Double* pDouble;
+
+                if (isComplex == 0)
+                {
+                    pDouble = new types::Double(m, n, &real);
+                    numberOfIntNeeded = 2 * m * n + 1;
+                    memcpy(real, &prop_content[fieldIndex + 3 + 1], m * n * sizeof(double));
+                }
+                else
+                {
+                    double* imag;
+                    pDouble = new types::Double(m, n, &real, &imag);
+                    numberOfIntNeeded = 4 * m * n + 1;
+                    memcpy(real, &prop_content[fieldIndex + 3 + 1], m * n * sizeof(double));
+                    memcpy(imag, &prop_content[fieldIndex + 3 + 1 + 2 * m * n], m * n * sizeof(double));
+                }
+                o->set(i, pDouble);
+                break;
+            }
+            case types::InternalType::ScilabInt8:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n / 4;
+
+                char* data;
+                types::Int8* pInt8 = new types::Int8(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(char));
+                o->set(i, pInt8);
+                break;
+            }
+            case types::InternalType::ScilabUInt8:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n / 4;
+
+                unsigned char* data;
+                types::UInt8* pUInt8 = new types::UInt8(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned char));
+                o->set(i, pUInt8);
+                break;
+            }
+            case types::InternalType::ScilabInt16:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n / 2;
+
+                short int* data;
+                types::Int16* pInt16 = new types::Int16(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(short int));
+                o->set(i, pInt16);
+                break;
+            }
+            case types::InternalType::ScilabUInt16:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n / 2;
+
+                unsigned short int* data;
+                types::UInt16* pUInt16 = new types::UInt16(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned short int));
+                o->set(i, pUInt16);
+                break;
+            }
+            case types::InternalType::ScilabInt32:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n;
+
+                int* data;
+                types::Int32* pInt32 = new types::Int32(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(int));
+                o->set(i, pInt32);
+                break;
+            }
+            case types::InternalType::ScilabUInt32:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+                numberOfIntNeeded = m * n;
+
+                unsigned int* data;
+                types::UInt32* pUInt32 = new types::UInt32(m, n, &data);
+
+                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned int));
+                o->set(i, pUInt32);
+                break;
+            }
+            case types::InternalType::ScilabString:
+            {
+                m = prop_content[fieldIndex + 1];
+                n = prop_content[fieldIndex + 2];
+
+                types::String* pString = new types::String(m, n);
+
+                for (int j = 0; j < m * n; ++j)
+                {
+                    int strLen = prop_content[fieldIndex + 3 + numberOfIntNeeded];
+                    wchar_t* str = new wchar_t[strLen + 1];
+                    memcpy(str, &prop_content[fieldIndex + 3 + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
+                    str[strLen] = '\0';
+                    pString->set(j, str);
+                    delete str;
+
+                    numberOfIntNeeded += 1 + strLen;
+                }
+                o->set(i, pString);
+                break;
+            }
+            default:
+                return 0;
+        }
+
+        fieldIndex += 3 + numberOfIntNeeded;
+    }
+
+    return o;
+}
+
+bool setField(ModelAdapter& adaptor, Controller& controller, const object_properties_t FIELD, types::InternalType* v)
+{
+    model::Block* adaptee = adaptor.getAdaptee();
+
+    if (v->getType() == types::InternalType::ScilabDouble)
+    {
+        types::Double* current = v->getAs<types::Double>();
+        if (current->getSize() != 0)
+        {
+            return false;
+        }
+
+        std::vector<int> field;
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), FIELD, field);
+        return true;
+    }
+
+    if (v->getType() != types::InternalType::ScilabList)
+    {
+        return false;
+    }
+
+    types::List* list = v->getAs<types::List>();
+
+    // 'field' will be a buffer containing the elements of the list, copied into 'int' type by bits
+    std::vector<int> field (1, list->getSize()); // Save the number of list elements in the first element
+    int fieldIndex = 1; // Index to point at every new list element
+
+    for (int i = 0; i < list->getSize(); ++i)
+    {
+        // Save the variable type
+        field.resize(field.size() + 1);
+        field[fieldIndex] = list->get(i)->getType();
+
+        int m, n, numberOfIntNeeded = 0;
+        switch (list->get(i)->getType())
+        {
+            case types::InternalType::ScilabDouble:
+            {
+                types::Double* pDouble = list->get(i)->getAs<types::Double>();
+                m = pDouble->getRows();
+                n = pDouble->getCols();
+
+                if (!pDouble->isComplex())
+                {
+                    // It takes 2 int (4 bytes) to save 1 real (1 double: 8 bytes)
+                    // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
+                    numberOfIntNeeded = 2 * m * n + 1;
+                    field.resize(field.size() + 2 + numberOfIntNeeded);
+                    field[fieldIndex + 3] = 0; // Flag for real
+
+                    // Using contiguity of the memory, we save the input into field
+                    memcpy(&field[fieldIndex + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
+                }
+                else
+                {
+                    // It takes 4 int (4 bytes) to save 1 complex (2 double: 16 bytes)
+                    // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
+                    numberOfIntNeeded = 4 * m * n + 1;
+                    field.resize(field.size() + 2 + numberOfIntNeeded);
+                    field[fieldIndex + 3] = 1; // Flag for complex
+
+                    // Contiguously save the real and complex parts
+                    memcpy(&field[fieldIndex + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
+                    memcpy(&field[fieldIndex + 3 + 1 + 2 * m * n], pDouble->getImg(), m * n * sizeof(double));
+                }
+                break;
+            }
+            case types::InternalType::ScilabInt8:
+            {
+                types::Int8* pInt8 = list->get(i)->getAs<types::Int8>();
+                m = pInt8->getRows();
+                n = pInt8->getCols();
+
+                // It takes 1 int (4 bytes) to save 4 char (1 byte)
+                // So reserve m*n/4 and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n / 4;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pInt8->get(), m * n * sizeof(char));
+                break;
+            }
+            case types::InternalType::ScilabUInt8:
+            {
+                types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
+                m = pInt16->getRows();
+                n = pInt16->getCols();
+
+                // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
+                // So reserve m*n/4 and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n / 4;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pInt16->get(), m * n * sizeof(unsigned char));
+                break;
+            }
+            case types::InternalType::ScilabInt16:
+            {
+                types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
+                m = pInt16->getRows();
+                n = pInt16->getCols();
+
+                // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
+                // So reserve m*n/2 and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n / 2;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pInt16->get(), m * n * sizeof(short int));
+                break;
+            }
+            case types::InternalType::ScilabUInt16:
+            {
+                types::UInt16* pUInt16 = list->get(i)->getAs<types::UInt16>();
+                m = pUInt16->getRows();
+                n = pUInt16->getCols();
+
+                // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
+                // So reserve m*n/2 and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n / 2;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pUInt16->get(), m * n * sizeof(unsigned short int));
+                break;
+            }
+            case types::InternalType::ScilabInt32:
+            {
+                types::Int32* pInt32 = list->get(i)->getAs<types::Int32>();
+                m = pInt32->getRows();
+                n = pInt32->getCols();
+
+                // It takes 1 int (4 bytes) to save 1 int (4 bytes)
+                // So reserve m*n and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pInt32->get(), m * n * sizeof(int));
+                break;
+            }
+            case types::InternalType::ScilabUInt32:
+            {
+                types::UInt32* pUInt32 = list->get(i)->getAs<types::UInt32>();
+                m = pUInt32->getRows();
+                n = pUInt32->getCols();
+
+                // It takes 1 int (4 bytes) to save 1 unsigned int (4 bytes)
+                // So reserve m*n and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n;
+                field.resize(field.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into field
+                memcpy(&field[fieldIndex + 3], pUInt32->get(), m * n * sizeof(unsigned int));
+                break;
+            }
+            case types::InternalType::ScilabInt64:
+            case types::InternalType::ScilabUInt64:
+                // int64 and uint64 are not treated yet
+                return false;
+            case types::InternalType::ScilabString:
+            {
+                types::String* pString = list->get(i)->getAs<types::String>();
+                m = pString->getRows();
+                n = pString->getCols();
+
+                // For the moment, we don't know how many characters each string is long, so only reserve the matrix size
+                field.resize(field.size() + 2);
+
+                for (int j = 0; j < m * n; ++j)
+                {
+                    // Extract the input string length and reserve as many characters in field
+                    int strLen = static_cast<int>(wcslen(pString->get(j)));
+                    field.resize(field.size() + 1 + strLen);
+                    field[fieldIndex + 3 + numberOfIntNeeded] = strLen;
+
+                    memcpy(&field[fieldIndex + 3 + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
+                    numberOfIntNeeded += 1 + strLen;
+                }
+                break;
+            }
+            default:
+                return false;
+        }
+        // Save the matrix dimensions in 'field' and increment fieldIndex to match the next list element
+        field[fieldIndex + 1] = m;
+        field[fieldIndex + 2] = n;
+        fieldIndex += 3 + numberOfIntNeeded;
+    }
+
+    controller.setObjectProperty(adaptee->id(), adaptee->kind(), FIELD, field);
+    return true;
+}
+
 struct odstate
 {
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // silent unused parameter warnings
-        (void) adaptor;
-        (void) controller;
-
-        // FIXME: implement as a scicos encoded list of values
-
-        // Return a default empty list.
-        return new types::List();
+        return getField(adaptor, controller, ODSTATE);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() != types::InternalType::ScilabList)
-        {
-            return false;
-        }
-
-        types::List* current = v->getAs<types::List>();
-
-        if (current->getSize() == 0)
-        {
-            return true;
-        }
-        else
-        {
-            // silent unused parameter warnings
-            (void) adaptor;
-            (void) v;
-            (void) controller;
-
-            // FIXME: implement as a scicos encoded list of values
-            return false;
-        }
+        return setField(adaptor, controller, ODSTATE, v);
     }
 };
+
+/*
+ * When setting a diagram in 'rpar', the Superblock's ports must be consistent with the "port blocks" inside it.
+ * By "port blocks", we mean IN_f, OUT_f, CLKIN_f, CLKOUT_f, CLKINV_f, CLKOUTV_f, INIMPL_f and OUTIMPL_f.
+ */
+bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& children, Controller& controller)
+{
+    model::Block* adaptee = adaptor.getAdaptee();
+
+    for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
+    {
+        if (controller.getObject(*it)->kind() == BLOCK) // Rule out Annotations and Links
+        {
+            std::string name;
+            controller.getObjectProperty(*it, BLOCK, SIM_FUNCTION_NAME, name);
+
+            // Find the "port blocks"
+            if (name == input || name == inimpl || name == output || name == outimpl)
+            {
+                std::vector<int> ipar;
+                controller.getObjectProperty(*it, BLOCK, IPAR, ipar);
+                if (ipar.size() != 1)
+                {
+                    return false;
+                }
+                int portIndex = ipar[0];
+
+                // "name" is not enough to tell the event and data ports apart, so check the block's port.
+                object_properties_t kind;
+                std::vector<ScicosID> innerPort;
+                if (name == input || name == inimpl)
+                {
+                    controller.getObjectProperty(*it, BLOCK, OUTPUTS, innerPort);
+                    if (!innerPort.empty())
+                    {
+                        kind = INPUTS;
+                    }
+                    else
+                    {
+                        kind = EVENT_INPUTS;
+                    }
+                }
+                else
+                {
+                    controller.getObjectProperty(*it, BLOCK, INPUTS, innerPort);
+                    if (!innerPort.empty())
+                    {
+                        kind = OUTPUTS;
+                    }
+                    else
+                    {
+                        kind = EVENT_OUTPUTS;
+                    }
+                }
+
+                std::vector<ScicosID> superPorts;
+                controller.getObjectProperty(adaptee->id(), adaptee->kind(), kind, superPorts);
+                if (static_cast<int>(superPorts.size()) < portIndex)
+                {
+                    return false;
+                }
+
+                ScicosID port = superPorts[portIndex - 1];
+
+                // Check consistency of the implicitness between the inner and outer ports
+                bool isImplicit;
+                controller.getObjectProperty(port, PORT, IMPLICIT, isImplicit);
+                if (name == input || name == output)
+                {
+                    if (isImplicit)
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    if (!isImplicit)
+                    {
+                        return false;
+                    }
+                }
+
+                controller.setObjectProperty(*it, BLOCK, PORT_REFERENCE, port);
+            }
+
+            // Regardless of the ports, use the loop to set each Block's 'parent_block' property
+            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee->id());
+        }
+    }
+    return true;
+}
 
 struct rpar
 {
@@ -403,13 +828,10 @@ struct rpar
 #endif
             return o;
         }
-        else
+        else // SuperBlock, return the contained diagram, whose ID is stored in children[0]
         {
-            types::MList* o = new types::MList();
-            types::String* Diagram = new types::String(diagram.c_str());
-            o->set(0, Diagram);
-
-            // FIXME: return the full diagram contained in children
+            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(children[0]));
+            DiagramAdapter* o = new DiagramAdapter(false, diagram);
             return o;
         }
     }
@@ -421,10 +843,6 @@ struct rpar
         if (v->getType() == types::InternalType::ScilabDouble)
         {
             types::Double* current = v->getAs<types::Double>();
-            if (current->getCols() != 0 && current->getCols() != 1)
-            {
-                return false;
-            }
 
             std::vector<double> rpar (current->getSize());
             for (int i = 0; i < current->getSize(); ++i)
@@ -437,18 +855,41 @@ struct rpar
         }
         else if (v->getType() == types::InternalType::ScilabString)
         {
-            // Allow Text blocs to define strings in rpar
+            // Allow Text blocks to define strings in rpar
             return true;
+        }
+        else if (v->getType() == types::InternalType::ScilabUserType)
+        {
+            // Make sure the input describes a Diagram
+            const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(v->getShortTypeStr());
+            if (adapter_index != Adapters::DIAGRAM_ADAPTER)
+            {
+                return false;
+            }
+
+            // Translate 'v' to an DiagramAdapter and clone it, updating the new Diagram's children
+            DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
+            ScicosID clone = controller.cloneObject(diagram->getAdaptee()->id());
+            model::Diagram* newSubAdaptee = static_cast<model::Diagram*>(controller.getObject(clone));
+            DiagramAdapter* newDiagram = new DiagramAdapter(true, newSubAdaptee);
+
+            // Save the children list, adding the new diagram ID at the beginning
+            std::vector<ScicosID> children;
+            controller.getObjectProperty(newSubAdaptee->id(), newSubAdaptee->kind(), CHILDREN, children);
+            children.insert(children.begin(), newSubAdaptee->id());
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+
+            // Link the Superblock ports to their inner "port blocks"
+            return setInnerBlocksRefs(adaptor, children, controller);
         }
         else
         {
-            // FIXME: set rpar when input is a diagram (MList)
             return false;
         }
     }
 };
 
-static double toDouble(const int a)
+double toDouble(const int a)
 {
     return static_cast<double>(a);
 }
@@ -510,39 +951,12 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // silent unused parameter warnings
-        (void) adaptor;
-        (void) controller;
-
-        // FIXME: implement as a scicos encoded list of values
-
-        // Return a default empty list.
-        return new types::List();
+        return getField(adaptor, controller, OPAR);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() != types::InternalType::ScilabList)
-        {
-            return false;
-        }
-
-        types::List* current = v->getAs<types::List>();
-
-        if (current->getSize() == 0)
-        {
-            return true;
-        }
-        else
-        {
-            // silent unused parameter warnings
-            (void) adaptor;
-            (void) v;
-            (void) controller;
-
-            // FIXME: implement as a scicos encoded list of values
-            return false;
-        }
+        return setField(adaptor, controller, OPAR, v);
     }
 };
 
@@ -699,6 +1113,7 @@ struct nzcross
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -706,18 +1121,21 @@ struct nzcross
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 1)
-        {
-            return false;
-        }
-        if (floor(current->get(0)) != current->get(0))
-        {
-            return false;
-        }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        int nzcross = 0; // Default value
+        if (current->getSize() != 0)
+        {
+            if (current->getSize() != 1)
+            {
+                return false;
+            }
+            if (floor(current->get(0)) != current->get(0))
+            {
+                return false;
+            }
 
-        int nzcross = static_cast<int>(current->get(0));
+            nzcross = static_cast<int>(current->get(0));
+        }
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
         return true;
@@ -741,6 +1159,7 @@ struct nmode
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -748,18 +1167,21 @@ struct nmode
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 1)
-        {
-            return false;
-        }
-        if (floor(current->get(0)) != current->get(0))
-        {
-            return false;
-        }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        int nmode = 0; // Default value
+        if (current->getSize() != 0)
+        {
+            if (current->getSize() != 1)
+            {
+                return false;
+            }
+            if (floor(current->get(0)) != current->get(0))
+            {
+                return false;
+            }
 
-        int nmode = static_cast<int>(current->get(0));
+            nmode = static_cast<int>(current->get(0));
+        }
 
         controller.setObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
         return true;
@@ -853,11 +1275,8 @@ struct uid
 
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
-ModelAdapter::ModelAdapter(const ModelAdapter& o) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o) { }
-
-ModelAdapter::ModelAdapter(org_scilab_modules_scicos::model::Block* o) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(o)
+ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
 {
     if (property<ModelAdapter>::properties_have_not_been_set())
     {

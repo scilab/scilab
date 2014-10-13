@@ -6,7 +6,7 @@
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>Info=xcos_simulate(scs_m, needcompile)</synopsis>
+        <synopsis>[Info, status]=xcos_simulate(scs_m, needcompile)</synopsis>
     </refsynopsisdiv>
     <refsection id="Parameters_xcos_simulate">
         <title>Arguments</title>
@@ -19,6 +19,9 @@
                 <term>needcompile</term>: An integer. If it equals 4,
                 then the simulator will perform a complete compilation of the diagram.
                 If not, it will use cached value of %cpr. DEPRECATED
+            </varlistentry>
+            <varlistentry>
+              <term>status</term>: A boolean. %T if simulation is successful, %f if simulation fails.
             </varlistentry>
         </variablelist>
     </refsection>
@@ -43,7 +46,7 @@
             importXcosDiagram
         </link>
         ).
-        
+
         <para>
             User can also define <literal>pre_xcos_simulate</literal>
             function that will run before simulation.

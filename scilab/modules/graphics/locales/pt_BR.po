@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: pt_BR\n"
 
 #, c-format
@@ -120,7 +120,8 @@ msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
 
 #, c-format
@@ -899,6 +900,10 @@ msgstr ""
 "Tipo incorreto para a propriedade '%s': esperava-se um número inteiro.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr ""
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1307,6 +1312,30 @@ msgstr "Diversas curvas podem ser desenhadas ao mesmo tempo"
 
 msgid "Customize your complex function"
 msgstr "Personalizar sua função complexa"
+
+msgid "Control panel"
+msgstr ""
+
+msgid "Function definition"
+msgstr ""
+
+msgid "Domain type"
+msgstr ""
+
+msgid "Radius of the domain"
+msgstr ""
+
+msgid "Cut on axes"
+msgstr ""
+
+msgid "Function should contain z"
+msgstr ""
+
+msgid "Wrong definition of f(z)"
+msgstr ""
+
+msgid "Radius should be real and finite"
+msgstr ""
 
 msgid "datatips on 2D curves"
 msgstr "anotações de dados em curvas 2D"
@@ -1735,75 +1764,12 @@ msgstr ""
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr ""
 
-msgid "Delete all datatips"
-msgstr "Apaga todas as anotações de dados"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "Apaga todas as anotações de dados da curva selecionada"
-
-msgid "Delete nearest datatip"
-msgstr "Apaga anotação de dado mais próxima"
-
-msgid "Delete last datatip"
-msgstr "Apaga a última anotação de dado"
-
-msgid "Delete selected datatip"
-msgstr "Apaga a anotação de dado selecionada"
-
-msgid "Open curve tip style editor"
-msgstr "Abre o editor de estilo de ponta"
-
-msgid "Redraw all datatips"
-msgstr "Redesenhar todas as anotações de dados"
-
-msgid "Edit the curve tip display function"
-msgstr "Edita a função de exibição de ponta da curva"
-
-msgid "select the curve tip display function"
-msgstr "seleciona a função de exibição da ponta da curva"
-
-msgid "Enable interpolation"
-msgstr "Habilitar a interpolação"
-
-msgid "Disable interpolation"
-msgstr "Desabilitar a interpolação"
-
-msgid "Multiple datatips mode"
-msgstr "Modo de anotações de dados múltiplas"
-
-msgid "Unique datatip mode"
-msgstr "Modo de anotação de dado única"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: encontrado um menu de cascata vazio."
-
-msgid "automatic"
-msgstr "automático"
-
-msgid "lower left"
-msgstr "inferior esquerdo"
-
-msgid "lower right"
-msgstr "inferior direito"
-
-msgid "upper left"
-msgstr "superior esquerdo"
-
-msgid "upper right"
-msgstr "superior direito"
-
-msgid "Select tip orientation"
-msgstr "Selecione a orientação do tip"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr ""
-
-msgid "The selected file cannot be executed"
-msgstr "O arquivo selecionado não pode ser executado"
-
-msgid "The selected file defines more than one function"
-msgstr "O arquivo selecionado define mais de uma função"
 
 msgid "'datatips' property"
 msgstr ""
@@ -1813,27 +1779,6 @@ msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o %dº argumento de entrada: esperava-se um "
 "manipulador de gráfico.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o %dº argumento de entrada: esperava-se uma "
-"matriz de %d elementos.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr ""
-"%s: Número incorreto para o %dº argumento de entrada(1): deve estar entre %d "
-"e %d.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr ""
-"%s: Número incorreto para o %dº argumento de entrada(1): deve estar entre %d "
-"e %d.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -1956,6 +1901,32 @@ msgstr "Permitir múltiplas anotações de dados?"
 
 msgid "Edit label generator"
 msgstr "Editar gerador de rótulos"
+
+msgid "File"
+msgstr ""
+
+msgid "Tools"
+msgstr ""
+
+msgid "Edit"
+msgstr ""
+
+msgid "Select a file to load"
+msgstr ""
+
+#, c-format
+msgid "%s: The file "
+msgstr ""
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr ""
+
+msgid "Error in file format."
+msgstr ""
+
+msgid "Select a file to write"
+msgstr ""
 
 #, c-format
 msgid ""

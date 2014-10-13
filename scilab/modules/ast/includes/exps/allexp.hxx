@@ -73,5 +73,7 @@
 
 // Type Dedicated Expressions
 #include "listexp.hxx"
+#include "optimizedexp.hxx"
+#include "daxpyexp.hxx"
 
 #endif /* !AST_ALLEXP_HXX */

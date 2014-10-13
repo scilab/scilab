@@ -13,6 +13,7 @@
 #define NOMINMAX
 #include "CallScilabBridge.hxx"
 #include "GiwsException.hxx"
+#include <algorithm>
 
 extern "C"
 {

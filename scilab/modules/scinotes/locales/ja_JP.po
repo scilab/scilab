@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 14:14+0000\n"
+"PO-Revision-Date: 2014-09-15 05:24+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <ja@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: ja\n"
 
 #, c-format
@@ -366,6 +366,12 @@ msgstr "デフォルトのファイルエンコーディング: "
 msgid "Default End-Of-Line: "
 msgstr "デフォルトの改行: "
 
+msgid "Completion"
+msgstr "補完"
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr "カーソルが行末にある時, 括弧を自動補完"
+
 msgid "General display options"
 msgstr "一般表示オプション"
 
@@ -375,8 +381,8 @@ msgstr "カレント行をハイライト表示: "
 msgid "Show line numbers: "
 msgstr "行数を表示: "
 
-msgid "Whereami compatible"
-msgstr "Whereami互換"
+msgid "Local numbering"
+msgstr "ローカルな数値付け"
 
 msgid "Normal"
 msgstr "標準"

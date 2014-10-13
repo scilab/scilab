@@ -74,6 +74,8 @@ public:
     };
 
 public:
+    /** \brief cleanup parser internal buffers */
+    static void cleanup();
 
     /** \brief parse the given file name */
     void parseFile(const std::wstring& name, const std::wstring& progName);

@@ -45,14 +45,15 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     }
 
     types::InternalType* pIndex = in[0];
-    types::List* pL = in[1]->getAs<types::List>();
-    std::vector<types::InternalType*> vOut;
-
-    if (pL->isList() == false && pL->isMList() == false && pL->isTList() == false)
+    if (in[1]->isList() == false && in[1]->isMList() == false && in[1]->isTList() == false)
     {
         Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
         return types::Function::Error;
     }
+
+    types::List* pL = in[1]->getAs<types::List>();
+    types::InternalType* pITOut = NULL;
+
 
     if (pIndex->isString())
     {
@@ -81,26 +82,28 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
             stFields.push_back(pS->get(i));
         }
 
-        vOut = pT->extractStrings(stFields);
+        pITOut = pT->extractStrings(stFields);
     }
     else
     {
         //extraction by index
         types::typed_list Args;
         Args.push_back(pIndex);
-        vOut = pL->extract(&Args);
+        pITOut = pL->extract(&Args);
     }
 
+    types::List* pList = pITOut->getAs<types::List>();
+    int iListSize = pList->getSize();
 
-    if (_iRetCount < vOut.size())
+    if (_iRetCount < iListSize)
     {
-        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", vOut.size());
+        Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", iListSize);
         return types::Function::Error;
     }
 
-    for (int i = 0 ; i < vOut.size() ; i++)
+    for (int i = 0 ; i < iListSize ; i++)
     {
-        out.push_back(vOut[i]);
+        out.push_back(pList->get(i));
     }
 
     return types::Function::OK;

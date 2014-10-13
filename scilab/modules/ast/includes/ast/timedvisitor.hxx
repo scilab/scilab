@@ -206,6 +206,17 @@ public :
     {
         visitprivate(e);
     }
+
+    /* optimized */
+    void visit(const OptimizedExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const DAXPYExp &e)
+    {
+        visitprivate(e);
+    }
 };
 }
 #endif // !AST_TIMEDVISITOR_HXX

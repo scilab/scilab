@@ -41,13 +41,13 @@ struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor = GraphicsAdapter(false, adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor = GraphicsAdapter(false, adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -56,13 +56,13 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor = ModelAdapter(false, adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor = ModelAdapter(false, adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -71,11 +71,11 @@ struct gui
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        std::string interface;
+        std::string Interface;
         org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, interface);
+        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, Interface);
 
-        return new types::String(interface.data());
+        return new types::String(Interface.data());
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -126,11 +126,8 @@ struct doc
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
-BlockAdapter::BlockAdapter(const BlockAdapter& o) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(o), doc_content(o.doc_content->clone()) {}
-
-BlockAdapter::BlockAdapter(org_scilab_modules_scicos::model::Block* o) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(o)
+BlockAdapter::BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {

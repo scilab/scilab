@@ -82,7 +82,7 @@
 
 #define HAVE_LIBINTL_H
 
-#define va_copy(x,y) (x=(y))
+//#define va_copy(x,y) (x=(y))
 
 #define SIZEOF_INT 4
 #define SIZEOF_LONG 4

@@ -37,18 +37,18 @@ public:
     ** \param body EXP LIST intruction
     */
     TryCatchExp (const Location& location,
-                 SeqExp& tried,
-                 SeqExp& catched)
-        : ControlExp (location),
-          _tryme (&tried),
-          _catchme (&catched)
+                 Exp& tryme,
+                 Exp& catchme)
+        : ControlExp (location)
     {
+        tryme.setParent(this);
+        catchme.setParent(this);
+        _exps.push_back(&tryme);
+        _exps.push_back(&catchme);
     }
 
     virtual ~TryCatchExp ()
     {
-        delete _tryme;
-        delete _catchme;
     }
 
     virtual TryCatchExp* clone()
@@ -76,23 +76,24 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const SeqExp& getTry() const
+    const Exp& getTry() const
     {
-        return *_tryme;
+        return *_exps[0];
     }
 
-    SeqExp& getTry()
+    Exp& getTry()
     {
-        return *_tryme;
-    }
-    const SeqExp& getCatch() const
-    {
-        return *_catchme;
+        return *_exps[0];
     }
 
-    SeqExp& getCatch()
+    const Exp& getCatch() const
     {
-        return *_catchme;
+        return *_exps[1];
+    }
+
+    Exp& getCatch()
+    {
+        return *_exps[1];
     }
     /** \} */
 
@@ -104,10 +105,6 @@ public:
     {
         return true;
     }
-
-protected:
-    SeqExp* _tryme;
-    SeqExp* _catchme;
 };
 
 } // namespace ast

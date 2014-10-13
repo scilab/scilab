@@ -239,12 +239,13 @@ public :
     // Pause level
 private :
     static int m_iPauseLevel;
+    static std::list<int> m_listScope;
 
 public :
     static void IncreasePauseLevel();
     static void DecreasePauseLevel();
     static int getPauseLevel();
-
+    static int getActivePauseLevel();
     // Dynamic Libraries
 
     typedef struct
@@ -385,6 +386,15 @@ public :
     static void addReferenceModule(std::wstring _module);
     static void removeReferenceModule(std::wstring _module);
     static std::list<std::wstring> getReferenceModules();
+
+    //analyzer options
+
+private :
+    static int m_analyzerOptions;
+public :
+    static void setAnalyzerOptions(int _val);
+    static int getAnalyzerOptions(void);
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

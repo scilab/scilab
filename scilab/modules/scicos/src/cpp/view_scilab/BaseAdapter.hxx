@@ -95,13 +95,19 @@ public:
  * Note that sub-classes are responsible to fill the fields accordingly to theirs interfaces.
  */
 template<typename Adaptor, typename Adaptee>
-class BaseAdapter : public types::User<Adaptor>
+class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(Adaptee* o) : adaptee(o) {};
-    BaseAdapter(const BaseAdapter& o) : adaptee(o.adaptee) {};
-    virtual ~BaseAdapter() {};
+    BaseAdapter(bool ownAdaptee, Adaptee* adaptee) : ownAdaptee(ownAdaptee), adaptee(adaptee) {};
+    virtual ~BaseAdapter()
+    {
+        if (ownAdaptee)
+        {
+            Controller controller;
+            controller.deleteObject(getAdaptee()->id());
+        }
+    };
 
     /*
      * property accessors
@@ -143,7 +149,7 @@ public:
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
         // create the header
-        types::String* header = new types::String(1 + (int)properties.size(), 1);
+        types::String* header = new types::String(1, 1 + (int)properties.size());
         header->set(0, Adaptor::getSharedTypeStr().c_str());
         int index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
@@ -219,14 +225,6 @@ public:
     Adaptee* getAdaptee() const
     {
         return adaptee;
-    };
-
-    /**
-     * set the adaptee
-     */
-    void setAdaptee(Adaptee* adaptee)
-    {
-        this->adaptee = adaptee;
     }
 
     /*
@@ -236,14 +234,18 @@ public:
     virtual std::wstring getTypeStr() = 0;
     virtual std::wstring getShortTypeStr() = 0;
 
+private:
+
+    virtual types::InternalType* clone()
+    {
+        Controller controller = Controller();
+        ScicosID clone = controller.cloneObject(getAdaptee()->id());
+        return new Adaptor(false, static_cast<Adaptee*>(controller.getObject(clone)));
+    }
+
     /*
      * Implement a specific types::User
      */
-private:
-    types::InternalType* clone()
-    {
-        return new Adaptor(*static_cast<Adaptor*>(this));
-    }
 
     bool isAssignable()
     {
@@ -268,9 +270,66 @@ private:
         return false;
     }
 
+    types::InternalType* extract(types::typed_list* _pArgs)
+    {
+        if (_pArgs->size() == 0)
+        {
+            // call overload
+            return NULL;
+        }
+
+        if ((*_pArgs)[0]->isString())
+        {
+            types::String* pStr = (*_pArgs)[0]->getAs<types::String>();
+            types::InternalType* pOut = NULL;
+            extract(std::wstring(pStr->get(0)), pOut);
+            return pOut;
+        }
+        else
+        {
+            // TO DO : management other type for arguments like a scalar or matrix of double
+        }
+
+        return NULL;
+    }
+
+    types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
+    {
+        for (int i = 0; i < _pArgs->size(); i++)
+        {
+            if ((*_pArgs)[i]->isString())
+            {
+                types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
+                std::wstring name = pStr->get(0);
+
+                Controller controller = Controller();
+                typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
+                if (found != property<Adaptor>::fields.end() && !(name < found->name))
+                {
+                    found->set(*static_cast<Adaptor*>(this), _pSource, controller);
+                }
+
+                return this;
+            }
+            else
+            {
+                return NULL;
+            }
+        }
+
+        // call overload
+        return NULL;
+    }
+
     void whoAmI(void)
     {
         std::cout << "scicos object";
+    }
+
+    bool hasToString()
+    {
+        // allow scilab to call toString of this class
+        return true;
     }
 
     bool toString(std::wostringstream& ostr)
@@ -286,8 +345,13 @@ private:
         return true;
     }
 
+    bool getOwn()
+    {
+        return ownAdaptee;
+    };
 
 private:
+    const bool ownAdaptee;
     Adaptee* adaptee;
 };
 

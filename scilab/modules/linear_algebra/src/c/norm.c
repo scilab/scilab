@@ -14,7 +14,7 @@
 #include "sci_malloc.h"
 
 #ifdef _MSC_VER
-int isinf(double dbl)
+int la_isinf(double dbl)
 {
     //check finite and non NaN values
     if (_finite(dbl) == 0 && dbl == dbl)
@@ -117,9 +117,9 @@ double normP (double *A, int iRows, int iCols, double p)
     }
 
     //
-    // /!\ isinf return only 0 or 1 on non Linux platforms
+    // /!\ la_isinf return only 0 or 1 on non Linux platforms
     //
-    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
+    if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
       
         minA = Abs(A[0]);
@@ -239,7 +239,7 @@ double normPC (doublecomplex *A, int iRows, int iCols, double p)
         return ret;
     }
     
-    if (isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
+    if (la_isinf(p) != 0 && p < 0) // p = -%inf is a special case, return min(abs(A)).
     {
         minA = sqrt(A[0].r * A[0].r + A[0].i * A[0].i); // Retrieving A[0] modulus.
         for (i = 0; i < iRows; ++i)

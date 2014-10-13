@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 13:50+0000\n"
+"PO-Revision-Date: 2014-07-27 04:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: JAPAN\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -68,20 +68,13 @@ msgstr "%s: 入力引数 #%d の値が間違っています: %d 以上の値を�
 msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列または実数を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_ClipBoard.c, line: 296
-# File: sci_gateway/cpp/sci_printfigure.cpp, line: 77
 #, c-format
 msgid "%s: Function not available in NWNI mode.\n"
-msgstr "%s: NWNIモードで関数は利用できません。\n"
+msgstr "%s: NWNIモードでは機能が利用できません.\n"
 
-#
-# File: sci_gateway/c/sci_delmenu.c, line: 36
-# File: sci_gateway/c/sci_setmenu.c, line: 37
-# File: sci_gateway/c/sci_unsetmenu.c, line: 37
 #, c-format
 msgid "%s: Figure number must be given when not in '%s' mode.\n"
-msgstr "%s: '%s' モードでないときに、図形番号を与えなくてはなりません。\n"
+msgstr "%s: '%s'モードでない場合, 図番号を指定する必要があります.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -232,11 +225,9 @@ msgid ""
 "exist.\n"
 msgstr "%s: 入力引数 #%d で不正な値: 'グラフィック・ウインドウ番号 %d' は存在しません。\n"
 
-#
-# File: sci_gateway/c/sci_toolbar.c, line: 82
 #, c-format
 msgid "%s: Wrong value for input argument #%d: this handle does not exist.\n"
-msgstr "%s: 入力引数 #%d で不正な値: このハンドルは存在しません。\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: このハンドルは存在しません.\n"
 
 #, c-format
 msgid ""
@@ -247,13 +238,9 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数またはFigu
 msgid "%s: can not read file %s.\n"
 msgstr "%s: ファイル %s を読み込めません.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 125
-# File: sci_gateway/c/sci_uicontrol.c, line: 384
-# File: sci_gateway/c/sci_uimenu.c, line: 155
 #, c-format
 msgid "%s: Could not set property '%s'.\n"
-msgstr "%s: '%s' プロパティ設定ができませんでした。\n"
+msgstr "%s: プロパティ '%s' を設定できませんでした.\n"
 
 #, c-format
 msgid ""
@@ -271,21 +258,17 @@ msgid ""
 "%s: Wrong size for input argument #%d: A '%s' or a '%s' handle expected.\n"
 msgstr "%s: 入力引数 #%dの大きさが間違っています: '%s'または'%s'ハンドルを指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 265
 #, c-format
 msgid "%s: Unknown property: %s for '%s' handles.\n"
-msgstr "%1$s: 未知のプロパティ: %3$s ハンドルのための '%2$s'\n"
+msgstr "%1$s: 未知のプロパティ: '%3$s' ハンドルの %2$s.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
 msgstr "%s: 引数 #%d の型が間違っています: 文字列または論理値を指定してください.\n"
 
-#
-# File: sci_gateway/c/sci_uicontrol.c, line: 289
 #, c-format
 msgid "%s: Could not create 'Uicontrol' handle.\n"
-msgstr "%s: 'UIコントロール' ハンドルを作成できません。\n"
+msgstr "%s: 'Uicontrol'ハンドルを作成できませんでした.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
@@ -345,20 +328,23 @@ msgid "%s: Wrong type for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列のベクトルを指定してください.\n"
 
 msgid "Scilab Choices Request"
-msgstr "Scilab 選択要求"
+msgstr "Scilab選択リクエスト"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector of strings expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列のベクトルを指定してください.\n"
 
+#
+# File: sci_gateway/c/sci_x_choose.c, line: 63
+# File: sci_gateway/c/sci_x_choose_modeless.c, line: 62
 msgid "Scilab Choose Message"
-msgstr "Scilab メッセージ選択"
+msgstr "Scilabメッセージ選択"
 
 msgid "Scilab Input Value Request"
-msgstr "Scilab 入力値要求"
+msgstr "Scilab値入力リクエスト"
 
 msgid "Scilab Multiple Values Request"
-msgstr "Scilab 複合値要求"
+msgstr "Scilab複数値リクエスト"
 
 #, c-format
 msgid ""
@@ -467,11 +453,9 @@ msgstr "%1$s: 入力引数 #%3$d の要素 %2$d の型が間違っています: 
 msgid "%s: Error in the tree parsing.\n"
 msgstr "%s: treeのパース中にエラーが発生しました.\n"
 
-#
-# File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
 #, c-format
 msgid "%s: An error occurred: %s.\n"
-msgstr "%s: エラーが起きました: %s.\n"
+msgstr "%s: エラーが発生しました: %s\n"
 
 #
 # File: sci_gateway/cpp/sci_getlookandfeel.cpp, line: 49
@@ -480,7 +464,7 @@ msgstr "現在のルックアンドフィールを取得できません"
 
 #, c-format
 msgid "%s: This file %s does not exist.\n"
-msgstr ""
+msgstr "%s: このファイル %s が存在しません.\n"
 
 #, c-format
 msgid ""
@@ -587,10 +571,8 @@ msgstr "保存(&S)..."
 msgid "&Export to..."
 msgstr "エクスポート(&E)..."
 
-#
-# File: scilab_fake_localization_file.c, line: 17
 msgid "&Copy to clipboard"
-msgstr "クリップボードへコピー"
+msgstr "クリップボードにコピー(&C)"
 
 #
 # File: scilab_fake_localization_file.c, line: 18
@@ -615,11 +597,8 @@ msgstr "閉じる(&l)"
 msgid "&Tools"
 msgstr "ツール(&T)"
 
-#
-# File: scilab_fake_localization_file.c, line: 22
-# File: scilab_fake_localization_file.c, line: 62
 msgid "Show/Hide &Toolbar"
-msgstr "ツールバーの表示/非表示"
+msgstr "ツールバーの表示/非表示(&T)"
 
 #
 # File: scilab_fake_localization_file.c, line: 23
@@ -639,28 +618,20 @@ msgstr "2D/3D回転(&R)"
 msgid "&Edit"
 msgstr "編集(&E)"
 
-#
-# File: scilab_fake_localization_file.c, line: 27
 msgid "&Select as current figure"
-msgstr "現在の構成として選択(&S)"
+msgstr "カレントの図として選択(&S)"
 
-#
-# File: scilab_fake_localization_file.c, line: 29
 msgid "&Clear figure"
-msgstr "構成クリア(&C)"
+msgstr "図をクリア(&C)"
 
-#
-# File: scilab_fake_localization_file.c, line: 30
 msgid "&Figure properties"
-msgstr "構成プロパティ(&F)"
+msgstr "図のプロパティ(&F)"
 
-#
-# File: scilab_fake_localization_file.c, line: 31
 msgid "&Axes properties"
-msgstr "軸プロパティ(&A)"
+msgstr "軸のプロパティ(&A)"
 
 msgid "&Start entity picker"
-msgstr "エンティティ選択を開始(&S)"
+msgstr "エンティティピッカーを開始(&S)"
 
 msgid "S&top entity picker"
 msgstr "エンティティピッカーを停止 (&t)"
@@ -696,7 +667,7 @@ msgid "&All Objects View (All objects with properties)"
 msgstr "全てのオブジェクトビュー (&A) (プロパティ付きの全オブジェクト)"
 
 msgid "&Ged-like View (Future ged)"
-msgstr "ゲドライクビュー(&G) (未来ged)"
+msgstr "gedライクなビュー(&G) (future ged)"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 62
@@ -704,19 +675,15 @@ msgstr "ゲドライクビュー(&G) (未来ged)"
 # File: scilab_fake_localization_file.c, line: 39
 # File: scilab_fake_localization_file.c, line: 73
 msgid "&?"
-msgstr "その他(&?)"
+msgstr "&?"
 
 #
 # File: scilab_fake_localization_file.c, line: 35
 msgid "&Scilab Help"
 msgstr "Scilab ヘルプ(&S)"
 
-#
-# File: scilab_fake_localization_file.c, line: 36
-# File: scilab_fake_localization_file.c, line: 40
-# File: scilab_fake_localization_file.c, line: 81
 msgid "&About Scilab..."
-msgstr "Scilabバージョン情報(&A)..."
+msgstr "Scilabについて(&A)..."
 
 #
 # File: scilab_fake_localization_file.c, line: 38
@@ -823,10 +790,8 @@ msgstr "アプリケーション(&A)"
 msgid "&SciNotes"
 msgstr "&SciNotes"
 
-#
-# File: scilab_fake_localization_file.c, line: 71
 msgid "&Xcos"
-msgstr "Xcos(&X)"
+msgstr "&Xcos"
 
 #
 # File: scilab_fake_localization_file.c, line: 72
@@ -896,10 +861,8 @@ msgstr "回転"
 msgid "Zoom Area"
 msgstr "領域を拡大"
 
-#
-# File: scilab_fake_localization_file.c, line: 84
 msgid "Original View"
-msgstr "デフォルトビュー"
+msgstr "オリジナルビュー"
 
 msgid "Toggle datatip mode"
 msgstr "データティップモードをトグル"
@@ -910,11 +873,8 @@ msgstr "グラフィックエディタを開く"
 msgid "Toggle curve data modification"
 msgstr "曲線データ修正をトグル"
 
-#
-# File: scilab_fake_localization_file.c, line: 85
-# File: scilab_fake_localization_file.c, line: 94
 msgid "Help Browser"
-msgstr "ヘルプ ブラウザー"
+msgstr "ヘルプブラウザー"
 
 msgid "Launch SciNotes"
 msgstr "SciNotesを起動"
@@ -961,10 +921,8 @@ msgstr "Scilab デモ(&D)"
 msgid "Select a file to load"
 msgstr "ファイルを選択してロード"
 
-#
-# File: etc/graphics_menubar.xml, line: 15
 msgid "Figure loaded.\n"
-msgstr "構成をロードしました。\n"
+msgstr "図をロードしました.\n"
 
 #
 # File: etc/graphics_menubar.xml, line: 23
@@ -972,10 +930,8 @@ msgstr "構成をロードしました。\n"
 msgid "Select a file to write"
 msgstr "ファイルを選択して出力"
 
-#
-# File: etc/graphics_menubar.xml, line: 29
 msgid "Figure saved.\n"
-msgstr "構成を保存しました。\n"
+msgstr "図を保存しました.\n"
 
 msgid "Colors"
 msgstr "色"
@@ -1273,10 +1229,8 @@ msgstr "'%s' プロパティの値が間違っています: '%s', '%s'または 
 msgid "Console Font..."
 msgstr "コンソール フォント..."
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 2200
 msgid "Console Background..."
-msgstr "バックグランド・コンソール..."
+msgstr "コンソールの背景..."
 
 msgid "No print service found."
 msgstr "印刷サービスが見つかりません."
@@ -1306,8 +1260,8 @@ msgid ""
 "with advanced graphics capabilities. Type \"\"help usecanvas\"\" for more "
 "information.\")"
 msgstr ""
-"disp(\"警告: 事前の警告にも関わらず, 新しいグラフィック機能を有効にしてScilabを使用することを選択しました.  "
-"詳細な情報を得るには,\"\"help usecanvas\"\" と入力してください.\")"
+"disp(\"警告: 先の警告にもかかわらず上級グラフィック機能を有効にしたScilabの使用が選択されました.  詳細は \"help "
+"usecanvas\" を入力してください.\")"
 
 msgid "Are you sure you want to clear the console ?"
 msgstr "コンソールを消去してもよろしいですか?"
@@ -1327,7 +1281,7 @@ msgid "Help on a selected keyword"
 msgstr "選択したキーワードのヘルプ"
 
 msgid "Help about a selected text"
-msgstr "選択したリストについてのヘルプ"
+msgstr "選択したテキストに関するヘルプ"
 
 msgid "Help about '"
 msgstr "ヘルプ '"
@@ -1343,10 +1297,10 @@ msgid "Option for %s format"
 msgstr "%s 形式用オプション"
 
 msgid "Portrait"
-msgstr "縦"
+msgstr "縦向き"
 
 msgid "Landscape"
-msgstr "横"
+msgstr "横向き"
 
 msgid "Confirm"
 msgstr "確認"
@@ -1371,31 +1325,28 @@ msgid "GIF image"
 msgstr "GIF イメージ"
 
 msgid "JPEG image"
-msgstr "JPEG イメージ"
+msgstr "JPEG 画像"
 
 msgid "PNG image"
-msgstr "PNG イメージ"
+msgstr "PNG 画像"
 
 msgid "PPM image"
-msgstr "RPM イメージ"
+msgstr "PPM 画像"
 
 msgid "Enhanced Metafile image (EMF)"
-msgstr "拡張メタファイルイメージ (EMF)"
+msgstr "拡張メタファイル画像(EMF)"
 
 msgid "Encapsulated PostScript image (EPS)"
 msgstr "カプセル化されたポストスクリプトイメージ (EPS)"
 
 msgid "PostScript image (PS)"
-msgstr "PostScriptイメージ (PS)"
-
-msgid "FIG image"
-msgstr "FIG イメージ"
+msgstr "PostScript画像 (PS)"
 
 msgid "PDF image"
-msgstr "PDF イメージ"
+msgstr "PDF画像"
 
 msgid "SVG image"
-msgstr "SVG イメージ"
+msgstr "SVG 画像"
 
 msgid "All files"
 msgstr "全てのファイル"
@@ -1460,28 +1411,29 @@ msgstr "プレビュー"
 msgid "Ok"
 msgstr "OK"
 
-#
-# File: src/java/org/scilab/modules/gui/bridge/helpbrowser/SwingScilabHelpBrowser.java, line: 62
 msgid "Loading help browser..."
-msgstr "ヘルプブラウザーのロード..."
+msgstr "ヘルプブラウザをロード中..."
 
 msgid "Feature not available in this mode..."
-msgstr "この機能はこのモードでは利用できません."
+msgstr "このモードではこの機能を利用できません..."
 
 msgid "No text selected"
-msgstr "テキストは選択されていません"
+msgstr "テキストが選択されていません"
 
 msgid "Execute into Scilab"
 msgstr "Scilabで実行"
 
 msgid "Edit in the Scilab Text Editor"
-msgstr "Scilabテキスト・エディタの編集"
+msgstr "Scilabテキストエディタで編集"
 
 msgid "Back"
 msgstr "戻る"
 
 msgid "Forward"
 msgstr "進む"
+
+msgid "OK"
+msgstr "OK"
 
 msgid "Tree Overview"
 msgstr "ツリー概要"
@@ -1492,19 +1444,19 @@ msgid ""
 msgstr "曲線上で左クリックするとデータティップが生成され, データティップ上で右クリックすると削除されます."
 
 msgid "Delete all the datatips"
-msgstr "datatipを全て削除"
+msgstr "データティップを全て削除"
 
 msgid "Delete all the datatips on the selected curve"
-msgstr "選択した曲線のdatatipを全て削除"
+msgstr "選択した曲線のデータティップを全て削除"
 
 msgid "Delete the nearest datatip"
-msgstr "最も近いdatatipを削除"
+msgstr "最も近いデータティップを削除"
 
 msgid "Delete the last datatip"
-msgstr "直近のdatatipを削除"
+msgstr "最後のデータティップを削除"
 
 msgid "Edit curve datatip display function"
-msgstr "曲線datatip表示関数を編集"
+msgstr "曲線データティップ表示関数を編集"
 
 msgid "Enable interpolation"
 msgstr "補間を有効にする"
@@ -1514,9 +1466,6 @@ msgstr "補間を無効にする"
 
 msgid "Display function name"
 msgstr "関数名を表示"
-
-msgid "OK"
-msgstr "OK"
 
 msgid "Insert"
 msgstr "挿入"
@@ -1639,7 +1588,7 @@ msgid "Paste style"
 msgstr "スタイルを貼り付け"
 
 msgid "Paste the copied style on these axes"
-msgstr "コピーしたスタイルをこれらの軸に貼り付けてください"
+msgstr "コピーしたスタイルをこれらの軸に貼り付ける"
 
 msgid "Enter the text"
 msgstr "テキストを入力"
@@ -1766,7 +1715,7 @@ msgid "Immediate Drawing"
 msgstr "直ちに描画"
 
 msgid "Isometric View"
-msgstr "等方視野"
+msgstr "等軸ビュー"
 
 msgid "Label Mode"
 msgstr "ラベルモード"
@@ -1778,7 +1727,7 @@ msgid "Mark Mode"
 msgstr "マークモード"
 
 msgid "Visible"
-msgstr "可視にする"
+msgstr "表示"
 
 msgid "Base Properties"
 msgstr "基本プロパティ"
@@ -1799,7 +1748,7 @@ msgid "Text"
 msgstr "テキスト"
 
 msgid "Surface Mode"
-msgstr "局面モード"
+msgstr "曲面モード"
 
 msgid "Box"
 msgstr "ボックス"
@@ -2262,7 +2211,7 @@ msgstr ""
 
 #, c-format
 msgid "Are you sure you want to close %s ?"
-msgstr "%s を閉じても良ろしいですか?"
+msgstr "%s を閉じても宜しいですか?"
 
 #, c-format
 msgid "Are you sure you want to close %s and %s ?"
@@ -2320,10 +2269,8 @@ msgstr "RTF (Rich Text Format)ファイル"
 msgid "All %s files"
 msgstr "全ての %s ファイル"
 
-#
-# File: macros/about.sci, line: 20
 msgid "About Scilab..."
-msgstr "Scilab バージョン情報..."
+msgstr "Scilabについて..."
 
 #
 # File: macros/about.sci, line: 20
@@ -2343,24 +2290,16 @@ msgstr "設定ファイルが壊れており, デフォルトのファイルに�
 msgid "The configuration file has been corrupted. Scilab needs to restart."
 msgstr "設定ファイルが壊れています. Scilabを再起動する必要があります."
 
-#
-# File: src/nogui/nogui.c, line: 25
-# File: src/nogui/nogui.c, line: 128
-# File: src/nogui/nogui.c, line: 132
 #, c-format
 msgid "Scilab '%s' module not installed.\n"
-msgstr "Scilab '%s' モジュールはインストールされていません。\n"
+msgstr "Scilab '%s' モジュールがインストールされていません.\n"
 
-#
-# File: src/nogui/nogui.c, line: 36
 #, c-format
 msgid "%s: Only available under 'STANDARD' mode.\n"
-msgstr "%s: 'STANDARD'モードでのみ可能です。\n"
+msgstr "%s: 'STANDARD'モードでのみ利用可能です.\n"
 
-#
-# File: src/nogui/nogui.c, line: 94
 msgid "Error. A signal has been caught.\n"
-msgstr "エラー、シグナルを捉えました。\n"
+msgstr "エラー. シグナルを検知しました.\n"
 
 #
 # File: demos/cb_uicontrol_plot3d.dem.sci, line: 68
@@ -2377,7 +2316,7 @@ msgid "Colormap"
 msgstr "カラーマップ"
 
 msgid "Show / Hide"
-msgstr "表示/隠す"
+msgstr "表示/非表示"
 
 msgid "messagebox"
 msgstr "メッセージボックス"
@@ -2392,7 +2331,7 @@ msgid "x_mdialog"
 msgstr "x_mdialog"
 
 msgid "Simple example of message"
-msgstr "メッセージの例"
+msgstr "簡単なメッセージの例"
 
 msgid "Button 1Button 2"
 msgstr "ボタン1 ボタン2"
@@ -2473,13 +2412,13 @@ msgid "Please enter a color name first."
 msgstr "最初に色名を入力してください。"
 
 msgid "Unknown color."
-msgstr ""
+msgstr "色を認識できません."
 
 msgid "No color selected."
 msgstr "色選択なし"
 
 msgid "Color selection"
-msgstr ""
+msgstr "色の選択"
 
 #, c-format
 msgid "Selected colors are: %s."
@@ -2487,7 +2426,7 @@ msgstr "選択された色: %s"
 
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "検出された色: %s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2508,35 +2447,33 @@ msgid "Selected menu"
 msgstr "メニュー選択"
 
 msgid "checked"
-msgstr "チェック"
+msgstr "チェックあり"
 
 msgid "unchecked"
 msgstr "チェックなし"
 
 #, c-format
 msgid "Menu '%s' is %s."
-msgstr "メニュー '%s' は %s"
+msgstr "メニュー '%s' は %s です."
 
 msgid "Menu status"
-msgstr "メニュー状態"
+msgstr "メニューステータス"
 
 msgid "Slider value: "
 msgstr "スライダー値: "
 
 #, c-format
 msgid "You selected '%s'."
-msgstr "'%s' 選択"
+msgstr "'%s' を選択しました."
 
 msgid "Popupmenu selection"
 msgstr "ポップアップメニュー選択"
 
 msgid "Do you really want to quit Scilab?"
-msgstr "本当にScilabを抜けますか?"
+msgstr "本当にScilabを終了しますか?"
 
-#
-# File: macros/about.sci, line: 20
 msgid "Quit Scilab"
-msgstr "Scilabを抜ける"
+msgstr "Scilabを終了"
 
 msgid "Uicontrols demo"
 msgstr "UIコントロール・デモ"
@@ -2547,7 +2484,7 @@ msgid "Application"
 msgstr "アプリケーション"
 
 msgid "Close figure"
-msgstr ""
+msgstr "図を閉じる"
 
 msgid "Scilab Graphics"
 msgstr "Scilab グラフィック"
@@ -2577,19 +2514,19 @@ msgid "item1|item2|item3|item4"
 msgstr "項目1|項目2|項目3|項目4"
 
 msgid "Pop-up menu"
-msgstr ""
+msgstr "ポップアップメニュー"
 
 msgid "Slider demo"
 msgstr "スライダーデモ"
 
 msgid "Colors list edition"
-msgstr "色一覧"
+msgstr "色リスト編集"
 
 msgid "Add color in listbox"
-msgstr "リストボックスで色を加える"
+msgstr "リストボックスに色を追加"
 
 msgid "Delete color in listbox"
-msgstr ""
+msgstr "リストボックスの色を削除"
 
 msgid "blue"
 msgstr "青"
@@ -2603,34 +2540,28 @@ msgstr "赤"
 msgid "yellow"
 msgstr "黄"
 
-#
-# File: scilab_fake_localization_file.c, line: 47
 msgid "Display selection"
-msgstr "表示選択"
+msgstr "選択オブジェクトを表示"
 
 msgid "Delete selection"
-msgstr ""
+msgstr "選択オブジェクトを削除"
 
 msgid "Default"
-msgstr ""
+msgstr "デフォルト"
 
-#
-# File: scilab_fake_localization_file.c, line: 75
 msgid "Quit demonstration"
-msgstr "デモを抜ける"
+msgstr "デモを終了"
 
 msgid "Uicontrols demo with LaTeX"
 msgstr "LaTeXを指定するuicontrolsのデモ"
 
-#
-# File: macros/clipboard.sci, line: 51
 #, c-format
 msgid "%s: can not add a menu in this mode: %s.\n"
-msgstr "%s: この方法ではメニューを加えることができません: %s\n"
+msgstr "%s: このモードではメニューを追加できません: %s.\n"
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr "%s: このモードではコンソールにメニューを加えることができません: %s\n"
+msgstr "%s: このモードではコンソールにメニューを追加できません: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
@@ -2652,11 +2583,9 @@ msgstr "%s: '%s' プロパティの値が間違っています: %d, %d または
 msgid "%s: Wrong type for '%s' property: A string expected.\n"
 msgstr "%s: '%s' プロパティの型が間違っています: 文字列を指定してください.\n"
 
-#
-# File: macros/clipboard.sci, line: 51
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
-msgstr "%s: NWNIモードでは利用できない関数です。\n"
+msgstr "%s: NWNIモードでは利用できない機能です。\n"
 
 #, c-format
 msgid ""
@@ -2725,46 +2654,34 @@ msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引�
 msgid "%s: Type %s is not implemented.\n"
 msgstr "%s: %s 型は実装されていません.\n"
 
-#
-# File: macros/getvalue.sci, line: 189
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has invalid dimension: \n"
 " waiting for dimension %s.\n"
 msgstr ""
-"%s に与えられた応答\n"
-" 無効な次元を持っています:\n"
-" 次元 %s を待ちます。\n"
+"%s に指定された次元は間違っています: \n"
+"次元 %s を指定してください.\n"
 
-#
-# File: macros/getvalue.sci, line: 193
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " has incorrect type %s.\n"
 msgstr ""
-"%s に与えられた応答\n"
-" 不正確な型 %s を持っています。\n"
+"%s に指定された型 %s は\n"
+" 間違っています.\n"
 
 #, c-format
 msgid ""
 "Answer given for %s \n"
 " is incorrect: %s.\n"
-msgstr "%s に指定された回答は間違っています: %s.\n"
+msgstr ""
+"%s に指定された回答は\n"
+"間違っています: %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr "%s: 入力引数の数に誤りがあります: %d 個の引数を指定してください.\n"
-
-#
-# File: macros/figure.sci, line: 26
-# File: macros/figure.sci, line: 53
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A 'Figure' handle or a real "
-"expected.\n"
-msgstr "%s: 入力引数 #%d で不正なサイズです: '図形' ハンドル、または 実数を想定します。\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: uitree expected.\n"
@@ -2823,11 +2740,11 @@ msgstr "%s: プロパティ '%s' および値 '%s' に関する結果が見つ�
 
 #, c-format
 msgid "%s:  #%d matching parent nodes.\n"
-msgstr "%s: #%d と一致した親ノード。\n"
+msgstr "%s: #%d は親ノードと一致しています.\n"
 
 #, c-format
 msgid "%s: Invalid parent node.\n"
-msgstr "%s: 無効な親ノード。\n"
+msgstr "%s: 親ノードが無効です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A list expected.\n"
@@ -2856,11 +2773,3 @@ msgstr "%s: %s の型が間違っています: 実数を指定してください
 #, c-format
 msgid "%s: Wrong size for %s: A real expected.\n"
 msgstr "%s: %sの大きさが間違っています: 実数を指定してください.\n"
-
-#~ msgid "Exit figure"
-#~ msgstr "終了構成"
-
-#
-# File: scilab_fake_localization_file.c, line: 56
-#~ msgid "Selected colors"
-#~ msgstr "色選択"

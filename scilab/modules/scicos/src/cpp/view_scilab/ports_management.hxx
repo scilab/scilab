@@ -19,6 +19,7 @@
 #include <algorithm>
 
 #include "internal.hxx"
+#include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -39,7 +40,7 @@ namespace view_scilab
  * Return a Scilab encoded value for a property.
  */
 template<typename Adaptor, object_properties_t p>
-types::InternalType* get_ports_property(const Adaptor& adaptor, object_properties_t port_kind, const Controller& controller)
+types::InternalType* get_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, const Controller& controller)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -153,7 +154,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, object_propertie
  * \note this method will ignore or return false if one of the ports does not exist, depending on the property setted.
  */
 template<typename Adaptor, object_properties_t p>
-bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, Controller& controller, types::InternalType* v)
+bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -292,6 +293,23 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
         }
 
     }
+    else if (v->getType() == types::InternalType::ScilabBool)
+    {
+        types::Bool* current = v->getAs<types::Bool>();
+
+        switch (p)
+        {
+            case FIRING:
+                // firing=%f is interpreted as "no initial event on the corresponding port", so set a negative value.
+                for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it)
+                {
+                    controller.setObjectProperty(*it, PORT, p, -1);
+                }
+                return true;
+            default:
+                return false;
+        }
+    }
     return false;
 }
 
@@ -304,7 +322,7 @@ bool set_ports_property(const Adaptor& adaptor, object_properties_t port_kind, C
  * \return true on success, false otherwise
  */
 template<typename Adaptor, object_properties_t p>
-inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, double* d)
+inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, const double* d)
 {
     for (std::vector<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
     {
@@ -315,9 +333,12 @@ inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>
             {
                 return false;
             }
+            *it = static_cast<int>(*d - 1); // 'd' contains indexes
         } // no check is performed for other properties as newPorts will contains value not index
-
-        *it = static_cast<int>(*d);
+        else
+        {
+            *it = static_cast<int>(*d);
+        }
     }
     return true;
 }
@@ -332,7 +353,7 @@ inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>
  * \param deletedObjects trash used to delete objects
  */
 template<typename Adaptor, object_properties_t p>
-inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
+inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& controller,
                           std::vector<ScicosID>& children, std::vector<ScicosID>& deletedObjects)
 {
     if (p == CONNECTED_SIGNALS)
@@ -342,7 +363,7 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
         controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, oldSignal);
 
         ScicosID newSignal;
-        if (children.size() > 0)
+        if (children.size() > 0 && newPort >= 0)
         {
             newSignal = children[newPort];
         }
@@ -353,6 +374,11 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
 
         if (oldSignal != newSignal)
         {
+            if (oldSignal == 0)
+            {
+                // FIXME: The port was not linked, check if Link #newSignal has an unconnected end that is connectable to the port (Link kind)
+                return false;
+            }
             // disconnect the old link
             ScicosID oldSignalSrc;
             controller.getObjectProperty(oldSignal, LINK, SOURCE_PORT, oldSignalSrc);
@@ -394,12 +420,13 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
                 controller.getObjectProperty(oldPort, PORT, DATATYPE, datatype);
                 datatype[datatypeIndex] = newPort;
                 controller.setObjectProperty(oldPort, PORT, DATATYPE, datatype);
-                return;
+                return true;
             }
             default:
                 controller.setObjectProperty(oldPort, PORT, p, newPort);
         }
     }
+    return true;
 }
 
 /**
@@ -412,7 +439,7 @@ inline void updateNewPort(ScicosID oldPort, int newPort, Controller& controller,
  * \return true on success, false otherwise
  */
 template<typename Adaptor, object_properties_t p>
-inline bool addNewPort(ScicosID newPortID, int newPort, const std::vector<ScicosID>& children,	Controller& controller)
+inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<ScicosID>& children, Controller& controller)
 {
     bool status = true;
     if (p == CONNECTED_SIGNALS)
@@ -458,7 +485,7 @@ inline bool addNewPort(ScicosID newPortID, int newPort, const std::vector<Scicos
  * Create ports if needed, remove ports if needed and set a default property on each port.
  */
 template<typename Adaptor, object_properties_t p>
-bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind,  Controller& controller, types::InternalType* v)
+bool update_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -500,7 +527,10 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
         int newPort = newPorts.back();
         newPorts.pop_back();
 
-        updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects);
+        if (!updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects))
+        {
+            return false;
+        }
     }
 
     // removed ports
@@ -556,16 +586,16 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
             switch (port_kind)
             {
                 case INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::IN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_IN);
                     break;
                 case OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::OUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_OUT);
                     break;
                 case EVENT_INPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EIN);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EIN);
                     break;
                 case EVENT_OUTPUTS:
-                    controller.setObjectProperty(id, PORT, PORT_KIND, model::EOUT);
+                    controller.setObjectProperty(id, PORT, PORT_KIND, model::PORT_EOUT);
                     break;
                 default:
                     return false;
@@ -589,7 +619,6 @@ bool update_ports_property(const Adaptor& adaptor, object_properties_t port_kind
 
     return true;
 }
-
 
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */

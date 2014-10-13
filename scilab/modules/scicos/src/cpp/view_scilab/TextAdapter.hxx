@@ -27,8 +27,7 @@ namespace view_scilab
 class TextAdapter : public BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>
 {
 public:
-    TextAdapter(const TextAdapter& o);
-    TextAdapter(org_scilab_modules_scicos::model::Annotation* o);
+    TextAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Annotation* adaptee);
     ~TextAdapter();
 
     static const std::wstring getSharedTypeStr()

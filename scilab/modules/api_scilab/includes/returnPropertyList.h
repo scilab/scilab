@@ -19,16 +19,8 @@ extern "C" {
 
 #include "dynlib_api_scilab.h"
 
-    typedef struct
-    {
-        int curElement ; /**< the number of the current element in the stack the first one is the name.
-                            vary from 1 to nbElements */
-        int nbElements ; /**< the number of element which will be inserted in the list. */
-        int stackPointer ; /**< use to differentiate returned list. Not useful for now. */
-    } returnedList ;
-
     /**
-     * Construct a new tlist and allocate scilab stack for return in the console.
+     * Construct a new tlist for return in the console.
      * Only one tlist should be used at the same time.
      * @param nbElement Number of element of element in the list not including the name.
      * @param name      Array of string of size nbElement containing the names of the list
@@ -38,20 +30,10 @@ extern "C" {
     void* createReturnedList(int nbElements, char* elementName[]);
 
     /**
-     * free the list. Must be done after using the list.
-     * @return  0 if deletion was successful
-     *          1 if the list has not been totally filled
-     *         -1 if an other error happened
-     */
-    int destroyReturnedList(void* list);
-
-    /**
      * add a new row vector in the list.
      * @param[in/out] void the returned tList
      * @param[in]     vector       values to be inserted of size nbValues
      * @return        0  if the call was successful
-     *                1  if the list is full so the item can not be inserted
-     *                -1 if an other error occurred
      */
     int addRowVectorToReturnedList(void* list, const double vector[], int nbValues);
 
@@ -60,8 +42,6 @@ extern "C" {
      * @param[in/out] void the returned tList
      * @param[in]     vector       values to be inserted of size nbValues
      * @return        0  if the call was successful
-     *                1  if the list is full so the item can not be inserted
-     *                -1 if an other error occurred
      */
     int addColVectorToReturnedList(void* list, const double vector[], int nbValues);
 
@@ -70,8 +50,6 @@ extern "C" {
      * @param[in/out] void the returned tList
      * @param[in]     matrix   values to be inserted of size nbRow x nbCol
      * @return        0  if the call was successful
-     *                1  if the list is full so the item can not be inserted
-     *                -1 if an other error occurred
      */
     int addMatrixToReturnedList(void* list, const double matrix[], int nbRow, int nbCol);
 
@@ -80,11 +58,9 @@ extern "C" {
      * @param[in/out] void the returned tList
      * @param[in]     vector   values to be inserted of size nbValues
      * @return        0  if the call was successful
-     *                1  if the list is full so the item can not be inserted
-     *                -1 if an other error occurred
      */
     int addStringColVectorToReturnedList(void* list, char* vector[], int nbValues);
-    int addStringToReturnedList( returnedList * list, char * str);
+    int addStringToReturnedList(void* list, char * str);
 #ifdef __cplusplus
 }
 #endif

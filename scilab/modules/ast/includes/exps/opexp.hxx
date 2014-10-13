@@ -88,10 +88,12 @@ public:
     OpExp (const Location& location,
            Exp& left, Oper oper, Exp& right)
         : MathExp (location),
-          _left (&left),
-          _oper (oper),
-          _right (&right)
+          _oper (oper)
     {
+        left.setParent(this);
+        right.setParent(this);
+        _exps.push_back(&left);
+        _exps.push_back(&right);
     }
 
     /** \brief Destroy a Operation Expression node.
@@ -99,8 +101,6 @@ public:
     ** Delete left and right, see constructor. */
     virtual ~OpExp ()
     {
-        delete _left;
-        delete _right;
     }
     /** \} */
 
@@ -127,12 +127,18 @@ public:
     /** \} */
 
 
-    /** \name Setters.
-    ** \{ */
+    /** \name Setters. */
 public :
     virtual void setLeft(Exp& left)
     {
-        _left = &left;
+        _exps[0] = &left;
+        left.setParent(this);
+    }
+
+    virtual void setRight(Exp& right)
+    {
+        _exps[1] = &right;
+        right.setParent(this);
     }
     /** \} */
 
@@ -143,12 +149,12 @@ public:
     /** \brief Return the left expression of the operation (read only) */
     const Exp& getLeft() const
     {
-        return *_left;
+        return *_exps[0];
     }
     /** \brief Return the left expression of the operation (read and write) */
     Exp& getLeft()
     {
-        return *_left;
+        return *_exps[0];
     }
 
     /** \brief Return the operator description (read only) */
@@ -160,12 +166,12 @@ public:
     /** \brief Return the right expression of the operation (read only) */
     const Exp& getRight() const
     {
-        return *_right;
+        return *_exps[1];
     }
     /** \brief Return the right expression of the operation (read and write) */
     Exp& getRight()
     {
-        return *_right;
+        return *_exps[1];
     }
 
     virtual ExpType getType()
@@ -178,12 +184,8 @@ public:
     }
 
 protected:
-    /** \brief Left expression of the operation. */
-    Exp* _left;
     /** \brief Operator. */
     Oper _oper;
-    /** \brief Right expression of the operation. */
-    Exp* _right;
 };
 
 } // namespace ast

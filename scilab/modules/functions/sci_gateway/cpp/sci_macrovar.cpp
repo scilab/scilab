@@ -16,6 +16,7 @@
 #include "context.hxx"
 #include "functions_gw.hxx"
 #include "macrovarvisitor.hxx"
+#include "string.hxx"
 #include "list.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"

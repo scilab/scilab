@@ -15,6 +15,7 @@
 #include "double.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
+#include "scilabWrite.hxx"
 
 extern "C"
 {
@@ -315,6 +316,7 @@ void SinglePoly::updateRank(void)
 bool SinglePoly::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : implement SinglePoly::toString" << std::endl;
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

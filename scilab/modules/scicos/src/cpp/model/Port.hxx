@@ -26,7 +26,7 @@ namespace model
 
 enum portKind
 {
-    UNDEF, IN, OUT, EIN, EOUT
+    PORT_UNDEF, PORT_IN, PORT_OUT, PORT_EIN, PORT_EOUT
 };
 
 class Port: public BaseObject
@@ -34,7 +34,7 @@ class Port: public BaseObject
     friend class ::org_scilab_modules_scicos::Model;
 
 private:
-    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(UNDEF), implicit(false),
+    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(PORT_UNDEF), implicit(false),
         style(), label(), firing(0), connectedSignals(std::vector<ScicosID> (1, 0)) {};
     Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit),
         style(o.style), label(o.label), firing(0), connectedSignals(o.connectedSignals) {};
@@ -97,7 +97,7 @@ private:
 
     update_status_t setKind(int k)
     {
-        if (k < UNDEF || k > EOUT)
+        if (k < PORT_UNDEF || k > PORT_EOUT)
         {
             return FAIL;
         }

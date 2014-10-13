@@ -15,7 +15,6 @@
 #define AST_BOOLEXP_HXX
 
 #include "constexp.hxx"
-#include "bool.hxx"
 
 using namespace types;
 
@@ -28,19 +27,21 @@ class BoolExp : public ConstExp
 {
 public:
     BoolExp (const Location& location, bool value)
-        : ConstExp (location), _value (value), _bigBool (NULL)
+        : ConstExp (location), _value (value)
     {
+    }
+
+    BoolExp (const Location& location, types::InternalType* value)
+        : ConstExp (location),
+          _value (false)
+    {
+        setConstant(value);
     }
     /** \brief Destroy an Boolean Expression node.
     **
     ** Delete size et init (exp) (see constructor). */
     virtual ~BoolExp ()
     {
-        if (_bigBool)
-        {
-            _bigBool->DecreaseRef();
-            _bigBool->killMe();
-        }
     }
     /** \} */
 
@@ -76,26 +77,6 @@ public:
         return _value;
     }
 
-    /** \brief Get the big bool */
-    types::Bool* getBigBool() const
-    {
-        return _bigBool;
-    }
-
-    /** \brief Set the big bool */
-    void setBigBool(types::Bool *pB)
-    {
-        if (_bigBool)
-        {
-            _bigBool->DecreaseRef();
-            _bigBool->killMe();
-        }
-
-        _bigBool = pB;
-        _bigBool->IncreaseRef();
-    }
-    /** \} */
-
     virtual ExpType getType()
     {
         return BOOLEXP;
@@ -106,8 +87,7 @@ public:
     }
 
 protected:
-    bool            _value;
-    types::Bool*    _bigBool;
+    bool _value;
 
 };
 

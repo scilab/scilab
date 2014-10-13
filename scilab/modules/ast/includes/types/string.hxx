@@ -99,6 +99,8 @@ public :
         return type_traits::transpose(*this, out);
     }
 
+    virtual ast::Exp*       getExp(const Location& loc);
+
 private :
     void                    deleteString(int _iRows, int _iCols);
     void                    deleteString(int _iPos);

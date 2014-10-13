@@ -27,8 +27,7 @@ namespace view_scilab
 class CprAdapter : public BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    CprAdapter(const CprAdapter& o);
-    CprAdapter(org_scilab_modules_scicos::model::Diagram* o);
+    CprAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~CprAdapter();
 
     static const std::wstring getSharedTypeStr()

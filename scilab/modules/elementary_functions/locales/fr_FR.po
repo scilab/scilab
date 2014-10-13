@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-10 13:43+0000\n"
+"PO-Revision-Date: 2014-09-09 10:05+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: Scilab Localization <localization@scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -352,16 +352,24 @@ msgstr ""
 "%s : Dimension erronée des arguments d'entrée : Mêmes dimensions attendues.\n"
 
 #, c-format
+msgid "%s: Wrong value for input argument #%d: 0 or 1 expected.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : 0 ou 1 attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Scalar/matrix/hypermatrix of unsigned "
+"integers expected.\n"
+msgstr ""
+"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire, une matrice ou "
+"une hypermatrice d'entiers non signés attendu.\n"
+
+#, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Scalar/matrix of unsigned integers "
 "expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une matrice "
 "d'entiers non signés attendu.\n"
-
-#, c-format
-msgid "%s: Wrong value for input argument #%d: 0 or 1 expected\n"
-msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : 0 ou 1 attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A positive real expected.\n"
@@ -661,6 +669,13 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument #%d: Vector expected.\n"
 msgstr "%s : Dimension erronée de l'argument n°%d : Un vecteur attendu.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: Must be a valid permutation vector.\n"
+msgstr ""
+"%s : Valeur erronée de l'argument d'entrée n°%d : Doit être un vecteur de "
+"permutation valide.\n"
 
 #, c-format
 msgid ""

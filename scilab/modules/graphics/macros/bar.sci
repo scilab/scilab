@@ -165,11 +165,14 @@ function  bar(varargin)
     curFig = gcf();
     immediate_drawing = curFig.immediate_drawing;
 
+    wmode = warning("query");
+    warning("off"); // See bug #13579 (some bar() calling sequences will lead to a plot() warning)
     if COLORBOOL
         plot(X,Y,COLOR); // plot manages immediate_drawing property itself to avoid flickering
     else
         plot(X,Y); // plot manages immediate_drawing property itself to avoid flickering
     end
+    warning(wmode);
 
     curFig.immediate_drawing = "off";
 

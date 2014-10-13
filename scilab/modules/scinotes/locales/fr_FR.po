@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-19 09:01+0000\n"
+"PO-Revision-Date: 2014-09-09 10:04+0000\n"
 "Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "Language: fr\n"
 
 #, c-format
@@ -380,6 +380,14 @@ msgstr "Encodage de fichier par défaut : "
 msgid "Default End-Of-Line: "
 msgstr "Fin de ligne par défaut : "
 
+msgid "Completion"
+msgstr "Complétion"
+
+msgid "Auto-complete brackets when cursor is at the end of a line"
+msgstr ""
+"Complétion automatique sur les parenthèses quand le curseur est à la fin "
+"d'une ligne"
+
 msgid "General display options"
 msgstr "Options d'affichage"
 
@@ -389,8 +397,8 @@ msgstr "Mettre en surbrillance la ligne courante : "
 msgid "Show line numbers: "
 msgstr "Afficher les numéros de ligne : "
 
-msgid "Whereami compatible"
-msgstr "Compatible Whereami"
+msgid "Local numbering"
+msgstr "Numérotation locale"
 
 msgid "Normal"
 msgstr "Normal"

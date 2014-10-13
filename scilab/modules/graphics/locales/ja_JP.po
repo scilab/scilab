@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 13:34+0000\n"
+"PO-Revision-Date: 2014-09-22 12:12+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 16967)\n"
+"X-Generator: Launchpad (build 17196)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -103,15 +103,16 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 文字列の二次�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトル 1x3 を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
-msgstr ""
+msgstr "%s: 入力引数 #%d の型が間違っています: 実数ベクトル nx3 を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
-msgstr ""
+msgid ""
+"%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
+msgstr "%s: 入力引数 #%d の値が間違っています: 0.0 と 1.0の間の値を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -979,6 +980,10 @@ msgid "Wrong type for '%s' property: Integer expected.\n"
 msgstr "'%s' プロパティの型が間違っています: 整数を指定してください.\n"
 
 #, c-format
+msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
+msgstr "'%s' プロパティの型が間違っています: 空の行列または tlist を指定してください.\n"
+
+#, c-format
 msgid ""
 "WARNING !!!\n"
 "In '%s' property: '%s' is deprecated use '%s' instead.\n"
@@ -1524,6 +1529,30 @@ msgstr "複数の曲線を同時にプロットすることができます"
 msgid "Customize your complex function"
 msgstr "複雑関数をカスタマイズして下さい"
 
+msgid "Control panel"
+msgstr "制御パネル"
+
+msgid "Function definition"
+msgstr "関数定義"
+
+msgid "Domain type"
+msgstr "領域の型"
+
+msgid "Radius of the domain"
+msgstr "領域の半径"
+
+msgid "Cut on axes"
+msgstr "軸でカット"
+
+msgid "Function should contain z"
+msgstr "関数はzを有する必要があります"
+
+msgid "Wrong definition of f(z)"
+msgstr "f(z)の定義が間違っています"
+
+msgid "Radius should be real and finite"
+msgstr "半径は実数かつ有限である必要があります"
+
 msgid "datatips on 2D curves"
 msgstr "2次元曲線上にデータティップ"
 
@@ -1966,75 +1995,12 @@ msgstr "%s: 入力引数の数が間違っています: %d 以上を指定して
 msgid "%s: Wrong type for input argument #%d: A real matrix expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 実数の行列を指定してください.\n"
 
-msgid "Delete all datatips"
-msgstr "データtipsを全て削除"
-
-msgid "Delete all datatips for the selected curve"
-msgstr "選択した曲線のデータtipsを全て削除"
-
-msgid "Delete nearest datatip"
-msgstr "最も近いデータtipsを削除"
-
-msgid "Delete last datatip"
-msgstr "最後のデータtipsを削除"
-
-msgid "Delete selected datatip"
-msgstr "選択されたデータティップを削除"
-
-msgid "Open curve tip style editor"
-msgstr "曲線ティップスタイルエディタをオープン"
-
-msgid "Redraw all datatips"
-msgstr "全てのデータtipsを再描画"
-
-msgid "Edit the curve tip display function"
-msgstr "曲線tip表示関数を編集"
-
-msgid "select the curve tip display function"
-msgstr "曲線tip表示関数を選択"
-
-msgid "Enable interpolation"
-msgstr "補間を有効にする"
-
-msgid "Disable interpolation"
-msgstr "補間を無効にする"
-
-msgid "Multiple datatips mode"
-msgstr "複数データtipsモード"
-
-msgid "Unique datatip mode"
-msgstr "ユニーク データtipモード"
-
 msgid "createPopupItems: found an empty cascading menu."
 msgstr "createPopupItems: 空のカスケードメニューが見つかりました."
-
-msgid "automatic"
-msgstr "自動"
-
-msgid "lower left"
-msgstr "左下"
-
-msgid "lower right"
-msgstr "右下"
-
-msgid "upper left"
-msgstr "左上"
-
-msgid "upper right"
-msgstr "右上"
-
-msgid "Select tip orientation"
-msgstr "tipの方向を選択"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A '%s' handle expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: '%s'ハンドルを指定してください.\n"
-
-msgid "The selected file cannot be executed"
-msgstr "選択されたファイルは実行できません"
-
-msgid "The selected file defines more than one function"
-msgstr "選択されたファイルでは複数の関数が定義されています"
 
 msgid "'datatips' property"
 msgstr "'datatips' プロパティ"
@@ -2044,21 +2010,6 @@ msgstr "'datatips' プロパティ"
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Graphic handle expected.\n"
 msgstr "%s: 入力引数 #%d で不正な型: グラフィック・ハンドルを想定します。\n"
-
-#, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 要素数 %d の配列を指定してください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(1): Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d(1) の値が間違っています :  %d と %d の間としてください.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d(2): Must be between %d and %d.\n"
-msgstr "%s: 入力引数 #%d(2) の値が間違っています :  %d と %d の間としてください.\n"
 
 #, c-format
 msgid "%s: too many input arguments"
@@ -2187,6 +2138,32 @@ msgstr "複数のデータティップは利用可能?"
 
 msgid "Edit label generator"
 msgstr "ラベル生成器を編集"
+
+msgid "File"
+msgstr "ファイル"
+
+msgid "Tools"
+msgstr "ツール"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Select a file to load"
+msgstr "ロードするファイルを選択"
+
+#, c-format
+msgid "%s: The file "
+msgstr "%s: ファイル "
+
+#, c-format
+msgid "%s: Cannot open file "
+msgstr "%s: ファイルをオープンできません "
+
+msgid "Error in file format."
+msgstr "ファイル形式エラー."
+
+msgid "Select a file to write"
+msgstr "書き込むファイルを選択"
 
 #, c-format
 msgid ""

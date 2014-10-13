@@ -340,4 +340,8 @@ void Context::print(std::wostream& ostr) const
     ostr << L"==========================" << std::endl;
 }
 
+int Context::getScopeLevel()
+{
+    return m_iLevel;
+}
 }

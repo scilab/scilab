@@ -31,11 +31,8 @@ namespace
 
 template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
 
-StateAdapter::StateAdapter(const StateAdapter& o) :
-    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(o) {}
-
-StateAdapter::StateAdapter(org_scilab_modules_scicos::model::Diagram* o) :
-    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+StateAdapter::StateAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
 {
     if (property<StateAdapter>::properties_have_not_been_set())
     {

@@ -39,13 +39,17 @@
             <varlistentry>
                 <term>fonId</term>
                 <listitem>
-                    <para>un entier specifiant le type de la fonte. Pour plus d'informations, voir <link linkend="graphics_fonts">graphics_fonts</link></para>
+                    <para>
+                        un entier specifiant le type de la fonte. Pour plus d'informations, voir <link linkend="graphics_fonts">graphics_fonts</link>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fontSize</term>
                 <listitem>
-                    <para>un entier specifiant la taille de la fonte. Pour plus d'informations, voir <link linkend="graphics_fonts">graphics_fonts</link></para>
+                    <para>
+                        un entier specifiant la taille de la fonte. Pour plus d'informations, voir <link linkend="graphics_fonts">graphics_fonts</link>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -64,9 +68,9 @@
     <refsection>
         <title>Exemples</title>
         <programlisting role="example">
-<![CDATA[ 
+            <![CDATA[ 
 plot2d([0, 1], [0, 1], 0);
-str = ["$\underleftrightarrow{Scilab}$" "is"; "not" "elisaB"];
+str = ["$\underleftrightarrow{Scilab}$" "n''est"; "pas" "elisaB"];
 r = xstringl(0.5, 0.7, str);
 xrects([r(1) r(2)+r(4) r(3) r(4)]');
 xstring(r(1), r(2), str);
@@ -80,10 +84,10 @@ txt.font_size = 7;
 txt.font_style = 5;
  ]]>
         </programlisting>
-            <scilab:image>
-                <![CDATA[ 
+        <scilab:image localized="true">
+            <![CDATA[ 
 plot2d([0, 1], [0, 1], 0);
-str = ["$\underleftrightarrow{Scilab}$" "is"; "not" "elisaB"];
+str = ["$\underleftrightarrow{Scilab}$" "n''est"; "pas" "elisaB"];
 r = xstringl(0.5, 0.7, str);
 xrects([r(1) r(2)+r(4) r(3) r(4)]');
 xstring(r(1), r(2), str);
@@ -96,9 +100,9 @@ txt = gce();
 txt.font_size = 8;
 txt.font_style = 5;
  ]]>
-            </scilab:image>
+        </scilab:image>
         <programlisting role="example">
-<![CDATA[
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 mathml = "<mrow>" +.. 
             "<mfrac>" +..
@@ -120,7 +124,7 @@ mathml = "<mrow>" +..
                 "</msup>" +..
             "</mfrac>" +..
          "</mrow>";
-str=["SCILAB", "peut écrire LaTeX :", "$\frac{abc}{xyz}$"; "ou", "MathML :", mathml]; 
+str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml]; 
 r2 = xstringl(0.2, 0.4, str, 10, 4);
 xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]');
 xstring(r2(1), r2(2), str);
@@ -129,8 +133,8 @@ txt.font_size = 4;
 txt.font_style = 10;
  ]]>
         </programlisting>
-            <scilab:image>
-<![CDATA[
+        <scilab:image localized="true">
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 mathml = "<mrow>" +.. 
             "<mfrac>" +..
@@ -152,7 +156,7 @@ mathml = "<mrow>" +..
                 "</msup>" +..
             "</mfrac>" +..
          "</mrow>";
-str=["SCILAB", "peut écrire LaTeX :", "$\frac{abc}{xyz}$"; "ou", "MathML :", mathml]; 
+str=["SCILAB", "peut écrire du LaTeX :", "$\frac{abc}{xyz}$"; "ou", "du MathML :", mathml]; 
 r2 = xstringl(0.2, 0.4, str, 10, 4);
 xrects([r2(1) r2(2)+r2(4) r2(3) r2(4)]');
 xstring(r2(1), r2(2), str);
@@ -160,9 +164,9 @@ txt = gce();
 txt.font_size = 4;
 txt.font_style = 10;
  ]]>
-            </scilab:image>
+        </scilab:image>
         <programlisting>
-<![CDATA[
+            <![CDATA[
 plot2d([0, 6],[0, 6], 0);
 str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
      "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 
@@ -191,8 +195,8 @@ txt.font_style = 0;
 txt.font_color = 2;
 ]]>    
         </programlisting>
-            <scilab:image>
-<![CDATA[
+        <scilab:image>
+            <![CDATA[
 plot2d([0, 6],[0, 6], 0);
 str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
      "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 
@@ -220,7 +224,7 @@ txt.font_size = 3;
 txt.font_style = 0;
 txt.font_color = 2;
 ]]> 
-            </scilab:image>
+        </scilab:image>
     </refsection>
     <refsection role="see also">
         <title>Voir aussi</title>

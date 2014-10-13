@@ -77,7 +77,7 @@ struct type_traits
     }
 
     template<typename T>
-    inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool> * const out)
+    inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
     {
         for (int i = 0; i < r; i++)
         {

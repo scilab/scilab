@@ -17,6 +17,7 @@
 #include "double.hxx"
 #include "scilabexception.hxx"
 #include "localization.hxx"
+#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -50,7 +51,8 @@ SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
     for (iterFieldData = Data.begin(); iterFieldData != Data.end() ; iterFieldData++, iterFieldName++)
     {
         m_wstFields.push_back(*iterFieldName);
-        m_Data.push_back((*iterFieldData)->clone());
+        m_Data.push_back(*iterFieldData);
+        m_Data.back()->IncreaseRef();
     }
 }
 
@@ -278,6 +280,8 @@ bool SingleStruct::toString(std::wostringstream& ostr)
             ostr << *iterFieldNames << L" : " << (*iterFieldData)->getTypeStr() << std::endl;
         }
     }
+
+    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

@@ -31,11 +31,8 @@ namespace
 
 template<> property<CprAdapter>::props_t property<CprAdapter>::fields = property<CprAdapter>::props_t();
 
-CprAdapter::CprAdapter(const CprAdapter& o) :
-    BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>(o) {}
-
-CprAdapter::CprAdapter(org_scilab_modules_scicos::model::Diagram* o) :
-    BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>(o)
+CprAdapter::CprAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
 {
     if (property<CprAdapter>::properties_have_not_been_set())
     {

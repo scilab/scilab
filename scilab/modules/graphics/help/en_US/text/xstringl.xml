@@ -50,13 +50,17 @@
             <varlistentry>
                 <term>fontId</term>
                 <listitem>
-                    <para>an integer specifying the font type. For more information, see <link linkend="graphics_fonts">graphics_fonts</link></para>
+                    <para>
+                        an integer specifying the font type. For more information, see <link linkend="graphics_fonts">graphics_fonts</link>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>fontSize</term>
                 <listitem>
-                    <para>an integer specifying the font size. For more information, see <link linkend="graphics_fonts">graphics_fonts</link></para>
+                    <para>
+                        an integer specifying the font size. For more information, see <link linkend="graphics_fonts">graphics_fonts</link>
+                    </para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -74,7 +78,7 @@
     <refsection>
         <title>Examples</title>
         <programlisting role="example">
-<![CDATA[ 
+            <![CDATA[ 
 plot2d([0, 1], [0, 1], 0);
 str = ["$\underleftrightarrow{Scilab}$" "is"; "not" "elisaB"]; // Only valid from Scilab 5.2
 r = xstringl(0.5, 0.7, str);
@@ -90,8 +94,8 @@ txt.font_size = 7;
 txt.font_style = 5;
  ]]>
         </programlisting>
-            <scilab:image>
-<![CDATA[ 
+        <scilab:image localized="true">
+            <![CDATA[ 
 plot2d([0, 1], [0, 1], 0);
 str = ["$\underleftrightarrow{Scilab}$" "is"; "not" "elisaB"]; // Only valid from Scilab 5.2
 r = xstringl(0.5, 0.7, str);
@@ -106,9 +110,9 @@ txt = gce();
 txt.font_size = 8;
 txt.font_style = 5;
  ]]>
-            </scilab:image>
+        </scilab:image>
         <programlisting role="example">
-<![CDATA[
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 // Only valid from Scilab 5.2
 mathml = "<mrow>" +.. 
@@ -140,8 +144,8 @@ txt.font_size = 4;
 txt.font_style = 10;
  ]]>
         </programlisting>
-            <scilab:image>
-                <![CDATA[
+        <scilab:image localized="true">
+            <![CDATA[
 plot2d([0, 1], [0, 1], 0);
 // Only valid from Scilab 5.2
 mathml = "<mrow>" +.. 
@@ -172,9 +176,9 @@ txt = gce();
 txt.font_size = 4;
 txt.font_style = 10;
  ]]>
-            </scilab:image>
-    <programlisting>
-<![CDATA[
+        </scilab:image>
+        <programlisting>
+            <![CDATA[
 plot2d([0, 6],[0, 6], 0);
 str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
      "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 
@@ -203,8 +207,8 @@ txt.font_style = 0;
 txt.font_color = 2;
 ]]>    
         </programlisting>
-            <scilab:image>
-<![CDATA[
+        <scilab:image>
+            <![CDATA[
 plot2d([0, 6],[0, 6], 0);
 str=["$\underleftrightarrow{\tiny{Scilab}}$"; "$\underleftrightarrow{\scriptsize{Scilab}}$";   
      "$\underleftrightarrow{\footnotesize{Scilab}}$"; "$\underleftrightarrow{\small{Scilab}}$"; 

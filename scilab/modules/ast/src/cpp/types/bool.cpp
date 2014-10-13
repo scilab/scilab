@@ -12,6 +12,7 @@
 
 #include <sstream>
 #include "bool.hxx"
+#include "boolexp.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
 
@@ -333,38 +334,9 @@ int* Bool::allocData(int _iSize)
     return new int[_iSize];
 }
 
-//std::wstring Bool::toStringInLine(int _iPrecision, int iLineLen)
-//{
-//    std::wostringstream ostr;
+ast::Exp* Bool::getExp(const Location& loc)
+{
+    return new ast::BoolExp(loc, this);
+}
 
-//    if(isScalar() || (isVector() && getRows() == 1))
-//    {
-//        for(int i = 0 ; i < getSize() ; i++)
-//        {
-//            ostr << L"  ";
-//            ostr << (get(i) == 0 ? L"F" : L"T");
-
-//            if(ostr.str().length() > iLineLen)
-//            {
-//                break;
-//            }
-//        }
-
-//        return ostr.str();
-//    }
-
-//    //all other cases
-//    ostr << L"[";
-//    for(int i = 0 ; i < m_iDims ; i++)
-//    {
-//        if(i > 0)
-//        {
-//            ostr << L"x";
-//        }
-//        ostr << m_piDims[i];
-//    }
-
-//    ostr << L" " << getTypeStr() << L"]";
-//    return ostr.str();
-//}
 }

@@ -33,7 +33,7 @@ class Ast
 public:
     /** \brief Construct an Ast node.
     ** \param location scanner position informations */
-    Ast (const Location& location) : _location (location), decorator(), parent(NULL)
+    Ast (const Location& location) : decorator(), _location (location)
     {
         nodeNumber = globalNodeNumber++;
     }
@@ -112,25 +112,9 @@ public:
         decorator = _decorator;
     }
 
-    Ast* getParent() const
-    {
-        return parent;
-    }
-
-    Ast* getParent()
-    {
-        return parent;
-    }
-
-    void setParent(Ast* _ast)
-    {
-        parent = _ast;
-    }
-
 private:
-    /** \brief Construct an Ast by copy. */
     analysis::Decorator decorator;
-    Ast* parent;
+    /** \brief Construct an Ast by copy. */
     Ast (const Ast&);
     /** \brief Assign an Ast to this. */
     Ast& operator= (const Ast&);

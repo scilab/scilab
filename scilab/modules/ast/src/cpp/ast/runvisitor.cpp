@@ -35,26 +35,31 @@ extern "C"
 {
 #include "sciprint.h"
 #include "os_swprintf.h"
+#include "elem_common.h"
 }
+
+
 
 namespace ast
 {
 template <class T>
 void RunVisitorT<T>::visitprivate(const CellExp &e)
 {
-    std::list<MatrixLineExp *>::const_iterator row;
-    std::list<Exp *>::const_iterator col;
+    exps_t::const_iterator row;
+    exps_t::const_iterator col;
     int iColMax = 0;
 
+    exps_t lines = e.getLines();
     //check dimmension
-    for (row = e.getLines().begin() ; row != e.getLines().end() ; ++row )
+    for (row = lines.begin() ; row != lines.end() ; ++row )
     {
+        exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
         if (iColMax == 0)
         {
-            iColMax = static_cast<int>((*row)->getColumns().size());
+            iColMax = static_cast<int>(cols.size());
         }
 
-        if (iColMax != static_cast<int>((*row)->getColumns().size()))
+        if (iColMax != static_cast<int>(cols.size()))
         {
             std::wostringstream os;
             os << _W("inconsistent row/column dimensions\n");
@@ -64,15 +69,16 @@ void RunVisitorT<T>::visitprivate(const CellExp &e)
     }
 
     //alloc result cell
-    types::Cell *pC = new types::Cell(static_cast<int>(e.getLines().size()), iColMax);
+    types::Cell *pC = new types::Cell(static_cast<int>(lines.size()), iColMax);
 
     int i = 0;
     int j = 0;
 
     //insert items in cell
-    for (i = 0, row = e.getLines().begin() ; row != e.getLines().end() ; ++row, ++i)
+    for (i = 0, row = lines.begin() ; row != lines.end() ; ++row, ++i)
     {
-        for (j = 0, col = (*row)->getColumns().begin() ; col != (*row)->getColumns().end() ; ++col, ++j)
+        exps_t cols = (*row)->getAs<MatrixLineExp>()->getColumns();
+        for (j = 0, col = cols.begin() ; col != cols.end() ; ++col, ++j)
         {
             (*col)->accept(*this);
             InternalType *pIT = getResult();
@@ -139,11 +145,14 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
     std::wstring wstField = psvRightMember->getSymbol().getName();
     InternalType * pValue = getResult();
     InternalType * pReturn = NULL;
-    bool ok;
+    bool ok = false;
 
     try
     {
-        ok = pValue->extract(wstField, pReturn);
+        if (pValue->isGenericType())
+        {
+            ok = pValue->getAs<GenericType>()->extract(wstField, pReturn);
+        }
     }
     catch (std::wstring & err)
     {
@@ -153,7 +162,15 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     if (ok)
     {
+        if (pReturn == NULL)
+        {
+            std::wostringstream os;
+            os << _W("Invalid index.\n");
+            throw ScilabError(os.str(), 999, e.getLocation());
+        }
+
         setResult(pReturn);
+        pValue->killMe();
     }
     else if (pValue->isFieldExtractionOverloadable())
     {
@@ -171,8 +188,24 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
         in.push_back(pS);
         in.push_back(pValue);
+        Callable::ReturnValue Ret = Callable::Error;
 
-        Callable::ReturnValue Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
+        try
+        {
+            Ret = Overload::call(L"%" + pValue->getShortTypeStr() + L"_e", in, 1, out, this);
+        }
+        catch (ast::ScilabError & se)
+        {
+            // TList or Mlist
+            if (pValue->isList())
+            {
+                Ret = Overload::call(L"%l_e", in, 1, out, this);
+            }
+            else
+            {
+                throw se;
+            }
+        }
 
         if (Ret != Callable::OK)
         {
@@ -348,14 +381,14 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         e.getBody().isReturnable();
     }
 
-    if (getResult()->isImplicitList())
+    if (pIT->isImplicitList())
     {
         ImplicitList* pVar = pIT->getAs<ImplicitList>();
         for (int i = 0; i < pVar->getSize(); ++i)
         {
             //TODO : maybe it would be interesting here to reuse the same InternalType (to avoid delete/new)
             InternalType * pIL = pVar->extractValue(i);
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pIL);
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pIL);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -377,14 +410,57 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
         }
     }
-    else if (getResult()->isList())
+    else if (pIT->isList())
     {
         List* pL = pIT->getAs<List>();
         const int size = pL->getSize();
         for (int i = 0; i < size; ++i)
         {
             InternalType* pNew = pL->get(i);
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pNew);
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
+
+            e.getBody().accept(*this);
+            if (e.getBody().isBreak())
+            {
+                const_cast<Exp*>(&(e.getBody()))->resetBreak();
+                break;
+            }
+
+            if (e.getBody().isContinue())
+            {
+                const_cast<Exp*>(&(e.getBody()))->resetContinue();
+                continue;
+            }
+
+            if (e.getBody().isReturn())
+            {
+                const_cast<ForExp*>(&e)->setReturn();
+                break;
+            }
+        }
+    }
+    else if (pIT->isGenericType())
+    {
+        //Matrix i = [1,3,2,6] or other type
+        GenericType* pVar = pIT->getAs<GenericType>();
+        if (pVar->getDims() > 2)
+        {
+            pIT->DecreaseRef();
+            pIT->killMe();
+            throw ScilabError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
+        }
+
+        for (int i = 0; i < pVar->getCols(); i++)
+        {
+            GenericType* pNew = pVar->getColumnValues(i);
+            if (pNew == NULL)
+            {
+                pIT->DecreaseRef();
+                pIT->killMe();
+                throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
+            }
+
+            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -408,40 +484,9 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     }
     else
     {
-        //Matrix i = [1,3,2,6] or other type
-        GenericType* pVar = pIT->getAs<GenericType>();
-        if (pVar->getDims() > 2)
-        {
-            pIT->DecreaseRef();
-            pIT->killMe();
-
-            throw ScilabError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
-        }
-
-        for (int i = 0; i < pVar->getCols(); i++)
-        {
-            GenericType* pNew = pVar->getColumnValues(i);
-            symbol::Context::getInstance()->put(e.getVardec().getStack(), pNew);
-
-            e.getBody().accept(*this);
-            if (e.getBody().isBreak())
-            {
-                const_cast<Exp*>(&(e.getBody()))->resetBreak();
-                break;
-            }
-
-            if (e.getBody().isContinue())
-            {
-                const_cast<Exp*>(&(e.getBody()))->resetContinue();
-                continue;
-            }
-
-            if (e.getBody().isReturn())
-            {
-                const_cast<ForExp*>(&e)->setReturn();
-                break;
-            }
-        }
+        pIT->DecreaseRef();
+        pIT->killMe();
+        throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
     }
 
     pIT->DecreaseRef();
@@ -455,9 +500,9 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
-        //return or resume
-        if (ConfigVariable::getPauseLevel() != 0)
+        if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
+            //return or resume
             ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
             if (pThreadId == NULL)
             {
@@ -488,35 +533,6 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         setExpectedSize(1);
         e.getExp().accept(*this);
         setExpectedSize(iSaveExpectedSize);
-
-        if (getResultSize() == 1)
-        {
-            //protect variable
-            getResult()->IncreaseRef();
-        }
-        else
-        {
-            for (int i = 0 ; i < getResultSize() ; i++)
-            {
-                //protect variable
-                getResult(i)->IncreaseRef();
-            }
-        }
-
-        if (getResultSize() == 1)
-        {
-            //unprotect variable
-            getResult()->DecreaseRef();
-        }
-        else
-        {
-            for (int i = 0 ; i < getResultSize() ; i++)
-            {
-                //unprotect variable
-                getResult(i)->DecreaseRef();
-            }
-        }
-
         const_cast<ReturnExp*>(&e)->setReturn();
     }
 }
@@ -534,10 +550,11 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     if (pIT)
     {
         //find good case
-        cases_t::iterator it;
-        for (it = e.getCases()->begin(); it != e.getCases()->end() ; it++)
+        exps_t::iterator it;
+        exps_t* cases = e.getCases();
+        for (it = cases->begin(); it != cases->end() ; it++)
         {
-            CaseExp* pCase = *it;
+            CaseExp* pCase = (*it)->getAs<CaseExp>();
             pCase->getTest()->accept(*this);
             InternalType *pITCase = getResult();
             setResult(NULL);
@@ -644,9 +661,10 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
     //T execMe;
-    std::list<Exp *>::const_iterator        itExp;
+    exps_t::const_iterator itExp;
+    exps_t exps = e.getExps();
 
-    for (itExp = e.getExps().begin (); itExp != e.getExps().end (); ++itExp)
+    for (itExp = exps.begin (); itExp != exps.end (); ++itExp)
     {
         if (e.isBreakable())
         {
@@ -759,7 +777,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
-                        VariableToString(pITAns, L"ans");
+                        std::wostringstream ostrName;
+                        ostrName << SPACES_LIST << L"ans";
+                        VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }
 
@@ -968,18 +988,20 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     // funcprot(1) && warning(on) : warning
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
-    const ArrayListVar *pListVar = &e.getArgs();
-    for (std::list<Var *>::const_iterator i = pListVar->getVars().begin(), end = pListVar->getVars().end(); i != end; ++i)
+    const ArrayListVar* pListVar = e.getArgs().getAs<ArrayListVar>();
+    exps_t vars = pListVar->getVars();
+    for (exps_t::const_iterator it = vars.begin(), end = vars.end(); it != end; ++it)
     {
-        pVarList->push_back(static_cast<SimpleVar*>(*i)->getStack());
+        pVarList->push_back((*it)->getAs<SimpleVar>()->getStack());
     }
 
     //get output parameters list
     std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
-    const ArrayListVar *pListRet = &e.getReturns();
-    for (std::list<Var *>::const_iterator i = pListRet->getVars().begin(), end = pListRet->getVars().end(); i != end; ++i)
+    const ArrayListVar *pListRet = e.getReturns().getAs<ArrayListVar>();
+    exps_t rets = pListRet->getVars();
+    for (exps_t::const_iterator it = rets.begin(), end = rets.end(); it != end; ++it)
     {
-        pRetList->push_back(static_cast<SimpleVar*>(*i)->getStack());
+        pRetList->push_back((*it)->getAs<SimpleVar>()->getStack());
     }
 
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,
@@ -1139,6 +1161,183 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
 
     setResult(out);
     cleanIn(in, out);
+}
+
+template <class T>
+void RunVisitorT<T>::visitprivate(const OptimizedExp &e)
+{
+}
+
+template <class T>
+void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
+{
+    InternalType* pIT = NULL;
+    Double* ad = NULL;
+    int ar = 0;
+    int ac = 0;
+
+    Double* xd = NULL;
+    int xr = 0;
+    int xc = 0;
+
+    Double* yd = NULL;
+    int yr = 0;
+    int yc = 0;
+
+    //check types and dimensions
+
+    //y must be double
+    const Exp &ye = e.getY();
+    ye.accept(*this);
+    pIT = getResult();
+    if (pIT->isDouble())
+    {
+        yd = pIT->getAs<Double>();
+        if (yd->getDims() == 2 && yd->isComplex() == false)
+        {
+            yr = yd->getRows();
+            yc = yd->getCols();
+        }
+        else
+        {
+            yd->killMe();
+            e.getOriginal()->accept(*this);
+            return;
+        }
+    }
+    else
+    {
+        pIT->killMe();
+        e.getOriginal()->accept(*this);
+        return;
+    }
+
+    //x
+    const Exp &xe = e.getX();
+    xe.accept(*this);
+    pIT = getResult();
+
+    if (pIT->isDouble())
+    {
+        xd = pIT->getAs<Double>();
+        if (xd->isScalar() && xd->isComplex() == false)
+        {
+            // x become a
+            ad = xd;
+            ar = 1;
+            ac = 1;
+        }
+        else if (xd->getDims() == 2 && xd->isComplex() == false)
+        {
+            xr = xd->getRows();
+            xc = xd->getCols();
+        }
+        else
+        {
+            yd->killMe();
+            xd->killMe();
+            e.getOriginal()->accept(*this);
+            return;
+        }
+    }
+    else
+    {
+        pIT->killMe();
+        yd->killMe();
+        e.getOriginal()->accept(*this);
+        return;
+    }
+
+    const Exp &ae = e.getA();
+    ae.accept(*this);
+    pIT = getResult();
+
+    if (pIT->isDouble())
+    {
+        if (ad)
+        {
+            xd = pIT->getAs<Double>();
+            //X is scalar it become A
+            //now use A as X
+            if (xd->getDims() == 2 && xd->isComplex() == false)
+            {
+                xr = xd->getRows();
+                xc = xd->getCols();
+            }
+            else
+            {
+                yd->killMe();
+                xd->killMe();
+                ad->killMe();
+                e.getOriginal()->accept(*this);
+                return;
+            }
+        }
+        else
+        {
+            //a is a and it must be scalar
+            ad = pIT->getAs<Double>();
+            if (ad->isScalar() && ad->isComplex() == false)
+            {
+                ar = 1;
+                ac = 1;
+            }
+            else
+            {
+                yd->killMe();
+                xd->killMe();
+                ad->killMe();
+                e.getOriginal()->accept(*this);
+                return;
+            }
+        }
+    }
+    else
+    {
+        pIT->killMe();
+        yd->killMe();
+        xd->killMe();
+        e.getOriginal()->accept(*this);
+        return;
+    }
+
+    if (ad && xd && yd)
+    {
+        if ( ac == 1 &&
+                ar == 1 &&
+                xr == yr &&
+                xc == yc)
+        {
+            //go !
+            int one = 1;
+            int size = xc * xr;
+            Double* od = (Double*)yd->clone();
+            C2F(daxpy)(&size, ad->get(), xd->get(), &one, od->get(), &one);
+            setResult(od);
+            yd->killMe();
+            xd->killMe();
+            ad->killMe();
+            return;
+        }
+    }
+
+    if (yd)
+    {
+        yd->killMe();
+    }
+
+    if (xd)
+    {
+        xd->killMe();
+    }
+
+    if (ad)
+    {
+        ad->killMe();
+    }
+
+    e.getOriginal()->accept(*this);
+    return;
 }
 
 #include "run_CallExp.cpp"

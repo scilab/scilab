@@ -18,6 +18,7 @@
 #include "listundefined.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
+#include "execvisitor.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -86,10 +87,23 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
     else if (in.size() == 1)
     {
         InternalType * arg = in[0];
-        std::vector<InternalType *> _out;
+        InternalType * _out = NULL;
         if (arg->isDouble() || arg->isInt() || arg->isBool() || arg->isImplicitList() || arg->isColon() || arg->isDollar())
         {
             _out = List::extract(&in);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+
+            delete pList;
         }
         else if (arg->isString())
         {
@@ -101,11 +115,23 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
             }
 
             _out = extractStrings(stFields);
+            if (_out == NULL)
+            {
+                // invalid index
+                return false;
+            }
+
+            List* pList = _out->getAs<types::List>();
+            for (int i = 0; i < pList->getSize(); i++)
+            {
+                out.push_back(pList->get(i));
+            }
+
+            delete pList;
         }
 
-        if (!_out.empty())
+        if (out.empty() == false)
         {
-            out.swap(_out);
             return true;
         }
     }
@@ -172,23 +198,32 @@ int TList::getIndexFromString(const std::wstring& _sKey)
     return -1;
 }
 
-std::vector<InternalType*> TList::extractStrings(const std::list<std::wstring>& _stFields)
+InternalType* TList::extractStrings(const std::list<std::wstring>& _stFields)
 {
-    std::vector<InternalType*> Result;
+    int i = 0;
+    List* pLResult = new List();
     std::list<std::wstring>::const_iterator it;
     for (it = _stFields.begin() ; it != _stFields.end() ; it++)
     {
         if (exists(*it) == false)
         {
-            return Result;
+            return pLResult;
         }
     }
 
-    for (it = _stFields.begin() ; it != _stFields.end() ; it++)
+    for (it = _stFields.begin() ; it != _stFields.end() ; it++, i++)
     {
-        Result.push_back(getField(*it));
+        InternalType* pIT = getField(*it);
+        if (pIT == NULL)
+        {
+            delete pLResult;
+            return NULL;
+        }
+
+        pLResult->set(i, pIT);
     }
-    return Result;
+
+    return pLResult;
 }
 
 std::wstring TList::getTypeStr()
@@ -223,46 +258,60 @@ String* TList::getFieldNames()
 
 /**
 ** toString to display TLists
-** FIXME : Find a better indentation process
 */
 bool TList::toString(std::wostringstream& ostr)
 {
-    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
-    ostr.str(L"");
+    //call overload %type_p if exists
+    types::typed_list in;
+    types::typed_list out;
+    ast::ExecVisitor* exec = new ast::ExecVisitor();
 
-    if (getSize() == 0)
+    IncreaseRef();
+    in.push_back(this);
+
+    try
     {
-        ostr << wcsVarName << L"()" << std::endl;
+        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::OK)
+        {
+            ostr.str(L"");
+            DecreaseRef();
+            delete exec;
+            return true;
+        }
     }
-    else if ((*m_plData)[0]->isString() &&
-             (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
-             wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    catch (ast::ScilabError /* &e */)
     {
+        // avoid error message about undefined overload %type_p
+    }
+
+    DecreaseRef();
+    delete exec;
+
+    // special case for lss
+    if (getSize() != 0 &&
+            (*m_plData)[0]->isString() &&
+            (*m_plData)[0]->getAs<types::String>()->getSize() > 0 &&
+            wcscmp((*m_plData)[0]->getAs<types::String>()->get(0), L"lss") == 0)
+    {
+        wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
         const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
         std::vector<InternalType *>::iterator itValues;
         for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
         {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L") " << wcsDesc[iPosition - 1] << std::endl;
-            //maange lines
-            (*itValues)->toString(ostr);
-            ostr << std::endl;
+            std::wostringstream nextVarName;
+            ostr.str(L"");
+            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
+            ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
+            scilabWriteW(ostr.str().c_str());
+            VariableToString(*itValues, nextVarName.str().c_str());
         }
-    }
-    else
-    {
-        int iPosition = 1;
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
-        {
-            ostr << "     " << wcsVarName << L"(" << iPosition << L")" << std::endl;
-            //maange lines
-            (*itValues)->toString(ostr);
-            ostr << std::endl;
-        }
+
+        free(wcsVarName);
+        return true;
     }
 
-    free(wcsVarName);
-    return true;
+    // call normal toString
+    return List::toString(ostr);
 }
 } // end namespace types

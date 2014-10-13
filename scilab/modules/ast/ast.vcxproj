@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -302,6 +302,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\constexp.hxx" />
     <ClInclude Include="includes\exps\continueexp.hxx" />
     <ClInclude Include="includes\exps\controlexp.hxx" />
+    <ClInclude Include="includes\exps\daxpyexp.hxx" />
     <ClInclude Include="includes\exps\dec.hxx" />
     <ClInclude Include="includes\exps\decls.hxx" />
     <ClInclude Include="includes\exps\dollarvar.hxx" />
@@ -320,6 +321,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\exps\nilexp.hxx" />
     <ClInclude Include="includes\exps\notexp.hxx" />
     <ClInclude Include="includes\exps\opexp.hxx" />
+    <ClInclude Include="includes\exps\optimizedexp.hxx" />
     <ClInclude Include="includes\exps\returnexp.hxx" />
     <ClInclude Include="includes\exps\selectexp.hxx" />
     <ClInclude Include="includes\exps\seqexp.hxx" />
@@ -356,6 +358,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\operations\types_comparison_lt_le_gt_ge.hxx" />
     <ClInclude Include="includes\operations\types_comparison_ne.hxx" />
     <ClInclude Include="includes\operations\types_divide.hxx" />
+    <ClInclude Include="includes\operations\types_dotdivide.hxx" />
     <ClInclude Include="includes\operations\types_dotmultiplication.hxx" />
     <ClInclude Include="includes\operations\types_finite.hxx" />
     <ClInclude Include="includes\operations\types_kronecker.hxx" />
@@ -462,6 +465,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\operations\types_comparison_lt_le_gt_ge.cpp" />
     <ClCompile Include="src\cpp\operations\types_comparison_ne.cpp" />
     <ClCompile Include="src\cpp\operations\types_divide.cpp" />
+    <ClCompile Include="src\cpp\operations\types_dotdivide.cpp" />
     <ClCompile Include="src\cpp\operations\types_dotmultiplication.cpp" />
     <ClCompile Include="src\cpp\operations\types_finite.cpp" />
     <ClCompile Include="src\cpp\operations\types_kronecker.cpp" />

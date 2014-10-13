@@ -41,10 +41,12 @@ public:
     */
     WhileExp (const Location& location,
               Exp& test, Exp& body)
-        : ControlExp (location),
-          _test (&test),
-          _body (&body)
+        : ControlExp (location)
     {
+        test.setParent(this);
+        body.setParent(this);
+        _exps.push_back(&test);
+        _exps.push_back(&body);
     }
 
     /** \brief Destroy a While Expression node.
@@ -52,8 +54,6 @@ public:
     ** Delete test and body (see constructor). */
     virtual ~WhileExp ()
     {
-        delete _test;
-        delete _body;
     }
     /** \}*/
 
@@ -86,23 +86,23 @@ public:
     /** \brief Return the exit condition of the loop (read only). */
     const Exp& getTest() const
     {
-        return *_test;
+        return *_exps[0];
     }
     /** \brief Return the exit condition of the loop (read and write). */
     Exp& getTest()
     {
-        return *_test;
+        return *_exps[0];
     }
 
     /** \brief Return the body of the loop (read only). */
     const Exp& getBody() const
     {
-        return *_body;
+        return *_exps[1];
     }
     /** \brief Return the body of the loop (read and write). */
     Exp& getBody()
     {
-        return *_body;
+        return *_exps[1];
     }
     /** \} */
 
@@ -114,11 +114,6 @@ public:
     {
         return true;
     }
-protected:
-    /** \brief Exit condition of the loop. */
-    Exp* _test;
-    /** \brief Instructions executed in the loop. */
-    Exp* _body;
 };
 
 } // namespace ast

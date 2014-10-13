@@ -26,6 +26,7 @@ extern "C"
 #include "dynlib_ast.h"
 }
 
+#include "exp.hxx" // for invoke
 #include "visitor.hxx" // for invoke
 #include "callexp.hxx"
 #include "localization.hxx"
@@ -213,6 +214,10 @@ public :
         return getTypeStr();
     }
     virtual InternalType*           clone(void) = 0;
+    virtual ast::Exp*               getExp(const Location &loc)
+    {
+        return NULL;
+    }
 
     /** this template is specialized in internal.cpp */
     template<typename T> static InternalType::ScilabId getScilabId();
@@ -298,11 +303,6 @@ public :
     virtual bool adjoint(InternalType *& out)
     {
         return transpose(out);
-    }
-
-    virtual bool extract(const std::wstring & /*name*/, InternalType *& /*out*/)
-    {
-        return false;
     }
 
     virtual bool isFieldExtractionOverloadable() const
@@ -529,6 +529,10 @@ public :
         return false;
     }
     virtual bool                    isLibrary(void)
+    {
+        return false;
+    }
+    virtual bool                    isUserType(void)
     {
         return false;
     }

@@ -36,6 +36,7 @@ const wchar_t g_pwstTypeNormal[] = {L"normal"};
 int setRandType(wchar_t _wcType);
 double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
+
 types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     static int siRandType = 0;
@@ -112,7 +113,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             siRandType = setRandType(pwstKey[0]);
         }
     }
-    else if (in[0]->isDouble())
+    else if (in[0]->isArrayOf())
     {
         int iRandSave = siRandType;
         if (in[iSizeIn - 1]->isString())
@@ -134,16 +135,15 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         if (iSizeIn == 1)
         {
             //rand(X) or rand(X, "")
-            types::Double* pD = in[0]->getAs<types::Double>();
-
             // rand(:)
-            if (pD->getRows() == -1 && pD->getCols() == -1)
+            types::GenericType* pGT = in[0]->getAs<types::GenericType>();
+            types::Double* pOut = new types::Double(pGT->getDims(), pGT->getDimsArray(), pGT->isComplex());
+
+            if (pOut->getRows() == -1 && pOut->getCols() == -1)
             {
                 Scierror(21, _("Invalid index.\n"));
                 return types::Function::Error;
             }
-
-            types::Double* pOut = new types::Double(pD->getDims(), pD->getDimsArray(), pD->isComplex());
 
             double* pReal = pOut->getReal();
             for (int i = 0 ; i < pOut->getSize() ; i++)
@@ -151,7 +151,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                 pReal[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
             }
 
-            if (pD->isComplex())
+            if (pOut->isComplex())
             {
                 double* pImg = pOut->getImg();
                 for (int i = 0 ; i < pOut->getSize() ; i++)
