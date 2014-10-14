@@ -221,6 +221,8 @@ struct exprs
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
+
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
@@ -229,7 +231,6 @@ struct exprs
                 return false;
             }
 
-            model::Block* adaptee = adaptor.getAdaptee();
             std::vector<std::string> exprs (current->getSize());
             for (int i = 0; i < (int)exprs.size(); ++i)
             {
@@ -249,7 +250,12 @@ struct exprs
                 return false;
             }
 
-            model::Block* adaptee = adaptor.getAdaptee();
+            std::vector<std::string> exprs;
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            return true;
+        }
+        else if (v->getType() == types::InternalType::ScilabList)
+        {
             std::vector<std::string> exprs;
             controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
             return true;

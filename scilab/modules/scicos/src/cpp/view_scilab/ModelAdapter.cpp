@@ -16,6 +16,7 @@
 #include <sstream>
 
 #include "int.hxx"
+#include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
@@ -325,19 +326,30 @@ struct dstate
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() == types::InternalType::ScilabString)
+        {
+            types::String* current = v->getAs<types::String>();
+            if (current->getSize() != 1)
+            {
+                return false;
+            }
+
+            std::vector<double> dstate;
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+            return true;
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
             return false;
         }
-
         types::Double* current = v->getAs<types::Double>();
         if (current->getCols() != 0 && current->getCols() != 1)
         {
             return false;
         }
-
-        model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<double> dstate (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
@@ -347,32 +359,32 @@ struct dstate
     }
 };
 
-types::InternalType* getField(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t property)
+types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t prop)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
     std::vector<int> prop_content;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), property, prop_content);
+    controller.getObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
 
-    if (prop_content.size() == 0)
+    if (prop_content.empty())
     {
         return types::Double::Empty();
     }
 
-    types::List* o = new types::List();
+    types::List* list = new types::List();
 
-    int fieldIndex = 1; // Index to each element of the returned list
+    int index = 1; // Index to each element of the returned list
 
     for (int i = 0; i < prop_content[0]; ++i) // 'o' must have exactly 'prop_content[0]' elements
     {
         int m, n, numberOfIntNeeded = 0;
-        switch (prop_content[fieldIndex])
+        switch (prop_content[index])
         {
             case types::InternalType::ScilabDouble:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
-                int isComplex = prop_content[fieldIndex + 3];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
+                int isComplex = prop_content[index + 3];
 
                 double* real;
                 types::Double* pDouble;
@@ -381,129 +393,142 @@ types::InternalType* getField(const ModelAdapter& adaptor, const Controller& con
                 {
                     pDouble = new types::Double(m, n, &real);
                     numberOfIntNeeded = 2 * m * n + 1;
-                    memcpy(real, &prop_content[fieldIndex + 3 + 1], m * n * sizeof(double));
+                    memcpy(real, &prop_content[index + 3 + 1], m * n * sizeof(double));
                 }
                 else
                 {
                     double* imag;
                     pDouble = new types::Double(m, n, &real, &imag);
                     numberOfIntNeeded = 4 * m * n + 1;
-                    memcpy(real, &prop_content[fieldIndex + 3 + 1], m * n * sizeof(double));
-                    memcpy(imag, &prop_content[fieldIndex + 3 + 1 + 2 * m * n], m * n * sizeof(double));
+                    memcpy(real, &prop_content[index + 3 + 1], m * n * sizeof(double));
+                    memcpy(imag, &prop_content[index + 3 + 1 + 2 * m * n], m * n * sizeof(double));
                 }
-                o->set(i, pDouble);
+                list->set(i, pDouble);
                 break;
             }
             case types::InternalType::ScilabInt8:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n / 4;
 
                 char* data;
                 types::Int8* pInt8 = new types::Int8(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(char));
-                o->set(i, pInt8);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(char));
+                list->set(i, pInt8);
                 break;
             }
             case types::InternalType::ScilabUInt8:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n / 4;
 
                 unsigned char* data;
                 types::UInt8* pUInt8 = new types::UInt8(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned char));
-                o->set(i, pUInt8);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned char));
+                list->set(i, pUInt8);
                 break;
             }
             case types::InternalType::ScilabInt16:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n / 2;
 
                 short int* data;
                 types::Int16* pInt16 = new types::Int16(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(short int));
-                o->set(i, pInt16);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(short int));
+                list->set(i, pInt16);
                 break;
             }
             case types::InternalType::ScilabUInt16:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n / 2;
 
                 unsigned short int* data;
                 types::UInt16* pUInt16 = new types::UInt16(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned short int));
-                o->set(i, pUInt16);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned short int));
+                list->set(i, pUInt16);
                 break;
             }
             case types::InternalType::ScilabInt32:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n;
 
                 int* data;
                 types::Int32* pInt32 = new types::Int32(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(int));
-                o->set(i, pInt32);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(int));
+                list->set(i, pInt32);
                 break;
             }
             case types::InternalType::ScilabUInt32:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
                 numberOfIntNeeded = m * n;
 
                 unsigned int* data;
                 types::UInt32* pUInt32 = new types::UInt32(m, n, &data);
 
-                memcpy(data, &prop_content[fieldIndex + 3], m * n * sizeof(unsigned int));
-                o->set(i, pUInt32);
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned int));
+                list->set(i, pUInt32);
                 break;
             }
             case types::InternalType::ScilabString:
             {
-                m = prop_content[fieldIndex + 1];
-                n = prop_content[fieldIndex + 2];
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
 
                 types::String* pString = new types::String(m, n);
 
                 for (int j = 0; j < m * n; ++j)
                 {
-                    int strLen = prop_content[fieldIndex + 3 + numberOfIntNeeded];
+                    int strLen = prop_content[index + 3 + numberOfIntNeeded];
                     wchar_t* str = new wchar_t[strLen + 1];
-                    memcpy(str, &prop_content[fieldIndex + 3 + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
+                    memcpy(str, &prop_content[index + 3 + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
                     str[strLen] = '\0';
                     pString->set(j, str);
                     delete str;
 
                     numberOfIntNeeded += 1 + strLen;
                 }
-                o->set(i, pString);
+                list->set(i, pString);
+                break;
+            }
+            case types::InternalType::ScilabBool:
+            {
+                m = prop_content[index + 1];
+                n = prop_content[index + 2];
+                numberOfIntNeeded = m * n;
+
+                int* data;
+                types::Bool* pBool = new types::Bool(m, n, &data);
+
+                memcpy(data, &prop_content[index + 3], m * n * sizeof(int));
+                list->set(i, pBool);
                 break;
             }
             default:
                 return 0;
         }
 
-        fieldIndex += 3 + numberOfIntNeeded;
+        index += 3 + numberOfIntNeeded;
     }
 
-    return o;
+    return list;
 }
 
-bool setField(ModelAdapter& adaptor, Controller& controller, const object_properties_t FIELD, types::InternalType* v)
+bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_properties_t prop, types::InternalType* v)
 {
     model::Block* adaptee = adaptor.getAdaptee();
 
@@ -515,8 +540,8 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
             return false;
         }
 
-        std::vector<int> field;
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), FIELD, field);
+        std::vector<int> prop_content;
+        controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
         return true;
     }
 
@@ -527,15 +552,15 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
 
     types::List* list = v->getAs<types::List>();
 
-    // 'field' will be a buffer containing the elements of the list, copied into 'int' type by bits
-    std::vector<int> field (1, list->getSize()); // Save the number of list elements in the first element
-    int fieldIndex = 1; // Index to point at every new list element
+    // 'prop_content' will be a buffer containing the elements of the list, copied into 'int' type by bits
+    std::vector<int> prop_content (1, list->getSize()); // Save the number of list elements in the first element
+    int index = 1; // Index to point at every new list element
 
     for (int i = 0; i < list->getSize(); ++i)
     {
         // Save the variable type
-        field.resize(field.size() + 1);
-        field[fieldIndex] = list->get(i)->getType();
+        prop_content.resize(prop_content.size() + 1);
+        prop_content[index] = list->get(i)->getType();
 
         int m, n, numberOfIntNeeded = 0;
         switch (list->get(i)->getType())
@@ -551,23 +576,23 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                     // It takes 2 int (4 bytes) to save 1 real (1 double: 8 bytes)
                     // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
                     numberOfIntNeeded = 2 * m * n + 1;
-                    field.resize(field.size() + 2 + numberOfIntNeeded);
-                    field[fieldIndex + 3] = 0; // Flag for real
+                    prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                    prop_content[index + 3] = 0; // Flag for real
 
-                    // Using contiguity of the memory, we save the input into field
-                    memcpy(&field[fieldIndex + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
+                    // Using contiguity of the memory, we save the input into 'prop_content'
+                    memcpy(&prop_content[index + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
                 }
                 else
                 {
                     // It takes 4 int (4 bytes) to save 1 complex (2 double: 16 bytes)
                     // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
                     numberOfIntNeeded = 4 * m * n + 1;
-                    field.resize(field.size() + 2 + numberOfIntNeeded);
-                    field[fieldIndex + 3] = 1; // Flag for complex
+                    prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                    prop_content[index + 3] = 1; // Flag for complex
 
                     // Contiguously save the real and complex parts
-                    memcpy(&field[fieldIndex + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
-                    memcpy(&field[fieldIndex + 3 + 1 + 2 * m * n], pDouble->getImg(), m * n * sizeof(double));
+                    memcpy(&prop_content[index + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
+                    memcpy(&prop_content[index + 3 + 1 + 2 * m * n], pDouble->getImg(), m * n * sizeof(double));
                 }
                 break;
             }
@@ -580,10 +605,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 4 char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n / 4;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pInt8->get(), m * n * sizeof(char));
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pInt8->get(), m * n * sizeof(char));
                 break;
             }
             case types::InternalType::ScilabUInt8:
@@ -595,10 +620,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n / 4;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pInt16->get(), m * n * sizeof(unsigned char));
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(unsigned char));
                 break;
             }
             case types::InternalType::ScilabInt16:
@@ -610,10 +635,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n / 2;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pInt16->get(), m * n * sizeof(short int));
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(short int));
                 break;
             }
             case types::InternalType::ScilabUInt16:
@@ -625,10 +650,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n / 2;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pUInt16->get(), m * n * sizeof(unsigned short int));
+                // Using contiguity of the memory, we save the input into prop_content
+                memcpy(&prop_content[index + 3], pUInt16->get(), m * n * sizeof(unsigned short int));
                 break;
             }
             case types::InternalType::ScilabInt32:
@@ -640,10 +665,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 1 int (4 bytes)
                 // So reserve m*n and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pInt32->get(), m * n * sizeof(int));
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pInt32->get(), m * n * sizeof(int));
                 break;
             }
             case types::InternalType::ScilabUInt32:
@@ -655,10 +680,10 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 // It takes 1 int (4 bytes) to save 1 unsigned int (4 bytes)
                 // So reserve m*n and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n;
-                field.resize(field.size() + 2 + numberOfIntNeeded);
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
-                // Using contiguity of the memory, we save the input into field
-                memcpy(&field[fieldIndex + 3], pUInt32->get(), m * n * sizeof(unsigned int));
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pUInt32->get(), m * n * sizeof(unsigned int));
                 break;
             }
             case types::InternalType::ScilabInt64:
@@ -672,30 +697,45 @@ bool setField(ModelAdapter& adaptor, Controller& controller, const object_proper
                 n = pString->getCols();
 
                 // For the moment, we don't know how many characters each string is long, so only reserve the matrix size
-                field.resize(field.size() + 2);
+                prop_content.resize(prop_content.size() + 2);
 
                 for (int j = 0; j < m * n; ++j)
                 {
-                    // Extract the input string length and reserve as many characters in field
+                    // Extract the input string length and reserve as many characters in 'prop_content'
                     int strLen = static_cast<int>(wcslen(pString->get(j)));
-                    field.resize(field.size() + 1 + strLen);
-                    field[fieldIndex + 3 + numberOfIntNeeded] = strLen;
+                    prop_content.resize(prop_content.size() + 1 + strLen);
+                    prop_content[index + 3 + numberOfIntNeeded] = strLen;
 
-                    memcpy(&field[fieldIndex + 3 + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
+                    memcpy(&prop_content[index + 3 + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
                     numberOfIntNeeded += 1 + strLen;
                 }
+                break;
+            }
+            case types::InternalType::ScilabBool:
+            {
+                types::Bool* pBool = list->get(i)->getAs<types::Bool>();
+                m = pBool->getRows();
+                n = pBool->getCols();
+
+                // It takes 1 int (4 bytes) to save 1 bool (1 int: 4 byte)
+                // So reserve m*n and 2 integers for the matrix dimensions
+                numberOfIntNeeded = m * n;
+                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+
+                // Using contiguity of the memory, we save the input into 'prop_content'
+                memcpy(&prop_content[index + 3], pBool->get(), m * n * sizeof(int));
                 break;
             }
             default:
                 return false;
         }
-        // Save the matrix dimensions in 'field' and increment fieldIndex to match the next list element
-        field[fieldIndex + 1] = m;
-        field[fieldIndex + 2] = n;
-        fieldIndex += 3 + numberOfIntNeeded;
+        // Save the matrix dimensions in 'prop_content' and increment index to match the next list element
+        prop_content[index + 1] = m;
+        prop_content[index + 2] = n;
+        index += 3 + numberOfIntNeeded;
     }
 
-    controller.setObjectProperty(adaptee->id(), adaptee->kind(), FIELD, field);
+    controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
     return true;
 }
 
@@ -704,12 +744,12 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return getField(adaptor, controller, ODSTATE);
+        return getPropList(adaptor, controller, ODSTATE);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setField(adaptor, controller, ODSTATE, v);
+        return setPropList(adaptor, controller, ODSTATE, v);
     }
 };
 
@@ -917,6 +957,14 @@ struct ipar
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
+        model::Block* adaptee = adaptor.getAdaptee();
+
+        if (v->getType() == types::InternalType::ScilabList)
+        {
+            std::vector<int> ipar;
+            controller.setObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+            return true;
+        }
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -928,8 +976,6 @@ struct ipar
         {
             return false;
         }
-
-        model::Block* adaptee = adaptor.getAdaptee();
 
         std::vector<int> ipar (current->getSize());
         for (int i = 0; i < current->getSize(); ++i)
@@ -951,12 +997,12 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return getField(adaptor, controller, OPAR);
+        return getPropList(adaptor, controller, OPAR);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setField(adaptor, controller, OPAR, v);
+        return setPropList(adaptor, controller, OPAR, v);
     }
 };
 
