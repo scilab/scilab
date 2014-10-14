@@ -307,6 +307,7 @@ void DebugVisitor::visit (const SelectExp &e)
     {
         (*it)->accept(*this);
     }
+    delete cases;
 
     if (e.getDefaultCase() != NULL)
     {

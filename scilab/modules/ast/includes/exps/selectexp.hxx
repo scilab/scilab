@@ -122,7 +122,7 @@ public :
 
         for (; it != itEnd ; ++it)
         {
-            cases->push_back((*it)->clone());
+            cases->push_back(*it);
         }
 
         return cases;

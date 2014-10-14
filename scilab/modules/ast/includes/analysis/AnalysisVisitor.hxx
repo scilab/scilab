@@ -492,6 +492,8 @@ private:
         {
             (*i)->accept(*this);
         }
+        delete cases;
+
         e.getDefaultCase()->accept(*this);
     }
 

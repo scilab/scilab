@@ -369,8 +369,10 @@ bool ImplicitList::toString(std::wostringstream& ostr)
 {
     if (isComputable())
     {
-        bool ret = extractFullMatrix()->toString(ostr);
+        types::InternalType* pIT = extractFullMatrix();
+        bool ret = pIT->toString(ostr);
         scilabWriteW(ostr.str().c_str());
+        delete pIT;
         return ret;
     }
     else
