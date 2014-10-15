@@ -1138,8 +1138,87 @@ o.model.equations
     220.
          ans(5)(2)(2)
     50.
-// Check that all the model items are freed
-clear
+// Test 'exprs' with Modelica Block
+o = MBLOCK("define")
+objectCreated( 32 , BLOCK )
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EXPRS ) : SUCCESS
+objectCreated( 33 , PORT )
+propertyUpdated( 33 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 33 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 32 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 34 , PORT )
+propertyUpdated( 34 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 34 , PORT , PORT_KIND ) : SUCCESS
+objectCreated( 35 , PORT )
+propertyUpdated( 35 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 35 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 32 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 32 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 33 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 34 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 35 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 33 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 34 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 35 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 33 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 34 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 35 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 32 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 33 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 35 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 34 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 32 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 32 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 32 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EQUATIONS ) : SUCCESS
+propertyUpdated( 32 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 33 , PORT , IMPLICIT ) : SUCCESS
+propertyUpdated( 34 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 35 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 33 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 34 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 35 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 33 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 34 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 35 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 33 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 34 , PORT , IMPLICIT ) : SUCCESS
+propertyUpdated( 35 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 33 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 34 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 35 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 33 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 34 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 35 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 29 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1151,3 +1230,89 @@ propertyUpdated( 29 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 31 , PORT )
 objectDeleted( 29 , BLOCK )
+o  = 
+o.graphics
+ ans  =
+orig = [0,0]
+sz = [3,2]
+flip = %t
+theta = 0
+exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],"""u1""","""I""","[""y1"";""y2""]","[""I"";""E""]","[""R"";""L""]",list("0.1","0.0001"),"[0;0]","generic",[])
+pin = 0
+pout = [0;0]
+pein = []
+peout = []
+gr_i = []
+id = ""
+in_implicit = "I"
+out_implicit = ["I";"E"]
+in_style = ""
+out_style = ["";""]
+in_label = ""
+out_label = ["";""]
+style = ""
+o.graphics.exprs
+ ans  =
+       ans(1)
+!MBLOCK  in  intype  out  outtype  param  paramv  pprop  nameF  funtxt  !
+       ans(2)
+ "u1"
+       ans(3)
+ "I"
+       ans(4)
+ ["y1";"y2"]
+       ans(5)
+ ["I";"E"]
+       ans(6)
+ ["R";"L"]
+       ans(7)
+        ans(7)(1)
+ 0.1
+        ans(7)(2)
+ 0.0001
+       ans(8)
+ [0;0]
+       ans(9)
+ generic
+       ans(10)
+    []
+o.model.equations
+ ans  =
+       ans(1)
+!modelica  model  inputs  outputs  parameters  !
+       ans(2)
+ generic
+       ans(3)
+ u1
+       ans(4)
+!y1  !
+!    !
+!y2  !
+       ans(5)
+        ans(5)(1)
+!R  !
+!   !
+!L  !
+        ans(5)(2)
+         ans(5)(2)(1)
+    0.1
+         ans(5)(2)(2)
+    0.0001
+// Check that all the model items are freed
+clear
+propertyUpdated( 32 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 32 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 33 , PORT )
+propertyUpdated( 32 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 32 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 34 , PORT )
+propertyUpdated( 32 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 32 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 32 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 35 , PORT )
+objectDeleted( 32 , BLOCK )

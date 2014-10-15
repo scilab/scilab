@@ -1348,34 +1348,6 @@ clk.model.rpar.objs(6).to
     2.    1.    1.
 // Check that all the model items are freed
 clear
-propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 11 , PORT )
-propertyUpdated( 10 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 12 , PORT )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 7 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 6 , BLOCK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 9 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 8 , BLOCK )
-objectDeleted( 1 , DIAGRAM )
-objectDeleted( 10 , BLOCK )
 propertyUpdated( 38 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1434,3 +1406,31 @@ propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 37 , LINK )
 objectDeleted( 22 , DIAGRAM )
 objectDeleted( 38 , BLOCK )
+propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 11 , PORT )
+propertyUpdated( 10 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 12 , PORT )
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 7 , PORT )
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 6 , BLOCK )
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 9 , PORT )
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 8 , BLOCK )
+objectDeleted( 1 , DIAGRAM )
+objectDeleted( 10 , BLOCK )

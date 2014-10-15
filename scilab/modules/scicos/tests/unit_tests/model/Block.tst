@@ -103,6 +103,12 @@ o.model.equations
 o.model.equations = modelica();
 o.model.equations
 
+// Test 'exprs' with Modelica Block
+o = MBLOCK("define")
+o.graphics
+o.graphics.exprs
+o.model.equations
+
 
 // Check that all the model items are freed
 clear

@@ -16,6 +16,7 @@
 #include <memory>
 
 #include "list.hxx"
+#include "tlist.hxx"
 #include "double.hxx"
 #include "string.hxx"
 
@@ -24,6 +25,7 @@
 #include "ports_management.hxx"
 
 extern "C" {
+#include "wchar.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -34,6 +36,17 @@ namespace view_scilab
 {
 namespace
 {
+
+const std::wstring MBLOCK (L"MBLOCK");
+const std::wstring in (L"in");
+const std::wstring intype (L"intype");
+const std::wstring out (L"out");
+const std::wstring outtype (L"outtype");
+const std::wstring param (L"param");
+const std::wstring paramv (L"paramv");
+const std::wstring pprop (L"pprop");
+const std::wstring nameF (L"nameF");
+const std::wstring funtxt (L"funtxt");
 
 struct orig
 {
@@ -211,13 +224,95 @@ struct exprs
         std::vector<std::string> exprs;
         controller.getObjectProperty(adaptee, BLOCK, EXPRS, exprs);
 
-        types::String* o = new types::String((int)exprs.size(), 1);
-        for (int i = 0; i < (int)exprs.size(); ++i)
+        if (exprs.size() < 10 || (!exprs.empty() && exprs[0] != "MBLOCK"))
         {
-            o->set(i, exprs[i].data());
+            // Simple case
+            types::String* o = new types::String((int)exprs.size(), 1);
+            for (int i = 0; i < (int)exprs.size(); ++i)
+            {
+                o->set(i, exprs[i].data());
+            }
+            return o;
         }
+        else
+        {
+            // Get and return a Modelica tlist
+            types::TList* o = new types::TList();
 
-        return o;
+            // Header, starting with "MBLOCK"
+            types::String* header = new types::String(1, 10);
+            header->set(0, MBLOCK.c_str());
+            header->set(1, in.c_str());
+            header->set(2, intype.c_str());
+            header->set(3, out.c_str());
+            header->set(4, outtype.c_str());
+            header->set(5, param.c_str());
+            header->set(6, paramv.c_str());
+            header->set(7, pprop.c_str());
+            header->set(8, nameF.c_str());
+            header->set(9, funtxt.c_str());
+            o->set(0, header);
+
+            // 'in'
+            types::String* inField = new types::String(exprs[1].c_str());
+            o->set(1, inField);
+
+            // 'intype'
+            types::String* intypeField = new types::String(exprs[2].c_str());
+            o->set(2, intypeField);
+
+            // 'out'
+            types::String* outField = new types::String(exprs[3].c_str());
+            o->set(3, outField);
+
+            // 'outtype'
+            types::String* outtypeField = new types::String(exprs[4].c_str());
+            o->set(4, outtypeField);
+
+            // 'param'
+            types::String* paramField = new types::String(exprs[5].c_str());
+            o->set(5, paramField);
+
+            // 'paramv'
+            types::List* paramvField = new types::List();
+            std::istringstream paramvSizeStr (exprs[6]);
+            int paramvSize;
+            paramvSizeStr >> paramvSize;
+            for (int i = 0; i < paramvSize; ++i)
+            {
+                types::String* paramvElement = new types::String(exprs[7 + i].c_str());
+                paramvField->set(i, paramvElement);
+            }
+            o->set(6, paramvField);
+
+            // 'pprop'
+            types::String* ppropField = new types::String(exprs[7 + paramvSize].c_str());
+            o->set(7, ppropField);
+
+            // 'nameF'
+            types::String* nameFField = new types::String(exprs[7 + paramvSize + 1].c_str());
+            o->set(8, nameFField);
+
+            // 'funtxt'
+            std::istringstream funtxtSizeStr (exprs[7 + paramvSize + 2]);
+            int funtxtSize;
+            funtxtSizeStr >> funtxtSize;
+
+            if (funtxtSize == 0)
+            {
+                // An empty 'funtxt' field returns an empty matrix
+                o->set(9, types::Double::Empty());
+                return o;
+            }
+            types::String* funtxtField = new types::String(funtxtSize, 1);
+            for (int i = 0; i < funtxtSize; ++i)
+            {
+                funtxtField->set(i, exprs[7 + paramvSize + 3 + i].c_str());
+            }
+            o->set(9, funtxtField);
+
+            return o;
+        }
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -261,6 +356,236 @@ struct exprs
             controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
             return true;
         }
+        else if (v->getType() == types::InternalType::ScilabTList)
+        {
+            types::TList* current = v->getAs<types::TList>();
+
+            // Check the header
+            types::String* header = current->getFieldNames();
+            if (header->getSize() != 10)
+            {
+                return false;
+            }
+            if (header->get(0) != MBLOCK)
+            {
+                return false;
+            }
+            if (header->get(1) != in)
+            {
+                return false;
+            }
+            if (header->get(2) != intype)
+            {
+                return false;
+            }
+            if (header->get(3) != out)
+            {
+                return false;
+            }
+            if (header->get(4) != outtype)
+            {
+                return false;
+            }
+            if (header->get(5) != param)
+            {
+                return false;
+            }
+            if (header->get(6) != paramv)
+            {
+                return false;
+            }
+            if (header->get(7) != pprop)
+            {
+                return false;
+            }
+            if (header->get(8) != nameF)
+            {
+                return false;
+            }
+            if (header->get(9) != funtxt)
+            {
+                return false;
+            }
+
+            std::vector<std::string> exprs (1, "MBLOCK");
+            char* c_str; // Buffer
+
+            // 'in'
+            if (current->get(1)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* inField = current->get(1)->getAs<types::String>();
+            if (inField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(inField->get(0));
+            std::string inFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(inFieldStored);
+
+            // 'intype'
+            if (current->get(2)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* intypeField = current->get(2)->getAs<types::String>();
+            if (intypeField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(intypeField->get(0));
+            std::string intypeFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(intypeFieldStored);
+
+            // 'out'
+            if (current->get(3)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* outField = current->get(3)->getAs<types::String>();
+            if (inField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(outField->get(0));
+            std::string outFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(outFieldStored);
+
+            // 'outtype'
+            if (current->get(4)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* outtypeField = current->get(4)->getAs<types::String>();
+            if (outtypeField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(outtypeField->get(0));
+            std::string outtypeFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(outtypeFieldStored);
+
+            // 'param'
+            if (current->get(5)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* paramField = current->get(5)->getAs<types::String>();
+            if (paramField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(paramField->get(0));
+            std::string paramFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(paramFieldStored);
+
+            // 'paramv'
+            if (current->get(6)->getType() != types::InternalType::ScilabList)
+            {
+                return false;
+            }
+            types::List* list = current->get(6)->getAs<types::List>();
+
+            size_t paramvSize = list->getSize();
+            exprs.resize(exprs.size() + 1 + paramvSize); // Allocation for the 'paramv' strings
+            std::ostringstream strParamv;
+            strParamv << paramvSize;
+            std::string paramvSizeStr = strParamv.str();
+            exprs[6] = paramvSizeStr; // Saving the size of the 'paramv' field'
+
+            for (size_t i = 0; i < paramvSize; ++i)
+            {
+                if (list->get(i)->getType() != types::InternalType::ScilabString)
+                {
+                    return false;
+                }
+                types::String* listElement = list->get(i)->getAs<types::String>();
+                c_str = wide_string_to_UTF8(listElement->get(0));
+                std::string paramvElement = std::string(c_str);
+                FREE(c_str);
+                exprs[7 + i] = paramvElement;
+            }
+
+            // 'pprop'
+            if (current->get(7)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* ppropField = current->get(7)->getAs<types::String>();
+            if (ppropField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(ppropField->get(0));
+            std::string ppropFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(ppropFieldStored);
+
+            // 'nameF'
+            if (current->get(8)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* nameFField = current->get(8)->getAs<types::String>();
+            if (nameFField->getSize() != 1)
+            {
+                return false;
+            }
+            c_str = wide_string_to_UTF8(nameFField->get(0));
+            std::string nameFFieldStored = std::string(c_str);
+            FREE(c_str);
+            exprs.push_back(nameFFieldStored);
+
+            // 'funtxt'
+            size_t funtxtSize;
+            std::ostringstream strFuntxt;
+            if (current->get(9)->getType() == types::InternalType::ScilabDouble)
+            {
+                types::Double* funtxtFieldDouble = current->get(9)->getAs<types::Double>();
+                if (funtxtFieldDouble->getSize() != 0)
+                {
+                    return false;
+                }
+                // Allow empty matrix for 'funtxt', storing a size "0"
+                funtxtSize = 0;
+                strFuntxt << funtxtSize;
+                std::string funtxtSizeStr = strFuntxt.str();
+                exprs.push_back(funtxtSizeStr);
+            }
+            else
+            {
+                if (current->get(9)->getType() != types::InternalType::ScilabString)
+                {
+                    return false;
+                }
+                types::String* funtxtField = current->get(9)->getAs<types::String>();
+
+                funtxtSize = funtxtField->getSize();
+                int exprsSize = exprs.size(); // Saving last index before resizing
+                exprs.resize(exprs.size() + 1 + funtxtSize); // Allocation for the 'funtxt' strings
+                strFuntxt << funtxtSize;
+                std::string funtxtSizeStr = strFuntxt.str();
+                exprs[exprsSize] = funtxtSizeStr; // Saving the size of the 'funtxt' field'
+
+                for (size_t i = 0; i < funtxtSize; ++i)
+                {
+                    c_str = wide_string_to_UTF8(funtxtField->get(i));
+                    std::string funtxtElement = std::string(c_str);
+                    FREE(c_str);
+                    exprs[exprsSize + 1 + i] = funtxtElement;
+                }
+            }
+
+            controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
+            return true;
+        }
+
         return false;
     }
 };
