@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 static int cmp( const void *a , const void *b)
 {
-    return strcmp(*(const char **)a, *(const char **)b );
+    return strcmp(*(char**)a, *(char**)b );
 }
 /*--------------------------------------------------------------------------*/
 static int cmpPos(char *str1, char *str2)
