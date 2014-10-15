@@ -340,7 +340,8 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::destroyInstance();
 
 #ifndef NDEBUG
-    types::Inspector::displayMemleak();
+    //uncomment to print mem leak log
+    //types::Inspector::displayMemleak();
 #endif
 
     //from ExitScilab()
