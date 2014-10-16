@@ -344,10 +344,12 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     //types::Inspector::displayMemleak();
 #endif
 
-    //from ExitScilab()
+    // cleanup Java dependent features
     saveCWDInPreferences();
     clearScilabPreferences();
+    TerminateHistoryManager();
 
+    // stop the JVM
     if (_pSEI->iNoJvm == 0)
     {
         //dynamic_TerminateTclTk();
@@ -368,11 +370,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     //destroy function manager
     destroyfunctionManagerInstance();
     /* TerminateCorePart2 end */
-
-    /*
-     * History manager cleanup
-     */
-    TerminateHistoryManager();
 
     /*
     * Cleanup function for the XML library.
