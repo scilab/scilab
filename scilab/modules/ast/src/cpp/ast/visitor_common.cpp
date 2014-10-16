@@ -1668,6 +1668,9 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 case InternalType::ScilabSparseBool :
                     pOut = SparseBool::insertNew(_pArgs, _pInsert);
                     break;
+                case InternalType::ScilabHandle:
+                    pOut = GraphicHandle::insertNew(_pArgs, _pInsert);
+                    break;
                 default :
                 {
                     // overload
@@ -2034,7 +2037,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
                 if (pCall)
                 {
-                    Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
+                    Callable::ReturnValue ret = pCall->call(in, opt, 1, out, &exec);
                     if (ret == Callable::OK)
                     {
                         pRet = _pVar;
@@ -2043,7 +2046,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
             else
             {
-                pRet = _pVar->getAs<types::GraphicHandle>()->extract(_pArgs);
+                pRet = _pVar->getAs<types::GraphicHandle>()->insert(_pArgs, _pInsert);
             }
         }
         else if (_pVar->isUserType())
