@@ -43,7 +43,7 @@ extern "C"
 #include "TerminateGraphics.h"
 #include "loadBackGroundClassPath.h"
 #include "sci_tmpdir.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "setgetlanguage.h"
 #include "InitializeConsole.h"
 #include "InitializeHistoryManager.h"
@@ -118,6 +118,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
 int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
+    ConfigVariable::setStartProcessing(true);
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -237,6 +238,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         execScilabStartTask(_pSEI->iSerialize != 0);
     }
 
+    ConfigVariable::setStartProcessing(false);
     int pause = 0;
 
     //set prompt value
@@ -271,7 +273,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         scilabErrorW(se.GetErrorMessage().c_str());
     }
 
-    ConfigVariable::setStartFinished(true);
     ConfigVariable::setPromptMode(2);
     return iMainRet;
 }
@@ -303,6 +304,7 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 
 void StopScilabEngine(ScilabEngineInfo* _pSEI)
 {
+    ConfigVariable::setEndProcessing(true);
 #ifdef _MSC_VER
     /* bug 3672 */
     /* Create a Mutex (closing scilab)
@@ -397,6 +399,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
      */
     terminateMutexClosingScilab();
 #endif
+    ConfigVariable::setEndProcessing(false);
 }
 
 static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)

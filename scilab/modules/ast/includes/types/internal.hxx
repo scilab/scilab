@@ -23,6 +23,7 @@
 extern "C"
 {
 #include "dynlib_ast.h"
+#include "configvariable_interface.h"
 }
 
 #include "exp.hxx" // for invoke
@@ -36,6 +37,7 @@ extern "C"
 
 //#define _SCILAB_DEBUGREF_
 #ifdef _SCILAB_DEBUGREF_
+//#define _SCILAB_DEBUGREF_WITHOUT_START_END
 #define DecreaseRef() _decreaseref(__FILE__, __LINE__)
 #define IncreaseRef() _increaseref(__FILE__, __LINE__)
 #define killMe() _killme(__FILE__, __LINE__)
@@ -181,15 +183,30 @@ public :
     };
 
 protected :
-    InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0)
+    InternalType() : m_iRef(0), m_bAllowDelete(true), m_bPrintFromStart(true), m_iSavePrintState(0), m_iRows1PrintState(0), m_iCols1PrintState(0), m_iRows2PrintState(0), m_iCols2PrintState(0), bKillMe(false)
     {
 #ifdef _SCILAB_DEBUGREF_
-        std::cout << "new_IT " << m_iRef << " " << (void*)this << std::endl;
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0)
+#endif
+        {
+            std::cout << "new_IT " << m_iRef << " " << (void*)this << std::endl;
+        }
 #endif
     }
 
 public :
-    virtual                         ~InternalType() {}
+    virtual                         ~InternalType()
+    {
+#ifdef _SCILAB_DEBUGREF_
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0 && bKillMe == false)
+#endif
+        {
+            std::cout << "delete_IT " << m_iRef << " " << (void*)this << std::endl;
+        }
+#endif
+    }
     virtual void                    whoAmI(void)
     {
         std::cout << "types::Inernal";
@@ -221,9 +238,16 @@ public :
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
     {
-        std::cout << "killme " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0)
+#endif
+        {
+            std::cout << "killme " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+        }
+
         if (isDeletable())
         {
+            bKillMe = true;
             delete this;
         }
     }
@@ -231,7 +255,12 @@ public :
     inline void _increaseref(const char * f, int l)
     {
         m_iRef++;
-        std::cout << "incref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0)
+#endif
+        {
+            std::cout << "incref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+        }
     }
 
     inline void _decreaseref(const char * f, int l)
@@ -240,7 +269,13 @@ public :
         {
             m_iRef--;
         }
-        std::cout << "decref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+
+#if defined(_SCILAB_DEBUGREF_WITHOUT_START_END)
+        if (getStartProcessing() == 0 && getEndProcessing() == 0)
+#endif
+        {
+            std::cout << "decref " << m_iRef << " " << (void*)this << " in " << f << " at line " << l << std::endl;
+        }
     }
 #else
 
@@ -556,6 +591,8 @@ protected :
     int                     m_iCols1PrintState;
     int                     m_iRows2PrintState;
     int                     m_iCols2PrintState;
+
+    bool bKillMe;
 
 };
 

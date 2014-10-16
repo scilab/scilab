@@ -18,7 +18,7 @@
 #include "MALLOC.h"
 #include "gw_console.h"
 #include "ScilabLinesUpdate.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 static int sci_lines_no_rhs(char *fname, void* pvApiCtx);
 static int sci_lines_one_rhs(char *fname, void* pvApiCtx);

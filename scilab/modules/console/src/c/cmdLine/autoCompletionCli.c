@@ -27,7 +27,7 @@
 #include "getPartLine.h"
 #include "getCommonPart.h"
 #include "localization.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "HistoryManager.h"
 #include "ConsoleRead.h"
