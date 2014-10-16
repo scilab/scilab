@@ -29,7 +29,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "interpolation_functions.h"
 #include "interpolation.h"
 #include "basic_functions.h" // vDset

@@ -23,7 +23,7 @@
 #include "sci_path.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "stricmp.h"
 #include "os_strdup.h"
 #include "getshortpathname.h"

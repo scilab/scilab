@@ -20,7 +20,7 @@ extern "C"
 #include "prompt.h"
 #include "TermReadAndProcess.h"
 #include "os_strdup.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "diary.h"
 }

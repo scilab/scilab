@@ -94,16 +94,10 @@ libsciast_la_SOURCES = \
     src/cpp/system_env/context_get.cpp \
     src/cpp/system_env/configvariable.cpp \
     src/cpp/system_env/sci_path.cpp \
-    src/cpp/system_env/sci_ieee.cpp \
     src/cpp/system_env/lasterror.cpp \
-    src/cpp/system_env/sci_mode.cpp \
-    src/cpp/system_env/promptmode.cpp \
-    src/cpp/system_env/sci_simpMode.cpp \
     src/cpp/system_env/home.cpp \
     src/cpp/system_env/sci_tmpdir.cpp \
-    src/cpp/system_env/reference_modules.cpp \
-    src/cpp/system_env/formatmode.cpp \
-    src/cpp/system_env/warningmode.cpp
+    src/cpp/system_env/configvariable_interface.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp
@@ -306,22 +300,15 @@ includes/symbol/context.hxx \
 includes/symbol/variables.hxx \
 includes/symbol/libraries.hxx \
 includes/system_env/setenvvar.h \
-includes/system_env/sci_simpMode.h \
 includes/system_env/dynamic_module.h \
-includes/system_env/reference_modules.h \
 includes/system_env/sci_tmpdir.h \
 includes/system_env/context_get.h \
 includes/system_env/lasterror.h \
-includes/system_env/promptmode.h \
 includes/system_env/sci_path.h \
-includes/system_env/sci_mode.h \
-includes/system_env/sci_ieee.h \
-includes/system_env/formatmode.h \
 includes/system_env/sci_home.h \
-includes/system_env/warningmode.h \
 includes/system_env/configvariable.hxx \
-includes/system_env/home.h
-
+includes/system_env/home.h \
+includes/system_env/configvariable_interface.h
 
 if BUILD_PARSER
 

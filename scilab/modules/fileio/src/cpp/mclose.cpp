@@ -21,10 +21,10 @@ extern "C"
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "charEncoding.h"
 
-extern int C2F(clunit)(int* , const char*, int*, int);
+    extern int C2F(clunit)(int* , const char*, int*, int);
 }
 /*--------------------------------------------------------------------------*/
 int mcloseCurrentFile()
@@ -65,14 +65,14 @@ int mclose(int _iID)
     types::File* pFile = FileManager::getFile(_iID);
     if (pFile != NULL)
     {
-        if(pFile->getFileType() == 1)
+        if (pFile->getFileType() == 1)
         {
             int iFileNum = -_iID; // -_iID to close file _iID
             const char* stFilename = ""; // file will be closed by this num
             int iMode = 0; // not used in close mode
             return C2F(clunit)(&iFileNum, stFilename, &iMode, 1L);
         }
-        else if(pFile->getFileType() == 2)
+        else if (pFile->getFileType() == 2)
         {
             int iRet = fclose(pFile->getFiledesc());
 
@@ -110,7 +110,7 @@ void C2F(mclose) (int *fd, double *res)
         break;
         default :
         {
-            if(mclose(*fd))
+            if (mclose(*fd))
             {
                 *res = -1.0;
             }

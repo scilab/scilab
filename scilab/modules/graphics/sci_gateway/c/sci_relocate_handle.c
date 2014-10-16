@@ -24,7 +24,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 
 int sci_relocate_handle(char * fname, void *pvApiCtx)

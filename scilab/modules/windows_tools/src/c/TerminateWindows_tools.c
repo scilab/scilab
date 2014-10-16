@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "TerminateWindows_tools.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "console.h"
 #include "InnosetupMutex.h"
 /*--------------------------------------------------------------------------*/

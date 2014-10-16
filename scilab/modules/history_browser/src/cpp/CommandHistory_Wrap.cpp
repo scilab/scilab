@@ -17,7 +17,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "loadOnUseClassPath.h"
 #include "BOOL.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 };
 /*------------------------------------------------------------------------*/
 using namespace org_scilab_modules_history_browser;

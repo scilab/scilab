@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Library Include="..\..\bin\blasplus.lib" />
@@ -439,40 +439,19 @@
     <ClInclude Include="includes\system_env\dynamic_module.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
-    <ClInclude Include="includes\system_env\formatmode.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
     <ClInclude Include="includes\system_env\home.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
     <ClInclude Include="includes\system_env\lasterror.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
-    <ClInclude Include="includes\system_env\promptmode.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\system_env\reference_modules.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
     <ClInclude Include="includes\system_env\sci_home.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\system_env\sci_ieee.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\system_env\sci_mode.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
     <ClInclude Include="includes\system_env\sci_path.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
-    <ClInclude Include="includes\system_env\sci_simpMode.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
     <ClInclude Include="includes\system_env\sci_tmpdir.h">
-      <Filter>Header Files\system_env</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\system_env\warningmode.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
     <ClInclude Include="includes\symbol\context.hxx">
@@ -634,6 +613,9 @@
     <ClInclude Include="includes\exps\daxpyexp.hxx">
       <Filter>Header Files\exps</Filter>
     </ClInclude>
+    <ClInclude Include="includes\system_env\configvariable_interface.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -768,43 +750,22 @@
     <ClCompile Include="src\cpp\system_env\dynamic_module.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\system_env\formatmode.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\system_env\home.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\lasterror.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\system_env\promptmode.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\system_env\reference_modules.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\system_env\sci_home.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\system_env\sci_ieee.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\system_env\sci_mode.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\system_env\sci_path.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\system_env\sci_simpMode.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\sci_tmpdir.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\setenvvar.cpp">
-      <Filter>Source Files\system_env</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\system_env\warningmode.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\parse\parser.cpp">
@@ -908,6 +869,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\operations\types_dotdivide.cpp">
       <Filter>Source Files\operations</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\configvariable_interface.cpp">
+      <Filter>Source Files\system_env</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

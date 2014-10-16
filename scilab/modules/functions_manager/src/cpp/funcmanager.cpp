@@ -24,7 +24,7 @@
 #include <libxml/xmlreader.h>
 
 #include "sci_malloc.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"

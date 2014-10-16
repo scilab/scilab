@@ -32,7 +32,7 @@ extern "C"
 #include "h5_attributeConstants.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "splitpath.h"
 #include "scicurdir.h"
 }

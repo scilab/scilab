@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "invert_matrix.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "doublecomplex.h"
 }
 /*--------------------------------------------------------------------------*/

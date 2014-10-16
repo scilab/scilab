@@ -15,7 +15,7 @@ extern "C" {
 #include "checkodeerror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 }
 // return 0 = ok, return 1 = error, return 2 = warning
 int checkOdeError(int meth, int istate)

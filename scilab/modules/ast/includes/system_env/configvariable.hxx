@@ -333,13 +333,16 @@ public :
     static void setCurrentClcg4(int _currentClcg4);
     static int getCurrentClcg4();
 
-    //Start finish flag
+    //Start and end finish flag
 private :
-    static bool m_bStartFinished;
+    static bool m_bStartProcessing;
+    static bool m_bEndProcessing;
 
 public :
-    static void setStartFinished(bool _bStartFinished);
-    static bool getStartFinished();
+    static void setStartProcessing(bool _bStartProcessing);
+    static bool getStartProcessing();
+    static void setEndProcessing(bool _bEndFinished);
+    static bool getEndProcessing();
 
     // ieee
 private :

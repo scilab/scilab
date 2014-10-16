@@ -13,7 +13,7 @@
 #include <string.h>
 #include "getversion.h"
 #include "version.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "scilabDefaults.h"
 #include "getenvc.h"
 #include "os_strdup.h"

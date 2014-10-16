@@ -21,7 +21,7 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "elem_common.h"
 }
 

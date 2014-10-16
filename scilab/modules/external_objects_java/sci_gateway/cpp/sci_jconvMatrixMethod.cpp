@@ -15,7 +15,7 @@
 #include "ScilabGateway.hxx"
 
 extern "C" {
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
 }

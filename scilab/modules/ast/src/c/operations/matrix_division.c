@@ -10,7 +10,7 @@
  *
  */
 
-#include "sci_ieee.h"
+#include "configvariable_interface.h"
 #include "matrix_division.h"
 #include <string.h>
 

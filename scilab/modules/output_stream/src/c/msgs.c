@@ -11,7 +11,7 @@
  */
 
 #include <string.h>
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "stack-def.h" /* C2F(cha1) */
 #include "stack-c.h" /* Fin */

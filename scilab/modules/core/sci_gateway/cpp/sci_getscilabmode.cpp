@@ -16,7 +16,7 @@
 
 extern "C"
 {
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "os_strdup.h"

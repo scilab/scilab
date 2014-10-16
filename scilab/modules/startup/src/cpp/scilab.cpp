@@ -28,7 +28,7 @@ extern "C"
 #include "initMacOSXEnv.h"
 #endif
 #include "InitScilab.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "scilabRead.h"
 #include "ConsoleRead.h"
 #include "version.h"

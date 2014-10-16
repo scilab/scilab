@@ -26,7 +26,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int scichdirW(wchar_t *wcpath)
