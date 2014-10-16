@@ -282,6 +282,11 @@ bool ExpHistory::setCurrent(types::InternalType* _pITCurrent)
         return false;
     }
 
+    if (m_pITCurrent)
+    {
+        m_pITCurrent->killMe();
+    }
+
     m_pITCurrent = _pITCurrent;
     return true;
 }

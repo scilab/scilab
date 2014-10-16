@@ -15,7 +15,6 @@
 
 extern "C"
 {
-#include "configvariable_interface.h"
 #include <stdio.h>
 #include "charEncoding.h"
 #include "sci_malloc.h"

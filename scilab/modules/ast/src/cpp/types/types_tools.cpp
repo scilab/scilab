@@ -62,7 +62,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     //not enough information to compute indexes.
                     _pArgsOut->push_back(NULL);
                     bUndefine = true;
-                    delete pIL;
+                    pIL->killMe();;
                     continue;
                 }
                 //evalute polynom with "MaxDim"
@@ -86,7 +86,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             }
 
             pCurrentArg = pIL->extractFullMatrix()->getAs<Double>();
-            delete pIL;
+            pIL->killMe();
         }
         else if (pIT->isString())
         {
@@ -187,7 +187,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
         if (bDeleteNeeded)
         {
-            delete pIT;
+            pIT->killMe();
         }
 
         if (pCurrentArg)
