@@ -23,10 +23,18 @@ Removed Functions
 * relocate_handle removed.
 
 
+Compilation
+===========
+
+* Required version of JOGL updated to 2.2.4 (See Bug #13586).
+
+
 Scilab Bug Fixes
 ================
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
+
+* Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
 
 * Bug #13605 fixed - harmean returned an inverted result when called with parameters "r" or "c".
 
