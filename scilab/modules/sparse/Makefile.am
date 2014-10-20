@@ -3,7 +3,14 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
-SPARSE_C_SOURCES =
+SPARSE_C_SOURCES = \
+src/c/spUtils.c \
+src/c/lu.c \
+src/c/spFactor.c \
+src/c/spBuild.c \
+src/c/spOutput.c \
+src/c/spAllocate.c \
+src/c/spSolve.c
 
 SPARSE_FORTRAN_SOURCES = \
     src/fortran/isort1.f \
@@ -23,10 +30,12 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_spget.cpp \
     sci_gateway/cpp/sci_spzeros.cpp \
     sci_gateway/cpp/sci_spones.cpp \
+    sci_gateway/cpp/sci_lufact.cpp \
     sci_gateway/cpp/sci_ordmmd.cpp
 
 
 libscisparse_la_CPPFLAGS = \
+    -I$(srcdir)/src/c/ \
     -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
@@ -35,6 +44,7 @@ libscisparse_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \

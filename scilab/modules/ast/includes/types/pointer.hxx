@@ -44,7 +44,7 @@ public :
 
     std::wstring getShortTypeStr()
     {
-        return L"p";
+        return L"ptr";
     }
 
     bool isPointer(void)
