@@ -162,10 +162,6 @@ InternalType* List::extract(typed_list* _pArgs)
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
-    if (iSeqCount == 0)
-    {
-        //outList.push_back(Double::Empty());
-    }
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
@@ -181,13 +177,7 @@ InternalType* List::extract(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg])
-        {
-            pArg[iArg]->killMe();
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return outList;
 }
@@ -209,17 +199,23 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         //do nothing
         return this;
     }
     else if (iSeqCount > 1)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         std::wostringstream os;
         os << _W("Unable to insert multiple item in a list.\n");
         throw ast::ScilabError(os.str());
     }
     else if (iSeqCount < 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -229,6 +225,8 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         //delete item
         if (idx == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //do nothing
             return this;
         }
@@ -247,6 +245,8 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         //insert item
         if (idx == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             std::wostringstream os;
             os << _W("Index out of bounds.\n");
             throw ast::ScilabError(os.str());
@@ -301,13 +301,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     m_iSize = (int)m_plData->size();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg])
-        {
-            pArg[iArg]->killMe();
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return this;
 }

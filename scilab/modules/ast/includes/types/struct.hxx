@@ -137,6 +137,7 @@ private :
     virtual void                deleteAll();
     virtual void                deleteImg();
     virtual SingleStruct**      allocData(int _iSize);
+    virtual void                deleteData(SingleStruct* data);
 
     bool                        m_bDisableCloneInCopyValue;
 

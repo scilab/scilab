@@ -66,7 +66,7 @@ Function::ReturnValue sci_getshortpathname(typed_list &in, int _iRetCount, typed
     }
     else
     {
-        delete pOut2;
+        pOut2->killMe();
     }
 
     return Function::OK;

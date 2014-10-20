@@ -625,6 +625,8 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
     }
 
@@ -679,13 +681,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     delete[] piMaxDim;
     delete[] piCountDim;

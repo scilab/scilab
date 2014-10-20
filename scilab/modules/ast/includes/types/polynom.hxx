@@ -130,7 +130,7 @@ private :
     virtual void            deleteAll();
     virtual void            deleteImg();
     virtual SinglePoly**    allocData(int _iSize);
-
+    virtual void            deleteData(SinglePoly* data);
 };
 }
 

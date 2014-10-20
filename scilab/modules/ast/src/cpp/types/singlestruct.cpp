@@ -23,6 +23,9 @@ namespace types
 {
 SingleStruct::SingleStruct()
 {
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SingleStruct::~SingleStruct()
@@ -33,12 +36,12 @@ SingleStruct::~SingleStruct()
         for (iterFieldData = m_Data.begin(); iterFieldData != m_Data.end() ; iterFieldData++)
         {
             (*iterFieldData)->DecreaseRef();
-            if ((*iterFieldData)->isDeletable())
-            {
-                delete (*iterFieldData);
-            }
+            (*iterFieldData)->killMe();
         }
     }
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
@@ -54,6 +57,9 @@ SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
         m_Data.push_back(*iterFieldData);
         m_Data.back()->IncreaseRef();
     }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 std::list<InternalType *> SingleStruct::getData()
@@ -98,10 +104,7 @@ bool SingleStruct::set(const std::wstring& _sKey, InternalType *_typedValue)
         if (pOld != NULL)
         {
             pOld->DecreaseRef();
-            if (pOld->isDeletable())
-            {
-                delete pOld;
-            }
+            pOld->killMe();
         }
 
         if (_typedValue)
@@ -214,11 +217,7 @@ bool SingleStruct::removeField(const std::wstring& _sKey)
         if (*iterFieldNames == _sKey)
         {
             (*iterFieldData)->DecreaseRef();
-            if ((*iterFieldData)->isDeletable())
-            {
-                delete (*iterFieldData);
-            }
-
+            (*iterFieldData)->killMe();
             continue;
         }
 
@@ -333,5 +332,4 @@ bool SingleStruct::operator!=(const InternalType& it)
 {
     return !(*this == it);
 }
-
 }

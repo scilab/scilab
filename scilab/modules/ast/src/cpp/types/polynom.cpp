@@ -999,5 +999,13 @@ SinglePoly** Polynom::allocData(int _iSize)
     memset(pData, 0x00, _iSize * sizeof(SinglePoly*));
     return pData;
 }
+
+void Polynom::deleteData(SinglePoly* data)
+{
+    if (data)
+    {
+        data->killMe();
+    }
+}
 }
 
