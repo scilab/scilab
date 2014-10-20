@@ -24,7 +24,6 @@
 #include <libxml/xmlreader.h>
 
 #include "sci_malloc.h"
-#include "configvariable_interface.h"
 #include "funcmanager.hxx"
 #include "configvariable.hxx"
 #include "module_declaration.hxx"
@@ -34,6 +33,7 @@
 extern "C"
 {
 #include "findfiles.h"
+#include "configvariable_interface.h"
 #ifndef _MSC_VER
 #include "stricmp.h"
 #endif
