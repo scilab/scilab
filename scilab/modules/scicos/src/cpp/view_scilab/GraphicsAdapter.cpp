@@ -649,19 +649,13 @@ struct peout
 struct gr_i
 {
 
-    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
+    static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) controller;
-
         return adaptor.getGrIContent();
     }
 
-    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
+    static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) controller;
-
         adaptor.setGrIContent(v->clone());
         return true;
     }

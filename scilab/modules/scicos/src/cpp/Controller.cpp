@@ -86,12 +86,9 @@ Controller::Controller()
     }
 }
 
-Controller::Controller(const Controller& c)
+Controller::Controller(const Controller& /*c*/)
 {
     // _instance is already initialized
-
-    // silent unused parameter warnings
-    (void) c;
 }
 
 Controller::~Controller()

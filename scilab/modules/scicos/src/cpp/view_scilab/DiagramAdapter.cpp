@@ -227,20 +227,13 @@ struct version
 struct contrib
 {
 
-    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
+    static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) controller;
-
         return adaptor.getContribContent();
     }
 
-    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
+    static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) v;
-        (void) controller;
-
         adaptor.setContribContent(v->clone());
         return true;
     }

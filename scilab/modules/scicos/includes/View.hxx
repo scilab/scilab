@@ -30,13 +30,8 @@ public:
     virtual void objectDeleted(const ScicosID& uid, kind_t k) = 0;
     virtual void objectUpdated(const ScicosID& uid, kind_t k) = 0;
     virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p) = 0;
-    virtual void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
+    virtual void propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/, update_status_t /*u*/)
     {
-        // silent unused parameters warnings
-        (void) uid;
-        (void) k;
-        (void) p;
-        (void) u;
     };
 };
 

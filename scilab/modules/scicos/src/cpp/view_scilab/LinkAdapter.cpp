@@ -676,12 +676,10 @@ bool is_valid(types::Double* o)
 struct from
 {
 
-    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
+    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) controller;
-
         link_t from_content = adaptor.getFrom();
+
         double* data;
         types::Double* o = new types::Double(1, 3, &data);
 
@@ -729,12 +727,10 @@ struct from
 struct to
 {
 
-    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
+    static types::InternalType* get(const LinkAdapter& adaptor, const Controller& /*controller*/)
     {
-        // silent unused parameter warnings
-        (void) controller;
-
         link_t to_content = adaptor.getTo();
+
         double* data;
         types::Double* o = new types::Double(1, 3, &data);
 
