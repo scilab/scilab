@@ -68,13 +68,14 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
     {
         Library* lib = loadlib(pwstPathLib);
         FREE(pstPath);
-        FREE(pwstPathLib);
 
         if (lib == NULL)
         {
-            Scierror(999, _("%s: Wrong file type.\n"), "load");
+            Scierror(999, _("%s: Wrong file type \"%ls\".\n"), "load", pwstPathLib);
+            FREE(pwstPathLib);
             return Function::Error;
         }
+        FREE(pwstPathLib);
     }
 
     return Function::OK;

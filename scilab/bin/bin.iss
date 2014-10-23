@@ -19,6 +19,11 @@ Source: bin\iconv.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcr71.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 #endif
 
+;Visual C++ 2013 redist libraries
+Source: bin\msvcp120.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\msvcr120.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\vccorlib120.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+
 ;Visual C++ 2012 redist libraries
 Source: bin\msvcp110.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\msvcr110.DLL; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
