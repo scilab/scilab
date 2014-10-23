@@ -273,15 +273,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
     }
 
     /**
-     * Add a member (dockable element) to container and returns its index
-     * @param member the member to add
-     * @return index of member in ArrayList
-     */
-    public int addMember(TextBox member) {
-        return this.addMember((SwingScilabTextBox) member.getAsSimpleTextBox());
-    }
-
-    /**
      * Add a callback to the Frame
      * @param callback the callback to set.
      */
@@ -591,6 +582,7 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
         if (status) {
             // Enable the frame
             super.setEnabled(status);
+            panel.setEnabled(status);
             // Enable its children according to their __GO_UI_ENABLE__ property
             Integer[] children = (Integer[]) GraphicController.getController().getProperty(uid, __GO_CHILDREN__);
             for (int kChild = 0; kChild < children.length; kChild++) {
@@ -603,8 +595,9 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
         } else {
             // Disable the frame
             super.setEnabled(status);
+            panel.setEnabled(status);
             // Disable its children
-            Component[] components = getComponents();
+            Component[] components = panel.getComponents();
             for (int compIndex = 0; compIndex < components.length; compIndex++) {
                 components[compIndex].setEnabled(false);
             }
