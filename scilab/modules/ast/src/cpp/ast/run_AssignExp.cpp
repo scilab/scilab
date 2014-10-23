@@ -263,14 +263,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //create a new AssignExp and run it
                 types::InternalType* pIT = exec.getResult(i);
-                //protect temporary result from delete
-                pIT->IncreaseRef();
                 AssignExp pAssign((*it)->getLocation(), *(*it), *const_cast<Exp*>(&e.getRightExp()), pIT);
                 pAssign.setLrOwner(false);
                 pAssign.setVerbose(e.isVerbose());
                 pAssign.accept(*this);
-                //unprotect temporary result
-                pIT->DecreaseRef();
                 //clear result to take care of [n,n]
                 exec.setResult(i, NULL);
             }
