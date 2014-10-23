@@ -43,5 +43,6 @@ CPP_GATEWAY_PROTOTYPE(sci_spones);
 CPP_GATEWAY_PROTOTYPE(sci_full);
 CPP_GATEWAY_PROTOTYPE(sci_ordmmd);
 CPP_GATEWAY_PROTOTYPE(sci_lufact);
+CPP_GATEWAY_PROTOTYPE(sci_lusolve);
 
 #endif /* !__SPARSE_GW_HXX__ */

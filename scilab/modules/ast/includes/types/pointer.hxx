@@ -30,6 +30,12 @@ public :
         m_pvData = _pvData;
     }
 
+    Pointer(int _rows, int _cols, void* _pvData)
+    {
+        m_iRows = _rows;
+        m_iCols = _cols;
+        m_pvData = _pvData;
+    }
     virtual ~Pointer() {}
 
     bool hasToString()
