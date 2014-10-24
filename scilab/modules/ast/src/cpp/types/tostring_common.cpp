@@ -228,7 +228,7 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
     }
 
     const wchar_t* pSign = MINUS_STRING;
-    if (_dblVal >= 0)
+    if (_dblVal >= 0 || ISNAN(_dblVal))
     {
         if (_pDF->bPrintPlusSign)
         {
