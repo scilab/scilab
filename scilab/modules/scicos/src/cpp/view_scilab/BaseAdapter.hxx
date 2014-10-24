@@ -19,6 +19,7 @@
 #include <sstream>
 #include <memory>
 
+#include "double.hxx"
 #include "user.hxx"
 #include "internal.hxx"
 #include "tlist.hxx"
@@ -253,7 +254,6 @@ public:
     virtual std::wstring getShortTypeStr() = 0;
 
 private:
-
     types::InternalType* clone()
     {
         return new Adaptor(*static_cast<Adaptor*>(this));
@@ -303,7 +303,33 @@ private:
         }
         else
         {
-            // TO DO : management other type for arguments like a scalar or matrix of double
+            if ((*_pArgs)[0]->isDouble())
+            {
+                types::Double* index = (*_pArgs)[0]->getAs<types::Double>();
+
+                if (index->get(0) == 1)
+                {
+                    // When _pArgs is '1', return the list of the property names of the Adaptor
+
+                    // Sort the properties before extracting them
+                    typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+                    std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+                    // Allocate the return
+                    types::String* pOut = new types::String(1, properties.size());
+
+                    int i = 0;
+                    for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++i)
+                    {
+                        pOut->set(i, it->name.data());
+                    }
+                    return pOut;
+                }
+            }
+            else
+            {
+                // TO DO : management other type for arguments like a scalar or matrix of double
+            }
         }
 
         return NULL;
@@ -344,12 +370,13 @@ private:
 
     bool hasToString()
     {
-        // allow scilab to call toString of this class
-        return true;
+        // Do not allow scilab to call toString of this class
+        return false;
     }
 
     bool toString(std::wostringstream& ostr)
     {
+        // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 

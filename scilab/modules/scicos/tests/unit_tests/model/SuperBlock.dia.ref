@@ -263,6 +263,50 @@ propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 5 , PORT )
 objectDeleted( 4 , BLOCK )
 sb  = 
+GUI     : SUPER_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = 
+          pin = 0
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = "E"
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
+          style = ""
+Model   : 
+          super type: 0
+          in = 1
+          in2 = 1
+          intyp = 1
+          out = 1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar : SuperBlock
+          ipar = []
+          opar = list()
+          blocktype = "h"
+          firing = []
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 sb.graphics
  ans  =
 orig = [0,0]
@@ -317,6 +361,18 @@ sb.doc
 // Access the contained diagram's fields
 sb.model.rpar
  ans  =
+wpar = []
+title = ["Super Block";""]
+tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tf = 100000
+context = []
+void1 = []
+options = tlist("scsopt")
+void2 = []
+void3 = []
+doc = list()
+1     IN_f
+2     OUT_f
 sb.model.rpar.props
  ans  =
 wpar = []
@@ -332,7 +388,95 @@ doc = list()
 sb.model.rpar.objs
  ans  =
        ans(1)
+GUI     : IN_f
+Graphics: 
+          orig = [40,40]
+          sz = [20,20]
+          flip = %t
+          theta = 0
+          exprs = "1"
+          pin = []
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = []
+          out_implicit = "E"
+          in_style = 
+          out_style = ""
+          in_label = 
+          out_label = ""
+          style = ""
+Model   : 
+          input type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = -1
+          out2 = -2
+          outtyp = -1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = []
+          ipar = 1
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
        ans(2)
+GUI     : OUT_f
+Graphics: 
+          orig = [240,40]
+          sz = [20,20]
+          flip = %t
+          theta = 0
+          exprs = "1"
+          pin = 0
+          pout = []
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = []
+          in_style = ""
+          out_style = 
+          in_label = ""
+          out_label = 
+          style = ""
+Model   : 
+          output type: 0
+          in = -1
+          in2 = -2
+          intyp = -1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = []
+          ipar = 1
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 sb.model.rpar.objs(1).graphics
  ans  =
 orig = [40,40]
@@ -1126,6 +1270,50 @@ propertyUpdated( 18 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 objectDeleted( 21 , PORT )
 objectDeleted( 18 , BLOCK )
 clk  = 
+GUI     : CLOCK_c
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = 
+          pin = []
+          pout = []
+          pein = []
+          peout = 0
+          gr_i = []
+          id = ""
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          csuper type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = []
+          evtout = 1
+          state = []
+          dstate = []
+          odstate = list()
+          rpar : SuperBlock
+          ipar = []
+          opar = list()
+          blocktype = "h"
+          firing = 0
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 clk.graphics
  ans  =
 orig = [0,0]
@@ -1173,6 +1361,19 @@ equations = list()
 uid = ""
 clk.model.rpar
  ans  =
+wpar = []
+title = ["Untitled";""]
+tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tf = 100000
+context = []
+void1 = []
+options = tlist("scsopt")
+void2 = []
+void3 = []
+doc = list()
+1     CLKOUT_f
+2     EVTDLY_c
+4     CLKSPLIT_f
 clk.model.rpar.props
  ans  =
 wpar = []
@@ -1188,11 +1389,167 @@ doc = list()
 clk.model.rpar.objs
  ans  =
        ans(1)
+GUI     : CLKOUT_f
+Graphics: 
+          orig = [399,162]
+          sz = [20,20]
+          flip = %t
+          theta = 0
+          exprs = "1"
+          pin = []
+          pout = []
+          pein = 5
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          output type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = []
+          ipar = 1
+          opar = list()
+          blocktype = "d"
+          firing = []
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
        ans(2)
+GUI     : EVTDLY_c
+Graphics: 
+          orig = [320,232]
+          sz = [40,40]
+          flip = %t
+          theta = 0
+          exprs = ["0.1";"0.1"]
+          pin = []
+          pout = []
+          pein = 6
+          peout = 3
+          gr_i = []
+          id = ""
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          evtdly4 type: 4
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = 1
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0.1;0.1]
+          ipar = []
+          opar = list()
+          blocktype = "d"
+          firing = 0.1
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
        ans(3)
+Link    :
+          xx: 340 340 380.71
+          yy: 226.29 172 172
+          id: 
+          thick: 0 0
+          ct: 5 -1
+          from: 2 1 0
+          to: 4 1 1
        ans(4)
+GUI     : CLKSPLIT_f
+Graphics: 
+          orig = [0,0]
+          sz = [0.33333333,0.33333333]
+          flip = %t
+          theta = 0
+          exprs = 
+          pin = []
+          pout = []
+          pein = 3
+          peout = [5;6]
+          gr_i = []
+          id = ""
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          split type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = [1;1]
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = []
+          ipar = []
+          opar = list()
+          blocktype = "d"
+          firing = [0;0]
+          dep_ut = [%f,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
        ans(5)
+Link    :
+          xx: 380.71 399
+          yy: 172 172
+          id: 
+          thick: 0 0
+          ct: 5 -1
+          from: 4 1 0
+          to: 1 1 1
        ans(6)
+Link    :
+          xx: 380.71 380.71 340 340
+          yy: 172 302 302 277.71
+          id: 
+          thick: 0 0
+          ct: 5 -1
+          from: 4 2 0
+          to: 2 1 1
 clk.model.rpar.objs(1).graphics
  ans  =
 orig = [399,162]
@@ -1348,6 +1705,34 @@ clk.model.rpar.objs(6).to
     2.    1.    1.
 // Check that all the model items are freed
 clear
+propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 11 , PORT )
+propertyUpdated( 10 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 12 , PORT )
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 7 , PORT )
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 6 , BLOCK )
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 9 , PORT )
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 8 , BLOCK )
+objectDeleted( 1 , DIAGRAM )
+objectDeleted( 10 , BLOCK )
 propertyUpdated( 38 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1406,31 +1791,3 @@ propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 37 , LINK )
 objectDeleted( 22 , DIAGRAM )
 objectDeleted( 38 , BLOCK )
-propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 11 , PORT )
-propertyUpdated( 10 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 12 , PORT )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 7 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 6 , BLOCK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 9 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 8 , BLOCK )
-objectDeleted( 1 , DIAGRAM )
-objectDeleted( 10 , BLOCK )

@@ -58,11 +58,99 @@ l = list(Sum);
 // Copy the list content (no duplicate)
 Sum2 = l(1)
 Sum2  = 
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 // The following action should not delete the Block in the model
 clear Sum
 // Sum2's refCount must have been affected by "clear Sum"
 Sum2
 Sum2  = (2)
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 // Delete the original block in the model
 clear
 propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS

@@ -1,6 +1,6 @@
 //  Scicos
 //
-//  Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+//  Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
 //
 // This program is free software; you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
@@ -19,10 +19,24 @@
 // See the file ../license.txt
 //
 
-function %graphics_p(graphics)
+function %Text_p(annotation)
+
+    mprintf("GUI     : " + annotation.gui + "\n")
+
+    mprintf("Graphics: \n")
+    txt = graphics2txt(annotation.graphics);
+
+    for i = 1:size(txt, "r")
+        mprintf("          %s\n", txt(i))
+    end
+
+endfunction
+
+function txt = graphics2txt(graphics)
     fn = getfield(1, graphics);
 
+    txt = [];
     for k=2:size(fn,"*")
-        mprintf("%s\n", sci2exp(eval("graphics."+fn(k)), fn(k)))
+        txt = [txt; sci2exp(graphics(fn(k)), fn(k))];
     end
 endfunction

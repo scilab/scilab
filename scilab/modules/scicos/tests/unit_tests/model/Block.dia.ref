@@ -55,6 +55,50 @@ propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 o  = 
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]
@@ -228,6 +272,50 @@ propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 4 , PORT )
 objectDeleted( 1 , BLOCK )
 o  = 
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]
@@ -394,6 +482,50 @@ propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 8 , PORT )
 objectDeleted( 5 , BLOCK )
 o  = 
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[-1;-1]"
+          pin = [0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [-1;-1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]
@@ -564,6 +696,50 @@ propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 12 , PORT )
 objectDeleted( 9 , BLOCK )
 o  = 
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[-1;1;1]"
+          pin = [0;0;0]
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E";"E"]
+          out_implicit = "E"
+          in_style = ["";"";""]
+          out_style = ""
+          in_label = ["";"";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1;-1]
+          in2 = [1;1;1]
+          intyp = [1;1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [-1;1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]
@@ -670,6 +846,50 @@ propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 16 , PORT )
 objectDeleted( 13 , BLOCK )
 o  = 
+GUI     : CSCOPE
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          pin = 0
+          pout = []
+          pein = 0
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = []
+          in_style = ""
+          out_style = 
+          in_label = ""
+          out_label = 
+          style = ""
+Model   : 
+          cscope type: 4
+          in = -1
+          in2 = 1
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0;-15;15;30]
+          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]
@@ -827,6 +1047,50 @@ propertyUpdated( 18 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 20 , PORT )
 objectDeleted( 18 , BLOCK )
 o  = 
+GUI     : CSCOPE
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          pin = 0
+          pout = []
+          pein = 0
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = []
+          in_style = ""
+          out_style = 
+          in_label = ""
+          out_label = 
+          style = ""
+Model   : 
+          cscope type: 4
+          in = -1
+          in2 = 1
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0;-15;15;30]
+          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 // Test 'opar' and 'odstate'
 o = LOGIC("define")
 objectCreated( 24 , BLOCK )
@@ -898,6 +1162,50 @@ propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 23 , PORT )
 objectDeleted( 21 , BLOCK )
 o  = 
+GUI     : LOGIC
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["[0;0;0;1]";"0"]
+          pin = [0;0]
+          pout = 0
+          pein = 0
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          logic type: 4
+          in = [1;1]
+          in2 = [1;1]
+          intyp = [5;5]
+          out = 1
+          out2 = 1
+          outtyp = 5
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = []
+          ipar = []
+          opar = list(int8([0;0;0;1]))
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
 o.model.opar
  ans  =
        ans(1)
@@ -1078,6 +1386,50 @@ propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 28 , PORT )
 objectDeleted( 24 , BLOCK )
 o  = 
+GUI     : VsourceAC
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["220";"50"]
+          pin = 0
+          pout = 0
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "I"
+          out_implicit = "I"
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
+          style = ""
+Model   : 
+          VsourceAC type: 0
+          in = 1
+          in2 = 1
+          intyp = 1
+          out = 1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [220;50]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = tlist(["modelica","model","inputs","outputs","parameters"],"VsourceAC","p","n",list(["VA";"f"],list(220,50)))
+          uid = ""
 o.model.equations
  ans  =
        ans(1)
@@ -1231,6 +1583,50 @@ propertyUpdated( 29 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 31 , PORT )
 objectDeleted( 29 , BLOCK )
 o  = 
+GUI     : MBLOCK
+Graphics: 
+          orig = [0,0]
+          sz = [3,2]
+          flip = %t
+          theta = 0
+          exprs = tlist(["MBLOCK","in","intype","out","outtype","param","paramv","pprop","nameF","funtxt"],"""u1""","""I""","[""y1"";""y2""]","[""I"";""E""]","[""R"";""L""]",list("0.1","0.0001"),"[0;0]","generic",[])
+          pin = 0
+          pout = [0;0]
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "I"
+          out_implicit = ["I";"E"]
+          in_style = ""
+          out_style = ["";""]
+          in_label = ""
+          out_label = ["";""]
+          style = ""
+Model   : 
+          generic type: 30004
+          in = 1
+          in2 = 1
+          intyp = 1
+          out = [1;1]
+          out2 = [1;1]
+          outtyp = [1;1]
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0.1;0.0001]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%f,%t]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = tlist(["modelica","model","inputs","outputs","parameters"],"generic","u1",["y1";"y2"],list(["R";"L"],list(0.1,0.0001)))
+          uid = ""
 o.graphics
  ans  =
 orig = [0,0]

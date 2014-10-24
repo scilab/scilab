@@ -39,11 +39,6 @@ const std::wstring orig(L"orig");
 const std::wstring sz(L"sz");
 const std::wstring exprs(L"exprs");
 
-const std::wstring Model(L"model");
-const std::wstring sim(L"sim");
-const std::wstring rpar(L"rpar");
-const std::wstring ipar(L"ipar");
-
 struct graphics
 {
     static types::InternalType* get(const TextAdapter& adaptor, const Controller& controller)
@@ -192,35 +187,6 @@ struct graphics
     }
 };
 
-struct model
-{
-
-    static types::InternalType* get(const TextAdapter& /*adaptor*/, const Controller& /*controller*/)
-    {
-        // Return an empty "model"-typed mlist because this field isn't used.
-        types::MList* o = new types::MList();
-        types::String* MListFields = new types::String(1, 4);
-
-        MListFields->set(0, Model.c_str());
-        MListFields->set(1, sim.c_str());
-        MListFields->set(2, rpar.c_str());
-        MListFields->set(3, ipar.c_str());
-
-        o->set(0, MListFields);
-        // 'sim' field needs to be defined for the console display.
-        o->set(1, types::Double::Empty());
-        o->set(2, types::Double::Empty());
-        o->set(3, types::Double::Empty());
-        return o;
-    }
-
-    static bool set(TextAdapter& /*adaptor*/, types::InternalType* /*v*/, Controller& /*controller*/)
-    {
-        // Everything should be right as the properties mapped using this adapter do not perform anything
-        return true;
-    }
-};
-
 struct dummy_property
 {
 
@@ -248,7 +214,7 @@ TextAdapter::TextAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Annot
     {
         property<TextAdapter>::fields.reserve(4);
         property<TextAdapter>::add_property(Graphics, &graphics::get, &graphics::set);
-        property<TextAdapter>::add_property(Model, &model::get, &model::set);
+        property<TextAdapter>::add_property(L"model", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"gui", &dummy_property::get, &dummy_property::set);
     }
