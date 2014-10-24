@@ -19,7 +19,7 @@
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 #if 0 /* to debug TeXmacs interface */
 #define DATA_BEGIN  ((char) 'B')

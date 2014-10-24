@@ -86,7 +86,7 @@ public :
             {
                 out.push_back(pList->get(i));
             }
-            delete pList;
+            pList->killMe();
         }
 
         return true;

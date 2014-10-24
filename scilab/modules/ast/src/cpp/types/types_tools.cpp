@@ -14,6 +14,10 @@
 #include "types_tools.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+extern "C"
+{
+#include "os_swprintf.h"
+}
 
 namespace types
 {
@@ -58,31 +62,52 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     //not enough information to compute indexes.
                     _pArgsOut->push_back(NULL);
                     bUndefine = true;
-                    delete pIL;
+                    pIL->killMe();;
                     continue;
                 }
                 //evalute polynom with "MaxDim"
                 int iMaxDim = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
+#if defined(_SCILAB_DEBUGREF_)
+                Double* pdbl = new Double(iMaxDim);
+#else
                 Double dbl(iMaxDim);
+#endif
                 if (pIL->getStart()->isPoly())
                 {
                     Polynom *poPoly	= pIL->getStart()->getAs<types::Polynom>();
+#if defined(_SCILAB_DEBUGREF_)
+                    pIL->setStart(poPoly->evaluate(pdbl));
+#else
                     pIL->setStart(poPoly->evaluate(&dbl));
+#endif
                 }
                 if (pIL->getStep()->isPoly())
                 {
                     Polynom *poPoly	= pIL->getStep()->getAs<types::Polynom>();
+#if defined(_SCILAB_DEBUGREF_)
+                    pIL->setStep(poPoly->evaluate(pdbl));
+#else
                     pIL->setStep(poPoly->evaluate(&dbl));
+#endif
                 }
                 if (pIL->getEnd()->isPoly())
                 {
                     Polynom *poPoly	= pIL->getEnd()->getAs<types::Polynom>();
+#if defined(_SCILAB_DEBUGREF_)
+                    pIL->setEnd(poPoly->evaluate(pdbl));
+#else
                     pIL->setEnd(poPoly->evaluate(&dbl));
+#endif
                 }
+
+#if defined(_SCILAB_DEBUGREF_)
+                pdbl->killMe();
+#endif
             }
 
+
             pCurrentArg = pIL->extractFullMatrix()->getAs<Double>();
-            delete pIL;
+            pIL->killMe();
         }
         else if (pIT->isString())
         {
@@ -146,8 +171,15 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             {
                 iMaxDim     = _pRef->getAs<GenericType>()->getVarMaxDim(i, iDims);
             }
+
+#ifdef _SCILAB_DEBUGREF_
+            Double* pdbl = new Double(iMaxDim); // $
+            pCurrentArg = pMP->evaluate(pdbl);
+            pdbl->killMe();
+#else
             Double dbl(iMaxDim); // $
             pCurrentArg = pMP->evaluate(&dbl);
+#endif
         }
         else if (pIT->isBool())
         {
@@ -183,7 +215,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
         if (bDeleteNeeded)
         {
-            delete pIT;
+            pIT->killMe();
         }
 
         if (pCurrentArg)
@@ -192,6 +224,14 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             _piMaxDim[i] = 0;
             for (int j = 0 ; j < iCountDim ; j++)
             {
+                //checks if size < size(int)
+                if (pCurrentArg->get(j) >= INT_MAX)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
+                    throw ast::ScilabError(szError);
+                }
+
                 const int d = static_cast<int>(pCurrentArg->get(j));
                 if (d > _piMaxDim[i])
                 {
@@ -213,6 +253,20 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
     //returns a negative value if at least one parameter is undefined
     //case with : or $ for creation by insertion
     return (!bUndefine ? iSeqCount : - iSeqCount);
+}
+
+void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
+{
+    //free pArg content
+    for (int iArg = 0; iArg < _pArgsNew->size(); iArg++)
+    {
+        if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
+        {
+            (*_pArgsNew)[iArg]->killMe();
+        }
+    }
+
+    _pArgsNew->clear();
 }
 
 void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)

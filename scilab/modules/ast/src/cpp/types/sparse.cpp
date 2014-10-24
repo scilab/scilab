@@ -718,6 +718,8 @@ InternalType* Sparse::insertNew(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(NULL, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
     }
 
@@ -776,6 +778,8 @@ InternalType* Sparse::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (checkArgValidity(pArg) == false)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         //contain bad index, like <= 0, ...
         return NULL;
     }
@@ -809,13 +813,7 @@ InternalType* Sparse::insertNew(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut2;
 }
@@ -844,6 +842,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -874,6 +874,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
         }
         else if (getSize() < piMaxDim[0])
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //out of range
             return NULL;
         }
@@ -891,6 +893,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     //check number of insertion
     if (pSource->isScalar() == false && pSource->getSize() != iSeqCount)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -899,6 +903,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         if (resize(iNewRows, iNewCols) == false)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -980,13 +986,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, InternalType* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
+
     return this;
 }
 
@@ -1013,6 +1014,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -1042,6 +1045,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
         }
         else if (getSize() < piMaxDim[0])
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //out of range
             return NULL;
         }
@@ -1059,6 +1064,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     //check number of insertion
     if (_pSource->isScalar() == false && _pSource->getSize() != iSeqCount)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -1067,6 +1074,8 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     {
         if (resize(iNewRows, iNewCols) == false)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -1149,13 +1158,7 @@ Sparse* Sparse::insert(typed_list* _pArgs, Sparse* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return this;
 }
@@ -1179,6 +1182,8 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -1234,6 +1239,8 @@ Sparse* Sparse::remove(typed_list* _pArgs)
 
     if (bTooMuchNotEntire == true)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -1380,13 +1387,7 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     delete[] piViewDims;
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut;
 }
@@ -1435,6 +1436,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         if (_pArgs->size() == 0)
         {
             //a()
@@ -1497,6 +1500,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -1541,6 +1546,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -1548,13 +1555,7 @@ InternalType* Sparse::extract(typed_list* _pArgs)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut;
 }
@@ -2271,6 +2272,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -2301,6 +2304,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
         }
         else if (getSize() < piMaxDim[0])
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //out of range
             return NULL;
         }
@@ -2318,6 +2323,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     //check number of insertion
     if (_pSource->isScalar() == false && _pSource->getSize() != iSeqCount)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -2326,6 +2333,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     {
         if (resize(iNewRows, iNewCols) == false)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -2374,13 +2383,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, SparseBool* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return this;
 }
@@ -2409,6 +2412,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -2438,6 +2443,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
         }
         else if (getSize() < piMaxDim[0])
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //out of range
             return NULL;
         }
@@ -2455,6 +2462,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     //check number of insertion
     if (pSource->isScalar() == false && pSource->getSize() != iSeqCount)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -2463,6 +2472,8 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         if (resize(iNewRows, iNewCols) == false)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -2509,14 +2520,7 @@ SparseBool* SparseBool::insert(typed_list* _pArgs, InternalType* _pSource)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
-
+    cleanIndexesArguments(_pArgs, &pArg);
     return this;
 }
 
@@ -2539,6 +2543,8 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
 
@@ -2594,6 +2600,8 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
 
     if (bTooMuchNotEntire == true)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -2663,6 +2671,8 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
     {
         if (iNewDimSize == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return new SparseBool(0, 0);
         }
         else
@@ -2733,13 +2743,7 @@ SparseBool* SparseBool::remove(typed_list* _pArgs)
     delete[] piViewDims;
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut;
 }
@@ -2766,6 +2770,8 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
     int iSeqCount = checkIndexesArguments(NULL, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
     }
 
@@ -2824,6 +2830,8 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (checkArgValidity(pArg) == false)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         //contain bad index, like <= 0, ...
         return NULL;
     }
@@ -2856,13 +2864,7 @@ InternalType* SparseBool::insertNew(typed_list* _pArgs, InternalType* _pSource)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut2;
 }
@@ -2909,6 +2911,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         if (_pArgs->size() == 0)
         {
             //a()
@@ -2962,6 +2966,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -2996,6 +3002,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
@@ -3003,13 +3011,7 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     finalize();
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     return pOut;
 }

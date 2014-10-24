@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     int iID             = 0;
     Parser parser;
 
-    if (ConfigVariable::getStartFinished())
+    if (ConfigVariable::getStartProcessing())
     {
         if (ConfigVariable::getVerbose())
         {

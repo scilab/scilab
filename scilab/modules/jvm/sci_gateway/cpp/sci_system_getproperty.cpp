@@ -22,7 +22,7 @@ extern "C"
 #include "system_getproperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 }
 /*--------------------------------------------------------------------------*/
 

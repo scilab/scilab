@@ -144,7 +144,7 @@ struct TIType
             case UINT8 :
                 out << L"uint8";
                 break;
-            case UNKNOWN :
+            default :
                 out << L"unknown";
         }
 

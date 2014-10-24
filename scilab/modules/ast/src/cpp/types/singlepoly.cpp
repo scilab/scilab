@@ -34,23 +34,35 @@ SinglePoly::SinglePoly()
     int piDims[2] = {1, 1};
     create(piDims, 2, &pdblCoefR, NULL);
     pdblCoefR[0] = 0;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SinglePoly::SinglePoly(double** _pdblCoefR, int _iRank)
 {
     int piDims[2] = {_iRank + 1, 1};
     create(piDims, 2, _pdblCoefR, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SinglePoly::SinglePoly(double** _pdblCoefR, double** _pdblCoefI, int _iRank)
 {
     int piDims[2] = {_iRank + 1, 1};
     create(piDims, 2, _pdblCoefR, _pdblCoefI);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SinglePoly::~SinglePoly()
 {
     deleteAll();
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 void SinglePoly::deleteAll()

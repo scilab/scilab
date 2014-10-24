@@ -384,6 +384,8 @@ public :
         int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
         if (iSeqCount == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return this;
         }
 
@@ -462,6 +464,8 @@ public :
                     {
                         if (pIdx[j] >= m_piDims[i])
                         {
+                            //free pArg content
+                            cleanIndexesArguments(_pArgs, &pArg);
                             return NULL;
                         }
                     }
@@ -477,6 +481,8 @@ public :
                 {
                     if (pIdx[i] > iMaxLastDim)
                     {
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
                         return NULL;
                     }
                 }
@@ -488,6 +494,8 @@ public :
         {
             if (pSource->getSize() != iSeqCount)
             {
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
                 return NULL;
             }
         }
@@ -497,6 +505,8 @@ public :
             bool bPass = resize(piNewDims, iNewDims);
             if (bPass == false)
             {
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
                 return NULL;
             }
         }
@@ -584,13 +594,7 @@ public :
         delete[] piViewDims;
 
         //free pArg content
-        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
-        {
-            if (pArg[iArg] != (*_pArgs)[iArg])
-            {
-                pArg[iArg]->killMe();
-            }
-        }
+        cleanIndexesArguments(_pArgs, &pArg);
 
         return this;
     }
@@ -611,6 +615,8 @@ public :
         int iSeqCount = checkIndexesArguments(NULL, _pArgs, &pArg, piMaxDim, piCountDim);
         if (iSeqCount == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return createEmptyDouble();
         }
 
@@ -675,6 +681,8 @@ public :
 
         if (checkArgValidity(pArg) == false)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //contain bad index, like <= 0, ...
             return NULL;
         }
@@ -726,13 +734,7 @@ public :
         }
 
         //free pArg content
-        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
-        {
-            if (pArg[iArg] != (*_pArgs)[iArg])
-            {
-                pArg[iArg]->killMe();
-            }
-        }
+        cleanIndexesArguments(_pArgs, &pArg);
 
         return pOut2;
     }
@@ -797,6 +799,8 @@ public :
         int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
         if (iSeqCount == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             //no Seq, no change but no error.
             return this;
         }
@@ -853,6 +857,8 @@ public :
 
         if (bTooMuchNotEntire == true)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
 
@@ -920,6 +926,8 @@ public :
 
         if (iNewDimSize == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             delete[] piNewDims;
             return createEmptyDouble();
         }
@@ -985,13 +993,7 @@ public :
         }
 
         //free pArg content
-        for (int iArg = 0 ; iArg < pArg.size() ; iArg++)
-        {
-            if (pArg[iArg] != (*_pArgs)[iArg])
-            {
-                pArg[iArg]->killMe();
-            }
-        }
+        cleanIndexesArguments(_pArgs, &pArg);
 
         delete[] piIndexes;
         delete[] piViewDims;
@@ -1052,6 +1054,8 @@ public :
         int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
         if (iSeqCount == 0)
         {
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return createEmptyDouble();
         }
 
@@ -1071,6 +1075,8 @@ public :
 
                 if (piMaxDim[i] > iDimToCheck)
                 {
+                    //free pArg content
+                    cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
                 }
             }
@@ -1083,6 +1089,8 @@ public :
                 {
                     if (piMaxDim[i] > 1)
                     {
+                        //free pArg content
+                        cleanIndexesArguments(_pArgs, &pArg);
                         return NULL;
                     }
                 }
@@ -1093,6 +1101,8 @@ public :
             {
                 if (piMaxDim[i] > m_piDims[i])
                 {
+                    //free pArg content
+                    cleanIndexesArguments(_pArgs, &pArg);
                     //exrtact must be in dimension limits
                     return NULL;
                 }
@@ -1117,7 +1127,8 @@ public :
         {
             if (piCountDim[0] == 0)
             {
-                //pOut = createEmptyDouble()->getAs<Double>();
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
                 return createEmptyDouble();
             }
             else
@@ -1182,6 +1193,8 @@ public :
                     delete[] piMaxDim;
                     delete[] piCountDim;
 
+                    //free pArg content
+                    cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
                 }
             }
@@ -1221,13 +1234,7 @@ public :
         }
 
         //free pArg content
-        for (size_t iArg = 0 ; iArg < pArg.size() ; ++iArg)
-        {
-            if (pArg[iArg] != (*_pArgs)[iArg])
-            {
-                pArg[iArg]->killMe();
-            }
-        }
+        cleanIndexesArguments(_pArgs, &pArg);
 
         delete[] piIndex;
         delete[] piCoord;
@@ -1273,6 +1280,10 @@ public :
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return resize(piDims, 2);
+    }
+
+    virtual void deleteData(T data)
+    {
     }
 
     bool resize(int* _piDims, int _iDims)
@@ -1380,12 +1391,6 @@ public :
                 m_iSizeMax = static_cast<int>(iNewSize * 1.1);
                 pRealData = allocData(m_iSizeMax);
 
-                //set value to (null) value
-                for (int i = 0 ; i < m_iSizeMax ; i++)
-                {
-                    pRealData[i] = copyValue(getNullValue());
-                }
-
                 //copy values into new one
                 int* piIndexes = new int[std::max(m_iDims, _iDims)];
                 memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
@@ -1394,18 +1399,42 @@ public :
                     piIndexes[i] = 0;
                 }
 
+                int iPreviousNewIdx = 0;
                 for (int i = 0 ; i < m_iSize ; i++)
                 {
                     getIndexes(i, piIndexes);
                     int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
-                    pRealData[iNewIdx] = copyValue(m_pRealData[i]);
+                    pRealData[iNewIdx] = m_pRealData[i];
+                    for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
+                    {
+                        T pTemp = getNullValue();
+                        T pTemp2 = copyValue(pTemp);
+                        pRealData[j] = pTemp2;
+                        if (pTemp != pTemp2)
+                        {
+                            deleteData(pTemp);
+                        }
+                    }
+
+                    iPreviousNewIdx = iNewIdx + 1;
+                }
+
+                for (int i = iPreviousNewIdx; i < m_iSizeMax; ++i)
+                {
+                    T pTemp = getNullValue();
+                    T pTemp2 = copyValue(pTemp);
+                    pRealData[i] = pTemp2;
+                    if (pTemp != pTemp2)
+                    {
+                        deleteData(pTemp);
+                    }
                 }
 
                 delete[] piIndexes;
                 //delete all array
-                deleteAll();
+                delete[] m_pRealData;
                 //replace old array by new one
-                m_pRealData    = pRealData;
+                m_pRealData = pRealData;
             }
             else
             {

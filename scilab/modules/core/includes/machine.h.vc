@@ -82,7 +82,9 @@
 
 #define HAVE_LIBINTL_H
 
-//#define va_copy(x,y) (x=(y))
+#if defined( __INTEL_COMPILER) && !defined(_WIN64)
+#define va_copy(x,y) (x=(y))
+#endif
 
 #define SIZEOF_INT 4
 #define SIZEOF_LONG 4

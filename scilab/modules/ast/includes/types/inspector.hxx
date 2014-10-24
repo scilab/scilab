@@ -32,18 +32,19 @@ protected :
     static std::vector<InternalType*> m_vIT;
 
 public :
-    static int getItemCount();
-    static int getUnreferencedItemCount();
+    static size_t getItemCount();
+    static size_t getUnreferencedItemCount();
 
     static void addItem(InternalType* _pIT);
     static void removeItem(InternalType* _pIT);
 
-    static InternalType* getItem(int _iPos);
-    static InternalType* getUnreferencedItem(int _iPos);
+    static InternalType* getItem(size_t _iPos);
+    static InternalType* getUnreferencedItem(size_t _iPos);
 
-    static std::wstring showItem(int _iPos);
-    static std::wstring showUnreferencedItem(int _iPos);
+    static std::wstring showItem(size_t _iPos);
+    static std::wstring showUnreferencedItem(size_t _iPos);
     static void deleteItems();
+    static void displayMemleak();
 };
 #endif
 }

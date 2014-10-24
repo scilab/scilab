@@ -17,7 +17,7 @@
 #include <signal.h>
 
 #include "scilab_main.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "realmain.h"
 #include "sciprint.h"
 #include "LaunchScilabSignal.h"

@@ -282,7 +282,17 @@ bool ExpHistory::setCurrent(types::InternalType* _pITCurrent)
         return false;
     }
 
+    if (m_pITCurrent)
+    {
+        m_pITCurrent->killMe();
+    }
+
     m_pITCurrent = _pITCurrent;
+
+    // if m_pITCurrent is new, we have to reinsert it in this parent
+    // even if it is an handle (see comment about handle in setReinsertion)
+    m_bReinsertMe = true;
+
     return true;
 }
 
@@ -298,6 +308,9 @@ ExpHistory* ExpHistory::getParent()
 
 void ExpHistory::setReinsertion()
 {
+    // special case for handle, we have not to reinsert
+    // the handle in this parent after insertion of something
+    // in handle by overload.
     if (m_pITCurrent != NULL && m_pITCurrent->isHandle() == false)
     {
         m_bReinsertMe = true;

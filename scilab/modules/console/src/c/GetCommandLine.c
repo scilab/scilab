@@ -23,7 +23,7 @@
 #include "BOOL.h"
 #include "ConsoleRead.h"
 #include "SetConsolePrompt.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "sci_malloc.h"
 #include "prompt.h"
 #include "HistoryManager.h"

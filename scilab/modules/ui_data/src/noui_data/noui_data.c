@@ -17,7 +17,7 @@
 #include "FileBrowserChDir.h"
 #include "BOOL.h"
 #ifndef _MSC_VER
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int gw_ui_data(void)
@@ -29,7 +29,7 @@ int gw_ui_data(void)
     }
     else
 #endif
-	{
+    {
         Scierror(999, _("Scilab '%s' module not installed.\n"), "ui_data");
     }
     return 0;

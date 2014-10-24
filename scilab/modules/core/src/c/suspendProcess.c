@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <signal.h>
 
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "cliPrompt.h"
 #include "cliDisplayManagement.h"
 #include "HistoryManager.h"

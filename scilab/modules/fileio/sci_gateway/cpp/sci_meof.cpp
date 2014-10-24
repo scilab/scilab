@@ -22,7 +22,7 @@ extern "C"
 {
 #include <stdio.h>
 #include "expandPathVariable.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"

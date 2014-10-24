@@ -20,7 +20,7 @@
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"

@@ -19,7 +19,7 @@
 #include "gw_tclsci.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "callFunctionFromGateway.h"
 #include "InitTclTk.h" /* isTkStarted */
 #include "InitializeTclTk.h"

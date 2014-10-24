@@ -521,9 +521,6 @@
 /* With the HDF5 library */
 #undef WITH_HDF5
 
-/* with JGraphX */
-#undef WITH_JGRAPHX
-
 /* With llvm-config */
 #undef WITH_LLVM_CONFIG
 

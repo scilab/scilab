@@ -207,6 +207,7 @@ protected:
         {
             (*it)->accept(*this);
         }
+        delete cases;
 
         if (e.getDefaultCase() != NULL)
         {

@@ -20,7 +20,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "ConsoleIsWaitingForInput.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 }
 /*--------------------------------------------------------------------------*/
 

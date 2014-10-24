@@ -964,16 +964,27 @@ int ConfigVariable::getCurrentClcg4()
 ** Start finish flag
 ** \{
 */
-bool ConfigVariable::m_bStartFinished = false;
+bool ConfigVariable::m_bStartProcessing = false;
+bool ConfigVariable::m_bEndProcessing = false;
 
-void ConfigVariable::setStartFinished(bool _bStartFinished)
+void ConfigVariable::setStartProcessing(bool _bStartProcessing)
 {
-    m_bStartFinished = _bStartFinished;
+    m_bStartProcessing = _bStartProcessing;
 }
 
-bool ConfigVariable::getStartFinished()
+bool ConfigVariable::getStartProcessing()
 {
-    return m_bStartFinished;
+    return m_bStartProcessing;
+}
+
+void ConfigVariable::setEndProcessing(bool _bEndProcessing)
+{
+    m_bEndProcessing = _bEndProcessing;
+}
+
+bool ConfigVariable::getEndProcessing()
+{
+    return m_bEndProcessing;
 }
 /*
 ** \}

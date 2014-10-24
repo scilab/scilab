@@ -25,7 +25,7 @@
 #include "pcre_private.h"
 #include "os_strdup.h"
 #include "strsubst.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "charEncoding.h"
 #include "freeArrayOfString.h"

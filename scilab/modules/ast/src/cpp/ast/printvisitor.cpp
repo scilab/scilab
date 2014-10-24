@@ -480,6 +480,8 @@ void PrintVisitor::visit (const SelectExp &e)
     {
         (*it)->getOriginal()->accept(*this);
     }
+    delete cases;
+
     if (e.hasDefault())
     {
         this->apply_indent();

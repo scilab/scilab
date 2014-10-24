@@ -12,7 +12,7 @@
 
 #include <stdlib.h>
 #include "InitializeGUI.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "setMainWindowTitle.h"
 #include "sci_malloc.h"
 #include "buildMainWindowTitle.h"

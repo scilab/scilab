@@ -3,6 +3,7 @@
  * Copyright (C) 2006 - INRIA - Allan CORNET
  * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2014 - Scilab Enterprises - Sylvain GENIN
+ * Copyright (C) 2014 - Scilab Enterprises - Anais Aubert
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -67,7 +68,6 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
 
             pOut = new api_scilab::Double(iDims, piDims);
         }
-
     }
     else //size > 1
     {
@@ -76,6 +76,14 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
             if (api_scilab::isDouble(in[i]) == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", i + 1);
+                return types::Function::Error;
+            }
+
+            api_scilab::Double* pIn = api_scilab::getAsDouble(in[i]);
+            if (pIn->get(0) >= INT_MAX)
+            {
+                delete pIn;
+                Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "zeros", INT_MAX);
                 return types::Function::Error;
             }
         }
@@ -91,6 +99,8 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "zeros", i + 1);
                 return types::Function::Error;
             }
+
+
             piDims[i] = static_cast<int>(pIn->getReal()[0]);
             delete pIn;
         }

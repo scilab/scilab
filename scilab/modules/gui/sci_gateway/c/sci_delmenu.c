@@ -17,7 +17,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "FigureList.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/

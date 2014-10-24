@@ -16,7 +16,7 @@
 #include "PATH_MAX.h"
 #include "sci_malloc.h"
 #include "FileExist.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "sci_tmpdir.h"
 #include "spawncommand.h"
 #include "os_strdup.h"

@@ -23,7 +23,7 @@ extern "C"
 #include "dynamic_link.h"
 #include "men_Sutils.h"
 #include "sci_malloc.h" /* MALLOC */
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 #include "stack-c.h"
 #include "addinter.h"

@@ -30,7 +30,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "os_swprintf.h"
 #include "lasterror.h"
-#include "reference_modules.h"
+#include "configvariable_interface.h"
 #include "dynamic_module.h"
 }
 
@@ -275,7 +275,10 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
 
     for (std::size_t i(0); i != MAX_OUTPUT_VARIABLE; ++i)
     {
-        delete tmpOut[i];// delete 0 is safe cf.5.3.5/2
+        if (tmpOut[i])
+        {
+            tmpOut[i]->killMe();
+        }
     }
 
     //protect outputs
@@ -291,7 +294,7 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
         {
             if (inCopy[i]->isDeletable())
             {
-                delete inCopy[i];
+                inCopy[i]->killMe();
             }
         }
     }

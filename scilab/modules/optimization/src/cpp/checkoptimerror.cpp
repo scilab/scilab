@@ -16,19 +16,19 @@ extern "C" {
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 }
 // return 0 = ok, return 1 = error
 int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
 {
-    if(iarret || (imp == 0 && indopt > 0))
+    if (iarret || (imp == 0 && indopt > 0))
     {
         return 0;
     }
 
-    switch(indopt)
+    switch (indopt)
     {
-        // error
+            // error
         case 0 :
         {
             Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");
@@ -55,16 +55,36 @@ int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
         break;
 
         // warning
-        case 1 : sciprint(_("%s: Norm of projected gradient lower than %lf.\n"), "optim", dEpsg);           break;
-        case 2 : sciprint(_("%s: at last iteration f decreases by less than %lf.\n"), "optim", dEpsg);      break;
-        case 3 : sciprint(_("%s: Optimization stops because too small variations for x.\n"), "optim");      break;
-        case 4 : sciprint(_("%s: Optim stops: maximum number of calls to f is reached.\n"), "optim");       break;
-        case 5 : sciprint(_("%s: Optim stops: maximum number of iterations is reached.\n"), "optim");       break;
-        case 6 : sciprint(_("%s: Optim stops: too small variations in gradient direction.\n"), "optim");    break;
-        case 7 : sciprint(_("%s: Stop during calculation of descent direction.\n"), "optim");               break;
-        case 8 : sciprint(_("%s: Stop during calculation of estimated hessian.\n"), "optim");               break;
-        case 9 : sciprint(_("%s: End of optimization.\n"), "optim");                                        break;
-        case 10 : sciprint(_("%s: End of optimization (linear search fails).\n"), "optim");                 break;
+        case 1 :
+            sciprint(_("%s: Norm of projected gradient lower than %lf.\n"), "optim", dEpsg);
+            break;
+        case 2 :
+            sciprint(_("%s: at last iteration f decreases by less than %lf.\n"), "optim", dEpsg);
+            break;
+        case 3 :
+            sciprint(_("%s: Optimization stops because too small variations for x.\n"), "optim");
+            break;
+        case 4 :
+            sciprint(_("%s: Optim stops: maximum number of calls to f is reached.\n"), "optim");
+            break;
+        case 5 :
+            sciprint(_("%s: Optim stops: maximum number of iterations is reached.\n"), "optim");
+            break;
+        case 6 :
+            sciprint(_("%s: Optim stops: too small variations in gradient direction.\n"), "optim");
+            break;
+        case 7 :
+            sciprint(_("%s: Stop during calculation of descent direction.\n"), "optim");
+            break;
+        case 8 :
+            sciprint(_("%s: Stop during calculation of estimated hessian.\n"), "optim");
+            break;
+        case 9 :
+            sciprint(_("%s: End of optimization.\n"), "optim");
+            break;
+        case 10 :
+            sciprint(_("%s: End of optimization (linear search fails).\n"), "optim");
+            break;
     }
 
     return 0;

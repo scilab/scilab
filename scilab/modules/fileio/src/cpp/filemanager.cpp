@@ -11,6 +11,7 @@
 */
 
 #include "filemanager.hxx"
+
 extern "C"
 {
 #include "os_wcsdup.h"
@@ -22,7 +23,7 @@ int FileManager::m_iCurrentFile = -1;
 
 int FileManager::getFileID(wstring _stFilename)
 {
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
         if (m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
@@ -39,7 +40,7 @@ int FileManager::getFileMaxID()
 
 bool FileManager::isOpened(wstring _stFilename)
 {
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()) ; i++)
     {
         if (m_fileList[i] != NULL && m_fileList[i]->getFilename() == _stFilename)
         {
@@ -56,9 +57,8 @@ types::File* FileManager::getFile(int _iID)
         return m_fileList[m_iCurrentFile];
     }
 
-    if (_iID <= m_fileList.size())
+    if (_iID < static_cast<int>(m_fileList.size()))
     {
-        //1-indexed
         return m_fileList[_iID];
     }
 
@@ -76,7 +76,7 @@ int FileManager::addFile(types::File* _file)
     //}
 
     //find first free space
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] == NULL)
         {
@@ -87,8 +87,8 @@ int FileManager::addFile(types::File* _file)
     }
 
     //no free space, add at the end
-    m_fileList.push_back(_file);
     int iNewId = static_cast<int>(m_fileList.size());
+    m_fileList.push_back(_file);
     m_iCurrentFile = iNewId;
     return iNewId;
 }
@@ -96,7 +96,7 @@ int FileManager::addFile(types::File* _file)
 int FileManager::getFirstFreeFileID()
 {
     //find first free space
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] == NULL)
         {
@@ -106,19 +106,17 @@ int FileManager::getFirstFreeFileID()
     }
 
     //no free space, add at the end
-    m_fileList.push_back(NULL);
     int iNewId = static_cast<int>(m_fileList.size());
+    m_fileList.push_back(NULL);
     m_iCurrentFile = iNewId;
     return iNewId;
 }
 
 void FileManager::deleteFile(int _iID)
 {
-    if (_iID <= m_fileList.size())
+    if (0 < _iID && _iID < static_cast<int>(m_fileList.size()))
     {
-        //1-indexed
-        //do not delete File object !!!
-        //delete m_fileList[_iID - 1];
+        delete m_fileList[_iID];
         m_fileList[_iID] = NULL;
         if (m_iCurrentFile == _iID)
         {
@@ -144,7 +142,7 @@ int* FileManager::getIDs()
     int* piIds       = NULL;
 
     piIds = new int[getOpenedCount()];
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -158,7 +156,7 @@ int* FileManager::getIDs()
 int FileManager::getOpenedCount()
 {
     int iCount = 0;
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -174,7 +172,7 @@ wchar_t** FileManager::getTypesAsString()
     wchar_t** pstTypes  = NULL;
 
     pstTypes = new wchar_t*[getOpenedCount()];
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -191,7 +189,7 @@ wchar_t** FileManager::getFilenames()
     wchar_t** pstFilenames  = NULL;
 
     pstFilenames = new wchar_t*[getOpenedCount()];
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -208,7 +206,7 @@ double* FileManager::getModes()
     double* pdblModes   = NULL;
 
     pdblModes = new double[getOpenedCount()];
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -225,7 +223,7 @@ double* FileManager::getSwaps()
     double* pdblSwaps   = NULL;
 
     pdblSwaps = new double[getOpenedCount()];
-    for (int i = 0 ; i < m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)
         {
@@ -276,9 +274,12 @@ void FileManager::initialize()
 
 void FileManager::destroy()
 {
-    for (int i = 0 ; i < (int)m_fileList.size() ; i++)
+    for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
-        delete m_fileList[i];
+        if (m_fileList[i] != NULL)
+        {
+            delete m_fileList[i];
+        }
     }
 
     m_fileList.clear();

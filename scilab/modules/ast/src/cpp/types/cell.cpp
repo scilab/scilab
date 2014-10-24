@@ -74,7 +74,7 @@ Cell::~Cell()
         }
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -95,7 +95,7 @@ Cell::Cell(Cell *_oCellCopyMe)
         set(i, _oCellCopyMe->get(i)->clone());
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 

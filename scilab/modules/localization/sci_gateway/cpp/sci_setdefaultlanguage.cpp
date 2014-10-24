@@ -25,7 +25,7 @@ extern "C"
 #include "charEncoding.h"
 #include "setgetlanguage.h"
 #include "os_wcsdup.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"
 #endif

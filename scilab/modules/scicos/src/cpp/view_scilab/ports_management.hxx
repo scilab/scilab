@@ -272,8 +272,8 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
                 for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
                 {
-                    std::vector<int> v;
-                    controller.getObjectProperty(*it, PORT, DATATYPE, v);
+                    std::vector<int> newDataType;
+                    controller.getObjectProperty(*it, PORT, DATATYPE, newDataType);
 
                     double data = current->get(i);
                     if (std::floor(data) != data)
@@ -281,8 +281,8 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                         return false;
                     }
 
-                    v[datatypeIndex] = static_cast<int>(data);
-                    controller.setObjectProperty(*it, PORT, DATATYPE, v);
+                    newDataType[datatypeIndex] = static_cast<int>(data);
+                    controller.setObjectProperty(*it, PORT, DATATYPE, newDataType);
                 }
                 return true;
             }

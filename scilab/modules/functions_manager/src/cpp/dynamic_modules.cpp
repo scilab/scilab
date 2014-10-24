@@ -21,7 +21,7 @@ extern "C"
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
 #include "sci_malloc.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 }
 
 using namespace types;

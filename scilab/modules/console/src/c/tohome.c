@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include "tohome.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "PromptToHome.h"
 #ifndef _MSC_VER
 #include "others/clrscr_nw.h"

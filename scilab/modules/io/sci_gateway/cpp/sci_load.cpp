@@ -11,7 +11,10 @@
 */
 
 #include <string.h>
+#include "api_scilab.hxx"
 #include "function.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 #include "io_gw.hxx"
 #include "string.hxx"
 #include "library.hxx"
@@ -21,6 +24,7 @@ extern "C"
 {
 #include "sci_malloc.h"
 #include "expandPathVariable.h"
+#include "h5_fileManagement.h"
 }
 
 using namespace types;
@@ -28,16 +32,11 @@ using namespace types;
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iXMLFileLen = 0;
-    if (in.size() != 1)
-    {
-        return Function::Error;
-    }
-
     InternalType* pIT = in[0];
 
     if (pIT->isString() == false)
     {
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "load", 1);
         return Function::Error;
     }
 
@@ -45,17 +44,38 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
     if (pS->isScalar() == false)
     {
+        Scierror(999, _("%s: Wrong type for input argument #%d: Scalar string expected.\n"), "load", 1);
         return Function::Error;
     }
 
-    wchar_t* pstPath = pS->get(0);
-    wchar_t* pwstPath = expandPathVariableW(pstPath);
-    Library* lib = loadlib(pwstPath);
-    FREE(pwstPath);
+    wchar_t* pwstPathLib = expandPathVariableW(pS->get(0));
+    char* pstPath = wide_string_to_UTF8(pwstPathLib);
 
-    if (lib == NULL)
+    if (isHDF5File(pstPath))
     {
-        return Function::Error;
+        FREE(pstPath);
+        FREE(pwstPathLib);
+
+        //call overload
+        std::wstring wstFuncName = L"%_sodload";
+        ast::ExecVisitor* exec = new ast::ExecVisitor();
+        Callable::ReturnValue Ret = Callable::Error;
+        Ret = Overload::call(wstFuncName, in, _iRetCount, out, exec);
+        delete exec;
+        return Ret;
+    }
+    else
+    {
+        Library* lib = loadlib(pwstPathLib);
+        FREE(pstPath);
+
+        if (lib == NULL)
+        {
+            Scierror(999, _("%s: Wrong file type \"%ls\".\n"), "load", pwstPathLib);
+            FREE(pwstPathLib);
+            return Function::Error;
+        }
+        FREE(pwstPathLib);
     }
 
     return Function::OK;

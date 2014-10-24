@@ -26,7 +26,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "scifunctions.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 }
 

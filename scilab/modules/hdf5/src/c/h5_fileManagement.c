@@ -41,6 +41,11 @@ void HDF5cleanup(void)
     H5_term_library();
 }
 /*--------------------------------------------------------------------------*/
+void HDF5ErrorCleanup()
+{
+    H5Eclear(H5Eget_current_stack());
+}
+/*--------------------------------------------------------------------------*/
 int createHDF5File(char *name)
 {
     hid_t       file;
@@ -168,18 +173,22 @@ int isHDF5File(char* _pstFilename)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
+
+    //prevent error msg to change directory to ""
+    if (strcmp(pathdest, "") != 0)
     {
-
-        //prevent error msg to change directory to ""
-        if (strcmp(pathdest, "") != 0)
-        {
-            scichdir(pathdest);
-        }
-        FREE(pathdest);
-
-        iRet = H5Fis_hdf5(filename);
-        FREE(filename);
+        scichdir(pathdest);
     }
+    FREE(pathdest);
+
+    iRet = H5Fis_hdf5(filename);
+    if (iRet == 0)
+    {
+        HDF5ErrorCleanup();
+    }
+
+    FREE(filename);
+
     scichdir(currentpath);
     FREE(currentpath);
 

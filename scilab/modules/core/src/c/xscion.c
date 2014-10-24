@@ -10,7 +10,7 @@
  *
  */
 #include "xscion.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int C2F(xscion) (int *i)
 {

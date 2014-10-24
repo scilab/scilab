@@ -22,7 +22,7 @@
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
 #include "os_strdup.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

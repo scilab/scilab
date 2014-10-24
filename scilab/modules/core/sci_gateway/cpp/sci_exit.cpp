@@ -20,7 +20,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "createMainScilabObject.h"
 }
 

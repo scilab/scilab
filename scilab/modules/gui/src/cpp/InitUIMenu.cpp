@@ -31,7 +31,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "createGraphicObject.h"
 }
 

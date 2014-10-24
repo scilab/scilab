@@ -45,7 +45,7 @@ extern "C"
 #include "AxesModel.h"
 #include "getGraphicObjectProperty.h"
 #include "deleteGraphicObject.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "sciprint.h"
 }
 /*--------------------------------------------------------------------------*/

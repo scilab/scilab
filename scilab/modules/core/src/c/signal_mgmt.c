@@ -36,7 +36,7 @@
 #include "signal_mgmt.h"
 #include "Scierror.h"
 #include "suspendProcess.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "backtrace_print.h"
 jmp_buf jmp_env;
 

@@ -26,7 +26,7 @@ SPARSE_IMPEXP int sci_spmax (char *fname, void* pvApiCtx);
 int sci_sparsefunc (char *fname, unsigned long fname_len);
 int sci_spget (char *fname, unsigned long fname_len);
 int sci_full (char *fname, unsigned long fname_len);
-int sci_lufact (char *fname, unsigned long fname_len);
+//int sci_lufact (char *fname, unsigned long fname_len); -> c++
 int sci_lusolve (char *fname, unsigned long fname_len);
 int sci_ludel (char *fname, unsigned long fname_len);
 int sci_luget (char *fname, unsigned long fname_len);

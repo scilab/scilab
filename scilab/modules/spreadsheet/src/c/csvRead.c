@@ -20,7 +20,7 @@
 #include "expandPathVariable.h"
 #include "FileExist.h"
 #include "mclose.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "pcre_private.h"
 #include "sciprint.h"
 #include "splitLine.h"

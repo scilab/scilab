@@ -18,7 +18,7 @@
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "scisparse.h"
 /*--------------------------------------------------------------------------*/

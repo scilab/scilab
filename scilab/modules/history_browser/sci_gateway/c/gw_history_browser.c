@@ -21,7 +21,7 @@
 #include "api_scilab.h"
 #include "MALLOC.h"
 #include "callFunctionFromGateway.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/

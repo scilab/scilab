@@ -21,7 +21,7 @@ extern "C"
 #include "sciprint.h"
 #include "localization.h"
 #include "WinConsole.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 }
 
 using namespace types;

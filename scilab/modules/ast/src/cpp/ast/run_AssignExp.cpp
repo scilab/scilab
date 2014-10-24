@@ -287,6 +287,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             setExpectedSize(1);
             e.getRightExp().accept(*this);
             InternalType *pIT = getResult();
+            setResult(NULL);
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())

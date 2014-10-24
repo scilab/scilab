@@ -14,7 +14,7 @@
 #include <string.h>
 #include "prompt.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "sci_malloc.h"
 #include "os_strdup.h"

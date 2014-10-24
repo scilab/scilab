@@ -26,7 +26,7 @@ Struct::Struct()
     int piDims[2] = {0, 0};
     create(piDims, 2, &pIT, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -41,9 +41,10 @@ Struct::Struct(int _iRows, int _iCols)
     {
         set(i, p);
     }
-    delete p;
+
+    p->killMe();
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -51,15 +52,16 @@ Struct::Struct(int _iDims, int* _piDims)
 {
     m_bDisableCloneInCopyValue = false;
     SingleStruct** pIT  = NULL;
+    SingleStruct *p = new SingleStruct();
     create(_piDims, _iDims, &pIT, NULL);
     for (int i = 0 ; i < getSize() ; i++)
     {
-        SingleStruct *p = new SingleStruct();
         set(i, p);
-        delete p;
     }
+    p->killMe();
+
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -73,20 +75,12 @@ Struct::~Struct()
             if (pStr)
             {
                 pStr->DecreaseRef();
-                if (pStr->isDeletable())
-                {
-                    //std::wcout << L"delete sub struct(" << i << L") : " << pStr << std::endl;
-                    delete pStr;
-                }
-                else
-                {
-                    //std::wcout << L"!!!!!!!!!!!!!!! pas touche sub struct(" << i << L") : " << pStr->getRef() << L" @" << pStr << std::endl;
-                }
+                pStr->killMe();
             }
         }
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -105,7 +99,7 @@ Struct::Struct(Struct *_oStructCopyMe)
         pIT[i] = _oStructCopyMe->get(i)->clone();
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -233,15 +227,16 @@ bool Struct::set(int _iIndex, SingleStruct* _pIT)
         InternalType* pOld = m_pRealData[_iIndex];
 
         m_pRealData[_iIndex] = copyValue(_pIT);
-        m_pRealData[_iIndex]->IncreaseRef();
+        if (m_bDisableCloneInCopyValue == false)
+        {
+            //only in clone mode
+            m_pRealData[_iIndex]->IncreaseRef();
+        }
 
         if (pOld != NULL)
         {
             pOld->DecreaseRef();
-            if (pOld->isDeletable())
-            {
-                delete pOld;
-            }
+            pOld->killMe();
         }
 
         return true;
@@ -260,10 +255,7 @@ bool Struct::set(int _iIndex, const SingleStruct* _pIT)
         if (pOld != NULL)
         {
             pOld->DecreaseRef();
-            if (pOld->isDeletable())
-            {
-                delete pOld;
-            }
+            pOld->killMe();
         }
 
         return true;
@@ -357,7 +349,7 @@ SingleStruct* Struct::copyValue(SingleStruct* _pData)
     if (m_bDisableCloneInCopyValue)
     {
         pStr = _pData;
-        //pStr->IncreaseRef();
+        pStr->IncreaseRef();
         //std::wcout << L"copyValueWithoutClone -> " << pStr << L" : " << pStr->getRef() << std::endl;
     }
     else
@@ -373,10 +365,7 @@ void Struct::deleteAll()
     for (int i = 0 ; i < getSize() ; i++)
     {
         m_pRealData[i]->DecreaseRef();
-        if (m_pRealData[i]->isDeletable())
-        {
-            delete m_pRealData[i];
-        }
+        m_pRealData[i]->killMe();
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
@@ -475,7 +464,7 @@ bool Struct::toString(std::wostringstream& ostr)
             ostr << pIT->toStringInLine();
             ostr << std::endl;
         }
-        delete pwstFields;
+        pwstFields->killMe();;
     }
     else
     {
@@ -496,7 +485,7 @@ bool Struct::toString(std::wostringstream& ostr)
         {
             ostr << L"    " << pwstFields->get(i) << std::endl;
         }
-        delete pwstFields;
+        pwstFields->killMe();
     }
 
     scilabWriteW(ostr.str().c_str());
@@ -570,6 +559,8 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         ResultList.push_back(createEmptyDouble());
         return ResultList;
     }
@@ -595,7 +586,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
                 pFields->set(2 + j, pS->get(j));
             }
 
-            delete pS;
+            pS->killMe();
             ResultList.push_back(pFields);
         }
         else if (iIndex == 2)
@@ -644,14 +635,7 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
-
+    cleanIndexesArguments(_pArgs, &pArg);
     return ResultList;
 }
 
@@ -663,7 +647,9 @@ bool Struct::resize(int _iNewRows, int _iNewCols)
 
 bool Struct::resize(int* _piDims, int _iDims)
 {
+    m_bDisableCloneInCopyValue = true;
     bool bRes = ArrayOf<SingleStruct*>::resize(_piDims, _iDims);
+    m_bDisableCloneInCopyValue = false;
     if (bRes)
     {
         // insert field(s) only in new element(s) of current struct
@@ -675,6 +661,8 @@ bool Struct::resize(int* _piDims, int _iDims)
                 get(iterStruct)->addField(pFields->get(iterField));
             }
         }
+
+        pFields->killMe();
     }
 
     return bRes;
@@ -707,4 +695,11 @@ void Struct::setCloneInCopyValue(bool _val)
     m_bDisableCloneInCopyValue = !_val;
 }
 
+void Struct::deleteData(SingleStruct* data)
+{
+    if (data)
+    {
+        data->killMe();
+    }
+}
 }

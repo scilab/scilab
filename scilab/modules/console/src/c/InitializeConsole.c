@@ -15,7 +15,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
 #include "InitializeConsole.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "ScilabLinesUpdate.h"
 #include "scilines.h"
 /*--------------------------------------------------------------------------*/

@@ -19,7 +19,7 @@ extern "C"
 {
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"

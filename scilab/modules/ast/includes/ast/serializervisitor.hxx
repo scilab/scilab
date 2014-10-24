@@ -462,8 +462,9 @@ private :
         }
         add_exp(e.getSelect());
 
-        add_uint32((unsigned int)e.getCases()->size());
         exps_t* cases = e.getCases();
+        add_uint32((unsigned int)cases->size());
+
         for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
         {
             const CaseExp *ce = (*it)->getAs<CaseExp>();
@@ -472,6 +473,8 @@ private :
             add_exp(ce->getTest());
             add_exps(ce->getBody()->getAs<SeqExp>()->getExps());
         }
+
+        delete cases;
     }
     void visit(const CellExp& e)  /* done */
     {

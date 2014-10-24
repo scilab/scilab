@@ -855,7 +855,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     workFields.push_back(pEHChield);
                 }
 
-                delete pLOut;
+                pLOut->killMe();
             }
         }
         else if (pITCurrent->isTList() || pITCurrent->isMList())
@@ -1310,6 +1310,10 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     pStruct->get(pEH->getWhereReinsert())->set(pEH->getExpAsString(), _pAssignValue);
                 }
+
+                // insert _pAssignValue in parent, delete PEh and removes it from list<ExpHistory*>
+                delete pEH;
+                evalFields.pop_back();
             }
             else if (pParent->isTList() || pParent->isMList())
             {
@@ -1336,6 +1340,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 {
                     pTL->set(pEH->getExpAsString(), _pAssignValue);
                 }
+
+                // set _pAssignValue in parent, so kill the current if needed
+                // insert _pAssignValue in parent, delete PEh and removes it from list<ExpHistory*>
+                delete pEH;
+                evalFields.pop_back();
             }
             else
             {
@@ -1429,6 +1438,11 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
         }
 
+        if (pEH->getCurrent())
+        {
+            pEH->getCurrent()->killMe();
+        }
+
         evalFields.pop_back();
         delete pEH;
     }
@@ -1455,6 +1469,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         //_pInsert = new Double(-1, -1, &pdbl);
         //pdbl[0] = 1;
         pIL = Double::Identity(-1, -1);
+        _pInsert->killMe();
         _pInsert = pIL;
     }
     else if (_pInsert->isImplicitList())
@@ -1462,6 +1477,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         pIL = _pInsert->getAs<ImplicitList>()->extractFullMatrix();
         if (pIL && pIL->isDeletable())
         {
+            _pInsert->killMe();
             _pInsert = pIL;
         }
     }
@@ -1668,12 +1684,15 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 case InternalType::ScilabSparseBool :
                     pOut = SparseBool::insertNew(_pArgs, _pInsert);
                     break;
+                case InternalType::ScilabHandle:
+                    pOut = GraphicHandle::insertNew(_pArgs, _pInsert);
+                    break;
                 default :
                 {
                     // overload
                     types::Double* pEmpty = types::Double::Empty();
                     pOut = callOverload(e, L"i", _pArgs, _pInsert, pEmpty);
-                    delete pEmpty;
+                    pEmpty->killMe();
                     break;
                 }
             }
@@ -1795,7 +1814,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
 
             pRet = pDest->insert(_pArgs, pP);
-            delete pP;
+            pP->killMe();
         }
         else if (_pVar->isPoly() && _pInsert->isPoly())
         {
@@ -1899,13 +1918,19 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                                     // set elements in the new position
                                     pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
                                 }
+
+                                pLExtract->killMe();
                             }
                         }
+
+                        pStrFieldsName->killMe();
                     }
 
                     // insert elements in following pArgs
                     pRet = pStruct->insert(_pArgs, pStructInsert);
                     pStructRet = pRet->getAs<Struct>();
+
+                    pStructInsert->killMe();
 
                     // insert fields of pStructInsert in pRet
                     for (int i = 0; i < pStrInsertFieldsName->getSize(); i++)
@@ -1915,6 +1940,8 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                             pStructRet->addField(pStrInsertFieldsName->get(i));
                         }
                     }
+
+                    pStrInsertFieldsName->killMe();
                 }
                 else
                 {
@@ -2034,7 +2061,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
                 if (pCall)
                 {
-                    Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
+                    Callable::ReturnValue ret = pCall->call(in, opt, 1, out, &exec);
                     if (ret == Callable::OK)
                     {
                         pRet = _pVar;
@@ -2043,7 +2070,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
             else
             {
-                pRet = _pVar->getAs<types::GraphicHandle>()->extract(_pArgs);
+                pRet = _pVar->getAs<types::GraphicHandle>()->insert(_pArgs, _pInsert);
             }
         }
         else if (_pVar->isUserType())

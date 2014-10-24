@@ -24,7 +24,7 @@ namespace types
 Polynom::Polynom()
 {
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -57,7 +57,7 @@ Polynom::~Polynom()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -76,7 +76,7 @@ void Polynom::createPoly(std::wstring _szVarName, int _iDims, int* _piDims, cons
         }
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -981,7 +981,7 @@ void Polynom::deleteAll()
 {
     for (int i = 0 ; i < getSize() ; i++)
     {
-        delete m_pRealData[i];
+        m_pRealData[i]->killMe();
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
@@ -998,6 +998,14 @@ SinglePoly** Polynom::allocData(int _iSize)
     SinglePoly** pData = new SinglePoly*[_iSize];
     memset(pData, 0x00, _iSize * sizeof(SinglePoly*));
     return pData;
+}
+
+void Polynom::deleteData(SinglePoly* data)
+{
+    if (data)
+    {
+        data->killMe();
+    }
 }
 }
 

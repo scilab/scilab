@@ -18,7 +18,7 @@
 #include "call_scilab.h"
 #include "lasterror.h"          /* clearInternalLastError, getInternalLastErrorValue */
 #include "sci_malloc.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #include "fromc.h"
 #include "LaunchScilabSignal.h"
 #include "isdir.h"

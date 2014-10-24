@@ -22,7 +22,7 @@
 #include "invert_matrix.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 
 /*
 r : real part

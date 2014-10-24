@@ -25,7 +25,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;

@@ -45,32 +45,23 @@ ImplicitList::~ImplicitList()
         if (m_poStart)
         {
             m_poStart->DecreaseRef();
-            if (m_poStart->isDeletable())
-            {
-                delete m_poStart;
-            }
+            m_poStart->killMe();
         }
 
         if (m_poStep)
         {
             m_poStep->DecreaseRef();
-            if (m_poStep->isDeletable())
-            {
-                delete m_poStep;
-            }
+            m_poStep->killMe();
         }
 
         if (m_poEnd)
         {
             m_poEnd->DecreaseRef();
-            if (m_poEnd->isDeletable())
-            {
-                delete m_poEnd;
-            }
+            m_poEnd->killMe();
         }
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -87,7 +78,7 @@ ImplicitList::ImplicitList()
     m_pDblEnd   = NULL;
 
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -108,7 +99,7 @@ ImplicitList::ImplicitList(InternalType* _poStart, InternalType* _poStep, Intern
     setEnd(_poEnd);
     compute();
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -138,11 +129,8 @@ void ImplicitList::setStart(InternalType *_poIT)
     {
         //clear previous value
         m_poStart->DecreaseRef();
-        if (m_poStart->isDeletable())
-        {
-            delete m_poStart;
-            m_poStart = NULL;
-        }
+        m_poStart->killMe();
+        m_poStart = NULL;
     }
 
     m_poStart = _poIT;
@@ -160,11 +148,8 @@ void ImplicitList::setStep(InternalType *_poIT)
     {
         //clear previous value
         m_poStep->DecreaseRef();
-        if (m_poStep->isDeletable())
-        {
-            delete m_poStep;
-            m_poStep = NULL;
-        }
+        m_poStep->killMe();
+        m_poStep = NULL;
     }
 
     m_poStep = _poIT;
@@ -182,11 +167,8 @@ void ImplicitList::setEnd(InternalType* _poIT)
     {
         //clear previous value
         m_poEnd->DecreaseRef();
-        if (m_poEnd->isDeletable())
-        {
-            delete m_poEnd;
-            m_poEnd = NULL;
-        }
+        m_poEnd->killMe();
+        m_poEnd = NULL;
     }
 
     m_poEnd = _poIT;
@@ -369,8 +351,10 @@ bool ImplicitList::toString(std::wostringstream& ostr)
 {
     if (isComputable())
     {
-        bool ret = extractFullMatrix()->toString(ostr);
+        types::InternalType* pIT = extractFullMatrix();
+        bool ret = pIT->toString(ostr);
         scilabWriteW(ostr.str().c_str());
+        delete pIT;
         return ret;
     }
     else
@@ -641,6 +625,8 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
     }
 
@@ -695,13 +681,7 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     }
 
     //free pArg content
-    for (int iArg = 0 ; iArg < (int)pArg.size() ; iArg++)
-    {
-        if (pArg[iArg] != (*_pArgs)[iArg] && pArg[iArg]->isDeletable())
-        {
-            delete pArg[iArg];
-        }
-    }
+    cleanIndexesArguments(_pArgs, &pArg);
 
     delete[] piMaxDim;
     delete[] piCountDim;

@@ -20,7 +20,7 @@
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #ifndef _MSC_VER
-#include "sci_mode.h"
+#include "configvariable_interface.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int gw_graphic_objects(void)

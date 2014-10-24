@@ -38,7 +38,7 @@ String::~String()
         deleteAll();
     }
 #ifndef NDEBUG
-    //Inspector::removeItem(this);
+    Inspector::removeItem(this);
 #endif
 }
 
@@ -47,7 +47,7 @@ String::String(int _iDims, int* _piDims)
     wchar_t** pwsData = NULL;
     create(_piDims, _iDims, &pwsData, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -58,7 +58,7 @@ String::String(const wchar_t* _pwstData)
     create(piDims, 2, &pwsData, NULL);
     set(0, 0, _pwstData);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -71,7 +71,7 @@ String::String(const char *_pstData)
     set(0, 0, data);
     FREE(data);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -81,7 +81,7 @@ String::String(int _iRows, int _iCols)
     int piDims[] = {_iRows, _iCols};
     create(piDims, 2, &pwsData, NULL);
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
@@ -95,7 +95,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
         set(i, os_wcsdup(_pstData[i]));
     }
 #ifndef NDEBUG
-    //Inspector::addItem(this);
+    Inspector::addItem(this);
 #endif
 }
 
