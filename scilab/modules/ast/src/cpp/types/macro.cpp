@@ -421,9 +421,9 @@ bool Macro::operator==(const InternalType& it)
 
     ast::Exp* pExp = pRight->getBody();
     ast::SerializeVisitor serialOld(pExp);
-    unsigned char* oldSerial = serialOld.serialize(false);
+    unsigned char* oldSerial = serialOld.serialize(false, false);
     ast::SerializeVisitor serialMacro(m_body);
-    unsigned char* macroSerial = serialMacro.serialize(false);
+    unsigned char* macroSerial = serialMacro.serialize(false, false);
 
     //check buffer length
     unsigned int oldSize = *((unsigned int*)oldSerial);
