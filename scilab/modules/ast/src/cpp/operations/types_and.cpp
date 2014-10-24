@@ -56,7 +56,7 @@ void fillAndFunction()
     scilab_fill_and(Bool, ScalarDouble, M_S, Bool, Double, Bool);
     scilab_fill_and(Bool, ScalarBool, M_S, Bool, Bool, Bool);
 
-    scilab_fill_and(Bool, Empty, M_E, Bool, Double, Double);
+    scilab_fill_and(Bool, Empty, M_E, Bool, Double, Bool);
     scilab_fill_and(Bool, Identity, M_S, Bool, Double, Bool);
 
     scilab_fill_and(ScalarBool, Double, S_M, Bool, Double, Bool);
@@ -65,14 +65,14 @@ void fillAndFunction()
     scilab_fill_and(ScalarBool, ScalarDouble, S_S, Bool, Double, Bool);
     scilab_fill_and(ScalarBool, ScalarBool, S_S, Bool, Bool, Bool);
 
-    scilab_fill_and(ScalarBool, Empty, M_E, Bool, Double, Double);
+    scilab_fill_and(ScalarBool, Empty, M_E, Bool, Double, Bool);
     scilab_fill_and(ScalarBool, Identity, S_S, Bool, Double, Bool);
 
     // []
     scilab_fill_and(Empty, Double, E_M, Double, Double, Double);
-    scilab_fill_and(Empty, Bool, E_M, Double, Bool, Double);
+    scilab_fill_and(Empty, Bool, E_M, Double, Bool, Bool);
     scilab_fill_and(Empty, ScalarDouble, E_M, Double, Double, Double);
-    scilab_fill_and(Empty, ScalarBool, E_M, Double, Bool, Double);
+    scilab_fill_and(Empty, ScalarBool, E_M, Double, Bool, Bool);
     scilab_fill_and(Empty, Empty, E_M, Double, Double, Double);
     scilab_fill_and(Empty, Identity, E_M, Double, Double, Double);
 
@@ -588,6 +588,18 @@ InternalType* and_M_E(T * /*_pL*/, U *_pR)
 
 template<class T, class U, class O>
 InternalType* and_E_M(T *_pL, U * /*_pR*/)
+{
+    return _pL;
+}
+
+template<>
+InternalType* and_E_M<Double, Bool, Bool>(Double* /* _pL */, Bool* _pR)
+{
+    return _pR;
+}
+
+template<>
+InternalType* and_M_E<Bool, Double, Bool>(Bool* _pL, Double* /* _pR */)
 {
     return _pL;
 }

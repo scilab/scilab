@@ -47,6 +47,8 @@ DECLARE_AND_PROTO(and_int_S_M);
 DECLARE_AND_PROTO(and_int_S_S);
 
 //boolean sparse specialisation
+template<> types::InternalType* and_E_M<types::Double, types::Bool, types::Bool>(types::Double* _pL, types::Bool* _pR);
+template<> types::InternalType* and_M_E<types::Bool, types::Double, types::Bool>(types::Bool* _pL, types::Double* _pR);
 template<> types::InternalType* and_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
 template<> types::InternalType* and_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
 template<> types::InternalType* and_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
