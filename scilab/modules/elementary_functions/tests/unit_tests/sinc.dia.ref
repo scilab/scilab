@@ -21,7 +21,7 @@ x2=rand(2,2,2,2);
 assert_checkalmostequal(sinc(x2),sin(x2)./x2, [], 1e-12);
 // Sparse
 x2=sparse(x);
-assert_checkalmostequal(sinc(x2),sin(x2)./x2, [], 1e-12);
+assert_checkalmostequal(sinc(x2),full(sin(x2)./x2), [], 1e-12);
 // Error messages
 error_msg = msprintf(gettext("Wrong number of input arguments."));
 assert_checkerror("sinc(1,2,3)",error_msg,999);
