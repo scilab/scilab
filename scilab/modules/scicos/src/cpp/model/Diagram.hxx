@@ -67,59 +67,60 @@ struct SimulationConfig
 
 class Diagram: public BaseObject
 {
+public:
+    Diagram() : BaseObject(DIAGRAM), m_title("Untitled"), m_path(), m_properties(), m_context(), m_children(), m_version() {};
+    Diagram(const Diagram& o) : BaseObject(DIAGRAM), m_title(o.m_title), m_path(o.m_path), m_properties(o.m_properties),
+        m_context(o.m_context), m_children(o.m_children), m_version(o.m_version) {};
+    ~Diagram() = default;
+
 private:
     friend class ::org_scilab_modules_scicos::Model;
 
-    Diagram() : BaseObject(DIAGRAM), title("Untitled"), path(), properties(), context(), children(), version() {};
-    Diagram(const Diagram& o) : BaseObject(DIAGRAM), title(o.title), path(o.path), properties(o.properties),
-        context(o.context), children(o.children), version(o.version) {};
-    ~Diagram() {}
-
     void getChildren(std::vector<ScicosID>& c) const
     {
-        c = children;
+        c = m_children;
     }
 
     update_status_t setChildren(const std::vector<ScicosID>& c)
     {
-        if (c == children)
+        if (c == m_children)
         {
             return NO_CHANGES;
         }
 
-        children = c;
+        m_children = c;
         return SUCCESS;
     }
 
     void getContext(std::vector<std::string>& data) const
     {
-        data = context;
+        data = m_context;
     }
 
     update_status_t setContext(const std::vector<std::string>& data)
     {
-        if (data == context)
+        if (data == m_context)
         {
             return NO_CHANGES;
         }
 
-        context = data;
+        m_context = data;
         return SUCCESS;
     }
 
     const std::vector<Datatype*>& getDatatypes() const
     {
-        return datatypes;
+        return m_datatypes;
     }
 
     void setDatatypes(const std::vector<Datatype*>& datatypes)
     {
-        this->datatypes = datatypes;
+        this->m_datatypes = datatypes;
     }
 
     void getProperties(std::vector<double>& v) const
     {
-        properties.fill(v);
+        m_properties.fill(v);
     }
 
     update_status_t setProperties(const std::vector<double>& v)
@@ -130,73 +131,73 @@ private:
         }
 
         SimulationConfig p = SimulationConfig(v);
-        if (p == properties)
+        if (p == m_properties)
         {
             return NO_CHANGES;
         }
 
-        properties = p;
+        m_properties = p;
         return SUCCESS;
     }
 
     void getTitle(std::string& data) const
     {
-        data = title;
+        data = m_title;
     }
 
     update_status_t setTitle(const std::string& data)
     {
-        if (data == title)
+        if (data == m_title)
         {
             return NO_CHANGES;
         }
 
-        title = data;
+        m_title = data;
         return SUCCESS;
     }
 
     void getPath(std::string& data) const
     {
-        data = path;
+        data = m_path;
     }
 
     update_status_t setPath(const std::string& data)
     {
-        if (data == path)
+        if (data == m_path)
         {
             return NO_CHANGES;
         }
 
-        path = data;
+        m_path = data;
         return SUCCESS;
     }
 
     void getVersionNumber(std::string& data) const
     {
-        data = version;
+        data = m_version;
     }
 
     update_status_t setVersionNumber(const std::string& data)
     {
-        if (data == version)
+        if (data == m_version)
         {
             return NO_CHANGES;
         }
 
-        version = data;
+        m_version = data;
         return SUCCESS;
     }
 
 private:
-    std::string title;
-    std::string path;
-    SimulationConfig properties;
-    std::vector<std::string> context;
+    std::string m_title;
+    std::string m_path;
+    SimulationConfig m_properties;
+    std::vector<std::string> m_context;
 
-    std::vector<ScicosID> children;
-    std::vector<Datatype*> datatypes;
+    std::vector<ScicosID> m_children;
+    std::vector<Datatype*> m_datatypes;
 
-    std::string version;
+    std::string m_version;
 };
 
 } /* namespace model */

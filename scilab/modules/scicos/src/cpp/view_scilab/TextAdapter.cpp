@@ -47,7 +47,7 @@ struct graphics
 {
     static types::InternalType* get(const TextAdapter& adaptor, const Controller& controller)
     {
-        model::Annotation* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         types::MList* o = new types::MList();
         types::String* MListFields = new types::String(1, 4);
@@ -59,7 +59,7 @@ struct graphics
 
         // orig and sz
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, ANNOTATION, GEOMETRY, geom);
 
         double* dataOrig;
         double* dataSz;
@@ -74,9 +74,9 @@ struct graphics
 
         // exprs
         std::vector<std::string> Exprs (3);
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, Exprs[0]);
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), FONT, Exprs[1]);
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, Exprs[2]);
+        controller.getObjectProperty(adaptee, ANNOTATION, DESCRIPTION, Exprs[0]);
+        controller.getObjectProperty(adaptee, ANNOTATION, FONT, Exprs[1]);
+        controller.getObjectProperty(adaptee, ANNOTATION, FONT_SIZE, Exprs[2]);
 
         types::String* exprsField = new types::String(3, 1);
         for (int i = 0; i < (int) Exprs.size(); ++i)
@@ -105,7 +105,7 @@ struct graphics
         types::Double* currentFieldDouble;
         types::String* currentFieldString;
 
-        model::Annotation* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         // orig
         if ((currentField = current->getField(orig.c_str())) == NULL)
@@ -122,10 +122,10 @@ struct graphics
             return false;
         }
         std::vector<double> origField;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, origField);
+        controller.getObjectProperty(adaptee, ANNOTATION, GEOMETRY, origField);
         origField[0] = currentFieldDouble->get(0);
         origField[1] = currentFieldDouble->get(1);
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, origField);
+        controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, origField);
 
         // sz
         if ((currentField = current->getField(sz.c_str())) == NULL)
@@ -142,10 +142,10 @@ struct graphics
             return false;
         }
         std::vector<double> szField;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, szField);
+        controller.getObjectProperty(adaptee, ANNOTATION, GEOMETRY, szField);
         szField[2] = currentFieldDouble->get(0);
         szField[3] = currentFieldDouble->get(1);
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, szField);
+        controller.setObjectProperty(adaptee, ANNOTATION, GEOMETRY, szField);
 
         // exprs
         if ((currentField = current->getField(exprs.c_str())) == NULL)
@@ -167,9 +167,9 @@ struct graphics
                 exprsField[i] = std::string(c_str);
                 FREE(c_str);
             }
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, exprsField[0]);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT, exprsField[1]);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, exprsField[2]);
+            controller.setObjectProperty(adaptee, ANNOTATION, DESCRIPTION, exprsField[0]);
+            controller.setObjectProperty(adaptee, ANNOTATION, FONT, exprsField[1]);
+            controller.setObjectProperty(adaptee, ANNOTATION, FONT_SIZE, exprsField[2]);
             return true;
         }
         else if (currentField->getType() == types::InternalType::ScilabDouble)
@@ -181,9 +181,9 @@ struct graphics
             }
 
             std::vector<std::string> exprsField (3);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DESCRIPTION, exprsField[0]);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT, exprsField[1]);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), FONT_SIZE, exprsField[2]);
+            controller.setObjectProperty(adaptee, ANNOTATION, DESCRIPTION, exprsField[0]);
+            controller.setObjectProperty(adaptee, ANNOTATION, FONT, exprsField[1]);
+            controller.setObjectProperty(adaptee, ANNOTATION, FONT_SIZE, exprsField[2]);
             return true;
         }
 
@@ -258,8 +258,8 @@ struct dummy_property
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
-TextAdapter::TextAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Annotation* adaptee) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(ownAdaptee, adaptee)
+TextAdapter::TextAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Annotation> adaptee) :
+    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(adaptee)
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {
@@ -269,6 +269,11 @@ TextAdapter::TextAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Anno
         property<TextAdapter>::add_property(L"void", &dummy_property::get, &dummy_property::set);
         property<TextAdapter>::add_property(L"gui", &dummy_property::get, &dummy_property::set);
     }
+}
+
+TextAdapter::TextAdapter(const TextAdapter& adapter) :
+    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(adapter)
+{
 }
 
 TextAdapter::~TextAdapter()

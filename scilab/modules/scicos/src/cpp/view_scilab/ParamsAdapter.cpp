@@ -66,12 +66,12 @@ struct title
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string title;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), TITLE, title);
+        controller.getObjectProperty(adaptee, DIAGRAM, TITLE, title);
         std::string path;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PATH, path);
+        controller.getObjectProperty(adaptee, DIAGRAM, PATH, path);
 
         types::String* o = new types::String(2, 1);
         o->set(0, title.data());
@@ -87,7 +87,7 @@ struct title
             return false;
         }
 
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string path;
         std::string title;
@@ -111,8 +111,8 @@ struct title
         title = std::string(Title);
         FREE(Title);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), TITLE, title);
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), PATH, path);
+        controller.setObjectProperty(adaptee, DIAGRAM, TITLE, title);
+        controller.setObjectProperty(adaptee, DIAGRAM, PATH, path);
         return true;
     }
 };
@@ -122,13 +122,13 @@ struct tol
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         double* data;
         types::Double* o = new types::Double(1, 7, &data);
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
 #ifdef _MSC_VER
         std::copy(tol.begin() + 1, tol.end(), stdext::checked_array_iterator<double*>( data, 7 ));
 #else
@@ -152,14 +152,14 @@ struct tol
             return false;
         }
 
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
 
         std::copy(current->getReal(), current->getReal() + current->getSize(), tol.begin() + 1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
+        controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
         return true;
     }
 };
@@ -169,10 +169,10 @@ struct tf
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> tf;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tf);
+        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tf);
 
         return new types::Double(tf[0]);
     }
@@ -191,14 +191,14 @@ struct tf
             return false;
         }
 
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> tol;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
+        controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
 
         tol[0] = current->get(0);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), PROPERTIES, tol);
+        controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
         return true;
     }
 };
@@ -208,10 +208,10 @@ struct context
 
     static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
     {
-        model::Diagram* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<std::string> context;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
+        controller.getObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
 
         types::String* o = new types::String((int)context.size(), 1);
         for (int i = 0; i < (int)context.size(); ++i)
@@ -232,7 +232,7 @@ struct context
                 return false;
             }
 
-            model::Diagram* adaptee = adaptor.getAdaptee();
+            ScicosID adaptee = adaptor.getAdaptee()->id();
 
             std::vector<std::string> context (current->getSize());
             for (int i = 0; i < (int)context.size(); ++i)
@@ -242,7 +242,7 @@ struct context
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -253,10 +253,10 @@ struct context
                 return false;
             }
 
-            model::Diagram* adaptee = adaptor.getAdaptee();
+            ScicosID adaptee = adaptor.getAdaptee()->id();
 
             std::vector<std::string> context;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DIAGRAM_CONTEXT, context);
+            controller.setObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
             return true;
         }
         return false;
@@ -311,8 +311,8 @@ struct doc
 
 template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 
-ParamsAdapter::ParamsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
+ParamsAdapter::ParamsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
 {
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
@@ -332,9 +332,15 @@ ParamsAdapter::ParamsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::
     doc_content = new types::List();
 }
 
+ParamsAdapter::ParamsAdapter(const ParamsAdapter& adapter) :
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adapter)
+{
+    doc_content = adapter.doc_content->clone();
+}
+
 ParamsAdapter::~ParamsAdapter()
 {
-    delete doc_content;
+    doc_content->killMe();
 }
 
 std::wstring ParamsAdapter::getTypeStr()
@@ -353,7 +359,7 @@ types::InternalType* ParamsAdapter::getDocContent() const
 
 void ParamsAdapter::setDocContent(types::InternalType* v)
 {
-    delete doc_content;
+    doc_content->killMe();
     doc_content = v->clone();
 }
 

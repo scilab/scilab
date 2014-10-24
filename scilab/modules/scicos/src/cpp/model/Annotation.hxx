@@ -26,72 +26,73 @@ namespace model
 
 class Annotation: public BaseObject
 {
-    friend class ::org_scilab_modules_scicos::Model;
-
-private:
-    Annotation(): BaseObject(ANNOTATION), parentDiagram(0),
-        description(std::string("Text")), font(std::string("2")), font_size(std::string("1")), relatedTo(0)
+public:
+    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(0),
+        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), relatedTo(0)
     {
         std::vector<double> geom (4, 0);
         geom[2] = 2;
         geom[3] = 1;
-        geometry = Geometry(geom);
+        m_geometry = Geometry(geom);
     };
-    Annotation(const Annotation& o) : BaseObject(ANNOTATION), parentDiagram(o.parentDiagram), geometry(o.geometry),
-        description(o.description), font(o.font), font_size(o.font_size), relatedTo(o.relatedTo) {};
-    ~Annotation() {};
+    Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_geometry(o.m_geometry),
+        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), relatedTo(o.relatedTo) {};
+    ~Annotation() = default;
+
+private:
+    friend class ::org_scilab_modules_scicos::Model;
 
     void getDescription(std::string& data) const
     {
-        data = description;
+        data = m_description;
     }
 
     update_status_t setDescription(const std::string& data)
     {
-        if (data == description)
+        if (data == m_description)
         {
             return NO_CHANGES;
         }
 
-        description = data;
+        m_description = data;
         return SUCCESS;
     }
 
     void getFont(std::string& data) const
     {
-        data = font;
+        data = m_font;
     }
 
     update_status_t setFont(const std::string& data)
     {
-        if (data == font)
+        if (data == m_font)
         {
             return NO_CHANGES;
         }
 
-        font = data;
+        m_font = data;
         return SUCCESS;
     }
 
     void getFontSize(std::string& data) const
     {
-        data = font_size;
+        data = m_font_size;
     }
 
     update_status_t setFontSize(const std::string& data)
     {
-        if (data == font_size)
+        if (data == m_font_size)
         {
             return NO_CHANGES;
         }
 
-        font_size = data;
+        m_font_size = data;
         return SUCCESS;
     }
 
     void getGeometry(std::vector<double>& v) const
     {
-        geometry.fill(v);
+        m_geometry.fill(v);
     }
 
     update_status_t setGeometry(const std::vector<double>& v)
@@ -102,28 +103,28 @@ private:
         }
 
         Geometry g = Geometry(v);
-        if (g == geometry)
+        if (g == m_geometry)
         {
             return NO_CHANGES;
         }
 
-        geometry = g;
+        m_geometry = g;
         return SUCCESS;
     }
 
     void getParentDiagram(ScicosID& v) const
     {
-        v = parentDiagram;
+        v = m_parentDiagram;
     }
 
     update_status_t setParentDiagram(const ScicosID v)
     {
-        if (v == parentDiagram)
+        if (v == m_parentDiagram)
         {
             return NO_CHANGES;
         }
 
-        parentDiagram = v;
+        m_parentDiagram = v;
         return SUCCESS;
     }
 
@@ -144,11 +145,11 @@ private:
     }
 
 private:
-    ScicosID parentDiagram;
-    Geometry geometry;
-    std::string description;
-    std::string font;
-    std::string font_size;
+    ScicosID m_parentDiagram;
+    Geometry m_geometry;
+    std::string m_description;
+    std::string m_font;
+    std::string m_font_size;
     ScicosID relatedTo;
 };
 

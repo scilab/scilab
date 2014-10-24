@@ -26,7 +26,8 @@ namespace view_scilab
 class ModelAdapter : public BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
+    ModelAdapter(std::shared_ptr<model::Block> adaptee);
+    ModelAdapter(const ModelAdapter& adapter);
     ~ModelAdapter();
 
     static const std::wstring getSharedTypeStr()

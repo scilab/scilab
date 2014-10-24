@@ -47,10 +47,10 @@ struct xx
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> controlPoints;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
+        controller.getObjectProperty(adaptee, LINK, CONTROL_POINTS, controlPoints);
 
         double* data;
         int size = (int)controlPoints.size() / 2;
@@ -66,7 +66,7 @@ struct xx
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -76,7 +76,7 @@ struct xx
         types::Double* current = v->getAs<types::Double>();
 
         std::vector<double> controlPoints;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
+        controller.getObjectProperty(adaptee, LINK, CONTROL_POINTS, controlPoints);
 
         int newXSize = current->getSize();
         int oldXSize = static_cast<int>(controlPoints.size() / 2);
@@ -94,7 +94,7 @@ struct xx
             std::copy(controlPoints.begin() + oldXSize, controlPoints.begin() + oldXSize + std::min(newXSize, oldXSize), newControlPoints.begin() + newXSize);
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, newControlPoints);
+        controller.setObjectProperty(adaptee, LINK, CONTROL_POINTS, newControlPoints);
         return true;
     }
 };
@@ -104,10 +104,10 @@ struct yy
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> controlPoints;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
+        controller.getObjectProperty(adaptee, LINK, CONTROL_POINTS, controlPoints);
 
         double* data;
         int size = (int)controlPoints.size() / 2;
@@ -123,7 +123,7 @@ struct yy
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -133,7 +133,7 @@ struct yy
         types::Double* current = v->getAs<types::Double>();
 
         std::vector<double> controlPoints;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, controlPoints);
+        controller.getObjectProperty(adaptee, LINK, CONTROL_POINTS, controlPoints);
 
         int newYSize = current->getSize();
         int oldYSize = static_cast<int>(controlPoints.size() / 2);
@@ -154,7 +154,7 @@ struct yy
             }
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), CONTROL_POINTS, newControlPoints);
+        controller.setObjectProperty(adaptee, LINK, CONTROL_POINTS, newControlPoints);
         return true;
     }
 };
@@ -164,10 +164,10 @@ struct id
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), LABEL, id);
+        controller.getObjectProperty(adaptee, LINK, LABEL, id);
 
         types::String* o = new types::String(1, 1);
         o->set(0, id.data());
@@ -188,14 +188,14 @@ struct id
             return false;
         }
 
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
         id = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), LABEL, id);
+        controller.setObjectProperty(adaptee, LINK, LABEL, id);
         return true;
     }
 };
@@ -205,10 +205,10 @@ struct thick
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> thick;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), THICK, thick);
+        controller.getObjectProperty(adaptee, LINK, THICK, thick);
 
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
@@ -220,7 +220,7 @@ struct thick
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -237,7 +237,7 @@ struct thick
         thick[0] = current->get(0);
         thick[1] = current->get(1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), THICK, thick);
+        controller.setObjectProperty(adaptee, LINK, THICK, thick);
         return true;
     }
 };
@@ -247,12 +247,12 @@ struct ct
 
     static types::InternalType* get(const LinkAdapter& adaptor, const Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         int color;
         int kind;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), COLOR, color);
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), KIND, kind);
+        controller.getObjectProperty(adaptee, LINK, COLOR, color);
+        controller.getObjectProperty(adaptee, LINK, KIND, kind);
 
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
@@ -264,7 +264,7 @@ struct ct
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -284,15 +284,15 @@ struct ct
         int color = static_cast<int>(current->get(0));
         int kind  = static_cast<int>(current->get(1));
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), COLOR, color);
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), KIND, kind);
+        controller.setObjectProperty(adaptee, LINK, COLOR, color);
+        controller.setObjectProperty(adaptee, LINK, KIND, kind);
         return true;
     }
 };
 
 types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, const object_properties_t end)
 {
-    model::Link* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     double* data;
     types::Double* o = new types::Double(1, 3, &data);
@@ -301,7 +301,7 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
     data[2] = 0;
 
     ScicosID endID;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), end, endID);
+    controller.getObjectProperty(adaptee, LINK, end, endID);
     if (endID != 0)
     {
         ScicosID sourceBlock;
@@ -309,7 +309,7 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
 
         // Looking for the block number among the block IDs
         ScicosID parentDiagram;
-        controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+        controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
         std::vector<ScicosID> children;
         if (parentDiagram == 0)
         {
@@ -674,7 +674,7 @@ struct from
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -699,7 +699,7 @@ struct from
             from_content[2] = current->get(2);
         }
 
-        return adaptor.setFrom(adaptee->id(), from_content, controller);
+        return adaptor.setFrom(adaptee, from_content, controller);
     }
 };
 
@@ -724,7 +724,7 @@ struct to
 
     static bool set(LinkAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Link* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -750,7 +750,7 @@ struct to
             to_content[2] = current->get(2);
         }
 
-        return adaptor.setTo(adaptee->id(), to_content, controller);
+        return adaptor.setTo(adaptee, to_content, controller);
     }
 };
 
@@ -758,8 +758,8 @@ struct to
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
-LinkAdapter::LinkAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Link* adaptee) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(ownAdaptee, adaptee)
+LinkAdapter::LinkAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Link> adaptee) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adaptee)
 {
     if (property<LinkAdapter>::properties_have_not_been_set())
     {
@@ -786,6 +786,17 @@ LinkAdapter::LinkAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Link
     to_content[0]   = modelTo->get(0);
     to_content[1]   = modelTo->get(1);
     to_content[2]   = modelTo->get(2);
+}
+
+LinkAdapter::LinkAdapter(const LinkAdapter& adapter) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adapter)
+{
+    Controller controller;
+
+    // When cloning a LinkAdapter, clone its 'from' and 'to' information as well.
+    // setFrom() will propagate the information at model-level if necessary.
+    setFrom(getAdaptee()->id(), adapter.getFrom(), controller);
+    setTo(getAdaptee()->id(), adapter.getTo(), controller);
 }
 
 LinkAdapter::~LinkAdapter()
@@ -889,19 +900,6 @@ bool LinkAdapter::setTo(const ScicosID id, const std::vector<double>& v, Control
     }
 
     return true;
-}
-
-types::InternalType* LinkAdapter::clone()
-{
-    Controller controller = Controller();
-    ScicosID clone = controller.cloneObject(getAdaptee()->id());
-    LinkAdapter* ret = new LinkAdapter(false, static_cast<org_scilab_modules_scicos::model::Link*>(controller.getObject(clone)));
-
-    // When cloning a LinkAdapter, clone its 'from' and 'to' information as well.
-    // setFrom() will propagate the information at model-level if necessary.
-    ret->setFrom(clone, this->getFrom(), controller);
-    ret->setTo(clone, this->getTo(), controller);
-    return ret;
 }
 
 } /* namespace view_scilab */

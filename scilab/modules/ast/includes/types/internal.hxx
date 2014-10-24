@@ -230,7 +230,7 @@ public :
         return getTypeStr();
     }
     virtual InternalType*           clone(void) = 0;
-    virtual ast::Exp*               getExp(const Location &loc)
+    virtual ast::Exp*               getExp(const Location& /*loc*/)
     {
         return NULL;
     }

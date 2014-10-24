@@ -15,6 +15,7 @@
 
 #include <vector>
 #include <map>
+#include <memory>
 
 #include "utilities.hxx"
 #include "Model.hxx"
@@ -46,8 +47,7 @@ public:
     void deleteObject(ScicosID uid);
     ScicosID cloneObject(ScicosID uid);
 
-    model::BaseObject* getObject(ScicosID uid);
-    update_status_t setObject(model::BaseObject* o);
+    std::shared_ptr<model::BaseObject> getObject(ScicosID uid) const;
 
     template<typename T>
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
@@ -103,7 +103,7 @@ private:
     ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid);
 
     template<typename T>
-    void cloneProperties(model::BaseObject* initial, ScicosID clone)
+    void cloneProperties(std::shared_ptr<model::BaseObject> initial, ScicosID clone)
     {
         for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
         {

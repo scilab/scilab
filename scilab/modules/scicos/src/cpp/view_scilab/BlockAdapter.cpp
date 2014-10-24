@@ -41,13 +41,13 @@ struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(false, adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(false, adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -56,13 +56,13 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(false, adaptor.getAdaptee());
+        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(false, adaptor.getAdaptee());
+        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -72,8 +72,8 @@ struct gui
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         std::string Interface;
-        org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, Interface);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+        controller.getObjectProperty(adaptee, BLOCK, INTERFACE_FUNCTION, Interface);
 
         return new types::String(Interface.data());
     }
@@ -96,8 +96,8 @@ struct gui
         std::string stName(name);
         FREE(name);
 
-        org_scilab_modules_scicos::model::Block* adaptee = adaptor.getAdaptee();
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), INTERFACE_FUNCTION, stName);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+        controller.setObjectProperty(adaptee, BLOCK, INTERFACE_FUNCTION, stName);
         return true;
     }
 };
@@ -126,8 +126,9 @@ struct doc
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
-BlockAdapter::BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
+BlockAdapter::BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee) :
+    doc_content(new types::List()),
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adaptee)
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -137,13 +138,18 @@ BlockAdapter::BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Bl
         property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
+}
 
-    doc_content = new types::List();
+BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
+    doc_content(adapter.getDocContent()),
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter)
+{
 }
 
 BlockAdapter::~BlockAdapter()
 {
-    delete doc_content;
+    doc_content->DecreaseRef();
+    doc_content->killMe();
 }
 
 std::wstring BlockAdapter::getTypeStr()
@@ -157,13 +163,17 @@ std::wstring BlockAdapter::getShortTypeStr()
 
 types::InternalType* BlockAdapter::getDocContent() const
 {
-    return doc_content->clone();
+    doc_content->IncreaseRef();
+    return doc_content;
 }
 
 void BlockAdapter::setDocContent(types::InternalType* v)
 {
-    delete doc_content;
-    doc_content = v->clone();
+    doc_content->DecreaseRef();
+    doc_content->killMe();
+
+    v->IncreaseRef();
+    doc_content = v;
 }
 
 } /* namespace view_scilab */

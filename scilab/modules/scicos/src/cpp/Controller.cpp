@@ -111,7 +111,7 @@ static void unlink_vector(Controller& controller, ScicosID uid, kind_t k, object
     controller.getObjectProperty(uid, k, uid_prop, v);
     if (v != 0)
     {
-        model::BaseObject* o = controller.getObject(v);
+        auto o = controller.getObject(v);
 
         std::vector<ScicosID> children;
         controller.getObjectProperty(o->id(), o->kind(), ref_prop, children);
@@ -132,7 +132,7 @@ static void unlink(Controller& controller, ScicosID uid, kind_t k, object_proper
     controller.getObjectProperty(uid, k, uid_prop, v);
     if (v != 0)
     {
-        model::BaseObject* o = controller.getObject(v);
+        auto o = controller.getObject(v);
         controller.setObjectProperty(o->id(), o->kind(), ref_prop, 0);
     }
 }
@@ -140,7 +140,7 @@ static void unlink(Controller& controller, ScicosID uid, kind_t k, object_proper
 void Controller::deleteObject(ScicosID uid)
 {
     // disconnect / remove references first
-    model::BaseObject* initial = getObject(uid);
+    auto initial = getObject(uid);
     const kind_t k = initial->kind();
     if (k == ANNOTATION)
     {
@@ -190,7 +190,7 @@ void Controller::deleteObject(ScicosID uid)
 
 ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid)
 {
-    model::BaseObject* initial = getObject(uid);
+    auto initial = getObject(uid);
     const kind_t k = initial->kind();
     ScicosID o = createObject(k);
     mapped.insert(std::make_pair(uid, o));
@@ -319,23 +319,9 @@ ScicosID Controller::cloneObject(ScicosID uid)
     return cloneObject(mapped, uid);
 }
 
-model::BaseObject* Controller::getObject(ScicosID uid)
+std::shared_ptr<model::BaseObject> Controller::getObject(ScicosID uid) const
 {
     return _instance->model.getObject(uid);
-}
-
-update_status_t Controller::setObject(model::BaseObject* o)
-{
-    update_status_t status = _instance->model.setObject(o);
-
-    if (status == SUCCESS)
-    {
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
-        {
-            (*iter)->objectUpdated(o->id(), o->kind());
-        }
-    }
-    return status;
 }
 
 } /* namespace org_scilab_modules_scicos */

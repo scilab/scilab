@@ -27,7 +27,8 @@ namespace view_scilab
 class ParamsAdapter : public BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    ParamsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
+    ParamsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
+    ParamsAdapter(const ParamsAdapter& adapter);
     ~ParamsAdapter();
 
     static const std::wstring getSharedTypeStr()

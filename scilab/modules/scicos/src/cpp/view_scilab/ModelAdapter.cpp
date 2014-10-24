@@ -53,17 +53,17 @@ struct sim
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         // First, extract the function Name
         std::string name;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
         types::String* Name = new types::String(1, 1);
         Name->set(0, name.data());
 
         // Then the Api. If it is zero, then just return the Name. Otherwise, return a list containing both.
         int api;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api);
 
         if (api == 0)
         {
@@ -81,7 +81,7 @@ struct sim
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -98,8 +98,8 @@ struct sim
             // If the input is a scalar string, then the functionApi is 0.
             int api = 0;
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api);
         }
         else if (v->getType() == types::InternalType::ScilabList)
         {
@@ -135,8 +135,8 @@ struct sim
             }
             int api_int = static_cast<int>(api);
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api_int);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api_int);
         }
         else
         {
@@ -263,10 +263,10 @@ struct state
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> state;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+        controller.getObjectProperty(adaptee, BLOCK, STATE, state);
 
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
@@ -293,12 +293,12 @@ struct state
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> state (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), state.begin());
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+        controller.setObjectProperty(adaptee, BLOCK, STATE, state);
         return true;
     }
 };
@@ -308,10 +308,10 @@ struct dstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> dstate;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+        controller.getObjectProperty(adaptee, BLOCK, DSTATE, dstate);
 
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
@@ -326,7 +326,7 @@ struct dstate
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -337,7 +337,7 @@ struct dstate
             }
 
             std::vector<double> dstate;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+            controller.setObjectProperty(adaptee, BLOCK, DSTATE, dstate);
             return true;
         }
 
@@ -354,17 +354,17 @@ struct dstate
         std::vector<double> dstate (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+        controller.setObjectProperty(adaptee, BLOCK, DSTATE, dstate);
         return true;
     }
 };
 
 types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t prop)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     std::vector<int> prop_content;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+    controller.getObjectProperty(adaptee, BLOCK, prop, prop_content);
 
     if (prop_content.empty())
     {
@@ -530,7 +530,7 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
 
 bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_properties_t prop, types::InternalType* v)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     if (v->getType() == types::InternalType::ScilabDouble)
     {
@@ -541,7 +541,7 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
         }
 
         std::vector<int> prop_content;
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+        controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
         return true;
     }
 
@@ -735,7 +735,7 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
         index += 3 + numberOfIntNeeded;
     }
 
-    controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+    controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
     return true;
 }
 
@@ -759,7 +759,7 @@ struct odstate
  */
 bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& children, Controller& controller)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
@@ -808,7 +808,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                 }
 
                 std::vector<ScicosID> superPorts;
-                controller.getObjectProperty(adaptee->id(), adaptee->kind(), kind, superPorts);
+                controller.getObjectProperty(adaptee, BLOCK, kind, superPorts);
                 if (static_cast<int>(superPorts.size()) < portIndex)
                 {
                     return false;
@@ -838,7 +838,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
             }
 
             // Regardless of the ports, use the loop to set each Block's 'parent_block' property
-            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee->id());
+            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee);
         }
     }
     return true;
@@ -849,15 +849,15 @@ struct rpar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        controller.getObjectProperty(adaptee, BLOCK, CHILDREN, children);
 
         if (children.empty())
         {
             std::vector<double> rpar;
-            controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
+            controller.getObjectProperty(adaptee, BLOCK, RPAR, rpar);
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
@@ -870,15 +870,15 @@ struct rpar
         }
         else // SuperBlock, return the contained diagram, whose ID is stored in children[0]
         {
-            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(children[0]));
-            DiagramAdapter* o = new DiagramAdapter(false, diagram);
-            return o;
+            // FIXME : leak memory
+            model::Diagram* super = static_cast<model::Diagram*>(controller.getObject(children[0]).get());
+            return new DiagramAdapter(std::shared_ptr<model::Diagram>(super));
         }
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabDouble)
         {
@@ -890,7 +890,7 @@ struct rpar
                 rpar[i] = current->get(i);
             }
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
+            controller.setObjectProperty(adaptee, BLOCK, RPAR, rpar);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabString)
@@ -910,14 +910,12 @@ struct rpar
             // Translate 'v' to an DiagramAdapter and clone it, updating the new Diagram's children
             DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
             ScicosID clone = controller.cloneObject(diagram->getAdaptee()->id());
-            model::Diagram* newSubAdaptee = static_cast<model::Diagram*>(controller.getObject(clone));
-            DiagramAdapter* newDiagram = new DiagramAdapter(true, newSubAdaptee);
 
             // Save the children list, adding the new diagram ID at the beginning
             std::vector<ScicosID> children;
-            controller.getObjectProperty(newSubAdaptee->id(), newSubAdaptee->kind(), CHILDREN, children);
-            children.insert(children.begin(), newSubAdaptee->id());
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+            controller.getObjectProperty(clone, DIAGRAM, CHILDREN, children);
+            children.insert(children.begin(), clone);
+            controller.setObjectProperty(adaptee, DIAGRAM, CHILDREN, children);
 
             // Link the Superblock ports to their inner "port blocks"
             return setInnerBlocksRefs(adaptor, children, controller);
@@ -939,10 +937,10 @@ struct ipar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<int> ipar;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+        controller.getObjectProperty(adaptee, BLOCK, IPAR, ipar);
 
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
@@ -957,12 +955,12 @@ struct ipar
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabList)
         {
             std::vector<int> ipar;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+            controller.setObjectProperty(adaptee, BLOCK, IPAR, ipar);
             return true;
         }
 
@@ -987,7 +985,7 @@ struct ipar
             ipar[i] = static_cast<int>(current->get(i));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+        controller.setObjectProperty(adaptee, BLOCK, IPAR, ipar);
         return true;
     }
 };
@@ -1011,10 +1009,10 @@ struct blocktype
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string type;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_BLOCKTYPE, type);
 
         types::String* o = new types::String(type.c_str());
         return o;
@@ -1022,7 +1020,7 @@ struct blocktype
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabString)
         {
@@ -1040,7 +1038,7 @@ struct blocktype
         FREE(c_str);
 
         // the value validation is performed on the model
-        return controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type) != FAIL;
+        return controller.setObjectProperty(adaptee, BLOCK, SIM_BLOCKTYPE, type) != FAIL;
     }
 };
 
@@ -1063,10 +1061,10 @@ struct dep_ut
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<int> dep_ut;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_DEP_UT, dep_ut);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_DEP_UT, dep_ut);
 
         int* dep;
         types::Bool* o = new types::Bool(1, 2, &dep);
@@ -1079,7 +1077,7 @@ struct dep_ut
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabBool)
         {
@@ -1096,7 +1094,7 @@ struct dep_ut
         dep_ut[0] = current->get(0);
         dep_ut[1] = current->get(1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_DEP_UT, dep_ut);
+        controller.setObjectProperty(adaptee, BLOCK, SIM_DEP_UT, dep_ut);
         return true;
     }
 };
@@ -1106,10 +1104,10 @@ struct label
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string label;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), LABEL, label);
+        controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
 
         types::String* o = new types::String(1, 1);
         o->set(0, label.data());
@@ -1130,14 +1128,14 @@ struct label
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string label;
         char* c_str = wide_string_to_UTF8(current->get(0));
         label = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), LABEL, label);
+        controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;
     }
 };
@@ -1147,10 +1145,10 @@ struct nzcross
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         int nzcross;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
+        controller.getObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
 
         types::Double* o = new types::Double(static_cast<double>(nzcross));
 
@@ -1159,7 +1157,7 @@ struct nzcross
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -1183,7 +1181,7 @@ struct nzcross
             nzcross = static_cast<int>(current->get(0));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
+        controller.setObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
         return true;
     }
 };
@@ -1193,10 +1191,10 @@ struct nmode
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         int nmode;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
+        controller.getObjectProperty(adaptee, BLOCK, NMODE, nmode);
 
         types::Double* o = new types::Double(static_cast<double>(nmode));
 
@@ -1205,7 +1203,7 @@ struct nmode
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -1229,7 +1227,7 @@ struct nmode
             nmode = static_cast<int>(current->get(0));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
+        controller.setObjectProperty(adaptee, BLOCK, NMODE, nmode);
         return true;
     }
 };
@@ -1281,10 +1279,10 @@ struct uid
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string uid;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), UID, uid);
+        controller.getObjectProperty(adaptee, BLOCK, UID, uid);
 
         types::String* o = new types::String(1, 1);
         o->set(0, uid.data());
@@ -1305,14 +1303,14 @@ struct uid
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string uid;
         char* c_str = wide_string_to_UTF8(current->get(0));
         uid = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), UID, uid);
+        controller.setObjectProperty(adaptee, BLOCK, UID, uid);
         return true;
     }
 };
@@ -1321,8 +1319,8 @@ struct uid
 
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
-ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
+ModelAdapter::ModelAdapter(std::shared_ptr<model::Block> adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(adaptee)
 {
     if (property<ModelAdapter>::properties_have_not_been_set())
     {
@@ -1351,6 +1349,11 @@ ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Bl
         property<ModelAdapter>::add_property(L"equations", &equations::get, &equations::set);
         property<ModelAdapter>::add_property(L"uid", &uid::get, &uid::set);
     }
+}
+
+ModelAdapter::ModelAdapter(const ModelAdapter& adapter) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(adapter)
+{
 }
 
 ModelAdapter::~ModelAdapter()

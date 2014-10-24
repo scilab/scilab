@@ -102,7 +102,6 @@
  */
 // Ignore not applicable methods
 %ignore org_scilab_modules_scicos::Controller::getObject;
-%ignore org_scilab_modules_scicos::Controller::setObject;
 %ignore org_scilab_modules_scicos::Controller::unregister_view;
 %ignore org_scilab_modules_scicos::Controller::register_view;
 %ignore org_scilab_modules_scicos::Controller::delete_all_instances;

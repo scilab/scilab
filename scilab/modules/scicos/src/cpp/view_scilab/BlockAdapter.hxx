@@ -27,7 +27,8 @@ namespace view_scilab
 class BlockAdapter : public BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
+    BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee);
+    BlockAdapter(const BlockAdapter& adapter);
     ~BlockAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -40,6 +41,7 @@ public:
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
+
 private:
     types::InternalType* doc_content;
 };

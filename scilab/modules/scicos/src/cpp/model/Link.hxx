@@ -36,66 +36,67 @@ enum link_kind_t
 
 class Link: public BaseObject
 {
-    friend class ::org_scilab_modules_scicos::Model;
+public:
+    Link() : BaseObject(LINK), m_parentDiagram(0), m_sourcePort(0), m_destinationPort(0), m_controlPoints(),
+        m_label(), m_thick(std::vector<double>(2)), m_color(1), m_linkKind(regular) {};
+    Link(const Link& o) : BaseObject(LINK), m_parentDiagram(o.m_parentDiagram), m_sourcePort(o.m_sourcePort), m_destinationPort(o.m_destinationPort),
+        m_controlPoints(o.m_controlPoints), m_label(o.m_label), m_thick(o.m_thick), m_color(o.m_color), m_linkKind(o.m_linkKind) {};
+    ~Link() = default;
 
 private:
-    Link() : BaseObject(LINK), parentDiagram(0), sourcePort(0), destinationPort(0), controlPoints(),
-        label(), thick(std::vector<double>(2)), color(1), linkKind(regular) {};
-    Link(const Link& o) : BaseObject(LINK), parentDiagram(o.parentDiagram), sourcePort(o.sourcePort), destinationPort(o.destinationPort),
-        controlPoints(o.controlPoints), label(o.label), thick(o.thick), color(o.color), linkKind(o.linkKind) {};
-    ~Link() {}
+    friend class ::org_scilab_modules_scicos::Model;
 
     void getParentDiagram(ScicosID& v) const
     {
-        v = parentDiagram;
+        v = m_parentDiagram;
     }
 
     update_status_t setParentDiagram(const ScicosID v)
     {
-        if (v == parentDiagram)
+        if (v == m_parentDiagram)
         {
             return NO_CHANGES;
         }
 
-        parentDiagram = v;
+        m_parentDiagram = v;
         return SUCCESS;
     }
 
     void getControlPoints(std::vector<double>& v) const
     {
-        v = controlPoints;
+        v = m_controlPoints;
     }
 
     update_status_t setControlPoints(const std::vector<double>& v)
     {
-        if (v == controlPoints)
+        if (v == m_controlPoints)
         {
             return NO_CHANGES;
         }
 
-        controlPoints = v;
+        m_controlPoints = v;
         return SUCCESS;
     }
 
     void getLabel(std::string& data) const
     {
-        data = label;
+        data = m_label;
     }
 
     update_status_t setLabel(const std::string& data)
     {
-        if (data == label)
+        if (data == m_label)
         {
             return NO_CHANGES;
         }
 
-        label = data;
+        m_label = data;
         return SUCCESS;
     }
 
     void getThick(std::vector<double>& v) const
     {
-        v = thick;
+        v = m_thick;
     }
 
     update_status_t setThick(const std::vector<double>& v)
@@ -105,39 +106,39 @@ private:
             return FAIL;
         }
 
-        if (v == thick)
+        if (v == m_thick)
         {
             return NO_CHANGES;
         }
 
-        thick = v;
+        m_thick = v;
         return SUCCESS;
     }
 
     void getColor(int& c) const
     {
-        c = color;
+        c = m_color;
     }
 
     update_status_t setColor(const int c)
     {
-        if (c == color)
+        if (c == m_color)
         {
             return NO_CHANGES;
         }
 
-        color = c;
+        m_color = c;
         return SUCCESS;
     }
 
     void getKind(int& k) const
     {
-        k = linkKind;
+        k = m_linkKind;
     }
 
     update_status_t setKind(const int k)
     {
-        if (k == linkKind)
+        if (k == m_linkKind)
         {
             return NO_CHANGES;
         }
@@ -146,13 +147,13 @@ private:
         switch (k)
         {
             case activation:
-                linkKind = activation;
+                m_linkKind = activation;
                 break;
             case regular:
-                linkKind = regular;
+                m_linkKind = regular;
                 break;
             case implicit:
-                linkKind = implicit;
+                m_linkKind = implicit;
                 break;
             default:
                 return FAIL;
@@ -162,49 +163,49 @@ private:
 
     void getSourcePort(ScicosID& sp) const
     {
-        sp = sourcePort;
+        sp = m_sourcePort;
     }
 
     update_status_t setSourcePort(const ScicosID sp)
     {
-        if (sp == sourcePort)
+        if (sp == m_sourcePort)
         {
             return NO_CHANGES;
         }
 
-        sourcePort = sp;
+        m_sourcePort = sp;
         return SUCCESS;
     }
 
     void getDestinationPort(ScicosID& dp) const
     {
-        dp = destinationPort;
+        dp = m_destinationPort;
     }
 
     update_status_t setDestinationPort(const ScicosID dp)
     {
-        if (dp == destinationPort)
+        if (dp == m_destinationPort)
         {
             return NO_CHANGES;
         }
 
-        destinationPort = dp;
+        m_destinationPort = dp;
         return SUCCESS;
     }
 
 private:
-    ScicosID parentDiagram;
+    ScicosID m_parentDiagram;
 
-    ScicosID sourcePort;
-    ScicosID destinationPort;
+    ScicosID m_sourcePort;
+    ScicosID m_destinationPort;
 
     // used to store, user-defined control points
-    std::vector<double> controlPoints;
+    std::vector<double> m_controlPoints;
 
-    std::string label;
-    std::vector<double> thick;
-    int color;
-    link_kind_t linkKind;
+    std::string m_label;
+    std::vector<double> m_thick;
+    int m_color;
+    link_kind_t m_linkKind;
 
 };
 

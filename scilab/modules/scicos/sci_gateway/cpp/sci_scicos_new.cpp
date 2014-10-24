@@ -57,7 +57,7 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
 
     // create the associated object
     ScicosID o = controller.createObject(k);
-    Adaptor* adaptor = new Adaptor(true, static_cast<Adaptee*>(controller.getObject(o)));
+    Adaptor* adaptor = new Adaptor(std::static_pointer_cast<Adaptee>(controller.getObject(o)));
 
     // the first header entry is the type
     for (int i = 1; i < (int)in.size(); i++)
@@ -78,7 +78,7 @@ template<class Adaptor, class Adaptee>
 types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::typed_list &in)
 {
     // check header
-    Adaptor adaptor = Adaptor(false, 0);
+    Adaptor adaptor = Adaptor(0);
     for (int i = 1; i < (int)in.size(); i++)
     {
         std::wstring name(type_name->get(i));

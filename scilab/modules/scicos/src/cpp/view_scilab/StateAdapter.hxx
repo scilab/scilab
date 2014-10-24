@@ -27,7 +27,8 @@ namespace view_scilab
 class StateAdapter : public BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    StateAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
+    StateAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
+    StateAdapter(const StateAdapter& adapter);
     ~StateAdapter();
 
     static const std::wstring getSharedTypeStr()

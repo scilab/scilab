@@ -31,34 +31,35 @@ enum portKind
 
 class Port: public BaseObject
 {
-    friend class ::org_scilab_modules_scicos::Model;
+public:
+    Port() : BaseObject(PORT), m_dataType(0), m_sourceBlock(0), m_kind(PORT_UNDEF), m_implicit(false),
+        m_style(), m_label(), m_firing(0), m_connectedSignals(std::vector<ScicosID> (1, 0)) {};
+    Port(const Port& o) : BaseObject(PORT), m_dataType(o.m_dataType), m_sourceBlock(o.m_sourceBlock), m_kind(o.m_kind), m_implicit(o.m_implicit),
+        m_style(o.m_style), m_label(o.m_label), m_firing(0), m_connectedSignals(o.m_connectedSignals) {};
+    ~Port() = default;
 
 private:
-    Port() : BaseObject(PORT), dataType(0), sourceBlock(0), kind(PORT_UNDEF), implicit(false),
-        style(), label(), firing(0), connectedSignals(std::vector<ScicosID> (1, 0)) {};
-    Port(const Port& o) : BaseObject(PORT), dataType(o.dataType), sourceBlock(o.sourceBlock), kind(o.kind), implicit(o.implicit),
-        style(o.style), label(o.label), firing(0), connectedSignals(o.connectedSignals) {};
-    ~Port() {};
+    friend class ::org_scilab_modules_scicos::Model;
 
     const std::vector<ScicosID>& getConnectedSignals() const
     {
-        return connectedSignals;
+        return m_connectedSignals;
     }
 
     update_status_t setConnectedSignals(const std::vector<ScicosID>& connectedSignals)
     {
-        if (this->connectedSignals == connectedSignals)
+        if (this->m_connectedSignals == connectedSignals)
         {
             return NO_CHANGES;
         }
 
-        this->connectedSignals = connectedSignals;
+        this->m_connectedSignals = connectedSignals;
         return SUCCESS;
     }
 
     void getDataType(std::vector<int>& v) const
     {
-        if (dataType == 0)
+        if (m_dataType == 0)
         {
             // By default, size is set to [-1,1] and type to real (1)
             v.resize(3, 1);
@@ -67,9 +68,9 @@ private:
         else
         {
             v.resize(3);
-            v[0] = dataType->rows;
-            v[1] = dataType->columns;
-            v[2] = dataType->datatype_id;
+            v[0] = m_dataType->rows;
+            v[1] = m_dataType->columns;
+            v[2] = m_dataType->datatype_id;
         }
     }
 
@@ -81,18 +82,18 @@ private:
         }
 
         model::Datatype datatype = model::Datatype(v);
-        if (this->dataType != 0 && *this->dataType == datatype)
+        if (this->m_dataType != 0 && *this->m_dataType == datatype)
         {
             return NO_CHANGES;
         }
 
-        this->dataType = model->flyweight(datatype);
+        this->m_dataType = model->flyweight(datatype);
         return SUCCESS;
     }
 
     void getKind(int& k) const
     {
-        k = kind;
+        k = m_kind;
     }
 
     update_status_t setKind(int k)
@@ -102,100 +103,100 @@ private:
             return FAIL;
         }
 
-        if (k == kind)
+        if (k == m_kind)
         {
             return NO_CHANGES;
         }
 
-        kind = static_cast<portKind>(k);
+        m_kind = static_cast<portKind>(k);
         return SUCCESS;
     }
 
     void getSourceBlock(ScicosID& sb) const
     {
-        sb = sourceBlock;
+        sb = m_sourceBlock;
     }
 
     update_status_t setSourceBlock(const ScicosID sb)
     {
-        if (sb == this->sourceBlock)
+        if (sb == this->m_sourceBlock)
         {
             return NO_CHANGES;
         }
-        this->sourceBlock = sb;
+        this->m_sourceBlock = sb;
         return SUCCESS;
     }
 
     void getImplicit(bool& v) const
     {
-        v = implicit;
+        v = m_implicit;
     }
 
     update_status_t setImplicit(bool implicit)
     {
-        if (implicit == this->implicit)
+        if (implicit == this->m_implicit)
         {
             return NO_CHANGES;
         }
-        this->implicit = implicit;
+        this->m_implicit = implicit;
         return SUCCESS;
     }
 
     void getStyle(std::string& s) const
     {
-        s = style;
+        s = m_style;
     }
 
     update_status_t setStyle(const std::string& style)
     {
-        if (style == this->style)
+        if (style == this->m_style)
         {
             return NO_CHANGES;
         }
-        this->style = style;
+        this->m_style = style;
         return SUCCESS;
     }
 
     void getLabel(std::string& l) const
     {
-        l = style;
+        l = m_style;
     }
 
     update_status_t setLabel(const std::string& label)
     {
-        if (label == this->label)
+        if (label == this->m_label)
         {
             return NO_CHANGES;
         }
-        this->label = label;
+        this->m_label = label;
         return SUCCESS;
     }
 
     void getFiring(double& f) const
     {
-        f = firing;
+        f = m_firing;
     }
 
     update_status_t setFiring(double firing)
     {
-        if (firing == this->firing)
+        if (firing == this->m_firing)
         {
             return NO_CHANGES;
         }
-        this->firing = firing;
+        this->m_firing = firing;
         return SUCCESS;
     }
 
 private:
-    Datatype* dataType;
-    ScicosID sourceBlock;
-    portKind kind;
-    bool implicit;
-    std::string style;
-    std::string label;
-    double firing;
+    Datatype* m_dataType;
+    ScicosID m_sourceBlock;
+    portKind m_kind;
+    bool m_implicit;
+    std::string m_style;
+    std::string m_label;
+    double m_firing;
 
-    std::vector<ScicosID> connectedSignals;
+    std::vector<ScicosID> m_connectedSignals;
 };
 
 } /* namespace model */

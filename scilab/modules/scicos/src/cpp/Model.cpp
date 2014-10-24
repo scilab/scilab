@@ -13,6 +13,7 @@
 #include <string>
 #include <utility>
 #include <algorithm>
+#include <memory>
 
 #include "Model.hxx"
 #include "utilities.hxx"
@@ -49,23 +50,23 @@ ScicosID Model::createObject(kind_t k)
     /*
      * Allocate the object per kind
      */
-    model::BaseObject* o;
+    std::shared_ptr<model::BaseObject> o;
     switch (k)
     {
         case ANNOTATION:
-            o = new model::Annotation();
+            o = std::make_shared<model::Annotation>(model::Annotation());
             break;
         case DIAGRAM:
-            o = new model::Diagram();
+            o = std::make_shared<model::Diagram>(model::Diagram());
             break;
         case BLOCK:
-            o = new model::Block();
+            o = std::make_shared<model::Block>(model::Block());
             break;
         case LINK:
-            o = new model::Link();
+            o = std::make_shared<model::Link>(model::Link());
             break;
         case PORT:
-            o = new model::Port();
+            o = std::make_shared<model::Port>(model::Port());
             break;
     }
 
@@ -93,7 +94,6 @@ ScicosID Model::createObject(kind_t k)
             // if the map is full, return 0;
             if (has_looped)
             {
-                delete o;
                 return 0;
             }
             has_looped = true;
@@ -119,11 +119,10 @@ void Model::deleteObject(ScicosID uid)
         throw std::string("key has not been found");
     }
 
-    delete iter->second;
     allObjects.erase(iter);
 }
 
-model::BaseObject* Model::getObject(ScicosID uid) const
+std::shared_ptr<model::BaseObject> Model::getObject(ScicosID uid) const
 {
     objects_map_t::const_iterator iter = allObjects.lower_bound(uid);
     if (iter == allObjects.end() || uid < iter->first)
@@ -132,25 +131,6 @@ model::BaseObject* Model::getObject(ScicosID uid) const
     }
 
     return iter->second;
-}
-
-update_status_t Model::setObject(model::BaseObject* o)
-{
-    objects_map_t::iterator iter = allObjects.lower_bound(o->id());
-    if (iter == allObjects.end() || o->id() < iter->first)
-    {
-        throw std::string("key has not been found");
-    }
-
-    if (*iter->second == *o)
-    {
-        return NO_CHANGES;
-    }
-
-    o->id(iter->second->id());
-    delete iter->second;
-    iter->second = o;
-    return SUCCESS;
 }
 
 // datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()

@@ -16,6 +16,7 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <memory>
 
 #include "utilities.hxx"
 #include "model/BaseObject.hxx"
@@ -62,15 +63,14 @@ public:
      * Model internal methods
      */
 
-    model::BaseObject* getObject(ScicosID uid) const;
-    update_status_t setObject(model::BaseObject* o);
+    std::shared_ptr<model::BaseObject> getObject(ScicosID uid) const;
 
     model::Datatype* flyweight(const model::Datatype& d);
     void erase(model::Datatype* d);
 
 private:
     ScicosID lastId;
-    typedef std::map<ScicosID, model::BaseObject*> objects_map_t;
+    typedef std::map<ScicosID, std::shared_ptr<model::BaseObject> > objects_map_t;
     objects_map_t allObjects;
 
     typedef std::vector<model::Datatype*> datatypes_set_t;

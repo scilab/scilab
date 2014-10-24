@@ -1282,7 +1282,7 @@ public :
         return resize(piDims, 2);
     }
 
-    virtual void deleteData(T data)
+    virtual void deleteData(T /*data*/)
     {
     }
 

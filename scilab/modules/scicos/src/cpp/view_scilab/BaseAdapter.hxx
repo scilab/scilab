@@ -17,6 +17,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
 
 #include "user.hxx"
 #include "internal.hxx"
@@ -99,13 +100,15 @@ class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(bool ownAdaptee, Adaptee* adaptee) : ownAdaptee(ownAdaptee), adaptee(adaptee) {};
-    virtual ~BaseAdapter()
+    BaseAdapter(std::shared_ptr<Adaptee> adaptee) : m_adaptee(adaptee) {};
+    BaseAdapter(const BaseAdapter& adapter) : m_adaptee(adapter.m_adaptee) {};
+    ~BaseAdapter()
     {
-        if (ownAdaptee)
+        // do not use adaptee.unique() as adaptee has not been destroyed yet
+        if (m_adaptee.use_count() == 2)
         {
             Controller controller;
-            controller.deleteObject(getAdaptee()->id());
+            controller.deleteObject(m_adaptee->id());
         }
     };
 
@@ -220,11 +223,11 @@ public:
     }
 
     /**
-     * @return the Adaptee instance
+     * @return the Adaptee
      */
-    Adaptee* getAdaptee() const
+    std::shared_ptr<Adaptee> getAdaptee() const
     {
-        return adaptee;
+        return m_adaptee;
     }
 
     /*
@@ -236,11 +239,12 @@ public:
 
 private:
 
-    virtual types::InternalType* clone()
+    types::InternalType* clone()
     {
         Controller controller = Controller();
-        ScicosID clone = controller.cloneObject(getAdaptee()->id());
-        return new Adaptor(false, static_cast<Adaptee*>(controller.getObject(clone)));
+        ScicosID id = controller.cloneObject(getAdaptee()->id());
+        std::shared_ptr<Adaptee> adaptee = std::static_pointer_cast<Adaptee>(controller.getObject(id));
+        return new Adaptor(adaptee);
     }
 
     /*
@@ -295,7 +299,7 @@ private:
 
     types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
     {
-        for (int i = 0; i < _pArgs->size(); i++)
+        for (size_t i = 0; i < _pArgs->size(); i++)
         {
             if ((*_pArgs)[i]->isString())
             {
@@ -345,14 +349,8 @@ private:
         return true;
     }
 
-    bool getOwn()
-    {
-        return ownAdaptee;
-    };
-
 private:
-    const bool ownAdaptee;
-    Adaptee* adaptee;
+    std::shared_ptr<Adaptee> m_adaptee;
 };
 
 

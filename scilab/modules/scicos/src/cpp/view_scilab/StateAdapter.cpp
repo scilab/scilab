@@ -31,13 +31,18 @@ namespace
 
 template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
 
-StateAdapter::StateAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
-    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
+StateAdapter::StateAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
+    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
 {
     if (property<StateAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }
+}
+
+StateAdapter::StateAdapter(const StateAdapter& adapter) :
+    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(adapter)
+{
 }
 
 StateAdapter::~StateAdapter()

@@ -41,10 +41,10 @@ struct orig
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
         data[0] = geom[0];
         data[1] = geom[1];
@@ -66,14 +66,14 @@ struct orig
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
         geom[0] = current->get(0);
         geom[1] = current->get(1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
         return true;
     }
 };
@@ -85,10 +85,10 @@ struct sz
     {
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
         data[0] = geom[2];
         data[1] = geom[3];
@@ -108,14 +108,14 @@ struct sz
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
         std::vector<double> geom;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.getObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
 
         geom[2] = current->get(0);
         geom[3] = current->get(1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), GEOMETRY, geom);
+        controller.setObjectProperty(adaptee, BLOCK, GEOMETRY, geom);
         return true;
     }
 };
@@ -127,10 +127,10 @@ struct flip
     {
         int* data;
         types::Bool* o = new types::Bool(1, 1, &data);
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> angle;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
         data[0] = static_cast<int>(angle[0]);
         return o;
@@ -149,13 +149,13 @@ struct flip
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
         std::vector<double> angle;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
         angle[0] = (current->get(0) == false) ? 0 : 1;
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.setObjectProperty(adaptee, BLOCK, ANGLE, angle);
         return true;
     }
 };
@@ -167,10 +167,10 @@ struct theta
     {
         double* data;
         types::Double* o = new types::Double(1, 1, &data);
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> angle;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
         data[0] = angle[1];
         return o;
@@ -189,13 +189,13 @@ struct theta
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
         std::vector<double> angle;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.getObjectProperty(adaptee, BLOCK, ANGLE, angle);
 
         angle[1] = current->get(0);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), ANGLE, angle);
+        controller.setObjectProperty(adaptee, BLOCK, ANGLE, angle);
         return true;
     }
 };
@@ -205,10 +205,10 @@ struct exprs
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<std::string> exprs;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+        controller.getObjectProperty(adaptee, BLOCK, EXPRS, exprs);
 
         types::String* o = new types::String((int)exprs.size(), 1);
         for (int i = 0; i < (int)exprs.size(); ++i)
@@ -221,7 +221,7 @@ struct exprs
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -239,7 +239,7 @@ struct exprs
                 FREE(c_str);
             }
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -251,13 +251,13 @@ struct exprs
             }
 
             std::vector<std::string> exprs;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabList)
         {
             std::vector<std::string> exprs;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), EXPRS, exprs);
+            controller.setObjectProperty(adaptee, BLOCK, EXPRS, exprs);
             return true;
         }
         return false;
@@ -346,10 +346,10 @@ struct id
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), LABEL, id);
+        controller.getObjectProperty(adaptee, BLOCK, LABEL, id);
 
         types::String* o = new types::String(1, 1);
         o->set(0, id.data());
@@ -370,14 +370,14 @@ struct id
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
         id = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), LABEL, id);
+        controller.setObjectProperty(adaptee, BLOCK, LABEL, id);
         return true;
     }
 };
@@ -471,17 +471,17 @@ struct style
 
     static types::InternalType* get(const GraphicsAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string style;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), STYLE, style);
+        controller.getObjectProperty(adaptee, BLOCK, STYLE, style);
 
         return new types::String(style.c_str());
     }
 
     static bool set(GraphicsAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
@@ -495,7 +495,7 @@ struct style
             style = std::string(c_str);
             FREE(c_str);
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), STYLE, style);
+            controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
@@ -507,7 +507,7 @@ struct style
             }
 
             std::string style;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), STYLE, style);
+            controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
             return true;
         }
         return false;
@@ -518,8 +518,9 @@ struct style
 
 template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
 
-GraphicsAdapter::GraphicsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
+GraphicsAdapter::GraphicsAdapter(std::shared_ptr<model::Block> adaptee) :
+    gr_i_content(types::Double::Empty()),
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adaptee)
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
@@ -543,13 +544,18 @@ GraphicsAdapter::GraphicsAdapter(bool ownAdaptee, org_scilab_modules_scicos::mod
         property<GraphicsAdapter>::add_property(L"out_label", &out_label::get, &out_label::set);
         property<GraphicsAdapter>::add_property(L"style", &style::get, &style::set);
     }
+}
 
-    gr_i_content = types::Double::Empty();
+GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& adapter) :
+    gr_i_content(adapter.getGrIContent()),
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adapter)
+{
 }
 
 GraphicsAdapter::~GraphicsAdapter()
 {
-    delete gr_i_content;
+    gr_i_content->DecreaseRef();
+    gr_i_content->killMe();
 }
 
 std::wstring GraphicsAdapter::getTypeStr()
@@ -564,13 +570,17 @@ std::wstring GraphicsAdapter::getShortTypeStr()
 
 types::InternalType* GraphicsAdapter::getGrIContent() const
 {
-    return gr_i_content->clone();
+    gr_i_content->IncreaseRef();
+    return gr_i_content;
 }
 
 void GraphicsAdapter::setGrIContent(types::InternalType* v)
 {
-    delete gr_i_content;
-    gr_i_content = v->clone();
+    gr_i_content->DecreaseRef();
+    gr_i_content->killMe();
+
+    v->IncreaseRef();
+    gr_i_content = v;
 }
 
 } /* namespace view_scilab */
