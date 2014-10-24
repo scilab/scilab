@@ -2966,7 +2966,7 @@ yyreduce:
   case 36:
 
     {
-						  (yyvsp[-1].t_call_exp)->getArgs().push_back((yyvsp[0].t_string_exp));
+						  (yyvsp[-1].t_call_exp)->addArg((yyvsp[0].t_string_exp));
 						  (yyvsp[-1].t_call_exp)->setLocation((yyloc));
                           (yyval.t_call_exp) = (yyvsp[-1].t_call_exp);
 						}

@@ -460,7 +460,7 @@ functionDeclaration				{ $$ = $1; }
 implicitFunctionCall :
 /* FIXME : Add arguments to call */
 implicitFunctionCall implicitCallable		{
-						  $1->getArgs().push_back($2);
+						  $1->addArg($2);
 						  $1->setLocation(@$);
                           $$ = $1;
 						}

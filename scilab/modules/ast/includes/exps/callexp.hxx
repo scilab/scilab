@@ -112,6 +112,11 @@ public:
         return *args;
     }
 
+    void addArg(ast::Exp* exp)
+    {
+        _exps.push_back(exp);
+    }
+
     virtual ExpType getType()
     {
         return CALLEXP;
