@@ -33,6 +33,9 @@ Cell::Cell()
     InternalType** pIT  = NULL;
     int piDims[2] = {0, 0};
     create(piDims, 2, &pIT, NULL);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Cell::Cell(int _iRows, int _iCols)
@@ -40,24 +43,18 @@ Cell::Cell(int _iRows, int _iCols)
     InternalType** pIT  = NULL;
     int piDims[2] = {_iRows, _iCols};
     create(piDims, 2, &pIT, NULL);
-    Double* pEmpty = Double::Empty();
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        pEmpty->IncreaseRef();
-        m_pRealData[i] = pEmpty;
-    }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Cell::Cell(int _iDims, int* _piDims)
 {
     InternalType** pIT  = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    Double* pEmpty = Double::Empty();
-    for (int i = 0 ; i < getSize() ; i++)
-    {
-        pEmpty->IncreaseRef();
-        m_pRealData[i] = pEmpty;
-    }
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Cell::~Cell()
@@ -67,10 +64,7 @@ Cell::~Cell()
         for (int i = 0 ; i < getSize() ; i++)
         {
             m_pRealData[i]->DecreaseRef();
-            if (m_pRealData[i]->isDeletable())
-            {
-                delete m_pRealData[i];
-            }
+            m_pRealData[i]->killMe();
         }
     }
 #ifndef NDEBUG
@@ -153,10 +147,7 @@ bool Cell::set(int _iIndex, InternalType* _pIT)
         if (m_pRealData[_iIndex] != NULL)
         {
             m_pRealData[_iIndex]->DecreaseRef();
-            if (m_pRealData[_iIndex]->isDeletable())
-            {
-                delete m_pRealData[_iIndex];
-            }
+            m_pRealData[_iIndex]->killMe();
         }
 
         _pIT->IncreaseRef();
@@ -173,10 +164,7 @@ bool Cell::set(int _iIndex, const InternalType* _pIT)
         if (m_pRealData[_iIndex] != NULL)
         {
             m_pRealData[_iIndex]->DecreaseRef();
-            if (m_pRealData[_iIndex]->isDeletable())
-            {
-                delete m_pRealData[_iIndex];
-            }
+            m_pRealData[_iIndex]->killMe();
         }
 
         const_cast<InternalType*>(_pIT)->IncreaseRef();
@@ -228,11 +216,9 @@ void Cell::deleteAll()
     for (int i = 0 ; i < getSize() ; i++)
     {
         m_pRealData[i]->DecreaseRef();
-        if (m_pRealData[i]->isDeletable())
-        {
-            delete m_pRealData[i];
-        }
+        m_pRealData[i]->killMe();
     }
+
     delete[] m_pRealData;
     m_pRealData = NULL;
 }
@@ -286,7 +272,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
                 {
                     //compute number of digits to write dimensions
                     int iTypeLen = 0;
-                    if (pIT->getAs<GenericType>())
+                    if (pIT->isGenericType())
                     {
                         GenericType* pGT = pIT->getAs<GenericType>();
                         for (int k = 0 ; k < pGT->getDims() ; k++)
@@ -426,7 +412,7 @@ List* Cell::extractCell(typed_list* _pArgs)
     {
         pList->append(pCell->get(i));
     }
-    delete pCell;
+    pCell->killMe();
     return pList;
 }
 
@@ -435,6 +421,7 @@ Cell* Cell::insertCell(typed_list* _pArgs, InternalType* _pSource)
     Cell* pCell = new Cell(1, 1);
     pCell->set(0, _pSource);
     Cell* pOut = insert(_pArgs, pCell)->getAs<Cell>();
+    pCell->killMe();
     return pOut;
 }
 

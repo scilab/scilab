@@ -129,11 +129,29 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            pOut = evaluateFields(pCell, fields, pITR);
+            try
+            {
+                pOut = evaluateFields(pCell, fields, pITR);
+            }
+            catch (ast::ScilabError error)
+            {
+                // catch error when call overload
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    (*i)->setDeleteCurrent(true);
+                    delete *i;
+                }
+
+                pITR->killMe();
+                throw error;
+            }
+
             for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
             {
                 delete *i;
             }
+
+            pITR->killMe();
 
             if (pOut == NULL)
             {
@@ -147,9 +165,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
-                    if (pVar)
+                    if (pCell)
                     {
-                        ostr << SPACES_LIST << pVar->getSymbol().getName();
+                        const wstring *pstName = getStructNameFromExp(pCell);
+                        ostr << SPACES_LIST << pstName;
                     }
                     else
                     {
@@ -174,7 +193,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         if (pCall)
         {
             //x(?) = ?
-            InternalType *pOut	= NULL;
+            InternalType *pOut = NULL;
 
             /*getting what to assign*/
             InternalType* pITR = e.getRightVal();
@@ -206,11 +225,35 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            pOut = evaluateFields(pCall, fields, pITR);
+            // prevent delete after extractFullMatrix
+            // called in evaluateFields when pITR is an ImplicitList
+            pITR->IncreaseRef();
+
+            try
+            {
+                pOut = evaluateFields(pCall, fields, pITR);
+            }
+            catch (ast::ScilabError error)
+            {
+                // catch error when call overload
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
+
+                pITR->DecreaseRef();
+                pITR->killMe();
+
+                throw error;
+            }
+
             for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
             {
                 delete *i;
             }
+
+            pITR->DecreaseRef();
+            pITR->killMe();
 
             if (pOut == NULL)
             {
@@ -230,8 +273,6 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostrName << SPACES_LIST << *getStructNameFromExp(&pCall->getName());
                 VariableToString(pOut, ostrName.str().c_str());
             }
-
-            pITR->killMe();
 
             clearResult();
             return;

@@ -48,6 +48,7 @@ public :
     // current InternalType a
     bool                    setCurrent(types::InternalType*);
     types::InternalType*    getCurrent();
+    void                    setDeleteCurrent(bool bDelete); // false by default
 
     // parent of me
     ExpHistory*             getParent();
@@ -83,6 +84,8 @@ private :
     int                     m_iLevel;
     bool                    m_pArgsOwner;
     bool                    m_pExpOwner;
+    bool                    m_bDeleteCurrent;
+
 };
 
 #endif /* __EXPHISTORY_HXX__ */
