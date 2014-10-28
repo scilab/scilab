@@ -1473,6 +1473,12 @@ InternalType* Sparse::extract(typed_list* _pArgs)
             double* pIdx = pArg[0]->getAs<Double>()->get();
             for (int i = 0 ; i < iSeqCount ; i++)
             {
+                if (pIdx[i] < 1)
+                {
+                    delete pOut;
+                    pOut = NULL;
+                    break;
+                }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
 
@@ -1522,6 +1528,12 @@ InternalType* Sparse::extract(typed_list* _pArgs)
             {
                 for (int iCol = 0 ; iCol < iNewCols ; iCol++)
                 {
+                    if ((pIdxRow[iRow] < 1) || (pIdxCol[iCol] < 1))
+                    {
+                        delete pOut;
+                        pOut = NULL;
+                        break;
+                    }
                     if (isComplex())
                     {
                         std::complex<double> dbl = getImg((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
@@ -2949,6 +2961,12 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
             // Write in output all elements extract from input.
             for (int i = 0 ; i < iSeqCount ; i++)
             {
+                if (pIdx[i] < 1)
+                {
+                    delete pOut;
+                    pOut = NULL;
+                    break;
+                }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
 
@@ -2989,6 +3007,12 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
             {
                 for (int iCol = 0 ; iCol < iNewCols ; iCol++)
                 {
+                    if ((pIdxRow[iRow] < 1) || (pIdxCol[iCol] < 1))
+                    {
+                        delete pOut;
+                        pOut = NULL;
+                        break;
+                    }
                     bool bValue = get((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
                     if (bValue)
                     {
