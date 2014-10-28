@@ -1826,7 +1826,6 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
 
             pRet = pP->insert(_pArgs, pIns);
-            pDest->DecreaseRef();
         }
         else if (_pVar->isPoly() && _pInsert->isDouble())
         {
