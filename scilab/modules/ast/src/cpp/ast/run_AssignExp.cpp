@@ -220,8 +220,9 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     delete *i;
                 }
+
                 std::wostringstream os;
-                os << _W("Get fields from expression failed.");
+                os << _W("Instruction left hand side: waiting for a name.");
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 

@@ -719,7 +719,11 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         ast::ExecVisitor execMe;
         typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->getArgs());
 
-        bool bErr = getFieldsFromExp(&pCall->getName(), fields);
+        if (getFieldsFromExp(&pCall->getName(), fields) == false)
+        {
+            return false;
+        }
+
         if (pCurrentArgs                    &&
                 pCurrentArgs->size() == 1       &&
                 (*pCurrentArgs)[0]->isString()  &&
@@ -759,7 +763,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             fields.back()->setCellExp();
         }
 
-        return bErr;
+        return true;
     }
     else
     {
