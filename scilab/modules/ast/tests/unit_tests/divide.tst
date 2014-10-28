@@ -15,6 +15,8 @@ c = 1 + 2*%i;
 C = [1+2*%i,2+4*%i;3+6*%i,4+8*%i];
 C3(:,:,1) = C;
 C3(:,:,2) = C';
+SP = sparse([1,2;4,5;3,10],[1,2,3]);
+SPC = sparse([1,2;4,5;3,10],[1,2,3]) * ( 1 + 4*%i);
 
 //double / double
 
@@ -75,3 +77,15 @@ assert_checkalmostequal(R / C, [0.2-0.4*%i,0;0,0.2-0.4*%i]);
 assert_checkalmostequal(C / R, [1+2*%i,0;0,1+2*%i]);
 //C / C
 assert_checkalmostequal(C / C, [1,0;0,1]);
+
+//SPARSE / double
+
+//SP / r
+assert_checkalmostequal(SP/ r, sparse([1,2;4,5;3,10],[0.5,1,1.5]));
+//SP / c
+assert_checkalmostequal(SP/ c, sparse([1,2;4,5;3,10],[0.2-0.4*%i,0.4-0.8*%i,0.6-1.2*%i]));
+//SPC /r
+assert_checkalmostequal(SPC/ r, sparse([1,2;4,5;3,10],[0.5+2*%i,1+4*%i,1.5+6*%i]));
+//SPC /c
+assert_checkalmostequal(SPC/ c, sparse([1,2;4,5;3,10],[1.8+0.4*%i,3.6+0.8*%i,5.4+1.2*%i]));
+
