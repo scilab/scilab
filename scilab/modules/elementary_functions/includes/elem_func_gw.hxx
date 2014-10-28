@@ -74,4 +74,6 @@ CPP_GATEWAY_PROTOTYPE(sci_tril);
 CPP_GATEWAY_PROTOTYPE(sci_round);
 CPP_GATEWAY_PROTOTYPE(sci_sign);
 
+bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc);
+
 #endif /* __ELEM_FUNC_GW_HXX__ */

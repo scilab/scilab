@@ -13,6 +13,11 @@
 
 #include "elem_func_gw.hxx"
 #include "context.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
+#include "Scierror.h"
+#include "localization.h"
+#include "charEncoding.h"
 
 #define MODULE_NAME L"elementary_functions"
 extern "C"
@@ -72,4 +77,133 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"base2dec", &sci_base2dec, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dec2base", &sci_dec2base, MODULE_NAME));
     return 1;
+}
+
+
+bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc)
+{
+    types::Double* pOut = 0;
+
+    *_alloc = false;
+    *_iDims = 0;
+    *_piDims = NULL;
+
+    if (in.size() == 0)
+    {
+        *_iDims = 2;
+        *_piDims = new int[*_iDims];
+        (*_piDims)[0] = 1;
+        (*_piDims)[1] = 1;
+        *_alloc = true;
+        return true;
+    }
+    else if (in.size() == 1)
+    {
+        *_iDims = 1;
+        // :
+        if (in[0]->isColon())
+        {
+            *_iDims = -1;
+            return false;
+        }
+
+        if (in[0]->isArrayOf() == false)
+        {
+            return false;
+        }
+
+        GenericType* pIn = in[0]->getAs<GenericType>();
+        *_iDims = pIn->getDims();
+        *_piDims = pIn->getDimsArray();
+
+        return true;
+    }
+    else
+    {
+        *_iDims = static_cast<int>(in.size());
+        *_piDims = new int[*_iDims];
+        *_alloc = true;
+        for (int i = 0; i < *_iDims; i++)
+        {
+            if (in[i]->isArrayOf() == false)
+            {
+                delete[] * _piDims;
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                return false;
+            }
+
+            types::GenericType* pGTIn = in[i]->getAs<types::GenericType>();
+            if (pGTIn->isScalar() == false || pGTIn->isComplex())
+            {
+                delete[] * _piDims;
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                return false;
+            }
+
+            switch (in[i]->getType())
+            {
+                case types::InternalType::ScilabDouble:
+                {
+                    double dValue = in[i]->getAs<types::Double>()->get(0);
+                    if (dValue >= INT_MAX)
+                    {
+                        delete[] * _piDims;
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        return types::Function::Error;
+                    }
+                    (*_piDims)[i] = static_cast<int>(dValue);
+                }
+                break;
+                case types::InternalType::ScilabInt8:
+                    (*_piDims)[i] = static_cast<int>(in[i]->getAs<types::Int8>()->get()[0]);
+                    break;
+                case types::InternalType::ScilabUInt8:
+                    (*_piDims)[i] = static_cast<int>(in[i]->getAs<types::UInt8>()->get()[0]);
+                    break;
+                case types::InternalType::ScilabInt16:
+                    (*_piDims)[i] = static_cast<int>(in[i]->getAs<types::Int16>()->get()[0]);
+                    break;
+                case types::InternalType::ScilabUInt16:
+                    (*_piDims)[i] = static_cast<int>(in[i]->getAs<types::UInt16>()->get()[0]);
+                    break;
+                case types::InternalType::ScilabInt32:
+                    (*_piDims)[i] = in[i]->getAs<types::Int32>()->get()[0];
+                    break;
+                case types::InternalType::ScilabUInt32:
+                    (*_piDims)[i] = static_cast<int>(in[i]->getAs<types::UInt32>()->get()[0]);
+                    break;
+                case types::InternalType::ScilabInt64:
+                {
+                    long long llValue = in[i]->getAs<types::Int64>()->get(0);
+                    if (llValue >= INT_MAX)
+                    {
+                        delete[] * _piDims;
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        return types::Function::Error;
+                    }
+                    (*_piDims)[i] = static_cast<int>(llValue);
+                    break;
+                }
+                case types::InternalType::ScilabUInt64:
+                {
+                    unsigned long long ullValue = in[i]->getAs<types::UInt64>()->get(0);
+                    if (ullValue >= INT_MAX)
+                    {
+                        delete[] * _piDims;
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        return types::Function::Error;
+                    }
+                    (*_piDims)[i] = static_cast<int>(ullValue);
+                    break;
+                }
+                default:
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                    return Function::Error;
+            }
+        }
+
+        return true;
+    }
+
+    return false;
 }

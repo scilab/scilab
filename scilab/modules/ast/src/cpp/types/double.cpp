@@ -264,10 +264,6 @@ bool Double::setOnes()
     if (m_pRealData != NULL)
     {
         std::fill(m_pRealData, m_pRealData + m_iSize, 1);
-        //for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-        //{
-        //    m_pRealData[iIndex] = 1;
-        //}
     }
     else
     {

@@ -40,6 +40,7 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    types::Double* pOut = NULL;
     static int siRandType = 0;
     static int siRandSave = 0;
     static int iForceInit	= 0;
@@ -53,6 +54,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
+    GenericType* pGT0 = in[0]->getAs<GenericType>();
     if (in[0]->isString())
     {
         //rand("xxx")
@@ -113,7 +115,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             siRandType = setRandType(pwstKey[0]);
         }
     }
-    else if (in[0]->isArrayOf())
+    else
     {
         int iRandSave = siRandType;
         if (in[iSizeIn - 1]->isString())
@@ -132,81 +134,60 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             iSizeIn--;
         }
 
-        if (iSizeIn == 1)
+        typed_list args;
+        std::copy(in.begin(), in.begin() + iSizeIn, back_inserter(args));
+
+        int iDims = 0;
+        int* piDims = NULL;
+        bool alloc = false;
+
+        bool ret = getDimsFromArguments(args, "rand", &iDims, &piDims, &alloc);
+        if (ret == false)
         {
-            //rand(X) or rand(X, "")
-            // rand(:)
-            types::GenericType* pGT = in[0]->getAs<types::GenericType>();
-            types::Double* pOut = new types::Double(pGT->getDims(), pGT->getDimsArray(), pGT->isComplex());
-
-            if (pOut->getRows() == -1 && pOut->getCols() == -1)
+            switch (iDims)
             {
-                Scierror(21, _("Invalid index.\n"));
-                return types::Function::Error;
+                case -1:
+                    Scierror(21, _("Invalid index.\n"));
+                    break;
+                case 1:
+                    //call overload
+                    return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, new ast::ExecVisitor());
             }
 
-            double* pReal = pOut->getReal();
-            for (int i = 0 ; i < pOut->getSize() ; i++)
-            {
-                pReal[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
-            }
-
-            if (pOut->isComplex())
-            {
-                double* pImg = pOut->getImg();
-                for (int i = 0 ; i < pOut->getSize() ; i++)
-                {
-                    pImg[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
-                }
-            }
-
-            out.push_back(pOut);
-
-            //retore previous law
-            siRandType = iRandSave;
+            return types::Function::Error;
         }
-        else
+
+        //special case for complex unique complex argument
+        bool complex = false;
+        if (in.size() == 1 && in[0]->isGenericType())
         {
-            int iDims = iSizeIn;
-            int *piDims = new int[iDims];
+            complex = in[0]->getAs<GenericType>()->isComplex();
+        }
 
-            //check others parameter type and size
-            for (int i = 0 ; i < iSizeIn ; i++)
-            {
-                if (in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isScalar() == false)
-                {
-                    delete[] piDims;
-                    Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "rand" , i + 1);
-                    return types::Function::Error;
-                }
-
-                double dValue = in[i]->getAs<types::Double>()->get(0);
-                if (dValue >= INT_MAX)
-                {
-                    delete[] piDims;
-                    Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "rand", INT_MAX);
-                    return types::Function::Error;
-                }
-
-                piDims[i] = (int)dValue;
-            }
-
-            types::Double* pOut = new types::Double(iDims, piDims);
+        pOut = new Double(iDims, piDims, complex);
+        if (alloc)
+        {
             delete[] piDims;
-
-            double* pd = pOut->get();
-            for (int i = 0 ; i < pOut->getSize() ; i++)
-            {
-                pd[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
-                iForceInit = 0;
-            }
-            out.push_back(pOut);
         }
-    }
-    else
-    {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rand";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+
+        double* pd = pOut->get();
+        for (int i = 0 ; i < pOut->getSize() ; i++)
+        {
+            pd[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+            iForceInit = 0;
+        }
+
+        if (pOut->isComplex())
+        {
+            double* pImg = pOut->getImg();
+            for (int i = 0; i < pOut->getSize(); i++)
+            {
+                pImg[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+            }
+        }
+        out.push_back(pOut);
+        //retore previous law
+        siRandType = iRandSave;
     }
 
     return types::Function::OK;

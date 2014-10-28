@@ -14,103 +14,52 @@
  */
 /*--------------------------------------------------------------------------*/
 #include "elem_func_gw.hxx"
-#include "api_scilab.hxx"
-#include "polynom.hxx"
+#include "function.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
+#include "double.hxx"
+#include "context.hxx"
 
 extern "C"
 {
+#include "Scierror.h"
+#include "localization.h"
 #include "charEncoding.h"
 }
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Polynom* pPolyIn = NULL;
-    api_scilab::Double* pOut = NULL;
-    if (in.size() == 0)
+    types::Double* pOut = NULL;
+
+    int iDims = 0;
+    int* piDims = NULL;
+    bool alloc = false;
+
+    bool ret = getDimsFromArguments(in, "zeros", &iDims, &piDims, &alloc);
+    if (ret == false)
     {
-        pOut = new api_scilab::Double(0);
-    }
-    else if (in.size() == 1)
-    {
-        //yes until polynom are managed by api_scilab++
-        if (api_scilab::isMatrix(in[0]) == false && in[0]->isPoly() == false)
+        switch (iDims)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", 1);
-            return types::Function::Error;
-        }
-
-        int iDims = 0;
-        int* piDims = NULL;
-
-        if (api_scilab::isMatrix(in[0]))
-        {
-            api_scilab::Matrix* pIn = api_scilab::getAsMatrix(in[0]);
-            iDims = pIn->getDims();
-            piDims = pIn->getDimsArray();
-
-            // zeros(:)
-            if (pIn->getRows() == -1 && pIn->getCols() == -1)
-            {
+            case -1:
                 Scierror(21, _("Invalid index.\n"));
-                return types::Function::Error;
-            }
-
-            pOut = new api_scilab::Double(iDims, piDims);
-
-            delete pIn;
+                break;
+            case 1:
+                //call overload
+                return Overload::generateNameAndCall(L"zeros", in, _iRetCount, out, new ast::ExecVisitor());
         }
-        else
-        {
-            pPolyIn = in[0]->getAs<types::Polynom>();
-            iDims = pPolyIn->getDims();
-            piDims = pPolyIn->getDimsArray();
 
-            pOut = new api_scilab::Double(iDims, piDims);
-        }
+        return types::Function::Error;
     }
-    else //size > 1
+
+    pOut = new Double(iDims, piDims);
+    if (alloc)
     {
-        for (int i = 0 ; i < in.size() ; i++)
-        {
-            if (api_scilab::isDouble(in[i]) == false)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), "zeros", i + 1);
-                return types::Function::Error;
-            }
-
-            api_scilab::Double* pIn = api_scilab::getAsDouble(in[i]);
-            if (pIn->get(0) >= INT_MAX)
-            {
-                delete pIn;
-                Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "zeros", INT_MAX);
-                return types::Function::Error;
-            }
-        }
-
-        int iDims = static_cast<int>(in.size());
-        int* piDims = new int[iDims];
-        for (int i = 0 ; i < iDims ; i++)
-        {
-            api_scilab::Double* pIn = api_scilab::getAsDouble(in[i]);
-            if (pIn->isScalar() == false || pIn->isComplex())
-            {
-                delete pIn;
-                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "zeros", i + 1);
-                return types::Function::Error;
-            }
-
-
-            piDims[i] = static_cast<int>(pIn->getReal()[0]);
-            delete pIn;
-        }
-        pOut = new api_scilab::Double(iDims, piDims);
         delete[] piDims;
     }
 
-    memset(pOut->get(), 0x00, pOut->getSize() * sizeof(double));
-
-    out.push_back(api_scilab::getReturnVariable(pOut));
+    pOut->setZeros();
+    out.push_back(pOut);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

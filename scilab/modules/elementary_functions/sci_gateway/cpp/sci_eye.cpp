@@ -41,77 +41,34 @@ int mint(int *tab, int length)
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    int iRows = 0;
-    int iCols = 0;
-    int dims = 2;
-    int *dimsArray = new int[in.size()];
-    int *retArray = NULL;
+    types::Double* pOut = NULL;
 
-    if (in.size() == 0)
-    {
-        dimsArray[0] = -1;
-        dimsArray[1] = -1;
+    int iDims = 0;
+    int* piDims = NULL;
+    bool alloc = false;
 
-    }
-    else if (in.size() == 1)
+    bool ret = getDimsFromArguments(in, "eye", &iDims, &piDims, &alloc);
+    if (ret == false)
     {
-        if (in[0]->isGenericType() == false)
+        switch (iDims)
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_eye";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            case -1:
+                Scierror(21, _("Invalid index.\n"));
+                break;
+            case 1:
+                //call overload
+                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out, new ast::ExecVisitor());
         }
 
-        dimsArray[0] = in[0]->getAs<types::GenericType>()->getRows();
-        dimsArray[1] = in[0]->getAs<types::GenericType>()->getCols();
-        // eye(:)
-        if (dimsArray[1] == -1 && dimsArray[0] == -1)
-        {
-            Scierror(21, _("Invalid index.\n"));
-            return types::Function::Error;
-        }
+        return types::Function::Error;
     }
-    else // if (in.size() >= 2)
+
+    pOut = Double::Identity(iDims, piDims);
+    if (alloc)
     {
-        dims = (int)in.size();
-        for (int i = 0; i < (int)in.size(); i++)
-        {
-            if (in[i]->isDouble() == false || in[i]->getAs<types::Double>()->isScalar() == false)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Real scalar expected.\n"), "eye", i + 1);
-                return Function::Error;
-            }
-
-            double dValue = in[i]->getAs<types::Double>()->get(0);
-            if (dValue >= INT_MAX)
-            {
-                Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), "eye", INT_MAX);
-                return types::Function::Error;
-            }
-
-            dimsArray[i] = (int)dValue;
-        }
+        delete[] piDims;
     }
 
-    Double* pOut = new Double(dims, dimsArray);
-    int* piCoords = new int[pOut->getDims()];
-    pOut->setZeros();
-    int iMinDims = mint(dimsArray, dims);
-    for (int i = 0; i < iMinDims; i++)
-    {
-        for (int j = 0 ; j < dims ; j++)
-        {
-            piCoords[j] = i;
-        }
-
-        pOut->set(pOut->getIndex(piCoords), 1);
-    }
-
-    if (iMinDims == -1)
-    {
-        pOut->set(0, 1);
-    }
-
-    delete[] piCoords;
     out.push_back(pOut);
     return Function::OK;
 }
