@@ -436,11 +436,9 @@ Cell* Cell::insertNewCell(typed_list* _pArgs, InternalType* _pSource)
 InternalType** Cell::allocData(int _iSize)
 {
     InternalType** pData = new InternalType*[_iSize];
-    Double* pEmpty = Double::Empty();
     for (int i = 0 ; i < _iSize ; i++)
     {
-        pEmpty->IncreaseRef();
-        pData[i] = pEmpty;
+        pData[i] = NULL;
     }
     return pData;
 }

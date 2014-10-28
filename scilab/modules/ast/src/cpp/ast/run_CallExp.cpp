@@ -257,6 +257,8 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 setResult(pList);
             }
 
+            pList->killMe();
+
             //clean pArgs return by GetArgumentList
             for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
             {
