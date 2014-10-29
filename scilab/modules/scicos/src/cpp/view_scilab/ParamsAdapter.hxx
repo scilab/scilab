@@ -14,6 +14,7 @@
 #define PARAMSADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
 
@@ -41,6 +42,7 @@ public:
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
+
 private:
     types::InternalType* doc_content;
 };

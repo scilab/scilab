@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 loadXcosLibs();
 
 // Allocate a summation block
@@ -94,3 +96,7 @@ o.model.opar
 
 o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
 o.model.odstate
+
+
+// Check that all the model items are freed
+clear

@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
 
 #include "list.hxx"
 #include "double.hxx"
@@ -519,8 +520,8 @@ struct style
 template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
 
 GraphicsAdapter::GraphicsAdapter(std::shared_ptr<model::Block> adaptee) :
-    gr_i_content(types::Double::Empty()),
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adaptee)
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adaptee),
+    gr_i_content(types::Double::Empty())
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
@@ -547,8 +548,8 @@ GraphicsAdapter::GraphicsAdapter(std::shared_ptr<model::Block> adaptee) :
 }
 
 GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& adapter) :
-    gr_i_content(adapter.getGrIContent()),
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adapter)
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adapter),
+    gr_i_content(adapter.getGrIContent())
 {
 }
 

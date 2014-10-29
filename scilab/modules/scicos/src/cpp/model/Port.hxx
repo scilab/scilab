@@ -54,6 +54,10 @@ private:
         }
 
         this->m_connectedSignals = connectedSignals;
+        if (m_connectedSignals.empty())
+        {
+            m_connectedSignals = std::vector<ScicosID> (1, 0);
+        }
         return SUCCESS;
     }
 

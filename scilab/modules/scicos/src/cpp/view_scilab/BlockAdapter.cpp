@@ -11,6 +11,7 @@
  */
 
 #include <string>
+#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
@@ -22,6 +23,7 @@
 #include "Controller.hxx"
 #include "model/Block.hxx"
 #include "BlockAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "GraphicsAdapter.hxx"
 #include "ModelAdapter.hxx"
 
@@ -36,6 +38,8 @@ namespace view_scilab
 {
 namespace
 {
+
+std::wstring rpar(L"rpar");
 
 struct graphics
 {
@@ -57,13 +61,31 @@ struct model
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
-        return localAdaptor.getAsTList(new types::MList(), controller);
+        types::MList* ret = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
+
+        // If the Block is a SuperBlock, set its 'rpar' property with the saved Diagram
+        DiagramAdapter* rpar_content = adaptor.getRpar()->getAs<DiagramAdapter>();
+        if (rpar_content != 0 && localAdaptor.getDiagram() == 0)
+        {
+            // Decrease rpar_content's ref count to counter the increases from the other Adapters
+            rpar_content->DecreaseRef();
+            rpar_content->DecreaseRef();
+            ret->set(rpar, rpar_content);
+        }
+
+        return ret;
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
-        return localAdaptor.setAsTList(v, controller);
+        if (!localAdaptor.setAsTList(v, controller))
+        {
+            return false;
+        }
+
+        adaptor.setRpar(localAdaptor.getDiagram());
+        return true;
     }
 };
 
@@ -127,8 +149,9 @@ struct doc
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
 BlockAdapter::BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee) :
-    doc_content(new types::List()),
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adaptee)
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adaptee),
+    rpar_content(nullptr),
+    doc_content(new types::List())
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -141,13 +164,20 @@ BlockAdapter::BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Blo
 }
 
 BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
-    doc_content(adapter.getDocContent()),
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter)
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter),
+    rpar_content(adapter.getRpar()),
+    doc_content(adapter.getDocContent())
 {
 }
 
 BlockAdapter::~BlockAdapter()
 {
+    if (rpar_content != nullptr)
+    {
+        rpar_content->DecreaseRef();
+        rpar_content->killMe();
+    }
+
     doc_content->DecreaseRef();
     doc_content->killMe();
 }
@@ -156,9 +186,37 @@ std::wstring BlockAdapter::getTypeStr()
 {
     return getSharedTypeStr();
 }
+
 std::wstring BlockAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
+}
+
+types::InternalType* BlockAdapter::getRpar() const
+{
+    if (rpar_content != nullptr)
+    {
+        rpar_content->IncreaseRef();
+    }
+    return rpar_content;
+}
+
+void BlockAdapter::setRpar(types::InternalType* v)
+{
+    if (v != nullptr)
+    {
+        // The old 'rpar_content' needs to be freed after setting it to 'v'
+        types::InternalType* temp = rpar_content;
+
+        v->IncreaseRef();
+        rpar_content = v;
+
+        if (temp != nullptr)
+        {
+            temp->DecreaseRef();
+            temp->killMe();
+        }
+    }
 }
 
 types::InternalType* BlockAdapter::getDocContent() const

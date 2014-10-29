@@ -9,16 +9,14 @@
 
 loadXcosLibs();
 
-// Allocate a Link and access its fields
-lnk = scicos_link()
-lnk.xx
-lnk.yy
-lnk.id
-lnk.thick
-lnk.ct
-lnk.from
-lnk.to
+b = scicos_block();
+d = scicos_diagram( objs=list(scicos_link(from=[3 3 0],to=[5 2 1]) ));
+b.model.rpar = d;
+// b is now a SuperBlock containing a diagram containing a link, with its 'from' and and 'to' properties set
+
+assert_checkequal(b.model.rpar.objs(1).from, [3 3 0]);
+assert_checkequal(b.model.rpar.objs(1).to, [5 2 1]);
 
 
-// Check that the Link is freed
+// Check that all the model items are freed
 clear

@@ -9,16 +9,12 @@
 
 loadXcosLibs();
 
-// Allocate a Link and access its fields
-lnk = scicos_link()
-lnk.xx
-lnk.yy
-lnk.id
-lnk.thick
-lnk.ct
-lnk.from
-lnk.to
+// Test #1: the temporary block is deleted with the diagram
+scs_m = scicos_diagram( objs=list(scicos_block()) );
+clear scs_m
 
-
-// Check that the Link is freed
-clear
+// Test #2: the block is deleted after the diagram
+blk = scicos_block();
+scs_m = scicos_diagram( objs=list(blk) );
+clear scs_m
+clear blk

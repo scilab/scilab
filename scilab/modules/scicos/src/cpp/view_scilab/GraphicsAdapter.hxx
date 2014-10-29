@@ -14,6 +14,7 @@
 #define GRAPHICSADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"
@@ -40,6 +41,7 @@ public:
 
     types::InternalType* getGrIContent() const;
     void setGrIContent(types::InternalType* v);
+
 private:
     types::InternalType* gr_i_content;
 };

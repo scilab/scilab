@@ -73,10 +73,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 return new types::Double(1);
             }
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -102,6 +102,12 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
         }
         case IMPLICIT:
         {
+            if (ids.size() == 0)
+            {
+                // When no port is present, return an empty matrix
+                return types::Double::Empty();
+            }
+
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
@@ -256,10 +262,10 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -407,10 +413,10 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -457,10 +463,10 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;

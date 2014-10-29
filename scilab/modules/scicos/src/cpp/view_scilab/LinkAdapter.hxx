@@ -14,7 +14,10 @@
 #define LINKADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
+#include "utilities.hxx"
+#include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
 
 #include "model/Link.hxx"
@@ -39,13 +42,14 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    std::vector<double> getFrom() const;
-    bool setFrom(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level = true);
-    std::vector<double> getTo() const;
-    bool setTo(const ScicosID id, const std::vector<double>& v, Controller& controller, const bool model_level = true);
+    link_t getFrom() const;
+    bool setFrom(const link_t& v, Controller& controller);
+    link_t getTo() const;
+    bool setTo(const link_t& v, Controller& controller);
+
 private:
-    std::vector<double> from_content;
-    std::vector<double> to_content;
+    link_t m_from;
+    link_t m_to;
 };
 
 } /* namespace view_scilab */

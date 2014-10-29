@@ -12,6 +12,7 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 #include "double.hxx"
 #include "string.hxx"

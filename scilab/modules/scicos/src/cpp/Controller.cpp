@@ -10,6 +10,11 @@
  *
  */
 
+#include <string>
+#include <vector>
+#include <map>
+#include <memory>
+#include <utility>
 #include <algorithm>
 
 #include "Controller.hxx"
@@ -105,78 +110,46 @@ ScicosID Controller::createObject(kind_t k)
     return id;
 }
 
-static void unlink_vector(Controller& controller, ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
-{
-    ScicosID v;
-    controller.getObjectProperty(uid, k, uid_prop, v);
-    if (v != 0)
-    {
-        auto o = controller.getObject(v);
-
-        std::vector<ScicosID> children;
-        controller.getObjectProperty(o->id(), o->kind(), ref_prop, children);
-
-        std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), uid);
-        if (it != children.end())
-        {
-            children.erase(it);
-        }
-
-        controller.setObjectProperty(o->id(), o->kind(), ref_prop, children);
-    }
-}
-
-static void unlink(Controller& controller, ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
-{
-    ScicosID v;
-    controller.getObjectProperty(uid, k, uid_prop, v);
-    if (v != 0)
-    {
-        auto o = controller.getObject(v);
-        controller.setObjectProperty(o->id(), o->kind(), ref_prop, 0);
-    }
-}
-
 void Controller::deleteObject(ScicosID uid)
 {
-    // disconnect / remove references first
     auto initial = getObject(uid);
     const kind_t k = initial->kind();
+
+    // disconnect / remove references of weak connected objects and decrement the reference count of all strongly connected objects.
     if (k == ANNOTATION)
     {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
         // RELATED_TO is not referenced back
     }
     else if (k == BLOCK)
     {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
-        // INPUTS will be removed on delete
-        // OUTPUTS will be removed on delete
-        // EVENT_INPUTS will be removed on delete
-        // EVENT_OUTPUTS will be removed on delete
-        unlink_vector(*this, uid, k, PARENT_BLOCK, CHILDREN);
-        // CHILDREN will be removed on delete
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        deleteVector(uid, k, INPUTS);
+        deleteVector(uid, k, OUTPUTS);
+        deleteVector(uid, k, EVENT_INPUTS);
+        deleteVector(uid, k, EVENT_OUTPUTS);
+        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
+        deleteVector(uid, k, CHILDREN);
         // FIXME what about REFERENCED_PORT ?
     }
     else if (k == DIAGRAM)
     {
-        // CHILDREN will be removed on delete
     }
     else if (k == LINK)
     {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
-        unlink_vector(*this, uid, k, SOURCE_PORT, CONNECTED_SIGNALS);
-        unlink_vector(*this, uid, k, DESTINATION_PORT, CONNECTED_SIGNALS);
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, SOURCE_PORT, CONNECTED_SIGNALS);
+        unlinkVector(uid, k, DESTINATION_PORT, CONNECTED_SIGNALS);
     }
     else if (k == PORT)
     {
-        unlink(*this, uid, k, SOURCE_BLOCK, INPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, OUTPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, EVENT_INPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, EVENT_OUTPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, INPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, OUTPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, EVENT_INPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, EVENT_OUTPUTS);
 
-        unlink(*this, uid, k, CONNECTED_SIGNALS, SOURCE_PORT);
-        unlink(*this, uid, k, CONNECTED_SIGNALS, DESTINATION_PORT);
+        unlink(uid, k, CONNECTED_SIGNALS, SOURCE_PORT);
+        unlink(uid, k, CONNECTED_SIGNALS, DESTINATION_PORT);
     }
 
     // delete the object
@@ -185,6 +158,55 @@ void Controller::deleteObject(ScicosID uid)
     for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
     {
         (*iter)->objectDeleted(uid, k);
+    }
+}
+
+void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
+{
+    ScicosID v;
+    getObjectProperty(uid, k, uid_prop, v);
+    if (v != 0)
+    {
+        auto o = getObject(v);
+
+        std::vector<ScicosID> children;
+        getObjectProperty(o->id(), o->kind(), ref_prop, children);
+
+        std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), uid);
+        if (it != children.end())
+        {
+            children.erase(it);
+        }
+
+        setObjectProperty(o->id(), o->kind(), ref_prop, children);
+    }
+}
+
+void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
+{
+    ScicosID v;
+    getObjectProperty(uid, k, uid_prop, v);
+    if (v != 0)
+    {
+        auto o = getObject(v);
+        // Find which end of the link is connected to the port
+        ScicosID connected_port;
+        getObjectProperty(o->id(), o->kind(), ref_prop, connected_port);
+        if (connected_port == uid)
+        {
+            setObjectProperty(o->id(), o->kind(), ref_prop, 0ll);
+        }
+    }
+}
+
+void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_prop)
+{
+    std::vector<ScicosID> children;
+    getObjectProperty(uid, k, uid_prop, children);
+
+    for (ScicosID id : children)
+    {
+        deleteObject(id);
     }
 }
 
@@ -282,7 +304,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     std::vector<ScicosID> cloned;
     cloned.reserve(v.size());
 
-    for (const ScicosID& id : v)
+    for (const ScicosID & id : v)
     {
 
         std::map<ScicosID, ScicosID>::iterator it = mapped.find(id);

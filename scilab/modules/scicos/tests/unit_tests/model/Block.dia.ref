@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 loadXcosLibs();
 // Allocate a summation block
 o = BIGSOM_f("define")
@@ -54,11 +55,6 @@ propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.graphics
  ans  =
 orig = [0,0]
@@ -109,7 +105,7 @@ o.gui
  BIGSOM_f
 o.doc
  ans  =
-()
+     ()
 // Set the block to itself without making any modification
 // (scicos_getvalue returns BIGSOM_f default parameters)
 p = funcprot();
@@ -214,13 +210,23 @@ propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
-objectDeleted( 1 )
+propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 2 , PORT )
+propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 3 , PORT )
+propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 4 , PORT )
+objectDeleted( 1 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.graphics
  ans  =
 orig = [0,0]
@@ -369,12 +375,23 @@ propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 6 , PORT )
+propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 7 , PORT )
+propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 8 , PORT )
+objectDeleted( 5 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.graphics
  ans  =
 orig = [0,0]
@@ -527,12 +544,23 @@ propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 10 , PORT )
+propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 11 , PORT )
+propertyUpdated( 9 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 12 , PORT )
+objectDeleted( 9 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.graphics
  ans  =
 orig = [0,0]
@@ -617,12 +645,28 @@ propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 14 , PORT )
+propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 15 , PORT )
+propertyUpdated( 13 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 17 , PORT )
+propertyUpdated( 13 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 13 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 16 , PORT )
+objectDeleted( 13 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.graphics
  ans  =
 orig = [0,0]
@@ -637,7 +681,7 @@ peout = []
 gr_i = []
 id = ""
 in_implicit = "E"
-out_implicit = 
+out_implicit = []
 in_style = ""
 out_style = 
 in_label = ""
@@ -673,7 +717,7 @@ o.gui
  CSCOPE
 o.doc
  ans  =
-()
+     ()
 // Set the block to itself without making any modification
 // (scicos_getvalue returns CSCOPE_f default parameters)
 p = funcprot();
@@ -767,13 +811,18 @@ propertyUpdated( 21 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 21 , BLOCK , UID ) : NO_CHANGES
-objectDeleted( 18 )
+propertyUpdated( 18 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 18 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 19 , PORT )
+propertyUpdated( 18 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 18 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 20 , PORT )
+objectDeleted( 18 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 // Test 'opar' and 'odstate'
 o = LOGIC("define")
 objectCreated( 24 , BLOCK )
@@ -833,15 +882,21 @@ propertyUpdated( 24 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 21 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 22 , PORT )
+propertyUpdated( 21 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 21 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 21 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 23 , PORT )
+objectDeleted( 21 , BLOCK )
 o  = 
-scicos_Block type :
-  graphics
-  model
-  gui
-  doc
 o.model.opar
  ans  =
-     (1)
+       ans(1)
   0
   0
   0
@@ -876,17 +931,17 @@ propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
 o.model.opar
  ans  =
-     (1)
+       ans(1)
     1.    2.    3.
     4.    5.    6.
-     (2)
+       ans(2)
 !Hello  world!  !
 !               !
 !Test   123     !
-     (3)
+       ans(3)
     i      2.    3.i
     4.    5.i    6.
-     (4)
+       ans(4)
   32  32
   32  32
 o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
@@ -916,16 +971,39 @@ propertyUpdated( 24 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 24 , BLOCK , UID ) : NO_CHANGES
 o.model.odstate
  ans  =
-     (1)
+       ans(1)
     1.    2.    3.
     4.    5.    6.
-     (2)
+       ans(2)
 !Hello  world!  !
 !               !
 !Test   123     !
-     (3)
+       ans(3)
     i      2.    3.i
     4.    5.i    6.
-     (4)
+       ans(4)
   32  32
   32  32
+// Check that all the model items are freed
+clear
+propertyUpdated( 24 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 24 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 25 , PORT )
+propertyUpdated( 24 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 24 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 26 , PORT )
+propertyUpdated( 24 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 27 , PORT )
+propertyUpdated( 24 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 24 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 24 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 28 , PORT )
+objectDeleted( 24 , BLOCK )

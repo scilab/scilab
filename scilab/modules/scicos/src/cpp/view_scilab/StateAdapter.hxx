@@ -14,6 +14,7 @@
 #define STATEADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
 

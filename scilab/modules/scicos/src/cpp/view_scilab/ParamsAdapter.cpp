@@ -13,6 +13,7 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <memory>
 
 #include "double.hxx"
 #include "string.hxx"
@@ -213,6 +214,12 @@ struct context
         std::vector<std::string> context;
         controller.getObjectProperty(adaptee, DIAGRAM, DIAGRAM_CONTEXT, context);
 
+        if (context.size() == 0)
+        {
+            // An empty context returns an empty matrix
+            return types::Double::Empty();
+        }
+
         types::String* o = new types::String((int)context.size(), 1);
         for (int i = 0; i < (int)context.size(); ++i)
         {
@@ -312,7 +319,8 @@ struct doc
 template<> property<ParamsAdapter>::props_t property<ParamsAdapter>::fields = property<ParamsAdapter>::props_t();
 
 ParamsAdapter::ParamsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee),
+    doc_content(new types::List())
 {
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
@@ -328,18 +336,17 @@ ParamsAdapter::ParamsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::D
         property<ParamsAdapter>::add_property(L"void3", &dummy_property::get, &dummy_property::set);
         property<ParamsAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
-
-    doc_content = new types::List();
 }
 
 ParamsAdapter::ParamsAdapter(const ParamsAdapter& adapter) :
-    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adapter)
+    BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>(adapter),
+    doc_content(adapter.getDocContent())
 {
-    doc_content = adapter.doc_content->clone();
 }
 
 ParamsAdapter::~ParamsAdapter()
 {
+    doc_content->DecreaseRef();
     doc_content->killMe();
 }
 
@@ -354,13 +361,17 @@ std::wstring ParamsAdapter::getShortTypeStr()
 
 types::InternalType* ParamsAdapter::getDocContent() const
 {
-    return doc_content->clone();
+    doc_content->IncreaseRef();
+    return doc_content;
 }
 
 void ParamsAdapter::setDocContent(types::InternalType* v)
 {
+    doc_content->DecreaseRef();
     doc_content->killMe();
-    doc_content = v->clone();
+
+    v->IncreaseRef();
+    doc_content = v;
 }
 
 } /* namespace view_scilab */

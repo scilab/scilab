@@ -11,6 +11,7 @@
  */
 
 #include <string>
+#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"

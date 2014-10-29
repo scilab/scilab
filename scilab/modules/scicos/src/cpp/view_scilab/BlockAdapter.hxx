@@ -14,6 +14,7 @@
 #define BLOCKADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"
@@ -39,10 +40,15 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
+    types::InternalType* getRpar() const;
+    void setRpar(types::InternalType* v);
+
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
 
 private:
+    types::InternalType* rpar_content;
+
     types::InternalType* doc_content;
 };
 

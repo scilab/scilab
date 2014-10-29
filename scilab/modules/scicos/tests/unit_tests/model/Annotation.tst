@@ -36,3 +36,7 @@ o.graphics
 o.model
 o.void
 o.gui
+
+
+// Check that all the model items are freed
+clear
