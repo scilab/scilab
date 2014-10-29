@@ -118,7 +118,8 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
 
     C2F(lufact1)(dbl, itemsRow, colPos, &m, &nonZeros, fmatindex, &abstol, &reltol, &nrank, &ierr);
 
-    out.push_back(new types::Pointer(m, n, (void*)fmatindex));
+    out.push_back(new types::Pointer(m, n, (void*)fmatindex, pSpIn->isComplex()));
+
     if (_iRetCount == 2)
     {
         out.push_back(new types::Double((double)nrank));

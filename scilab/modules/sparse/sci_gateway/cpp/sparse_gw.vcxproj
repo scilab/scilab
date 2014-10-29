@@ -197,6 +197,7 @@
     <ClCompile Include="sci_adj2sp.cpp" />
     <ClCompile Include="sci_full.cpp" />
     <ClCompile Include="sci_lufact.cpp" />
+    <ClCompile Include="sci_luget.cpp" />
     <ClCompile Include="sci_lusolve.cpp" />
     <ClCompile Include="sci_nnz.cpp" />
     <ClCompile Include="sci_ordmmd.cpp" />

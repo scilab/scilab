@@ -32,6 +32,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_spones.cpp \
     sci_gateway/cpp/sci_lufact.cpp \
     sci_gateway/cpp/sci_lusolve.cpp \
+    sci_gateway/cpp/sci_luget.cpp \
     sci_gateway/cpp/sci_ordmmd.cpp
 
 
