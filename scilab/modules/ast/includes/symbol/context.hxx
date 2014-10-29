@@ -77,6 +77,8 @@ public :
     std::list<std::wstring>* getVarsName();
     std::list<std::wstring>* getMacrosName();
     std::list<std::wstring>* getFunctionsName();
+    std::list<std::wstring>* getVarsNameForWho(bool sorted);
+    std::list<std::wstring>* getGlobalNameForWho(bool sorted);
 
     /* global functions */
 
@@ -117,7 +119,7 @@ public :
     bool addFunction(types::Function *_info);
     bool addMacro(types::Macro *_info);
     bool addMacroFile(types::MacroFile *_info);
-    void print(std::wostream& ostr) const;
+    void print(std::wostream& ostr, bool bSorted = false) const;
     int getScopeLevel();
 
 private :
