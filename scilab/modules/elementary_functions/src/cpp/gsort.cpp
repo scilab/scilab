@@ -71,6 +71,12 @@ bool increasing (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
         return true;
     }
 
+    // keep position order (position order is always increasing)
+    if (left.second == right.second)
+    {
+        return (left.first.second < right.first.second);
+    }
+
     return (left.second < right.second);
 }
 
@@ -85,6 +91,12 @@ bool descendent (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
     if (ISNAN((double)right.second))
     {
         return false;
+    }
+
+    // keep position order (position order is always increasing)
+    if (left.second == right.second)
+    {
+        return (left.first.second < right.first.second);
     }
 
     return (left.second > right.second);
