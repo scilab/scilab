@@ -29,6 +29,6 @@ int SparseModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lufact", &sci_lufact, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"lusolve", &sci_lusolve, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"luget", &sci_luget, MODULE_NAME));
-
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ludel", &sci_ludel, MODULE_NAME));
     return 1;
 }

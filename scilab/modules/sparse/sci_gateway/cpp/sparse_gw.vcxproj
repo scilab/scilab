@@ -196,6 +196,7 @@
   <ItemGroup>
     <ClCompile Include="sci_adj2sp.cpp" />
     <ClCompile Include="sci_full.cpp" />
+    <ClCompile Include="sci_ludel.cpp" />
     <ClCompile Include="sci_lufact.cpp" />
     <ClCompile Include="sci_luget.cpp" />
     <ClCompile Include="sci_lusolve.cpp" />
