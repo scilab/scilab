@@ -18,7 +18,7 @@
 
 namespace types
 {
-class EXTERN_AST Library : public InternalType
+class EXTERN_AST Library : public GenericType
 {
 public :
     Library(const std::wstring& _wstPath);
