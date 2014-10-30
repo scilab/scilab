@@ -28,14 +28,14 @@ if norm(a*x-b)>1d-10 then pause,end
 [P,L,U,Q]=luget(h);
 if norm(P*L*U*Q-A)>1d-10 then pause,end
 ludel(h)
-if execstr('x=lusolve(h,b);','errcatch')<>247 then pause,end
-if execstr('ludel(h);','errcatch')<>247 then pause,end
-if execstr('[P,L,U,Q]=luget(h);','errcatch')<>247 then pause,end
+if execstr("x=lusolve(h,b);","errcatch")<>999 then pause,end
+if execstr("ludel(h);","errcatch")<>999 then pause,end
+if execstr("[P,L,U,Q]=luget(h);","errcatch")<>999 then pause,end
 
 //try to allocate a lot of handles
 for k=1:20
-  [h1,rk]=lufact(A);
-end	
+    [h1,rk]=lufact(A);
+end
 
 x=lusolve(h1,b);
 if norm(a*x-b)>1d-10 then pause,end
