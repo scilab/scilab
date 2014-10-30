@@ -678,6 +678,15 @@ struct EXTERN_AST SparseBool : GenericType
         return (getRows() == 1 && getCols() == 1);
     }
 
+    bool isTrue()
+    {
+        if (nbTrue() == m_iSize)
+        {
+            return true;
+        }
+        return false;
+    }
+
     bool neg(InternalType *& out)
     {
         SparseBool * _out = new SparseBool(getRows(), getCols());
