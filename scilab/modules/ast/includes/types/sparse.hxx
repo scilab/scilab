@@ -287,7 +287,7 @@ struct EXTERN_AST Sparse : GenericType
        @param o other matrix to substract
        @return ptr to the new matrix, 0 in case of failure
      */
-    GenericType* substract(Sparse const& o) const;
+    Sparse* substract(Sparse const& o) const;
 
     /* create a new sparse matrix containing the result of an subtraction
        @param d scalar to subtract

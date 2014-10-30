@@ -2308,7 +2308,9 @@ template<> InternalType* sub_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _p
         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
     }
 
-    return _pL->substract(*_pR);
+    types::Sparse* pSPOut = _pL->substract(*_pR);
+    pSPOut->finalize();
+    return pSPOut;
 }
 
 //d - sp

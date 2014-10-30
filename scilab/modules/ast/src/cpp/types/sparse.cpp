@@ -1640,8 +1640,7 @@ Sparse* Sparse::add(Sparse const& o) const
     return new Sparse(realSp, cplxSp);
 }
 
-// GenericType because we might return a Double* for scalar operand
-GenericType* Sparse::substract(Sparse const& o) const
+Sparse* Sparse::substract(Sparse const& o) const
 {
     RealSparse_t* realSp(0);
     CplxSparse_t* cplxSp(0);
