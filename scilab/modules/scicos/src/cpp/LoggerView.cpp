@@ -266,11 +266,11 @@ void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
     }
 }
 
-void LoggerView::objectDeleted(const ScicosID& uid)
+void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
 
-    ss << __FUNCTION__ << "( " << uid << " )" << std::endl;
+    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
 
     if (USE_SCILAB_WRITE)
     {
