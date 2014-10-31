@@ -51,8 +51,8 @@ assert_checkequal(empty & empty, []);
 assert_checkequal(empty & r, []);
 assert_checkequal(empty & R, []);
 assert_checkequal(empty & e, []);
-assert_checkequal(empty & b, []);
-assert_checkequal(empty & B, []);
+assert_checkequal(empty & b, %f);
+assert_checkequal(empty & B, [%t,%f;%f,%t]);
 
 assert_checkequal(r & empty, []);
 assert_checkequal(r & r, %t);
@@ -74,7 +74,7 @@ assert_checkequal(e & R, [%t,%t;%t,%t]);
 assert_checkequal(e & b, %f);
 assert_checkequal(e & B, [%t,%f;%f,%t]);
 
-assert_checkequal(b & empty, []);
+assert_checkequal(b & empty, %f);
 assert_checkequal(b & r, %f);
 assert_checkequal(b & R, [%f,%f;%f,%f]);
 assert_checkequal(b & e, %f);
@@ -82,7 +82,7 @@ assert_checkequal(b & b, %f);
 assert_checkequal(b & B, [%f,%f;%f,%f]);
 assert_checkequal(b & SPB, sparse([1,1], [%f], [2, 2]));
 
-assert_checkequal(B & empty, []);
+assert_checkequal(B & empty, [%t,%f;%f,%t]);
 assert_checkequal(B & r, [%t,%f;%f,%t]);
 assert_checkequal(B & R, [%t,%f;%f,%t]);
 assert_checkequal(B & e, [%t,%f;%f,%t]);
