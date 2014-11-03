@@ -324,7 +324,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     //allow return operation
     if (e.isReturnable())
     {
-        (&e.getBody())->isReturnable();
+        const_cast<Exp*>(&(e.getBody()))->setReturnable();
     }
 
     //condition
@@ -378,7 +378,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     //allow return operation
     if (e.isReturnable())
     {
-        e.getBody().isReturnable();
+        const_cast<Exp&>(e.getBody()).setReturnable();
     }
 
     if (pIT->isImplicitList())
