@@ -51,7 +51,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("sum(i,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "sum", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
 assert_checkerror("sum(i,1,1)", refMsg);
 
 //==============================================================================
@@ -86,7 +86,7 @@ assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("sum(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "sum",2,"""*"",""r"",""c"",""m""");
+"sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(d,1,1)"   ,"errcatch") == 0);
@@ -98,7 +98,7 @@ assert_checkerror("sum(d,1,1)", refMsg);
 d = sparse(d);
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "sum",2,"""*"",""r"",""c"",""m""");
+"sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);
@@ -115,7 +115,7 @@ assert_checkerror("sum(d,""r"", [""nat"" ""dble""])", refMsg);
 
 assert_checkfalse(execstr("sum(d,""orient"", ""t"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "sum",2,"""*"",""r"",""c"",""m""");
+"sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("sum(d,1,1)"   ,"errcatch") == 0);
@@ -151,7 +151,7 @@ s = poly(0, "s");
 d = [1/s 1/s^2; 1/s 1];
 assert_checkfalse(execstr("sum(d, ""orient"")"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
-            "sum",2,"""*"",""r"",""c"",""m""");
+"sum",2,"""*"",""r"",""c"",""m""");
 assert_checkerror("sum(d, ""orient"")", refMsg);
 
 assert_checkfalse(execstr("sum(d, [""r"", ""c""])"   ,"errcatch") == 0);

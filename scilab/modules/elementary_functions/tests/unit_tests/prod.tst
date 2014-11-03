@@ -44,7 +44,7 @@ refMsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the set 
 assert_checkerror("prod(i,""orient"", ""t"")", refMsg);
 
 assert_checkfalse(execstr("prod(i,1,1)"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: String expected.\n"), "prod", 3);
+refMsg = msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "prod", 3);
 assert_checkerror("prod(i,1,1)", refMsg);
 
 //==============================================================================
