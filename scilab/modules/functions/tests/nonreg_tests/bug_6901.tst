@@ -17,4 +17,4 @@
 
 mputl("exec("""", -1);", TMPDIR + "/bug.sce");
 ierr = execstr("exec(TMPDIR + ''/bug.sce'');", "errcatch");
-if ierr <> 241 then pause,end
+if ierr <> 999 then pause,end
