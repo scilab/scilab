@@ -636,6 +636,42 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
             {
                 lnum = wcslen(PosNanStringW);
             }
+            else if (wcsnicmp(modifiedTxt, ScilabEpsStringW, wcslen(ScilabEpsStringW)) == 0)
+            {
+                lnum = wcslen(ScilabEpsStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabPosEpsStringW, wcslen(ScilabPosEpsStringW)) == 0)
+            {
+                lnum = wcslen(ScilabPosEpsStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabNegEpsStringW, wcslen(ScilabNegEpsStringW)) == 0)
+            {
+                lnum = wcslen(ScilabNegEpsStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabPiStringW, wcslen(ScilabPiStringW)) == 0)
+            {
+                lnum = wcslen(ScilabPiStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabNegPiStringW, wcslen(ScilabNegPiStringW)) == 0)
+            {
+                lnum = wcslen(ScilabNegPiStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabPosPiStringW, wcslen(ScilabPosPiStringW)) == 0)
+            {
+                lnum = wcslen(ScilabPosPiStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabEStringW, wcslen(ScilabEStringW)) == 0)
+            {
+                lnum = wcslen(ScilabEStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabPosEStringW, wcslen(ScilabPosEStringW)) == 0)
+            {
+                lnum = wcslen(ScilabPosEStringW);
+            }
+            else if (wcsnicmp(modifiedTxt, ScilabNegEStringW, wcslen(ScilabNegEStringW)) == 0)
+            {
+                lnum = wcslen(ScilabNegEStringW);
+            }
         }
         inum_string = midstringW(modifiedTxt, lnum, -1);
 
