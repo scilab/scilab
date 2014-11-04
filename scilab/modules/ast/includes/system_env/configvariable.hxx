@@ -398,6 +398,12 @@ public :
     static void setAnalyzerOptions(int _val);
     static int getAnalyzerOptions(void);
 
+    //divide by zero
+private:
+    static bool m_dividebyzero;
+public:
+    static void setDivideByZero(bool _dividebyzero);
+    static bool isDivideByZero(void);
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

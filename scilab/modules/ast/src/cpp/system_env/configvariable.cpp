@@ -1159,7 +1159,25 @@ int ConfigVariable::getAnalyzerOptions(void)
     return m_analyzerOptions;
 }
 
+/*
+** \}
+*/
 
+/*
+** divide by zero
+** \{
+*/
+
+bool ConfigVariable::m_dividebyzero = false;
+void ConfigVariable::setDivideByZero(bool _dividebyzero)
+{
+    m_dividebyzero = _dividebyzero;
+}
+
+bool ConfigVariable::isDivideByZero(void)
+{
+    return m_dividebyzero;
+}
 /*
 ** \}
 */

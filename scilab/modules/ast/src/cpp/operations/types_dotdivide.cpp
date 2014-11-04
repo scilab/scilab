@@ -22,6 +22,7 @@
 extern "C"
 {
 #include "localization.h"
+#include "sciprint.h"
 }
 
 using namespace types;
@@ -806,7 +807,25 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
     dotdiv_function dotdiv = pDotDivfunction[_pLeftOperand->getId()][_pRightOperand->getId()];
     if (dotdiv)
     {
+        ConfigVariable::setDivideByZero(false);
         pResult = dotdiv(_pLeftOperand, _pRightOperand);
+
+        bool iszero = ConfigVariable::isDivideByZero();
+        ConfigVariable::setDivideByZero(false);
+
+        if (iszero)
+        {
+            if (ConfigVariable::getIeee() == 0)
+            {
+                throw ast::ScilabError(_("Division by zero...\n"));
+            }
+
+            if (ConfigVariable::getIeee() == 1)
+            {
+                sciprint(_("Warning : division by zero...\n"));
+            }
+        }
+
         if (pResult)
         {
             return pResult;
