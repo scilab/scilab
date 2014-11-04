@@ -88,6 +88,7 @@ libsciast_la_SOURCES = \
     src/cpp/types/struct.cpp \
     src/cpp/types/macrofile.cpp \
     src/cpp/types/callable.cpp \
+    src/cpp/types/addfunction.cpp \
     src/cpp/system_env/dynamic_module.cpp \
     src/cpp/system_env/setenvvar.cpp \
     src/cpp/system_env/sci_home.cpp \

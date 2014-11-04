@@ -873,5 +873,8 @@
     <ClCompile Include="src\cpp\system_env\configvariable_interface.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\types\addfunction.cpp">
+      <Filter>Source Files\types</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

@@ -460,6 +460,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\system_env\sci_path.cpp" />
     <ClCompile Include="src\cpp\system_env\sci_tmpdir.cpp" />
     <ClCompile Include="src\cpp\system_env\setenvvar.cpp" />
+    <ClCompile Include="src\cpp\types\addfunction.cpp" />
     <ClCompile Include="src\cpp\types\arrayof.cpp" />
     <ClCompile Include="src\cpp\types\bool.cpp" />
     <ClCompile Include="src\cpp\types\callable.cpp" />
