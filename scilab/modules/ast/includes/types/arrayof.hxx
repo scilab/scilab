@@ -1240,7 +1240,9 @@ public :
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
-    } bool reshape(int* _piDims, int _iDims)
+    }
+
+    bool reshape(int* _piDims, int _iDims)
     {
         int iNewSize = get_max_size(_piDims, _iDims);
         if (iNewSize != m_iSize)
@@ -1257,6 +1259,19 @@ public :
         {
             m_piDims[1] = 1;
             _iDims++;
+        }
+
+        int iDims = _iDims;
+        for (int i = iDims - 1; i >= 2; --i)
+        {
+            if (m_piDims[i] == 1)
+            {
+                _iDims--;
+            }
+            else
+            {
+                break;
+            }
         }
 
         m_iRows = m_piDims[0];
