@@ -49,6 +49,7 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import java.util.Arrays;
 
 import org.scilab.modules.graphic_objects.axes.AxesContainer;
+import org.scilab.modules.graphic_objects.event.EventHandler;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
@@ -361,34 +362,6 @@ public class Figure extends GraphicObject implements AxesContainer {
     public enum EventHandlerProperty {
         EVENTHANDLER, EVENTHANDLERENABLE
     };
-
-    /**
-     * EventHandler class
-     */
-    private class EventHandler {
-        /** Event handler string */
-        private String eventHandler = "";
-
-        /** Specifies whether the event handler is enabled or not */
-        private Boolean eventHandlerEnabled = false;
-
-        /**
-         * Default constructor
-         */
-        public EventHandler() {
-            eventHandler = "";
-            eventHandlerEnabled = false;
-        }
-
-        /**
-         * Copy constructor
-         * @param eventHandler the EventHandler to copy
-         */
-        public EventHandler(EventHandler eventHandler) {
-            this.eventHandler = eventHandler.eventHandler;
-            this.eventHandlerEnabled = eventHandler.eventHandlerEnabled;
-        }
-    }
 
     /** Figure dimensions */
     private FigureDimensions dimensions;
@@ -957,17 +930,17 @@ public class Figure extends GraphicObject implements AxesContainer {
      * @return the eventHandler string
      */
     public String getEventHandlerString() {
-        return eventHandler.eventHandler;
+        return eventHandler.getEventHandlerString();
     }
 
     /**
      * @param eventHandlerString the eventHandler string to set
      */
     public UpdateStatus setEventHandlerString(String eventHandlerString) {
-        if (eventHandler.eventHandler.equals(eventHandlerString)) {
+        if (eventHandler.getEventHandlerString().equals(eventHandlerString)) {
             return UpdateStatus.NoChange;
         }
-        eventHandler.eventHandler = eventHandlerString;
+        eventHandler.setEventHandlerString(eventHandlerString);
         return UpdateStatus.Success;
     }
 
@@ -975,17 +948,17 @@ public class Figure extends GraphicObject implements AxesContainer {
      * @return the eventHandlerEnabled
      */
     public Boolean getEventHandlerEnable() {
-        return eventHandler.eventHandlerEnabled;
+        return eventHandler.getEventHandlerEnabled();
     }
 
     /**
      * @param eventHandlerEnabled the eventHandlerEnabled to set
      */
     public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
-        if (eventHandler.eventHandlerEnabled == eventHandlerEnabled) {
+        if (eventHandler.getEventHandlerEnabled() == eventHandlerEnabled) {
             return UpdateStatus.NoChange;
         }
-        eventHandler.eventHandlerEnabled = eventHandlerEnabled;
+        eventHandler.setEventHandlerEnabled(eventHandlerEnabled);
         return UpdateStatus.Success;
     }
 

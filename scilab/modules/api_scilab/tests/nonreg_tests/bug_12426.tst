@@ -17,10 +17,11 @@
 // <-- Short Description -->
 // By using addErrorMessage, random string error can be displayed.
 
+// exec SCI/modules/api_scilab/tests/nonreg_tests/bug_12426.tst
 ilib_verbose(0);
-dir = get_absolute_file_path("bug_12426.tst");
-exec(dir + "/build_bug_12426_gateway.sce", "errcatch", -1);
-exec(TMPDIR + "/bug_12426_gateway/loader.sce", "errcatch", -1);
+directory = get_absolute_file_path("bug_12426.tst");
+exec(directory + "/build_bug_12426_gateway.sce");
+exec(TMPDIR + "/bug_12426_gateway/loader.sce");
 
 n = int32(1);
 disp("add 1 error message");

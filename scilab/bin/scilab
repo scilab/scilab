@@ -738,7 +738,7 @@ check_macosx_version()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                7|8|9)
+                7|8|9|10)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request > /dev/null
                    ;;

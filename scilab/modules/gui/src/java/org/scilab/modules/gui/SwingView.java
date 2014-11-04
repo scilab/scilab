@@ -1165,7 +1165,7 @@ public final class SwingView implements GraphicView {
 
                 /* Remove an uicontrol */
                 if (childType == __GO_UICONTROL__) {
-                    updatedComponent.remove((Component) allObjects.get(childId).getValue());
+                    updatedComponent.getPanel().remove((Component) allObjects.get(childId).getValue());
                     needRevalidate = true;
                 }
             }

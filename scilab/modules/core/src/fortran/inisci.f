@@ -1,57 +1,57 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine inisci( ini1, vsizr, ierr)
-c!Purpose 
+c!Purpose
 c     scilab initialisation
 c!Parameters
 c     ini1 :
 c     = -1  for silent initialization
-c     = -3  for special io initialization 
+c     = -3  for special io initialization
 c     vsizr: initial stack size
 c     ierr : return error flag
-c!   
+c!
 c====================================================================
       integer        ierr,ini1,vsizr
       include 'stack.h'
       parameter (nz1=nsiz-1,nz2=nsiz-2)
-c     
+c
 c     common for Control-C interruptions
       logical iflag,interruptible
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /basbrk/
-cDEC$ ENDIF            
+cDEC$ ENDIF
       common /basbrk/ iflag,interruptible
 c     scilab function protection mode
       integer macprt
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /mprot/
-cDEC$ ENDIF            
+cDEC$ ENDIF
       common /mprot/ macprt
 c     mmode : matlab ops compatibilty mode
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /mtlbc/
-cDEC$ ENDIF            
+cDEC$ ENDIF
       common /mtlbc/ mmode
-c     
+c
 c     simpmd : rational fraction simplification mode
       integer simpmd
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /csimp/
-cDEC$ ENDIF            
+cDEC$ ENDIF
       common /csimp/  simpmd
 c     ippty: interfaces properties
       parameter (mxbyptr=40)
       integer byptr(mxbyptr),nbyptr
 cDEC$ IF DEFINED (FORDLL)
 cDEC$ ATTRIBUTES DLLIMPORT:: /ippty/
-cDEC$ ENDIF            
+cDEC$ ENDIF
       common /ippty/ byptr,nbyptr
 
       logical first
@@ -62,28 +62,30 @@ cDEC$ ENDIF
       integer idloc(nsiz)
       integer offset,goffset
       integer iadr,sadr
-      
+
       character bufcomp*(bsiz)
       character bufsci*(bsiz)
       character bufscihome*(bsiz)
       character buftmp*(bsiz)
 
-c     
+c
       double precision  iov(2)
-      character*(nlgh) vname 
-c  
+      character*(nlgh) vname
+
+      integer local_vsizr
+c
       data im/673714744,nz1*673720360/,exp/673713720,nz1*673720360/
       data pi/672274744,nz1*673720360/,bl/nsiz*673720360/
       data eps/471404088,nz1*673720360/,io/672666168,nz1*673720360/
       data dollar/673720359,nz1*673720360/
       data first/.true./
       data true/673717560,nz1*673720360/,false/673713976,nz1*673720360/
-      
-c     
+
+c
 c     mprot used to protect function see funcprot.c
       save /basbrk/,/mprot/
 
-c     
+c
 
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
@@ -97,11 +99,11 @@ c     -------------------
 
 c     initialization C environment
       call initscilab
-c     
+c
 c     .  scilab function protection mode
 c     .  ------------------------------
       call initfuncprot
-c     
+c
 c     .  standard i/o initialization
 c     .  ----------------------------
 c     .  rte = unit number for terminal input
@@ -132,26 +134,26 @@ c     .  wte = unit number for terminal output
       else
          wte=9999
       endif
-c     
+c
       rio=rte
-c     
+c
 c     .  Control-C recovery
 c     .  ------------------
       if (first) then
          interruptible=.true.
          first=.false.
       endif
-c     
+c
 c     .  random number seed
 c     .  ------------------
       ran(1) =  0
       ran(2) =  0
-c     
+c
 c     .  initial format for number display
 c     .  ---------------------------------
       lct(6) =  1
       lct(7) = 10
-c     
+c
 c     .  initial debug mode
 c     .  ------------------
       ddt = 0
@@ -167,10 +169,10 @@ c     .  initial interface properties
 c     .  ----------------------------
       call setippty(0)
 c      ier= graphicsmodels()
-c     
+c
 c     .  Stack
 c     .  -----
-c     
+c
 c     . initial values for number of local and global variables
 c @TODO : What is 768 (512 + 256) ?
       isiz=isizt-768
@@ -179,12 +181,17 @@ c     .  memory allocation
 c     get default stackize from c
       call getdefaultstacksize(stacksize)
       offset=0
-      call scimem(vsizr,offset)
+
+c     when vsizr is a constant, scimem() crashes when trying to modify it
+c     so we manipulate vsizr through a local variable
+      local_vsizr = vsizr
+
+      call scimem(local_vsizr, offset)
       stk(1) = stacksize
       lstk(1) =   offset+1
 c     . hard predefined variables
       goffset=0
-c     get default global stackize from c      
+c     get default global stackize from c
       call getdefaultgstacksize(vsizg)
       call scigmem(vsizg,goffset)
 
@@ -193,14 +200,14 @@ c     get default global stackize from c
       gbot=isizt
       lstk(gbot)=lstk(gtop+1)+vsizg-1
 c
-c     13 is the number of predefined variables 
+c     13 is the number of predefined variables
 c     14 - 1 blank not include
       bot = isiz - 13
       bbot = bot
       bot0 = bot
-c     memory requested for predefined variables 
+c     memory requested for predefined variables
 c     mxn bmat -> size : sadr(2+m*n+2)
-c     $        -> size : sadr(10-1) + 2 
+c     $        -> size : sadr(10-1) + 2
 c     mxn mat  -> size : sadr(3)+m*n*(it+1)
 c     string   -> size : sadr(6+nchar)+1
 c     3 strings
@@ -208,15 +215,15 @@ c     4 booleans
       call getsci(bufsci,nbsci)
       call getscihome(bufscihome,nbscihome)
       call gettmpdir(buftmp,nbtmpdir)
-      lpvar = (sadr(10-1) + 2) 
-     $     + 4*sadr(5) 
+      lpvar = (sadr(10-1) + 2)
+     $     + 4*sadr(5)
      $     + 3*(sadr(3)+1)
      $     + 2*(sadr(3)+2)
      $     + 1*(sadr(6+nbsci)+1)
      $     + 1*(sadr(6+nbscihome)+1)
      $     + 1*(sadr(6+nbtmpdir)+1)
 
-      l=vsizr-lpvar
+      l=local_vsizr-lpvar
       k=bot
       lstk(k)=lstk(1)-1+l
 c     . SCI
@@ -230,7 +237,7 @@ c     . SCIHOME
       vname(1:7) =  "SCIHOME"
       call cvname(idloc,vname,0)
       call cresmatvar(idloc,k,bufscihome,nbscihome)
-      k=k+1      
+      k=k+1
 c     . TMPDIR
       vname = ' '
       vname(1:6) = "TMPDIR"
@@ -244,7 +251,7 @@ c     . %gui
       call cvname(idloc,vname,0)
       call crebmatvar(idloc,k,1,1,irep)
       k=k+1
-c     . %fftw 
+c     . %fftw
       vname = ' '
       vname(1:5) = "%fftw"
       call withfftw(irep)
@@ -286,7 +293,7 @@ c     .  %t   : True boolean
 c     .  %f   : False boolean
       call crebmatvar(false,k,1,1,0)
       k=k+1
-c     .  %eps : machine precision 
+c     .  %eps : machine precision
       call crematvar(eps,k,0,1,1,dlamch('p'),0.0d0)
       leps=sadr( iadr(lstk(k)) +4)
       k=k+1
@@ -301,7 +308,7 @@ c     .  %i : sqrt(-1)
 c     .  %e : exp(1)
       call crematvar(exp,k,0,1,1,2.71828182845904530d+0,0.0d0)
       k=k+1
-c     .  %pi 
+c     .  %pi
       call crematvar(pi,k,0,1,1,3.14159265358979320d+0,0.0d0)
       k=k+1
 c     .  blanc. Memory used by getsym to store parsed number
@@ -309,7 +316,7 @@ C     .  then by getnum.f and macro.f to retreive it (stk(lstk(isiz) -))
 
       call crematvar(bl,k,0,1,1,0.0d0,0.0d0)
       k=k+1
-c     
+c
 c
 c     --------------
 c     initialize
@@ -324,7 +331,7 @@ c     error indicators
       errct   =   -1
       err1    =   0
       err2    =   0
-      catch   =   0 
+      catch   =   0
 c     recursion
       fun     =   0
       macr    =   0
