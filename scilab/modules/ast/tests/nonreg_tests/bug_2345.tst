@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// 
+//
 // <-- Non-regression test for bug 2345 -->
 //
 // <-- Bugzilla URL -->
@@ -12,6 +12,8 @@
 //
 // <-- Short Description -->
 // Parser bug: "=>" interpreted as "=" in comparisons (even with spacing)
+
+// <-- JVM NOT MANDATORY -->
 
 if execstr("1=>0", "errcatch") == 0 then pause,end
 if execstr("1=>1", "errcatch") == 0 then pause,end

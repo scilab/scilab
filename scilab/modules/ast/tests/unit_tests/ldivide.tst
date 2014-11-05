@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 r = 2;
 R = [1,2;3,4];
 T = 2 * R;

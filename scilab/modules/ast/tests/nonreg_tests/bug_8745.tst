@@ -15,6 +15,8 @@
 //
 // Extracting from an empty matrix automatically returns an empty matrix
 
+// <-- JVM NOT MANDATORY -->
+
 A=[];
 errmsg=msprintf(_("Invalid index.\n"));
 assert_checkerror("A(-1)", errmsg);
