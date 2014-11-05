@@ -14,10 +14,11 @@
 // Callback functions for genetic algorithms were missing
 //
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 
 // Objective function
 function y=f(x)
-  y = sum(x.^2)
+    y = sum(x.^2)
 endfunction
 
 // Output function with a stop criterion
@@ -65,6 +66,6 @@ ga_params = add_param(ga_params, "threshold", 1E-6); // User defined parameter f
 ga_params = add_param(ga_params, "output_func", output_ga_custom);
 
 [pop_opt, fobj_pop_opt, pop_init, fobj_pop_init] = ..
-  optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
+optim_ga(f, PopSize, NbGen, Proba_mut, Proba_cross, Log, ga_params);
 
 assert_checktrue(max(fobj_pop_opt) - min(fobj_pop_opt) <= 1E-6);
