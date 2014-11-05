@@ -18,5 +18,5 @@
 x = rand(2,2,2);
 c = x*(1+%i);
 [dB phi] = dbphi(c);
-assert_checktrue(typeof(phi) == 'hypermat');
+assert_checktrue(length(size(phi)) > 2);
 assert_checkequal(size(phi), size(x));
