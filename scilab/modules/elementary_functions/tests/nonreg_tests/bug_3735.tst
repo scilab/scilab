@@ -8,9 +8,12 @@
 // Scilab Project - Antoine ELIAS
 // Copyright INRIA 2008
 // Date : November 2008
-A = ['First Row';'Second Row'];
-B = ['Third Row';'Fourth Row'];
+
+// <-- JVM NOT MANDATORY -->
+
+A = ["First Row";"Second Row"];
+B = ["Third Row";"Fourth Row"];
 result = cat(1,A,B)
 
-if result <> ['First Row';'Second Row';'Third Row';'Fourth Row'] then pause,end
+if result <> ["First Row";"Second Row";"Third Row";"Fourth Row"] then pause,end
 
