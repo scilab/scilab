@@ -109,6 +109,20 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
 
         if (in[0]->isArrayOf() == false)
         {
+            if (in[0]->isSparse())
+            {
+                Sparse* sp = in[0]->getAs<Sparse>();
+                *_iDims = sp->getDims();
+                *_piDims = sp->getDimsArray();
+                return true;
+            }
+            else if (in[0]->isSparseBool())
+            {
+                SparseBool* sp = in[0]->getAs<SparseBool>();
+                *_iDims = sp->getDims();
+                *_piDims = sp->getDimsArray();
+                return true;
+            }
             return false;
         }
 
