@@ -697,6 +697,33 @@ static stringToComplexError ParseComplexValueW(const wchar_t *tx, BOOL bConvertB
             }
             haveImagI = TRUE;
         }
+        else if ((inum_string[1] == L'i') ||
+                 (inum_string[1] == L'j'))
+        {
+            if (inum_string[2] == L'*')
+            {
+                int i = 0;
+                for (i = 1; (i + 2) < wcslen(inum_string); i++)
+                {
+                    inum_string[i] = inum_string[i + 2];
+                }
+                inum_string[wcslen(inum_string) - 1] = 0;
+                inum_string[wcslen(inum_string) - 1] = 0;
+            }
+
+            if (wcscmp(inum_string, L"+") == 0)
+            {
+                FREE(inum_string);
+                inum_string = os_wcsdup(L"+1");
+            }
+
+            if (wcscmp(inum_string, L"-") == 0)
+            {
+                FREE(inum_string);
+                inum_string = os_wcsdup(L"-1");
+            }
+            haveImagI = TRUE;
+        }
         else
         {
             haveImagI = FALSE;
