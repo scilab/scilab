@@ -12,6 +12,9 @@
 // <-- Short Description -->
 // strtod did not ignore the tabs and CR
 //
+
+// <-- JVM NOT MANDATORY -->
+
 // check \t
 str = msprintf("\t 10");
 v = strtod(str);
