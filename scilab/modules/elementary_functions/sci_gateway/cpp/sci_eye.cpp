@@ -47,6 +47,12 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
     int* piDims = NULL;
     bool alloc = false;
 
+    if (in.size() == 0)
+    {
+        out.push_back(Double::Identity(-1, -1));
+        return Function::OK;
+    }
+
     bool ret = getDimsFromArguments(in, "eye", &iDims, &piDims, &alloc);
     if (ret == false)
     {
