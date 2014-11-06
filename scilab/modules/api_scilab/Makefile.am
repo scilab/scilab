@@ -21,7 +21,6 @@ API_SCILAB_CXX_SOURCES = \
     src/cpp/returnProperty.cpp \
     src/cpp/returnPropertyList.cpp \
     src/cpp/api_optional.cpp \
-    src/cpp/api_hypermat.cpp \
     src/cpp/api_boolean_cpp.cpp \
     src/cpp/api_common_cpp.cpp \
     src/cpp/api_double_cpp.cpp \
@@ -97,7 +96,6 @@ includes/api_boolean_sparse.h \
 includes/api_common.h \
 includes/api_error.h \
 includes/api_double.h \
-includes/api_hypermat.h \
 includes/api_int.h \
 includes/api_list.h \
 includes/api_pointer.h \

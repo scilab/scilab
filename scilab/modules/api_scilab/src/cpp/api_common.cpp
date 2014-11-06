@@ -152,6 +152,22 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     return 0;
 }
 
+SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims)
+{
+    SciErr sciErr = sciErrInit();
+
+    InternalType* pIT = ((InternalType*)_piAddress);
+    if (pIT->isGenericType() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "resizeArray", _("matrix"));
+        return sciErr;
+    }
+
+    pIT->getAs<GenericType>()->reshape(_iDimsArray, _iDims);
+
+    return sciErr;
+}
+
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
@@ -403,19 +419,20 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
     optional_list opt = *pStr->m_pOpt;
-    int*    piRetCount = pStr->m_piRetCount;
+    int* piRetCount = pStr->m_piRetCount;
+    int iInputSize = in.size() + opt.size();
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
-    if (_iVar > in.size() + opt.size())
+    if (_iVar > *piRetCount + iInputSize)
     {
         //manage case where _iVar > in.size(), then look in out to get recent create variable.
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pStr->m_pstName, "getVarAddressFromPosition");
         return sciErr;
     }
 
-    if (in.size() == 0)
+    if (_iVar > iInputSize)
     {
-        *_piAddress = NULL;
+        *_piAddress = (int*)pStr->m_pOut[_iVar - iInputSize - 1];
     }
     else if (_iVar > in.size())
     {

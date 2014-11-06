@@ -226,7 +226,6 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_mark_style_property.c \
     src/c/getHandleProperty/set_mark_background_property.c \
     src/c/getHandleProperty/set_interp_color_mode_property.c \
-    src/c/getHandleProperty/set_data_property.c \
     src/c/getHandleProperty/set_font_angle_property.c \
     src/c/getHandleProperty/set_auto_clear_property.c \
     src/c/getHandleProperty/set_arrow_size_factor_property.c \
@@ -400,7 +399,8 @@ GRAPHICS_C_SOURCES = \
     src/c/addColor.c
 
 GRAPHICS_CXX_SOURCES = \
-    src/cpp/configgraphicvariable.cpp
+    src/cpp/configgraphicvariable.cpp \
+    src/cpp/set_data_property.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_swap_handles.c \

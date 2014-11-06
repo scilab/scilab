@@ -75,9 +75,6 @@
     <ClCompile Include="src\cpp\returnPropertyList.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\cpp\api_hypermat.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\api_double_cpp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -177,9 +174,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\returnPropertyList.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\api_hypermat.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\api_scilab.hxx">

@@ -84,30 +84,30 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
 
     //non cummulative length
-    for (int i = 0 ; i < *_piRows **_piCols ; i++)
-    {
-        char* pstTemp = wide_string_to_UTF8(pS->get(i));
-        _piLength[i] = (int)strlen(pstTemp);
-        FREE(pstTemp);
-    }
-
+    int iSize = pS->getSize();
     if (_pstStrings == NULL || *_pstStrings == NULL)
     {
-        return sciErr;
-    }
-
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        if (_pstStrings[i] == NULL)
+        for (int i = 0 ; i < iSize; i++)
         {
-            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-            return sciErr;
+            char* pstTemp = wide_string_to_UTF8(pS->get(i));
+            _piLength[i] = (int)strlen(pstTemp);
+            FREE(pstTemp);
         }
-
-        char* pstTemp = wide_string_to_UTF8(pS->get(i));
-        strcpy(_pstStrings[i], pstTemp);
-        FREE(pstTemp);
     }
+    else
+    {
+        for (int i = 0 ; i < iSize; i++)
+        {
+            if (_pstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+                return sciErr;
+            }
+
+            strcpy(_pstStrings[i], wide_string_to_UTF8(pS->get(i)));
+        }
+    }
+
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -253,24 +253,27 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
     }
 
     String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        _piwLength[i] = (int)wcslen(pS->get(i));
-    }
 
+    int iSize = pS->getSize();
     if (_pwstStrings == NULL || *_pwstStrings == NULL)
     {
-        return sciErr;
-    }
-
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        if (_pwstStrings[i] == NULL)
+        for (int i = 0 ; i < iSize; i++)
         {
-            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-            return sciErr;
+            _piwLength[i] = (int)wcslen(pS->get(i));
         }
-        wcscpy( _pwstStrings[i], pS->get(i));
+    }
+    else
+    {
+        for (int i = 0 ; i < pS->getSize() ; i++)
+        {
+            if (_pwstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+                return sciErr;
+            }
+
+            _pwstStrings[i] = os_wcsdup(pS->get(i));
+        }
     }
 
     return sciErr;

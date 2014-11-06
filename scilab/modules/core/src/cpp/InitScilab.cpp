@@ -379,9 +379,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     */
     xmlCleanupParser();
 
-    /* cleanup HDF5 */
-    HDF5cleanup();
-
     /* Cleanup the parser state */
     Parser::cleanup();
 
