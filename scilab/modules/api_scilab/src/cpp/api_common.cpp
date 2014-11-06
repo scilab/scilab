@@ -1557,7 +1557,12 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
         return 0;
     }
 
-    return 1;
+    wchar_t* pwstName = to_wide_string(_pstName);
+    symbol::Context* pCtx = symbol::Context::getInstance();
+    bool ret = pCtx->remove(symbol::Symbol(pwstName));
+    FREE(pwstName);
+
+    return ret ? 1 : 0;
 }
 /*--------------------------------------------------------------------------*/
 int increaseValRef(void* _pvCtx, int* _piAddress)
