@@ -56,7 +56,7 @@ template<typename T, typename U, typename O> inline static void bit_or(T* l, lon
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l[i] != (O)0) || ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l[i] != (T)0) || ((U)r[i] != (U)0)) ? (O)1 : (O)0;
     }
 }
 
@@ -65,7 +65,7 @@ template<typename T, typename U, typename O> inline static void bit_or(T l, long
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l != (O)0) || ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l != (T)0) || ((U)r[i] != (U)0)) ? (O)1 : (O)0;
     }
 }
 
@@ -74,14 +74,14 @@ template<typename T, typename U, typename O> inline static void bit_or(T* l, lon
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l[i] != (O)0) || ((O)r != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l[i] != (T)0) || ((U)r != (U)0)) ? (O)1 : (O)0;
     }
 }
 
 //x1 & x1
 template<typename T, typename U, typename O> inline static void bit_or(T l, U r, O* o)
 {
-    *o = (((O)l != (O)0) || ((O)r != (O)0)) ? (O)1 : (O)0;
+    *o = (((T)l != (T)0) || ((U)r != (U)0)) ? (O)1 : (O)0;
 }
 
 
