@@ -15,7 +15,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int sci_completeline(char *fname, void *pvApiCtx)
 {
@@ -97,7 +97,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
         return 1;
     }
 
-    if(getScalarBoolean(pvApiCtx, piAddr5, &stringToAddIsPath))
+    if (getScalarBoolean(pvApiCtx, piAddr5, &stringToAddIsPath))
     {
         Scierror(999, _("%s: Wrong type for argument #%d: A boolean expected.\n"), fname, 5);
         return 1;
@@ -141,7 +141,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
     freeAllocatedSingleString(stringToAdd);
     freeAllocatedSingleString(filePattern);
     freeAllocatedSingleString(defaultPattern);
-    if(postCaretLine)
+    if (postCaretLine)
     {
         freeAllocatedSingleString(postCaretLine);
     }

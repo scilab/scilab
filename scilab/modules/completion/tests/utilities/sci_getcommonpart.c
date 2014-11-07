@@ -14,7 +14,7 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getCommonPart.h"
 /*--------------------------------------------------------------------------*/
 int sci_getcommonpart(char *fname, void *pvApiCtx)
