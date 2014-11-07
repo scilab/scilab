@@ -116,12 +116,11 @@ String* TypeToString(T* _pI)
 {
     String* pOut = NULL;
     wchar_t* pst = NULL;
+    char* pcText = new char[_pI->getSize() + 1];
     Y* p = _pI->get();
-    pst = (wchar_t*)MALLOC(sizeof(wchar_t) * (_pI->getSize() + 1));
-    memset(pst, 0x00, sizeof(wchar_t) * (_pI->getSize() + 1));
 
     bool bWarning = getWarningMode() == 0;
-    for (int i = 0 ; i < _pI->getSize() ; i++)
+    for (int i = 0; i < _pI->getSize(); i++)
     {
         if (bWarning == false && p[i] > 255)
         {
@@ -130,19 +129,15 @@ String* TypeToString(T* _pI)
             bWarning = true;
         }
 
-        if (p[i] == 0)
-        {
-            pst[i] = L' ';
-        }
-        else
-        {
-            pst[i] = (wchar_t)p[i];
-        }
-    }
+        pcText[i] = static_cast<char>(p[i]);
 
+    }
+    pcText[_pI->getSize()] = '\0';
+    pst = to_wide_string(pcText);
     pst[wcslen(pst)] = L'\0';
     pOut = new String(pst);
 
+    delete[] pcText;
     FREE(pst);
     return pOut;
 }
@@ -154,12 +149,12 @@ Double* StringToDouble(String* _pst)
     int iTotalLen = 0;
     int iSize = _pst->getSize();
 
-    wchar_t** pst = new wchar_t*[iSize];
+    char** pst = new char*[iSize];
     int* pstLen = new int[iSize];
     for (int i = 0 ; i < iSize ; i++)
     {
-        pst[i] = _pst->get(i);
-        pstLen[i] = (int)wcslen(pst[i]);
+        pst[i] = wide_string_to_UTF8(_pst->get(i));
+        pstLen[i] = (int)strlen(pst[i]);
         iTotalLen += pstLen[i];
     }
 
@@ -178,7 +173,7 @@ Double* StringToDouble(String* _pst)
     for (int i = 0 ; i < iSize ; i++)
     {
         //for each character of input string matrix
-        for (int j = 0 ; j < pstLen[i] ; j++, index++)
+        for (int j = 0; j < pstLen[i]; j++, index++)
         {
             //transform character value as double.
             pdbl[index] = pst[i][j];
