@@ -24,6 +24,25 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     end
 
     cmd = "";
+
+    ScilabTreeFound=%f;
+    // Manage Eigen in Scilab 6 source tree version
+    if isdir(SCI+"/modules/core/includes/") then
+        if isdir(SCI+"/lib/Eigen/includes/") then
+            if flagsType == "configure" then
+                cmd = " --with-eigen-include="+SCI+"/lib/Eigen/includes/";
+            end
+        end
+    end
+    //  Manage Eigen in Scilab 6 binary version
+    if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
+        if isdir(SCI+"/../../lib/Eigen/includes/") then
+            if flagsType == "configure" then
+                cmd = " --with-eigen-include="+SCI+"/../../lib/Eigen/includes/";
+            end
+        end
+    end
+
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 

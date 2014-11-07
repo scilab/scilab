@@ -244,6 +244,7 @@ includes/ast/deserializervisitor.hxx \
 includes/ast/dynlib_ast.h \
 includes/ast/execvisitor.hxx \
 includes/ast/dummyvisitor.hxx \
+includes/types/addfunction.h \
 includes/types/dollar.hxx \
 includes/types/user.hxx \
 includes/types/bool.hxx \
