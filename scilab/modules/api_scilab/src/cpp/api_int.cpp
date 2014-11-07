@@ -756,7 +756,13 @@ SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRo
 SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int _iPrecision, int _iRows, int _iCols, const void* _pvData)
 {
     SciErr sciErr = sciErrInit();
-    wchar_t* pwstName   = to_wide_string(_pstName);
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfInteger", _pstName);
+        return sciErr;
+    }
 
     //return empty matrix
     if (_iRows == 0 && _iCols == 0)
@@ -765,6 +771,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
         }
+
         return sciErr;
     }
 
@@ -833,6 +840,7 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
         return sciErr;
     }
 
+    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pIT);
     FREE(pwstName);
     return sciErr;

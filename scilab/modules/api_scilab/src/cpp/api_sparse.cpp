@@ -243,7 +243,12 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
 {
     SciErr sciErr = sciErrInit();
 
-    wchar_t* pwstName = to_wide_string(_pstName);
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfPoly", _pstName);
+        return sciErr;
+    }
 
     //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
@@ -273,6 +278,7 @@ SciErr createCommonNamedSparseMatrix(void* _pvCtx, const char* _pstName, int _iC
     int iTotalSize = 0;
     sciErr = fillCommonSparseMatrix(_pvCtx, (int*)pSparse, _iComplex, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos, _pdblReal, _pdblImg, &iTotalSize);
 
+    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pSparse);
     FREE(pwstName);
     return sciErr;

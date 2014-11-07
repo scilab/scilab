@@ -221,7 +221,13 @@ SciErr createNamedMList(void* _pvCtx, const char* _pstName, int _iNbItem, int** 
 static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iListType, int _iNbItem, int** _piAddress)
 {
     SciErr sciErr = sciErrInit();
-    wchar_t* pwstName = to_wide_string(_pstName);
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createCommonNamedList", _pstName);
+        return sciErr;
+    }
 
     List* pL = NULL;
     try
@@ -261,6 +267,7 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     // it helps to check a wrong item, for example in createCommonListInList
     pL->set(_iNbItem - 1, new ListUndefined());
 
+    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pL);
     FREE(pwstName);
     return sciErr;

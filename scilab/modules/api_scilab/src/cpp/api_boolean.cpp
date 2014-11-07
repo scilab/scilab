@@ -130,7 +130,13 @@ SciErr createMatrixOfBoolean(void* _pvCtx, int _iVar, int _iRows, int _iCols, co
 SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const int* _piBool)
 {
     SciErr sciErr = sciErrInit();
-    wchar_t* pwstName = to_wide_string(_pstName);
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedMatrixOfBoolean", _pstName);
+        return sciErr;
+    }
 
     if (_iRows == 0 && _iCols == 0)
     {
@@ -142,7 +148,7 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
         }
         return sciErr;
     }
-    
+
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfBoolean", _pstName);
@@ -155,7 +161,8 @@ SciErr createNamedMatrixOfBoolean(void* _pvCtx, const char* _pstName, int _iRows
         addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfBoolean", _("matrix of boolean"), _pstName);
         return sciErr;
     }
-    
+
+    wchar_t* pwstName = to_wide_string(_pstName);
     pBool->set(_piBool);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pBool);
     FREE(pwstName);

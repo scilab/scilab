@@ -24,6 +24,7 @@ extern "C"
 #include "localization.h"
 #include "stackinfo.h"
 #include "mode_exec.h"
+#include "configvariable_interface.h"
 }
 
 int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
@@ -96,8 +97,6 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
 
 int printError(SciErr* _psciErr, int _iLastMsg)
 {
-    int iMode = getExecMode();
-
     if (_psciErr->iErr == 0)
     {
         return 0;
@@ -105,7 +104,7 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (iMode == SILENT_EXEC_MODE)
+    if (getExecMode() == SILENT_EXEC_MODE || getSilentError() != VERBOSE_ERROR)
     {
         return 0;
     }

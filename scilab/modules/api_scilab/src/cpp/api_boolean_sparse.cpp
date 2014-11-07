@@ -149,7 +149,13 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
 SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
     SciErr sciErr = sciErrInit();
-    wchar_t* pwstName = to_wide_string(_pstName);
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedMatrixOfBoolean", _pstName);
+        return sciErr;
+    }
 
     //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
@@ -178,6 +184,7 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
 
     sciErr = fillBooleanSparseMatrix(_pvCtx, (int*)pSparse, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
 
+    wchar_t* pwstName = to_wide_string(_pstName);
     symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pSparse);
     FREE(pwstName);
     return sciErr;

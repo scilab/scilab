@@ -94,6 +94,14 @@ SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 {
     SciErr sciErr = sciErrInit();
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedPointer", _pstName);
+        return sciErr;
+    }
+
     wchar_t* pwstName = to_wide_string(_pstName);
 
     Pointer* pP = new Pointer(_pvPtr);
