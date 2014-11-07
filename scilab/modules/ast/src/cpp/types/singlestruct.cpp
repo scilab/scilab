@@ -268,7 +268,6 @@ bool SingleStruct::toString(std::wostringstream& ostr)
     if (m_Data.size() == 0)
     {
         ostr << L"empty SingleStruct";
-        return true;
     }
     else
     {
@@ -281,6 +280,9 @@ bool SingleStruct::toString(std::wostringstream& ostr)
     }
 
     scilabWriteW(ostr.str().c_str());
+    // reset ostr after scilabWriteW call
+    ostr.str(L"");
+
     return true;
 }
 

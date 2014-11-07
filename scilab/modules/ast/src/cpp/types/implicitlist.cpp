@@ -353,7 +353,6 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     {
         types::InternalType* pIT = extractFullMatrix();
         bool ret = pIT->toString(ostr);
-        scilabWriteW(ostr.str().c_str());
         delete pIT;
         return ret;
     }
@@ -398,6 +397,9 @@ bool ImplicitList::toString(std::wostringstream& ostr)
         }
         ostr << std::endl;
         scilabWriteW(ostr.str().c_str());
+        // reset ostr after scilabWriteW call
+        ostr.str(L"");
+
         return true;
     }
 }

@@ -537,6 +537,9 @@ bool Sparse::toString(std::wostringstream& ostr) const
 
     ostr << res;
     scilabWriteW(ostr.str().c_str());
+    // reset ostr after scilabWriteW call
+    ostr.str(L"");
+
     return true;
 }
 

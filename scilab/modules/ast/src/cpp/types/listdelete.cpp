@@ -37,6 +37,9 @@ bool ListDelete::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListDelete::toString" << std::endl;
     scilabWriteW(ostr.str().c_str());
+    // reset ostr after scilabWriteW call
+    ostr.str(L"");
+
     return true;
 }
 }
