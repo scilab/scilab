@@ -34,6 +34,13 @@ int sci_bug_8688(char *fname, void* pvApiCtx)
         printError(&sciErr, 0);
         return 0;
     }
+
+    for (i = 0; i < N; i++)
+    {
+        free(ptrStrs[i]);
+    }
+
+    FREE(ptrStrs);
     LhsVar(1) = 1;
     return 0;
 }
