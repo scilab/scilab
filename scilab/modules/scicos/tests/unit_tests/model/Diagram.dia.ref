@@ -436,12 +436,8 @@ propertyUpdated( 14 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk1
- ans  =
-    4.
-scs_m.objs(1).model.out       // "
- ans  =
-  - 1.
+assert_checkequal(scs_m.objs(1).graphics.pout, 4);   // Check that block #1 is connected to lnk1
+assert_checkequal(scs_m.objs(1).model.out,    -1);   // "
 scs_m.objs(4).to = [2 1 1];   // Link block #2
 propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : SUCCESS
@@ -464,18 +460,10 @@ propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(4).from
- ans  =
-    1.    1.    0.
-scs_m.objs(4).to
- ans  =
-    2.    1.    1.
-scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk1
- ans  =
-    4.
-scs_m.objs(2).model.in        // "
- ans  =
-  - 1.
+assert_checkequal(scs_m.objs(4).from, [1 1 0]);
+assert_checkequal(scs_m.objs(4).to,   [2 1 1]);
+assert_checkequal(scs_m.objs(2).graphics.pin, 4);    // Check that block #2 is connected to lnk1
+assert_checkequal(scs_m.objs(2).model.in,    -1);    // "
 // Change the end of the link to input port #2 of block #2
 scs_m.objs(4).to = [2 2 1];
 propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -507,20 +495,10 @@ propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(4).from
- ans  =
-    1.    1.    0.
-scs_m.objs(4).to
- ans  =
-    2.    2.    1.
-scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk1
- ans  =
-    0.
-    4.
-scs_m.objs(2).model.in        // "
- ans  =
-  - 1.
-  - 1.
+assert_checkequal(scs_m.objs(4).from, [1 1 0]);
+assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
+assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]);   // Check that block #2 is connected to lnk1
+assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
 // Disconnect the source
 scs_m.objs(4).from = [0 0 0];
 propertyUpdated( 7 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -542,19 +520,10 @@ propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(4).from
- ans  =
-    0.    0.    0.
-scs_m.objs(4).to
- ans  =
-    2.    2.    1.
-scs_m.objs(1).graphics.pout   // Check that block #1 is not connected
- ans  =
-    0.
-scs_m.objs(2).graphics.pin    // But block #2 is still connected to the link
- ans  =
-    0.
-    4.
+assert_checkequal(scs_m.objs(4).from, [0 0 0]);
+assert_checkequal(scs_m.objs(4).to,   [2 2 1]);
+assert_checkequal(scs_m.objs(1).graphics.pout, 0);     // Check that block #1 is not connected
+assert_checkequal(scs_m.objs(2).graphics.pin, [0; 4]); // But block #2 is still connected to the link
 // Disconnect the destination
 scs_m.objs(4).to = [0 0 0];
 propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -574,10 +543,7 @@ propertyUpdated( 14 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 14 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(2).graphics.pin    // Check that block #2 is not connected
- ans  =
-    0.
-    0.
+assert_checkequal(scs_m.objs(2).graphics.pin, [0; 0]);  // Check that block #2 is not connected
 // Now link the two Scope blocks together by adding an event output port to block #3 thanks to lnk2
 scs_m.objs(5).from = [2 1 1]; // Link the input of block #2
 propertyUpdated( 10 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -628,24 +594,12 @@ propertyUpdated( 15 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 18 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 18 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 15 , LINK , DESTINATION_PORT ) : NO_CHANGES
-scs_m.objs(5).from
- ans  =
-    2.    1.    1.
-scs_m.objs(5).to
- ans  =
-    3.    1.    0.
-scs_m.objs(2).graphics.pein   // Check that block #2 is connected to lnk2
- ans  =
-    5.
-scs_m.objs(2).model.evtin     // "
- ans  =
-    1.
-scs_m.objs(3).graphics.peout  // Check that block #3 is connected to lnk2
- ans  =
-    5.
-scs_m.objs(3).model.evtout    // "
- ans  =
-  - 1.
+assert_checkequal(scs_m.objs(5).from, [2 1 1]);
+assert_checkequal(scs_m.objs(5).to,   [3 1 0]);
+assert_checkequal(scs_m.objs(2).graphics.pein,  5);  // Check that block #2 is connected to lnk2
+assert_checkequal(scs_m.objs(2).model.evtin,    1);  // "
+assert_checkequal(scs_m.objs(3).graphics.peout, 5);  // Check that block #3 is connected to lnk2
+assert_checkequal(scs_m.objs(3).model.evtout,  -1);  // "
 // Verify that it is impossible to link two inputs or two outputs together
 scs_m.objs(5).from = [2 1 0]; // Two outputs
 propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -711,26 +665,12 @@ propertyUpdated( 19 , LINK , SOURCE_PORT ) : SUCCESS
 propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 19 , LINK , DESTINATION_PORT ) : SUCCESS
 propertyUpdated( 20 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
-scs_m.objs(3).from
- ans  =
-    1.    1.    0.
-scs_m.objs(3).to
- ans  =
-    2.    1.    1.
-scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk
- ans  =
-    3.
-scs_m.objs(1).model.out       // "
- ans  =
-  - 1.
-scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk
- ans  =
-    3.
-    0.
-scs_m.objs(2).model.in        // "
- ans  =
-  - 1.
-  - 1.
+assert_checkequal(scs_m.objs(3).from, [1 1 0]);
+assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);      // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
+assert_checkequal(scs_m.objs(2).graphics.pin, [3; 0]);   // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
 //===================================================================================================
 // Test predefined link insertion
 clear scs_m;
@@ -760,20 +700,10 @@ propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 22 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
-scs_m.objs(1).graphics.pout   // Check that block #1 is not connected
- ans  =
-    0.
-scs_m.objs(1).model.out       // "
- ans  =
-  - 1.
-scs_m.objs(2).graphics.pin    // Check that block #2 is not connected
- ans  =
-    0.
-    0.
-scs_m.objs(2).model.in        // "
- ans  =
-  - 1.
-  - 1.
+assert_checkequal(scs_m.objs(1).graphics.pout,  0);      // Check that block #1 is not connected
+assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
+assert_checkequal(scs_m.objs(2).graphics.pin, [0; 0]);   // Check that block #2 is not connected
+assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
 scs_m.objs(3) = lnk;          // Add the predefined Link
 objectCreated( 23 , LINK )
 propertyUpdated( 23 , LINK , COLOR ) : NO_CHANGES
@@ -895,26 +825,12 @@ Link    :
           ct: 1 1
           from: 1 1 0
           to: 2 1 1
-scs_m.objs(3).from
- ans  =
-    1.    1.    0.
-scs_m.objs(3).to
- ans  =
-    2.    1.    1.
-scs_m.objs(1).graphics.pout   // Check that block #1 is connected to lnk
- ans  =
-    3.
-scs_m.objs(1).model.out       // "
- ans  =
-  - 1.
-scs_m.objs(2).graphics.pin    // Check that block #2 is connected to lnk
- ans  =
-    3.
-    0.
-scs_m.objs(2).model.in        // "
- ans  =
-  - 1.
-  - 1.
+assert_checkequal(scs_m.objs(3).from, [1 1 0]);
+assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);      // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
+assert_checkequal(scs_m.objs(2).graphics.pin, [3; 0]);   // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
 //===================================================================================================
 // Test Links insertion before Block insertion
 clear scs_m;
@@ -955,12 +871,8 @@ propertyUpdated( 26 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 26 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 26 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 25 , DIAGRAM , CHILDREN ) : SUCCESS
-scs_m.objs(1).from
- ans  =
-    2.    1.    0.
-scs_m.objs(1).to
- ans  =
-    3.    1.    1.
+assert_checkequal(scs_m.objs(1).from, [2 1 0]);
+assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
 scs_m.objs(2) = Sum;          // Add the Block that lnk's 'from' points to
 objectCreated( 27 , BLOCK )
 propertyUpdated( 27 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
@@ -1257,28 +1169,14 @@ Model   :
           uid = ""
 // Check that the linking has been done
 // Sum (#2 in diagram) is linked to Scope1 (#3) through lnk (#1)
-scs_m.objs(1).from
- ans  =
-    2.    1.    0.
-scs_m.objs(1).to
- ans  =
-    3.    1.    1.
-scs_m.objs(2).graphics.pout
- ans  =
-    1.
-scs_m.objs(2).model.out
- ans  =
-  - 1.
-scs_m.objs(3).graphics.pin
- ans  =
-    1.
-    0.
-scs_m.objs(3).model.in
- ans  =
-  - 1.
-  - 1.
+assert_checkequal(scs_m.objs(1).from, [2 1 0]);
+assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
+assert_checkequal(scs_m.objs(2).graphics.pout,  1);
+assert_checkequal(scs_m.objs(2).model.out,     -1);
+assert_checkequal(scs_m.objs(3).graphics.pin, [1; 0]);
+assert_checkequal(scs_m.objs(3).model.in,     [-1; -1]);
 // Check that all the model items are freed
-clear
+clear Sum Scope1 Scope2 lnk1 lnk2 lnk scs_m
 propertyUpdated( 4 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 4 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1295,6 +1193,43 @@ propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 7 , PORT )
 objectDeleted( 4 , BLOCK )
+propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 9 , PORT )
+propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 17 , PORT )
+propertyUpdated( 8 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 15 , LINK , SOURCE_PORT ) : SUCCESS
+objectDeleted( 10 , PORT )
+objectDeleted( 8 , BLOCK )
+propertyUpdated( 11 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 12 , PORT )
+propertyUpdated( 11 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 13 , PORT )
+propertyUpdated( 11 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
+propertyUpdated( 15 , LINK , DESTINATION_PORT ) : SUCCESS
+objectDeleted( 18 , PORT )
+objectDeleted( 11 , BLOCK )
+objectDeleted( 14 , LINK )
+objectDeleted( 15 , LINK )
+objectDeleted( 24 , LINK )
 propertyUpdated( 26 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 27 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 31 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
@@ -1335,40 +1270,3 @@ propertyUpdated( 35 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 34 , PORT )
 objectDeleted( 31 , BLOCK )
 objectDeleted( 25 , DIAGRAM )
-propertyUpdated( 10 , PORT , CONNECTED_SIGNALS ) : SUCCESS
-propertyUpdated( 18 , PORT , CONNECTED_SIGNALS ) : SUCCESS
-objectDeleted( 15 , LINK )
-objectDeleted( 14 , LINK )
-propertyUpdated( 11 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 12 , PORT )
-propertyUpdated( 11 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 13 , PORT )
-propertyUpdated( 11 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
-objectDeleted( 18 , PORT )
-objectDeleted( 11 , BLOCK )
-propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 9 , PORT )
-propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 17 , PORT )
-propertyUpdated( 8 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 10 , PORT )
-objectDeleted( 8 , BLOCK )
-objectDeleted( 24 , LINK )

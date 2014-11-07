@@ -9,15 +9,15 @@
 
 loadXcosLibs();
 
-// Allocate a Link and access its fields
+// Allocate a Link and check its default values
 lnk = scicos_link()
-lnk.xx
-lnk.yy
-lnk.id
-lnk.thick
-lnk.ct
-lnk.from
-lnk.to
+assert_checkequal(lnk.xx,    []);
+assert_checkequal(lnk.yy,    []);
+assert_checkequal(lnk.id,    "");
+assert_checkequal(lnk.thick, [0 0]);
+assert_checkequal(lnk.ct,    [1 1]);
+assert_checkequal(lnk.from,  [0 0 0]);
+assert_checkequal(lnk.to,    [0 0 1]);
 
 
 // Check that the Link is freed

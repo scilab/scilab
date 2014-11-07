@@ -51,4 +51,4 @@ clk.model.rpar.objs(6).to
 
 
 // Check that all the model items are freed
-clear
+clear sb clk

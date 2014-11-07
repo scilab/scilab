@@ -1704,7 +1704,7 @@ clk.model.rpar.objs(6).to
  ans  =
     2.    1.    1.
 // Check that all the model items are freed
-clear
+clear sb clk
 propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES

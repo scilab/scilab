@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 loadXcosLibs();
-// Allocate a Link and access its fields
+// Allocate a Link and check its default values
 lnk = scicos_link()
 objectCreated( 1 , LINK )
 propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
@@ -24,27 +24,13 @@ Link    :
           ct: 1 1
           from: 0 0 0
           to: 0 0 1
-lnk.xx
- ans  =
-    []
-lnk.yy
- ans  =
-    []
-lnk.id
- ans  =
- 
-lnk.thick
- ans  =
-    0.    0.
-lnk.ct
- ans  =
-    1.    1.
-lnk.from
- ans  =
-    0.    0.    0.
-lnk.to
- ans  =
-    0.    0.    1.
+assert_checkequal(lnk.xx,    []);
+assert_checkequal(lnk.yy,    []);
+assert_checkequal(lnk.id,    "");
+assert_checkequal(lnk.thick, [0 0]);
+assert_checkequal(lnk.ct,    [1 1]);
+assert_checkequal(lnk.from,  [0 0 0]);
+assert_checkequal(lnk.to,    [0 0 1]);
 // Check that the Link is freed
 clear
 objectDeleted( 1 , LINK )
