@@ -13,7 +13,7 @@
 int sci_bug_9708(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    const char varname[] = "iputhereavariabletoolongforscilabandthereisnoerror";
+    const char* varname = "iputhereavariabletoolongforscilabandthereisnoerror";
 
     sciErr = createNamedMatrixOfString(pvApiCtx, varname, 1, 1, &varname);
     if (sciErr.iErr)
@@ -23,7 +23,6 @@ int sci_bug_9708(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    LhsVar(1) = 1;
     return 0;
 }
 // =============================================================================
