@@ -36,7 +36,6 @@ InternalType* Void::clone(void)
 bool Void::toString(std::wostringstream& ostr)
 {
     ostr << L"" << std::endl;
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

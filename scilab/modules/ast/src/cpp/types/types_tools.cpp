@@ -321,7 +321,6 @@ int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
 
 void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
 {
-    std::wostringstream ostr;
     if (pIT->hasToString() == false)
     {
         //call overload %type_p
@@ -347,6 +346,7 @@ void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
     }
     else
     {
+        std::wostringstream ostr;
         if (pIT->isList())
         {
             ostr << wcsVarName;
@@ -365,6 +365,8 @@ void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
                 //show message on prompt
                 bFinish = linesmore() == 1;
             }
+
+            scilabForcedWriteW(ostr.str().c_str());
             ostr.str(L"");
         }
         while (bFinish == false);

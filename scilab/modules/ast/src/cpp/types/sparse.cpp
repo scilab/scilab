@@ -536,7 +536,6 @@ bool Sparse::toString(std::wostringstream& ostr) const
     }
 
     ostr << res;
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 
@@ -2195,9 +2194,6 @@ void SparseBool::create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, 
 bool SparseBool::toString(std::wostringstream& ostr) const
 {
     ostr << ::toString(*matrixBool, 0);
-
-    scilabWriteW(ostr.str().c_str());
-
     return true;
 }
 

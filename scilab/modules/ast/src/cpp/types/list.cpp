@@ -122,7 +122,6 @@ bool List::toString(std::wostringstream& ostr)
     {
         ostr.str(L"");
         ostr << L"     ()" << std::endl;
-        scilabWriteW(ostr.str().c_str());
     }
     else
     {
@@ -139,6 +138,7 @@ bool List::toString(std::wostringstream& ostr)
             VariableToString(*itValues, nextVarName.str().c_str());
         }
 
+        ostr.str(L"");
         free(wcsVarName);
     }
 

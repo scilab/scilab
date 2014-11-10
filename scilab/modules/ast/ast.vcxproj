@@ -509,6 +509,9 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ProjectReference Include="..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

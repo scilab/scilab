@@ -488,7 +488,6 @@ bool Struct::toString(std::wostringstream& ostr)
         pwstFields->killMe();
     }
 
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 
