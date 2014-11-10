@@ -70,9 +70,6 @@ bool Library::toString(std::wostringstream& ostr)
 
     ostr << std::endl;
     scilabWriteW(ostr.str().c_str());
-    // reset ostr after scilabWriteW call
-    ostr.str(L"");
-
     return true;
 }
 

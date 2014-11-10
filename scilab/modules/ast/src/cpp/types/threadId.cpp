@@ -142,9 +142,6 @@ bool ThreadId::toString(std::wostringstream& ostr)
     ostr << L"ThreadId : " << this << std::endl;
     ostr << L"Status : " << StatusToString(this->getStatus());
     scilabWriteW(ostr.str().c_str());
-    // reset ostr after scilabWriteW call
-    ostr.str(L"");
-
     return true;
 }
 }

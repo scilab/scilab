@@ -71,6 +71,7 @@ Function::ReturnValue sci_disp(typed_list &in, int _iRetCount, typed_list &out)
 
         std::wostringstream ostr;
         (*it)->toString(ostr);
+        scilabForcedWriteW(ostr.str().c_str());
     }
 
     return Function::OK;

@@ -123,8 +123,6 @@ bool List::toString(std::wostringstream& ostr)
         ostr.str(L"");
         ostr << L"     ()" << std::endl;
         scilabWriteW(ostr.str().c_str());
-        // reset ostr after scilabWriteW call
-        ostr.str(L"");
     }
     else
     {

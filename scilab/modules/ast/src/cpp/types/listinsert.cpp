@@ -15,7 +15,6 @@
 
 #include "listinsert.hxx"
 #include "localization.h"
-#include "scilabWrite.hxx"
 
 namespace types
 {
@@ -52,10 +51,6 @@ InternalType* ListInsert::clone(void)
 bool ListInsert::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListInsert::toString" << std::endl;
-    scilabWriteW(ostr.str().c_str());
-    // reset ostr after scilabWriteW call
-    ostr.str(L"");
-
     return true;
 }
 
