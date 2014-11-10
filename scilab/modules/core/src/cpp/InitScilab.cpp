@@ -320,6 +320,9 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
+    //close "protection" scope
+    symbol::Context::getInstance()->scope_end();
+
     //execute scilab.quit
     if (_pSEI->pstFile)
     {
@@ -337,9 +340,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         //call all modules.quit
         EndModules();
     }
-
-    //close "protection" scope
-    symbol::Context::getInstance()->scope_end();
 
     //clean context
     symbol::Context::getInstance()->clearAll();

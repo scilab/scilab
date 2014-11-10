@@ -31,6 +31,7 @@ function scilabincludeslist = dlwGetScilabIncludes()
     "$(SCIDIR)/modules/ast/includes/symbol"; ..
     "$(SCIDIR)/modules/ast/includes/system_env"; ..
     "$(SCIDIR)/modules/ast/includes/types"; ..
+    "$(SCIDIR)/modules/ast/includes/analysis"; ..
     "$(SCIDIR)/modules/string/includes"; ..
     "$(SCIDIR)/modules/console/includes"; ..
     "$(SCIDIR)/libs/Eigen/includes"];
