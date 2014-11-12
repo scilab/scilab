@@ -57,6 +57,9 @@ Name: {#COMPN_MODULES_MANAGER}; Description: {cm:DescriptionModulesManager}; Typ
 Name: {#COMPN_TOOLBOX_SKELETON}; Description: {cm:DescriptionTlbxSkeleton}; Types: full;
 Name: {#COMPN_TESTS}; Description: {cm:DescriptionTests}; Types: full; ExtraDiskSpaceRequired: {#TESTS_SIZE}
 
+#define COMPN_MPI 'MPI'
+Name: {#COMPN_MPI}; Description: {cm:DescriptionMPI}; Types: full;
+
 #define COMPN_TCLSCI 'tclsci'
 Name: {#COMPN_TCLSCI}; Description: {cm:DescriptionTclTK}; Types: full;
 ;-------------------------------------------------------------------------------

@@ -54,6 +54,7 @@ en_US.DescriptionXcos = Xcos
 en_US.DescriptionParallel = Parallel Computing with Scilab
 en_US.DescriptionModulesManager = Tools for management of extern modules
 en_US.DescriptionModuleJVM = Graphic User Interface
+en_US.DescriptionMPI = MPI ( based on Microsoft HPC Pack 2012 R2 )
 ;
 en_US.ConsoleIconName = Scilab Console
 ;
