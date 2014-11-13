@@ -55,6 +55,9 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_dct.c \
 	sci_gateway/c/sci_dst.c
 
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/fftw_gw.cpp
+
 #### fftw : Conf files ####
 libscifftw_la_root_DATA =  license.txt
 
@@ -63,7 +66,7 @@ libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
 libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES)
-libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)  $(GATEWAY_CPP_SOURCES)
 libscifftw_algo_la_CPPFLAGS = $(libscifftw_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -91,6 +94,7 @@ libscifftw_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
     $(FFTW3_CFLAGS) \
+    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 else
