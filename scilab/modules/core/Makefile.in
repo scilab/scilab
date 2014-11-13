@@ -906,7 +906,8 @@ libscicore_la_CPPFLAGS = -I$(srcdir)/includes/ -I$(srcdir)/src/c/ \
 	-I$(top_srcdir)/modules/jvm/src/c/ \
 	-I$(top_srcdir)/modules/gui/includes/ \
 	-I$(top_srcdir)/modules/graphics/includes/ \
-	-I$(top_srcdir)/modules/hdf5/includes/ $(EIGEN_CPPFLAGS) \
+	-I$(top_srcdir)/modules/hdf5/includes/ \
+	-I$(top_srcdir)/modules/fftw/includes/ $(EIGEN_CPPFLAGS) \
 	$(XML_FLAGS) $(AM_CPPFLAGS) $(am__append_1)
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscicore.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscicore-algo.la libscicore.la

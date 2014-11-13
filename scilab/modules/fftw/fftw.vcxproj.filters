@@ -75,6 +75,9 @@
     <ClCompile Include="src\c\sci_data_utilities.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\fftw_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\callfftw.h">
@@ -101,6 +104,9 @@
     <ClInclude Include="src\c\sci_data_utilities.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="includes\fftw_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="src\c\fftw.rc">
@@ -120,6 +126,7 @@
     <None Include="locales\fftw.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />
     <None Include="locales\fftw.pot" />

@@ -56,6 +56,7 @@ extern "C"
 #include "getScilabPreference.h"
 #include "saveCWDInPreferences.h"
 #include "h5_fileManagement.h"
+#include "with_fftw.h"
 
 
 #ifdef _MSC_VER
@@ -85,8 +86,8 @@ static void Add_eps(void);
 static void Add_e(void);
 static void Add_s(void);
 static void Add_z(void);
-static void Add_true(void);
-static void Add_false(void);
+static void Add_gui(void);
+static void Add_fftw(void);
 static void Add_Nan(void);
 static void Add_Inf(void);
 static void Add_All_Variables(void);
@@ -212,6 +213,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         loadGraphicModule();
 
         loadBackGroundClassPath();
+
+        //update %gui to true
+        Add_Boolean_Constant(L"%gui", true);
     }
 
     /* Standard mode -> init Java Console */
@@ -732,8 +736,8 @@ static void Add_All_Variables(void)
     Add_i();
     Add_s();
     Add_z();
-    Add_true();
-    Add_false();
+    Add_gui();
+    Add_fftw();
     Add_Nan();
     Add_Inf();
 }
@@ -754,14 +758,14 @@ static void Add_Inf(void)
     Add_Double_Constant(L"%inf", dbl1 / dbl0, 0, false);
 }
 
-static void Add_false(void)
+static void Add_gui(void)
 {
-    Add_Boolean_Constant(L"%f", false);
+    Add_Boolean_Constant(L"%gui", false);
 }
 
-static void Add_true(void)
+static void Add_fftw(void)
 {
-    Add_Boolean_Constant(L"%t", true);
+    Add_Boolean_Constant(L"%fftw", withfftw() == 1);
 }
 
 static void Add_pi(void)

@@ -205,6 +205,11 @@ std::list<std::wstring>* Context::getVarsName()
     std::list<std::wstring>* libs = libraries.getVarsName();
     vars->insert(vars->end(), libs->begin(), libs->end());
     delete libs;
+
+    for (auto it = globals->begin(), itEnd = globals->end(); it != itEnd; ++it)
+    {
+        vars->push_back((*it).getName());
+    }
     return vars;
 }
 
@@ -346,6 +351,7 @@ void Context::setGlobal(const Symbol& _key)
 void Context::removeGlobal(const Symbol& _key)
 {
     variables.removeGlobal(_key, m_iLevel);
+    globals->remove(_key);
 }
 
 void Context::removeGlobalAll()
