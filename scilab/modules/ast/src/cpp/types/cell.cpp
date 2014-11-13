@@ -30,28 +30,30 @@ namespace types
 */
 Cell::Cell()
 {
-    InternalType** pIT  = NULL;
     int piDims[2] = {0, 0};
-    create(piDims, 2, &pIT, NULL);
-#ifndef NDEBUG
-    Inspector::addItem(this);
-#endif
+    createCell(2, piDims);
 }
 
 Cell::Cell(int _iRows, int _iCols)
 {
-    InternalType** pIT  = NULL;
     int piDims[2] = {_iRows, _iCols};
-    create(piDims, 2, &pIT, NULL);
-#ifndef NDEBUG
-    Inspector::addItem(this);
-#endif
+    createCell(2, piDims);
 }
 
 Cell::Cell(int _iDims, int* _piDims)
 {
-    InternalType** pIT  = NULL;
+    createCell(_iDims, _piDims);
+}
+
+void Cell::createCell(int _iDims, int* _piDims)
+{
+    InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
+    for (int i = 0; i < getSize(); i++)
+    {
+        double* pReal = NULL;
+        m_pRealData[i] = Double::Empty();
+    }
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif

@@ -9,8 +9,10 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 //
 //
-
 // <-- JVM NOT MANDATORY -->
+//
+// <-- ENGLISH IMPOSED -->
+//
 
 cd TMPDIR;
 
@@ -46,13 +48,6 @@ clear lib2lib lib_test
 
 //load lib1 call function, load lib2 and call function again
 lib1lib = lib("lib1");
-//call macro
-assert_checkequal(lib_test(), "lib1");
+assert_checkequal(lib1lib.lib_test(), "lib1");
 lib2lib = lib("lib2");
-assert_checkequal(lib_test(), "lib1");
-clear lib_test;
-assert_checkequal(lib_test(), "lib2");
-clear lib2lib;
-assert_checkequal(lib_test(), "lib2");
-clear lib2lib lib_test;
-assert_checkequal(lib_test(), "lib1");
+assert_checkequal(lib2lib.lib_test(), "lib2");

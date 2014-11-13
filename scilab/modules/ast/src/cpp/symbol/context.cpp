@@ -141,6 +141,10 @@ types::InternalType* Context::get(const Variable* _var)
     {
         //look in libraries
         pIT = libraries.get(_var->getSymbol(), -1);
+        if (pIT && pIT->isLibrary() == false)
+        {
+            put((Variable*)_var, pIT);
+        }
     }
 
     return pIT;
@@ -236,16 +240,18 @@ std::list<std::wstring>* Context::getGlobalNameForWho(bool bSorted)
 
 void Context::put(Variable* _var, types::InternalType* _pIT)
 {
-    _var->put(_pIT, m_iLevel);
-    if (varStack.empty() == false)
-    {
-        (*varStack.top())[_var->getSymbol()] = _var;
-    }
-
     if (_pIT->isLibrary())
     {
         Library* lib = libraries.getOrCreate(_var->getSymbol());
         lib->put((types::Library*)_pIT, m_iLevel);
+    }
+    else
+    {
+        _var->put(_pIT, m_iLevel);
+        if (varStack.empty() == false)
+        {
+            (*varStack.top())[_var->getSymbol()] = _var;
+        }
     }
 }
 
