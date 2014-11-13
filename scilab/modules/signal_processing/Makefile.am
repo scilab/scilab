@@ -3,6 +3,9 @@
 #
 # This file is distributed under the same license as the Scilab package.
 
+SIGNAL_PROCESSING_CPP_SOURCES = \
+    src/cpp/signalprocessingfunctions.cpp
+
 SIGNAL_PROCESSING_C_SOURCES = \
     src/c/corrtable.c \
     src/c/conv2.c
@@ -64,7 +67,8 @@ SIGNAL_PROCESSING_FORTRAN_SOURCES = \
     src/fortran/poles.f \
     src/fortran/desi00.f \
     src/fortran/desi21.f \
-    src/fortran/dfftmx.f
+    src/fortran/dfftmx.f\
+    src/fortran/Ex-corr.f
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_rpem.cpp \
@@ -78,12 +82,11 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_amell.c \
     sci_gateway/c/sci_conv2.c
 
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/Ex-corr.f
 
 libscisignal_processing_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \
@@ -93,12 +96,14 @@ libscisignal_processing_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
     -I$(top_srcdir)/modules/functions_manager/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
     $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
@@ -107,12 +112,12 @@ pkglib_LTLIBRARIES = libscisignal_processing.la
 noinst_LTLIBRARIES = libscisignal_processing-algo.la
 
 
-libscisignal_processing_algo_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES)
-libscisignal_processing_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscisignal_processing_algo_la_CFLAGS = $(libscisignal_processing_la_CPPFLAGS)
+libscisignal_processing_algo_la_SOURCES = $(SIGNAL_PROCESSING_FORTRAN_SOURCES) $(SIGNAL_PROCESSING_C_SOURCES) $(SIGNAL_PROCESSING_CPP_SOURCES)
+libscisignal_processing_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscisignal_processing_algo_la_CPPFLAGS = $(libscisignal_processing_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(SIGNAL_PROCESSING_C_SOURCES) $(GATEWAY_C_SOURCES) $(SIGNAL_PROCESSING_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscisignal_processing_la_CPPFLAGS)
 
 libscisignal_processing_la_LIBADD = libscisignal_processing-algo.la

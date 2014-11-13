@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
+* Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -14,16 +15,15 @@
 #include "signal_gw.hxx"
 #include "double.hxx"
 #include "string.hxx"
+#include "internal.hxx"
 #include "function.hxx"
+#include "signalprocessingfunctions.hxx"
 
 extern "C"
 {
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-
-    //fortran prototypes
-    extern void C2F(tscccf)(double *x, double *y, int *length, double *cxy, double *xymean, int *lag, int *error);
 
 }
 
@@ -40,20 +40,29 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
     //call format
     if (in[0]->isString())
     {
-        sciprint(_("%ls: Need to plug external call"), L"corr");
-        return types::Function::Error;
-
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->getSize() == 1 && pS->get(0)[0] == L'f')
         {
             //[cov,mean]=corr('fft',xmacro,[ymacro],n,sect)
-            int iErr                    = 0;
-            int iSect                   = 0;
-            int iTotalSize              = 0;
-            int iSize                   = 0;
-            int iMode                   = 0;
-            types::Callable* pXFunction = NULL;
-            types::Callable* pYFunction = NULL;
+            types::InternalType* pXFunction = NULL;
+            types::InternalType* pYFunction = NULL;
+
+            int iErr        = 0;
+            int iSect       = 0;
+            int iOutSize    = 0;
+            int iTotalSize  = 0;
+            int iSize       = 0;
+            int iMode       = 0;
+
+            double* xa = NULL;
+            double* xi = NULL;
+            double* xr = NULL;
+            double* zr = NULL;
+            double* zi = NULL;
+
+            char *dx = NULL;
+            char *dy = NULL;
+            bool bOK = false;
 
             //check input parameters
             if (in.size() < 4 || in.size() > 5)
@@ -70,7 +79,8 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
                 return types::Function::Error;
             }
 
-            iSect = (int)in[iPos]->getAs<types::Double>()->get(0);
+            iOutSize = (int)in[iPos]->getAs<types::Double>()->get(0);
+            iSect = iOutSize * 2;
 
             //get parameter n
             iPos--;
@@ -82,29 +92,80 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
 
             iTotalSize = (int)in[iPos]->getAs<types::Double>()->get(0);
 
+            Signalprocessingfunctions* spFunctionsManager = new Signalprocessingfunctions(L"corr");
+            Signalprocessing::addSignalprocessingfunctions(spFunctionsManager);
+
             //get xmacro
-            if (in[1]->isCallable() == false)
+            if (in[1]->isCallable())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "corr", 2);
+                pXFunction = in[1]->getAs<types::Callable>();
+                spFunctionsManager->setDgetx(in[1]->getAs<types::Callable>());
+            }
+            else if (in[1]->isString())
+            {
+                pXFunction = in[1]->getAs<types::String>();
+                spFunctionsManager->setDgetx(in[1]->getAs<types::String>());
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "corr", iPos + 1);
                 return types::Function::Error;
             }
 
-            pXFunction = in[1]->getAs<types::Callable>();
             iMode = 2;
 
             if (in.size() == 5)
             {
                 //get ymacro
-                if (in[2]->isCallable() == false)
+                if (in[2]->isCallable())
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: A function expected.\n"), "corr", 3);
+                    pYFunction = in[2]->getAs<types::Callable>();
+                    spFunctionsManager->setDgety(in[2]->getAs<types::Callable>());
+                }
+                else if (in[2]->isString())
+                {
+                    pYFunction = in[2]->getAs<types::String>();
+                    spFunctionsManager->setDgety(in[2]->getAs<types::String>());
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "corr", iPos + 2);
                     return types::Function::Error;
                 }
 
-                pYFunction = in[2]->getAs<types::Callable>();
                 iMode = 3;
             }
 
+            xa = new double[iSect];
+            xr = new double[iSect];
+            xi = new double[iSect];
+            zr = new double[iSect / 2 + 1];
+            zi = new double[iSect / 2 + 1];
+            C2F(cmpse2)(&iSect, &iTotalSize, &iMode, (void*) dgetx_f, (void*) dgety_f, xa, xr, xi, zr, zi, &iErr);
+
+            delete[] xi;
+            delete[] zr;
+            delete[] zi;
+
+            if (iErr > 0)
+            {
+                delete[] xa;
+                delete[] xr;
+                Scierror(999, _("fft call : needs power of two!"));
+                return types::Function::Error;
+            }
+
+            types::Double *pDblOut1 = new types::Double(1, iOutSize);
+            pDblOut1->set(xa);
+            delete[] xa;
+            out.push_back(pDblOut1);
+
+            types::Double *pDblOut2 = new types::Double(1, iMode - 1);
+            pDblOut2->set(xr);
+            delete[] xr;
+            out.push_back(pDblOut2);
+
+            return types::Function::OK;
         }
         else if (pS->getSize() == 1 && pS->get(0)[0] == L'u')
         {
@@ -129,7 +190,6 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         int iSize                       = 0;
         double pdblMean[2];
 
-
         //check input parameters
         if (in.size() < 2 || in.size() > 3)
         {
@@ -146,7 +206,6 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         }
 
         iCorrelation = (int)in[iPos]->getAs<types::Double>()->get(0);
-        pDblCorrelation = new types::Double(1, iCorrelation);
 
         if (in.size() == 3)
         {
@@ -185,10 +244,11 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
         }
 
         iSize = pDblX->getSize();
-
+        pDblCorrelation = new types::Double(1, iCorrelation);
         C2F(tscccf)(pDblX->get(), pDblY->get(), &iSize, pDblCorrelation->get(), pdblMean, &iCorrelation, &iErr);
         if (iErr == -1)
         {
+            delete pDblCorrelation;
             Scierror(999, _("%s: Too many coefficients are required.\n"), "corr");
             return types::Function::Error;
         }
@@ -210,5 +270,7 @@ types::Function::ReturnValue sci_corr(types::typed_list &in, int _iRetCount, typ
             out.push_back(pDblMean);
         }
     }
+
     return types::Function::OK;
 }
+

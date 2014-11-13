@@ -87,7 +87,7 @@
 		<File RelativePath=".\dgee01.f"/>
 		<File RelativePath=".\dsn2.f"/>
 		<File RelativePath=".\dsqrtc.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\Ex-corr.f"/>
+		<File RelativePath=".\Ex-corr.f"/>
 		<File RelativePath=".\fft842.f"/>
 		<File RelativePath=".\filbut.f"/>
 		<File RelativePath=".\freque.f"/>
