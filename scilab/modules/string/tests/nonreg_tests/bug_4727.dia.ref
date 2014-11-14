@@ -20,12 +20,12 @@ tab_ref = [
 "เฮลโลเวิลด์",
 "حريات وحقوق",
 "תוכנית"];
-if length(ascii(0)) <> 1 then bugmes();quit;end
-for i = 1 : size(tab_ref,'*')
-  str = ascii(0) + tab_ref(i) + ascii(0);
-  if length(str) <> ( 1 + length(tab_ref(i)) + 1) then bugmes();quit;end
-end  
+assert_checkequal(length(ascii(0)), 0);
+for i = 1 : size(tab_ref,"*")
+    str = ascii(0) + tab_ref(i) + ascii(0);
+    assert_checkequal(length(str), length(tab_ref(i)));
+end
 strs = [ascii(0) ; ascii(0)];
-if length(strs) <> [1;1] then bugmes();quit;end
-strs = ['' ; ''];
-if length(strs) <> [0;0] then bugmes();quit;end
+assert_checkequal(length(strs), [0;0]);
+strs = ["" ; ""];
+assert_checkequal(length(strs), [0;0]);

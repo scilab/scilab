@@ -15,11 +15,11 @@
 // Short description:
 // ascii doesn't support extended ascii values in the range of [128-255].
 //==============================================================
-ref = [65 66 67 129 130 131];
+ref = ascii([65 66 67 129 130 131]);
 r = ascii(ascii(ref));
 if ref <> r then pause,end
 
-ref = 127:255;
+ref = ascii(127:255);
 r = ascii(ascii(ref));
 if r <> ref then pause,end
 //==============================================================

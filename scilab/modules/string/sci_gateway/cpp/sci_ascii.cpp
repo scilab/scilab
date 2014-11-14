@@ -33,6 +33,7 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
+#define MAX_ASCII 255
 /* Benchmark
 str_test_mat =  ["abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz", ..
 "abscefghijklmnopqrstuvxyz","abscefghijklmnopqrstuvxyz"; ..
@@ -107,6 +108,12 @@ Function::ReturnValue sci_ascii(typed_list &in, int _iRetCount, typed_list &out)
             return Function::Error;
     }
 
+    if (pOut == NULL)
+    {
+        Scierror(999, _("%s : wrong UTF-8 sequence.\n"), "ascii");
+        return Function::Error;
+    }
+
     out.push_back(pOut);
     return Function::OK;
 }
@@ -116,25 +123,26 @@ String* TypeToString(T* _pI)
 {
     String* pOut = NULL;
     wchar_t* pst = NULL;
-    char* pcText = new char[_pI->getSize() + 1];
+    int len = _pI->getSize();
+    char* pcText = new char[len + 1];
     Y* p = _pI->get();
 
     bool bWarning = getWarningMode() == 0;
-    for (int i = 0; i < _pI->getSize(); i++)
+    for (int i = 0; i < len; i++)
     {
-        if (bWarning == false && p[i] > 255)
+        if (bWarning == false && p[i] > MAX_ASCII)
         {
             sciprint(_("WARNING : \n"));
-            sciprint(_("%ls: Wrong value for input argument #%d: Must be between %d and %d.\n"), L"ascii", 1, 0, 255);
+            sciprint(_("%s: Wrong value for input argument #%d: Must be between %d and %d.\n"), "ascii", 1, 0, MAX_ASCII);
             bWarning = true;
         }
 
         pcText[i] = static_cast<char>(p[i]);
 
     }
-    pcText[_pI->getSize()] = '\0';
+    pcText[len] = '\0';
+
     pst = to_wide_string(pcText);
-    pst[wcslen(pst)] = L'\0';
     pOut = new String(pst);
 
     delete[] pcText;
@@ -176,7 +184,7 @@ Double* StringToDouble(String* _pst)
         for (int j = 0; j < pstLen[i]; j++, index++)
         {
             //transform character value as double.
-            pdbl[index] = pst[i][j];
+            pdbl[index] = (unsigned char)pst[i][j];
         }
     }
 

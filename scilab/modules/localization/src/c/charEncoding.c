@@ -22,6 +22,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <locale.h>
+
 #include "charEncoding.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
@@ -43,7 +44,6 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     {
         return (char *)NULL;
     }
-    size += 1;
     buf = (char*)MALLOC(sizeof(char) * size);
     if (buf)
     {
@@ -54,6 +54,8 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
             return (char *)NULL;
         }
     }
+
+    buf[size - 1] = '\0';
     return buf;
 }
 /*--------------------------------------------------------------------------*/
@@ -61,37 +63,38 @@ wchar_t *to_wide_string(const char *_UTFStr)
 {
     int nwide = 0;
     wchar_t *_buf = NULL;
-
-    /* About MultiByteToWideChar :
-    Starting with Windows Vista,
-    the function does not drop illegal code points
-    if the application does not set this flag.
-
-    Windows XP: To prevent the security problem of the non-shortest-form
-    versions of UTF-8 characters, MultiByteToWideChar deletes these characters.
-    */
-
     DWORD dwFlags = 0;
+    UINT codePage = CP_ACP;
 
     if (_UTFStr == NULL)
     {
         return NULL;
     }
-    nwide = MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, NULL, 0);
+
+    if (IsValidUTF8(_UTFStr))
+    {
+        codePage = CP_UTF8;
+    }
+
+    nwide = MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, NULL, 0);
     if (nwide == 0)
     {
         return NULL;
     }
+
     _buf = (wchar_t *)MALLOC(nwide * sizeof(wchar_t));
     if (_buf == NULL)
     {
         return NULL;
     }
-    if (MultiByteToWideChar(CP_UTF8, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
+
+    if (MultiByteToWideChar(codePage, dwFlags, _UTFStr, -1, _buf, nwide) == 0)
     {
         FREE(_buf);
         _buf = NULL;
     }
+
+    _buf[nwide - 1] = L'\0';
     return _buf;
 }
 /*--------------------------------------------------------------------------*/
@@ -113,14 +116,14 @@ char *wide_string_to_UTF8(const wchar_t *_wide)
     size_t iLeftIn = 0;
     size_t iLeftOut = 0;
     char* pOut = NULL;
-    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "UTF-32LE");
+    iconv_t cd_UTF16_to_UTF8 = iconv_open("UTF-8", "WCHAR_T");
 
     if (_wide == NULL)
     {
         return NULL;
     }
 
-    pSaveIn = _wide;
+    pSaveIn = (wchar_t*)_wide;
     iLeftIn = wcslen(_wide) * sizeof(wchar_t);
 
     iLeftOut = iLeftIn + (1 * sizeof(wchar_t));
@@ -148,7 +151,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
 
     wchar_t* pOut = NULL;
 
-    iconv_t cd_UTF8_to_UTF16 = iconv_open("UTF-32LE", "UTF-8");
+    iconv_t cd_UTF8_to_UTF16 = iconv_open("WCHAR_T", "UTF-8");
 
     if (_UTFStr == NULL)
     {
@@ -156,18 +159,18 @@ wchar_t *to_wide_string(const char *_UTFStr)
     }
 
     iLeftIn = strlen(_UTFStr);
-    pInSave = _UTFStr;
+    pInSave = (char*)_UTFStr;
 
     iLeftOut = (iLeftIn + 1) * sizeof(wchar_t);
     pOut = (wchar_t*)MALLOC(iLeftOut);
     memset(pOut, 0x00, iLeftOut);
     pOutSave = pOut;
 
-    iSize = iconv(cd_UTF8_to_UTF16, &_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+    iSize = iconv(cd_UTF8_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
     iconv_close(cd_UTF8_to_UTF16);
     if (iSize == (size_t)(-1))
     {
-        iconv_t cd_ISO8851_to_UTF16 = iconv_open("UTF-32LE", "ISO_8859-1");
+        iconv_t cd_ISO8851_to_UTF16 = iconv_open("WCHAR_T", "ISO_8859-1");
 
         _UTFStr = pInSave;
         iLeftIn = strlen(_UTFStr);
@@ -177,7 +180,7 @@ wchar_t *to_wide_string(const char *_UTFStr)
         memset(pOut, 0x00, iLeftOut);
 
 
-        iSize = iconv(cd_ISO8851_to_UTF16, &_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
+        iSize = iconv(cd_ISO8851_to_UTF16, (char**)&_UTFStr, &iLeftIn, (char**)&pOut, &iLeftOut);
         iconv_close(cd_ISO8851_to_UTF16);
         if (iSize == (size_t)(-1))
         {

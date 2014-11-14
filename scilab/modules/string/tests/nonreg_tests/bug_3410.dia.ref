@@ -11,11 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=3410
 //
 // <-- Short Description -->
-if length(sparse(eye(2,2))) <> 2 then bugmes();quit;end
-if length(sparse(eye(12,2))) <> 12 then bugmes();quit;end
-if length(sparse(eye(2,12))) <> 12 then bugmes();quit;end
+if length(sparse(eye(2,2))) <> 4 then bugmes();quit;end
+if length(sparse(eye(12,2))) <> 24 then bugmes();quit;end
+if length(sparse(eye(2,12))) <> 24 then bugmes();quit;end
 if length(sparse(1)) <> 1 then bugmes();quit;end
-if with_module('umfpack') then
-  A = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
-  if length(A) <> 3562 then bugmes();quit;end
-end

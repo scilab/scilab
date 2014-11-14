@@ -13,10 +13,9 @@
 //
 // <-- Short Description -->
 // eval failed on some functions without output arguments.
-
+errmsg = _("bad lhs, expected : ") + string(1) + _(" returned : ") + string(0);
 str = "realtimeinit(60)";
-r = eval(str);
-if r <> [] then pause, end
+assert_checkerror("eval(str)", errmsg);
 
 function o = blabla()
  o = 3;

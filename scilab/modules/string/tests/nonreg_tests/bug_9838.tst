@@ -19,12 +19,3 @@ t=["1";
    "2";
    "//xxx"];
 assert_checkequal(evstr(t),[1;2]); 
-
-nl=ascii(10);
-t=["//comment";
-   "function y=foo(),"
-   " y=1;"
-   "endfunction"];
-
-t=strcat(t,nl); //make a single string that appears as a string array
-assert_checkequal(evstr(t),[]); 

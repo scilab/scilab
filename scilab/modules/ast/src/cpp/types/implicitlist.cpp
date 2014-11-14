@@ -702,6 +702,9 @@ std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
             df.bPrintPlusSign = true;
             df.bPrintOne = i == 0;
             df.bPaddSign = false;
+            df.bPrintBlank = false;
+            df.bPrintPlusSign = false;
+
             addDoubleValue(&ostr, pdblIn[i], &df);
             if (i != 0)
             {
@@ -721,7 +724,10 @@ std::wstring printDouble(types::Double* _pD)
     std::wostringstream ostr;
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
+    df.bPrintPoint = false;
     df.bPaddSign = true;
+    df.bPaddSign = false;
+    df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);
     return ostr.str();
 }

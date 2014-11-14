@@ -228,7 +228,7 @@ Function::ReturnValue intString(T* pInt, typed_list &out)
     for (int i = 0 ; i < iSize ; i++)
     {
         std::wostringstream ostr;
-        DoubleComplexMatrix2String(&ostr, pInt->get(i), 0);
+        DoubleComplexMatrix2String(&ostr, (double)pInt->get(i), 0);
         pstOutput->set(i, ostr.str().c_str());
     }
 
@@ -295,6 +295,20 @@ Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
     return Function::OK;
 }
 
+Function::ReturnValue implicitListString(types::ImplicitList* pIL, typed_list &out)
+{
+    std::wostringstream ostr;
+    pIL->toString(ostr);
+    wstring str = ostr.str();
+    //erase fisrt character " "
+    str.erase(str.begin());
+    //erase last character "\n"
+    str.erase(str.end() - 1);
+
+    out.push_back(new String(str.c_str()));
+    return Function::OK;
+}
+
 Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
@@ -314,7 +328,6 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             bool isComplex = pS->isComplex();
             std::wostringstream ostr;
             std::vector<std::wstring> vect;
-            int st;
             string *stemp = new string();
 
 
@@ -367,7 +380,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
                 }
             }
 
-            types::String* pSt = new String(vect.size(), 1);
+            types::String* pSt = new String((int)vect.size(), 1);
             for (int i = 0 ; i < vect.size(); i++)
             {
                 pSt->set(i, vect[i].c_str());
@@ -479,7 +492,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             Library* pL = in[0]->getAs<Library>();
             std::wstring path = pL->getPath();
             std::list<std::wstring>* macros = pL->getMacrosName();
-            String* pS = new String(macros->size() + 1, 1);
+            String* pS = new String((int)macros->size() + 1, 1);
             pS->set(0, path.c_str());
             int i = 1;
             for (auto it = macros->begin(), itEnd = macros->end(); it != itEnd; ++it, ++i)
@@ -488,6 +501,15 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             }
 
             out.push_back(pS);
+            break;
+        }
+        case GenericType::ScilabImplicitList:
+        {
+            return implicitListString(in[0]->getAs<ImplicitList>(), out);
+        }
+        case GenericType::ScilabColon:
+        {
+            out.push_back(new String(L""));
             break;
         }
         default:

@@ -23,9 +23,9 @@ tab_ref = [
 "حريات وحقوق",
 "תוכנית"];
 
-if (strcat([ascii(0),"t"]) == "t" + ascii(0)) <> %f then pause,end
+assert_checkequal(strcat([ascii(0),"t"]), "t" + ascii(0));
 
-if (strcat([ascii(0),"t",ascii(0)]) <> ascii(0) + "t" + ascii(0)) <> %f then pause,end
+assert_checkequal(strcat([ascii(0),"t",ascii(0)]), ascii(0) + "t" + ascii(0));
 
 A = strcat([ascii(0),"t"]);
 B = "t"+ascii(0);
@@ -34,17 +34,16 @@ C = ascii(0) + "t";
 if A <> C then pause,end
 
 sA = length(A);
-if sA <> 2 then pause,end
+assert_checkequal(sA, 1);
 
 sB = length(B);
-if sB <> 2 then pause,end
+assert_checkequal(sB, 1);
 
 sC = length(C);
-if sC <> 2 then pause,end
+assert_checkequal(sC, 1);
 
-for i = 1 : size(tab_ref,'*')
-  r1 = strcat([tab_ref(i),ascii(0),tab_ref(i)]);
-  r2 = tab_ref(i) + ascii(0) + tab_ref(i);
-  if length(r1) <> ( 2 * length(tab_ref(i)) + 1) then pause,end
-  if r1 <> r2 then pause, end 
-end  
+for i = 1 : size(tab_ref,"*")
+    r1 = strcat([tab_ref(i),ascii(0),tab_ref(i)]);
+    r2 = tab_ref(i) + ascii(0) + tab_ref(i);
+    assert_checkequal(r1, r2);
+end

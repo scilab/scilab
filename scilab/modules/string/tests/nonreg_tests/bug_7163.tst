@@ -4,8 +4,11 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-
+//
 // <-- CLI SHELL MODE -->
+//
+// <-- NOT FIXED -->
+//
 // <-- Non-regression test for bug 7163 -->
 //
 // <-- Bugzilla URL -->
@@ -15,7 +18,7 @@
 // tree2code wrongly replaced every (:) occurence in a function definition with (eye()).
 
 function foo(r)
- r(:)=1
+    r(:)=1
 endfunction
 
 txt = tree2code(macr2tree(foo));
