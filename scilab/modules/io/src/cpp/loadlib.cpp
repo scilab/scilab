@@ -34,13 +34,19 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 {
     types::Library* lib = NULL;
 
-    std::wstring wstFile(_wstXML);
-    std::wstring wstPath(_wstXML);
+    wchar_t* pwstPathLib = expandPathVariableW((wchar_t*)_wstXML.c_str());
+
+    std::wstring wstOriginalPath(_wstXML);
+    std::wstring wstFile(pwstPathLib);
+    std::wstring wstPath(pwstPathLib);
+    FREE(pwstPathLib);
 
     if (_isFile)
     {
         size_t pos = wstPath.find_last_of(L"/\\");
         wstPath = wstPath.substr(0, pos);
+        pos = wstOriginalPath.find_last_of(L"/\\");
+        wstOriginalPath = wstOriginalPath.substr(0, pos + 1); //with ending /
     }
     else
     {
@@ -86,7 +92,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
     FREE(pstFile);
 
-    lib = new types::Library(wstPath);
+    lib = new types::Library(wstOriginalPath);
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//scilablib", xpathCtxt);

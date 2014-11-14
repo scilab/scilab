@@ -51,7 +51,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     const wchar_t* pwstBody = wstBody.c_str();
 
     //first loop to find number of lines
-    int iLines = 0;
+    int iLines = 2; //for first and last one-space lines
     for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
     {
         if (pwstBody[i] == L'\n')
@@ -61,10 +61,10 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     }
 
     String* pBody = new String(iLines, 1);
-
+    pBody->set(0, L" ");
     //second loop to assign lines to output data
     int iOffset = 0;
-    int iIndex = 0;
+    int iIndex = 1;
     for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
     {
         if (pwstBody[i] == L'\n')
@@ -79,6 +79,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
         }
     }
 
+    pBody->set(iIndex, L" ");
     *_pBody = pBody;
 
     //get inputs
@@ -443,11 +444,27 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
-        case GenericType::ScilabBool :
+        case GenericType::ScilabBool:
         {
             return booleanString(in[0]->getAs<Bool>(), out);
         }
-        default :
+        case GenericType::ScilabLibrary:
+        {
+            Library* pL = in[0]->getAs<Library>();
+            std::wstring path = pL->getPath();
+            std::list<std::wstring>* macros = pL->getMacrosName();
+            String* pS = new String(macros->size() + 1, 1);
+            pS->set(0, path.c_str());
+            int i = 1;
+            for (auto it = macros->begin(), itEnd = macros->end(); it != itEnd; ++it, ++i)
+            {
+                pS->set(i, (*it).c_str());
+            }
+
+            out.push_back(pS);
+            break;
+        }
+        default:
         {
             std::wostringstream ostr;
             in[0]->toString(ostr);

@@ -120,4 +120,9 @@ std::list<std::wstring>* Library::getMacrosName()
 
     return pOut;
 }
+
+std::wstring Library::getPath()
+{
+    return m_wstPath;
+}
 }

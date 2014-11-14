@@ -61,7 +61,8 @@ public :
     void add(const std::wstring& _wstName, MacroFile* _macro);
     MacroFile* get(const std::wstring& _wstName);
     std::list<std::wstring>* getMacrosName();
-private :
+    std::wstring getPath();
+private:
     std::wstring m_wstPath;
     typedef std::map<std::wstring, MacroFile*> MacroMap;
     MacroMap m_macros;
