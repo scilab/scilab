@@ -224,18 +224,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else
     {
-        //add optional paramter in current scope
-        optional_list::const_iterator it;
-        for (it = opt.begin() ; it != opt.end() ; it++)
-        {
-            pContext->put(symbol::Symbol(it->first), it->second);
-        }
-
         //assign value to variable in the new context
         std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
 
-        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
+        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
         {
             if (*j)
             {
@@ -243,6 +236,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pContext->put(*i, *j);
             }
         }
+
+        //add optional paramter in current scope
+        optional_list::const_iterator it;
+        for (it = opt.begin() ; it != opt.end() ; it++)
+        {
+            pContext->put(symbol::Symbol(it->first), it->second);
+        }
+
+
     }
 
     // varargout management
