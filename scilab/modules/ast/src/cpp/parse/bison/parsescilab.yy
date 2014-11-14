@@ -251,7 +251,6 @@
 
  // Function Call
 %type <t_call_exp>	functionCall
-%type <t_call_exp>	specificFunctionCall
  //%type <t_call_exp>	recursiveFunctionCall
 %type <t_call_exp>	simpleFunctionCall
 %type <t_list_exp>	functionArgs
@@ -518,20 +517,8 @@ ID						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 /* How to call a function or a cell extraction */
 functionCall :
 simpleFunctionCall			{ $$ = $1; }
-| specificFunctionCall		{ $$ = $1; }
 //| recursiveFunctionCall		%prec FUNCTIONCALL	{ $$ = $1; }
 | LPAREN functionCall RPAREN	{ $$ = $2; }
-;
-
-/*
-** -*- SPECIFIC FUNCTION CALL -*-
-*/
-/* To manage %t(a, b) and %f(a, b) */
-specificFunctionCall :
-BOOLTRUE LPAREN functionArgs RPAREN			{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%t")), *$3); }
-| BOOLFALSE LPAREN functionArgs RPAREN		{ $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%f")), *$3); }
-| BOOLFALSE LPAREN RPAREN 			        { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%f")), *new ast::exps_t); }
-| BOOLTRUE LPAREN RPAREN 			        { $$ = new ast::CallExp(@$, *new ast::SimpleVar(@1, *new symbol::Symbol(L"%t")), *new ast::exps_t); }
 ;
 
 /*
