@@ -99,9 +99,9 @@ libscifftw_la_CPPFLAGS = \
 
 else
 
-FFTW_C_SOURCES = src/nofftw/nofftw.c
+FFTW_CPP_SOURCES = src/nofftw/nofftw.cpp
 
-libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
+libscifftw_la_SOURCES = $(FFTW_CPP_SOURCES)
 
 libscifftw_la_CPPFLAGS = \
 -I$(srcdir)/includes/ \
@@ -113,6 +113,7 @@ libscifftw_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
