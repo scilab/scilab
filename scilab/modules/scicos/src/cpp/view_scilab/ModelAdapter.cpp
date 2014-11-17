@@ -1268,9 +1268,16 @@ struct equations
         o->set(0, header);
 
         // 'model'
-        types::String* modelField = new types::String(1, 1);
-        modelField->set(0, equations[0].c_str());
-        o->set(1, modelField);
+        if (equations[0].c_str() == std::string())
+        {
+            o->set(1, types::Double::Empty());
+        }
+        else
+        {
+            types::String* modelField = new types::String(1, 1);
+            modelField->set(0, equations[0].c_str());
+            o->set(1, modelField);
+        }
 
         // 'inputs'
         std::istringstream inputsSizeStr (equations[1]);
@@ -1397,23 +1404,38 @@ struct equations
             return false;
         }
 
+        char* c_str; // Temporary buffer used for conversions
+
         // 'model'
         std::vector<std::string> equations;
-        if (current->get(1)->getType() != types::InternalType::ScilabString)
+        if (current->get(1)->getType() == types::InternalType::ScilabString)
+        {
+            types::String* modelField = current->get(1)->getAs<types::String>();
+            if (modelField->getSize() != 1)
+            {
+                return false;
+            }
+            std::string modelFieldStored;
+            c_str = wide_string_to_UTF8(modelField->get(0));
+            modelFieldStored = std::string(c_str);
+            FREE(c_str);
+            equations.push_back(modelFieldStored);
+        }
+        else if (current->get(1)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* modelFieldDouble = current->get(1)->getAs<types::Double>();
+            if (modelFieldDouble->getSize() != 0)
+            {
+                return false;
+            }
+
+            // An empty matrix stores an empty string, which will later be translated back to an empty matrix
+            equations.push_back(std::string());
+        }
+        else
         {
             return false;
         }
-        types::String* modelField = current->get(1)->getAs<types::String>();
-        if (modelField->getSize() != 1)
-        {
-            return false;
-        }
-        std::string modelFieldStored;
-        char* c_str; // Temporary buffer used for conversions
-        c_str = wide_string_to_UTF8(modelField->get(0));
-        modelFieldStored = std::string(c_str);
-        FREE(c_str);
-        equations.push_back(modelFieldStored);
 
         // 'inputs'
         size_t inputsSize;

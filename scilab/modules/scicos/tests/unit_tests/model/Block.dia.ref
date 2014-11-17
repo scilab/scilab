@@ -1470,26 +1470,23 @@ propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , EQUATIONS ) : SUCCESS
+propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 o.model.equations
  ans  =
        ans(1)
 !modelica  model  inputs  outputs  parameters  !
        ans(2)
- VsourceAC
+    []
        ans(3)
- p
+    []
        ans(4)
- n
+    []
        ans(5)
         ans(5)(1)
-!VA  !
-!    !
-!f   !
+    []
         ans(5)(2)
-         ans(5)(2)(1)
-    220.
-         ans(5)(2)(2)
-    50.
+     ()
 // Test 'exprs' with Modelica Block
 o = MBLOCK("define")
 objectCreated( 32 , BLOCK )
