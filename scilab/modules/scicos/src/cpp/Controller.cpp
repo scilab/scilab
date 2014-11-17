@@ -36,59 +36,30 @@ Controller::SharedData::SharedData() :
 
 Controller::SharedData::~SharedData()
 {
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         delete *iter;
     }
 }
 
-Controller::SharedData* Controller::_instance = 0;
-
-void Controller::delete_all_instances()
-{
-    if (_instance == 0)
-    {
-        return;
-    }
-
-    delete _instance;
-}
+Controller::SharedData Controller::m_instance;
 
 void Controller::register_view(View* v)
 {
-    if (_instance == 0)
-    {
-        _instance = new SharedData();
-    }
-
-    _instance->allViews.push_back(v);
+    m_instance.allViews.push_back(v);
 }
 
 void Controller::unregister_view(View* v)
 {
-    if (_instance == 0)
+    view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
+    if (it != m_instance.allViews.end())
     {
-        return;
-    }
-
-    view_set_t::iterator it = std::find(_instance->allViews.begin(), _instance->allViews.end(), v);
-    if (it != _instance->allViews.end())
-    {
-        _instance->allViews.erase(it);
+        m_instance.allViews.erase(it);
     }
 }
 
 Controller::Controller()
 {
-    if (_instance == 0)
-    {
-        _instance = new SharedData();
-    }
-}
-
-Controller::Controller(const Controller& /*c*/)
-{
-    // _instance is already initialized
 }
 
 Controller::~Controller()
@@ -97,9 +68,9 @@ Controller::~Controller()
 
 ScicosID Controller::createObject(kind_t k)
 {
-    ScicosID id = _instance->model.createObject(k);
+    ScicosID id = m_instance.model.createObject(k);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectCreated(id, k);
     }
@@ -150,9 +121,9 @@ void Controller::deleteObject(ScicosID uid)
     }
 
     // delete the object
-    _instance->model.deleteObject(uid);
+    m_instance.model.deleteObject(uid);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectDeleted(uid, k);
     }
@@ -340,7 +311,7 @@ ScicosID Controller::cloneObject(ScicosID uid)
 
 std::shared_ptr<model::BaseObject> Controller::getObject(ScicosID uid) const
 {
-    return _instance->model.getObject(uid);
+    return m_instance.model.getObject(uid);
 }
 
 } /* namespace org_scilab_modules_scicos */

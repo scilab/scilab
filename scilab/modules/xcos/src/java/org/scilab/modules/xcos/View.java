@@ -71,8 +71,8 @@ public class View {
         JavaControllerJNI.View_propertyUpdated__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal());
     }
 
-    public void propertyUpdated(long uid, Kind k, ObjectProperties p, UpdateStatus u) {
-        JavaControllerJNI.View_propertyUpdated__SWIG_1(swigCPtr, this, uid, k.ordinal(), p.ordinal(), u.ordinal());
+    public void propertyUpdated(long arg0, Kind arg1, ObjectProperties arg2, UpdateStatus arg3) {
+        JavaControllerJNI.View_propertyUpdated__SWIG_1(swigCPtr, this, arg0, arg1.ordinal(), arg2.ordinal(), arg3.ordinal());
     }
 
 }

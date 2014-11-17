@@ -26,47 +26,47 @@ class BaseObject
 {
 public:
     BaseObject(kind_t k) :
-        _id(0), _kind(k)
+        m_id(0), m_kind(k)
     {
     }
     BaseObject(const BaseObject& b) :
-        _id(0), _kind(b._kind)
+        m_id(0), m_kind(b.m_kind)
     {
     }
 
     inline bool operator<(BaseObject o) const
     {
-        return _id < o._id;
+        return m_id < o.m_id;
     }
     inline bool operator==(BaseObject o) const
     {
-        return _id == o._id;
+        return m_id == o.m_id;
     }
 
     inline ScicosID id() const
     {
-        return _id;
+        return m_id;
     }
-    inline void id(ScicosID id)
+    inline void id(ScicosID _id)
     {
-        _id = id;
+        m_id = _id;
     }
 
     inline kind_t kind() const
     {
-        return _kind;
+        return m_kind;
     }
 
 private:
     /**
      * An id is used as a reference to the current object
      */
-    ScicosID _id;
+    ScicosID m_id;
 
     /**
      * Kind of the Object
      */
-    const kind_t _kind;
+    const kind_t m_kind;
 };
 
 /** @defgroup utilities Shared utility classes
@@ -78,26 +78,26 @@ private:
  */
 struct Geometry
 {
-    double x;
-    double y;
-    double width;
-    double height;
+    double m_x;
+    double m_y;
+    double m_width;
+    double m_height;
 
-    Geometry() : x(0), y(0), width(20), height(20) {};
-    Geometry(const Geometry& g) : x(g.x), y(g.y), width(g.width), height(g.height) {};
-    Geometry(const std::vector<double>& v) : x(v[0]), y(v[1]), width(v[2]), height(v[3]) {};
+    Geometry() : m_x(0), m_y(0), m_width(20), m_height(20) {};
+    Geometry(const Geometry& g) : m_x(g.m_x), m_y(g.m_y), m_width(g.m_width), m_height(g.m_height) {};
+    Geometry(const std::vector<double>& v) : m_x(v[0]), m_y(v[1]), m_width(v[2]), m_height(v[3]) {};
 
     void fill(std::vector<double>& v) const
     {
         v.resize(4);
-        v[0] = x;
-        v[1] = y;
-        v[2] = width;
-        v[3] = height;
+        v[0] = m_x;
+        v[1] = m_y;
+        v[2] = m_width;
+        v[3] = m_height;
     }
     bool operator==(const Geometry& g) const
     {
-        return x == g.x && y == g.y && width == g.width && height == g.height;
+        return m_x == g.m_x && m_y == g.m_y && m_width == g.m_width && m_height == g.m_height;
     }
 };
 
@@ -110,28 +110,28 @@ struct Datatype
 {
 public:
     Datatype(const Datatype& d) :
-        refCount(0), datatype_id(d.datatype_id), rows(d.rows), columns(d.columns) {};
+        m_refCount(0), m_datatype_id(d.m_datatype_id), m_rows(d.m_rows), m_columns(d.m_columns) {};
     Datatype(const std::vector<int>& v) :
-        refCount(0), datatype_id(v[2]), rows(v[0]), columns(v[1]) {};
+        m_refCount(0), m_datatype_id(v[2]), m_rows(v[0]), m_columns(v[1]) {};
 
     // reference counter for the flyweight pattern
-    int refCount;
+    int m_refCount;
 
-    const int datatype_id;
-    const int rows;
-    const int columns;
+    const int m_datatype_id;
+    const int m_rows;
+    const int m_columns;
 
     bool operator==(const Datatype& d) const
     {
-        return datatype_id == d.datatype_id && rows == d.rows && columns == d.columns;
+        return m_datatype_id == d.m_datatype_id && m_rows == d.m_rows && m_columns == d.m_columns;
     }
 
     bool operator<(const Datatype& d) const
     {
         // Lexicographical order
-        return datatype_id < d.datatype_id ||
-               (datatype_id == d.datatype_id && rows < d.rows) ||
-               (datatype_id == d.datatype_id && rows == d.rows && columns < d.columns);
+        return m_datatype_id < d.m_datatype_id ||
+               (m_datatype_id == d.m_datatype_id && m_rows < d.m_rows) ||
+               (m_datatype_id == d.m_datatype_id && m_rows == d.m_rows && m_columns < d.m_columns);
     }
 };
 

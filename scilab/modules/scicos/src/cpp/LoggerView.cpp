@@ -244,6 +244,8 @@ std::ostream& operator<<(std::ostream& os, object_properties_t p)
         case VERSION_NUMBER:
             os << "VERSION_NUMBER";
             break;
+        default:
+            break;
     }
     return os;
 }

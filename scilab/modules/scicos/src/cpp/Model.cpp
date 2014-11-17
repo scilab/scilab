@@ -144,7 +144,7 @@ model::Datatype* Model::flyweight(const model::Datatype& d)
     datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), &d, isInferior);
     if (iter != datatypes.end() && !(d < **iter)) // if d is found
     {
-        (*iter)->refCount++;
+        (*iter)->m_refCount++;
         return *iter;
     }
     else
@@ -158,8 +158,8 @@ void Model::erase(model::Datatype* d)
     datatypes_set_t::iterator iter = std::lower_bound(datatypes.begin(), datatypes.end(), d, isInferior);
     if (iter != datatypes.end() && !(*d < **iter)) // if d is found
     {
-        (*iter)->refCount--;
-        if ((*iter)->refCount < 0)
+        (*iter)->m_refCount--;
+        if ((*iter)->m_refCount < 0)
         {
             delete *iter;
             datatypes.erase(iter);

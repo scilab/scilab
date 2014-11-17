@@ -72,9 +72,9 @@ private:
         else
         {
             v.resize(3);
-            v[0] = m_dataType->rows;
-            v[1] = m_dataType->columns;
-            v[2] = m_dataType->datatype_id;
+            v[0] = m_dataType->m_rows;
+            v[1] = m_dataType->m_columns;
+            v[2] = m_dataType->m_datatype_id;
         }
     }
 

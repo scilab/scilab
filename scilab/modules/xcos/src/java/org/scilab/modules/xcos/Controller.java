@@ -36,11 +36,7 @@ public class Controller {
     }
 
     public Controller() {
-        this(JavaControllerJNI.new_Controller__SWIG_0(), true);
-    }
-
-    public Controller(Controller c) {
-        this(JavaControllerJNI.new_Controller__SWIG_1(Controller.getCPtr(c), c), true);
+        this(JavaControllerJNI.new_Controller(), true);
     }
 
     public long createObject(Kind k) {

@@ -34,13 +34,10 @@ namespace org_scilab_modules_scicos
 class SCICOS_IMPEXP Controller
 {
 public:
-    static void delete_all_instances();
-
     static void register_view(View* v);
     static void unregister_view(View* v);
 
     Controller();
-    Controller(const Controller& c);
     ~Controller();
 
     ScicosID createObject(kind_t k);
@@ -52,21 +49,21 @@ public:
     template<typename T>
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
     {
-        return _instance->model.getObjectProperty(uid, k, p, v);
+        return m_instance.model.getObjectProperty(uid, k, p, v);
     };
 
     template<typename T>
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
     {
-        update_status_t status = _instance->model.setObjectProperty(uid, k, p, v);
+        update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
         if (status == SUCCESS)
         {
-            for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+            for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
             {
                 (*iter)->propertyUpdated(uid, k, p);
             }
         }
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+        for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
             (*iter)->propertyUpdated(uid, k, p, status);
         }
@@ -94,7 +91,7 @@ private:
      *
      * This will be allocated on-demand be Controller::get_instance()
      */
-    static SharedData* _instance;
+    static SharedData m_instance;
 
     /*
      * Methods
