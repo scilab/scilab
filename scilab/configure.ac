@@ -24,6 +24,18 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
+if test -d "$SCI_SRCDIR_FULL/usr"; then
+    WITH_DEVTOOLS=true
+    DEVTOOLS_BINDIR="$SCI_SRCDIR_FULL/usr/bin"
+    DEVTOOLS_INCDIR="$SCI_SRCDIR_FULL/usr/include"
+    DEVTOOLS_LIBDIR="$SCI_SRCDIR_FULL/usr/lib"
+else
+    WITH_DEVTOOLS=false
+    DEVTOOLS_BINDIR=
+    DEVTOOLS_INCDIR=
+    DEVTOOLS_LIBDIR=
+fi
+
 SCILAB_VERSION_MAJOR=5
 SCILAB_VERSION_MINOR=5
 SCILAB_VERSION_MAINTENANCE=2
@@ -1631,7 +1643,12 @@ if test "$with_matio" != no; then
       MATIO_CFLAGS="$with_matio_include"
       MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
-      PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
+      if $WITH_DEVTOOLS; then # Scilab thirdparties
+         MATIO_CFLAGS="-I$DEVTOOLS_INCDIR"
+         MATIO_LIBS="-L$DEVTOOLS_LIBDIR -lm -lz -lmatio -lhdf5"
+      else
+         PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
+      fi
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -2070,6 +2087,8 @@ echo "  Compilation tests (--enable-compilation-tests) ... = $COMPILATION_TESTS"
 echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
 echo "  Use MATIO (--without-matio) ...................... = $with_matio"
+echo ""
+echo "  Compile with Scilab thirdparties ................. = $WITH_DEVTOOLS"
 
 echo ""
 if test "$with_gui" = no; then
@@ -2345,5 +2364,6 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  SCI_FFLAGS ..... = $SCI_FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
+echo "  FLIBS...... .... = $FLIBS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
 echo ""

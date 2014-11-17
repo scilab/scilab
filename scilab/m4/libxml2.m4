@@ -23,23 +23,27 @@ AC_ARG_WITH(libxml2,
 		)
 
 if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
-   # Look if xml-config xml2_config (which provides cflags and ldflags) is available
-   AC_MSG_CHECKING([libxml2, for xml-config])
-   XML_CONFIG="$with_libxml2/bin/xml2-config" 
-        if test -x "$XML_CONFIG"; then
-                AC_MSG_RESULT([$XML_CONFIG])
-        else
-                AC_MSG_ERROR([Unable to find $XML_CONFIG. Please check the path you provided])
-		fi
+    # Look if xml-config xml2_config (which provides cflags and ldflags) is available
+    AC_MSG_CHECKING([libxml2, for xml-config])
+    XML_CONFIG="$with_libxml2/bin/xml2-config"
+    if test -x "$XML_CONFIG"; then
+        AC_MSG_RESULT([$XML_CONFIG])
+    else
+        AC_MSG_ERROR([Unable to find $XML_CONFIG. Please check the path you provided])
+    fi
 else
-		AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
-		if test "x$XML_CONFIG" = "xno"; then
-				AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
-		fi
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        XML_CONFIG="$DEVTOOLS_BINDIR/xml2-config"
+    else
+        AC_CHECK_PROGS(XML_CONFIG,xml2-config,no)
+    fi
+    if test "x$XML_CONFIG" = "xno"; then
+        AC_MSG_ERROR([Unable to find xml2-config in the path. Please check your installation of libxml2])
+    fi
 fi
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
-		
+
 XML_FLAGS=`$XML_CONFIG --cflags`
 XML_LIBS=`$XML_CONFIG --libs`
 XML_VERSION=`$XML_CONFIG --version`
@@ -77,7 +81,7 @@ AC_DEFINE_UNQUOTED([LIBXML_LIBS],["$XML_LIBS"],[libXML2 library])
 #AC_CHECK_LIB(xml2,xmlInitParserCtxt,,[AC_MSG_ERROR([libxml2 : library missing])])
 
 
-#AC_CHECK_HEADERS([libxml/tree.h],,[AC_MSG_ERROR([libxml2 : library missing missing])])	
+#AC_CHECK_HEADERS([libxml/tree.h],,[AC_MSG_ERROR([libxml2 : library missing missing])])
 
 # Gets compilation and library flags
 ])

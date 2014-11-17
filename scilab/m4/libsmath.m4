@@ -56,13 +56,17 @@ LIBS="$LIBS $FLIBS"
 
 # First, check BLAS_LIBS environment variable
 if test $acx_blas_ok = no; then
-if test "x$BLAS_LIBS" != x; then
-	save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
-	AC_MSG_CHECKING([for $sgemm in $BLAS_LIBS])
-	AC_TRY_LINK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [BLAS_LIBS=""])
-	AC_MSG_RESULT($acx_blas_ok)
-	LIBS="$save_LIBS"
-fi
+    if test "x$BLAS_LIBS" != x; then
+        save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
+        AC_MSG_CHECKING([for $sgemm in $BLAS_LIBS])
+        AC_TRY_LINK_FUNC($sgemm, [acx_blas_ok=yes; BLAS_TYPE="Using BLAS_LIBS environment variable"], [BLAS_LIBS=""])
+        AC_MSG_RESULT($acx_blas_ok)
+        LIBS="$save_LIBS"
+    elif $WITH_DEVTOOLS; then # Scilab thirdparties
+        BLAS_LIBS="-L$DEVTOOLS_LIBDIR -lblas"
+        BLAS_TYPE="Generic Blas"
+        acx_blas_ok=yes
+    fi
 fi
 
 # BLAS linked to by default?  (happens on some supercomputers)
@@ -230,6 +234,10 @@ if test "x$LAPACK_LIBS" != x; then
         if test acx_lapack_ok = no; then
                 LAPACK_LIBS=""
         fi
+elif $WITH_DEVTOOLS; then # Scilab thirdparties
+     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack"
+     LAPACK_TYPE="Library -llapack"
+     acx_lapack_ok=yes
 fi
 
 # LAPACK linked to by default?  (is sometimes included in BLAS lib)
@@ -316,7 +324,13 @@ if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_arpack_library"
 fi
 
-ARPACK_LIBS="-larpack"
+if $WITH_DEVTOOLS; then # Scilab thirdparties
+    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack"
+    LDFLAGS="$LDFLAGS -L$DEVTOOLS_LIBDIR"
+    acx_arpack_ok=yes
+else
+    ARPACK_LIBS="-larpack"
+fi
 # Get fortran linker name of ARPACK function to check for.
 AC_F77_FUNC(znaupd)
 
