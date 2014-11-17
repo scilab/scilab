@@ -30,14 +30,7 @@ public :
         m_pvData = _pvData;
     }
 
-    Pointer(int _rows, int _cols, void* _pvData)
-    {
-        m_iRows  = _rows;
-        m_iCols  = _cols;
-        m_pvData = _pvData;
-    }
-
-    Pointer(int _rows, int _cols, void* _pvData, bool _complex)
+    Pointer(int _rows, int _cols, void* _pvData, bool _complex = false)
     {
         m_iRows  = _rows;
         m_iCols  = _cols;
@@ -79,7 +72,7 @@ public :
 
     InternalType* clone()
     {
-        return new Pointer(m_pvData);
+        return new Pointer(m_iRows, m_iCols, m_pvData, m_cplx);
     }
 
     void* get()

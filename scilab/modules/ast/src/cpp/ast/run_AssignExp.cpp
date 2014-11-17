@@ -293,13 +293,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             }
 
             exps_t::const_reverse_iterator it;
-            int i = (int)iLhsCount - 1;
             exps_t exps = pList->getExps();
-            for (it = exps.rbegin() ; it != exps.rend() ; it++, i--)
+            types::InternalType** pIT = new types::InternalType*[iLhsCount];
+            int i = 0;
+            for (i = iLhsCount - 1; i >= 0; i--)
             {
                 //create a new AssignExp and run it
-                types::InternalType* pIT = exec.getResult(i);
-                AssignExp pAssign((*it)->getLocation(), *(*it), *const_cast<Exp*>(&e.getRightExp()), pIT);
+                pIT[i] = (exec.getResult(i))->clone();
+            }
+
+            for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
+            {
+                AssignExp pAssign((*it)->getLocation(), *(*it), *const_cast<Exp*>(&e.getRightExp()), pIT[i]);
                 pAssign.setLrOwner(false);
                 pAssign.setVerbose(e.isVerbose());
                 pAssign.accept(*this);
