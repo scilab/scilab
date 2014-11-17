@@ -319,10 +319,11 @@ int getIndexWithDims(int* _piIndexes, int* _piDims, int _iDims)
     return idx;
 }
 
-void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
+types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
 {
     if (pIT->hasToString() == false)
     {
+        types::Function::ReturnValue ret = types::Function::Error;
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
@@ -333,9 +334,10 @@ void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
 
         try
         {
-            Overload::generateNameAndCall(L"p", in, 1, out, exec);
+            ret = Overload::generateNameAndCall(L"p", in, 1, out, exec);
             delete exec;
             pIT->DecreaseRef();
+            return ret;
         }
         catch (ast::ScilabError &e)
         {
@@ -360,6 +362,13 @@ void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
         {
             //block by block
             bFinish = pIT->toString(ostr);
+            if (ConfigVariable::isError())
+            {
+                ConfigVariable::resetError();
+                ostr.str(L"");
+                return types::Function::Error;
+            }
+
             if (bFinish == false && iLines != 0)
             {
                 //show message on prompt
@@ -372,6 +381,7 @@ void VariableToString(types::InternalType* pIT, const wchar_t* wcsVarName)
         while (bFinish == false);
 
         pIT->clearPrintState();
+        return types::Function::OK;
     }
 }
 }

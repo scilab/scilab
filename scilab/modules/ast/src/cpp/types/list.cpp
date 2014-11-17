@@ -20,6 +20,7 @@
 #include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "types_tools.hxx"
+#include "function.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -135,7 +136,12 @@ bool List::toString(std::wostringstream& ostr)
             nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
             scilabWriteW(ostr.str().c_str());
-            VariableToString(*itValues, nextVarName.str().c_str());
+            if (VariableToString(*itValues, nextVarName.str().c_str()) == types::Function::Error)
+            {
+                free(wcsVarName);
+                ostr.str(L"");
+                return true;
+            }
         }
 
         ostr.str(L"");

@@ -103,6 +103,7 @@ libscistring_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     $(EIGEN_CPPFLAGS)
 
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)

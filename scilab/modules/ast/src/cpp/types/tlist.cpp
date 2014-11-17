@@ -271,17 +271,20 @@ bool TList::toString(std::wostringstream& ostr)
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::OK)
+        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::Error)
         {
-            ostr.str(L"");
-            DecreaseRef();
-            delete exec;
-            return true;
+            ConfigVariable::setError();
         }
+
+        ostr.str(L"");
+        DecreaseRef();
+        delete exec;
+        return true;
     }
     catch (ast::ScilabError /* &e */)
     {
         // avoid error message about undefined overload %type_p
+        ConfigVariable::resetError();
     }
 
     DecreaseRef();
