@@ -11,6 +11,9 @@
 */
 
 #include <hdf5.h>
+#include "context.hxx"
+#include "list.hxx"
+
 extern "C"
 {
 #include <string.h>
@@ -46,6 +49,7 @@ static bool import_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_p
 static bool import_boolean_sparse_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_poly_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_list_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
+static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
@@ -218,7 +222,11 @@ static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
         case sci_tlist:
         case sci_mlist:
         {
-            bRet = import_list_v1(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            bRet = import_hypermat_v1(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            if (bRet == false)
+            {
+                bRet = import_list_v1(pvCtx, _iDatasetId, iVarType, _iItemPos, _piAddress, _pstVarname);
+            }
             break;
         }
         case sci_boolean:
@@ -1176,6 +1184,145 @@ void print_tree(char *_pstMsg)
     }
     printf("%s\n", _pstMsg);
 #endif
+}
+static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPos, int *_piAddress, char *_pstVarname)
+{
+    int iRet = 0;
+    int iRows = 0;
+    int iCols = 0;
+    int iItems = 0;
+    hobj_ref_t *piItemRef = NULL;
+
+    // an hypermatrix is stored in an mlist
+    if (_iVarType != sci_mlist)
+    {
+        return false;
+    }
+
+    iRet = getListDims_v1(_iDatasetId, &iItems);
+    if (iRet)
+    {
+        return false;
+    }
+
+    if (iItems != 3)
+    {
+        // hypermatrix have 3 elements
+        return false;
+    }
+
+    iRet = getListItemReferences_v1(_iDatasetId, &piItemRef);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // get first item
+    int iItemDataset = 0;
+    iRet = getListItemDataset_v1(_iDatasetId, piItemRef, 0, &iItemDataset);
+    if (iRet || iItemDataset == 0)
+    {
+        return false;
+    }
+
+    // get first item type
+    int iItemType = getScilabTypeFromDataSet_v1(iItemDataset);
+    if (iItemType != sci_strings)
+    {
+        return false;
+    }
+
+    // get size of first item
+    iRet = getDatasetDims_v1(iItemDataset, &iRows, &iCols);
+    if (iRet < 0)
+    {
+        return false;
+    }
+
+    if (iRows * iCols != 3)
+    {
+        return false;
+    }
+
+    // get data of first item for check the type of mlist
+    char** pstData = new char*[iRows * iCols];
+    iRet = readStringMatrix_v1(iItemDataset, iRows, iCols, pstData);
+    if (iRet || strcmp(pstData[0], "hm") != 0)
+    {
+        //freeStringMatrix_v1(iItemDataset, pstData);
+        delete[] pstData;
+        return false;
+    }
+
+    //freeStringMatrix_v1(iItemDataset, pstData);
+    delete[] pstData;
+    pstData = NULL;
+
+    // get second item, the Size of hypermatrix
+    iRet = getListItemDataset_v1(_iDatasetId, piItemRef, 1, &iItemDataset);
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = getDatasetDims_v1(iItemDataset, &iRows, &iCols);
+    if (iRet < 0)
+    {
+        return false;
+    }
+
+    if (iRows != 1)
+    {
+        return false;
+    }
+
+    int* piDimsArray = new int[iCols];
+    iRet = readInteger32Matrix_v1(iItemDataset, iRows, iCols, piDimsArray);
+    if (iRet)
+    {
+        delete[] piDimsArray;
+        return false;
+    }
+
+    // get third item, the Data of hypermatrix
+    // import data like a "type" (Double, Int, ...) instead of mlist
+    iRet = getListItemDataset_v1(_iDatasetId, piItemRef, 2, &iItemDataset);
+    bool bRet = import_data_v1(pvCtx, iItemDataset, _iItemPos, _piAddress, _pstVarname);
+    if (bRet == false)
+    {
+        delete[] piDimsArray;
+        return false;
+    }
+
+    // get imported hypermatrix from List or Context
+    types::GenericType* pGT = NULL;
+    types::InternalType* pIT = NULL;
+    if (_piAddress)
+    {
+        types::List* pL = (types::List*)_piAddress;
+        pIT = pL->get(_iItemPos - 1);
+    }
+    else
+    {
+        wchar_t* pwcsName = to_wide_string(_pstVarname);
+        pIT = symbol::Context::getInstance()->getCurrentLevel(symbol::Symbol(pwcsName));
+        FREE(pwcsName);
+    }
+
+    // reshape data with size of hypermatrix
+    pGT = pIT->getAs<types::GenericType>();
+    pGT->reshape(piDimsArray, iCols);
+
+    delete[] piDimsArray;
+
+
+    iRet = deleteListItemReferences_v1(_iDatasetId, piItemRef);
+    if (iRet)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 /*--------------------------------------------------------------------------*/
