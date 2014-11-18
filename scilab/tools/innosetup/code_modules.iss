@@ -151,6 +151,11 @@ begin
         ModulesXmlFileLines[i] := '<module name="modules_manager" activate="yes"/>'; i := i + 1;
     end;
 
+    if IsComponentSelected( ExpandConstant('{#COMPN_MPI}') ) then
+    begin
+        ModulesXmlFileLines[i] := '<module name="mpi" activate="yes"/>'; i := i + 1;
+    end;
+
     ModulesXmlFileLines[i] := '</modules>'; i := i + 1;
 
     Result := SaveStringsToFile(ModuleFileName, ModulesXmlFileLines, False);

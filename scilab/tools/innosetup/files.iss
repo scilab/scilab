@@ -97,4 +97,5 @@
 #include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
 #include BinariesSourcePath + "\modules\ast\ast.iss"
 #include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
+#include BinariesSourcePath + "\modules\mpi\mpi.iss"
 ;-------------------------------------------------------------------------------

@@ -53,6 +53,7 @@ fr_FR.DescriptionSciNotes = Scinotes : Éditeur de texte pour Scilab
 fr_FR.DescriptionXcos = Xcos
 fr_FR.DescriptionModulesManager = Outils pour créer des modules externes
 fr_FR.DescriptionModuleJVM = Interface graphique
+fr_FR.DescriptionMPI = MPI ( basé sur Microsoft HPC Pack 2012 R2 )
 ;
 fr_FR.ConsoleIconName = Console Scilab
 ;
