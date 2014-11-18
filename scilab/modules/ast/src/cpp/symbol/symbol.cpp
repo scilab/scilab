@@ -50,7 +50,8 @@ bool Symbol::operator!= (const Symbol &rhs) const
 
 bool Symbol::operator<(const Symbol &rhs) const
 {
-    return (&(*_set_node) < & (*rhs.getNode()));
+    // compare values instead of pointers to preserve consistency across runs, platforms, etc..
+    return *_set_node < *rhs.getNode();
 }
 
 std::wostream& operator<< (std::wostream &ostr, const Symbol &the)
