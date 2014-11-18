@@ -75,7 +75,7 @@ struct orig
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }
@@ -117,7 +117,7 @@ struct sz
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }
@@ -322,10 +322,6 @@ struct exprs
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
-            if (current->getCols() != 0 && current->getCols() != 1)
-            {
-                return false;
-            }
 
             std::vector<std::string> exprs (current->getSize());
             for (int i = 0; i < (int)exprs.size(); ++i)

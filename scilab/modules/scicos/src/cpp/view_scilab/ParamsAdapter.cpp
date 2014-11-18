@@ -139,7 +139,7 @@ struct tol
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 7)
+        if (current->getSize() != 6 && current->getSize() != 7)
         {
             return false;
         }
@@ -150,6 +150,12 @@ struct tol
         controller.getObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
 
         std::copy(current->getReal(), current->getReal() + current->getSize(), tol.begin() + 1);
+
+        // In case the last parameter is missing
+        if (current->getSize() == 6)
+        {
+            tol[7] = 0;
+        }
 
         controller.setObjectProperty(adaptee, DIAGRAM, PROPERTIES, tol);
         return true;

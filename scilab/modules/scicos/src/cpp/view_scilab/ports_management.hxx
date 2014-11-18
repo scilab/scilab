@@ -199,7 +199,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             }
             case IMPLICIT:
             {
-                if (current->getSize() != static_cast<int>(ids.size()))
+                if (current->getSize() < static_cast<int>(ids.size()))
                 {
                     return false;
                 }
