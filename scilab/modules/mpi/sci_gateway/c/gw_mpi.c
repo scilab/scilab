@@ -27,7 +27,6 @@ static gw_generic_table Tab[] =
     {sci_mpi_irecv, "MPI_Irecv"},
     {sci_mpi_isend, "MPI_Isend"},
     {sci_mpi_wait, "MPI_Wait"}
-
 };
 /*-----------------------------------------------------------------------------------*/
 int gw_mpi(void)
