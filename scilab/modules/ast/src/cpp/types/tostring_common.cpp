@@ -108,7 +108,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         {
             //exponant
             _pDF->bExp = true;
-            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10((double)iNbDigit) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max((int)log10((double)iNbDigit), 2);
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
@@ -129,8 +129,9 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
             {
                 dblTemp = 1;    //no incidence on value, just to allow log10(dblTemp)
             }
+
             _pDF->bExp = true;
-            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + (int)log10(dblTemp) + 1;
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max((int)log10(dblTemp), 2);
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
@@ -246,70 +247,67 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
     os_swprintf(pwstSign, 32, L"%ls%ls%ls", pBlank, pSign, pBlank);
 
-    if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
+    if (ISNAN(_dblVal))
     {
-        //do not print if _bPrintOne == false && _dblVal == 1
-        if (ISNAN(_dblVal))
-        {
-            //NaN
-            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
-        }
-        else if (!finite(_dblVal))
-        {
-            //Inf
-            os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
-        }
-        else if (_pDF->bExp)
-        {
-            double dblAbs = fabs(_dblVal);
-            double dblDec = 0;
-            double dblEnt = 0;
-            double dblTemp = 0;
+        //NaN
+        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Nan");
+    }
+    else if (!finite(_dblVal))
+    {
+        //Inf
+        os_swprintf(pwstOutput, 32, L"%ls%*ls", pwstSign, _pDF->iPrec, L"Inf");
+    }
+    else if (_pDF->bExp)
+    {
+        double dblAbs = fabs(_dblVal);
+        double dblDec = 0;
+        double dblEnt = 0;
+        double dblTemp = 0;
 
-            dblDec = modf(dblAbs, &dblEnt);
-            if (dblEnt == 0)
-            {
-                dblTemp = floor(log10(dblDec));
-            }
-            else
-            {
-                dblTemp = log10(dblEnt);
-            }
-            dblDec = dblAbs / pow(10., (double)(int)dblTemp);
-            dblDec = modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
-
-            if (_pDF->bPrintPoint)
-            {
-                os_swprintf(pwstFormat, 32, L"%ls%%#.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
-            }
-            else
-            {
-                os_swprintf(pwstFormat, 32, L"%ls%%.0f%%0%d.0fD%%+d", pwstSign, _pDF->iPrec);
-            }
-
-            os_swprintf(pwstOutput, 32, pwstFormat, dblEnt, dblDec, (int)dblTemp);
+        dblDec = modf(dblAbs, &dblEnt);
+        if (dblEnt == 0)
+        {
+            dblTemp = floor(log10(dblDec));
         }
         else
         {
-            if (_pDF->bPrintPoint)
-            {
-                os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
-            }
-            else
-            {
-                os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
-            }
-
-            os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
+            dblTemp = log10(dblEnt);
         }
 
-        *_postr << pwstOutput;
+        dblDec = dblAbs / pow(10., (double)(int)dblTemp);
+        dblDec = modf(dblDec, &dblEnt) * pow(10., _pDF->iPrec);
+
+        if (_pDF->bPrintPoint)
+        {
+            os_swprintf(pwstFormat, 32, L"%ls%%#.0f%%0%d.0fD%%+.02d", pwstSign, _pDF->iPrec);
+        }
+        else
+        {
+            os_swprintf(pwstFormat, 32, L"%ls%%.0f%%0%d.0fD%%+.02d", pwstSign, _pDF->iPrec);
+        }
+
+        os_swprintf(pwstOutput, 32, pwstFormat, dblEnt, dblDec, (int)dblTemp);
+    }
+    else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
+    {
+        //do not print if _bPrintOne == false && _dblVal == 1
+        if (_pDF->bPrintPoint)
+        {
+            os_swprintf(pwstFormat, 32, L"%ls%%#-%d.%df", pwstSign, _pDF->iWidth - 1, _pDF->iPrec);
+        }
+        else
+        {
+            os_swprintf(pwstFormat, 32, L"%ls%%-%d.%df", pwstSign, _pDF->iWidth - 2, _pDF->iPrec);  //-2 no point needed
+        }
+
+        os_swprintf(pwstOutput, 32, pwstFormat, fabs(_dblVal));
     }
     else if (wcslen(pwstSign) != 0)
     {
         os_swprintf(pwstOutput, 32, L"%ls", pwstSign);
-        *_postr << pwstOutput;
     }
+
+    *_postr << pwstOutput;
 }
 
 /*

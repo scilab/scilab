@@ -143,6 +143,27 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     dfI.bPrintPoint = dfI.bExp;
     dfI.bPaddSign = false;
 
+    // decrease precision when the real number will be rounded
+    // format(10) with number 1.12345678 should return 1.1234568
+    if (dfR.iWidth == ConfigVariable::getFormatSize())
+    {
+        if (dfR.iPrec != 0)
+        {
+            dfR.iPrec--;
+        }
+
+        dfR.iWidth--;
+    }
+
+    if (dfI.iWidth == ConfigVariable::getFormatSize())
+    {
+        if (dfI.iPrec != 0)
+        {
+            dfI.iPrec--;
+        }
+
+        dfI.iWidth--;
+    }
 
     if (_dblR == 0)
     {
@@ -161,7 +182,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             //I
             *_postr << (_dblI < 0 ? L"-" : L"");
             *_postr << L"%i";
-            if (fabs(_dblI) != 1)
+            if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //specail case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
@@ -187,7 +208,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             addDoubleValue(_postr, _dblR, &dfR);
             //I
             *_postr << (_dblI < 0 ? L"-%i" : L"+%i");
-            if (fabs(_dblI) != 1)
+            if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //special case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
