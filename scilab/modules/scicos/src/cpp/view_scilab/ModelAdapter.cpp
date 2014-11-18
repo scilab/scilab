@@ -418,12 +418,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
 
                 char* data;
                 types::Int8* pInt8 = new types::Int8(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(char));
+                // Use a buffer to prevent copying only parts of integers
+                char* buffer = new char[numberOfIntNeeded * 4];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(char));
+                delete[] buffer;
                 list->set(i, pInt8);
                 break;
             }
@@ -431,12 +435,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
 
                 unsigned char* data;
                 types::UInt8* pUInt8 = new types::UInt8(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned char));
+                // Use a buffer to prevent copying only parts of integers
+                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(unsigned char));
+                delete[] buffer;
                 list->set(i, pUInt8);
                 break;
             }
@@ -444,12 +452,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
 
                 short int* data;
                 types::Int16* pInt16 = new types::Int16(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(short int));
+                // Use a buffer to prevent copying only parts of integers
+                short int* buffer = new short int[numberOfIntNeeded * 2];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(short int));
+                delete[] buffer;
                 list->set(i, pInt16);
                 break;
             }
@@ -457,12 +469,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
 
                 unsigned short int* data;
                 types::UInt16* pUInt16 = new types::UInt16(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned short int));
+                // Use a buffer to prevent copying only parts of integers
+                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(unsigned short int));
+                delete[] buffer;
                 list->set(i, pUInt16);
                 break;
             }
@@ -613,26 +629,34 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 4 char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt8->get(), m * n * sizeof(char));
+                // Use a buffer to fill the entirety of 'prop_content'
+                char* buffer = new char[numberOfIntNeeded * 4];
+                memcpy(buffer, pInt8->get(), m * n * sizeof(char));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt8:
             {
-                types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
-                m = pInt16->getRows();
-                n = pInt16->getCols();
+                types::UInt8* pUInt8 = list->get(i)->getAs<types::UInt8>();
+                m = pUInt8->getRows();
+                n = pUInt8->getCols();
 
                 // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(unsigned char));
+                // Use a buffer to fill the entirety of 'prop_content'
+                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
+                memcpy(buffer, pUInt8->get(), m * n * sizeof(unsigned char));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt16:
@@ -643,11 +667,15 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(short int));
+                // Use a buffer to fill the entirety of 'prop_content'
+                short int* buffer = new short int[numberOfIntNeeded * 2];
+                memcpy(buffer, pInt16->get(), m * n * sizeof(short int));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt16:
@@ -658,11 +686,15 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into prop_content
-                memcpy(&prop_content[index + 3], pUInt16->get(), m * n * sizeof(unsigned short int));
+                // Use a buffer to fill the entirety of 'prop_content'
+                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
+                memcpy(buffer, pUInt16->get(), m * n * sizeof(unsigned short int));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt32:
