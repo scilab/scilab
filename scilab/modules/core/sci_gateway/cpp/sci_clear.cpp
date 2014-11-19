@@ -1,6 +1,7 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  *  Copyright (C) 2010-2010 - DIGITEO - Bruno JOFRET
+ *  Copyright (C) 2014 - Scilab Enterprises - Cedric Delamarre
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -40,21 +41,17 @@ Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::ty
     // First check if all arguments are Single Strings.
     for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
     {
-        if (!(*inIterator)->isString())
+        if ((*inIterator)->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Single string expected.\n"), "clear", iWrongType);
+            Scierror(207, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", iWrongType);
             return Function::Error;
         }
-        if ((*inIterator)->getAs<types::String>()->getSize() != 1)
-        {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Single string expected.\n"), "clear", iWrongType);
-            return Function::Error;
-        }
-    }
 
-    for (inIterator = in.begin() ; inIterator != in.end() ; inIterator++)
-    {
-        symbol::Context::getInstance()->remove(symbol::Symbol((*inIterator)->getAs<types::String>()->get(0, 0)));
+        types::String* pStr = (*inIterator)->getAs<types::String>();
+        for (int i = 0; i < pStr->getSize(); i++)
+        {
+            symbol::Context::getInstance()->remove(symbol::Symbol(pStr->get(i)));
+        }
     }
 
     return Function::OK;

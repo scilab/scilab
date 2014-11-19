@@ -276,10 +276,11 @@ struct Variables
                 pIT->killMe();
                 _var->pop();
                 delete pSave;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     bool remove(const Symbol& _key, int _iLevel)
