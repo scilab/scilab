@@ -288,6 +288,12 @@ int RDividePolyByDouble(Polynom* _pPoly, Double* _pDouble, Polynom** _pPolyOut)
     }
     else */
 
+    if (bScalar1 == false && bScalar2 == false)
+    {
+        // call overload
+        return 0;
+    }
+
     if (bScalar2)
     {
         double dblDivR = _pDouble->get(0);
