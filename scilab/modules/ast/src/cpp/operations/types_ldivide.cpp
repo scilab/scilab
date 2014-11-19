@@ -98,7 +98,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     //check finite values of _pDouble1 and _pDouble2
     if (isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
     {
-        if (_pDouble2->isScalar() == false)
+        if (_pDouble1->isScalar() == false)
         {
             return 2;
         }
