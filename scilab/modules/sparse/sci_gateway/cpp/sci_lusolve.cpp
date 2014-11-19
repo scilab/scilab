@@ -126,9 +126,10 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
 
         m2 = pDblIn->getRows();
         n2 = pDblIn->getCols();
+
         if (m2 != m1)
         {
-            Scierror(77, _("%s: Wrong size for input argument #%d: Square matrix expected.\n"), "lusolve", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: Incompatible dimensions.\n"), "lusolve", 2);
             return types::Function::Error;
         }
 
