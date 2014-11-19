@@ -106,15 +106,15 @@ endif
 
 
 libsciast_la_CPPFLAGS = \
-	-Iincludes/ast \
-	-Iincludes/exps \
-	-Iincludes/operations \
-	-Iincludes/parse \
-	-Iincludes/symbol \
-	-Iincludes/system_env \
-	-Iincludes/types \
-	-Iincludes/analysis \
-	-Isrc/cpp \
+	-I$(srcdir)/includes/ast \
+	-I$(srcdir)/includes/exps \
+	-I$(srcdir)/includes/operations \
+	-I$(srcdir)/includes/parse \
+	-I$(srcdir)/includes/symbol \
+	-I$(srcdir)/includes/system_env \
+	-I$(srcdir)/includes/types \
+	-I$(srcdir)/includes/analysis \
+	-I$(srcdir)/src/cpp \
     -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \

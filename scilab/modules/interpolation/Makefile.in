@@ -602,7 +602,6 @@ GATEWAY_CPP_SOURCES = \
 
 libsciinterpolation_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/cpp/ \
     -I$(srcdir)/src/c/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \

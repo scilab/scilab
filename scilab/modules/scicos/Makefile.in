@@ -1057,7 +1057,6 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_TRUE@			-I$(top_srcdir)/modules/dynamic_link/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/string/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
-@XCOS_TRUE@			-I$(top_srcdir)/modules/intersci/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/scicos_blocks/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/action_binding/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/time/includes/ \
