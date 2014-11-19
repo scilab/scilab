@@ -18,6 +18,7 @@
 #include "internal.hxx"
 #include "double.hxx"
 #include "list.hxx"
+#include "mlist.hxx"
 #include "tlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
@@ -44,6 +45,8 @@ namespace view_scilab
 {
 namespace
 {
+
+const std::wstring TextSharedTypeStr (L"Text");
 
 struct props
 {
@@ -98,54 +101,82 @@ struct objs
         std::vector<LinkAdapter*> linkListView;
         for (int i = 0; i < list->getSize(); ++i)
         {
-            if (list->get(i)->getType() != types::InternalType::ScilabUserType)
+            if (list->get(i)->getType() == types::InternalType::ScilabUserType)
+            {
+
+                const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(list->get(i)->getShortTypeStr());
+
+                // Then, each adapter gets linked to the diagram through its adaptee (PARENT_DIAGRAM)
+                // and the diagram's adaptee lists its adaptees (CHILDREN).
+                ScicosID id;
+                switch (adapter_index)
+                {
+                    case Adapters::BLOCK_ADAPTER:
+                    {
+                        BlockAdapter* modelElement = list->get(i)->getAs<BlockAdapter>();
+
+                        id = modelElement->getAdaptee()->id();
+
+                        controller.setObjectProperty(id, BLOCK, PARENT_DIAGRAM, adaptee->id());
+                        diagramChildren.push_back(id);
+                        break;
+                    }
+                    case Adapters::LINK_ADAPTER:
+                    {
+                        LinkAdapter* modelElement = list->get(i)->getAs<LinkAdapter>();
+
+                        id = modelElement->getAdaptee()->id();
+
+                        controller.setObjectProperty(id, LINK, PARENT_DIAGRAM, adaptee->id());
+
+                        // Hold Links information, to try the linking at model-level once all the elements have been added to the Diagram
+                        linkListView.push_back(modelElement);
+
+                        diagramChildren.push_back(id);
+                        break;
+                    }
+                    case Adapters::TEXT_ADAPTER:
+                    {
+                        TextAdapter* modelElement = list->get(i)->getAs<TextAdapter>();
+
+                        id = modelElement->getAdaptee()->id();
+
+                        controller.setObjectProperty(id, ANNOTATION, PARENT_DIAGRAM, adaptee->id());
+                        diagramChildren.push_back(id);
+                        break;
+                    }
+                    default:
+                        return false;
+                }
+            }
+            else if (list->get(i)->getType() == types::InternalType::ScilabMList)
+            {
+                // Allow to pass mlists to 'objs', representing Text blocks
+                types::MList* modelElement = list->get(i)->getAs<types::MList>();
+                types::String* header = modelElement->getFieldNames();
+                if (header->get(0) != TextSharedTypeStr)
+                {
+                    return false;
+                }
+
+                // Create a Text block based on the input MList and add it to the diagram
+                ScicosID newID = controller.createObject(ANNOTATION);
+                TextAdapter* newAdaptor = new TextAdapter(std::static_pointer_cast<model::Annotation>(controller.getObject(newID)));
+                // Fill the block with the input mlist
+                if (!newAdaptor->setAsTList(modelElement, controller))
+                {
+                    return false;
+                }
+
+                // Modify the input list to save the new block
+                list->set(i, newAdaptor);
+
+                controller.setObjectProperty(newID, ANNOTATION, PARENT_DIAGRAM, adaptee->id());
+                diagramChildren.push_back(newID);
+            }
+            else
             {
                 return false;
-            }
-
-            const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(list->get(i)->getShortTypeStr());
-
-            // Then, each adapter gets linked to the diagram through its adaptee (PARENT_DIAGRAM)
-            // and the diagram's adaptee lists its adaptees (CHILDREN).
-            ScicosID id;
-            switch (adapter_index)
-            {
-                case Adapters::BLOCK_ADAPTER:
-                {
-                    BlockAdapter* modelElement = list->get(i)->getAs<BlockAdapter>();
-
-                    id = modelElement->getAdaptee()->id();
-
-                    controller.setObjectProperty(id, BLOCK, PARENT_DIAGRAM, adaptee->id());
-                    diagramChildren.push_back(id);
-                    break;
-                }
-                case Adapters::LINK_ADAPTER:
-                {
-                    LinkAdapter* modelElement = list->get(i)->getAs<LinkAdapter>();
-
-                    id = modelElement->getAdaptee()->id();
-
-                    controller.setObjectProperty(id, LINK, PARENT_DIAGRAM, adaptee->id());
-
-                    // Hold Links information, to try the linking at model-level once all the elements have been added to the Diagram
-                    linkListView.push_back(modelElement);
-
-                    diagramChildren.push_back(id);
-                    break;
-                }
-                case Adapters::TEXT_ADAPTER:
-                {
-                    TextAdapter* modelElement = list->get(i)->getAs<TextAdapter>();
-
-                    id = modelElement->getAdaptee()->id();
-
-                    controller.setObjectProperty(id, ANNOTATION, PARENT_DIAGRAM, adaptee->id());
-                    diagramChildren.push_back(id);
-                    break;
-                }
-                default:
-                    return false;
             }
         }
         controller.setObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, diagramChildren);

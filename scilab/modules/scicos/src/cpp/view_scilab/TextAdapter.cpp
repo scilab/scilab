@@ -113,7 +113,7 @@ struct graphics
             return false;
         }
         currentFieldDouble = currentField->getAs<types::Double>();
-        if (currentFieldDouble->getRows() != 1 || currentFieldDouble->getCols() != 2)
+        if (currentFieldDouble->getSize() != 2)
         {
             return false;
         }
@@ -133,7 +133,7 @@ struct graphics
             return false;
         }
         currentFieldDouble = currentField->getAs<types::Double>();
-        if (currentFieldDouble->getRows() != 1 || currentFieldDouble->getCols() != 2)
+        if (currentFieldDouble->getSize() != 2)
         {
             return false;
         }
@@ -151,7 +151,7 @@ struct graphics
         if (currentField->getType() == types::InternalType::ScilabString)
         {
             currentFieldString = currentField->getAs<types::String>();
-            if (currentFieldString->getCols() != 1 || currentFieldString->getSize() != 3)
+            if (currentFieldString->getSize() != 3)
             {
                 return false;
             }
