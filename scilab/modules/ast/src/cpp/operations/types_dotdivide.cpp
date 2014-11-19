@@ -1083,7 +1083,9 @@ InternalType* dotdiv_S_IC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* dotdiv_SC_M(T *_pL, U *_pR)
 {
-    return dotdiv_SC_MC<U, T, O>(_pR, _pL);
+    O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
+    dotdiv(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    return pOut;
 }
 
 template<class T, class U, class O>
