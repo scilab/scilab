@@ -45,19 +45,19 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     };
 
     //  names at the scilab level
-    const wchar_t* names_gen[6] = {L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra"};
+    const wchar_t* names_gen[6] = { L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra" };
 
-    types::String* pStrMethod   = NULL;
+    types::String* pStrMethod = NULL;
     types::String* pStrGenOrPhr = NULL;
 
     std::vector<types::Double*> vectpDblInput;
 
-    int iStrPos     = 0;
-    int iPos        = 0;
-    int meth        = -1;
-    int iRows       = -1;
-    int iCols       = -1;
-    int iNumIter    = -1;
+    int iStrPos = 0;
+    int iPos = 0;
+    int meth = -1;
+    int iRows = -1;
+    int iCols = -1;
+    int iNumIter = -1;
 
 
     int current_base_gen = ConfigVariable::getCurrentBaseGen();
@@ -398,16 +398,41 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     // *** perform operation in according method string and return result. ***
 
-    types::Double* pDblOut =  NULL;
+    types::Double* pDblOut = NULL;
 
-    if (itab[1] * itab[0] == 0)
+    if (iStrPos >= 2)
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        int iProdiTab = 1;
+        for (int i = 0; i < iStrPos; i++)
+        {
+            iProdiTab = iProdiTab * itab[i];
+        }
+
+        if (iProdiTab == 0)
+        {
+            pDblOut = types::Double::Empty();
+        }
+        else if ((itab[1] != itab[0]) && (itab[0] <= -1))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 1);
+            return types::Function::Error;
+        }
+        else if ((itab[1] != itab[0]) && (itab[1] <= -1))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 2);
+            return types::Function::Error;
+        }
+        else
+        {
+            pDblOut = new types::Double(iDims, itab);
+        }
     }
     else
     {
-        pDblOut = new types::Double(iDims, itab);
+
+        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+
     }
 
     delete[] itab;
