@@ -1546,11 +1546,22 @@ struct equations
         }
 
         // 'parameters'
-        if (current->get(4)->getType() != types::InternalType::ScilabList)
+        int parametersIndex = 4;
+        if (current->get(parametersIndex)->getType() == types::InternalType::ScilabDouble)
+        {
+            // For backward compatibility sake, allow the presence of an empty matrix here
+            types::Double* emptyMatrix = current->get(parametersIndex)->getAs<types::Double>();
+            if (emptyMatrix->getSize() != 0)
+            {
+                return false;
+            }
+            parametersIndex++;
+        }
+        if (current->get(parametersIndex)->getType() != types::InternalType::ScilabList)
         {
             return false;
         }
-        types::List* list = current->get(4)->getAs<types::List>();
+        types::List* list = current->get(parametersIndex)->getAs<types::List>();
         if (list->getSize() < 1)
         {
             return false;
