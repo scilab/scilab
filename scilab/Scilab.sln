@@ -1,6 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.30723.0
+VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WScilex", "modules\windows_tools\src\c\WScilex\WScilex.vcxproj", "{CCD80549-EB9C-42AA-9B86-D687377E94F6}"
 	ProjectSection(ProjectDependencies) = postProject
@@ -1762,9 +1762,13 @@ Global
 		{FC2F9DEC-EF14-401B-A0A9-CCD88552A359}.Release|x64.ActiveCfg = Release|x64
 		{FC2F9DEC-EF14-401B-A0A9-CCD88552A359}.Release|x64.Build.0 = Release|x64
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|Win32.ActiveCfg = Debug|Win32
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|Win32.Build.0 = Debug|Win32
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|x64.ActiveCfg = Debug|x64
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Debug|x64.Build.0 = Debug|x64
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|Win32.ActiveCfg = Release|Win32
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|Win32.Build.0 = Release|Win32
 		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|x64.ActiveCfg = Release|x64
+		{5E726409-247A-464A-A994-6E6A7A02A981}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

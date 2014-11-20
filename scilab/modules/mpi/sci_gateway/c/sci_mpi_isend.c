@@ -22,7 +22,7 @@
 #define TAG 0
 
 
-int sci_mpi_isend(char *fname, unsigned long fname_len)
+int sci_mpi_isend(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;

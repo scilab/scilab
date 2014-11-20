@@ -20,7 +20,7 @@
 #include "serialization.h"
 #include "deserialization.h"
 
-int sci_mpi_bcast(char *fname, unsigned long fname_len)
+int sci_mpi_bcast(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;

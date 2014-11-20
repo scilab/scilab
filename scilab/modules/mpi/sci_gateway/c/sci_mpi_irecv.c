@@ -19,7 +19,7 @@
 #include "sci_malloc.h"
 #include "deserialization.h"
 
-int sci_mpi_irecv(char *fname, unsigned long fname_len)
+int sci_mpi_irecv(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;
