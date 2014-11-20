@@ -19,7 +19,7 @@ propertyUpdated( 1 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 scs_m  = 
 wpar = []
 title = ["Untitled";""]
-tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
@@ -31,7 +31,7 @@ scs_m.props
  ans  =
 wpar = []
 title = ["Untitled";""]
-tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
@@ -249,7 +249,7 @@ propertyUpdated( 16 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 scs_m  = 
 wpar = []
 title = ["Untitled";""]
-tol = [0.000001,0.000001,1.0000D-10,100001,0,1,0]
+tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
