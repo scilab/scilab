@@ -447,6 +447,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
 
     // Connect the new one
+
     if (v.kind != Start && v.kind != End)
     {
         return;
@@ -465,6 +466,9 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     {
         return;
     }
+
+    // v.port may be decremented locally to square with the port indexes
+    size_t portIndex = v.port;
 
     std::vector<ScicosID> sourceBlockPorts;
     bool newPortIsImplicit = false;
@@ -539,30 +543,44 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             }
 
             // Rule out the implicit ports
-            for (std::vector<ScicosID>::iterator it = sourceBlockPorts.begin(); it != sourceBlockPorts.end(); ++it)
+            for (size_t i = 0; i < sourceBlockPorts.size(); ++i)
             {
                 bool isImplicit;
-                controller.getObjectProperty(*it, PORT, IMPLICIT, isImplicit);
+                controller.getObjectProperty(sourceBlockPorts[i], PORT, IMPLICIT, isImplicit);
                 if (isImplicit == true)
                 {
-                    sourceBlockPorts.erase(it);
+                    sourceBlockPorts.erase(sourceBlockPorts.begin() + i);
+                    if (portIndex > i + 1)
+                    {
+                        portIndex--; // Keep portIndex consistent with the port indexes
+                    }
                 }
             }
         }
         else // model::implicit
         {
             newPortIsImplicit = true;
-            sourceBlockPorts.insert(sourceBlockPorts.begin(), in.begin(), in.end());
-            sourceBlockPorts.insert(sourceBlockPorts.begin(), out.begin(), out.end());
+            if (v.kind == Start)
+            {
+                sourceBlockPorts = out;
+            }
+            else // End
+            {
+                sourceBlockPorts = in;
+            }
 
             // Rule out the explicit ports
-            for (std::vector<ScicosID>::iterator it = sourceBlockPorts.begin(); it != sourceBlockPorts.end(); ++it)
+            for (size_t i = 0; i < sourceBlockPorts.size(); ++i)
             {
                 bool isImplicit;
-                controller.getObjectProperty(*it, PORT, IMPLICIT, isImplicit);
+                controller.getObjectProperty(sourceBlockPorts[i], PORT, IMPLICIT, isImplicit);
                 if (isImplicit == false)
                 {
-                    sourceBlockPorts.erase(it);
+                    sourceBlockPorts.erase(sourceBlockPorts.begin() + i);
+                    if (portIndex > i + 1)
+                    {
+                        portIndex--; // Keep portIndex consistent with the port indexes
+                    }
                 }
             }
         }
@@ -574,14 +592,14 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
     }
 
-    unsigned int nBlockPorts = static_cast<int>(sourceBlockPorts.size());
-    if (nBlockPorts >= v.port)
+    size_t nBlockPorts = sourceBlockPorts.size();
+    if (nBlockPorts >= portIndex)
     {
-        concernedPort = sourceBlockPorts[v.port - 1];
+        concernedPort = sourceBlockPorts[portIndex - 1];
     }
     else
     {
-        while (nBlockPorts < v.port) // Create as many ports as necessary
+        while (nBlockPorts < portIndex) // Create as many ports as necessary
         {
             concernedPort = controller.createObject(PORT);
             controller.setObjectProperty(concernedPort, PORT, IMPLICIT, newPortIsImplicit);
@@ -632,11 +650,9 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     controller.getObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, oldLink);
     if (oldLink != 0)
     {
-        // Disconnect the old other end port and delete the old link
-        ScicosID oldPort;
-        controller.getObjectProperty(oldLink, LINK, otherEnd, oldPort);
-        controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, unconnected);
-        controller.deleteObject(oldLink);
+        // Disconnect the old link
+        controller.setObjectProperty(oldLink, LINK, end, unconnected);
+        controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
     }
 
     // Connect the new source and destination ports together

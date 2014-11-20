@@ -1601,19 +1601,18 @@ struct equations
         // 'parameters' values
         if (list->get(1)->getType() == types::InternalType::ScilabDouble)
         {
-            if (parametersSize > 1)
-            {
-                return false;
-            }
             types::Double* parameterVal = list->get(1)->getAs<types::Double>();
-            if (parameterVal->getSize() != 1)
+            if (parameterVal->getSize() != static_cast<int>(parametersSize))
             {
                 return false;
             }
-            std::ostringstream strParameterVal;
-            strParameterVal << parameterVal->get(0);
-            std::string parameterValStr = strParameterVal.str();
-            equations.push_back(parameterValStr);
+            for (size_t i = 0; i < parametersSize; ++i)
+            {
+                std::ostringstream strParameterVal;
+                strParameterVal << parameterVal->get(i);
+                std::string parameterValStr = strParameterVal.str();
+                equations.push_back(parameterValStr);
+            }
         }
         else
         {
