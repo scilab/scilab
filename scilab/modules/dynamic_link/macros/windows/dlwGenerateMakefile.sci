@@ -181,6 +181,12 @@ function ilib_gen_Make_win32(name, ..
         error(999, msprintf(_("%s: Wrong value for input argument #%d: existing file(s) expected.\n"), "ilib_gen_Make", 3));
     end
 
+    //update DEBUG_SCILAB_DYNAMIC_LINK to map with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    if val <> "YES" & val <> "NO" & isDebug()then
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
+    end
+
     // remove duplicated files
     FILES_SRC_MATRIX = unique(FILES_SRC_MATRIX);
 
@@ -265,5 +271,9 @@ function ilib_gen_Make_win32(name, ..
         // TEMPLATE_MAKEFILE.VC not found
         warning(SCI+"/modules/dynamic_link/src/scripts/TEMPLATE_MAKEFILE.VC"+ _("not found.") );
     end
+
+    //restore DEBUG_SCILAB_DYNAMIC_LINK
+    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+
 endfunction
 //=============================================================================
