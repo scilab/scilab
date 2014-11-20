@@ -145,9 +145,9 @@ types::Function::ReturnValue sci_semidef(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
-    if (pDblC->getRows() != pDblX->getRows() || pDblC->getCols() != pDblX->getCols())
+    if (pDblC->getRows()* pDblC->getCols() != pDblX->getRows()*pDblX->getCols())
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: Input argument %d size expected.\n"), "semidef", 6, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: Input argument %d size expected.\n"), "semidef", 5, 1);
         return types::Function::Error;
     }
 
