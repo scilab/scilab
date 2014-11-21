@@ -114,8 +114,7 @@ void Function::whoAmI()
 
 bool Function::toString(std::wostringstream& ostr)
 {
-    // FIXME : Implement me.
-    ostr << L"FIXME : Implement Function::toString" << std::endl;
+    // display nothing. ie : c = cos
     return true;
 }
 
