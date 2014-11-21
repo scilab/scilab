@@ -101,7 +101,6 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
     {
         types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
         types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
-        pPolyOut->setComplex(pPolyIn->isComplex());
 
         double* dataImg  = NULL;
         double* dataReal = NULL;
