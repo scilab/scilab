@@ -18,6 +18,7 @@
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -40,14 +41,15 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    types::InternalType* getRpar() const;
-    void setRpar(types::InternalType* v);
+    DiagramAdapter* getDiagram() const;
+    void setDiagram(DiagramAdapter* newDiagram);
 
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
 
 private:
-    types::InternalType* rpar_content;
+    DiagramAdapter* diagramAdapter;
+
     types::InternalType* doc_content;
 };
 

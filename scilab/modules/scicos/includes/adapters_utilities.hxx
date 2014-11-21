@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef PRIVATE_UTILITIES_HXX_
-#define PRIVATE_UTILITIES_HXX_
+#ifndef ADAPTERS_UTILITIES_HXX_
+#define ADAPTERS_UTILITIES_HXX_
 
 enum startOrEnd
 {
@@ -26,4 +26,4 @@ struct link_t
     enum startOrEnd kind;
 };
 
-#endif /* PRIVATE_UTILITIES_HXX_ */
+#endif /* ADAPTERS_UTILITIES_HXX_ */

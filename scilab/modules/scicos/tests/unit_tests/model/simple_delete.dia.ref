@@ -42,6 +42,7 @@ propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 clear scs_m
 propertyUpdated( 1 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 1 , BLOCK )
 objectDeleted( 2 , DIAGRAM )
 // Test #2: the block is deleted after the diagram
@@ -81,6 +82,7 @@ propertyUpdated( 4 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 clear scs_m
 propertyUpdated( 3 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 4 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 4 , DIAGRAM )
 clear blk
 objectDeleted( 3 , BLOCK )

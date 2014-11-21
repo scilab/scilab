@@ -45,8 +45,10 @@ public:
     types::InternalType* getListObjects() const;
     void setListObjects(types::InternalType* v);
 
-    std::vector<link_t>& getFrom();
-    std::vector<link_t>& getTo();
+    std::vector<link_t> getFrom() const;
+    void setFrom(const std::vector<link_t>& from);
+    std::vector<link_t> getTo() const;
+    void setTo(const std::vector<link_t>& to);
 
     types::InternalType* getContribContent() const;
     void setContribContent(types::InternalType* v);

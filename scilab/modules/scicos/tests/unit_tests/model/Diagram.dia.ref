@@ -49,6 +49,7 @@ scs_m.contrib
  ans  =
      ()
 clear scs_m
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES
 objectDeleted( 1 , DIAGRAM )
 // Create a dummy diagram with one undefined block then clear it
 scs_m = scicos_diagram(objs=list(scicos_block()));
@@ -86,6 +87,7 @@ propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 clear scs_m
 propertyUpdated( 2 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 2 , BLOCK )
 objectDeleted( 3 , DIAGRAM )
 // Create a diagram containing 2 summation blocks and two links
@@ -640,6 +642,7 @@ propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 11 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 14 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 15 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 16 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 16 , DIAGRAM )
 lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
 objectCreated( 19 , LINK )
@@ -677,6 +680,7 @@ clear scs_m;
 propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 19 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 20 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 20 , DIAGRAM )
 lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
 objectCreated( 21 , LINK )
@@ -837,6 +841,7 @@ clear scs_m;
 propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 23 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 7 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 9 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 objectDeleted( 23 , LINK )
@@ -1233,6 +1238,7 @@ objectDeleted( 24 , LINK )
 propertyUpdated( 26 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 27 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 31 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 25 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 30 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 32 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 objectDeleted( 26 , LINK )

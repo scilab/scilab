@@ -69,7 +69,71 @@ struct objs
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-        return adaptor.getListObjects();
+        model::Diagram* adaptee = adaptor.getAdaptee().get();
+
+        std::vector<ScicosID> children;
+        controller.getObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, children);
+
+        types::List* o = new types::List();
+
+        std::vector<link_t> from = adaptor.getFrom();
+        std::vector<link_t> to = adaptor.getTo();
+
+        int link_number = 0;
+        Controller newController = Controller();
+        for (int i = 0; i < static_cast<int>(children.size()); ++i)
+        {
+            std::shared_ptr<model::BaseObject> item = newController.getObject(children[i]);
+            switch (item->kind())
+            {
+                case ANNOTATION:
+                {
+                    std::shared_ptr<model::Annotation> annotation = std::static_pointer_cast<model::Annotation>(item);
+                    TextAdapter* localAdaptor = new TextAdapter(annotation);
+                    o->set(i, localAdaptor);
+                    continue;
+                }
+                case BLOCK:
+                {
+                    std::shared_ptr<model::Block> block = std::static_pointer_cast<model::Block>(item);
+                    BlockAdapter* localAdaptor = new BlockAdapter(block);
+
+                    types::List* list_objects = adaptor.getListObjects()->getAs<types::List>();
+                    if (i < list_objects->getSize())
+                    {
+                        BlockAdapter* oldBlock = list_objects->get(i)->getAs<BlockAdapter>();
+                        DiagramAdapter* oldBlockDiagram = oldBlock->getDiagram();
+                        if (oldBlockDiagram != nullptr)
+                        {
+                            oldBlockDiagram->IncreaseRef();
+                        }
+                        localAdaptor->setDiagram(oldBlockDiagram);
+                    }
+
+                    o->set(i, localAdaptor);
+                    continue;
+                }
+                case LINK:
+                {
+                    std::shared_ptr<model::Link> link = std::static_pointer_cast<model::Link>(item);
+                    LinkAdapter* localAdaptor = new LinkAdapter(link);
+
+                    // In case a Link points to a Block that has not been added yet,
+                    // retrieve the 'from' and 'to' values from the Diagram Adapter if they have been saved
+                    if (link_number < static_cast<int>(from.size()))
+                    {
+                        localAdaptor->setFrom(from[link_number]);
+                        localAdaptor->setTo(to[link_number]);
+                        link_number++;
+                    }
+                    o->set(i, localAdaptor);
+                    continue;
+                }
+                default:
+                    return 0;
+            }
+        }
+        return o;
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
@@ -94,8 +158,6 @@ struct objs
             controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
         }
         diagramChildren.clear();
-        adaptor.getFrom().clear();
-        adaptor.getTo().clear();
 
         // Set the children to the right IDs
         std::vector<LinkAdapter*> linkListView;
@@ -129,7 +191,7 @@ struct objs
 
                         controller.setObjectProperty(id, LINK, PARENT_DIAGRAM, adaptee->id());
 
-                        // Hold Links information, to try the linking at model-level once all the elements have been added to the Diagram
+                        // Do the linking in the next loop, in case the Link points to a Block that has not been added yet
                         linkListView.push_back(modelElement);
 
                         diagramChildren.push_back(id);
@@ -183,23 +245,26 @@ struct objs
 
         adaptor.setListObjects(v);
 
+        std::vector<link_t> from_content (linkListView.size());
+        std::vector<link_t> to_content (linkListView.size());
         // Do the linking at model-level
         for (int i = 0; i < static_cast<int>(linkListView.size()); ++i)
         {
             // Trigger 'from' and 'to' properties
-            link_t from_content = linkListView[i]->getFrom();
-            if (!linkListView[i]->setFrom(from_content, controller))
+            from_content[i] = linkListView[i]->getFrom();
+            if (!linkListView[i]->setFromInModel(from_content[i], controller) && (from_content[i].block != 0 && from_content[i].port != 0))
             {
                 return false;
             }
-            adaptor.getFrom().push_back(from_content);
-            link_t to_content = linkListView[i]->getTo();
-            if (!linkListView[i]->setTo(to_content, controller))
+            to_content[i] = linkListView[i]->getTo();
+            if (!linkListView[i]->setToInModel(to_content[i], controller) && (to_content[i].block != 0 && to_content[i].port != 0))
             {
                 return false;
             }
-            adaptor.getTo().push_back(to_content);
         }
+        adaptor.setFrom(from_content);
+        adaptor.setTo(to_content);
+
         return true;
     }
 };
@@ -293,11 +358,78 @@ DiagramAdapter::DiagramAdapter(std::shared_ptr<org_scilab_modules_scicos::model:
 
 DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
     BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>(adapter),
-    list_objects(adapter.getListObjects()),
+    list_objects(),
     from_vec(adapter.from_vec),
     to_vec(adapter.to_vec),
     contrib_content(adapter.getContribContent())
 {
+    // Generate an Adapter for each child of the cloned Diagram and store them all in 'list_objects'
+    Controller controller;
+    std::vector<ScicosID> children;
+    controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, children);
+
+    std::vector<LinkAdapter*> linkListView; // Store the new LinkAdapters to make the linking at model-level after the loop
+    types::List* List_objects = new types::List();
+    for (int i = 0; i < static_cast<int>(children.size()); ++i)
+    {
+        std::shared_ptr<model::BaseObject> item = controller.getObject(children[i]);
+        switch (item->kind())
+        {
+            case ANNOTATION:
+            {
+                std::shared_ptr<model::Annotation> annotation = std::static_pointer_cast<model::Annotation>(item);
+                TextAdapter* localAdaptor = new TextAdapter(annotation);
+
+                List_objects->set(i, localAdaptor);
+                continue;
+            }
+            case BLOCK:
+            {
+                std::shared_ptr<model::Block> block = std::static_pointer_cast<model::Block>(item);
+                BlockAdapter* localAdaptor = new BlockAdapter(block);
+
+                // If the diagram's block was a SuperBlock, make its new adapter point to its old diagram
+                types::List* oldList_objects = adapter.getListObjects()->getAs<types::List>();
+                if (i < oldList_objects->getSize())
+                {
+                    BlockAdapter* oldBlock = oldList_objects->get(i)->getAs<BlockAdapter>();
+                    DiagramAdapter* oldBlockDiagram = oldBlock->getDiagram();
+                    if (oldBlockDiagram != nullptr)
+                    {
+                        oldBlockDiagram->IncreaseRef();
+                    }
+                    localAdaptor->setDiagram(oldBlockDiagram);
+                }
+
+                List_objects->set(i, localAdaptor);
+                continue;
+            }
+            case LINK:
+            {
+                std::shared_ptr<model::Link> link = std::static_pointer_cast<model::Link>(item);
+                LinkAdapter* localAdaptor = new LinkAdapter(link);
+
+                // Do the model linking in the next loop, in case the Link points to a Block that has not been added yet
+                linkListView.push_back(localAdaptor);
+
+                List_objects->set(i, localAdaptor);
+                continue;
+            }
+            default:
+            {
+            }
+        }
+    }
+
+    // Do the linking at model-level, from the old 'from_vec' and 'to_vec'
+    for (int i = 0; i < static_cast<int>(linkListView.size()); ++i)
+    {
+        // Trigger 'from' and 'to' properties
+        linkListView[i]->setFromInModel(from_vec[i], controller);
+        linkListView[i]->setToInModel(to_vec[i], controller);
+    }
+
+    list_objects = List_objects;
 }
 
 DiagramAdapter::~DiagramAdapter()
@@ -313,6 +445,8 @@ DiagramAdapter::~DiagramAdapter()
             auto o = controller.getObject(id);
             controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
         }
+        diagramChildren.clear();
+        controller.setObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
     }
 
     list_objects->DecreaseRef();
@@ -363,14 +497,24 @@ void DiagramAdapter::setListObjects(types::InternalType* v)
     temp->killMe();
 }
 
-std::vector<link_t>& DiagramAdapter::getFrom()
+std::vector<link_t> DiagramAdapter::getFrom() const
 {
     return from_vec;
 }
 
-std::vector<link_t>& DiagramAdapter::getTo()
+void DiagramAdapter::setFrom(const std::vector<link_t>& from)
+{
+    from_vec = from;
+}
+
+std::vector<link_t> DiagramAdapter::getTo() const
 {
     return to_vec;
+}
+
+void DiagramAdapter::setTo(const std::vector<link_t>& to)
+{
+    to_vec = to;
 }
 
 } /* namespace view_scilab */

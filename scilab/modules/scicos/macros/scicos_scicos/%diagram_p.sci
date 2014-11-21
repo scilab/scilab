@@ -26,7 +26,7 @@ function %diagram_p(scs_m)
     for o=scs_m.objs
         if typeof(o)=="Block" then
             mprintf("%s%s\n", part(string(i), 1:6), o.gui)
+            i = i + 1;
         end
-        i = i + 1;
     end
 endfunction

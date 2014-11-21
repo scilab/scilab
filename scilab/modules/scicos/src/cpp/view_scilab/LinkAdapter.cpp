@@ -403,18 +403,15 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     controller.getObjectProperty(id, LINK, DESTINATION_PORT, to);
     ScicosID concernedPort;
     ScicosID otherPort;
-    object_properties_t otherEnd;
     switch (end)
     {
         case SOURCE_PORT:
             concernedPort = from;
             otherPort = to;
-            otherEnd = DESTINATION_PORT;
             break;
         case DESTINATION_PORT:
             concernedPort = to;
             otherPort = from;
-            otherEnd = SOURCE_PORT;
             break;
         default:
             return;
@@ -736,7 +733,7 @@ struct from
             from_content.kind = (current->get(2) == 0.) ? Start : End;
         }
 
-        return adaptor.setFrom(from_content, controller);
+        return adaptor.setFromInModel(from_content, controller);
     }
 };
 
@@ -787,7 +784,7 @@ struct to
             to_content.kind = (current->get(2) == 0.) ? Start : End;
         }
 
-        return adaptor.setTo(to_content, controller);
+        return adaptor.setToInModel(to_content, controller);
     }
 };
 
@@ -850,7 +847,12 @@ link_t LinkAdapter::getFrom() const
     return m_from;
 }
 
-bool LinkAdapter::setFrom(const link_t& v, Controller& controller)
+void LinkAdapter::setFrom(const link_t& v)
+{
+    m_from = v;
+}
+
+bool LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
 {
     m_from = v;
 
@@ -872,7 +874,12 @@ link_t LinkAdapter::getTo() const
     return m_to;
 }
 
-bool LinkAdapter::setTo(const link_t& v, Controller& controller)
+void LinkAdapter::setTo(const link_t& v)
+{
+    m_to = v;
+}
+
+bool LinkAdapter::setToInModel(const link_t& v, Controller& controller)
 {
     m_to = v;
 

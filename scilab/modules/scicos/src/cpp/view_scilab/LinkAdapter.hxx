@@ -43,9 +43,11 @@ public:
     std::wstring getShortTypeStr();
 
     link_t getFrom() const;
-    bool setFrom(const link_t& v, Controller& controller);
+    void setFrom(const link_t& v);
+    bool setFromInModel(const link_t& v, Controller& controller);
     link_t getTo() const;
-    bool setTo(const link_t& v, Controller& controller);
+    void setTo(const link_t& v);
+    bool setToInModel(const link_t& v, Controller& controller);
 
 private:
     link_t m_from;

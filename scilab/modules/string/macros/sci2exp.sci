@@ -824,8 +824,8 @@ function ml = user2mlist(u)
     fn = getfield(1, u);
     ml = mlist(fn);
 
-    for k=2:size(fn,"*")
-        ml(i) = eval("u."+fn(k));
+    for k=1:size(fn,"*")
+        ml(k) = eval("u."+fn(k));
     end
 
 endfunction

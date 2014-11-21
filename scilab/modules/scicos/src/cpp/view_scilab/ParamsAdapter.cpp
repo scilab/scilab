@@ -91,7 +91,7 @@ struct title
         else if (current->getSize() == 2)
         {
             char* Path = wide_string_to_UTF8(current->get(1));
-            title = std::string(Path);
+            path = std::string(Path);
             FREE(Path);
         }
         else

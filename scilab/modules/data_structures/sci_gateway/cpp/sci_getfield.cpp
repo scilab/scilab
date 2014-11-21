@@ -177,13 +177,24 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
         if (pIndex->get(0) == 1)
         {
             types::InternalType* properties = pUT->extract(&in);
-
             if (!properties->isString())
             {
                 Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
                 return types::Function::Error;
             }
-            out.push_back(properties->getAs<types::String>());
+            types::String* propertiesStr = properties->getAs<types::String>();
+
+            types::String* ret = new types::String(1, 1 + propertiesStr->getSize());
+            ret->set(0, pUT->getTypeStr().c_str());
+            for (int i = 0; i < propertiesStr->getSize(); ++i)
+            {
+                ret->set(i + 1, propertiesStr->get(i));
+            }
+
+            properties->DecreaseRef();
+            properties->killMe();
+
+            out.push_back(ret);
             return types::Function::OK;
         }
         else

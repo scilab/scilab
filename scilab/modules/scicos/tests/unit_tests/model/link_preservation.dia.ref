@@ -67,7 +67,5 @@ assert_checkequal(b.model.rpar.objs(1).from, [3 3 0]);
 assert_checkequal(b.model.rpar.objs(1).to, [5 2 1]);
 // Check that all the model items are freed
 clear
-propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
-objectDeleted( 2 , LINK )
-objectDeleted( 3 , DIAGRAM )
+propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
 objectDeleted( 1 , BLOCK )

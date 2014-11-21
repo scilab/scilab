@@ -40,7 +40,7 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    DiagramAdapter* getDiagram() const;
+    DiagramAdapter* getRpar() const;
     void setDiagram(DiagramAdapter* newDiagram);
 
 private:

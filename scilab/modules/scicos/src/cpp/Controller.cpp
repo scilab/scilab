@@ -102,6 +102,7 @@ void Controller::deleteObject(ScicosID uid)
     }
     else if (k == DIAGRAM)
     {
+        deleteVector(uid, k, CHILDREN);
     }
     else if (k == LINK)
     {

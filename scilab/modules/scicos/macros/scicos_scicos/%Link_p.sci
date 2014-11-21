@@ -25,7 +25,7 @@ function %Link_p(l)
 
     fn = getfield(1, l);
 
-    for i=1:size(fn,"*")
+    for i=2:size(fn,"*")
         field = string(eval("l."+fn(i)));
 
         fieldSize = size(field, "*");

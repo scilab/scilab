@@ -1380,7 +1380,7 @@ void3 = []
 doc = list()
 1     CLKOUT_f
 2     EVTDLY_c
-4     CLKSPLIT_f
+3     CLKSPLIT_f
 clk.model.rpar.props
  ans  =
 wpar = []
@@ -1712,6 +1712,7 @@ clk.model.rpar.objs(6).to
     2.    1.    1.
 // Check that all the model items are freed
 clear sb clk
+propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
 propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1722,79 +1723,11 @@ propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 12 , PORT )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 7 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 6 , BLOCK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 9 , PORT )
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 8 , BLOCK )
-objectDeleted( 1 , DIAGRAM )
 objectDeleted( 10 , BLOCK )
+propertyUpdated( 38 , BLOCK , CHILDREN ) : SUCCESS
 propertyUpdated( 38 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 38 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 objectDeleted( 39 , PORT )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 23 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 23 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 23 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 23 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-propertyUpdated( 35 , LINK , DESTINATION_PORT ) : SUCCESS
-objectDeleted( 24 , PORT )
-propertyUpdated( 38 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 23 , BLOCK )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 25 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 25 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-propertyUpdated( 37 , LINK , DESTINATION_PORT ) : SUCCESS
-objectDeleted( 26 , PORT )
-propertyUpdated( 25 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
-propertyUpdated( 29 , LINK , SOURCE_PORT ) : SUCCESS
-objectDeleted( 27 , PORT )
-propertyUpdated( 38 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 25 , BLOCK )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 31 , PORT , CONNECTED_SIGNALS ) : SUCCESS
-objectDeleted( 29 , LINK )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 30 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 30 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 31 , PORT )
-propertyUpdated( 30 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
-propertyUpdated( 35 , LINK , SOURCE_PORT ) : SUCCESS
-objectDeleted( 32 , PORT )
-propertyUpdated( 30 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
-propertyUpdated( 37 , LINK , SOURCE_PORT ) : SUCCESS
-objectDeleted( 33 , PORT )
-propertyUpdated( 38 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 30 , BLOCK )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-objectDeleted( 35 , LINK )
-propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
-objectDeleted( 37 , LINK )
-objectDeleted( 22 , DIAGRAM )
 objectDeleted( 38 , BLOCK )

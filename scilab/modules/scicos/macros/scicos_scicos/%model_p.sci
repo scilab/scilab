@@ -42,6 +42,18 @@ function %model_p(model)
             newModel = scicos_model( sim=model.sim,in=model.in,in2=model.in2,intyp=model.intyp,out=model.out,out2=model.out2,outtyp=model.outtyp,evtin=model.evtin,evtout=model.evtout,state=model.state,dstate=model.dstate,odstate=model.odstate,ipar=model.ipar,opar=model.opar,blocktype=model.blocktype,firing=model.firing,dep_ut=model.dep_ut,label=model.label,nzcross=model.nzcross,nmode=model.nmode,equations=model.equations,uid=model.uid );
             newModel.rpar = rpar;
 
+            for i=1:size(newModel.rpar.objs)
+                newModelObj = newModel.rpar.objs(i);
+                if typeof(newModelObj) == "Block" && typeof(newModelObj.model.rpar) == "diagram"
+                    subRpar = diagram2mlist(newModelObj.model.rpar);
+                    // Define a new model omitting 'rpar' because writing 'model.rpar=l' triggers cloning.
+                    newSubModel = scicos_model( sim=newModel.sim,in=newModel.in,in2=newModel.in2,intyp=newModel.intyp,out=newModel.out,out2=newModel.out2,outtyp=newModel.outtyp,evtin=newModel.evtin,evtout=newModel.evtout,state=newModel.state,dstate=newModel.dstate,odstate=newModel.odstate,ipar=newModel.ipar,opar=newModel.opar,blocktype=newModel.blocktype,firing=newModel.firing,dep_ut=newModel.dep_ut,label=newModel.label,nzcross=newModel.nzcross,nmode=newModel.nmode,equations=newModel.equations,uid=newModel.uid );
+                    newSubModel.rpar = subRpar;
+                    newModelObj.model = newSubModel;
+                    newModel.rpar.objs(i) = newModelObj;
+                end
+            end
+
             for k=3:size(fn,"*")
                 mprintf("%s\n", sci2exp(newModel(fn(k)),fn(k)))
             end

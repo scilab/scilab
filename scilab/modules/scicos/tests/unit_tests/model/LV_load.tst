@@ -10,6 +10,6 @@
 
 loadXcosLibs();
 
-exec("SCI/test/xcos/LV.cosf",-1);
+exec("SCI/test/xcos/LV.cosf", -1);
 
 clear;
