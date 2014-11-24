@@ -20,6 +20,11 @@ Removed Functions
 
 * milk_drop removed.
 
+Scilab Bug Fixes
+================
+
+* Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
+
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
 
