@@ -44,7 +44,7 @@ function elts = pfss(S, rmax, cord)
     [f, g, h, dd, dom] = S([2:5, 7]);
     [n, n] = size(f);
     if rmax == [] then
-        [f, x, bs] = bdiag(f,max(100,norm(f,1));
+        [f, x, bs] = bdiag(f,max(100,norm(f,1)));
     else
         [f, x, bs] = bdiag(f, rmax);
     end
