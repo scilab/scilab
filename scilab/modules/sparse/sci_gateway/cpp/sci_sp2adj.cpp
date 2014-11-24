@@ -51,9 +51,9 @@ Function::ReturnValue sci_sp2adj(typed_list &in, int nbRes, typed_list &out)
     Sparse* sp = pIT->getAs<Sparse>();
     std::size_t const nonZeros = sp->nonZeros();
 
-    types::Double* res = new Double(sp->getCols() + 1, 1);
+    types::Double* res = new Double(spIn->getCols() + 1 , 1);
     res->set(0, 1);
-    for (std::size_t i = 0; i != sp->getCols() ; i++)
+    for (std::size_t i = 0; i != spIn->getCols() ; i++)
     {
         res->set(static_cast<int>(i + 1), res->get(static_cast<int>(i)) + sp->nonZeros(i));
     }
