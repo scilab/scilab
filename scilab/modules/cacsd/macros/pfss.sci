@@ -23,8 +23,12 @@ function elts = pfss(S, rmax, cord)
         rmax = [];
         cord = [];
     case 2 then
-        if type(rmax) == 10 then cord = rmax; end
-        if type(rmax) == 1 then cord = []; end
+        if type(rmax) == 10 then
+            cord = rmax;
+            rmax=[];
+        elseif type(rmax) == 1 then
+            cord = [];
+        end
     end
 
     if and(typeof(S) <> ["rational", "state-space"]) then
@@ -40,7 +44,7 @@ function elts = pfss(S, rmax, cord)
     [f, g, h, dd, dom] = S([2:5, 7]);
     [n, n] = size(f);
     if rmax == [] then
-        [f, x, bs] = bdiag(f);
+        [f, x, bs] = bdiag(f,max(100,norm(f,1));
     else
         [f, x, bs] = bdiag(f, rmax);
     end
