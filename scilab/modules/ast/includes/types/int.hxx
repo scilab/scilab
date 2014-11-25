@@ -275,7 +275,7 @@ private :
                 }
 
                 iLen = iWidth + static_cast<int>(ostemp.str().size());
-                if (iLen > iLineLen)
+                if (iLen > iLineLen && iLastVal != i)
                 {
                     //Max length, new line
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
@@ -285,7 +285,7 @@ private :
                         return false;
                     }
 
-                    ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << i << std::endl << std::endl;
+                    addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << std::endl;
                     ostemp.str(L"");
                     iLastVal = i;
@@ -303,8 +303,9 @@ private :
 
             if (iLastVal != 0)
             {
-                ostr << std::endl << L"       column " << iLastVal + 1 << L" to " << GenericType::getCols() << std::endl << std::endl;
+                addColumnString(ostr, iLastVal + 1, GenericType::getCols());
             }
+
             ostemp << std::endl;
             ostr << ostemp.str();
         }
@@ -339,7 +340,7 @@ private :
                     piSize[iCols1] = std::max(piSize[iCols1], iWidth);
                 }
 
-                if (iLen + piSize[iCols1] > iLineLen)
+                if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
                     for (int iRows2 = this->m_iRows2PrintState ; iRows2 < this->getRows() ; iRows2++)
@@ -352,8 +353,9 @@ private :
                             if (this->m_iRows2PrintState == 0 && iRows2 != 0)
                             {
                                 //add header
-                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                                addColumnString(ostr, iLastCol + 1, iCols1);
                             }
+
                             ostr << ostemp.str();
                             this->m_iRows2PrintState = iRows2;
                             this->m_iCols1PrintState = iLastCol;
@@ -383,7 +385,7 @@ private :
                     if (this->m_iRows2PrintState == 0)
                     {
                         iCurrentLine += 3;
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, iCols1);
                     }
 
                     ostr << ostemp.str();
@@ -404,7 +406,7 @@ private :
                     if (this->m_iRows2PrintState == 0 && iLastCol != 0)
                     {
                         //add header
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << GenericType::getCols() << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, GenericType::getCols());
                     }
 
                     ostr << ostemp.str();
@@ -433,8 +435,9 @@ private :
 
             if (this->m_iRows2PrintState == 0 && iLastCol != 0)
             {
-                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << GenericType::getCols() << std::endl << std::endl;
+                addColumnString(ostr, iLastCol + 1, GenericType::getCols());
             }
+
             ostr << ostemp.str();
         }
 

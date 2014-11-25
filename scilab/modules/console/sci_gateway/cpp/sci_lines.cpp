@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2011 - DIGITEO - Cedric DELAMARRE
+* Copyright (C) 2011-2014 - DIGITEO - Cedric DELAMARRE
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -33,31 +33,56 @@ types::Function::ReturnValue sci_lines(types::typed_list &in, int _iRetCount, ty
 
     if (in.size() == 0)
     {
-        double size[] = {(double)ConfigVariable::getConsoleWidth(),
-                         (double)ConfigVariable::getConsoleLines()
-                        };
         types::Double* pDbl = new types::Double(1, 2);
-        pDbl->set(size);
+        double* pdblSize = pDbl->get();
+        pdblSize[0] = (double)ConfigVariable::getConsoleWidth();
+        pdblSize[1] = (double)ConfigVariable::getConsoleLines();
         out.push_back(pDbl);
         return types::Function::OK;
     }
 
-    if (in.size() == 2)
+    if (in.size() == 1)
     {
-        if ((in[1]->isDouble() == false) || !in[1]->getAs<types::Double>()->isScalar())
+        if ((in[0]->isDouble() == false))
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
             return types::Function::Error;
         }
-        ConfigVariable::setConsoleWidth((int)in[1]->getAs<types::Double>()->get(0));
+
+        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        double* pdblIn = in[0]->getAs<types::Double>()->get();
+
+        if (pDblIn->isScalar())
+        {
+            ConfigVariable::setConsoleLines((int)pdblIn[0]);
+        }
+        else if (pDblIn->getRows() == 1 && pDblIn->getCols() == 2)
+        {
+            ConfigVariable::setConsoleWidth((int)pdblIn[0]);
+            ConfigVariable::setConsoleLines((int)pdblIn[1]);
+        }
+        else
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
+            return types::Function::Error;
+        }
+
+        return types::Function::OK;
     }
 
-    if ((in[0]->isDouble() == false) || !in[0]->getAs<types::Double>()->isScalar())
+    if ((in[0]->isDouble() == false) || in[0]->getAs<types::Double>()->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 1);
         return types::Function::Error;
     }
 
+    if ((in[1]->isDouble() == false) || in[1]->getAs<types::Double>()->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "lines", 2);
+        return types::Function::Error;
+    }
+
+    ConfigVariable::setConsoleWidth((int)in[1]->getAs<types::Double>()->get(0));
     ConfigVariable::setConsoleLines((int)in[0]->getAs<types::Double>()->get(0));
 
     return types::Function::OK;
