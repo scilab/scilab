@@ -118,12 +118,12 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
         // check function
         double t = 1;
         double ret = intg_f(&t);
-        if (ret == 0)
+        /* if (ret == 0)
         {
             Scierror(50, _("%s: Argument #%d: Variable returned by scilab argument function is incorrect.\n"), "intg", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
-        }
+        }*/
     }
     else if (in[2]->isString())
     {
