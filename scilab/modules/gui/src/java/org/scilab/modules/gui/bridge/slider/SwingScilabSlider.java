@@ -65,6 +65,8 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
     private ChangeListener changeListener;
 
     private Border defaultBorder = null;
+    
+    private int previousValueCallback = 0;
 
     static {
         if (OS.get() == OS.UNIX) {
@@ -160,10 +162,26 @@ public class SwingScilabSlider extends JSlider implements SwingViewObject, Simpl
 
 
         changeListener = new ChangeListener() {
-            public void stateChanged(ChangeEvent arg0) {
-                updateModel();
-                if (callback != null) {
-                    callback.actionPerformed(null);
+            public void stateChanged(ChangeEvent changeEvent) {
+                JSlider source = (JSlider) changeEvent.getSource();
+                if (!source.getValueIsAdjusting()) {
+                	previousValueCallback = getValue();
+                    updateModel();
+                    if (callback != null) {
+                        callback.actionPerformed(null);
+                    }
+                } else {
+                	int offset = Math.abs(getValue()-previousValueCallback);
+                	previousValueCallback = getValue();
+                	// When the user has clicked on the slider itself (not the knob)
+                	// and the knob makes a step of getMajorTickSpacing() value
+                	// ==> We do not call the callback (Bug #13549)
+                	if (offset != getMajorTickSpacing() && offset != 0) {
+                        updateModel();
+                        if (callback != null) {
+                            callback.actionPerformed(null);
+                        }
+                	}
                 }
             }
         };

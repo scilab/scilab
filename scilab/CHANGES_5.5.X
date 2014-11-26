@@ -23,6 +23,8 @@ Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
