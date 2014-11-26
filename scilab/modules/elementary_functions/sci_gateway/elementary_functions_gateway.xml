@@ -87,4 +87,5 @@
     <PRIMITIVE gatewayId="6" primitiveId="53" primitiveName="base2dec" />
     <PRIMITIVE gatewayId="6" primitiveId="54" primitiveName="dec2base" />
     <PRIMITIVE gatewayId="6" primitiveId="55" primitiveName="find" />
+    <PRIMITIVE gatewayId="6" primitiveId="56" primitiveName="log10" />
 </GATEWAY>

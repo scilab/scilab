@@ -425,6 +425,7 @@ am__objects_8 =  \
 	sci_gateway/c/libscielementary_functions_la-sci_ceil.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_imag.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_log.lo \
+	sci_gateway/c/libscielementary_functions_la-sci_log10.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_log1p.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_eye.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_clean.lo \
@@ -1124,6 +1125,7 @@ sci_gateway/c/sci_tril.c \
 sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
 sci_gateway/c/sci_log.c \
+sci_gateway/c/sci_log10.c \
 sci_gateway/c/sci_log1p.c \
 sci_gateway/c/sci_eye.c \
 sci_gateway/c/sci_clean.c \
@@ -1983,6 +1985,9 @@ sci_gateway/c/libscielementary_functions_la-sci_imag.lo:  \
 sci_gateway/c/libscielementary_functions_la-sci_log.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscielementary_functions_la-sci_log10.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscielementary_functions_la-sci_log1p.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -2310,6 +2315,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_isreal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_kron.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log10.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log1p.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_matrix.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_maxi.Plo@am__quote@
@@ -2603,6 +2609,13 @@ sci_gateway/c/libscielementary_functions_la-sci_log.lo: sci_gateway/c/sci_log.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_log.c' object='sci_gateway/c/libscielementary_functions_la-sci_log.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_log.lo `test -f 'sci_gateway/c/sci_log.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log.c
+
+sci_gateway/c/libscielementary_functions_la-sci_log10.lo: sci_gateway/c/sci_log10.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_log10.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log10.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_log10.lo `test -f 'sci_gateway/c/sci_log10.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log10.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log10.Tpo sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log10.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_log10.c' object='sci_gateway/c/libscielementary_functions_la-sci_log10.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_log10.lo `test -f 'sci_gateway/c/sci_log10.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log10.c
 
 sci_gateway/c/libscielementary_functions_la-sci_log1p.lo: sci_gateway/c/sci_log1p.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_log1p.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_log1p.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_log1p.lo `test -f 'sci_gateway/c/sci_log1p.c' || echo '$(srcdir)/'`sci_gateway/c/sci_log1p.c

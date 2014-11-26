@@ -266,6 +266,7 @@ sci_gateway/c/sci_tril.c \
 sci_gateway/c/sci_ceil.c \
 sci_gateway/c/sci_imag.c \
 sci_gateway/c/sci_log.c \
+sci_gateway/c/sci_log10.c \
 sci_gateway/c/sci_log1p.c \
 sci_gateway/c/sci_eye.c \
 sci_gateway/c/sci_clean.c \
