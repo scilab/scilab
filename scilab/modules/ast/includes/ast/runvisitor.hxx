@@ -398,7 +398,11 @@ public :
             if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
             {
                 std::wostringstream ostr;
-                ostr << e.getSymbol().getName() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
+                ostr << e.getSymbol().getName() << L"  = ";
+#ifndef NDEBUG
+                ostr << L"(" << pI->getRef() << L")";
+#endif
+                ostr << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
