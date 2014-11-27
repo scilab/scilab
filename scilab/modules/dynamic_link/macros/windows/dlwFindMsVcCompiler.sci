@@ -14,6 +14,26 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     // We use always last version of MS compiler
 
+    val = getenv("SCILAB_PREFERED_MSVC", "");
+    if val <> "" then
+        funcs = list(dlwIsVc12Express,dlwIsVc12Pro,dlwIsVc11Express,dlwIsVc11Pro,dlwIsVc10Express,dlwIsVc10Pro);
+        compilers = ["msvc120express";
+                    "msvc120pro";
+                    "msvc110express";
+                    "msvc110pro";
+                    "msvc100express";
+                    "msvc100pro";];
+        idx = find(val == compilers);
+        if idx <> [] then
+            func = funcs(idx);
+            if func() then
+                MSCompiler = val;
+                return;
+            end
+        end
+
+//        printf("SCILAB_PREFERED_MSVC ignored.\n");
+    end
 
     if dlwIsVc12Express() then
       MSCompiler = 'msvc120express';     // Microsoft Visual 2013 Express
