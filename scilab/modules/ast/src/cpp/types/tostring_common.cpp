@@ -362,7 +362,7 @@ void addDoubleComplexValue(wostringstream * _postr, double _dblR, double _dblI, 
             ostemp << left << SYMBOL_I;
             if (_dblI == 1)
             {
-                addSpaces(&ostemp, 2);
+                addSpaces(&ostemp, 1);
             }
 
         }

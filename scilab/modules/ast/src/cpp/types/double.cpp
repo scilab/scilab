@@ -492,6 +492,10 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
         int *piSize = new int[getCols()];
         memset(piSize, 0x00, getCols() * sizeof(int));
 
+        //Array with the max precision of each col (use to padd right with 0 3.6000)
+        int *piMaxPrec = new int[getCols()];
+        memset(piMaxPrec, 0x00, getCols() * sizeof(int));
+
         if (isComplex() == false)
         {
             //compute the row size for padding for each printed bloc.
@@ -499,19 +503,14 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             {
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
-                    int iCurrentLen = 0;
                     _piDims[0] = iRows1;
                     _piDims[1] = iCols1;
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
-                    iCurrentLen    = df.iWidth;
-
-                    if (iCurrentLen > piSize[iCols1])
-                    {
-                        piSize[iCols1] = iCurrentLen;
-                    }
+                    piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
+                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], df.iPrec);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
@@ -532,6 +531,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
+                            delete[] piSize;
+                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -546,6 +547,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
 
+                            df.iPrec = piMaxPrec[iCols2];
                             df.iWidth = piSize[iCols2];
                             addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                         }
@@ -584,6 +586,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
+                    delete[] piSize;
+                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -597,6 +601,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    df.iPrec = piMaxPrec[iCols2];
                     df.iWidth = piSize[iCols2];
                     addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                 }
@@ -629,6 +634,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     {
                         piSize[iCols1] = iTotalWidth;
                     }
+
+                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], dfR.iPrec);
                 }
 
                 if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
@@ -649,6 +656,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
+                            delete[] piSize;
+                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -663,6 +672,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
+                            dfR.iPrec = piMaxPrec[iCols2];
+                            dfI.iPrec = piMaxPrec[iCols2];
                             addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << endl;
@@ -700,6 +711,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
+                    delete[] piSize;
+                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -714,6 +727,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    dfR.iPrec = piMaxPrec[iCols2];
+                    dfI.iPrec = piMaxPrec[iCols2];
                     addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << endl;
@@ -725,6 +740,9 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             }
             ostr << ostemp.str();
         }
+
+        delete[] piSize;
+        delete[] piMaxPrec;
     }
 
     return true;
