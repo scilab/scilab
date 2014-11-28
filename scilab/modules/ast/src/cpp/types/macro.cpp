@@ -323,7 +323,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         List* pVarOut = pOut->getAs<List>();
-        const int size = std::max(pVarOut->getSize(), _iRetCount);
+        const int size = std::min(pVarOut->getSize(), _iRetCount);
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);
@@ -341,7 +341,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 return Callable::Error;
             }
 
-            out.push_back(pIT->clone());
+            pIT->IncreaseRef();
+            out.push_back(pIT);
         }
     }
     else
