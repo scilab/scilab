@@ -10,15 +10,14 @@
 //=============================================================================
 function dlwConfigureEnv()
     if getenv("SCILAB_MSVC", "0") == "0" then
-        printf("Configure msvc environment.\n");
         // Configure Ms VC environment
         configure_msvc();
-        if findmsifortcompiler() <> 'unknown' then
+        if findmsifortcompiler() <> "unknown" then
             // Configure Intel Fortran environment
             configure_msifort();
         else
             // Use F2C
-            setenv('USE_F2C', 'YES');
+            setenv("USE_F2C", "YES");
         end
     end
 endfunction
