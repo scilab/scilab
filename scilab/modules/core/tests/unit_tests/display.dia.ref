@@ -372,14 +372,14 @@ d = digits+digits+digits;
 n = "1234567890";
 // scalar
 n
-n  = (2)
+n  = 
  1234567890
 n+n+n+n+n
  ans  =
  123456789012345678901234567890123456789012345678 
  90                                              
 d
-d  = (1)
+d  = 
  abcdefghijklmnopqrstuvwxyzabcdefghijklmnopqrstuv 
  wxyzabcdefghijklmnopqrstuvwxyz                  
 d+d+d+d
@@ -697,7 +697,7 @@ TL  =
     2.
 deff("%x_p(x)","disp(x(3),x(2),''Mydisplay'')")
 TL
-TL  = (1)
+TL  = 
  Mydisplay
     1.
     2.
