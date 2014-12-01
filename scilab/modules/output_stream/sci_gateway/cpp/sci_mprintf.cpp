@@ -86,13 +86,6 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         int iRefRows = in[1]->getAs<GenericType>()->getRows();
         for (int i = 1 ; i < in.size() ; i++)
         {
-            //all arguments must have the same numbers of rows !
-            if (iRefRows != in[i]->getAs<GenericType>()->getRows())
-            {
-                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
-                return types::Function::Error;
-            }
-
             iNumberCols += in[i]->getAs<GenericType>()->getCols();
         }
     }
@@ -102,7 +95,6 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
         return types::Function::Error;
     }
-
 
     //fill ArgumentPosition structure
     pArgs = new ArgumentPosition[iNumberPercent - iNumberPercentPercent];
