@@ -431,7 +431,17 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     {
 
         types::Double* pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        if (meth == 14)//'mul'
+        {
+            int* iDimsArraytempo = new int[2];
+            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize() + 1;
+            iDimsArraytempo[1] = iNumIter;
+            pDblOut = new types::Double(pDblIn->getDims(), iDimsArraytempo);
+        }
+        else
+        {
+            pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        }
 
     }
 
