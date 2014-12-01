@@ -1050,6 +1050,11 @@ public :
             return createEmptyDouble();
         }
 
+        if (iSeqCount < 0)
+        {
+            return NULL;
+        }
+
         if (iDims < m_iDims)
         {
             for (int i = 0 ; i < iDims ; i++)
