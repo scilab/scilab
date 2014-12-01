@@ -120,7 +120,7 @@ int clearAllVariablesOnStack(void)
     C2F(adre).is = Fin;
     Bot = C2F(vstk).bbot;
 
-    //create a null matrix a the Top of the stack
+    //create a null matrix at the Top of the stack
     Top = Top + 1;
     il = iadr(*Lstk(Top));
     *istk(il) = 0;

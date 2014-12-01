@@ -209,7 +209,7 @@ public :
     }
     virtual void                    whoAmI(void)
     {
-        std::cout << "types::Inernal";
+        std::cout << "types::Internal";
     }
 
     virtual bool                    isAssignable(void)
