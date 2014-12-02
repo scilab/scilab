@@ -200,7 +200,8 @@ function Info = scicos_simulate(scs_m, Info, updated_vars, flag, Ignb)
 
     //** prepare from and to workspace stuff
     //-------------------------------------
-    scicos_workspace_init()
+    // Comment the following line until evstr() passes when applied to Xcos blocks (returning function prototype)
+    //scicos_workspace_init()
 
     if flag == "nw" then
         Ignore = [Ignore,Ignoreb]

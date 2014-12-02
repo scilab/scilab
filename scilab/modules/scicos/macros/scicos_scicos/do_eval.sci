@@ -163,7 +163,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
                         end
                     end
 
-                    if (prod(size(model.sim))==1 & ~model.equations==list()) | itisanMBLOCK then
+                    if (prod(size(model.sim))==1 & ~(model.equations==list())) | itisanMBLOCK then
                         if ~isequal(model.equations.parameters,model_n.equations.parameters) then
                             param_name   = model.equations.parameters(1);
                             param_name_n = model_n.equations.parameters(1);
