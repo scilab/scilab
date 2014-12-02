@@ -149,9 +149,13 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #ifdef _MSC_VER
     //get current console window and hide it
     int scilabMode = getScilabMode();
-    if (scilabMode == SCILAB_STD)
+    if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW)
     {
         CreateScilabHiddenWndThread();
+    }
+
+    if (scilabMode == SCILAB_STD)
+    {
         //show banner in console window
         CreateScilabConsole(_pSEI->iNoBanner);
 
