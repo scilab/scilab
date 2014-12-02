@@ -19,6 +19,8 @@
 #include "int.hxx"
 #include "polynom.hxx"
 #include "sparse.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -84,6 +86,12 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             break;
         }
+    }
+
+    if ((iStrPos == 0) && (in[0]->isString() == false))
+    {
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;
@@ -717,8 +725,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             delete pDblOut;
             types::Double* pDblOut = new types::Double(size, iNumIter);
-            double* work  = (double*)malloc(size * sizeof(double));
-            double* param = (double*)malloc(mp   * sizeof(double));
+            double* work = new double[size];
+            double* param = new double[mp];
 
             types::Double* pDblMean = vectpDblInput[0]->clone()->getAs<types::Double>();
             types::Double* pDblCov  = vectpDblInput[1]->clone()->getAs<types::Double>();
@@ -730,8 +738,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (ierr == 1)
             {
-                free(work);
-                free(param);
+                delete work;
+                delete param;
                 delete pDblOut;
                 Scierror(999, _("%s: setgmn return with state %d.\n"), "grand", ierr);
                 return types::Function::Error;
@@ -742,8 +750,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 C2F(genmn)(param, pDblOut->get() + (size * i), work);
             }
 
-            free(work);
-            free(param);
+            delete work;
+            delete param;
 
             out.push_back(pDblOut);
             break;
@@ -915,8 +923,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            int* piP    = (int*)malloc(vectpDblInput[0]->getSize() * sizeof(int));
-            int* piOut  = (int*)malloc(pDblOut->getSize() * sizeof(int));
+            int* piP = new int[vectpDblInput[0]->getSize()];
+            int* piOut = new int[pDblOut->getSize()];
 
             for (int i = 0; i < vectpDblInput[0]->getSize(); i++)
             {
@@ -933,8 +941,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 pDblOut->set(i, static_cast<double>(piOut[i]));
             }
 
-            free(piP);
-            free(piOut);
+            delete piP;
+            delete piOut;
 
             out.push_back(pDblOut);
             break;
