@@ -835,8 +835,17 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         std::list<ExpHistory*>::iterator iterFields = fields.begin();
         ExpHistory* pFirstField = *iterFields;
         InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
+
         if (pIT == NULL)
         {
+            // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
+            if (symbol::Context::getInstance()->getOrCreate(pFirstField->getExp()->getSymbol())->top()->m_iLevel == 0)
+            {
+                std::wostringstream os;
+                os << _W("Unexpected redefinition of Scilab function or variable.");
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+            }
+
             if (pFirstField->isCellExp())
             {
                 // a{x}, where "a" doesn't exists
