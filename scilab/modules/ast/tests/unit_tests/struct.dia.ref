@@ -104,3 +104,7 @@ clear firstnames
 clear lastnames
 clear emails
 clear st;
+//fields of an empty struct
+fields = getfield(1,struct());
+assert_checkequal(fields(1), "st");
+assert_checkequal(fields(2), "dims");

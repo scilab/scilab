@@ -574,18 +574,25 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
         {
             //struct fields name
             String* pS = getFieldNames();
+            String* pFields = NULL;
+            if (pS)
+            {
+                pFields = new String(1, pS->getSize() + 2);
+                for (int j = 0; j < pS->getSize(); j++)
+                {
+                    pFields->set(2 + j, pS->get(j));
+                }
 
-            String* pFields = new String(1, pS->getSize() + 2);
+                pS->killMe();
+            }
+            else
+            {
+                pFields = new String(1, 2);
+            }
 
             pFields->set(0, L"st");
             pFields->set(1, L"dims");
 
-            for (int j = 0 ; j < pS->getSize() ; j++)
-            {
-                pFields->set(2 + j, pS->get(j));
-            }
-
-            pS->killMe();
             ResultList.push_back(pFields);
         }
         else if (iIndex == 2)
