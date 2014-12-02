@@ -78,7 +78,7 @@ template<class Adaptor, class Adaptee>
 types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::typed_list &in)
 {
     // check header
-    Adaptor adaptor = Adaptor(0);
+    Adaptor adaptor(0);
     for (int i = 1; i < (int)in.size(); i++)
     {
         std::wstring name(type_name->get(i));
