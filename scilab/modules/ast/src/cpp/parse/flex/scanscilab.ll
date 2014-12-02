@@ -22,7 +22,6 @@ extern "C"
 #include "sci_malloc.h"
 }
 
-static int matrix_level = 0;
 static int comment_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
@@ -30,8 +29,6 @@ static std::string current_file;
 static std::string program_name;
 
 static std::string *pstBuffer;
-
-static bool rejected = false;
 
 #define YY_USER_ACTION                          \
  yylloc.last_column += yyleng;
@@ -58,7 +55,6 @@ static bool rejected = false;
 %x LINEBREAK
 
 %x MATRIX
-%x MATRIXMINUSID
 
 %x SHELLMODE
 %x BEGINID
@@ -87,7 +83,7 @@ utf3            ({utf31}|{utf32}|{utf33}|{utf34})
 utf4            ({utf41}|{utf42}|{utf43})
 
 utf             ({utf2}|{utf3}|{utf4})
-id              (([a-zA-Z_%#?$]|{utf})([a-zA-Z_0-9#?$]|{utf})*)
+id              ((([a-zA-Z_%#?]|{utf})([a-zA-Z_0-9#?$]|{utf})*)|([$]([a-zA-Z_0-9#?$]|{utf})+))
 
 
 newline			("\r"|"\n"|"\r\n")
@@ -139,20 +135,20 @@ ldivide			"\\"
 times			"*"
 power			("^"|"**")
 
-equal			"=="
-notequal		("~="|"@="|"<>")
+equal			"="{spaces}*"="
+notequal		("~"{spaces}*"="|"@"{spaces}*"="|"<"{spaces}*">")
 lowerthan		"<"
 greaterthan		">"
-lowerequal		"<="
-greaterequal		">="
+lowerequal		"<"{spaces}*"="
+greaterequal		">"{spaces}*"="
 
 krontimes		".*."
 kronrdivide		"./."
 kronldivide		".\\."
 
-controltimes    ("*."[^0-9.])
-controlrdivide	("/."[^0-9.])
-controlldivide  ("\\."[^0-9.])
+controltimes    ("*."[^0-9])
+controlrdivide	("/."[^0-9])
+controlldivide  ("\\."[^0-9])
 
 assign			"="
 
@@ -342,7 +338,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}[^(=<>~@] {
+^{spaces}*/({id}){spaces}[^ \t\v\f(=<>~@] {
         BEGIN(BEGINID);
 }
 
@@ -360,8 +356,8 @@ assign			"="
         }
         yylval.str = new std::wstring(pwText);
 	FREE(pwText);
-        if (symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str)) != NULL
-            && symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str))->isCallable())
+	types::InternalType * pIT = symbol::Context::getInstance()->get(symbol::Symbol(*yylval.str));
+        if (pIT && pIT->isCallable())
         {
             scan_throw(ID);
             BEGIN(SHELLMODE);
@@ -738,93 +734,38 @@ assign			"="
     return scan_throw(RBRACE);
   }
 
-  {plus}				{
+  {plus}				|
+  {spaces}{plus}{spaces}                {
     return scan_throw(PLUS);
   }
 
-  {minus}				{
+  {minus}				|
+  {spaces}{minus}{spaces}               {
     return scan_throw(MINUS);
   }
 
-  {spaces}({plus}|{minus}){lparen}*{integer}			{
-   int i;
-   for (i = yyleng - 1 ; i >= 0 ; --i)
-   {
-       unput(yytext[i]);
-   }
-   yy_push_state(MATRIXMINUSID);
-   if (last_token != LBRACK
+  {spaces}{plus}                        {
+    // no need to unput the '+'
+    if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
        && last_token != COMMA)
    {
        return scan_throw(COMMA);
-   }
+   }  
+  }
+ 
+  {spaces}{minus}                       {
+    unput('-');
+    if (last_token != LBRACK
+       && last_token != EOL
+       && last_token != SEMI
+       && last_token != COMMA)
+   {
+       return scan_throw(COMMA);
+   }  
   }
 
-  {spaces}({plus}|{minus}){lparen}*{number}	{
-      int i;
-      for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-          unput(yytext[i]);
-      }
-      yy_push_state(MATRIXMINUSID);
-      if (last_token != LBRACK
-          && last_token != EOL
-          && last_token != SEMI
-          && last_token != COMMA)
-      {
-          return scan_throw(COMMA);
-      }
-  }
-
-  {spaces}({plus}|{minus}){lparen}*{floating}	{
-      int i;
-      for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-          unput(yytext[i]);
-      }
-      yy_push_state(MATRIXMINUSID);
-      if (last_token != LBRACK
-          && last_token != EOL
-          && last_token != SEMI
-          && last_token != COMMA)
-      {
-          return scan_throw(COMMA);
-      }
-  }
-
-  {spaces}({plus}|{minus}){lparen}*{little}	{
-      int i;
-      for (i = yyleng - 1 ; i >= 0 ; --i)
-      {
-          unput(yytext[i]);
-      }
-      yy_push_state(MATRIXMINUSID);
-      if (last_token != LBRACK
-          && last_token != EOL
-          && last_token != SEMI
-          && last_token != COMMA)
-      {
-          return scan_throw(COMMA);
-      }
-  }
-
-  {spaces}({minus}|{plus}){lparen}*{id}		{
-      int i;
-      for (i = yyleng - 1; i >= 0 ; --i)
-      {
-          unput(yytext[i]);
-      }
-      yy_push_state(MATRIXMINUSID);
-      if (last_token != LBRACK
-          && last_token != EOL
-          && last_token != SEMI
-          && last_token != COMMA)
-      {
-          return scan_throw(COMMA);
-      }
-  }
   .					{
     std::string str = "unexpected token '";
     str += yytext;
@@ -850,97 +791,6 @@ assign			"="
 
   <<EOF>>       {
       yy_pop_state();
-  }
-}
-
-<MATRIXMINUSID>
-{
-  {minus}				{
-    return scan_throw(MINUS);
-  }
-
-  {plus}				{
-     /* Do Nothing. */
-  }
-
-  {integer}				{
-    yy_pop_state();
-    yylval.number = atof(yytext);
-#ifdef TOKENDEV
-    std::cout << "--> [DEBUG] INTEGER : " << yytext << std::endl;
-#endif
-    scan_step();
-    return scan_throw(VARINT);
-  }
-
-  {number}				{
-    yy_pop_state();
-    yylval.number = atof(yytext);
-#ifdef TOKENDEV
-    std::cout << "--> [DEBUG] NUMBER : " << yytext << std::endl;
-#endif
-    scan_step();
-    return scan_throw(NUM);
-  }
-
-  {little}				{
-    yy_pop_state();
-    yylval.number = atof(yytext);
-#ifdef TOKENDEV
-    std::cout << "--> [DEBUG] LITTLE : " << yytext << std::endl;
-#endif
-    scan_step();
-    return scan_throw(NUM);
-  }
-
-  {floating}				{
-    yy_pop_state();
-    scan_exponent_convert(yytext);
-    yylval.number = atof(yytext);
-#ifdef TOKENDEV
-    std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
-#endif
-    scan_step();
-    return scan_throw(VARFLOAT);
-  }
-
-  {id}					{
-    yy_pop_state();
-    wchar_t* pwText = to_wide_string(yytext);
-    if (yytext != NULL && pwText == NULL)
-    {
-        std::string str = "can not convert'";
-        str += yytext;
-        str += "' to UTF-8";
-        exit_status = SCAN_ERROR;
-        scan_error("can not convert string to UTF-8");
-    }
-    yylval.str = new std::wstring(pwText);
-    FREE(pwText);
-#ifdef TOKENDEV
-    std::cout << "--> [DEBUG] ID : " << yytext << std::endl;
-#endif
-    scan_step();
-    return scan_throw(ID);
-  }
-
-  {spaces}				{
-    /* Do Nothing. */
-  }
-
-  {lparen} {
-      return scan_throw(LPAREN);
-  }
-
-  {rparen} {
-      return scan_throw(RPAREN);
-  }
-  .					{
-    std::string str = "unexpected token '";
-    str += yytext;
-    str += "' within a matrix.";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
   }
 }
 
