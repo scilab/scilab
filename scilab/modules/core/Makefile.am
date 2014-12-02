@@ -36,7 +36,6 @@ CORE_C_SOURCES = \
     src/c/getdynamicdebuginfo.c \
     src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
-    src/c/readGateway.c \
     src/c/comparehandles.c \
     src/c/setPrecisionFPU.c \
     src/c/LaunchScilabSignal.c \
@@ -132,8 +131,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
-	sci_gateway/c/sci_getdebuginfo.c \
-	sci_gateway/c/sci_readgateway.c
+	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
