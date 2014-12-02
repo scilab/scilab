@@ -33,6 +33,12 @@ Removed Functions
 * xsetm removed. Please use ged instead.
 
 
+Toolbox Skeleton
+=================
+
+* Modelica user-defined block added in xcos_toolbox_skeleton.
+
+
 Compilation
 ===========
 
