@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_det(types::typed_list &in, int _iRetCount, type
 
     if (pDbl->getRows() != pDbl->getCols())
     {
-        Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "det", 1);
+        Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
         return types::Function::Error;
     }
 
