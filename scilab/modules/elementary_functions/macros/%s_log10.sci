@@ -8,7 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function y = log10(x)
+function y = %s_log10(x)
     [lhs, rhs] = argn(0);
     if rhs == 0 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"log10", 1));

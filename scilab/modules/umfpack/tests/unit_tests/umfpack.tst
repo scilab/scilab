@@ -24,10 +24,10 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A matrix expected.\n
 assert_checkerror("umfpack(speye(3,3), ""\"", %s)", refMsg);
 
 A = sparse( [ 2  3  0  0  0;
-              3  0  4  0  6; 
-              0 -1 -3  2  0; 
-              0  0  1  0  0; 
-              0  4  2  0  1] );
+3  0  4  0  6;
+0 -1 -3  2  0;
+0  0  1  0  0;
+0  4  2  0  1] );
 b = [8 ; 45; -3; 3; 19];
 x = umfpack(A,"\",b);
 
@@ -52,27 +52,24 @@ assert_checkfalse(norm(x*A - b) > %eps);
 
 // solve a complex system
 A = sparse( [ 2+%i  3+2*%i  0      0    0;
-              3-%i  0       4+%i   0    6-3*%i; 
-              0    -1+%i   -3+6*%i 2-%i 0; 
-              0     0       1-5*%i 0    0; 
-              0     4       2-%i   0    1] );
+3-%i  0       4+%i   0    6-3*%i;
+0    -1+%i   -3+6*%i 2-%i 0;
+0     0       1-5*%i 0    0;
+0     4       2-%i   0    1] );
 b = [ 3+13*%i ; 58+32*%i ; -19+13*%i ; 18-12*%i ; 22+16*%i ];
-x = umfpack(A,"\",b)  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
+x = umfpack(A,"\",b);  // x must be [1+i; 2+2i; 3+3i; 4 + 4i; 5+5i]
 
-assert_checkfalse(norm(x - [1+%i; 2+2*%i; 3+3*%i; 4 + 4*%i; 5+5*%i]) < %eps)
+assert_checkfalse(norm(x - [1+%i; 2+2*%i; 3+3*%i; 4 + 4*%i; 5+5*%i]) < %eps);
 
 A = sparse( [ 2  3  0  0  0;
-              3  0  4  0  6; 
-              0 -1 -3  2  0; 
-              0  0  1  0  0; 
-              0  4  2  0  1] );
+3  0  4  0  6;
+0 -1 -3  2  0;
+0  0  1  0  0;
+0  4  2  0  1] );
 Lup = umf_lufact(A);
-[OK, nrow, ncol, lnz, unz, udiag_nz, it] = umf_luinfo(Lup);  // OK must be %t, nrow=ncol = 5, 
+[OK, nrow, ncol, lnz, unz, udiag_nz, it] = umf_luinfo(Lup);  // OK must be %t, nrow=ncol = 5,
 [L,U,p,q,R] = umf_luget(Lup);
-nnz(L)  // must be equal to lnz
 assert_checkequal(nnz(L), lnz);
-
-nnz(U)  // must be equal to unz
 assert_checkequal(nnz(U), unz);
 
 umf_ludel(Lup); // clear memory
@@ -81,10 +78,10 @@ umf_ludel(Lup); // clear memory
 
 // this is the test matrix from UMFPACK
 A = sparse( [ 2  3  0  0  0;
-              3  0  4  0  6; 
-              0 -1 -3  2  0; 
-              0  0  1  0  0; 
-              0  4  2  0  1] );
+3  0  4  0  6;
+0 -1 -3  2  0;
+0  0  1  0  0;
+0  4  2  0  1] );
 Lup = umf_lufact(A);
 [L,U,p,q,R] = umf_luget(Lup);
 B = A;
@@ -96,10 +93,10 @@ umf_ludel(Lup);// clear memory
 
 // the same with a complex matrix
 A = sparse( [ 2+%i  3+2*%i  0      0    0;
-              3-%i  0       4+%i   0    6-3*%i; 
-              0    -1+%i   -3+6*%i 2-%i 0; 
-              0     0       1-5*%i 0    0; 
-              0     4       2-%i   0    1] );
+3-%i  0       4+%i   0    6-3*%i;
+0    -1+%i   -3+6*%i 2-%i 0;
+0     0       1-5*%i 0    0;
+0     4       2-%i   0    1] );
 Lup = umf_lufact(A);
 [L,U,p,q,R] = umf_luget(Lup);
 B = A;

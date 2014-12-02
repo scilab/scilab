@@ -407,7 +407,6 @@ mean
 meanf
 median
 moment
-msd
 mvcorrel
 mvvacov
 nancumsum
@@ -486,7 +485,6 @@ chsolve
 conjgrad
 gmres
 issparse
-pcg
 qmr
 sp2adj
 speye

@@ -14,30 +14,48 @@ function MSCompiler = dlwFindMsVcCompiler()
 
     // We use always last version of MS compiler
 
+    val = getenv("SCILAB_PREFERED_MSVC", "");
+    if val <> "" then
+        funcs = list(dlwIsVc12Express,dlwIsVc12Pro,dlwIsVc11Express,dlwIsVc11Pro,dlwIsVc10Express,dlwIsVc10Pro);
+        compilers = ["msvc120express";
+        "msvc120pro";
+        "msvc110express";
+        "msvc110pro";
+        "msvc100express";
+        "msvc100pro";];
+        idx = find(val == compilers);
+        if idx <> [] then
+            func = funcs(idx);
+            if func() then
+                MSCompiler = val;
+                return;
+            end
+        end
+    end
 
     if dlwIsVc12Express() then
-      MSCompiler = 'msvc120express';     // Microsoft Visual 2013 Express
-      return;
+        MSCompiler = "msvc120express";     // Microsoft Visual 2013 Express
+        return;
     end
 
     if dlwIsVc12Pro() then
-      MSCompiler = 'msvc120pro';       // Microsoft Visual 2013 Professional (or more)
-      return;
+        MSCompiler = "msvc120pro";       // Microsoft Visual 2013 Professional (or more)
+        return;
     end
 
     if dlwIsVc11Express() then
-      MSCompiler = 'msvc110express';     // Microsoft Visual 2012 Express
-      return;
+        MSCompiler = "msvc110express";     // Microsoft Visual 2012 Express
+        return;
     end
 
     if dlwIsVc11Pro() then
-      MSCompiler = 'msvc110pro';       // Microsoft Visual 2012 Professional (or more)
-      return;
+        MSCompiler = "msvc110pro";       // Microsoft Visual 2012 Professional (or more)
+        return;
     end
 
     if dlwIsVc10Pro() & dlwIsVc10Express() then
-      MSCompiler = 'msvc100express';     // Microsoft Visual 2010 Express with SDK extension
-      return;
+        MSCompiler = "msvc100express";     // Microsoft Visual 2010 Express with SDK extension
+        return;
     end
 
     if dlwIsVc10Express() then

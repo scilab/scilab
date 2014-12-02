@@ -13,23 +13,6 @@ function dynamic_linklib = startModule()
 //Load  functions libraries
 // =============================================================================
   load('SCI/modules/dynamic_link/macros/lib');
-
-// Configure Environment Variables for Microsoft Visual Studio C and
-// Intel Fortran
-  if getos() == 'Windows' then
-    if findmsvccompiler() <> 'unknown' then
-      // Configure Ms VC environment
-      configure_msvc();
-      if findmsifortcompiler() <> 'unknown' then
-        // Configure Intel Fortran environment
-        configure_msifort();
-      else
-        // Use F2C 
-        setenv('USE_F2C', 'YES');
-      end
-    end
-  end
-
 endfunction
 
 dynamic_linklib = startModule();

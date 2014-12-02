@@ -153,7 +153,7 @@ public class Export {
         DrawerVisitor visitor = DrawerVisitor.getVisitor(uid);
         if (visitor != null) {
             Canvas canvas = visitor.getCanvas();
-            if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type])) {
+            if (canvas instanceof JoGLCanvas && isBitmapFormat(types[type]) && visitor.getFigure().getVisible()) {
                 try {
                     return exportBitmap(uid, type, extendedFilename, true, params);
                 } catch (OutOfMemoryError e) {
@@ -225,6 +225,17 @@ public class Export {
                 @Override
                 public void updateObject(Integer id, int property) {
                     // Don't update during the export
+                }
+
+                @Override
+                public void visit(Figure figure) {
+                    // Fix for bug 13676: allow vectorial export even if the figure is invisible
+                    synchronized (figure) {
+                        super.visit(figure);
+                        if (!figure.getVisible()) {
+                            askAcceptVisitor(figure.getChildren());
+                        }
+                    }
                 }
             };
 

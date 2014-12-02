@@ -9,6 +9,8 @@
 //=============================================================================
 function dlwCompile(files, make_command, makename)
 
+    dlwConfigureEnv();
+
     nf = size(files,"*");
 
     for i=1:nf

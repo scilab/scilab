@@ -106,7 +106,7 @@ s=poly(0,"s");
 n=[1+s 2+3*s+4*s^2];
 d=[1+3*s 5-s^3];
 // continuous transfert fct
-hc=syslin("c",n./d)
+hc=syslin("c",n./d);
 checkplzr(hc,[],[1.7099759,0;-0.8549880,1.4808826;-0.8549880,-1.4808826;-1/3 0]);
 // discete transfert fct
 hd=syslin("d",n./d);
