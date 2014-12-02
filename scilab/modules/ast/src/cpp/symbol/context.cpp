@@ -357,9 +357,10 @@ void Context::removeGlobal(const Symbol& _key)
 void Context::removeGlobalAll()
 {
     std::list<Symbol>::iterator it = globals->begin();
-    for (; it != globals->end(); ++it)
+    while (it != globals->end())
     {
         removeGlobal(*it);
+        it = globals->begin();
     }
 
     globals->clear();
