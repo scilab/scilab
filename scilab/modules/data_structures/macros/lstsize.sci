@@ -20,7 +20,7 @@ function l=lstsize(varargin)
 
 
     var = varargin(1);
-    if type(var) <> 15 & type(var) <> 17 then
+    if type(var) <> 15 & type(var) <> 16 & type(var) <> 17 then
         error(999, msprintf(_("%s: Wrong type for argument %d: List expected.\n"), "lstsize", 1));
     end
 
