@@ -53,6 +53,7 @@ void Cell::createCell(int _iDims, int* _piDims)
     {
         double* pReal = NULL;
         m_pRealData[i] = Double::Empty();
+        m_pRealData[i]->IncreaseRef();
     }
 #ifndef NDEBUG
     Inspector::addItem(this);

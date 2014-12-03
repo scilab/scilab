@@ -734,6 +734,11 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
     }
     else if (pCall)
     {
+        bool bArgList = false;
+        types::List* pList = NULL;
+        int iListIncr = 0;
+        int iListSize = 0;
+
         ast::ExecVisitor execMe;
         typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->getArgs());
 
@@ -742,38 +747,68 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             return false;
         }
 
-        if (pCurrentArgs                    &&
-                pCurrentArgs->size() == 1       &&
-                (*pCurrentArgs)[0]->isString()  &&
-                (*pCurrentArgs)[0]->getAs<String>()->getSize() == 1)
+        // used to manage insertion with list in argument
+        // a(list("field", 2)) = 2 as a.field(2)
+        if ((*pCurrentArgs)[0]->isList() &&
+                (*pCurrentArgs)[0]->isTList() == false &&
+                (*pCurrentArgs)[0]->isMList() == false)
         {
-            // a("b") => a.b or a(x)("b") => a(x).b
-            ExpHistory * pEHParent = fields.back();
-            ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
-            ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
-            pEH->setLevel(pEHParent->getLevel() + 1);
-            pEH->setExpOwner(true);
+            bArgList = true;
+            pList = (*pCurrentArgs)[0]->getAs<types::List>();
+            //pList->IncreaseRef();
+            pCurrentArgs->clear();
+            pCurrentArgs->push_back(pList->get(iListIncr));
+            iListSize = pList->getSize();
+        }
 
-            (*pCurrentArgs)[0]->killMe();
-            delete pCurrentArgs;
+        do
+        {
+            if (pCurrentArgs &&
+                    pCurrentArgs->size() == 1 &&
+                    (*pCurrentArgs)[0]->isString() &&
+                    (*pCurrentArgs)[0]->getAs<String>()->getSize() == 1)
+            {
+                // a("b") => a.b or a(x)("b") => a(x).b
+                ExpHistory * pEHParent = fields.back();
+                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+                ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
+                pEH->setLevel(pEHParent->getLevel() + 1);
+                pEH->setExpOwner(true);
 
-            fields.push_back(pEH);
+                (*pCurrentArgs)[0]->killMe();
+                delete pCurrentArgs;
+                pCurrentArgs = NULL;
+
+                fields.push_back(pEH);
+            }
+            else if (fields.back()->getArgs())
+            {
+                // a(x)(y)(z)
+                ExpHistory * pEHParent = fields.back();
+                ExpHistory * pEH = new ExpHistory(pEHParent, pCurrentArgs);
+                pEH->setLevel(pEHParent->getLevel() + 1);
+                pEH->setArgsOwner(true);
+                fields.push_back(pEH);
+            }
+            else
+            {
+                // a(x)
+                fields.back()->setArgs(pCurrentArgs);
+                fields.back()->setArgsOwner(true);
+            }
+
+            if (bArgList)
+            {
+                iListIncr++;
+                if (iListIncr < iListSize)
+                {
+                    // create new args for next loop.
+                    pCurrentArgs = new types::typed_list();
+                    pCurrentArgs->push_back(pList->get(iListIncr));
+                }
+            }
         }
-        else if (fields.back()->getArgs())
-        {
-            // a(x)(y)(z)
-            ExpHistory * pEHParent = fields.back();
-            ExpHistory * pEH = new ExpHistory(pEHParent, pCurrentArgs);
-            pEH->setLevel(pEHParent->getLevel() + 1);
-            pEH->setArgsOwner(true);
-            fields.push_back(pEH);
-        }
-        else
-        {
-            // a(x)
-            fields.back()->setArgs(pCurrentArgs);
-            fields.back()->setArgsOwner(true);
-        }
+        while (iListIncr < iListSize);
 
         if (pCell)
         {
@@ -1374,28 +1409,37 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 }
                 else if (pParent->isTList() || pParent->isMList())
                 {
+                    InternalType* pITResult = NULL;
                     TList* pTL = pParent->getAs<TList>();
                     if (_pAssignValue->isListDelete() || (pTL->exists(pEH->getExpAsString()) == false))
                     {
                         typed_list args;
                         args.push_back(new String(pEH->getExpAsString().c_str()));
-                        InternalType* pIT = insertionCall(*_pExp, &args, pEH->getParent()->getCurrent(), _pAssignValue);
-                        if (pIT == NULL)
+                        pITResult = insertionCall(*_pExp, &args, pEH->getParent()->getCurrent(), _pAssignValue);
+                        if (pITResult == NULL)
                         {
                             std::wostringstream os;
                             os << _W("Error in insertion of TList.");
                             throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                         }
-
-                        if (pEH->getParent()->setCurrent(pIT))
-                        {
-                            pEH->getParent()->setReinsertion();
-                            pEH->resetReinsertion();
-                        }
                     }
                     else
                     {
+                        // In case where pTL is in several scilab variable,
+                        // we have to clone it for keep the other variables unchanged.
+                        if (pTL->getRef() > 1)
+                        {
+                            pTL = pTL->clone()->getAs<TList>();
+                        }
+
                         pTL->set(pEH->getExpAsString(), _pAssignValue);
+                        pITResult = pTL;
+                    }
+
+                    if (pEH->getParent()->setCurrent(pITResult))
+                    {
+                        pEH->getParent()->setReinsertion();
+                        pEH->resetReinsertion();
                     }
 
                     // set _pAssignValue in parent, so kill the current if needed
@@ -1442,7 +1486,21 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         TList* pTL = pParent->getAs<TList>();
                         if (pParentArgs)
                         {
+                            // In case where pTL is in several scilab variable,
+                            // we have to clone it for keep the other variables unchanged.
+                            if (pTL->getRef() > 1)
+                            {
+                                pTL = pTL->clone()->getAs<TList>();
+                            }
+
                             pTL->set(pEH->getWhereReinsert(), pEH->getCurrent());
+
+                            if (pEH->getParent()->setCurrent(pTL))
+                            {
+                                pEH->getParent()->setReinsertion();
+                                pEH->resetReinsertion();
+                            }
+
                             evalFields.pop_back();
                             delete pEH;
                             continue;
@@ -1451,7 +1509,21 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         {
                             if (pTL->exists(pEH->getExpAsString()))
                             {
+                                // In case where pTL is in several scilab variable,
+                                // we have to clone it for keep the other variables unchanged.
+                                if (pTL->getRef() > 1)
+                                {
+                                    pTL = pTL->clone()->getAs<TList>();
+                                }
+
                                 pTL->set(pEH->getExpAsString(), pEH->getCurrent());
+
+                                if (pEH->getParent()->setCurrent(pTL))
+                                {
+                                    pEH->getParent()->setReinsertion();
+                                    pEH->resetReinsertion();
+                                }
+
                                 evalFields.pop_back();
                                 delete pEH;
                                 continue;
@@ -2084,6 +2156,13 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     }
                     else
                     {
+                        // In case where pTL is in several scilab variable,
+                        // we have to clone it for keep the other variables unchanged.
+                        if (pTL->getRef() > 1)
+                        {
+                            pTL = pTL->clone()->getAs<TList>();
+                        }
+
                         pRet = pTL->insert(_pArgs, _pInsert);
                     }
                 }
