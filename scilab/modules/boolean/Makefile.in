@@ -170,7 +170,8 @@ am__objects_2 = src/fortran/logic.lo
 am__objects_3 = src/cpp/libsciboolean_algo_la-boolean_gw.lo
 am__objects_4 = sci_gateway/cpp/libsciboolean_algo_la-sci_bool2s.lo \
 	sci_gateway/cpp/libsciboolean_algo_la-sci_find.lo \
-	sci_gateway/cpp/libsciboolean_algo_la-sci_and.lo
+	sci_gateway/cpp/libsciboolean_algo_la-sci_and.lo \
+	sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo
 am_libsciboolean_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libsciboolean_algo_la_OBJECTS = $(am_libsciboolean_algo_la_OBJECTS)
@@ -181,9 +182,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libsciboolean_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciboolean_algo_la_rpath =
 libsciboolean_la_DEPENDENCIES = libsciboolean-algo.la
-am__objects_5 = sci_gateway/c/libsciboolean_la-sci_or.lo
-am__objects_6 =
-am_libsciboolean_la_OBJECTS = $(am__objects_5) $(am__objects_6)
+am_libsciboolean_la_OBJECTS =
 libsciboolean_la_OBJECTS = $(am_libsciboolean_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libsciboolean_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciboolean_la_rpath = -rpath $(pkglibdir)
@@ -581,12 +580,9 @@ BOOLEAN_FORTRAN_SOURCES = \
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_bool2s.cpp \
     sci_gateway/cpp/sci_find.cpp \
-    sci_gateway/cpp/sci_and.cpp
+    sci_gateway/cpp/sci_and.cpp \
+    sci_gateway/cpp/sci_or.cpp
 
-GATEWAY_C_SOURCES = \
-	sci_gateway/c/sci_or.c
-
-GATEWAY_FORTRAN_SOURCES = 
 libsciboolean_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
@@ -614,7 +610,7 @@ libsciboolean_la_CPPFLAGS = \
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciboolean-algo.la libsciboolean.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libsciboolean-algo.la
 libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
-libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES)
 libsciboolean_algo_la_CPPFLAGS = $(libsciboolean_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -832,26 +828,18 @@ sci_gateway/cpp/libsciboolean_algo_la-sci_find.lo:  \
 sci_gateway/cpp/libsciboolean_algo_la-sci_and.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libsciboolean-algo.la: $(libsciboolean_algo_la_OBJECTS) $(libsciboolean_algo_la_DEPENDENCIES) $(EXTRA_libsciboolean_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libsciboolean_algo_la_rpath) $(libsciboolean_algo_la_OBJECTS) $(libsciboolean_algo_la_LIBADD) $(LIBS)
-sci_gateway/c/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c
-	@: > sci_gateway/c/$(am__dirstamp)
-sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
-	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciboolean_la-sci_or.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libsciboolean.la: $(libsciboolean_la_OBJECTS) $(libsciboolean_la_DEPENDENCIES) $(EXTRA_libsciboolean_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libsciboolean_la_rpath) $(libsciboolean_la_OBJECTS) $(libsciboolean_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f sci_gateway/c/*.$(OBJEXT)
-	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
@@ -864,10 +852,10 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciboolean_la-sci_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_bool2s.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_find.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciboolean_algo_la-vect_and.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciboolean_algo_la-vect_or.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciboolean_algo_la-boolean_gw.Plo@am__quote@
@@ -909,13 +897,6 @@ src/c/libsciboolean_algo_la-vect_and.lo: src/c/vect_and.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/vect_and.c' object='src/c/libsciboolean_algo_la-vect_and.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciboolean_algo_la-vect_and.lo `test -f 'src/c/vect_and.c' || echo '$(srcdir)/'`src/c/vect_and.c
-
-sci_gateway/c/libsciboolean_la-sci_or.lo: sci_gateway/c/sci_or.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciboolean_la-sci_or.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciboolean_la-sci_or.Tpo -c -o sci_gateway/c/libsciboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciboolean_la-sci_or.Tpo sci_gateway/c/$(DEPDIR)/libsciboolean_la-sci_or.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_or.c' object='sci_gateway/c/libsciboolean_la-sci_or.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciboolean_la-sci_or.lo `test -f 'sci_gateway/c/sci_or.c' || echo '$(srcdir)/'`sci_gateway/c/sci_or.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -969,6 +950,13 @@ sci_gateway/cpp/libsciboolean_algo_la-sci_and.lo: sci_gateway/cpp/sci_and.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciboolean_algo_la-sci_and.lo `test -f 'sci_gateway/cpp/sci_and.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_and.cpp
 
+sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo: sci_gateway/cpp/sci_or.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_or.Tpo -c -o sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo `test -f 'sci_gateway/cpp/sci_or.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_or.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_or.Tpo sci_gateway/cpp/$(DEPDIR)/libsciboolean_algo_la-sci_or.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_or.cpp' object='sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciboolean_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciboolean_algo_la-sci_or.lo `test -f 'sci_gateway/cpp/sci_or.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_or.cpp
+
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
 
@@ -983,7 +971,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
@@ -1168,8 +1155,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1188,7 +1173,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1236,7 +1221,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

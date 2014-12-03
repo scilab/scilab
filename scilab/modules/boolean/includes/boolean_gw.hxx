@@ -36,5 +36,6 @@ public :
 CPP_GATEWAY_PROTOTYPE(sci_bool2s);
 CPP_GATEWAY_PROTOTYPE(sci_find);
 CPP_GATEWAY_PROTOTYPE(sci_and);
+CPP_GATEWAY_PROTOTYPE(sci_or);
 
 #endif /* __BOOLEAN_GW_HXX__ */
