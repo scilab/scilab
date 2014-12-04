@@ -319,13 +319,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         FieldExp *pField = dynamic_cast<FieldExp*>(&e.getLeftExp());
         if (pField)
         {
-            //a.b = x
-            //a.b can be a struct or a tlist/mlist or a handle
-            /*getting what to assign*/
-            setExpectedSize(1);
-            e.getRightExp().accept(*this);
-            InternalType *pIT = getResult();
-            setResult(NULL);
+            InternalType *pIT = e.getRightVal();
+            if (pIT == NULL)
+            {
+                //a.b = x
+                //a.b can be a struct or a tlist/mlist or a handle
+                /*getting what to assign*/
+                setExpectedSize(1);
+                e.getRightExp().accept(*this);
+                pIT = getResult();
+                setResult(NULL);
+            }
+
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())
