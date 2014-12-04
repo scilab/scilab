@@ -133,7 +133,7 @@ bool List::toString(std::wostringstream& ostr)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
-            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
+            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition << L")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
             scilabWriteW(ostr.str().c_str());
             if (VariableToString(*itValues, nextVarName.str().c_str()) == types::Function::Error)

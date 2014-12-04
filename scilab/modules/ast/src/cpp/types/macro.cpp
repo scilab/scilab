@@ -98,6 +98,10 @@ ast::SeqExp* Macro::getBody(void)
 
 bool Macro::toString(std::wostringstream& ostr)
 {
+    // get macro name
+    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+    ostr.str(L"");
+
     ostr << L"[";
 
     // output arguments [a,b,c] = ....
@@ -120,7 +124,7 @@ bool Macro::toString(std::wostringstream& ostr)
     ostr << L"]";
 
     // function name
-    ostr << L"=" << getName() << L"(";
+    ostr << L"=" << wcsVarName << L"(";
 
     // input arguments function(a,b,c)
     if (m_inputArgs->empty() == false)
@@ -140,6 +144,8 @@ bool Macro::toString(std::wostringstream& ostr)
     }
 
     ostr << L")" << std::endl;
+
+    FREE(wcsVarName);
     return true;
 }
 

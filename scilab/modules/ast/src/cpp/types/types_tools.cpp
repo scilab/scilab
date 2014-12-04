@@ -349,7 +349,7 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
     else
     {
         std::wostringstream ostr;
-        if (pIT->isList())
+        if (pIT->isList() || pIT->isCallable())
         {
             ostr << wcsVarName;
         }
