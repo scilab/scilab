@@ -38,16 +38,22 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
     catch (ast::ScilabMessage & sm)
     {
         ConfigVariable::where_end();
+        ConfigVariable::setLastErrorFunction(getName());
+
         throw sm;
     }
     catch (ast::InternalAbort & ia)
     {
         ConfigVariable::where_end();
+        ConfigVariable::setLastErrorFunction(getName());
+
         throw ia;
     }
     catch (ast::ScilabError & se)
     {
         ConfigVariable::where_end();
+        ConfigVariable::setLastErrorFunction(getName());
+
         throw se;
     }
 

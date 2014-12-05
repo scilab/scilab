@@ -15,19 +15,12 @@
 // <-- Short Description -->
 // Wrong line number in error message
 
+deff("l=foo()","[l,m]=where()","n");
+ll = foo();
+assert_checkequal(ll(1), 2);
 
-
-deff('l=foo()','[l,m]=where()','n')
-if foo()<>2 then pause,end
-comp(foo)
-if foo()<>2 then pause,end
-
-deff('foo','a=aaaa','n')
-if execstr('foo()','errcatch')<>4 then pause,end
+deff("foo1","a=aaaa")
+if execstr("foo1()","errcatch") == 0 then pause,end
 [str,n,l,f]=lasterror(%t);
-if l<>2|f<>'foo' then pause,end
-
-deff('foo','a=aaaa')
-if execstr('foo()','errcatch')<>4 then pause,end
-[str,n,l,f]=lasterror(%t);
-if l<>2|f<>'foo' then pause,end
+assert_checkequal(l, 2);
+assert_checkequal(f, "foo1");
