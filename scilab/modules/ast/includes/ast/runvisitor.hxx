@@ -406,7 +406,7 @@ public :
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
-                ostrName << SPACES_LIST << e.getSymbol().getName();
+                ostrName  << e.getSymbol().getName();
                 VariableToString(pI, ostrName.str().c_str());
             }
         }
