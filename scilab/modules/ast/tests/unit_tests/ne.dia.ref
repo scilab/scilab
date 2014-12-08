@@ -21,3 +21,10 @@ assert_checkfalse(R <> R);
 assert_checkfalse(C <> C);
 assert_checkfalse(R3 <> R3);
 assert_checkfalse(C3 <> C3);
+// list() tlist() mlist()
+t=tlist("any_type");
+assert_checktrue(t <> list());
+t=tlist("any_type");
+assert_checktrue(t <> tlist("other_type"));
+t=tlist("any_type");
+assert_checktrue(t <> mlist("other_type"));

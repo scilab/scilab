@@ -26,3 +26,18 @@ assert_checktrue(R == R);
 assert_checktrue(C == C);
 assert_checktrue(R3 == R3);
 assert_checktrue(C3 == C3);
+
+// list() tlist() mlist()
+t=list("any_type");
+assert_checktrue(t == list());
+t=tlist("any_type");
+assert_checktrue(t == tlist("any_type"))
+t=tlist("any_type");
+assert_checktrue(t == mlist("any_type"))
+
+function res=%mytype_o_l(a,b)
+    disp("mytype_o_l");
+    res = %t;
+endfunction
+t=tlist("mytype");
+assert_checktrue(t==list());

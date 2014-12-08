@@ -554,10 +554,27 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
     /*
     ** LIST == LIST
     */
-    if (TypeL == GenericType::ScilabList && TypeR == GenericType::ScilabList)
+    if (pIL->isList() && pIR->isList())
     {
         List* pLL = pIL->getAs<List>();
         List* pLR = pIR->getAs<List>();
+
+        // check if an overload exists
+        if (TypeL == GenericType::ScilabMList ||
+                TypeL == GenericType::ScilabTList ||
+                TypeR == GenericType::ScilabMList ||
+                TypeR == GenericType::ScilabTList)
+        {
+            std::wstring function_name;
+            function_name = L"%" + pLL->getShortTypeStr() + L"_o_" + pLR->getShortTypeStr();
+            InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
+
+            if (pFunc)
+            {
+                //call overload
+                return NULL;
+            }
+        }
 
         if (pLL->getSize() != pLR->getSize())
         {
@@ -840,91 +857,6 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
 
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
         return pResult;
-    }
-
-    /*
-    ** TList == TList
-    */
-    if (TypeL == GenericType::ScilabTList && TypeR == GenericType::ScilabTList)
-    {
-        TList* pLL = pIL->getAs<TList>();
-        TList* pLR = pIR->getAs<TList>();
-
-        // check if an overload exists
-        std::wstring function_name;
-        function_name = L"%" + pLL->getShortTypeStr() + L"_o_" + pLR->getShortTypeStr();
-        InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
-
-        if (pFunc)
-        {
-            //call overload
-            return NULL;
-        }
-
-        if (pLL->getSize() != pLR->getSize())
-        {
-            clearAlloc(bAllocL, pIL, bAllocR, pIR);
-            return new Bool(false);
-        }
-
-        if (pLL->getSize() == 0 && pLR->getSize() == 0)
-        {
-            //list() == list() -> return true
-            clearAlloc(bAllocL, pIL, bAllocR, pIR);
-            return new Bool(true);
-        }
-
-        Bool* pB = new Bool(1, pLL->getSize());
-        for (int i = 0 ; i < pLL->getSize() ; i++)
-        {
-            pB->set(i, *pLL->get(i) == *pLR->get(i));
-        }
-
-        clearAlloc(bAllocL, pIL, bAllocR, pIR);
-        return pB;
-    }
-
-
-    /*
-    ** MList == MList
-    */
-    if (TypeL == GenericType::ScilabMList && TypeR == GenericType::ScilabMList)
-    {
-        MList* pLL = pIL->getAs<MList>();
-        MList* pLR = pIR->getAs<MList>();
-
-        // check if an overload exists
-        std::wstring function_name;
-        function_name = L"%" + pLL->getShortTypeStr() + L"_o_" + pLR->getShortTypeStr();
-        InternalType* pFunc = symbol::Context::getInstance()->get(symbol::Symbol(function_name));
-
-        if (pFunc)
-        {
-            //call overload
-            return NULL;
-        }
-
-        if (pLL->getSize() != pLR->getSize())
-        {
-            clearAlloc(bAllocL, pIL, bAllocR, pIR);
-            return new Bool(false);
-        }
-
-        if (pLL->getSize() == 0 && pLR->getSize() == 0)
-        {
-            //list() == list() -> return true
-            clearAlloc(bAllocL, pIL, bAllocR, pIR);
-            return new Bool(true);
-        }
-
-        Bool* pB = new Bool(1, pLL->getSize());
-        for (int i = 0 ; i < pLL->getSize() ; i++)
-        {
-            pB->set(i, *pLL->get(i) == *pLR->get(i));
-        }
-
-        clearAlloc(bAllocL, pIL, bAllocR, pIR);
-        return pB;
     }
 
     /*
