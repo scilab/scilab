@@ -141,17 +141,26 @@ if sciargs()<>"-nouserstartup" then
 
   startupfiles = [ SCIHOME + filesep() + ".scilab"     ; .. // Home directory startup
                    SCIHOME + filesep() + "scilab.ini" ];    //  ""      ""    startup
-
-  if SCIHOME <> pwd() then
-    startupfiles = [ startupfiles     ; ..
-                     ".scilab"        ; .. // Working directory startup
-                     "scilab.ini" ]   ;    //  ""         ""    startup
-  end
-
   for i = 1:size(startupfiles, "*")
     if isfile(startupfiles(i)) then
       exec(startupfiles(i),-1);
     end
+  end
+
+  // execute .scilab and scilab.start only
+  // if last exec does not change current directory to SCIHOME
+  // See bug #4150
+  workingDirectory = pwd();
+  if SCIHOME <> workingDirectory then
+
+      workingfiles = [ workingDirectory + filesep() + ".scilab"     ; .. // Working directory startup
+                       workingDirectory + filesep() + "scilab.ini" ];    //  ""      ""    startup
+
+      for i = 1:size(startupfiles, "*")
+        if isfile(startupfiles(i)) then
+          exec(startupfiles(i),-1);
+        end
+      end
   end
 
   clear i;
