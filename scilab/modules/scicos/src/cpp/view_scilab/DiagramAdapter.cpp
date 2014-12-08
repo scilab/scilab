@@ -80,7 +80,7 @@ struct objs
         std::vector<link_t> to = adaptor.getTo();
 
         int link_number = 0;
-        Controller newController = Controller();
+        Controller newController;
         for (int i = 0; i < static_cast<int>(children.size()); ++i)
         {
             std::shared_ptr<model::BaseObject> item = newController.getObject(children[i]);
@@ -108,6 +108,8 @@ struct objs
                             oldBlockDiagram->IncreaseRef();
                         }
                         localAdaptor->setDiagram(oldBlockDiagram);
+                        types::InternalType* oldDoc = oldBlock->getDocContent();
+                        localAdaptor->setDocContent(oldDoc);
                     }
 
                     o->set(i, localAdaptor);
@@ -252,15 +254,10 @@ struct objs
         {
             // Trigger 'from' and 'to' properties
             from_content[i] = linkListView[i]->getFrom();
-            if (!linkListView[i]->setFromInModel(from_content[i], controller) && (from_content[i].block != 0 && from_content[i].port != 0))
-            {
-                return false;
-            }
+            linkListView[i]->setFromInModel(from_content[i], controller);
+
             to_content[i] = linkListView[i]->getTo();
-            if (!linkListView[i]->setToInModel(to_content[i], controller) && (to_content[i].block != 0 && to_content[i].port != 0))
-            {
-                return false;
-            }
+            linkListView[i]->setToInModel(to_content[i], controller);
         }
         adaptor.setFrom(from_content);
         adaptor.setTo(to_content);
@@ -434,11 +431,11 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
 
 DiagramAdapter::~DiagramAdapter()
 {
-    // Unlink the diagram's children if necessary
-    Controller controller;
-    std::vector<ScicosID> diagramChildren;
-    if (getAdaptee() != 0)
+    // Unlink the diagram's children if the adaptee is being deleted
+    if (getAdaptee().use_count() == 3)
     {
+        Controller controller;
+        std::vector<ScicosID> diagramChildren;
         controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
         for (ScicosID id : diagramChildren)
         {

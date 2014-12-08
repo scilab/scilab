@@ -104,7 +104,7 @@ public:
     BaseAdapter(std::shared_ptr<Adaptee> adaptee) : m_adaptee(adaptee) {};
     BaseAdapter(const BaseAdapter& adapter) : m_adaptee(0)
     {
-        Controller controller = Controller();
+        Controller controller;
         ScicosID id = controller.cloneObject(adapter.getAdaptee()->id());
         m_adaptee = std::static_pointer_cast<Adaptee>(controller.getObject(id));
     };
@@ -171,19 +171,7 @@ public:
         index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {
-            // In a ModelAdapter, the 'rpar' property (number 13) can return '0', in which case do not set the field
-            if (index != 13)
-            {
-                tlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
-            }
-            else
-            {
-                types::InternalType* pVal = it->get(*static_cast<Adaptor*>(this), controller);
-                if (pVal != 0)
-                {
-                    tlist->set(index, pVal);
-                }
-            }
+            tlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
         }
 
         tlist->IncreaseRef();

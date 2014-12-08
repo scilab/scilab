@@ -14,7 +14,6 @@
 #include <memory>
 
 #include "internal.hxx"
-#include "list.hxx"
 #include "types.hxx"
 #include "user.hxx"
 
@@ -28,6 +27,22 @@ namespace view_scilab
 namespace
 {
 
+struct dummy_property
+{
+
+    static types::InternalType* get(const CprAdapter& /*adaptor*/, const Controller& /*controller*/)
+    {
+        // Return a default empty matrix.
+        return types::Double::Empty();
+    }
+
+    static bool set(CprAdapter& /*adaptor*/, types::InternalType* /*v*/, Controller& /*controller*/)
+    {
+        // Everything should be right as the properties mapped using this adapter do not perform anything
+        return true;
+    }
+};
+
 } /* namespace */
 
 template<> property<CprAdapter>::props_t property<CprAdapter>::fields = property<CprAdapter>::props_t();
@@ -37,7 +52,11 @@ CprAdapter::CprAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram
 {
     if (property<CprAdapter>::properties_have_not_been_set())
     {
-        // FIXME: add some properties
+        property<CprAdapter>::fields.reserve(4);
+        property<CprAdapter>::add_property(L"state", &dummy_property::get, &dummy_property::set);
+        property<CprAdapter>::add_property(L"sim", &dummy_property::get, &dummy_property::set);
+        property<CprAdapter>::add_property(L"cor", &dummy_property::get, &dummy_property::set);
+        property<CprAdapter>::add_property(L"corinv", &dummy_property::get, &dummy_property::set);
     }
 }
 

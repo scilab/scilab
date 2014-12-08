@@ -258,8 +258,8 @@ struct ct
         double* data;
         types::Double* o = new types::Double(1, 2, &data);
 
-        data[0] = static_cast<double>(color);
-        data[1] = static_cast<double>(kind);
+        data[0] = color;
+        data[1] = kind;
         return o;
     }
 
@@ -452,7 +452,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     // kind == 0: trying to set the start of the link (output port)
     // kind == 1: trying to set the end of the link (input port)
 
-    if (v.block > children.size())
+    if (v.block > static_cast<int>(children.size()))
     {
         return; // Trying to link to a non-existing block
     }
@@ -465,7 +465,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     }
 
     // v.port may be decremented locally to square with the port indexes
-    size_t portIndex = v.port;
+    int portIndex = v.port;
 
     std::vector<ScicosID> sourceBlockPorts;
     bool newPortIsImplicit = false;
@@ -540,7 +540,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
             }
 
             // Rule out the implicit ports
-            for (size_t i = 0; i < sourceBlockPorts.size(); ++i)
+            for (int i = 0; i < static_cast<int>(sourceBlockPorts.size()); ++i)
             {
                 bool isImplicit;
                 controller.getObjectProperty(sourceBlockPorts[i], PORT, IMPLICIT, isImplicit);
@@ -574,7 +574,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
                 if (isImplicit == false)
                 {
                     sourceBlockPorts.erase(sourceBlockPorts.begin() + i);
-                    if (portIndex > i + 1)
+                    if (portIndex > static_cast<int>(i + 1))
                     {
                         portIndex--; // Keep portIndex consistent with the port indexes
                     }
@@ -589,7 +589,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         controller.setObjectProperty(concernedPort, PORT, CONNECTED_SIGNALS, unconnected);
     }
 
-    size_t nBlockPorts = sourceBlockPorts.size();
+    int nBlockPorts = static_cast<int>(sourceBlockPorts.size());
     if (nBlockPorts >= portIndex)
     {
         concernedPort = sourceBlockPorts[portIndex - 1];
@@ -657,30 +657,18 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     controller.setObjectProperty(id, LINK, end, concernedPort);
 }
 
-// check if the link is valid
-bool is_valid(types::Double* o)
+// Check if the Link is valid
+bool is_valid(const link_t& linkt)
 {
-    if (o->getSize() >= 2)
+    if (floor(linkt.block) != linkt.block ||
+            floor(linkt.port) != linkt.port ||
+            floor(linkt.kind) != linkt.kind)
     {
-        if (floor(o->get(0)) != o->get(0) || floor(o->get(1)) != o->get(1))
-        {
-            return false; // Must be an integer value
-        }
-        if (o->get(0) < 0 || o->get(1) < 0)
-        {
-            return false; // Must be positive
-        }
+        return false; // Block, Port and Kind must be integer values
     }
-    if (o->getSize() == 3)
+    if (linkt.port < 0 || linkt.kind < 0)
     {
-        if (floor(o->get(2)) != o->get(2))
-        {
-            return false; // Must be an integer value
-        }
-        if (o->get(2) < 0)
-        {
-            return false; // Must be positive
-        }
+        return false; // Port and Kind must be positive
     }
 
     return true;
@@ -716,11 +704,6 @@ struct from
             return false;
         }
 
-        if (!is_valid(current))
-        {
-            return false;
-        }
-
         link_t from_content {0, 0, Start};
         if (current->getSize() >= 2)
         {
@@ -733,7 +716,13 @@ struct from
             from_content.kind = (current->get(2) == 0.) ? Start : End;
         }
 
-        return adaptor.setFromInModel(from_content, controller);
+        if (!is_valid(from_content))
+        {
+            return false;
+        }
+
+        adaptor.setFromInModel(from_content, controller);
+        return true;
     }
 };
 
@@ -767,11 +756,6 @@ struct to
             return false;
         }
 
-        if (!is_valid(current))
-        {
-            return false;
-        }
-
         link_t to_content {0, 0, End};
         if (current->getSize() >= 2)
         {
@@ -784,7 +768,13 @@ struct to
             to_content.kind = (current->get(2) == 0.) ? Start : End;
         }
 
-        return adaptor.setToInModel(to_content, controller);
+        if (!is_valid(to_content))
+        {
+            return false;
+        }
+
+        adaptor.setToInModel(to_content, controller);
+        return true;
     }
 };
 
@@ -852,7 +842,7 @@ void LinkAdapter::setFrom(const link_t& v)
     m_from = v;
 }
 
-bool LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
+void LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
 {
     m_from = v;
 
@@ -865,8 +855,6 @@ bool LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
         setLinkEnd(getAdaptee()->id(), controller, SOURCE_PORT, v);
     }
-
-    return true;
 }
 
 link_t LinkAdapter::getTo() const
@@ -879,7 +867,7 @@ void LinkAdapter::setTo(const link_t& v)
     m_to = v;
 }
 
-bool LinkAdapter::setToInModel(const link_t& v, Controller& controller)
+void LinkAdapter::setToInModel(const link_t& v, Controller& controller)
 {
     m_to = v;
 
@@ -892,8 +880,6 @@ bool LinkAdapter::setToInModel(const link_t& v, Controller& controller)
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
         setLinkEnd(getAdaptee()->id(), controller, DESTINATION_PORT, v);
     }
-
-    return true;
 }
 
 } /* namespace view_scilab */

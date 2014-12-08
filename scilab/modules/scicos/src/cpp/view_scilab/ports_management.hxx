@@ -398,11 +398,14 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
                 controller.setObjectProperty(oldSignalSrc, PORT, CONNECTED_SIGNALS, unconnected);
             }
             // Link de-association is not performed as the link will be removed
-            // connect the new link
-            controller.setObjectProperty(newSignal, LINK, SOURCE_PORT, 0);
-            controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, newSignal);
-            children.erase(std::find(children.begin(), children.end(), oldSignal));
-            deletedObjects.push_back(oldSignal);
+            // connect the new link if there is one
+            if (newSignal != 0)
+            {
+                controller.setObjectProperty(newSignal, LINK, SOURCE_PORT, 0);
+                controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, newSignal);
+                children.erase(std::find(children.begin(), children.end(), oldSignal));
+                deletedObjects.push_back(oldSignal);
+            }
         }
     }
     else

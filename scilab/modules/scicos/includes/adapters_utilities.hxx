@@ -21,8 +21,8 @@ enum startOrEnd
 
 struct link_t
 {
-    size_t block;
-    size_t port;
+    int block;
+    int port;
     enum startOrEnd kind;
 };
 

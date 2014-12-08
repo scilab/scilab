@@ -31,6 +31,8 @@
 #include "TextAdapter.hxx"
 
 extern "C" {
+#include "wchar.h"
+
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -75,7 +77,7 @@ struct model
             return false;
         }
 
-        adaptor.setDiagram(localAdaptor.getRpar());
+        adaptor.setDiagram(localAdaptor.getDiagram());
 
         return true;
     }

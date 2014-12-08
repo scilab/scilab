@@ -916,7 +916,7 @@ struct rpar
             //model::Diagram* super = static_cast<model::Diagram*>(controller.getObject(diagramC[0]).get());
             //DiagramAdapter* localAdapter = new DiagramAdapter(std::shared_ptr<model::Diagram>(super));
 
-            DiagramAdapter* diagram = adaptor.getRpar();
+            DiagramAdapter* diagram = adaptor.getDiagram();
             localAdaptor->setListObjects(diagram->getListObjects());
             localAdaptor->setFrom(diagram->getFrom());
             localAdaptor->setTo(diagram->getTo());
@@ -1748,7 +1748,7 @@ ModelAdapter::ModelAdapter(std::shared_ptr<model::Block> adaptee) :
 
 ModelAdapter::ModelAdapter(const ModelAdapter& adapter) :
     BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(adapter),
-    diagramAdapter(adapter.getRpar())
+    diagramAdapter(adapter.getDiagram())
 {
 }
 
@@ -1771,7 +1771,7 @@ std::wstring ModelAdapter::getShortTypeStr()
     return getSharedTypeStr();
 }
 
-DiagramAdapter* ModelAdapter::getRpar() const
+DiagramAdapter* ModelAdapter::getDiagram() const
 {
     if (diagramAdapter != nullptr)
     {
