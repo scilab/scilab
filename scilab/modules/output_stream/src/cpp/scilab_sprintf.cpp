@@ -30,6 +30,10 @@ extern "C"
 #include "os_wcsdup.h"
 }
 
+#define NanString L"Nan"
+#define InfString L"Inf"
+#define NegInfString L"-Inf"
+
 static wchar_t* replaceAndCountLines(const wchar_t* _pwstInput, int* _piLines, int* _piNewLine);
 
 wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* _piNewLine)
@@ -181,7 +185,17 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                             *_piOutputRows = 0;
                             return NULL;
                         }
-                        pToken[iToken].outputType = InternalType::ScilabInt32;
+
+                        if (finite(in[iPosArg + 1]->getAs<types::Double>()->get(0)) == false)
+                        {
+                            pToken[iToken].outputType = InternalType::ScilabString;
+                            *(pwstPercent + 1) = L's';
+                        }
+                        else
+                        {
+                            pToken[iToken].outputType = InternalType::ScilabInt32;
+                        }
+
                         iPosArg++;
                         break;
                     case L'f' : //float
@@ -195,7 +209,16 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                             *_piOutputRows = 0;
                             return NULL;
                         }
-                        pToken[iToken].outputType = InternalType::ScilabDouble;
+
+                        if (finite(in[iPosArg + 1]->getAs<types::Double>()->get(0)) == false)
+                        {
+                            pToken[iToken].outputType = InternalType::ScilabString;
+                            *(pwstPercent + 1) = L's';
+                        }
+                        else
+                        {
+                            pToken[iToken].outputType = InternalType::ScilabDouble;
+                        }
                         iPosArg++;
                         break;
                     case L's' :
@@ -269,7 +292,29 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                 }
                 else if (pToken[i].outputType == InternalType::ScilabString)
                 {
-                    wchar_t* pwstStr = in[_pArgs[iPosArg].iArg]->getAs<types::String>()->get(j, _pArgs[iPosArg].iPos);
+                    wchar_t* pwstStr = NULL;
+
+                    if (in[iPosArg + 1]->isDouble() && ISNAN(in[iPosArg + 1]->getAs<types::Double>()->get(0)))
+                    {
+                        pwstStr = NanString;
+                    }
+                    else if (in[iPosArg + 1]->isDouble() && finite(in[iPosArg + 1]->getAs<types::Double>()->get(0)) == false)
+                    {
+                        if (std::signbit(in[iPosArg + 1]->getAs<types::Double>()->get(0)))
+                        {
+                            pwstStr = NegInfString;
+                        }
+                        else
+                        {
+                            pwstStr = InfString;
+                        }
+
+                    }
+                    else
+                    {
+                        pwstStr = in[_pArgs[iPosArg].iArg]->getAs<types::String>()->get(j, _pArgs[iPosArg].iPos);
+                    }
+
                     int posC = (int)wcscspn(pToken[i].pwstToken, L"c");
                     int posS = (int)wcscspn(pToken[i].pwstToken, L"s");
                     if (!posS || !posC)
