@@ -44,7 +44,6 @@ extern "C"
 }
 
 using namespace ast;
-bool checkPrompt(int _iMode, int _iCheck);
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
 std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
 std::string getExpression(const std::string& _stFile, Exp* _pExp);
@@ -549,11 +548,6 @@ std::string getExpression(const std::string& _stFile, Exp* _pExp)
     return out;
 }
 
-bool checkPrompt(int _iMode, int _iCheck)
-{
-    return ((_iMode & _iCheck) == _iCheck);
-}
-
 std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
 {
     //case 1, exp is on 1 line and take the entire line
@@ -727,7 +721,7 @@ void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _b
     }
 
     st += _stLine;
-    if (_bLF)
+    if (_bLF && ConfigVariable::isEmptyLineShow())
     {
         st += "\n";
     }

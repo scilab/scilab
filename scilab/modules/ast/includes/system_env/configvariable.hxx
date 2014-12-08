@@ -215,6 +215,7 @@ public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
     static bool isPromptShow(void);
+    static bool isEmptyLineShow(void);
 
     static void setSilentError(int _iSilentError);
     static int getSilentError(void);

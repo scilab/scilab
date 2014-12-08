@@ -404,9 +404,14 @@ bool ConfigVariable::m_bVerbose = true;
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
     m_iPromptMode = _iPromptMode;
-    if (m_iPromptMode == 0)
+    if (m_iPromptMode == 5)
     {
-        //m_iPromptMode = -1;
+        m_iPromptMode = 1;
+    }
+
+    if (m_iPromptMode == 6)
+    {
+        m_iPromptMode = 7;
     }
 }
 
@@ -415,11 +420,25 @@ int ConfigVariable::getPromptMode(void)
     return m_iPromptMode;
 }
 
+bool ConfigVariable::isEmptyLineShow(void)
+{
+    if ( m_iPromptMode == 0     ||
+            m_iPromptMode == 2  ||
+            m_iPromptMode == 3)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 bool ConfigVariable::isPromptShow(void)
 {
-    if ( m_iPromptMode == 0 ||
-            m_iPromptMode == 1 ||
-            m_iPromptMode == 2 ||
+    if ( m_iPromptMode == 0     ||
+            m_iPromptMode == 1  ||
+            m_iPromptMode == 2  ||
             m_iPromptMode == 3)
     {
         return true;

@@ -531,7 +531,12 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
                 FREE(command);
                 command = NULL;
             }
-            scilabWriteW(L"\n");
+
+            if (ConfigVariable::isEmptyLineShow())
+            {
+                scilabWriteW(L"\n");
+            }
+
             command = scilabRead();
         }
         else
