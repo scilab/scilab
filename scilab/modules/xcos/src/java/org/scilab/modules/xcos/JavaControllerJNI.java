@@ -94,7 +94,7 @@ public class JavaControllerJNI {
     public final static native long VectorOfScicosID_get(long jarg1, VectorOfScicosID jarg1_, int jarg2);
     public final static native void VectorOfScicosID_set(long jarg1, VectorOfScicosID jarg1_, int jarg2, long jarg3);
     public final static native void delete_VectorOfScicosID(long jarg1);
-    public final static native void register_view(long jarg1, View jarg1_);
+    public final static native void register_view(String jarg1, long jarg2, View jarg2_);
 
     static {
         try {

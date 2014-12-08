@@ -34,8 +34,10 @@ namespace org_scilab_modules_scicos
 class SCICOS_IMPEXP Controller
 {
 public:
-    static void register_view(View* v);
+    static View* register_view(const std::string& name, View* v);
     static void unregister_view(View* v);
+    static View* unregister_view(const std::string& name);
+    static View* look_for_view(const std::string& name);
 
     Controller();
     ~Controller();
@@ -73,6 +75,7 @@ public:
 private:
 
     typedef std::vector<View*> view_set_t;
+    typedef std::vector<std::string> view_name_set_t;
 
     /**
      * Shared data through all instance of the controllers
@@ -80,6 +83,7 @@ private:
     struct SharedData
     {
         Model model;
+        view_name_set_t allNamedViews;
         view_set_t allViews;
 
         SharedData();

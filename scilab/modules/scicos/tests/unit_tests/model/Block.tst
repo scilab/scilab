@@ -59,6 +59,20 @@ o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
+// Now set the parameters to the defaults values (eg. removing ports)
+p = funcprot();
+funcprot(0);
+function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
+    ok = %t;
+    sgn = [1; 1];
+    exprs = sci2exp(sgn);
+endfunction
+funcprot(p);
+
+o = BIGSOM_f("set", o)
+o.graphics
+o.model
+
 // Try with another block containing event inputs
 o = CSCOPE("define")
 o.graphics

@@ -104,6 +104,7 @@
 %ignore org_scilab_modules_scicos::Controller::getObject;
 %ignore org_scilab_modules_scicos::Controller::unregister_view;
 %ignore org_scilab_modules_scicos::Controller::register_view;
+%ignore org_scilab_modules_scicos::Controller::look_for_view;
 %ignore org_scilab_modules_scicos::Controller::delete_all_instances;
 %include "../scicos/includes/Controller.hxx";
 
@@ -140,8 +141,8 @@
  * Fill the main module by needed methods
  */
 %{
-static void register_view(org_scilab_modules_scicos::View* view) {
-	org_scilab_modules_scicos::Controller::register_view(view);
+static void register_view(const std::string& name, org_scilab_modules_scicos::View* view) {
+	org_scilab_modules_scicos::Controller::register_view(name, view);
 };
 %}
 
@@ -163,7 +164,7 @@ import java.util.ArrayList;
 
 %typemap(javain) org_scilab_modules_scicos::View* "add_reference($javainput)"
 
-void register_view(org_scilab_modules_scicos::View* view);
+void register_view(const std::string& name, org_scilab_modules_scicos::View* view);
 
 /*
  * Static load of library

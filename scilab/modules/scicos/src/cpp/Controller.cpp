@@ -28,10 +28,8 @@ namespace org_scilab_modules_scicos
  * Implement SharedData methods
  */
 Controller::SharedData::SharedData() :
-    model(), allViews()
+    model(), allNamedViews(), allViews()
 {
-    LoggerView* v = new LoggerView();
-    allViews.push_back(v);
 }
 
 Controller::SharedData::~SharedData()
@@ -44,9 +42,11 @@ Controller::SharedData::~SharedData()
 
 Controller::SharedData Controller::m_instance;
 
-void Controller::register_view(View* v)
+View* Controller::register_view(const std::string& name, View* v)
 {
+    m_instance.allNamedViews.push_back(name);
     m_instance.allViews.push_back(v);
+    return v;
 }
 
 void Controller::unregister_view(View* v)
@@ -54,8 +54,43 @@ void Controller::unregister_view(View* v)
     view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
     if (it != m_instance.allViews.end())
     {
-        m_instance.allViews.erase(it);
+        int d = std::distance(m_instance.allViews.begin(), it);
+
+        m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
+        m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
+}
+
+View* Controller::unregister_view(const std::string& name)
+{
+    View* view = nullptr;
+
+    view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
+    if (it != m_instance.allNamedViews.end())
+    {
+        int d = std::distance(m_instance.allNamedViews.begin(), it);
+
+        view = *(m_instance.allViews.begin() + d);
+        m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
+        m_instance.allViews.erase(m_instance.allViews.begin() + d);
+    }
+
+    return view;
+}
+
+View* Controller::look_for_view(const std::string& name)
+{
+    View* view = nullptr;
+
+    view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
+    if (it != m_instance.allNamedViews.end())
+    {
+        int d = std::distance(m_instance.allNamedViews.begin(), it);
+
+        view = *(m_instance.allViews.begin() + d);
+    }
+
+    return view;
 }
 
 Controller::Controller()

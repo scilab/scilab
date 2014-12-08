@@ -20,8 +20,8 @@ public class JavaController extends Controller {
         return View.getCPtr(v);
     }
 
-    public static void register_view(View view) {
-        JavaControllerJNI.register_view(add_reference(view), view);
+    public static void register_view(String name, View view) {
+        JavaControllerJNI.register_view(name, add_reference(view), view);
     }
 
 }

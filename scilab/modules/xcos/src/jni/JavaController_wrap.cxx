@@ -690,8 +690,8 @@ SWIGINTERN void std_vector_Sl_ScicosID_Sg__set(std::vector< ScicosID > *self,int
                     throw std::out_of_range("vector index out of range");
             }
 
-static void register_view(org_scilab_modules_scicos::View* view) {
-	org_scilab_modules_scicos::Controller::register_view(view);
+static void register_view(const std::string& name, org_scilab_modules_scicos::View* view) {
+	org_scilab_modules_scicos::Controller::register_view(name, view);
 };
 
 
@@ -2416,14 +2416,24 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_delete_1V
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_register_1view(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
-  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_register_1view(JNIEnv *jenv, jclass jcls, jstring jarg1, jlong jarg2, jobject jarg2_) {
+  std::string *arg1 = 0 ;
+  org_scilab_modules_scicos::View *arg2 = (org_scilab_modules_scicos::View *) 0 ;
   
   (void)jenv;
   (void)jcls;
-  (void)jarg1_;
-  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
-  register_view(arg1);
+  (void)jarg2_;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return ;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return ;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  arg2 = *(org_scilab_modules_scicos::View **)&jarg2; 
+  register_view((std::string const &)*arg1,arg2);
 }
 
 
