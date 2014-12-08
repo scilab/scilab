@@ -174,9 +174,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_and.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_bool2s.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_find.cpp" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_and.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_or.c" />
     <ClCompile Include="boolean_gw.cpp" />
   </ItemGroup>
