@@ -59,12 +59,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_scicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="il_sim.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="il_state.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="import.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +75,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_curblock.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_curblockc.c">
@@ -135,9 +126,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_scicos_time.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicosim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c">
@@ -255,6 +243,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_duplicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_curblock.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicosim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\il_sim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\il_state.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_var2vec.cpp">
@@ -401,6 +401,12 @@
       <Filter>Header Files\MVC\model</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\model\Port.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\il_sim.hxx">
+      <Filter>Header Files\MVC\model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\il_state.hxx">
       <Filter>Header Files\MVC\model</Filter>
     </ClInclude>
   </ItemGroup>

@@ -269,14 +269,11 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\extractblklist.c" />
     <ClCompile Include="..\ezxml.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\gw_scicos.c" />
-    <ClCompile Include="..\il_sim.c" />
-    <ClCompile Include="..\il_state.c" />
     <ClCompile Include="..\import.c" />
     <ClCompile Include="..\MlistGetFieldNumber.c" />
     <ClCompile Include="..\lsodar.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_callblk.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_coserror.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_curblock.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_curblockc.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_data2sig.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_diffobjs.c" />
@@ -293,7 +290,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug_count.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_time.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicosim.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c" />

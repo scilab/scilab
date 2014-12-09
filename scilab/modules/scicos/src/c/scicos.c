@@ -70,7 +70,6 @@
 #include "syncexec.h"
 #include "realtime.h"
 #include "sci_malloc.h"
-#include "cvstr.h"
 #include "ezxml.h"
 #include "xscion.h"
 
@@ -287,7 +286,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata);
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                 void **work, int *zptr, int *modptr_in,
                 void **oz, int *ozsz, int *oztyp, int *ozptr,
-                int *iz, int *izptr, int* uid, int* uidptr, double *t0_in,
+                char **iz, int *izptr, char **uid, int *uidptr, double *t0_in,
                 double *tf_in, double *tevts_in, int *evtspt_in,
                 int *nevts, int *pointi_in, void **outtbptr_in,
                 int *outtbsz_in, int *outtbtyp_in,
@@ -752,7 +751,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         }
 
         /* 11 : block label (label) */
-        i1 = izptr[kf + 2] - izptr[kf + 1];
+        i1 = izptr[kf];
         if ((Blocks[kf].label = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
         {
             FREE_blocks();
@@ -760,10 +759,10 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             return 0;
         }
         Blocks[kf].label[i1] = '\0';
-        C2F(cvstr)(&i1, &(iz[izptr[kf + 1] - 1]), Blocks[kf].label, &job, i1);
+        strcpy(Blocks[kf].label, iz[kf]);
 
         /* block uid (uid) */
-        i1 = uidptr[kf + 1] - uidptr[kf];
+        i1 = uidptr[kf];
         if ((Blocks[kf].uid = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
         {
             FREE_blocks();
@@ -771,7 +770,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             return 0;
         }
         Blocks[kf].uid[i1] = '\0';
-        C2F(cvstr)(&i1, &(uid[uidptr[kf] - 1]), Blocks[kf].uid, &job, i1);
+        strcpy(Blocks[kf].uid, uid[kf]);
 
         /* 12 : block array of crossed surfaces (jroot) */
         Blocks[kf].jroot = NULL;
@@ -1026,41 +1025,49 @@ static void cosini(double *told)
             case SCSREAL_N    :
                 szouttbd += outtbsz[ii] * outtbsz[ii + nlnk]; /*double real matrix*/
                 outtbd = (SCSREAL_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSREAL_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSREAL_COP));
                 break;
 
             case SCSCOMPLEX_N :
                 szouttbd += 2 * outtbsz[ii] * outtbsz[ii + nlnk]; /*double complex matrix*/
                 outtbd = (SCSCOMPLEX_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSCOMPLEX_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSCOMPLEX_COP));
                 break;
 
             case SCSINT8_N    :
                 szouttbc += outtbsz[ii] * outtbsz[ii + nlnk]; /*int8*/
                 outtbc = (SCSINT8_COP *) REALLOC (outtbc, szouttbc * sizeof(SCSINT8_COP));
+                memset(outtbc, 0, szouttbc * sizeof(SCSINT8_COP));
                 break;
 
             case SCSINT16_N   :
                 szouttbs += outtbsz[ii] * outtbsz[ii + nlnk]; /*int16*/
                 outtbs = (SCSINT16_COP *) REALLOC (outtbs, szouttbs * sizeof(SCSINT16_COP));
+                memset(outtbs, 0, szouttbs * sizeof(SCSINT16_COP));
                 break;
 
             case SCSINT32_N   :
                 szouttbl += outtbsz[ii] * outtbsz[ii + nlnk]; /*int32*/
                 outtbl = (SCSINT32_COP *) REALLOC (outtbl, szouttbl * sizeof(SCSINT32_COP));
+                memset(outtbl, 0, szouttbl * sizeof(SCSINT32_COP));
                 break;
 
             case SCSUINT8_N   :
                 szouttbuc += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint8*/
                 outtbuc = (SCSUINT8_COP *) REALLOC (outtbuc, szouttbuc * sizeof(SCSUINT8_COP));
+                memset(outtbuc, 0, szouttbuc * sizeof(SCSUINT8_COP));
                 break;
 
             case SCSUINT16_N  :
                 szouttbus += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint16*/
                 outtbus = (SCSUINT16_COP *) REALLOC (outtbus, szouttbus * sizeof(SCSUINT16_COP));
+                memset(outtbus, 0, szouttbus * sizeof(SCSUINT16_COP));
                 break;
 
             case SCSUINT32_N  :
                 szouttbul += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint32*/
                 outtbul = (SCSUINT32_COP *) REALLOC (outtbul, szouttbul * sizeof(SCSUINT32_COP));
+                memset(outtbul, 0, szouttbul * sizeof(SCSUINT32_COP));
                 break;
 
             default  : /* Add a message here */

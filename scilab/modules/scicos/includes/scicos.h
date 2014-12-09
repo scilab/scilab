@@ -161,7 +161,7 @@ typedef struct
 int C2F(scicos) (double *x_in, int *xptr_in, double *z__,
                  void **work, int *zptr, int *modptr_in,
                  void **oz, int *ozsz, int *oztyp, int *ozptr,
-                 int *iz, int *izptr, int *uid, int *uidptr, double *t0_in,
+                 char **iz, int *izptr, char **uid, int *uidptr, double *t0_in,
                  double *tf_in, double *tevts_in, int *evtspt_in,
                  int *nevts, int *pointi_in, void **outtbptr_in,
                  int *outtbsz_in, int *outtbtyp_in,

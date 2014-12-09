@@ -14,6 +14,8 @@ DISABLE_HELP_CLEAN=yes
 #### Source listing ######
 
 SCICOS_CXX_SOURCES = \
+src/cpp/il_state.cpp \
+src/cpp/il_sim.cpp \
 src/cpp/Controller.cpp \
 src/cpp/LoggerView.cpp \
 src/cpp/Model.cpp \
@@ -44,8 +46,6 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/sciblk4.c \
 src/c/ezxml.c \
-src/c/il_state.c \
-src/c/il_sim.c \
 src/c/createblklist.c \
 src/c/var2sci.c \
 src/c/copyvarfromlistentry.c \
@@ -76,9 +76,11 @@ sci_gateway/cpp/sci_buildouttb.cpp \
 sci_gateway/cpp/sci_ctree2.cpp \
 sci_gateway/cpp/sci_ctree3.cpp \
 sci_gateway/cpp/sci_ctree4.cpp \
+sci_gateway/cpp/sci_curblock.cpp \
 sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_scicos_new.cpp \
 sci_gateway/cpp/sci_scicos_setfield.cpp \
+sci_gateway/cpp/sci_scicosim.cpp \
 sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp
@@ -86,7 +88,6 @@ sci_gateway/cpp/sci_vec2var.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
 sci_gateway/c/sci_coserror.c \
-sci_gateway/c/sci_curblock.c \
 sci_gateway/c/sci_curblockc.c \
 sci_gateway/c/sci_data2sig.c \
 sci_gateway/c/sci_diffobjs.c \
@@ -103,7 +104,6 @@ sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
 sci_gateway/c/sci_scicos_debug.c \
 sci_gateway/c/sci_scicos_debug_count.c \
-sci_gateway/c/sci_scicosim.c \
 sci_gateway/c/sci_scicos_time.c \
 sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
@@ -111,7 +111,6 @@ sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_sig2data.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
-sci_gateway/fortran/sci_f_curblock.f \
 sci_gateway/fortran/sci_f_debug_count.f \
 sci_gateway/fortran/sci_f_getblocklabel.f \
 sci_gateway/fortran/sci_f_scicos_debug.f \
@@ -135,31 +134,30 @@ libsciscicos_cli_la_LDFLAGS = $(AM_LDFLAGS)
 libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 
 if XCOS
-libsciscicos_algo_la_CPPFLAGS= \
-    -I$(srcdir)/includes/ \
-    -I$(srcdir)/src/c/ \
-    -I$(srcdir)/src/cpp/ \
-    -I$(srcdir)/src/scicos_sundials/include/ \
-    -I$(srcdir)/src/scicos_sundials/include/sundials/ \
-    -I$(srcdir)/src/scicos_sundials/src/ida/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/dynamic_link/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/scicos_blocks/includes/ \
-    -I$(top_srcdir)/modules/action_binding/includes/ \
-    -I$(top_srcdir)/modules/time/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ast/ \
-    -I$(top_srcdir)/modules/ast/includes/exps/ \
-    -I$(top_srcdir)/modules/ast/includes/symbol/ \
-    -I$(top_srcdir)/modules/ast/includes/operations/ \
-    -I$(top_srcdir)/modules/ast/includes/system_env/ \
-    -I$(top_srcdir)/modules/ast/includes/types/ \
-    -I$(top_srcdir)/modules/ast/includes/analysis/ \
-    -I$(top_srcdir)/modules/threads/includes/ \
-    $(EIGEN_CPPFLAGS) \
-    $(AM_CPPFLAGS)
+libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
+			-I$(srcdir)/src/c/ \
+			-I$(srcdir)/src/cpp/ \
+			-I$(srcdir)/src/scicos_sundials/include/ \
+			-I$(srcdir)/src/scicos_sundials/include/sundials/ \
+			-I$(srcdir)/src/scicos_sundials/src/ida/ \
+			-I$(top_srcdir)/modules/output_stream/includes/ \
+			-I$(top_srcdir)/modules/dynamic_link/includes/ \
+			-I$(top_srcdir)/modules/string/includes/ \
+			-I$(top_srcdir)/modules/localization/includes/ \
+			-I$(top_srcdir)/modules/scicos_blocks/includes/ \
+			-I$(top_srcdir)/modules/action_binding/includes/ \
+			-I$(top_srcdir)/modules/time/includes/ \
+			-I$(top_srcdir)/modules/api_scilab/includes/ \
+			-I$(top_srcdir)/modules/ast/includes/ast/ \
+			-I$(top_srcdir)/modules/ast/includes/exps/ \
+			-I$(top_srcdir)/modules/ast/includes/symbol/ \
+			-I$(top_srcdir)/modules/ast/includes/operations/ \
+			-I$(top_srcdir)/modules/ast/includes/system_env/ \
+			-I$(top_srcdir)/modules/ast/includes/types/ \
+			-I$(top_srcdir)/modules/ast/includes/analysis/ \
+			-I$(top_srcdir)/modules/threads/includes/ \
+			$(EIGEN_CPPFLAGS) \
+			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \

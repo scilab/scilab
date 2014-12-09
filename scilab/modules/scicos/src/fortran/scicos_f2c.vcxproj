@@ -257,7 +257,6 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ctree.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_curblock.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_debug_count.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.c" />
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_scicos_debug.c" />
@@ -282,7 +281,6 @@ cd ..
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ctree.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_curblock.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_debug_count.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.f" />
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_scicos_debug.f" />
