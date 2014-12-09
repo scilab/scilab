@@ -1,5 +1,5 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) INRIA - 2011 - Serge Steer
+// Copyright (C) 2011-2014 - INRIA - Serge Steer
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -33,7 +33,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
 
     margin_x     = 5;      // Horizontal margin between each elements
     margin_y     = 5;      // Vertical margin between each elements
-    button_w     = 65;
+    button_w     = 70;
     button_h     = 30;
     frame_h     = 300;
     frame_w     = 440;
@@ -47,7 +47,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
 
     fig_id=max(winsid())+1
     fig = scf(fig_id)
-    fig.visible = "off"
 
     // Remove Scilab graphics menus & toolbar
     //  drawlater (bug)
@@ -265,7 +264,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "BackgroundColor"     , [1 1 1], ...
     "ForegroundColor"     , [1 1 1]*0, ...
     "userdata"            , list(Forderv,1), ...
-    "callback"            , "wfirSliderpos2Value()",...
+    "callback"            , "wfirSliderpos2ValueI()",...
     "visible"             , "on")
     set(Forderv,"userdata",Forders);
 
@@ -274,9 +273,11 @@ function [ok,values,exprs]=wfir_gui(exprs)
     xlcf=xsf
     labellcf_w=labelsf_w;
     editlcf_w= editsf_w;
+    if ftype=="""hp""" then visible="off";else visible="on";end
     Lcfl=uicontrol( ...
     "parent"              , gui,...
     "style"               , "text",...
+    "visible"             , visible,...
     "string"              ,  _("Low cutoff frequency (Hz)"),...
     "units"               , "pixels",...
     "position"            , [xlcf ylcf labellcf_w label_h],....
@@ -290,6 +291,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     Lcfv=uicontrol( ...
     "parent"              , gui,...
     "style"               , "edit",...
+    "visible"             , visible,...
     "units"               , "pixels",...
     "string"              , exprs(5),...
     "position"            , [xlcf,ylcf-label_h-margin_y,editlcf_w,label_h],...
@@ -303,6 +305,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     Lcfs=uicontrol( ...
     "parent"              , gui,...
     "style"               , "slider",...
+    "visible"             , visible,...
     "min"                 , 0,...
     "max"                 , 500,...
     "sliderstep"          , [1 10],...
@@ -317,7 +320,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "ForegroundColor"     , [1 1 1]*0, ...
     "userdata"            , list(Lcfv,fact), ...
     "callback"            , "wfirSliderpos2Value()")
-    if ftype=="""hp""" then Lcfs.visible="off";Lcfv.visible="off";Lcfl.visible="off";end
     set(Lcfv,"userdata",Lcfs);
 
     //High cutoff frequency -----------------------------------------------------------------
@@ -325,9 +327,11 @@ function [ok,values,exprs]=wfir_gui(exprs)
     xhcf=xsf
     labelhcf_w=labelsf_w;
     edithcf_w= editsf_w;
+    if ftype=="""lp""" then visible="off";else visible="on";end
     Hcfl=uicontrol( ...
     "parent"              , gui,...
     "style"               , "text",...
+    "visible"             , visible,...
     "string"              ,  _("High cutoff frequency (Hz)"),...
     "units"               , "pixels",...
     "position"            , [xhcf yhcf labelhcf_w label_h],....
@@ -336,12 +340,12 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "fontsize"            , 12,...
     "fontweight"          , "bold", ...
     "horizontalalignment" , "left", ...
-    "visible"             , "off", ...
     "background"          , [1 1 1]*0.8);
     fact=1000;
     Hcfv=uicontrol( ...
     "parent"              , gui,...
     "style"               , "edit",...
+    "visible"             , visible,...
     "units"               , "pixels",...
     "string"              , exprs(6),...
     "position"            , [xhcf,yhcf-label_h-margin_y,edithcf_w,label_h],...
@@ -351,11 +355,11 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "horizontalalignment" , "left", ...
     "BackgroundColor"     , [1 1 1], ...
     "ForegroundColor"     , [1 1 1]*0, ...
-    "visible"             , "off", ...
     "callback"            , "wfirValue2Sliderpos()")
     Hcfs=uicontrol( ...
     "parent"              , gui,...
     "style"               , "slider",...
+    "visible"             , visible,...
     "min"                 , 0,...
     "max"                 , 500,...
     "sliderstep"          , [1 10],...
@@ -369,11 +373,8 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "BackgroundColor"     , [1 1 1], ...
     "ForegroundColor"     , [1 1 1]*0, ...
     "userdata"            , list(Hcfv,fact), ...
-    "visible"             , "off", ...
     "callback"            , "wfirSliderpos2Value()")
-    if ftype=="lp" then Hcfs.visible="off";Hcfv.visible="off";Hcfl.visible="off";end
     set(Hcfv,"userdata",Hcfs);
-
 
 
     //Chebychev or Kaiser window parameter -----------------------------------------------------------------
@@ -381,9 +382,11 @@ function [ok,values,exprs]=wfir_gui(exprs)
     xfp=xsf
     labelfp_w=labelsf_w;
     editfp_w= editsf_w;
+    if and(wtype<>["""kr""" """ch"""]) then visible="off";else visible="on";end
     Fpl=uicontrol( ...
     "parent"              , gui,...
     "style"               , "text",...
+    "visible"             , visible,...
     "string"              ,  _("Parameter"),...
     "units"               , "pixels",...
     "position"            , [xfp yfp labelfp_w label_h],....
@@ -392,13 +395,13 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "fontsize"            , 12,...
     "fontweight"          , "bold", ...
     "horizontalalignment" , "left", ...
-    "visible"             , "off",...
     "background"          , [1 1 1]*0.8);
     fact=1000;
 
     Fpv=uicontrol( ...
     "parent"              , gui,...
     "style"               , "edit",...
+    "visible"             , visible,...
     "units"               , "pixels",...
     "string"              , exprs(7),...
     "position"            , [xfp,yfp-label_h-margin_y,editfp_w,label_h],...
@@ -412,6 +415,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     Fps=uicontrol( ...
     "parent"              , gui,...
     "style"               , "slider",...
+    "visible"             , visible,...
     "min"                 , 0,...
     "max"                 , 500,...
     "sliderstep"          , [1 10],...
@@ -426,7 +430,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "ForegroundColor"     , [1 1 1]*0, ...
     "userdata"            , list(Fpv,fact), ...
     "callback"            , "wfirSliderpos2Value()")
-    if and(wtype<>["""kr""" """ch"""]) then Fps.visible="off";Fpv.visible="off";end
 
     set(Fpv,"userdata",Fps);
 
@@ -437,7 +440,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     //Display -----------------------------------------------------------------
     yd=yfp-2*(margin_y+label_h)
     xd=xsf
-    labeld_w=80
+    labeld_w=40
     uicontrol( ...
     "parent"              , gui,...
     "style"               , "text",...
@@ -495,22 +498,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "visible"             , "on", ...
     "callback"            , "global ret;ret=2;");
     xbuttons=xbuttons+margin_x+button_w
-    Reset = uicontrol( ...
-    "parent"              , gui,...
-    "relief"              , "groove",...
-    "style"               , "pushbutton",...
-    "string"              , _("Reset"),...
-    "units"               , "pixels",...
-    "position"            , [xbuttons,ybuttons,button_w button_h],..
-    "fontname"            , "arial",...
-    "fontunits"           , "points",...
-    "fontsize"            , 12,...
-    "fontweight"          , "bold", ...
-    "horizontalalignment" , "center", ...
-    "visible"             , "on", ...
-    "callback"            , "wfirSetDefaultParameters(gcbo.parent.user_data)");
-
-    xbuttons=xbuttons+margin_x+button_w
     Help = uicontrol( ...
     "parent"              , gui,...
     "relief"              , "groove",...
@@ -527,8 +514,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
     "callback"            , "help wfir");
     // next used by wfirGetFilterParameters
     set(gui,"userdata",[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv])
-
-    fig.visible = "on";
     realtimeinit(0.1);
     t=0;
     while ret==0&or(winsid()==fig_id) then
@@ -538,7 +523,7 @@ function [ok,values,exprs]=wfir_gui(exprs)
     end
     if ret==1&or(winsid()==fig_id) then
         ok=%t
-        [ftype,forder,low,high,wtype,fpar,freq_ech,ok]= wfirGetFilterParameters(gui.userdata)
+        [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(gui.userdata)
         values=tlist(["wfir","ftype","forder","low","high","wtype","fpar","freq_ech"],ftype,forder,low,high,wtype,fpar,freq_ech)
         exprs= wfirGetFilterExprs(gui.userdata)
         delete(fig)
@@ -547,7 +532,6 @@ function [ok,values,exprs]=wfir_gui(exprs)
         ok=%f
         values=[]
         exprs=[]
-        if or(winsid()==fig_id) then delete(fig),end
     end
     clearglobal ret idle;
 
@@ -556,53 +540,33 @@ endfunction
 function wfirSliderpos2Value(hs)
     //hs handle on the slider
     if argn(2)<1 then hs=gcbo,end
-    H=hs.parent.userdata
     ud=hs.userdata
     hv=ud(1);//handle on edition zone
     fact=ud(2)// scale factor
-    Sfreq=H(12);
-    freq_ech=evstr(Sfreq.string)
-    hv.string=string((hs.value/fact)*freq_ech);
+    hv.string=string(hs.value/fact)
+    wfirUpdate(hs)
+endfunction
+function wfirSliderpos2ValueI(hs)
+    //hs handle on the slider
+    if argn(2)<1 then hs=gcbo,end
+    hs.value=round(hs.value)
+    ud=hs.userdata
+    hv=ud(1);//handle on edition zone
+    fact=ud(2)// scale factor
+    hv.string=string(hs.value/fact)
     wfirUpdate(hs)
 endfunction
 
 function wfirValue2Sliderpos(hv)
     // hv handle on edition zone
     if argn(2)<1 then hv=gcbo,end
-    H=hv.parent.userdata
-    //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
-    k=find(H==hv)
-    Sfreq=H(12)
-    hs=hv.userdata //handle on the slider
-    ud=hs.userdata
-    fact=ud(2)// scale factor
-
-    Ok=%t
     if execstr("v="+hv.string,"errcatch")==0 then
-        if k==8 then //Hcfv
-            execstr("v2="+H(6).string)
-            if v<=v2|v<=0|v>0.5*fact then Ok=%f,end
-        elseif k==6 then  //Lcfv
-            execstr("v2="+H(8).string)
-            if v>=v2|v<=0|v>0.5*fact then Ok=%f,end
-        elseif k==4 then  //Forderv
-            if v<3 then Ok=%f,end
-        elseif k==10 then  //Fpv
-            if v<=0 then Ok=%f,end
-            if H(3).value==6 then //cheby main lobe
-                if v>=0.5 then Ok=%f,end
-            end
-
-        end
-        if Ok then
-            Sfreq=H(12);
-            freq_ech=evstr(Sfreq.string)
-            hs.value=v*fact/freq_ech;
-            hv.ForegroundColor=[0 0 0];
-            wfirUpdate(hv)
-        else
-            hv.ForegroundColor=[1 0 0];
-        end
+        hs=hv.userdata //handle on the slider
+        ud=hs.userdata
+        fact=ud(2)// scale factor
+        hs.value=fact*v
+        hv.ForegroundColor=[0 0 0];
+        wfirUpdate(hv)
     else
         hv.ForegroundColor=[1 0 0];
     end
@@ -684,9 +648,9 @@ function wfirSetWindowType()
             label.visible="on";
             value.visible="on";
 
-            init=2.5;fact=50;
+            init=2.5;fact=100;
             value.string=string(init)
-            scroll.min=1d-10*fact
+            scroll.min=0
             scroll.max=10*fact
             scroll.value=init*fact
             d=scroll.userdata;d(2)=fact
@@ -698,7 +662,7 @@ function wfirSetWindowType()
             value.visible="on";
             init=0.2;fact=1000;
             value.string=string(init)
-            scroll.min=1d-6*fact
+            scroll.min=1d-10*fact
             scroll.max=0.5*fact
             scroll.value=init*fact
             d=scroll.userdata;d(2)=fact
@@ -709,9 +673,9 @@ function wfirSetWindowType()
             label.string=_("maximum side-lobe height")
             label.visible="on";
             value.visible="on";
-            init=0.001;fact=500;
+            init=0.001;fact=1000;
             value.string=string(init)
-            scroll.min=1d-6*fact
+            scroll.min=1d-10*fact
             scroll.max=1*fact
             scroll.value=init*fact
             d=scroll.userdata;d(2)=fact
@@ -757,9 +721,16 @@ function wfirSetSamplingFrequency()
         //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
         //update low and high cutoff frequencies
         r=newfreq/curfreq
-        Lcfv=H(6);
-        Hcfv=H(8);
+        Lcfv=H(6),Lcfs=H(7),Hcfv=H(8),Hcfs=H(9)
+
+        Lcfs.min=Lcfs.min*r
+        Lcfs.max=Lcfs.max*r
+        Lcfs.value=Lcfs.value*r
         Lcfv.string=string(evstr(Lcfv.string)*r)
+
+        Hcfs.min=Hcfs.min*r
+        Hcfs.max=Hcfs.max*r
+        Hcfs.value=Hcfs.value*r
         Hcfv.string=string(evstr(Hcfv.string)*r)
 
         Sfreq.userdata=newfreq
@@ -770,10 +741,9 @@ function wfirSetSamplingFrequency()
 
 endfunction
 
-function [ftype,forder,low,high,wtype,fpar,freq_ech,ok]=wfirGetFilterParameters(H)
+function [ftype,forder,low,high,wtype,fpar,freq_ech]=wfirGetFilterParameters(H)
     //  low,high,freq_ech are returned in Hz
     //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
-    ftype=[];forder=[];low=[];high=[];wtype=[];fpar=[];freq_ech=[];ok=%t
     FT=["lp","hp","bp","sb"]
     WT=["re","tr","hn","hm","kr","ch","ch"]
     Filtertype=H(2);
@@ -786,14 +756,6 @@ function [ftype,forder,low,high,wtype,fpar,freq_ech,ok]=wfirGetFilterParameters(
     ftype=FT(Filtertype.value)
     wtype=WT(Windowtype.value)
     forder=evstr(Forderv.string)
-    if and(Forderv.ForegroundColor==[1 0 0])| ...
-        and(Lcfv.ForegroundColor==[1 0 0])| ...
-        and(Hcfv.ForegroundColor==[1 0 0])| ...
-        and(Sfreq.ForegroundColor==[1 0 0])| ...
-        and(Fpv.ForegroundColor==[1 0 0]) then
-        ok=%f
-        return
-    end
     if or(ftype==["hp" "sb"]) then
         //force odd ordrer
         if 2*int(forder/2)==forder then forder=forder+1,end
@@ -810,43 +772,16 @@ function [ftype,forder,low,high,wtype,fpar,freq_ech,ok]=wfirGetFilterParameters(
         high=evstr(Hcfv.string)
     end
     if Windowtype.value==5 //Kaiser
-        fpar=[max(1e-10,evstr(Fpv.string)) 0]
+        fpar=[evstr(Fpv.string) 0]
     elseif Windowtype.value==6 //Chebychev, main lobe constraint df in [0 0.5]
-        fpar=[-1 max(1e-10,evstr(Fpv.string))]
+        fpar=[-1 evstr(Fpv.string)]
     elseif Windowtype.value==7  //Chebychev, side lobe constraint dp>0
-        fpar=[ max(1e-10,evstr(Fpv.string)) -1]
+        fpar=[evstr(Fpv.string) -1]
     else
         fpar=[-1 -1]
     end
 endfunction
-function wfirSetDefaultParameters(H)
-    //  low,high,freq_ech are returned in Hz
-    //H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
-    FT=["lp","hp","bp","sb"]
-    WT=["re","tr","hn","hm","kr","ch","ch"]
-    Fview=H(1);
-    Ftv=H(13);
-    Wtv=H(14);
-    Windowtype= Wtv.user_data(2)
-    Windowtype.user_data(1).visible="off"
-    Windowtype.value=1
-    Filtertype= Ftv.user_data(2)
-    Filtertype.user_data(1)(2,:).visible="off";
-    Filtertype.value=1
-    Forderv=H(4);
-    Lcfv=H(6);
-    Hcfv=H(8);
-    Fpv=H(10);
-    Sfreq=H(12)
 
-    //Fview.value=0
-    Sfreq.string="1";
-    Forderv.string="49";
-    Ftv.string="""lp""";
-    Wtv.string="""re""";
-    Lcfv.string="0.05"
-    wfirUpdate(gcbo)
-endfunction
 function  wfirUpdate(h)
     global idle
     if ~idle then return,end
@@ -856,13 +791,12 @@ function  wfirUpdate(h)
     //  H=[Fview,Filtertype,Windowtype,Forderv,Forders,Lcfv,Lcfs,Hcfv,Hcfs,Fpv,Fps,Sfreq,Ftv,Wtv]
     if H(1).value==1 then
         old=gcf()
-        [ftype,forder,low,high,wtype,fpar,freq_ech,ok]= wfirGetFilterParameters(H)
-        if ~ok then clearglobal idle;return,end
+        [ftype,forder,low,high,wtype,fpar,freq_ech]= ...
+        wfirGetFilterParameters(H)
         cfreq=[low,high]/freq_ech;
         [filt,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar);
         fig=H(1).userdata
-        if ~is_handle_valid(fig) then ...
-
+        if ~is_handle_valid(fig) then
             //the window has been closed by user
             fig=scf(max(winsid())+1)
             a=gca();
