@@ -31,6 +31,8 @@ Scilab Bug Fixes
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
 
+* Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
+
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================

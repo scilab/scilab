@@ -199,7 +199,9 @@ public class MessagesGED {
     public static final String x_left = Messages.gettext("X Left");
     public static final String y_up = Messages.gettext("Y Up");
     public static final String log_flags = Messages.gettext("Log Flags");
-    public static final String tight_limits = Messages.gettext("Tight Limits");
+    public static final String x_tight_limits = Messages.gettext("X Tight Limits");
+    public static final String y_tight_limits = Messages.gettext("Y Tight Limits");
+    public static final String z_tight_limits = Messages.gettext("Z Tight Limits");
 
     //Control - Tooltip
     public static final String x_position_tooltip = Messages.gettext("Enter a x position.");
