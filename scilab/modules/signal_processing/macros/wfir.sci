@@ -34,7 +34,7 @@ function [wft,wfm,fr]=wfir(ftype,forder,cfreq,wtype,fpar)
 
     if rhs<=0 then,
         //if macro called with no arguments query user for values
-        [ok,values,exprs]=wfir_gui(exprs)
+        [ok,values,exprs]=wfir_gui()
         if ~ok then return,end
         ftype=values.ftype
         forder=values.forder
