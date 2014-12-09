@@ -19,7 +19,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A pointer expected.\
 assert_checkerror("umf_lusolve(1,1)", refMsg);
 
 B = rand(3,3)*%i;
-Lup = umf_lufact(sparse(B))
+Lup = umf_lufact(sparse(B));
 assert_checkfalse(execstr("umf_lusolve(Lup, speye(3,3))"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong type for input argument #%d: A real or complex column vector or matrix expected.\n"), "umf_lusolve", 2);
 assert_checkerror("umf_lusolve(Lup, speye(3,3))", refMsg);
@@ -33,8 +33,8 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: A sparse matrix expe
 assert_checkerror("umf_lusolve(Lup, eye(3,3), ""Ax=b"", ""titi"")", refMsg);
 
 x = umf_lusolve(Lup, eye(3,3));
-assert_checkalmostequal(x, inv(B))
-umf_ludel(Lup)
+assert_checkalmostequal(x, inv(B));
+umf_ludel(Lup);
 
 spB = sparse(B);
 Lup = umf_lufact(spB);
@@ -47,5 +47,5 @@ firstNorm=norm(spB*x - b);
 x = umf_lusolve(Lup,b,"Ax=b",spB);
 secondNorm=norm(spB*x - b);
 
-assert_checkalmostequal(firstNorm, secondNorm)
-umf_ludel(Lup)
+assert_checkalmostequal(firstNorm, secondNorm);
+umf_ludel(Lup);
