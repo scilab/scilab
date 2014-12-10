@@ -839,7 +839,8 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         if (pIT == NULL)
         {
             // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
-            if (symbol::Context::getInstance()->getOrCreate(pFirstField->getExp()->getSymbol())->top()->m_iLevel == 0)
+            symbol::Variable* var = symbol::Context::getInstance()->getOrCreate(pFirstField->getExp()->getSymbol());
+            if (var->empty() == false && var->top()->m_iLevel == 0)
             {
                 std::wostringstream os;
                 os << _W("Unexpected redefinition of Scilab function or variable.");
