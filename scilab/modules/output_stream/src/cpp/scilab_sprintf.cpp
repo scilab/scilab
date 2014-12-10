@@ -229,6 +229,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                             *_piOutputRows = 0;
                             return NULL;
                         }
+
                         pToken[iToken].outputType = InternalType::ScilabString;
                         iPosArg++;
                         break;
@@ -266,29 +267,31 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             (*_piOutputRows) *= iLoop;
         }
 
-        pwstFirstOutput = (wchar_t*)MALLOC(sizeof(wchar_t*) * iLoop * bsiz);
-        memset(pwstFirstOutput, 0x00, sizeof(wchar_t*) * iLoop * bsiz);
+        std::wostringstream oFirstOutput;
         for (int j = 0 ; j < iLoop ; j++)
         {
             //copy the 0th token
-            wcscat(pwstFirstOutput, pToken[0].pwstToken);
+            oFirstOutput << pToken[0].pwstToken;
             iPosArg = 0;
             //start at 1, the 0th is always without %
             for (int i = 1 ; i < _iArgsCount + 1 ; i++)
             {
-                wchar_t pwstTemp[bsiz];
                 void* pvVal = NULL;
                 if (pToken[i].outputType == InternalType::ScilabDouble)
                 {
+                    wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
                     swprintf(pwstTemp, bsiz, pToken[i].pwstToken, dblVal);
                     iPosArg++;
+                    oFirstOutput << pwstTemp;
                 }
                 else if (pToken[i].outputType == InternalType::ScilabInt32)
                 {
+                    wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
                     swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
                     iPosArg++;
+                    oFirstOutput << pwstTemp;
                 }
                 else if (pToken[i].outputType == InternalType::ScilabString)
                 {
@@ -308,7 +311,6 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                         {
                             pwstStr = InfString;
                         }
-
                     }
                     else
                     {
@@ -317,67 +319,39 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
 
                     int posC = (int)wcscspn(pToken[i].pwstToken, L"c");
                     int posS = (int)wcscspn(pToken[i].pwstToken, L"s");
+
                     if (!posS || !posC)
                     {
                         *_piOutputRows = 0;
                         return NULL;
                     }
+
                     if (posC < posS)
                     {
-                        if (pToken[i].bLengthFlag == false)
-                        {
-                            //replace %c by %lc to wide char compatibility
-                            int sizeTotal = (int)wcslen(pToken[i].pwstToken);
-                            wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
-                            wcsncpy(pwstToken, pToken[i].pwstToken, posC);
-                            pwstToken[posC] = L'l';
-                            wcsncpy(&pwstToken[posC + 1], &pToken[i].pwstToken[posC], sizeTotal - posC);
-                            pwstToken[sizeTotal + 1]  = L'\0';
-                            swprintf(pwstTemp, bsiz, pwstToken, pwstStr[0]);
-                            FREE(pwstToken);
-                        }
-                        else
-                        {
-                            swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr[0]);
-                        }
+                        oFirstOutput << pwstStr[0];
                     }
                     else //'s'
                     {
-                        if (pToken[i].bLengthFlag == false)
-                        {
-                            //replace %s by %ls to wide char compatibility
-                            int sizeTotal = (int)wcslen(pToken[i].pwstToken);
-                            wchar_t* pwstToken = (wchar_t*)MALLOC(sizeof(wchar_t) * (sizeTotal + 2));
-                            wcsncpy(pwstToken, pToken[i].pwstToken, posS);
-                            pwstToken[posS] = L'l';
-                            wcsncpy(&pwstToken[posS + 1], &pToken[i].pwstToken[posS], sizeTotal - posS);
-                            pwstToken[sizeTotal + 1]  = L'\0';
-                            swprintf(pwstTemp, bsiz, pwstToken, pwstStr);
-                            FREE(pwstToken);
-                        }
-                        else
-                        {
-                            swprintf(pwstTemp, bsiz, pToken[i].pwstToken, pwstStr);
-                        }
+                        oFirstOutput << pwstStr;
                     }
+
                     iPosArg++;
                 }
                 else
                 {
                     // management of %%
-                    wcscpy(pwstTemp, pToken[i].pwstToken);
+                    oFirstOutput << pToken[i].pwstToken;
                 }
-
-                wcscat(pwstFirstOutput, pwstTemp);
             }
         }
-    }
 
+        pwstFirstOutput = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+
+    }
 
     pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));
 
     size_t iLen = wcslen(pwstFirstOutput);
-
     int iStart = 0;
     int j = 0;
     for (int i = 0 ; i < iLen ; i++)

@@ -114,6 +114,12 @@ types::Callable::ReturnValue sci_mprintf(types::typed_list &in, int _iRetCount, 
     int iNewLine = 0;
     wchar_t** pwstOutput = scilab_sprintf("mprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
 
+    if (pwstOutput == NULL)
+    {
+        delete[] pArgs;
+        return types::Function::Error;
+    }
+
     for (int i = 0 ; i < iOutputRows ; i++)
     {
         if (i)
