@@ -39,6 +39,8 @@ Scilab Bug Fixes
 
 * Bug #13694 fixed - Calling wfir without input arguments produced an error instead of calling wfir_gui.
 
+* Bug #13695 fixed - Scilab used bash-specific features in scripts.
+
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
 

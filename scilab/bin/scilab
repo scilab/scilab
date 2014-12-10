@@ -50,7 +50,7 @@ if test -n "$SCI"; then
     if test ! -d "$SCI/modules"; then
         echo "Cannot find directory $SCI/modules/ !"
         echo "SCI should point to the root data directory of Scilab"
-        exit -1
+        exit 255
     fi
 fi
 
@@ -814,7 +814,7 @@ case $OS in
         # When started as an Application, the default path was "/"
         # It is not really useful. Changing to HOME.
         # See bugs 8339 and 10575 for rational
-        if test "$(pwd)" == "/"; then
+        if test "$(pwd)" = "/"; then
             cd $HOME
         fi
 
