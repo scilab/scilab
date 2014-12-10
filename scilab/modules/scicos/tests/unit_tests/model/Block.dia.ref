@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 loadXcosLibs();
+scicos_log("TRACE");
 // Allocate a summation block
 o = BIGSOM_f("define")
 objectCreated( 1 , BLOCK )
@@ -1430,7 +1431,7 @@ Model   :
           uid = ""
 o.model.opar
  ans  =
-       ans(1)
+             ans(1)
   0
   0
   0
@@ -1625,23 +1626,23 @@ Model   :
           uid = ""
 o.model.equations
  ans  =
-       ans(1)
+             ans(1)
 !modelica  model  inputs  outputs  parameters  !
-       ans(2)
+             ans(2)
  VsourceAC
-       ans(3)
+             ans(3)
  p
-       ans(4)
+             ans(4)
  n
-       ans(5)
-        ans(5)(1)
+             ans(5)
+                    ans(5)(1)
 !VA  !
 !    !
 !f   !
-        ans(5)(2)
-         ans(5)(2)(1)
+                    ans(5)(2)
+                           ans(5)(2)(1)
     220.
-         ans(5)(2)(2)
+                           ans(5)(2)(2)
     50.
 listRef = modelica();
 o.model.equations = listRef;
@@ -1826,50 +1827,50 @@ out_label = ["";""]
 style = ""
 o.graphics.exprs
  ans  =
-       ans(1)
+             ans(1)
 !MBLOCK  in  intype  out  outtype  param  paramv  pprop  nameF  funtxt  !
-       ans(2)
+             ans(2)
  "u1"
-       ans(3)
+             ans(3)
  "I"
-       ans(4)
+             ans(4)
  ["y1";"y2"]
-       ans(5)
+             ans(5)
  ["I";"E"]
-       ans(6)
+             ans(6)
  ["R";"L"]
-       ans(7)
-        ans(7)(1)
+             ans(7)
+                    ans(7)(1)
  0.1
-        ans(7)(2)
+                    ans(7)(2)
  0.0001
-       ans(8)
+             ans(8)
  [0;0]
-       ans(9)
+             ans(9)
  generic
-       ans(10)
+             ans(10)
     []
 o.model.equations
  ans  =
-       ans(1)
+             ans(1)
 !modelica  model  inputs  outputs  parameters  !
-       ans(2)
+             ans(2)
  generic
-       ans(3)
+             ans(3)
  u1
-       ans(4)
+             ans(4)
 !y1  !
 !    !
 !y2  !
-       ans(5)
-        ans(5)(1)
+             ans(5)
+                    ans(5)(1)
 !R  !
 !   !
 !L  !
-        ans(5)(2)
-         ans(5)(2)(1)
+                    ans(5)(2)
+                           ans(5)(2)(1)
     0.1
-         ans(5)(2)(2)
+                           ans(5)(2)(2)
     0.0001
 // Check that all the model items are freed
 clear

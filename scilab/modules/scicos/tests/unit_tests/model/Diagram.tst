@@ -8,6 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Allocate a diagram and access its fields
 scs_m = scicos_diagram()

@@ -8,6 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 b = scicos_block();
 d = scicos_diagram( objs=list(scicos_link(from=[3 3 0],to=[5 2 1]) ));

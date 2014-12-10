@@ -8,6 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Allocate a SuperBlock and access its fields
 sb = SUPER_f("define")

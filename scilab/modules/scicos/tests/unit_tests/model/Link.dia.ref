@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 loadXcosLibs();
+scicos_log("TRACE");
 // Allocate a Link and check its default values
 lnk = scicos_link()
 objectCreated( 1 , LINK )

@@ -8,6 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Test #1: the temporary block is deleted with the diagram
 scs_m = scicos_diagram( objs=list(scicos_block()) );

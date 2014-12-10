@@ -8,6 +8,7 @@
 // <-- CLI SHELL MODE -->
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Create one block and make a list out of it (duplicate it)
 Sum = BIGSOM_f("define");

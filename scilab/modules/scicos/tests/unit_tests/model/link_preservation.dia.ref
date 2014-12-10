@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 loadXcosLibs();
+scicos_log("TRACE");
 b = scicos_block();
 objectCreated( 1 , BLOCK )
 propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES

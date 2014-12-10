@@ -6,6 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 loadXcosLibs();
+scicos_log("TRACE");
 // Allocate a SuperBlock and access its fields
 sb = SUPER_f("define")
 objectCreated( 1 , DIAGRAM )
@@ -387,7 +388,7 @@ void3 = []
 doc = list()
 sb.model.rpar.objs
  ans  =
-       ans(1)
+             ans(1)
 GUI     : IN_f
 Graphics: 
           orig = [40,40]
@@ -432,7 +433,7 @@ Model   :
           nmode = 0
           equations = list()
           uid = ""
-       ans(2)
+             ans(2)
 GUI     : OUT_f
 Graphics: 
           orig = [240,40]
@@ -1395,7 +1396,7 @@ void3 = []
 doc = list()
 clk.model.rpar.objs
  ans  =
-       ans(1)
+             ans(1)
 GUI     : CLKOUT_f
 Graphics: 
           orig = [399,162]
@@ -1440,7 +1441,7 @@ Model   :
           nmode = 0
           equations = list()
           uid = ""
-       ans(2)
+             ans(2)
 GUI     : EVTDLY_c
 Graphics: 
           orig = [320,232]
@@ -1485,7 +1486,7 @@ Model   :
           nmode = 0
           equations = list()
           uid = ""
-       ans(3)
+             ans(3)
 Link    :
           xx: 340 340 380.71
           yy: 226.29 172 172
@@ -1494,7 +1495,7 @@ Link    :
           ct: 5 -1
           from: 2 1 0
           to: 4 1 1
-       ans(4)
+             ans(4)
 GUI     : CLKSPLIT_f
 Graphics: 
           orig = [380.71066,172]
@@ -1539,7 +1540,7 @@ Model   :
           nmode = 0
           equations = list()
           uid = ""
-       ans(5)
+             ans(5)
 Link    :
           xx: 380.71 399
           yy: 172 172
@@ -1548,7 +1549,7 @@ Link    :
           ct: 5 -1
           from: 4 1 0
           to: 1 1 1
-       ans(6)
+             ans(6)
 Link    :
           xx: 380.71 380.71 340 340
           yy: 172 302 302 277.71
