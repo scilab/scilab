@@ -106,6 +106,7 @@ function atomsDownload(url_in,file_out,md5sum)
 
     // Build the command
     // =========================================================================
+    winId = [];
 
     if regexp(url_in, "/^(https?|ftp):\/\//", "o") == 1 then
         proxy_host_arg = "";
@@ -258,5 +259,9 @@ function atomsDownload(url_in,file_out,md5sum)
 
     end
 
-    atomsCloseProgressBar(winId);
+    // Close progress bar handle, if not closed yet
+    // =========================================================================
+    if (~isempty(winId))
+        atomsCloseProgressBar(winId);
+    end
 endfunction
