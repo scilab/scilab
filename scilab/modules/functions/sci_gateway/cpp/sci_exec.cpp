@@ -386,6 +386,23 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
+        catch (const ast::InternalAbort& ia)
+        {
+            if (file)
+            {
+                delete pExp;
+                mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
+            }
+
+            //restore previous prompt mode
+            ConfigVariable::setPromptMode(oldVal);
+
+            throw ia;
+        }
         catch (const ScilabMessage& sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
@@ -419,7 +436,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     if (file)
                     {
+                        delete pExp;
                         mclose(iID);
+                        file->close();
+                        delete file;
+                        FREE(pstFile);
+                        FREE(pwstFile);
                     }
 
                     //restore previous prompt mode
@@ -430,7 +452,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
             if (file)
             {
+                delete pExp;
                 mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
             }
 
             throw ast::ScilabMessage((*j)->getLocation());
@@ -451,7 +478,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             {
                 if (file)
                 {
-                    file->close();
                     //print failed command
                     scilabError(getExpression(stFile, *j).c_str());
                     scilabErrorW(L"\n");
@@ -466,7 +492,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 scilabErrorW(szError);
                 if (file)
                 {
+                    delete pExp;
                     mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
                 }
 
                 //restore previous prompt mode
