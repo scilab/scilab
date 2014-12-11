@@ -28,7 +28,7 @@ static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/
 /* private function called by playsnd */
 /*--------------------------------------------------------------------------*/
-int sci_Playsound (char *fname, void* pvApiCtx)
+int sci_PlaySound(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
