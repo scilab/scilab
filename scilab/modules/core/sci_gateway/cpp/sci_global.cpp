@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
         if (wcslen(wcsVarName) == 0 || wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
         {
             char* pstrVarName = wide_string_to_UTF8(wcsVarName);
-            Scierror(999, _("%s: Invalid variable name: %s."), "global", pstrVarName);
+            Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "global", i + 1, pstrVarName);
             FREE(pstrVarName);
             return Function::Error;
         }
