@@ -5,7 +5,8 @@
 
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/sort_inter.cpp
+    src/cpp/sort_inter.cpp \
+    src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
     src/c/convstr.c \

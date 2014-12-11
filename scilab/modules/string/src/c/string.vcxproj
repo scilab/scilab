@@ -252,6 +252,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\os_wtoi.cpp" />
     <ClCompile Include="..\cpp\sort_inter.cpp" />
     <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
@@ -324,6 +325,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClInclude Include="..\..\includes\os_wcsdup.h" />
     <ClInclude Include="..\..\includes\os_wcsicmp.h" />
     <ClInclude Include="..\..\includes\os_wcstok.h" />
+    <ClInclude Include="..\..\includes\os_wtoi.h" />
     <ClInclude Include="..\..\includes\pcre_private.h" />
     <ClInclude Include="..\..\includes\scistrtostr.h" />
     <ClInclude Include="..\..\includes\stricmp.h" />
