@@ -749,7 +749,8 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         // used to manage insertion with list in argument
         // a(list("field", 2)) = 2 as a.field(2)
-        if ((*pCurrentArgs)[0]->isList() &&
+        if (pCurrentArgs &&  pCurrentArgs->size() > 0 &&
+                (*pCurrentArgs)[0]->isList() &&
                 (*pCurrentArgs)[0]->isTList() == false &&
                 (*pCurrentArgs)[0]->isMList() == false)
         {
@@ -1340,6 +1341,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
                     workFields.front()->setReinsertion();
                 }
+            }
+            else if (pITCurrent->isCallable())
+            {
+                std::wostringstream os;
+                os << _W("Wrong insertion : function or macro are not expected.");
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
             }
             else
             {
