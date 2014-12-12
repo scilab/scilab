@@ -2174,6 +2174,20 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                         }
 
                         pRet = pTL->insert(_pArgs, _pInsert);
+
+                        // If we have inserted something else than a String
+                        // in the first element, the TList have to be a List.
+                        if (pTL->get(0)->isString() == false)
+                        {
+                            types::List* pL = new List();
+                            for (int i = 0; i < pTL->getSize(); i++)
+                            {
+                                pL->append(pTL->get(i));
+                            }
+
+                            pTL->killMe();
+                            pRet = pL;
+                        }
                     }
                 }
             }
