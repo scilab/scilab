@@ -592,7 +592,7 @@ InternalType *GenericComparisonEqual(InternalType *_pLeftOperand, InternalType *
         Bool* pB = new Bool(1, pLL->getSize());
         for (int i = 0 ; i < pLL->getSize() ; i++)
         {
-            pB->set(i, *pLL->get(i) == *pLR->get(i));
+            pB->set(i, ((*pLL->get(i) == *pLR->get(i)) && (pLL->get(i)->getType() != types::InternalType::ScilabVoid)));
         }
 
         clearAlloc(bAllocL, pIL, bAllocR, pIR);
