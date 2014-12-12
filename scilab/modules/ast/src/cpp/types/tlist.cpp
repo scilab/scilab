@@ -309,7 +309,7 @@ bool TList::toString(std::wostringstream& ostr)
             scilabWriteW(ostr.str().c_str());
             VariableToString(*itValues, nextVarName.str().c_str());
         }
-
+        ostr.str(L"");
         free(wcsVarName);
         return true;
     }
