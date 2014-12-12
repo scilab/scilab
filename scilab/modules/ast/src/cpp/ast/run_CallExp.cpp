@@ -129,48 +129,75 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         try
         {
+            // Extraction with a List in input argument.
+            // This extraction must be a recursive extract.
+            int iLoopSize = 1;
+            types::List* pListArg = NULL;
+            if (pIT->isCallable() == false && in.size() == 1 && in[0]->isList())
+            {
+                pListArg = in[0]->getAs<types::List>();
+                iLoopSize = pListArg->getSize();
+                cleanOpt(opt);
+            }
+
             setExpectedSize(iSaveExpectedSize);
             iRetCount = std::max(1, iRetCount);
-            if (pIT->invoke(in, opt, iRetCount, out, *this, e))
+
+            for (int i = 0; i < iLoopSize; i++)
             {
-                if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
+                if (pListArg)
+                {
+                    in[0] = pListArg->get(i);
+                    in[0]->IncreaseRef();
+                }
+
+                if (pIT->invoke(in, opt, iRetCount, out, *this, e))
+                {
+                    if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
+                    {
+                        std::wostringstream os;
+                        os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
+                        throw ScilabError(os.str(), 999, e.getLocation());
+                    }
+
+                    setExpectedSize(iSaveExpectedSize);
+                    setResult(out);
+                    cleanIn(in, out);
+                    cleanOpt(opt);
+
+                    // In case a.b(), getResult contain pIT ("b").
+                    // If out == pIT, do not delete it.
+                    if (getResult() != pIT)
+                    {
+                        // protect element of out in case where
+                        // out contain elements of pIT
+                        for (int i = 0; i < out.size(); i++)
+                        {
+                            out[i]->IncreaseRef();
+                        }
+
+                        pIT->killMe();
+
+                        // unprotect
+                        for (int i = 0; i < out.size(); i++)
+                        {
+                            out[i]->DecreaseRef();
+                        }
+                    }
+
+                    if (pListArg && i + 1 != iLoopSize)
+                    {
+                        pIT = out[0];
+                        out.clear();
+                        setResult(NULL);
+                    }
+                }
+                else
                 {
                     std::wostringstream os;
-                    os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
-                    throw ScilabError(os.str(), 999, e.getLocation());
+                    os << _W("Invalid index.\n");
+                    throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
                 }
-
-                setExpectedSize(iSaveExpectedSize);
-                setResult(out);
-                cleanIn(in, out);
-                cleanOpt(opt);
-
-
-                // In case a.b(), getResult contain pIT ("b").
-                // If out == pIT, do not delete it.
-                if (getResult() != pIT)
-                {
-                    // protect element of out in case where
-                    // out contain elements of pIT
-                    for (int i = 0; i < out.size(); i++)
-                    {
-                        out[i]->IncreaseRef();
-                    }
-
-                    pIT->killMe();
-
-                    // unprotect
-                    for (int i = 0; i < out.size(); i++)
-                    {
-                        out[i]->DecreaseRef();
-                    }
-                }
-            }
-            else
-            {
-                std::wostringstream os;
-                os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
             }
         }
         catch (ScilabMessage & sm)
