@@ -326,9 +326,11 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         end
 
 
+        if is_higher_than([5 4 0 1]) then
+            auto_ticks=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_ticks
+        end
 
         if is_higher_than([3 0 0 0]) then
-            auto_ticks=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_ticks
 
             ticks=["ticks","locations","labels"]
             sz=mget(1,"sl",fd) // x_ticks.locations
@@ -396,8 +398,13 @@ function [h,immediate_drawing] = load_graphichandle(fd)
             log_flags= ascii(mget(2,characterFormat,fd));
         end
 
-
-        set(a,"tight_limits"         , toggle(mget(1,characterFormat,fd))) // tight_limits
+        // tight_limits
+        if is_higher_than([5 5 0 0]) then
+            tight_limits=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd));
+        else
+            tight_limits=toggle(mget(1,characterFormat,fd));
+        end
+        set(a,"tight_limits",tight_limits);
         data_bounds = matrix(mget(mget(1,characterFormat,fd),"dl",fd),2,-1) // data_bounds
 
 
