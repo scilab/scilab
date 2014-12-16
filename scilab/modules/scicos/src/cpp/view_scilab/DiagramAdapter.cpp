@@ -46,6 +46,7 @@ namespace view_scilab
 namespace
 {
 
+const std::wstring Deleted (L"Deleted");
 const std::wstring TextSharedTypeStr (L"Text");
 
 struct props
@@ -83,7 +84,17 @@ struct objs
         Controller newController;
         for (int i = 0; i < static_cast<int>(children.size()); ++i)
         {
+            if (children[i] == 0)
+            {
+                types::MList* deletedObject = new types::MList();
+                types::String* header = new types::String(Deleted.data());
+                deletedObject->set(0, header);
+                o->set(i, deletedObject);
+                continue;
+            }
+
             std::shared_ptr<model::BaseObject> item = newController.getObject(children[i]);
+
             switch (item->kind())
             {
                 case ANNOTATION:
@@ -152,14 +163,21 @@ struct objs
 
         // Clear the children list before the loop to reset the diagram children
         // and clear the old Links information
-        std::vector<ScicosID> diagramChildren;
-        controller.getObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, diagramChildren);
-        for (ScicosID id : diagramChildren)
+        std::vector<ScicosID> oldDiagramChildren;
+        controller.getObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, oldDiagramChildren);
+        for (ScicosID id : oldDiagramChildren)
         {
-            auto o = controller.getObject(id);
-            controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
+            if (id != 0)
+            {
+                auto o = controller.getObject(id);
+                controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
+            }
+            else
+            {
+                // Deleted Block
+            }
         }
-        diagramChildren.clear();
+        std::vector<ScicosID> diagramChildren;
 
         // Set the children to the right IDs
         std::vector<LinkAdapter*> linkListView;
@@ -218,6 +236,11 @@ struct objs
                 // Allow to pass mlists to 'objs', representing Text blocks
                 types::MList* modelElement = list->get(i)->getAs<types::MList>();
                 types::String* header = modelElement->getFieldNames();
+                if (header->get(0) == Deleted)
+                {
+                    diagramChildren.push_back(0);
+                    continue;
+                }
                 if (header->get(0) != TextSharedTypeStr)
                 {
                     return false;
@@ -237,6 +260,18 @@ struct objs
 
                 controller.setObjectProperty(newID, ANNOTATION, PARENT_DIAGRAM, adaptee->id());
                 diagramChildren.push_back(newID);
+            }
+            else if (list->get(i)->getType() == types::InternalType::ScilabList)
+            {
+                // Allow to pass empty lists to 'objs', representing deleted Blocks
+                types::List* modelElement = list->get(i)->getAs<types::List>();
+                if (modelElement->getSize() != 0)
+                {
+                    return false;
+                }
+
+                // Mark deleted objects with value '0'
+                diagramChildren.push_back(0);
             }
             else
             {
@@ -369,6 +404,15 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
     types::List* List_objects = new types::List();
     for (int i = 0; i < static_cast<int>(children.size()); ++i)
     {
+        if (children[i] == 0)
+        {
+            types::MList* deletedObject = new types::MList();
+            types::String* header = new types::String(Deleted.data());
+            deletedObject->set(0, header);
+            List_objects->set(i, deletedObject);
+            continue;
+        }
+
         std::shared_ptr<model::BaseObject> item = controller.getObject(children[i]);
         switch (item->kind())
         {
@@ -439,8 +483,11 @@ DiagramAdapter::~DiagramAdapter()
         controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
         for (ScicosID id : diagramChildren)
         {
-            auto o = controller.getObject(id);
-            controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
+            if (id != 0)
+            {
+                auto o = controller.getObject(id);
+                controller.setObjectProperty(id, o->kind(), PARENT_DIAGRAM, 0ll);
+            }
         }
         diagramChildren.clear();
         controller.setObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);

@@ -310,6 +310,12 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
 
     for (const ScicosID & id : v)
     {
+        if (id == 0)
+        {
+            // Deleted Block, the cloning is done at Adapter level
+            cloned.push_back(id);
+            continue;
+        }
 
         std::map<ScicosID, ScicosID>::iterator it = mapped.find(id);
         if (it != mapped.end())

@@ -136,15 +136,20 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 ScicosID id;
                 controller.getObjectProperty(*it, PORT, p, id);
 
-                std::vector<ScicosID>::iterator found = std::find(children.begin(), children.end(), id);
+                v[i] = 0;
 
-                if (found != children.end())
+                if (id == 0)
                 {
-                    v[i] = (double)std::distance(children.begin(), found) + 1;
+                    // Unconnected port, no need to search in 'children'
                 }
                 else
                 {
-                    v[i] = 0;
+                    std::vector<ScicosID>::iterator found = std::find(children.begin(), children.end(), id);
+
+                    if (found != children.end())
+                    {
+                        v[i] = static_cast<double>(std::distance(children.begin(), found)) + 1;
+                    }
                 }
             }
             return o;

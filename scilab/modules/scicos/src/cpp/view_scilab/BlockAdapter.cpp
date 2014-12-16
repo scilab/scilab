@@ -44,6 +44,8 @@ namespace view_scilab
 namespace
 {
 
+const std::wstring Deleted (L"Deleted");
+
 struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
@@ -179,6 +181,15 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
         types::List* List_objects = new types::List();
         for (int i = 0; i < static_cast<int>(diagramChildren.size()); ++i)
         {
+            if (diagramChildren[i] == 0)
+            {
+                types::MList* deletedObject = new types::MList();
+                types::String* header = new types::String(Deleted.data());
+                deletedObject->set(0, header);
+                List_objects->set(i, deletedObject);
+                continue;
+            }
+
             std::shared_ptr<org_scilab_modules_scicos::model::BaseObject> item = controller.getObject(diagramChildren[i]);
             switch (item->kind())
             {

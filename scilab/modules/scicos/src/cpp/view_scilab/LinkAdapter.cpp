@@ -291,15 +291,11 @@ struct ct
     }
 };
 
-types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, const object_properties_t end)
+link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, const object_properties_t end)
 {
     ScicosID adaptee = adaptor.getAdaptee()->id();
 
-    double* data;
-    types::Double* o = new types::Double(1, 3, &data);
-    data[0] = 0;
-    data[1] = 0;
-    data[2] = 0;
+    link_t ret; // Initialize a {0, 0, Start} Link
 
     ScicosID endID;
     controller.getObjectProperty(adaptee, LINK, end, endID);
@@ -314,10 +310,10 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
         std::vector<ScicosID> children;
         if (parentDiagram == 0)
         {
-            return o;
+            return ret;
         }
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
-        data[0] = static_cast<double>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
+        ret.block = std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1;
 
         // To find the port index from its 'endID' ID, search through all the block's ports lists
         std::vector<ScicosID> sourceBlockPorts;
@@ -341,12 +337,12 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
                     found = std::find(sourceBlockPorts.begin(), sourceBlockPorts.end(), endID);
                     if (found == sourceBlockPorts.end()) // Not found in the event outputs
                     {
-                        return 0;
+                        return ret;
                     }
                 }
             }
         }
-        data[1] = static_cast<double>(std::distance(sourceBlockPorts.begin(), found) + 1);
+        ret.port = std::distance(sourceBlockPorts.begin(), found) + 1;
 
         bool isImplicit;
         controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
@@ -357,12 +353,12 @@ types::Double* getLinkEnd(const LinkAdapter& adaptor, const Controller& controll
             controller.getObjectProperty(endID, PORT, PORT_KIND, kind);
             if (kind == model::PORT_IN || kind == model::PORT_EIN)
             {
-                data[2] = 1;
+                ret.kind = End;
             }
         }
     }
     // Default case, the property was initialized at [].
-    return o;
+    return ret;
 }
 
 /*
@@ -457,6 +453,12 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
         return; // Trying to link to a non-existing block
     }
     ScicosID blkID = children[v.block - 1];
+
+    if (blkID == 0)
+    {
+        // Deleted Block
+        return;
+    }
 
     // Check that the ID designates a BLOCK (and not an ANNOTATION)
     if (controller.getObject(blkID)->kind() != BLOCK)
@@ -801,15 +803,8 @@ LinkAdapter::LinkAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Link>
 
     // If the Link has been added to a diagram, the following lines will dig up its information at model-level
     Controller controller;
-    types::Double* current = getLinkEnd(*this, controller, SOURCE_PORT);
-    m_from.block = current->get(0);
-    m_from.port = current->get(1);
-    m_from.kind = (current->get(2) == 0.) ? Start : End;
-
-    current   = getLinkEnd(*this, controller, DESTINATION_PORT);
-    m_to.block = current->get(0);
-    m_to.port = current->get(1);
-    m_to.kind = (current->get(2) == 0.) ? Start : End;
+    m_from = getLinkEnd(*this, controller, SOURCE_PORT);
+    m_to   = getLinkEnd(*this, controller, DESTINATION_PORT);
 }
 
 LinkAdapter::LinkAdapter(const LinkAdapter& adapter) :
