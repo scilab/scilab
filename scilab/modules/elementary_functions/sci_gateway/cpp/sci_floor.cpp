@@ -23,7 +23,10 @@ extern "C"
 #include "localization.h"
 #include "basic_functions.h"
 }
-
+/*
+clear a; nb = 2500; a = rand(nb, nb); tic(); floor(a); toc
+clear a; nb = 2500; a = rand(nb, nb); a = a + a *%i; tic(); floor(a); toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -44,17 +47,26 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
 
+        double* pInR = pDblIn->get();
+        double* pOutR = pDblOut->get();
+        int size = pDblIn->getSize();
+
         if (pDblIn->isComplex())
         {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            double* pInI = pDblIn->getImg();
+            double* pOutI = pDblOut->getImg();
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->setImg(i, dfloors(pDblIn->getImg(i)));
+                pOutR[i] = std::floor(pInR[i]);
+                pOutI[i] = std::floor(pInI[i]);
             }
         }
-
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
+        else
         {
-            pDblOut->set(i, dfloors(pDblIn->get(i)));
+            for (int i = 0; i < size; i++)
+            {
+                pOutR[i] = std::floor(pInR[i]);
+            }
         }
 
         out.push_back(pDblOut);
@@ -145,8 +157,7 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
     }
     else if (in[0]->isInt())
     {
-        out.push_back(in[0]->getAs<types::InternalType>()->clone());
-        return types::Function::OK;
+        out.push_back(in[0]);
     }
     else
     {

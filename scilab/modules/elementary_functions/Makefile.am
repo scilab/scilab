@@ -22,8 +22,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/qsort-string.c \
     src/c/basic_functions.c \
     src/c/abs.c \
-    src/c/acos.c \
-    src/c/asin.c \
     src/c/atan.c \
     src/c/cos.c \
     src/c/cosh.c \
@@ -303,14 +301,20 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_matrix.cpp \
     sci_gateway/cpp/sci_abs.cpp \
     sci_gateway/cpp/sci_acos.cpp \
+    sci_gateway/cpp/sci_acosh.cpp \
     sci_gateway/cpp/sci_asin.cpp \
+    sci_gateway/cpp/sci_asinh.cpp \
     sci_gateway/cpp/sci_atan.cpp \
+    sci_gateway/cpp/sci_atanh.cpp \
     sci_gateway/cpp/sci_ceil.cpp \
     sci_gateway/cpp/sci_clean.cpp \
     sci_gateway/cpp/sci_conj.cpp \
     sci_gateway/cpp/sci_cos.cpp \
+    sci_gateway/cpp/sci_cosh.cpp \
     sci_gateway/cpp/sci_sin.cpp \
+    sci_gateway/cpp/sci_sinh.cpp \
     sci_gateway/cpp/sci_tan.cpp \
+    sci_gateway/cpp/sci_tanh.cpp \
     sci_gateway/cpp/sci_cumsum.cpp \
     sci_gateway/cpp/sci_cumprod.cpp \
     sci_gateway/cpp/sci_diag.cpp \
@@ -332,7 +336,7 @@ GATEWAY_CXX_SOURCES =  \
     sci_gateway/cpp/sci_triu.cpp \
     sci_gateway/cpp/sci_tril.cpp \
     sci_gateway/cpp/sci_real.cpp \
-    sci_gateway/cpp/sci_round.cpp\
+    sci_gateway/cpp/sci_round.cpp \
     sci_gateway/cpp/sci_sign.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f

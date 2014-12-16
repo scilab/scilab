@@ -26,7 +26,10 @@ extern "C"
 #include "basic_functions.h"
 }
 
-/*--------------------------------------------------------------------------*/
+/*
+clear a; nb = 2500; a = rand(nb, nb) * 50; tic(); cumsum(a); toc
+clear a; nb = 2500; a = rand(nb, nb) * 50; a = a + a *%i; tic(); cumsum(a); toc
+*/
 types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     types::Double* pDblIn       = NULL;
@@ -50,102 +53,48 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
     }
 
     /***** get data *****/
-    if (in[0]->isDouble()) // double
+    switch (in[0]->getType())
     {
-        pDblIn = in[0]->getAs<types::Double>();
+        case InternalType::ScilabDouble:
+            pDblIn = in[0]->getAs<types::Double>();
+            break;
+        case InternalType::ScilabBool:
+            pDblIn = getAsDouble(in[0]->getAs<types::Bool>());
+            iOuttype = 2;
+            break;
+        case InternalType::ScilabPolynom:
+            pPolyIn = in[0]->getAs<types::Polynom>();
+            break;
+        case InternalType::ScilabInt8:
+            pDblIn = getAsDouble(in[0]->getAs<types::Int8>());
+            break;
+        case InternalType::ScilabInt16:
+            pDblIn = getAsDouble(in[0]->getAs<types::Int16>());
+            break;
+        case InternalType::ScilabInt32:
+            pDblIn = getAsDouble(in[0]->getAs<types::Int32>());
+            break;
+        case InternalType::ScilabInt64:
+            pDblIn = getAsDouble(in[0]->getAs<types::Int64>());
+            break;
+        case InternalType::ScilabUInt8:
+            pDblIn = getAsDouble(in[0]->getAs<types::UInt8>());
+            break;
+        case InternalType::ScilabUInt16:
+            pDblIn = getAsDouble(in[0]->getAs<types::UInt16>());
+            break;
+        case InternalType::ScilabUInt32:
+            pDblIn = getAsDouble(in[0]->getAs<types::UInt32>());
+            break;
+        case InternalType::ScilabUInt64:
+            pDblIn = getAsDouble(in[0]->getAs<types::UInt64>());
+            break;
+        default:
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cumsum";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
-    else if (in[0]->isBool()) // bool
-    {
-        types::Bool* pBIn = in[0]->getAs<types::Bool>();
-        pDblIn = new types::Double(pBIn->getDims(), pBIn->getDimsArray());
-        for (int i = 0; i < pBIn->getSize(); i++)
-        {
-            pBIn->get(i) ? pDblIn->set(i, 1) : pDblIn->set(i, 0);
-        }
-        iOuttype = 2;
-    }
-    else if (in[0]->isPoly()) // polynom
-    {
-        pPolyIn = in[0]->getAs<types::Polynom>();
-    }
-    else if (in[0]->isInt8()) // int
-    {
-        types::Int8* pIIn = in[0]->getAs<types::Int8>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isInt16())
-    {
-        types::Int16* pIIn = in[0]->getAs<types::Int16>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isInt32())
-    {
-        types::Int32* pIIn = in[0]->getAs<types::Int32>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isInt64()) // uint
-    {
-        types::Int64* pIIn = in[0]->getAs<types::Int64>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isUInt8())
-    {
-        types::UInt8* pIIn = in[0]->getAs<types::UInt8>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isUInt16())
-    {
-        types::UInt16* pIIn = in[0]->getAs<types::UInt16>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isUInt32())
-    {
-        types::UInt32* pIIn = in[0]->getAs<types::UInt32>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else if (in[0]->isUInt64())
-    {
-        types::UInt64* pIIn = in[0]->getAs<types::UInt64>();
-        pDblIn = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-        for (int i = 0; i < pIIn->getSize(); i++)
-        {
-            pDblIn->set(i, static_cast<double>(pIIn->get(i)));
-        }
-    }
-    else
-    {
-        ast::ExecVisitor exec;
-        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cumsum";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
-    }
+
 
     if (in.size() >= 2)
     {
@@ -332,90 +281,71 @@ types::Function::ReturnValue sci_cumsum(types::typed_list &in, int _iRetCount, t
     /***** set result *****/
     if ((iOuttype == 1) && (in[0]->isDouble() == false))
     {
-        if (in[0]->isBool())
+        switch (in[0]->getType())
         {
-            types::Bool* pBOut = new types::Bool(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pDblOut->getSize(); i++)
+            case InternalType::ScilabBool:
             {
-                pDblOut->get(i) ? pBOut->set(i, 1) : pBOut->set(i, 0);
+                types::Bool* pB = new types::Bool(pDblOut->getDims(), pDblOut->getDimsArray());
+                int* p = pB->get();
+                double* pd = pDblOut->get();
+                int size = pB->getSize();
+                for (int i = 0; i < size; ++i)
+                {
+                    p[i] = pd[i] != 0 ? 1 : 0;
+                }
+                out.push_back(pB);
+                break;
             }
-            out.push_back(pBOut);
-        }
-        else if (in[0]->isPoly())
-        {
-            out.push_back(pPolyOut);
-        }
-        else if (in[0]->isInt8())
-        {
-            types::Int8* pIOut = new types::Int8(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabPolynom:
             {
-                pIOut->set(i, static_cast<char>(pDblOut->get(i)));
+                out.push_back(pPolyOut);
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isInt16())
-        {
-            types::Int16* pIOut = new types::Int16(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabInt8:
             {
-                pIOut->set(i, static_cast<short int>(pDblOut->get(i)));
+                out.push_back(toInt<types::Int8, char>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isInt32())
-        {
-            types::Int32* pIOut = new types::Int32(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabInt16:
             {
-                pIOut->set(i, static_cast<int>(pDblOut->get(i)));
+                out.push_back(toInt<types::Int16, short>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isInt64())
-        {
-            types::Int64* pIOut = new types::Int64(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabInt32:
             {
-                pIOut->set(i, static_cast<long long int>(pDblOut->get(i)));
+                out.push_back(toInt<types::Int32, int>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isUInt8())
-        {
-            types::UInt8* pIOut = new types::UInt8(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabInt64:
             {
-                pIOut->set(i, static_cast<unsigned char>(pDblOut->get(i)));
+                out.push_back(toInt<types::Int64, long long>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isUInt16())
-        {
-            types::UInt16* pIOut = new types::UInt16(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabUInt8:
             {
-                pIOut->set(i, static_cast<unsigned short int>(pDblOut->get(i)));
+                out.push_back(toInt<types::UInt8, unsigned char>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isUInt32())
-        {
-            types::UInt32* pIOut = new types::UInt32(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabUInt16:
             {
-                pIOut->set(i, static_cast<unsigned int>(pDblOut->get(i)));
+                out.push_back(toInt<types::UInt16, unsigned short>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
-        }
-        else if (in[0]->isUInt64())
-        {
-            types::UInt64* pIOut = new types::UInt64(pDblOut->getDims(), pDblOut->getDimsArray());
-            for (int i = 0; i < pIOut->getSize(); i++)
+            case InternalType::ScilabUInt32:
             {
-                pIOut->set(i, static_cast<unsigned long long int>(pDblOut->get(i)));
+                out.push_back(toInt<types::UInt32, unsigned int>(pDblOut));
+                break;
             }
-            out.push_back(pIOut);
+            case InternalType::ScilabUInt64:
+            {
+                out.push_back(toInt<types::UInt64, unsigned long long>(pDblOut));
+                break;
+            }
+        }
+
+        if (pDblOut)
+        {
+            delete pDblOut;
         }
     }
     else

@@ -365,14 +365,20 @@ am__objects_8 =  \
 	sci_gateway/cpp/libscielementary_functions_la-sci_matrix.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_abs.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_acos.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_ceil.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_clean.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_conj.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_cos.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo \
+	sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_cumsum.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_cumprod.lo \
 	sci_gateway/cpp/libscielementary_functions_la-sci_diag.lo \
@@ -1089,14 +1095,20 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_matrix.cpp \
     sci_gateway/cpp/sci_abs.cpp \
     sci_gateway/cpp/sci_acos.cpp \
+    sci_gateway/cpp/sci_acosh.cpp \
     sci_gateway/cpp/sci_asin.cpp \
+    sci_gateway/cpp/sci_asinh.cpp \
     sci_gateway/cpp/sci_atan.cpp \
+    sci_gateway/cpp/sci_atanh.cpp \
     sci_gateway/cpp/sci_ceil.cpp \
     sci_gateway/cpp/sci_clean.cpp \
     sci_gateway/cpp/sci_conj.cpp \
     sci_gateway/cpp/sci_cos.cpp \
+    sci_gateway/cpp/sci_cosh.cpp \
     sci_gateway/cpp/sci_sin.cpp \
+    sci_gateway/cpp/sci_sinh.cpp \
     sci_gateway/cpp/sci_tan.cpp \
+    sci_gateway/cpp/sci_tanh.cpp \
     sci_gateway/cpp/sci_cumsum.cpp \
     sci_gateway/cpp/sci_cumprod.cpp \
     sci_gateway/cpp/sci_diag.cpp \
@@ -1118,7 +1130,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_triu.cpp \
     sci_gateway/cpp/sci_tril.cpp \
     sci_gateway/cpp/sci_real.cpp \
-    sci_gateway/cpp/sci_round.cpp\
+    sci_gateway/cpp/sci_round.cpp \
     sci_gateway/cpp/sci_sign.cpp
 
 EISPACK_SOURCES = src/fortran/eispack/balbak.f
@@ -2002,10 +2014,19 @@ sci_gateway/cpp/libscielementary_functions_la-sci_abs.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_acos.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_ceil.lo:  \
@@ -2020,10 +2041,19 @@ sci_gateway/cpp/libscielementary_functions_la-sci_conj.lo:  \
 sci_gateway/cpp/libscielementary_functions_la-sci_cos.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscielementary_functions_la-sci_cumsum.lo:  \
@@ -2132,12 +2162,16 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-elem_func_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_abs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_acos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_acosh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atan.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atanh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_ceil.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_clean.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_conj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cos.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cosh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cumprod.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cumsum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_diag.Plo@am__quote@
@@ -2166,9 +2200,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_round.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sign.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sinh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_size.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sum.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tan.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tanh.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tril.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_triu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_zeros.Plo@am__quote@
@@ -2801,6 +2837,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_acos.lo: sci_gateway/cpp/sci_a
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_acos.lo `test -f 'sci_gateway/cpp/sci_acos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_acos.cpp
 
+sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo: sci_gateway/cpp/sci_acosh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_acosh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo `test -f 'sci_gateway/cpp/sci_acosh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_acosh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_acosh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_acosh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_acosh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_acosh.lo `test -f 'sci_gateway/cpp/sci_acosh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_acosh.cpp
+
 sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo: sci_gateway/cpp/sci_asin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asin.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo `test -f 'sci_gateway/cpp/sci_asin.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_asin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asin.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asin.Plo
@@ -2808,12 +2851,26 @@ sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo: sci_gateway/cpp/sci_a
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_asin.lo `test -f 'sci_gateway/cpp/sci_asin.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_asin.cpp
 
+sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo: sci_gateway/cpp/sci_asinh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asinh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo `test -f 'sci_gateway/cpp/sci_asinh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_asinh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asinh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_asinh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_asinh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_asinh.lo `test -f 'sci_gateway/cpp/sci_asinh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_asinh.cpp
+
 sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo: sci_gateway/cpp/sci_atan.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atan.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo `test -f 'sci_gateway/cpp/sci_atan.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_atan.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atan.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atan.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_atan.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_atan.lo `test -f 'sci_gateway/cpp/sci_atan.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_atan.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo: sci_gateway/cpp/sci_atanh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atanh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo `test -f 'sci_gateway/cpp/sci_atanh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_atanh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atanh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_atanh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_atanh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_atanh.lo `test -f 'sci_gateway/cpp/sci_atanh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_atanh.cpp
 
 sci_gateway/cpp/libscielementary_functions_la-sci_ceil.lo: sci_gateway/cpp/sci_ceil.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_ceil.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_ceil.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_ceil.lo `test -f 'sci_gateway/cpp/sci_ceil.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ceil.cpp
@@ -2843,6 +2900,13 @@ sci_gateway/cpp/libscielementary_functions_la-sci_cos.lo: sci_gateway/cpp/sci_co
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_cos.lo `test -f 'sci_gateway/cpp/sci_cos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cos.cpp
 
+sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo: sci_gateway/cpp/sci_cosh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cosh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo `test -f 'sci_gateway/cpp/sci_cosh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cosh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cosh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cosh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_cosh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_cosh.lo `test -f 'sci_gateway/cpp/sci_cosh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cosh.cpp
+
 sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo: sci_gateway/cpp/sci_sin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sin.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo `test -f 'sci_gateway/cpp/sci_sin.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sin.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sin.Plo
@@ -2850,12 +2914,26 @@ sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo: sci_gateway/cpp/sci_si
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sin.lo `test -f 'sci_gateway/cpp/sci_sin.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sin.cpp
 
+sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo: sci_gateway/cpp/sci_sinh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sinh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo `test -f 'sci_gateway/cpp/sci_sinh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sinh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sinh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_sinh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_sinh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_sinh.lo `test -f 'sci_gateway/cpp/sci_sinh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_sinh.cpp
+
 sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo: sci_gateway/cpp/sci_tan.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tan.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo `test -f 'sci_gateway/cpp/sci_tan.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tan.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tan.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tan.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_tan.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_tan.lo `test -f 'sci_gateway/cpp/sci_tan.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tan.cpp
+
+sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo: sci_gateway/cpp/sci_tanh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tanh.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo `test -f 'sci_gateway/cpp/sci_tanh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tanh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tanh.Tpo sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_tanh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_tanh.cpp' object='sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscielementary_functions_la-sci_tanh.lo `test -f 'sci_gateway/cpp/sci_tanh.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tanh.cpp
 
 sci_gateway/cpp/libscielementary_functions_la-sci_cumsum.lo: sci_gateway/cpp/sci_cumsum.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscielementary_functions_la-sci_cumsum.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_cumsum.Tpo -c -o sci_gateway/cpp/libscielementary_functions_la-sci_cumsum.lo `test -f 'sci_gateway/cpp/sci_cumsum.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cumsum.cpp

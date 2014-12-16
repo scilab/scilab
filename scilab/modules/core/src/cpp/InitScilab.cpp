@@ -934,7 +934,7 @@ static void Add_fftw(void)
 
 static void Add_pi(void)
 {
-    Add_Double_Constant(L"%pi", 3.1415926535897931159980, 0, false);
+    Add_Double_Constant(L"%pi", M_PI, 0, false);
 }
 
 static void Add_eps(void)

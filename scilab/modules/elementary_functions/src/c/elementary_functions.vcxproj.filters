@@ -122,12 +122,6 @@
     <ClCompile Include="abs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="acos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="asin.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="atan.c">
       <Filter>Source Files</Filter>
     </ClCompile>

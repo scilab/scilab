@@ -22,8 +22,13 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "tan.h"
+    int C2F(wtan)(double*, double*, double*, double*);
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();tan(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();tan(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -50,23 +55,7 @@ types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, type
     }
 
     pDblIn = in[0]->getAs<types::Double>();
-    pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-    if (pDblIn->isComplex())
-    {
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
-        {
-            ztans(pDblIn->get(i), pDblIn->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
-        }
-    }
-    else
-    {
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
-        {
-            pDblOut->set(i, dtans(pDblIn->get(i)));
-        }
-    }
-
+    pDblOut = trigo(pDblIn, tan, tan);
     out.push_back(pDblOut);
     return types::Function::OK;
 }

@@ -24,6 +24,11 @@ extern "C"
 #include "basic_functions.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb) * 50;tic();ceil(a);toc
+clear a;nb = 2500;a = rand(nb, nb) * 50; a = a + a *%i;tic();ceil(a);toc
+*/
+
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -44,17 +49,24 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
 
+        double* pIR = pDblIn->get();
+        double* pOR = pDblOut->get();
+
+        int size = pDblIn->getSize();
+
         if (pDblIn->isComplex())
         {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            double* pII = pDblIn->getImg();
+            double* pOI = pDblOut->getImg();
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->setImg(i, dceils(pDblIn->getImg(i)));
+                pOI[i] = std::ceil(pII[i]);
             }
         }
 
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
+        for (int i = 0; i < size; i++)
         {
-            pDblOut->set(i, dceils(pDblIn->get(i)));
+            pOR[i] = std::ceil(pIR[i]);
         }
 
         out.push_back(pDblOut);
@@ -145,8 +157,7 @@ types::Function::ReturnValue sci_ceil(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isInt())
     {
-        out.push_back(in[0]->getAs<types::InternalType>()->clone());
-        return types::Function::OK;
+        out.push_back(in[0]);
     }
     else
     {

@@ -87,6 +87,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         types::Double* pDblIn  = in[0]->getAs<types::Double>();// double
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
 
+        int size = pDblIn->getSize();
         /***** perform operation *****/
         double* pdblInReal  = pDblIn->get();
         double* pDblOutReal = pDblOut->get();
@@ -94,7 +95,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         {
             double* pdblInImg  = pDblIn->getImg();
             double* pDblOutImg = pDblOut->getImg();
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            for (int i = 0; i < size; i++)
             {
                 pDblOutReal[i] = C2F(danints)(pdblInReal + i);
                 pDblOutImg[i]  = C2F(danints)(pdblInImg + i);
@@ -102,7 +103,7 @@ types::Function::ReturnValue sci_round(types::typed_list &in, int _iRetCount, ty
         }
         else
         {
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            for (int i = 0; i < size; i++)
             {
                 pDblOutReal[i] = C2F(danints)(pdblInReal + i);
             }

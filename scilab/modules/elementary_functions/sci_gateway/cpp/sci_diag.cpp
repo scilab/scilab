@@ -24,6 +24,10 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
+/*
+clear a; nb = 2500; a = rand(nb, nb); tic(); diag(a); toc
+clear a; nb = 2500; a = rand(nb, nb); a = a + a *%i; tic(); diag(a); toc
+*/
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, types::typed_list &out)

@@ -217,9 +217,7 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="..\cpp\prod.cpp" />
     <ClCompile Include="..\cpp\sum.cpp" />
     <ClCompile Include="abs.c" />
-    <ClCompile Include="acos.c" />
     <ClCompile Include="add_vector.c" />
-    <ClCompile Include="asin.c" />
     <ClCompile Include="atan.c" />
     <ClCompile Include="basic_functions.c" />
     <ClCompile Include="ceil.c" />

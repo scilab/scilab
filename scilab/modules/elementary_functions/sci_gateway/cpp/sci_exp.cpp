@@ -24,6 +24,11 @@ extern "C"
 #include "exp.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();exp(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();exp(a);toc
+*/
+
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -43,19 +48,24 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
     {
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
+        double* pInR = pDblIn->get();
+        double* pOutR = pDblOut->get();
+        int size = pDblIn->getSize();
 
         if (pDblIn->isComplex())
         {
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            double* pInI = pDblIn->getImg();
+            double* pOutI = pDblOut->getImg();
+            for (int i = 0; i < size; i++)
             {
-                zexps(pDblIn->get(i), pDblIn->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
+                zexps(pInR[i], pInI[i], pOutR + i, pOutI + i);
             }
         }
         else
         {
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->set(i, dexps(pDblIn->get(i)));
+                pOutR[i] = std::exp(pInR[i]);
             }
         }
 

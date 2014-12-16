@@ -15,7 +15,13 @@
 #define __ELEM_FUNC_GW_HXX__
 
 #include "cpp_gateway_prototype.hxx"
+#include "double.hxx"
+#include "complex"
+
+extern "C"
+{
 #include "dynlib_elementary_functions_gw.h"
+}
 
 class ElemFuncModule
 {
@@ -73,7 +79,48 @@ CPP_GATEWAY_PROTOTYPE(sci_triu);
 CPP_GATEWAY_PROTOTYPE(sci_tril);
 CPP_GATEWAY_PROTOTYPE(sci_round);
 CPP_GATEWAY_PROTOTYPE(sci_sign);
+CPP_GATEWAY_PROTOTYPE(sci_cosh);
+CPP_GATEWAY_PROTOTYPE(sci_sinh);
+CPP_GATEWAY_PROTOTYPE(sci_tanh);
+CPP_GATEWAY_PROTOTYPE(sci_acosh);
+CPP_GATEWAY_PROTOTYPE(sci_asinh);
+CPP_GATEWAY_PROTOTYPE(sci_atanh);
 
 bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc);
+
+template <class T>
+types::Double* getAsDouble(T* _val)
+{
+    types::Double* dbl = new types::Double(_val->getDims(), _val->getDimsArray());
+    double* pOut = dbl->get();
+    auto* pIn = _val->get();
+    int size = dbl->getSize();
+    for (int i = 0; i < size; i++)
+    {
+        pOut[i] = static_cast<double>(pIn[i]);
+    }
+
+    return dbl;
+}
+
+template <class T, typename U>
+T* toInt(types::Double* _dbl)
+{
+    T* pI = new T(_dbl->getDims(), _dbl->getDimsArray());
+    U* p = pI->get();
+    double* pdbl = _dbl->get();
+    int size = _dbl->getSize();
+    for (int i = 0; i < size; i++)
+    {
+        p[i] = static_cast<U>(pdbl[i]);
+    }
+
+    return pI;
+}
+
+typedef double(*func_real)(double);
+typedef std::complex<double>(*func_complex)(const std::complex<double>&);
+
+types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, bool forceComplex = false);
 
 #endif /* __ELEM_FUNC_GW_HXX__ */

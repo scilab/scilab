@@ -23,6 +23,9 @@ extern "C"
 #include "localization.h"
 #include "basic_functions.h"
 }
+/*
+clear a; nb = 2500; a = rand(nb, nb); tic(); [x,y]=frexp(a); toc
+*/
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -64,9 +67,14 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
     types::Double* pDblCoef = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
     types::Double* pDblExp  = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
-    for (int i = 0 ; i < pDblIn->getSize() ; i++)
+    double* pIn = pDblIn->get();
+    double* pCoef = pDblCoef->get();
+    double* pFrexp = pDblExp->get();
+    int size = pDblIn->getSize();
+
+    for (int i = 0; i < size; i++)
     {
-        pDblCoef->set(i, dfrexps(pDblIn->get(i), pDblExp->get() + i));
+        pCoef[i] = dfrexps(pIn[i], pFrexp + i);
     }
 
     out.push_back(pDblCoef);

@@ -25,25 +25,27 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
     if (iOrientation == 0) // all
     {
+        int size = pIn->getSize();
         double dblR = pdblInReal[0];
         if (pIn->isComplex())
         {
             double dblI = pdblInImg[0];
             double dblRTmp = 0;
             double dblITmp = 0;
-            for (int i = 1 ; i < pIn->getSize() ; i++)
+            for (int i = 1; i < size; i++)
             {
-                dblRTmp = dblR;
-                dblITmp = dblI;
-                iMultiComplexMatrixByComplexMatrix( &pdblInReal[i], &pdblInImg[i], 1, 1,
-                                                    &dblRTmp, &dblITmp, 1, 1, &dblR, &dblI);
+                dblRTmp = dblR * pdblInReal[i] - dblI * pdblInImg[i];
+                dblITmp = dblR * pdblInImg[i] + dblI * pdblInReal[i];
+
+                dblR = dblRTmp;
+                dblI = dblITmp;
             }
 
             pOut = new types::Double(dblR, dblI);
         }
         else
         {
-            for (int i = 1 ; i < pIn->getSize() ; i++)
+            for (int i = 1; i < size; i++)
             {
                 dblR *= pdblInReal[i];
             }
@@ -72,10 +74,11 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         // init output
         double* pdblOut = pOut->get();
         double* pdblOutImg = pOut->getImg();
+        int size = pOut->getSize();
 
         if (pOut->isComplex())
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 pdblOut[i] = 1;
                 pdblOutImg[i] = 0;
@@ -83,7 +86,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         }
         else
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 pdblOut[i] = 1;
             }
@@ -91,9 +94,10 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
         // perform operations
         int* piIndex = new int[iDims];
+        size = pIn->getSize();
         if (pIn->isComplex())
         {
-            for (int i = 0 ; i < pIn->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 //get array of dim
                 pIn->getIndexes(i, piIndex);
@@ -112,7 +116,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         }
         else
         {
-            for (int i = 0 ; i < pIn->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 //get array of dim
                 pIn->getIndexes(i, piIndex);

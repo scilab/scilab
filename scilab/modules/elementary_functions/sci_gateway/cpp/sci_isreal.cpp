@@ -76,9 +76,11 @@ types::Function::ReturnValue sci_isreal(types::typed_list &in, int _iRetCount, t
             return types::Function::OK;
         }
 
-        for (int i = 0; i < pDblIn->getSize(); i++)
+        int size = pDblIn->getSize();
+        double* pInI = pDblIn->getImg();
+        for (int i = 0; i < size; i++)
         {
-            if (fabs(pDblIn->getImg(i)) > dEps)
+            if (fabs(pInI[i]) > dEps)
             {
                 out.push_back(new types::Bool(false));
                 return types::Function::OK;
