@@ -161,10 +161,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             pMacro = in[0]->getAs<Macro>();
         }
 
-        // We dont care about the input and output argument
-        if (pMacro->outputs_get()->empty() == false || pMacro->inputs_get()->empty() == false)
+        // unable for macro with varargin or varargout
+        auto inputs = pMacro->inputs_get();
+        auto outputs = pMacro->outputs_get();
+        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
+                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without input and output argument expected.\n"), "exec", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
             return Function::Error;
         }
 
