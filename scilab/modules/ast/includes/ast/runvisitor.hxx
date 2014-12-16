@@ -78,7 +78,7 @@ public:
         }
         else
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; ++rv)
+            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; rv++)
             {
                 if (*rv != NULL)
                 {
