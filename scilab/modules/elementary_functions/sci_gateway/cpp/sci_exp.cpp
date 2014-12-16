@@ -29,7 +29,7 @@ types::Function::ReturnValue sci_exp(types::typed_list &in, int _iRetCount, type
 {
     if (in.size() != 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "exp", 1);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "exp", 1);
         return types::Function::Error;
     }
 
