@@ -25,7 +25,7 @@ namespace org_scilab_modules_scicos
 static const bool USE_SCILAB_WRITE = true;
 
 LoggerView::LoggerView() :
-    View(), level (WARNING)
+    View(), level(LOG_WARNING)
 {
 }
 
@@ -45,19 +45,19 @@ static std::wstring levelTable[] =
 
 enum LogLevel LoggerView::indexOf(const wchar_t* name)
 {
-    for (int i = TRACE ; i <= FATAL; i++)
+    for (int i = LOG_TRACE; i <= LOG_FATAL; i++)
     {
         if (!wcscmp(name, levelTable[i].data()))
         {
             return static_cast<enum LogLevel>(i);
         }
     }
-    return UNDEF;
+    return LOG_UNDEF;
 }
 
 const wchar_t* LoggerView::toString(enum LogLevel level)
 {
-    if (TRACE <= level && level <= FATAL)
+    if (LOG_TRACE <= level && level <= LOG_FATAL)
     {
         return levelTable[level].data();
     }
@@ -336,21 +336,21 @@ void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(DEBUG, ss);
+    log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(DEBUG, ss);
+    log(LOG_DEBUG, ss);
 }
 
 void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(DEBUG, ss);
+    log(LOG_DEBUG, ss);
 }
 
 void LoggerView::propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/)
@@ -363,7 +363,7 @@ void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_propertie
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;
-    log(TRACE, ss);
+    log(LOG_TRACE, ss);
 }
 
 } /* namespace org_scilab_modules_scicos */

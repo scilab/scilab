@@ -90,10 +90,10 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
     if (logLevel < 0)
     {
         std::wstringstream buffer;
-        for (int i = 0; i <= TRACE; i++)
+        for (int i = 0; i <= LOG_TRACE; i++)
         {
             buffer << LoggerView::toString(static_cast<enum LogLevel>(i));
-            if (i != TRACE)
+            if (i != LOG_TRACE)
             {
                 buffer << L", ";
             }
