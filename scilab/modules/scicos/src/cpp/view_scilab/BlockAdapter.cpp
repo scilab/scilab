@@ -185,8 +185,8 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
             {
                 types::MList* deletedObject = new types::MList();
                 types::String* header = new types::String(Deleted.data());
-                deletedObject->set(0, header);
-                List_objects->set(i, deletedObject);
+                deletedObject->append(header);
+                List_objects->append(deletedObject);
                 continue;
             }
 
@@ -198,7 +198,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
                     std::shared_ptr<org_scilab_modules_scicos::model::Annotation> annotation = std::static_pointer_cast<org_scilab_modules_scicos::model::Annotation>(item);
                     TextAdapter* localAdaptor = new TextAdapter(annotation);
 
-                    List_objects->set(i, localAdaptor);
+                    List_objects->append(localAdaptor);
                     continue;
                 }
                 case BLOCK:
@@ -218,7 +218,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
                         localAdaptor->setDiagram(oldBlockDiagram);
                     }
 
-                    List_objects->set(i, localAdaptor);
+                    List_objects->append(localAdaptor);
                     continue;
                 }
                 case LINK:
@@ -229,7 +229,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
                     // Do the model linking in the next loop, in case the Link points to a Block that has not been added yet
                     linkListView.push_back(localAdaptor);
 
-                    List_objects->set(i, localAdaptor);
+                    List_objects->append(localAdaptor);
                     continue;
                 }
                 default:

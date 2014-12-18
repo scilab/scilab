@@ -660,21 +660,42 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
 }
 
 // Check if the Link is valid
-bool is_valid(const link_t& linkt)
+bool is_valid(types::Double* o)
 {
-    if (floor(linkt.block) != linkt.block ||
-            floor(linkt.port) != linkt.port ||
-            floor(linkt.kind) != linkt.kind)
+    if (o->getSize() == 0)
     {
-        return false; // Block, Port and Kind must be integer values
-    }
-    if (linkt.port < 0 || linkt.kind < 0)
-    {
-        return false; // Port and Kind must be positive
+        return true;
     }
 
-    return true;
+    if (o->getSize() == 2 || o->getSize() == 3)
+    {
+        if (floor(o->get(0)) != o->get(0) || floor(o->get(1)) != o->get(1))
+        {
+            return false; // Block and Port numbers must be integer values
+        }
+        if (o->get(1) < 0)
+        {
+            return false; // Port number must be positive
+        }
+
+        if (o->getSize() == 3)
+        {
+            if (floor(o->get(2)) != o->get(2))
+            {
+                return false; // Kind must be an integer value
+            }
+            if (o->get(2) < 0)
+            {
+                return false; // Kind must be positive
+            }
+        }
+
+        return true;
+    }
+
+    return false;
 }
+
 
 struct from
 {
@@ -701,7 +722,7 @@ struct from
 
         types::Double* current = v->getAs<types::Double>();
 
-        if (current->getSize() != 0 && current->getSize() != 2 && current->getSize() != 3)
+        if (!is_valid(current))
         {
             return false;
         }
@@ -711,16 +732,12 @@ struct from
         {
             from_content.block = current->get(0);
             from_content.port = current->get(1);
-            // By default, kind designates an output (set to 0)
-        }
-        if (current->getSize() == 3)
-        {
-            from_content.kind = (current->get(2) == 0.) ? Start : End;
-        }
+            // By default, 'kind' designates an output (set to 0)
 
-        if (!is_valid(from_content))
-        {
-            return false;
+            if (current->getSize() == 3)
+            {
+                from_content.kind = (current->get(2) == 0.) ? Start : End;
+            }
         }
 
         adaptor.setFromInModel(from_content, controller);
@@ -758,21 +775,22 @@ struct to
             return false;
         }
 
+        if (!is_valid(current))
+        {
+            return false;
+        }
+
         link_t to_content {0, 0, End};
         if (current->getSize() >= 2)
         {
             to_content.block = current->get(0);
             to_content.port = current->get(1);
-            // By default, kind designates an input (set to 1)
-        }
-        if (current->getSize() == 3)
-        {
-            to_content.kind = (current->get(2) == 0.) ? Start : End;
-        }
+            // By default, 'kind' designates an input (set to 1)
 
-        if (!is_valid(to_content))
-        {
-            return false;
+            if (current->getSize() == 3)
+            {
+                to_content.kind = (current->get(2) == 0.) ? Start : End;
+            }
         }
 
         adaptor.setToInModel(to_content, controller);

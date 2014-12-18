@@ -51,7 +51,7 @@ struct graphics
         MListFields->set(1, orig.c_str());
         MListFields->set(2, sz.c_str());
         MListFields->set(3, exprs.c_str());
-        o->set(0, MListFields);
+        o->append(MListFields);
 
         // orig and sz
         std::vector<double> geom;
@@ -65,8 +65,8 @@ struct graphics
         dataOrig[1] = geom[1];
         dataSz[0]   = geom[2];
         dataSz[1]   = geom[3];
-        o->set(1, origField);
-        o->set(2, szField);
+        o->append(origField);
+        o->append(szField);
 
         // exprs
         std::vector<std::string> Exprs (3);
@@ -79,7 +79,7 @@ struct graphics
         {
             exprsField->set(i, Exprs[i].data());
         }
-        o->set(3, exprsField);
+        o->append(exprsField);
 
         return o;
     }

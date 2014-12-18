@@ -276,7 +276,7 @@ struct options
         types::String* header = new types::String(scsopt.c_str());
 
         types::TList* Scsopt = new types::TList();
-        Scsopt->set(0, header);
+        Scsopt->append(header);
         return Scsopt;
     }
 

@@ -165,13 +165,12 @@ public:
         {
             header->set(index, it->name.c_str());
         }
-        tlist->set(0, header);
+        tlist->append(header);
 
         // set the tlist field value
-        index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            tlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
+            tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
         }
 
         tlist->IncreaseRef();

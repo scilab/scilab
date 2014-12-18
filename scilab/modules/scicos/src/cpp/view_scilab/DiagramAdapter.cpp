@@ -88,8 +88,8 @@ struct objs
             {
                 types::MList* deletedObject = new types::MList();
                 types::String* header = new types::String(Deleted.data());
-                deletedObject->set(0, header);
-                o->set(i, deletedObject);
+                deletedObject->append(header);
+                o->append(deletedObject);
                 continue;
             }
 
@@ -101,7 +101,7 @@ struct objs
                 {
                     std::shared_ptr<model::Annotation> annotation = std::static_pointer_cast<model::Annotation>(item);
                     TextAdapter* localAdaptor = new TextAdapter(annotation);
-                    o->set(i, localAdaptor);
+                    o->append(localAdaptor);
                     continue;
                 }
                 case BLOCK:
@@ -123,7 +123,7 @@ struct objs
                         localAdaptor->setDocContent(oldDoc);
                     }
 
-                    o->set(i, localAdaptor);
+                    o->append(localAdaptor);
                     continue;
                 }
                 case LINK:
@@ -139,7 +139,7 @@ struct objs
                         localAdaptor->setTo(to[link_number]);
                         link_number++;
                     }
-                    o->set(i, localAdaptor);
+                    o->append(localAdaptor);
                     continue;
                 }
                 default:
@@ -408,8 +408,8 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
         {
             types::MList* deletedObject = new types::MList();
             types::String* header = new types::String(Deleted.data());
-            deletedObject->set(0, header);
-            List_objects->set(i, deletedObject);
+            deletedObject->append(header);
+            List_objects->append(deletedObject);
             continue;
         }
 
@@ -421,7 +421,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
                 std::shared_ptr<model::Annotation> annotation = std::static_pointer_cast<model::Annotation>(item);
                 TextAdapter* localAdaptor = new TextAdapter(annotation);
 
-                List_objects->set(i, localAdaptor);
+                List_objects->append(localAdaptor);
                 continue;
             }
             case BLOCK:
@@ -442,7 +442,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
                     localAdaptor->setDiagram(oldBlockDiagram);
                 }
 
-                List_objects->set(i, localAdaptor);
+                List_objects->append(localAdaptor);
                 continue;
             }
             case LINK:
@@ -453,7 +453,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
                 // Do the model linking in the next loop, in case the Link points to a Block that has not been added yet
                 linkListView.push_back(localAdaptor);
 
-                List_objects->set(i, localAdaptor);
+                List_objects->append(localAdaptor);
                 continue;
             }
             default:
