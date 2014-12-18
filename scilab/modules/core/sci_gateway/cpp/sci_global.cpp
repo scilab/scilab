@@ -55,7 +55,7 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
     for (int i = 0 ; i < in.size() ; i++)
     {
         wchar_t* wcsVarName = in[i]->getAs<types::String>()->get(0);
-        if (wcslen(wcsVarName) == 0 || wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
+        if (symbol::Context::getInstance()->isValidVariableName(wcsVarName) == false)
         {
             char* pstrVarName = wide_string_to_UTF8(wcsVarName);
             Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "global", i + 1, pstrVarName);

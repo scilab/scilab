@@ -1502,8 +1502,6 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
 {
-#define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
-
     // check pointer
     if (_pstName == NULL)
     {
@@ -1511,33 +1509,10 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     }
 
     // check length _pstName <> 0
-    if (strlen(_pstName) == 0)
+    if (symbol::Context::getInstance()->isValidVariableName(_pstName) == false)
     {
         return 0;
     }
-
-    // forbidden characters
-    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
-    {
-        return 0;
-    }
-
-    // variable does not begin by a digit
-    if (isdigit(_pstName[0]))
-    {
-        return 0;
-    }
-
-    // check that we have only ascii characters
-    for (int i = 0; i < (int)strlen(_pstName); i++)
-    {
-        if (!isascii(_pstName[i]))
-        {
-            return 0;
-        }
-    }
-
-    // add here some others rules
 
     return 1;
 }

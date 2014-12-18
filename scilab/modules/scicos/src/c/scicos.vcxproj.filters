@@ -257,6 +257,9 @@
     <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_validvar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="copyvarfromlistentry.h">

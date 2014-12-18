@@ -121,8 +121,9 @@ public :
     bool addMacroFile(types::MacroFile *_info);
     void print(std::wostream& ostr, bool bSorted = false) const;
     int getScopeLevel();
-
-private :
+    bool isValidVariableName(const wchar_t*);
+    bool isValidVariableName(const char*);
+private:
 
     types::InternalType* get(const Symbol& key, int _iLevel);
     bool clearCurrentScope(bool _bClose);

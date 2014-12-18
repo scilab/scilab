@@ -10,6 +10,7 @@
 *
 */
 #include <iomanip>
+#include <cctype>
 
 #include "context.hxx"
 #include "internal.hxx"
@@ -444,5 +445,28 @@ void Context::print(std::wostream& ostr, bool sorted) const
 int Context::getScopeLevel()
 {
     return m_iLevel;
+}
+
+bool Context::isValidVariableName(const wchar_t* wcsVarName)
+{
+    static const wchar_t FORBIDDEN_CHARS[] = L" */\\.,;:^@><=+-&|()~\n\t'\"";
+    if (wcslen(wcsVarName) == 0 || wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
+    {
+        return false;
+    }
+    return true;
+}
+
+bool Context::isValidVariableName(const char* name)
+{
+    bool isValid = false;
+    wchar_t* wcsname = to_wide_string(name);
+    if (wcsname)
+    {
+        isValid = isValidVariableName(wcsname);
+        FREE(wcsname);
+    }
+
+    return isValid;
 }
 }
