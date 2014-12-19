@@ -257,6 +257,9 @@
     <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\view_scilab\recursive_cloning.cpp">
+      <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_validvar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -368,6 +371,9 @@
       <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\ports_management.hxx">
+      <Filter>Header Files\MVC\view_scilab</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\view_scilab\recursive_cloning.hxx">
       <Filter>Header Files\MVC\view_scilab</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\Controller.hxx">

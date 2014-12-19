@@ -22,6 +22,8 @@
 #include "user.hxx"
 #include "double.hxx"
 
+#include "utilities.hxx"
+#include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "LinkAdapter.hxx"
 #include "model/Link.hxx"
@@ -448,7 +450,7 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     // kind == 0: trying to set the start of the link (output port)
     // kind == 1: trying to set the end of the link (input port)
 
-    if (v.block > static_cast<int>(children.size()))
+    if (v.block < 0 || v.block > static_cast<int>(children.size()))
     {
         return; // Trying to link to a non-existing block
     }

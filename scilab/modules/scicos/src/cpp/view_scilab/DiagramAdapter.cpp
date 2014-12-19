@@ -25,6 +25,7 @@
 #include "user.hxx"
 
 #include "utilities.hxx"
+#include "adapters_utilities.hxx"
 #include "Controller.hxx"
 #include "DiagramAdapter.hxx"
 #include "Adapters.hxx"
@@ -33,6 +34,7 @@
 #include "LinkAdapter.hxx"
 #include "TextAdapter.hxx"
 #include "model/BaseObject.hxx"
+#include "recursive_cloning.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -397,80 +399,12 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
 {
     // Generate an Adapter for each child of the cloned Diagram and store them all in 'list_objects'
     Controller controller;
-    std::vector<ScicosID> children;
-    controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, children);
+    std::vector<ScicosID> diagramChildren;
+    controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
 
-    std::vector<LinkAdapter*> linkListView; // Store the new LinkAdapters to make the linking at model-level after the loop
-    types::List* List_objects = new types::List();
-    for (int i = 0; i < static_cast<int>(children.size()); ++i)
-    {
-        if (children[i] == 0)
-        {
-            types::MList* deletedObject = new types::MList();
-            types::String* header = new types::String(Deleted.data());
-            deletedObject->append(header);
-            List_objects->append(deletedObject);
-            continue;
-        }
+    types::List* oldList_objects = adapter.getListObjects()->getAs<types::List>();
 
-        std::shared_ptr<model::BaseObject> item = controller.getObject(children[i]);
-        switch (item->kind())
-        {
-            case ANNOTATION:
-            {
-                std::shared_ptr<model::Annotation> annotation = std::static_pointer_cast<model::Annotation>(item);
-                TextAdapter* localAdaptor = new TextAdapter(annotation);
-
-                List_objects->append(localAdaptor);
-                continue;
-            }
-            case BLOCK:
-            {
-                std::shared_ptr<model::Block> block = std::static_pointer_cast<model::Block>(item);
-                BlockAdapter* localAdaptor = new BlockAdapter(block);
-
-                // If the diagram's block was a SuperBlock, make its new adapter point to its old diagram
-                types::List* oldList_objects = adapter.getListObjects()->getAs<types::List>();
-                if (i < oldList_objects->getSize())
-                {
-                    BlockAdapter* oldBlock = oldList_objects->get(i)->getAs<BlockAdapter>();
-                    DiagramAdapter* oldBlockDiagram = oldBlock->getDiagram();
-                    if (oldBlockDiagram != nullptr)
-                    {
-                        oldBlockDiagram->IncreaseRef();
-                    }
-                    localAdaptor->setDiagram(oldBlockDiagram);
-                }
-
-                List_objects->append(localAdaptor);
-                continue;
-            }
-            case LINK:
-            {
-                std::shared_ptr<model::Link> link = std::static_pointer_cast<model::Link>(item);
-                LinkAdapter* localAdaptor = new LinkAdapter(link);
-
-                // Do the model linking in the next loop, in case the Link points to a Block that has not been added yet
-                linkListView.push_back(localAdaptor);
-
-                List_objects->append(localAdaptor);
-                continue;
-            }
-            default:
-            {
-            }
-        }
-    }
-
-    // Do the linking at model-level, from the old 'from_vec' and 'to_vec'
-    for (int i = 0; i < static_cast<int>(linkListView.size()); ++i)
-    {
-        // Trigger 'from' and 'to' properties
-        linkListView[i]->setFromInModel(from_vec[i], controller);
-        linkListView[i]->setToInModel(to_vec[i], controller);
-    }
-
-    list_objects = List_objects;
+    list_objects = deepCreateAdapters(diagramChildren, oldList_objects, from_vec, to_vec, controller);
 }
 
 DiagramAdapter::~DiagramAdapter()
