@@ -126,7 +126,6 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         Scierror(999, _("%s : Memory allocation error.\n"), "fft");
         return types::Function::Error;
     }
-
     switch (iDimCount)
     {
         case 1 :
@@ -143,6 +142,20 @@ types::Function::ReturnValue sci_fft(types::typed_list &in, int _iRetCount, type
         default :
             iErr = fft_ndim(pOut->getReal(), pOut->getImg(), iSize, iDimLength, iInc, iWay, piWS, iWS);
             break;
+    }
+    double *df = pOut->getImg();
+    bool cplx = false;
+    for (int i = 0; i < iSize; i++)
+    {
+        if (df[i] != 0)
+        {
+            cplx = true;
+            break;
+        }
+    }
+    if (cplx == false)
+    {
+        pOut->setComplex(false);
     }
 
     FREE(piWS);
@@ -227,6 +240,7 @@ int fft_ndim(double *signal_real, double *signal_imaginary, int signal_length, i
     int error = 0;
     int nseg = signal_length / dimensions_length / dimension_stride;
     C2F(dfft2)(signal_real, signal_imaginary, &nseg, &dimensions_length, &dimension_stride, &inverse, &error, buffer_data, &buffer_size);
+
     return error;
 }
 
