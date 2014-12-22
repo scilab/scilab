@@ -447,11 +447,8 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             end
         end
 
-        if is_higher_than([5 4 0 1]) then
-            totalSize = seekBoolMatrix(fd, totalSize); // auto_ticks
-        end
-
         if is_higher_than([3 0 0 0]) then
+            totalSize = seekBoolMatrix(fd, totalSize); // auto_ticks
 
             //x_ticks
             [totalSize, ticksX] = readShort(fd, totalSize); // ticks count

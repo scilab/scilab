@@ -326,11 +326,8 @@ function [h,immediate_drawing] = load_graphichandle(fd)
         end
 
 
-        if is_higher_than([5 4 0 1]) then
-            auto_ticks=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_ticks
-        end
-
         if is_higher_than([3 0 0 0]) then
+            auto_ticks=toggle(mget(mget(1,characterFormat,fd),characterFormat,fd)); // auto_ticks
 
             ticks=["ticks","locations","labels"]
             sz=mget(1,"sl",fd) // x_ticks.locations
