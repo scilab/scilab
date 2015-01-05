@@ -152,6 +152,22 @@ int checkInputArgument(void* _pvCtx, int _iMin, int _iMax)
     return 0;
 }
 
+SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims)
+{
+    SciErr sciErr = sciErrInit();
+
+    InternalType* pIT = ((InternalType*)_piAddress);
+    if (pIT->isGenericType() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_TYPE, _("%s: Invalid argument type, %s expected"), "resizeArray", _("matrix"));
+        return sciErr;
+    }
+
+    pIT->getAs<GenericType>()->reshape(_iDimsArray, _iDims);
+
+    return sciErr;
+}
+
 /*--------------------------------------------------------------------------*/
 int checkInputArgumentAtLeast(void* _pvCtx, int _iMin)
 {
@@ -403,19 +419,20 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     typed_list in = *pStr->m_pIn;
     optional_list opt = *pStr->m_pOpt;
-    int*    piRetCount = pStr->m_piRetCount;
+    int* piRetCount = pStr->m_piRetCount;
+    int iInputSize = in.size() + opt.size();
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
-    if (_iVar > in.size() + opt.size())
+    if (_iVar > *piRetCount + iInputSize)
     {
         //manage case where _iVar > in.size(), then look in out to get recent create variable.
         addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), pStr->m_pstName, "getVarAddressFromPosition");
         return sciErr;
     }
 
-    if (in.size() == 0)
+    if (_iVar > iInputSize)
     {
-        *_piAddress = NULL;
+        *_piAddress = (int*)pStr->m_pOut[_iVar - iInputSize - 1];
     }
     else if (_iVar > in.size())
     {
@@ -1485,8 +1502,6 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
 /*--------------------------------------------------------------------------*/
 int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
 {
-#define FORBIDDEN_CHARS " */\\.,;:^@><!=+-&|()~\n\t'\""
-
     // check pointer
     if (_pstName == NULL)
     {
@@ -1494,33 +1509,10 @@ int checkNamedVarFormat(void* _pvCtx, const char *_pstName)
     }
 
     // check length _pstName <> 0
-    if (strlen(_pstName) == 0)
+    if (symbol::Context::getInstance()->isValidVariableName(_pstName) == false)
     {
         return 0;
     }
-
-    // forbidden characters
-    if (strpbrk(_pstName, FORBIDDEN_CHARS) != NULL)
-    {
-        return 0;
-    }
-
-    // variable does not begin by a digit
-    if (isdigit(_pstName[0]))
-    {
-        return 0;
-    }
-
-    // check that we have only ascii characters
-    for (int i = 0; i < (int)strlen(_pstName); i++)
-    {
-        if (!isascii(_pstName[i]))
-        {
-            return 0;
-        }
-    }
-
-    // add here some others rules
 
     return 1;
 }
@@ -1540,7 +1532,12 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
         return 0;
     }
 
-    return 1;
+    wchar_t* pwstName = to_wide_string(_pstName);
+    symbol::Context* pCtx = symbol::Context::getInstance();
+    bool ret = pCtx->remove(symbol::Symbol(pwstName));
+    FREE(pwstName);
+
+    return ret ? 1 : 0;
 }
 /*--------------------------------------------------------------------------*/
 int increaseValRef(void* _pvCtx, int* _piAddress)

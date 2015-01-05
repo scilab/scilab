@@ -78,7 +78,7 @@ public:
         }
         else
         {
-            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; ++rv)
+            for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; rv++)
             {
                 if (*rv != NULL)
                 {
@@ -166,14 +166,7 @@ public:
     void setResult(int _iPos, const types::InternalType *gtVal)
     {
         m_bSingleResult = false;
-        if (_iPos < static_cast<int>(_resultVect.size()))
-        {
-            if (_resultVect[_iPos])
-            {
-                _resultVect[_iPos]->killMe();
-            }
-        }
-        else
+        if (_iPos >= static_cast<int>(_resultVect.size()))
         {
             _resultVect.resize(_iPos + 1, NULL);
         }
@@ -199,21 +192,8 @@ public:
         }
         else
         {
-            /*for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-            {
-            setResult(i, out[i]);
-            }*/
-
             m_bSingleResult = false;
-            for (vector<types::InternalType*>::const_iterator it = _resultVect.begin(); it != _resultVect.end(); ++it)
-            {
-                if (*it)
-                {
-                    (*it)->killMe();
-                }
-            }
             _resultVect.clear();
-
             for (types::typed_list::const_iterator it = out.begin(); it != out.end(); ++it)
             {
                 _resultVect.push_back(*it);
@@ -418,11 +398,15 @@ public :
             if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
             {
                 std::wostringstream ostr;
-                ostr << e.getSymbol().getName() << L"  = " << L"(" << pI->getRef() << L")" << std::endl;
+                ostr << e.getSymbol().getName() << L"  = ";
+#ifndef NDEBUG
+                ostr << L"(" << pI->getRef() << L")";
+#endif
+                ostr << std::endl;
                 ostr << std::endl;
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
-                ostrName << SPACES_LIST << e.getSymbol().getName();
+                ostrName  << e.getSymbol().getName();
                 VariableToString(pI, ostrName.str().c_str());
             }
         }
@@ -492,20 +476,22 @@ public :
     void visitprivate(const ArrayListExp  &e)
     {
         exps_t::const_iterator it;
-        int i = 0;
+        int iNbExpSize = this->getExpectedSize();
+        this->setExpectedSize(1);
 
-        std::list<InternalType*> lstIT;
+        typed_list lstIT;
         for (it = e.getExps().begin() ; it != e.getExps().end() ; it++)
         {
             (*it)->accept(*this);
-            lstIT.push_back(getResult()->clone());
+            for (int j = 0; j < getResultSize(); j++)
+            {
+                lstIT.push_back(getResult(j));
+            }
         }
 
-        std::list<InternalType*>::iterator itIT = lstIT.begin();
-        for (; itIT != lstIT.end(); itIT++)
-        {
-            setResult(i++, *itIT);
-        }
+        setResult(lstIT);
+
+        this->setExpectedSize(iNbExpSize);
     }
 
     void visitprivate(const VarDec  &e)

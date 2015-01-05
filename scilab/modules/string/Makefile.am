@@ -5,7 +5,8 @@
 
 STRING_CPP_SOURCES = \
     src/cpp/stripblanks.cpp \
-    src/cpp/sort_inter.cpp
+    src/cpp/sort_inter.cpp \
+    src/cpp/os_wtoi.cpp
 
 STRING_C_SOURCES = \
     src/c/convstr.c \
@@ -99,11 +100,11 @@ libscistring_la_CPPFLAGS= \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
-	-I$(top_srcdir)/modules/elementary_funcions/includes \
 	-I$(top_srcdir)/modules/core/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/console/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
     $(EIGEN_CPPFLAGS)
 
 libscistring_algo_la_CPPFLAGS = $(libscistring_la_CPPFLAGS)
@@ -137,13 +138,13 @@ modulename=string
 libscistring_la_rootdir = $(mydatadir)
 libscistring_la_root_DATA =  license.txt
 
-#### string : init scripts ####
+####ï¿½string : init scripts ####
 libscistring_la_etcdir = $(mydatadir)/etc
 libscistring_la_etc_DATA = \
     etc/string.quit \
     etc/string.start
 
-#### string : gateway declaration ####
+####ï¿½string : gateway declaration ####
 libscistring_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscistring_la_sci_gateway_DATA = sci_gateway/string_gateway.xml
 

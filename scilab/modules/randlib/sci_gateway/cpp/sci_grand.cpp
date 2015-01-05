@@ -16,6 +16,11 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "configvariable.hxx"
+#include "int.hxx"
+#include "polynom.hxx"
+#include "sparse.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -29,6 +34,9 @@ extern "C"
 }
 /*--------------------------------------------------------------------------*/
 
+template<class U>
+void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut);
+
 types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     enum
@@ -37,19 +45,19 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
     };
 
     //  names at the scilab level
-    const wchar_t* names_gen[6] = {L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra"};
+    const wchar_t* names_gen[6] = { L"mt", L"kiss", L"clcg4", L"clcg2", L"urand", L"fsultra" };
 
-    types::String* pStrMethod   = NULL;
+    types::String* pStrMethod = NULL;
     types::String* pStrGenOrPhr = NULL;
 
     std::vector<types::Double*> vectpDblInput;
 
-    int iStrPos     = 0;
-    int iPos        = 0;
-    int meth        = -1;
-    int iRows       = -1;
-    int iCols       = -1;
-    int iNumIter    = -1;
+    int iStrPos = 0;
+    int iPos = 0;
+    int meth = -1;
+    int iRows = -1;
+    int iCols = -1;
+    int iNumIter = -1;
 
 
     int current_base_gen = ConfigVariable::getCurrentBaseGen();
@@ -78,6 +86,12 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             break;
         }
+    }
+
+    if ((iStrPos == 0) && (in[0]->isString() == false))
+    {
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
+        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;
@@ -359,8 +373,17 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             return types::Function::Error;
         }
     }
+    else if (meth == 16)
+    {
+        if (in.size() > 3)
+        {
+            Scierror(999, _("Missing vect for random permutation\n"));
+            return types::Function::Error;
+        }
+    }
     else
     {
+
         for (int i = iPos; i < in.size(); i++)
         {
             if (in[i]->isDouble() == false)
@@ -375,16 +398,51 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     // *** perform operation in according method string and return result. ***
 
-    types::Double* pDblOut =  NULL;
+    types::Double* pDblOut = NULL;
 
-    if (itab[1] * itab[0] == 0)
+    if (iStrPos >= 2)
     {
-        types::Double* pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        int iProdiTab = 1;
+        for (int i = 0; i < iStrPos; i++)
+        {
+            iProdiTab = iProdiTab * itab[i];
+        }
+
+        if (iProdiTab == 0)
+        {
+            pDblOut = types::Double::Empty();
+        }
+        else if ((itab[1] != itab[0]) && (itab[0] <= -1))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 1);
+            return types::Function::Error;
+        }
+        else if ((itab[1] != itab[0]) && (itab[1] <= -1))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: Positive scalar expected.\n"), "grand", 2);
+            return types::Function::Error;
+        }
+        else
+        {
+            pDblOut = new types::Double(iDims, itab);
+        }
     }
     else
     {
-        pDblOut = new types::Double(iDims, itab);
+
+        types::Double* pDblIn = in[0]->getAs<types::Double>();
+        if (meth == 14)//'mul'
+        {
+            int* iDimsArraytempo = new int[2];
+            iDimsArraytempo[0] = in[3]->getAs<types::Double>()->getSize() + 1;
+            iDimsArraytempo[1] = iNumIter;
+            pDblOut = new types::Double(pDblIn->getDims(), iDimsArraytempo);
+        }
+        else
+        {
+            pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+        }
+
     }
 
     delete[] itab;
@@ -702,8 +760,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             delete pDblOut;
             types::Double* pDblOut = new types::Double(size, iNumIter);
-            double* work  = (double*)malloc(size * sizeof(double));
-            double* param = (double*)malloc(mp   * sizeof(double));
+            double* work = new double[size];
+            double* param = new double[mp];
 
             types::Double* pDblMean = vectpDblInput[0]->clone()->getAs<types::Double>();
             types::Double* pDblCov  = vectpDblInput[1]->clone()->getAs<types::Double>();
@@ -715,8 +773,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (ierr == 1)
             {
-                free(work);
-                free(param);
+                delete work;
+                delete param;
                 delete pDblOut;
                 Scierror(999, _("%s: setgmn return with state %d.\n"), "grand", ierr);
                 return types::Function::Error;
@@ -727,8 +785,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 C2F(genmn)(param, pDblOut->get() + (size * i), work);
             }
 
-            free(work);
-            free(param);
+            delete work;
+            delete param;
 
             out.push_back(pDblOut);
             break;
@@ -900,8 +958,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 return types::Function::Error;
             }
 
-            int* piP    = (int*)malloc(vectpDblInput[0]->getSize() * sizeof(int));
-            int* piOut  = (int*)malloc(pDblOut->getSize() * sizeof(int));
+            int* piP = new int[vectpDblInput[0]->getSize()];
+            int* piOut = new int[pDblOut->getSize()];
 
             for (int i = 0; i < vectpDblInput[0]->getSize(); i++)
             {
@@ -918,8 +976,8 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 pDblOut->set(i, static_cast<double>(piOut[i]));
             }
 
-            free(piP);
-            free(piOut);
+            delete piP;
+            delete piOut;
 
             out.push_back(pDblOut);
             break;
@@ -950,27 +1008,129 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 16: // random permutations
         {
-            if (vectpDblInput[0]->getCols() != 1)
-            {
-                delete pDblOut;
-                Scierror(999, _("%s: Wrong type for input argument #%d : A colomn vector expected.\n"), "grand", 4);
-                return types::Function::Error;
-            }
-
-            int iVectRows = vectpDblInput[0]->getRows();
-
             delete pDblOut;
-            pDblOut = new types::Double(iVectRows, iNumIter);
-            for (int i = 0; i < iNumIter; i++)
+            types::InternalType* pITOut = NULL;
+
+            // get dims and isComplex
+            int iDims = 0;
+            int* piDimsArray = NULL;
+            bool bIsComplex = false;
+            if (in[2]->isGenericType())
             {
-                for (int j = 0; j < iVectRows; j++)
-                {
-                    pDblOut->set(iVectRows * i + j, vectpDblInput[0]->get(j));
-                }
-                C2F(genprm)(pDblOut->get() + (iVectRows * i), &iVectRows);
+                types::GenericType* pGT = in[2]->getAs<types::GenericType>();
+                iDims = pGT->getDims();
+                piDimsArray = pGT->getDimsArray();
+                bIsComplex = pGT->isComplex();
             }
 
-            out.push_back(pDblOut);
+            switch (in[2]->getType())
+            {
+                case types::InternalType::ScilabInt8:
+                    pITOut = new types::Int8(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Int8>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabUInt8:
+                    pITOut = new types::UInt8(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::UInt8>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabInt16:
+                    pITOut = new types::Int16(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Int16>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabUInt16:
+                    pITOut = new types::UInt16(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::UInt16>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabInt32:
+                    pITOut = new types::Int32(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Int32>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabUInt32:
+                    pITOut = new types::UInt32(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::UInt32>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabInt64:
+                    pITOut = new types::Int64(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Int64>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabUInt64:
+                    pITOut = new types::UInt64(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::UInt64>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabDouble:
+                    pITOut = new types::Double(iDims, piDimsArray, bIsComplex);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Double>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabBool:
+                    pITOut = new types::Bool(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Bool>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabString:
+                    pITOut = new types::String(iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::String>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabPolynom:
+                    pITOut = new types::Polynom(in[2]->getAs<types::Polynom>()->getVariableName(), iDims, piDimsArray);
+                    sci_grand_prm(iNumIter, in[2]->getAs<types::Polynom>(), &pITOut);
+                    break;
+                case types::InternalType::ScilabSparse:
+                {
+                    std::complex<double> cplxDbl;
+                    types::InternalType* pITOutTempo = NULL;
+                    types::Double* pDblTempo = NULL;
+                    types::Sparse* pSP = in[2]->getAs<types::Sparse>();
+                    int isize = pSP->getSize();
+                    pITOut = new types::Sparse(pSP->getRows(), pSP->getCols(), pSP->isComplex());
+                    pDblTempo = new types::Double(isize, 1, pSP->isComplex());
+                    pITOutTempo = new types::Double(isize, iNumIter, pSP->isComplex());
+
+                    if (pDblTempo->isComplex())
+                    {
+                        for (int i = 0; i < isize; i++)
+                        {
+                            cplxDbl = in[2]->getAs<types::Sparse>()->getImg(i);
+                            pDblTempo->set(i, cplxDbl.real());
+                            pDblTempo->set(i, cplxDbl.imag());
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < isize; i++)
+                        {
+                            pDblTempo->set(i, in[2]->getAs<types::Sparse>()->get(i));
+                        }
+                    }
+                    sci_grand_prm(iNumIter, pDblTempo, &pITOutTempo);
+
+                    if (pDblTempo->isComplex())
+                    {
+                        for (int i = 0; i < isize; i++)
+                        {
+                            cplxDbl.real(pITOutTempo->getAs<types::Double>()->get(i));
+                            cplxDbl.imag(pITOutTempo->getAs<types::Double>()->getImg(i));
+                            pITOutTempo->getAs<types::Sparse>()->set(i, cplxDbl);
+                        }
+                    }
+                    else
+                    {
+                        for (int i = 0; i < isize; i++)
+                        {
+                            pITOut->getAs<types::Sparse>()->set(i, pITOutTempo->getAs<types::Double>()->get(i));
+                        }
+                    }
+
+                    delete pITOutTempo;
+                    delete pDblTempo;
+                    break;
+                }
+                default:
+                {
+                    Scierror(999, _("%s: Wrong type for input argument: Matrix (full or sparse) or Hypermatrix of Reals, Complexes, Integers, Booleans, Strings or Polynomials expected.\n"), "grand");
+                    return types::Function::Error;
+                }
+            }
+
+            out.push_back(pITOut);
             break;
         }
         case 17: // uniform (def)
@@ -1064,12 +1224,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 21: // getgen
         {
+            delete pDblOut;
             types::String* pStrOut = new types::String(names_gen[current_base_gen]);
             out.push_back(pStrOut);
             break;
         }
         case 22: // setgen
         {
+            delete pDblOut;
             wchar_t* wcsGen = pStrGenOrPhr->get(0);
 
             if (wcscmp(wcsGen, L"mt") == 0)
@@ -1098,7 +1260,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             }
             else
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s', '%s' or '%s' expected.\n"), "grand", 2, "mt", "kiss", "clcg4", "clcg2", "urand", "fsultra");
                 return types::Function::Error;
             }
@@ -1157,6 +1318,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 24: // setsd
         {
+            delete pDblOut;
             int ierr = 0;
             switch (current_base_gen)
             {
@@ -1172,7 +1334,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     }
                     else
                     {
-                        delete pDblOut;
                         Scierror(999, _("%s: Wrong size for input argument #%d : A scalar or a vector of size %d expected.\n"), "grand", 4, 625);
                         return types::Function::Error;
                     }
@@ -1186,7 +1347,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         if (vectpDblInput[i]->isScalar() == false)
                         {
-                            delete pDblOut;
                             Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
                             return types::Function::Error;
                         }
@@ -1216,7 +1376,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         if (vectpDblInput[i]->isScalar() == false)
                         {
-                            delete pDblOut;
                             Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
                             return types::Function::Error;
                         }
@@ -1229,7 +1388,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                 {
                     if (vectpDblInput[0]->isScalar() == false)
                     {
-                        delete pDblOut;
                         Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
                         return types::Function::Error;
                     }
@@ -1243,7 +1401,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         if (vectpDblInput[0]->getRows() != 40 || vectpDblInput[0]->getCols() != 1)
                         {
-                            delete pDblOut;
                             Scierror(999, _("%s: Wrong size for input argument #%d : A vector of size %d x %d expected.\n"), "grand", 2, 40, 1);
                             return types::Function::Error;
                         }
@@ -1256,7 +1413,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                         {
                             if (vectpDblInput[i]->isScalar() == false)
                             {
-                                delete pDblOut;
                                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
                                 return types::Function::Error;
                             }
@@ -1271,7 +1427,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (ierr == 0)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for the last %d input argument(s).\n"), "grand", in.size() - 1);
                 return types::Function::Error;
             }
@@ -1280,14 +1435,13 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 25: // phr2sd
         {
+            delete pDblOut;
             if (pStrGenOrPhr->isScalar() == false)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong type for input argument #%d : One string expected.\n"), "grand", 2);
                 return types::Function::Error;
             }
 
-            delete pDblOut;
             types::Double* pDblOut = new types::Double(1, 2);
             int size = (int)wcslen(pStrGenOrPhr->get(0));
             int piOut[2];
@@ -1304,6 +1458,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 26: // setcgn
         {
+            delete pDblOut;
             if (current_base_gen != CLCG4)
             {
                 sciprint(_("The %s option affects only the %s generator\n"), "setcgn", "clcg4");
@@ -1311,14 +1466,12 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
                 return types::Function::Error;
             }
 
             if (vectpDblInput[0]->get(0) < 0 || vectpDblInput[0]->get(0) > Maxgen)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %d and %d.\n"), "grand", 0, Maxgen);
                 return types::Function::Error;
             }
@@ -1330,12 +1483,14 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 27: // getcgn
         {
+            delete pDblOut;
             double dOut = static_cast<double>(ConfigVariable::getCurrentClcg4());
             out.push_back(new types::Double(dOut));
             break;
         }
         case 28: // initgn
         {
+            delete pDblOut;
             SeedType where;
             if (current_base_gen != CLCG4)
             {
@@ -1344,7 +1499,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
                 return types::Function::Error;
             }
@@ -1353,7 +1507,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     vectpDblInput[0]->get(0) != -1 &&
                     vectpDblInput[0]->get(0) != 1)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for input argument #%d : Must be between %d, %d or %d.\n"), "grand", 2, -1, 0, 1);
                 return types::Function::Error;
             }
@@ -1365,6 +1518,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 29: // setall
         {
+            delete pDblOut;
             if (current_base_gen != CLCG4)
             {
                 sciprint(_("The %s option affects only the %s generator\n"), "setall", "clcg4");
@@ -1374,7 +1528,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
             {
                 if (vectpDblInput[i]->isScalar() == false)
                 {
-                    delete pDblOut;
                     Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", i + 2);
                     return types::Function::Error;
                 }
@@ -1386,7 +1539,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                                                 vectpDblInput[3]->get(0));
             if (ierr == 0)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for the last %d input argument(s).\n"), "grand", 4);
                 return types::Function::Error;
             }
@@ -1396,6 +1548,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
         }
         case 30: // advnst
         {
+            delete pDblOut;
             if (current_base_gen != CLCG4)
             {
                 sciprint(_("The %s option affects only the %s generator\n"), "advnst", "clcg4");
@@ -1403,7 +1556,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (vectpDblInput[0]->isScalar() == false)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong type for input argument #%d : A scalar expected.\n"), "grand", 2);
                 return types::Function::Error;
             }
@@ -1412,7 +1564,6 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
             if (k < 1)
             {
-                delete pDblOut;
                 Scierror(999, _("%s: Wrong value for input argument #%d : Must be > %d.\n"), "grand", 2, 0);
                 return types::Function::Error;
             }
@@ -1427,3 +1578,76 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 }
 /*--------------------------------------------------------------------------*/
 
+template<class U>
+void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
+{
+    U* pUTempo = NULL;
+    types::InternalType* pITTempo = NULL;
+    int* piDimsArray = NULL;
+    int Dims = 0;
+
+    if ((pIn->getCols() == 1) && (pIn->getDims() == 2))
+    {
+        pOut[0]->getAs<U>()->resize(pIn->getRows(), iNumIter);
+        pUTempo = pIn;
+    }
+    else if ((pIn->getRows() == 1) && (pIn->getDims() == 2))
+    {
+        pIn->transpose(pITTempo);
+        pOut[0]->getAs<U>()->resize(iNumIter, pIn->getCols());
+        pUTempo = pITTempo->getAs<U>();
+    }
+    else
+    {
+        piDimsArray = pOut[0]->getAs<U>()->getDimsArray();
+        Dims = pOut[0]->getAs<U>()->getDims();
+        piDimsArray[Dims] = iNumIter;
+        pOut[0]->getAs<U>()->resize(piDimsArray, Dims + 1);
+        pUTempo = pIn;
+    }
+
+    int isize = pUTempo->getSize();
+
+    types::Double* pDblOut = new types::Double(isize, iNumIter, pUTempo->isComplex());
+
+    for (int i = 0; i < iNumIter; i++)
+    {
+        for (int j = 0; j < isize; j++)
+        {
+            pDblOut->set(isize * i + j, j);
+        }
+        C2F(genprm)(pDblOut->get() + (isize * i), &isize);
+    }
+
+    if ((pIn->getCols() != 1) && (pIn->getRows() == 1) && (pIn->getDims() == 2))
+    {
+        pDblOut->transpose(pITTempo);
+        delete pDblOut;
+        pDblOut = pITTempo->getAs<types::Double>();
+    }
+
+    if (pUTempo->isComplex() && pUTempo->isPoly() == false)
+    {
+        for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
+        {
+            pOut[0]->getAs<U>()->set(i , pIn->get(pDblOut->get(i)));
+            pOut[0]->getAs<U>()->setImg(i , pIn->getImg(pDblOut->get(i)));
+        }
+    }
+    else
+    {
+        for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
+        {
+            pOut[0]->getAs<U>()->set(i, pIn->get(pDblOut->get(i)));
+        }
+    }
+
+    if ((pIn->getCols() != 1) && (pIn->getRows() == 1) && (pIn->getDims() == 2))
+    {
+        delete pUTempo;
+    }
+
+    delete pDblOut;
+}
+
+/*--------------------------------------------------------------------------*/

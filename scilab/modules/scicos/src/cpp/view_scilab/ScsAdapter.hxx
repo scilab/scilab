@@ -14,6 +14,7 @@
 #define SCSADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
 
@@ -27,7 +28,8 @@ namespace view_scilab
 class ScsAdapter : public BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    ScsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
+    ScsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
+    ScsAdapter(const ScsAdapter& adapter);
     ~ScsAdapter();
 
     static const std::wstring getSharedTypeStr()

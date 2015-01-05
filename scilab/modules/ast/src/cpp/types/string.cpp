@@ -145,15 +145,48 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
     int iMaxLines = ConfigVariable::getConsoleLines();
     int iCurrentLine = 0;
 
+    // less the two "!" (or two " " in scalar case)
+    // for iLineLen = 50 we will write "!48char!"
+    int iStrMaxSize = iLineLen - 2;
+
     if (isScalar())
     {
-        _piDims[0] = 0;
-        _piDims[1] = 0;
+        int iMaxLen = 0;
+        _piDims[0]  = 0;
+        _piDims[1]  = 0;
+
         int iPos = getIndex(_piDims);
-        ostr << L" " << get(iPos) << endl;
+        wchar_t* wcsStr = get(iPos);
+        int iCurLen = wcslen(wcsStr);
+        iMaxLen = std::max(iMaxLen, iCurLen);
+        iMaxLen = std::min(iMaxLen, iStrMaxSize);
+
+        if (iCurLen > iMaxLen)
+        {
+            int iStrPos = 0;
+            while (iCurLen > iStrMaxSize)
+            {
+                ostr << L" ";
+                ostr.write(wcsStr + iStrPos, iStrMaxSize);
+                ostr << L" " << std::endl;
+                iCurLen -= iStrMaxSize;
+                iStrPos += iStrMaxSize;
+            }
+
+            ostr << L" ";
+            configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
+            ostr << left << wcsStr + iStrPos;
+        }
+        else
+        {
+            ostr << L" " << wcsStr << endl;
+        }
     }
     else if (getCols() == 1)
     {
+        std::wstring spaces(L"");
+
+        // compte max string size
         int iMaxLen = 0;
         for (int i = 0 ; i < getRows() ; i++)
         {
@@ -161,9 +194,17 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
             iMaxLen = std::max(iMaxLen, static_cast<int>(wcslen(get(iPos))));
+            iMaxLen = std::min(iMaxLen, iStrMaxSize);
         }
 
-        iMaxLen += 2;
+        int iEmptyLineSize = iMaxLen;
+        if (iMaxLen != iStrMaxSize)
+        {
+            // count SPACE_BETWEEN_TWO_STRING_VALUES size in padding of empty line
+            // only if all lines have not a size greater than max size of a line.
+            iEmptyLineSize += SIZE_BETWEEN_TWO_STRING_VALUES;
+            spaces = SPACE_BETWEEN_TWO_STRING_VALUES;
+        }
 
         for (int i = m_iRows1PrintState ; i < getRows() ; i++)
         {
@@ -177,16 +218,37 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
+            wchar_t* wcsStr = get(iPos);
+            int iCurLen = wcslen(wcsStr);
 
             ostr << L"!";
-            configureStream(&ostr, iMaxLen, iPrecision, ' ');
-            ostr << left << get(iPos);
+            if (iCurLen > iMaxLen)
+            {
+                int iStrPos = 0;
+                while (iCurLen > iStrMaxSize)
+                {
+                    ostr.write(wcsStr + iStrPos, iStrMaxSize);
+                    ostr << L"!" << std::endl << L"!";
+                    iCurLen -= iStrMaxSize;
+                    iStrPos += iStrMaxSize;
+                }
+
+                configureStream(&ostr, iStrMaxSize, iPrecision, ' ');
+                ostr << left << wcsStr + iStrPos;
+            }
+            else
+            {
+                configureStream(&ostr, iMaxLen, iPrecision, ' ');
+                ostr << left << wcsStr << spaces;
+            }
+
             ostr << L"!" << endl;
+
             if ((i + 1) < m_iSize)
             {
                 //for all but last one
                 ostr << L"!";
-                configureStream(&ostr, iMaxLen, iPrecision, ' ');
+                configureStream(&ostr, iEmptyLineSize, iPrecision, ' ');
                 ostr << left << L" ";
                 ostr << L"!" << endl;
             }
@@ -206,7 +268,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             int iLen = 0;
             int iCurLen = static_cast<int>(wcslen(get(iPos)));
             iLen = iCurLen + SIZE_BETWEEN_TWO_STRING_VALUES + static_cast<int>(ostemp.str().size());
-            if (iLen > iLineLen)
+            if (iLen > iLineLen && iLastVal != i)
             {
                 //Max length, new line
                 iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
@@ -216,20 +278,40 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     return false;
                 }
 
-                ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+                addColumnString(ostr, iLastVal + 1, i);
                 ostr << L"!" << ostemp.str() << L"!" << endl;
                 ostemp.str(L"");
                 iLastVal = i;
             }
 
-            configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
-            ostemp << left << get(iPos);
+            // Manage case where string length is greater than max line size.
+            if (iStrMaxSize < iCurLen)
+            {
+                wchar_t* wcsStr = get(iPos);
+                int iStrPos = 0;
+                while (iCurLen > iStrMaxSize) // -2 because of two "!"
+                {
+                    ostemp.write(wcsStr + iStrPos, iStrMaxSize);
+                    ostemp << L"!" << std::endl << L"!";
+                    iCurLen -= iStrMaxSize;
+                    iStrPos += iStrMaxSize;
+                }
+
+                configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
+                ostemp << left << wcsStr + iStrPos;
+            }
+            else
+            {
+                configureStream(&ostemp, iCurLen + 2, iPrecision, ' ');
+                ostemp << left << get(iPos);
+            }
         }
 
         if (iLastVal != 0)
         {
-            ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
+            addColumnString(ostr, iLastVal + 1, getCols());
         }
+
         ostr << L"!" << ostemp.str() << L"!" << endl;
     }
     else //Matrix
@@ -244,15 +326,26 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
         for (int iCols1 = m_iCols1PrintState ; iCols1 < getCols() ; iCols1++)
         {
+            std::wstring spaces(L"");
             for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
             {
                 _piDims[1] = iCols1;
                 _piDims[0] = iRows1;
                 int iPos = getIndex(_piDims);
                 piSize[iCols1] = std::max(piSize[iCols1], static_cast<int>(wcslen(get(iPos))));
+                piSize[iCols1] = std::min(piSize[iCols1], iStrMaxSize);
             }
 
-            if (iLen + piSize[iCols1] > iLineLen)
+            int iEmptyLineSize = piSize[iLastCol];
+            if (piSize[iLastCol] != iStrMaxSize)
+            {
+                // count SPACE_BETWEEN_TWO_STRING_VALUES size in padding of empty line
+                // only if all lines have not a size greater than max size of a line.
+                iEmptyLineSize += SIZE_BETWEEN_TWO_STRING_VALUES;
+                spaces = SPACE_BETWEEN_TWO_STRING_VALUES;
+            }
+
+            if (iLen + piSize[iCols1] > iLineLen && iLastCol != iCols1)
             {
                 //find the limit, print this part
                 for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
@@ -265,7 +358,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         if (m_iRows2PrintState == 0 && iRows2 != 0)
                         {
                             //add header
-                            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                            addColumnString(ostr, iLastCol + 1, iCols1);
                         }
                         ostr << ostemp.str();
                         m_iRows2PrintState = iRows2;
@@ -274,20 +367,42 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     }
 
                     ostemp << L"!";
-                    for (int iCols2 = iLastCol ; iCols2 < iCols1 ; iCols2++)
+                    for (int iCols2 = iLastCol; iCols2 < iCols1; iCols2++)
                     {
                         _piDims[0] = iRows2;
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
-                        configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                        ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_STRING_VALUES;
-                    }
+                        wchar_t* wcsStr = get(iPos);
+                        int iLenStr = wcslen(wcsStr);
 
+                        // Manage case where string length is greater than max line size.
+                        if (iLenStr > iStrMaxSize)
+                        {
+                            int iStrPos = 0;
+                            while (iLenStr > iStrMaxSize)
+                            {
+                                ostemp.write(wcsStr + iStrPos, iStrMaxSize);
+                                ostemp << L"!" << std::endl << L"!";
+                                iLenStr -= iStrMaxSize;
+                                iStrPos += iStrMaxSize;
+                            }
+
+                            configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
+                            ostemp << left << wcsStr + iStrPos;
+                        }
+                        else
+                        {
+                            configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
+                            ostemp << left << get(iPos) << spaces;
+                        }
+                    }
                     ostemp << L"!" << endl;
+
                     if ((iRows2 + 1) != m_iRows)
                     {
                         ostemp << L"!";
-                        configureStream(&ostemp, iLen, iPrecision, ' ');
+                        // -2 because of two "!"
+                        configureStream(&ostemp, iEmptyLineSize, iPrecision, ' ');
                         ostemp << left << L" ";
                         ostemp << L"!" << endl;
                     }
@@ -298,8 +413,9 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 if (m_iRows2PrintState == 0)
                 {
                     iCurrentLine += 3;
-                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                    addColumnString(ostr, iLastCol + 1, iCols1);
                 }
+
                 ostr << ostemp.str();
                 ostemp.str(L"");
                 iLastCol = iCols1;
@@ -311,13 +427,14 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
         for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
         {
+            std::wstring spaces(L"");
             iCurrentLine += 2;
             if ((iMaxLines == 0 && iCurrentLine >= MAX_LINES) || (iMaxLines != 0 && iCurrentLine >= iMaxLines))
             {
                 if (m_iRows2PrintState == 0 && iLastCol != 0)
                 {
                     //add header
-                    ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                    addColumnString(ostr, iLastCol + 1, getCols());
                 }
 
                 ostr << ostemp.str();
@@ -326,6 +443,16 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 return false;
             }
 
+            int iEmptyLineSize = piSize[iLastCol];
+            if (piSize[iLastCol] != iStrMaxSize)
+            {
+                // count SPACE_BETWEEN_TWO_STRING_VALUES size in padding of empty line
+                // only if all lines have not a size greater than max size of a line.
+                iEmptyLineSize += SIZE_BETWEEN_TWO_STRING_VALUES;
+                spaces = SPACE_BETWEEN_TWO_STRING_VALUES;
+            }
+
+
             ostemp << L"!";
             iLen = 0;
             for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
@@ -333,12 +460,34 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 _piDims[0] = iRows2;
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
+                wchar_t* wcsStr = get(iPos);
+                int iLenStr = wcslen(wcsStr);
 
-                configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
-                ostemp << left << get(iPos) << SPACE_BETWEEN_TWO_STRING_VALUES;
-                iLen += piSize[iCols2] + SIZE_BETWEEN_TWO_STRING_VALUES;
+                // Manage case where string length is greater than max line size.
+                if (iStrMaxSize < iLenStr)
+                {
+                    int iStrPos = 0;
+                    while (iLenStr > iStrMaxSize)
+                    {
+                        ostemp.write(wcsStr + iStrPos, iStrMaxSize);
+                        ostemp << L"!" << std::endl << L"!";
+                        iLenStr -= iStrMaxSize;
+                        iStrPos += iStrMaxSize;
+                    }
+
+                    configureStream(&ostemp, iStrMaxSize, iPrecision, ' ');
+                    ostemp << wcsStr + iStrPos << left;
+                    iLen = iStrMaxSize;
+                }
+                else
+                {
+                    configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
+                    ostemp << left << get(iPos) << spaces;
+                    iLen += piSize[iCols2] + spaces.size();
+                }
             }
             ostemp << L"!" << endl;
+
             if ((iRows2 + 1) != m_iRows)
             {
                 ostemp << L"!";
@@ -350,7 +499,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
         if (m_iRows2PrintState == 0 && iLastCol != 0)
         {
-            ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+            addColumnString(ostr, iLastCol + 1, getCols());
         }
         ostr << ostemp.str();
     }

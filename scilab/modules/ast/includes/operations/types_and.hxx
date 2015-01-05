@@ -47,6 +47,8 @@ DECLARE_AND_PROTO(and_int_S_M);
 DECLARE_AND_PROTO(and_int_S_S);
 
 //boolean sparse specialisation
+template<> types::InternalType* and_E_M<types::Double, types::Bool, types::Bool>(types::Double* _pL, types::Bool* _pR);
+template<> types::InternalType* and_M_E<types::Bool, types::Double, types::Bool>(types::Bool* _pL, types::Double* _pR);
 template<> types::InternalType* and_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
 template<> types::InternalType* and_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
 template<> types::InternalType* and_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
@@ -56,7 +58,7 @@ template<typename T, typename U, typename O> inline static void bit_and(T* l, lo
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l[i] != (O)0) && ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l[i] != (T)0) && ((U)r[i] != (U)0)) ? (O)1 : (O)0;
     }
 }
 
@@ -65,7 +67,7 @@ template<typename T, typename U, typename O> inline static void bit_and(T l, lon
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l != (O)0) && ((O)r[i] != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l != (T)0) && ((U)r[i] != (U)0)) ? (O)1 : (O)0;
     }
 }
 
@@ -74,14 +76,14 @@ template<typename T, typename U, typename O> inline static void bit_and(T* l, lo
 {
     for (int i = 0; i < size ; ++i)
     {
-        o[i] = (((O)l[i] != (O)0) && ((O)r != (O)0)) ? (O)1 : (O)0;
+        o[i] = (((T)l[i] != (T)0) && ((U)r != (U)0)) ? (O)1 : (O)0;
     }
 }
 
 //x1 & x1
 template<typename T, typename U, typename O> inline static void bit_and(T l, U r, O* o)
 {
-    *o = (((O)l != (O)0) && ((O)r != (O)0)) ? (O)1 : (O)0;
+    *o = (((T)l != (T)0) && ((U)r != (U)0)) ? (O)1 : (O)0;
 }
 
 

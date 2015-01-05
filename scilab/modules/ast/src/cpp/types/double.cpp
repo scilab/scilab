@@ -264,10 +264,6 @@ bool Double::setOnes()
     if (m_pRealData != NULL)
     {
         std::fill(m_pRealData, m_pRealData + m_iSize, 1);
-        //for(int iIndex = 0 ; iIndex < m_iSize ; iIndex++)
-        //{
-        //    m_pRealData[iIndex] = 1;
-        //}
     }
     else
     {
@@ -416,7 +412,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 DoubleFormat df;
                 getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
                 iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + df.iSignLen + df.iWidth;
-                if (iLen >= iLineLen - 1)
+                if (iLen >= iLineLen - 1 && iLastVal != i)
                 {
                     //Max length, new line
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
@@ -427,7 +423,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         return false;
                     }
 
-                    ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+                    addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << endl;
                     ostemp.str(L"");
                     iLastVal = i;
@@ -439,7 +435,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             if (iLastVal != 0)
             {
-                ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
+                addColumnString(ostr, iLastVal + 1, getCols());
             }
             ostemp << endl;
             ostr << ostemp.str();
@@ -458,7 +454,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 DoubleFormat dfR, dfI;
                 getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalLen, &dfR, &dfI);
                 iLen = static_cast<int>(ostemp.str().size()) + SIZE_BETWEEN_TWO_VALUES + iTotalLen;
-                if (iLen >= iLineLen - 1)
+                if (iLen >= iLineLen - 1 && iLastVal != i)
                 {
                     //Max length, new line
                     iCurrentLine += 4; //"column x to Y" + empty line + value + empty line
@@ -468,7 +464,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         return false;
                     }
 
-                    ostr << endl << L"       column " << iLastVal + 1 << L" to " << i << endl << endl;
+                    addColumnString(ostr, iLastVal + 1, i);
                     ostr << ostemp.str() << endl;
                     ostemp.str(L"");
                     iLastVal = i;
@@ -480,7 +476,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             if (iLastVal != 0)
             {
-                ostr << endl << L"       column " << iLastVal + 1 << L" to " << getCols() << endl << endl;
+                addColumnString(ostr, iLastVal + 1, getCols());
             }
             ostemp << endl;
             ostr << ostemp.str();
@@ -496,6 +492,10 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
         int *piSize = new int[getCols()];
         memset(piSize, 0x00, getCols() * sizeof(int));
 
+        //Array with the max precision of each col (use to padd right with 0 3.6000)
+        int *piMaxPrec = new int[getCols()];
+        memset(piMaxPrec, 0x00, getCols() * sizeof(int));
+
         if (isComplex() == false)
         {
             //compute the row size for padding for each printed bloc.
@@ -503,22 +503,17 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             {
                 for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
                 {
-                    int iCurrentLen = 0;
                     _piDims[0] = iRows1;
                     _piDims[1] = iCols1;
                     int iPos = getIndex(_piDims);
 
                     DoubleFormat df;
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
-                    iCurrentLen    = df.iWidth;
-
-                    if (iCurrentLen > piSize[iCols1])
-                    {
-                        piSize[iCols1] = iCurrentLen;
-                    }
+                    piSize[iCols1] = std::max(piSize[iCols1], df.iWidth);
+                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], df.iPrec);
                 }
 
-                if (iLen + piSize[iCols1] > iLineLen)
+                if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
                     for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
@@ -531,11 +526,13 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             if (m_iRows2PrintState == 0 && iRows2 != 0)
                             {
                                 //add header
-                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                                addColumnString(ostr, iLastCol + 1, iCols1);
                             }
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
+                            delete[] piSize;
+                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -550,6 +547,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
 
+                            df.iPrec = piMaxPrec[iCols2];
                             df.iWidth = piSize[iCols2];
                             addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                         }
@@ -562,7 +560,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     if (m_iRows2PrintState == 0)
                     {
                         iCurrentLine += 3;
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, iCols1);
                     }
                     ostr << ostemp.str();
                     ostemp.str(L"");
@@ -582,12 +580,14 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     if (m_iRows2PrintState == 0 && iLastCol != 0)
                     {
                         //add header
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, getCols());
                     }
 
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
+                    delete[] piSize;
+                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -601,6 +601,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     getDoubleFormat(ZeroIsZero(m_pRealData[iPos]), &df);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    df.iPrec = piMaxPrec[iCols2];
                     df.iWidth = piSize[iCols2];
                     addDoubleValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), &df);
                 }
@@ -609,7 +610,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
             {
-                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                addColumnString(ostr, iLastCol + 1, getCols());
             }
             ostr << ostemp.str();
         }
@@ -633,9 +634,11 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     {
                         piSize[iCols1] = iTotalWidth;
                     }
+
+                    piMaxPrec[iCols1] = std::max(piMaxPrec[iCols1], dfR.iPrec);
                 }
 
-                if (iLen + piSize[iCols1] > iLineLen)
+                if (iLen + piSize[iCols1] > iLineLen && iCols1 != iLastCol)
                 {
                     //find the limit, print this part
                     for (int iRows2 = m_iRows2PrintState ; iRows2 < getRows() ; iRows2++)
@@ -648,11 +651,13 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             if (m_iRows2PrintState == 0 && iRows2 != 0)
                             {
                                 //add header
-                                ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                                addColumnString(ostr, iLastCol + 1, iCols1);
                             }
                             ostr << ostemp.str();
                             m_iRows2PrintState = iRows2;
                             m_iCols1PrintState = iLastCol;
+                            delete[] piSize;
+                            delete[] piMaxPrec;
                             return false;
                         }
 
@@ -667,6 +672,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                             getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                             ostemp << SPACE_BETWEEN_TWO_VALUES;
+                            dfR.iPrec = piMaxPrec[iCols2];
+                            dfI.iPrec = piMaxPrec[iCols2];
                             addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                         }
                         ostemp << endl;
@@ -678,7 +685,7 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     if (m_iRows2PrintState == 0)
                     {
                         iCurrentLine += 3;
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << iCols1 << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, iCols1);
                     }
                     ostr << ostemp.str();
                     ostemp.str(L"");
@@ -698,12 +705,14 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     if (m_iRows2PrintState == 0 && iLastCol != 0)
                     {
                         //add header
-                        ostr << std::endl << L"       column " << iLastCol + 1 << L" to " << getCols() << std::endl << std::endl;
+                        addColumnString(ostr, iLastCol + 1, getCols());
                     }
 
                     ostr << ostemp.str();
                     m_iRows2PrintState = iRows2;
                     m_iCols1PrintState = iLastCol;
+                    delete[] piSize;
+                    delete[] piMaxPrec;
                     return false;
                 }
 
@@ -718,6 +727,8 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                     getComplexFormat(ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), &iTotalWidth, &dfR, &dfI);
 
                     ostemp << SPACE_BETWEEN_TWO_VALUES;
+                    dfR.iPrec = piMaxPrec[iCols2];
+                    dfI.iPrec = piMaxPrec[iCols2];
                     addDoubleComplexValue(&ostemp, ZeroIsZero(m_pRealData[iPos]), ZeroIsZero(m_pImgData[iPos]), piSize[iCols2], &dfR, &dfI);
                 }
                 ostemp << endl;
@@ -725,10 +736,13 @@ bool Double::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
             if (m_iRows2PrintState == 0 && iLastCol != 0)
             {
-                ostr << endl << L"       column " << iLastCol + 1 << L" to " << getCols() << endl << endl;
+                addColumnString(ostr, iLastCol + 1, getCols());
             }
             ostr << ostemp.str();
         }
+
+        delete[] piSize;
+        delete[] piMaxPrec;
     }
 
     return true;

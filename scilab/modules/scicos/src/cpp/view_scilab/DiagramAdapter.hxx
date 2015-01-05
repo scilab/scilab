@@ -14,8 +14,11 @@
 #define DIAGRAMADAPTER_HXX_
 
 #include <string>
+#include <vector>
+#include <memory>
 
 #include "utilities.hxx"
+#include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Diagram.hxx"
 
@@ -27,7 +30,8 @@ namespace view_scilab
 class DiagramAdapter : public BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    DiagramAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee);
+    DiagramAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
+    DiagramAdapter(const DiagramAdapter& adapter);
     ~DiagramAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -37,23 +41,25 @@ public:
 
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
-    types::InternalType* clone();
+
+    types::InternalType* getListObjects() const;
+    void setListObjects(types::InternalType* v);
+
+    std::vector<link_t> getFrom() const;
+    void setFrom(const std::vector<link_t>& from);
+    std::vector<link_t> getTo() const;
+    void setTo(const std::vector<link_t>& to);
 
     types::InternalType* getContribContent() const;
     void setContribContent(types::InternalType* v);
 
-    std::vector<double> getFrom(int link_number) const;
-    int getFromSize() const;
-    void setFrom(const std::vector<double>& from_content);
-    void clearFrom();
-    std::vector<double> getTo(int link_number) const;
-    void setTo(const std::vector<double>& to_content);
-    void clearTo();
-
 private:
+    types::InternalType* list_objects;
+
+    std::vector<link_t> from_vec;
+    std::vector<link_t> to_vec;
+
     types::InternalType* contrib_content;
-    std::vector< std::vector<double> > from_vec;
-    std::vector< std::vector<double> > to_vec;
 };
 
 } /* namespace view_scilab */

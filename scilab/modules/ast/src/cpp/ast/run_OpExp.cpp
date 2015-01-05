@@ -365,17 +365,35 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     {
         _paramR->IncreaseRef();
         in.push_back(_paramR);
-        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+        try
+        {
+            Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+        }
+        catch (ast::ScilabError e)
+        {
+            _paramR->DecreaseRef();
+            throw e;
+        }
 
         _paramR->DecreaseRef();
         return out[0];
     }
+
     _paramL->IncreaseRef();
     _paramR->IncreaseRef();
     in.push_back(_paramL);
     in.push_back(_paramR);
 
-    Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+    try
+    {
+        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+    }
+    catch (ast::ScilabError e)
+    {
+        _paramL->DecreaseRef();
+        _paramR->DecreaseRef();
+        throw e;
+    }
 
     _paramL->DecreaseRef();
     _paramR->DecreaseRef();

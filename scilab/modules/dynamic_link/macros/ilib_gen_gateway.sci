@@ -66,25 +66,46 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         if ( nt <> 3 ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
         end
-        [gate,names] = new_names(table);
-
+        [gate,names,cppCompilation] = new_names(table);
+        global cppCompilation;
         //generate cpp interface file
-        t = [
-        "#include ""context.hxx""";
-        "#include """ + tname + ".hxx""";
-        "extern ""C""";
-        "{";
-        "#include """ + tname + ".h""";
-        "}";
-        "";
-        "#define MODULE_NAME L""" + tname + """";
-        "";
-        "int " + tname + "(wchar_t* _pwstFuncName)";
-        "{";
-        "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
-        "";
-        "    return 1;";
-        "}"];
+        if  cppCompilation then
+            t = [
+            "#include ""context.hxx""";
+            "#include ""cpp_gateway_prototype.hxx""";
+            "#include """ + tname + ".hxx""";
+            "extern ""C""";
+            "{";
+            "#include """ + tname + ".h""";
+            "}";
+            "";
+            "#define MODULE_NAME L""" + tname + """";
+            "";
+            "int " + tname + "(wchar_t* _pwstFuncName)";
+            "{";
+            "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "symbol::Context::getInstance()->addFunction(types::Function::createFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME)); }";
+            "";
+            "    return 1;";
+            "}"];
+        else
+            t = [
+            "#include <wchar.h>";
+            "#include """ + tname + ".hxx""";
+            "extern ""C""";
+            "{";
+            "#include """ + tname + ".h""";
+            "#include ""addfunction.h""";
+            "}";
+            "";
+            "#define MODULE_NAME L""" + tname + """";
+            "";
+            "int " + tname + "(wchar_t* _pwstFuncName)";
+            "{";
+            "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "addCFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME); }";
+            "";
+            "    return 1;";
+            "}"];
+        end
 
         gateway_filename(1) = path + tname + ".cpp";
         // first check if we have already a gateway
@@ -110,9 +131,6 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         t = [
         "#ifndef __" + TNAME + "_GW_HXX__";
         "#define __" + TNAME + "_GW_HXX__";
-        "";
-        "#include ""c_gateway_prototype.h""";
-        "#include ""cpp_gateway_prototype.hxx""";
         "";
         "#ifdef _MSC_VER";
         "#ifdef " + TNAME + "_GW_EXPORTS";
@@ -180,8 +198,9 @@ endfunction
 //=============================================================================
 // new_names only used by ilib_gen_gateway
 //=============================================================================
-function [gate,names] = new_names(table)
+function [gate,names,cppCompilation] = new_names(table)
     // change names according to types
+    cppCompilation = %f;
     [mt,nt] = size(table);
     gate = [""];
     gate = gate(ones(mt, 2));
@@ -205,6 +224,7 @@ function [gate,names] = new_names(table)
             names(i) = "C2F(" + table(i,2) + ")";
             gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "cppsci"  then
+            cppCompilation = %t;
             names(i) = table(i,2);
             gate(i, 2) = "CPP_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "direct"  then

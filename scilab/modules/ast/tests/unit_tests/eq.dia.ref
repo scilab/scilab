@@ -21,3 +21,9 @@ assert_checktrue(R == R);
 assert_checktrue(C == C);
 assert_checktrue(R3 == R3);
 assert_checktrue(C3 == C3);
+// list() tlist() mlist()
+t=list("any_type");
+assert_checktrue(t == list());
+assert_checktrue : Échec de l'assertion : l'entrée false trouvée dans la condition = F
+assert_generror(errmsg)assert_checktrue((t == list()))
+at line    45 of exec file called by :

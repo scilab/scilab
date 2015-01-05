@@ -10,6 +10,11 @@
  *
  */
 
+#include <string>
+#include <vector>
+#include <map>
+#include <memory>
+#include <utility>
 #include <algorithm>
 
 #include "Controller.hxx"
@@ -23,70 +28,73 @@ namespace org_scilab_modules_scicos
  * Implement SharedData methods
  */
 Controller::SharedData::SharedData() :
-    model(), allViews()
+    model(), allNamedViews(), allViews()
 {
-    LoggerView* v = new LoggerView();
-    allViews.push_back(v);
 }
 
 Controller::SharedData::~SharedData()
 {
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         delete *iter;
     }
 }
 
-Controller::SharedData* Controller::_instance = 0;
+Controller::SharedData Controller::m_instance;
 
-void Controller::delete_all_instances()
+View* Controller::register_view(const std::string& name, View* v)
 {
-    if (_instance == 0)
-    {
-        return;
-    }
-
-    delete _instance;
-}
-
-void Controller::register_view(View* v)
-{
-    if (_instance == 0)
-    {
-        _instance = new SharedData();
-    }
-
-    _instance->allViews.push_back(v);
+    m_instance.allNamedViews.push_back(name);
+    m_instance.allViews.push_back(v);
+    return v;
 }
 
 void Controller::unregister_view(View* v)
 {
-    if (_instance == 0)
+    view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
+    if (it != m_instance.allViews.end())
     {
-        return;
+        int d = std::distance(m_instance.allViews.begin(), it);
+
+        m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
+        m_instance.allViews.erase(m_instance.allViews.begin() + d);
+    }
+}
+
+View* Controller::unregister_view(const std::string& name)
+{
+    View* view = nullptr;
+
+    view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
+    if (it != m_instance.allNamedViews.end())
+    {
+        int d = std::distance(m_instance.allNamedViews.begin(), it);
+
+        view = *(m_instance.allViews.begin() + d);
+        m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
+        m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
 
-    view_set_t::iterator it = std::find(_instance->allViews.begin(), _instance->allViews.end(), v);
-    if (it != _instance->allViews.end())
+    return view;
+}
+
+View* Controller::look_for_view(const std::string& name)
+{
+    View* view = nullptr;
+
+    view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
+    if (it != m_instance.allNamedViews.end())
     {
-        _instance->allViews.erase(it);
+        int d = std::distance(m_instance.allNamedViews.begin(), it);
+
+        view = *(m_instance.allViews.begin() + d);
     }
+
+    return view;
 }
 
 Controller::Controller()
 {
-    if (_instance == 0)
-    {
-        _instance = new SharedData();
-    }
-}
-
-Controller::Controller(const Controller& c)
-{
-    // _instance is already initialized
-
-    // silent unused parameter warnings
-    (void) c;
 }
 
 Controller::~Controller()
@@ -95,9 +103,9 @@ Controller::~Controller()
 
 ScicosID Controller::createObject(kind_t k)
 {
-    ScicosID id = _instance->model.createObject(k);
+    ScicosID id = m_instance.model.createObject(k);
 
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
         (*iter)->objectCreated(id, k);
     }
@@ -105,16 +113,68 @@ ScicosID Controller::createObject(kind_t k)
     return id;
 }
 
-static void unlink_vector(Controller& controller, ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
+void Controller::deleteObject(ScicosID uid)
+{
+    auto initial = getObject(uid);
+    const kind_t k = initial->kind();
+
+    // disconnect / remove references of weak connected objects and decrement the reference count of all strongly connected objects.
+    if (k == ANNOTATION)
+    {
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        // RELATED_TO is not referenced back
+    }
+    else if (k == BLOCK)
+    {
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        deleteVector(uid, k, INPUTS);
+        deleteVector(uid, k, OUTPUTS);
+        deleteVector(uid, k, EVENT_INPUTS);
+        deleteVector(uid, k, EVENT_OUTPUTS);
+        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
+        deleteVector(uid, k, CHILDREN);
+        // FIXME what about REFERENCED_PORT ?
+    }
+    else if (k == DIAGRAM)
+    {
+        deleteVector(uid, k, CHILDREN);
+    }
+    else if (k == LINK)
+    {
+        unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, SOURCE_PORT, CONNECTED_SIGNALS);
+        unlinkVector(uid, k, DESTINATION_PORT, CONNECTED_SIGNALS);
+    }
+    else if (k == PORT)
+    {
+        unlinkVector(uid, k, SOURCE_BLOCK, INPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, OUTPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, EVENT_INPUTS);
+        unlinkVector(uid, k, SOURCE_BLOCK, EVENT_OUTPUTS);
+
+        unlink(uid, k, CONNECTED_SIGNALS, SOURCE_PORT);
+        unlink(uid, k, CONNECTED_SIGNALS, DESTINATION_PORT);
+    }
+
+    // delete the object
+    m_instance.model.deleteObject(uid);
+
+    for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
+    {
+        (*iter)->objectDeleted(uid, k);
+    }
+}
+
+void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     ScicosID v;
-    controller.getObjectProperty(uid, k, uid_prop, v);
+    getObjectProperty(uid, k, uid_prop, v);
     if (v != 0)
     {
-        model::BaseObject* o = controller.getObject(v);
+        auto o = getObject(v);
 
         std::vector<ScicosID> children;
-        controller.getObjectProperty(o->id(), o->kind(), ref_prop, children);
+        getObjectProperty(o->id(), o->kind(), ref_prop, children);
 
         std::vector<ScicosID>::iterator it = std::find(children.begin(), children.end(), uid);
         if (it != children.end())
@@ -122,75 +182,41 @@ static void unlink_vector(Controller& controller, ScicosID uid, kind_t k, object
             children.erase(it);
         }
 
-        controller.setObjectProperty(o->id(), o->kind(), ref_prop, children);
+        setObjectProperty(o->id(), o->kind(), ref_prop, children);
     }
 }
 
-static void unlink(Controller& controller, ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
+void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
 {
     ScicosID v;
-    controller.getObjectProperty(uid, k, uid_prop, v);
+    getObjectProperty(uid, k, uid_prop, v);
     if (v != 0)
     {
-        model::BaseObject* o = controller.getObject(v);
-        controller.setObjectProperty(o->id(), o->kind(), ref_prop, 0);
+        auto o = getObject(v);
+        // Find which end of the link is connected to the port
+        ScicosID connected_port;
+        getObjectProperty(o->id(), o->kind(), ref_prop, connected_port);
+        if (connected_port == uid)
+        {
+            setObjectProperty(o->id(), o->kind(), ref_prop, 0ll);
+        }
     }
 }
 
-void Controller::deleteObject(ScicosID uid)
+void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_prop)
 {
-    // disconnect / remove references first
-    model::BaseObject* initial = getObject(uid);
-    const kind_t k = initial->kind();
-    if (k == ANNOTATION)
-    {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
-        // RELATED_TO is not referenced back
-    }
-    else if (k == BLOCK)
-    {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
-        // INPUTS will be removed on delete
-        // OUTPUTS will be removed on delete
-        // EVENT_INPUTS will be removed on delete
-        // EVENT_OUTPUTS will be removed on delete
-        unlink_vector(*this, uid, k, PARENT_BLOCK, CHILDREN);
-        // CHILDREN will be removed on delete
-        // FIXME what about REFERENCED_PORT ?
-    }
-    else if (k == DIAGRAM)
-    {
-        // CHILDREN will be removed on delete
-    }
-    else if (k == LINK)
-    {
-        unlink_vector(*this, uid, k, PARENT_DIAGRAM, CHILDREN);
-        unlink_vector(*this, uid, k, SOURCE_PORT, CONNECTED_SIGNALS);
-        unlink_vector(*this, uid, k, DESTINATION_PORT, CONNECTED_SIGNALS);
-    }
-    else if (k == PORT)
-    {
-        unlink(*this, uid, k, SOURCE_BLOCK, INPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, OUTPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, EVENT_INPUTS);
-        unlink(*this, uid, k, SOURCE_BLOCK, EVENT_OUTPUTS);
+    std::vector<ScicosID> children;
+    getObjectProperty(uid, k, uid_prop, children);
 
-        unlink(*this, uid, k, CONNECTED_SIGNALS, SOURCE_PORT);
-        unlink(*this, uid, k, CONNECTED_SIGNALS, DESTINATION_PORT);
-    }
-
-    // delete the object
-    _instance->model.deleteObject(uid);
-
-    for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+    for (ScicosID id : children)
     {
-        (*iter)->objectDeleted(uid);
+        deleteObject(id);
     }
 }
 
 ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid)
 {
-    model::BaseObject* initial = getObject(uid);
+    auto initial = getObject(uid);
     const kind_t k = initial->kind();
     ScicosID o = createObject(k);
     mapped.insert(std::make_pair(uid, o));
@@ -282,8 +308,14 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     std::vector<ScicosID> cloned;
     cloned.reserve(v.size());
 
-    for (const ScicosID& id : v)
+    for (const ScicosID & id : v)
     {
+        if (id == 0)
+        {
+            // Deleted Block, the cloning is done at Adapter level
+            cloned.push_back(id);
+            continue;
+        }
 
         std::map<ScicosID, ScicosID>::iterator it = mapped.find(id);
         if (it != mapped.end())
@@ -319,23 +351,9 @@ ScicosID Controller::cloneObject(ScicosID uid)
     return cloneObject(mapped, uid);
 }
 
-model::BaseObject* Controller::getObject(ScicosID uid)
+std::shared_ptr<model::BaseObject> Controller::getObject(ScicosID uid) const
 {
-    return _instance->model.getObject(uid);
-}
-
-update_status_t Controller::setObject(model::BaseObject* o)
-{
-    update_status_t status = _instance->model.setObject(o);
-
-    if (status == SUCCESS)
-    {
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
-        {
-            (*iter)->objectUpdated(o->id(), o->kind());
-        }
-    }
-    return status;
+    return m_instance.model.getObject(uid);
 }
 
 } /* namespace org_scilab_modules_scicos */

@@ -324,7 +324,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     //allow return operation
     if (e.isReturnable())
     {
-        (&e.getBody())->isReturnable();
+        const_cast<Exp*>(&(e.getBody()))->setReturnable();
     }
 
     //condition
@@ -378,7 +378,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     //allow return operation
     if (e.isReturnable())
     {
-        e.getBody().isReturnable();
+        const_cast<Exp&>(e.getBody()).setReturnable();
     }
 
     if (pIT->isImplicitList())
@@ -780,7 +780,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
                         std::wostringstream ostrName;
-                        ostrName << SPACES_LIST << L"ans";
+                        ostrName << L"ans";
                         VariableToString(pITAns, ostrName.str().c_str());
                     }
                 }

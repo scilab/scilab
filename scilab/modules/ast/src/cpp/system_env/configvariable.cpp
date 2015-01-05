@@ -29,7 +29,6 @@ std::list<std::wstring> ConfigVariable::m_ModuleList;
 void ConfigVariable::setModuleList(std::list<std::wstring>& _pModule_list)
 {
     m_ModuleList = _pModule_list;
-
 }
 
 std::list<std::wstring> ConfigVariable::getModuleList()
@@ -405,9 +404,14 @@ bool ConfigVariable::m_bVerbose = true;
 void ConfigVariable::setPromptMode(int _iPromptMode)
 {
     m_iPromptMode = _iPromptMode;
-    if (m_iPromptMode == 0)
+    if (m_iPromptMode == 5)
     {
-        //m_iPromptMode = -1;
+        m_iPromptMode = 1;
+    }
+
+    if (m_iPromptMode == 6)
+    {
+        m_iPromptMode = 7;
     }
 }
 
@@ -416,11 +420,25 @@ int ConfigVariable::getPromptMode(void)
     return m_iPromptMode;
 }
 
+bool ConfigVariable::isEmptyLineShow(void)
+{
+    if ( m_iPromptMode == 0     ||
+            m_iPromptMode == 2  ||
+            m_iPromptMode == 3)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
 bool ConfigVariable::isPromptShow(void)
 {
-    if ( m_iPromptMode == 0 ||
-            m_iPromptMode == 1 ||
-            m_iPromptMode == 2 ||
+    if ( m_iPromptMode == 0     ||
+            m_iPromptMode == 1  ||
+            m_iPromptMode == 2  ||
             m_iPromptMode == 3)
     {
         return true;
@@ -1159,7 +1177,25 @@ int ConfigVariable::getAnalyzerOptions(void)
     return m_analyzerOptions;
 }
 
+/*
+** \}
+*/
 
+/*
+** divide by zero
+** \{
+*/
+
+bool ConfigVariable::m_dividebyzero = false;
+void ConfigVariable::setDivideByZero(bool _dividebyzero)
+{
+    m_dividebyzero = _dividebyzero;
+}
+
+bool ConfigVariable::isDivideByZero(void)
+{
+    return m_dividebyzero;
+}
 /*
 ** \}
 */

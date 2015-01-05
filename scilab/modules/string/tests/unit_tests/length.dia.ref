@@ -20,7 +20,7 @@ N = 321;
 M = 32;
 PARAMIN = [N,M;M,N];
 l = length(PARAMIN);
-if (l <> size(PARAMIN,'*') ) then bugmes();quit;end;
+if (l <> size(PARAMIN,"*") ) then bugmes();quit;end;
 // = String ====================================================================
 STRING = "Scilab";
 l = length(STRING);
@@ -46,10 +46,10 @@ if length(m) <> 2  then bugmes();quit;end
 l = list(1,["a" "b"],[1 2 3 4],%T);
 if length(l) <> 4  then bugmes();quit;end
 // = mlist =====================================================================
-M = mlist(['V','name','value'],['a','b','c'],[1 2 3]);
+M = mlist(["V","name","value"],["a","b","c"],[1 2 3]);
 if length(M) <> 3  then bugmes();quit;end
 // = tlist =====================================================================
-Sys=tlist(['lss';'A';'B';'C';'D';'X0';'dt'],1,2,3,4,5,'c');
+Sys=tlist(["lss";"A";"B";"C";"D";"X0";"dt"],1,2,3,4,5,"c");
 if length(Sys) <> 7  then bugmes();quit;end
 // = Matrix of Strings =========================================================
 STRING1 = "Scilab";
@@ -58,12 +58,12 @@ LS1 = length(STRING1);
 LS2 = length(STRING2);
 if length([STRING1,STRING2]) <> [LS1,LS2] then bugmes();quit;end
 // = Matrix of Strings =========================================================
-if length('abd')<>3 then bugmes();quit;end
+if length("abd")<>3 then bugmes();quit;end
 if length(emptystr())<>0 then bugmes();quit;end
-if or(length(['abd';emptystr()])<>[3;0]) then bugmes();quit;end
+if or(length(["abd";emptystr()])<>[3;0]) then bugmes();quit;end
 if or(length(string(ones(10,10)))<>1) then bugmes();quit;end
 // = with a file ===============================================================
-fd = mopen(SCI+'/modules/string/tests/unit_tests/text.txt','r');
+fd = mopen(SCI+"/modules/string/tests/unit_tests/text.txt","r");
 txt = mgetl( fd );
 mclose( fd );
 if length(txt(1)) <> 280  then bugmes();quit;end
@@ -82,3 +82,10 @@ S(:,:,2) = ["dcba", "cba"; "ba", "a"];
 ref(:,:,1) = [1 2;3 4];
 ref(:,:,2) = [4 3;2 1];
 assert_checkequal(length(S), ref);
+// = an sparse ===================================================
+sp = sparse([1 2 3;4 5 6]);
+assert_checkequal(length(sp), 6);
+sp = sparse(eye(12,2));
+assert_checkequal(length(sp), 24);
+sp = sparse(eye(2,12));
+assert_checkequal(length(sp), 24);

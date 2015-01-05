@@ -68,7 +68,7 @@
 #include BinariesSourcePath + "\modules\symbolic\symbolic.iss"
 #include BinariesSourcePath + "\modules\interpolation\interpolation.iss"
 #include BinariesSourcePath + "\modules\umfpack\umfpack.iss"
-;#include BinariesSourcePath + "\modules\fftw\fftw.iss"
+#include BinariesSourcePath + "\modules\fftw\fftw.iss"
 #include BinariesSourcePath + "\modules\spreadsheet\spreadsheet.iss"
 #include BinariesSourcePath + "\modules\differential_equations\differential_equations.iss"
 #include BinariesSourcePath + "\modules\compatibility_functions\compatibility_functions.iss"
@@ -97,4 +97,5 @@
 #include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
 #include BinariesSourcePath + "\modules\ast\ast.iss"
 #include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
+#include BinariesSourcePath + "\modules\mpi\mpi.iss"
 ;-------------------------------------------------------------------------------

@@ -125,14 +125,6 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
         {
             dValue = -M_PI;
         }
-        else if ((stricmp(pSTR, ScilabEString) == 0) || (stricmp(pSTR, ScilabPosEString) == 0))
-        {
-            dValue = exp(1);
-        }
-        else if (stricmp(pSTR, ScilabNegEString) == 0)
-        {
-            dValue = -exp(1);
-        }
         else if ((stricmp(pSTR, ScilabEpsString) == 0) || (stricmp(pSTR, ScilabPosEpsString) == 0))
         {
             dValue = EPSILON;
@@ -140,6 +132,14 @@ double stringToDouble(const char *pSTR, BOOL bConvertByNAN, stringToDoubleError 
         else if (stricmp(pSTR, ScilabNegEpsString) == 0)
         {
             dValue = -EPSILON;
+        }
+        else if ((stricmp(pSTR, ScilabEString) == 0) || (stricmp(pSTR, ScilabPosEString) == 0))
+        {
+            dValue = exp(1);
+        }
+        else if (stricmp(pSTR, ScilabNegEString) == 0)
+        {
+            dValue = -exp(1);
         }
         else
         {
@@ -219,6 +219,22 @@ double stringToDoubleW(const wchar_t *pSTR, BOOL bConvertByNAN, stringToDoubleEr
         else if (wcsicmp(pSTR, ScilabNegPiStringW) == 0)
         {
             dValue = -M_PI;
+        }
+        else if ((wcsicmp(pSTR, ScilabPosEStringW) == 0) || (wcsicmp(pSTR, ScilabEStringW) == 0))
+        {
+            dValue = exp(1);
+        }
+        else if (wcsicmp(pSTR, ScilabNegEStringW) == 0)
+        {
+            dValue = -exp(1);
+        }
+        else if ((wcsicmp(pSTR, ScilabEpsStringW) == 0) || (wcsicmp(pSTR, ScilabPosEpsStringW) == 0))
+        {
+            dValue = EPSILON;
+        }
+        else if (wcsicmp(pSTR, ScilabNegEpsStringW) == 0)
+        {
+            dValue = -EPSILON;
         }
         else
         {

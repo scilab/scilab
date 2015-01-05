@@ -13,6 +13,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13511
 //
 // <-- Short Description -->
-// lcm yield incorrect results when used with doubles.
+// lcm used with doubles returned wrong type values,
+// bezout help did not mention doubles.
 
-assert_checkequal(lcm([96 6250 10000 18700]), 56100000);
+assert_checkequal(lcm([96 6250 10000 18700]), int32(56100000));
+
+[P, U] = bezout(3.5, 4.2);
+assert_checkequal(coeff(P), 1);
+assert_checkalmostequal(coeff(U), [0 4.2; 1/4.2 -3.5]);

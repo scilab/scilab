@@ -328,7 +328,6 @@ void SinglePoly::updateRank(void)
 bool SinglePoly::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : implement SinglePoly::toString" << std::endl;
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

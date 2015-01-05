@@ -13,11 +13,13 @@
 /*--------------------------------------------------------------------------*/
 #include "data_structures_gw.hxx"
 #include "function.hxx"
+#include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "mlist.hxx"
 #include "tlist.hxx"
 #include "struct.hxx"
+#include "user.hxx"
 
 extern "C"
 {
@@ -28,6 +30,7 @@ extern "C"
 }
 
 static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out);
+static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int _iRetCount, types::typed_list &out);
 
 /*-----------------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -42,6 +45,12 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     if (in[1]->isStruct())
     {
         return sci_getfieldStruct(in, _iRetCount, out);
+    }
+
+    //special case for UserType
+    if (in[1]->isUserType())
+    {
+        return sci_getfieldUserType(in, _iRetCount, out);
     }
 
     types::InternalType* pIndex = in[0];
@@ -154,5 +163,50 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
     }
 
     return types::Function::OK;
+}
+/*-----------------------------------------------------------------------------------*/
+
+static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int _iRetCount, types::typed_list &out)
+{
+    types::UserType* pUT = in[1]->getAs<types::UserType>();
+
+    if (in[0]->isDouble())
+    {
+        types::Double* pIndex = in[0]->getAs<types::Double>();
+
+        if (pIndex->get(0) == 1)
+        {
+            types::InternalType* properties = pUT->extract(&in);
+            if (!properties->isString())
+            {
+                Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
+                return types::Function::Error;
+            }
+            types::String* propertiesStr = properties->getAs<types::String>();
+
+            types::String* ret = new types::String(1, 1 + propertiesStr->getSize());
+            ret->set(0, pUT->getTypeStr().c_str());
+            for (int i = 0; i < propertiesStr->getSize(); ++i)
+            {
+                ret->set(i + 1, propertiesStr->get(i));
+            }
+
+            properties->DecreaseRef();
+            properties->killMe();
+
+            out.push_back(ret);
+            return types::Function::OK;
+        }
+        else
+        {
+            Scierror(999, _("%s:  Wrong value for input argument #%d: %d expected.\n"), "getfield", 1, 1);
+            return types::Function::Error;
+        }
+    }
+    else
+    {
+        Scierror(999, _("%s:  Wrong type for input argument #%d: Integer expected.\n"), "getfield", 1);
+        return types::Function::Error;
+    }
 }
 /*-----------------------------------------------------------------------------------*/

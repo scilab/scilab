@@ -62,6 +62,7 @@ EXTERN_AST void addDoubleComplexValue(std::wostringstream *_postr, double _dblR,
 /*Common*/
 EXTERN_AST void configureStream(std::wostringstream *_postr, int _iWidth, int _iPrec, char _cFill);
 EXTERN_AST void addSpaces(std::wostringstream *_postr, int _iSpace);
+void addColumnString(std::wostringstream& ostr, int _iFrom, int _iTo);
 
 /*int*/
 /*

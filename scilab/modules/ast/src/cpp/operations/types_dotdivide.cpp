@@ -22,6 +22,7 @@
 extern "C"
 {
 #include "localization.h"
+#include "sciprint.h"
 }
 
 using namespace types;
@@ -806,7 +807,25 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
     dotdiv_function dotdiv = pDotDivfunction[_pLeftOperand->getId()][_pRightOperand->getId()];
     if (dotdiv)
     {
+        ConfigVariable::setDivideByZero(false);
         pResult = dotdiv(_pLeftOperand, _pRightOperand);
+
+        bool iszero = ConfigVariable::isDivideByZero();
+        ConfigVariable::setDivideByZero(false);
+
+        if (iszero)
+        {
+            if (ConfigVariable::getIeee() == 0)
+            {
+                throw ast::ScilabError(_("Division by zero...\n"));
+            }
+
+            if (ConfigVariable::getIeee() == 1)
+            {
+                sciprint(_("Warning : division by zero...\n"));
+            }
+        }
+
         if (pResult)
         {
             return pResult;
@@ -1064,7 +1083,9 @@ InternalType* dotdiv_S_IC(T *_pL, U *_pR)
 template<class T, class U, class O>
 InternalType* dotdiv_SC_M(T *_pL, U *_pR)
 {
-    return dotdiv_SC_MC<U, T, O>(_pR, _pL);
+    O* pOut = new O(_pR->getDims(), _pR->getDimsArray(), true);
+    dotdiv(_pL->get(0), _pL->getImg(0), pOut->getSize(), _pR->get(), pOut->get(), pOut->getImg());
+    return pOut;
 }
 
 template<class T, class U, class O>

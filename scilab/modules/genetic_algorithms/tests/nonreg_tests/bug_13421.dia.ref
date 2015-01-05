@@ -14,6 +14,7 @@
 // Callback functions for genetic algorithms were missing
 //
 // <-- CLI SHELL MODE -->
+// <-- ENGLISH IMPOSED -->
 // Objective function
 function y=f(x)
   y = sum(x.^2)
@@ -83,4 +84,5 @@ optim_ga: iteration 11 / 20
     min / max value found = 3.4470E-08 / 2.2709E-06
 optim_ga: iteration 12 / 20 
     min / max value found = 3.4470E-08 / 9.0795E-07
-    Stop criterion reached: Delta Max to Min under thresholdassert_checktrue(max(fobj_pop_opt) - min(fobj_pop_opt) <= 1E-6);
+    Stop criterion reached: Delta Max to Min under threshold
+assert_checktrue(max(fobj_pop_opt) - min(fobj_pop_opt) <= 1E-6);

@@ -48,6 +48,16 @@ std::wstring GenericType::DimToString()
     return ostr.str();
 }
 
+bool GenericType::isScalar() //2 dims and each dim == 1
+{
+    if (m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] == 1)
+    {
+        return true;
+    }
+
+    return false;
+}
+
 bool GenericType::isIdentity(void)
 {
     if (m_piDims)

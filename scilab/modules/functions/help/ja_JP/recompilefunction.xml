@@ -46,11 +46,11 @@
                     
                     <para>
                         
-                        文字列: <emphasis role="bold">"n"</emphasis> (コンパイル前, 11型), 
+                        文字列: <emphasis role="bold">"n"</emphasis> (コンパイル前, 11型),
                         
-                        <emphasis role="bold">"c"</emphasis> 
+                        <emphasis role="bold">"c"</emphasis>
                         
-                        (コンパイル済み, 13型) または <emphasis role="bold">"p"</emphasis> 
+                        (コンパイル済み, 13型) または <emphasis role="bold">"p"</emphasis>
                         
                         (コンパイル済み, type 型, プロファイル用). デフォルト: "c".
                         
@@ -112,10 +112,10 @@
         
         <title>例</title>
         
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 recompilefunction("asinh","p")
 for i=1:100; asinh(rand(100,100)); end
-showprofile(asinh)   
+showprofile(asinh)
  ]]></programlisting>
         
     </refsection>
@@ -135,12 +135,6 @@ showprofile(asinh)
             <member>
                 
                 <link linkend="deff">deff</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="comp">comp</link>
                 
             </member>
             

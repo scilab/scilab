@@ -37,7 +37,7 @@ struct Library
 {
     typedef std::stack<ScopedLibrary*> StackLib;
 
-    Library(const Symbol& _name) : name(_name) {};
+    Library(const Symbol& _name) : name(_name), m_global(false) {};
 
     void put(types::Library* _pLib, int _iLevel)
     {
@@ -130,9 +130,24 @@ struct Libraries
 
     types::InternalType* get(const Symbol& _key, int _iLevel)
     {
-        MapLibs::reverse_iterator it = libs.rbegin();
-        for (; it != libs.rend() ; ++it)
+        //does _key is a lib name
+        auto lib = libs.find(_key);
+        if (lib != libs.end())
         {
+            if (lib->second->empty() == false)
+            {
+                if (_iLevel == -1 || lib->second->top()->m_iLevel == _iLevel)
+                {
+                    return lib->second->top()->m_pLib;
+                }
+            }
+        }
+
+        //does _key is a macro in a lib
+        auto it = libs.rbegin();
+        for (auto it = libs.rbegin(), itEnd = libs.rend(); it != itEnd ; ++it)
+        {
+            Library* lib = it->second;
             if (it->second->empty() == false)
             {
                 if (_iLevel == -1 || it->second->top()->m_iLevel == _iLevel)
@@ -187,6 +202,20 @@ struct Libraries
         return names;
     }
 
+    std::list<std::wstring>* getVarsName()
+    {
+        std::list<std::wstring>* plOut = new std::list<std::wstring>();
+        for (auto it = libs.begin(), itEnd = libs.end(); it != itEnd; ++it)
+        {
+            if (it->second->empty() == false)
+            {
+                plOut->push_back(it->first.getName().c_str());
+            }
+        }
+
+        return plOut;
+    }
+
     void clearAll()
     {
         for (MapLibs::iterator it = libs.begin(); it != libs.end() ; ++it)
@@ -204,6 +233,30 @@ struct Libraries
             delete it->second;
         }
     }
+
+    bool getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVarLenMax, bool bSorted = false) const
+    {
+        for (auto it = libs.begin(), itEnd = libs.end(); it != itEnd; ++it)
+        {
+            std::wstring wstrVarName(it->first.getName().c_str());
+            if (lstVarName && it->second->empty() == false)
+            {
+                lstVarName->push_back(wstrVarName);
+                *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
+            }
+        }
+
+        if (bSorted)
+        {
+            if (lstVarName)
+            {
+                lstVarName->sort();
+            }
+        }
+
+        return true;
+    }
+
 
 private:
     MapLibs libs;

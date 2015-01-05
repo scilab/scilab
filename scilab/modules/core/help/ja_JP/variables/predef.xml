@@ -49,7 +49,7 @@
     <refsection>
         <title>注意:</title>
         <para>
-            変数 <literal>ans</literal> 
+            変数 <literal>ans</literal>
             は,式が代入されない場合に自動的に定義され,
             <code>predef('all')</code>により保護されません.
         </para>
@@ -57,7 +57,7 @@
             保護される変数の数は,スタートアップファイル
             <literal>SCI/etc/scilab.start</literal>で設定されます.
             ユーザは独自の定義済みの変数を
-            ユーザのスタートアップファイル 
+            ユーザのスタートアップファイル
             <literal>SCIHOME/.scilab</literal> および <literal>SCIHOME/scilab.ini</literal>
             により設定することができます.
         </para>
@@ -71,8 +71,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
-errcatch(13, "continue") // "clear a" が失敗する場合でも続行するようにする
+        <programlisting role="example"><![CDATA[
 a = 1;
 predef("all");
 clear a // 失敗

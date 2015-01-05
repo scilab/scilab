@@ -89,6 +89,7 @@ libsciast_la_SOURCES = \
     src/cpp/types/macrofile.cpp \
     src/cpp/types/callable.cpp \
     src/cpp/types/internal.cpp \
+    src/cpp/types/addfunction.cpp \
     src/cpp/system_env/dynamic_module.cpp \
     src/cpp/system_env/setenvvar.cpp \
     src/cpp/system_env/sci_home.cpp \
@@ -110,17 +111,17 @@ endif
 
 
 libsciast_la_CPPFLAGS = \
-	-Iincludes/ast \
-	-Iincludes/exps \
-	-Iincludes/operations \
-	-Iincludes/parse \
-	-Iincludes/symbol \
-	-Iincludes/system_env \
-	-Iincludes/types \
-	-Iincludes/jit \
-	-Iincludes/analysis \
-	-Isrc/cpp \
-        -I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(srcdir)/src/cpp \
+	-I$(srcdir)/includes/ast \
+	-I$(srcdir)/includes/exps \
+	-I$(srcdir)/includes/operations \
+	-I$(srcdir)/includes/parse \
+	-I$(srcdir)/includes/symbol \
+	-I$(srcdir)/includes/system_env \
+	-I$(srcdir)/includes/types \
+	-I$(srcdir)/includes/analysis \
+	-I$(srcdir)/includes/jit \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -254,6 +255,7 @@ includes/ast/deserializervisitor.hxx \
 includes/ast/dynlib_ast.h \
 includes/ast/execvisitor.hxx \
 includes/ast/dummyvisitor.hxx \
+includes/types/addfunction.h \
 includes/types/dollar.hxx \
 includes/types/user.hxx \
 includes/types/bool.hxx \

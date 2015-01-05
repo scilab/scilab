@@ -93,8 +93,7 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>L'affichage est supprimé dans les fonctions compilées
-            (voir comp). Par défaut les fonctions Scilab sont
+        <para>Par défaut les fonctions Scilab sont
             exécutées en mode silencieux ("-1").
         </para>
         <para>Les fonctions incluses dans une bibliothèque de fonctions scilab sont executés avec le mode "-1".</para>

@@ -31,6 +31,7 @@ private :
     int buflen;
     int bufsize;
     bool saveNodeNumber;
+    bool saveLocation;
 
     unsigned char* get_buf(void)
     {
@@ -71,10 +72,20 @@ private :
 
     void add_location(const Location& loc)
     {
-        add_uint32(loc.first_line);
-        add_uint32(loc.first_column);
-        add_uint32(loc.last_line);
-        add_uint32(loc.last_column);
+        if (saveLocation)
+        {
+            add_uint32(loc.first_line);
+            add_uint32(loc.first_column);
+            add_uint32(loc.last_line);
+            add_uint32(loc.last_column);
+        }
+        else
+        {
+            add_uint32(0);
+            add_uint32(0);
+            add_uint32(0);
+            add_uint32(0);
+        }
     }
     void add_ast(unsigned int code, const Exp& e)
     {
@@ -87,14 +98,9 @@ private :
         {
             add_uint64((unsigned long long)0);
         }
+
         add_location(e.getLocation());
         add_uint8(e.isVerbose());
-        add_uint8(e.isBreak());
-        add_uint8(e.isBreakable());
-        add_uint8(e.isReturn());
-        add_uint8(e.isReturnable());
-        add_uint8(e.isContinue());
-        add_uint8(e.isContinuable());
     }
 
     /** @{ Low-level append to the buffer functions */
@@ -580,9 +586,10 @@ private :
 public :
     SerializeVisitor(Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
 
-    unsigned char* serialize(bool _saveNodeNumber = true)
+    unsigned char* serialize(bool _saveNodeNumber = true, bool _saveLocation = true)
     {
         saveNodeNumber = _saveNodeNumber;
+        saveLocation = _saveLocation;
         ast->getOriginal()->accept(*this);
         return get_buf();
     }

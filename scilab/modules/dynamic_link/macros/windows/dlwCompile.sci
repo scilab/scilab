@@ -9,6 +9,8 @@
 //=============================================================================
 function dlwCompile(files, make_command, makename)
 
+    dlwConfigureEnv();
+
     nf = size(files,"*");
 
     for i=1:nf
@@ -28,7 +30,17 @@ function dlwCompile(files, make_command, makename)
         target_build = "all";
     end
 
+    //update DEBUG_SCILAB_DYNAMIC_LINK to match with Scilab compilation mode
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK","");
+    if val <> "YES" & val <> "NO" & isDebug()then
+        setenv("DEBUG_SCILAB_DYNAMIC_LINK", "YES");
+    end
+
     [msg, stat] = unix_g(make_command + makename + " " + target_build + " 2>&0");
+
+    //restore DEBUG_SCILAB_DYNAMIC_LINK
+    setenv("DEBUG_SCILAB_DYNAMIC_LINK", val);
+
     if stat <> 0 then
         // more feedback when compilation fails
         [msg, stat, stderr] = unix_g(make_command + makename  + " " + target_build + " 1>&2");

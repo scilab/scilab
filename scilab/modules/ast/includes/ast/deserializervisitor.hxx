@@ -227,13 +227,6 @@ private :
         size_t nodeNumber = get_uint64();
         Location loc = get_location();
         bool isVerbose = get_bool();
-        int isBreak = get_bool();
-        int isBreakable = get_bool();
-        int isReturn = get_bool();
-        int isReturnable = get_bool();
-        int isContinue = get_bool();
-        int isContinuable = get_bool();
-
 
         switch (code)
         {
@@ -529,31 +522,6 @@ private :
         }
 
         exp->setVerbose(isVerbose);
-        if (isBreak)
-        {
-            exp->setBreak();
-        }
-        if (isBreakable)
-        {
-            exp->setBreakable();
-        }
-        if (isReturn)
-        {
-            exp->setReturn();
-        }
-        if (isReturnable)
-        {
-            exp->setReturnable();
-        }
-        if (isContinue)
-        {
-            exp->setContinue();
-        }
-        if (isContinuable)
-        {
-            exp->setContinuable();
-        }
-
         if (nodeNumber != 0)
         {
             exp->setNodeNumber(nodeNumber);

@@ -15,7 +15,7 @@
 #include "Scierror.h"
 #include "BOOL.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getPartLine.h"
 /*--------------------------------------------------------------------------*/
 int sci_getpartlevel(char *fname, void *pvApiCtx)

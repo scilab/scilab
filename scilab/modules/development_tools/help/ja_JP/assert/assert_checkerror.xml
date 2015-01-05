@@ -164,21 +164,22 @@
             入力引数の数が間違っているか<literal>x</literal>の型が間違っている
             場合にエラーを発生します.
         </para>
-        <programlisting role="example">function y = f(x)
-            [lhs, rhs] = argn()
-            if ( rhs &lt;&gt; 1 ) then
-            lstr = gettext("%s: Wrong number of input argument: %d expected.\n")
-            errmsg = msprintf ( lstr , "f" , 1 )
-            error(errmsg)
-            end
-            if ( typeof(x) &lt;&gt; "constant" ) then
-            lstr = gettext("%s: Wrong type for argument #%d: Matrix expected.\n")
-            errmsg = msprintf ( lstr , "f" , 1 )
-            error(errmsg,123456789)
-            end
-            y = x
-            endfunction    
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+function y = f(x)
+    [lhs, rhs] = argn()
+    if ( rhs <> 1 ) then
+        lstr = gettext("%s: Wrong number of input argument: %d expected.\n")
+        errmsg = msprintf ( lstr , "f" , 1 )
+        error(errmsg)
+    end
+    if ( typeof(x) <> "constant" ) then
+        lstr = gettext("%s: Wrong type for argument #%d: Matrix expected.\n")
+        errmsg = msprintf ( lstr , "f" , 1 )
+        error(errmsg,123456789)
+    end
+    y = x
+endfunction
+        ]]></programlisting>
         <para>
             我々のタスクは,この関数により生成されたエラーメッセージを確認することです.
             以下の2つのテストをパスします:
@@ -191,40 +192,48 @@
             メッセージを整形し,
             "%s" および "%d" フォーマットを実際の値に変換する際に使用されます.
         </para>
-        <programlisting role="example">lcl1 = "%s: Wrong number of input argument: %d expected.\n";
-            assert_checkerror ( "y = f()"      , lcl1 , [] , "f" , 1);
-            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
-            assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);    
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+lcl1 = "%s: Wrong number of input argument: %d expected.\n";
+assert_checkerror ( "y = f()" , lcl1 , [] , "f" , 1);
+
+lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
+assert_checkerror ( "y = f(""a"")" , lcl2 , [] , "f" , 1);
+        ]]></programlisting>
         <para>
             ここで,カレントのロケール言語が英語であると仮定すると,
             以下のコードを正しく使用できます.
             しかし,例えばカレントのロケールがフランス語である場合に失敗するため,
             これは推奨される手法ではありません.
         </para>
-        <programlisting role="example">assert_checkerror ( "y = f()" , "f: Wrong number of input argument: 1 expected." );   </programlisting>
+        <programlisting role="example"><![CDATA[
+assert_checkerror ( "y = f()" , "f: Wrong number of input argument: 1 expected." );
+        ]]></programlisting>
         <para>以下のテストでは, エラー番号も確認します.</para>
-        <programlisting role="example">lcl1="%s: Wrong number of input argument: %d expected.\n";
-            assert_checkerror ( "y=f()" ,      lcl1 , 10000     , "f" , 1);
-            lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
-            assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);    
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+lcl1="%s: Wrong number of input argument: %d expected.\n";
+assert_checkerror ( "y=f()" , lcl1 , 10000 , "f" , 1);
+
+lcl2 = "%s: Wrong type for argument #%d: Matrix expected.\n";
+assert_checkerror ( "y=f(""a"")" , lcl2 , 123456789 , "f" , 1);
+        ]]></programlisting>
         <para>以下の2つのテストは失敗します.</para>
-        <programlisting role="example">assert_checkerror ( "y = f()" , "oups" );
-            msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
-            assert_checkerror ( "y = f()" , msg1 , 12 );    
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+assert_checkerror ( "y = f()" , "oups" );
+msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+assert_checkerror ( "y = f()" , msg1 , 12 );
+        ]]></programlisting>
         <para>
             errmsgが出力引数に指定された場合,以下の例のように,エラーが生成されます.
             変数<literal>flag</literal> および <literal>errmsg</literal>の内容に
             注意してください.
         </para>
-        <programlisting role="example">// パスするテスト: flag は %t, errmsg は空
-            msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
-            [flag, errmsg] = assert_checkerror ( "y = f()" , msg1 )
-            // 失敗するテスト: flag は %f, errmsg は空でない
-            [flag, errmsg] = assert_checkerror ( "y = f()" , "oups" )    
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+// パスするテスト: flag は %t, errmsg は空
+msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+[flag, errmsg] = assert_checkerror ( "y = f()" , msg1 )
+// 失敗するテスト: flag は %f, errmsg は空でない
+[flag, errmsg] = assert_checkerror ( "y = f()" , "oups" )
+        ]]></programlisting>
         <para>
             以下の2つのテストのメッセージはローカライズされており,
             カレントの言語が何であっても動作します.
@@ -232,11 +241,12 @@
             長くはなりますが,完全に有効なコードである
             ローカライズされたメッセージを直接使用します.
         </para>
-        <programlisting role="example">msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
-            assert_checkerror ( "y = f()"      , msg1 );
-            msg2 = msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "f", 1);
-            assert_checkerror ( "y = f(""a"")" , msg2 );
-        </programlisting>
+        <programlisting role="example"><![CDATA[
+msg1 = msprintf(gettext("%s: Wrong number of input argument: %d expected.\n"), "f", 1);
+assert_checkerror ( "y = f()" , msg1 );
+msg2 = msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "f", 1);
+assert_checkerror ( "y = f(""a"")" , msg2 );
+        ]]></programlisting>
         <para>
             エラー番号を確認したいがエラーメッセージは確認したくない場合がありえます.
             以下のスクリプトは,
@@ -244,7 +254,9 @@
             生成されるエラー番号が 123456789 であることのみを
             確認します: エラーメッセージは確認しません.
         </para>
-        <programlisting role="example">assert_checkerror("f(""foo"")", [], 123456789);</programlisting>
+        <programlisting role="example"><![CDATA[
+assert_checkerror("f(""foo"")", [], 123456789);
+        ]]></programlisting>
     </refsection>
     <refsection>
         <title>履歴</title>

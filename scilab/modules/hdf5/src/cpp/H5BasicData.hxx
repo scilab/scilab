@@ -189,9 +189,30 @@ public:
             }
             else
             {
-                int * list = getHypermatrix(pvApiCtx, lhsPosition, parentList, listPosition, flip);
-                alloc(pvApiCtx, lhsPosition, (int)_totalSize, 1, list, 3, &newData);
-                H5DataConverter::C2FHypermatrix((int)_ndims, _dims, _totalSize, static_cast<T *>(getData()), newData, flip);
+                int* pNewDataVar = NULL;
+                int i = 0;
+                int indims = (int)_ndims;
+                int* piDimsArray = new int[indims];
+
+                alloc(pvApiCtx, lhsPosition, (int)_totalSize, 1, parentList, listPosition, &newData);
+                if (parentList)
+                {
+                    getListItemAddress(pvApiCtx, parentList, listPosition, &pNewDataVar);
+                }
+                else
+                {
+                    getVarAddressFromPosition(pvApiCtx, lhsPosition, &pNewDataVar);
+                }
+
+                for (i = 0; i < indims; i++)
+                {
+                    piDimsArray[i] = (int)_dims[i];
+                }
+
+                reshapeArray(pvApiCtx, pNewDataVar, piDimsArray, indims);
+                delete[] piDimsArray;
+
+                H5DataConverter::C2FHypermatrix(indims, _dims, _totalSize, static_cast<T *>(getData()), newData, flip);
             }
         }
     }

@@ -16,6 +16,7 @@
 
 #include "types.hxx"
 #include "string.hxx"
+#include "tlist.hxx"
 #include "mlist.hxx"
 #include "list.hxx"
 #include "function.hxx"
@@ -53,11 +54,11 @@ static const std::string funame = "scicos_new";
 template<class Adaptor, class Adaptee>
 types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::typed_list &in)
 {
-    Controller controller = Controller();
+    Controller controller;
 
     // create the associated object
     ScicosID o = controller.createObject(k);
-    Adaptor* adaptor = new Adaptor(true, static_cast<Adaptee*>(controller.getObject(o)));
+    Adaptor* adaptor = new Adaptor(std::static_pointer_cast<Adaptee>(controller.getObject(o)));
 
     // the first header entry is the type
     for (int i = 1; i < (int)in.size(); i++)
@@ -75,10 +76,36 @@ types::InternalType * alloc_and_set(kind_t k, types::String* type_name, types::t
 }
 
 template<class Adaptor, class Adaptee>
+types::InternalType * alloc_and_set_as_tlist(types::String* type_name, types::typed_list &in)
+{
+    // check header
+    Adaptor adaptor(0);
+    for (int i = 1; i < (int)in.size(); i++)
+    {
+        std::wstring name(type_name->get(i));
+        if (!adaptor.hasProperty(name))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: unable to set \"%ls\".\n"), funame.data(), i, name.data());
+            return 0;
+        }
+    }
+
+    // copy the data
+    types::TList* tlist = new types::TList();
+    tlist->set(0, type_name->clone());
+    for (int i = 1; i < (int)in.size(); i++)
+    {
+        tlist->set(i, in[i]);
+    }
+
+    return tlist;
+}
+
+template<class Adaptor, class Adaptee>
 types::InternalType * alloc_and_set_as_mlist(types::String* type_name, types::typed_list &in)
 {
     // check header
-    Adaptor adaptor = Adaptor(false, 0);
+    Adaptor adaptor(0);
     for (int i = 1; i < (int)in.size(); i++)
     {
         std::wstring name(type_name->get(i));
@@ -150,7 +177,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::CPR_ADAPTER:
-            returnType = alloc_and_set<view_scilab::CprAdapter, model::Diagram>(DIAGRAM, type_name, in);
+            returnType = alloc_and_set_as_tlist<view_scilab::CprAdapter, model::Diagram>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;
@@ -210,7 +237,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::STATE_ADAPTER:
-            returnType = alloc_and_set<view_scilab::StateAdapter, model::Diagram>(DIAGRAM, type_name, in);
+            returnType = alloc_and_set_as_tlist<view_scilab::StateAdapter, model::Diagram>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;

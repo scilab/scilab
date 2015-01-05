@@ -55,6 +55,17 @@ InternalType *GenericLDivide(InternalType *_pLeftOperand, InternalType *_pRightO
         iResult = LDivideDoubleByDouble(pL, pR, (Double**)&pResult);
     }
 
+    /*
+    ** DOUBLE \ SPARSE
+    */
+    if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabSparse)
+    {
+        Double *pL = _pLeftOperand->getAs<Double>();
+        Sparse *pR = _pRightOperand->getAs<Sparse>();
+
+        iResult = RDivideSparseByDouble(pR, pL, &pResult);
+    }
+
     //manage errors
     if (iResult)
     {
@@ -87,7 +98,7 @@ int LDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
     //check finite values of _pDouble1 and _pDouble2
     if (isDoubleFinite(_pDouble1) == false || isDoubleFinite(_pDouble2) == false)
     {
-        if (_pDouble2->isScalar() == false)
+        if (_pDouble1->isScalar() == false)
         {
             return 2;
         }

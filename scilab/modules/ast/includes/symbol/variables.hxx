@@ -276,10 +276,11 @@ struct Variables
                 pIT->killMe();
                 _var->pop();
                 delete pSave;
+                return true;
             }
         }
 
-        return true;
+        return false;
     }
 
     bool remove(const Symbol& _key, int _iLevel)
@@ -333,6 +334,44 @@ struct Variables
         }
 
         return plOut;
+    }
+
+    bool getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVarLenMax, std::list<std::wstring>* lstGlobalVarName, int* iGlobalLenMax, bool bSorted = false) const
+    {
+        for (auto it = vars.begin(), itEnd = vars.end(); it != itEnd; ++it)
+        {
+            std::wstring wstrVarName(it->first.getName().c_str());
+            if (lstVarName && it->second->empty() == false)
+            {
+                types::InternalType* pIT = it->second->top()->m_pIT;
+                if (pIT && pIT->isFunction() == false)
+                {
+                    lstVarName->push_back(wstrVarName);
+                    *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
+                }
+            }
+
+            if (lstGlobalVarName && it->second->isGlobal())
+            {
+                lstGlobalVarName->push_back(wstrVarName);
+                *iGlobalLenMax = std::max(*iGlobalLenMax, (int)wstrVarName.size());
+            }
+        }
+
+        if (bSorted)
+        {
+            if (lstVarName)
+            {
+                lstVarName->sort();
+            }
+
+            if (lstGlobalVarName)
+            {
+                lstGlobalVarName->sort();
+            }
+        }
+
+        return true;
     }
 
     std::list<std::wstring>* getFunctionsName()

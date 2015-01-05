@@ -404,6 +404,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         out.push_back(new Double(iErr));
         //to lock last error information
         ConfigVariable::setLastErrorCall();
+        // allow print
+        ConfigVariable::resetError();
     }
 
     delete pExp;

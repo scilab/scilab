@@ -14,12 +14,14 @@
 #include <vector>
 #include <algorithm>
 #include <sstream>
+#include <memory>
 
 #include "int.hxx"
 #include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
+#include "tlist.hxx"
 #include "user.hxx"
 
 #include "Controller.hxx"
@@ -48,22 +50,28 @@ const std::string output ("output");
 const std::string inimpl ("inimpl");
 const std::string outimpl ("outimpl");
 
+const std::wstring modelica (L"modelica");
+const std::wstring model (L"model");
+const std::wstring inputs (L"inputs");
+const std::wstring outputs (L"outputs");
+const std::wstring parameters (L"parameters");
+
 struct sim
 {
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         // First, extract the function Name
         std::string name;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
         types::String* Name = new types::String(1, 1);
         Name->set(0, name.data());
 
         // Then the Api. If it is zero, then just return the Name. Otherwise, return a list containing both.
         int api;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api);
 
         if (api == 0)
         {
@@ -81,7 +89,7 @@ struct sim
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -98,8 +106,8 @@ struct sim
             // If the input is a scalar string, then the functionApi is 0.
             int api = 0;
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api);
         }
         else if (v->getType() == types::InternalType::ScilabList)
         {
@@ -135,8 +143,8 @@ struct sim
             }
             int api_int = static_cast<int>(api);
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_NAME, name);
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_FUNCTION_API, api_int);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_NAME, name);
+            controller.setObjectProperty(adaptee, BLOCK, SIM_FUNCTION_API, api_int);
         }
         else
         {
@@ -263,10 +271,10 @@ struct state
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> state;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+        controller.getObjectProperty(adaptee, BLOCK, STATE, state);
 
         double* data;
         types::Double* o = new types::Double((int)state.size(), 1, &data);
@@ -293,12 +301,12 @@ struct state
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> state (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), state.begin());
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), STATE, state);
+        controller.setObjectProperty(adaptee, BLOCK, STATE, state);
         return true;
     }
 };
@@ -308,10 +316,10 @@ struct dstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<double> dstate;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+        controller.getObjectProperty(adaptee, BLOCK, DSTATE, dstate);
 
         double* data;
         types::Double* o = new types::Double((int)dstate.size(), 1, &data);
@@ -326,7 +334,7 @@ struct dstate
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabString)
         {
@@ -337,7 +345,7 @@ struct dstate
             }
 
             std::vector<double> dstate;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+            controller.setObjectProperty(adaptee, BLOCK, DSTATE, dstate);
             return true;
         }
 
@@ -354,17 +362,17 @@ struct dstate
         std::vector<double> dstate (current->getSize());
         std::copy(current->getReal(), current->getReal() + current->getSize(), dstate.begin());
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), DSTATE, dstate);
+        controller.setObjectProperty(adaptee, BLOCK, DSTATE, dstate);
         return true;
     }
 };
 
 types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t prop)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     std::vector<int> prop_content;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+    controller.getObjectProperty(adaptee, BLOCK, prop, prop_content);
 
     if (prop_content.empty())
     {
@@ -410,12 +418,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
 
                 char* data;
                 types::Int8* pInt8 = new types::Int8(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(char));
+                // Use a buffer to prevent copying only parts of integers
+                char* buffer = new char[numberOfIntNeeded * 4];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(char));
+                delete[] buffer;
                 list->set(i, pInt8);
                 break;
             }
@@ -423,12 +435,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
 
                 unsigned char* data;
                 types::UInt8* pUInt8 = new types::UInt8(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned char));
+                // Use a buffer to prevent copying only parts of integers
+                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(unsigned char));
+                delete[] buffer;
                 list->set(i, pUInt8);
                 break;
             }
@@ -436,12 +452,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
 
                 short int* data;
                 types::Int16* pInt16 = new types::Int16(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(short int));
+                // Use a buffer to prevent copying only parts of integers
+                short int* buffer = new short int[numberOfIntNeeded * 2];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(short int));
+                delete[] buffer;
                 list->set(i, pInt16);
                 break;
             }
@@ -449,12 +469,16 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             {
                 m = prop_content[index + 1];
                 n = prop_content[index + 2];
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
 
                 unsigned short int* data;
                 types::UInt16* pUInt16 = new types::UInt16(m, n, &data);
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned short int));
+                // Use a buffer to prevent copying only parts of integers
+                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
+                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
+                memcpy(data, buffer, m * n * sizeof(unsigned short int));
+                delete[] buffer;
                 list->set(i, pUInt16);
                 break;
             }
@@ -494,11 +518,12 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
                 for (int j = 0; j < m * n; ++j)
                 {
                     int strLen = prop_content[index + 3 + numberOfIntNeeded];
+
                     wchar_t* str = new wchar_t[strLen + 1];
                     memcpy(str, &prop_content[index + 3 + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
                     str[strLen] = '\0';
                     pString->set(j, str);
-                    delete str;
+                    delete[] str;
 
                     numberOfIntNeeded += 1 + strLen;
                 }
@@ -530,7 +555,7 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
 
 bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_properties_t prop, types::InternalType* v)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     if (v->getType() == types::InternalType::ScilabDouble)
     {
@@ -541,7 +566,7 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
         }
 
         std::vector<int> prop_content;
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+        controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
         return true;
     }
 
@@ -604,26 +629,34 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 4 char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt8->get(), m * n * sizeof(char));
+                // Use a buffer to fill the entirety of 'prop_content'
+                char* buffer = new char[numberOfIntNeeded * 4];
+                memcpy(buffer, pInt8->get(), m * n * sizeof(char));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt8:
             {
-                types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
-                m = pInt16->getRows();
-                n = pInt16->getCols();
+                types::UInt8* pUInt8 = list->get(i)->getAs<types::UInt8>();
+                m = pUInt8->getRows();
+                n = pUInt8->getCols();
 
                 // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
                 // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 4;
+                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(unsigned char));
+                // Use a buffer to fill the entirety of 'prop_content'
+                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
+                memcpy(buffer, pUInt8->get(), m * n * sizeof(unsigned char));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt16:
@@ -634,11 +667,15 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt16->get(), m * n * sizeof(short int));
+                // Use a buffer to fill the entirety of 'prop_content'
+                short int* buffer = new short int[numberOfIntNeeded * 2];
+                memcpy(buffer, pInt16->get(), m * n * sizeof(short int));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt16:
@@ -649,11 +686,15 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
 
                 // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
                 // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n / 2;
+                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into prop_content
-                memcpy(&prop_content[index + 3], pUInt16->get(), m * n * sizeof(unsigned short int));
+                // Use a buffer to fill the entirety of 'prop_content'
+                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
+                memcpy(buffer, pUInt16->get(), m * n * sizeof(unsigned short int));
+                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt32:
@@ -717,7 +758,7 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
                 m = pBool->getRows();
                 n = pBool->getCols();
 
-                // It takes 1 int (4 bytes) to save 1 bool (1 int: 4 byte)
+                // It takes 1 int (4 bytes) to save 1 bool (1 int: 4 bytes)
                 // So reserve m*n and 2 integers for the matrix dimensions
                 numberOfIntNeeded = m * n;
                 prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
@@ -735,7 +776,7 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
         index += 3 + numberOfIntNeeded;
     }
 
-    controller.setObjectProperty(adaptee->id(), adaptee->kind(), prop, prop_content);
+    controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
     return true;
 }
 
@@ -759,7 +800,7 @@ struct odstate
  */
 bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& children, Controller& controller)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
@@ -808,7 +849,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                 }
 
                 std::vector<ScicosID> superPorts;
-                controller.getObjectProperty(adaptee->id(), adaptee->kind(), kind, superPorts);
+                controller.getObjectProperty(adaptee, BLOCK, kind, superPorts);
                 if (static_cast<int>(superPorts.size()) < portIndex)
                 {
                     return false;
@@ -838,7 +879,7 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
             }
 
             // Regardless of the ports, use the loop to set each Block's 'parent_block' property
-            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee->id());
+            controller.setObjectProperty(*it, BLOCK, PARENT_BLOCK, adaptee);
         }
     }
     return true;
@@ -849,15 +890,15 @@ struct rpar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::vector<ScicosID> children;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+        std::vector<ScicosID> diagramChild;
+        controller.getObjectProperty(adaptee, BLOCK, CHILDREN, diagramChild);
 
-        if (children.empty())
+        if (diagramChild.empty())
         {
             std::vector<double> rpar;
-            controller.getObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
+            controller.getObjectProperty(adaptee, BLOCK, RPAR, rpar);
 
             double *data;
             types::Double* o = new types::Double((int)rpar.size(), 1, &data);
@@ -868,17 +909,24 @@ struct rpar
 #endif
             return o;
         }
-        else // SuperBlock, return the contained diagram, whose ID is stored in children[0]
+        else // SuperBlock, return the contained diagram
         {
-            model::Diagram* diagram = static_cast<model::Diagram*>(Controller().getObject(children[0]));
-            DiagramAdapter* o = new DiagramAdapter(false, diagram);
-            return o;
+            std::shared_ptr<model::Diagram> super = std::static_pointer_cast<model::Diagram>(controller.getObject(diagramChild[0]));
+            DiagramAdapter* localAdaptor = new DiagramAdapter(super);
+            //model::Diagram* super = static_cast<model::Diagram*>(controller.getObject(diagramC[0]).get());
+            //DiagramAdapter* localAdapter = new DiagramAdapter(std::shared_ptr<model::Diagram>(super));
+
+            DiagramAdapter* diagram = adaptor.getDiagram();
+            localAdaptor->setListObjects(diagram->getListObjects());
+            localAdaptor->setFrom(diagram->getFrom());
+            localAdaptor->setTo(diagram->getTo());
+            return localAdaptor;
         }
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabDouble)
         {
@@ -890,7 +938,7 @@ struct rpar
                 rpar[i] = current->get(i);
             }
 
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), RPAR, rpar);
+            controller.setObjectProperty(adaptee, BLOCK, RPAR, rpar);
             return true;
         }
         else if (v->getType() == types::InternalType::ScilabString)
@@ -907,20 +955,19 @@ struct rpar
                 return false;
             }
 
-            // Translate 'v' to an DiagramAdapter and clone it, updating the new Diagram's children
+            // Translate 'v' to an DiagramAdapter, save it and update the Block's children list
             DiagramAdapter* diagram = v->getAs<DiagramAdapter>();
-            ScicosID clone = controller.cloneObject(diagram->getAdaptee()->id());
-            model::Diagram* newSubAdaptee = static_cast<model::Diagram*>(controller.getObject(clone));
-            DiagramAdapter* newDiagram = new DiagramAdapter(true, newSubAdaptee);
 
-            // Save the children list, adding the new diagram ID at the beginning
-            std::vector<ScicosID> children;
-            controller.getObjectProperty(newSubAdaptee->id(), newSubAdaptee->kind(), CHILDREN, children);
-            children.insert(children.begin(), newSubAdaptee->id());
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), CHILDREN, children);
+            adaptor.setDiagram(diagram);
+
+            // Save the child diagram's ID so it is deleted on 'clear'
+            std::vector<ScicosID> diagramChild (1, diagram->getAdaptee()->id());
+            controller.setObjectProperty(adaptee, BLOCK, CHILDREN, diagramChild);
 
             // Link the Superblock ports to their inner "port blocks"
-            return setInnerBlocksRefs(adaptor, children, controller);
+            std::vector<ScicosID> diagramChildren;
+            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
+            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
         }
         else
         {
@@ -939,10 +986,10 @@ struct ipar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<int> ipar;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+        controller.getObjectProperty(adaptee, BLOCK, IPAR, ipar);
 
         double *data;
         types::Double* o = new types::Double((int)ipar.size(), 1, &data);
@@ -957,12 +1004,12 @@ struct ipar
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() == types::InternalType::ScilabList)
         {
             std::vector<int> ipar;
-            controller.setObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+            controller.setObjectProperty(adaptee, BLOCK, IPAR, ipar);
             return true;
         }
 
@@ -987,7 +1034,7 @@ struct ipar
             ipar[i] = static_cast<int>(current->get(i));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), IPAR, ipar);
+        controller.setObjectProperty(adaptee, BLOCK, IPAR, ipar);
         return true;
     }
 };
@@ -1011,10 +1058,10 @@ struct blocktype
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string type;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_BLOCKTYPE, type);
 
         types::String* o = new types::String(type.c_str());
         return o;
@@ -1022,7 +1069,7 @@ struct blocktype
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabString)
         {
@@ -1040,7 +1087,7 @@ struct blocktype
         FREE(c_str);
 
         // the value validation is performed on the model
-        return controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_BLOCKTYPE, type) != FAIL;
+        return controller.setObjectProperty(adaptee, BLOCK, SIM_BLOCKTYPE, type) != FAIL;
     }
 };
 
@@ -1063,10 +1110,10 @@ struct dep_ut
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::vector<int> dep_ut;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), SIM_DEP_UT, dep_ut);
+        controller.getObjectProperty(adaptee, BLOCK, SIM_DEP_UT, dep_ut);
 
         int* dep;
         types::Bool* o = new types::Bool(1, 2, &dep);
@@ -1079,7 +1126,7 @@ struct dep_ut
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabBool)
         {
@@ -1096,7 +1143,7 @@ struct dep_ut
         dep_ut[0] = current->get(0);
         dep_ut[1] = current->get(1);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), SIM_DEP_UT, dep_ut);
+        controller.setObjectProperty(adaptee, BLOCK, SIM_DEP_UT, dep_ut);
         return true;
     }
 };
@@ -1106,10 +1153,10 @@ struct label
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string label;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), LABEL, label);
+        controller.getObjectProperty(adaptee, BLOCK, LABEL, label);
 
         types::String* o = new types::String(1, 1);
         o->set(0, label.data());
@@ -1130,14 +1177,14 @@ struct label
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string label;
         char* c_str = wide_string_to_UTF8(current->get(0));
         label = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), LABEL, label);
+        controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
         return true;
     }
 };
@@ -1147,10 +1194,10 @@ struct nzcross
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         int nzcross;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
+        controller.getObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
 
         types::Double* o = new types::Double(static_cast<double>(nzcross));
 
@@ -1159,7 +1206,7 @@ struct nzcross
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -1183,7 +1230,7 @@ struct nzcross
             nzcross = static_cast<int>(current->get(0));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), NZCROSS, nzcross);
+        controller.setObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
         return true;
     }
 };
@@ -1193,10 +1240,10 @@ struct nmode
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         int nmode;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
+        controller.getObjectProperty(adaptee, BLOCK, NMODE, nmode);
 
         types::Double* o = new types::Double(static_cast<double>(nmode));
 
@@ -1205,7 +1252,7 @@ struct nmode
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         if (v->getType() != types::InternalType::ScilabDouble)
         {
@@ -1229,7 +1276,7 @@ struct nmode
             nmode = static_cast<int>(current->get(0));
         }
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), NMODE, nmode);
+        controller.setObjectProperty(adaptee, BLOCK, NMODE, nmode);
         return true;
     }
 };
@@ -1239,40 +1286,385 @@ struct equations
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        // silent unused parameter warnings
-        (void) adaptor;
-        (void) controller;
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        // FIXME: implement as a stored modelica equations
+        std::vector<std::string> equations;
+        controller.getObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
 
-        // Return a default empty list.
-        return new types::List();
+        if (equations.size() == 0)
+        {
+            return new types::List();
+        }
+
+        types::TList* o = new types::TList();
+
+        // Header, starting with "modelica"
+        types::String* header = new types::String(1, 5);
+        header->set(0, modelica.c_str());
+        header->set(1, model.c_str());
+        header->set(2, inputs.c_str());
+        header->set(3, outputs.c_str());
+        header->set(4, parameters.c_str());
+        o->set(0, header);
+
+        // 'model'
+        if (equations[0].c_str() == std::string())
+        {
+            o->set(1, types::Double::Empty());
+        }
+        else
+        {
+            types::String* modelField = new types::String(1, 1);
+            modelField->set(0, equations[0].c_str());
+            o->set(1, modelField);
+        }
+
+        // 'inputs'
+        std::istringstream inputsSizeStr (equations[1]);
+        int inputsSize;
+        inputsSizeStr >> inputsSize;
+        if (inputsSize == 0)
+        {
+            types::Double* inputsField = types::Double::Empty();
+            o->set(2, inputsField);
+        }
+        else
+        {
+            types::String* inputsField = new types::String(inputsSize, 1);
+            for (int i = 0; i < inputsSize; ++i)
+            {
+                inputsField->set(i, equations[i + 2].c_str());
+            }
+            o->set(2, inputsField);
+        }
+
+        // 'outputs'
+        std::istringstream outputsSizeStr (equations[2 + inputsSize]);
+        int outputsSize;
+        outputsSizeStr >> outputsSize;
+        if (outputsSize == 0)
+        {
+            types::Double* outputsField = types::Double::Empty();
+            o->set(3, outputsField);
+        }
+        else
+        {
+            types::String* outputsField = new types::String(outputsSize, 1);
+            for (int i = 0; i < outputsSize; ++i)
+            {
+                outputsField->set(i, equations[i + 3 + inputsSize].c_str());
+            }
+            o->set(3, outputsField);
+        }
+
+        // 'parameters'
+        types::List* parametersField = new types::List();
+
+        // 'parameters' names
+        std::istringstream parametersSizeStr (equations[3 + inputsSize + outputsSize]);
+        int parametersSize;
+        parametersSizeStr >> parametersSize;
+        if (parametersSize == 0)
+        {
+            types::Double* parametersNames = types::Double::Empty();
+            parametersField->set(0, parametersNames);
+        }
+        else
+        {
+            types::String* parametersNames = new types::String(parametersSize, 1);
+            for (int i = 0; i < parametersSize; ++i)
+            {
+                parametersNames->set(i, equations[i + 4 + inputsSize + outputsSize].c_str());
+            }
+            parametersField->set(0, parametersNames);
+        }
+
+        // 'parameters' values
+        types::List* parametersValues = new types::List();
+        for (int i = 0; i < parametersSize; ++i)
+        {
+            std::istringstream parametersValueStr (equations[i + 4 + inputsSize + outputsSize + parametersSize]);
+            double parametersVal;
+            parametersValueStr >> parametersVal;
+            types::Double* parametersValue = new types::Double(parametersVal);
+            parametersValues->set(i, parametersValue);
+        }
+        parametersField->set(1, parametersValues);
+
+        o->set(4, parametersField);
+
+        return o;
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        if (v->getType() != types::InternalType::ScilabList)
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+
+        if (v->getType() == types::InternalType::ScilabList)
+        {
+            types::List* current = v->getAs<types::List>();
+            if (current->getSize() != 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+        if (v->getType() != types::InternalType::ScilabTList)
         {
             return false;
         }
 
-        types::List* current = v->getAs<types::List>();
+        types::TList* current = v->getAs<types::TList>();
 
-        if (current->getSize() == 0)
+        // Check the header
+        types::String* header = current->getFieldNames();
+        if (header->getSize() != 5)
         {
+            return false;
+        }
+        if (header->get(0) != modelica)
+        {
+            return false;
+        }
+        if (header->get(1) != model)
+        {
+            return false;
+        }
+        if (header->get(2) != inputs)
+        {
+            return false;
+        }
+        if (header->get(3) != outputs)
+        {
+            return false;
+        }
+        if (header->get(4) != parameters)
+        {
+            return false;
+        }
+
+        char* c_str; // Temporary buffer used for conversions
+
+        // 'model'
+        std::vector<std::string> equations;
+        if (current->get(1)->getType() == types::InternalType::ScilabString)
+        {
+            types::String* modelField = current->get(1)->getAs<types::String>();
+            if (modelField->getSize() != 1)
+            {
+                return false;
+            }
+            std::string modelFieldStored;
+            c_str = wide_string_to_UTF8(modelField->get(0));
+            modelFieldStored = std::string(c_str);
+            FREE(c_str);
+            equations.push_back(modelFieldStored);
+        }
+        else if (current->get(1)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* modelFieldDouble = current->get(1)->getAs<types::Double>();
+            if (modelFieldDouble->getSize() != 0)
+            {
+                return false;
+            }
+
+            // An empty matrix stores an empty string, which will later be translated back to an empty matrix
+            equations.push_back(std::string());
+        }
+        else
+        {
+            return false;
+        }
+
+        // 'inputs'
+        size_t inputsSize;
+        if (current->get(2)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* inputsField = current->get(2)->getAs<types::Double>();
+            if (inputsField->getSize() != 0)
+            {
+                return false;
+            }
+            inputsSize = 0;
+            std::ostringstream strInputs;
+            strInputs << inputsSize;
+            std::string inputsSizeStr = strInputs.str();
+            equations.push_back(inputsSizeStr); // When 'inputs'=[], just insert "0" in 'equations'
+        }
+        else
+        {
+            if (current->get(2)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* inputsField = current->get(2)->getAs<types::String>();
+            inputsSize = inputsField->getSize();
+            equations.resize(equations.size() + 1 + inputsSize);
+            std::ostringstream strInputs;
+            strInputs << inputsSize;
+            std::string inputsSizeStr = strInputs.str();
+            equations[1] = inputsSizeStr; // Saving the size of the 'inputs' field'
+            for (size_t i = 0; i < inputsSize; ++i)
+            {
+                std::string inputsFieldStored;
+                c_str = wide_string_to_UTF8(inputsField->get(i));
+                inputsFieldStored = std::string(c_str);
+                FREE(c_str);
+                equations[i + 2] = inputsFieldStored;
+            }
+        }
+
+        // 'outputs'
+        size_t outputsSize;
+        if (current->get(3)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* outputsField = current->get(3)->getAs<types::Double>();
+            if (outputsField->getSize() != 0)
+            {
+                return false;
+            }
+            outputsSize = 0;
+            std::ostringstream strOutputs;
+            strOutputs << outputsSize;
+            std::string outputsSizeStr = strOutputs.str();
+            equations.push_back(outputsSizeStr); // When 'outputs'=[], just insert "0" in 'equations'
+        }
+        else
+        {
+            if (current->get(3)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* outputsField = current->get(3)->getAs<types::String>();
+            outputsSize = outputsField->getSize();
+            equations.resize(equations.size() + 1 + outputsSize);
+            std::ostringstream strOutputs;
+            strOutputs << outputsSize;
+            std::string outputsSizeStr = strOutputs.str();
+            equations[2 + inputsSize] = outputsSizeStr; // Saving the size of the 'outputs' field'
+            for (size_t i = 0; i < outputsSize; ++i)
+            {
+                std::string outputsFieldStored;
+                c_str = wide_string_to_UTF8(outputsField->get(i));
+                outputsFieldStored = std::string(c_str);
+                FREE(c_str);
+                equations[i + 3 + inputsSize] = outputsFieldStored;
+            }
+        }
+
+        // 'parameters'
+        int parametersIndex = 4;
+        if (current->get(parametersIndex)->getType() == types::InternalType::ScilabDouble)
+        {
+            // For backward compatibility sake, allow the presence of an empty matrix here
+            types::Double* emptyMatrix = current->get(parametersIndex)->getAs<types::Double>();
+            if (emptyMatrix->getSize() != 0)
+            {
+                return false;
+            }
+            parametersIndex++;
+        }
+        if (current->get(parametersIndex)->getType() != types::InternalType::ScilabList)
+        {
+            return false;
+        }
+        types::List* list = current->get(parametersIndex)->getAs<types::List>();
+        if (list->getSize() < 1)
+        {
+            return false;
+        }
+
+        // 'parameters' names
+        size_t parametersSize;
+        if (list->get(0)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* parametersNames = list->get(0)->getAs<types::Double>();
+            if (parametersNames->getSize() != 0)
+            {
+                return false;
+            }
+            // When 'parameters(1)'=[], just insert "0" in 'equations', set in the model and return
+            parametersSize = 0;
+            std::ostringstream strParameters;
+            strParameters << parametersSize;
+            std::string parametersSizeStr = strParameters.str();
+            equations.push_back(parametersSizeStr);
+
+            controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
             return true;
         }
         else
         {
-            // silent unused parameter warnings
-            (void) adaptor;
-            (void) v;
-            (void) controller;
-
-            // FIXME: implement as a stored modelica equations
-            // FIXME: get the input list and store it in the equations field
-            return false;
+            if (list->get(0)->getType() != types::InternalType::ScilabString)
+            {
+                return false;
+            }
+            types::String* parametersNames = list->get(0)->getAs<types::String>();
+            parametersSize = parametersNames->getSize();
+            equations.resize(equations.size() + 1 + parametersSize);
+            std::ostringstream strParameters;
+            strParameters << parametersSize;
+            std::string parametersSizeStr = strParameters.str();
+            equations[3 + inputsSize + outputsSize] = parametersSizeStr; // Saving the size of the 'parameters' field'
+            for (size_t i = 0; i < parametersSize; ++i)
+            {
+                std::string parametersName;
+                c_str = wide_string_to_UTF8(parametersNames->get(i));
+                parametersName = std::string(c_str);
+                FREE(c_str);
+                equations[i + 4 + inputsSize + outputsSize] = parametersName;
+            }
         }
+
+        // 'parameters' values
+        if (list->get(1)->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* parameterVal = list->get(1)->getAs<types::Double>();
+            if (parameterVal->getSize() != static_cast<int>(parametersSize))
+            {
+                return false;
+            }
+            for (size_t i = 0; i < parametersSize; ++i)
+            {
+                std::ostringstream strParameterVal;
+                strParameterVal << parameterVal->get(i);
+                std::string parameterValStr = strParameterVal.str();
+                equations.push_back(parameterValStr);
+            }
+        }
+        else
+        {
+            if (list->get(1)->getType() != types::InternalType::ScilabList)
+            {
+                return false;
+            }
+            types::List* list2 = list->get(1)->getAs<types::List>();
+            if (list2->getSize() != static_cast<int>(parametersSize))
+            {
+                return false;
+            }
+            equations.resize(equations.size() + parametersSize);
+            for (size_t i = 0; i < parametersSize; ++i)
+            {
+                if (list2->get(i)->getType() != types::InternalType::ScilabDouble)
+                {
+                    return false;
+                }
+                types::Double* parametersVal = list2->get(i)->getAs<types::Double>();
+                if (parametersVal->getSize() != 1)
+                {
+                    return false;
+                }
+                std::ostringstream strParametersVal;
+                strParametersVal << parametersVal->get(0);
+                std::string parametersValStr = strParametersVal.str();
+                equations[i + 4 + inputsSize + outputsSize + parametersSize] = parametersValStr;
+            }
+        }
+
+        controller.setObjectProperty(adaptee, BLOCK, EQUATIONS, equations);
+        return true;
     }
 };
 
@@ -1281,10 +1673,10 @@ struct uid
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string uid;
-        controller.getObjectProperty(adaptee->id(), adaptee->kind(), UID, uid);
+        controller.getObjectProperty(adaptee, BLOCK, UID, uid);
 
         types::String* o = new types::String(1, 1);
         o->set(0, uid.data());
@@ -1305,14 +1697,14 @@ struct uid
             return false;
         }
 
-        model::Block* adaptee = adaptor.getAdaptee();
+        ScicosID adaptee = adaptor.getAdaptee()->id();
 
         std::string uid;
         char* c_str = wide_string_to_UTF8(current->get(0));
         uid = std::string(c_str);
         FREE(c_str);
 
-        controller.setObjectProperty(adaptee->id(), adaptee->kind(), UID, uid);
+        controller.setObjectProperty(adaptee, BLOCK, UID, uid);
         return true;
     }
 };
@@ -1321,8 +1713,9 @@ struct uid
 
 template<> property<ModelAdapter>::props_t property<ModelAdapter>::fields = property<ModelAdapter>::props_t();
 
-ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee) :
-    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(ownAdaptee, adaptee)
+ModelAdapter::ModelAdapter(std::shared_ptr<model::Block> adaptee) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(adaptee),
+    diagramAdapter(nullptr)
 {
     if (property<ModelAdapter>::properties_have_not_been_set())
     {
@@ -1353,8 +1746,19 @@ ModelAdapter::ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Bl
     }
 }
 
+ModelAdapter::ModelAdapter(const ModelAdapter& adapter) :
+    BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>(adapter),
+    diagramAdapter(adapter.getDiagram())
+{
+}
+
 ModelAdapter::~ModelAdapter()
 {
+    if (diagramAdapter != nullptr)
+    {
+        diagramAdapter->DecreaseRef();
+        diagramAdapter->killMe();
+    }
 }
 
 std::wstring ModelAdapter::getTypeStr()
@@ -1365,6 +1769,33 @@ std::wstring ModelAdapter::getTypeStr()
 std::wstring ModelAdapter::getShortTypeStr()
 {
     return getSharedTypeStr();
+}
+
+DiagramAdapter* ModelAdapter::getDiagram() const
+{
+    if (diagramAdapter != nullptr)
+    {
+        diagramAdapter->IncreaseRef();
+    }
+    return diagramAdapter;
+}
+
+void ModelAdapter::setDiagram(DiagramAdapter* newDiagram)
+{
+    if (newDiagram != nullptr)
+    {
+        // The old 'diagramAdapter' needs to be freed after setting it to 'v'
+        DiagramAdapter* temp = diagramAdapter;
+
+        newDiagram->IncreaseRef();
+        diagramAdapter = newDiagram;
+
+        if (temp != nullptr)
+        {
+            temp->DecreaseRef();
+            temp->killMe();
+        }
+    }
 }
 
 } /* namespace view_scilab */

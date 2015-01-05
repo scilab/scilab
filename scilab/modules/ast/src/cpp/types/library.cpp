@@ -69,7 +69,7 @@ bool Library::toString(std::wostringstream& ostr)
     }
 
     ostr << std::endl;
-    scilabWriteW(ostr.str().c_str());
+
     return true;
 }
 
@@ -119,5 +119,10 @@ std::list<std::wstring>* Library::getMacrosName()
     }
 
     return pOut;
+}
+
+std::wstring Library::getPath()
+{
+    return m_wstPath;
 }
 }

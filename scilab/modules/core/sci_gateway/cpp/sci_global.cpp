@@ -21,6 +21,8 @@ extern "C"
 #include "Scierror.h"
 }
 
+#define FORBIDDEN_CHARS L" */\\.,;:^@><!=+-&|()~\n\t'\""
+
 using namespace types;
 
 types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -52,7 +54,16 @@ types::Function::ReturnValue sci_global(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0 ; i < in.size() ; i++)
     {
-        symbol::Symbol pstVar(symbol::Symbol(in[i]->getAs<types::String>()->get(0)));
+        wchar_t* wcsVarName = in[i]->getAs<types::String>()->get(0);
+        if (symbol::Context::getInstance()->isValidVariableName(wcsVarName) == false)
+        {
+            char* pstrVarName = wide_string_to_UTF8(wcsVarName);
+            Scierror(999, _("%s : Wrong value for argument #%d: %s\n"), "global", i + 1, pstrVarName);
+            FREE(pstrVarName);
+            return Function::Error;
+        }
+
+        symbol::Symbol pstVar(symbol::Symbol(const_cast<wchar_t*>(wcsVarName)));
 
         if (pCtx->isGlobalVisible(pstVar))
         {

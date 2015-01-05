@@ -5,6 +5,8 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- JVM NOT MANDATORY -->
+
 // <-- Non-regression test for bug 545 -->
 //
 // <-- Bugzilla URL -->
@@ -26,16 +28,14 @@
 //             inside function: %i_i_hm
 //
 //    Commands:
-//    a=int8(hypermat({3 2 2}));b=hypermat({1 2 2});
+//    a=int8(hypermat([3 2 2]));b=hypermat([1 2 2]);
 //    a(1,:,:)=b
 //    Enrico SEGRE on Linux version RH9 distribution  with   as window manager
 //    Israel
 //    November 9, 2003 at 13:47:20
 
-// <-- INTERACTIVE TEST -->
-
 a        = int8(hypermat([3 2 2]));
 b        = hypermat([1 2 2]);
-a(1,:,:) = b
+a(1,:,:) = b;
 
-// Just check if there is no "Warning :redefining function: ndims" displayed
+// Just check if there is no "Warning :redefining function: ndims" displayed in .dia.ref

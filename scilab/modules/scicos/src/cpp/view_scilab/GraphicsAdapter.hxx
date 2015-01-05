@@ -14,6 +14,7 @@
 #define GRAPHICSADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"
@@ -26,7 +27,8 @@ namespace view_scilab
 class GraphicsAdapter : public BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    GraphicsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
+    GraphicsAdapter(std::shared_ptr<model::Block> adaptee);
+    GraphicsAdapter(const GraphicsAdapter& adapter);
     ~GraphicsAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -39,6 +41,7 @@ public:
 
     types::InternalType* getGrIContent() const;
     void setGrIContent(types::InternalType* v);
+
 private:
     types::InternalType* gr_i_content;
 };

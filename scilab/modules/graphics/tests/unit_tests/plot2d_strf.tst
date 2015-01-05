@@ -7,5 +7,5 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-refMsg = msprintf(_("%s: Wrong value for strf option: %s.\n"), "plot2d", "aze")
+refMsg = msprintf(_("%s: Wrong value for strf option: %s.\n"), "plot2d", "aze");
 assert_checkerror("plot2d(1,1,1,''aze'')", refMsg, 999);

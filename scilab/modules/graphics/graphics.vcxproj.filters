@@ -806,12 +806,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_data_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1310,6 +1304,12 @@
     <ClCompile Include="src\c\getHandleProperty\get_border_property.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\set_data_property.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\Axes.h">
@@ -1503,6 +1503,7 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />

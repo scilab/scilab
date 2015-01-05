@@ -36,7 +36,7 @@ public :
 
 private :
     Cell(Cell* _oCellCopyMe);
-
+    void createCell(int _iDims, int* _piDims);
 public :
 
     void                whoAmI(void)

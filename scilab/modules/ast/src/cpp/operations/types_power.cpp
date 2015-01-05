@@ -98,6 +98,22 @@ InternalType *GenericDotPower(InternalType *_pLeftOperand, InternalType *_pRight
 
         return pResult;
     }
+    /*
+    ** SPARSE  .^ DOUBLE
+    ** SPARSE .** DOUBLE
+    */
+    if (TypeL == GenericType::ScilabSparse && TypeR == GenericType::ScilabDouble)
+    {
+        types::Sparse *pL = _pLeftOperand->getAs<types::Sparse>();
+        Double *pR = _pRightOperand->getAs<Double>();
+        int iResult = DotPowerSpaseByDouble(pL, pR, &pResult);
+        if (iResult)
+        {
+            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        }
+        return pResult;
+
+    }
 
     /*
     ** POLY .^ DOUBLE
@@ -393,6 +409,108 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
     return 0;
 }
 
+int DotPowerSpaseByDouble(Sparse* _pSp, Double* _pDouble, InternalType** _pOut)
+{
+    if (_pDouble->isEmpty())
+    {
+        //sp .^ []
+        *_pOut = Double::Empty();
+        return 0;
+    }
+
+    size_t iSize = _pSp->nonZeros();
+    int* Col = new int[iSize];
+    int* Row = new int[iSize];
+    _pSp->getColPos(Col);
+    _pSp->getNbItemByRow(Row);
+    int* iPositVal = new int[iSize];
+
+    int j = 0;
+    for (int i = 0; i < iSize;  j++)
+    {
+        for (int k = 0; k < Row[j]; k++)
+        {
+
+            iPositVal[i] = (Col[i] - 1) * _pSp->getRows() + j;
+            i++;
+        }
+    }
+
+    Double** pDbl = new Double*[iSize];
+    Double** pDblSp = new Double*[iSize];
+    double* pdbl = _pDouble->get();
+
+    if (_pDouble->isScalar())
+    {
+        if (_pDouble->isComplex())
+        {
+            double* pdblImg = _pDouble->getImg();
+            for (int i = 0; i < iSize; i++)
+            {
+                pDbl[i] = new Double(pdbl[0], pdblImg[0]);
+                pDblSp[i] = new Double(_pSp->get(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSize; i++)
+            {
+                pDbl[i] = new Double(pdbl[0]);
+                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+            }
+        }
+    }
+    else if (_pDouble->getSize() == iSize)
+    {
+        if (_pDouble->isComplex())
+        {
+            double* pdblImg = _pDouble->getImg();
+            for (int i = 0; i < iSize; i++)
+            {
+                pDbl[i] = new Double(pdbl[i], pdblImg[i]);
+                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+            }
+        }
+        else
+        {
+            for (int i = 0; i < iSize; i++)
+            {
+                pDbl[i] = new Double(pdbl[i]);
+                pDblSp[i] = new Double(_pSp->getReal(iPositVal[i]), _pSp->getImg(iPositVal[i]).imag());
+            }
+        }
+    }
+    else
+    {
+        delete[] pDblSp;
+        throw ast::ScilabError(_W("Invalid exponent.\n"));
+        return 1;
+    }
+
+    Sparse* pSpTemp = new Sparse(_pSp->getRows(), _pSp->getCols(), _pSp->isComplex() || _pDouble->isComplex());
+    pSpTemp->zero_set();
+
+    Double* ppDblGet = NULL;
+    for (int i = 0; i < iSize; i++)
+    {
+        if ((pDblSp[i]->get(0) != 0) || (pDblSp[i]->getImg(0) != 0))
+        {
+            DotPowerDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
+            std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
+            pSpTemp->set(iPositVal[i], cplx, true);
+        }
+    }
+
+    delete Col;
+    delete Row;
+    delete iPositVal;
+
+    *_pOut = pSpTemp;
+    return 0;
+
+}
+
+
 int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 {
     if (_pDouble->isEmpty())
@@ -405,8 +523,11 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     int iSize = _pPoly->getSize();
     Double** pDblPower  = new Double*[iSize];
     double* pdblPower   = _pDouble->get();
-
-    if (_pDouble->isScalar())
+    if (_pPoly->isScalar())
+    {
+        return PowerPolyByDouble(_pPoly, _pDouble, _pOut);
+    }
+    else if (_pDouble->isScalar())
     {
         if (pdblPower[0] < 0)
         {
@@ -463,8 +584,11 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
         // get singlePoly of pITTempOut and set it in pPolyOut without copy
         SinglePoly** pSPTempOut = pITTempOut->getAs<Polynom>()->get();
         pSPOut[i] = pSPTempOut[0];
-        pSPTempOut[0] = NULL;
+        // increase ref to avoid the delete of pSPTempOut[0]
+        // which are setted in pSPOut without copy.
+        pSPOut[i]->IncreaseRef();
         delete pITTempOut;
+        pSPOut[i]->DecreaseRef();
     }
 
     // delete exp
@@ -477,8 +601,9 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
 
     // delete temporary polynom
     // do not delete the last SinglePoly of _pPoly setted without copy in pPolyTemp
-    pSPTemp[0] = NULL;
+    pSPTemp[0]->IncreaseRef();
     delete pPolyTemp;
+    pSP[iSize - 1]->DecreaseRef();
 
     switch (iResult)
     {

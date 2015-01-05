@@ -783,7 +783,6 @@ read
 read4b
 read_csv
 readb
-readgateway
 readmps
 real
 realtime

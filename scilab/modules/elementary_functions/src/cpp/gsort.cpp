@@ -71,6 +71,12 @@ bool increasing (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
         return true;
     }
 
+    // keep position order (position order is always increasing)
+    if (left.second == right.second)
+    {
+        return (left.first.second < right.first.second);
+    }
+
     return (left.second < right.second);
 }
 
@@ -85,6 +91,12 @@ bool descendent (std::pair<std::pair<int, int>, T> left, std::pair<std::pair<int
     if (ISNAN((double)right.second))
     {
         return false;
+    }
+
+    // keep position order (position order is always increasing)
+    if (left.second == right.second)
+    {
+        return (left.first.second < right.first.second);
     }
 
     return (left.second > right.second);
@@ -130,12 +142,26 @@ bool increasingStr (std::pair<int, std::pair<wchar_t**, wchar_t**> > left, std::
 
 bool descendentStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> right)
 {
-    return wcscmp(left.second, right.second) > 0;
+    int comp = wcscmp(left.second, right.second);
+    // keep position order (position order is always increasing)
+    if (comp == 0)
+    {
+        return (left.first < right.first);
+    }
+
+    return comp > 0;
 }
 
 bool increasingStr (std::pair<int, wchar_t*> left, std::pair<int, wchar_t*> right)
 {
-    return wcscmp(left.second, right.second) < 0;
+    int comp = wcscmp(left.second, right.second);
+    // keep position order (position order is always increasing)
+    if (comp == 0)
+    {
+        return (left.first < right.first);
+    }
+
+    return comp < 0;
 }
 
 /*--------------------------- Double ---------------------------------------*/

@@ -6,6 +6,7 @@
 // =============================================================================
 
 loadXcosLibs();
+scicos_log("TRACE");
 
 p = funcprot();
 funcprot(0);
@@ -36,3 +37,7 @@ o.graphics
 o.model
 o.void
 o.gui
+
+
+// Check that all the model items are freed
+clear

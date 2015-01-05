@@ -44,7 +44,6 @@ extern "C"
 }
 
 using namespace ast;
-bool checkPrompt(int _iMode, int _iCheck);
 void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _bLF);
 std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer);
 std::string getExpression(const std::string& _stFile, Exp* _pExp);
@@ -60,7 +59,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     int iID             = 0;
     Parser parser;
 
-    if (ConfigVariable::getStartProcessing())
+    wchar_t* pwstFile = NULL;
+    char* pstFile = NULL;
+
+    std::string stFile;
+    std::ifstream* file = NULL;
+
+    if (ConfigVariable::getStartProcessing() == false)
     {
         if (ConfigVariable::getVerbose())
         {
@@ -78,6 +83,101 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         return Function::Error;
     }
 
+    if (in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
+    {
+        //1st argument is a path, parse file and execute it
+        int iParsePathLen = 0;
+        String* pS = in[0]->getAs<types::String>();
+
+        pwstFile = expandPathVariableW(pS->get(0));
+        pstFile = wide_string_to_UTF8(pwstFile);
+        stFile = std::string(pstFile);
+        file = new std::ifstream(pstFile);
+
+        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+        get_full_pathW(pwstTemp, (const wchar_t*)pwstFile, PATH_MAX * 2);
+
+        /*fake call to mopen to show file within file()*/
+        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        {
+            FREE(pwstTemp);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstFile);
+            return Function::Error;
+        }
+
+        parser.parseFile(pwstTemp, L"exec");
+        FREE(pwstTemp);
+        if (parser.getExitStatus() !=  Parser::Succeded)
+        {
+            scilabWriteW(parser.getErrorMessage());
+            delete parser.getTree();
+            mclose(iID);
+            return Function::Error;
+        }
+
+        if (ConfigVariable::getSerialize())
+        {
+            ast::Exp* temp = parser.getTree();
+            if (ConfigVariable::getTimed())
+            {
+                pExp = callTyper(temp, L"exec");
+            }
+            else
+            {
+                pExp = callTyper(temp);
+            }
+
+            delete temp;
+        }
+        else
+        {
+            pExp = parser.getTree();
+        }
+    }
+    else if (in[0]->isMacro() || in[0]->isMacroFile())
+    {
+        types::Macro* pMacro = NULL;
+        typed_list input;
+        optional_list optional;
+        typed_list output;
+        ast::ExecVisitor execFunc;
+
+        if (in[0]->isMacroFile())
+        {
+            //1st argument is a macro name, parse and execute it in the current environnement
+            if (in[0]->getAs<MacroFile>()->parse() == false)
+            {
+                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
+                Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
+                FREE(pstMacro);
+                return Function::Error;
+            }
+
+            pMacro = in[0]->getAs<MacroFile>()->getMacro();
+
+        }
+        else //1st argument is a macro name, execute it in the current environnement
+        {
+            pMacro = in[0]->getAs<Macro>();
+        }
+
+        // We dont care about the input and output argument
+        if (pMacro->outputs_get()->empty() == false || pMacro->inputs_get()->empty() == false)
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without input and output argument expected.\n"), "exec", 1);
+            return Function::Error;
+        }
+
+        promptMode = 3;
+        pExp = pMacro->getBody();
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
+        return Function::Error;
+    }
+
+    // get mode and errcatch
     if (in.size() > 1)
     {
         //errcatch or mode
@@ -122,93 +222,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    if (in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
-    {
-        //1st argument is a path, parse file and execute it
-        int iParsePathLen		= 0;
-        String* pS = in[0]->getAs<types::String>();
-
-        wchar_t* pstFile = pS->get(0);
-        wchar_t *expandedPath = expandPathVariableW(pstFile);
-        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, (const wchar_t*)expandedPath, PATH_MAX * 2);
-
-        /*fake call to mopen to show file within file()*/
-        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
-        {
-            FREE(pwstTemp);
-            char* pstPath = wide_string_to_UTF8(expandedPath);
-            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstPath);
-            FREE(pstPath);
-            return Function::Error;
-        }
-
-        parser.parseFile(pwstTemp, L"exec");
-        FREE(expandedPath);
-        FREE(pwstTemp);
-        if (parser.getExitStatus() !=  Parser::Succeded)
-        {
-            scilabWriteW(parser.getErrorMessage());
-            delete parser.getTree();
-            mclose(iID);
-            return Function::Error;
-        }
-
-        if (ConfigVariable::getSerialize())
-        {
-            ast::Exp* temp = parser.getTree();
-            if (ConfigVariable::getTimed())
-            {
-                pExp = callTyper(temp, L"exec");
-            }
-            else
-            {
-                pExp = callTyper(temp);
-            }
-
-            delete temp;
-        }
-        else
-        {
-            pExp = parser.getTree();
-        }
-    }
-    else if (in[0]->isMacro())
-    {
-        //1st argument is a macro name, execute it in the current environnement
-        pExp = in[0]->getAs<Macro>()->getBody();
-    }
-    else if (in[0]->isMacroFile())
-    {
-        //1st argument is a macro name, parse and execute it in the current environnement
-        if (in[0]->getAs<MacroFile>()->parse() == false)
-        {
-            char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
-            Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
-            FREE(pstMacro);
-            mclose(iID);
-            return Function::Error;
-        }
-        pExp = in[0]->getAs<MacroFile>()->getMacro()->getBody();
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
-        return Function::Error;
-    }
-
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
     char pstPrompt[64];
     //get prompt
     GetCurrentPrompt(pstPrompt);
     std::string stPrompt(pstPrompt);
-    //    MessageBoxA(NULL, stPrompt, "", 0);
-
-    wchar_t* pwstFile =  expandPathVariableW(in[0]->getAs<types::String>()->get(0));
-    char* pstFile = wide_string_to_UTF8(pwstFile);
-    std::string stFile(pstFile);
-    std::ifstream file(pstFile);
 
     std::string str;
     int iCurrentLine = -1; //no data in str
@@ -225,12 +244,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             ast::exps_t::iterator k = j;
             //mode == 0, print new variable but not command
-            if (ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
+            if (file && ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
             {
                 int iLastLine = (*j)->getLocation().last_line;
                 do
                 {
-                    str = printExp(file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
+                    str = printExp(*file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
                     iLastLine = (*k)->getLocation().last_line;
                     k++;
                 }
@@ -367,6 +386,23 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
+        catch (const ast::InternalAbort& ia)
+        {
+            if (file)
+            {
+                delete pExp;
+                mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
+            }
+
+            //restore previous prompt mode
+            ConfigVariable::setPromptMode(oldVal);
+
+            throw ia;
+        }
         catch (const ScilabMessage& sm)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
@@ -398,15 +434,32 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
                     }
 
+                    if (file)
+                    {
+                        delete pExp;
+                        mclose(iID);
+                        file->close();
+                        delete file;
+                        FREE(pstFile);
+                        FREE(pwstFile);
+                    }
 
-                    mclose(iID);
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
                     throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
                 }
             }
 
-            mclose(iID);
+            if (file)
+            {
+                delete pExp;
+                mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
+            }
+
             throw ast::ScilabMessage((*j)->getLocation());
         }
         catch (const ast::ScilabError& se)
@@ -423,10 +476,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             iErr = ConfigVariable::getLastErrorNumber();
             if (bErrCatch == false)
             {
-                file.close();
-                //print failed command
-                scilabError(getExpression(stFile, *j).c_str());
-                scilabErrorW(L"\n");
+                if (file)
+                {
+                    //print failed command
+                    scilabError(getExpression(stFile, *j).c_str());
+                    scilabErrorW(L"\n");
+                }
 
                 //write error
                 scilabErrorW(se.GetErrorMessage().c_str());
@@ -435,7 +490,16 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
                 scilabErrorW(szError);
-                mclose(iID);
+                if (file)
+                {
+                    delete pExp;
+                    mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
+                }
+
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
                 //throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
@@ -456,11 +520,16 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         ConfigVariable::setLastErrorCall();
     }
 
-    delete pExp;
-    mclose(iID);
-    file.close();
-    FREE(pstFile);
-    FREE(pwstFile);
+    if (file)
+    {
+        delete pExp;
+        mclose(iID);
+        file->close();
+        delete file;
+        FREE(pstFile);
+        FREE(pwstFile);
+    }
+
     return Function::OK;
 }
 
@@ -508,11 +577,6 @@ std::string getExpression(const std::string& _stFile, Exp* _pExp)
         out += "\n";
     }
     return out;
-}
-
-bool checkPrompt(int _iMode, int _iCheck)
-{
-    return ((_iMode & _iCheck) == _iCheck);
 }
 
 std::string printExp(std::ifstream& _File, Exp* _pExp, const std::string& _stPrompt, int* _piLine /* in/out */, int* _piCol /* in/out */, std::string& _stPreviousBuffer)
@@ -688,7 +752,7 @@ void printLine(const std::string& _stPrompt, const std::string& _stLine, bool _b
     }
 
     st += _stLine;
-    if (_bLF)
+    if (_bLF && ConfigVariable::isEmptyLineShow())
     {
         st += "\n";
     }

@@ -14,7 +14,23 @@ Removed Functions
 
 * IsAScalar removed. Please use isscalar instead.
 
+* msd removed. Please use stdev instead.
+
+* pcg removed. Please use conjgrad instead.
+
 * milk_drop removed.
+
+Scilab Bug Fixes
+================
+
+* Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
+
+* Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
+
+* Bug #13676 fixed - An invisible figure could not be exported.
+
+* Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
+
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
@@ -242,8 +258,6 @@ Scilab Bug Fixes
 
 * Bug #13510 fixed - Datatip callback cleared 'd'.
 
-* Bug #13511 fixed - lcm returned incorrect results when used with doubles.
-
 * Bug #13512 fixed - dae crashed if the evaluation function had wrong prototype.
 
 * Bug #13515 fixed - There were wrong results for matrix/hypermatrix with bitset.
@@ -256,7 +270,7 @@ Scilab Bug Fixes
 
 * Bug #13543 fixed - "slider" uicontrols did not work with the mouse wheel.
 
-* Bug #13554 fixed - rubberbox returned wrong values.
+* Bug #13554 fixed - rubberbox returns wrong values.
 
 * Bug #13579 fixed - bar displayed useless warnings.
 

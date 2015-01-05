@@ -466,5 +466,15 @@ a{2,3} = 2;
 assert_checkequal(size(a), [2 5]);
 clear a;
 
+tl = tlist(["mytlist", "f1"], 12);
+ml = mlist(["mymlist", "f"], tl);
+mml = mlist(["mymmlist", "ff1"], ml);
+
+mml(list("ff1", "f", 2)) = 14;
+
+assert_checkequal(tl.f1, 12);
+assert_checkequal(ml.f.f1, 12);
+assert_checkequal(mml.ff1.f.f1, 14);
+
 funcprot(oldFuncProt);
 

@@ -27,9 +27,9 @@ int sci_sparsefunc (char *fname, unsigned long fname_len);
 int sci_spget (char *fname, unsigned long fname_len);
 int sci_full (char *fname, unsigned long fname_len);
 //int sci_lufact (char *fname, unsigned long fname_len); -> c++
-int sci_lusolve (char *fname, unsigned long fname_len);
-int sci_ludel (char *fname, unsigned long fname_len);
-int sci_luget (char *fname, unsigned long fname_len);
+//int sci_lusolve (char *fname, unsigned long fname_len);
+//int sci_ludel (char *fname, unsigned long fname_len);
+//int sci_luget (char *fname, unsigned long fname_len);
 SPARSE_IMPEXP int sci_spclean (char *fname, unsigned long fname_len);
 int sci_nnz (char *fname, unsigned long fname_len);
 int sci_spmatrix (char *fname, unsigned long fname_len);

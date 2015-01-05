@@ -27,21 +27,10 @@ static gw_generic_table Tab[] =
     {sci_mpi_irecv, "MPI_Irecv"},
     {sci_mpi_isend, "MPI_Isend"},
     {sci_mpi_wait, "MPI_Wait"}
-
 };
 /*-----------------------------------------------------------------------------------*/
 int gw_mpi(void)
 {
-    Rhs = Max(0, Rhs);
-
-    if (pvApiCtx == NULL)
-    {
-        pvApiCtx = (StrCtx*)MALLOC(sizeof(StrCtx));
-    }
-
-    pvApiCtx->pstName = (char*)Tab[Fin - 1].name;
-    callFunctionFromGateway(Tab, SIZE_CURRENT_GENERIC_TABLE(Tab));
-    return 0;
 }
 
 /*-----------------------------------------------------------------------------------*/

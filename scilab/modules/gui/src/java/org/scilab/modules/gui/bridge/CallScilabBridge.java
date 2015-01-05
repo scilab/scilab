@@ -30,6 +30,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 
 import javax.print.Doc;
 import javax.print.DocFlavor;
@@ -347,7 +348,22 @@ public class CallScilabBridge {
      * @param id the id of the messageBox
      */
     public static void messageBoxDisplayAndWait(int id) {
-        ((MessageBox) UIElementMapper.getCorrespondingUIElement(id)).displayAndWait();
+        final int finalId = id;
+        try {
+            SwingUtilities.invokeAndWait(new Runnable() {
+
+                @Override
+                public void run() {
+                    ((MessageBox) UIElementMapper.getCorrespondingUIElement(finalId)).displayAndWait();
+                }
+            });
+        } catch (InterruptedException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**

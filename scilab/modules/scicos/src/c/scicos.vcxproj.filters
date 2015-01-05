@@ -245,6 +245,9 @@
     <ClCompile Include="..\cpp\view_scilab\BlockAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -253,6 +256,9 @@
     </ClCompile>
     <ClCompile Include="..\cpp\view_scilab\ParamsAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_validvar.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

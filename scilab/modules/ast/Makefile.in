@@ -214,6 +214,7 @@ am__libsciast_la_SOURCES_DIST = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
 	src/cpp/types/callable.cpp src/cpp/types/internal.cpp \
+	src/cpp/types/addfunction.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -304,6 +305,7 @@ am_libsciast_la_OBJECTS = src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/types/libsciast_la-macrofile.lo \
 	src/cpp/types/libsciast_la-callable.lo \
 	src/cpp/types/libsciast_la-internal.lo \
+	src/cpp/types/libsciast_la-addfunction.lo \
 	src/cpp/system_env/libsciast_la-dynamic_module.lo \
 	src/cpp/system_env/libsciast_la-setenvvar.lo \
 	src/cpp/system_env/libsciast_la-sci_home.lo \
@@ -750,6 +752,7 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/types/implicitlist.cpp src/cpp/types/macro.cpp \
 	src/cpp/types/struct.cpp src/cpp/types/macrofile.cpp \
 	src/cpp/types/callable.cpp src/cpp/types/internal.cpp \
+	src/cpp/types/addfunction.cpp \
 	src/cpp/system_env/dynamic_module.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/sci_home.cpp \
@@ -763,17 +766,17 @@ libsciast_la_SOURCES = src/cpp/ast/runvisitor.cpp \
 	src/cpp/system_env/configvariable_interface.cpp \
 	$(am__append_1)
 libsciast_la_CPPFLAGS = \
-	-Iincludes/ast \
-	-Iincludes/exps \
-	-Iincludes/operations \
-	-Iincludes/parse \
-	-Iincludes/symbol \
-	-Iincludes/system_env \
-	-Iincludes/types \
-	-Iincludes/jit \
-	-Iincludes/analysis \
-	-Isrc/cpp \
-        -I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(srcdir)/src/cpp \
+	-I$(srcdir)/includes/ast \
+	-I$(srcdir)/includes/exps \
+	-I$(srcdir)/includes/operations \
+	-I$(srcdir)/includes/parse \
+	-I$(srcdir)/includes/symbol \
+	-I$(srcdir)/includes/system_env \
+	-I$(srcdir)/includes/types \
+	-I$(srcdir)/includes/analysis \
+	-I$(srcdir)/includes/jit \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -905,6 +908,7 @@ includes/ast/deserializervisitor.hxx \
 includes/ast/dynlib_ast.h \
 includes/ast/execvisitor.hxx \
 includes/ast/dummyvisitor.hxx \
+includes/types/addfunction.h \
 includes/types/dollar.hxx \
 includes/types/user.hxx \
 includes/types/bool.hxx \
@@ -1357,6 +1361,9 @@ src/cpp/types/libsciast_la-callable.lo: src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-internal.lo: src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
+src/cpp/types/libsciast_la-addfunction.lo:  \
+	src/cpp/types/$(am__dirstamp) \
+	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/system_env
 	@: > src/cpp/system_env/$(am__dirstamp)
@@ -1494,6 +1501,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-sci_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-sci_tmpdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-setenvvar.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-arrayof.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-bool.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/types/$(DEPDIR)/libsciast_la-callable.Plo@am__quote@
@@ -2101,6 +2109,13 @@ src/cpp/types/libsciast_la-internal.lo: src/cpp/types/internal.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/internal.cpp' object='src/cpp/types/libsciast_la-internal.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-internal.lo `test -f 'src/cpp/types/internal.cpp' || echo '$(srcdir)/'`src/cpp/types/internal.cpp
+
+src/cpp/types/libsciast_la-addfunction.lo: src/cpp/types/addfunction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-addfunction.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Tpo -c -o src/cpp/types/libsciast_la-addfunction.lo `test -f 'src/cpp/types/addfunction.cpp' || echo '$(srcdir)/'`src/cpp/types/addfunction.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/types/addfunction.cpp' object='src/cpp/types/libsciast_la-addfunction.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-addfunction.lo `test -f 'src/cpp/types/addfunction.cpp' || echo '$(srcdir)/'`src/cpp/types/addfunction.cpp
 
 src/cpp/system_env/libsciast_la-dynamic_module.lo: src/cpp/system_env/dynamic_module.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-dynamic_module.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Tpo -c -o src/cpp/system_env/libsciast_la-dynamic_module.lo `test -f 'src/cpp/system_env/dynamic_module.cpp' || echo '$(srcdir)/'`src/cpp/system_env/dynamic_module.cpp

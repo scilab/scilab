@@ -51,7 +51,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     const wchar_t* pwstBody = wstBody.c_str();
 
     //first loop to find number of lines
-    int iLines = 0;
+    int iLines = 2; //for first and last one-space lines
     for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
     {
         if (pwstBody[i] == L'\n')
@@ -61,10 +61,10 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     }
 
     String* pBody = new String(iLines, 1);
-
+    pBody->set(0, L" ");
     //second loop to assign lines to output data
     int iOffset = 0;
-    int iIndex = 0;
+    int iIndex = 1;
     for (int i = 0 ; i < (int)wcslen(pwstBody) ; i++)
     {
         if (pwstBody[i] == L'\n')
@@ -79,6 +79,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
         }
     }
 
+    pBody->set(iIndex, L" ");
     *_pBody = pBody;
 
     //get inputs
@@ -142,6 +143,27 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
     dfI.bPrintPoint = dfI.bExp;
     dfI.bPaddSign = false;
 
+    // decrease precision when the real number will be rounded
+    // format(10) with number 1.12345678 should return 1.1234568
+    if (dfR.iWidth == ConfigVariable::getFormatSize())
+    {
+        if (dfR.iPrec != 0)
+        {
+            dfR.iPrec--;
+        }
+
+        dfR.iWidth--;
+    }
+
+    if (dfI.iWidth == ConfigVariable::getFormatSize())
+    {
+        if (dfI.iPrec != 0)
+        {
+            dfI.iPrec--;
+        }
+
+        dfI.iWidth--;
+    }
 
     if (_dblR == 0)
     {
@@ -160,7 +182,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             //I
             *_postr << (_dblI < 0 ? L"-" : L"");
             *_postr << L"%i";
-            if (fabs(_dblI) != 1)
+            if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //specail case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
@@ -186,7 +208,7 @@ static void DoubleComplexMatrix2String(std::wostringstream *_postr,  double _dbl
             addDoubleValue(_postr, _dblR, &dfR);
             //I
             *_postr << (_dblI < 0 ? L"-%i" : L"+%i");
-            if (fabs(_dblI) != 1)
+            if (fabs(_dblI) != 1 || dfI.bExp)
             {
                 //special case if I == 1 write only %i and not %i*1
                 *_postr << L"*";
@@ -206,7 +228,7 @@ Function::ReturnValue intString(T* pInt, typed_list &out)
     for (int i = 0 ; i < iSize ; i++)
     {
         std::wostringstream ostr;
-        DoubleComplexMatrix2String(&ostr, pInt->get(i), 0);
+        DoubleComplexMatrix2String(&ostr, (double)pInt->get(i), 0);
         pstOutput->set(i, ostr.str().c_str());
     }
 
@@ -273,6 +295,20 @@ Function::ReturnValue doubleString(types::Double* pDbl, typed_list &out)
     return Function::OK;
 }
 
+Function::ReturnValue implicitListString(types::ImplicitList* pIL, typed_list &out)
+{
+    std::wostringstream ostr;
+    pIL->toString(ostr);
+    wstring str = ostr.str();
+    //erase fisrt character " "
+    str.erase(str.begin());
+    //erase last character "\n"
+    str.erase(str.end() - 1);
+
+    out.push_back(new String(str.c_str()));
+    return Function::OK;
+}
+
 Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out)
 {
     if (in.size() != 1)
@@ -292,7 +328,6 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             bool isComplex = pS->isComplex();
             std::wostringstream ostr;
             std::vector<std::wstring> vect;
-            int st;
             string *stemp = new string();
 
 
@@ -345,7 +380,7 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
                 }
             }
 
-            types::String* pSt = new String(vect.size(), 1);
+            types::String* pSt = new String((int)vect.size(), 1);
             for (int i = 0 ; i < vect.size(); i++)
             {
                 pSt->set(i, vect[i].c_str());
@@ -396,6 +431,11 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(in[0]);
             break;
         }
+        case GenericType::ScilabFunction:
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d.\n"), "string", 1);
+            return Function::Error;
+        }
         case GenericType::ScilabMacroFile :
         {
             if (_iRetCount != 3)
@@ -443,11 +483,36 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
             return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
         }
-        case GenericType::ScilabBool :
+        case GenericType::ScilabBool:
         {
             return booleanString(in[0]->getAs<Bool>(), out);
         }
-        default :
+        case GenericType::ScilabLibrary:
+        {
+            Library* pL = in[0]->getAs<Library>();
+            std::wstring path = pL->getPath();
+            std::list<std::wstring>* macros = pL->getMacrosName();
+            String* pS = new String((int)macros->size() + 1, 1);
+            pS->set(0, path.c_str());
+            int i = 1;
+            for (auto it = macros->begin(), itEnd = macros->end(); it != itEnd; ++it, ++i)
+            {
+                pS->set(i, (*it).c_str());
+            }
+
+            out.push_back(pS);
+            break;
+        }
+        case GenericType::ScilabImplicitList:
+        {
+            return implicitListString(in[0]->getAs<ImplicitList>(), out);
+        }
+        case GenericType::ScilabColon:
+        {
+            out.push_back(new String(L""));
+            break;
+        }
+        default:
         {
             std::wostringstream ostr;
             in[0]->toString(ostr);

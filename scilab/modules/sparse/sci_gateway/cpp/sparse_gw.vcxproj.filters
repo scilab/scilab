@@ -54,6 +54,15 @@
     <ClCompile Include="sci_lufact.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_lusolve.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_luget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_ludel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\sparse_gw.hxx">

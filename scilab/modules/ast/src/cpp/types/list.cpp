@@ -20,6 +20,7 @@
 #include "localization.hxx"
 #include "scilabWrite.hxx"
 #include "types_tools.hxx"
+#include "function.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -99,7 +100,7 @@ int List::getSize()
 */
 void List::append(InternalType *_typedValue)
 {
-    m_plData->push_back(_typedValue->clone());
+    m_plData->push_back(_typedValue);
     m_plData->back()->IncreaseRef();
     m_iSize = static_cast<int>(m_plData->size());
 }
@@ -122,7 +123,6 @@ bool List::toString(std::wostringstream& ostr)
     {
         ostr.str(L"");
         ostr << L"     ()" << std::endl;
-        scilabWriteW(ostr.str().c_str());
     }
     else
     {
@@ -133,12 +133,18 @@ bool List::toString(std::wostringstream& ostr)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
-            nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
+            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition << L")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
             scilabWriteW(ostr.str().c_str());
-            VariableToString(*itValues, nextVarName.str().c_str());
+            if (VariableToString(*itValues, nextVarName.str().c_str()) == types::Function::Error)
+            {
+                free(wcsVarName);
+                ostr.str(L"");
+                return true;
+            }
         }
 
+        ostr.str(L"");
         free(wcsVarName);
     }
 

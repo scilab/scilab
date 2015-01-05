@@ -5,7 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Allocate a SuperBlock and access its fields
 sb = SUPER_f("define")
@@ -46,3 +49,7 @@ clk.model.rpar.objs(5).from
 clk.model.rpar.objs(5).to
 clk.model.rpar.objs(6).from
 clk.model.rpar.objs(6).to
+
+
+// Check that all the model items are freed
+clear sb clk

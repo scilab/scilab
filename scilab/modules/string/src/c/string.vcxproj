@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -121,7 +121,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -162,7 +162,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -211,7 +211,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/Eigen/includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -252,6 +252,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\os_wtoi.cpp" />
     <ClCompile Include="..\cpp\sort_inter.cpp" />
     <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
@@ -324,6 +325,7 @@ lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pl
     <ClInclude Include="..\..\includes\os_wcsdup.h" />
     <ClInclude Include="..\..\includes\os_wcsicmp.h" />
     <ClInclude Include="..\..\includes\os_wcstok.h" />
+    <ClInclude Include="..\..\includes\os_wtoi.h" />
     <ClInclude Include="..\..\includes\pcre_private.h" />
     <ClInclude Include="..\..\includes\scistrtostr.h" />
     <ClInclude Include="..\..\includes\stricmp.h" />

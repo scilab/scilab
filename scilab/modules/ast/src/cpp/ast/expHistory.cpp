@@ -19,16 +19,16 @@
 ** Constructor & Destructor (public)
 */
 
-ExpHistory::ExpHistory() : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(NULL), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
+ExpHistory::ExpHistory() : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(NULL), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false), m_bDeleteCurrent(false)
 {
 }
 
 
-ExpHistory::ExpHistory(ExpHistory* _pEH, ast::SimpleVar* _pExp) : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(_pExp), m_pParent(_pEH), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
+ExpHistory::ExpHistory(ExpHistory* _pEH, ast::SimpleVar* _pExp) : m_pArgs(NULL), m_piArgsDimsArray(NULL), m_pExp(_pExp), m_pParent(_pEH), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false), m_bDeleteCurrent(false)
 {
 }
 
-ExpHistory::ExpHistory(ExpHistory* _pParent, types::typed_list* _pArgs) : m_pArgs(_pArgs), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(_pParent), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false)
+ExpHistory::ExpHistory(ExpHistory* _pParent, types::typed_list* _pArgs) : m_pArgs(_pArgs), m_piArgsDimsArray(NULL), m_pExp(NULL), m_pParent(_pParent), m_pITCurrent(NULL), m_bReinsertMe(false), m_bCellExp(false), m_iArgsDims(0), m_iWhere(-1), m_iLevel(0), m_pArgsOwner(false), m_pExpOwner(false), m_bDeleteCurrent(false)
 {
 }
 
@@ -44,7 +44,8 @@ ExpHistory::ExpHistory(ExpHistory* _pParent, ast::SimpleVar* _pExp, types::typed
     m_iWhere(-1),
     m_iLevel(_iLevel),
     m_pArgsOwner(false),
-    m_pExpOwner(false)
+    m_pExpOwner(false),
+    m_bDeleteCurrent(false)
 {
 }
 
@@ -70,6 +71,11 @@ ExpHistory::~ExpHistory()
 
         delete m_pArgs;
         m_pArgs = NULL;
+    }
+
+    if (m_pITCurrent && m_bDeleteCurrent)
+    {
+        m_pITCurrent->killMe();
     }
 }
 
@@ -116,6 +122,11 @@ void ExpHistory::setArgsOwner(bool owner)
 void ExpHistory::setExpOwner(bool owner)
 {
     m_pExpOwner = owner;
+}
+
+void ExpHistory::setDeleteCurrent(bool bDelete)
+{
+    m_bDeleteCurrent = bDelete;
 }
 
 void ExpHistory::computeArgs()

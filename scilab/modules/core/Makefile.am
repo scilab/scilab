@@ -36,7 +36,6 @@ CORE_C_SOURCES = \
     src/c/getdynamicdebuginfo.c \
     src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
-    src/c/readGateway.c \
     src/c/comparehandles.c \
     src/c/setPrecisionFPU.c \
     src/c/LaunchScilabSignal.c \
@@ -132,8 +131,7 @@ GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_user.c \
 	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
-	sci_gateway/c/sci_getdebuginfo.c \
-	sci_gateway/c/sci_readgateway.c
+	sci_gateway/c/sci_getdebuginfo.c
 
 GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/core_gw.cpp \
@@ -186,7 +184,6 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
-    -I$(top_srcdir)/modules/intersci/includes/ \
     -I$(top_srcdir)/modules/call_scilab/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/action_binding/includes/ \
@@ -210,6 +207,7 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/gui/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/hdf5/includes/ \
+    -I$(top_srcdir)/modules/fftw/includes/ \
     $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)

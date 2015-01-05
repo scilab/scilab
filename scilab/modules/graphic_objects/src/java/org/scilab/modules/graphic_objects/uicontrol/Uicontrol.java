@@ -15,6 +15,8 @@
 package org.scilab.modules.graphic_objects.uicontrol;
 
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BORDER_OPT_PADDING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_ENABLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_EVENTHANDLER_NAME__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_GRID__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_OPT_PADDING__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LAYOUT_SET__;
@@ -81,6 +83,7 @@ import java.util.Arrays;
 import java.util.StringTokenizer;
 
 import org.scilab.modules.graphic_objects.console.Console;
+import org.scilab.modules.graphic_objects.event.EventHandler;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.utils.LayoutType;
@@ -478,7 +481,8 @@ public class Uicontrol extends GraphicObject {
     private Boolean titleScroll = false;
     private TitlePositionType titlePosition = TitlePositionType.TOP;
 
-
+    private EventHandler eventHandler;
+    
     /**
      * All uicontrol properties
      */
@@ -530,7 +534,9 @@ public class Uicontrol extends GraphicObject {
         TITLE_POSITION,
         TITLE_SCROLL,
         SCROLLABLE,
-        ICON
+        ICON,
+        EVENTHANDLER,
+        EVENTHANDLERENABLE
     };
 
     /**
@@ -559,6 +565,7 @@ public class Uicontrol extends GraphicObject {
      */
     public Uicontrol() {
         super();
+        eventHandler = new EventHandler();
         setVisible(false); /* To avoid to see the object rendered before all its properties to be set (See bug #10346) */
 
         if (Console.getConsole().getUseDeprecatedLF()) {
@@ -766,6 +773,10 @@ public class Uicontrol extends GraphicObject {
                 return UicontrolProperty.SCROLLABLE;
             case __GO_UI_ICON__:
                 return UicontrolProperty.ICON;
+            case __GO_EVENTHANDLER_NAME__:
+                return UicontrolProperty.EVENTHANDLER;
+            case __GO_EVENTHANDLER_ENABLE__:
+                return UicontrolProperty.EVENTHANDLERENABLE;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -869,6 +880,10 @@ public class Uicontrol extends GraphicObject {
             return getScrollable();
         } else if (property == UicontrolProperty.ICON) {
             return getIcon();
+        } else if (property == UicontrolProperty.EVENTHANDLER) {
+            return getEventHandler();
+        } else if (property == UicontrolProperty.EVENTHANDLERENABLE) {
+            return getEventHandlerEnable();
         } else {
             return super.getProperty(property);
         }
@@ -969,6 +984,10 @@ public class Uicontrol extends GraphicObject {
                 return setScrollable((Boolean) value);
             case ICON:
                 return setIcon((String) value);
+            case EVENTHANDLER:
+                return setEventHandler((String) value);
+            case EVENTHANDLERENABLE:
+                return setEventHandlerEnable((Boolean) value);
             default:
                 return super.setProperty(property, value);
         }
@@ -1737,6 +1756,22 @@ public class Uicontrol extends GraphicObject {
         return icon;
     }
 
+    public UpdateStatus setEventHandler(String eventHandlerName) {
+        return eventHandler.setEventHandlerString(eventHandlerName);
+    }
+
+    public String getEventHandler() {
+        return eventHandler.getEventHandlerString();
+    }
+    
+    public UpdateStatus setEventHandlerEnable(Boolean eventHandlerEnabled) {
+        return eventHandler.setEventHandlerEnabled(eventHandlerEnabled);
+    }
+    
+    public boolean getEventHandlerEnable() {
+        return eventHandler.getEventHandlerEnabled();
+    }
+    
     public void accept(Visitor visitor) {
     }
 }

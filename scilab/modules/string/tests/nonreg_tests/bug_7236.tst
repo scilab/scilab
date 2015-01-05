@@ -21,7 +21,7 @@ if sci2exp(-%inf)<>"-%inf" then pause,end
 if sci2exp(%nan)<>"%nan" then pause,end
 if string(%inf)<>"Inf"  then pause,end
 if string(-%inf)<>"-Inf"  then pause,end
-if string(1-imult(%inf))<>" 1-%i*Inf"  then pause,end
-if string(1+imult(%inf))<>" 1+%i*Inf"  then pause,end
-if sci2exp(1-imult(%inf))<>" 1-%i*%inf"  then pause,end
-if sci2exp(1+imult(%inf))<>" 1+%i*%inf"  then pause,end
+if string(1-imult(%inf))<>"1-%i*Inf"  then pause,end
+if string(1+imult(%inf))<>"1+%i*Inf"  then pause,end
+if sci2exp(1-imult(%inf))<>"1-%i*%inf"  then pause,end
+if sci2exp(1+imult(%inf))<>"1+%i*%inf"  then pause,end

@@ -22,7 +22,7 @@
                 <term>k=0</term>
                 <listitem>
                     <para>os novos valores de variáveis são exibidos, se requeridos (ver
-                        ajuda em semi ou comma). 
+                        ajuda em semi ou comma).
                     </para>
                 </listitem>
             </varlistentry>
@@ -39,7 +39,7 @@
                 <listitem>
                     <para>cada linha de instruções é ecoada precedida do prompt (se
                         possível). Os novos valores de variáveis são exibidos, se requerido.
-                        Este é o padrão para arquivos executáveis. 
+                        Este é o padrão para arquivos executáveis.
                     </para>
                 </listitem>
             </varlistentry>
@@ -56,8 +56,7 @@
                 </listitem>
             </varlistentry>
         </variablelist>
-        <para>A exibição de linha é desabilitada para funções do Scilab compiladas
-            (ver comp). Por padrão, funções do Scilab são executadas no modo
+        <para>Por padrão, funções do Scilab são executadas no modo
             "silencioso" ("-1").
         </para>
     </refsection>

@@ -5,7 +5,10 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- CLI SHELL MODE -->
+
 loadXcosLibs();
+scicos_log("TRACE");
 
 // Allocate a summation block
 o = BIGSOM_f("define")
@@ -57,6 +60,20 @@ o = BIGSOM_f("set", o)
 o.graphics
 o.model
 
+// Now set the parameters to the defaults values (eg. removing ports)
+p = funcprot();
+funcprot(0);
+function [ok,sgn,exprs] = scicos_getvalue(title, field, Type, exprs)
+    ok = %t;
+    sgn = [1; 1];
+    exprs = sci2exp(sgn);
+endfunction
+funcprot(p);
+
+o = BIGSOM_f("set", o)
+o.graphics
+o.model
+
 // Try with another block containing event inputs
 o = CSCOPE("define")
 o.graphics
@@ -88,9 +105,27 @@ o = CSCOPE("set", o)
 // Test 'opar' and 'odstate'
 o = LOGIC("define")
 o.model.opar
-typeof(o.model.opar(1))
-o.model.opar = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
-o.model.opar
+assert_checkequal(typeof(o.model.opar(1)), "int8");
+listRef = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
 
-o.model.odstate = list([1 2 3; 4 5 6], ["Hello" "world!"; "Test" "123"], [%i 2 3*%i; 4 5*%i 6], uint32([32 32; 32 32]));
-o.model.odstate
+o.model.odstate = listRef;
+assert_checkequal(o.model.odstate, listRef);
+
+// Test 'equations'
+o = VsourceAC("define")
+o.model.equations
+listRef = modelica();
+o.model.equations = listRef;
+assert_checkequal(o.model.equations, listRef);
+
+// Test 'exprs' with Modelica Block
+o = MBLOCK("define")
+o.graphics
+o.graphics.exprs
+o.model.equations
+
+
+// Check that all the model items are freed
+clear

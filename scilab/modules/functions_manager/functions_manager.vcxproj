@@ -244,6 +244,9 @@
       <Project>{9881f0ce-a1ac-4744-b709-7c1453a77b95}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\fftw\fftw.vcxproj">
+      <Project>{13b86307-5a11-48d6-94be-71f77bcb82d1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\fileio\sci_gateway\cpp\fileio_gw.vcxproj">
       <Project>{6d9647ce-9cb9-4b16-b34d-8542484efbb0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>

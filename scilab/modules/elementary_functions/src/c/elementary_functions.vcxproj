@@ -237,7 +237,6 @@ lib /DEF:"$(ProjectDir)cacsd_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfor
     <ClCompile Include="f2c_workaround.c" />
     <ClCompile Include="finite.c" />
     <ClCompile Include="floor.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_elementary_functions.c" />
     <ClCompile Include="idmax.c" />
     <ClCompile Include="idmin.c" />
     <ClCompile Include="int2db.c" />

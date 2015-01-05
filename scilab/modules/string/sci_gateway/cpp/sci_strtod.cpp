@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_strtod(types::typed_list &in, int _iRetCount, t
         {
             for (int j = 0 ; j < iKey ; j++)
             {
-                if (pstStr[j] != ' ') // spaces are accepted
+                if ((pstStr[j] != ' ') && (pstStr[j] != '\t') && (pstStr[j] != '\r'))// spaces are accepted
                 {
                     pOutDouble->set(i, dblNan);
                     bStop = true;

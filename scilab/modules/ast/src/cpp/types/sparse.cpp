@@ -204,11 +204,10 @@ void doAppend(Src SPARSE_CONST& src, int r, int c, Sp& dest)
              , makeMatrixIterator<data_t>(dest, makeTranslatedIterator(makeNonZerosIterator(src), Coords2D(r, c))));
 }
 
-// TODO : awaiting ggael's response to bug for [sp, sp]
 template<typename Scalar1, typename Scalar2>
-void doAppend(Eigen::SparseMatrix<Scalar1> SPARSE_CONST& src, int r, int c, Eigen::SparseMatrix<Scalar2>& dest)
+void doAppend(Eigen::SparseMatrix<Scalar1, Eigen::RowMajor> SPARSE_CONST& src, int r, int c, Eigen::SparseMatrix<Scalar2, Eigen::RowMajor>& dest)
 {
-    typedef typename Eigen::SparseMatrix<Scalar1>::InnerIterator srcIt_t;
+    typedef typename Eigen::SparseMatrix<Scalar1, Eigen::RowMajor>::InnerIterator srcIt_t;
     for (std::size_t k = 0; k != src.outerSize(); ++k)
     {
         for (srcIt_t it(src, (int)k); it; ++it)
@@ -536,7 +535,6 @@ bool Sparse::toString(std::wostringstream& ostr) const
     }
 
     ostr << res;
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 
@@ -1473,6 +1471,12 @@ InternalType* Sparse::extract(typed_list* _pArgs)
             double* pIdx = pArg[0]->getAs<Double>()->get();
             for (int i = 0 ; i < iSeqCount ; i++)
             {
+                if (pIdx[i] < 1)
+                {
+                    delete pOut;
+                    pOut = NULL;
+                    break;
+                }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
 
@@ -1522,6 +1526,12 @@ InternalType* Sparse::extract(typed_list* _pArgs)
             {
                 for (int iCol = 0 ; iCol < iNewCols ; iCol++)
                 {
+                    if ((pIdxRow[iRow] < 1) || (pIdxCol[iCol] < 1))
+                    {
+                        delete pOut;
+                        pOut = NULL;
+                        break;
+                    }
                     if (isComplex())
                     {
                         std::complex<double> dbl = getImg((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
@@ -1640,8 +1650,7 @@ Sparse* Sparse::add(Sparse const& o) const
     return new Sparse(realSp, cplxSp);
 }
 
-// GenericType because we might return a Double* for scalar operand
-GenericType* Sparse::substract(Sparse const& o) const
+Sparse* Sparse::substract(Sparse const& o) const
 {
     RealSparse_t* realSp(0);
     CplxSparse_t* cplxSp(0);
@@ -2950,6 +2959,12 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
             // Write in output all elements extract from input.
             for (int i = 0 ; i < iSeqCount ; i++)
             {
+                if (pIdx[i] < 1)
+                {
+                    delete pOut;
+                    pOut = NULL;
+                    break;
+                }
                 int iRowRead = static_cast<int>(pIdx[i] - 1) % getRows();
                 int iColRead = static_cast<int>(pIdx[i] - 1) / getRows();
 
@@ -2990,6 +3005,12 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
             {
                 for (int iCol = 0 ; iCol < iNewCols ; iCol++)
                 {
+                    if ((pIdxRow[iRow] < 1) || (pIdxCol[iCol] < 1))
+                    {
+                        delete pOut;
+                        pOut = NULL;
+                        break;
+                    }
                     bool bValue = get((int)pIdxRow[iRow] - 1, (int)pIdxCol[iCol] - 1);
                     if (bValue)
                     {

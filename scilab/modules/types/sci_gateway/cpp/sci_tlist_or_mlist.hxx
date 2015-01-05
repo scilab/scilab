@@ -32,16 +32,20 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
 {
     TorMList* pRetVal = NULL;
 
+    char* pstrFunName = wide_string_to_UTF8(_pstrFunName);
+
     //check input parameters
     if (in.size() < 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), _pstrFunName , 1);
+        Scierror(999, _("%s: Wrong number of input arguments: At least %d expected.\n"), pstrFunName , 1);
+        FREE(pstrFunName);
         return Function::Error;
     }
 
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), _pstrFunName, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), pstrFunName, 1);
+        FREE(pstrFunName);
         return Function::Error;
     }
 
@@ -51,9 +55,12 @@ Function::ReturnValue sci_tlist_or_mlist(typed_list &in, int _piRetCount, typed_
     //check for rational type
     if (pS->getSize() > 0 && wcscmp(pS->get(0), L"r") == 0)
     {
-        Scierror(999, _("%ls: Can not create a %ls with input argument #%d.\n"), _pstrFunName, _pstrFunName, 1);
+        Scierror(999, _("%s: Can not create a %s with input argument #%d.\n"), pstrFunName, pstrFunName, 1);
+        FREE(pstrFunName);
         return Function::Error;
     }
+
+    FREE(pstrFunName);
 
     pRetVal = new TorMList();
     for (unsigned int i = 0 ; i < in.size() ; i++)

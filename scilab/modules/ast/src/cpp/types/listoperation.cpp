@@ -36,7 +36,6 @@ InternalType* ListOperation::clone(void)
 bool ListOperation::toString(std::wostringstream& ostr)
 {
     ostr << L"FIXME : Implement ListOperation::toString" << std::endl;
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 }

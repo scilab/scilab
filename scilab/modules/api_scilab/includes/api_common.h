@@ -364,6 +364,14 @@ extern "C" {
     int checkInputArgumentType(void* _pvCtx, int _iVar, int _iType);
 
     /**
+    * Reshape variable with new size
+    * @param[in] _iDimsArray array of dimensions
+    * @param[in] _iDims number of dimension
+    * @return if the operation succeeded ( 0 ) or not ( !0 )
+    */
+    SciErr reshapeArray(void* _pvCtx, int* _piAddress, int* _iDimsArray, int _iDims);
+
+    /**
      * Check if a matrix is empty
      * @param[in] _piAddress variable address
      * @return 1 for true and 0 for false

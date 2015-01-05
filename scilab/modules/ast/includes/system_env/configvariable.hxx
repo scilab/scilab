@@ -215,6 +215,7 @@ public :
     static void setPromptMode(int _iPromptMode);
     static int getPromptMode(void);
     static bool isPromptShow(void);
+    static bool isEmptyLineShow(void);
 
     static void setSilentError(int _iSilentError);
     static int getSilentError(void);
@@ -398,6 +399,12 @@ public :
     static void setAnalyzerOptions(int _val);
     static int getAnalyzerOptions(void);
 
+    //divide by zero
+private:
+    static bool m_dividebyzero;
+public:
+    static void setDivideByZero(bool _dividebyzero);
+    static bool isDivideByZero(void);
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

@@ -25,7 +25,7 @@
             <varlistentry>
                 <term>p1, p2</term>
                 <listitem>
-                    <para>two real polynomials or two integer scalars (type equal to 1 or 8)</para>
+                    <para>two real polynomials or two integer scalars (type equal to 1, 2 or 8)</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
@@ -61,34 +61,38 @@
         <para>
             <literal>p1*U(1,2)</literal> (or <literal>-p2*U(2,2)</literal>)
         </para>
+        <para>
+            If <literal>p1</literal> or <literal>p2</literal> are given as doubles (type 1), then they are treated as
+            null degree polynomials.
+        </para>
     </refsection>
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
-// Polynomials
-x = poly(0,'x');
+// Polynomial case
+x = poly(0, 'x');
 p1 = (x+1)*(x-3)^5;
 p2 = (x-2)*(x-3)^3;
-[pgcd,U] = bezout(p1, p2)
+[thegcd,U] = bezout(p1, p2)
 det(U)
 clean([p1 p2]*U)
-ppcm = p1*U(1,2)
+thelcm = p1*U(1,2)
 lcm([p1 p2])
 
-// Integers
-i1 = int32(2*3^5);
-i2 = int32(2^3*3^2);
-[thegcd,U] = bezout(i1, i2)
-V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
-[thegcd,U] = gcd(V)
-V*U
-lcm(V)
-
-// Doubles
+// Double case
 i1 = 2*3^5;
 i2 = 2^3*3^2;
 [thegcd,U] = bezout(i1, i2)
 V = [2^2*3^5 2^3*3^2 2^2*3^4*5];
+[thegcd,U] = gcd(V)
+V*U
+lcm(V)
+
+// Integer case
+i1 = int32(2*3^5);
+i2 = int32(2^3*3^2);
+[thegcd,U] = bezout(i1, i2)
+V = int32([2^2*3^5 2^3*3^2 2^2*3^4*5]);
 [thegcd,U] = gcd(V)
 V*U
 lcm(V)

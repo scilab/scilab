@@ -61,7 +61,7 @@ static void mpi_init_internal()
 
 }
 
-int sci_mpi_init(char *fname, unsigned long fname_len)
+int sci_mpi_init(char *fname, void* pvApiCtx)
 {
     int flag;
 

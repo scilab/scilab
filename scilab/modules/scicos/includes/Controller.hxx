@@ -15,6 +15,7 @@
 
 #include <vector>
 #include <map>
+#include <memory>
 
 #include "utilities.hxx"
 #include "Model.hxx"
@@ -33,40 +34,38 @@ namespace org_scilab_modules_scicos
 class SCICOS_IMPEXP Controller
 {
 public:
-    static void delete_all_instances();
-
-    static void register_view(View* v);
+    static View* register_view(const std::string& name, View* v);
     static void unregister_view(View* v);
+    static View* unregister_view(const std::string& name);
+    static View* look_for_view(const std::string& name);
 
     Controller();
-    Controller(const Controller& c);
     ~Controller();
 
     ScicosID createObject(kind_t k);
     void deleteObject(ScicosID uid);
     ScicosID cloneObject(ScicosID uid);
 
-    model::BaseObject* getObject(ScicosID uid);
-    update_status_t setObject(model::BaseObject* o);
+    std::shared_ptr<model::BaseObject> getObject(ScicosID uid) const;
 
     template<typename T>
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T& v) const
     {
-        return _instance->model.getObjectProperty(uid, k, p, v);
+        return m_instance.model.getObjectProperty(uid, k, p, v);
     };
 
     template<typename T>
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, T v)
     {
-        update_status_t status = _instance->model.setObjectProperty(uid, k, p, v);
+        update_status_t status = m_instance.model.setObjectProperty(uid, k, p, v);
         if (status == SUCCESS)
         {
-            for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+            for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
             {
                 (*iter)->propertyUpdated(uid, k, p);
             }
         }
-        for (view_set_t::iterator iter = _instance->allViews.begin(); iter != _instance->allViews.end(); ++iter)
+        for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
         {
             (*iter)->propertyUpdated(uid, k, p, status);
         }
@@ -76,6 +75,7 @@ public:
 private:
 
     typedef std::vector<View*> view_set_t;
+    typedef std::vector<std::string> view_name_set_t;
 
     /**
      * Shared data through all instance of the controllers
@@ -83,6 +83,7 @@ private:
     struct SharedData
     {
         Model model;
+        view_name_set_t allNamedViews;
         view_set_t allViews;
 
         SharedData();
@@ -94,7 +95,7 @@ private:
      *
      * This will be allocated on-demand be Controller::get_instance()
      */
-    static SharedData* _instance;
+    static SharedData m_instance;
 
     /*
      * Methods
@@ -103,7 +104,7 @@ private:
     ScicosID cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid);
 
     template<typename T>
-    void cloneProperties(model::BaseObject* initial, ScicosID clone)
+    void cloneProperties(std::shared_ptr<model::BaseObject> initial, ScicosID clone)
     {
         for (int i = 0; i < MAX_OBJECT_PROPERTIES; ++i)
         {
@@ -121,6 +122,9 @@ private:
 
     void deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
     void deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, ScicosID clone, kind_t k, object_properties_t p, bool cloneIfNotFound);
+    void unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop);
+    void unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop);
+    void deleteVector(ScicosID uid, kind_t k, object_properties_t uid_prop);
 };
 
 } /* namespace org_scilab_modules_scicos */

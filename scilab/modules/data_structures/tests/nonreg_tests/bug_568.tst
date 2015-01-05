@@ -26,4 +26,4 @@
 // exec("e:\testNonReg\bug568.sce");
 
 aa=zeros(4,4,11);
-if execstr('bb(1,1,:)=aa(1,1,:)','errcatch') <> 15 then pause,end
+if execstr("bb(1,1,:)=aa(1,1,:)","errcatch") <> 999 then pause,end

@@ -25,9 +25,7 @@ int C2F(sci_who)(char *fname, unsigned long fname_len);
 int C2F(sci_resume)(char *fname, unsigned long fname_len);
 int C2F(sci_return)(char *fname, unsigned long fname_len);
 int C2F(sci_isdef)(char *fname, unsigned long fname_len);
-int C2F(sci_errcatch)(char *fname, unsigned long fname_len);
 //int C2F(sci_errclear)(char *fname, unsigned long fname_len); -> C++
-int C2F(sci_iserror)(char *fname, unsigned long fname_len);
 C_GATEWAY_PROTOTYPE(C2F(sci_predef));
 int C2F(sci_clearfun)(char *fname, unsigned long fname_len);
 int C2F(sci_funptr)(char *fname, unsigned long fname_len);
@@ -54,8 +52,6 @@ int C2F(sci_with_module)(char *fname, unsigned long fname_len);
 int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname, unsigned long fname_len);
 int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
-int C2F(sci_readgateway)(char *fname, unsigned long fname_len);
-int C2F(sci_comp)(char *fname, unsigned long fname_len);
 
 //C_GATEWAY_PROTOTYPE(sci_typename); -> c++
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);

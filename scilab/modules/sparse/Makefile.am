@@ -31,6 +31,9 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_spzeros.cpp \
     sci_gateway/cpp/sci_spones.cpp \
     sci_gateway/cpp/sci_lufact.cpp \
+    sci_gateway/cpp/sci_lusolve.cpp \
+    sci_gateway/cpp/sci_luget.cpp \
+    sci_gateway/cpp/sci_ludel.cpp \
     sci_gateway/cpp/sci_ordmmd.cpp
 
 
@@ -70,7 +73,7 @@ libscisparse_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscisparse_algo_la_CPPFLAGS = $(libscisparse_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(SPARSE_C_SOURCES) 
+CHECK_SRC = $(SPARSE_C_SOURCES)
 INCLUDE_FLAGS = $(libscisparse_la_CPPFLAGS)
 
 libscisparse_la_LIBADD = libscisparse-algo.la

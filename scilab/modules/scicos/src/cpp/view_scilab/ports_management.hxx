@@ -42,11 +42,11 @@ namespace view_scilab
 template<typename Adaptor, object_properties_t p>
 types::InternalType* get_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, const Controller& controller)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     // Retrieve the identifiers
     std::vector<ScicosID> ids;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), port_kind, ids);
+    controller.getObjectProperty(adaptee, BLOCK, port_kind, ids);
 
     // Translate identifiers: shared variables
     int i = 0;
@@ -102,6 +102,12 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
         }
         case IMPLICIT:
         {
+            if (ids.size() == 0)
+            {
+                // When no port is present, return an empty matrix
+                return types::Double::Empty();
+            }
+
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
@@ -117,7 +123,7 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             types::Double* o = new types::Double((int)ids.size(), 1, &v);
 
             ScicosID diagram;
-            controller.getObjectProperty(adaptee->id(), adaptee->kind(), PARENT_DIAGRAM, diagram);
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, diagram);
 
             std::vector<ScicosID> children;
             if (diagram != 0)
@@ -130,15 +136,20 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 ScicosID id;
                 controller.getObjectProperty(*it, PORT, p, id);
 
-                std::vector<ScicosID>::iterator found = std::find(children.begin(), children.end(), id);
+                v[i] = 0;
 
-                if (found != children.end())
+                if (id == 0)
                 {
-                    v[i] = (double)std::distance(children.begin(), found) + 1;
+                    // Unconnected port, no need to search in 'children'
                 }
                 else
                 {
-                    v[i] = 0;
+                    std::vector<ScicosID>::iterator found = std::find(children.begin(), children.end(), id);
+
+                    if (found != children.end())
+                    {
+                        v[i] = static_cast<double>(std::distance(children.begin(), found)) + 1;
+                    }
                 }
             }
             return o;
@@ -156,11 +167,11 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
 template<typename Adaptor, object_properties_t p>
 bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     // Retrieve the ports identifiers
     std::vector<ScicosID> ids;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), port_kind, ids);
+    controller.getObjectProperty(adaptee, BLOCK, port_kind, ids);
 
     if (v->getType() == types::InternalType::ScilabString)
     {
@@ -193,7 +204,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
             }
             case IMPLICIT:
             {
-                if (current->getSize() != ids.size())
+                if (current->getSize() < static_cast<int>(ids.size()))
                 {
                     return false;
                 }
@@ -237,7 +248,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                     return true;
                 }
 
-                if (current->getSize() < ids.size())
+                if (current->getSize() < static_cast<int>(ids.size()))
                 {
                     return false;
                 }
@@ -265,7 +276,7 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
                 datatypeIndex++;
 
                 // ignore the set without error
-                if (current->getSize() != ids.size())
+                if (current->getSize() != static_cast<int>(ids.size()))
                 {
                     return true;
                 }
@@ -295,8 +306,6 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
     }
     else if (v->getType() == types::InternalType::ScilabBool)
     {
-        types::Bool* current = v->getAs<types::Bool>();
-
         switch (p)
         {
             case FIRING:
@@ -394,11 +403,14 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
                 controller.setObjectProperty(oldSignalSrc, PORT, CONNECTED_SIGNALS, unconnected);
             }
             // Link de-association is not performed as the link will be removed
-            // connect the new link
-            controller.setObjectProperty(newSignal, LINK, SOURCE_PORT, 0);
-            controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, newSignal);
-            children.erase(std::find(children.begin(), children.end(), oldSignal));
-            deletedObjects.push_back(oldSignal);
+            // connect the new link if there is one
+            if (newSignal != 0)
+            {
+                controller.setObjectProperty(newSignal, LINK, SOURCE_PORT, 0);
+                controller.setObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, newSignal);
+                children.erase(std::find(children.begin(), children.end(), oldSignal));
+                deletedObjects.push_back(oldSignal);
+            }
         }
     }
     else
@@ -487,7 +499,7 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
 template<typename Adaptor, object_properties_t p>
 bool update_ports_property(const Adaptor& adaptor, const object_properties_t port_kind, Controller& controller, types::InternalType* v)
 {
-    model::Block* adaptee = adaptor.getAdaptee();
+    ScicosID adaptee = adaptor.getAdaptee()->id();
 
     if (v->getType() != types::InternalType::ScilabDouble)
     {
@@ -496,7 +508,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     types::Double* value = v->getAs<types::Double>();
 
     ScicosID parentDiagram;
-    controller.getObjectProperty(adaptee->id(), BLOCK, PARENT_DIAGRAM, parentDiagram);
+    controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
 
     std::vector<ScicosID> children;
     if (parentDiagram != 0)
@@ -508,7 +520,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
 
     // retrieve old data
     std::vector<ScicosID> oldPorts;
-    controller.getObjectProperty(adaptee->id(), adaptee->kind(), port_kind, oldPorts);
+    controller.getObjectProperty(adaptee, BLOCK, port_kind, oldPorts);
     std::vector<ScicosID> previousPorts = oldPorts;
 
     double* d = value->getReal();
@@ -570,7 +582,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             deletedObjects.push_back(oldPort);
         }
 
-        controller.setObjectProperty(adaptee->id(), BLOCK, port_kind, previousPorts);
+        controller.setObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
     }
 
     // added ports
@@ -582,7 +594,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             newPorts.pop_back();
 
             ScicosID id = controller.createObject(PORT);
-            controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee->id());
+            controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee);
             switch (port_kind)
             {
                 case INPUTS:
@@ -604,7 +616,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             previousPorts.push_back(id);
         }
 
-        controller.setObjectProperty(adaptee->id(), BLOCK, port_kind, previousPorts);
+        controller.setObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
     }
 
     // remove objects from the model after de-association

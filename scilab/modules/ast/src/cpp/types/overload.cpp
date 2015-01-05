@@ -43,10 +43,8 @@ std::wstring Overload::buildOverloadName(std::wstring _stFunctionName, types::ty
             {
                 return L"%" + stType0 + L"_" + _stFunctionName + L"_" + in[1]->getShortTypeStr();
             }
-        case 1:
+        default:
             return L"%" + stType0 + L"_" + _stFunctionName;
-        default :
-            throw ast::ScilabError(L"Don't know how to overload " + _stFunctionName, 246, *new Location());
     }
     return _stFunctionName;
 }

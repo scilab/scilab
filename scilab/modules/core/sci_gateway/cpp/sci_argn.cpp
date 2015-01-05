@@ -91,6 +91,10 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
     {
         Double* pD = new Double(0);
         out.push_back(pD);
+        if (_iRetCount == 2)
+        {
+            out.push_back(pD);
+        }
     }
     else
     {

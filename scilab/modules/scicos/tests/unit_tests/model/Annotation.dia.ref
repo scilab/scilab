@@ -5,6 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 loadXcosLibs();
+scicos_log("TRACE");
 p = funcprot();
 funcprot(0);
 // Overload scicos_getvalue and xstringl to customize parameters
@@ -28,11 +29,11 @@ propertyUpdated( 1 , ANNOTATION , DESCRIPTION ) : NO_CHANGES
 propertyUpdated( 1 , ANNOTATION , FONT ) : NO_CHANGES
 propertyUpdated( 1 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
 o  = 
-scicos_Text type :
-  graphics
-  model
-  void
-  gui
+GUI     : 
+Graphics: 
+          orig = [0,0]
+          sz = [2,1]
+          exprs = ["Text";"2";"1"]
 o.graphics
  ans  =
 orig = [0,0]
@@ -40,9 +41,7 @@ sz = [2,1]
 exprs = ["Text";"2";"1"]
 o.model
  ans  =
- type: 0
-rpar = []
-ipar = []
+    []
 o.void
  ans  =
     []
@@ -63,13 +62,13 @@ propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS
 propertyUpdated( 2 , ANNOTATION , DESCRIPTION ) : SUCCESS
 propertyUpdated( 2 , ANNOTATION , FONT ) : SUCCESS
 propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : SUCCESS
-objectDeleted( 1 )
+objectDeleted( 1 , ANNOTATION )
 o  = 
-scicos_Text type :
-  graphics
-  model
-  void
-  gui
+GUI     : 
+Graphics: 
+          orig = [0,0]
+          sz = [3,4]
+          exprs = ["newText";"3";"4"]
 close;
 o.graphics
  ans  =
@@ -78,12 +77,13 @@ sz = [3,4]
 exprs = ["newText";"3";"4"]
 o.model
  ans  =
- type: 0
-rpar = []
-ipar = []
+    []
 o.void
  ans  =
     []
 o.gui
  ans  =
     []
+// Check that all the model items are freed
+clear
+objectDeleted( 2 , ANNOTATION )

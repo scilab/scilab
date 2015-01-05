@@ -14,9 +14,11 @@
 #define BLOCKADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "utilities.hxx"
 #include "BaseAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -27,7 +29,8 @@ namespace view_scilab
 class BlockAdapter : public BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    BlockAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
+    BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee);
+    BlockAdapter(const BlockAdapter& adapter);
     ~BlockAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -38,9 +41,15 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
+    DiagramAdapter* getDiagram() const;
+    void setDiagram(DiagramAdapter* newDiagram);
+
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
+
 private:
+    DiagramAdapter* diagramAdapter;
+
     types::InternalType* doc_content;
 };
 

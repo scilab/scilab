@@ -13,3 +13,4 @@ error(msprintf(gettext("%s: Could not find ''%s'': Please check that macros have
       "startModule", "SCI/modules/core/macros/lib"));
 end
 load('SCI/modules/core/macros/lib');
+intppty("core", "add");

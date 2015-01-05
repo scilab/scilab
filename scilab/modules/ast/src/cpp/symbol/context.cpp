@@ -9,12 +9,22 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+#include <iomanip>
+#include <cctype>
+
 #include "context.hxx"
 #include "internal.hxx"
 #include "function.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "variables.hxx"
+#include "configvariable.hxx"
+
+extern "C"
+{
+#include "getmemory.h"
+#include "os_swprintf.h"
+}
 
 namespace symbol
 {
@@ -128,12 +138,11 @@ types::InternalType* Context::get(const Symbol& _key)
 types::InternalType* Context::get(const Variable* _var)
 {
     types::InternalType* pIT = _var->get();
-
     if (pIT == NULL)
     {
         //look in libraries
         pIT = libraries.get(_var->getSymbol(), -1);
-        if (pIT)
+        if (pIT && pIT->isLibrary() == false)
         {
             put((Variable*)_var, pIT);
         }
@@ -165,11 +174,6 @@ types::InternalType* Context::get(const Symbol& _key, int _iLevel)
         {
             //find in libraries
             pIT = libraries.get(_key, _iLevel);
-            if (pIT)
-            {
-                //add symbol to current scope
-                put(_key, pIT);
-            }
         }
     }
 
@@ -198,7 +202,16 @@ std::list<Symbol>* Context::getFunctionList(std::wstring _stModuleName)
 
 std::list<std::wstring>* Context::getVarsName()
 {
-    return variables.getVarsName();
+    std::list<std::wstring>* vars = variables.getVarsName();
+    std::list<std::wstring>* libs = libraries.getVarsName();
+    vars->insert(vars->end(), libs->begin(), libs->end());
+    delete libs;
+
+    for (auto it = globals->begin(), itEnd = globals->end(); it != itEnd; ++it)
+    {
+        vars->push_back((*it).getName());
+    }
+    return vars;
 }
 
 std::list<std::wstring>* Context::getMacrosName()
@@ -215,18 +228,36 @@ std::list<std::wstring>* Context::getFunctionsName()
     return variables.getFunctionsName();
 }
 
+std::list<std::wstring>* Context::getVarsNameForWho(bool bSorted)
+{
+    std::list<std::wstring>* lstVar = new std::list<std::wstring>();
+    int iZero = 0;
+    variables.getVarsNameForWho(lstVar, &iZero, NULL, &iZero, bSorted);
+    return lstVar;
+}
+
+std::list<std::wstring>* Context::getGlobalNameForWho(bool bSorted)
+{
+    std::list<std::wstring>* lstVar = new std::list<std::wstring>();
+    int iZero = 0;
+    variables.getVarsNameForWho(NULL, &iZero, lstVar, &iZero, bSorted);
+    return lstVar;
+}
+
 void Context::put(Variable* _var, types::InternalType* _pIT)
 {
-    _var->put(_pIT, m_iLevel);
-    if (varStack.empty() == false)
-    {
-        (*varStack.top())[_var->getSymbol()] = _var;
-    }
-
     if (_pIT->isLibrary())
     {
         Library* lib = libraries.getOrCreate(_var->getSymbol());
         lib->put((types::Library*)_pIT, m_iLevel);
+    }
+    else
+    {
+        _var->put(_pIT, m_iLevel);
+        if (varStack.empty() == false)
+        {
+            (*varStack.top())[_var->getSymbol()] = _var;
+        }
     }
 }
 
@@ -321,27 +352,121 @@ void Context::setGlobal(const Symbol& _key)
 void Context::removeGlobal(const Symbol& _key)
 {
     variables.removeGlobal(_key, m_iLevel);
+    globals->remove(_key);
 }
 
 void Context::removeGlobalAll()
 {
     std::list<Symbol>::iterator it = globals->begin();
-    for (; it != globals->end(); ++it)
+    while (it != globals->end())
     {
         removeGlobal(*it);
+        it = globals->begin();
     }
 
     globals->clear();
 }
 
-void Context::print(std::wostream& ostr) const
+void Context::print(std::wostream& ostr, bool sorted) const
 {
-    ostr << L"  Environment Variables:" << std::endl;
-    ostr << L"==========================" << std::endl;
+    std::list<std::wstring> lstVar;
+    std::list<std::wstring> lstGlobal;
+    int iVarLenMax = 10; // initialise to the minimal value of padding
+    int iGlobalLenMax = 10; // initialise to the minimal value of padding
+    variables.getVarsNameForWho(&lstVar, &iVarLenMax, &lstGlobal, &iGlobalLenMax);
+    libraries.getVarsNameForWho(&lstVar, &iVarLenMax);
+
+    if (sorted)
+    {
+        lstVar.sort();
+        lstGlobal.sort();
+    }
+
+#define strSize 64
+    wchar_t wcsVarElem[strSize];
+    wchar_t wcsVarVariable[strSize];
+    wchar_t wcsGlobalElem[strSize];
+    wchar_t wcsGlobalVariable[strSize];
+
+    int iMemTotal = 0;
+    int iMemUsed  = 0;
+    int nbMaxVar  = 0;
+
+#ifdef _MSC_VER
+    MEMORYSTATUSEX statex;
+    statex.dwLength = sizeof(statex);
+    GlobalMemoryStatusEx (&statex);
+    iMemTotal = (int)(statex.ullTotalPhys / (1024 * 1024));
+#else
+    iMemTotal = getmemorysize();
+#endif
+
+    ostr << _W("Your variables are:") << std::endl << std::endl;
+    std::list<std::wstring>::const_iterator it = lstVar.begin();
+    int iWidth = ConfigVariable::getConsoleWidth();
+    int iCurrentWidth = 0;
+    for (int i = 1; it != lstVar.end(); ++it, i++)
+    {
+        if (iCurrentWidth + iVarLenMax + 1 > iWidth)
+        {
+            ostr << std::endl;
+            iCurrentWidth = 0;
+        }
+        ostr << std::setw(iVarLenMax + 1) << *it;
+        iCurrentWidth += iVarLenMax + 1;
+    }
+
+    os_swprintf(wcsVarElem, strSize, _W(" using %10d elements out of  %10d.\n").c_str(), iMemUsed, iMemTotal);
+    ostr << std::endl << wcsVarElem;
+
+    os_swprintf(wcsVarVariable, strSize, _W(" and   %10d variables out of %10d.\n").c_str(), lstVar.size(), nbMaxVar);
+    ostr << wcsVarVariable << std::endl;
+
+    ostr << std::endl << _W("Your global variables are:") << std::endl << std::endl;
+    it = lstGlobal.begin();
+    for (int i = 1; it != lstGlobal.end(); ++it, i++)
+    {
+        ostr << std::setw(iGlobalLenMax + 1) << *it;
+        if (i % 4 == 0)
+        {
+            ostr << std::endl;
+        }
+    }
+
+    ostr << std::endl;
+
+    os_swprintf(wcsGlobalElem, strSize, _W(" using %10d elements out of  %10d.\n").c_str(), iMemUsed, iMemTotal);
+    ostr << std::endl << wcsGlobalElem;
+
+    os_swprintf(wcsGlobalVariable, strSize, _W(" and   %10d variables out of %10d.\n").c_str(), lstGlobal.size(), nbMaxVar);
+    ostr << wcsGlobalVariable;
 }
 
 int Context::getScopeLevel()
 {
     return m_iLevel;
+}
+
+bool Context::isValidVariableName(const wchar_t* wcsVarName)
+{
+    static const wchar_t FORBIDDEN_CHARS[] = L" */\\.,;:^@><=+-&|()~\n\t'\"";
+    if (wcslen(wcsVarName) == 0 || wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
+    {
+        return false;
+    }
+    return true;
+}
+
+bool Context::isValidVariableName(const char* name)
+{
+    bool isValid = false;
+    wchar_t* wcsname = to_wide_string(name);
+    if (wcsname)
+    {
+        isValid = isValidVariableName(wcsname);
+        FREE(wcsname);
+    }
+
+    return isValid;
 }
 }

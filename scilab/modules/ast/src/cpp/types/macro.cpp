@@ -98,8 +98,54 @@ ast::SeqExp* Macro::getBody(void)
 
 bool Macro::toString(std::wostringstream& ostr)
 {
-    ostr << L"FIXME : Implement Macro::toString" << std::endl;
-    scilabWriteW(ostr.str().c_str());
+    // get macro name
+    wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
+    ostr.str(L"");
+
+    ostr << L"[";
+
+    // output arguments [a,b,c] = ....
+    if (m_outputArgs->empty() == false)
+    {
+        std::list<symbol::Variable*>::iterator OutArg = m_outputArgs->begin();
+        std::list<symbol::Variable*>::iterator OutArgfter = OutArg;
+        OutArgfter++;
+
+        for (; OutArgfter != m_outputArgs->end(); OutArgfter++)
+        {
+            ostr << (*OutArg)->getSymbol().getName();
+            ostr << ",";
+            OutArg++;
+        }
+
+        ostr << (*OutArg)->getSymbol().getName();
+    }
+
+    ostr << L"]";
+
+    // function name
+    ostr << L"=" << wcsVarName << L"(";
+
+    // input arguments function(a,b,c)
+    if (m_inputArgs->empty() == false)
+    {
+        std::list<symbol::Variable*>::iterator inArg = m_inputArgs->begin();
+        std::list<symbol::Variable*>::iterator inRagAfter = inArg;
+        inRagAfter++;
+
+        for (; inRagAfter != m_inputArgs->end(); inRagAfter++)
+        {
+            ostr << (*inArg)->getSymbol().getName();
+            ostr << ",";
+            inArg++;
+        }
+
+        ostr << (*inArg)->getSymbol().getName();
+    }
+
+    ostr << L")" << std::endl;
+
+    FREE(wcsVarName);
     return true;
 }
 
@@ -283,7 +329,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         }
 
         List* pVarOut = pOut->getAs<List>();
-        const int size = std::max(pVarOut->getSize(), _iRetCount);
+        const int size = std::min(pVarOut->getSize(), _iRetCount);
         for (int i = 0 ; i < size ; ++i)
         {
             InternalType* pIT = pVarOut->get(i);
@@ -301,7 +347,8 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 return Callable::Error;
             }
 
-            out.push_back(pIT->clone());
+            pIT->IncreaseRef();
+            out.push_back(pIT);
         }
     }
     else
@@ -421,9 +468,9 @@ bool Macro::operator==(const InternalType& it)
 
     ast::Exp* pExp = pRight->getBody();
     ast::SerializeVisitor serialOld(pExp);
-    unsigned char* oldSerial = serialOld.serialize(false);
+    unsigned char* oldSerial = serialOld.serialize(false, false);
     ast::SerializeVisitor serialMacro(m_body);
-    unsigned char* macroSerial = serialMacro.serialize(false);
+    unsigned char* macroSerial = serialMacro.serialize(false, false);
 
     //check buffer length
     unsigned int oldSize = *((unsigned int*)oldSerial);

@@ -19,8 +19,5 @@ a = : ;
 assert_checkequal(string(a), "");
 assert_checkequal(isdigit(string(a)), []);
 assert_checkequal("h" + string(a) + "hop", "hhop");
-msgerr = msprintf(gettext("Eye variable undefined in this context.\n"));
-assert_checkerror("a(string(a))" , msgerr);
-assert_checkerror("a(:)" , msgerr);
 assert_checkequal(size(string(a)), [1 1]);
 assert_checkequal(size(string(:)), [1 1]);

@@ -21,6 +21,9 @@ typedef struct
     wchar_t* pwstToken;
     types::InternalType::ScilabType outputType;
     bool bLengthFlag;
+    int width;
+    int prec;
+    int typePos;
 } TokenDef;
 
 

@@ -15,6 +15,7 @@
 #include "BOOL.h"
 #include "sci_malloc.h"
 #include "serialization.h"
+#include "elem_common.h"
 
 static int serialize_double(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
@@ -433,22 +434,22 @@ int serialize_to_mpi(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBuffer
     switch (*_piAddr)
     {
         case sci_matrix:
-            return serialize_double(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_double(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_strings:
-            return serialize_string(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_string(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_boolean:
-            return serialize_boolean(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_boolean(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         case sci_sparse:
-            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, TRUE);
+            return serialize_sparse(_pvCtx, _piAddr, _piBuffer, _piBufferSize, TRUE);
             break;
         case sci_boolean_sparse:
-            return serialize_sparse(pvApiCtx, _piAddr, _piBuffer, _piBufferSize, FALSE);
+            return serialize_sparse(_pvCtx, _piAddr, _piBuffer, _piBufferSize, FALSE);
             break;
         case sci_ints:
-            return serialize_int(pvApiCtx, _piAddr, _piBuffer, _piBufferSize);
+            return serialize_int(_pvCtx, _piAddr, _piBuffer, _piBufferSize);
             break;
         default:
             return -1;

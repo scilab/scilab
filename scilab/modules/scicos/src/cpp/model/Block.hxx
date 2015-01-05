@@ -99,43 +99,43 @@ struct Angle
 
 class Block: public BaseObject
 {
+public:
+    Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
+        m_exprs(), m_label(), m_style(), m_nzcross(0), m_nmode(0), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
+    {
+        m_sim.blocktype  = BLOCKTYPE_C;
+        m_parameter.opar = std::vector<int> (1, 0);
+        m_state.odstate  = std::vector<int> (1, 0);
+    };
+    Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
+        m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
+        m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
+        m_children(o.m_children), m_portReference(o.m_portReference) {};
+    ~Block() = default;
+
 private:
     friend class ::org_scilab_modules_scicos::Model;
 
-private:
-    Block() : BaseObject(BLOCK), parentDiagram(0), interfaceFunction(), geometry(), angle(),
-        exprs(), label(), style(), nzcross(0), nmode(0), equations(), uid(), sim(), in(), out(), ein(), eout(),
-        parameter(), state(), parentBlock(0), children(), portReference(0)
-    {
-        sim.blocktype  = BLOCKTYPE_C;
-        parameter.opar = std::vector<int> (1, 0);
-        state.odstate  = std::vector<int> (1, 0);
-    };
-    Block(const Block& o) : BaseObject(BLOCK), parentDiagram(o.parentDiagram), interfaceFunction(o.interfaceFunction), geometry(o.geometry),
-        angle(o.angle), exprs(o.exprs), label(o.label), style(o.style), nzcross(o.nzcross), nmode(o.nmode), equations(o.equations), uid(o.uid),
-        sim(o.sim), in(o.in), out(o.out), ein(o.ein), eout(o.eout), parameter(o.parameter), state(o.state), parentBlock(o.parentBlock),
-        children(o.children), portReference(o.portReference) {};
-    ~Block() {}
-
     void getChildren(std::vector<ScicosID>& v) const
     {
-        v = this->children;
+        v = this->m_children;
     }
 
     update_status_t setChildren(const std::vector<ScicosID>& children)
     {
-        if (children == this->children)
+        if (children == this->m_children)
         {
             return NO_CHANGES;
         }
 
-        this->children = children;
+        this->m_children = children;
         return SUCCESS;
     }
 
     void getGeometry(std::vector<double>& v) const
     {
-        geometry.fill(v);
+        m_geometry.fill(v);
     }
 
     update_status_t setGeometry(const std::vector<double>& v)
@@ -146,18 +146,18 @@ private:
         }
 
         Geometry g = Geometry(v);
-        if (g == geometry)
+        if (g == m_geometry)
         {
             return NO_CHANGES;
         }
 
-        geometry = g;
+        m_geometry = g;
         return SUCCESS;
     }
 
     void getAngle(std::vector<double>& data) const
     {
-        angle.fill(data);
+        m_angle.fill(data);
     }
 
     update_status_t setAngle(const std::vector<double>& data)
@@ -168,342 +168,358 @@ private:
         }
 
         Angle a = Angle(data);
-        if (a == angle)
+        if (a == m_angle)
         {
             return NO_CHANGES;
         }
 
-        angle = a;
+        m_angle = a;
         return SUCCESS;
     }
 
     void getExprs(std::vector<std::string>& data) const
     {
-        data = exprs;
+        data = m_exprs;
     }
 
     update_status_t setExprs(const std::vector<std::string>& data)
     {
-        if (data == exprs)
+        if (data == m_exprs)
         {
             return NO_CHANGES;
         }
 
-        exprs = data;
+        m_exprs = data;
         return SUCCESS;
     }
 
     void getLabel(std::string& data) const
     {
-        data = label;
+        data = m_label;
     }
 
     update_status_t setLabel(const std::string& data)
     {
-        if (data == label)
+        if (data == m_label)
         {
             return NO_CHANGES;
         }
 
-        label = data;
+        m_label = data;
         return SUCCESS;
     }
 
     void getIn(std::vector<ScicosID>& v) const
     {
-        v = in;
+        v = m_in;
     }
 
     update_status_t setIn(const std::vector<ScicosID>& in)
     {
-        if (in == this->in)
+        if (in == this->m_in)
         {
             return NO_CHANGES;
         }
 
-        this->in = in;
+        this->m_in = in;
         return SUCCESS;
     }
 
     void getInterfaceFunction(std::string& fun) const
     {
-        fun = interfaceFunction;
+        fun = m_interfaceFunction;
     }
 
     update_status_t setInterfaceFunction(const std::string& fun)
     {
-        if (fun == interfaceFunction)
+        if (fun == m_interfaceFunction)
         {
             return NO_CHANGES;
         }
 
-        interfaceFunction = fun;
+        m_interfaceFunction = fun;
         return SUCCESS;
     }
 
     void getOut(std::vector<ScicosID>& v) const
     {
-        v = out;
+        v = m_out;
     }
 
     update_status_t setOut(const std::vector<ScicosID>& out)
     {
-        if (out == this->out)
+        if (out == this->m_out)
         {
             return NO_CHANGES;
         }
 
-        this->out = out;
+        this->m_out = out;
         return SUCCESS;
     }
 
     void getEin(std::vector<ScicosID>& v) const
     {
-        v = ein;
+        v = m_ein;
     }
 
     update_status_t setEin(const std::vector<ScicosID>& ein)
     {
-        if (ein == this->ein)
+        if (ein == this->m_ein)
         {
             return NO_CHANGES;
         }
 
-        this->ein = ein;
+        this->m_ein = ein;
         return SUCCESS;
     }
 
     void getEout(std::vector<ScicosID>& v) const
     {
-        v = eout;
+        v = m_eout;
     }
 
     update_status_t setEout(const std::vector<ScicosID>& eout)
     {
-        if (eout == this->eout)
+        if (eout == this->m_eout)
         {
             return NO_CHANGES;
         }
 
-        this->eout = eout;
+        this->m_eout = eout;
         return SUCCESS;
     }
 
     const Parameter& getParameter() const
     {
-        return parameter;
+        return m_parameter;
     }
 
     void setParameter(const Parameter& parameter)
     {
-        this->parameter = parameter;
+        this->m_parameter = parameter;
     }
 
     void getParentBlock(ScicosID& v) const
     {
-        v = parentBlock;
+        v = m_parentBlock;
     }
 
     update_status_t setParentBlock(ScicosID parentBlock)
     {
-        if (parentBlock == this->parentBlock)
+        if (parentBlock == this->m_parentBlock)
         {
             return NO_CHANGES;
         }
 
-        this->parentBlock = parentBlock;
+        this->m_parentBlock = parentBlock;
         return SUCCESS;
     }
 
     void getParentDiagram(ScicosID& v) const
     {
-        v = parentDiagram;
+        v = m_parentDiagram;
     }
 
     update_status_t setParentDiagram(const ScicosID v)
     {
-        if (v == parentDiagram)
+        if (v == m_parentDiagram)
         {
             return NO_CHANGES;
         }
 
-        parentDiagram = v;
+        m_parentDiagram = v;
         return SUCCESS;
     }
 
     void getPortReference(ScicosID& v) const
     {
-        v = portReference;
+        v = m_portReference;
     }
 
     update_status_t setPortReference(const ScicosID v)
     {
-        if (v == portReference)
+        if (v == m_portReference)
         {
             return NO_CHANGES;
         }
 
-        portReference = v;
+        m_portReference = v;
         return SUCCESS;
     }
 
     const Descriptor& getSim() const
     {
-        return sim;
+        return m_sim;
     }
 
     void setSim(const Descriptor& sim)
     {
-        this->sim = sim;
+        this->m_sim = sim;
     }
 
     void getStyle(std::string& data) const
     {
-        data = style;
+        data = m_style;
     }
 
     update_status_t setStyle(const std::string& data)
     {
-        if (data == style)
+        if (data == m_style)
         {
             return NO_CHANGES;
         }
 
-        style = data;
+        m_style = data;
         return SUCCESS;
     }
 
     void getNZcross(int& data) const
     {
-        data = nzcross;
+        data = m_nzcross;
     }
 
     update_status_t setNZcross(const int data)
     {
-        if (data == nzcross)
+        if (data == m_nzcross)
         {
             return NO_CHANGES;
         }
 
-        nzcross = data;
+        m_nzcross = data;
         return SUCCESS;
     }
 
     void getNMode(int& data) const
     {
-        data = nmode;
+        data = m_nmode;
     }
 
     update_status_t setNMode(const int data)
     {
-        if (data == nmode)
+        if (data == m_nmode)
         {
             return NO_CHANGES;
         }
 
-        nmode = data;
+        m_nmode = data;
+        return SUCCESS;
+    }
+
+    void getEquations(std::vector<std::string>& data) const
+    {
+        data = m_equations;
+    }
+
+    update_status_t setEquations(const std::vector<std::string>& data)
+    {
+        if (data == m_equations)
+        {
+            return NO_CHANGES;
+        }
+
+        m_equations = data;
         return SUCCESS;
     }
 
     void getUID(std::string& data) const
     {
-        data = uid;
+        data = m_uid;
     }
 
     update_status_t setUID(const std::string& data)
     {
-        if (data == uid)
+        if (data == m_uid)
         {
             return NO_CHANGES;
         }
 
-        uid = data;
+        m_uid = data;
         return SUCCESS;
     }
 
     void getRpar(std::vector<double>& data) const
     {
-        data = parameter.rpar;
+        data = m_parameter.rpar;
     }
 
     update_status_t setRpar(const std::vector<double>& data)
     {
-        if (data == parameter.rpar)
+        if (data == m_parameter.rpar)
         {
             return NO_CHANGES;
         }
 
-        parameter.rpar = data;
+        m_parameter.rpar = data;
         return SUCCESS;
     }
 
     void getIpar(std::vector<int>& data) const
     {
-        data = parameter.ipar;
+        data = m_parameter.ipar;
     }
 
     update_status_t setIpar(const std::vector<int>& data)
     {
-        if (data == parameter.ipar)
+        if (data == m_parameter.ipar)
         {
             return NO_CHANGES;
         }
 
-        parameter.ipar = data;
+        m_parameter.ipar = data;
         return SUCCESS;
     }
 
     void getOpar(std::vector<int>& data) const
     {
-        data = parameter.opar;
+        data = m_parameter.opar;
     }
 
     update_status_t setOpar(const std::vector<int>& data)
     {
-        if (data == parameter.opar)
+        if (data == m_parameter.opar)
         {
             return NO_CHANGES;
         }
 
-        parameter.opar = data;
+        m_parameter.opar = data;
         return SUCCESS;
     }
 
     void getSimFunctionName(std::string& data) const
     {
-        data = sim.functionName;
+        data = m_sim.functionName;
     }
 
     update_status_t setSimFunctionName(const std::string& data)
     {
-        if (data == sim.functionName)
+        if (data == m_sim.functionName)
         {
             return NO_CHANGES;
         }
 
-        sim.functionName = data;
+        m_sim.functionName = data;
         return SUCCESS;
     }
 
     void getSimFunctionApi(int& data) const
     {
-        data = sim.functionApi;
+        data = m_sim.functionApi;
     }
 
     update_status_t setSimFunctionApi(const int data)
     {
-        if (data == sim.functionApi)
+        if (data == m_sim.functionApi)
         {
             return NO_CHANGES;
         }
 
-        sim.functionApi = data;
+        m_sim.functionApi = data;
         return SUCCESS;
     }
 
     void getSimBlocktype(std::string& data) const
     {
-        data = std::string(1, sim.blocktype);
+        data = std::string(1, m_sim.blocktype);
     }
 
     update_status_t setSimBlocktype(const std::string data)
@@ -515,7 +531,7 @@ private:
 
         char c = *(data.c_str());
 
-        if (c == sim.blocktype)
+        if (c == m_sim.blocktype)
         {
             return NO_CHANGES;
         }
@@ -529,7 +545,7 @@ private:
             case BLOCKTYPE_M:
             case BLOCKTYPE_X:
             case BLOCKTYPE_Z:
-                sim.blocktype = c;
+                m_sim.blocktype = c;
                 return SUCCESS;
             default:
                 return FAIL;
@@ -539,7 +555,7 @@ private:
     void getSimDepUT(std::vector<int>& data) const
     {
         data.resize(2, 0);
-        switch (sim.dep_ut)
+        switch (m_sim.dep_ut)
         {
             case DEP_U & DEP_T:
                 // data is already set to [0 0] here.
@@ -583,97 +599,96 @@ private:
             dep = DEP_T;
         }
 
-        if (dep == sim.dep_ut)
+        if (dep == m_sim.dep_ut)
         {
             return NO_CHANGES;
         }
 
-        sim.dep_ut = dep;
+        m_sim.dep_ut = dep;
         return SUCCESS;
     }
 
     void getState(std::vector<double>& data) const
     {
-        data = state.state;
+        data = m_state.state;
     }
 
     update_status_t setState(const std::vector<double>& data)
     {
-        if (data == state.state)
+        if (data == m_state.state)
         {
             return NO_CHANGES;
         }
 
-        state.state = data;
+        m_state.state = data;
         return SUCCESS;
     }
 
     void getDState(std::vector<double>& data) const
     {
-        data = state.dstate;
+        data = m_state.dstate;
     }
 
     update_status_t setDState(const std::vector<double>& data)
     {
-        if (data == state.dstate)
+        if (data == m_state.dstate)
         {
             return NO_CHANGES;
         }
 
-        state.dstate = data;
+        m_state.dstate = data;
         return SUCCESS;
     }
 
     void getODState(std::vector<int>& data) const
     {
-        data = state.odstate;
+        data = m_state.odstate;
     }
 
     update_status_t setODState(const std::vector<int>& data)
     {
-        if (data == state.odstate)
+        if (data == m_state.odstate)
         {
             return NO_CHANGES;
         }
 
-        state.odstate = data;
+        m_state.odstate = data;
         return SUCCESS;
     }
 
 private:
-    ScicosID parentDiagram;
-    std::string interfaceFunction;
-    Geometry geometry;
-    Angle angle;
-    std::vector<std::string> exprs;
-    std::string label;
-    std::string style;
-    int nzcross;
-    int nmode;
-    // FIXME: find an appropriate way to store 'equations'
-    std::vector<std::string> equations;
-    std::string uid;
+    ScicosID m_parentDiagram;
+    std::string m_interfaceFunction;
+    Geometry m_geometry;
+    Angle m_angle;
+    std::vector<std::string> m_exprs;
+    std::string m_label;
+    std::string m_style;
+    int m_nzcross;
+    int m_nmode;
+    std::vector<std::string> m_equations;
+    std::string m_uid;
 
-    Descriptor sim;
+    Descriptor m_sim;
 
-    std::vector<ScicosID> in;
-    std::vector<ScicosID> out;
-    std::vector<ScicosID> ein;
-    std::vector<ScicosID> eout;
+    std::vector<ScicosID> m_in;
+    std::vector<ScicosID> m_out;
+    std::vector<ScicosID> m_ein;
+    std::vector<ScicosID> m_eout;
 
-    Parameter parameter;
-    State state;
+    Parameter m_parameter;
+    State m_state;
 
     /**
      * SuperBlock: the blocks, links and so on contained into this block
      */
-    ScicosID parentBlock;
-    std::vector<ScicosID> children;
+    ScicosID m_parentBlock;
+    std::vector<ScicosID> m_children;
 
     /**
      * I/O Blocks: the corresponding parent port
      */
-    ScicosID portReference;
+    ScicosID m_portReference;
 };
 
 } /* namespace model */

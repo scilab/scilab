@@ -1,0 +1,72 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+loadXcosLibs();
+scicos_log("TRACE");
+b = scicos_block();
+objectCreated( 1 , BLOCK )
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+d = scicos_diagram( objs=list(scicos_link(from=[3 3 0],to=[5 2 1]) ));
+objectCreated( 2 , LINK )
+propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 2 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 2 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 2 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 2 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 2 , LINK , KIND ) : NO_CHANGES
+objectCreated( 3 , DIAGRAM )
+propertyUpdated( 3 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 3 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 2 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+b.model.rpar = d;
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+// b is now a SuperBlock containing a diagram containing a link, with its 'from' and and 'to' properties set
+assert_checkequal(b.model.rpar.objs(1).from, [3 3 0]);
+assert_checkequal(b.model.rpar.objs(1).to, [5 2 1]);
+// Check that all the model items are freed
+clear
+propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 1 , BLOCK )

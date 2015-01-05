@@ -17,7 +17,9 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <memory>
 
+#include "double.hxx"
 #include "user.hxx"
 #include "internal.hxx"
 #include "tlist.hxx"
@@ -99,13 +101,20 @@ class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(bool ownAdaptee, Adaptee* adaptee) : ownAdaptee(ownAdaptee), adaptee(adaptee) {};
-    virtual ~BaseAdapter()
+    BaseAdapter(std::shared_ptr<Adaptee> adaptee) : m_adaptee(adaptee) {};
+    BaseAdapter(const BaseAdapter& adapter) : m_adaptee(0)
     {
-        if (ownAdaptee)
+        Controller controller;
+        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id());
+        m_adaptee = std::static_pointer_cast<Adaptee>(controller.getObject(id));
+    };
+    ~BaseAdapter()
+    {
+        // do not use adaptee.unique() as adaptee has not been destroyed yet
+        if (m_adaptee.use_count() == 2)
         {
             Controller controller;
-            controller.deleteObject(getAdaptee()->id());
+            controller.deleteObject(m_adaptee->id());
         }
     };
 
@@ -156,15 +165,15 @@ public:
         {
             header->set(index, it->name.c_str());
         }
-        tlist->set(0, header);
+        tlist->append(header);
 
         // set the tlist field value
-        index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it)
         {
-            tlist->set(index, it->get(*static_cast<Adaptor*>(this), controller));
+            tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
         }
 
+        tlist->IncreaseRef();
         return tlist;
     }
 
@@ -206,9 +215,6 @@ public:
         index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {
-            // DEBUG LOG:
-            // std::wcerr << Adaptor::getSharedTypeStr() << L" set " << it->name << std::endl;
-
             bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
             if (!status)
             {
@@ -220,11 +226,11 @@ public:
     }
 
     /**
-     * @return the Adaptee instance
+     * @return the Adaptee
      */
-    Adaptee* getAdaptee() const
+    std::shared_ptr<Adaptee> getAdaptee() const
     {
-        return adaptee;
+        return m_adaptee;
     }
 
     /*
@@ -235,12 +241,9 @@ public:
     virtual std::wstring getShortTypeStr() = 0;
 
 private:
-
-    virtual types::InternalType* clone()
+    types::InternalType* clone()
     {
-        Controller controller = Controller();
-        ScicosID clone = controller.cloneObject(getAdaptee()->id());
-        return new Adaptor(false, static_cast<Adaptee*>(controller.getObject(clone)));
+        return new Adaptor(*static_cast<Adaptor*>(this));
     }
 
     /*
@@ -287,7 +290,33 @@ private:
         }
         else
         {
-            // TO DO : management other type for arguments like a scalar or matrix of double
+            if ((*_pArgs)[0]->isDouble())
+            {
+                types::Double* index = (*_pArgs)[0]->getAs<types::Double>();
+
+                if (index->get(0) == 1)
+                {
+                    // When _pArgs is '1', return the list of the property names of the Adaptor
+
+                    // Sort the properties before extracting them
+                    typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+                    std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+                    // Allocate the return
+                    types::String* pOut = new types::String(1, properties.size());
+
+                    int i = 0;
+                    for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++i)
+                    {
+                        pOut->set(i, it->name.data());
+                    }
+                    return pOut;
+                }
+            }
+            else
+            {
+                // TO DO : management other type for arguments like a scalar or matrix of double
+            }
         }
 
         return NULL;
@@ -295,7 +324,7 @@ private:
 
     types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
     {
-        for (int i = 0; i < _pArgs->size(); i++)
+        for (size_t i = 0; i < _pArgs->size(); i++)
         {
             if ((*_pArgs)[i]->isString())
             {
@@ -328,12 +357,13 @@ private:
 
     bool hasToString()
     {
-        // allow scilab to call toString of this class
-        return true;
+        // Do not allow scilab to call toString of this class
+        return false;
     }
 
     bool toString(std::wostringstream& ostr)
     {
+        // Deprecated, use the overload instead
         typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
         std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
@@ -345,14 +375,8 @@ private:
         return true;
     }
 
-    bool getOwn()
-    {
-        return ownAdaptee;
-    };
-
 private:
-    const bool ownAdaptee;
-    Adaptee* adaptee;
+    std::shared_ptr<Adaptee> m_adaptee;
 };
 
 

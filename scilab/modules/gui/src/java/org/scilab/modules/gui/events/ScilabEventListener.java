@@ -36,6 +36,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private SciTranslator eventTranslator = new SciTranslator();
     private boolean freedom = true;
     private boolean inCanvas = false;
+    private boolean useHandle = true;
 
     public ScilabEventListener(String callback, Integer windowsUID) {
         eventTranslator.setClickAction(SciTranslator.UNMANAGED);
@@ -43,11 +44,24 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         this.windowsUID	= windowsUID;
     }
 
+    // Remove this constructor
+    // once event_handler call are unified using handle 
+    public ScilabEventListener(String callback, Integer windowsUID, boolean useHandle) {
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
+        this.callback = callback;
+        this.windowsUID = windowsUID;
+        this.useHandle = useHandle;
+    }
+
     private void callScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-        InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        if (useHandle) { 
+            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        } else {
+            int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
+            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.getClickAction() + ')');
+        }
         //
         //System.out.println("call " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.getClickAction()+')');
     }
@@ -55,8 +69,12 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     private void invokeScilab() {
         // @FIXME : choose to send it to scilab or to display it
         //
-        int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
-        InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        if (useHandle) { 
+            InterpreterManagement.requestScilabExec(callback + "(getcallbackobject(" + windowsUID + ")," + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        } else {
+            int windowsId = (Integer) GraphicController.getController().getProperty(windowsUID, __GO_ID__);
+            InterpreterManagement.requestScilabExec(callback + '(' + windowsId + ',' + mouseX + ',' + mouseY + ',' + eventTranslator.javaClick2Scilab() + ')');
+        }
         //
         //System.out.println("invoke " + callback+'('+windowsId+','+mouseX+','+mouseY+','+eventTranslator.javaClick2Scilab()+')');
     }
@@ -138,6 +156,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
                 public void run() {
                     invokeScilab();
                     freedom = true;
+                    eventTranslator.setClickAction(SciTranslator.UNMANAGED);
                 }
             };
             launchMe.start();
@@ -145,8 +164,8 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
     }
 
     public void mouseReleased(MouseEvent arg0) {
-        // TODO Auto-generated method stub
-        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED) {
+        if (eventTranslator.getClickAction() == SciTranslator.UNMANAGED || 
+                eventTranslator.getClickAction() == SciTranslator.SCIMOVED) { 
             eventTranslator.setClickAction(
                 SciTranslator.javaButton2Scilab(arg0.getButton(),
                                                 SciTranslator.RELEASED,
@@ -171,6 +190,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
             mouseY = arg0.getY();
             callScilab();
         }
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
     }
 
     public void mouseMoved(MouseEvent arg0) {
@@ -178,6 +198,7 @@ public class ScilabEventListener implements KeyListener, MouseListener, MouseMot
         mouseX = arg0.getX();
         mouseY = arg0.getY();
         callScilab();
+        eventTranslator.setClickAction(SciTranslator.UNMANAGED);
     }
 
 }

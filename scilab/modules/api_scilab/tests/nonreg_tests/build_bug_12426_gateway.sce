@@ -31,26 +31,24 @@ if getos() == "Windows" then
 
 elseif isdir(lib1include)
     // Unix source version
-    libs   = SCI + "/modules/" + lib1 + "/.libs/lib" + lib1;
-    cflags = "-I " lib1include;
+    libs   = SCI + "/modules/" + lib1 + "/.libs/libsci" + lib1;
+    cflags = "-I " + lib1include;
 else
     // Unix binary version
     SCI_LIB     = strsubst(SCI,"/share\/scilab$/", "lib/scilab", "r");
     SCI_INCLUDE = strsubst(SCI,"/share\/scilab$/", "include/scilab", "r");
-    libs        = SCI_LIB + "/lib" + lib1 + ..
-    SCI_LIB + "/lib" + lib1;
+    libs        = SCI_LIB + "/libscilab-cli";
     cflags      = "-I " + SCI_INCLUDE;
 end
 
 // name known in scilab, C function called
 table = [func1, "sci_" + func1];
 
-libname = ilib_build(ilib_name, table, files, libs, [], "", cflags);
+ilib_build(ilib_name, table, files, libs, [], "", cflags);
 
 cd(previous_dir);
 
 clear ilib_build;
-clear libname;
 clear table;
 clear libs;
 clear files;

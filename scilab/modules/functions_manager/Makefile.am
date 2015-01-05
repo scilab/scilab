@@ -21,7 +21,7 @@ libscifunctions_manager_la_SOURCES = \
     $(FUNCTION_MANAGER_CPP_SOURCES)
 
 libscifunctions_manager_la_CPPFLAGS = \
-    -Iincludes/ \
+    -I$(srcdir)/includes/ \
     -I$(top_srcdir)/modules/ast/includes/ast/ \
     -I$(top_srcdir)/modules/ast/includes/exps/ \
     -I$(top_srcdir)/modules/ast/includes/operations/ \
@@ -31,18 +31,18 @@ libscifunctions_manager_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-	-I$(top_builddir)/modules/api_scilab/includes/ \
-	-I$(top_builddir)/modules/console/includes/ \
-    -I$(top_builddir)/modules/core/includes/ \
-	-I$(top_builddir)/modules/elementary_functions/includes/ \
-	-I$(top_builddir)/modules/fileio/includes/ \
-	-I$(top_builddir)/modules/jvm/includes/ \
-	-I$(top_builddir)/modules/localization/includes/ \
-	-I$(top_builddir)/modules/output_stream/includes/ \
-    -I$(top_builddir)/modules/signal_processing/includes/ \
-	-I$(top_builddir)/modules/string/includes/ \
-	-I$(top_builddir)/modules/threads/includes/ \
-	$(AM_CPPGFLAGS) \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/jvm/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/signal_processing/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	$(AM_CPPFLAGS) \
     $(EIGEN_CPPFLAGS) \
 	$(XML_FLAGS)
 

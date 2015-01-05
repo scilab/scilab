@@ -11,6 +11,7 @@
  */
 
 #include <string>
+#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
@@ -31,13 +32,18 @@ namespace
 
 template<> property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
 
-ScsAdapter::ScsAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Diagram* adaptee) :
-    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(ownAdaptee, adaptee)
+ScsAdapter::ScsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
+    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
 {
     if (property<ScsAdapter>::properties_have_not_been_set())
     {
         // FIXME: add some properties
     }
+}
+
+ScsAdapter::ScsAdapter(const ScsAdapter& adapter) :
+    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(adapter)
+{
 }
 
 ScsAdapter::~ScsAdapter()

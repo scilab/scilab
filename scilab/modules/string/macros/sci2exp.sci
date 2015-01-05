@@ -408,6 +408,8 @@ function t=mlist2exp(l,lmax)
             t1=mlist2exp(lk,lmax)
         elseif type(lk)==9 then
             t1=h2exp(lk,lmax)
+        elseif type(lk)==128 then
+            t1=mlist2exp(user2mlist(lk),lmax)
         else
             t1=sci2exp(lk,lmax)
         end
@@ -813,6 +815,17 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         end
     else
         error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(a.type)));
+    end
+
+endfunction
+
+function ml = user2mlist(u)
+
+    fn = getfield(1, u);
+    ml = mlist(fn);
+
+    for k=1:size(fn,"*")
+        ml(k) = eval("u."+fn(k));
     end
 
 endfunction

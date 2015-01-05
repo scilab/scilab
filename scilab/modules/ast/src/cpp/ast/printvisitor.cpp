@@ -509,16 +509,26 @@ void PrintVisitor::visit (const CaseExp &e)
 
 void PrintVisitor::visit (const SeqExp  &e)
 {
+    int previousLine = -1;
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         this->apply_indent();
+
+        if (previousLine != -1 && (*it)->getLocation().first_line != previousLine)
+        {
+            *ostr << std::endl;
+        }
+
         (*it)->getOriginal()->accept(*this);
         if (!(*it)->isVerbose())
         {
             *ostr << ";";
         }
-        *ostr << std::endl;
+
+        previousLine = (*it)->getLocation().last_line;
     }
+
+    *ostr << std::endl;
 }
 
 void PrintVisitor::visit (const ArrayListExp  &e)

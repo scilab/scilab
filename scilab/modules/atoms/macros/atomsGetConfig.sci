@@ -63,6 +63,11 @@ function result = atomsGetConfig(field)
         i = find(pref_attrs(1, :) == field);
         if ~isempty(i) then
             result = getPreferencesValue("//web/body/proxy", pref_attrs(2, i));
+            if result == "true" then
+                result = "True";
+            elseif result == "false" then
+                result = "False";
+            end
             return;
         end
 

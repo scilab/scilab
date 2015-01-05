@@ -210,7 +210,7 @@ public :
     }
     virtual void                    whoAmI(void)
     {
-        std::cout << "types::Inernal";
+        std::cout << "types::Internal";
     }
 
     virtual bool                    isAssignable(void)
@@ -231,7 +231,7 @@ public :
         return getTypeStr();
     }
     virtual InternalType*           clone(void) = 0;
-    virtual ast::Exp*               getExp(const Location &loc)
+    virtual ast::Exp*               getExp(const Location& /*loc*/)
     {
         return NULL;
     }

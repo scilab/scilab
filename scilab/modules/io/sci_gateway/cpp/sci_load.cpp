@@ -66,7 +66,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
     }
     else
     {
-        Library* lib = loadlib(pwstPathLib);
+        Library* lib = loadlib(pS->get(0));
         FREE(pstPath);
 
         if (lib == NULL)

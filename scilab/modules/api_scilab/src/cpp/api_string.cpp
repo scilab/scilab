@@ -84,30 +84,30 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
     String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
 
     //non cummulative length
-    for (int i = 0 ; i < *_piRows **_piCols ; i++)
-    {
-        char* pstTemp = wide_string_to_UTF8(pS->get(i));
-        _piLength[i] = (int)strlen(pstTemp);
-        FREE(pstTemp);
-    }
-
+    int iSize = pS->getSize();
     if (_pstStrings == NULL || *_pstStrings == NULL)
     {
-        return sciErr;
-    }
-
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        if (_pstStrings[i] == NULL)
+        for (int i = 0 ; i < iSize; i++)
         {
-            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-            return sciErr;
+            char* pstTemp = wide_string_to_UTF8(pS->get(i));
+            _piLength[i] = (int)strlen(pstTemp);
+            FREE(pstTemp);
         }
-
-        char* pstTemp = wide_string_to_UTF8(pS->get(i));
-        strcpy(_pstStrings[i], pstTemp);
-        FREE(pstTemp);
     }
+    else
+    {
+        for (int i = 0 ; i < iSize; i++)
+        {
+            if (_pstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+                return sciErr;
+            }
+
+            strcpy(_pstStrings[i], wide_string_to_UTF8(pS->get(i)));
+        }
+    }
+
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -157,11 +157,17 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
     SciErr sciErr;
     sciErr.iErr = 0;
     sciErr.iMsgCount = 0;
-    //return empty matrix
 
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedMatrixOfString", _pstName);
+        return sciErr;
+    }
+
+    //return empty matrix
     if (_iRows == 0 && _iCols == 0)
     {
-
         if (createNamedEmptyMatrix(_pvCtx, _pstName))
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
@@ -253,24 +259,27 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
     }
 
     String *pS = ((InternalType*)_piAddress)->getAs<types::String>();
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        _piwLength[i] = (int)wcslen(pS->get(i));
-    }
 
+    int iSize = pS->getSize();
     if (_pwstStrings == NULL || *_pwstStrings == NULL)
     {
-        return sciErr;
-    }
-
-    for (int i = 0 ; i < pS->getSize() ; i++)
-    {
-        if (_pwstStrings[i] == NULL)
+        for (int i = 0 ; i < iSize; i++)
         {
-            addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
-            return sciErr;
+            _piwLength[i] = (int)wcslen(pS->get(i));
         }
-        wcscpy( _pwstStrings[i], pS->get(i));
+    }
+    else
+    {
+        for (int i = 0 ; i < pS->getSize() ; i++)
+        {
+            if (_pwstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getMatrixOfString");
+                return sciErr;
+            }
+
+            _pwstStrings[i] = os_wcsdup(pS->get(i));
+        }
     }
 
     return sciErr;
@@ -312,13 +321,21 @@ SciErr createMatrixOfWideString(void* _pvCtx, int _iVar, int _iRows, int _iCols,
 /*--------------------------------------------------------------------------*/
 SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const wchar_t* const* _pwstStrings)
 {
+    SciErr sciErr = sciErrInit();
     char **pStrings = NULL;
+
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedMatrixOfWideString", _pstName);
+        return sciErr;
+    }
 
     //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
     {
         double dblReal = 0;
-        SciErr sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
+        sciErr = createNamedMatrixOfDouble(_pvCtx, _pstName, 0, 0, &dblReal);
         if (sciErr.iErr)
         {
             addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createNamedEmptyMatrix");
@@ -326,20 +343,21 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
         return sciErr;
     }
 
-    pStrings = (char**)MALLOC( sizeof(char*) * (_iRows * _iCols) );
-
-    for (int i = 0; i < (_iRows * _iCols) ; i++)
+    String* pS = new String(_iRows, _iCols);
+    if (pS == NULL)
     {
-        pStrings[i] = wide_string_to_UTF8(_pwstStrings[i]);
-    }
-
-    SciErr sciErr = createNamedMatrixOfString(_pvCtx, _pstName, _iRows, _iCols, pStrings);
-    freeArrayOfString(pStrings, _iRows * _iCols);
-    if (sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_WIDE_STRING, _("%s: Unable to create %s named \"%s\""), "createNamedMatrixOfWideString", _("matrix of wide string"), _pstName);
+        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedMatrixOfWideString", _pstName);
         return sciErr;
     }
+
+    for (int i = 0 ; i < pS->getSize() ; i++)
+    {
+        pS->set(i, _pwstStrings[i]);
+    }
+
+    wchar_t* pwstName = to_wide_string(_pstName);
+    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
+    FREE(pwstName);
 
     return sciErr;
 }

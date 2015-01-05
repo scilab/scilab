@@ -35,12 +35,18 @@
     <ClCompile Include="conv2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\signalprocessingfunctions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_signal_processing.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="conv2.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\signalprocessingfunctions.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

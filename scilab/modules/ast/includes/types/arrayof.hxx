@@ -204,15 +204,6 @@ public :
         return m_pImgData != NULL;
     }
 
-    inline virtual bool isScalar() //2 dims and each dim == 1
-    {
-        if (m_iDims == 2 && m_piDims[0] == 1 && m_piDims[1] == 1)
-        {
-            return true;
-        }
-        return false;
-    }
-
     virtual void setComplex(bool _bComplex)
     {
         if (_bComplex == false)
@@ -1059,6 +1050,11 @@ public :
             return createEmptyDouble();
         }
 
+        if (iSeqCount < 0)
+        {
+            return NULL;
+        }
+
         if (iDims < m_iDims)
         {
             for (int i = 0 ; i < iDims ; i++)
@@ -1249,7 +1245,9 @@ public :
     {
         int piDims[2] = {_iNewRows, _iNewCols};
         return reshape(piDims, 2);
-    } bool reshape(int* _piDims, int _iDims)
+    }
+
+    bool reshape(int* _piDims, int _iDims)
     {
         int iNewSize = get_max_size(_piDims, _iDims);
         if (iNewSize != m_iSize)
@@ -1268,6 +1266,19 @@ public :
             _iDims++;
         }
 
+        int iDims = _iDims;
+        for (int i = iDims - 1; i >= 2; --i)
+        {
+            if (m_piDims[i] == 1)
+            {
+                _iDims--;
+            }
+            else
+            {
+                break;
+            }
+        }
+
         m_iRows = m_piDims[0];
         m_iCols = m_piDims[1];
         m_iSize = iNewSize;
@@ -1282,7 +1293,7 @@ public :
         return resize(piDims, 2);
     }
 
-    virtual void deleteData(T data)
+    virtual void deleteData(T /*data*/)
     {
     }
 
@@ -1318,40 +1329,80 @@ public :
             if (m_iSizeMax < iNewSize)
             {
                 //alloc 10% bigger than asked to prevent future resize
+                int iOldSizeMax = m_iSizeMax;
                 m_iSizeMax = static_cast<int>(iNewSize * 1.1);
                 pRealData = allocData(m_iSizeMax);
-                pImgData = allocData(m_iSizeMax);
-
-                //set value to (null) value
-                for (int i = 0 ; i < m_iSizeMax ; i++)
-                {
-                    pRealData[i]    = getNullValue();
-                    pImgData[i]     = getNullValue();
-                }
+                pImgData  = allocData(m_iSizeMax);
 
                 //copy values into new one
                 int* piIndexes = new int[std::max(m_iDims, _iDims)];
-                memset(piIndexes, 0x00, std::max(m_iDims, _iDims) * sizeof(int));
-                for (int i = 0 ; i < m_iSize ; i++)
+                memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
+                for (int i = 0; i < _iDims; i++)
+                {
+                    piIndexes[i] = 0;
+                }
+
+                int iPreviousNewIdx = 0;
+                for (int i = 0; i < m_iSize; i++)
                 {
                     getIndexes(i, piIndexes);
                     int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
-                    pRealData[iNewIdx] = copyValue(m_pRealData[i]);
-                    pImgData[iNewIdx] = copyValue(m_pImgData[i]);
+                    pRealData[iNewIdx] = m_pRealData[i];
+                    pImgData[iNewIdx]  = m_pImgData[i];
+                    for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
+                    {
+                        T pTemp = getNullValue();
+                        pRealData[j] = copyValue(pTemp);
+                        pImgData[j]  = copyValue(pTemp);
+                        if (pTemp != pRealData[j])
+                        {
+                            deleteData(pTemp);
+                        }
+                    }
+
+                    iPreviousNewIdx = iNewIdx + 1;
+                }
+
+                // if it's not the first resize,
+                // fill new data with element of last allocation
+                if (iPreviousNewIdx < iOldSizeMax)
+                {
+                    for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
+                    {
+                        pRealData[i] = m_pRealData[i];
+                        pImgData[i] = m_pImgData[i];
+                    }
+                }
+                else
+                {
+                    // first resize, iOldSizeMax don't contain the 10%
+                    iOldSizeMax = iPreviousNewIdx;
+                }
+
+                for (int i = iOldSizeMax; i < m_iSizeMax; ++i)
+                {
+                    T pTemp = getNullValue();
+                    pRealData[i] = copyValue(pTemp);
+                    pImgData[i]  = copyValue(pTemp);
+                    if (pTemp != pRealData[i])
+                    {
+                        deleteData(pTemp);
+                    }
                 }
 
                 delete[] piIndexes;
                 //delete all array
-                deleteAll();
+                delete[] m_pRealData;
+                delete[] m_pImgData;
                 //replace old array by new one
-                m_pRealData    = pRealData;
-                m_pImgData    = pImgData;
+                m_pRealData = pRealData;
+                m_pImgData = pImgData;
             }
             else
             {
                 //check if only the last dims change
                 bool bNonLastDimChange = false;
-                for (int i = 0 ; i < (m_iDims - 1) ; i++)
+                for (int i = 0; i < (m_iDims - 1); i++)
                 {
                     if (m_piDims[i] != _piDims[i])
                     {
@@ -1366,16 +1417,19 @@ public :
                     //copy values into new one
                     int* piIndexes = new int[std::max(m_iDims, _iDims)];
                     memset(piIndexes, 0x00, sizeof(int) * std::max(m_iDims, _iDims));
-                    for (int i = m_iSize - 1 ; i >= 0  ; i--)
+                    for (int i = m_iSize - 1; i >= 0; i--)
                     {
                         getIndexes(i, piIndexes);
                         int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
-                        m_pRealData[iNewIdx] = m_pRealData[i];
-                        m_pImgData[iNewIdx] = m_pImgData[i];
                         if (iNewIdx != i)
                         {
-                            m_pRealData[i]  = getNullValue();
-                            m_pImgData[i]   = getNullValue();
+                            T pTemp = m_pRealData[iNewIdx];
+                            m_pRealData[iNewIdx] = m_pRealData[i];
+                            m_pRealData[i] = pTemp;
+
+                            pTemp = m_pImgData[iNewIdx];
+                            m_pImgData[iNewIdx] = m_pImgData[i];
+                            m_pImgData[i] = pTemp;
                         }
                     }
                     delete[] piIndexes;
@@ -1388,6 +1442,7 @@ public :
             if (m_iSizeMax < iNewSize)
             {
                 //alloc 10% bigger than asked to prevent future resize
+                int iOldSizeMax = m_iSizeMax;
                 m_iSizeMax = static_cast<int>(iNewSize * 1.1);
                 pRealData = allocData(m_iSizeMax);
 
@@ -1419,7 +1474,22 @@ public :
                     iPreviousNewIdx = iNewIdx + 1;
                 }
 
-                for (int i = iPreviousNewIdx; i < m_iSizeMax; ++i)
+                // if it's not the first resize,
+                // fill new data with element of last allocation
+                if (iPreviousNewIdx < iOldSizeMax)
+                {
+                    for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
+                    {
+                        pRealData[i] = m_pRealData[i];
+                    }
+                }
+                else
+                {
+                    // first resize, iOldSizeMax don't contain the 10%
+                    iOldSizeMax = iPreviousNewIdx;
+                }
+
+                for (int i = iOldSizeMax; i < m_iSizeMax; ++i)
                 {
                     T pTemp = getNullValue();
                     T pTemp2 = copyValue(pTemp);
@@ -1459,10 +1529,11 @@ public :
                     {
                         getIndexes(i, piIndexes);
                         int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
-                        m_pRealData[iNewIdx] = m_pRealData[i];
                         if (iNewIdx != i)
                         {
-                            m_pRealData[i] = 0;
+                            T pTemp = m_pRealData[iNewIdx];
+                            m_pRealData[iNewIdx] = m_pRealData[i];
+                            m_pRealData[i] = pTemp;
                         }
                     }
                     delete[] piIndexes;
@@ -1489,7 +1560,7 @@ public :
             }
         }
         m_iRows = m_piDims[0];
-        m_iCols    = m_piDims[1];
+        m_iCols = m_piDims[1];
         m_iSize = iNewSize;
         return true;
     }
@@ -1542,7 +1613,6 @@ public :
         int* piDims = new int[m_iDims];
         bool bFinish = parseSubMatrix(ostr, piDims, m_iDims, m_iDims - 1);
         delete[] piDims;
-        scilabWriteW(ostr.str().c_str());
         return bFinish;
     }
 

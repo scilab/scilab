@@ -88,7 +88,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 ostr << wstrName << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());
                 std::wostringstream ostrName;
-                ostrName << SPACES_LIST << wstrName;
+                ostrName << wstrName;
                 VariableToString(pIT, ostrName.str().c_str());
             }
             return;
@@ -129,11 +129,29 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            pOut = evaluateFields(pCell, fields, pITR);
+            try
+            {
+                pOut = evaluateFields(pCell, fields, pITR);
+            }
+            catch (ast::ScilabError error)
+            {
+                // catch error when call overload
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    (*i)->setDeleteCurrent(true);
+                    delete *i;
+                }
+
+                pITR->killMe();
+                throw error;
+            }
+
             for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
             {
                 delete *i;
             }
+
+            pITR->killMe();
 
             if (pOut == NULL)
             {
@@ -147,14 +165,9 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
-                    if (pVar)
-                    {
-                        ostr << SPACES_LIST << pVar->getSymbol().getName();
-                    }
-                    else
-                    {
-                        ostr << SPACES_LIST << L"???";
-                    }
+                    ostr << *getStructNameFromExp(pCell) << L"  = " << std::endl;
+                    ostr << std::endl;
+                    scilabWriteW(ostr.str().c_str());
 
                     VariableToString(pOut, ostr.str().c_str());
                 }
@@ -174,7 +187,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         if (pCall)
         {
             //x(?) = ?
-            InternalType *pOut	= NULL;
+            InternalType *pOut = NULL;
 
             /*getting what to assign*/
             InternalType* pITR = e.getRightVal();
@@ -201,16 +214,41 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 {
                     delete *i;
                 }
+
                 std::wostringstream os;
-                os << _W("Get fields from expression failed.");
+                os << _W("Instruction left hand side: waiting for a name.");
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            pOut = evaluateFields(pCall, fields, pITR);
+            // prevent delete after extractFullMatrix
+            // called in evaluateFields when pITR is an ImplicitList
+            pITR->IncreaseRef();
+
+            try
+            {
+                pOut = evaluateFields(pCall, fields, pITR);
+            }
+            catch (ast::ScilabError error)
+            {
+                // catch error when call overload
+                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                {
+                    delete *i;
+                }
+
+                pITR->DecreaseRef();
+                pITR->killMe();
+
+                throw error;
+            }
+
             for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
             {
                 delete *i;
             }
+
+            pITR->DecreaseRef();
+            pITR->killMe();
 
             if (pOut == NULL)
             {
@@ -227,11 +265,9 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 scilabWriteW(ostr.str().c_str());
 
                 std::wostringstream ostrName;
-                ostrName << SPACES_LIST << *getStructNameFromExp(&pCall->getName());
+                ostrName << *getStructNameFromExp(&pCall->getName());
                 VariableToString(pOut, ostrName.str().c_str());
             }
-
-            pITR->killMe();
 
             clearResult();
             return;
@@ -263,14 +299,10 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //create a new AssignExp and run it
                 types::InternalType* pIT = exec.getResult(i);
-                //protect temporary result from delete
-                pIT->IncreaseRef();
                 AssignExp pAssign((*it)->getLocation(), *(*it), *const_cast<Exp*>(&e.getRightExp()), pIT);
                 pAssign.setLrOwner(false);
                 pAssign.setVerbose(e.isVerbose());
                 pAssign.accept(*this);
-                //unprotect temporary result
-                pIT->DecreaseRef();
                 //clear result to take care of [n,n]
                 exec.setResult(i, NULL);
             }
@@ -281,13 +313,18 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         FieldExp *pField = dynamic_cast<FieldExp*>(&e.getLeftExp());
         if (pField)
         {
-            //a.b = x
-            //a.b can be a struct or a tlist/mlist or a handle
-            /*getting what to assign*/
-            setExpectedSize(1);
-            e.getRightExp().accept(*this);
-            InternalType *pIT = getResult();
-            setResult(NULL);
+            InternalType *pIT = e.getRightVal();
+            if (pIT == NULL)
+            {
+                //a.b = x
+                //a.b can be a struct or a tlist/mlist or a handle
+                /*getting what to assign*/
+                setExpectedSize(1);
+                e.getRightExp().accept(*this);
+                pIT = getResult();
+                setResult(NULL);
+            }
+
             if (pIT->isImplicitList())
             {
                 if (pIT->getAs<ImplicitList>()->isComputable())
@@ -337,7 +374,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 scilabWriteW(ostr.str().c_str());
 
                 std::wostringstream ostrName;
-                ostrName << SPACES_LIST << *pstName;
+                ostrName << *pstName;
                 VariableToString(pPrint, ostrName.str().c_str());
             }
 

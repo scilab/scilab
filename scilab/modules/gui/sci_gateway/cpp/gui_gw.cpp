@@ -27,7 +27,12 @@ bool GuiModule::loadedDep = false;
 
 void GuiModule::LoadDeps(std::wstring _functionName)
 {
-    if (loadedDep == false)
+    if (loadedDep == false &&
+            (_functionName == L"uicontrol" ||
+             _functionName == L"uimenu" ||
+             _functionName == L"usecanvas" ||
+             _functionName == L"loadGui" ||
+             _functionName == L"figure"))
     {
         loadOnUseClassPath("graphics");
         loadedDep = true;

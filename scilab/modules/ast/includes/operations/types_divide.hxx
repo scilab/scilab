@@ -14,12 +14,16 @@
 #define __TYPES_DIVIDE_HXX__
 
 #include "generic_operations.hxx"
+#include "internal.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "sparse.hxx"
 
 int RDivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
 int RDividePolyByDouble(types::Polynom* _pPoly, types::Double* _pDouble, types::Polynom** _pPolyOut);
 int RDivideDoubleByPoly(types::Double* _pDouble, types::Polynom* _pPoly, types::Polynom** _pPolyOut);
+int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, types::InternalType** _pSpOut);
+
 
 int DotRDivideDoubleByDouble(types::Double *_pDouble1, types::Double *_pDouble2, types::Double **_pDoubleOut);
 int DotRDividePolyByDouble(types::Polynom *_pPoly1, types::Double *_pDouble2, types::Polynom **_pPolyOut);

@@ -113,6 +113,9 @@
     <ClCompile Include="..\cpp\sort_inter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\os_wtoi.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -252,6 +255,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\sort_inter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\os_wtoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

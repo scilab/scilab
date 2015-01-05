@@ -14,37 +14,33 @@
 /* desc : a set of functions used to return values in Scilab              */
 /*------------------------------------------------------------------------*/
 
-//#include "api_scilab.h"
 #include "returnProperty.h"
 #include <string.h>
 #include "sci_malloc.h"
 #include "double.hxx"
+#include "int.hxx"
 #include "string.hxx"
 #include "graphichandle.hxx"
 
 /*--------------------------------------------------------------------------*/
 void* sciReturnEmptyMatrix()
 {
-    //createEmptyMatrix(_pvCtx, nbInputArgument(_pvCtx) + 1);
     return types::Double::Empty();
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnString(const char * value)
 {
-    //createSingleString(_pvCtx, nbInputArgument(_pvCtx) + 1, value)
     return new types::String(value);
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnChar(char value)
 {
-    //createSingleString(_pvCtx, nbInputArgument(_pvCtx) + 1, pstValue)
     char pstValue[2] = {value, 0};//createSingleString needs null terminated characters string
     return new types::String(pstValue);
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnDouble(double value)
 {
-    //createScalarDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, value)
     return new types::Double(value);
 }
 /*--------------------------------------------------------------------------*/
@@ -55,15 +51,6 @@ void* sciReturnInt(int value)
 /*--------------------------------------------------------------------------*/
 void* sciReturnRowVector(const double values[], int nbValues)
 {
-    //SciErr sciErr = createMatrixOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, 1, nbValues, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //return 0;
-
     double* pdbl = NULL;
     types::Double* pD = new types::Double(1, nbValues, &pdbl);
     for (int i = 0 ; i < nbValues ; i++)
@@ -75,15 +62,6 @@ void* sciReturnRowVector(const double values[], int nbValues)
 /*--------------------------------------------------------------------------*/
 void* sciReturnRowVectorFromInt(const int values[], int nbValues)
 {
-    //SciErr sciErr = createMatrixOfDoubleAsInteger(_pvCtx, nbInputArgument(_pvCtx) + 1, 1, nbValues, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //return 0;
-
     double* pdbl = NULL;
     types::Double* pD = new types::Double(1, nbValues, &pdbl);
     for (int i = 0 ; i < nbValues ; i++)
@@ -105,28 +83,11 @@ void* sciReturnRowStringVector(char * values[], int nbValues)
 /*--------------------------------------------------------------------------*/
 void* sciReturnHandle(long handle)
 {
-    //createScalarHandle(_pvCtx, nbInputArgument(_pvCtx) + 1, handle)
     return new types::GraphicHandle(handle);
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnRowHandleVector(const long handles[], int nbValues)
 {
-    //int i = 0;
-    //long long* pH = NULL;
-    //SciErr sciErr = allocMatrixOfHandle(_pvCtx, nbInputArgument(_pvCtx) + 1, 1, nbValues, &pH);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //for (i = 0 ; i < nbValues ; i++)
-    //{
-    //    pH[i] = handles[i];
-    //}
-
-    //return 0;
-
     types::GraphicHandle* pH = new types::GraphicHandle(1, nbValues);
     long long* pHandle = pH->get();
     for (int i = 0 ; i < nbValues ; i++)
@@ -138,21 +99,6 @@ void* sciReturnRowHandleVector(const long handles[], int nbValues)
 /*--------------------------------------------------------------------------*/
 void* sciReturnColHandleVector(const long handles[], int nbValues)
 {
-    //int i = 0;
-    //long long* pH = NULL;
-    //SciErr sciErr = allocMatrixOfHandle(_pvCtx, nbInputArgument(_pvCtx) + 1, nbValues, 1, &pH);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //for (i = 0 ; i < nbValues ; i++)
-    //{
-    //    pH[i] = handles[i];
-    //}
-
-    //return 0;
     types::GraphicHandle* pH = new types::GraphicHandle(nbValues, 1);
     long long* pHandle = pH->get();
     for (int i = 0 ; i < nbValues ; i++)
@@ -164,14 +110,6 @@ void* sciReturnColHandleVector(const long handles[], int nbValues)
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrix(double values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //return 0;
     double* pdbl = NULL;
     types::Double* pD = new types::Double(nbRow, nbCol, &pdbl);
     for (int i = 0 ; i < nbRow * nbCol ; i++)
@@ -183,15 +121,6 @@ void* sciReturnMatrix(double values[], int nbRow, int nbCol)
 /*--------------------------------------------------------------------------*/
 void* sciReturnStringMatrix(char * values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfString(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    //return 0;
-
     types::String* pS = new types::String(nbRow, nbCol);
     for (int i = 0 ; i < nbRow * nbCol ; i++)
     {
@@ -221,109 +150,73 @@ void* sciReturnUserData(const int * userData, int userDataSize)
 /*--------------------------------------------------------------------------*/
 void* sciReturnHypermatOfDouble(int dims[], int ndims, double values[])
 {
-    //SciErr sciErr = createHypermatOfDouble(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::Double* pOut = new types::Double(ndims, dims);
+    double* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(double));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnHypermatOfInteger8(int dims[], int ndims, char values[])
 {
-    //SciErr sciErr = createHypermatOfInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::Int8* pOut = new types::Int8(ndims, dims);
+    char* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(char));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnHypermatOfUnsignedInteger8(int dims[], int ndims, unsigned char values[])
 {
-    //SciErr sciErr = createHypermatOfUnsignedInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, dims, ndims, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::UInt8* pOut = new types::UInt8(ndims, dims);
+    unsigned char* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(unsigned char));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfInteger8(char values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::Int8* pOut = new types::Int8(nbRow, nbCol);
+    char* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(char));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfUnsignedInteger8(unsigned char values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfUnsignedInteger8(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::UInt8* pOut = new types::UInt8(nbRow, nbCol);
+    unsigned char* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(unsigned char));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfInteger16(short values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::Int16* pOut = new types::Int16(nbRow, nbCol);
+    short* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(short));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfUnsignedInteger16(unsigned short values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfUnsignedInteger16(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::UInt16* pOut = new types::UInt16(nbRow, nbCol);
+    unsigned short* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(unsigned short));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfInteger32(int values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::Int32* pOut = new types::Int32(nbRow, nbCol);
+    int* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(int));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/
 void* sciReturnMatrixOfUnsignedInteger32(unsigned int values[], int nbRow, int nbCol)
 {
-    //SciErr sciErr = createMatrixOfUnsignedInteger32(_pvCtx, nbInputArgument(_pvCtx) + 1, nbRow, nbCol, values);
-    //if (sciErr.iErr)
-    //{
-    //    printError(&sciErr, 0);
-    //    return 1;
-    //}
-
-    return 0;
+    types::UInt32* pOut = new types::UInt32(nbRow, nbCol);
+    unsigned int* pValues = pOut->get();
+    memcpy(pValues, values, pOut->getSize() * sizeof(unsigned int));
+    return pOut;
 }
 /*--------------------------------------------------------------------------*/

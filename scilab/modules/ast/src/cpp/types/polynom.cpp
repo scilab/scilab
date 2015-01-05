@@ -529,8 +529,7 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
     {
         for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
         {
-            // FIXME : iLen shadow previous declaration
-            int iLen = 0;
+            int iLength = 0;
             _piDims[0] = iRows1;
             _piDims[1] = iCols1;
             int iPos = getIndex(_piDims);
@@ -547,27 +546,26 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
             {
                 for (it_Exp = listExpR.begin() ; it_Exp != listExpR.end() ; it_Exp++)
                 {
-                    iLen += static_cast<int>((*it_Exp).size());
+                    iLength += static_cast<int>((*it_Exp).size());
                 }
             }
             else
             {
                 if (listExpR.front().size() != 0)
                 {
-                    iLen = static_cast<int>(listExpR.front().size());
+                    iLength = static_cast<int>(listExpR.front().size());
                 }
                 else
                 {
-                    iLen = static_cast<int>(listCoefR.front().size());
+                    iLength = static_cast<int>(listCoefR.front().size());
                 }
             }
-            piMaxLen[iCols1] = std::min(std::max(piMaxLen[iCols1], iLen), iLineLen);
+            piMaxLen[iCols1] = std::min(std::max(piMaxLen[iCols1], iLength), iLineLen);
             listExpR.clear();
             listCoefR.clear();
         }
 
         //We know the length of the column
-
         if (static_cast<int>(iLen + piMaxLen[iCols1]) >= iLineLen && iLen != 0)
         {
             //if the max length exceeded
@@ -631,15 +629,7 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
             iLen    = piMaxLen[iCols1];
 
             //write "column x to y"
-            if (iLastCol + 1 == iCols1)
-            {
-                ostr << endl << L"         Column " << iCols1 << endl << endl;
-            }
-            else
-            {
-                ostr << endl << L"         Column " << iLastCol + 1 << L" to " << iCols1 << endl << endl;
-            }
-
+            addColumnString(ostr, iLastCol + 1, iCols1);
             ostr << ostemp.str() << endl;
 
             iLastCol = iCols1;
@@ -652,14 +642,7 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
 
     if (bWordWarp)
     {
-        if (iLastCol + 1 == getCols())
-        {
-            ostr << endl << L"         Column " << getCols() << endl << endl;
-        }
-        else
-        {
-            ostr << endl << L"         Column " << iLastCol + 1 << L" to " << getCols() << endl << endl;
-        }
+        addColumnString(ostr, iLastCol + 1, getCols());
     }
 
     //print the end
@@ -756,15 +739,7 @@ wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
         if (iLen != 0 && static_cast<int>(listExpR.front().size()) + iLen >= iLineLen - 1)
         {
             //flush strean
-            if (i == iLastFlush + 1)
-            {
-                ostr << endl << L"         Column " << i << endl << endl;
-            }
-            else
-            {
-                ostr << endl << L"         Column " << iLastFlush + 1 /* 2 is better than 1, no ? */ << L" to " << i << endl << endl;
-            }
-
+            addColumnString(ostr, iLastFlush + 1, i);
             iLastFlush = i;
             iLen = 0;
             ostr << osExp.str() << endl;
@@ -802,14 +777,7 @@ wstring Polynom::getRowString(int* _piDims, int /*_iDims*/, bool _bComplex)
     if (iLastFlush != 0)
     {
         //last line of a multiline output
-        if (iLastFlush + 1 == getSize())
-        {
-            ostr << endl << L"         Column " << getSize() << endl << endl;
-        }
-        else
-        {
-            ostr << endl << L"         Column " << iLastFlush + 1 << L" to " << getSize() << endl << endl;
-        }
+        addColumnString(ostr, iLastFlush + 1, getSize());
     }
     ostr << osExp.str() << endl;
     ostr << osCoef.str() << endl;

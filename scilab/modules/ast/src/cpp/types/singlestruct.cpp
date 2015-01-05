@@ -280,7 +280,6 @@ bool SingleStruct::toString(std::wostringstream& ostr)
         }
     }
 
-    scilabWriteW(ostr.str().c_str());
     return true;
 }
 

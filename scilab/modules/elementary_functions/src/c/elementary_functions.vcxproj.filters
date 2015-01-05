@@ -56,9 +56,6 @@
     <ClCompile Include="floor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_elementary_functions.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="idmax.c">
       <Filter>Source Files</Filter>
     </ClCompile>

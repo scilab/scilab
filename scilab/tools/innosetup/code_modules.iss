@@ -96,7 +96,7 @@ begin
     //ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
     //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
@@ -149,6 +149,11 @@ begin
     begin
         ModulesXmlFileLines[i] := '<module name="development_tools" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="modules_manager" activate="yes"/>'; i := i + 1;
+    end;
+
+    if IsComponentSelected( ExpandConstant('{#COMPN_MPI}') ) then
+    begin
+        ModulesXmlFileLines[i] := '<module name="mpi" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '</modules>'; i := i + 1;

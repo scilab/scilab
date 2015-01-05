@@ -70,8 +70,10 @@ src/fortran/scifunc.f
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 GATEWAY_CXX_SOURCES = \
+sci_gateway/cpp/sci_scicos_log.cpp \
 sci_gateway/cpp/sci_scicos_new.cpp \
-sci_gateway/cpp/sci_scicos_setfield.cpp
+sci_gateway/cpp/sci_scicos_setfield.cpp \
+sci_gateway/cpp/sci_validvar.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_buildouttb.c \
@@ -134,30 +136,31 @@ libsciscicos_cli_la_LDFLAGS = $(AM_LDFLAGS)
 libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 
 if XCOS
-libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/scicos_sundials/include/ \
-			-I$(srcdir)/src/scicos_sundials/include/sundials/ \
-			-I$(srcdir)/src/scicos_sundials/src/ida/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/dynamic_link/includes/ \
-			-I$(top_srcdir)/modules/string/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/intersci/includes/ \
-			-I$(top_srcdir)/modules/scicos_blocks/includes/ \
-			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/time/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/ast/includes/ast/ \
-			-I$(top_srcdir)/modules/ast/includes/exps/ \
-			-I$(top_srcdir)/modules/ast/includes/operations/ \
-			-I$(top_srcdir)/modules/ast/includes/system_env/ \
-			-I$(top_srcdir)/modules/ast/includes/types/ \
-			-I$(top_srcdir)/modules/ast/includes/analysis/ \
-			-I$(top_srcdir)/modules/threads/includes/ \
-			$(EIGEN_CPPFLAGS) \
-			$(AM_CPPFLAGS)
+libsciscicos_algo_la_CPPFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/scicos_sundials/include/ \
+    -I$(srcdir)/src/scicos_sundials/include/sundials/ \
+    -I$(srcdir)/src/scicos_sundials/src/ida/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/scicos_blocks/includes/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/time/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    $(EIGEN_CPPFLAGS) \
+    $(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \
 			-I$(top_srcdir)/modules/api_scilab/includes/ \

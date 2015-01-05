@@ -919,6 +919,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         //sp + d
         Double* pRes = (Double*)d->clone();
         pRes->setComplex(bComplex1 | bComplex2);
+
         if (bComplex1)
         {
             std::complex<double> dbl = sp->getImg(0, 0);
@@ -927,7 +928,7 @@ int AddSparseToDouble(Sparse* sp, Double* d, GenericType** pDRes)
         }
         else
         {
-            pRes->set(0, pRes->get(0) + sp->get(0, 0));
+            pRes->set(0, pRes->get(0) + sp->getReal(0));
         }
 
         *pDRes = pRes;
@@ -2176,62 +2177,63 @@ template<> InternalType* add_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
 template<> InternalType* add_M_M<Sparse, Sparse, Sparse>(Sparse* _pL, Sparse* _pR)
 {
     Sparse* pOut = NULL;
+
     //check scalar hidden in a sparse ;)
-    if (_pL->getRows() == 1 && _pL->getCols() == 1)
-    {
-        //do scalar + sp
-        Double* pDbl = NULL;
-        if (_pL->isComplex())
-        {
-            std::complex<double> dbl = _pL->getImg(0, 0);
-            pDbl = new Double(dbl.real(), dbl.imag());
-        }
-        else
-        {
-            pDbl = new Double(_pL->get(0, 0));
-        }
+    /* if (_pL->getRows() == 1 && _pL->getCols() == 1)
+     {
+         //do scalar + sp
+         Double* pDbl = NULL;
+         if (_pL->isComplex())
+         {
+             std::complex<double> dbl = _pL->getImg(0, 0);
+             pDbl = new Double(dbl.real(), dbl.imag());
+         }
+         else
+         {
+             pDbl = new Double(_pL->get(0, 0));
+         }
 
-        AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
-        delete pDbl;
-        return pOut;
-    }
+         AddSparseToDouble(_pR, pDbl, (GenericType**)pOut);
+         delete pDbl;
+         return pOut;
+     }
 
-    if (_pR->getRows() == 1 && _pR->getCols() == 1)
-    {
-        //do sp + scalar
-        Double* pDbl = NULL;
-        if (_pR->isComplex())
-        {
-            std::complex<double> dbl = _pR->getImg(0, 0);
-            pDbl = new Double(dbl.real(), dbl.imag());
-        }
-        else
-        {
-            pDbl = new Double(_pR->get(0, 0));
-        }
+     if (_pR->getRows() == 1 && _pR->getCols() == 1)
+     {
+         //do sp + scalar
+         Double* pDbl = NULL;
+         if (_pR->isComplex())
+         {
+             std::complex<double> dbl = _pR->getImg(0, 0);
+             pDbl = new Double(dbl.real(), dbl.imag());
+         }
+         else
+         {
+             pDbl = new Double(_pR->get(0, 0));
+         }
 
-        AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
-        delete pDbl;
-        return 0;
-    }
+         AddSparseToDouble(_pL, pDbl, (GenericType**)pOut);
+         delete pDbl;
+         return 0;
+     }
 
-    if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
-    {
-        //dimensions not match
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
-    }
+     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
+     {
+         //dimensions not match
+         throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+     }
 
-    if (_pL->nonZeros() == 0)
-    {
-        //sp([]) + sp
-        return _pR;
-    }
+     if (_pL->nonZeros() == 0)
+     {
+         //sp([]) + sp
+         return _pR;
+     }
 
-    if (_pR->nonZeros() == 0)
-    {
-        //sp + sp([])
-        return _pL;
-    }
+     if (_pR->nonZeros() == 0)
+     {
+         //sp + sp([])
+         return _pL;
+     }*/
 
     return _pL->add(*_pR);
 }

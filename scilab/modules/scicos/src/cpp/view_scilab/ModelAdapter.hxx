@@ -14,8 +14,10 @@
 #define MODELADAPTER_HXX_
 
 #include <string>
+#include <memory>
 
 #include "BaseAdapter.hxx"
+#include "DiagramAdapter.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -26,7 +28,8 @@ namespace view_scilab
 class ModelAdapter : public BaseAdapter<ModelAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    ModelAdapter(bool ownAdaptee, org_scilab_modules_scicos::model::Block* adaptee);
+    ModelAdapter(std::shared_ptr<model::Block> adaptee);
+    ModelAdapter(const ModelAdapter& adapter);
     ~ModelAdapter();
 
     static const std::wstring getSharedTypeStr()
@@ -36,6 +39,12 @@ public:
 
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
+
+    DiagramAdapter* getDiagram() const;
+    void setDiagram(DiagramAdapter* newDiagram);
+
+private:
+    DiagramAdapter* diagramAdapter;
 };
 
 } /* namespace view_scilab */

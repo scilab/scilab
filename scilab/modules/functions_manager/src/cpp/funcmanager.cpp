@@ -349,6 +349,7 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"xml"] = pair<GW_MOD, GW_MOD>(&XmlModule::Load, &XmlModule::Unload);
     m_ModuleMap[L"scicos"] = pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
     m_ModuleMap[L"xcos"] = pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
+    m_ModuleMap[L"fftw"] = pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {

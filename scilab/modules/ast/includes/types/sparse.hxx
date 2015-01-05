@@ -287,7 +287,7 @@ struct EXTERN_AST Sparse : GenericType
        @param o other matrix to substract
        @return ptr to the new matrix, 0 in case of failure
      */
-    GenericType* substract(Sparse const& o) const;
+    Sparse* substract(Sparse const& o) const;
 
     /* create a new sparse matrix containing the result of an subtraction
        @param d scalar to subtract
@@ -676,6 +676,15 @@ struct EXTERN_AST SparseBool : GenericType
     inline bool isScalar()
     {
         return (getRows() == 1 && getCols() == 1);
+    }
+
+    bool isTrue()
+    {
+        if (nbTrue() == m_iSize)
+        {
+            return true;
+        }
+        return false;
     }
 
     bool neg(InternalType *& out)

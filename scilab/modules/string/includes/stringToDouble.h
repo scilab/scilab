@@ -49,11 +49,17 @@
 #define ScilabPosPiString "+%pi"
 #define ScilabPosPiStringW L"+%pi"
 #define ScilabEString "%e"
+#define ScilabEStringW L"%e"
 #define ScilabPosEString "+%e"
+#define ScilabPosEStringW L"+%e"
 #define ScilabNegEString "-%e"
+#define ScilabNegEStringW L"-%e"
 #define ScilabEpsString "%eps"
+#define ScilabEpsStringW L"%eps"
 #define ScilabPosEpsString "+%eps"
+#define ScilabPosEpsStringW L"+%eps"
 #define ScilabNegEpsString "-%eps"
+#define ScilabNegEpsStringW L"-%eps"
 
 #ifdef __cplusplus
 extern "C" {

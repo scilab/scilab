@@ -505,8 +505,8 @@ JAVASCI_DIRS = . resources \
 	org/scilab/modules/javasci/ \
 	org/scilab/modules/types/
 
-if GENERATE_LOCALIZATION_FILES
 install-data-local:
+if GENERATE_LOCALIZATION_FILES
 	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
 	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
 	for lang in $(ALL_LINGUAS); do \
@@ -517,7 +517,6 @@ install-data-local:
 		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 	done
 endif
-
 ################ INSTALL DOCUMENTATION #################
 # Starting from Scilab 5, documentation file are provided by Docbook
 # In the Scilab application we are generating a JavaHelp file.
@@ -546,9 +545,11 @@ if BUILD_HELP
 	fi
 endif
 if !EXTERNAL_SCIRENDERER
+if GUI
 # Also install scirenderer.jar
 	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
 	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
+endif
 endif
 
 # Pkgconfig directory

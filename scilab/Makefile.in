@@ -2022,7 +2022,6 @@ distclean-generic:
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
-@GENERATE_LOCALIZATION_FILES_FALSE@install-data-local:
 clean: clean-recursive
 
 clean-am: clean-binPROGRAMS clean-checkPROGRAMS clean-generic \
@@ -2387,7 +2386,7 @@ codecoverage-java: clean-reports
 @GENERATE_LOCALIZATION_FILES_TRUE@		fi; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done;
 
-@GENERATE_LOCALIZATION_FILES_TRUE@install-data-local:
+install-data-local:
 @GENERATE_LOCALIZATION_FILES_TRUE@	@$(mkinstalldirs) $(DESTDIR)$(localedir); \
 @GENERATE_LOCALIZATION_FILES_TRUE@	echo $(mkinstalldirs) $(DESTDIR)$(localedir); \
 @GENERATE_LOCALIZATION_FILES_TRUE@	for lang in $(ALL_LINGUAS); do \
@@ -2397,7 +2396,6 @@ codecoverage-java: clean-reports
 @GENERATE_LOCALIZATION_FILES_TRUE@		echo $(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 @GENERATE_LOCALIZATION_FILES_TRUE@		$(INSTALL_DATA) $(top_builddir)/locale/$$lang/LC_MESSAGES/$(LANG_DOMAIN).mo $$LANG_PATH_DIST/; \
 @GENERATE_LOCALIZATION_FILES_TRUE@	done
-
 ################ INSTALL DOCUMENTATION #################
 # Starting from Scilab 5, documentation file are provided by Docbook
 # In the Scilab application we are generating a JavaHelp file.
@@ -2422,8 +2420,8 @@ codecoverage-java: clean-reports
 @BUILD_HELP_TRUE@	done; \
 @BUILD_HELP_TRUE@	fi
 # Also install scirenderer.jar
-@EXTERNAL_SCIRENDERER_FALSE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
-@EXTERNAL_SCIRENDERER_FALSE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
+@EXTERNAL_SCIRENDERER_FALSE@@GUI_TRUE@	$(mkinstalldirs) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)
+@EXTERNAL_SCIRENDERER_FALSE@@GUI_TRUE@	$(INSTALL_DATA) $(top_builddir)/$(PATHTOSCIRENDERER)/$(SCIRENDERERJAR) $(DESTDIR)$(pkgdatadir)/$(PATHTOSCIRENDERER)/
 
 .PHONY: macros localization doc
 

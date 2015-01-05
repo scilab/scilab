@@ -958,7 +958,7 @@ public class SwingScilabDockablePanel extends View implements SimpleTab, FocusLi
      */
     public void setEventHandler(String funName) {
         disableEventHandler();
-        eventHandler = new ScilabEventListener(funName, getId());
+        eventHandler = new ScilabEventListener(funName, getId(), false);
         if (eventEnabled) {
             editorEventHandler.setEnable(false);
             enableEventHandler();

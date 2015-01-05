@@ -157,9 +157,6 @@ template<> bool set(types::SparseBool & d, int r, int c, int v)
     return d.set(r, c, v != 0);
 }
 
-/*
- * TODO report possible bug in Eigen when inserting 0. invalidates Eigen::InnerIterator
- */
 template<> bool set(types::Sparse::RealSparse_t& s, int r, int c, double v)
 {
     if (v != 0.)

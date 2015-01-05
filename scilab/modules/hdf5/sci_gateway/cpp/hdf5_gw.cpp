@@ -22,6 +22,7 @@ extern "C"
 #include "callFunctionFromGateway.h"
 #include "api_scilab.h"
 #include "sci_malloc.h"
+#include "h5_fileManagement.h"
 }
 /*--------------------------------------------------------------------------*/
 int Initialize(void)
@@ -37,6 +38,8 @@ int Finalize(void)
     org_modules_hdf5::H5Type::cleanMap();
     //org_modules_hdf5::H5VariableScope::clearScope();
     org_modules_hdf5::H5Object::clearRoot();
+    /* cleanup HDF5 */
+    HDF5cleanup();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

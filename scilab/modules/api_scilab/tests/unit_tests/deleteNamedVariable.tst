@@ -1,6 +1,6 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2009-2010 - DIGITEO 
+// Copyright (C) 2009-2010 - DIGITEO
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/deleteNamedVariable"));
 cd(pathconvert(TMPDIR+"/deleteNamedVariable"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/deleteNamedVariable.c",pathconvert(TMPDIR+"/deleteNamedVariable/deleteNamedVariable.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-setenv('DEBUG_SCILAB_DYNAMIC_LINK','YES');
+setenv("DEBUG_SCILAB_DYNAMIC_LINK","YES");
 ilib_build("gw_deleteNamedVariable", ["deleteNamedVariable", "sci_deleteNamedVariable"], "deleteNamedVariable.c", [], "", "", cflags);
 exec("loader.sce");
 

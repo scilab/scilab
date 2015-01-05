@@ -25,7 +25,7 @@ function %r_p(h)
         if (m == 0) | (n == 0) then
             return
         end
-        del="!"
+        del=" "
         blank=" "
         if m*n==1 then del=" ",end
         height=zeros(m,1)  // to store "height" of each row do be displayed

@@ -1,0 +1,360 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- CLI SHELL MODE -->
+loadXcosLibs();
+scicos_log("TRACE");
+link = scicos_link(from=[2,1,0],to=[3,1,1]);
+objectCreated( 1 , LINK )
+propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
+subDiag = scicos_diagram( objs=list(link) );
+objectCreated( 2 , DIAGRAM )
+propertyUpdated( 2 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 2 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 2 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 2 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 2 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 1 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 2 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+Super1 = scicos_block(,..
+model=scicos_model(sim="super",in=[],in2=[],intyp=1,out=[],out2=[],outtyp=[],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),..
+rpar=subDiag,..
+ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[%f,%f],label="Quat_Conj",nzcross=0,nmode=0,equations=list())..
+);
+objectCreated( 3 , BLOCK )
+propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 3 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 3 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 3 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , LABEL ) : SUCCESS
+propertyUpdated( 3 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+diag = scicos_diagram();
+objectCreated( 4 , DIAGRAM )
+propertyUpdated( 4 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , CHILDREN ) : NO_CHANGES
+propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+diag.objs(1) = Super1;
+objectCreated( 5 , BLOCK )
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 5 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , LABEL ) : SUCCESS
+propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+objectCreated( 6 , DIAGRAM )
+propertyUpdated( 6 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 6 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 6 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+propertyUpdated( 6 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 6 , DIAGRAM , CONTEXT ) : NO_CHANGES
+objectCreated( 7 , LINK )
+propertyUpdated( 7 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 7 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 7 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 7 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 7 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 7 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 7 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 7 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 6 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 5 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 4 , DIAGRAM , CHILDREN ) : SUCCESS
+diag.objs(1)
+ ans  =
+GUI     : 
+Graphics: 
+          orig = [0,0]
+          sz = [20,20]
+          flip = %t
+          theta = 0
+          exprs = 
+          pin = []
+          pout = []
+          pein = []
+          peout = []
+          gr_i = []
+          id = "Quat_Conj"
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          super type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar : SuperBlock
+          ipar = []
+          opar = list()
+          blocktype = "h"
+          firing = []
+          dep_ut = [%f,%f]
+          label = "Quat_Conj"
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+diag.objs(1).model
+ ans  =
+super type: 0
+in = []
+in2 = []
+intyp = 1
+out = []
+out2 = []
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
+ipar = []
+opar = list()
+blocktype = "h"
+firing = []
+dep_ut = [%f,%f]
+label = "Quat_Conj"
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+diag.objs(1).model.rpar.objs(1)
+ ans  =
+Link    :
+          xx: []
+          yy: []
+          id: 
+          thick: 0 0
+          ct: 1 1
+          from: 2 1 0
+          to: 3 1 1
+Super2 = scicos_block(,..
+model=scicos_model(sim="super",in=[],in2=[],intyp=1,out=[],out2=[],outtyp=[],evtin=[],evtout=[],state=[],dstate=[],odstate=list(),..
+rpar=diag,..
+ipar=[],opar=list(),blocktype="h",firing=[],dep_ut=[%f,%f],label="Quat_Conj",nzcross=0,nmode=0,equations=list())..
+);
+objectCreated( 8 , BLOCK )
+propertyUpdated( 8 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 5 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 8 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
+propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , LABEL ) : SUCCESS
+propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
+Super2.model
+ ans  =
+super type: 0
+in = []
+in2 = []
+intyp = 1
+out = []
+out2 = []
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[0,0],[20,20],%t,0,..,[],[],[],[],[],"Quat_Conj",[],[],..,..,..,..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"super",[],[],1,[],[],1,[],[],[],[],list(),mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list()),[],list(),"h",[],[%f,%f],"Quat_Conj",0,0,list(),""),"",list())),"",list())
+ipar = []
+opar = list()
+blocktype = "h"
+firing = []
+dep_ut = [%f,%f]
+label = "Quat_Conj"
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+Super2.model.rpar
+ ans  =
+wpar = []
+title = ["Untitled";""]
+tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
+tf = 100000
+context = []
+void1 = []
+options = tlist("scsopt")
+void2 = []
+void3 = []
+doc = list()
+1     
+Super2.model.rpar.objs(1)
+ ans  =
+GUI     : 
+Graphics: 
+          orig = [0,0]
+          sz = [20,20]
+          flip = %t
+          theta = 0
+          exprs = 
+          pin = []
+          pout = []
+          pein = []
+          peout = []
+          gr_i = []
+          id = "Quat_Conj"
+          in_implicit = []
+          out_implicit = []
+          in_style = 
+          out_style = 
+          in_label = 
+          out_label = 
+          style = ""
+Model   : 
+          super type: 0
+          in = []
+          in2 = []
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar : SuperBlock
+          ipar = []
+          opar = list()
+          blocktype = "h"
+          firing = []
+          dep_ut = [%f,%f]
+          label = "Quat_Conj"
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+Super2.model.rpar.objs(1).model
+ ans  =
+super type: 0
+in = []
+in2 = []
+intyp = 1
+out = []
+out2 = []
+outtyp = 1
+evtin = []
+evtout = []
+state = []
+dstate = []
+odstate = list()
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Link","xx","yy","id","thick","ct","from","to"],[],[],"",[0,0],[1,1],[2,1,0],[3,1,1])),"",list())
+ipar = []
+opar = list()
+blocktype = "h"
+firing = []
+dep_ut = [%f,%f]
+label = "Quat_Conj"
+nzcross = 0
+nmode = 0
+equations = list()
+uid = ""
+Super2.model.rpar.objs(1).model.rpar
+ ans  =
+wpar = []
+title = ["Untitled";""]
+tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
+tf = 100000
+context = []
+void1 = []
+options = tlist("scsopt")
+void2 = []
+void3 = []
+doc = list()
+Super2.model.rpar.objs(1).model.rpar.objs(1)
+ ans  =
+Link    :
+          xx: []
+          yy: []
+          id: 
+          thick: 0 0
+          ct: 1 1
+          from: 2 1 0
+          to: 3 1 1
+assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).from, [2 1 0]);
+assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).to,   [3 1 1]);
+// Check that all the model items are freed
+clear
+propertyUpdated( 3 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 3 , BLOCK )
+propertyUpdated( 8 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 8 , BLOCK )

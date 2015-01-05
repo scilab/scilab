@@ -353,7 +353,6 @@ bool ImplicitList::toString(std::wostringstream& ostr)
     {
         types::InternalType* pIT = extractFullMatrix();
         bool ret = pIT->toString(ostr);
-        scilabWriteW(ostr.str().c_str());
         delete pIT;
         return ret;
     }
@@ -397,7 +396,6 @@ bool ImplicitList::toString(std::wostringstream& ostr)
             ostr << printInLinePoly(pMP->get(0), pMP->getVariableName());
         }
         ostr << std::endl;
-        scilabWriteW(ostr.str().c_str());
         return true;
     }
 }
@@ -704,6 +702,9 @@ std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)
             df.bPrintPlusSign = true;
             df.bPrintOne = i == 0;
             df.bPaddSign = false;
+            df.bPrintBlank = false;
+            df.bPrintPlusSign = false;
+
             addDoubleValue(&ostr, pdblIn[i], &df);
             if (i != 0)
             {
@@ -723,7 +724,10 @@ std::wstring printDouble(types::Double* _pD)
     std::wostringstream ostr;
     DoubleFormat df;
     getDoubleFormat(_pD->get(0), &df);
+    df.bPrintPoint = false;
     df.bPaddSign = true;
+    df.bPaddSign = false;
+    df.bPrintBlank = false;
     addDoubleValue(&ostr, _pD->get(0), &df);
     return ostr.str();
 }

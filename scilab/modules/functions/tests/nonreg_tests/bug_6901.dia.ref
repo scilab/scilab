@@ -14,4 +14,4 @@
 // This script with 'exec' produced a weird warning
 mputl("exec("""", -1);", TMPDIR + "/bug.sce");
 ierr = execstr("exec(TMPDIR + ''/bug.sce'');", "errcatch");
-if ierr <> 241 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end
