@@ -14,3 +14,5 @@
 // <-- Short Description -->
 // atomsSystemUpdate() failed on some Windows.
 atomsSystemUpdate();
+Scanning repository http://atoms.scilab.org/5.5 ... Done
+

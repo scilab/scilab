@@ -10,6 +10,7 @@
 
 //Load  functions libraries
 // =============================================================================
+<<<<<<< HEAD
 load('SCI/modules/dynamic_link/macros/lib');
 
 // Configure Environment Variables for Microsoft Visual Studio C and
@@ -27,4 +28,11 @@ if getos() == 'Windows' then
         end
     end
 end
+=======
+  load('SCI/modules/dynamic_link/macros/lib');
+endfunction
+
+dynamic_linklib = startModule();
+clear startModule;
+>>>>>>> origin/master
 

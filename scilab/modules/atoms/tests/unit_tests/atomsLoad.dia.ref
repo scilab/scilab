@@ -15,6 +15,8 @@ atomsRestoreConfig(%T);
 atomsSaveConfig();
 //force official ATOMS repository
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
+Scanning repository http://atoms.scilab.org/5.5 ... Done
+
 // Set some parameters for the test
 // =============================================================================
 atomsSetConfig("autoloadAddAfterInstall","False");

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-09-18 17:01+0100\n"
+"Revision-Date: 2014-12-02 16:09+0100\n"
 
 # File: sci_gateway/c/sci_addinter.c, line: 46
 # File: sci_gateway/c/sci_addinter.c, line: 58
@@ -169,47 +169,47 @@ msgid "%s: An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 119
+# File: src/c/dynamic_link.c, line: 120
 #, c-format
 msgid "%s: can not to load a x86 dll in a x64 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 128
+# File: src/c/dynamic_link.c, line: 129
 #, c-format
 msgid "%s: can not load a x64 dll in a x86 environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 141
+# File: src/c/dynamic_link.c, line: 142
 #, c-format
 msgid "%s: The file %s does not exist in PATH environment.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 148
+# File: src/c/dynamic_link.c, line: 149
 #, c-format
 msgid "Link failed for dynamic library '%s'.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 149
+# File: src/c/dynamic_link.c, line: 150
 #, c-format
 msgid "An error occurred: %s\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 159
+# File: src/c/dynamic_link.c, line: 160
 msgid "Shared archive loaded.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 160
+# File: src/c/dynamic_link.c, line: 161
 msgid "Link done.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 350
+# File: src/c/dynamic_link.c, line: 351
 #, c-format
 msgid ""
 "Number of entry points %d.\n"
@@ -217,43 +217,43 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 372
+# File: src/c/dynamic_link.c, line: 373
 #, c-format
 msgid "] : %d library.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 376
+# File: src/c/dynamic_link.c, line: 377
 #, c-format
 msgid "] : %d libraries.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 384
+# File: src/c/dynamic_link.c, line: 385
 #, c-format
 msgid "Entry point %s in shared library %d.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 445
+# File: src/c/dynamic_link.c, line: 446
 #, c-format
 msgid "Cannot open shared files max entry %d reached.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 484
+# File: src/c/dynamic_link.c, line: 485
 #, c-format
 msgid "Entry name %s.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 495
+# File: src/c/dynamic_link.c, line: 496
 #, c-format
 msgid "%s is not an entry point.\n"
 msgstr ""
 
 #
-# File: src/c/dynamic_link.c, line: 504
+# File: src/c/dynamic_link.c, line: 505
 #, c-format
 msgid "Linking %s.\n"
 msgstr ""
@@ -820,17 +820,17 @@ msgid "%s: Failed to add include path : %s"
 msgstr ""
 
 #
-# File: macros/windows/dlwCompile.sci, line: 16
+# File: macros/windows/dlwCompile.sci, line: 18
 msgid "   Compilation of "
 msgstr ""
 
 #
-# File: macros/windows/dlwCompile.sci, line: 22
+# File: macros/windows/dlwCompile.sci, line: 24
 msgid "   Building shared library (be patient)\n"
 msgstr ""
 
 #
-# File: macros/windows/dlwCompile.sci, line: 36
+# File: macros/windows/dlwCompile.sci, line: 38
 #, c-format
 msgid "%s: Error while executing %s.\n"
 msgstr ""

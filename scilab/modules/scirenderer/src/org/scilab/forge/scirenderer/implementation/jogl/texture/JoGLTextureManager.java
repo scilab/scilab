@@ -201,7 +201,7 @@ public class JoGLTextureManager implements TextureManager {
                 if (textures.length == 1) {
                     gl.glEnable(GL2.GL_TEXTURE_2D);
                     gl.glEnable(GL2.GL_BLEND);
-                    gl.glBlendFunc(GL2.GL_ONE, GL2.GL_ONE_MINUS_SRC_ALPHA);
+                    gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
                     gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_REPLACE);
 
                     textures[0].setTexParameteri(gl, GL2.GL_TEXTURE_MAG_FILTER, getAsGLFilter(getMagnificationFilter(), false));
@@ -352,7 +352,9 @@ public class JoGLTextureManager implements TextureManager {
 
             gl.glEnable(GL2.GL_TEXTURE_2D);
             gl.glEnable(GL2.GL_BLEND);
-            gl.glBlendFunc(GL2.GL_ONE, GL2.GL_ONE_MINUS_SRC_ALPHA);
+
+            // ONE => SRC_ALPHA (fix for bug 13673)
+            gl.glBlendFunc(GL2.GL_SRC_ALPHA, GL2.GL_ONE_MINUS_SRC_ALPHA);
 
             gl.glEnable(GL2.GL_ALPHA_TEST);
             gl.glAlphaFunc(GL2.GL_GREATER, 0.0f);

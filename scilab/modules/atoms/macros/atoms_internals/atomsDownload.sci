@@ -163,6 +163,11 @@ function atomsDownload(url_in,file_out,md5sum)
 
         end
 
+        if WGET & atomsGetConfig("useProxy") == "False" then
+            proxy_user_arg = " --no-proxy";
+        end
+
+
         if getos() == "Windows" & CURL then
             download_cmd = """" + pathconvert(SCI+"/tools/curl/curl.exe",%F) + """" + proxy_host_arg + proxy_user_arg + timeout_arg + " -s """ + url_in + """ -o """ + file_out + """";
         elseif CURL then

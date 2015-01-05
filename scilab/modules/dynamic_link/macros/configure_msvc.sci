@@ -36,6 +36,10 @@ function bOK = configure_msvc()
         end
     end
 
+    if bOK then
+        val = setenv("SCILAB_MSVC", "1");
+    end
+
 
 endfunction
 //=============================================================================

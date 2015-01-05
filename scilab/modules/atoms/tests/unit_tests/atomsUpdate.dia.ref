@@ -20,6 +20,8 @@ atomsSetConfig("Verbose" ,"False");
 // =============================================================================
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+Scanning repository http://scene10.test.atoms.scilab.org ... Done
+
 atomsInstall("toolbox_5","user");
 // Check if the module is really installed
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
@@ -33,6 +35,8 @@ if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"user")<>"A" then bugmes();quit
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"user")<>"A" then bugmes();quit;end
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
+Scanning repository http://scene11.test.atoms.scilab.org ... Done
+
 atomsUpdate();
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
 if  atomsIsInstalled(["toolbox_4" "1.0-1"],"all")  then bugmes();quit;end
@@ -51,6 +55,8 @@ if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
 // =============================================================================
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+Scanning repository http://scene10.test.atoms.scilab.org ... Done
+
 atomsInstall("toolbox_4","user");
 atomsInstall("toolbox_5","user");
 // Check if the module is really installed
@@ -65,6 +71,8 @@ if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"user")<>"A" then bugmes();quit
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"user")<>"A" then bugmes();quit;end
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
+Scanning repository http://scene11.test.atoms.scilab.org ... Done
+
 atomsUpdate();
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
 if  atomsIsInstalled(["toolbox_4" "1.0-1"],"all")  then bugmes();quit;end
@@ -85,6 +93,8 @@ if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
 // =============================================================================
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+Scanning repository http://scene10.test.atoms.scilab.org ... Done
+
 atomsInstall("toolbox_3","user");
 atomsInstall("toolbox_4","user");
 if ~atomsIsInstalled(["toolbox_4" "1.0-1"],"user") then bugmes();quit;end
@@ -101,6 +111,8 @@ if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"user")<>"A" then bugmes();quit
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"user")<>"A" then bugmes();quit;end
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
+Scanning repository http://scene11.test.atoms.scilab.org ... Done
+
 atomsUpdate();
 if ~atomsIsInstalled(["toolbox_4" "1.1-1"],"user") then bugmes();quit;end
 if ~atomsIsInstalled(["toolbox_3" "1.0-1"],"user") then bugmes();quit;end
@@ -122,6 +134,8 @@ if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
 // =============================================================================
 // Load the 1st scenario : See scene10.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
+Scanning repository http://scene10.test.atoms.scilab.org ... Done
+
 atomsInstall("toolbox_5","user");
 atomsInstall("toolbox_5","allusers");
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
@@ -144,6 +158,8 @@ if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"allusers")<>"A" then bugmes();
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"allusers")<>"A" then bugmes();quit;end
 // Load the 2nd scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
+Scanning repository http://scene11.test.atoms.scilab.org ... Done
+
 atomsUpdate([],"user");
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
 if  atomsIsInstalled(["toolbox_4" "1.0-1"],"user") then bugmes();quit;end
@@ -178,6 +194,8 @@ if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
 // =============================================================================
 // Load the 1st scenario : See scene11.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene11.test.atoms.scilab.org");
+Scanning repository http://scene11.test.atoms.scilab.org ... Done
+
 atomsInstall("toolbox_5","user");
 // Check if the module is really installed
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
@@ -190,6 +208,8 @@ if atomsGetInstalledStatus(["toolbox_2" "1.0-1"],"user")<>"A" then bugmes();quit
 if atomsGetInstalledStatus(["toolbox_1" "1.0-1"],"user")<>"A" then bugmes();quit;end
 // Load the 2nd scenario : See scene12.test.atoms.scilab.org.txt
 atomsRepositorySetOfl("http://scene12.test.atoms.scilab.org");
+Scanning repository http://scene12.test.atoms.scilab.org ... Done
+
 atomsUpdate();
 if ~atomsIsInstalled(["toolbox_5" "1.0-1"],"user") then bugmes();quit;end
 if ~atomsIsInstalled(["toolbox_4" "1.1-1"],"user") then bugmes();quit;end
@@ -207,3 +227,5 @@ if ~isempty( atomsGetInstalled() ) then bugmes();quit;end
 // =============================================================================
 atomsRestoreConfig(%T);
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
+Scanning repository http://atoms.scilab.org/5.5 ... Done
+

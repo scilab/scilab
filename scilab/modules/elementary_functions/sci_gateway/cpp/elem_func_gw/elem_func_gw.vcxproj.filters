@@ -171,6 +171,9 @@
     <ClCompile Include="..\sci_sign.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\c\sci_log10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\..\includes\elem_func_gw.hxx">

@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-09-18 17:01+0100\n"
+"Revision-Date: 2014-12-02 16:09+0100\n"
 
 # File: macros/atomsAutoload.sci, line: 47
 # File: macros/atomsLoad.sci, line: 38
@@ -523,7 +523,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr ""
 
 #
-# File: macros/atomsGetConfig.sci, line: 119
+# File: macros/atomsGetConfig.sci, line: 124
 #, c-format
 msgid "%s: The config file ('%s') is not well formated at line %d\n"
 msgstr ""
@@ -1289,25 +1289,43 @@ msgid "%s: Wrong type for input argument #%d: Boolean expected.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 179
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 182
 #, c-format
 msgid "%s: DESCRIPTION file ('%s') does not exist.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 189
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 192
 #, c-format
 msgid "%s: gzip not found.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 198
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 201
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 267
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 205
+msgid "Done"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 205
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 213
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 217
+msgid "Scanning repository"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 213
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 217
+msgid "Skipped"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDESCRIPTIONget.sci, line: 284
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
 msgstr ""
@@ -1415,120 +1433,120 @@ msgid "%s: Neither Wget or Curl found: Please install one of them\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 176
+# File: macros/atoms_internals/atomsDownload.sci, line: 181
 msgid "Download in progress... Please be patient."
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsDownload.sci, line: 195
-#, c-format
-msgid "%s: Error: the response status from the URL %s is invalid.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsDownload.sci, line: 196
-#, c-format
-msgid "%s: Error while opening an Internet connection.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsDownload.sci, line: 197
-#, c-format
-msgid "%s: Error while opening the URL %s.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsDownload.sci, line: 198
-#, c-format
-msgid "%s: Error while creating the file %s on disk.\n"
-msgstr ""
-
-#
-# File: macros/atoms_internals/atomsDownload.sci, line: 199
-#, c-format
-msgid "%s: Error while retrieving the size of file at URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 200
 #, c-format
-msgid "%s: Error while reading the file from the URL %s.\n"
+msgid "%s: Error: the response status from the URL %s is invalid.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 201
 #, c-format
-msgid "%s: Error while writing the file %s on disk.\n"
+msgid "%s: Error while opening an Internet connection.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 202
 #, c-format
-msgid "%s: Error while downloading the file from the URL %s.\n"
+msgid "%s: Error while opening the URL %s.\n"
 msgstr ""
 
 #
 # File: macros/atoms_internals/atomsDownload.sci, line: 203
 #, c-format
+msgid "%s: Error while creating the file %s on disk.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDownload.sci, line: 204
+#, c-format
+msgid "%s: Error while retrieving the size of file at URL %s.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDownload.sci, line: 205
+#, c-format
+msgid "%s: Error while reading the file from the URL %s.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDownload.sci, line: 206
+#, c-format
+msgid "%s: Error while writing the file %s on disk.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDownload.sci, line: 207
+#, c-format
+msgid "%s: Error while downloading the file from the URL %s.\n"
+msgstr ""
+
+#
+# File: macros/atoms_internals/atomsDownload.sci, line: 208
+#, c-format
 msgid "%s: Error: out of memory.\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 209
+# File: macros/atoms_internals/atomsDownload.sci, line: 214
 #, c-format
 msgid "%s: The following file hasn't been downloaded:\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 210
+# File: macros/atoms_internals/atomsDownload.sci, line: 215
 #, c-format
 msgid "\t - URL      : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 211
+# File: macros/atoms_internals/atomsDownload.sci, line: 216
 #, c-format
 msgid "\t - Local location : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 229
+# File: macros/atoms_internals/atomsDownload.sci, line: 234
 #, c-format
 msgid "%s: The following file has not been copied:\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 230
+# File: macros/atoms_internals/atomsDownload.sci, line: 235
 #, c-format
 msgid "\t - source    : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 231
+# File: macros/atoms_internals/atomsDownload.sci, line: 236
 #, c-format
 msgid "\t - destination : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 246
+# File: macros/atoms_internals/atomsDownload.sci, line: 251
 #, c-format
 msgid "%s: The downloaded file does not match the MD5SUM:\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 247
+# File: macros/atoms_internals/atomsDownload.sci, line: 252
 #, c-format
 msgid "\t - file      : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 248
+# File: macros/atoms_internals/atomsDownload.sci, line: 253
 #, c-format
 msgid "\t - MD5SUM expected : '%s'\n"
 msgstr ""
 
 #
-# File: macros/atoms_internals/atomsDownload.sci, line: 249
+# File: macros/atoms_internals/atomsDownload.sci, line: 254
 #, c-format
 msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr ""
