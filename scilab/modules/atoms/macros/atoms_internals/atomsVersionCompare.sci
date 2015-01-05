@@ -16,7 +16,6 @@
 // version can be an array
 
 function result = atomsVersionCompare( version_1 , version_2 )
-
     rhs    = argn(2);
 
     // Check number of input arguments
@@ -58,6 +57,13 @@ function result = atomsVersionCompare( version_1 , version_2 )
         end
 
     end
+
+    // version_2 == -1 means no more recent version found
+    if version_2 == "-1" then
+        result = ones(version_1);
+        return
+    end
+
 
     if (length(version_2) > 1) & (regexp(version_2,"/^[0-9]([0-9\.])*[0-9](\-[0-9]([0-9])*)?$/") == []) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: This is not a valid version.\n"),"atomsVersionCompare",2));
