@@ -221,7 +221,7 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             out.push_back(returnType);
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
-            returnType = alloc_and_set_as_mlist<view_scilab::ParamsAdapter, model::Diagram>(type_name, in);
+            returnType = alloc_and_set_as_tlist<view_scilab::ParamsAdapter, model::Diagram>(type_name, in);
             if (returnType == 0)
             {
                 return types::Function::Error;

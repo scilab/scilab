@@ -13,6 +13,8 @@
 #ifndef BASEADAPTER_HXX_
 #define BASEADAPTER_HXX_
 
+#include <cstring>
+
 #include <algorithm>
 #include <string>
 #include <vector>
@@ -25,6 +27,9 @@
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "string.hxx"
+#include "callable.hxx"
+#include "overload.hxx"
+#include "scilabexception.hxx"
 
 #include "Controller.hxx"
 #include "Adapters.hxx"
@@ -372,6 +377,67 @@ private:
         {
             ostr << L"  " << it->name << std::endl;
         }
+        return true;
+    }
+
+    bool isInvokable() const
+    {
+        return true;
+    }
+
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & /*e*/)
+    {
+        if (in.size() == 0)
+        {
+            out.push_back(this);
+            return true;
+        }
+        else if (in.size() == 1)
+        {
+            types::InternalType* _out = nullptr;
+            types::InternalType*  arg = in[0];
+            if (arg->isString())
+            {
+                types::String* pString = arg->getAs<types::String>();
+                for (int i = 0; i < pString->getSize(); ++i)
+                {
+                    if (!extract(pString->get(i), _out))
+                    {
+                        return false;
+                    }
+                    out.push_back(_out);
+                }
+            }
+
+            if (!out.empty())
+            {
+                return true;
+            }
+        }
+
+        types::Callable::ReturnValue ret;
+        // Overload of extraction needs the BaseAdapter from where we extract
+        this->IncreaseRef();
+        in.push_back(this);
+
+        try
+        {
+            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
+        }
+        catch (ast::ScilabError & /*se*/)
+        {
+            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        }
+
+        // Remove this from "in" to keep "in" unchanged.
+        this->DecreaseRef();
+        in.pop_back();
+
+        if (ret == types::Callable::Error)
+        {
+            throw ast::ScilabError();
+        }
+
         return true;
     }
 
