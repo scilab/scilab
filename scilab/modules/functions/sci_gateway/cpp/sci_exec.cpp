@@ -434,6 +434,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
                     }
 
+                    Location location = (*j)->getLocation();
                     if (file)
                     {
                         delete pExp;
@@ -446,10 +447,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                     //restore previous prompt mode
                     ConfigVariable::setPromptMode(oldVal);
-                    throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
+                    throw ast::ScilabMessage(os.str(), 0, location);
                 }
             }
 
+            Location location = (*j)->getLocation();
             if (file)
             {
                 delete pExp;
@@ -460,7 +462,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 FREE(pwstFile);
             }
 
-            throw ast::ScilabMessage((*j)->getLocation());
+            throw ast::ScilabMessage(location);
         }
         catch (const ast::ScilabError& se)
         {
