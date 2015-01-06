@@ -514,7 +514,11 @@ function totalSize = getSingleHandleInfo(fd, totalSize)
             totalSize = seekStringCount(fd, 2, totalSize); // log_flags
         end
 
-        totalSize = seekBool(fd, totalSize); // tight_limits
+        if is_higher_than([5 5 0 0]) then // tight_limits
+            totalSize = seekBoolMatrix(fd, totalSize);
+        else
+            totalSize = seekBool(fd, totalSize);
+        end
         [totalSize, bounds] = readBool(fd, totalSize); // data_bounds count
         totalSize = seekDoubleCount(fd, bounds, totalSize); // data_bounds
 

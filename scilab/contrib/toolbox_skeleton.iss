@@ -14,6 +14,8 @@ Source: contrib\{#TOOLBOX_SKELETON}\toolbox_skeleton_redist.iss; DestDir: {app}\
 Source: contrib\{#TOOLBOX_SKELETON}\changelog.txt; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\license.txt; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\readme.txt; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\DESCRIPTION; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
+Source: contrib\{#TOOLBOX_SKELETON}\DESCRIPTION-FUNCTIONS; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}; Components: {#COMPN_TOOLBOX_SKELETON}
 ;
 Source: contrib\{#TOOLBOX_SKELETON}\demos\*.*; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\demos; Components: {#COMPN_TOOLBOX_SKELETON}
 Source: contrib\{#TOOLBOX_SKELETON}\etc\toolbox_skeleton.quit; DestDir: {app}\contrib\{#TOOLBOX_SKELETON}\etc; Components: {#COMPN_TOOLBOX_SKELETON}

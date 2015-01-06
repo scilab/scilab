@@ -95,7 +95,9 @@ public class AxesHandler {
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_VISIBLE__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_CLIP_STATE__, 1);
-        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__, true);
+        GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__, true);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_BOX_TYPE__, 1);
         GraphicController.getController().setProperty(axes, GraphicObjectProperties.__GO_FILLED__, true);
     }
@@ -140,8 +142,12 @@ public class AxesHandler {
 
         GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_DATA_BOUNDS__, newBounds);
 
-        Boolean tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_TIGHT_LIMITS__);
-        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_TIGHT_LIMITS__, tight_lim);
+        Boolean x_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_X_TIGHT_LIMITS__, x_tight_lim);
+        Boolean y_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__, y_tight_lim);
+        Boolean z_tight_lim = (Boolean)GraphicController.getController().getProperty(axesFrom, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__);
+        GraphicController.getController().setProperty(axesTo, GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__, z_tight_lim);
     }
 
     /**
@@ -306,7 +312,9 @@ public class AxesHandler {
         Integer fontColor = axesFrom.getFontColor();
         boolean fontFractional = axesFrom.getFontFractional();
         Integer hiddenColor = axesFrom.getHiddenColor();
-        boolean tightLimits = axesFrom.getTightLimits();
+        boolean XTightLimits = axesFrom.getXTightLimits();
+        boolean YTightLimits = axesFrom.getYTightLimits();
+        boolean ZTightLimits = axesFrom.getZTightLimits();
 
         clone.setXAxisLabel(xLabelUID);
         clone.setYAxisLabel(yLabelUID);
@@ -342,7 +350,9 @@ public class AxesHandler {
         clone.setFontColor(fontColor);
         clone.setFontFractional(fontFractional);
         clone.setHiddenColor(hiddenColor);
-        clone.setTightLimits(tightLimits);
+        clone.setXTightLimits(XTightLimits);
+        clone.setYTightLimits(YTightLimits);
+        clone.setZTightLimits(ZTightLimits);
 
         return cloneUID;
     }

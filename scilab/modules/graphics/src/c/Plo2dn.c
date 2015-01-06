@@ -656,10 +656,10 @@ int re_index_brect(double *brect, double *drect)
 BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
 {
     BOOL haschanged = FALSE;
-    BOOL tightLimitsPrev = FALSE;
+    BOOL xTightLimitsPrev = FALSE, yTightLimitsPrev = FALSE, zTightLimitsPrev = FALSE;
     BOOL isoviewPrev = FALSE;
     int boxPrev = 0;
-    int tightLimits = 0;
+    int tightLimits = 0, xTightLimits = 0, yTightLimits = 0, zTightLimits = 0;
     int firstPlot = 0;
     int axisVisible = 0;
     int boxType = 0;
@@ -689,8 +689,13 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piTmp);
     yLocationPrev = iTmp;
 
-    getGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
-    tightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    xTightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    yTightLimitsPrev = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    zTightLimitsPrev = iTmp;
+
     getGraphicObjectProperty(iSubwinUID, __GO_ISOVIEW__, jni_bool, (void **)&piTmp);
     isoviewPrev = iTmp;
 
@@ -707,7 +712,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
         case '7':
         case '8':
             tightLimits = 1;
-            setGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
             break;
         case '3':
         case '4':
@@ -718,7 +725,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
         case '6':
             /* pretty axes */
             tightLimits = 0;
-            setGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+            setGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
             break;
     }
 
@@ -838,8 +847,13 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     getGraphicObjectProperty(iSubwinUID, __GO_Y_AXIS_LOCATION__, jni_int, (void**)&piTmp);
     yLocation = iTmp;
 
-    getGraphicObjectProperty(iSubwinUID, __GO_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
-    tightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_X_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    xTightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Y_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    yTightLimits = iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_Z_TIGHT_LIMITS__, jni_bool, (void **)&piTmp);
+    zTightLimits = iTmp;
+
     getGraphicObjectProperty(iSubwinUID, __GO_ISOVIEW__, jni_bool, (void **)&piTmp);
     isoview = iTmp;
 
@@ -847,7 +861,9 @@ BOOL strflag2axes_properties(int iSubwinUID, char *strflag)
     if (axesVisible[0] != axesVisiblePrev[0]
             || axesVisible[1] != axesVisiblePrev[1]
             || axesVisible[2] != axesVisiblePrev[2]
-            || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev || tightLimits != tightLimitsPrev || isoview != isoviewPrev)
+            || xLocation != xLocationPrev || yLocation != yLocationPrev || boxType != boxPrev
+            || xTightLimits != xTightLimitsPrev || yTightLimits != yTightLimitsPrev || zTightLimits != zTightLimitsPrev
+            || isoview != isoviewPrev)
     {
         haschanged = TRUE;
     }
