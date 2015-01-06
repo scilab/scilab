@@ -144,7 +144,7 @@ int setCsvDefaultDecimal(const char *decimal)
             FREE(defaultCsvDecimal);
         }
         defaultCsvDecimal = os_strdup(decimal);
-        if (defaultCsvDecimal == NULL)
+        if (defaultCsvDecimal)
         {
             return 0;
         }
