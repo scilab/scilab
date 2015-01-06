@@ -27,9 +27,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_strdup.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -58,11 +56,11 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
 
         if (iTightLimits)
         {
-            tightLimits[i] = strdup("on");
+            tightLimits[i] = os_strdup("on");
         }
         else
         {
-            tightLimits[i] = strdup("off");
+            tightLimits[i] = os_strdup("off");
         }
 
         if (tightLimits[i] == NULL)
