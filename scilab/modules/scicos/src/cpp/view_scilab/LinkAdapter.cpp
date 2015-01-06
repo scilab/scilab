@@ -193,9 +193,8 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
-        id = std::string(c_str);
+        std::string id(c_str);
         FREE(c_str);
 
         controller.setObjectProperty(adaptee, LINK, LABEL, id);

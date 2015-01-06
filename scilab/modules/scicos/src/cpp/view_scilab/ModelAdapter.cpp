@@ -10,6 +10,9 @@
  *
  */
 
+#include <cwchar>
+#include <cstring>
+
 #include <string>
 #include <vector>
 #include <algorithm>
@@ -32,8 +35,6 @@
 #include "utilities.hxx"
 
 extern "C" {
-#include "wchar.h"
-#include "string.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -100,7 +101,7 @@ struct sim
             }
 
             char* c_str = wide_string_to_UTF8(current->get(0));
-            std::string name = std::string(c_str);
+            std::string name(c_str);
             FREE(c_str);
 
             // If the input is a scalar string, then the functionApi is 0.
@@ -128,7 +129,7 @@ struct sim
                 return false;
             }
             char* c_str = wide_string_to_UTF8(Name->get(0));
-            std::string name = std::string(c_str);
+            std::string name(c_str);
             FREE(c_str);
 
             types::Double* Api = current->get(1)->getAs<types::Double>();
@@ -1179,9 +1180,8 @@ struct label
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string label;
         char* c_str = wide_string_to_UTF8(current->get(0));
-        label = std::string(c_str);
+        std::string label(c_str);
         FREE(c_str);
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, label);
@@ -1455,9 +1455,8 @@ struct equations
             {
                 return false;
             }
-            std::string modelFieldStored;
             c_str = wide_string_to_UTF8(modelField->get(0));
-            modelFieldStored = std::string(c_str);
+            std::string modelFieldStored(c_str);
             FREE(c_str);
             equations.push_back(modelFieldStored);
         }
@@ -1507,9 +1506,8 @@ struct equations
             equations[1] = inputsSizeStr; // Saving the size of the 'inputs' field'
             for (size_t i = 0; i < inputsSize; ++i)
             {
-                std::string inputsFieldStored;
                 c_str = wide_string_to_UTF8(inputsField->get(i));
-                inputsFieldStored = std::string(c_str);
+                std::string inputsFieldStored(c_str);
                 FREE(c_str);
                 equations[i + 2] = inputsFieldStored;
             }
@@ -1545,9 +1543,8 @@ struct equations
             equations[2 + inputsSize] = outputsSizeStr; // Saving the size of the 'outputs' field'
             for (size_t i = 0; i < outputsSize; ++i)
             {
-                std::string outputsFieldStored;
                 c_str = wide_string_to_UTF8(outputsField->get(i));
-                outputsFieldStored = std::string(c_str);
+                std::string outputsFieldStored(c_str);
                 FREE(c_str);
                 equations[i + 3 + inputsSize] = outputsFieldStored;
             }
@@ -1609,9 +1606,8 @@ struct equations
             equations[3 + inputsSize + outputsSize] = parametersSizeStr; // Saving the size of the 'parameters' field'
             for (size_t i = 0; i < parametersSize; ++i)
             {
-                std::string parametersName;
                 c_str = wide_string_to_UTF8(parametersNames->get(i));
-                parametersName = std::string(c_str);
+                std::string parametersName(c_str);
                 FREE(c_str);
                 equations[i + 4 + inputsSize + outputsSize] = parametersName;
             }
@@ -1699,9 +1695,8 @@ struct uid
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string uid;
         char* c_str = wide_string_to_UTF8(current->get(0));
-        uid = std::string(c_str);
+        std::string uid(c_str);
         FREE(c_str);
 
         controller.setObjectProperty(adaptee, BLOCK, UID, uid);

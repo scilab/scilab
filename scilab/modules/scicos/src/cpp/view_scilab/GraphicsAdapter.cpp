@@ -10,6 +10,8 @@
  *
  */
 
+#include <cwchar>
+
 #include <string>
 #include <vector>
 #include <sstream>
@@ -25,7 +27,6 @@
 #include "ports_management.hxx"
 
 extern "C" {
-#include "wchar.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -417,7 +418,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(inField->get(0));
-            std::string inFieldStored = std::string(c_str);
+            std::string inFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(inFieldStored);
 
@@ -432,7 +433,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(intypeField->get(0));
-            std::string intypeFieldStored = std::string(c_str);
+            std::string intypeFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(intypeFieldStored);
 
@@ -447,7 +448,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(outField->get(0));
-            std::string outFieldStored = std::string(c_str);
+            std::string outFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(outFieldStored);
 
@@ -462,7 +463,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(outtypeField->get(0));
-            std::string outtypeFieldStored = std::string(c_str);
+            std::string outtypeFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(outtypeFieldStored);
 
@@ -477,7 +478,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(paramField->get(0));
-            std::string paramFieldStored = std::string(c_str);
+            std::string paramFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(paramFieldStored);
 
@@ -503,7 +504,7 @@ struct exprs
                 }
                 types::String* listElement = list->get(i)->getAs<types::String>();
                 c_str = wide_string_to_UTF8(listElement->get(0));
-                std::string paramvElement = std::string(c_str);
+                std::string paramvElement(c_str);
                 FREE(c_str);
                 exprs[7 + i] = paramvElement;
             }
@@ -519,7 +520,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(ppropField->get(0));
-            std::string ppropFieldStored = std::string(c_str);
+            std::string ppropFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(ppropFieldStored);
 
@@ -534,7 +535,7 @@ struct exprs
                 return false;
             }
             c_str = wide_string_to_UTF8(nameFField->get(0));
-            std::string nameFFieldStored = std::string(c_str);
+            std::string nameFFieldStored(c_str);
             FREE(c_str);
             exprs.push_back(nameFFieldStored);
 
@@ -572,7 +573,7 @@ struct exprs
                 for (size_t i = 0; i < funtxtSize; ++i)
                 {
                     c_str = wide_string_to_UTF8(funtxtField->get(i));
-                    std::string funtxtElement = std::string(c_str);
+                    std::string funtxtElement(c_str);
                     FREE(c_str);
                     exprs[exprsSize + 1 + i] = funtxtElement;
                 }
@@ -688,9 +689,8 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
-        id = std::string(c_str);
+        std::string id(c_str);
         FREE(c_str);
 
         controller.setObjectProperty(adaptee, BLOCK, LABEL, id);
@@ -806,9 +806,8 @@ struct style
                 return false;
             }
 
-            std::string style;
             char* c_str = wide_string_to_UTF8(current->get(0));
-            style = std::string(c_str);
+            std::string style(c_str);
             FREE(c_str);
 
             controller.setObjectProperty(adaptee, BLOCK, STYLE, style);
