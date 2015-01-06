@@ -471,7 +471,7 @@
                             <listitem>
                                 <para>
                                     3 character string that sets the scale (linear or logarithmic) along the axes.
-                                    Each character speficfies the scale for respectivgly the X, Y and Z axes.
+                                    Each character speficfies the scale for respectively the X, Y and Z axes.
                                     They should take a value between <literal>'n'</literal> for linear scale or
                                     <literal>'l'</literal> for logarithmic scale.
                                 </para>
@@ -481,9 +481,14 @@
                             <term>tight_limits: </term>
                             <listitem>
                                 <para>
-                                    If this property value is <literal>"on"</literal> axes adapt to fit exactly with the minima and
-                                    maxima values of the data bounds. If this field value is <literal>"off"</literal>, axes may
-                                    enlarge boundaries such as to produce pretty tics labels.
+                                    A <literal>1x3</literal> string vector giving the tight_limits status
+                                    for each axis. This property specifies whether each axis fits exactly with the minima and
+                                    maxima values of the data bounds. If an item is <literal>"off"</literal>, the corresponding axis may
+                                    enlarge boundaries such as to produce pretty tics labels. For a global setting (all axes at once), you have to set its value
+                                    to <literal>"on"</literal> or <literal>"off"</literal> (single string). To act on a single axis,
+                                    the syntax is <literal>tight_limits(N)</literal> where <literal>N</literal> is
+                                    <literal>1,2</literal> or <literal>3</literal> corresponding to the
+                                    <literal>x,y</literal> or <literal>z</literal> axis.
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -1044,6 +1049,10 @@ a.ticks_st=[1 1;0 m(2)];
                         <listitem>ticks_format and ticks_st properties added to improve ticks labels display.</listitem>
                     </itemizedlist>
                 </revremark>
+            </revision>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>tight_limits property can now manage X, Y and Z axis separately.</revremark>
             </revision>
         </revhistory>
     </refsection>

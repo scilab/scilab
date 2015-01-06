@@ -10,7 +10,7 @@
 
 
 function %h_save(h,fd)
-    version=[5 5 0 0]
+    version=[5 5 2 0]
     mput(version,"uc",fd)
 
     // There are issues when saving characters with 'c' format
@@ -216,7 +216,8 @@ function save_graphichandle(h,fd)
         mput(bool2s(h.cube_scaling=="on"),characterFormat,fd) // cube_scaling
         mput(h.rotation_angles,"dl",fd) // rotation_angles
         mput(ascii(h.log_flags),characterFormat,fd) // log_flags
-        mput(bool2s(h.tight_limits=="on"),characterFormat,fd) // tight_limits
+        mput(size(h.tight_limits,"*"),characterFormat,fd); // tight_limits
+        mput(bool2s(h.tight_limits=="on"),characterFormat,fd);
         mput(size(h.data_bounds,"*"),characterFormat,fd); // data_bounds
         mput(h.data_bounds,"dl",fd);
         mput(size(h.zoom_box,"*"),characterFormat,fd);  // zoom_box

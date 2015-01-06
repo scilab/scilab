@@ -23,6 +23,7 @@
 #include "double.hxx"
 #include "string.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "model/Port.hxx"
 
