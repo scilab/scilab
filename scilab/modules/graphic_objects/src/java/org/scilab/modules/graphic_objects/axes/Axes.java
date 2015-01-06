@@ -14,6 +14,101 @@
 
 package org.scilab.modules.graphic_objects.axes;
 
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ARC_DRAWING_METHOD__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_CLEAR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_MARGINS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_SCALE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AUTO_SUBTICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_AXES_BOUNDS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_BOX_TYPE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_BOX_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_BOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CLIP_STATE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_CUBE_SCALING__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_DATA_BOUNDS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FILLED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FIRST_PLOT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_FRACTIONAL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_FONT_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_GRID_POSITION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN_AXIS_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_HIDDEN_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ISOVIEW__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_LINE_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARGINS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_BACKGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_FOREGROUND__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_MODE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE_UNIT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_SIZE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_MARK_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_REAL_DATA_BOUNDS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROTATION_ANGLES_3D__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ROTATION_ANGLES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_TITLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_VIEW__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_AUTO_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_FORMAT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_GRID_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_GRID_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_GRID_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_LOCATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_LOG_FLAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_NUMBER_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_REVERSE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_ST_FACTORS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_SUBTICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_TICKS_LABELS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_TICKS_LOCATIONS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_AXIS_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_X_TIGHT_LIMITS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_AUTO_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_FORMAT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_GRID_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_GRID_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_GRID_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_LOCATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_LOG_FLAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_NUMBER_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_REVERSE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_ST_FACTORS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_SUBTICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_TICKS_LABELS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_TICKS_LOCATIONS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_AXIS_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_TIGHT_LIMITS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ZOOM_BOX__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_ZOOM_ENABLED__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_AUTO_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_FORMAT__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_GRID_COLOR__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_GRID_STYLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_GRID_THICKNESS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_LABEL__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_LOCATION__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_LOG_FLAG__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_NUMBER_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_REVERSE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_ST_FACTORS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_SUBTICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_TICKS_LABELS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_TICKS_LOCATIONS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_TICKS__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_AXIS_VISIBLE__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_TIGHT_LIMITS__;
+
+import java.util.ArrayList;
+
 import org.scilab.modules.graphic_objects.arc.Arc.ArcDrawingMethod;
 import org.scilab.modules.graphic_objects.arc.Arc.ArcProperty;
 import org.scilab.modules.graphic_objects.axes.AxisProperty.AxisLocation;
@@ -34,13 +129,6 @@ import org.scilab.modules.graphic_objects.graphicObject.GraphicObject;
 import org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties;
 import org.scilab.modules.graphic_objects.graphicObject.Visitor;
 import org.scilab.modules.graphic_objects.textObject.FormattedText;
-import org.scilab.modules.graphic_objects.lighting.ColorTriplet;
-import org.scilab.modules.graphic_objects.lighting.Light;
-import org.scilab.modules.graphic_objects.lighting.Light.LightProperty;
-
-import java.util.ArrayList;
-
-import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.*;
 
 /**
  * Axes class
@@ -346,8 +434,12 @@ public class Axes extends GraphicObject {
                 return Box.BoxProperty.BOX;
             case __GO_HIDDEN_AXIS_COLOR__ :
                 return Box.BoxProperty.HIDDENAXISCOLOR;
-            case __GO_TIGHT_LIMITS__ :
-                return Box.BoxProperty.TIGHTLIMITS;
+            case __GO_X_TIGHT_LIMITS__ :
+                return Box.BoxProperty.XTIGHTLIMITS;
+            case __GO_Y_TIGHT_LIMITS__ :
+                return Box.BoxProperty.YTIGHTLIMITS;
+            case __GO_Z_TIGHT_LIMITS__ :
+                return Box.BoxProperty.ZTIGHTLIMITS;
             case __GO_DATA_BOUNDS__ :
                 return Box.BoxProperty.DATABOUNDS;
             case __GO_REAL_DATA_BOUNDS__ :
@@ -556,8 +648,12 @@ public class Axes extends GraphicObject {
                     return getBoxType();
                 case HIDDENAXISCOLOR:
                     return getHiddenAxisColor();
-                case TIGHTLIMITS:
-                    return getTightLimits();
+                case XTIGHTLIMITS:
+                    return getXTightLimits();
+                case YTIGHTLIMITS:
+                    return getYTightLimits();
+                case ZTIGHTLIMITS:
+                    return getZTightLimits();
                 case DATABOUNDS:
                     return getDataBounds();
                 case REALDATABOUNDS:
@@ -766,8 +862,12 @@ public class Axes extends GraphicObject {
                     return setBoxType((Integer) value);
                 case HIDDENAXISCOLOR:
                     return setHiddenAxisColor((Integer) value);
-                case TIGHTLIMITS:
-                    return setTightLimits((Boolean) value);
+                case XTIGHTLIMITS:
+                    return setXTightLimits((Boolean) value);
+                case YTIGHTLIMITS:
+                    return setYTightLimits((Boolean) value);
+                case ZTIGHTLIMITS:
+                    return setZTightLimits((Boolean) value);
                 case DATABOUNDS:
                     return setDataBounds((Double[]) value);
                 case REALDATABOUNDS:
@@ -2105,17 +2205,45 @@ public class Axes extends GraphicObject {
     }
 
     /**
-     * @return the tight limits
+     * @return the X axis tight limits
      */
-    public Boolean getTightLimits() {
-        return box.getTightLimits();
+    public Boolean getXTightLimits() {
+        return box.getXTightLimits();
     }
 
     /**
-     * @param tightLimits the tightLimits to set
+     * @return the Y axis tight limits
      */
-    public UpdateStatus setTightLimits(Boolean tightLimits) {
-        return box.setTightLimits(tightLimits);
+    public Boolean getYTightLimits() {
+        return box.getYTightLimits();
+    }
+
+    /**
+     * @return the Z axis tight limits
+     */
+    public Boolean getZTightLimits() {
+        return box.getZTightLimits();
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for X axis
+     */
+    public UpdateStatus setXTightLimits(Boolean tightLimits) {
+        return box.setXTightLimits(tightLimits);
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for Y axis
+     */
+    public UpdateStatus setYTightLimits(Boolean tightLimits) {
+        return box.setYTightLimits(tightLimits);
+    }
+
+    /**
+     * @param tightLimits the tightLimits to set for Z axis
+     */
+    public UpdateStatus setZTightLimits(Boolean tightLimits) {
+        return box.setZTightLimits(tightLimits);
     }
 
     /**
@@ -2276,10 +2404,14 @@ public class Axes extends GraphicObject {
             }
         }
 
-        if (!getTightLimits()) {
-            for (int i = 0 ; i < 6 ; i += 2) {
-                round(bounds, i);
-            }
+        if (!getXTightLimits()) {
+            round(bounds, 0);
+        }
+        if (!getYTightLimits()) {
+            round(bounds, 2);
+        }
+        if (!getZTightLimits()) {
+            round(bounds, 4);
         }
 
         return bounds;

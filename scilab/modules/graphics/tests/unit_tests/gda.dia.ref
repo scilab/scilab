@@ -31,7 +31,7 @@ assert_checkequal(a.cube_scaling, "off");
 assert_checkequal(a.view, "2d");
 assert_checkequal(a.rotation_angles, [0, 270]);
 assert_checkequal(a.log_flags, "nnn");
-assert_checkequal(a.tight_limits, "off");
+assert_checkequal(a.tight_limits, ["off", "off", "off"]);
 assert_checkequal(a.data_bounds, [0, 0; 1, 1]);
 assert_checkequal(a.zoom_box, []);
 assert_checkequal(a.margins, [0.125, 0.125, 0.125, 0.125]);

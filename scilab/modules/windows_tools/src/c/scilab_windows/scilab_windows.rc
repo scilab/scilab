@@ -64,7 +64,7 @@ BEGIN
             VALUE "FileDescription", "Scilab for Windows"
             VALUE "FileVersion", "5, 6, 0, 0"
             VALUE "InternalName", "Scilab for Windows"
-            VALUE "LegalCopyright", "Copyright (C) 2014"
+            VALUE "LegalCopyright", "Copyright (C) 2015"
             VALUE "OriginalFilename", "scilab_windows.dll"
             VALUE "ProductName", "scilab_windows"
             VALUE "ProductVersion", "5, 6, 0, 0"

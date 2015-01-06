@@ -23,6 +23,8 @@ Removed Functions
 Scilab Bug Fixes
 ================
 
+* Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
@@ -30,6 +32,10 @@ Scilab Bug Fixes
 * Bug #13676 fixed - An invisible figure could not be exported.
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
+
+* Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
+
+* Bug #13694 fixed - Calling wfir without input arguments produced an error instead of calling wfir_gui.
 
 
                      Changes between version 5.5.0 and 5.5.1

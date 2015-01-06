@@ -551,7 +551,9 @@ int InitAxesModel()
     setGraphicObjectProperty(iAxesmdlUID, __GO_REAL_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 
     tightLimits = 0;
-    setGraphicObjectProperty(iAxesmdlUID, __GO_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_X_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Y_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
+    setGraphicObjectProperty(iAxesmdlUID, __GO_Z_TIGHT_LIMITS__, &tightLimits, jni_bool, 1);
 
     /* Sets the default arc drawing method to lines (1), which is faster */
     arcDrawingMethod = 1;

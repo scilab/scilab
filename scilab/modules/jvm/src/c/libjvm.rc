@@ -68,7 +68,7 @@ BEGIN
             VALUE "FileDescription", "jvm module"
             VALUE "FileVersion", "5, 6, 0, 0"
             VALUE "InternalName", "jvm"
-            VALUE "LegalCopyright", "Copyright (C) 2014"
+            VALUE "LegalCopyright", "Copyright (C) 2015"
             VALUE "OriginalFilename", "libjvm.dll"
             VALUE "ProductName", "jvm"
             VALUE "ProductVersion", "5, 6, 0, 0"

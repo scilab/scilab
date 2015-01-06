@@ -504,17 +504,39 @@
                 <listitem>
                     <para>
                         scalar, a termination indicator.
-                        The success flag is <literal>9</literal>.
-                        <literal>err=1</literal>: Norm of projected gradient lower than...
-                        <literal>err=2</literal>: At last iteration f decreases by less than...
-                        <literal>err=3</literal>: Optimization stops because of too small variations for x.
-                        <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached.
-                        <literal>err=5</literal>: Optim stops: maximum number of iterations is reached.
-                        <literal>err=6</literal>: Optim stops: too small variations in gradient direction.
-                        <literal>err=7</literal>: Stop during calculation of descent direction.
-                        <literal>err=8</literal>: Stop during calculation of estimated hessian.
-                        <literal>err=9</literal>: End of optimization, successful completion.
-                        <literal>err=10</literal>: End of optimization (linear search fails).
+                        The success flag is <literal>9</literal> and possible values are:
+                        <itemizedlist>
+                            <listitem>
+                                <literal>err=1</literal>: Norm of projected gradient lower than... 
+                            </listitem>
+                            <listitem>
+                                <literal>err=2</literal>: At last iteration f decreases by less than... 
+                            </listitem>
+                            <listitem>
+                                <literal>err=3</literal>: Optimization stops because of too small variations for x. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=4</literal>: Optim stops: maximum number of calls to f is reached. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=5</literal>: Optim stops: maximum number of iterations is reached. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=6</literal>: Optim stops: too small variations in gradient direction. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=7</literal>: Stop during calculation of descent direction. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=8</literal>: Stop during calculation of estimated hessian. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=9</literal>: End of optimization, successful completion. 
+                            </listitem>
+                            <listitem>
+                                <literal>err=10</literal>: End of optimization (linear search fails). 
+                            </listitem>
+                        </itemizedlist>
                     </para>
                 </listitem>
             </varlistentry>

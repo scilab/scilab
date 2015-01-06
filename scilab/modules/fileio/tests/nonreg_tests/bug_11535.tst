@@ -26,10 +26,10 @@ mputl("test3.sci", "test3.sci");
 //compute reference
 filename_ref = ["test3.sci" ; "test2.sci" ; "test1.sci"];
 ref = pathconvert(TMPDIR + "/bug_11535") + filename_ref;
-ref = [ref;ref];
+ref = gsort([ref;ref]);
 
 //list files in folder
-filenames = listfiles([TMPDIR + "/bug_11535" ; TMPDIR + "/bug_11535/*"]);
+filenames = gsort(listfiles([TMPDIR + "/bug_11535" ; TMPDIR + "/bug_11535/*"]));
 
 //check values
 assert_checkequal(filenames, ref);
