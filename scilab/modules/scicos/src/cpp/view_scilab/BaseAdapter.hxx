@@ -308,7 +308,7 @@ private:
                     std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
                     // Allocate the return
-                    types::String* pOut = new types::String(1, properties.size());
+                    types::String* pOut = new types::String(1, static_cast<int>(properties.size()));
 
                     int i = 0;
                     for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++i)

@@ -15,6 +15,8 @@
 
 #include "types.hxx"
 #include "list.hxx"
+#include "mlist.hxx"
+#include "string.hxx"
 
 #include "utilities.hxx"
 #include "adapters_utilities.hxx"
@@ -117,7 +119,7 @@ types::List* deepCreateAdapters(const std::vector<ScicosID>& diagramChildren, ty
     }
 
     // Do the linking at model-level, from the old 'from_vec' and 'to_vec'
-    for (int i = 0; i < static_cast<int>(linkListView.size()); ++i)
+    for (size_t i = 0; i < linkListView.size(); ++i)
     {
         // Trigger 'from' and 'to' properties
         linkListView[i]->setFromInModel(from[i], controller);

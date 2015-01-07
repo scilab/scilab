@@ -314,7 +314,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
             return ret;
         }
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
-        ret.block = std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1;
+        ret.block = static_cast<int>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
 
         // To find the port index from its 'endID' ID, search through all the block's ports lists
         std::vector<ScicosID> sourceBlockPorts;
@@ -343,7 +343,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
                 }
             }
         }
-        ret.port = std::distance(sourceBlockPorts.begin(), found) + 1;
+        ret.port = static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
         bool isImplicit;
         controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
@@ -731,8 +731,8 @@ struct from
         link_t from_content {0, 0, Start};
         if (current->getSize() >= 2)
         {
-            from_content.block = current->get(0);
-            from_content.port = current->get(1);
+            from_content.block = static_cast<int>(current->get(0));
+            from_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an output (set to 0)
 
             if (current->getSize() == 3)
@@ -784,8 +784,8 @@ struct to
         link_t to_content {0, 0, End};
         if (current->getSize() >= 2)
         {
-            to_content.block = current->get(0);
-            to_content.port = current->get(1);
+            to_content.block = static_cast<int>(current->get(0));
+            to_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an input (set to 1)
 
             if (current->getSize() == 3)

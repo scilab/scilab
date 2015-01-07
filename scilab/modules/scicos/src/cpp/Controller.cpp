@@ -54,8 +54,7 @@ void Controller::unregister_view(View* v)
     view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
     if (it != m_instance.allViews.end())
     {
-        int d = std::distance(m_instance.allViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allViews.begin(), it);
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
@@ -68,8 +67,7 @@ View* Controller::unregister_view(const std::string& name)
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
     {
-        int d = std::distance(m_instance.allNamedViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allNamedViews.begin(), it);
         view = *(m_instance.allViews.begin() + d);
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
@@ -85,8 +83,7 @@ View* Controller::look_for_view(const std::string& name)
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
     {
-        int d = std::distance(m_instance.allNamedViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allNamedViews.begin(), it);
         view = *(m_instance.allViews.begin() + d);
     }
 
@@ -208,7 +205,7 @@ void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     std::vector<ScicosID> children;
     getObjectProperty(uid, k, uid_prop, children);
 
-    for (ScicosID id : children)
+for (ScicosID id : children)
     {
         deleteObject(id);
     }
@@ -308,7 +305,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     std::vector<ScicosID> cloned;
     cloned.reserve(v.size());
 
-    for (const ScicosID & id : v)
+for (const ScicosID & id : v)
     {
         if (id == 0)
         {

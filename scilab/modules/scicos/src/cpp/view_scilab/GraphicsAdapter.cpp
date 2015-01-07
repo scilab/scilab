@@ -498,11 +498,11 @@ struct exprs
 
             for (size_t i = 0; i < paramvSize; ++i)
             {
-                if (list->get(i)->getType() != types::InternalType::ScilabString)
+                if (list->get(static_cast<int>(i))->getType() != types::InternalType::ScilabString)
                 {
                     return false;
                 }
-                types::String* listElement = list->get(i)->getAs<types::String>();
+                types::String* listElement = list->get(static_cast<int>(i))->getAs<types::String>();
                 c_str = wide_string_to_UTF8(listElement->get(0));
                 std::string paramvElement(c_str);
                 FREE(c_str);
@@ -564,7 +564,7 @@ struct exprs
                 types::String* funtxtField = current->get(9)->getAs<types::String>();
 
                 funtxtSize = funtxtField->getSize();
-                int exprsSize = exprs.size(); // Saving last index before resizing
+                size_t exprsSize = exprs.size(); // Saving last index before resizing
                 exprs.resize(exprs.size() + 1 + funtxtSize); // Allocation for the 'funtxt' strings
                 strFuntxt << funtxtSize;
                 std::string funtxtSizeStr = strFuntxt.str();
@@ -572,7 +572,7 @@ struct exprs
 
                 for (size_t i = 0; i < funtxtSize; ++i)
                 {
-                    c_str = wide_string_to_UTF8(funtxtField->get(i));
+                    c_str = wide_string_to_UTF8(funtxtField->get(static_cast<int>(i)));
                     std::string funtxtElement(c_str);
                     FREE(c_str);
                     exprs[exprsSize + 1 + i] = funtxtElement;

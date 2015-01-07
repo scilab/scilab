@@ -914,8 +914,6 @@ struct rpar
         {
             std::shared_ptr<model::Diagram> super = std::static_pointer_cast<model::Diagram>(controller.getObject(diagramChild[0]));
             DiagramAdapter* localAdaptor = new DiagramAdapter(super);
-            //model::Diagram* super = static_cast<model::Diagram*>(controller.getObject(diagramC[0]).get());
-            //DiagramAdapter* localAdapter = new DiagramAdapter(std::shared_ptr<model::Diagram>(super));
 
             DiagramAdapter* diagram = adaptor.getDiagram();
             localAdaptor->setListObjects(diagram->getListObjects());
@@ -1455,6 +1453,7 @@ struct equations
             {
                 return false;
             }
+
             c_str = wide_string_to_UTF8(modelField->get(0));
             std::string modelFieldStored(c_str);
             FREE(c_str);
@@ -1485,6 +1484,7 @@ struct equations
             {
                 return false;
             }
+
             inputsSize = 0;
             std::ostringstream strInputs;
             strInputs << inputsSize;
@@ -1497,6 +1497,7 @@ struct equations
             {
                 return false;
             }
+
             types::String* inputsField = current->get(2)->getAs<types::String>();
             inputsSize = inputsField->getSize();
             equations.resize(equations.size() + 1 + inputsSize);
@@ -1506,7 +1507,7 @@ struct equations
             equations[1] = inputsSizeStr; // Saving the size of the 'inputs' field'
             for (size_t i = 0; i < inputsSize; ++i)
             {
-                c_str = wide_string_to_UTF8(inputsField->get(i));
+                c_str = wide_string_to_UTF8(inputsField->get(static_cast<int>(i)));
                 std::string inputsFieldStored(c_str);
                 FREE(c_str);
                 equations[i + 2] = inputsFieldStored;
@@ -1522,6 +1523,7 @@ struct equations
             {
                 return false;
             }
+
             outputsSize = 0;
             std::ostringstream strOutputs;
             strOutputs << outputsSize;
@@ -1534,6 +1536,7 @@ struct equations
             {
                 return false;
             }
+
             types::String* outputsField = current->get(3)->getAs<types::String>();
             outputsSize = outputsField->getSize();
             equations.resize(equations.size() + 1 + outputsSize);
@@ -1543,7 +1546,7 @@ struct equations
             equations[2 + inputsSize] = outputsSizeStr; // Saving the size of the 'outputs' field'
             for (size_t i = 0; i < outputsSize; ++i)
             {
-                c_str = wide_string_to_UTF8(outputsField->get(i));
+                c_str = wide_string_to_UTF8(outputsField->get(static_cast<int>(i)));
                 std::string outputsFieldStored(c_str);
                 FREE(c_str);
                 equations[i + 3 + inputsSize] = outputsFieldStored;
@@ -1560,12 +1563,15 @@ struct equations
             {
                 return false;
             }
+
             parametersIndex++;
         }
+
         if (current->get(parametersIndex)->getType() != types::InternalType::ScilabList)
         {
             return false;
         }
+
         types::List* list = current->get(parametersIndex)->getAs<types::List>();
         if (list->getSize() < 1)
         {
@@ -1581,6 +1587,7 @@ struct equations
             {
                 return false;
             }
+
             // When 'parameters(1)'=[], just insert "0" in 'equations', set in the model and return
             parametersSize = 0;
             std::ostringstream strParameters;
@@ -1597,6 +1604,7 @@ struct equations
             {
                 return false;
             }
+
             types::String* parametersNames = list->get(0)->getAs<types::String>();
             parametersSize = parametersNames->getSize();
             equations.resize(equations.size() + 1 + parametersSize);
@@ -1606,7 +1614,7 @@ struct equations
             equations[3 + inputsSize + outputsSize] = parametersSizeStr; // Saving the size of the 'parameters' field'
             for (size_t i = 0; i < parametersSize; ++i)
             {
-                c_str = wide_string_to_UTF8(parametersNames->get(i));
+                c_str = wide_string_to_UTF8(parametersNames->get(static_cast<int>(i)));
                 std::string parametersName(c_str);
                 FREE(c_str);
                 equations[i + 4 + inputsSize + outputsSize] = parametersName;
@@ -1621,10 +1629,11 @@ struct equations
             {
                 return false;
             }
+
             for (size_t i = 0; i < parametersSize; ++i)
             {
                 std::ostringstream strParameterVal;
-                strParameterVal << parameterVal->get(i);
+                strParameterVal << parameterVal->get(static_cast<int>(i));
                 std::string parameterValStr = strParameterVal.str();
                 equations.push_back(parameterValStr);
             }
@@ -1635,23 +1644,27 @@ struct equations
             {
                 return false;
             }
+
             types::List* list2 = list->get(1)->getAs<types::List>();
             if (list2->getSize() != static_cast<int>(parametersSize))
             {
                 return false;
             }
+
             equations.resize(equations.size() + parametersSize);
             for (size_t i = 0; i < parametersSize; ++i)
             {
-                if (list2->get(i)->getType() != types::InternalType::ScilabDouble)
+                if (list2->get(static_cast<int>(i))->getType() != types::InternalType::ScilabDouble)
                 {
                     return false;
                 }
-                types::Double* parametersVal = list2->get(i)->getAs<types::Double>();
+
+                types::Double* parametersVal = list2->get(static_cast<int>(i))->getAs<types::Double>();
                 if (parametersVal->getSize() != 1)
                 {
                     return false;
                 }
+
                 std::ostringstream strParametersVal;
                 strParametersVal << parametersVal->get(0);
                 std::string parametersValStr = strParametersVal.str();
