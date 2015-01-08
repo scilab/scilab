@@ -103,6 +103,9 @@ function txt=p2str(p)
     // find coefficients with displays as "1"
     k1=find(c=="1");if k1(1)==1 then k1(1)=[],end
     if k1<>[] then c(k1)=emptystr(1,size(k1,"*")),end
+    // find coefficients with displays as "-1"
+    k1=find(c=="-1");if k1(1)==1 then k1(1)=[],end
+    if k1<>[] then c(k1)="-",end
     // find coefficients with real AND imaginary part (to be parenthezied)
     kc=find(imag(coeff(p))<>0&real(coeff(p))<>0)
     w=ones(1,size(kc,"*"))
