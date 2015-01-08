@@ -369,8 +369,11 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                         }
                     }
 
-                    len += (int)wcslen(pToken[i].pwstToken);
+                    int tokenLen = (int)wcslen(pToken[i].pwstToken);
+                    len += tokenLen;
                     len = std::max(len, pToken[i].width);
+                    //add len of string after token like "%20s>>>" add space for ">>>"
+                    len += (tokenLen - (bC ? posC : posS));
                     wchar_t* pwstTemp = (wchar_t*)MALLOC((len + 1) * sizeof(wchar_t));
 
                     if (bC)
