@@ -76,9 +76,13 @@ AC_DEFUN([AC_PROG_JAVAC], [
     esac
     fi
     if test "x$JAVAC" = "x" ; then
-        AC_PATH_PROG(JAVAC, javac)
-        if test "x$JAVAC" = "x" ; then
-            AC_MSG_ERROR([javac not found on PATH ... did you try with --with-jdk=DIR])
+        if test -d "$SCI_SRCDIR_FULL/java/jdk"; then # Scilab thirparties
+            AC_PATH_PROG(JAVAC, javac, ,"$SCI_SRCDIR_FULL/java/jdk/bin")
+        else
+            AC_PATH_PROG(JAVAC, javac)
+            if test "x$JAVAC" = "x" ; then
+                AC_MSG_ERROR([javac not found on PATH ... did you try with --with-jdk=DIR])
+            fi
         fi
     fi
     if test ! -f "$JAVAC" ; then
@@ -811,7 +815,12 @@ AC_DEFUN([AC_JAVA_ANT], [
     AC_HELP_STRING([--with-ant=DIR],[Use ant from DIR]),
     ANTPATH=$withval, ANTPATH=no)
     if test "$ANTPATH" = "no" ; then
-        AC_JAVA_TOOLS_CHECK(ANT, ant)
+        if test -d "$SCI_SRCDIR_FULL/java/ant"; then # Scilab thirdparties
+            ANTPATH=$SCI_SRCDIR_FULL/java/ant
+            AC_JAVA_TOOLS_CHECK(ANT, ant, $ANTPATH/bin $ANTPATH)
+        else
+            AC_JAVA_TOOLS_CHECK(ANT, ant)
+        fi
     elif test ! -d "$ANTPATH"; then
         AC_MSG_ERROR([--with-ant=DIR option, must pass a valid DIR])
     else

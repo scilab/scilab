@@ -28,7 +28,7 @@ AC_ARG_WITH(hdf5_library,
         [with_hdf5_library=$withval],
         [with_hdf5_library='yes']
         )
-        
+
 if test "x$with_hdf5_include" != "xyes"; then
     save_CFLAGS="$CFLAGS"
     CFLAGS="-I$with_hdf5_include"
@@ -39,9 +39,13 @@ if test "x$with_hdf5_include" != "xyes"; then
     CFLAGS="$save_CFLAGS"
 else
     HDF5_CFLAGS=""
-    AC_CHECK_HEADER([hdf5.h],
-        [HDF5_CFLAGS=""],
-        [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        AC_CHECK_HEADER([hdf5.h],
+            [HDF5_CFLAGS=""],
+            [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+    fi
 fi
 
 save_LIBS="$LIBS"
@@ -55,15 +59,18 @@ if test "x$with_hdf5_library" != "xyes"; then
             [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])],
             [-lsz -lz]
             )
-            
 else
-    HDF5_LIBS="-lhdf5 -lhdf5_hl"
-    LIBS="$LIBS $HDF5_LIBS"
-    AC_CHECK_LIB([hdf5], [H5Fopen],
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        HDF5_LIBS="-L$DEVTOOLS_LIBDIR -lhdf5 -lhdf5_hl"
+    else
+        HDF5_LIBS="-lhdf5 -lhdf5_hl"
+        LIBS="$LIBS $HDF5_LIBS"
+        AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
             [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
             [-lsz -lz]
             )
+    fi
 fi
 
 LIBS="$save_LIBS"

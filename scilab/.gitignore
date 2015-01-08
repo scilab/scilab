@@ -119,6 +119,7 @@ workspace/
 #
 # scilab/ specific files
 #
+/usr
 /thirdparty
 /include
 Makefile.OBJ
