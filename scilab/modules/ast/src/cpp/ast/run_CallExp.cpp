@@ -148,7 +148,36 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 if (pListArg)
                 {
                     in[0] = pListArg->get(i);
-                    in[0]->IncreaseRef();
+
+                    if (in[0]->isList())
+                    {
+                        if (pIT->isCallable())
+                        {
+                            // list used like "varargin"
+                            types::List* pLFuncArgs = in[0]->getAs<types::List>();
+                            types::typed_list input;
+                            for (int j = 0; j < pLFuncArgs->getSize(); j++)
+                            {
+                                input.push_back(pLFuncArgs->get(j));
+                                input.back()->IncreaseRef();
+                            }
+
+                            in = input;
+                        }
+                        else
+                        {
+                            pListArg->DecreaseRef();
+                            pListArg->killMe();
+
+                            std::wostringstream os;
+                            os << _W("Invalid index.\n");
+                            throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                        }
+                    }
+                    else
+                    {
+                        in[0]->IncreaseRef();
+                    }
                 }
 
                 if (pIT->invoke(in, opt, iRetCount, out, *this, e))
@@ -198,6 +227,12 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     os << _W("Invalid index.\n");
                     throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
                 }
+            }
+
+            if (pListArg)
+            {
+                pListArg->DecreaseRef();
+                pListArg->killMe();
             }
         }
         catch (ScilabMessage & sm)
