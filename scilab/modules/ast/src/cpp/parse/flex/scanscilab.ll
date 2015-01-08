@@ -23,6 +23,7 @@ extern "C"
 }
 
 static int comment_level = 0;
+static int paren_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
 static std::string current_file;
@@ -397,10 +398,10 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{lparen}		{
+<INITIAL>{lparen}		        {
   return scan_throw(LPAREN);
 }
-<INITIAL,MATRIX>{rparen}		{
+<INITIAL>{rparen}		        {
   return scan_throw(RPAREN);
 }
 
@@ -693,6 +694,16 @@ assign			"="
 
 <MATRIX>
 {
+  {lparen} {
+    paren_level++;
+    return scan_throw(LPAREN);
+  }
+
+  {rparen} {
+    paren_level--;
+    return scan_throw(RPAREN);
+  }
+
   {spaces}*{lparen} {
       unput(yytext[yyleng -1]);
       if (last_token == ID
@@ -749,21 +760,27 @@ assign			"="
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
-       && last_token != COMMA)
+       && last_token != COMMA
+       && paren_level == 0)
    {
        return scan_throw(COMMA);
-   }  
+   }
+   else
+   {
+       unput('+');
+   }
   }
- 
+
   {spaces}{minus}                       {
     unput('-');
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
-       && last_token != COMMA)
+       && last_token != COMMA
+       && paren_level == 0)
    {
        return scan_throw(COMMA);
-   }  
+   }
   }
 
   .					{
