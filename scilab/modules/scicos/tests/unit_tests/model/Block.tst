@@ -126,6 +126,32 @@ o.graphics
 o.graphics.exprs
 o.model.equations
 
+// Test 'exprs' with SuperBlock, CBLOCK, scifunc_block_m and default fortran_block
+// SuperBlock with no parameter
+lS = list([],list([],"Configuration des Paramètres du bloc",list([])));
+o = scicos_block(gui="SUPER", graphics=scicos_graphics(exprs=lS));
+assert_checkequal(o.graphics.exprs, lS);
+// Masked SuperBlock with one parameter
+lDS = list("3",list("J",["Configuration des Paramètres du bloc"; "mon_param"],list("pol", -1)));
+o = scicos_block(gui="DSUPER", graphics=scicos_graphics(exprs=lDS));
+assert_checkequal(o.graphics.exprs, lDS);
+// CBLOCK, default has empty function body
+o = CBLOCK("define");
+lCB = list(["toto"; "n"; "1"; "1"; "[]"; "[]"; "[]"; "0"; "[]"; "[]"; "[]"; "[]"; "y"; "n"], []);
+assert_checkequal(o.graphics.exprs, lCB);
+// Add a function body
+lCB2 = list(["toto"; "n"; "1"; "1"; "[]"; "[]"; "[]"; "0"; "[]"; "[]"; "[]"; "[]"; "y"; "n"], ["Function body"]);
+o.graphics.exprs = lCB2;
+assert_checkequal(o.graphics.exprs, lCB2);
+// scifunc_block_m
+o = scifunc_block_m("define");
+lsci = list(["[1,1]";"[1,1]";"[]";"[]";"[]";"[]";"[]";"[]";"0"],list("y1=sin(u1)"," "," ","y1=sin(u1)"," "," "," "));
+assert_checkequal(o.graphics.exprs, lsci);
+// fortran_block
+o = fortran_block("define");
+lfort = list(["1";"1";"[]";"forty"],list([]));
+assert_checkequal(o.graphics.exprs, lfort);
+
 
 // Check that all the model items are freed
 clear

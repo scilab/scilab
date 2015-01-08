@@ -101,7 +101,7 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(), m_label(), m_style(), m_nzcross(0), m_nmode(0), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_exprs(std::vector<std::string> (1, "String")), m_label(), m_style(), m_nzcross(0), m_nmode(0), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
     {
         m_sim.blocktype  = BLOCKTYPE_C;
