@@ -125,6 +125,7 @@ protected:
     int             indent;
     bool            force_parenthesis;
     bool            is_last_matrix_line;
+    bool            is_last_column_comment;
 
     void            apply_indent(void);
     void            enable_force_parenthesis(void);

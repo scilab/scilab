@@ -34,7 +34,7 @@ void PrintVisitor::visit (const MatrixExp &e)
         (*i)->getOriginal()->accept(*this);
         ++i;
 
-        if (lines.size() > 1)
+        if (lines.size() > 1 || this->is_last_column_comment)
         {
             *ostr << std::endl;
             this->apply_indent();
@@ -47,7 +47,7 @@ void PrintVisitor::visit (const MatrixExp &e)
 void PrintVisitor::visit (const MatrixLineExp &e)
 {
     ast::exps_t::const_iterator	i, j;
-    bool last_column_is_comment = false;
+    this->is_last_column_comment = false;
 
     ast::exps_t cols = e.getColumns();
     for (i = cols.begin() ; i != cols.end() ; )
@@ -55,7 +55,7 @@ void PrintVisitor::visit (const MatrixLineExp &e)
         (*i)->getOriginal()->accept(*this);
         if (dynamic_cast<ast::CommentExp*>(*i) != NULL)
         {
-            last_column_is_comment = true;
+            this->is_last_column_comment = true;
         }
         if (++i != cols.end())
         {
@@ -66,7 +66,7 @@ void PrintVisitor::visit (const MatrixLineExp &e)
             *ostr << " ";
         }
     }
-    if (!last_column_is_comment && this->is_last_matrix_line == false)
+    if (!this->is_last_column_comment && this->is_last_matrix_line == false)
     {
         *ostr << SCI_LINE_SEPARATOR;
     }
@@ -512,12 +512,22 @@ void PrintVisitor::visit (const SeqExp  &e)
     int previousLine = -1;
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
-        this->apply_indent();
+        if (previousLine == -1)
+        {
+            this->apply_indent();
+        }
 
         if (previousLine != -1 && (*it)->getLocation().first_line != previousLine)
         {
             *ostr << std::endl;
+            this->apply_indent();
         }
+
+        if ((*it)->getLocation().first_line == previousLine)
+        {
+           *ostr << ",";
+        }
+
 
         (*it)->getOriginal()->accept(*this);
         if (!(*it)->isVerbose())
