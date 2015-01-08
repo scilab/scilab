@@ -138,7 +138,8 @@ libscifileio_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/preferences/includes \
 	$(HDF5_CFLAGS) \
 	$(XML_FLAGS) \
-    $(EIGEN_CPPFLAGS) \
+	$(CURL_CFLAGS) \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 

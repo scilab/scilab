@@ -3243,6 +3243,18 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
+if test -d "$SCI_SRCDIR_FULL/usr"; then
+    WITH_DEVTOOLS=true
+    DEVTOOLS_BINDIR="$SCI_SRCDIR_FULL/usr/bin"
+    DEVTOOLS_INCDIR="$SCI_SRCDIR_FULL/usr/include"
+    DEVTOOLS_LIBDIR="$SCI_SRCDIR_FULL/usr/lib"
+else
+    WITH_DEVTOOLS=false
+    DEVTOOLS_BINDIR=
+    DEVTOOLS_INCDIR=
+    DEVTOOLS_LIBDIR=
+fi
+
 SCILAB_VERSION_MAJOR=6
 SCILAB_VERSION_MINOR=0
 SCILAB_VERSION_MAINTENANCE=0
@@ -10887,7 +10899,10 @@ fi
     CFLAGS="$save_CFLAGS"
 else
     HDF5_CFLAGS=""
-    ac_fn_c_check_header_mongrel "$LINENO" "hdf5.h" "ac_cv_header_hdf5_h" "$ac_includes_default"
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        ac_fn_c_check_header_mongrel "$LINENO" "hdf5.h" "ac_cv_header_hdf5_h" "$ac_includes_default"
 if test "x$ac_cv_header_hdf5_h" = xyes; then :
   HDF5_CFLAGS=""
 else
@@ -10895,6 +10910,7 @@ else
 fi
 
 
+    fi
 fi
 
 save_LIBS="$LIBS"
@@ -10951,11 +10967,13 @@ else
   as_fn_error $? "libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct" "$LINENO" 5
 fi
 
-
 else
-    HDF5_LIBS="-lhdf5 -lhdf5_hl"
-    LIBS="$LIBS $HDF5_LIBS"
-    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for H5Fopen in -lhdf5" >&5
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        HDF5_LIBS="-L$DEVTOOLS_LIBDIR -lhdf5 -lhdf5_hl"
+    else
+        HDF5_LIBS="-lhdf5 -lhdf5_hl"
+        LIBS="$LIBS $HDF5_LIBS"
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for H5Fopen in -lhdf5" >&5
 $as_echo_n "checking for H5Fopen in -lhdf5... " >&6; }
 if ${ac_cv_lib_hdf5_H5Fopen+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -11004,6 +11022,7 @@ else
 
 fi
 
+    fi
 fi
 
 LIBS="$save_LIBS"
@@ -11460,7 +11479,49 @@ $as_echo "Darwin (Mac OS X) found. Use the standard paths." >&6; }
     esac
     fi
     if test "x$JAVAC" = "x" ; then
-        # Extract the first word of "javac", so it can be a program name with args.
+        if test -d "$SCI_SRCDIR_FULL/java/jdk"; then # Scilab thirparties
+            # Extract the first word of "javac", so it can be a program name with args.
+set dummy javac; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_JAVAC+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $JAVAC in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_JAVAC="$JAVAC" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in "$SCI_SRCDIR_FULL/java/jdk/bin"
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_JAVAC="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+JAVAC=$ac_cv_path_JAVAC
+if test -n "$JAVAC"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $JAVAC" >&5
+$as_echo "$JAVAC" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+        else
+            # Extract the first word of "javac", so it can be a program name with args.
 set dummy javac; ac_word=$2
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
 $as_echo_n "checking for $ac_word... " >&6; }
@@ -11500,8 +11561,9 @@ $as_echo "no" >&6; }
 fi
 
 
-        if test "x$JAVAC" = "x" ; then
-            as_fn_error $? "javac not found on PATH ... did you try with --with-jdk=DIR" "$LINENO" 5
+            if test "x$JAVAC" = "x" ; then
+                as_fn_error $? "javac not found on PATH ... did you try with --with-jdk=DIR" "$LINENO" 5
+            fi
         fi
     fi
     if test ! -f "$JAVAC" ; then
@@ -11599,7 +11661,7 @@ $as_echo "$ac_java_classpath" >&6; }
 $as_echo_n "checking to see if the java compiler works... " >&6; }
 
     cat << \EOF > conftest.java
-// #line 11602 "configure"
+// #line 11664 "configure"
 import java.util.regex.Pattern;
 
 
@@ -11686,7 +11748,7 @@ $as_echo_n "checking type of jvm... " >&6; }
     if test "x$ac_java_jvm_name" = "x" ; then
 
     cat << \EOF > conftest.java
-// #line 11689 "configure"
+// #line 11751 "configure"
 import java.util.regex.Pattern;
 
 import gnu.java.io.EncodingManager;
@@ -11770,7 +11832,7 @@ $as_echo_n "checking java API version... " >&6; }
     # The class java.nio.charset.Charset is new to 1.4
 
     cat << \EOF > conftest.java
-// #line 11773 "configure"
+// #line 11835 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.charset.Charset;
@@ -11835,7 +11897,7 @@ EOF
     # The class java.lang.StringBuilder is new to 1.5
 
     cat << \EOF > conftest.java
-// #line 11838 "configure"
+// #line 11900 "configure"
 import java.util.regex.Pattern;
 
 import java.lang.StringBuilder;
@@ -11900,7 +11962,7 @@ EOF
     # The class java.util.ArrayDeque is new to 1.6
 
     cat << \EOF > conftest.java
-// #line 11903 "configure"
+// #line 11965 "configure"
 import java.util.regex.Pattern;
 
 import java.util.ArrayDeque;
@@ -11965,7 +12027,7 @@ EOF
     # The class java.nio.file.Path is new to 1.7
 
     cat << \EOF > conftest.java
-// #line 11968 "configure"
+// #line 12030 "configure"
 import java.util.regex.Pattern;
 
 import java.nio.file.Path;
@@ -12030,7 +12092,7 @@ EOF
     # The class java.util.stream.DoubleStream is new to 1.8
 
     cat << \EOF > conftest.java
-// #line 12033 "configure"
+// #line 12095 "configure"
 import java.util.regex.Pattern;
 
 import java.util.stream.DoubleStream;
@@ -13191,6 +13253,102 @@ else
 fi
 
     if test "$ANTPATH" = "no" ; then
+        if test -d "$SCI_SRCDIR_FULL/java/ant"; then # Scilab thirdparties
+            ANTPATH=$SCI_SRCDIR_FULL/java/ant
+
+    if test "$cross_compiling" = "yes" ; then
+        # Extract the first word of "ant", so it can be a program name with args.
+set dummy ant; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_ANT+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $ANT in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ANT="$ANT" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $PATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ANT="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ANT=$ac_cv_path_ANT
+if test -n "$ANT"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ANT" >&5
+$as_echo "$ANT" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+    else
+        # Extract the first word of "ant", so it can be a program name with args.
+set dummy ant; ac_word=$2
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $ac_word" >&5
+$as_echo_n "checking for $ac_word... " >&6; }
+if ${ac_cv_path_ANT+:} false; then :
+  $as_echo_n "(cached) " >&6
+else
+  case $ANT in
+  [\\/]* | ?:[\\/]*)
+  ac_cv_path_ANT="$ANT" # Let the user override the test with a path.
+  ;;
+  *)
+  as_save_IFS=$IFS; IFS=$PATH_SEPARATOR
+for as_dir in $ANTPATH/bin $ANTPATH
+do
+  IFS=$as_save_IFS
+  test -z "$as_dir" && as_dir=.
+    for ac_exec_ext in '' $ac_executable_extensions; do
+  if as_fn_executable_p "$as_dir/$ac_word$ac_exec_ext"; then
+    ac_cv_path_ANT="$as_dir/$ac_word$ac_exec_ext"
+    $as_echo "$as_me:${as_lineno-$LINENO}: found $as_dir/$ac_word$ac_exec_ext" >&5
+    break 2
+  fi
+done
+  done
+IFS=$as_save_IFS
+
+  ;;
+esac
+fi
+ANT=$ac_cv_path_ANT
+if test -n "$ANT"; then
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ANT" >&5
+$as_echo "$ANT" >&6; }
+else
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: no" >&5
+$as_echo "no" >&6; }
+fi
+
+
+    fi
+
+    # Check to see if ANT could not be found
+
+
+    if test "x$ANT" = "x" ; then
+        as_fn_error $? "Cannot find ant" "$LINENO" 5
+    fi
+
+
+        else
 
     if test "$cross_compiling" = "yes" ; then
         # Extract the first word of "ant", so it can be a program name with args.
@@ -13284,6 +13442,7 @@ fi
     fi
 
 
+        fi
     elif test ! -d "$ANTPATH"; then
         as_fn_error $? "--with-ant=DIR option, must pass a valid DIR" "$LINENO" 5
     else
@@ -13411,7 +13570,7 @@ $as_echo_n "checking jgraphx... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13414 "configure"
+// #line 13573 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.model.mxCell;
@@ -13518,7 +13677,7 @@ $as_echo_n "checking minimal version (2.0.0.1) of jgraphx... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13521 "configure"
+// #line 13680 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.view.mxGraph;
@@ -13590,7 +13749,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 13593 "configure"
+// #line 13752 "configure"
 import java.util.regex.Pattern;
 
 import com.mxgraph.view.mxGraph;
@@ -13684,7 +13843,7 @@ $as_echo_n "checking scirenderer... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13687 "configure"
+// #line 13846 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -13791,7 +13950,7 @@ $as_echo_n "checking minimal version (1.1.0) of scirenderer... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 13794 "configure"
+// #line 13953 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -13863,7 +14022,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 13866 "configure"
+// #line 14025 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.scirenderer.PackageInfo;
@@ -13962,7 +14121,7 @@ $as_echo_n "checking flexdock... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 13965 "configure"
+// #line 14124 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.docking.DockingManager;
@@ -14069,7 +14228,7 @@ $as_echo_n "checking minimal version (1.2.4) of flexdock... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 14072 "configure"
+// #line 14231 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.util.Utilities;
@@ -14141,7 +14300,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 14144 "configure"
+// #line 14303 "configure"
 import java.util.regex.Pattern;
 
 import org.flexdock.util.Utilities;
@@ -14232,7 +14391,7 @@ $as_echo_n "checking looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14235 "configure"
+// #line 14394 "configure"
 import java.util.regex.Pattern;
 
 import com.jgoodies.looks.common.MenuItemRenderer;
@@ -14349,7 +14508,7 @@ $as_echo_n "checking jgoodies-looks... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14352 "configure"
+// #line 14511 "configure"
 import java.util.regex.Pattern;
 
 import com.jgoodies.looks.common.MenuItemRenderer;
@@ -14467,7 +14626,7 @@ $as_echo_n "checking skinlf... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14470 "configure"
+// #line 14629 "configure"
 import java.util.regex.Pattern;
 
 import com.l2fprod.util.AccessUtils;
@@ -14584,7 +14743,7 @@ $as_echo_n "checking jogl2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14587 "configure"
+// #line 14746 "configure"
 import java.util.regex.Pattern;
 
 import javax.media.opengl.glu.GLUnurbs;
@@ -14807,7 +14966,7 @@ $as_echo_n "checking gluegen2-rt... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14810 "configure"
+// #line 14969 "configure"
 import java.util.regex.Pattern;
 
 import jogamp.common.os.MachineDescriptionRuntime;
@@ -14981,7 +15140,7 @@ $as_echo_n "checking jhall... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 14984 "configure"
+// #line 15143 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -15096,7 +15255,7 @@ $as_echo_n "checking javahelp2... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15099 "configure"
+// #line 15258 "configure"
 import java.util.regex.Pattern;
 
 import javax.help.JHelp;
@@ -15214,7 +15373,7 @@ $as_echo_n "checking jrosetta-API... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15217 "configure"
+// #line 15376 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -15328,7 +15487,7 @@ $as_echo_n "checking jrosetta-api... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15331 "configure"
+// #line 15490 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.interfaces.core.ConsoleConfiguration;
@@ -15446,7 +15605,7 @@ $as_echo_n "checking jrosetta-engine... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15449 "configure"
+// #line 15608 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.core.action.AbstractConsoleAction;
@@ -15552,7 +15711,7 @@ $as_echo_n "checking minimal version (1.0.4) of jrosetta-engine... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 15555 "configure"
+// #line 15714 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -15624,7 +15783,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 15627 "configure"
+// #line 15786 "configure"
 import java.util.regex.Pattern;
 
 import com.artenum.rosetta.util.ConfigurationBuilder;
@@ -15717,7 +15876,7 @@ $as_echo_n "checking jeuclid-core... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15720 "configure"
+// #line 15879 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.jeuclid.LayoutContext;
@@ -15836,7 +15995,7 @@ $as_echo_n "checking fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15839 "configure"
+// #line 15998 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.fop.pdf.PDFInfo;
@@ -15960,7 +16119,7 @@ $as_echo_n "checking freehep-graphics2d... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 15963 "configure"
+// #line 16122 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphics2d.VectorGraphics;
@@ -16077,7 +16236,7 @@ $as_echo_n "checking freehep-graphicsio-emf... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16080 "configure"
+// #line 16239 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphicsio.emf.EMFGraphics2D;
@@ -16194,7 +16353,7 @@ $as_echo_n "checking freehep-graphicsio... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16197 "configure"
+// #line 16356 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.graphicsio.VectorGraphicsIO;
@@ -16311,7 +16470,7 @@ $as_echo_n "checking freehep-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16314 "configure"
+// #line 16473 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.util.io.XMLSequence;
@@ -16428,7 +16587,7 @@ $as_echo_n "checking freehep-util... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16431 "configure"
+// #line 16590 "configure"
 import java.util.regex.Pattern;
 
 import org.freehep.util.StringUtilities;
@@ -16546,7 +16705,7 @@ $as_echo_n "checking batik-all... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16549 "configure"
+// #line 16708 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -16663,7 +16822,7 @@ $as_echo_n "checking batik... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16666 "configure"
+// #line 16825 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.parser.Parser;
@@ -16770,7 +16929,7 @@ $as_echo_n "checking minimal version (1.7) of batik... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 16773 "configure"
+// #line 16932 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -16842,7 +17001,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 16845 "configure"
+// #line 17004 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.batik.Version;
@@ -16933,7 +17092,7 @@ $as_echo_n "checking commons-io... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 16936 "configure"
+// #line 17095 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.io.output.CountingOutputStream;
@@ -17050,7 +17209,7 @@ $as_echo_n "checking xmlgraphics-commons... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17053 "configure"
+// #line 17212 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.xmlgraphics.util.Service;
@@ -17167,7 +17326,7 @@ $as_echo_n "checking avalon-framework... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17170 "configure"
+// #line 17329 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.avalon.framework.configuration.ConfigurationException;
@@ -17284,7 +17443,7 @@ $as_echo_n "checking xml-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17287 "configure"
+// #line 17446 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -17401,7 +17560,7 @@ $as_echo_n "checking xml-commons-apis-ext... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17404 "configure"
+// #line 17563 "configure"
 import java.util.regex.Pattern;
 
 import org.w3c.dom.svg.SVGDocument;
@@ -17522,7 +17681,7 @@ $as_echo_n "checking commons-logging... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17525 "configure"
+// #line 17684 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.logging.LogFactory;
@@ -17639,7 +17798,7 @@ $as_echo_n "checking jlatexmath... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17642 "configure"
+// #line 17801 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -17746,7 +17905,7 @@ $as_echo_n "checking minimal version (1.0.3) of jlatexmath... " >&6; }
    if test "x" == "x"; then
 
     cat << \EOF > conftest.java
-// #line 17749 "configure"
+// #line 17908 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -17818,7 +17977,7 @@ EOF
    else
 
     cat << \EOF > conftest.java
-// #line 17821 "configure"
+// #line 17980 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.TeXFormula;
@@ -17909,7 +18068,7 @@ $as_echo_n "checking jlatexmath-fop... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 17912 "configure"
+// #line 18071 "configure"
 import java.util.regex.Pattern;
 
 import org.scilab.forge.jlatexmath.fop.JLaTeXMathObj;
@@ -18032,7 +18191,7 @@ $as_echo_n "checking checkstyle... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18035 "configure"
+// #line 18194 "configure"
 import java.util.regex.Pattern;
 
 import com.puppycrawl.tools.checkstyle.CheckStyleTask;
@@ -18149,7 +18308,7 @@ $as_echo_n "checking commons-beanutils... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18152 "configure"
+// #line 18311 "configure"
 import java.util.regex.Pattern;
 
 import org.apache.commons.beanutils.Converter;
@@ -18266,7 +18425,7 @@ $as_echo_n "checking antlr... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18269 "configure"
+// #line 18428 "configure"
 import java.util.regex.Pattern;
 
 import antlr.TokenStreamException;
@@ -18383,7 +18542,7 @@ $as_echo_n "checking junit4... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18386 "configure"
+// #line 18545 "configure"
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
@@ -18497,7 +18656,7 @@ $as_echo_n "checking junit... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18500 "configure"
+// #line 18659 "configure"
 import java.util.regex.Pattern;
 
 import org.junit.Assert;
@@ -18618,7 +18777,7 @@ $as_echo_n "checking cobertura... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18621 "configure"
+// #line 18780 "configure"
 import java.util.regex.Pattern;
 
 import net.sourceforge.cobertura.merge.Main;
@@ -18735,7 +18894,7 @@ $as_echo_n "checking asm3... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18738 "configure"
+// #line 18897 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -18849,7 +19008,7 @@ $as_echo_n "checking asm... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18852 "configure"
+// #line 19011 "configure"
 import java.util.regex.Pattern;
 
 import org.objectweb.asm.Type;
@@ -18966,7 +19125,7 @@ $as_echo_n "checking ecj... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 18969 "configure"
+// #line 19128 "configure"
 import java.util.regex.Pattern;
 
 import org.eclipse.jdt.core.compiler.batch.BatchCompiler;
@@ -22873,7 +23032,10 @@ fi
 
 	CFLAGS="$save_CFLAGS"
 else
-	ac_fn_c_check_header_mongrel "$LINENO" "fftw3.h" "ac_cv_header_fftw3_h" "$ac_includes_default"
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        ac_fn_c_check_header_mongrel "$LINENO" "fftw3.h" "ac_cv_header_fftw3_h" "$ac_includes_default"
 if test "x$ac_cv_header_fftw3_h" = xyes; then :
   FFTW3_CFLAGS=""
 else
@@ -22881,14 +23043,15 @@ else
 fi
 
 
+    fi
 fi
 
 
 # --with-fftw-library set then check in this dir
 if test "x$with_fftw_library" != "xyes"; then
-	save_LIBS="$LIBS"
-	LIBS="-L$with_fftw_library -lfftw3"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for fftw_plan_dft_r2c in -lfftw3" >&5
+    save_LIBS="$LIBS"
+    LIBS="-L$with_fftw_library -lfftw3"
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking for fftw_plan_dft_r2c in -lfftw3" >&5
 $as_echo_n "checking for fftw_plan_dft_r2c in -lfftw3... " >&6; }
 if ${ac_cv_lib_fftw3_fftw_plan_dft_r2c+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -22931,10 +23094,13 @@ else
 
 fi
 
-	LIBS="$save_LIBS"
+    LIBS="$save_LIBS"
 else
-	save_LIBS="$LIBS"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for fftw_plan_dft_r2c in -lfftw3" >&5
+    save_LIBS="$LIBS"
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_LIB="-L$DEVTOOLS_LIBDIR -lfftw3"
+    else
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for fftw_plan_dft_r2c in -lfftw3" >&5
 $as_echo_n "checking for fftw_plan_dft_r2c in -lfftw3... " >&6; }
 if ${ac_cv_lib_fftw3_fftw_plan_dft_r2c+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -22977,7 +23143,8 @@ else
 
 fi
 
-	LIBS="$save_LIBS"
+    fi
+    LIBS="$save_LIBS"
 fi
 
 
@@ -23201,7 +23368,7 @@ CHK_EIGEN_MINOR=0
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later" >&5
 $as_echo_n "checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23204 "configure"
+#line 23371 "configure"
 #include "confdefs.h"
 
 #include "$PATH_TO_EIGEN/Eigen/Sparse"
@@ -23507,18 +23674,21 @@ fi
 
 
 if test "$with_libxml2" != 'yes' -a "$with_libxml2" != 'no'; then
-   # Look if xml-config xml2_config (which provides cflags and ldflags) is available
-   { $as_echo "$as_me:${as_lineno-$LINENO}: checking libxml2, for xml-config" >&5
+    # Look if xml-config xml2_config (which provides cflags and ldflags) is available
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking libxml2, for xml-config" >&5
 $as_echo_n "checking libxml2, for xml-config... " >&6; }
-   XML_CONFIG="$with_libxml2/bin/xml2-config"
-        if test -x "$XML_CONFIG"; then
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: $XML_CONFIG" >&5
+    XML_CONFIG="$with_libxml2/bin/xml2-config"
+    if test -x "$XML_CONFIG"; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $XML_CONFIG" >&5
 $as_echo "$XML_CONFIG" >&6; }
-        else
-                as_fn_error $? "Unable to find $XML_CONFIG. Please check the path you provided" "$LINENO" 5
-		fi
+    else
+        as_fn_error $? "Unable to find $XML_CONFIG. Please check the path you provided" "$LINENO" 5
+    fi
 else
-		for ac_prog in xml2-config
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        XML_CONFIG="$DEVTOOLS_BINDIR/xml2-config"
+    else
+        for ac_prog in xml2-config
 do
   # Extract the first word of "$ac_prog", so it can be a program name with args.
 set dummy $ac_prog; ac_word=$2
@@ -23561,9 +23731,10 @@ fi
 done
 test -n "$XML_CONFIG" || XML_CONFIG="no"
 
-		if test "x$XML_CONFIG" = "xno"; then
-				as_fn_error $? "Unable to find xml2-config in the path. Please check your installation of libxml2" "$LINENO" 5
-		fi
+    fi
+    if test "x$XML_CONFIG" = "xno"; then
+        as_fn_error $? "Unable to find xml2-config in the path. Please check your installation of libxml2" "$LINENO" 5
+    fi
 fi
 saved_cflags=$CFLAGS
 saved_LIBS="$LIBS"
@@ -24493,11 +24664,11 @@ LIBS="$LIBS $FLIBS"
 
 # First, check BLAS_LIBS environment variable
 if test $acx_blas_ok = no; then
-if test "x$BLAS_LIBS" != x; then
-	save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in $BLAS_LIBS" >&5
+    if test "x$BLAS_LIBS" != x; then
+        save_LIBS="$LIBS"; LIBS="$BLAS_LIBS $LIBS"
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $sgemm in $BLAS_LIBS" >&5
 $as_echo_n "checking for $sgemm in $BLAS_LIBS... " >&6; }
-	cat confdefs.h - <<_ACEOF >conftest.$ac_ext
+        cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
 
 /* Override any GCC internal prototype to avoid an error.
@@ -24530,10 +24701,14 @@ else
 fi
 rm -f core conftest.err conftest.$ac_objext \
     conftest$ac_exeext conftest.$ac_ext
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $acx_blas_ok" >&5
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $acx_blas_ok" >&5
 $as_echo "$acx_blas_ok" >&6; }
-	LIBS="$save_LIBS"
-fi
+        LIBS="$save_LIBS"
+    elif $WITH_DEVTOOLS; then # Scilab thirdparties
+        BLAS_LIBS="-L$DEVTOOLS_LIBDIR -lblas"
+        BLAS_TYPE="Generic Blas"
+        acx_blas_ok=yes
+    fi
 fi
 
 # BLAS linked to by default?  (happens on some supercomputers)
@@ -25504,6 +25679,10 @@ $as_echo "$acx_lapack_ok" >&6; }
         if test acx_lapack_ok = no; then
                 LAPACK_LIBS=""
         fi
+elif $WITH_DEVTOOLS; then # Scilab thirdparties
+     LAPACK_LIBS="-L$DEVTOOLS_LIBDIR -llapack"
+     LAPACK_TYPE="Library -llapack"
+     acx_lapack_ok=yes
 fi
 
 # LAPACK linked to by default?  (is sometimes included in BLAS lib)
@@ -25627,7 +25806,13 @@ if test "$with_arpack_library" != no -a "$with_arpack_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_arpack_library"
 fi
 
-ARPACK_LIBS="-larpack"
+if $WITH_DEVTOOLS; then # Scilab thirdparties
+    ARPACK_LIBS="-L$DEVTOOLS_LIBDIR -larpack"
+    LDFLAGS="$LDFLAGS -L$DEVTOOLS_LIBDIR"
+    acx_arpack_ok=yes
+else
+    ARPACK_LIBS="-larpack"
+fi
 # Get fortran linker name of ARPACK function to check for.
 ac_ext=f
 ac_compile='$F77 -c $FFLAGS conftest.$ac_ext >&5'
@@ -25992,7 +26177,10 @@ fi
 
 # Look in the default paths
 if test "x$UMFPACK_INCLUDE" = "x" ; then
-ac_fn_c_check_header_mongrel "$LINENO" "suitesparse/umfpack.h" "ac_cv_header_suitesparse_umfpack_h" "$ac_includes_default"
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        UMFPACK_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        ac_fn_c_check_header_mongrel "$LINENO" "suitesparse/umfpack.h" "ac_cv_header_suitesparse_umfpack_h" "$ac_includes_default"
 if test "x$ac_cv_header_suitesparse_umfpack_h" = xyes; then :
   SUITESPARSE=yes
 else
@@ -26009,6 +26197,7 @@ fi
 fi
 
 
+    fi
 fi
 
 # --with-umfpack-library set then check in this dir
@@ -26079,11 +26268,14 @@ fi
 
 # check in the default path
 if test $UMFPACK_OK = no; then
-	save_LIBS="$LIBS"
-	LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
-	# We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        UMFPACK_LIB="$BLAS_LIBS -L$DEVTOOLS_LIBDIR -lm"
+    else
+        save_LIBS="$LIBS"
+        LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
+        # We need -lm because sometime (ubuntu 7.10 for example) does not link libamd against lib math
 
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for amd_info in -lamd" >&5
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for amd_info in -lamd" >&5
 $as_echo_n "checking for amd_info in -lamd... " >&6; }
 if ${ac_cv_lib_amd_amd_info+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -26134,8 +26326,8 @@ else
 
 fi
 
-	LIBS="$UMFPACK_LIB $LIBS"
-	{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_solve in -lumfpack" >&5
+        LIBS="$UMFPACK_LIB $LIBS"
+        { $as_echo "$as_me:${as_lineno-$LINENO}: checking for umfpack_di_solve in -lumfpack" >&5
 $as_echo_n "checking for umfpack_di_solve in -lumfpack... " >&6; }
 if ${ac_cv_lib_umfpack_umfpack_di_solve+:} false; then :
   $as_echo_n "(cached) " >&6
@@ -26186,7 +26378,8 @@ else
 
 fi
 
-	LIBS="$save_LIBS"
+        LIBS="$save_LIBS"
+    fi
 fi
 
 
@@ -26235,31 +26428,34 @@ fi
 
 
 if test "$with_pcre" != 'yes' -a "$with_pcre" != 'no'; then
-   # Look if pcre-config (which provides cflags and ldflags) is available
-   { $as_echo "$as_me:${as_lineno-$LINENO}: checking pcre, for pcre-config" >&5
+    # Look if pcre-config (which provides cflags and ldflags) is available
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking pcre, for pcre-config" >&5
 $as_echo_n "checking pcre, for pcre-config... " >&6; }
-   PCRE_FOUND=0
-   PCRE_CONFIG="$with_pcre/bin/pcre-config"
-        if test -x "$PCRE_CONFIG"; then
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PCRE_CONFIG" >&5
+    PCRE_FOUND=0
+    PCRE_CONFIG="$with_pcre/bin/pcre-config"
+    if test -x "$PCRE_CONFIG"; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PCRE_CONFIG" >&5
 $as_echo "$PCRE_CONFIG" >&6; }
-				PCRE_FOUND=1
-		fi
-   if test $PCRE_FOUND -eq 0; then
-   PCRE_CONFIG="$with_pcre/pcre-config"
+        PCRE_FOUND=1
+    fi
+    if test $PCRE_FOUND -eq 0; then
+        PCRE_CONFIG="$with_pcre/pcre-config"
         if test -x "$PCRE_CONFIG"; then
-				PCRE_FOUND=1
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PCRE_CONFIG" >&5
+            PCRE_FOUND=1
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $PCRE_CONFIG" >&5
 $as_echo "$PCRE_CONFIG" >&6; }
         fi
-   fi
-		if test $PCRE_FOUND -eq 0; then
-                as_fn_error $? "Unable to find $PCRE_CONFIG. Please check the path you provided" "$LINENO" 5
-		else
-			unset PCRE_FOUND
-		fi
+    fi
+    if test $PCRE_FOUND -eq 0; then
+        as_fn_error $? "Unable to find $PCRE_CONFIG. Please check the path you provided" "$LINENO" 5
+    else
+        unset PCRE_FOUND
+    fi
 else
-		for ac_prog in pcre-config
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        PCRE_CONFIG="$DEVTOOLS_BINDIR/pcre-config"
+    else
+        for ac_prog in pcre-config
 do
   # Extract the first word of "$ac_prog", so it can be a program name with args.
 set dummy $ac_prog; ac_word=$2
@@ -26302,9 +26498,10 @@ fi
 done
 test -n "$PCRE_CONFIG" || PCRE_CONFIG="no"
 
-		if test "x$PCRE_CONFIG" = "xno"; then
-				as_fn_error $? "Unable to find pcre-config in the path. Please check your installation of pcre (example : libpcre3 & libpcre3-dev with Debian)" "$LINENO" 5
-		fi
+    fi
+    if test "x$PCRE_CONFIG" = "xno"; then
+        as_fn_error $? "Unable to find pcre-config in the path. Please check your installation of pcre (example : libpcre3 & libpcre3-dev with Debian)" "$LINENO" 5
+    fi
 fi
 saved_cflags="$CFLAGS"
 saved_LIBS="$LIBS"
@@ -26578,31 +26775,34 @@ fi
 
 
 if test "$with_curl" != 'yes' -a "$with_curl" != 'no'; then
-   # Look if curl-config (which provides cflags and ldflags) is available
-   { $as_echo "$as_me:${as_lineno-$LINENO}: checking curl, for curl-config" >&5
+    # Look if curl-config (which provides cflags and ldflags) is available
+    { $as_echo "$as_me:${as_lineno-$LINENO}: checking curl, for curl-config" >&5
 $as_echo_n "checking curl, for curl-config... " >&6; }
-   CURL_FOUND=0
-   CURL_CONFIG="$with_curl/bin/curl-config"
-        if test -x "$CURL_CONFIG"; then
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CURL_CONFIG" >&5
+    CURL_FOUND=0
+    CURL_CONFIG="$with_curl/bin/curl-config"
+    if test -x "$CURL_CONFIG"; then
+        { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CURL_CONFIG" >&5
 $as_echo "$CURL_CONFIG" >&6; }
-				CURL_FOUND=1
-		fi
-   if test $CURL_FOUND -eq 0; then
-   CURL_CONFIG="$with_curl/curl-config"
+        CURL_FOUND=1
+    fi
+    if test $CURL_FOUND -eq 0; then
+        CURL_CONFIG="$with_curl/curl-config"
         if test -x "$CURL_CONFIG"; then
-				CURL_FOUND=1
-                { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CURL_CONFIG" >&5
+            CURL_FOUND=1
+            { $as_echo "$as_me:${as_lineno-$LINENO}: result: $CURL_CONFIG" >&5
 $as_echo "$CURL_CONFIG" >&6; }
         fi
-   fi
-		if test $CURL_FOUND -eq 0; then
-                as_fn_error $? "Unable to find $CURL_CONFIG. Please check the path you provided" "$LINENO" 5
-		else
-			unset CURL_FOUND
-		fi
+    fi
+    if test $CURL_FOUND -eq 0; then
+        as_fn_error $? "Unable to find $CURL_CONFIG. Please check the path you provided" "$LINENO" 5
+    else
+       unset CURL_FOUND
+    fi
 else
-		for ac_prog in curl-config
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        CURL_CONFIG="$DEVTOOLS_BINDIR/curl-config"
+    else
+        for ac_prog in curl-config
 do
   # Extract the first word of "$ac_prog", so it can be a program name with args.
 set dummy $ac_prog; ac_word=$2
@@ -26645,9 +26845,10 @@ fi
 done
 test -n "$CURL_CONFIG" || CURL_CONFIG="no"
 
-		if test "x$CURL_CONFIG" = "xno"; then
-				as_fn_error $? "Unable to find curl-config in the path. Please check your installation of curl (example : libcurl3 & libcurl3-dev with Debian)" "$LINENO" 5
-		fi
+        if test "x$CURL_CONFIG" = "xno"; then
+            as_fn_error $? "Unable to find curl-config in the path. Please check your installation of curl (example : libcurl3 & libcurl3-dev with Debian)" "$LINENO" 5
+        fi
+    fi
 fi
 saved_cflags="$CFLAGS"
 saved_LIBS="$LIBS"
@@ -27733,7 +27934,7 @@ fi
   # Check for tcl header file
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for header file tcl.h" >&5
 $as_echo_n "checking for header file tcl.h... " >&6; }
-  dirs="$USER_TCL_INC_PATH /include /usr/include /usr/include/tcl /usr/include/tcl8.5 /usr/include/tcl8.* /usr/local/include /usr/local/include/tcl /usr/local/include/tcl8.*  /usr/X11/include/tcl /usr/X11/include/tcl8.* /usr/include/X11 /usr/include/X11/tcl /usr/include/X11/tcl8.* ../include ../../include /usr/tcl /usr/local/tcl /usr/local/tcl/include /usr/tcl/include /sw/include"
+  dirs="$USER_TCL_INC_PATH $DEVTOOLS_INCDIR /include /usr/include /usr/include/tcl /usr/include/tcl8.5 /usr/include/tcl8.* /usr/local/include /usr/local/include/tcl /usr/local/include/tcl8.*  /usr/X11/include/tcl /usr/X11/include/tcl8.* /usr/include/X11 /usr/include/X11/tcl /usr/include/X11/tcl8.* ../include ../../include /usr/tcl /usr/local/tcl /usr/local/tcl/include /usr/tcl/include /sw/include"
   for i in $dirs ; do
 	if test -r $i/tcl.h; then
 		{ $as_echo "$as_me:${as_lineno-$LINENO}: result: found in $i " >&5
@@ -27752,7 +27953,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 27755 "configure"
+#line 27956 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -27858,7 +28059,7 @@ TCL_LIB_OK=0
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION" >&5
 $as_echo_n "checking for tcl library tcl$TCL_MAJOR_VERSION.$TCL_MINOR_VERSION... " >&6; }
 MULTIARCH_HOST=`gcc -v 2>&1|grep Target|cut -d" " -f2`
-dirs="$USER_TCL_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib /sw/lib/ /usr/lib/$MULTIARCH_HOST ."
+dirs="$USER_TCL_LIB_PATH $DEVTOOLS_LIBDIR /lib /usr/lib /usr/lib64 /usr/lib/tcl /usr/lib/tcl8.* /shlib /shlib/tcl /shlib/tcl8.* /usr/shlib /shlib/tcl /usr//shlib/tcl8.* /usr/local/lib /usr/local/lib/tcl /usr/local/lib/tcl8.* /usr/local/shlib /usr/X11/lib/tcl /usr/X11/lib/tcl8.* /usr/lib/X11 /usr/lib/X11/tcl /usr/lib/X11/tcl8.* ../lib ../../lib  /usr/local/tcl /usr/tcl /usr/tcl/lib /usr/local/tcl/lib /sw/lib/ /usr/lib/$MULTIARCH_HOST ."
 libexts="so so.1.0 sl dylib a"
 libnames="tcl$CHK_TCL_MAJ.$CHK_TCL_MIN tcl.$CHK_TCL_MAJ.$CHK_TCL_MIN tcl$CHK_TCL_MAJ$CHK_TCL_MIN tcl.$CHK_TCL_MAJ$CHK_TCL_MIN"
 for e in $libexts; do
@@ -28042,7 +28243,7 @@ done
 $as_echo_n "checking for header file tk.h... " >&6; }
   TK_LIB_OK=0
   TK_INCLUDE_OK=0
-  dirs="$USER_TK_INC_PATH  /include /usr/include /usr/include/tk /usr/include/tk8.5 /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include /sw/include /usr/include/tcl8.5 /usr/include/tcl8.*"
+  dirs="$USER_TK_INC_PATH $DEVTOOLS_INCDIR /include /usr/include /usr/include/tk /usr/include/tk8.5 /usr/include/tk8.* /usr/local/include /usr/local/include/tk /usr/local/include/tk8.* /usr/X11/include/tk /usr/X11/include/tk8.* /usr/include/X11 /usr/include/X11/tk /usr/include/X11/tk8.* ../include ../../include /usr/tk /usr/local/tk /usr/local/tk/include /usr/tk/include  /usr/local/tcl /usr/tcl /usr/tcl/include /usr/local/tcl/include /sw/include /usr/include/tcl8.5 /usr/include/tcl8.*"
 # /usr/include/tcl8.5 is checked because some distribs store tk headers
 # in /usr/include/tcl8.*
   for i in $dirs ; do
@@ -28063,7 +28264,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 28066 "configure"
+#line 28267 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -28156,7 +28357,7 @@ TK_LIB_OK=0
 $as_echo_n "checking for tk library tk$TK_MAJOR_VERSION.$TK_MINOR_VERSION... " >&6; }
 MULTIARCH_HOST=`gcc -v 2>&1|grep Target|cut -d" " -f2`
 
-dirs="$USER_TK_LIB_PATH /lib /usr/lib /usr/lib64 /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib /sw/lib /usr/lib/$MULTIARCH_HOST ."
+dirs="$USER_TK_LIB_PATH $DEVTOOLS_LIBDIR /lib /usr/lib /usr/lib64 /usr/lib/tk /usr/lib/tk8.* /shlib /shlib/tk /shlib/tk8.* /usr/shlib /shlib/tk /usr/shlib/tk8.* /usr/local/lib /usr/local/lib/tk /usr/local/lib/tk8.* /usr/local/shlib /usr/X11/lib/tk /usr/X11/lib/tk8.*  /usr/lib/X11 /usr/lib/X11/tk /usr/lib/X11/tk8.* ../lib ../../lib /usr/tk /usr/local/tk /usr/local/tk/lib /usr/tk/lib /usr/local/tcl /usr/tcl /usr/local/tcl/lib /usr/tcl/lib /sw/lib /usr/lib/$MULTIARCH_HOST ."
 libexts="so so.1.0 sl dylib a"
 libnames="tk$CHK_TK_MAJ.$CHK_TK_MIN tk.$CHK_TK_MAJ.$CHK_TK_MIN tk$CHK_TK_MAJ$CHK_TK_MIN tk.$CHK_TK_MAJ$CHK_TK_MIN"
 
@@ -28398,6 +28599,10 @@ if test "$with_matio" != no; then
       MATIO_CFLAGS="$with_matio_include"
       MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
+      if $WITH_DEVTOOLS; then # Scilab thirdparties
+         MATIO_CFLAGS="-I$DEVTOOLS_INCDIR"
+         MATIO_LIBS="-L$DEVTOOLS_LIBDIR -lm -lz -lmatio -lhdf5"
+      else
 
 pkg_failed=no
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for MATIO" >&5
@@ -28488,6 +28693,7 @@ else
 $as_echo "yes" >&6; }
 	:
 fi
+      fi
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -28647,7 +28853,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28650 "configure"
+// #line 28856 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28762,7 +28968,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28765 "configure"
+// #line 28971 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28878,7 +29084,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28881 "configure"
+// #line 29087 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
@@ -46432,6 +46638,8 @@ echo "  Compilation tests (--enable-compilation-tests) ... = $COMPILATION_TESTS"
 echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
 echo "  Use MATIO (--without-matio) ...................... = $with_matio"
+echo ""
+echo "  Compile with Scilab thirdparties ................. = $WITH_DEVTOOLS"
 
 echo ""
 if test "$with_gui" = no; then
@@ -46720,5 +46928,6 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  SCI_FFLAGS ..... = $SCI_FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
+echo "  FLIBS...... .... = $FLIBS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
 echo ""

@@ -35,28 +35,36 @@ if test "x$with_fftw_include" != "xyes"; then
 	)
 	CFLAGS="$save_CFLAGS"
 else
-	AC_CHECK_HEADER([fftw3.h],
-		[FFTW3_CFLAGS=""],
-		[AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)])])
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_CFLAGS="-I$DEVTOOLS_INCDIR"
+    else
+        AC_CHECK_HEADER([fftw3.h],
+        [FFTW3_CFLAGS=""],
+        [AC_MSG_ERROR([Cannot find headers (fftw3.h) of the library fftw. Please install the dev package (Debian : libfftw3-dev)])])
+    fi
 fi
 
 
 # --with-fftw-library set then check in this dir
 if test "x$with_fftw_library" != "xyes"; then
-	save_LIBS="$LIBS"
-	LIBS="-L$with_fftw_library -lfftw3"
-	AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
-			[FFTW3_LIB="-L$with_fftw_library -lfftw3"],
-            [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct])]
-			)
-	LIBS="$save_LIBS"
+    save_LIBS="$LIBS"
+    LIBS="-L$with_fftw_library -lfftw3"
+    AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
+        [FFTW3_LIB="-L$with_fftw_library -lfftw3"],
+        [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c) in $with_fftw_library. Check if libfftw3 is installed and if the version is correct])]
+        )
+    LIBS="$save_LIBS"
 else
-	save_LIBS="$LIBS"
-	AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
-			[FFTW3_LIB="-lfftw3"],
+    save_LIBS="$LIBS"
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        FFTW3_LIB="-L$DEVTOOLS_LIBDIR -lfftw3"
+    else
+        AC_CHECK_LIB([fftw3], [fftw_plan_dft_r2c],
+            [FFTW3_LIB="-lfftw3"],
             [AC_MSG_ERROR([libfftw3 : library missing. (Cannot find symbol fftw_plan_dft_r2c). Check if libfftw3 is installed and if the version is correct])]
-			)
-	LIBS="$save_LIBS"
+            )
+    fi
+    LIBS="$save_LIBS"
 fi
 AC_SUBST(FFTW3_LIB)
 AC_DEFINE([WITH_FFTW], [], [With the FFTW library])

@@ -21,41 +21,45 @@ AC_DEFUN([AC_PCRE], [
 
 
 AC_ARG_WITH(pcre,
-		AC_HELP_STRING([--with-pcre=DIR],[Set the path to your PCRE (Perl 5 Compatible Regular Expression Library) installation]),
-		[with_pcre=$withval],
-		[with_pcre='yes']
-		)
+    AC_HELP_STRING([--with-pcre=DIR],[Set the path to your PCRE (Perl 5 Compatible Regular Expression Library) installation]),
+    [with_pcre=$withval],
+    [with_pcre='yes']
+    )
 
 if test "$with_pcre" != 'yes' -a "$with_pcre" != 'no'; then
-   # Look if pcre-config (which provides cflags and ldflags) is available
-   AC_MSG_CHECKING([pcre, for pcre-config])
-   PCRE_FOUND=0
-   PCRE_CONFIG="$with_pcre/bin/pcre-config" 
+    # Look if pcre-config (which provides cflags and ldflags) is available
+    AC_MSG_CHECKING([pcre, for pcre-config])
+    PCRE_FOUND=0
+    PCRE_CONFIG="$with_pcre/bin/pcre-config"
+    if test -x "$PCRE_CONFIG"; then
+        AC_MSG_RESULT([$PCRE_CONFIG])
+        PCRE_FOUND=1
+    fi
+    if test $PCRE_FOUND -eq 0; then
+        PCRE_CONFIG="$with_pcre/pcre-config"
         if test -x "$PCRE_CONFIG"; then
-                AC_MSG_RESULT([$PCRE_CONFIG])
-				PCRE_FOUND=1
-		fi
-   if test $PCRE_FOUND -eq 0; then
-   PCRE_CONFIG="$with_pcre/pcre-config" 
-        if test -x "$PCRE_CONFIG"; then
-				PCRE_FOUND=1
-                AC_MSG_RESULT([$PCRE_CONFIG])
+            PCRE_FOUND=1
+            AC_MSG_RESULT([$PCRE_CONFIG])
         fi
-   fi
-		if test $PCRE_FOUND -eq 0; then
-                AC_MSG_ERROR([Unable to find $PCRE_CONFIG. Please check the path you provided])
-		else
-			unset PCRE_FOUND
-		fi
+    fi
+    if test $PCRE_FOUND -eq 0; then
+        AC_MSG_ERROR([Unable to find $PCRE_CONFIG. Please check the path you provided])
+    else
+        unset PCRE_FOUND
+    fi
 else
-		AC_CHECK_PROGS(PCRE_CONFIG,pcre-config,no)
-		if test "x$PCRE_CONFIG" = "xno"; then
-				AC_MSG_ERROR([Unable to find pcre-config in the path. Please check your installation of pcre (example : libpcre3 & libpcre3-dev with Debian)])
-		fi
+    if $WITH_DEVTOOLS; then # Scilab thirdparties
+        PCRE_CONFIG="$DEVTOOLS_BINDIR/pcre-config"
+    else
+        AC_CHECK_PROGS(PCRE_CONFIG,pcre-config,no)
+    fi
+    if test "x$PCRE_CONFIG" = "xno"; then
+        AC_MSG_ERROR([Unable to find pcre-config in the path. Please check your installation of pcre (example : libpcre3 & libpcre3-dev with Debian)])
+    fi
 fi
 saved_cflags="$CFLAGS"
 saved_LIBS="$LIBS"
-		
+
 PCRE_CFLAGS=`$PCRE_CONFIG --cflags`
 PCRE_LIBS=`$PCRE_CONFIG --libs-posix`
 PCRE_VERSION=`$PCRE_CONFIG --version`

@@ -624,7 +624,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
         TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
         TK_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
     fi
-    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}:$SCIBINARYBASE/lib/thirdparty/redist
     DOCBOOK_ROOT="$SCI/../../thirdparty/docbook"
     PATH="$PATH:$SCI/modules/scicos/"
 
