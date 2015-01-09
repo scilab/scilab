@@ -17,6 +17,7 @@
 #include "polynom.hxx"
 #include "list.hxx"
 #include "optimizationfunctions.hxx"
+#include <limits>
 
 extern "C"
 {
@@ -371,21 +372,30 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             // compute size
             if (iContr == 1)
             {
-                iWorkSize   = iSizeX0 * (iSizeX0 + 13) / 2;
+                iWorkSize   = iSizeX0 * ((iSizeX0 + 13) / 2);
                 iWorkSizeI  = 0;
             }
             else // iContr == 2
             {
+
                 iWorkSize   = iSizeX0 * (iSizeX0 + 1) / 2 + 4 * iSizeX0 + 1;
                 iWorkSizeI  = 2 * iSizeX0;
             }
 
-            // alloc data
-            pdblWork = new double[iWorkSize];
-
-            if (iContr == 2)
+            try
             {
-                piWork = new int[iWorkSizeI];
+                // alloc data
+                pdblWork = new double[iWorkSize];
+
+                if (iContr == 2)
+                {
+                    piWork = new int[iWorkSizeI];
+                }
+            }
+            catch (std::bad_alloc& /*ba*/)
+            {
+                Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
+                return types::Function::Error;
             }
         }
 

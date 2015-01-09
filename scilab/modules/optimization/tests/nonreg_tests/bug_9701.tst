@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-// <-- ENGLISH IMPOSED -->
-//
 // <-- Non-regression test for bug 9701 -->
 //
 // <-- Bugzilla URL -->
@@ -30,11 +28,9 @@ function [f, g, ind] = optimCost(x, ind, n)
     end
 endfunction
 
-stacksize("max");
 n = 50000;
 x0 = ones(n, 1);
 
 try optim(list(optimCost, n), x0, "qn", "ar",1000,1000, imp=2); catch msg = lasterror(); end
-refMsg = "stack size exceeded!";
-
+refMsg = msprintf(_("Can not allocate %.2f MB memory.\n"), (n * int((n+13) / 2) * 8) / 1e6);
 assert_checkequal(msg(1), refMsg);
