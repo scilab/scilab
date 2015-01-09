@@ -23326,8 +23326,8 @@ fi
 save_CPPFLAGS="$CPPFLAGS"
 
 if test "x$with_eigen_include" != "xyes"; then
-	CPPFLAGS="-I$with_eigen_include"
-	ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
+    CPPFLAGS="-I$with_eigen_include"
+    ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
 if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS="$CPPFLAGS"
 else
@@ -23338,13 +23338,26 @@ fi
 
     PATH_TO_EIGEN=$with_eigen_include
 else
-	ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
+    if $WITH_DEVTOOLS; then # Scilab thirparties
+        CPPFLAGS="-I$DEVTOOLS_INCDIR"
+        ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
+if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
+  EIGEN_CPPFLAGS="$CPPFLAGS"
+else
+  as_fn_error $? "Cannot find headers (Eigen/Sparse) of the library EIGEN in $with_eigen_include. Please install the dev package (Debian : libeigen3-dev)" "$LINENO" 5
+
+fi
+
+
+        PATH_TO_EIGEN=$DEVTOOLS_INCDIR
+    else
+        ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
 if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS=""
 else
          $as_unset ac_cv_header_Eigen_Sparse
-                CPPFLAGS="-I/usr/include/eigen3/"
-                ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
+                    CPPFLAGS="-I/usr/include/eigen3/"
+                    ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
 if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
   EIGEN_CPPFLAGS=$CPPFLAGS
 else
@@ -23357,7 +23370,8 @@ fi
 fi
 
 
-    PATH_TO_EIGEN="/usr/include/eigen3/"
+        PATH_TO_EIGEN="/usr/include/eigen3/"
+    fi
 fi
 CPPFLAGS="$save_CPPFLAGS"
 
@@ -23368,7 +23382,7 @@ CHK_EIGEN_MINOR=0
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later" >&5
 $as_echo_n "checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 23371 "configure"
+#line 23385 "configure"
 #include "confdefs.h"
 
 #include "$PATH_TO_EIGEN/Eigen/Sparse"
@@ -27959,7 +27973,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 27962 "configure"
+#line 27976 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -28270,7 +28284,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 28273 "configure"
+#line 28287 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -28859,7 +28873,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28862 "configure"
+// #line 28876 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28974,7 +28988,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28977 "configure"
+// #line 28991 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -29090,7 +29104,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 29093 "configure"
+// #line 29107 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
