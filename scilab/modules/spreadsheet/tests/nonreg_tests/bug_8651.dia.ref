@@ -18,4 +18,4 @@
 a = ones(5,7);
 filename = fullfile(TMPDIR, 'foo.txt');
 msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: ''%s'' or ''%s'' expected.\n"), 'write_csv', 4, '.', ',');
-assert_checkerror ("write_csv(a,filename, '";"', '"@"')" , msgerr);
+assert_checkerror ("write_csv(a,filename, "";"", ""@"");" , msgerr);
