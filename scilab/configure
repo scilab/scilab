@@ -25488,7 +25488,7 @@ fi
 # check in the default path
 if test $UMFPACK_OK = no; then
     if $WITH_DEVTOOLS; then # Scilab thirparties
-        UMFPACK_LIB="$BLAS_LIBS -L$DEVTOOLS_LIBDIR -lm"
+        UMFPACK_LIB="-L$DEVTOOLS_LIBDIR -lumfpack -lamd"
     else
         save_LIBS="$LIBS"
         LIBS="$BLAS_LIBS $LIBS -lm" # libamd* is mandatory to link umfpack
