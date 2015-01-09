@@ -14,7 +14,7 @@
 // Some error messages in modules/overloading/macros are not standard and not localized
 
 b=cell(3,1);
-errmsg1=msprintf(_("%s: Wrong size for input argument #%d.\n"),"%ce_size",2);
+errmsg1=msprintf(_("%s: Wrong size for input argument #%d.\n"),"size",2);
 assert_checkerror("size(b,3)", errmsg1);
 
 A(:,:,2)=[1;1;1];
