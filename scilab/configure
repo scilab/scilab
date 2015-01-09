@@ -25130,7 +25130,7 @@ ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
   LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
   save_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
   if $WITH_DEVTOOLS; then # Scilab thirdparties
-      LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
   fi
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the arpack library works" >&5
 $as_echo_n "checking whether the arpack library works... " >&6; }
@@ -25300,7 +25300,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $lib_cv_arpack_ok" >&5
 $as_echo "$lib_cv_arpack_ok" >&6; }
   LIBS="$save_LIBS"
-  LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
+  export LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
   ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'

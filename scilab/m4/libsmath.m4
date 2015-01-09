@@ -387,7 +387,7 @@ AC_DEFUN([CHECK_ARPACK_OK], [
   LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
   save_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
   if $WITH_DEVTOOLS; then # Scilab thirdparties
-      LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
+      export LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
   fi
   AC_CACHE_CHECK([whether the arpack library works],
     [lib_cv_arpack_ok], [
@@ -523,7 +523,7 @@ doit (void)
   [cv_lib_arpack_ok=no],
   [cv_lib_arpack_ok=yes])])
   LIBS="$save_LIBS"
-  LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
+  export LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
   AC_LANG_POP(C++)
   if test "$cv_lib_arpack_ok" = "yes"; then
     $1
