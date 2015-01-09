@@ -25126,7 +25126,12 @@ ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
 ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
 ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
 
-  save_LIBS="$LIBS"; LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  save_LIBS="$LIBS";
+  LIBS="$ARPACK_LIBS $LAPACK_LIBS $BLAS_LIBS $LIBS $FLIBS"
+  save_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+  if $WITH_DEVTOOLS; then # Scilab thirdparties
+      LD_LIBRARY_PATH="$DEVTOOLS_LIBDIR:$LD_LIBRARY_PATH"
+  fi
   { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether the arpack library works" >&5
 $as_echo_n "checking whether the arpack library works... " >&6; }
 if ${lib_cv_arpack_ok+:} false; then :
@@ -25295,6 +25300,7 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $lib_cv_arpack_ok" >&5
 $as_echo "$lib_cv_arpack_ok" >&6; }
   LIBS="$save_LIBS"
+  LD_LIBRARY_PATH="$save_LD_LIBRARY_PATH"
   ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -27166,7 +27172,7 @@ CPPFLAGS="$CPPFLAGS -I$CHK_TCL_INCLUDE_PATH"
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later" >&5
 $as_echo_n "checking if tcl is version $CHK_TCL_MAJOR.$CHK_TCL_MINOR or later... " >&6; }
 cat > conftest.$ac_ext <<EOF
-#line 27169 "configure"
+#line 27175 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TCL_INCLUDE_PATH/$CHK_TCL_INC_NAME"
@@ -27477,7 +27483,7 @@ CPPFLAGS="$CPPFLAGS $TCL_INC_PATH -I$CHK_TK_INCLUDE_PATH $X_CFLAGS"
 $as_echo_n "checking if tk is version $CHK_TK_MAJOR.$CHK_TK_MINOR or later... " >&6; }
 
 cat > conftest.$ac_ext <<EOF
-#line 27480 "configure"
+#line 27486 "configure"
 #include "confdefs.h"
 
 #include "$CHK_TK_INCLUDE_PATH/$CHK_TK_INC_NAME"
@@ -28066,7 +28072,7 @@ $as_echo_n "checking saxon9he... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28069 "configure"
+// #line 28075 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28181,7 +28187,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28184 "configure"
+// #line 28190 "configure"
 import java.util.regex.Pattern;
 
 import net.sf.saxon.Version;
@@ -28297,7 +28303,7 @@ $as_echo_n "checking saxon... " >&6; }
             export ac_java_classpath="$jar_resolved:$ac_java_classpath"
 
     cat << \EOF > conftest.java
-// #line 28300 "configure"
+// #line 28306 "configure"
 import java.util.regex.Pattern;
 
 import com.icl.saxon.Loader;
