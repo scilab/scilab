@@ -263,7 +263,8 @@ am__objects_3 = src/fortran/clunit.lo src/fortran/getlin.lo \
 	src/fortran/stacki2d.lo src/fortran/stackc2i.lo \
 	src/fortran/isinstring.lo src/fortran/readinter.lo \
 	src/fortran/rewindinter.lo src/fortran/backspaceinter.lo \
-	src/fortran/relocstack.lo
+	src/fortran/relocstack.lo src/fortran/write_inter.lo \
+	src/fortran/read_inter.lo
 am_libscicore_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
@@ -822,7 +823,9 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
-    src/fortran/relocstack.f
+    src/fortran/relocstack.f \
+	src/fortran/write_inter.f \
+	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
@@ -1379,6 +1382,10 @@ src/fortran/rewindinter.lo: src/fortran/$(am__dirstamp) \
 src/fortran/backspaceinter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/relocstack.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/write_inter.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/read_inter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscicore-algo.la: $(libscicore_algo_la_OBJECTS) $(libscicore_algo_la_DEPENDENCIES) $(EXTRA_libscicore_algo_la_DEPENDENCIES) 

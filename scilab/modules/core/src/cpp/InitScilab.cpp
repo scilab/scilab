@@ -90,6 +90,7 @@ static void Add_gui(void);
 static void Add_fftw(void);
 static void Add_Nan(void);
 static void Add_Inf(void);
+static void Add_io(void);
 static void Add_All_Variables(void);
 static void Add_Double_Constant(std::wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
 static void Add_Poly_Constant(std::wstring _szName, std::wstring _szPolyVar, int _iRank, types::Double * _pdblReal);
@@ -749,6 +750,7 @@ static void Add_All_Variables(void)
     Add_fftw();
     Add_Nan();
     Add_Inf();
+    Add_io();
 }
 
 static void Add_Nan(void)
@@ -815,6 +817,14 @@ static void Add_z(void)
     dblCoef.set(0, 1, 1);
 
     Add_Poly_Constant(L"%z", L"z", 1, &dblCoef);
+}
+
+static void Add_io(void)
+{
+    types::Double * pVal = new types::Double(1, 2);
+    pVal->set(0, 5);
+    pVal->set(1, 6);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
 }
 
 static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)

@@ -40,6 +40,10 @@ Deprecated behavior
  1..
  2
 
+* write string or string matrix in file does not add black space before each value
+    write("TMPDIR/test", ["test", "sample"; "sample", "test"])
+    "-" + mgetl("TMPDIR/test") + "-"
+
 Removed functions
 ==================
 

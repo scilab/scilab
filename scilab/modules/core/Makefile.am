@@ -124,7 +124,9 @@ CORE_FORTRAN_SOURCES = \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
-    src/fortran/relocstack.f
+    src/fortran/relocstack.f \
+	src/fortran/write_inter.f \
+	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
