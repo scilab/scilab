@@ -311,7 +311,9 @@ includes/system_env/sci_home.h \
 includes/system_env/configvariable.hxx \
 includes/system_env/home.h \
 includes/system_env/configvariable_interface.h \
-includes/analysis/Decorator.hxx
+includes/analysis/Decorator.hxx \
+includes/analysis/Result.hxx \
+includes/analysis/TIType.hxx
 
 if BUILD_PARSER
 
