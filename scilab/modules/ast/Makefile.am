@@ -115,7 +115,7 @@ libsciast_la_CPPFLAGS = \
 	-I$(srcdir)/includes/types \
 	-I$(srcdir)/includes/analysis \
 	-I$(srcdir)/src/cpp \
-    -I$(top_srcdir)/modules/dynamic_link/includes \
+	-I$(top_srcdir)/modules/dynamic_link/includes \
 	-I$(top_srcdir)/modules/functions_manager/includes \
 	-I$(top_srcdir)/modules/console/includes \
 	-I$(top_srcdir)/modules/elementary_functions/includes \
@@ -126,7 +126,7 @@ libsciast_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/localization/includes \
 	-I$(top_srcdir)/modules/io/includes \
 	-I$(top_srcdir)/modules/fileio/includes \
-    $(EIGEN_CPPFLAGS) \
+	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 
@@ -310,7 +310,8 @@ includes/system_env/sci_path.h \
 includes/system_env/sci_home.h \
 includes/system_env/configvariable.hxx \
 includes/system_env/home.h \
-includes/system_env/configvariable_interface.h
+includes/system_env/configvariable_interface.h \
+includes/analysis/Decorator.hxx
 
 if BUILD_PARSER
 
