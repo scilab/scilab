@@ -510,6 +510,7 @@ void PrintVisitor::visit (const CaseExp &e)
 void PrintVisitor::visit (const SeqExp  &e)
 {
     int previousLine = -1;
+    bool bPreviousVerbose = false;
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
         if (previousLine == -1)
@@ -523,13 +524,14 @@ void PrintVisitor::visit (const SeqExp  &e)
             this->apply_indent();
         }
 
-        if ((*it)->getLocation().first_line == previousLine)
+        if ((*it)->getLocation().first_line == previousLine && bPreviousVerbose)
         {
            *ostr << ",";
         }
 
 
         (*it)->getOriginal()->accept(*this);
+        bPreviousVerbose = (*it)->isVerbose();
         if (!(*it)->isVerbose())
         {
             *ostr << ";";
