@@ -27,7 +27,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 #include "InitObjects.h"
 #include "SetProperty.h"

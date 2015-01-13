@@ -20,7 +20,6 @@
 #include "HandleManagement.h"
 #include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
-#include "stricmp.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "Scierror.h"
@@ -35,7 +34,7 @@
 #include "api_scilab.h"
 #include "createGraphicObject.h"
 #include "expandPathVariable.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 static const char* propertiesNames[] =
 {

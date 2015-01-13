@@ -34,7 +34,7 @@
 extern "C"
 {
 #include "sciprint.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "elem_common.h"
 }
 
@@ -1062,7 +1062,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     {
         char pstError[1024];
         char* pstFuncName = wide_string_to_UTF8(e.getSymbol().getName().c_str());
-        sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
+        os_sprintf(pstError, _("It is not possible to redefine the %s primitive this way (see clearfun).\n"), pstFuncName);
         wchar_t* pwstError = to_wide_string(pstError);
         std::wstring wstError(pwstError);
         FREE(pstFuncName);

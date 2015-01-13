@@ -31,7 +31,7 @@
 #include "scicos.h"
 
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 #include "FigureList.h"
 #include "BuildObjects.h"

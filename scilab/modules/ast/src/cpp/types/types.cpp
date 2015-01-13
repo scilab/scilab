@@ -19,7 +19,7 @@ extern "C"
 {
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 

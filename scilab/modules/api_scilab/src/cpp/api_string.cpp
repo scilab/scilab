@@ -33,7 +33,7 @@ extern "C"
 #include "localization.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 using namespace types;

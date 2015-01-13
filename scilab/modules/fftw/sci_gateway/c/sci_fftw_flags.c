@@ -21,7 +21,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* fftw_flags function.
 *

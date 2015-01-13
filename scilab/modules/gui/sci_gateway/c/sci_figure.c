@@ -28,9 +28,7 @@
 #include "FigureModel.h"
 #include "HandleManagement.h"
 #include "SetHashTable.h"
-#include "stricmp.h"
-#include "os_strdup.h"
-
+#include "os_string.h"
 #include "sciprint.h"
 #include "addColor.h"
 

@@ -11,7 +11,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getPartLine.h"
 #include "core_math.h"
 #include "sci_malloc.h"

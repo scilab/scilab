@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "syncexec.h"
 #include "storeCommand.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20

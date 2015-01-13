@@ -16,7 +16,7 @@
 #include "PATH_MAX.h"
 #include "sci_malloc.h"
 #include "GetWindowsVersion.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define MAX_KEY_LENGTH 255
 #define MAX_VALUE_NAME 16383

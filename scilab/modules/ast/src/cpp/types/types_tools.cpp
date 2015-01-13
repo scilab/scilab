@@ -16,7 +16,7 @@
 #include "execvisitor.hxx"
 extern "C"
 {
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 namespace types

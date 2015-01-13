@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 }
 
@@ -157,7 +157,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
         int iPos = getIndex(_piDims);
         wchar_t* wcsStr = get(iPos);
-        int iCurLen = wcslen(wcsStr);
+        int iCurLen = static_cast<int>(wcslen(wcsStr));
         iMaxLen = std::max(iMaxLen, iCurLen);
         iMaxLen = std::min(iMaxLen, iStrMaxSize);
 
@@ -219,7 +219,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
             wchar_t* wcsStr = get(iPos);
-            int iCurLen = wcslen(wcsStr);
+            int iCurLen = static_cast<int>(wcslen(wcsStr));
 
             ostr << L"!";
             if (iCurLen > iMaxLen)
@@ -373,7 +373,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
                         wchar_t* wcsStr = get(iPos);
-                        int iLenStr = wcslen(wcsStr);
+                        int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                         // Manage case where string length is greater than max line size.
                         if (iLenStr > iStrMaxSize)
@@ -461,7 +461,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
                 wchar_t* wcsStr = get(iPos);
-                int iLenStr = wcslen(wcsStr);
+                int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                 // Manage case where string length is greater than max line size.
                 if (iStrMaxSize < iLenStr)
@@ -483,7 +483,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 {
                     configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
                     ostemp << left << get(iPos) << spaces;
-                    iLen += piSize[iCols2] + spaces.size();
+                    iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
             ostemp << L"!" << endl;

@@ -30,11 +30,11 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define MUTE_FLAG       L"n"

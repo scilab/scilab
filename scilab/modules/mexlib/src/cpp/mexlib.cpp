@@ -73,7 +73,7 @@ extern "C"
 #include "machine.h"
 #include "mex.h"
 #include "freeArrayOfString.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #ifdef getType
@@ -1514,7 +1514,7 @@ int mexEvalString(const char *name)
     }
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ;j != itEnd ; ++j)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
     {
         try
         {

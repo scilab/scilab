@@ -29,7 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "BOOL.h"
 }
 using namespace org_scilab_modules_gui_filechooser;

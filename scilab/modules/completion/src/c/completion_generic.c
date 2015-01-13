@@ -12,8 +12,7 @@
 #include <string.h>
 #include "completion_generic.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
-#include "stricmp.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char **completion_generic(char **dictionary, int sizedictionary,
                           const char *somechars, int *sizeArrayReturned)

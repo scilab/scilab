@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include "sci_malloc.h"
 #include "tokens.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "os_wcstok.h"
 
 

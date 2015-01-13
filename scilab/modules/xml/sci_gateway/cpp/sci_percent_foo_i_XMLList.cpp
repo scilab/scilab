@@ -24,7 +24,7 @@ extern "C"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 }
 

@@ -19,11 +19,10 @@
 #include "configvariable_interface.h"
 #include "sci_tmpdir.h"
 #include "spawncommand.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "getshortpathname.h"
-#include "os_strdup.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 #define LF_STR "\n"
@@ -102,7 +101,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
     {
         int lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_DETACHED));
         CmdLine = (wchar_t*) MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
-        swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_DETACHED, shellCmd, command);
 
         dwCreationFlags = DETACHED_PROCESS;
     }
@@ -114,7 +113,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
 
         wchar_t *TMPDirLong = getTMPDIRW();
 
-        swprintf(FileTMPDir, PATH_MAX + 16, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
+        os_swprintf(FileTMPDir, PATH_MAX + 16, OUTPUT_CHECK_FILENAME_FORMAT, TMPDirLong);
         FREE(TMPDirLong);
 
         if (FileExistW(FileTMPDir))
@@ -125,7 +124,7 @@ int spawncommand(wchar_t *command, BOOL DetachProcess)
         lenCmdLine = (int)(wcslen(shellCmd) + wcslen(command) + wcslen(CMDLINE_FORMAT_NOTDETACHED) +
                            wcslen(FileTMPDir));
         CmdLine = (wchar_t*)MALLOC((lenCmdLine + 1) * sizeof(wchar_t));
-        swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
+        os_swprintf(CmdLine, lenCmdLine, CMDLINE_FORMAT_NOTDETACHED, shellCmd, command, FileTMPDir);
 
         dwCreationFlags = 0;
     }

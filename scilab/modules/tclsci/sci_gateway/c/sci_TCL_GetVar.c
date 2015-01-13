@@ -22,7 +22,7 @@
 #include "TCL_ArrayGetVar.h"
 #include "sci_malloc.h"
 #include "GlobalTclInterp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVar(char *fname, unsigned long l)

@@ -23,7 +23,7 @@
 #include "sci_malloc.h"
 #include "BOOL.h"
 #include "pcre_private.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "strsubst.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"

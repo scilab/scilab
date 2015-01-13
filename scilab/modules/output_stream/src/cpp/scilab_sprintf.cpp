@@ -27,9 +27,9 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "os_wtoi.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define NanString L"Nan"

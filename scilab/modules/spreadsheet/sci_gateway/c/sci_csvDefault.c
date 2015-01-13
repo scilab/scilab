@@ -22,7 +22,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
 #include "csvDefault.h"

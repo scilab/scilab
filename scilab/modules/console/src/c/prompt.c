@@ -17,7 +17,7 @@
 #include "configvariable_interface.h"
 #include "localization.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];

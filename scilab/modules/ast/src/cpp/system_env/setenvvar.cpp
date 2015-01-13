@@ -115,7 +115,7 @@ bool IsTheGoodShell(void)
     strcpy(shellCmd, "");
     strcpy(fname, "");
     GetEnvironmentVariableA("ComSpec", shellCmd, PATH_MAX);
-    _splitpath(shellCmd, drive, dir, fname, ext);
+    os_splitpath(shellCmd, drive, dir, fname, ext);
 
     if (_stricmp(fname, "cmd") == 0)
     {

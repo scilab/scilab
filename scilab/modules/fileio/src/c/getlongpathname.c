@@ -17,7 +17,7 @@
 #include "getlongpathname.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #ifndef MAX_PATH_LONG

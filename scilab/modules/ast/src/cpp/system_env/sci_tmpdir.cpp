@@ -26,7 +26,7 @@ extern "C"
 #include <unistd.h> /* getpid */
 #endif
 #include "sci_tmpdir.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "setenvc.h"
@@ -34,8 +34,6 @@ extern "C"
 #include "localization.h"
 #include <errno.h>
 #include "removedir.h"
-#include "os_swprintf.h"
-#include "os_strdup.h"
 #include "setenvvar.h"
 #include "getshortpathname.h"
 }

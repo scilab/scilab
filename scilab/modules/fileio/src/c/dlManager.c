@@ -29,7 +29,7 @@
 #include "scicurdir.h"
 #include "splitpath.h"
 #include "getScilabPreference.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME

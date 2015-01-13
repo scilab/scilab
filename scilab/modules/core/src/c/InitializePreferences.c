@@ -17,7 +17,7 @@
 #include "setieee.h"
 #include "setlines.h"
 #include "setformat.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "TerminateHistoryManager.h"
 #include "InitializeHistoryManager.h"
 #include "HistoryManager.h"

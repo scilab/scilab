@@ -19,7 +19,7 @@
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;

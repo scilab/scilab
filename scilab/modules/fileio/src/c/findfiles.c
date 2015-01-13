@@ -23,9 +23,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER

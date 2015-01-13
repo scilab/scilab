@@ -29,7 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "getScilabJavaVM.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 /*--------------------------------------------------------------------------*/

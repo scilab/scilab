@@ -30,7 +30,7 @@
 #include "createdirectory.h"
 #include "PATH_MAX.h"
 #include "fullpath.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);

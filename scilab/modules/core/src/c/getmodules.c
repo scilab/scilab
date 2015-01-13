@@ -19,12 +19,11 @@
 #include "sci_path.h"
 #include "localization.h"
 #include "string.h"
-#include "stricmp.h"
 #include "sciprint.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "FileExist.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
 static struct MODULESLIST *ScilabModules = NULL;

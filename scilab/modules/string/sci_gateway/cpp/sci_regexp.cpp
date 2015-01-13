@@ -29,7 +29,7 @@ extern "C"
 #include "pcre_error.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 }
 /*------------------------------------------------------------------------*/

@@ -18,8 +18,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "stricmp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #include <libxml/xpath.h>

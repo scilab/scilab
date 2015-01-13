@@ -29,7 +29,7 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "sci_malloc.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 namespace types

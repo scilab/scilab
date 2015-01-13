@@ -25,7 +25,7 @@ extern "C"
 #include "matrix_addition.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "elem_common.h" //dset
 }
 

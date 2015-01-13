@@ -23,7 +23,7 @@
 extern "C"
 {
 #include "getmemory.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 namespace symbol

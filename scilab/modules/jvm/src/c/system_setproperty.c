@@ -17,7 +17,7 @@
 #include "getScilabJNIEnv.h"
 #include "sci_malloc.h"
 #include "catchIfJavaException.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char * system_setproperty(char *property, char *value)
 {

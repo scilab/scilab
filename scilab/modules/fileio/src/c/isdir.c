@@ -25,8 +25,7 @@
 #include "isdir.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL isdir(const char * path)
 {

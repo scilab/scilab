@@ -22,7 +22,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"

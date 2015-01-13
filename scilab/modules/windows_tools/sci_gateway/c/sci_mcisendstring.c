@@ -17,7 +17,7 @@
 #include "stack-c.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib, "winmm.lib")
 /*--------------------------------------------------------------------------*/

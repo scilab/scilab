@@ -15,7 +15,7 @@
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "machine.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 /*---------------------------------------------------------------------------*/
 DynLibHandle LoadDynLibraryW(wchar_t *libname)
 {

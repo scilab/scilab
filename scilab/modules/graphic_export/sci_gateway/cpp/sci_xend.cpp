@@ -23,7 +23,7 @@ extern "C"
 #include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 /*--------------------------------------------------------------------------*/

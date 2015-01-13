@@ -13,7 +13,7 @@
 extern "C"
 {
 #include "stdarg.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "sciprint.h"
 }
@@ -85,8 +85,8 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         wchar_t* pwstError = NULL;
         if (_isOperator)
         {
-            sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
-            sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
+            os_sprintf(pstError2, _("check or define function %s for overloading.\n"), pstFuncName);
+            os_sprintf(pstError1, "%s%s", _("Undefined operation for the given operands.\n"), pstError2);
             pwstError = to_wide_string(pstError1);
             std::wstring wstError(pwstError);
             FREE(pwstError);
@@ -95,8 +95,8 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         }
         else
         {
-            sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
-            sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
+            os_sprintf(pstError2, _("  check arguments or define function %s for overloading.\n"), pstFuncName);
+            os_sprintf(pstError1, "%s%s", _("Function not defined for given argument type(s),\n"), pstError2);
             pwstError = to_wide_string(pstError1);
             std::wstring wstError(pwstError);
             FREE(pwstError);

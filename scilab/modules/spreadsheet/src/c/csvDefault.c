@@ -12,7 +12,7 @@
 #include <string.h>
 #include "csvDefault.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "checkCsvWriteFormat.h"
 // =============================================================================
 #define DEFAULT_CSV_SEPARATOR ","

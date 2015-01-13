@@ -34,7 +34,7 @@
 #include "initConsoleMode.h"
 #include "GetCommandLine.h"
 #include "TermReadAndProcess.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "BrowseVarManager.h"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"

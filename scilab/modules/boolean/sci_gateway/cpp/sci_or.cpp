@@ -114,17 +114,13 @@ types::Function::ReturnValue sci_or(types::typed_list &in, int _iRetCount, types
                 return types::Function::Error;
 
             }
-            opt = pdblIn->get(0);
+
+            opt = static_cast<int>(pdblIn->get(0));
             if (opt != pdblIn->get(0))
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "or", 2);
                 return types::Function::Error;
             }
-            /* if ((opt > OR_BY_COLUMNS) || (opt < OR_BY_ROWS))
-             {
-                 Scierror(44, _("%s: Wrong value for input argument #%d.\n"), "or", 2);
-                 return types::Function::Error;
-             }*/
         }
         else
         {

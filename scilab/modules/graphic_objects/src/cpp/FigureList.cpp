@@ -15,7 +15,7 @@
 extern "C"
 {
 #include "FigureList.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "FigureList.h"
 }
 

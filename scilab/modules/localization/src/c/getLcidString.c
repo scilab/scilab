@@ -16,7 +16,7 @@
 #include <Windows.h>
 #include "LocaleNameToLCID_Windows.h"
 #endif
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getLcidString.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"

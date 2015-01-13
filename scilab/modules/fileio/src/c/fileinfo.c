@@ -21,7 +21,7 @@
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "returnanan.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
 
 /*--------------------------------------------------------------------------*/

@@ -24,7 +24,7 @@
 #include "BOOL.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 #include "mgetl.h"
 #include "mopen.h"
@@ -87,7 +87,7 @@ fscanfMatResult *fscanfMat(char *filename, char *format, char *separator)
     char **lines = NULL;
     int nblines = 0;
     double *dValues = NULL;
-	wchar_t* filenameW = NULL;
+    wchar_t* filenameW = NULL;
 
     if ((filename == NULL) || (format == NULL) || (separator == NULL))
     {

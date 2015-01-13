@@ -12,7 +12,7 @@
 #include <string.h>
 #include "utftolatin.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 // =============================================================================
 char *utftolatin(char *utfString)
 {

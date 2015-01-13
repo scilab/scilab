@@ -22,7 +22,6 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
-#include "stricmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

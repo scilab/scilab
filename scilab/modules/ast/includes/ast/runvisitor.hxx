@@ -417,7 +417,7 @@ public :
 
             char* strErr =  wide_string_to_UTF8(e.getSymbol().getName().c_str());
 
-            sprintf(pstError, _("Undefined variable: %s\n"), strErr);
+            os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
             pwstError = to_wide_string(pstError);
             FREE(strErr);
             std::wstring wstError(pwstError);

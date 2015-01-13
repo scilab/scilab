@@ -29,7 +29,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"

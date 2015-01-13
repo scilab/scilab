@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "buildMainWindowTitle.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #ifdef _MSC_VER
 #include "../../../windows_tools/src/c/scilab_windows/buildMainWindowTitle_Windows.h"
 #endif

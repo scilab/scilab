@@ -20,7 +20,7 @@
 #include <windows.h>
 #include "EnvTclTk.h"
 #endif
-#include "os_strdup.h"
+#include "os_string.h"
 #include "InitTclTk.h"
 #include "sci_path.h"
 #include "sciprint.h"

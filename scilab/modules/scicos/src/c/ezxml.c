@@ -45,7 +45,7 @@
 
 #include "sci_malloc.h"
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 #ifdef _MSC_VER
 #define snprintf _snprintf

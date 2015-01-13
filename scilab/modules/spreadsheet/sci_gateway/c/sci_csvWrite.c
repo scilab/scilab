@@ -25,7 +25,7 @@
 #include "csvDefault.h"
 #include "checkCsvWriteFormat.h"
 #include "gw_csv_helpers.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 
 static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader);

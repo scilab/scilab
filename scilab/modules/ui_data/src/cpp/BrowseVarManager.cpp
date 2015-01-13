@@ -33,7 +33,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_types.h"
 }
 using namespace org_scilab_modules_ui_data;

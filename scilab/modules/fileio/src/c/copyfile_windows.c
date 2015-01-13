@@ -21,13 +21,14 @@
 #include "isdir.h"
 #include "createdirectory.h"
 #include "PATH_MAX.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_windows(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_windows(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
 /*--------------------------------------------------------------------------*/
 int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
 {
-    if (_wcsicmp(DestinationFilename, SourceFilename) == 0)
+    if (os_wcsicmp(DestinationFilename, SourceFilename) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;
@@ -51,7 +52,7 @@ int CopyDirectoryFunction(wchar_t *DestinationDirectory, wchar_t *SourceDirector
         DestinationDirectory[wcslen(DestinationDirectory) - 1] = L'\0';
     }
 
-    if (_wcsicmp(DestinationDirectory, SourceDirectory) == 0)
+    if (os_wcsicmp(DestinationDirectory, SourceDirectory) == 0)
     {
         SetLastError(ERROR_ACCESS_DENIED);
         return 1;

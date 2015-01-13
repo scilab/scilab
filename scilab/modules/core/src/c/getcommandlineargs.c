@@ -13,7 +13,7 @@
 #include <string.h>
 #include "getcommandlineargs.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int scilab_nbargs = 0;
 static char *scilab_argv[MAXCMDTOKENS];

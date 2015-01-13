@@ -14,7 +14,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include <stdio.h>
 }
 

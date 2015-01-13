@@ -26,7 +26,7 @@ extern "C" {
 #include "backtrace.h"
 #include "backtrace_print.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 #ifdef _MSC_VER

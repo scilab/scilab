@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include "FindFileAssociation.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/

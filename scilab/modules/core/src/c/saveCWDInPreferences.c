@@ -13,7 +13,7 @@
 #include <stdlib.h>
 
 #include "getScilabPreference.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "scicurdir.h"
 #include "sci_malloc.h"
 

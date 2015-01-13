@@ -13,10 +13,15 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include <stdlib.h>
+
+extern "C"
+{
 #include "getScilabDirectory.h"
 #include "sci_malloc.h"
 #include "sci_path.h"
 #include "charEncoding.h"
+#include "os_string.h"
+}
 /*--------------------------------------------------------------------------*/
 char *getScilabDirectory(BOOL UnixStyle)
 {
@@ -35,7 +40,7 @@ char *getScilabDirectory(BOOL UnixStyle)
         return NULL;
     }
 
-    _wsplitpath(ScilabModuleName, drive, dir, fname, ext);
+    os_wsplitpath(ScilabModuleName, drive, dir, fname, ext);
 
     if (dir[wcslen(dir) - 1] == L'\\')
     {

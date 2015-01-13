@@ -24,7 +24,7 @@ extern "C"
 #include "scicos_block4.h"
 #include "scicos.h"
 #include "core_math.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
     double C2F(sciround) (double *x);
     SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag);

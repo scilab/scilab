@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "elem_common.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define BLANK_SIZE 1

@@ -29,7 +29,7 @@
 #include "scilabDefaults.h"
 #include "localization.h"
 #include "fromjava.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "catchIfJavaException.h"
 /*--------------------------------------------------------------------------*/
 static void DoLoadClasspathInEtc(char *sciPath);

@@ -13,7 +13,7 @@
 
 extern "C"
 {
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #include "types_or.hxx"

@@ -21,8 +21,7 @@
 #include "sci_path.h"
 #include "sci_malloc.h"
 #include "localization.h"
-#include "stricmp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "BOOL.h"
 #include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/

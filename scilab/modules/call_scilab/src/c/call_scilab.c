@@ -30,7 +30,7 @@
 #include "FigureList.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "InitScilab.h"
 #include "scilabRead.h"

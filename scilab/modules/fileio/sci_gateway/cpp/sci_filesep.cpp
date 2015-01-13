@@ -23,7 +23,7 @@ extern "C"
 #include "machine.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 }
 
 using namespace types;

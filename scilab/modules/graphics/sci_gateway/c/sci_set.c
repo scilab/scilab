@@ -32,7 +32,7 @@
 
 #include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "api_scilab.h"
 #include "FigureList.h"
 

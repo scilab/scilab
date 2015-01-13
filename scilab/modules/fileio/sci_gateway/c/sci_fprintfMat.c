@@ -18,7 +18,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "fprintfMat.h"
 
 static void freeVar(char** filename, char** expandedFilename, char*** textAdded, int m4n4, char** Format, char** separator);

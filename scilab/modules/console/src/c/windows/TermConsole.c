@@ -17,7 +17,7 @@
 #include "sci_malloc.h"
 #include "TermCommand.h"
 #include "FocusOnConsole.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "TermCompletion.h"
 #include "TermLine.h"
 #include "scilines.h"

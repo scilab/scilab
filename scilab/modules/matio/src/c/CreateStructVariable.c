@@ -11,7 +11,7 @@
  *
  */
 
-#include "os_strdup.h"
+#include "os_string.h"
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"

@@ -14,7 +14,7 @@
 #include "gw_tclsci.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_GetVersion(char *fname, unsigned long l)
 {

@@ -24,7 +24,7 @@
 #include "pcre_private.h"
 #include "sciprint.h"
 #include "splitLine.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "csvDefault.h"
 #include "strsubst.h"
 // =============================================================================

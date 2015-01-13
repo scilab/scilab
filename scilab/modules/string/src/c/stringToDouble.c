@@ -21,9 +21,7 @@
 #include "stringToDouble.h"
 #include "core_math.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
-#include "stricmp.h"
+#include "os_string.h"
 #ifndef _MSC_VER
 #ifndef stricmp
 #define stricmp strcasecmp

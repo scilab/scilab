@@ -31,12 +31,12 @@
 
 extern "C"
 {
-#include "os_wcsicmp.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
 #include "prompt.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "mopen.h"
 #include "mclose.h"
 #include "fullpath.h"

@@ -25,7 +25,7 @@
 #include "csvRead.h"
 #include "getRange.h"
 #include "gw_csv_helpers.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange);
 // =============================================================================

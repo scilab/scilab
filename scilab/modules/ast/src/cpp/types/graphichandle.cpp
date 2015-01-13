@@ -20,7 +20,7 @@ extern "C"
 {
 #include <stdio.h>
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 }
 

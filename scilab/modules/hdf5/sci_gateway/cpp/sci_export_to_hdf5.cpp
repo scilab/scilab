@@ -31,7 +31,7 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "configvariable_interface.h"
 #include "splitpath.h"
 #include "scicurdir.h"
@@ -818,23 +818,23 @@ static bool export_ints(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
             iRet = writeUnsignedInteger32Matrix(_iH5File, _pstName, 2, piDims, (unsigned int*)piData);
             break;
         case SCI_INT64 :
-        //sciErr = getMatrixOfInteger64(_piVar, &piDims[0], &piDims[1], (long long**)&piData);
-        //if(sciErr.iErr)
-        //{
-        //	printError(&sciErr, 0);
-        //	return false;
-        //}
-        //iRet = writeInteger64Matrix(_iH5File, _pstName, 2, piDims, (long long*)piData);
-        //break;
+            //sciErr = getMatrixOfInteger64(_piVar, &piDims[0], &piDims[1], (long long**)&piData);
+            //if(sciErr.iErr)
+            //{
+            //	printError(&sciErr, 0);
+            //	return false;
+            //}
+            //iRet = writeInteger64Matrix(_iH5File, _pstName, 2, piDims, (long long*)piData);
+            //break;
         case SCI_UINT64 :
-        //sciErr = getMatrixOfUnsignedInteger64(_piVar, &piDims[0], &piDims[1], (unsigned long long**)&piData);
-        //if(sciErr.iErr)
-        //{
-        //	printError(&sciErr, 0);
-        //	return false;
-        //}
-        //iRet = writeUnsignedInteger64Matrix(_iH5File, _pstName, 2, piDims, (unsigned long long*)piData);
-        //break;
+            //sciErr = getMatrixOfUnsignedInteger64(_piVar, &piDims[0], &piDims[1], (unsigned long long**)&piData);
+            //if(sciErr.iErr)
+            //{
+            //	printError(&sciErr, 0);
+            //	return false;
+            //}
+            //iRet = writeUnsignedInteger64Matrix(_iH5File, _pstName, 2, piDims, (unsigned long long*)piData);
+            //break;
         default :
             return 1;
             break;

@@ -14,6 +14,8 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include <stdio.h>
+extern "C"
+{
 #include "SetScilabEnvironmentVariables.h"
 #include "PATH_MAX.h"
 #include "sci_path.h"
@@ -25,6 +27,8 @@
 #include "getshortpathname.h"
 #include "stristr.h"
 #include "strsubst.h"
+#include "os_string.h"
+}
 /*--------------------------------------------------------------------------*/
 static BOOL IsTheGoodShell(void);
 static BOOL Set_Shell(void);
@@ -183,7 +187,7 @@ BOOL IsTheGoodShell(void)
     strcpy(shellCmd, "");
     strcpy(fname, "");
     GetEnvironmentVariable("ComSpec", shellCmd, PATH_MAX);
-    _splitpath(shellCmd, drive, dir, fname, ext);
+    os_splitpath(shellCmd, drive, dir, fname, ext);
 
     if (_stricmp(fname, "cmd") == 0)
     {

@@ -34,10 +34,7 @@ extern "C"
 {
 #include "findfiles.h"
 #include "configvariable_interface.h"
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 

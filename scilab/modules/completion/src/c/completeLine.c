@@ -17,11 +17,10 @@
 #include <ctype.h>
 #include "completeLine.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getPartLine.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
-#include "stricmp.h"
 #include "stristr.h"
 
 /*--------------------------------------------------------------------------*/

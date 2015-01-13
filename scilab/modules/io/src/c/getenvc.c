@@ -16,8 +16,7 @@
 #ifdef _MSC_VER
 #include <Windows.h> /* GetEnvironmentVariable */
 #endif
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "getenvc.h"
 #include "localization.h"

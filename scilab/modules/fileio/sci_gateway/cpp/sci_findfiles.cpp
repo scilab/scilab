@@ -25,7 +25,7 @@ extern "C"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "scicurdir.h"
 #include "freeArrayOfString.h"
 }

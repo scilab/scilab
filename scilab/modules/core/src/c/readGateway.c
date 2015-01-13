@@ -24,7 +24,7 @@
 #include "sci_malloc.h"
 #include "GetXmlFileEncoding.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/

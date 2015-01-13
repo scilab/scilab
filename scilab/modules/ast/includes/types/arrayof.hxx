@@ -123,7 +123,7 @@ protected :
                 if (m_iSize != 0 && iTmpSize / m_iSize != m_piDims[i])
                 {
                     char message[bsiz];
-                    sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
+                    os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
                     throw (ast::ScilabError(message));
                 }
 

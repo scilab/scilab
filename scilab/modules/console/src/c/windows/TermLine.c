@@ -23,7 +23,7 @@
 #include "sci_malloc.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */

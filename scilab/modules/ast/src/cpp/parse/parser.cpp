@@ -29,7 +29,7 @@ extern "C"
 #include "sci_tmpdir.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #ifdef __APPLE__
 #include "PATH_MAX.h"
 #endif
@@ -153,7 +153,7 @@ void ParserSingleInstance::parse(char *command)
 #ifdef _MSC_VER
     char szFile[MAX_PATH];
     char* pstTmpDIr = getTMPDIR();
-    sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
+    os_sprintf(szFile, "%s\\%s", pstTmpDIr, "command.temp");
     FREE(pstTmpDIr);
     if (fileLocker)
     {

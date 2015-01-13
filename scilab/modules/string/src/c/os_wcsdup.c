@@ -10,8 +10,7 @@
  *
  */
 
-#include "string.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 
 #ifdef __APPLE__
 wchar_t *macOSwcsdup(const wchar_t *_pwcsSource)

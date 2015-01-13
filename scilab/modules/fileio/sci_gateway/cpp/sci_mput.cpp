@@ -26,7 +26,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 using namespace types;

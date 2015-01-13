@@ -20,7 +20,7 @@
 #include "../../../core/src/c/dynamic_tclsci.h"
 #include "sci_malloc.h" /* MALLOC */
 #include "charEncoding.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL setenvc(const char *stringIn, const char *valueIn)
 {

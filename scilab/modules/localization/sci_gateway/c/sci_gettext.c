@@ -19,7 +19,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/

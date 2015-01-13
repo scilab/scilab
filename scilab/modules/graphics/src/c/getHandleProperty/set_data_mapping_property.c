@@ -22,7 +22,7 @@
 
 #include <string.h>
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"

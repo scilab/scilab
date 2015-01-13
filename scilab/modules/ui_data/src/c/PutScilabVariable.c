@@ -15,7 +15,7 @@
 #include "ui_data.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 
 void putScilabVariable(const char* name, const char* const* lines, int rows, int cols)

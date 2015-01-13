@@ -26,7 +26,7 @@ extern "C"
 #ifdef _MSC_VER
 #include <Windows.h>
 #endif
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 #include "ScilabAbstractEnvironment.hxx"

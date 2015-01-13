@@ -20,7 +20,7 @@
 extern "C"
 {
 #include <wchar.h>
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 namespace types

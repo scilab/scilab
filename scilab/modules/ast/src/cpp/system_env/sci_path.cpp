@@ -21,7 +21,7 @@ extern "C"
 {
 #include "sci_malloc.h"
 #include "sci_path.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "setenvc.h"
@@ -167,8 +167,8 @@ char* computeSCI()
     char dir[_MAX_DIR];
     char fname[_MAX_FNAME];
     char ext[_MAX_EXT];
+    char SciPathName[_MAX_DRIVE + _MAX_DIR + 5];
 
-    char *SciPathName = NULL;
     char *DirTmp = NULL;
 
     if (!GetModuleFileNameA((HINSTANCE)GetModuleHandleA("libScilab"), ScilabModuleName, MAX_PATH))
@@ -176,7 +176,7 @@ char* computeSCI()
         return NULL;
     }
 
-    _splitpath(ScilabModuleName, drive, dir, fname, ext);
+    os_splitpath(ScilabModuleName, drive, dir, fname, ext);
 
     if (dir[strlen(dir) - 1] == '\\')
     {
@@ -193,21 +193,17 @@ char* computeSCI()
         return NULL;
     }
 
-    SciPathName = new char[strlen(drive) + strlen(dir) + 5];
-    if (SciPathName)
-    {
-        _makepath(SciPathName, drive, dir, NULL, NULL);
+    os_makepath(SciPathName, drive, dir, NULL, NULL);
 
-        for (int i = 0 ; i < static_cast<int>(strlen(SciPathName)) ; i++)
+    for (int i = 0 ; i < static_cast<int>(strlen(SciPathName)) ; i++)
+    {
+        if (SciPathName[i] == '\\')
         {
-            if (SciPathName[i] == '\\')
-            {
-                SciPathName[i] = '/';
-            }
+            SciPathName[i] = '/';
         }
-        SciPathName[strlen(SciPathName) - 1] = '\0';
     }
-    return SciPathName;
+    SciPathName[strlen(SciPathName) - 1] = '\0';
+    return os_strdup(SciPathName);
 }
 #else
 char* computeSCI()

@@ -116,7 +116,7 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
                 return types::Function::Error;
             }
 
-            opt = pdblIn->get(0);
+            opt = static_cast<int>(pdblIn->get(0));
             if (opt != pdblIn->get(0))
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "and", 2);

@@ -15,8 +15,7 @@
 #include "getshortpathname.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <Windows.h> /* GetShortPathNameW */

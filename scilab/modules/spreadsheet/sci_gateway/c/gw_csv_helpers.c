@@ -20,7 +20,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "gw_csv_helpers.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 
 // =============================================================================

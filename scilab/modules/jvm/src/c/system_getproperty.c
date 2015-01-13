@@ -16,7 +16,7 @@
 #include "system_getproperty.h"
 #include "getScilabJNIEnv.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char * system_getproperty(const char * property, const char * defaultproperty)
 {
