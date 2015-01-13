@@ -775,12 +775,6 @@ SciErr createCommonNamedMatrixOfInteger(void* _pvCtx, const char* _pstName, int 
         return sciErr;
     }
 
-    if (_pvCtx == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfInteger", _pstName);
-        return sciErr;
-    }
-
     InternalType *pIT;
     switch (_iPrecision)
     {
