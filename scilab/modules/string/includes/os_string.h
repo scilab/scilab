@@ -60,7 +60,7 @@ wchar_t *macOSwcsdup(const wchar_t *_pwcsSource);
 #include <wchar.h>
 #include <wctype.h>
 
-inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2)
+static inline int macOSwcscasecmp(const wchar_t *_pwcsS1, const wchar_t *_pwcsS2)
 {
     int iResult = 0;
     int i = 0;
