@@ -363,7 +363,7 @@ public :
         {
             // An ArrayOf content in more than one Scilab variable
             // must be cloned before to be modified.
-            ArrayOf* pClone = clone()->getAs<ArrayOf>();
+            ArrayOf* pClone = clone()->template getAs<ArrayOf>();
             InternalType* pIT = pClone->insert(_pArgs, _pSource);
             if (pIT == NULL)
             {

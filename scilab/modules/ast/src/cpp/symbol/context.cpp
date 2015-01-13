@@ -450,7 +450,7 @@ int Context::getScopeLevel()
 bool Context::isValidVariableName(const wchar_t* wcsVarName)
 {
     static const wchar_t FORBIDDEN_CHARS[] = L" */\\.,;:^@><=+-&|()~\n\t'\"";
-    if (wcslen(wcsVarName) == 0 || wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
+    if (wcslen(wcsVarName) == 0 || std::wcspbrk(wcsVarName, FORBIDDEN_CHARS) || isdigit(wcsVarName[0]))
     {
         return false;
     }
