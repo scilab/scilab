@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #13694 fixed - Calling wfir without input arguments produced an error instead of calling wfir_gui.
 
+* Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
+
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
