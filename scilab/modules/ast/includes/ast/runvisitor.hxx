@@ -391,7 +391,9 @@ public :
 
     void visitprivate(const SimpleVar &e)
     {
-        InternalType *pI = symbol::Context::getInstance()->get(((SimpleVar&)e).getStack());
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Variable* var = ((SimpleVar&)e).getStack();
+        InternalType *pI = ctx->get(var);
         setResult(pI);
         if (pI != NULL)
         {
@@ -408,6 +410,20 @@ public :
                 std::wostringstream ostrName;
                 ostrName  << e.getSymbol().getName();
                 VariableToString(pI, ostrName.str().c_str());
+            }
+
+            //check if var is recalled in current scope like
+            //function f()
+            //  a;
+            //  a(2) = 18;
+            //endfunction
+            if (e.getParent()->isSeqExp())
+            {
+                if (var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
+                {
+                    //put var in current scope
+                    ctx->put(var, pI);
+                }
             }
         }
         else
