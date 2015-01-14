@@ -26,19 +26,30 @@ void PrintVisitor::visit (const MatrixExp &e)
     ast::exps_t lines = e.getLines();
     for (i = lines.begin() ; i != lines.end() ; )
     {
+        bool addIndent = false;
         j = i;
         if (++j == lines.end())
         {
             this->is_last_matrix_line = true;
         }
-        (*i)->getOriginal()->accept(*this);
-        ++i;
+        else
+        {
+            if ((*i)->getLocation().last_line != (*j)->getLocation().first_line)
+            {
+                addIndent = true;
+            }
+        }
 
-        if (lines.size() > 1 || this->is_last_column_comment)
+        (*i)->getOriginal()->accept(*this);
+
+        //if (lines.size() > 1 || this->is_last_column_comment)
+        if (addIndent)
         {
             *ostr << std::endl;
             this->apply_indent();
         }
+
+        ++i;
     }
     *ostr << SCI_CLOSE_MATRIX;
     --indent;
@@ -53,19 +64,20 @@ void PrintVisitor::visit (const MatrixLineExp &e)
     for (i = cols.begin() ; i != cols.end() ; )
     {
         (*i)->getOriginal()->accept(*this);
-        if (dynamic_cast<ast::CommentExp*>(*i) != NULL)
+        if ((*i)->isCommentExp())
         {
             this->is_last_column_comment = true;
         }
         if (++i != cols.end())
         {
-            if (dynamic_cast<ast::CommentExp*>(*i) == NULL)
+            if ((*i)->isCommentExp() == false)
             {
                 *ostr << SCI_COLUMN_SEPARATOR;
             }
             *ostr << " ";
         }
     }
+
     if (!this->is_last_column_comment && this->is_last_matrix_line == false)
     {
         *ostr << SCI_LINE_SEPARATOR;
@@ -526,7 +538,7 @@ void PrintVisitor::visit (const SeqExp  &e)
 
         if ((*it)->getLocation().first_line == previousLine && bPreviousVerbose)
         {
-           *ostr << ",";
+            *ostr << ",";
         }
 
 
