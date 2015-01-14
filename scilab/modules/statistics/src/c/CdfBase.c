@@ -122,7 +122,7 @@ void cdf_error(char const * const fname, int status, double bound)
     switch (status)
     {
         case 1:
-            Scierror(999, _("%s: Answer appears to be lower than lowest search bound %f\n"), fname, (bound > ZERO_FOR_CDF ? bound : 0));
+            Scierror(999, _("%s: Answer appears to be lower than lowest search bound %g\n"), fname, (bound > ZERO_FOR_CDF ? bound : ZERO_FOR_CDF));
             break;
         case 2:
             if (bound >= INFINITY_FOR_CDF)
@@ -166,11 +166,13 @@ void cdf_error(char const * const fname, int status, double bound)
     }
 }
 
-int checkInteger(int row, int col, double *data, int pos, char const * const fname){
+int checkInteger(int row, int col, double *data, int pos, char const * const fname)
+{
     int i;
-    for(i = 0 ; i < row * col ; i++)
+    for (i = 0 ; i < row * col ; i++)
     {
-        if ((int)data[i] - data[i] != 0){
+        if ((int)data[i] - data[i] != 0)
+        {
             return 1;
         }
     }
@@ -236,27 +238,27 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
     }
 
     //check which scilab function is called
-    switch(siz)
+    switch (siz)
     {
         case 4:
             //cdff
-            if(fname[3] == 'f')
+            if (fname[3] == 'f')
             {
-                if(strcmp(option,"PQ") ==0)
+                if (strcmp(option, "PQ") == 0)
                 {
                     pos = 3;
                     pos1 = 4;
                 }
-                else if(strcmp(option,"F") ==0)
+                else if (strcmp(option, "F") == 0)
                 {
                     pos = 2;
                     pos1 = 3;
                 }
-                else if(strcmp(option,"Dfn") ==0)
+                else if (strcmp(option, "Dfn") == 0)
                 {
                     pos = 2;
                 }
-                else if(strcmp(option,"Dfd") ==0)
+                else if (strcmp(option, "Dfd") == 0)
                 {
                     pos = 5;
                 }
@@ -264,74 +266,74 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
             //cdft
             else
             {
-                if(strcmp(option,"PQ") ==0)
-                    {
-                        pos = 3;
-                    }
-                    else if(strcmp(option,"T") ==0)
-                    {
-                        pos = 2;
-                    }
+                if (strcmp(option, "PQ") == 0)
+                {
+                    pos = 3;
+                }
+                else if (strcmp(option, "T") == 0)
+                {
+                    pos = 2;
+                }
             }
             break;
         case 6 :
             //cdfbet
-            if(fname[4] == 'e')
+            if (fname[4] == 'e')
             {
 
             }
             //cdfbin
-            else if(fname[4] == 'i')
+            else if (fname[4] == 'i')
             {
 
             }
             //cdffnc
-            else if(fname[4] == 'n')
+            else if (fname[4] == 'n')
             {
-                 if(strcmp(option,"PQ") ==0)
+                if (strcmp(option, "PQ") == 0)
                 {
                     pos = 3;
                     pos1 = 4;
                 }
-                else if(strcmp(option,"F") ==0)
+                else if (strcmp(option, "F") == 0)
                 {
                     pos = 2;
                     pos1 = 3;
                 }
-                else if(strcmp(option,"Dfn") ==0)
+                else if (strcmp(option, "Dfn") == 0)
                 {
                     pos = 2;
                 }
-                else if(strcmp(option,"Dfd") ==0)
+                else if (strcmp(option, "Dfd") == 0)
                 {
                     pos = 6;
                 }
-                else if(strcmp(option,"Pnonc") ==0)
+                else if (strcmp(option, "Pnonc") == 0)
                 {
                     pos = 5;
                     pos1 = 6;
                 }
             }
             //cdfgam
-            else if(fname[4] == 'a')
+            else if (fname[4] == 'a')
             {
 
             }
             //cdfnbn
-            else if(fname[4] == 'b')
+            else if (fname[4] == 'b')
             {
 
             }
-            else if(fname[4] == 'h')
+            else if (fname[4] == 'h')
             {
                 //cdfchi
-                if(fname[5] == 'i')
+                if (fname[5] == 'i')
                 {
-                    if(strcmp(option,"PQ") ==0)
+                    if (strcmp(option, "PQ") == 0)
                     {
                         pos = 3;
                     }
-                    else if(strcmp(option,"X") ==0)
+                    else if (strcmp(option, "X") == 0)
                     {
                         pos = 2;
                     }
@@ -339,15 +341,15 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
                 //cdfchn
                 else
                 {
-                    if(strcmp(option,"PQ") ==0)
+                    if (strcmp(option, "PQ") == 0)
                     {
                         pos = 3;
                     }
-                    else if(strcmp(option,"X") ==0)
+                    else if (strcmp(option, "X") == 0)
                     {
                         pos = 2;
                     }
-                    else if(strcmp(option,"Pnonc") ==0)
+                    else if (strcmp(option, "Pnonc") == 0)
                     {
                         pos = 5;
                     }
@@ -356,7 +358,7 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
             else
             {
                 //cdfnor
-                if(fname[5] == 'r')
+                if (fname[5] == 'r')
                 {
 
                 }
@@ -369,21 +371,23 @@ int CdfBase(char const * const fname, void* pvApiCtx, int inarg, int oarg, int s
             break;
     }
 
-    if(pos != 0)
+    if (pos != 0)
     {
         getVarAddressFromPosition(pvApiCtx, pos, &df);
         getMatrixOfDouble(pvApiCtx, df, &row, &col, &datas);
-        resc = checkInteger(row,col,datas, pos, fname);
-        if(resc == 1){
+        resc = checkInteger(row, col, datas, pos, fname);
+        if (resc == 1)
+        {
             sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos);
         }
     }
-    if(pos1 != 0)
+    if (pos1 != 0)
     {
         getVarAddressFromPosition(pvApiCtx, pos1, &df);
         getMatrixOfDouble(pvApiCtx, df, &row, &col, &datas);
-        resc = checkInteger(row,col,datas, pos1, fname);
-        if(resc == 1){
+        resc = checkInteger(row, col, datas, pos1, fname);
+        if (resc == 1)
+        {
             sciprint(_("%s: Warning: using non integer values for argument #%d may lead to incorrect results.\n"), fname, pos1);
         }
     }
