@@ -194,7 +194,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     {
                         delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
-                        return types::Function::Error;
+                        return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
                     break;

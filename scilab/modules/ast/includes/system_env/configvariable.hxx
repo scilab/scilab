@@ -255,11 +255,13 @@ public :
         DynLibHandle hLib;        /** handle of the library **/
     } DynamicLibraryStr;
 
+    typedef void(*dynlib_ptr)();
+
     typedef struct
     {
         wchar_t* pwstEntryPointName;    /** name of interface **/
         int iLibIndex;                  /** name of interface **/
-        void (*functionPtr)(wchar_t*);          /** entrypoint for the interface **/
+        dynlib_ptr functionPtr;         /** entrypoint for the interface **/
         bool bOK;                       /** flag set to TRUE if entrypoint can be used **/
     } EntryPointStr;
 
@@ -288,6 +290,9 @@ public :
     static void addEntryPoint(EntryPointStr* _pEP);
     static void removeEntryPoint(int _iEntryPointIndex);
     static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static int getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static dynlib_ptr getEntryPointFromPosition(int position);
+
     static std::vector<std::wstring> getEntryPointNameList();
 
     //dynamic modules

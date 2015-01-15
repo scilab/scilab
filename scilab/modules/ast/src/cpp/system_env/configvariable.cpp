@@ -763,6 +763,38 @@ ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntry
     return NULL;
 }
 
+dynlib_ptr ConfigVariable::getEntryPointFromPosition(int position)
+{
+    std::list<EntryPointStr*>::const_iterator it;
+    int pos = 0;
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    {
+        if (pos == position)
+        {
+            return (*it)->functionPtr;
+        }
+    }
+    return NULL;
+}
+
+int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
+{
+    int pos = 0;
+    std::list<EntryPointStr*>::const_iterator it;
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    {
+        //by pass iLibIndex check if _iDynamicLibraryIndex == -1
+        if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
+        {
+            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            {
+                return pos;
+            }
+        }
+    }
+    return -1;
+}
+
 std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
 {
     std::vector<std::wstring> EntryPointNames;

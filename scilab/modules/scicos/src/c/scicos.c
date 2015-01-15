@@ -36,6 +36,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 #include <math.h>
 
 /* Sundials includes */
@@ -76,6 +77,8 @@
 #include "sciblk2.h"
 #include "sciblk4.h"
 #include "dynlib_scicos.h"
+
+#include "configvariable_interface.h" /* getEntryPointPosition() and getEntryPointFromPosition() */
 
 #include "lsodar.h"           /* prototypes for lsodar fcts. and consts. */
 #include "ddaskr.h"           /* prototypes for ddaskr fcts. and consts. */
@@ -575,8 +578,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         else
         {
             i -= (ntabsim + 1);
-            //TODO: see in dynamic_lin how to get funcptr from index
-            //GetDynFunc(i, &Blocks[kf].funpt);
+            Blocks[kf].funpt = getEntryPointFromPosition(i);
             if ( Blocks[kf].funpt == (voidf) 0)
             {
                 sciprint(_("Function not found\n"));
@@ -6115,6 +6117,7 @@ int C2F(funnum)(char * fname)
 {
     int i = 0, ln = 0;
     int loc = -1;
+    wchar_t* fname_wchar_t = NULL;
     while ( tabsim[i].name != (char *) NULL)
     {
         if ( strcmp(fname, tabsim[i].name) == 0 )
@@ -6125,9 +6128,10 @@ int C2F(funnum)(char * fname)
     }
     ln = (int)strlen(fname);
 
-    //TODO: see in dynamic_lin how to check if a function os already link to Scilab
-    //C2F(iislink)(fname, &loc);
-    //C2F(iislink)(fname, &loc);
+    // Look for 'fname' in the Scilab dynamically linked functions
+    fname_wchar_t = to_wide_string(fname);
+    loc = getEntryPointPosition(fname_wchar_t);
+    FREE(fname_wchar_t);
     if (loc >= 0)
     {
         return (ntabsim + (int)loc + 1);

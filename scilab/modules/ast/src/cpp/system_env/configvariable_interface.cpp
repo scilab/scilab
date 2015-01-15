@@ -181,3 +181,13 @@ void removeReferenceModule(const wchar_t* _module)
 {
     ConfigVariable::removeReferenceModule(_module);
 }
+
+int getEntryPointPosition(wchar_t* _pwstEntryPointName)
+{
+    return ConfigVariable::getEntryPointPosition(_pwstEntryPointName);
+}
+
+dynlib_ptr getEntryPointFromPosition(int position)
+{
+    return ConfigVariable::getEntryPointFromPosition(position);
+}
