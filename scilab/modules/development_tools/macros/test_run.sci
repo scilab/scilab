@@ -868,7 +868,7 @@ function status = test_single(_module, _testPath, _testName)
                 if isempty(txt) then
                     deletefile(tmp_err);
                 else // Remove messages due to warning message from library
-                    toRemove = grep(txt, ": no version information available (required by ");
+                    toRemove = grep(txt, "libEGL warning: failed to find any driver");
                     txt(toRemove) = [];
 
                     if ~isempty(txt) then
