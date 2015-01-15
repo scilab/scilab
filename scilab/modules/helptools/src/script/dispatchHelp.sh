@@ -5,7 +5,7 @@
 
 if test -z "$SCI"; then
         echo "Please define the variable SCI"
-        exit -2
+        exit 254
 fi
 
 REFERENCE_LANG=en_US

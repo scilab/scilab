@@ -345,6 +345,10 @@ do
 	    # is incompatible with FreeBSD 'install' when (umask & 300) != 0.
 	    ;;
 	  *)
+	    if [ -z "$RANDOM" ] ; then
+	      # A fix for shells that do not have this bash feature
+	      RANDOM=$(( $(dd if=/dev/urandom bs=2 count=1 2> /dev/null | cksum | cut -d' ' -f1) % 32767 ))
+	    fi
 	    tmpdir=${TMPDIR-/tmp}/ins$RANDOM-$$
 	    trap 'ret=$?; rmdir "$tmpdir/d" "$tmpdir" 2>/dev/null; exit $ret' 0
 

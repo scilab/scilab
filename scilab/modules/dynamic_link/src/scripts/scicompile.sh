@@ -18,13 +18,13 @@ ORIGINALLIBNAME=libsciexternal
 
 if test ! -s Makefile.orig; then 
 	echo "The compiler detection has been performed. Please launch compilerDetection.sh before."
-	exit -1
+	exit 255
 fi
 
 # Check number of parameters
 if test $# -lt 2; then
 	echo "Syntax : $0 libname sources"
-	exit -2
+	exit 254
 fi
 
 # retrieve parameters
@@ -38,7 +38,7 @@ for file in $SOURCES_TEMP; do
 	FFILE=`echo $file|sed -e 's|\.o$|\.f|g'`
 	if [ ! -s $file -a -s $CFILE -a -s $FFILE ]; then 
 		echo "Error: Cannot find $file"
-		exit -3
+		exit 253
 	fi
 	# It is an include file, do not build it!
 	if [ ! `echo $file|grep -i -E "(\.h$|\.hh$|\.hxx$|\.H$)"` ]; then
