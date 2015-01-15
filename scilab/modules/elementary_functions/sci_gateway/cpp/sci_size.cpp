@@ -38,7 +38,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 
     switch (in[0]->getType())
     {
-        // Dedicated case for lists.
+            // Dedicated case for lists.
         case InternalType::ScilabMList:
         {
             std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_size";
@@ -86,14 +86,9 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                     return Function::Error;
                 }
             }
+
             int iDims   = in[0]->getAs<GenericType>()->getDims();
             int* piDims = in[0]->getAs<GenericType>()->getDimsArray();
-
-            if (iMode > iDims)
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d.\n"), "size", 2);
-                return Function::Error;
-            }
 
             if (_iRetCount == 1)
             {
