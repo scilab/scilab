@@ -35,6 +35,8 @@ Scilab Bug Fixes
 
 * Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
 
+* Bug #13692 fixed - group returned an error for a discrete dynamical system with a specified sample time.
+
 * Bug #13694 fixed - Calling wfir without input arguments produced an error instead of calling wfir_gui.
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
