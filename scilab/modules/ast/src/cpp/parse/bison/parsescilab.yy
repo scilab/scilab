@@ -208,7 +208,7 @@
 %type <t_exp>		assignable
 %type <t_assignlist_exp>multipleResults
 %type <t_exp>		variable
-%type <t_arraylist_exp>	variableFields
+%type <t_list_exp>	variableFields
 %type <t_exp>		expression
 
 %type <t_op_exp>	comparison
@@ -1125,7 +1125,7 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 | BOOLTRUE				%prec BOOLTRUE	{ $$ = new ast::BoolExp(@$, true); }
 | BOOLFALSE				%prec BOOLFALSE	{ $$ = new ast::BoolExp(@$, false); }
 | LPAREN variable RPAREN				{ $$ = $2; }
-| LPAREN variableFields RPAREN				{ $$ = $2; }
+| LPAREN variableFields RPAREN				{ $$ = new ast::ArrayListExp(@$, *$2); }
 | comparison						{ $$ = $1; }
 | variable LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
 | functionCall LPAREN functionArgs RPAREN { $$ = new ast::CallExp(@$, *$1, *$3); }
@@ -1137,36 +1137,32 @@ NOT variable				%prec NOT	{ $$ = new ast::NotExp(@$, *$2); }
 /* variable (, variable)+ */
 variableFields :
 variableFields COMMA variable		{
-					  $1->getExps().push_back($3);
+					  $1->push_back($3);
 					  $$ = $1;
 					}
 | variableFields COMMA functionCall	{
-					  $1->getExps().push_back($3);
+					  $1->push_back($3);
 					  $$ = $1;
 					}
 | variable COMMA variable		{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $$ = new ast::exps_t;
+					  $$->push_back($1);
+					  $$->push_back($3);
 					}
 | functionCall COMMA functionCall	{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $$ = new ast::exps_t;
+					  $$->push_back($1);
+					  $$->push_back($3);
 					}
 | functionCall COMMA variable		{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $$ = new ast::exps_t;
+					  $$->push_back($1);
+					  $$->push_back($3);
 					}
 | variable COMMA functionCall		{
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back($1);
-					  tmp->push_back($3);
-					  $$ = new ast::ArrayListExp(@$, *tmp);
+					  $$ = new ast::exps_t;
+					  $$->push_back($1);
+					  $$->push_back($3);
 }
 ;
 
