@@ -70,6 +70,8 @@ Scilab Bug Fixes
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
 
+* Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
+
 * Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
 
 * Bug #13692 fixed - group returned an error for a discrete dynamical system with a specified sample time.
