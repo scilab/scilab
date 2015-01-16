@@ -372,14 +372,14 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             // compute size
             if (iContr == 1)
             {
-                iWorkSize   = iSizeX0 * ((iSizeX0 + 13) / 2);
-                iWorkSizeI  = 0;
+                iWorkSize = (int)(iSizeX0 * ((iSizeX0 + 13) / 2.0));
+                iWorkSizeI = 0;
             }
             else // iContr == 2
             {
 
-                iWorkSize   = iSizeX0 * (iSizeX0 + 1) / 2 + 4 * iSizeX0 + 1;
-                iWorkSizeI  = 2 * iSizeX0;
+                iWorkSize = (int)(iSizeX0 * (iSizeX0 + 1) / 2.0 + 4 * iSizeX0 + 1);
+                iWorkSizeI = 2 * iSizeX0;
             }
 
             try
@@ -1020,7 +1020,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     catch (ast::ScilabError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "optim", "costf");
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
     }
@@ -1036,52 +1035,52 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
     if (piIzs && iIzs)
     {
-        delete piIzs;
+        delete[] piIzs;
     }
 
     if (pfRzs)
     {
-        delete pfRzs;
+        delete[] pfRzs;
     }
 
     if (pdblG)
     {
-        delete pdblG;
+        delete[] pdblG;
     }
 
     if (pdblDzs && iDzs)
     {
-        delete pdblDzs;
+        delete[] pdblDzs;
     }
 
     if (pdblWork)
     {
-        delete pdblWork;
+        delete[] pdblWork;
     }
 
     if (pdblWork2)
     {
-        delete pdblWork2;
+        delete[] pdblWork2;
     }
 
     if (piWork)
     {
-        delete piWork;
+        delete[] piWork;
     }
 
     if (pdblX0)
     {
-        delete pdblX0;
+        delete[] pdblX0;
     }
 
     if (pdblVar)
     {
-        delete pdblVar;
+        delete[] pdblVar;
     }
 
     if (pdblEpsx && iEpsx)
     {
-        delete pdblEpsx;
+        delete[] pdblEpsx;
     }
 
     return ret;

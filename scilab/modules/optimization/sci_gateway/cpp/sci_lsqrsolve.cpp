@@ -338,7 +338,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     double* pdblWork3   = new double[iSizeX];
     double* pdblWork4   = new double[iM];
 
-    if (pdblDiag == NULL) // iMode == 2
+    if (pdblDiag == NULL) // iMode != 2
     {
         pdblDiag = new double[iSizeX];
     }
@@ -377,7 +377,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         delete pdblWork3;
         delete pdblWork4;
         delete pdblJac;
-        if (iMode == 2)
+        if (iMode != 2)
         {
             delete pdblDiag;
         }
@@ -392,7 +392,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     delete pdblWork3;
     delete pdblWork4;
     delete pdblJac;
-    if (iMode == 2)
+    if (iMode != 2)
     {
         delete pdblDiag;
     }

@@ -239,7 +239,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         catch (ScilabMessage & sm)
         {
             setExpectedSize(iSaveExpectedSize);
-            clearResult();
+            setResult(NULL);
             cleanInOut(in, out);
             cleanOpt(opt);
             pIT->killMe();

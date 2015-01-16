@@ -48,13 +48,13 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     int iNza        = 0;
     int lunit       = 0; // file unit. 0 mean we open the file by this name.
     int mlunit      = 0;
-    int piMode[2]   = {-1, 0};
+    int piMode[2]   = { -1, 0};
     int ierr        = 0;
     int line        = 0;
     char typrow[2];
 
     wchar_t* wcsFileName = NULL;
-    char strErrorBuf[4096];
+    char* strErrorBuf = new char[bsiz];
 
     double big = C2F(dlamch)((char*)"o", 1L);
 
@@ -209,7 +209,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
                 piRwnmbs, piClpnts, piRow,
                 pDblCoef->get(), pDblRhsb->get(), pDblRanges->get(),
                 pDblBnds->get() + iN, pDblBnds->get(), pdblRelt,
-                4096L, 8L, 8L, 8L, 8L, 8L);
+                bsiz, 8L, 8L, 8L, 8L, 8L);
 
     delete piRow;
     delete pdblRelt;
@@ -217,11 +217,11 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     mlunit = -lunit;
     C2F(clunit)(&mlunit, NULL, piMode, 0);
 
-    if(ierr)
+    if (ierr)
     {
         int iLen = 4096;
         char* str = strErrorBuf + 4095;
-        while(*str == ' ')
+        while (*str == ' ')
         {
             iLen--;
             str--;
@@ -229,9 +229,11 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
 
         strErrorBuf[iLen] = '\0';
         Scierror(999, "%s", strErrorBuf);
+        delete[] strErrorBuf;
         return types::Function::Error;
     }
 
+    delete[] strErrorBuf;
     /*** return output arguments ***/
     types::String* pStr = NULL;
     types::Double* pDbl = NULL;

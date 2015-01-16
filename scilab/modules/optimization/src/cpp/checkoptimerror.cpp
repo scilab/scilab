@@ -56,10 +56,10 @@ int checkOptimError(int iarret, int indopt, int imp, double dEpsg)
 
         // warning
         case 1 :
-            sciprint(_("%s: Norm of projected gradient lower than %lf.\n"), "optim", dEpsg);
+            sciprint(_("%s: Norm of projected gradient lower than %lg.\n"), "optim", dEpsg);
             break;
         case 2 :
-            sciprint(_("%s: at last iteration f decreases by less than %lf.\n"), "optim", dEpsg);
+            sciprint(_("%s: at last iteration f decreases by less than %lg.\n"), "optim", dEpsg);
             break;
         case 3 :
             sciprint(_("%s: Optimization stops because too small variations for x.\n"), "optim");
