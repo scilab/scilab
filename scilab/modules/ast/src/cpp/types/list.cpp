@@ -196,6 +196,20 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
         return NULL;
     }
 
+    if (getRef() > 1)
+    {
+        // A List content in more than one Scilab variable
+        // must be cloned before to be modified.
+        List* pClone = clone()->getAs<List>();
+        InternalType* pIT = pClone->insert(_pArgs, _pSource);
+        if (pIT == NULL)
+        {
+            pClone->killMe();
+        }
+
+        return pIT;
+    }
+
     typed_list pArg;
     int iDims           = (int)_pArgs->size();
 
@@ -295,10 +309,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
         InternalType* pIT = (*m_plData)[idx - 1];
         pIT->DecreaseRef();
-        if (pIT)
-        {
-            pIT->killMe();
-        }
+        pIT->killMe();
 
         (*m_plData)[idx - 1] = _pSource->clone();
         (*m_plData)[idx - 1]->IncreaseRef();
