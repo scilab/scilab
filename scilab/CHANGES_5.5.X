@@ -88,6 +88,9 @@ Scilab Bug Fixes
 
 * Bug #13640 fixed - Graphics in isoview mode were too small when they were in subplots.
 
+* Bug #13655 fixed - acos and asin returned wrong results when input argument was a matrix
+                     of size greater than 1 and containing at least one NaN value.
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks had not a proper render.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
