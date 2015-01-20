@@ -23,6 +23,7 @@
 #include "Controller.hxx"
 #include "LoggerView.hxx"
 #include "utilities.hxx"
+#include "controller_helpers.hxx"
 
 extern "C"
 {
@@ -33,19 +34,6 @@ extern "C"
 using namespace org_scilab_modules_scicos;
 
 static const std::string funame = "scicos_log";
-
-LoggerView* get_or_allocate_logger()
-{
-    static const std::string loggerViewName = "logger";
-
-    View* registeredView = Controller::look_for_view(loggerViewName);
-    if (registeredView == nullptr)
-    {
-        registeredView = Controller::register_view(loggerViewName, new LoggerView());
-    }
-    LoggerView* logger = static_cast<LoggerView*>(registeredView);
-    return logger;
-}
 
 types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

@@ -19,6 +19,7 @@ src/cpp/il_sim.cpp \
 src/cpp/var2vec.cpp \
 src/cpp/vec2var.cpp \
 src/cpp/Controller.cpp \
+src/cpp/controller_helpers.cpp \
 src/cpp/LoggerView.cpp \
 src/cpp/Model.cpp \
 src/cpp/Model_getObjectProperties.cpp \

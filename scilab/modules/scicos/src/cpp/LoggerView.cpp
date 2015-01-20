@@ -10,10 +10,13 @@
  *
  */
 
+#include <cwchar>
+#include <cstdarg>
+#include <cstdio>
+#include <string>
 #include <iostream>
 #include <sstream>
 #include <string>
-#include <cwchar>
 
 #include "scilabWrite.hxx"
 
@@ -44,6 +47,16 @@ static std::wstring levelTable[] =
     L"FATAL",
 };
 
+static std::string displayTable[] =
+{
+    "Xcos trace: ",
+    "Xcos debug: ",
+    "Xcos info: ",
+    "Xcos warning: ",
+    "Xcos error: ",
+    "Xcos fatal: ",
+};
+
 enum LogLevel LoggerView::indexOf(const wchar_t* name)
 {
     for (int i = LOG_TRACE; i <= LOG_FATAL; i++)
@@ -65,6 +78,15 @@ const wchar_t* LoggerView::toString(enum LogLevel level)
     return L"";
 }
 
+const char* LoggerView::toDisplay(enum LogLevel level)
+{
+    if (LOG_TRACE <= level && level <= LOG_FATAL)
+    {
+        return displayTable[level].data();
+    }
+    return "";
+}
+
 void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
 {
     if (level >= this->m_level)
@@ -72,11 +94,30 @@ void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
         std::string str = msg.str();
         if (USE_SCILAB_WRITE)
         {
+            scilabForcedWrite(LoggerView::toDisplay(level));
             scilabForcedWrite(str.data());
         }
         else
         {
+            std::cerr << LoggerView::toDisplay(level);
             std::cerr << str;
+        }
+    }
+}
+
+void LoggerView::log(enum LogLevel level, const std::string& msg)
+{
+    if (level >= this->m_level)
+    {
+        if (USE_SCILAB_WRITE)
+        {
+            scilabForcedWrite(LoggerView::toDisplay(level));
+            scilabForcedWrite(msg.data());
+        }
+        else
+        {
+            std::cerr << LoggerView::toDisplay(level);
+            std::cerr << msg;
         }
     }
 }
@@ -87,11 +128,37 @@ void LoggerView::log(enum LogLevel level, const char* msg)
     {
         if (USE_SCILAB_WRITE)
         {
+            scilabForcedWrite(LoggerView::toDisplay(level));
             scilabForcedWrite(msg);
         }
         else
         {
-            std::wcerr << msg;
+            std::cerr << LoggerView::toDisplay(level);
+            std::cerr << msg;
+        }
+    }
+}
+
+void LoggerView::log(enum LogLevel level, const char* msg, ...)
+{
+    if (level >= this->m_level)
+    {
+        const int N = 1024;
+        char* str = new char[N];
+        va_list opts;
+        va_start(opts, msg);
+        vsnprintf(str, N, msg, opts);
+        va_end(opts);
+
+        if (USE_SCILAB_WRITE)
+        {
+            scilabForcedWrite(LoggerView::toDisplay(level));
+            scilabForcedWrite(str);
+        }
+        else
+        {
+            std::cerr << LoggerView::toDisplay(level);
+            std::cerr << str;
         }
     }
 }
@@ -102,10 +169,12 @@ void LoggerView::log(enum LogLevel level, const wchar_t* msg)
     {
         if (USE_SCILAB_WRITE)
         {
+            scilabForcedWrite(LoggerView::toDisplay(level));
             scilabForcedWriteW(msg);
         }
         else
         {
+            std::cerr << LoggerView::toDisplay(level);
             std::wcerr << msg;
         }
     }

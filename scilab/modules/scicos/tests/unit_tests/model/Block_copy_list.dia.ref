@@ -9,52 +9,52 @@ loadXcosLibs();
 scicos_log("TRACE");
 // Create one block and make a list out of it (duplicate it)
 Sum = BIGSOM_f("define");
-objectCreated( 1 , BLOCK )
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
-objectCreated( 2 , PORT )
-propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 2 , PORT , PORT_KIND ) : SUCCESS
-objectCreated( 3 , PORT )
-propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 3 , PORT , PORT_KIND ) : SUCCESS
-propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
-objectCreated( 4 , PORT )
-propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
-propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
-propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
-propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
-propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
-propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
-propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
-propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+Xcos debug: objectCreated( 1 , BLOCK )
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , GEOMETRY ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , ANGLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EXPRS ) : SUCCESS
+Xcos debug: objectCreated( 2 , PORT )
+Xcos trace: propertyUpdated( 2 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , PORT , PORT_KIND ) : SUCCESS
+Xcos debug: objectCreated( 3 , PORT )
+Xcos trace: propertyUpdated( 3 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 3 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+Xcos debug: objectCreated( 4 , PORT )
+Xcos trace: propertyUpdated( 4 , PORT , SOURCE_BLOCK ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , PORT , PORT_KIND ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , PORT , IMPLICIT ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , PORT , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 2 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 3 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+Xcos trace: propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , RPAR ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , SIM_DEP_UT ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NZCROSS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , NMODE ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , UID ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 l = list(Sum);
 // Copy the list content (no duplicate)
 Sum2 = l(1)
@@ -154,19 +154,19 @@ Model   :
           uid = ""
 // Delete the original block in the model
 clear
-propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 2 , PORT )
-propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 3 , PORT )
-propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 4 , PORT )
-objectDeleted( 1 , BLOCK )
+Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 2 , PORT )
+Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 3 , PORT )
+Xcos trace: propertyUpdated( 1 , BLOCK , INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , OUTPUTS ) : SUCCESS
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+Xcos debug: objectDeleted( 4 , PORT )
+Xcos debug: objectDeleted( 1 , BLOCK )

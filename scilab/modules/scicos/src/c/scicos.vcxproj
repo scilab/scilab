@@ -288,6 +288,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\Controller.cpp" />
     <ClCompile Include="..\cpp\il_sim.cpp" />
     <ClCompile Include="..\cpp\il_state.cpp" />
+    <ClCompile Include="..\cpp\controller_helpers.cpp" />
     <ClCompile Include="..\cpp\LoggerView.cpp" />
     <ClCompile Include="..\cpp\Model.cpp" />
     <ClCompile Include="..\cpp\Model_getObjectProperties.cpp" />
@@ -336,6 +337,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\cpp\var2vec.hxx" />
     <ClInclude Include="..\cpp\vec2var.hxx" />
+    <ClInclude Include="..\cpp\controller_helpers.hxx" />
     <ClInclude Include="..\cpp\model\Annotation.hxx" />
     <ClInclude Include="..\cpp\model\Block.hxx" />
     <ClInclude Include="..\cpp\model\Diagram.hxx" />

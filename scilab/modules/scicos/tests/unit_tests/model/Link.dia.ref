@@ -9,13 +9,13 @@ loadXcosLibs();
 scicos_log("TRACE");
 // Allocate a Link and check its default values
 lnk = scicos_link()
-objectCreated( 1 , LINK )
-propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
-propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
-propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
-propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
-propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
-propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
+Xcos debug: objectCreated( 1 , LINK )
+Xcos trace: propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , LINK , CONTROL_POINTS ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
+Xcos trace: propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
 lnk  = 
 Link    :
           xx: []
@@ -34,4 +34,4 @@ assert_checkequal(lnk.from,  [0 0 0]);
 assert_checkequal(lnk.to,    [0 0 1]);
 // Check that the Link is freed
 clear
-objectDeleted( 1 , LINK )
+Xcos debug: objectDeleted( 1 , LINK )

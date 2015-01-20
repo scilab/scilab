@@ -206,8 +206,8 @@ libsciscicos_algo_la_DEPENDENCIES = $(am__DEPENDENCIES_1)
 am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/cpp/il_state.cpp src/cpp/il_sim.cpp src/cpp/var2vec.cpp \
 	src/cpp/vec2var.cpp src/cpp/Controller.cpp \
-	src/cpp/LoggerView.cpp src/cpp/Model.cpp \
-	src/cpp/Model_getObjectProperties.cpp \
+	src/cpp/controller_helpers.cpp src/cpp/LoggerView.cpp \
+	src/cpp/Model.cpp src/cpp/Model_getObjectProperties.cpp \
 	src/cpp/Model_setObjectProperties.cpp \
 	src/cpp/view_scilab/Adapters.cpp \
 	src/cpp/view_scilab/BlockAdapter.cpp \
@@ -236,6 +236,7 @@ am__objects_2 = src/cpp/libsciscicos_algo_la-il_state.lo \
 	src/cpp/libsciscicos_algo_la-var2vec.lo \
 	src/cpp/libsciscicos_algo_la-vec2var.lo \
 	src/cpp/libsciscicos_algo_la-Controller.lo \
+	src/cpp/libsciscicos_algo_la-controller_helpers.lo \
 	src/cpp/libsciscicos_algo_la-LoggerView.lo \
 	src/cpp/libsciscicos_algo_la-Model.lo \
 	src/cpp/libsciscicos_algo_la-Model_getObjectProperties.lo \
@@ -934,6 +935,7 @@ src/cpp/il_sim.cpp \
 src/cpp/var2vec.cpp \
 src/cpp/vec2var.cpp \
 src/cpp/Controller.cpp \
+src/cpp/controller_helpers.cpp \
 src/cpp/LoggerView.cpp \
 src/cpp/Model.cpp \
 src/cpp/Model_getObjectProperties.cpp \
@@ -1456,6 +1458,8 @@ src/cpp/libsciscicos_algo_la-vec2var.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciscicos_algo_la-Controller.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciscicos_algo_la-controller_helpers.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciscicos_algo_la-LoggerView.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciscicos_algo_la-Model.lo: src/cpp/$(am__dirstamp) \
@@ -2101,6 +2105,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-Model.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-Model_getObjectProperties.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-Model_setObjectProperties.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-controller_helpers.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-createblklist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-extractblklist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_algo_la-il_sim.Plo@am__quote@
@@ -2530,6 +2535,13 @@ src/cpp/libsciscicos_algo_la-Controller.lo: src/cpp/Controller.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/Controller.cpp' object='src/cpp/libsciscicos_algo_la-Controller.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciscicos_algo_la-Controller.lo `test -f 'src/cpp/Controller.cpp' || echo '$(srcdir)/'`src/cpp/Controller.cpp
+
+src/cpp/libsciscicos_algo_la-controller_helpers.lo: src/cpp/controller_helpers.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciscicos_algo_la-controller_helpers.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciscicos_algo_la-controller_helpers.Tpo -c -o src/cpp/libsciscicos_algo_la-controller_helpers.lo `test -f 'src/cpp/controller_helpers.cpp' || echo '$(srcdir)/'`src/cpp/controller_helpers.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciscicos_algo_la-controller_helpers.Tpo src/cpp/$(DEPDIR)/libsciscicos_algo_la-controller_helpers.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/controller_helpers.cpp' object='src/cpp/libsciscicos_algo_la-controller_helpers.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciscicos_algo_la-controller_helpers.lo `test -f 'src/cpp/controller_helpers.cpp' || echo '$(srcdir)/'`src/cpp/controller_helpers.cpp
 
 src/cpp/libsciscicos_algo_la-LoggerView.lo: src/cpp/LoggerView.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciscicos_algo_la-LoggerView.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciscicos_algo_la-LoggerView.Tpo -c -o src/cpp/libsciscicos_algo_la-LoggerView.lo `test -f 'src/cpp/LoggerView.cpp' || echo '$(srcdir)/'`src/cpp/LoggerView.cpp
