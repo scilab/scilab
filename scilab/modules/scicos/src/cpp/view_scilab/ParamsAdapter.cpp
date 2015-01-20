@@ -252,7 +252,7 @@ struct context
         else if (v->getType() == types::InternalType::ScilabDouble)
         {
             types::Double* current = v->getAs<types::Double>();
-            if (current->getRows() != 0 || current->getCols() != 0)
+            if (!current->isEmpty())
             {
                 return false;
             }

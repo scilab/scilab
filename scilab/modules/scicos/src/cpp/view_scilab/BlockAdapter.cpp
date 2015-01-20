@@ -107,7 +107,7 @@ struct gui
         }
 
         types::String* current = v->getAs<types::String>();
-        if (current->getRows() != 1 || current->getCols() != 1)
+        if (!current->isScalar())
         {
             return false;
         }

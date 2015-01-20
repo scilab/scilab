@@ -152,6 +152,10 @@ o = fortran_block("define");
 lfort = list(["1";"1";"[]";"forty"],list([]));
 assert_checkequal(o.graphics.exprs, lfort);
 
+// Test a PDE block
+o = PDE("define");
+o.graphics.exprs
+
 
 // Check that all the model items are freed
 clear
