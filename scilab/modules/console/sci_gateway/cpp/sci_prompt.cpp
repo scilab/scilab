@@ -31,7 +31,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
 
     if (in.size() > 1)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "prompt", 0, 1);
+        Scierror(999, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "prompt", 0, 1);
         return types::Function::Error;
     }
 
@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 2)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "prompt", 1, 2);
+            Scierror(999, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "prompt", 1, 2);
             return types::Function::Error;
         }
 
@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
     {
         if (_iRetCount > 1)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "prompt", 1);
+            Scierror(999, _("%s: Wrong number of output argument(s): %d expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
 
