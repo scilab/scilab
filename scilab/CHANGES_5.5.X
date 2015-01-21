@@ -36,6 +36,8 @@ Scilab Bug Fixes
 
 * Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
+* Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
+
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
