@@ -1356,11 +1356,12 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
     return;
 }
 
-#include "run_CallExp.cpp"
-#include "run_MatrixExp.cpp"
-#include "run_OpExp.cpp"
-#include "run_AssignExp.cpp"
-}
+} /* namespace ast */
+
+#include "run_CallExp.hpp"
+#include "run_MatrixExp.hpp"
+#include "run_OpExp.hpp"
+#include "run_AssignExp.hpp"
 
 template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
 template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;

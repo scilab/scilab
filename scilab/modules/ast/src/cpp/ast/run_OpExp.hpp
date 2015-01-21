@@ -11,6 +11,7 @@
 */
 
 //file included in runvisitor.cpp
+namespace ast {
 
 template<class T>
 void RunVisitorT<T>::visitprivate(const OpExp &e)
@@ -399,3 +400,5 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
     _paramR->DecreaseRef();
     return out[0];
 }
+
+} /* namespace ast */

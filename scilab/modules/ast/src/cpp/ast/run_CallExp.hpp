@@ -10,8 +10,9 @@
  *
  */
 
-
 //file included in runvisitor.cpp
+namespace ast {
+
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
@@ -338,3 +339,4 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
     }
 }
 
+} /* namespace ast */

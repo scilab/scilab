@@ -11,6 +11,7 @@
  */
 
 //file included in runvisitor.cpp
+namespace ast {
 
 template<class T>
 void RunVisitorT<T>::visitprivate(const AssignExp  &e)
@@ -397,3 +398,5 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
         throw error;
     }
 }
+
+} /* namespace ast */

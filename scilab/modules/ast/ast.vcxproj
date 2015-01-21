@@ -416,6 +416,10 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\types\type_traits.hxx" />
     <ClInclude Include="includes\types\user.hxx" />
     <ClInclude Include="includes\types\void.hxx" />
+    <ClInclude Include="src\cpp\ast\run_AssignExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_CallExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_MatrixExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_OpExp.hpp" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp" />

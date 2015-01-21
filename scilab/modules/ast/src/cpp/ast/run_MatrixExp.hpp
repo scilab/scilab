@@ -11,6 +11,7 @@
  */
 
 //file included in runvisitor.cpp
+namespace ast {
 
 /*
     [1,2;3,4] with/without special character $ and :
@@ -337,3 +338,5 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
 
     return out[0];
 }
+
+} /* namespace ast */

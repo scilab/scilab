@@ -616,6 +616,18 @@
     <ClInclude Include="includes\system_env\configvariable_interface.h">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_AssignExp.hpp">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_CallExp.hpp">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_MatrixExp.hpp">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ast\run_OpExp.hpp">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
