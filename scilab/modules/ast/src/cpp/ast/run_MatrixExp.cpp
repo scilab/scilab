@@ -32,6 +32,18 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             return;
         }
 
+        //special case for 1x1 matrix
+        if (lines.size() == 1)
+        {
+            exps_t cols = lines[0]->getAs<MatrixLineExp>()->getColumns();
+            if (cols.size() == 1)
+            {
+                setResult(NULL); // Reset value on loop re-start
+                cols[0]->accept(*this);
+                return;
+            }
+        }
+
         //do all [x,x]
         for (row = lines.begin() ; row != lines.end() ; row++)
         {

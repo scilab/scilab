@@ -44,3 +44,6 @@ if execstr("evstr(toto)", "errcatch") == 0 then pause, end
 s = rand(3,3,3);
 if execstr("evstr(s)", "errcatch") <> 0 then pause, end
 // =============================================================================
+function foo(), endfunction
+if execstr("evstr(''foo'')", "errcatch") <> 0 then pause, end
+// =============================================================================
