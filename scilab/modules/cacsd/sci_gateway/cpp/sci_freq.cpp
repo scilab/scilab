@@ -132,6 +132,26 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         else if (in[1]->isPoly())
         {
             types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
+
+            double dblEps = getRelativeMachinePrecision();
+            double *df = pPolyDen->getCoef()->getImg();
+            int iSize = pPolyDen->getCoef()->getSize();
+            bool cplx = false;
+            if (df != NULL)
+            {
+                for (int i = 0; i < iSize; i++)
+                {
+                    if (abs(df[i]) > dblEps)
+                    {
+                        cplx = true;
+                        break;
+                    }
+                }
+            }
+            if (cplx == false)
+            {
+                pPolyDen->setComplex(false);
+            }
             if (pPolyDen->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 2);
@@ -182,12 +202,31 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         else if (in[0]->isPoly())
         {
             types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
+            double dblEps = getRelativeMachinePrecision();
+            double *df = pPolyNum->getCoef()->getImg();
+            int iSize = pPolyNum->getCoef()->getSize();
+            bool cplx = false;
+
+            if (df != NULL)
+            {
+                for (int i = 0; i < iSize; i++)
+                {
+                    if (abs(df[i]) > dblEps)
+                    {
+                        cplx = true;
+                        break;
+                    }
+                }
+            }
+            if (cplx == false)
+            {
+                pPolyNum->setComplex(false);
+            }
             if (pPolyNum->isComplex())
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 1);
                 throw 1;
             }
-
             iRowNum = pPolyNum->getRows();
             iColNum = pPolyNum->getCols();
 
