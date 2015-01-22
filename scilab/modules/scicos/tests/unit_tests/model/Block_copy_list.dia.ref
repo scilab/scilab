@@ -107,7 +107,7 @@ Model   :
 clear Sum
 // Sum2's refCount must have been affected by "clear Sum"
 Sum2
-Sum2  = 
+Sum2  = (2)
 GUI     : BIGSOM_f
 Graphics: 
           orig = [0,0]

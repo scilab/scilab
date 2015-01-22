@@ -384,144 +384,200 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
 
     int index = 1; // Index to each element of the returned list
 
-    for (int i = 0; i < prop_content[0]; ++i) // 'o' must have exactly 'prop_content[0]' elements
+    for (int i = 0; i < prop_content[0]; ++i) // 'list' must have exactly 'prop_content[0]' elements
     {
-        int m, n, numberOfIntNeeded = 0;
+        int  iDims;
+        int* pDims;
+        int  iElements = 1;
+        int  numberOfIntNeeded = 0;
         switch (prop_content[index])
         {
             case types::InternalType::ScilabDouble:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                int isComplex = prop_content[index + 3];
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                if (pDims[0] == 0)
+                {
+                    numberOfIntNeeded = 1; // Only mind the complex flag
+                    list->set(i, types::Double::Empty());
+                    break;
+                }
+                int isComplex = prop_content[index + 2 + iDims];
 
-                double* real;
                 types::Double* pDouble;
 
                 if (isComplex == 0)
                 {
-                    pDouble = new types::Double(m, n, &real);
-                    numberOfIntNeeded = 2 * m * n + 1;
-                    memcpy(real, &prop_content[index + 3 + 1], m * n * sizeof(double));
+                    pDouble = new types::Double(iDims, pDims, false);
+                    numberOfIntNeeded = 2 * iElements + 1;
+                    memcpy(pDouble->get(), &prop_content[index + 2 + iDims + 1], iElements * sizeof(double));
                 }
                 else
                 {
-                    double* imag;
-                    pDouble = new types::Double(m, n, &real, &imag);
-                    numberOfIntNeeded = 4 * m * n + 1;
-                    memcpy(real, &prop_content[index + 3 + 1], m * n * sizeof(double));
-                    memcpy(imag, &prop_content[index + 3 + 1 + 2 * m * n], m * n * sizeof(double));
+                    pDouble = new types::Double(iDims, pDims, true);
+                    numberOfIntNeeded = 4 * iElements + 1;
+                    memcpy(pDouble->get(), &prop_content[index + 2 + iDims + 1], iElements * sizeof(double));
+                    memcpy(pDouble->getImg(), &prop_content[index + 2 + iDims + 1 + 2 * iElements], iElements * sizeof(double));
                 }
+                delete[] pDims;
+
                 list->set(i, pDouble);
                 break;
             }
             case types::InternalType::ScilabInt8:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
 
-                char* data;
-                types::Int8* pInt8 = new types::Int8(m, n, &data);
+                types::Int8* pInt8 = new types::Int8(iDims, pDims);
+                delete[] pDims;
 
                 // Use a buffer to prevent copying only parts of integers
                 char* buffer = new char[numberOfIntNeeded * 4];
-                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
-                memcpy(data, buffer, m * n * sizeof(char));
+                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
+                memcpy(pInt8->get(), buffer, iElements * sizeof(char));
                 delete[] buffer;
+
                 list->set(i, pInt8);
                 break;
             }
             case types::InternalType::ScilabUInt8:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
 
-                unsigned char* data;
-                types::UInt8* pUInt8 = new types::UInt8(m, n, &data);
+                types::UInt8* pUInt8 = new types::UInt8(iDims, pDims);
+                delete[] pDims;
 
                 // Use a buffer to prevent copying only parts of integers
                 unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
-                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
-                memcpy(data, buffer, m * n * sizeof(unsigned char));
+                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
+                memcpy(pUInt8->get(), buffer, iElements * sizeof(char));
                 delete[] buffer;
+
                 list->set(i, pUInt8);
                 break;
             }
             case types::InternalType::ScilabInt16:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
 
-                short int* data;
-                types::Int16* pInt16 = new types::Int16(m, n, &data);
+                types::Int16* pInt16 = new types::Int16(iDims, pDims);
+                delete[] pDims;
 
                 // Use a buffer to prevent copying only parts of integers
                 short int* buffer = new short int[numberOfIntNeeded * 2];
-                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
-                memcpy(data, buffer, m * n * sizeof(short int));
+                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
+                memcpy(pInt16->get(), buffer, iElements * sizeof(short int));
                 delete[] buffer;
+
                 list->set(i, pInt16);
                 break;
             }
             case types::InternalType::ScilabUInt16:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
 
-                unsigned short int* data;
-                types::UInt16* pUInt16 = new types::UInt16(m, n, &data);
+                types::UInt16* pUInt16 = new types::UInt16(iDims, pDims);
+                delete[] pDims;
 
                 // Use a buffer to prevent copying only parts of integers
                 unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
-                memcpy(buffer, &prop_content[index + 3], numberOfIntNeeded * sizeof(int));
-                memcpy(data, buffer, m * n * sizeof(unsigned short int));
+                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
+                memcpy(pUInt16->get(), buffer, iElements * sizeof(unsigned short int));
                 delete[] buffer;
+
                 list->set(i, pUInt16);
                 break;
             }
             case types::InternalType::ScilabInt32:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = m * n;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = iElements;
 
-                int* data;
-                types::Int32* pInt32 = new types::Int32(m, n, &data);
+                types::Int32* pInt32 = new types::Int32(iDims, pDims);
+                delete[] pDims;
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(int));
+                memcpy(pInt32->get(), &prop_content[index + 2 + iDims], iElements * sizeof(int));
+
                 list->set(i, pInt32);
                 break;
             }
             case types::InternalType::ScilabUInt32:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = m * n;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = iElements;
 
-                unsigned int* data;
-                types::UInt32* pUInt32 = new types::UInt32(m, n, &data);
+                types::UInt32* pUInt32 = new types::UInt32(iDims, pDims);
+                delete[] pDims;
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(unsigned int));
+                memcpy(pUInt32->get(), &prop_content[index + 2 + iDims], iElements * sizeof(unsigned int));
+
                 list->set(i, pUInt32);
                 break;
             }
             case types::InternalType::ScilabString:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-
-                types::String* pString = new types::String(m, n);
-
-                for (int j = 0; j < m * n; ++j)
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
                 {
-                    int strLen = prop_content[index + 3 + numberOfIntNeeded];
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+
+                types::String* pString = new types::String(iDims, pDims);
+                delete[] pDims;
+
+                for (int j = 0; j < iElements; ++j)
+                {
+                    int strLen = prop_content[index + 2 + iDims + numberOfIntNeeded];
 
                     wchar_t* str = new wchar_t[strLen + 1];
-                    memcpy(str, &prop_content[index + 3 + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
+                    memcpy(str, &prop_content[index + 2 + iDims + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
                     str[strLen] = '\0';
                     pString->set(j, str);
                     delete[] str;
@@ -533,14 +589,19 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
             }
             case types::InternalType::ScilabBool:
             {
-                m = prop_content[index + 1];
-                n = prop_content[index + 2];
-                numberOfIntNeeded = m * n;
+                iDims = prop_content[index + 1];
+                pDims = new int[iDims];
+                for (int j = 0; j < iDims; ++j)
+                {
+                    pDims[j] = prop_content[index + 2 + j];
+                    iElements *= pDims[j];
+                }
+                numberOfIntNeeded = iElements;
 
-                int* data;
-                types::Bool* pBool = new types::Bool(m, n, &data);
+                types::Bool* pBool = new types::Bool(iDims, pDims);
+                delete[] pDims;
 
-                memcpy(data, &prop_content[index + 3], m * n * sizeof(int));
+                memcpy(pBool->get(), &prop_content[index + 2 + iDims], iElements * sizeof(int));
                 list->set(i, pBool);
                 break;
             }
@@ -548,7 +609,7 @@ types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& 
                 return 0;
         }
 
-        index += 3 + numberOfIntNeeded;
+        index += 2 + iDims + numberOfIntNeeded;
     }
 
     return list;
@@ -587,145 +648,177 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
         // Save the variable type
         prop_content.resize(prop_content.size() + 1);
         prop_content[index] = list->get(i)->getType();
+        // The two previous lines could be simplified to 'prop_content.push_back(list->get(i)->getType());' but they explicit 'index' role
 
-        int m, n, numberOfIntNeeded = 0;
+        int  iDims;
+        int* pDims;
+        int  iElements = 1;
+        int  numberOfIntNeeded = 0;
         switch (list->get(i)->getType())
         {
             case types::InternalType::ScilabDouble:
             {
                 types::Double* pDouble = list->get(i)->getAs<types::Double>();
-                m = pDouble->getRows();
-                n = pDouble->getCols();
+                iDims = pDouble->getDims();
+                pDims = pDouble->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 if (!pDouble->isComplex())
                 {
                     // It takes 2 int (4 bytes) to save 1 real (1 double: 8 bytes)
-                    // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
-                    numberOfIntNeeded = 2 * m * n + 1;
-                    prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
-                    prop_content[index + 3] = 0; // Flag for real
+                    // So reserve '2*iElements', '1 + iDims' integers for the matrix dimensions and 1 for the complexity
+                    numberOfIntNeeded = 1 + 2 * iElements;
+                    prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
+                    prop_content[index + 2 + iDims] = 0; // Flag for real
 
                     // Using contiguity of the memory, we save the input into 'prop_content'
-                    memcpy(&prop_content[index + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
+                    memcpy(&prop_content[index + 2 + iDims + 1], pDouble->getReal(), iElements * sizeof(double));
                 }
                 else
                 {
                     // It takes 4 int (4 bytes) to save 1 complex (2 double: 16 bytes)
-                    // So reserve 2*m*n, 2 integers for the matrix dimensions and 1 for the complexity
-                    numberOfIntNeeded = 4 * m * n + 1;
-                    prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
-                    prop_content[index + 3] = 1; // Flag for complex
+                    // So reserve '4*iElements', '1 + iDims' integers for the matrix dimensions and 1 for the complexity
+                    numberOfIntNeeded = 1 + 4 * iElements;
+                    prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
+                    prop_content[index + 2 + iDims] = 1; // Flag for complex
 
                     // Contiguously save the real and complex parts
-                    memcpy(&prop_content[index + 3 + 1], pDouble->getReal(), m * n * sizeof(double));
-                    memcpy(&prop_content[index + 3 + 1 + 2 * m * n], pDouble->getImg(), m * n * sizeof(double));
+                    memcpy(&prop_content[index + 2 + iDims + 1], pDouble->getReal(), iElements * sizeof(double));
+                    memcpy(&prop_content[index + 2 + iDims + 1 + 2 * iElements], pDouble->getImg(), iElements * sizeof(double));
                 }
                 break;
             }
             case types::InternalType::ScilabInt8:
             {
                 types::Int8* pInt8 = list->get(i)->getAs<types::Int8>();
-                m = pInt8->getRows();
-                n = pInt8->getCols();
+                iDims = pInt8->getDims();
+                pDims = pInt8->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 4 char (1 byte)
-                // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements/4' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
                 // Use a buffer to fill the entirety of 'prop_content'
                 char* buffer = new char[numberOfIntNeeded * 4];
-                memcpy(buffer, pInt8->get(), m * n * sizeof(char));
-                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                memcpy(buffer, pInt8->get(), iElements * sizeof(char));
+                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
                 delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt8:
             {
                 types::UInt8* pUInt8 = list->get(i)->getAs<types::UInt8>();
-                m = pUInt8->getRows();
-                n = pUInt8->getCols();
+                iDims = pUInt8->getDims();
+                pDims = pUInt8->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
-                // So reserve m*n/4 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = ((m * n - 1) / 4) + 1;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements/4' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
                 // Use a buffer to fill the entirety of 'prop_content'
                 unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
-                memcpy(buffer, pUInt8->get(), m * n * sizeof(unsigned char));
-                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                memcpy(buffer, pUInt8->get(), iElements * sizeof(unsigned char));
+                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
                 delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt16:
             {
                 types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
-                m = pInt16->getRows();
-                n = pInt16->getCols();
+                iDims = pInt16->getDims();
+                pDims = pInt16->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
-                // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements/2' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
                 // Use a buffer to fill the entirety of 'prop_content'
                 short int* buffer = new short int[numberOfIntNeeded * 2];
-                memcpy(buffer, pInt16->get(), m * n * sizeof(short int));
-                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                memcpy(buffer, pInt16->get(), iElements * sizeof(short int));
+                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
                 delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabUInt16:
             {
                 types::UInt16* pUInt16 = list->get(i)->getAs<types::UInt16>();
-                m = pUInt16->getRows();
-                n = pUInt16->getCols();
+                iDims = pUInt16->getDims();
+                pDims = pUInt16->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
-                // So reserve m*n/2 and 2 integers for the matrix dimensions
-                numberOfIntNeeded = ((m * n - 1) / 2) + 1;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements/2' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into prop_content
                 // Use a buffer to fill the entirety of 'prop_content'
                 unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
-                memcpy(buffer, pUInt16->get(), m * n * sizeof(unsigned short int));
-                memcpy(&prop_content[index + 3], buffer, numberOfIntNeeded * sizeof(int));
+                memcpy(buffer, pUInt16->get(), iElements * sizeof(unsigned short int));
+                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
                 delete[] buffer;
                 break;
             }
             case types::InternalType::ScilabInt32:
             {
                 types::Int32* pInt32 = list->get(i)->getAs<types::Int32>();
-                m = pInt32->getRows();
-                n = pInt32->getCols();
+                iDims = pInt32->getDims();
+                pDims = pInt32->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 1 int (4 bytes)
-                // So reserve m*n and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = iElements;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pInt32->get(), m * n * sizeof(int));
+                memcpy(&prop_content[index + 2 + iDims], pInt32->get(), iElements * sizeof(int));
                 break;
             }
             case types::InternalType::ScilabUInt32:
             {
                 types::UInt32* pUInt32 = list->get(i)->getAs<types::UInt32>();
-                m = pUInt32->getRows();
-                n = pUInt32->getCols();
+                iDims = pUInt32->getDims();
+                pDims = pUInt32->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 1 unsigned int (4 bytes)
-                // So reserve m*n and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = iElements;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pUInt32->get(), m * n * sizeof(unsigned int));
+                memcpy(&prop_content[index + 2 + iDims], pUInt32->get(), iElements * sizeof(unsigned int));
                 break;
             }
             case types::InternalType::ScilabInt64:
@@ -735,20 +828,24 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
             case types::InternalType::ScilabString:
             {
                 types::String* pString = list->get(i)->getAs<types::String>();
-                m = pString->getRows();
-                n = pString->getCols();
+                iDims = pString->getDims();
+                pDims = pString->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // For the moment, we don't know how many characters each string is long, so only reserve the matrix size
-                prop_content.resize(prop_content.size() + 2);
+                prop_content.resize(prop_content.size() + 1 + iDims);
 
-                for (int j = 0; j < m * n; ++j)
+                for (int j = 0; j < iElements; ++j)
                 {
                     // Extract the input string length and reserve as many characters in 'prop_content'
                     int strLen = static_cast<int>(wcslen(pString->get(j)));
                     prop_content.resize(prop_content.size() + 1 + strLen);
-                    prop_content[index + 3 + numberOfIntNeeded] = strLen;
+                    prop_content[index + 2 + iDims + numberOfIntNeeded] = strLen;
 
-                    memcpy(&prop_content[index + 3 + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
+                    memcpy(&prop_content[index + 2 + iDims + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
                     numberOfIntNeeded += 1 + strLen;
                 }
                 break;
@@ -756,25 +853,32 @@ bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_pro
             case types::InternalType::ScilabBool:
             {
                 types::Bool* pBool = list->get(i)->getAs<types::Bool>();
-                m = pBool->getRows();
-                n = pBool->getCols();
+                iDims = pBool->getDims();
+                pDims = pBool->getDimsArray();
+                for (int j = 0; j < iDims; ++j)
+                {
+                    iElements *= pDims[j];
+                }
 
                 // It takes 1 int (4 bytes) to save 1 bool (1 int: 4 bytes)
-                // So reserve m*n and 2 integers for the matrix dimensions
-                numberOfIntNeeded = m * n;
-                prop_content.resize(prop_content.size() + 2 + numberOfIntNeeded);
+                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
+                numberOfIntNeeded = iElements;
+                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
 
                 // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 3], pBool->get(), m * n * sizeof(int));
+                memcpy(&prop_content[index + 2 + iDims], pBool->get(), iElements * sizeof(int));
                 break;
             }
             default:
                 return false;
         }
-        // Save the matrix dimensions in 'prop_content' and increment index to match the next list element
-        prop_content[index + 1] = m;
-        prop_content[index + 2] = n;
-        index += 3 + numberOfIntNeeded;
+        // Save the matrix (/hypermatrix) dimensions in 'prop_content' and increment index to match the next list element
+        prop_content[index + 1] = iDims;
+        for (int j = 0; j < iDims; ++j)
+        {
+            prop_content[index + 2 + j] = pDims[j];
+        }
+        index += 2 + iDims + numberOfIntNeeded;
     }
 
     controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);

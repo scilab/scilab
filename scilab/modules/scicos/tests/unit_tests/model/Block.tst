@@ -113,6 +113,45 @@ assert_checkequal(o.model.opar, listRef);
 o.model.odstate = listRef;
 assert_checkequal(o.model.odstate, listRef);
 
+// With hypermatrices
+// Double
+testHM = hypermat([2 2 2], 1:8);
+listRef = list([], testHM, []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// int8
+listRef = list([], int8(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// int16
+listRef = list([], int16(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// int32
+listRef = list([], int32(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// uint8
+listRef = list([], uint8(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// uint16
+listRef = list([], uint16(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// uint32
+listRef = list([], uint32(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// String
+listRef = list([], string(testHM), []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+// Bool
+listRef = list([], testHM > 3, []);
+o.model.opar = listRef;
+assert_checkequal(o.model.opar, listRef);
+
 // Test 'equations'
 o = VsourceAC("define")
 o.model.equations
