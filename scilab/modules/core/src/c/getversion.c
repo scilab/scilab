@@ -10,7 +10,15 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
+#ifdef __linux__
+// used to make scilab portable
+// when it is built with old glibc version (<2.10)
+// see man wcsdup
+#ifndef _GNU_SOURCE
+#define _GNU_SOURCE
+#endif
+#endif
+
 #include "getversion.h"
 #include "version.h"
 #include "configvariable_interface.h"
