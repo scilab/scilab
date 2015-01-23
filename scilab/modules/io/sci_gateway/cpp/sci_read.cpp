@@ -60,7 +60,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 
     if (iRhs < 3 || iRhs > 5)
     {
-        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "write", 2, 4);
+        Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "read", 2, 4);
         return Function::Error;
     }
 
@@ -71,7 +71,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 
         if (pSPath->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 1);
             return Function::Error;
         }
 
@@ -100,7 +100,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         Double* pDId = in[0]->getAs<Double>();
         if (pDId->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "write", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar expected.\n"), "read", 1);
             return Function::Error;
         }
 
@@ -112,7 +112,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar or file descriptor expected.\n"), "write", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : A real scalar or file descriptor expected.\n"), "read", 1);
         return Function::Error;
     }
 
@@ -121,14 +121,14 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         int iPos = iRhs - 1;
         if (in[iPos]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", iRhs);
             return Function::Error;
         }
 
         String* pSFormat = in[iPos]->getAs<String>();
         if (pSFormat->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
+            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", iRhs);
             return Function::Error;
         }
 
@@ -322,7 +322,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 break;
                 default:
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 2);
 
                     //close file
                     if (in[0]->isString())
@@ -544,6 +544,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         int siz = 0;
                         C2F(read_string_file)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
                         char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
+                        pC[0] = '\0';
                         strncat(pC, pCt, siz);
                         pS->set(i, pC);
                         FREE(pCt);
@@ -561,7 +562,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                 }
                 break;
                 default:
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 2);
 
                     //close file
                     if (in[0]->isString())
