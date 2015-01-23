@@ -41,6 +41,11 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             {
                 setResult(NULL); // Reset value on loop re-start
                 cols[0]->accept(*this);
+                //managet evstr('//xxx') for example
+                if (getResult() == NULL)
+                {
+                    setResult(Double::Empty());
+                }
                 return;
             }
         }
