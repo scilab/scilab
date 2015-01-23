@@ -25,12 +25,10 @@ assert_checkalmostequal(repfreq(H,f),r_ref);
 S1=syslin('c',cont_frm(H.num,H.den));
 assert_checkalmostequal(repfreq(S1,f),r_ref);
 Warning :
-matrix is close to singular or badly scaled. rcond =    9.8309D-18
-
+matrix is close to singular or badly scaled. rcond = 9.83089e-18
 //using tf2ss make the error explode, just check if repfreq returns
 //without error (warning must be issued)
 S2=tf2ss(H);
 assert_checkequal(execstr("repfreq(S2,f)","errcatch"),0);
 Warning :
-matrix is close to singular or badly scaled. rcond =    2.5434D-17
-
+matrix is close to singular or badly scaled. rcond = 2.54341e-17
