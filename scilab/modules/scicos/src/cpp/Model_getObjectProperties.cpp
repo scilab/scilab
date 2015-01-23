@@ -95,12 +95,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, int
             case SIM_FUNCTION_API:
                 o->getSimFunctionApi(v);
                 return true;
-            case NZCROSS:
-                o->getNZcross(v);
-                return true;
-            case NMODE:
-                o->getNMode(v);
-                return true;
             default:
                 break;
         }
@@ -467,6 +461,12 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
                 return true;
             case ODSTATE:
                 o->getODState(v);
+                return true;
+            case NZCROSS:
+                o->getNZcross(v);
+                return true;
+            case NMODE:
+                o->getNMode(v);
                 return true;
             case IPAR:
                 o->getIpar(v);

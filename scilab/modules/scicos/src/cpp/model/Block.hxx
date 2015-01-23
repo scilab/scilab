@@ -101,7 +101,7 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(std::vector<std::string> (1, "String")), m_label(), m_style(), m_nzcross(0), m_nmode(0), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_exprs(std::vector<std::string> (1, "String")), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
     {
         m_sim.blocktype  = BLOCKTYPE_C;
@@ -373,12 +373,12 @@ private:
         return SUCCESS;
     }
 
-    void getNZcross(int& data) const
+    void getNZcross(std::vector<int>& data) const
     {
         data = m_nzcross;
     }
 
-    update_status_t setNZcross(const int data)
+    update_status_t setNZcross(const std::vector<int>& data)
     {
         if (data == m_nzcross)
         {
@@ -389,12 +389,12 @@ private:
         return SUCCESS;
     }
 
-    void getNMode(int& data) const
+    void getNMode(std::vector<int>& data) const
     {
         data = m_nmode;
     }
 
-    update_status_t setNMode(const int data)
+    update_status_t setNMode(const std::vector<int>& data)
     {
         if (data == m_nmode)
         {
@@ -664,8 +664,8 @@ private:
     std::vector<std::string> m_exprs;
     std::string m_label;
     std::string m_style;
-    int m_nzcross;
-    int m_nmode;
+    std::vector<int> m_nzcross;
+    std::vector<int> m_nmode;
     std::vector<std::string> m_equations;
     std::string m_uid;
 

@@ -65,8 +65,6 @@ propertyUpdated( 4 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 diag.objs(1) = Super1;
 objectCreated( 5 , BLOCK )
 propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -80,6 +78,8 @@ propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES

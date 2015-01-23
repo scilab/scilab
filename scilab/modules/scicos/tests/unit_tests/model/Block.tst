@@ -195,6 +195,21 @@ assert_checkequal(o.graphics.exprs, lfort);
 o = PDE("define");
 o.graphics.exprs
 
+// Test 'ipar', 'nzcross' and 'nmode' fields
+o = scicos_block();
+o.model.ipar = [];
+assert_checkequal(o.model.ipar, []);
+o.model.nzcross = [];
+assert_checkequal(o.model.nzcross, []);
+o.model.nmode = [];
+assert_checkequal(o.model.nmode, []);
+o.model.ipar = [1; 2; 3];
+assert_checkequal(o.model.ipar, [1; 2; 3]);
+o.model.nzcross = [1; 2; 3];
+assert_checkequal(o.model.nzcross, [1; 2; 3]);
+o.model.nmode = [1; 2; 3];
+assert_checkequal(o.model.nmode, [1; 2; 3]);
+
 
 // Check that all the model items are freed
 clear

@@ -164,8 +164,6 @@ funcprot(p);
 o = BIGSOM_f("set", o)
 objectCreated( 5 , BLOCK )
 propertyUpdated( 5 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -179,6 +177,8 @@ propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
@@ -374,8 +374,6 @@ funcprot(p);
 o = BIGSOM_f("set", o)
 objectCreated( 9 , BLOCK )
 propertyUpdated( 9 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -389,6 +387,8 @@ propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
@@ -584,8 +584,6 @@ funcprot(p);
 o = BIGSOM_f("set", o)
 objectCreated( 13 , BLOCK )
 propertyUpdated( 13 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 13 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 13 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -599,6 +597,8 @@ propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
@@ -798,8 +798,6 @@ funcprot(p);
 o = BIGSOM_f("set", o)
 objectCreated( 18 , BLOCK )
 propertyUpdated( 18 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 18 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 18 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -813,6 +811,8 @@ propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 18 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , EXPRS ) : SUCCESS
@@ -1186,8 +1186,6 @@ funcprot(p);
 o = CSCOPE("set", o)
 objectCreated( 28 , BLOCK )
 propertyUpdated( 28 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 28 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 28 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 28 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 28 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1201,6 +1199,8 @@ propertyUpdated( 28 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 28 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 28 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 28 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 28 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 28 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , EXPRS ) : SUCCESS
@@ -2639,8 +2639,31 @@ o.graphics.exprs
     []
              ans(3)
  
-// Check that all the model items are freed
-clear
+// Test 'ipar', 'nzcross' and 'nmode' fields
+o = scicos_block();
+objectCreated( 62 , BLOCK )
+propertyUpdated( 62 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , GEOMETRY ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , EXPRS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 54 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 54 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 54 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -2677,3 +2700,102 @@ propertyUpdated( 54 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 54 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 61 , PORT )
 objectDeleted( 54 , BLOCK )
+o.model.ipar = [];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.ipar, []);
+o.model.nzcross = [];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : SUCCESS
+propertyUpdated( 62 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.nzcross, []);
+o.model.nmode = [];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NMODE ) : SUCCESS
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.nmode, []);
+o.model.ipar = [1; 2; 3];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.ipar, [1; 2; 3]);
+o.model.nzcross = [1; 2; 3];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : SUCCESS
+propertyUpdated( 62 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.nzcross, [1; 2; 3]);
+o.model.nmode = [1; 2; 3];
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 62 , BLOCK , NMODE ) : SUCCESS
+propertyUpdated( 62 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.nmode, [1; 2; 3]);
+// Check that all the model items are freed
+clear
+objectDeleted( 62 , BLOCK )

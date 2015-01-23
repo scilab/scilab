@@ -882,8 +882,6 @@ assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
 scs_m.objs(2) = Sum;          // Add the Block that lnk's 'from' points to
 objectCreated( 27 , BLOCK )
 propertyUpdated( 27 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 27 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 27 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 27 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 27 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 27 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -897,6 +895,8 @@ propertyUpdated( 27 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 27 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 27 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 27 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 27 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 27 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 27 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 27 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 27 , BLOCK , EXPRS ) : SUCCESS
@@ -944,8 +944,6 @@ propertyUpdated( 26 , LINK , SOURCE_PORT ) : SUCCESS
 scs_m.objs(3) = Scope1;       // Add the Block that lnk's 'to' points to
 objectCreated( 31 , BLOCK )
 propertyUpdated( 31 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 31 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 31 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 31 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 31 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 31 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -959,6 +957,8 @@ propertyUpdated( 31 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 31 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 31 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 31 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 31 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 31 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 31 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 31 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 31 , BLOCK , EXPRS ) : SUCCESS
@@ -1009,8 +1009,6 @@ propertyUpdated( 36 , PORT , LABEL ) : NO_CHANGES
 propertyUpdated( 36 , PORT , DATATYPE ) : SUCCESS
 objectCreated( 37 , BLOCK )
 propertyUpdated( 37 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 37 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 37 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 37 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 37 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 37 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -1024,6 +1022,8 @@ propertyUpdated( 37 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 37 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 37 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 37 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 37 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 37 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 37 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 37 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 37 , BLOCK , EXPRS ) : SUCCESS

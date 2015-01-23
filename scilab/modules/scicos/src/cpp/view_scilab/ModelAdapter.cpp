@@ -1298,11 +1298,17 @@ struct nzcross
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        int nzcross;
+        std::vector<int> nzcross;
         controller.getObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
 
-        types::Double* o = new types::Double(static_cast<double>(nzcross));
+        double *data;
+        types::Double* o = new types::Double((int)nzcross.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::transform(nzcross.begin(), nzcross.end(), stdext::checked_array_iterator<double*>(data, nzcross.size()), toDouble);
+#else
+        std::transform(nzcross.begin(), nzcross.end(), data, toDouble);
+#endif
         return o;
     }
 
@@ -1316,20 +1322,19 @@ struct nzcross
         }
 
         types::Double* current = v->getAs<types::Double>();
-
-        int nzcross = 0; // Default value
-        if (current->getSize() != 0)
+        if (current->getCols() != 0 && current->getCols() != 1)
         {
-            if (current->getSize() != 1)
-            {
-                return false;
-            }
-            if (floor(current->get(0)) != current->get(0))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            nzcross = static_cast<int>(current->get(0));
+        std::vector<int> nzcross (current->getSize());
+        for (int i = 0; i < current->getSize(); ++i)
+        {
+            if (floor(current->get(i)) != current->get(i))
+            {
+                return false;
+            }
+            nzcross[i] = static_cast<int>(current->get(i));
         }
 
         controller.setObjectProperty(adaptee, BLOCK, NZCROSS, nzcross);
@@ -1344,11 +1349,17 @@ struct nmode
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        int nmode;
+        std::vector<int> nmode;
         controller.getObjectProperty(adaptee, BLOCK, NMODE, nmode);
 
-        types::Double* o = new types::Double(static_cast<double>(nmode));
+        double *data;
+        types::Double* o = new types::Double((int)nmode.size(), 1, &data);
 
+#ifdef _MSC_VER
+        std::transform(nmode.begin(), nmode.end(), stdext::checked_array_iterator<double*>(data, nmode.size()), toDouble);
+#else
+        std::transform(nmode.begin(), nmode.end(), data, toDouble);
+#endif
         return o;
     }
 
@@ -1362,20 +1373,19 @@ struct nmode
         }
 
         types::Double* current = v->getAs<types::Double>();
-
-        int nmode = 0; // Default value
-        if (current->getSize() != 0)
+        if (current->getCols() != 0 && current->getCols() != 1)
         {
-            if (current->getSize() != 1)
-            {
-                return false;
-            }
-            if (floor(current->get(0)) != current->get(0))
-            {
-                return false;
-            }
+            return false;
+        }
 
-            nmode = static_cast<int>(current->get(0));
+        std::vector<int> nmode (current->getSize());
+        for (int i = 0; i < current->getSize(); ++i)
+        {
+            if (floor(current->get(i)) != current->get(i))
+            {
+                return false;
+            }
+            nmode[i] = static_cast<int>(current->get(i));
         }
 
         controller.setObjectProperty(adaptee, BLOCK, NMODE, nmode);

@@ -130,8 +130,6 @@ propertyUpdated( 11 , LINK , KIND ) : NO_CHANGES
 scs_m.objs(1) = Sum1;
 objectCreated( 12 , BLOCK )
 propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -145,6 +143,8 @@ propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , EXPRS ) : SUCCESS
@@ -188,8 +188,6 @@ propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 scs_m.objs(2) = Sum2;
 objectCreated( 16 , BLOCK )
 propertyUpdated( 16 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 16 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 16 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 16 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -203,6 +201,8 @@ propertyUpdated( 16 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 16 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 16 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , EXPRS ) : SUCCESS

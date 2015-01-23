@@ -130,8 +130,6 @@ propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
 objectCreated( 6 , BLOCK )
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -145,6 +143,8 @@ propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 6 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , EXPRS ) : SUCCESS
@@ -169,8 +169,6 @@ propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 objectCreated( 8 , BLOCK )
 propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -184,6 +182,8 @@ propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 8 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , EXPRS ) : SUCCESS
@@ -833,8 +833,6 @@ propertyUpdated( 22 , DIAGRAM , CHILDREN ) : NO_CHANGES
 propertyUpdated( 22 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 objectCreated( 23 , BLOCK )
 propertyUpdated( 23 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 23 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 23 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 23 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 23 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -848,6 +846,8 @@ propertyUpdated( 23 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 23 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 23 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , IPAR ) : SUCCESS
 propertyUpdated( 23 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 23 , BLOCK , EXPRS ) : SUCCESS
@@ -872,8 +872,6 @@ propertyUpdated( 23 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 22 , DIAGRAM , CHILDREN ) : SUCCESS
 objectCreated( 25 , BLOCK )
 propertyUpdated( 25 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 25 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 25 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 25 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 25 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -887,6 +885,8 @@ propertyUpdated( 25 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 25 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 25 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 25 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 25 , BLOCK , EXPRS ) : SUCCESS
@@ -947,8 +947,6 @@ propertyUpdated( 29 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 28 , LINK )
 objectCreated( 30 , BLOCK )
 propertyUpdated( 30 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 30 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 30 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 30 , BLOCK , SIM_BLOCKTYPE ) : SUCCESS
@@ -962,6 +960,8 @@ propertyUpdated( 30 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 30 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 30 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , EXPRS ) : NO_CHANGES

@@ -93,10 +93,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case SIM_FUNCTION_API:
                 return o->setSimFunctionApi(v);
-            case NZCROSS:
-                return o->setNZcross(v);
-            case NMODE:
-                return o->setNMode(v);
             default:
                 break;
         }
@@ -422,6 +418,10 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setSimDepUT(v);
             case ODSTATE:
                 return o->setODState(v);
+            case NZCROSS:
+                return o->setNZcross(v);
+            case NMODE:
+                return o->setNMode(v);
             case IPAR:
                 return o->setIpar(v);
             case OPAR:

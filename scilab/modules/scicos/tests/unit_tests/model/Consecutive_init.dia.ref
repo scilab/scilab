@@ -68,8 +68,6 @@ propertyUpdated( 3 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 d.objs(1) = sub;
 objectCreated( 4 , BLOCK )
 propertyUpdated( 4 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -83,6 +81,8 @@ propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
@@ -146,8 +146,6 @@ propertyUpdated( 5 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 superD.objs(1) = super;
 objectCreated( 6 , BLOCK )
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -161,6 +159,8 @@ propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
@@ -179,8 +179,6 @@ propertyUpdated( 7 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 propertyUpdated( 7 , DIAGRAM , CONTEXT ) : NO_CHANGES
 objectCreated( 8 , BLOCK )
 propertyUpdated( 8 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -194,6 +192,8 @@ propertyUpdated( 8 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 8 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , EXPRS ) : NO_CHANGES
@@ -214,8 +214,6 @@ sBeforeInsert = size(superD.objs(1).model.rpar.objs);
 superD.objs(1) = super;
 objectCreated( 9 , BLOCK )
 propertyUpdated( 9 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -229,6 +227,8 @@ propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , EXPRS ) : NO_CHANGES
@@ -247,8 +247,6 @@ propertyUpdated( 10 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 propertyUpdated( 10 , DIAGRAM , CONTEXT ) : NO_CHANGES
 objectCreated( 11 , BLOCK )
 propertyUpdated( 11 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 11 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , INTERFACE_FUNCTION ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -262,6 +260,8 @@ propertyUpdated( 11 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , RPAR ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 11 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 11 , BLOCK , EXPRS ) : NO_CHANGES
