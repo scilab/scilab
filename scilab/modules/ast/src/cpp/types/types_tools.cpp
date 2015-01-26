@@ -48,6 +48,12 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 pIT = new Colon();
                 bDeleteNeeded = true;
             }
+            else if (pIT->isDeletable())
+            {
+                // Clone pIT when this ref is equal to zero
+                // will prevent double delete.
+                pCurrentArg = pIT->clone()->getAs<Double>();
+            }
         }
 
         if (pIT->isColon() || pIT->isImplicitList())
