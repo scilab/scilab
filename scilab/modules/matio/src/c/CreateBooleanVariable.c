@@ -114,7 +114,7 @@ int CreateBooleanVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int *
             piDims[K] = (int)matVariable->dims[K];
         }
 
-        //CreateHyperMatrixVariable(pvApiCtx, iVar, MATRIX_OF_BOOLEAN_DATATYPE,  NULL, &matVariable->rank, piDims, (double*)matVariable->data, NULL, parent, item_position);
+        CreateHyperMatrixVariable(pvApiCtx, iVar, matVariable->class_type, NULL, &matVariable->rank, piDims, matVariable, parent, item_position);
 
         FREE(piDims);
     }
