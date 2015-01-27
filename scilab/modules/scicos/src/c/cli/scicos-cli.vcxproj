@@ -82,7 +82,7 @@
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../../libs/Eigen/includes;../../../../../libs/intl;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../intersci/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -125,7 +125,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../../libs/Eigen/includes;../../../../../libs/intl;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../intersci/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -166,7 +166,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../../libs/Eigen/includes;../../../../../libs/intl;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../intersci/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -214,7 +214,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../;../../../includes;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../../libs/intl;../../../../intersci/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../;../../../includes;../../../../../libs/Eigen/includes;../../../../../libs/intl;../../../../core/includes;../../../../time/includes;../../../../api_scilab/includes;../../../../output_stream/includes;../../../../scicos_blocks/includes;../../../../windows_tools/includes;../../../../localization/includes;../../../../string/includes;../../../../intersci/src/lib;../../../../dynamic_link/includes;../../scicos_sundials/include;../../scicos_sundials/include/sundials;../../scicos_sundials/src/ida;../../../../action_binding/includes;../../../../intersci/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;../../../../ast/includes/parse;../../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCICOS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -254,6 +254,11 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_buildouttb.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree2.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree3.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree4.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\copyvarfromlistentry.c" />
     <ClCompile Include="..\createblklist.c" />
@@ -267,17 +272,12 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\import.c" />
     <ClCompile Include="..\MlistGetFieldNumber.c" />
     <ClCompile Include="..\lsodar.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_buildouttb.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_callblk.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_coserror.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree2.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree3.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_ctree4.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_curblock.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_curblockc.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_data2sig.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_diffobjs.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_duplicate.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_end_scicosim.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree2.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree3.c" />
@@ -358,6 +358,9 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
