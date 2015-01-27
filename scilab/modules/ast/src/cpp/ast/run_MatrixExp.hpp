@@ -301,6 +301,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
     }
     catch (ast::ScilabError error)
     {
+        setResult(NULL);
         throw error;
     }
 }

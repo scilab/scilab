@@ -269,14 +269,15 @@ void Context::put(const Symbol& _key, types::InternalType* _pIT)
 
 bool Context::remove(const Symbol& _key)
 {
-    if (variables.remove(_key, m_iLevel))
+    bool ret = variables.remove(_key, m_iLevel);
+
+    if (ret)
     {
         varStack.top()->erase(_key);
-        libraries.remove(_key, m_iLevel);
-        return true;
     }
 
-    return false;
+    ret = ret | libraries.remove(_key, m_iLevel);
+    return ret;
 }
 
 bool Context::removeAll()
