@@ -20,16 +20,17 @@
 
 extern "C"
 {
+#include "machine.h" /* C2F */
 #include "scicos-def.h"
 
 #include "localization.h"
 #include "Scierror.h"
-}
 
-/*--------------------------------------------------------------------------*/
-// Variable defined in scicos.c
-extern CURBLK_struct C2F(curblk);
-/*--------------------------------------------------------------------------*/
+    /*--------------------------------------------------------------------------*/
+    // Variable defined in scicos.c
+    extern CURBLK_struct C2F(curblk);
+    /*--------------------------------------------------------------------------*/
+}
 
 const std::string funname = "curblock";
 
