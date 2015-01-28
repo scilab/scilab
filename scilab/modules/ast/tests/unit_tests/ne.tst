@@ -34,4 +34,6 @@ t=tlist("any_type");
 assert_checktrue(t <> tlist("other_type"));
 t=tlist("any_type");
 assert_checktrue(t <> mlist("other_type"));
+t=mlist("any_type");
+assert_checktrue(t <> mlist("other_type"));
 
