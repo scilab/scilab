@@ -24,7 +24,7 @@ Function::ReturnValue sci_isequal(types::typed_list &in, int _iRetCount, types::
         return Function::Error;
     }
 
-    for (int i = 1 ; i < in.size() ; i++)
+    for (int i = 1 ; i < static_cast<int>(in.size()); i++)
     {
         InternalType* pIn1 = in[i - 1];
         InternalType* pIn2 = in[i];

@@ -111,7 +111,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
             }
             while ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile ) != NULL )
             {
-                if (wcslen(Line) >= (LINE_MAX * iLineSizeMult) - 1)
+                if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                 {
                     FREE(Line);
                     iLineSizeMult++;
@@ -188,7 +188,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
 
                         if ( getLine ( Line, LINE_MAX * iLineSizeMult, pFile) != NULL)
                         {
-                            if (wcslen(Line) >= (LINE_MAX * iLineSizeMult) - 1)
+                            if (((int) wcslen(Line)) >= (LINE_MAX * iLineSizeMult) - 1)
                             {
                                 FREE(Line);
                                 iLineSizeMult++;

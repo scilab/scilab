@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
 
         types::Sparse* pSpOut = new types::Sparse(pSpIn->getRows(), pSpIn->getCols());
 
-        size_t iNonZeros = pSpIn->nonZeros();
+        int iNonZeros = static_cast<int>(pSpIn->nonZeros());
 
         //coords
         int* pRows = new int[iNonZeros * 2];
@@ -108,7 +108,7 @@ types::Function::ReturnValue sci_bool2s(types::typed_list &in, int _iRetCount, t
         types::SparseBool* pSpbIn = in[0]->getAs<types::SparseBool>();
         types::Sparse* pSpOut = new types::Sparse(pSpbIn ->getRows(), pSpbIn ->getCols());
 
-        size_t iNonZeros = pSpbIn ->nbTrue();
+        int iNonZeros = static_cast<int>(pSpbIn->nbTrue());
 
         //coords
         int* pRows = new int[iNonZeros * 2];

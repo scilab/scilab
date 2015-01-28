@@ -86,7 +86,7 @@ CPP_GATEWAY_PROTOTYPE(sci_acosh);
 CPP_GATEWAY_PROTOTYPE(sci_asinh);
 CPP_GATEWAY_PROTOTYPE(sci_atanh);
 
-bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc);
+bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, int* _iDims, int** _piDims, bool* _alloc);
 
 template <class T>
 types::Double* getAsDouble(T* _val)

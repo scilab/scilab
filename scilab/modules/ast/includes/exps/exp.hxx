@@ -55,7 +55,7 @@ public:
     /** \brief Destroys an Expression node. */
     virtual ~Exp ()
     {
-        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
+        for (exps_t::const_iterator it = _exps.begin(); it != _exps.end(); ++it)
         {
             if (*it != NULL)
             {

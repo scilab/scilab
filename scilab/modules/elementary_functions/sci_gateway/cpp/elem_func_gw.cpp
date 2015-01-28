@@ -93,7 +93,7 @@ int ElemFuncModule::Load()
 }
 
 
-bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, int** _piDims, bool* _alloc)
+bool getDimsFromArguments(types::typed_list& in, const std::string& _pstName, int* _iDims, int** _piDims, bool* _alloc)
 {
     types::Double* pOut = 0;
 
@@ -155,7 +155,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
             if (in[i]->isArrayOf() == false)
             {
                 delete[] * _piDims;
-                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
                 return false;
             }
 
@@ -163,7 +163,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
             if (pGTIn->isScalar() == false || pGTIn->isComplex())
             {
                 delete[] * _piDims;
-                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
                 return false;
             }
 
@@ -175,7 +175,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     if (dValue >= INT_MAX)
                     {
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(dValue);
@@ -205,7 +205,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     if (llValue >= INT_MAX)
                     {
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
@@ -217,14 +217,14 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     if (ullValue >= INT_MAX)
                     {
                         delete[] * _piDims;
-                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
+                        Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName.c_str(), INT_MAX);
                         return false;
                     }
                     (*_piDims)[i] = static_cast<int>(ullValue);
                     break;
                 }
                 default:
-                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName, i + 1);
+                    Scierror(999, _("%s: Wrong size for input argument #%d: A scalar expected.\n"), _pstName.c_str(), i + 1);
                     return false;
             }
         }

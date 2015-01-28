@@ -27,7 +27,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
     if (vectIn.size() > 1) // Find the min value between all inputs matrix
     {
         //Find the first non scalar to init output matrix.
-        for (int iter = 0; iter < vectIn.size(); iter++)
+        for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
         {
             if (vectIn[iter]->isScalar() == false)
             {
@@ -55,7 +55,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
 
             for (int i = 0; i < iSize; i++)
             {
-                for (int iter = 0; iter < vectIn.size(); iter++)
+                for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
                 {
                     int iPos = i;
                     if (vectIn[iter]->isScalar())
@@ -76,7 +76,7 @@ void min(std::vector<types::Double*> vectIn, int iOrientation, types::Double* pD
         {
             for (int i = 0; i < iSize; i++)
             {
-                for (int iter = 0; iter < vectIn.size(); iter++)
+                for (int iter = 0; iter < static_cast<int>(vectIn.size()); iter++)
                 {
                     int iPos = i;
                     if (vectIn[iter]->isScalar())

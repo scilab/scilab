@@ -23,7 +23,7 @@ char *GetXmlFileEncoding(const char *filename)
     char *encoding = NULL;
     xmlDocPtr doc = NULL;
     BOOL bConvert = FALSE;
-    char *shortfilename = getshortpathname((char*)filename, &bConvert);
+    char *shortfilename = getshortpathname(filename, &bConvert);
 
     /* default */
     encoding = os_strdup(DEFAULT_ENCODING);
@@ -42,7 +42,7 @@ char *GetXmlFileEncoding(const char *filename)
                     FREE(encoding);
                     encoding = NULL;
                 }
-                encoding = os_strdup((char*)doc->encoding);
+                encoding = os_strdup(doc->encoding);
             }
         }
         xmlFreeDoc (doc);

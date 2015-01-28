@@ -568,21 +568,24 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 case InternalType::ScilabString:
                 {
                     wchar_t* pwstStr = nullptr;
+		    std::wstring NaN = NanString;
+		    std::wstring nInf = NegInfString;
+		    std::wstring pInf = InfString;
 
                     InternalType* it = in[tok->pos];
                     if (it->isDouble() && std::isnan(it->getAs<types::Double>()->get(0)))
                     {
-                        pwstStr = NanString;
+                        pwstStr = const_cast<wchar_t*>(NaN.c_str());
                     }
                     else if (it->isDouble() && std::isfinite(it->getAs<types::Double>()->get(0)) == false)
                     {
                         if (std::signbit(it->getAs<types::Double>()->get(0)))
                         {
-                            pwstStr = NegInfString;
+                            pwstStr = const_cast<wchar_t*>(nInf.c_str());
                         }
                         else
                         {
-                            pwstStr = InfString;
+                            pwstStr = const_cast<wchar_t*>(pInf.c_str());
                         }
                     }
                     else
