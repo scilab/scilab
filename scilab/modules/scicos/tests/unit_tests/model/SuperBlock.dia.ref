@@ -342,7 +342,7 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Super Block";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[40,40],[20,20],%t,0,"1",[],0,[],[],[],"",[],"E",..,"",..,"",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"input",[],[],1,-1,-2,-1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"IN_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[240,40],[20,20],%t,0,"1",0,[],[],[],[],"","E",[],"",..,"",..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",-1,-2,-1,[],[],1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"OUT_f",list())),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Super Block";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[40,40],[20,20],%t,0,"1",[],0,[],[],[],"",[],"E","","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"input",[],[],1,-1,-2,-1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"IN_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[240,40],[20,20],%t,0,"1",0,[],[],[],[],"","E",[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",-1,-2,-1,[],[],1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"OUT_f",list())),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -404,9 +404,9 @@ Graphics:
           id = ""
           in_implicit = []
           out_implicit = "E"
-          in_style = 
+          in_style = ""
           out_style = ""
-          in_label = 
+          in_label = ""
           out_label = ""
           style = ""
 Model   : 
@@ -450,9 +450,9 @@ Graphics:
           in_implicit = "E"
           out_implicit = []
           in_style = ""
-          out_style = 
+          out_style = ""
           in_label = ""
-          out_label = 
+          out_label = ""
           style = ""
 Model   : 
           output type: 0
@@ -493,9 +493,9 @@ gr_i = []
 id = ""
 in_implicit = []
 out_implicit = "E"
-in_style = 
+in_style = ""
 out_style = ""
-in_label = 
+in_label = ""
 out_label = ""
 style = ""
 sb.model.rpar.objs(1).model
@@ -539,9 +539,9 @@ id = ""
 in_implicit = "E"
 out_implicit = []
 in_style = ""
-out_style = 
+out_style = ""
 in_label = ""
-out_label = 
+out_label = ""
 style = ""
 sb.model.rpar.objs(2).model
  ans  =
@@ -1293,10 +1293,10 @@ Graphics:
           id = ""
           in_implicit = []
           out_implicit = []
-          in_style = 
-          out_style = 
-          in_label = 
-          out_label = 
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
           style = ""
 Model   : 
           csuper type: 0
@@ -1337,10 +1337,10 @@ gr_i = []
 id = ""
 in_implicit = []
 out_implicit = []
-in_style = 
-out_style = 
-in_label = 
-out_label = 
+in_style = ""
+out_style = ""
+in_label = ""
+out_label = ""
 style = ""
 clk.model
  ans  =
@@ -1356,7 +1356,7 @@ evtout = 1
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[399,162],[20,20],%t,0,"1",[],[],5,[],[],"",[],[],..,..,..,..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",[],[],1,[],[],1,1,[],[],[],list(),[],1,list(),"d",[],[%f,%f],"",0,0,list(),""),"CLKOUT_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[320,232],[40,40],%t,0,["0.1";"0.1"],[],[],6,3,[],"",[],[],..,..,..,..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],list("evtdly4",4),[],[],1,[],[],1,1,1,[],[],list(),[0.1;0.1],[],list(),"d",0.1,[%f,%f],"",0,0,list(),""),"EVTDLY_c",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[340;340;380.71],[226.29;172;172],"",[0,0],[5,-1],[2,1,0],[4,1,1]),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[380.71066,172],[0.3333333,0.3333333],%t,0,[],[],[],3,[5;6],[],"",[],[],..,..,..,..,""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"split",[],[],1,[],[],1,1,[1;1],[],[],list(),[],[],list(),"d",[0;0],[%f,%f],"",0,0,list(),""),"CLKSPLIT_f",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;399],[172;172],"",[0,0],[5,-1],[4,1,0],[1,1,1]),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;380.71;340;340],[172;302;302;277.71],"",[0,0],[5,-1],[4,2,0],[2,1,1])),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist("scsopt"),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[399,162],[20,20],%t,0,"1",[],[],5,[],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",[],[],1,[],[],1,1,[],[],[],list(),[],1,list(),"d",[],[%f,%f],"",0,0,list(),""),"CLKOUT_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[320,232],[40,40],%t,0,["0.1";"0.1"],[],[],6,3,[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],list("evtdly4",4),[],[],1,[],[],1,1,1,[],[],list(),[0.1;0.1],[],list(),"d",0.1,[%f,%f],"",0,0,list(),""),"EVTDLY_c",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[340;340;380.71],[226.29;172;172],"",[0,0],[5,-1],[2,1,0],[4,1,1]),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[380.71066,172],[0.3333333,0.3333333],%t,0,[],[],[],3,[5;6],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"split",[],[],1,[],[],1,1,[1;1],[],[],list(),[],[],list(),"d",[0;0],[%f,%f],"",0,0,list(),""),"CLKSPLIT_f",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;399],[172;172],"",[0,0],[5,-1],[4,1,0],[1,1,1]),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;380.71;340;340],[172;302;302;277.71],"",[0,0],[5,-1],[4,2,0],[2,1,1])),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -1412,10 +1412,10 @@ Graphics:
           id = ""
           in_implicit = []
           out_implicit = []
-          in_style = 
-          out_style = 
-          in_label = 
-          out_label = 
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
           style = ""
 Model   : 
           output type: 0
@@ -1457,10 +1457,10 @@ Graphics:
           id = ""
           in_implicit = []
           out_implicit = []
-          in_style = 
-          out_style = 
-          in_label = 
-          out_label = 
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
           style = ""
 Model   : 
           evtdly4 type: 4
@@ -1511,10 +1511,10 @@ Graphics:
           id = ""
           in_implicit = []
           out_implicit = []
-          in_style = 
-          out_style = 
-          in_label = 
-          out_label = 
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
           style = ""
 Model   : 
           split type: 0
@@ -1573,10 +1573,10 @@ gr_i = []
 id = ""
 in_implicit = []
 out_implicit = []
-in_style = 
-out_style = 
-in_label = 
-out_label = 
+in_style = ""
+out_style = ""
+in_label = ""
+out_label = ""
 style = ""
 clk.model.rpar.objs(1).model
  ans  =
@@ -1618,10 +1618,10 @@ gr_i = []
 id = ""
 in_implicit = []
 out_implicit = []
-in_style = 
-out_style = 
-in_label = 
-out_label = 
+in_style = ""
+out_style = ""
+in_label = ""
+out_label = ""
 style = ""
 clk.model.rpar.objs(2).model
  ans  =
@@ -1669,10 +1669,10 @@ gr_i = []
 id = ""
 in_implicit = []
 out_implicit = []
-in_style = 
-out_style = 
-in_label = 
-out_label = 
+in_style = ""
+out_style = ""
+in_label = ""
+out_label = ""
 style = ""
 clk.model.rpar.objs(4).model
  ans  =

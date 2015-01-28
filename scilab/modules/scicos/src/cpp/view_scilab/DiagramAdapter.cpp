@@ -56,13 +56,13 @@ struct props
 
     static types::InternalType* get(const DiagramAdapter& adaptor, const Controller& controller)
     {
-        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor(adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::TList(), controller);
     }
 
     static bool set(DiagramAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ParamsAdapter localAdaptor = ParamsAdapter(adaptor.getAdaptee());
+        ParamsAdapter localAdaptor(adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -167,7 +167,7 @@ struct objs
         // and clear the old Links information
         std::vector<ScicosID> oldDiagramChildren;
         controller.getObjectProperty(adaptee->id(), DIAGRAM, CHILDREN, oldDiagramChildren);
-        for (ScicosID id : oldDiagramChildren)
+for (ScicosID id : oldDiagramChildren)
         {
             if (id != 0)
             {
@@ -415,7 +415,7 @@ DiagramAdapter::~DiagramAdapter()
         Controller controller;
         std::vector<ScicosID> diagramChildren;
         controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
-        for (ScicosID id : diagramChildren)
+for (ScicosID id : diagramChildren)
         {
             if (id != 0)
             {

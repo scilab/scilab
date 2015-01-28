@@ -327,9 +327,9 @@ Graphics:
           in_implicit = "E"
           out_implicit = []
           in_style = ""
-          out_style = 
+          out_style = ""
           in_label = ""
-          out_label = 
+          out_label = ""
           style = ""
 Model   : 
           cscope type: 4
@@ -372,9 +372,9 @@ Graphics:
           in_implicit = "E"
           out_implicit = []
           in_style = ""
-          out_style = 
+          out_style = ""
           in_label = ""
-          out_label = 
+          out_label = ""
           style = ""
 Model   : 
           cscope type: 4
@@ -793,9 +793,9 @@ Graphics:
           in_implicit = ["E";"E"]
           out_implicit = []
           in_style = ["";""]
-          out_style = 
+          out_style = ""
           in_label = ["";""]
-          out_label = 
+          out_label = ""
           style = ""
 Model   : 
           cscope type: 4
@@ -1145,9 +1145,9 @@ Graphics:
           in_implicit = ["E";"E"]
           out_implicit = []
           in_style = ["";""]
-          out_style = 
+          out_style = ""
           in_label = ["";""]
-          out_label = 
+          out_label = ""
           style = ""
 Model   : 
           cscope type: 4

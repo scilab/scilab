@@ -58,6 +58,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
         case STYLE:
         case LABEL:
         {
+            if (ids.empty())
+            {
+                return new types::String(L"");
+            }
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {

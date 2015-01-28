@@ -53,13 +53,13 @@ struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor(adaptor.getAdaptee());
         return localAdaptor.getAsTList(new types::MList(), controller);
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor(adaptor.getAdaptee());
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -68,7 +68,7 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor(adaptor.getAdaptee());
         localAdaptor.setDiagram(adaptor.getDiagram());
 
         return localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
@@ -76,7 +76,7 @@ struct model
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor(adaptor.getAdaptee());
         if (!localAdaptor.setAsTList(v, controller))
         {
             return false;
