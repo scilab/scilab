@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -251,6 +251,15 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicosim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
+=======
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_var2vec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_vec2var.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+>>>>>>> 6605e76... xcos : allow scicossim to call function and macros
     <ClCompile Include="..\cpp\il_sim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -404,10 +413,10 @@
       <Filter>Header Files\MVC\model</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\il_sim.hxx">
-      <Filter>Header Files\MVC\model</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\il_state.hxx">
-      <Filter>Header Files\MVC\model</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

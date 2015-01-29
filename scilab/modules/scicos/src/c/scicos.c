@@ -291,7 +291,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                 int *nevts, int *pointi_in, void **outtbptr_in,
                 int *outtbsz_in, int *outtbtyp_in,
                 outtb_el *outtb_elem_in, int *nelem1, int *nlnk1,
-                int *funptr, int *funtyp_in, int *inpptr_in,
+                void** funptr, int *funtyp_in, int *inpptr_in,
                 int *outptr_in, int *inplnk_in, int *outlnk_in,
                 double *rpar, int *rpptr, int *ipar, int *ipptr,
                 void **opar, int *oparsz, int *opartyp, int *opptr,
@@ -330,7 +330,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     xptr = xptr_in - 1;
     modptr = modptr_in - 1;
     --zptr;
-    --izptr;
+    //--izptr;
     --ozptr;
     evtspt = evtspt_in - 1;
     tevts = tevts_in - 1;
@@ -521,15 +521,17 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     /* 1 : type and pointer on simulation function */
     for (kf = 0; kf < nblk; ++kf)   /*for each block */
     {
+        void* p = funptr[kf];
         C2F(curblk).kfun = kf + 1;
-        i = funptr[kf];
         Blocks[kf].type = funtyp[kf + 1];
-        if (i < 0)
+        if (Blocks[kf].type < 0)
         {
-            switch (funtyp[kf + 1])
+            //macros
+            funtyp[kf + 1] *= -1; // Restore a positive 'funtyp' for later use
+            switch (-Blocks[kf].type)
             {
                 case 0:
-                    Blocks[kf].funpt = (voidg) F2C(sciblk);
+                    Blocks[kf].funpt = (voidg)F2C(sciblk);
                     break;
                 case 1:
                     sciprint(_("type 1 function not allowed for scilab blocks\n"));
@@ -542,53 +544,105 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                     FREE_blocks();
                     return 0;
                 case 3:
-                    Blocks[kf].funpt = (voidg) sciblk2;
+                    Blocks[kf].funpt = (voidg)sciblk2;
                     Blocks[kf].type = 2;
                     break;
                 case 5:
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 4;
                     break;
                 case 99: /* debugging block */
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     /*Blocks[kf].type=4;*/
                     debug_block = kf;
                     break;
 
                 case 10005:
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 10004;
                     break;
-                default :
+                default:
                     sciprint(_("Undefined Function type\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
             }
-            Blocks[kf].scsptr = -i; /* set scilab function adress for sciblk */
-        }
-        else if (i <= ntabsim)
-        {
-            Blocks[kf].funpt = (voidg) * (tabsim[i - 1].fonc);
-            Blocks[kf].scsptr = 0;     /* this is done for being able to test if a block
-									 is a scilab block in the debugging phase when
-									 sciblk4 is called */
+            Blocks[kf].scsptr = p; /* set scilab function adress for sciblk */
         }
         else
         {
-            i -= (ntabsim + 1);
-            Blocks[kf].funpt = getEntryPointFromPosition(i);
-            if ( Blocks[kf].funpt == (voidf) 0)
-            {
-                sciprint(_("Function not found\n"));
-                *ierr = 1000 + kf + 1;
-                FREE_blocks();
-                return 0;
-            }
-            Blocks[kf].scsptr = 0;   /* this is done for being able to test if a block
-								   is a scilab block in the debugging phase when
-								   sciblk4 is called */
+            //linked functions ( internal or external
+            Blocks[kf].funpt = (voidf)p;
+            Blocks[kf].scsptr = NULL;   /* this is done for being able to test if a block
+                                        is a scilab block in the debugging phase when
+                                        sciblk4 is called */
         }
+        //if (i < 0)
+        //{
+        //    switch (funtyp[kf + 1])
+        //    {
+        //        case 0:
+        //            Blocks[kf].funpt = (voidg) F2C(sciblk);
+        //            break;
+        //        case 1:
+        //            sciprint(_("type 1 function not allowed for scilab blocks\n"));
+        //            *ierr = 1000 + kf + 1;
+        //            FREE_blocks();
+        //            return 0;
+        //        case 2:
+        //            sciprint(_("type 2 function not allowed for scilab blocks\n"));
+        //            *ierr = 1000 + kf + 1;
+        //            FREE_blocks();
+        //            return 0;
+        //        case 3:
+        //            Blocks[kf].funpt = (voidg) sciblk2;
+        //            Blocks[kf].type = 2;
+        //            break;
+        //        case 5:
+        //            Blocks[kf].funpt = (voidg) sciblk4;
+        //            Blocks[kf].type = 4;
+        //            break;
+        //        case 99: /* debugging block */
+        //            Blocks[kf].funpt = (voidg) sciblk4;
+        //            /*Blocks[kf].type=4;*/
+        //            debug_block = kf;
+        //            break;
+
+        //        case 10005:
+        //            Blocks[kf].funpt = (voidg) sciblk4;
+        //            Blocks[kf].type = 10004;
+        //            break;
+        //        default :
+        //            sciprint(_("Undefined Function type\n"));
+        //            *ierr = 1000 + kf + 1;
+        //            FREE_blocks();
+        //            return 0;
+        //    }
+        //    Blocks[kf].scsptr = -i; /* set scilab function adress for sciblk */
+        //}
+        //else if (i <= ntabsim)
+        //{
+        //    Blocks[kf].funpt = (voidg) * (tabsim[i - 1].fonc);
+        //    Blocks[kf].scsptr = 0;     /* this is done for being able to test if a block
+        //	 is a scilab block in the debugging phase when
+        //	 sciblk4 is called */
+        //}
+        //else
+        //{
+        //    i -= (ntabsim + 1);
+        //    //TODO: see in dynamic_lin how to get funcptr from index
+        //    //GetDynFunc(i, &Blocks[kf].funpt);
+        //    if ( Blocks[kf].funpt == (voidf) 0)
+        //    {
+        //        sciprint(_("Function not found\n"));
+        //        *ierr = 1000 + kf + 1;
+        //        FREE_blocks();
+        //        return 0;
+        //    }
+        //    Blocks[kf].scsptr = 0;   /* this is done for being able to test if a block
+        //   is a scilab block in the debugging phase when
+        //   sciblk4 is called */
+        //}
 
         /* 2 : Dimension properties */
         Blocks[kf].ztyp = ztyp[kf + 1];
@@ -6124,27 +6178,38 @@ int C2F(funnum)(char * fname)
 {
     int i = 0, ln = 0;
     int loc = -1;
-    wchar_t* fname_wchar_t = NULL;
-    while ( tabsim[i].name != (char *) NULL)
+    while (tabsim[i].name != (char *)NULL)
     {
-        if ( strcmp(fname, tabsim[i].name) == 0 )
+        if (strcmp(fname, tabsim[i].name) == 0)
         {
             return (i + 1);
         }
         i++;
     }
     ln = (int)strlen(fname);
-
-    // Look for 'fname' in the Scilab dynamically linked functions
-    fname_wchar_t = to_wide_string(fname);
-    loc = getEntryPointPosition(fname_wchar_t);
-    FREE(fname_wchar_t);
+    //C2F(iislink)(fname, &loc);
+    //C2F(iislink)(fname, &loc);
     if (loc >= 0)
     {
         return (ntabsim + (int)loc + 1);
     }
     return (0);
 }/* funnum */
+/*--------------------------------------------------------------------------*/
+/* Subroutine funnum2 */
+void* funnum2(char * fname)
+{
+    int i = 0;
+    while (tabsim[i].name != (char *)NULL)
+    {
+        if (strcmp(fname, tabsim[i].name) == 0)
+        {
+            return (void*)tabsim[i].fonc;
+        }
+        i++;
+    }
+    return NULL;
+}/* funnum2 */
 /*--------------------------------------------------------------------------*/
 int get_phase_simulation(void)
 {

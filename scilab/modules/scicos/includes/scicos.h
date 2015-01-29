@@ -166,7 +166,7 @@ int C2F(scicos) (double *x_in, int *xptr_in, double *z__,
                  int *nevts, int *pointi_in, void **outtbptr_in,
                  int *outtbsz_in, int *outtbtyp_in,
                  outtb_el * outtb_elem_in, int *nelem1, int *nlnk1,
-                 int *funptr, int *funtyp_in, int *inpptr_in,
+                 void** funptr, int *funtyp_in, int *inpptr_in,
                  int *outptr_in, int *inplnk_in, int *outlnk_in,
                  double *rpar, int *rpptr, int *ipar, int *ipptr,
                  void **opar, int *oparsz, int *opartyp, int *opptr,
@@ -236,5 +236,9 @@ void end_scicos_sim(void);
 */
 void Coserror(const char *fmt, ...);
 
+/**
+*
+*/
+void* funnum2(char *fname);
 #endif
 

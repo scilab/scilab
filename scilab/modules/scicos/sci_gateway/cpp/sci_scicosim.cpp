@@ -142,16 +142,15 @@ const std::string funname = "scicosim";
 
 extern "C"
 {
-    /*--------------------------------------------------------------------------*/
     extern COSIM_struct C2F(cosim); // Declaration of cosim -valable partout-
-    /*--------------------------------------------------------------------------*/
+
     extern COSERR_struct coserr;    // Declaration of coserr -defined in scicos-
     extern int C2F(funnum)(char *fname);
-    /*--------------------------------------------------------------------------*/
+
     // Variable defined in scicos.c
     extern CURBLK_struct C2F(curblk);
-    /*--------------------------------------------------------------------------*/
 }
+/*--------------------------------------------------------------------------*/
 
 types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -1004,7 +1003,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     for (int i = 0; i < il_sim_lab->getSize(); ++i)
     {
         l_sim_lab[i] = wide_string_to_UTF8(il_sim_lab->get(i));
-        il_sim_labptr[i] = strlen(l_sim_lab[i]);
+        il_sim_labptr[i] = static_cast<int>(strlen(l_sim_lab[i]));
     }
 
     /*33 : sim.modptr */
@@ -1076,7 +1075,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     for (int i = 0; i < il_sim_uid->getSize(); ++i)
     {
         l_sim_uid[i] = wide_string_to_UTF8(il_sim_uid->get(i));
-        il_sim_uidptr[i] = strlen(l_sim_uid[i]);
+        il_sim_uidptr[i] = static_cast<int>(strlen(l_sim_uid[i]));
     }
 
     /*************
@@ -1289,8 +1288,8 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     * Set function table for blocks
     *******************************/
     // Define new variable 'lfunpt'
-    int* lfunpt;
-    if ((lfunpt = new (std::nothrow) int[nblk]) == nullptr)
+    void** lfunpt;
+    if ((lfunpt = new (std::nothrow) void*[nblk]) == nullptr)
     {
         Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
         il_state->DecreaseRef();
@@ -1309,17 +1308,21 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
     // For each block
     for (int i = 0; i < nblk; ++i) // For each block
     {
-        int subtype = il_sim_fun->get(i)->getType();
+        types::InternalType* pIT = il_sim_fun->get(i);
         // Block is defined by a Scilab function
-        if (subtype == types::InternalType::ScilabMacro)
+        if (pIT->isCallable())
         {
-            //types::Macro* macro = il_sim_fun->get(i)->getAs<types::Macro>();
-            //lfunpt[i] = macro;
+            lfunpt[i] = (void*)pIT;
+            // Keep 'l_sim_funtyp' negative for Scilab macros
+            if (l_sim_funtyp[i] > 0)
+            {
+                l_sim_funtyp[i] *= -1;
+            }
         }
         // Block is defined by a function described by a string
-        else if (subtype == types::InternalType::ScilabString)
+        else if (pIT->isString())
         {
-            types::String* funStr = il_sim_fun->get(i)->getAs<types::String>();
+            types::String* funStr = pIT->getAs<types::String>();
             if (funStr->isScalar() == false)
             {
                 Scierror(999, _("%s: Wrong size for element #%d of input argument #%d : A scalar expected.\n"), funname.data(), i + 1, 4);
@@ -1336,42 +1339,59 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                 delete[] lfunpt;
                 return types::Function::Error;
             }
-            char* c_str = wide_string_to_UTF8(funStr->get(0));
-            int ifun = C2F(funnum)(c_str); // Search associated function number of function name
-            FREE(c_str);
+
+            wchar_t* w_str = funStr->get(0);
+            char* c_str = wide_string_to_UTF8(w_str);
+            void* f = funnum2(c_str); // Search associated function number of function name
             // Block is defined by a C or Fortran function
-            if (ifun > 0)
+            if (f != NULL)
             {
-                lfunpt[i] = ifun;
+                // C interface from "tabsim" defined in blocks.h
+                lfunpt[i] = f;
+                if (l_sim_funtyp[i] < 0)
+                {
+                    // Keep 'l_sim_funtyp' positive for Fortran functions
+                    l_sim_funtyp[i] *= -1;
+                }
             }
             // Block is defined by a predefined scilab function
             else
             {
-                //~ C2F(namstr)(id, &subheader[6], &sz_str, (j = 0, &j));
-                //~ C2F(com).fin = 0;
-                //~ C2F(funs)(id);
-                //~ if ((C2F(com).fun == -1) | (C2F(com).fun == -2))
-                //~ {
-                //~ lfunpt[i] = -*Lstk(C2F(com).fin);
-                //~ }
-                //~ else
-                //~ {
-                //~ C2F(curblk).kfun = i + 1;
-                //~ Scierror(888, _("%s : unknown block : %s\n"), funname.data(), C2F(cha1).buf);
-                //~ il_state->DecreaseRef();
-                //~ il_state->killMe();
-                //~ il_tcur->DecreaseRef();
-                //~ il_tcur->killMe();
-                //~ il_sim->DecreaseRef();
-                //~ il_sim->killMe();
-                //~ delete[] il_sim_labptr;
-                //~ delete[] l_sim_lab;
-                //~ delete[] il_sim_uidptr;
-                //~ delete[] l_sim_uid;
-                //~ delete[] lfunpt;
-                //~ return types::Function::Error;
-                //~ }
+                ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(w_str);
+                if (pEP)
+                {
+                    //linked functions
+                    lfunpt[i] = (void*)pEP->functionPtr;
+                }
+                else
+                {
+                    types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(w_str));
+                    if (pMacro && pMacro->isCallable())
+                    {
+                        //macros
+                        lfunpt[i] = (void*)pMacro;
+                        l_sim_funtyp[i] *= -1;
+                    }
+                    else
+                    {
+                        Scierror(888, _("%s : unknown block : %s\n"), funname.data(), c_str);
+                        il_state->DecreaseRef();
+                        il_state->killMe();
+                        il_tcur->DecreaseRef();
+                        il_tcur->killMe();
+                        il_sim->DecreaseRef();
+                        il_sim->killMe();
+                        delete[] il_sim_labptr;
+                        delete[] l_sim_lab;
+                        delete[] il_sim_uidptr;
+                        delete[] l_sim_uid;
+                        delete[] lfunpt;
+                        FREE(c_str);
+                        return types::Function::Error;
+                    }
+                }
             }
+            FREE(c_str);
         }
         else
         {
