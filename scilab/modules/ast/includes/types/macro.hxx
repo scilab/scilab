@@ -82,6 +82,8 @@ public :
 
     bool operator==(const InternalType& it);
 
+    void add_submacro(const symbol::Symbol& s, Macro* macro);
+
 private :
     std::list<symbol::Variable*>*   m_inputArgs;
     std::list<symbol::Variable*>*   m_outputArgs;
@@ -93,7 +95,7 @@ private :
     symbol::Variable*               m_Varargout;
     Double*                         m_pDblArgIn;
     Double*                         m_pDblArgOut;
-
+    std::map<symbol::Variable*, Macro*> m_submacro;
 };
 }
 
