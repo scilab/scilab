@@ -62,7 +62,7 @@ types::Double* sum(types::Double* pIn, int iOrientation)
         // init output
         pOut->setZeros();
 
-        delete piDims;
+        delete[] piDims;
         piDims = NULL;
 
         // perform operations
@@ -99,7 +99,7 @@ types::Double* sum(types::Double* pIn, int iOrientation)
             }
         }
 
-        delete piIndex;
+        delete[] piIndex;
         piIndex = NULL;
     }
 

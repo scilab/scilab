@@ -368,520 +368,295 @@ struct dstate
     }
 };
 
-types::InternalType* getPropList(const ModelAdapter& adaptor, const Controller& controller, const object_properties_t prop)
+void decodeDims(std::vector<int>::iterator& prop_it, std::vector<int>& dims)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
+    const int iDims = *prop_it++;
+    dims.resize(iDims);
 
-    std::vector<int> prop_content;
-    controller.getObjectProperty(adaptee, BLOCK, prop, prop_content);
+    memcpy(&dims[0], &(*prop_it), iDims * sizeof(int));
+    prop_it += iDims;
+}
 
-    if (prop_content.empty())
+void encodeDims(std::vector<int>& prop_content, types::GenericType* v)
+{
+    const int iDims = v->getDims();
+    prop_content.push_back(iDims);
+
+    const int index = prop_content.size();
+    prop_content.resize(index + iDims);
+
+    memcpy(&prop_content[index], v->getDimsArray(), iDims * sizeof(int));
+}
+
+/**
+ * Calculate the length increment depending on the ::value_type of the buffer and the type of the Scilab type
+ *
+ * @param V buffer type which must have a ::value_type field
+ * @param T Scilab type
+ * @param v the instance on the Scilab type
+ * @return the number of V elements used to store the data
+ */
+template<typename V, typename T>
+size_t required_length(const V& /*it*/, T* v)
+{
+    const size_t sizeof_prop_value = sizeof(typename V::value_type);
+    if (sizeof(typename T::type) >= sizeof_prop_value)
     {
-        return types::Double::Empty();
+        return v->getSize() * sizeof(typename T::type) / sizeof_prop_value;
     }
+    else
+    {
+        // increase the size to contain enough space, manage the size_t rounding issue
+        return v->getSize() * sizeof(typename T::type) + (sizeof_prop_value - 1) / sizeof_prop_value;
+    }
+}
+
+template <typename T>
+T* decode(std::vector<int>::iterator& prop_it)
+{
+    std::vector<int> dims;
+    decodeDims(prop_it, dims);
+
+    T* v = new T(static_cast<int>(dims.size()), &dims[0]);
+    memcpy(v->get(), &(*prop_it), v->getSize() * sizeof(typename T::type));
+
+    prop_it += required_length(prop_it, v);
+    return v;
+}
+
+template <typename T>
+bool encode(std::vector<int>& prop_content, T* v)
+{
+    encodeDims(prop_content, v);
+
+    const int index = prop_content.size();
+    const int len = required_length(prop_content, v);
+    prop_content.resize(index + len);
+
+    // Using contiguity of the memory, we save the input into 'prop_content'
+    memcpy(&prop_content[index], v->get(), v->getSize() * sizeof(typename T::type));
+    return true;
+}
+
+template<>
+types::Double* decode(std::vector<int>::iterator& prop_it)
+{
+    std::vector<int> dims;
+    decodeDims(prop_it, dims);
+
+    bool isComplex = *prop_it++;
+
+    types::Double* v = new types::Double(static_cast<int>(dims.size()), &dims[0], isComplex);
+    memcpy(v->getReal(), &(*prop_it), v->getSize() * sizeof(double));
+
+    if (isComplex)
+    {
+        prop_it += required_length(prop_it, v);
+        memcpy(v->getImg(), &(*prop_it), v->getSize() * sizeof(double));
+    }
+
+    prop_it += required_length(prop_it, v);
+    return v;
+}
+
+bool encode(std::vector<int>& prop_content, types::Double* v)
+{
+    encodeDims(prop_content, v);
+
+    // Flag for complex
+    prop_content.push_back(v->isComplex());
+
+    const int index = prop_content.size();
+    const int len = required_length(prop_content, v);
+    prop_content.resize(index + len);
+
+    // Using contiguity of the memory, we save the input into 'prop_content'
+    memcpy(&prop_content[index], v->get(), v->getSize() * sizeof(double));
+
+    if (v->isComplex())
+    {
+        prop_content.resize(index + 2 * len);
+        // Using contiguity of the memory, we save the input into 'prop_content'
+        memcpy(&prop_content[index + len], v->getImg(), v->getSize() * sizeof(double));
+    }
+
+    return true;
+}
+
+template<>
+types::String* decode(std::vector<int>::iterator& prop_it)
+{
+    std::vector<int> dims;
+    decodeDims(prop_it, dims);
+
+    types::String* v = new types::String(static_cast<int>(dims.size()), &dims[0]);
+    // retrieving the first value iterator
+    std::vector<int>::iterator strData = prop_it + v->getSize();
+
+    v->set(0, (char*) & (*strData));
+    strData += static_cast<size_t>(*prop_it++);
+    for (int i = 1; i < v->getSize(); i++)
+    {
+        v->set(i, (char*) & (*strData));
+
+        // increment the value iterator by the number of element
+        const size_t numberOfElem = static_cast<size_t>(*prop_it) - static_cast<size_t>(*(prop_it - 1)) ;
+        prop_it++;
+        strData += numberOfElem;
+    }
+
+    prop_it = strData;
+    return v;
+}
+
+bool encode(std::vector<int>& prop_content, types::String* v)
+{
+    encodeDims(prop_content, v);
+
+    const int index = prop_content.size();
+
+    std::vector<char*> utf8;
+    utf8.reserve(v->getSize());
+
+    std::vector<size_t> str_len;
+    str_len.reserve(v->getSize());
+
+    int offset = 0;
+    for (int i = 0; i < v->getSize(); i++)
+    {
+        char* str = wide_string_to_UTF8(v->get(i));
+        utf8.push_back(str);
+
+        // adding the '\0' byte to the len
+        const size_t len = strlen(str) + 1;
+        str_len.push_back(len);
+
+        offset += (len * sizeof(char) + sizeof(int) - 1) / sizeof(int);
+        prop_content.push_back(offset);
+    }
+
+    // reserve space for the string offsets and contents
+    prop_content.resize(index + v->getSize() + offset);
+
+    size_t len = str_len[0];
+    memcpy(&prop_content[index + v->getSize()], &(*utf8[0]), len * sizeof(char));
+    for (int i = 1; i < v->getSize(); i++)
+    {
+        len = str_len[i];
+        memcpy(&prop_content[index + v->getSize() + prop_content[index + i - 1]], &(*utf8[i]), len * sizeof(char));
+    }
+
+    // free all the string, after being copied
+    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); it++)
+    {
+        FREE(*it);
+    }
+
+    return true;
+}
+
+
+template<>
+types::List* decode(std::vector<int>::iterator& prop_it)
+{
+    int length = *prop_it++;
 
     types::List* list = new types::List();
-
-    int index = 1; // Index to each element of the returned list
-
-    for (int i = 0; i < prop_content[0]; ++i) // 'list' must have exactly 'prop_content[0]' elements
+    for (int i = 0; i < length; i++)
     {
-        int  iDims;
-        int* pDims;
-        int  iElements = 1;
-        int  numberOfIntNeeded = 0;
-        switch (prop_content[index])
+        switch (*prop_it++)
         {
             case types::InternalType::ScilabDouble:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                if (pDims[0] == 0)
-                {
-                    numberOfIntNeeded = 1; // Only mind the complex flag
-                    list->set(i, types::Double::Empty());
-                    break;
-                }
-                int isComplex = prop_content[index + 2 + iDims];
-
-                types::Double* pDouble;
-
-                if (isComplex == 0)
-                {
-                    pDouble = new types::Double(iDims, pDims, false);
-                    numberOfIntNeeded = 2 * iElements + 1;
-                    memcpy(pDouble->get(), &prop_content[index + 2 + iDims + 1], iElements * sizeof(double));
-                }
-                else
-                {
-                    pDouble = new types::Double(iDims, pDims, true);
-                    numberOfIntNeeded = 4 * iElements + 1;
-                    memcpy(pDouble->get(), &prop_content[index + 2 + iDims + 1], iElements * sizeof(double));
-                    memcpy(pDouble->getImg(), &prop_content[index + 2 + iDims + 1 + 2 * iElements], iElements * sizeof(double));
-                }
-                delete[] pDims;
-
-                list->set(i, pDouble);
+                list->set(i, decode<types::Double>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabInt8:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
-
-                types::Int8* pInt8 = new types::Int8(iDims, pDims);
-                delete[] pDims;
-
-                // Use a buffer to prevent copying only parts of integers
-                char* buffer = new char[numberOfIntNeeded * 4];
-                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
-                memcpy(pInt8->get(), buffer, iElements * sizeof(char));
-                delete[] buffer;
-
-                list->set(i, pInt8);
+                list->set(i, decode<types::Int8>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabUInt8:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
-
-                types::UInt8* pUInt8 = new types::UInt8(iDims, pDims);
-                delete[] pDims;
-
-                // Use a buffer to prevent copying only parts of integers
-                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
-                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
-                memcpy(pUInt8->get(), buffer, iElements * sizeof(char));
-                delete[] buffer;
-
-                list->set(i, pUInt8);
+                list->set(i, decode<types::UInt8>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabInt16:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
-
-                types::Int16* pInt16 = new types::Int16(iDims, pDims);
-                delete[] pDims;
-
-                // Use a buffer to prevent copying only parts of integers
-                short int* buffer = new short int[numberOfIntNeeded * 2];
-                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
-                memcpy(pInt16->get(), buffer, iElements * sizeof(short int));
-                delete[] buffer;
-
-                list->set(i, pInt16);
+                list->set(i, decode<types::Int16>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabUInt16:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
-
-                types::UInt16* pUInt16 = new types::UInt16(iDims, pDims);
-                delete[] pDims;
-
-                // Use a buffer to prevent copying only parts of integers
-                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
-                memcpy(buffer, &prop_content[index + 2 + iDims], numberOfIntNeeded * sizeof(int));
-                memcpy(pUInt16->get(), buffer, iElements * sizeof(unsigned short int));
-                delete[] buffer;
-
-                list->set(i, pUInt16);
+                list->set(i, decode<types::UInt16>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabInt32:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = iElements;
-
-                types::Int32* pInt32 = new types::Int32(iDims, pDims);
-                delete[] pDims;
-
-                memcpy(pInt32->get(), &prop_content[index + 2 + iDims], iElements * sizeof(int));
-
-                list->set(i, pInt32);
+                list->set(i, decode<types::Int32>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabUInt32:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = iElements;
-
-                types::UInt32* pUInt32 = new types::UInt32(iDims, pDims);
-                delete[] pDims;
-
-                memcpy(pUInt32->get(), &prop_content[index + 2 + iDims], iElements * sizeof(unsigned int));
-
-                list->set(i, pUInt32);
+                list->set(i, decode<types::UInt32>(prop_it));
                 break;
-            }
+            case types::InternalType::ScilabInt64:
+                list->set(i, decode<types::Int64>(prop_it));
+                break;
+            case types::InternalType::ScilabUInt64:
+                list->set(i, decode<types::UInt64>(prop_it));
+                break;
             case types::InternalType::ScilabString:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-
-                types::String* pString = new types::String(iDims, pDims);
-                delete[] pDims;
-
-                for (int j = 0; j < iElements; ++j)
-                {
-                    int strLen = prop_content[index + 2 + iDims + numberOfIntNeeded];
-
-                    wchar_t* str = new wchar_t[strLen + 1];
-                    memcpy(str, &prop_content[index + 2 + iDims + numberOfIntNeeded + 1], strLen * sizeof(wchar_t));
-                    str[strLen] = '\0';
-                    pString->set(j, str);
-                    delete[] str;
-
-                    numberOfIntNeeded += 1 + strLen;
-                }
-                list->set(i, pString);
+                list->set(i, decode<types::String>(prop_it));
                 break;
-            }
             case types::InternalType::ScilabBool:
-            {
-                iDims = prop_content[index + 1];
-                pDims = new int[iDims];
-                for (int j = 0; j < iDims; ++j)
-                {
-                    pDims[j] = prop_content[index + 2 + j];
-                    iElements *= pDims[j];
-                }
-                numberOfIntNeeded = iElements;
-
-                types::Bool* pBool = new types::Bool(iDims, pDims);
-                delete[] pDims;
-
-                memcpy(pBool->get(), &prop_content[index + 2 + iDims], iElements * sizeof(int));
-                list->set(i, pBool);
+                list->set(i, decode<types::Bool>(prop_it));
                 break;
-            }
-            default:
-                return 0;
+            case types::InternalType::ScilabList:
+                list->set(i, decode<types::List>(prop_it));
+                break;
         }
-
-        index += 2 + iDims + numberOfIntNeeded;
     }
-
     return list;
 }
 
-bool setPropList(ModelAdapter& adaptor, Controller& controller, const object_properties_t prop, types::InternalType* v)
+bool encode(std::vector<int>& prop_content, types::List* list)
 {
-    ScicosID adaptee = adaptor.getAdaptee()->id();
-
-    if (v->getType() == types::InternalType::ScilabDouble)
-    {
-        types::Double* current = v->getAs<types::Double>();
-        if (current->getSize() != 0)
-        {
-            return false;
-        }
-
-        std::vector<int> prop_content;
-        controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
-        return true;
-    }
-
-    if (v->getType() != types::InternalType::ScilabList)
-    {
-        return false;
-    }
-
-    types::List* list = v->getAs<types::List>();
-
-    // 'prop_content' will be a buffer containing the elements of the list, copied into 'int' type by bits
-    std::vector<int> prop_content (1, list->getSize()); // Save the number of list elements in the first element
-    int index = 1; // Index to point at every new list element
+    // Save the number of list elements in the first element
+    prop_content.push_back(list->getSize());
 
     for (int i = 0; i < list->getSize(); ++i)
     {
-        // Save the variable type
-        prop_content.resize(prop_content.size() + 1);
-        prop_content[index] = list->get(i)->getType();
-        // The two previous lines could be simplified to 'prop_content.push_back(list->get(i)->getType());' but they explicit 'index' role
+        // Insert a new element and save its variable type
+        prop_content.push_back(list->get(i)->getType());
 
-        int  iDims;
-        int* pDims;
-        int  iElements = 1;
-        int  numberOfIntNeeded = 0;
         switch (list->get(i)->getType())
         {
             case types::InternalType::ScilabDouble:
-            {
-                types::Double* pDouble = list->get(i)->getAs<types::Double>();
-                iDims = pDouble->getDims();
-                pDims = pDouble->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                if (!pDouble->isComplex())
-                {
-                    // It takes 2 int (4 bytes) to save 1 real (1 double: 8 bytes)
-                    // So reserve '2*iElements', '1 + iDims' integers for the matrix dimensions and 1 for the complexity
-                    numberOfIntNeeded = 1 + 2 * iElements;
-                    prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-                    prop_content[index + 2 + iDims] = 0; // Flag for real
-
-                    // Using contiguity of the memory, we save the input into 'prop_content'
-                    memcpy(&prop_content[index + 2 + iDims + 1], pDouble->getReal(), iElements * sizeof(double));
-                }
-                else
-                {
-                    // It takes 4 int (4 bytes) to save 1 complex (2 double: 16 bytes)
-                    // So reserve '4*iElements', '1 + iDims' integers for the matrix dimensions and 1 for the complexity
-                    numberOfIntNeeded = 1 + 4 * iElements;
-                    prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-                    prop_content[index + 2 + iDims] = 1; // Flag for complex
-
-                    // Contiguously save the real and complex parts
-                    memcpy(&prop_content[index + 2 + iDims + 1], pDouble->getReal(), iElements * sizeof(double));
-                    memcpy(&prop_content[index + 2 + iDims + 1 + 2 * iElements], pDouble->getImg(), iElements * sizeof(double));
-                }
+                encode(prop_content, list->get(i)->getAs<types::Double>());
                 break;
-            }
             case types::InternalType::ScilabInt8:
-            {
-                types::Int8* pInt8 = list->get(i)->getAs<types::Int8>();
-                iDims = pInt8->getDims();
-                pDims = pInt8->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 4 char (1 byte)
-                // So reserve 'iElements/4' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                // Use a buffer to fill the entirety of 'prop_content'
-                char* buffer = new char[numberOfIntNeeded * 4];
-                memcpy(buffer, pInt8->get(), iElements * sizeof(char));
-                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
-                delete[] buffer;
+                encode(prop_content, list->get(i)->getAs<types::Int8>());
                 break;
-            }
             case types::InternalType::ScilabUInt8:
-            {
-                types::UInt8* pUInt8 = list->get(i)->getAs<types::UInt8>();
-                iDims = pUInt8->getDims();
-                pDims = pUInt8->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 4 unsigned char (1 byte)
-                // So reserve 'iElements/4' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = ((iElements - 1) / 4) + 1;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                // Use a buffer to fill the entirety of 'prop_content'
-                unsigned char* buffer = new unsigned char[numberOfIntNeeded * 4];
-                memcpy(buffer, pUInt8->get(), iElements * sizeof(unsigned char));
-                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
-                delete[] buffer;
+                encode(prop_content, list->get(i)->getAs<types::UInt8>());
                 break;
-            }
             case types::InternalType::ScilabInt16:
-            {
-                types::Int16* pInt16 = list->get(i)->getAs<types::Int16>();
-                iDims = pInt16->getDims();
-                pDims = pInt16->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 2 short int (2 bytes)
-                // So reserve 'iElements/2' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                // Use a buffer to fill the entirety of 'prop_content'
-                short int* buffer = new short int[numberOfIntNeeded * 2];
-                memcpy(buffer, pInt16->get(), iElements * sizeof(short int));
-                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
-                delete[] buffer;
+                encode(prop_content, list->get(i)->getAs<types::Int16>());
                 break;
-            }
             case types::InternalType::ScilabUInt16:
-            {
-                types::UInt16* pUInt16 = list->get(i)->getAs<types::UInt16>();
-                iDims = pUInt16->getDims();
-                pDims = pUInt16->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 2 unsigned short int (2 bytes)
-                // So reserve 'iElements/2' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = ((iElements - 1) / 2) + 1;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into prop_content
-                // Use a buffer to fill the entirety of 'prop_content'
-                unsigned short int* buffer = new unsigned short int[numberOfIntNeeded * 2];
-                memcpy(buffer, pUInt16->get(), iElements * sizeof(unsigned short int));
-                memcpy(&prop_content[index + 2 + iDims], buffer, numberOfIntNeeded * sizeof(int));
-                delete[] buffer;
+                encode(prop_content, list->get(i)->getAs<types::UInt16>());
                 break;
-            }
             case types::InternalType::ScilabInt32:
-            {
-                types::Int32* pInt32 = list->get(i)->getAs<types::Int32>();
-                iDims = pInt32->getDims();
-                pDims = pInt32->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 1 int (4 bytes)
-                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = iElements;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 2 + iDims], pInt32->get(), iElements * sizeof(int));
+                encode(prop_content, list->get(i)->getAs<types::Int32>());
                 break;
-            }
             case types::InternalType::ScilabUInt32:
-            {
-                types::UInt32* pUInt32 = list->get(i)->getAs<types::UInt32>();
-                iDims = pUInt32->getDims();
-                pDims = pUInt32->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 1 unsigned int (4 bytes)
-                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = iElements;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 2 + iDims], pUInt32->get(), iElements * sizeof(unsigned int));
+                encode(prop_content, list->get(i)->getAs<types::UInt32>());
                 break;
-            }
             case types::InternalType::ScilabInt64:
+                encode(prop_content, list->get(i)->getAs<types::Int64>());
+                break;
             case types::InternalType::ScilabUInt64:
-                // int64 and uint64 are not treated yet
-                return false;
+                encode(prop_content, list->get(i)->getAs<types::UInt64>());
+                break;
             case types::InternalType::ScilabString:
-            {
-                types::String* pString = list->get(i)->getAs<types::String>();
-                iDims = pString->getDims();
-                pDims = pString->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // For the moment, we don't know how many characters each string is long, so only reserve the matrix size
-                prop_content.resize(prop_content.size() + 1 + iDims);
-
-                for (int j = 0; j < iElements; ++j)
-                {
-                    // Extract the input string length and reserve as many characters in 'prop_content'
-                    int strLen = static_cast<int>(wcslen(pString->get(j)));
-                    prop_content.resize(prop_content.size() + 1 + strLen);
-                    prop_content[index + 2 + iDims + numberOfIntNeeded] = strLen;
-
-                    memcpy(&prop_content[index + 2 + iDims + numberOfIntNeeded + 1], pString->get(j), strLen * sizeof(wchar_t));
-                    numberOfIntNeeded += 1 + strLen;
-                }
+                encode(prop_content, list->get(i)->getAs<types::String>());
                 break;
-            }
             case types::InternalType::ScilabBool:
-            {
-                types::Bool* pBool = list->get(i)->getAs<types::Bool>();
-                iDims = pBool->getDims();
-                pDims = pBool->getDimsArray();
-                for (int j = 0; j < iDims; ++j)
-                {
-                    iElements *= pDims[j];
-                }
-
-                // It takes 1 int (4 bytes) to save 1 bool (1 int: 4 bytes)
-                // So reserve 'iElements' and '1+iDims' integers for the matrix dimensions
-                numberOfIntNeeded = iElements;
-                prop_content.resize(prop_content.size() + 1 + iDims + numberOfIntNeeded);
-
-                // Using contiguity of the memory, we save the input into 'prop_content'
-                memcpy(&prop_content[index + 2 + iDims], pBool->get(), iElements * sizeof(int));
+                encode(prop_content, list->get(i)->getAs<types::Bool>());
                 break;
-            }
             default:
                 return false;
         }
-        // Save the matrix (/hypermatrix) dimensions in 'prop_content' and increment index to match the next list element
-        prop_content[index + 1] = iDims;
-        for (int j = 0; j < iDims; ++j)
-        {
-            prop_content[index + 2 + j] = pDims[j];
-        }
-        index += 2 + iDims + numberOfIntNeeded;
     }
 
-    controller.setObjectProperty(adaptee, BLOCK, prop, prop_content);
     return true;
 }
 
@@ -890,12 +665,54 @@ struct odstate
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return getPropList(adaptor, controller, ODSTATE);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+
+        std::vector<int> prop_content;
+        controller.getObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
+
+        // corner-case, the empty content is an empty double
+        if (prop_content.empty())
+        {
+            return types::Double::Empty();
+        }
+
+        // the returned value is a list
+        std::vector<int>::iterator prop_it = prop_content.begin();
+        return decode<types::List>(prop_it);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setPropList(adaptor, controller, ODSTATE, v);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+        std::vector<int> prop_content;
+
+        // corner-case the empty content is an empty-double
+        if (v->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* current = v->getAs<types::Double>();
+            if (current->getSize() != 0)
+            {
+                return false;
+            }
+
+            // propr_content is empty
+            controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
+            return true;
+        }
+
+        if (v->getType() != types::InternalType::ScilabList)
+        {
+            return false;
+        }
+
+        types::List* list = v->getAs<types::List>();
+        if (!encode(prop_content, list))
+        {
+            return false;
+        }
+
+        controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
+        return true;
     }
 };
 
@@ -1147,12 +964,54 @@ struct opar
 
     static types::InternalType* get(const ModelAdapter& adaptor, const Controller& controller)
     {
-        return getPropList(adaptor, controller, OPAR);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+
+        std::vector<int> prop_content;
+        controller.getObjectProperty(adaptee, BLOCK, OPAR, prop_content);
+
+        // corner-case, the empty content is an empty double
+        if (prop_content.empty())
+        {
+            return types::Double::Empty();
+        }
+
+        // the returned value is a list
+        std::vector<int>::iterator prop_it = prop_content.begin();
+        return decode<types::List>(prop_it);
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        return setPropList(adaptor, controller, OPAR, v);
+        ScicosID adaptee = adaptor.getAdaptee()->id();
+        std::vector<int> prop_content;
+
+        // corner-case the empty content is an empty-double
+        if (v->getType() == types::InternalType::ScilabDouble)
+        {
+            types::Double* current = v->getAs<types::Double>();
+            if (current->getSize() != 0)
+            {
+                return false;
+            }
+
+            // prop_content should be empty
+            controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
+            return true;
+        }
+
+        if (v->getType() != types::InternalType::ScilabList)
+        {
+            return false;
+        }
+
+        types::List* list = v->getAs<types::List>();
+        if (!encode(prop_content, list))
+        {
+            return false;
+        }
+
+        controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
+        return true;
     }
 };
 
