@@ -444,12 +444,15 @@ function status = test_module(_params)
             printf(".");
         end
 
+        elapsedTimeBefore=toc();
         result = test_single(_params, tests(i,1), tests(i,2));
+        elapsedTimeAfter=toc();
 
         testsuite.tests = testsuite.tests + 1
 
         testsuite.testcase(i).name=tests(i,2);
-        //    testsuite.testcase(i).time= DONT HAVE YET
+        testsuite.testcase(i).time=elapsedTimeAfter-elapsedTimeBefore;
+        testsuite.testcase(i).skipped=(result.id >= 10) & (result.id < 20);
 
         if result.id == 0 then
             printf("passed\n");
@@ -860,7 +863,7 @@ function status = test_single(_module, _testPath, _testName)
 
         if getos() == "Linux" then // Ignore JOGL2 debug message
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "Info: XInitThreads() called for concurrent Thread support"
+            msg = "Error: unable to open display (null)"
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
@@ -1250,11 +1253,28 @@ function exportToXUnitFormat(exportToFile, testsuites)
             testsuite.children(j) = xmlElement(doc,"testcase");
             unitTest = module.testcase(j);
             testsuite.children(j).attributes.name = unitTest.name;
-
+            testsuite.children(j).attributes.time = string(unitTest.time);
+            testsuite.children(j).attributes.classname = getversion()+"."+module.name;
             if isfield(unitTest,"failure") & size(unitTest.failure,"*") >= 1 then
                 testsuite.children(j).children(1) = xmlElement(doc,"failure");
                 testsuite.children(j).children(1).attributes.type = unitTest.failure.type;
-                testsuite.children(j).children(1).content = unitTest.failure.content;
+                content = unitTest.failure.content;
+                for kL=1:size(content, "*")
+                    ampIdx = strindex(content(kL), "&");
+                    while ~isempty(ampIdx)
+                        cur = ampIdx(1);
+                        ampIdx(1) = [];
+                        if or(part(content(kL), (cur+1):(cur+3))==["gt;" "lt"]) then
+                            // Ignored
+                        else
+                            content(kL) = part(content(kL), 1:cur) + "amp;" + part(content(kL), (cur+1):$);
+                            ampIdx = strindex(part(content(kL), (cur+1):$), "&");
+                        end
+                    end
+                end
+                testsuite.children(j).children(1).content = content;
+            elseif unitTest.skipped then
+                testsuite.children(j).children(1) = xmlElement(doc,"skipped");
             end
         end
 
