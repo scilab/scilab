@@ -12,13 +12,10 @@
 
 #include "os_string.h"
 
-#ifdef __APPLE__
-wchar_t *macOSwcsdup(const wchar_t *_pwcsSource)
+wchar_t *_sciwcsdup(const wchar_t *_pwcsSource)
 {
     wchar_t * pwcsDest = (wchar_t *) malloc(sizeof(wchar_t) * (wcslen(_pwcsSource) + 1));
     wcscpy(pwcsDest, _pwcsSource);
 
     return pwcsDest;
 }
-#endif
-

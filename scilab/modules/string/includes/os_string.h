@@ -33,7 +33,20 @@
 
 // Linux
 #ifdef __linux__
+
+#if __GLIBC__ == 2 && __GLIBC_MINOR__ < 10
+/* Fixes crash issues with wcsdup when: */
+/* - Scilab is compiled against old GLIBC (<2.10) */
+/* - AND executed against recent GLIBC (>=2.10) */
+/* See man wcsdup */
+/* Using #define _GNU_SOURCE is not enough in Scilab because */
+/* <wchar.h> can be included before "os_string.h" */
+wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
+#define os_wcsdup       _sciwcsdup
+#else
 #define os_wcsdup       wcsdup
+#endif
+
 #define os_strdup       strdup
 #define os_swprintf     swprintf
 #define os_sprintf      sprintf
@@ -50,8 +63,8 @@
 
 // MacOS X
 #ifdef __APPLE__
-wchar_t *macOSwcsdup(const wchar_t *_pwcsSource);
-#define os_wcsdup       macOSwcsdup
+wchar_t *_sciwcsdup(const wchar_t *_pwcsSource);
+#define os_wcsdup       _sciwcsdup
 #define os_strdup       strdup
 #define os_swprintf     swprintf
 #define os_sprintf      sprintf
