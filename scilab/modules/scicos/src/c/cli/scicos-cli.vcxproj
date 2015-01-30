@@ -259,6 +259,8 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree3.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree4.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\copyvarfromlistentry.c" />
     <ClCompile Include="..\createblklist.c" />
@@ -296,8 +298,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sig2data.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_var2vec.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_vec2var.c" />
     <ClCompile Include="..\sciblk2.c" />
     <ClCompile Include="..\sciblk4.c" />
     <ClCompile Include="..\scicos.c" />
@@ -364,6 +364,9 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\elementary_functions\src\c\elementary_functions.vcxproj">
       <Project>{5b110267-7c18-437c-b87d-dba2b50729e9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\scicos_blocks\src\c\cli\scicos_blocks-cli.vcxproj">
       <Project>{424a5578-ba28-435f-8313-8d85886a3539}</Project>

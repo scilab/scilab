@@ -259,6 +259,8 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_new.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_setfield.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_validvar.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_var2vec.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\cpp\Controller.cpp" />
     <ClCompile Include="..\cpp\LoggerView.cpp" />
     <ClCompile Include="..\cpp\Model.cpp" />
@@ -313,8 +315,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\c\sci_set_blockerror.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_set_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_sig2data.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_var2vec.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_vec2var.c" />
     <ClCompile Include="sciblk2.c" />
     <ClCompile Include="sciblk4.c" />
     <ClCompile Include="scicos.c" />

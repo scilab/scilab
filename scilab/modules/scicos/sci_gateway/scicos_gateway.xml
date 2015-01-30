@@ -19,8 +19,6 @@
             Don't touch if you do not know what you are doing !
         -->
 <module name="scicos">
-    <gateway type="0" name="sci_var2vec" function="var2vec"/>
-    <gateway type="0" name="sci_vec2var" function="vec2var"/>
     <gateway type="0" name="sci_getblocklabel" function="getblocklabel"/>
     <gateway type="0" name="sci_scicos_debug" function="scicos_debug"/>
     <gateway type="0" name="sci_scicos_debug_count" function="scicos_debug_count"/>
@@ -56,4 +54,6 @@
     <gateway type="1" name="sci_scicos_new" function="scicos_new"/>
     <gateway type="1" name="sci_scicos_setfield" function="scicos_setfield"/>
     <gateway type="1" name="sci_validvar" function="validvar"/>
+    <gateway type="1" name="sci_var2vec" function="var2vec"/>
+    <gateway type="1" name="sci_vec2var" function="vec2var"/>
 </module>

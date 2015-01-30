@@ -79,7 +79,9 @@ sci_gateway/cpp/sci_ctree4.cpp \
 sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_scicos_new.cpp \
 sci_gateway/cpp/sci_scicos_setfield.cpp \
-sci_gateway/cpp/sci_validvar.cpp
+sci_gateway/cpp/sci_validvar.cpp \
+sci_gateway/cpp/sci_var2vec.cpp \
+sci_gateway/cpp/sci_vec2var.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
@@ -106,9 +108,7 @@ sci_gateway/c/sci_scicos_time.c \
 sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \
-sci_gateway/c/sci_sig2data.c \
-sci_gateway/c/sci_var2vec.c \
-sci_gateway/c/sci_vec2var.c
+sci_gateway/c/sci_sig2data.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
 sci_gateway/fortran/sci_f_curblock.f \
@@ -117,9 +117,7 @@ sci_gateway/fortran/sci_f_getblocklabel.f \
 sci_gateway/fortran/sci_f_scicos_debug.f \
 sci_gateway/fortran/sci_f_tree2.f \
 sci_gateway/fortran/sci_f_tree3.f \
-sci_gateway/fortran/sci_f_tree4.f \
-sci_gateway/fortran/sci_f_var2vec.f \
-sci_gateway/fortran/sci_f_vec2var.f
+sci_gateway/fortran/sci_f_tree4.f
 
 #### Multi-libraries handling ######
 

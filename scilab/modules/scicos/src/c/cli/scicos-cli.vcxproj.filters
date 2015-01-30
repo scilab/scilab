@@ -131,12 +131,6 @@
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sig2data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_var2vec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_vec2var.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\sciblk2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -180,6 +174,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

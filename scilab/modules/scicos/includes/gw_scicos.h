@@ -32,8 +32,6 @@
 SCICOS_IMPEXP int gw_scicos(void);
 
 /*--------------------------------------------------------------------------*/
-SCICOS_IMPEXP int sci_var2vec(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_vec2var(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_getblocklabel(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_scicos_debug(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_scicos_debug_count(char *fname, void* pvApiCtx);
