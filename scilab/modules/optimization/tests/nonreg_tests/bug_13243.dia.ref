@@ -27,6 +27,6 @@ endfunction
 x0 = 1*ones(5, 1);
 // Perform optimization:
 [fopt, xopt] = optim(myoptfunc, x0, "gc", imp=-1);
-optim: Norm of projected gradient lower than 0.000000.
+optim: Norm of projected gradient lower than 0.
 assert_checkequal(fopt, 0);
 assert_checkequal(xopt', 1:5);
