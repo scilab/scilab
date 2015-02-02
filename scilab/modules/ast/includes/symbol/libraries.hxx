@@ -257,6 +257,19 @@ struct Libraries
         return true;
     }
 
+    std::list<std::wstring>* whereis(const Symbol& _key)
+    {
+        std::list<std::wstring>* ret = new std::list<std::wstring>();
+
+        for (auto lib : libs)
+        {
+            if (lib.second->get(_key) != NULL)
+            {
+                ret->push_back(lib.first.getName());
+            }
+        }
+        return ret;
+    }
 
 private:
     MapLibs libs;

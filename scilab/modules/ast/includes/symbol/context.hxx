@@ -79,6 +79,7 @@ public :
     std::list<std::wstring>* getFunctionsName();
     std::list<std::wstring>* getVarsNameForWho(bool sorted);
     std::list<std::wstring>* getGlobalNameForWho(bool sorted);
+    std::list<std::wstring>* getWhereIs(const std::wstring& _str);
 
     /* global functions */
 

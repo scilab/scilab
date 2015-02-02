@@ -28,9 +28,6 @@ using namespace std;
 
 Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    InternalType *pIT = NULL;
-    wstring stModule;
-
     /* Check the number of input argument */
     if (in.size() != 1)
     {
@@ -49,38 +46,48 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
     {
         types::String* pS = in[0]->getAs<types::String>();
 
-        if (pS->getSize() != 1)
+        if (pS->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "whereis", 1);
             return Function::Error;
         }
 
-        ;
-        pIT = symbol::Context::getInstance()->getFunction(symbol::Symbol(pS->get(0)));
-        if (pIT == NULL)
+        std::list<std::wstring>* lst = symbol::Context::getInstance()->getWhereIs(pS->get(0));
+        if (lst == NULL || lst->empty())
         {
             out.push_back(types::Double::Empty());
+            if (lst)
+            {
+                delete lst;
+            }
             return Function::OK;
         }
+
+        types::String* pOut = new types::String(static_cast<int>(lst->size()), 1);
+        int i = 0;
+        for (std::wstring l : *lst)
+        {
+            pOut->set(i++, l.c_str());
+        }
+
+        out.push_back(pOut);
+        delete lst;
     }
     else
     {
-        pIT = in[0];
+        wstring stModule;
+        switch (in[0]->getType())
+        {
+            case InternalType::ScilabFunction:
+            case InternalType::ScilabMacro:
+            case InternalType::ScilabMacroFile:
+                out.push_back(new types::String(in[0]->getAs<Callable>()->getModule().c_str()));
+                break;
+            default:
+                out.push_back(types::Double::Empty());
+        }
     }
 
-    switch (pIT->getType())
-    {
-        case InternalType::ScilabFunction :
-        case InternalType::ScilabMacro :
-        case InternalType::ScilabMacroFile :
-            stModule = pIT->getAs<Callable>()->getModule();
-            break;
-        default :
-            out.push_back(types::Double::Empty());
-            return Function::OK;
-    }
-
-    out.push_back(new types::String(stModule.c_str()));
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

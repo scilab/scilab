@@ -244,6 +244,11 @@ std::list<std::wstring>* Context::getGlobalNameForWho(bool bSorted)
     return lstVar;
 }
 
+std::list<std::wstring>* Context::getWhereIs(const std::wstring& _str)
+{
+    return libraries.whereis(Symbol(_str));
+}
+
 void Context::put(Variable* _var, types::InternalType* _pIT)
 {
     if (_pIT->isLibrary())
