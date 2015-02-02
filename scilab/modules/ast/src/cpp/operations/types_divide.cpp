@@ -106,7 +106,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
                     sciprint(_("Warning : Division by zero...\n"));
                 }
                 break;
-                //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
+            //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
                 sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
@@ -459,18 +459,18 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
 
     size_t iSize = _pSp->nonZeros();
     int* Col = new int[iSize];
-    int* Row = new int[iSize];
+    int* Row = new int[_pSp->getRows()];
     _pSp->getColPos(Col);
     _pSp->getNbItemByRow(Row);
     int* iPositVal = new int[iSize];
 
-    int j = 0;
-    for (int i = 0; i < iSize; j++)
+    int idx = 0;
+    for (int i = 0; i < _pSp->getRows(); i++)
     {
-        for (int k = 0; k < Row[j]; k++)
+        for (int j = 0; j < Row[i]; j++)
         {
-            iPositVal[i] = (Col[i] - 1) * _pSp->getRows() + j;
-            i++;
+            iPositVal[idx] = (Col[idx] - 1) * _pSp->getRows() + i;
+            ++idx;
         }
     }
 

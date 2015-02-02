@@ -23,73 +23,6 @@ extern "C"
 
 using namespace types;
 
-namespace
-{
-template<typename DenseType>
-GenericType* buildSparse(Double SPARSE_CONST& indices, DenseType SPARSE_CONST& vals, Double SPARSE_CONST* pDim)
-{
-    GenericType* pRes = NULL;
-    InternalType* pVals = (InternalType*)&vals;
-    if (indices.isEmpty() && vals.isDouble() && pVals->getAs<Double>()->isEmpty())
-    {
-        //sparse([],[], ...)
-        if (pDim == NULL)
-        {
-            //sparse([], []) -> KO
-            return NULL;
-        }
-
-        //check pDims is a row vector(1,2)
-        if (pDim->getRows() != 1 || pDim->getCols() != 2)
-        {
-            return NULL;
-        }
-
-        //can create an empty sparse matrix
-        return new Sparse((int)pDim->get(0), (int)pDim->get(1));
-    }
-
-    if (indices.getRows() != vals.getSize() || (indices.getCols() != 2 && indices.getCols() != 0))
-    {
-        return NULL;
-    }
-
-    // indices must be >=1
-    if (*std::min_element(indices.getReal(), indices.getReal() + indices.getSize()) < 1)
-    {
-        return NULL;
-    }
-
-    if (pDim == NULL)
-    {
-        pRes = new typename types::SparseTraits<DenseType>::type(vals, indices);
-    }
-    else
-    {
-        // if three arguments are given the first two are the same for the case of two arugments and the third is a '1 x 2' vector for the size of the matrix
-        if (pDim->getRows() != 1 || pDim->getCols() != 2)
-        {
-            return NULL;
-        }
-
-        double* endOfRow(indices.getReal() + indices.getRows());
-        if (*std::max_element(indices.getReal(), endOfRow) > pDim->getReal(0, 0))
-        {
-            return NULL;
-        }
-
-        if (*std::max_element(endOfRow, endOfRow + indices.getRows()) > pDim->getReal(0, 1))
-        {
-            return NULL;
-        }
-
-        pRes = new typename types::SparseTraits<DenseType>::type(vals, indices, *pDim);
-    }
-    return pRes;
-}
-}
-
-
 Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &out)
 {
     bool isValid = true;
@@ -201,22 +134,40 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             }
         }
 
-        types::GenericType* pGT1 = in[0]->getAs<types::GenericType>();
+        Double* ij = in[0]->getAs<Double>();
         types::GenericType* pGT2 = in[1]->getAs<types::GenericType>();
 
-        if (pGT2->getSize() != pGT1->getRows())
+        if (pGT2->getSize() != ij->getRows())
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, pGT1->getRows());
+            Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of size %d expected.\n"), "sparse", 2, ij->getRows());
             return Function::Error;
+        }
+
+        bool alloc = false;
+        if (pDims == nullptr)
+        {
+            int size = ij->getRows();
+            double* i = ij->get();
+            double* j = i + ij->getRows();
+            pDims = new Double(1, 2, false);
+            pDims->set(0, *std::max_element(i, i + size));
+            pDims->set(1, *std::max_element(j, j + size));
         }
 
         if (in[1]->isDouble())
         {
-            pRetVal = buildSparse(*in[0]->getAs<Double>(), *in[1]->getAs<Double>(), pDims);
+            Double* dbl = pGT2->getAs<Double>();
+            pRetVal = new Sparse(*dbl, *ij, *pDims);
         }
         else
         {
-            pRetVal = buildSparse(*in[0]->getAs<Double>(), *in[1]->getAs<Bool>(), pDims);
+            Bool* b = pGT2->getAs<Bool>();
+            pRetVal = new SparseBool(*b, *ij, *pDims);
+        }
+
+        if (alloc)
+        {
+            delete pDims;
         }
     }
 

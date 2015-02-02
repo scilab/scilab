@@ -520,6 +520,7 @@ private :
      */
     template<typename DestIter>
     void create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n);
+    void create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE_CONST& idx);
 
     /** utility function used by insert functions conceptually : sp[destTrav]= src[srcTrav]
         @param src : data source
@@ -724,9 +725,7 @@ struct EXTERN_AST SparseBool : GenericType
     BoolSparse_t* matrixBool;
 
 private:
-    template<typename DestIter>
-    void create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, std::size_t n);
-
+    void create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
 };
 template<typename T>
 struct SparseTraits
