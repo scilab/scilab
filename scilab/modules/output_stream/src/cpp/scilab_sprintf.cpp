@@ -117,6 +117,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             pToken[iToken].pwstToken = new wchar_t[iEnd - iStart + 1];
             wcsncpy(pToken[iToken].pwstToken, pwstFirstOutput + iStart, iEnd - iStart);
             pToken[iToken].pwstToken[iEnd - iStart] = L'\0';
+            pToken[iToken].outputType = InternalType::ScilabNull;
 
             //identify destination type
             //format : %[flags][width][.precision][length]specifier
