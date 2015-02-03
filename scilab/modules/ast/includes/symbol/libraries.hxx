@@ -271,6 +271,18 @@ struct Libraries
         return ret;
     }
 
+    std::list<std::wstring>* librarieslist()
+    {
+        std::list<std::wstring>* ret = new std::list<std::wstring>();
+
+        for (auto lib : libs)
+        {
+            ret->push_back(lib.first.getName());
+        }
+
+        return ret;
+    }
+
 private:
     MapLibs libs;
 };

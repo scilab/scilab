@@ -249,6 +249,11 @@ std::list<std::wstring>* Context::getWhereIs(const std::wstring& _str)
     return libraries.whereis(Symbol(_str));
 }
 
+std::list<std::wstring>* Context::getLibrariesList()
+{
+    return libraries.librarieslist();
+}
+
 void Context::put(Variable* _var, types::InternalType* _pIT)
 {
     if (_pIT->isLibrary())

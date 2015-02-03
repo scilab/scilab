@@ -13,7 +13,9 @@ GATEWAY_CPP_SOURCES =  \
     sci_gateway/cpp/sci_execstr.cpp \
     sci_gateway/cpp/sci_getCurrentThreadId.cpp \
     sci_gateway/cpp/sci_getThreads.cpp \
-    sci_gateway/cpp/sci_macrovar.cpp
+    sci_gateway/cpp/sci_macrovar.cpp \
+    sci_gateway/cpp/sci_libraryinfo.cpp \
+    sci_gateway/cpp/sci_librarieslist.cpp
 
 libscifunctions_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
