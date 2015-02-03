@@ -89,13 +89,13 @@ libscijvm_la_include_HEADERS = \
     includes/getScilabObject.h
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_system_setproperty.c \
     sci_gateway/c/sci_javaclasspath.c \
     sci_gateway/c/gw_jvm.c \
     sci_gateway/c/sci_javalibrarypath.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_system_getproperty.cpp \
+    sci_gateway/cpp/sci_system_setproperty.cpp \
     sci_gateway/cpp/jvm_gw.cpp
 
 JVM_C_SOURCES = \

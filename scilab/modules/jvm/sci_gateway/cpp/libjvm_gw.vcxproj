@@ -176,9 +176,9 @@
   <ItemGroup>
     <ClCompile Include="..\c\sci_javaclasspath.c" />
     <ClCompile Include="..\c\sci_javalibrarypath.c" />
-    <ClCompile Include="..\c\sci_system_setproperty.c" />
     <ClCompile Include="jvm_gw.cpp" />
     <ClCompile Include="sci_system_getproperty.cpp" />
+    <ClCompile Include="sci_system_setproperty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_jvm_gw.h" />

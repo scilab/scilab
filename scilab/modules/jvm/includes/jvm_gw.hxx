@@ -34,5 +34,6 @@ public :
     }
 };
 CPP_GATEWAY_PROTOTYPE(sci_system_getproperty);
+CPP_GATEWAY_PROTOTYPE(sci_system_setproperty);
 
 #endif /* !__JVM_GW_HXX__ */
