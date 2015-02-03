@@ -21,7 +21,12 @@ function f = problem1(x)
 endfunction
 
 // Define the cost function:
-function [f, g, ind] = myoptfunc(x, ind)
+function [f, g, ind] = myoptfuncfixedstep(x, ind)
+    // Test based on old 'derivative' function
+    f = problem1(x);
+    g = numderivative(problem1, x, %eps^(1/4), order=4);
+endfunction
+function [f, g, ind] = myoptfuncvariablestep(x, ind)
     f = problem1(x);
     g = numderivative(problem1, x, order=4);
 endfunction
@@ -30,7 +35,13 @@ endfunction
 x0 = 1*ones(5, 1);
 
 // Perform optimization:
-[fopt, xopt] = optim(myoptfunc, x0, "gc", imp=-1);
+[fopt, xopt] = optim(myoptfuncfixedstep, x0, "gc", imp=-1);
+
+assert_checkequal(fopt, 0);
+assert_checkequal(xopt', 1:5);
+
+// Perform optimization:
+[fopt, xopt] = optim(myoptfuncvariablestep, x0, "gc", imp=-1);
 
 assert_checkequal(fopt, 0);
 assert_checkequal(xopt', 1:5);

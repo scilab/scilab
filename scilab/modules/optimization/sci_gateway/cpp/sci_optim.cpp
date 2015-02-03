@@ -108,33 +108,122 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             throw ast::ScilabMessage();
         }
 
-        if (_iRetCount > 6)
+        if (_iRetCount > 7)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 6);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 7);
             throw ast::ScilabMessage();
         }
 
         /*** get inputs arguments ***/
-        // get imp
-        if (opt.size() == 1 && opt[0].first == L"imp")
+
+        /*** get optionals ***/
+        for (int iOpt = 0 ; iOpt < opt.size() ; iOpt++)
         {
-            if (opt[0].second->isDouble() == false)
+            // "imp"
+            if (opt[iOpt].first == L"imp")
             {
-                Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "impl");
-                throw ast::ScilabMessage();
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
+                    throw ast::ScilabMessage();
+                }
+
+                types::Double* pDblImp = opt[iOpt].second->getAs<types::Double>();
+
+                if (pDblImp->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
+                    throw ast::ScilabMessage();
+                }
+
+                iImp = (int)pDblImp->get(0);
             }
-
-            types::Double* pDblImpl = opt[0].second->getAs<types::Double>();
-
-            if (pDblImpl->isScalar() == false)
+            // "nap"
+            else if (opt[iOpt].first == L"nap")
             {
-                Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "impl");
-                throw ast::ScilabMessage();
-            }
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "nap");
+                    throw ast::ScilabMessage();
+                }
 
-            iImp = (int)pDblImpl->get(0);
+                pDblNap = opt[iOpt].second->getAs<types::Double>();
+                if (pDblNap->isScalar() == false || pDblNap->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "nap");
+                    throw ast::ScilabMessage();
+                }
+
+                iNap = (int)pDblNap->get(0);
+            }
+            // "iter"
+            else if (opt[iOpt].first == L"iter")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "iter");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblIter = opt[iOpt].second->getAs<types::Double>();
+                if (pDblIter->isScalar() == false || pDblIter->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "iter");
+                    throw ast::ScilabMessage();
+                }
+
+                iItMax = (int)pDblIter->get(0);
+            }
+            // "epsg"
+            else if (opt[iOpt].first == L"epsg")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsg = opt[iOpt].second->getAs<types::Double>();
+                if (pDblEpsg->isScalar() == false || pDblEpsg->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
+                    throw ast::ScilabMessage();
+                }
+
+                dEpsg = pDblEpsg->get(0);
+            }
+            // "epsf"
+            else if (opt[iOpt].first == L"epsf")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsf = opt[iOpt].second->getAs<types::Double>();
+                if (pDblEpsf->isScalar() == false || pDblEpsf->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
+                    throw ast::ScilabMessage();
+                }
+
+                dEpsf = pDblEpsf->get(0);
+            }
+            // "epsx"
+            else if (opt[iOpt].first == L"epsx")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsx");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsx = opt[iOpt].second->getAs<types::Double>();
+                iEpsx = 0;
+                pdblEpsx = pDblEpsx->get();
+            }
         }
-
         // get costf
         opFunctionsManager = new OptimizationFunctions(L"optim");
         Optimization::addOptimizationFunctions(opFunctionsManager);
@@ -306,6 +395,12 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (iContr == 2 && (iSizeX0 != iSizeBinf || iSizeX0 != iSizeBsub))
         {
             Scierror(999, _("%s: Bounds and initial guess are incompatible.\n"), "optim");
+            throw ast::ScilabMessage();
+        }
+
+        if (pDblEpsx != NULL && (pDblEpsx->getSize() != iSizeX0))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"), "optim", "epsx");
             throw ast::ScilabMessage();
         }
 
