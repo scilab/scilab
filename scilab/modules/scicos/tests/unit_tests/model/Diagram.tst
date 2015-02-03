@@ -85,10 +85,10 @@ scs_m = scicos_diagram( objs=list(Sum,Scope1,lnk) );
 
 assert_checkequal(scs_m.objs(3).from, [1 1 0]);
 assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
-assert_checkequal(scs_m.objs(1).graphics.pout,  3);      // Check that block #1 is connected to lnk
-assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
-assert_checkequal(scs_m.objs(2).graphics.pin, [3; 0]);   // Check that block #2 is connected to lnk
-assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 
 
 //===================================================================================================
@@ -98,20 +98,20 @@ clear scs_m;
 lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
 scs_m = scicos_diagram( objs=list(Sum,Scope1) );
 
-assert_checkequal(scs_m.objs(1).graphics.pout,  0);      // Check that block #1 is not connected
-assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
-assert_checkequal(scs_m.objs(2).graphics.pin, [0; 0]);   // Check that block #2 is not connected
-assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
+assert_checkequal(scs_m.objs(1).graphics.pout,  0);  // Check that block #1 is not connected
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   0);  // Check that block #2 is not connected
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 
 scs_m.objs(3) = lnk;          // Add the predefined Link
 
 scs_m.objs
 assert_checkequal(scs_m.objs(3).from, [1 1 0]);
 assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
-assert_checkequal(scs_m.objs(1).graphics.pout,  3);      // Check that block #1 is connected to lnk
-assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
-assert_checkequal(scs_m.objs(2).graphics.pin, [3; 0]);   // Check that block #2 is connected to lnk
-assert_checkequal(scs_m.objs(2).model.in,     [-1; -1]); // "
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
 
 
 //===================================================================================================
@@ -137,8 +137,8 @@ assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
 
 assert_checkequal(scs_m.objs(2).graphics.pout,  1);
 assert_checkequal(scs_m.objs(2).model.out,     -1);
-assert_checkequal(scs_m.objs(3).graphics.pin, [1; 0]);
-assert_checkequal(scs_m.objs(3).model.in,     [-1; -1]);
+assert_checkequal(scs_m.objs(3).graphics.pin,   1);
+assert_checkequal(scs_m.objs(3).model.in,      -1);
 
 
 // Check that all the model items are freed

@@ -931,53 +931,13 @@ propertyUpdated( 41 , LINK , DESTINATION_PORT ) : SUCCESS
 propertyUpdated( 33 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 assert_checkequal(scs_m.objs(3).from, [1 1 0]);
 assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
-assert_checkequal(scs_m.objs(1).graphics.pout,  3);      // Check that block #1 is connected to lnk
-assert_checkequal(scs_m.objs(1).model.out,     -1);      // "
-assert_checkequal(scs_m.objs(2).graphics.pin, [3; 0]);   // Check that block #2 is connected to lnk
-assert_checkequal : Arguments d'entrée n°1 et n°2 incompatibles : Mêmes dimensions attendues.
-assert_checkequal(scs_m.objs(2).graphics.pin, [3;0])
-at line   103 of exec file called by :
-propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 10 , PORT )
-propertyUpdated( 9 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 11 , PORT )
-objectDeleted( 9 , BLOCK )
-propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 13 , PORT )
-propertyUpdated( 12 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : SUCCESS
-propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 14 , PORT )
-objectDeleted( 12 , BLOCK )
-propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 6 , PORT )
-propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 7 , PORT )
-propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 8 , PORT )
-objectDeleted( 5 , BLOCK )
-objectDeleted( 32 , LINK )
-objectDeleted( 15 , LINK )
-objectDeleted( 16 , LINK )
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
+//===================================================================================================
+// Test predefined link insertion
+clear scs_m;
 propertyUpdated( 33 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 34 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 34 , BLOCK , OUTPUTS ) : NO_CHANGES
@@ -1012,3 +972,618 @@ objectDeleted( 38 , BLOCK )
 propertyUpdated( 33 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 41 , LINK )
 objectDeleted( 33 , DIAGRAM )
+lnk   = scicos_link( from=[1 1 0],to=[2 1 1] );
+objectCreated( 42 , LINK )
+propertyUpdated( 42 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 42 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 42 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 42 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 42 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 42 , LINK , KIND ) : NO_CHANGES
+objectDeleted( 32 , LINK )
+scs_m = scicos_diagram( objs=list(Sum,Scope1) );
+objectCreated( 43 , DIAGRAM )
+propertyUpdated( 43 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , CONTEXT ) : NO_CHANGES
+objectCreated( 44 , BLOCK )
+propertyUpdated( 44 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 44 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 44 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 44 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 44 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 44 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 44 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 44 , BLOCK , EQUATIONS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 45 , PORT )
+propertyUpdated( 45 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 45 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 45 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 45 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 45 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 45 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 45 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 45 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+objectCreated( 46 , PORT )
+propertyUpdated( 46 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 46 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 46 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 46 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 46 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 46 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 46 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 46 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 47 , PORT )
+propertyUpdated( 47 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 47 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 47 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 47 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 47 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 47 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 47 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 47 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 44 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+objectCreated( 48 , BLOCK )
+propertyUpdated( 48 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 48 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 48 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 48 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 48 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 48 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 48 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 48 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 48 , BLOCK , EQUATIONS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 49 , PORT )
+propertyUpdated( 49 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 49 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 49 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 49 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 49 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 49 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 49 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 49 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 48 , BLOCK , OUTPUTS ) : NO_CHANGES
+objectCreated( 50 , PORT )
+propertyUpdated( 50 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 50 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 50 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 50 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 50 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 50 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 50 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 50 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 48 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 44 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 48 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 43 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+assert_checkequal(scs_m.objs(1).graphics.pout,  0);  // Check that block #1 is not connected
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   0);  // Check that block #2 is not connected
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
+scs_m.objs(3) = lnk;          // Add the predefined Link
+objectCreated( 51 , LINK )
+propertyUpdated( 51 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 51 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 51 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 51 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 51 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 51 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 51 , LINK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 51 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 51 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 43 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 51 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 47 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 51 , LINK , SOURCE_PORT ) : SUCCESS
+propertyUpdated( 49 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 51 , LINK , DESTINATION_PORT ) : SUCCESS
+scs_m.objs
+ ans  =
+             ans(1)
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 3
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+             ans(2)
+GUI     : CSCOPE
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          pin = 3
+          pout = []
+          pein = 0
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = []
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
+          style = ""
+Model   : 
+          cscope type: 4
+          in = -1
+          in2 = 1
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0;-15;15;30]
+          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+             ans(3)
+Link    :
+          xx: []
+          yy: []
+          id: 
+          thick: 0 0
+          ct: 1 1
+          from: 1 1 0
+          to: 2 1 1
+assert_checkequal(scs_m.objs(3).from, [1 1 0]);
+assert_checkequal(scs_m.objs(3).to,   [2 1 1]);
+assert_checkequal(scs_m.objs(1).graphics.pout,  3);  // Check that block #1 is connected to lnk
+assert_checkequal(scs_m.objs(1).model.out,     -1);  // "
+assert_checkequal(scs_m.objs(2).graphics.pin,   3);  // Check that block #2 is connected to lnk
+assert_checkequal(scs_m.objs(2).model.in,      -1);  // "
+//===================================================================================================
+// Test Links insertion before Block insertion
+clear scs_m;
+propertyUpdated( 43 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 44 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 44 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 45 , PORT )
+propertyUpdated( 44 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 44 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 46 , PORT )
+propertyUpdated( 44 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 44 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 44 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 51 , LINK , SOURCE_PORT ) : SUCCESS
+objectDeleted( 47 , PORT )
+objectDeleted( 44 , BLOCK )
+propertyUpdated( 43 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 48 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 48 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 51 , LINK , DESTINATION_PORT ) : SUCCESS
+objectDeleted( 49 , PORT )
+propertyUpdated( 48 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 48 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 48 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 50 , PORT )
+objectDeleted( 48 , BLOCK )
+propertyUpdated( 43 , DIAGRAM , CHILDREN ) : SUCCESS
+objectDeleted( 51 , LINK )
+objectDeleted( 43 , DIAGRAM )
+lnk   = scicos_link( from=[2 1 0],to=[3 1 1] );
+objectCreated( 52 , LINK )
+propertyUpdated( 52 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 52 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 52 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 52 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 52 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 52 , LINK , KIND ) : NO_CHANGES
+objectDeleted( 42 , LINK )
+scs_m = scicos_diagram();
+objectCreated( 53 , DIAGRAM )
+propertyUpdated( 53 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , CONTEXT ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+scs_m.objs(1) = lnk;          // Add the predefined Link
+objectCreated( 54 , LINK )
+propertyUpdated( 54 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 54 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 54 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 54 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 54 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 54 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 54 , LINK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 54 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 54 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 54 , LINK , PARENT_DIAGRAM ) : SUCCESS
+assert_checkequal(scs_m.objs(1).from, [2 1 0]);
+assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
+scs_m.objs(2) = Sum;          // Add the Block that lnk's 'from' points to
+objectCreated( 55 , BLOCK )
+propertyUpdated( 55 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 55 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 55 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 55 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 55 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 55 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 55 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 55 , BLOCK , EQUATIONS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 56 , PORT )
+propertyUpdated( 56 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 56 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 56 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 56 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 56 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 56 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 56 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 56 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+objectCreated( 57 , PORT )
+propertyUpdated( 57 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 57 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 57 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 57 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 57 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 57 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 57 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 57 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , INPUTS ) : SUCCESS
+objectCreated( 58 , PORT )
+propertyUpdated( 58 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 58 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 58 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 58 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 58 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 58 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 58 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 55 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 55 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 54 , LINK , SOURCE_PORT ) : SUCCESS
+scs_m.objs(3) = Scope1;       // Add the Block that lnk's 'to' points to
+objectCreated( 59 , BLOCK )
+propertyUpdated( 59 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
+propertyUpdated( 59 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
+propertyUpdated( 59 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
+propertyUpdated( 59 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , UID ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , STYLE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , GEOMETRY ) : SUCCESS
+propertyUpdated( 59 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , RPAR ) : SUCCESS
+propertyUpdated( 59 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 59 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , IPAR ) : SUCCESS
+propertyUpdated( 59 , BLOCK , EXPRS ) : SUCCESS
+propertyUpdated( 59 , BLOCK , EQUATIONS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
+objectCreated( 60 , PORT )
+propertyUpdated( 60 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 60 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 60 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 60 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 60 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 60 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 60 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 60 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 59 , BLOCK , OUTPUTS ) : NO_CHANGES
+objectCreated( 61 , PORT )
+propertyUpdated( 61 , PORT , FIRING ) : NO_CHANGES
+propertyUpdated( 61 , PORT , PORT_KIND ) : SUCCESS
+propertyUpdated( 61 , PORT , IMPLICIT ) : NO_CHANGES
+propertyUpdated( 61 , PORT , STYLE ) : NO_CHANGES
+propertyUpdated( 61 , PORT , LABEL ) : NO_CHANGES
+propertyUpdated( 61 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 61 , PORT , SOURCE_BLOCK ) : SUCCESS
+propertyUpdated( 61 , PORT , CONNECTED_SIGNALS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 59 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 59 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 54 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 60 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 54 , LINK , DESTINATION_PORT ) : SUCCESS
+scs_m.objs
+ ans  =
+             ans(1)
+Link    :
+          xx: []
+          yy: []
+          id: 
+          thick: 0 0
+          ct: 1 1
+          from: 2 1 0
+          to: 3 1 1
+             ans(2)
+GUI     : BIGSOM_f
+Graphics: 
+          orig = [0,0]
+          sz = [2,3]
+          flip = %t
+          theta = 0
+          exprs = "[1;1]"
+          pin = [0;0]
+          pout = 1
+          pein = []
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = ["E";"E"]
+          out_implicit = "E"
+          in_style = ["";""]
+          out_style = ""
+          in_label = ["";""]
+          out_label = ""
+          style = ""
+Model   : 
+          sum type: 2
+          in = [-1;-1]
+          in2 = [1;1]
+          intyp = [1;1]
+          out = -1
+          out2 = 1
+          outtyp = 1
+          evtin = []
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [1;1]
+          ipar = []
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+             ans(3)
+GUI     : CSCOPE
+Graphics: 
+          orig = [0,0]
+          sz = [2,2]
+          flip = %t
+          theta = 0
+          exprs = ["1 3 5 7 9 11 13 15";"-1";"[]";"[600;400]";"-15";"15";"30";"20";"0";""]
+          pin = 1
+          pout = []
+          pein = 0
+          peout = []
+          gr_i = []
+          id = ""
+          in_implicit = "E"
+          out_implicit = []
+          in_style = ""
+          out_style = ""
+          in_label = ""
+          out_label = ""
+          style = ""
+Model   : 
+          cscope type: 4
+          in = -1
+          in2 = 1
+          intyp = 1
+          out = []
+          out2 = []
+          outtyp = 1
+          evtin = 1
+          evtout = []
+          state = []
+          dstate = []
+          odstate = list()
+          rpar = [0;-15;15;30]
+          ipar = [-1;1;20;1;3;5;7;9;11;13;15;-1;-1;600;400]
+          opar = list()
+          blocktype = "c"
+          firing = []
+          dep_ut = [%t,%f]
+          label = ""
+          nzcross = 0
+          nmode = 0
+          equations = list()
+          uid = ""
+// Check that the linking has been done
+// Sum (#2 in diagram) is linked to Scope1 (#3) through lnk (#1)
+assert_checkequal(scs_m.objs(1).from, [2 1 0]);
+assert_checkequal(scs_m.objs(1).to,   [3 1 1]);
+assert_checkequal(scs_m.objs(2).graphics.pout,  1);
+assert_checkequal(scs_m.objs(2).model.out,     -1);
+assert_checkequal(scs_m.objs(3).graphics.pin,   1);
+assert_checkequal(scs_m.objs(3).model.in,      -1);
+// Check that all the model items are freed
+clear Sum Scope1 Scope2 lnk1 lnk2 lnk scs_m
+propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 6 , PORT )
+propertyUpdated( 5 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 7 , PORT )
+propertyUpdated( 5 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 5 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 8 , PORT )
+objectDeleted( 5 , BLOCK )
+propertyUpdated( 9 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 10 , PORT )
+propertyUpdated( 9 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 9 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 11 , PORT )
+objectDeleted( 9 , BLOCK )
+propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 13 , PORT )
+propertyUpdated( 12 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 14 , PORT )
+objectDeleted( 12 , BLOCK )
+objectDeleted( 15 , LINK )
+objectDeleted( 16 , LINK )
+objectDeleted( 52 , LINK )
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 58 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+propertyUpdated( 60 , PORT , CONNECTED_SIGNALS ) : SUCCESS
+objectDeleted( 54 , LINK )
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 55 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 55 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 56 , PORT )
+propertyUpdated( 55 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 55 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 57 , PORT )
+propertyUpdated( 55 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 55 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 55 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 58 , PORT )
+objectDeleted( 55 , BLOCK )
+propertyUpdated( 53 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 59 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 59 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 60 , PORT )
+propertyUpdated( 59 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 59 , BLOCK , EVENT_INPUTS ) : SUCCESS
+propertyUpdated( 59 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 61 , PORT )
+objectDeleted( 59 , BLOCK )
+objectDeleted( 53 , DIAGRAM )
