@@ -45,16 +45,46 @@ propertyUpdated( 3 , DIAGRAM , PATH ) : NO_CHANGES
 propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 propertyUpdated( 3 , DIAGRAM , PROPERTIES ) : NO_CHANGES
 propertyUpdated( 3 , DIAGRAM , CONTEXT ) : NO_CHANGES
-propertyUpdated( 2 , LINK , PARENT_DIAGRAM ) : SUCCESS
+objectCreated( 4 , LINK )
+propertyUpdated( 4 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 4 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 4 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 4 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 4 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 4 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 4 , LINK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 4 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 4 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 4 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 3 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+objectDeleted( 2 , LINK )
 b.model.rpar = d;
 propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , ODSTATE ) : NO_CHANGES
+objectCreated( 5 , DIAGRAM )
+propertyUpdated( 5 , DIAGRAM , TITLE ) : NO_CHANGES
+propertyUpdated( 5 , DIAGRAM , PATH ) : NO_CHANGES
+propertyUpdated( 5 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
+propertyUpdated( 5 , DIAGRAM , PROPERTIES ) : NO_CHANGES
+propertyUpdated( 5 , DIAGRAM , CONTEXT ) : NO_CHANGES
+objectCreated( 6 , LINK )
+propertyUpdated( 6 , LINK , COLOR ) : NO_CHANGES
+propertyUpdated( 6 , LINK , KIND ) : NO_CHANGES
+propertyUpdated( 6 , LINK , LABEL ) : NO_CHANGES
+propertyUpdated( 6 , LINK , CONTROL_POINTS ) : NO_CHANGES
+propertyUpdated( 6 , LINK , THICK ) : NO_CHANGES
+propertyUpdated( 6 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 6 , LINK , PARENT_BLOCK ) : NO_CHANGES
+propertyUpdated( 6 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 6 , LINK , DESTINATION_PORT ) : NO_CHANGES
+propertyUpdated( 5 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , LINK , PARENT_BLOCK ) : SUCCESS
 propertyUpdated( 1 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -68,5 +98,11 @@ assert_checkequal(b.model.rpar.objs(1).from, [3 3 0]);
 assert_checkequal(b.model.rpar.objs(1).to, [5 2 1]);
 // Check that all the model items are freed
 clear
+propertyUpdated( 5 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 1 , BLOCK , CHILDREN ) : SUCCESS
+objectDeleted( 6 , LINK )
+objectDeleted( 5 , DIAGRAM )
 objectDeleted( 1 , BLOCK )
+propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+objectDeleted( 4 , LINK )
+objectDeleted( 3 , DIAGRAM )

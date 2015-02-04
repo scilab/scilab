@@ -14,7 +14,6 @@
 #define PARAMSADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
 #include "BaseAdapter.hxx"
 
@@ -28,8 +27,8 @@ namespace view_scilab
 class ParamsAdapter : public BaseAdapter<ParamsAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    ParamsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
-    ParamsAdapter(const ParamsAdapter& adapter);
+    ParamsAdapter();
+    ParamsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~ParamsAdapter();
 
     static const std::wstring getSharedTypeStr()

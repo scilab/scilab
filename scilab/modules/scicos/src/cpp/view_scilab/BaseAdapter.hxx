@@ -19,7 +19,6 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <memory>
 
 #include "double.hxx"
 #include "user.hxx"
@@ -95,7 +94,6 @@ public:
     }
 };
 
-
 /**
  * Base definition of the adapter pattern, implement the get / set dispatch.
  *
@@ -106,17 +104,18 @@ class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(std::shared_ptr<Adaptee> adaptee) : m_adaptee(adaptee) {};
-    BaseAdapter(const BaseAdapter& adapter) : m_adaptee(0)
+    BaseAdapter() : m_adaptee(nullptr) {};
+    BaseAdapter(const Controller& /*c*/, Adaptee* adaptee) : m_adaptee(adaptee) {}
+    BaseAdapter(const BaseAdapter& adapter) : BaseAdapter(adapter, true) {}
+    BaseAdapter(const BaseAdapter& adapter, bool cloneChildren) : m_adaptee(nullptr)
     {
         Controller controller;
-        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id());
-        m_adaptee = std::static_pointer_cast<Adaptee>(controller.getObject(id));
+        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren);
+        m_adaptee = controller.getObject< Adaptee >(id);
     };
     ~BaseAdapter()
     {
-        // do not use adaptee.unique() as adaptee has not been destroyed yet
-        if (m_adaptee.use_count() == 2)
+        if (m_adaptee != nullptr)
         {
             Controller controller;
             controller.deleteObject(m_adaptee->id());
@@ -178,7 +177,6 @@ public:
             tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
         }
 
-        tlist->IncreaseRef();
         return tlist;
     }
 
@@ -233,7 +231,7 @@ public:
     /**
      * @return the Adaptee
      */
-    std::shared_ptr<Adaptee> getAdaptee() const
+    Adaptee* getAdaptee() const
     {
         return m_adaptee;
     }
@@ -442,7 +440,7 @@ private:
     }
 
 private:
-    std::shared_ptr<Adaptee> m_adaptee;
+    Adaptee* m_adaptee;
 };
 
 

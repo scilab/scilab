@@ -14,7 +14,6 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
-#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
@@ -803,8 +802,8 @@ struct to
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
-LinkAdapter::LinkAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Link> adaptee) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adaptee),
+LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee),
     m_from(),
     m_to()
 {

@@ -45,11 +45,11 @@ public:
 
     enum LogLevel getLevel() const
     {
-        return level;
+        return m_level;
     }
     void setLevel(enum LogLevel level)
     {
-        this->level = level;
+        this->m_level = level;
     }
 
     void log(enum LogLevel level, const std::stringstream& msg);
@@ -67,7 +67,7 @@ public:
     void propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u);
 
 private:
-    enum LogLevel level;
+    enum LogLevel m_level;
 };
 
 } /* namespace org_scilab_modules_scicos */

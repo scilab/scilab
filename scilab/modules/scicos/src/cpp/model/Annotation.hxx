@@ -27,16 +27,16 @@ namespace model
 class Annotation: public BaseObject
 {
 public:
-    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(0),
-        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), relatedTo(0)
+    Annotation(): BaseObject(ANNOTATION), m_parentDiagram(0), m_parentBlock(0),
+        m_description(std::string("Text")), m_font(std::string("2")), m_font_size(std::string("1")), m_relatedTo(0)
     {
         std::vector<double> geom (4, 0);
         geom[2] = 2;
         geom[3] = 1;
         m_geometry = Geometry(geom);
     };
-    Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_geometry(o.m_geometry),
-        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), relatedTo(o.relatedTo) {};
+    Annotation(const Annotation& o) : BaseObject(ANNOTATION), m_parentDiagram(o.m_parentDiagram), m_parentBlock(o.m_parentBlock), m_geometry(o.m_geometry),
+        m_description(o.m_description), m_font(o.m_font), m_font_size(o.m_font_size), m_relatedTo(o.m_relatedTo) {};
     ~Annotation() = default;
 
 private:
@@ -128,29 +128,47 @@ private:
         return SUCCESS;
     }
 
-    ScicosID getRelatedTo() const
+    void getParentBlock(ScicosID& v) const
     {
-        return relatedTo;
+        v = m_parentBlock;
     }
 
-    update_status_t setRelatedTo(ScicosID relatedTo)
+    update_status_t setParentBlock(const ScicosID v)
     {
-        if (this->relatedTo == relatedTo)
+        if (v == m_parentBlock)
         {
             return NO_CHANGES;
         }
 
-        this->relatedTo = relatedTo;
+        m_parentBlock = v;
+        return SUCCESS;
+    }
+
+    ScicosID getRelatedTo() const
+    {
+        return m_relatedTo;
+    }
+
+    update_status_t setRelatedTo(ScicosID relatedTo)
+    {
+        if (this->m_relatedTo == relatedTo)
+        {
+            return NO_CHANGES;
+        }
+
+        this->m_relatedTo = relatedTo;
         return SUCCESS;
     }
 
 private:
     ScicosID m_parentDiagram;
+    ScicosID m_parentBlock;
+
     Geometry m_geometry;
     std::string m_description;
     std::string m_font;
     std::string m_font_size;
-    ScicosID relatedTo;
+    ScicosID m_relatedTo;
 };
 
 } /* namespace model */

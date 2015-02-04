@@ -14,7 +14,6 @@
 #define STATEADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
 #include "BaseAdapter.hxx"
 
@@ -28,8 +27,8 @@ namespace view_scilab
 class StateAdapter : public BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    StateAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
-    StateAdapter(const StateAdapter& adapter);
+    StateAdapter();
+    StateAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~StateAdapter();
 
     static const std::wstring getSharedTypeStr()

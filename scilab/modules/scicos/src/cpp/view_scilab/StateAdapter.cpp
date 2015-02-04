@@ -11,7 +11,6 @@
  */
 
 #include <string>
-#include <memory>
 
 #include "internal.hxx"
 #include "types.hxx"
@@ -46,9 +45,7 @@ struct dummy_property
 } /* namespace */
 
 template<> property<StateAdapter>::props_t property<StateAdapter>::fields = property<StateAdapter>::props_t();
-
-StateAdapter::StateAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
-    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
+static void initialize_fields()
 {
     if (property<StateAdapter>::properties_have_not_been_set())
     {
@@ -64,9 +61,16 @@ StateAdapter::StateAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Dia
     }
 }
 
-StateAdapter::StateAdapter(const StateAdapter& adapter) :
-    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(adapter)
+StateAdapter::StateAdapter() :
+    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>()
 {
+    initialize_fields();
+}
+
+StateAdapter::StateAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<StateAdapter, org_scilab_modules_scicos::model::Diagram>(c, adaptee)
+{
+    initialize_fields();
 }
 
 StateAdapter::~StateAdapter()

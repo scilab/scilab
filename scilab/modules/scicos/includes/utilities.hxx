@@ -13,12 +13,10 @@
 #ifndef UTILITIES_HXX_
 #define UTILITIES_HXX_
 
-//#include <iostream>
-
 /**
  * A unique ID is used to represent a reference to any object in the model.
  *
- * The '0' value is used indicate that BaseObject is not handled by the controller.
+ * The 'ScicosID()' zero initialization value is used indicate that BaseObject is not handled by the controller.
  */
 typedef long long ScicosID;
 
@@ -53,7 +51,8 @@ enum kind_t
  */
 enum object_properties_t
 {
-    PARENT_DIAGRAM,     //!< model::Annotation::parentDiagram or model::Block::parentDiagram or model::Link::parentDiagram value
+    PARENT_DIAGRAM,     //!< model::*::parentDiagram value (used to locate the diagram layer)
+    PARENT_BLOCK,       //!< model::*::parentBlock value (used to locate the upper layer in case of SuperBlocks hierarchy)
     GEOMETRY,           //!< model::Annotation::geometry or model::Block::geometry value
     DESCRIPTION,        //!< model::Annotation::description text
     FONT,               //!< model::Annotation::description font
@@ -81,7 +80,6 @@ enum object_properties_t
     OPAR,               //!< model::Block::opar value
     EQUATIONS,          //!< model::Block::equations value
     UID,                //!< model::Block::uid value
-    PARENT_BLOCK,       //!< model::Block::parentBlock value
     CHILDREN,           //!< model::Block::children for superblocks or model::Diagram::children value
     PORT_REFERENCE,     //!< model::Block::portReference value
     STYLE,              //!< model::Block & Port::style value

@@ -15,7 +15,6 @@
 #include <string>
 #include <vector>
 #include <sstream>
-#include <memory>
 
 #include "list.hxx"
 #include "tlist.hxx"
@@ -1498,10 +1497,7 @@ struct style
 } /* namespace */
 
 template<> property<GraphicsAdapter>::props_t property<GraphicsAdapter>::fields = property<GraphicsAdapter>::props_t();
-
-GraphicsAdapter::GraphicsAdapter(std::shared_ptr<model::Block> adaptee) :
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adaptee),
-    gr_i_content(types::Double::Empty())
+static void initialize_fields()
 {
     if (property<GraphicsAdapter>::properties_have_not_been_set())
     {
@@ -1527,10 +1523,18 @@ GraphicsAdapter::GraphicsAdapter(std::shared_ptr<model::Block> adaptee) :
     }
 }
 
-GraphicsAdapter::GraphicsAdapter(const GraphicsAdapter& adapter) :
-    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(adapter),
-    gr_i_content(adapter.getGrIContent())
+GraphicsAdapter::GraphicsAdapter() :
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(),
+    gr_i_content(types::Double::Empty())
 {
+    initialize_fields();
+}
+
+GraphicsAdapter::GraphicsAdapter(const Controller& c, model::Block* adaptee) :
+    BaseAdapter<GraphicsAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
+    gr_i_content(types::Double::Empty())
+{
+    initialize_fields();
 }
 
 GraphicsAdapter::~GraphicsAdapter()
