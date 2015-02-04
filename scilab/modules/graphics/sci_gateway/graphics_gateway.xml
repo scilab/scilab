@@ -81,14 +81,13 @@
     <PRIMITIVE gatewayId="7" primitiveId="57" primitiveName="get"/>
     <PRIMITIVE gatewayId="7" primitiveId="58" primitiveName="set"/>
     <PRIMITIVE gatewayId="7" primitiveId="59" primitiveName="newaxes"/>
-    <PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="relocate_handle"/>
-    <PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="swap_handles"/>
-    <PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="rubberbox"/>
-    <PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="rotate_axes"/>
-    <PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="is_handle_valid"/>
-    <PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="captions"/>
-    <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="light"/>
-    <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="addcolor"/>
-    <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="name2rgb"/>
-    <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="color"/>
+    <PRIMITIVE gatewayId="7" primitiveId="60" primitiveName="swap_handles"/>
+    <PRIMITIVE gatewayId="7" primitiveId="61" primitiveName="rubberbox"/>
+    <PRIMITIVE gatewayId="7" primitiveId="62" primitiveName="rotate_axes"/>
+    <PRIMITIVE gatewayId="7" primitiveId="63" primitiveName="is_handle_valid"/>
+    <PRIMITIVE gatewayId="7" primitiveId="64" primitiveName="captions"/>
+    <PRIMITIVE gatewayId="7" primitiveId="65" primitiveName="light"/>
+    <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="addcolor"/>
+    <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="name2rgb"/>
+    <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="color"/>
 </GATEWAY>

@@ -20,6 +20,9 @@ Removed Functions
 
 * milk_drop removed.
 
+* relocate_handle removed.
+
+
 Scilab Bug Fixes
 ================
 

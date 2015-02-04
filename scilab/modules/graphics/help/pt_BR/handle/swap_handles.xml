@@ -116,9 +116,6 @@ swap_handles( axes1, axes2 ) ;
             <member>
                 <link linkend="delete">delete</link>
             </member>
-            <member>
-                <link linkend="relocate_handle">relocate_handle</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

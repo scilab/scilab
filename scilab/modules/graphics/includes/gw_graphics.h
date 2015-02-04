@@ -61,7 +61,6 @@ GRAPHICS_IMPEXP int sci_show_window(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_set(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_rubberbox(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_rotate_axes(char *fname, unsigned long fname_len);
-GRAPHICS_IMPEXP int sci_relocate_handle(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_plot3d(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_plot2d1(char *fname, unsigned long fname_len);
 GRAPHICS_IMPEXP int sci_plot2d1_1(char *fname, unsigned long fname_len);

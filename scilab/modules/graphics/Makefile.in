@@ -588,7 +588,6 @@ am__objects_2 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_plot3d.lo \
 	sci_gateway/c/libscigraphics_la-sci_move.lo \
 	sci_gateway/c/libscigraphics_la-sci_copy.lo \
-	sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo \
 	sci_gateway/c/libscigraphics_la-sci_get.lo \
 	sci_gateway/c/libscigraphics_la-sci_xarcs.lo \
 	sci_gateway/c/libscigraphics_la-sci_xfpoly.lo \
@@ -1384,7 +1383,6 @@ sci_gateway/c/sci_xarrows.c \
 sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \
 sci_gateway/c/sci_copy.c \
-sci_gateway/c/sci_relocate_handle.c \
 sci_gateway/c/sci_get.c \
 sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \
@@ -2865,9 +2863,6 @@ sci_gateway/c/libscigraphics_la-sci_move.lo:  \
 sci_gateway/c/libscigraphics_la-sci_copy.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_get.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -3006,7 +3001,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_plot2d.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_plot2d1.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_plot3d.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_relocate_handle.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_rotate_axes.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_rubberbox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_set.Plo@am__quote@
@@ -6263,13 +6257,6 @@ sci_gateway/c/libscigraphics_la-sci_copy.lo: sci_gateway/c/sci_copy.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_copy.c' object='sci_gateway/c/libscigraphics_la-sci_copy.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_copy.lo `test -f 'sci_gateway/c/sci_copy.c' || echo '$(srcdir)/'`sci_gateway/c/sci_copy.c
-
-sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo: sci_gateway/c/sci_relocate_handle.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_relocate_handle.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/c/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_relocate_handle.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_relocate_handle.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_relocate_handle.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_relocate_handle.c' object='sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_relocate_handle.lo `test -f 'sci_gateway/c/sci_relocate_handle.c' || echo '$(srcdir)/'`sci_gateway/c/sci_relocate_handle.c
 
 sci_gateway/c/libscigraphics_la-sci_get.lo: sci_gateway/c/sci_get.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_get.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_get.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_get.lo `test -f 'sci_gateway/c/sci_get.c' || echo '$(srcdir)/'`sci_gateway/c/sci_get.c
