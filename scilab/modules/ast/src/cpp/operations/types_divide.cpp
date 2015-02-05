@@ -59,7 +59,8 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** POLY / DOUBLE
     */
-    else if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
+    else if ((TypeL == GenericType::ScilabDollar || TypeL == GenericType::ScilabPolynom )
+             && TypeR == GenericType::ScilabDouble)
     {
         Polynom *pL = _pLeftOperand->getAs<types::Polynom>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -70,7 +71,8 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE / POLY
     */
-    else if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabPolynom)
+    else if (TypeL == GenericType::ScilabDouble
+             && (TypeR == GenericType::ScilabDollar || TypeR == GenericType::ScilabPolynom))
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Polynom *pR = _pRightOperand->getAs<types::Polynom>();
