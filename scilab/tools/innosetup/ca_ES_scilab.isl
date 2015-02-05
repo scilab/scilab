@@ -17,9 +17,9 @@ ca_ES.LANGUAGE =ca_ES
 
 ca_ES.MsgBoxJRENotFound =Java Runtime Environment not detected.
 ca_ES.MsgBoxJREURL =Please download & Install JRE at http://www.java.com/en/download/
-ca_ES.MsgBoxJREReinstall = Reinstall Scilab after your JRE update.
-ca_ES.MsgBoxSSERequired = CPU SSE2 instructions are required for Scilab to run correctly.
-ca_ES.MsgBoxX64Ready = For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
+ca_ES.MsgBoxJREReinstall =Reinstall Scilab after your JRE update.
+ca_ES.MsgBoxSSERequired =CPU SSE2 instructions are required for Scilab to run correctly.
+ca_ES.MsgBoxX64Ready =For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
 
 ca_ES.MsgBoxJavaDetection1 =Java is not installed on this computer and this program needs it.
 ca_ES.MsgBoxJavaDetection2 =Please choose to install Java Runtime:
@@ -66,21 +66,21 @@ ca_ES.DescriptionTclTK =TCL/TK in Scilab
 ca_ES.DescriptionSpreadsheet =Spreadsheet Toolbox
 ca_ES.DescriptionJVM =Java Runtime
 ca_ES.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
-ca_ES.DescriptionFftwModule = FFTW interface for Scilab
-ca_ES.DescriptionFftwMKLDownload = Download FFTW library optimized by Intel Math Kernel Library
-ca_ES.DescriptionRefFftwLibrary = Reference FFTW library
+ca_ES.DescriptionFftwModule =FFTW interface for Scilab
+ca_ES.DescriptionFftwMKLDownload =Download FFTW library optimized by Intel Math Kernel Library
+ca_ES.DescriptionRefFftwLibrary =Reference FFTW library
 ca_ES.DescriptionParametersTlbx =Parameters Toolbox
 ca_ES.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
 ca_ES.DescriptionSimulAnnealingTlbx =Simulated Annealing Toolbox
 ca_ES.DescriptionDevTools =Development Tools
 ca_ES.DescriptionTests =Tests for Scilab
-ca_ES.DescriptionTlbxSkeleton =A toolbox skeleton (to extend scilab)
-ca_ES.DescriptionComConnector = COM connector
-ca_ES.DescriptionSciNotes = SciNotes: Editor for Scilab
-ca_ES.DescriptionXcos = XCos 1.1
-ca_ES.DescriptionParallel = Parallel Computing with Scilab
-ca_ES.DescriptionModulesManager = Tools for management of extern modules 
-ca_ES.DescriptionModuleJVM = JVM Module
+ca_ES.DescriptionTlbxSkeleton =A toolbox skeleton (to extend Scilab)
+ca_ES.DescriptionComConnector =COM connector
+ca_ES.DescriptionSciNotes =SciNotes: Editor for Scilab
+ca_ES.DescriptionXcos =Xcos
+ca_ES.DescriptionParallel =Parallel Computing with Scilab
+ca_ES.DescriptionModulesManager =Tools for management of extern modules
+ca_ES.DescriptionModuleJVM =JVM Module
 ;
 ca_ES.ConsoleIconName =Scilab Console
 ;
@@ -102,15 +102,15 @@ ca_ES.DescriptionCreateDesktopIcon =Create a &desktop icon
 ;
 ca_ES.DescriptionQuickLaunch =Create a shortcut in Quick Launch Bar
 ;
-ca_ES.DescriptionAssociateSceSci =Associate *.sce,*.sci files with scilab
+ca_ES.DescriptionAssociateSceSci =Associate *.sce,*.sci files with Scilab
 ;
-ca_ES.DescriptionAssociateTstDem =Associate *.tst files with scilab
+ca_ES.DescriptionAssociateTstDem =Associate *.tst files with Scilab
 ;
-ca_ES.DescriptionAssociateBinSav =Associate *.bin, *.sav files with scilab
+ca_ES.DescriptionAssociateBinSav =Associate *.bin, *.sav files with Scilab
 ;
-ca_ES.DescriptionAssociateGraph =Associate *.graph *.graphb files with scilab
+ca_ES.DescriptionAssociateGraph =Associate *.graph *.graphb files with Scilab
 ;
-ca_ES.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scilab
+ca_ES.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with Scilab
 ;
 ca_ES.DescriptionDefaultInstall =Installation (Default)
 ca_ES.DescriptionFullInstall =Full installation
