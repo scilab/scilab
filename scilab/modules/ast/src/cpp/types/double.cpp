@@ -80,6 +80,61 @@ Double* Double::Identity(int _iDims, int* _piDims)
     return pI;
 }
 
+Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
+{
+    Double* pI = new Double(_iDims, _piDims);
+    pI->setZeros();
+    int iMinDim = _piDims[0];
+    for (int i = 1; i < _iDims; i++)
+    {
+        if (_piDims[i] < iMinDim)
+        {
+            iMinDim = _piDims[i];
+        }
+    }
+
+    for (int i = 0; i < iMinDim; i++)
+    {
+        int* piIndex = new int[_iDims];
+        for (int j = 0; j < _iDims; j++)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = getIndexWithDims(piIndex, _piDims, _iDims);
+        pI->set(index, _dblReal);
+    }
+    return pI;
+}
+
+Double* Double::Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg)
+{
+    Double* pI = new Double(_iDims, _piDims, true);
+    pI->setZeros();
+    int iMinDim = _piDims[0];
+    for (int i = 1; i < _iDims; i++)
+    {
+        if (_piDims[i] < iMinDim)
+        {
+            iMinDim = _piDims[i];
+        }
+    }
+
+    for (int i = 0; i < iMinDim; i++)
+    {
+        int* piIndex = new int[_iDims];
+        for (int j = 0; j < _iDims; j++)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = getIndexWithDims(piIndex, _piDims, _iDims);
+        pI->set(index, _dblReal);
+        pI->setImg(index, _dblImg);
+    }
+    return pI;
+}
+
 bool Double::isEmpty()
 {
     if (getDims() == 2 && getRows() == 0 && getCols() == 0)

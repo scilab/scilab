@@ -44,6 +44,8 @@ public :
     static Double*              Empty();
     static Double*              Identity(int _iRows, int _iCols);
     static Double*              Identity(int _iDims, int* _piDims);
+    static Double*              Identity(int _iDims, int* _piDims, double _dblReal);
+    static Double*              Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg);
 
 
     /*data management*/
@@ -142,10 +144,10 @@ public :
     inline ScilabId             getId(void)
     {
         return isIdentity() ? isComplex() ? IdIdentityComplex : IdIdentity
-       : isEmpty() ? IdEmpty
+               : isEmpty() ? IdEmpty
                : isComplex() ? isScalar() ? IdScalarDoubleComplex
                : IdDoubleComplex
-       : isScalar() ? IdScalarDouble
+               : isScalar() ? IdScalarDouble
                : IdDouble;
     }
 
