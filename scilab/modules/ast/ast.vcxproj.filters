@@ -628,6 +628,9 @@
     <ClInclude Include="src\cpp\ast\run_OpExp.hpp">
       <Filter>Header Files\ast</Filter>
     </ClInclude>
+    <ClInclude Include="includes\ast\treevisitor.hxx">
+      <Filter>Header Files\ast</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -887,6 +890,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\types\addfunction.cpp">
       <Filter>Source Files\types</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ast\treevisitor.cpp">
+      <Filter>Source Files\ast</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

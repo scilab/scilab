@@ -172,7 +172,8 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
-	sci_gateway/cpp/sci_analyzeroptions.cpp
+	sci_gateway/cpp/sci_analyzeroptions.cpp \
+	sci_gateway/cpp/sci_macr2tree.cpp
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

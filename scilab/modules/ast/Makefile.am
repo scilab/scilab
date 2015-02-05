@@ -31,6 +31,7 @@ src/cpp/ast/mutevisitor.cpp \
 src/cpp/ast/printvisitor.cpp \
 src/cpp/ast/runvisitor.cpp \
 src/cpp/ast/shortcutvisitor.cpp \
+src/cpp/ast/treevisitor.cpp \
 src/cpp/ast/visitor_common.cpp \
 src/cpp/operations/interface_addition.cpp \
 src/cpp/operations/operations.cpp \

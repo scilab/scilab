@@ -20,7 +20,7 @@ function tree=sci_angle(tree)
         n=A
     else
         n=gettempvar()
-        insert(Equal(list(n),A))
+        m2sci_insert(Equal(list(n),A))
     end
 
     realpart=Funcall("real",1,list(n),list())

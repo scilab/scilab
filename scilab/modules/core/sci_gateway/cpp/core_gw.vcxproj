@@ -182,6 +182,7 @@
     <ClCompile Include="sci_funptr.cpp" />
     <ClCompile Include="sci_getmemory.cpp" />
     <ClCompile Include="sci_ieee.cpp" />
+    <ClCompile Include="sci_macr2tree.cpp" />
     <ClCompile Include="sci_mode.cpp" />
     <ClCompile Include="sci_newfun.cpp" />
     <ClCompile Include="sci_sciargs.cpp" />

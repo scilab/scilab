@@ -26,7 +26,7 @@ function [tree]=sci_balance(tree)
         if tree.lhs(1).name=="ans" then
             B=gettempvar(1)
             T=gettempvar(2)
-            insert(Equal(list(B,T),tree))
+            m2sci_insert(Equal(list(B,T),tree))
             tree=B
         else
             T=gettempvar(2)

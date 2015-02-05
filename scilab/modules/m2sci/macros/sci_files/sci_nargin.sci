@@ -25,7 +25,7 @@ function [tree]=sci_nargin(tree)
         else
             fieldnb=2
         end
-        set_infos(msprintf(gettext("%s considered to be a Scilab macro."),rhs2code(tree.rhs)),2);
+        set_infos(msprintf(gettext("%s considered to be a Scilab macro."),strcat(rhs2code(tree.rhs), "")),2);
         evstrtree=Funcall("evstr",1,tree.rhs,list())
         macrovartree=Funcall("macrovar",1,Rhs_tlist(evstrtree),list())
         getfieldtree=Funcall("getfield",1,Rhs_tlist(fieldnb,macrovartree),list())

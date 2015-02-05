@@ -30,7 +30,7 @@ if rhs==1 then
     // All output dims are unknown
     tree.lhs(1).dims=allunknown(A.dims)
     tmp=gettempvar()
-    insert(Equal(list(tmp),A))
+    m2sci_insert(Equal(list(tmp),A))
     // First non singleton dimension will be computed at execution
     tree.rhs=Rhs_tlist(tmp,Funcall("firstnonsingleton",1,list(tmp),list()))
   else

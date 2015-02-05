@@ -30,7 +30,7 @@ class EXTERN_AST DummyVisitor : public ConstVisitor
 protected:
     DummyVisitor() {}
 
-    virtual void visit (const MatrixExp &e)
+    virtual void visit(const MatrixExp &e)
     {
         exps_t lines = e.getLines();
         for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)

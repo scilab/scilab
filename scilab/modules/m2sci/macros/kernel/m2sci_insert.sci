@@ -7,8 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function []=insert(instr,opt)
-
+function []=m2sci_insert(instr,opt)
     // Global variables for M2SCI
     global("m2sci_to_insert_b")
     global("m2sci_to_insert_a")
@@ -23,4 +22,5 @@ function []=insert(instr,opt)
     else
         m2sci_to_insert_a($+1)=instr
     end
+
 endfunction

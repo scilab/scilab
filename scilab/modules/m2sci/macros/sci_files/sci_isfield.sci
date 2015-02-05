@@ -24,7 +24,7 @@ function [tree]=sci_isfield(tree)
     else
         // allf=getfield(1,st);tf=or(allf(3:$)==f);
         allf=gettempvar()
-        insert(Equal(list(allf),Funcall("getfield",1,Rhs_tlist(1,st),list())))
+        m2sci_insert(Equal(list(allf),Funcall("getfield",1,Rhs_tlist(1,st),list())))
 
         imp=Operation(":",list(Cste(3),Cste("$")),list())
         ext=Operation("ext",list(allf,imp),list())

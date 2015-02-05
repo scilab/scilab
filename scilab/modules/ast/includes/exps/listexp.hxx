@@ -70,7 +70,7 @@ public:
 
     virtual ListExp* clone()
     {
-        ListExp* cloned = new ListExp(getLocation(), *getStart().clone(), *getStep().clone(), *getEnd().clone());
+        ListExp* cloned = new ListExp(getLocation(), *getStart().clone(), *getStep().clone(), *getEnd().clone(), hasExplicitStep());
         cloned->setVerbose(isVerbose());
         return cloned;
     }

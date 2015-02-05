@@ -142,13 +142,31 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     this->IncreaseRef();
     in.push_back(this);
 
+    std::wstring stType = getShortTypeStr();
     try
     {
-        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, _iRetCount, out, &execFunc);
+        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out, &execFunc);
     }
-    catch (ast::ScilabError & /*se*/)
+    catch (ast::ScilabError &se)
     {
-        ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        try
+        {
+            //to compatibility with scilab 5 code.
+            //tlist/mlist name are truncated to 8 first character
+            if (stType.size() > 8)
+            {
+                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
+                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, &execFunc);
+            }
+            else
+            {
+                throw se;
+            }
+        }
+        catch (ast::ScilabError & /*se*/)
+        {
+            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        }
     }
 
     // Remove this from "in" for keep "in" unchanged.

@@ -174,7 +174,8 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/ast/debugvisitor.cpp src/cpp/ast/expHistory.cpp \
 	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/mutevisitor.cpp \
 	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
-	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/visitor_common.cpp \
+	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
+	src/cpp/ast/visitor_common.cpp \
 	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
 	src/cpp/operations/types_addition.cpp \
@@ -244,6 +245,7 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/ast/libsciast_la-printvisitor.lo \
 	src/cpp/ast/libsciast_la-runvisitor.lo \
 	src/cpp/ast/libsciast_la-shortcutvisitor.lo \
+	src/cpp/ast/libsciast_la-treevisitor.lo \
 	src/cpp/ast/libsciast_la-visitor_common.lo \
 	src/cpp/operations/libsciast_la-interface_addition.lo \
 	src/cpp/operations/libsciast_la-operations.lo \
@@ -698,7 +700,8 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/ast/debugvisitor.cpp src/cpp/ast/expHistory.cpp \
 	src/cpp/ast/macrovarvisitor.cpp src/cpp/ast/mutevisitor.cpp \
 	src/cpp/ast/printvisitor.cpp src/cpp/ast/runvisitor.cpp \
-	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/visitor_common.cpp \
+	src/cpp/ast/shortcutvisitor.cpp src/cpp/ast/treevisitor.cpp \
+	src/cpp/ast/visitor_common.cpp \
 	src/cpp/operations/interface_addition.cpp \
 	src/cpp/operations/operations.cpp \
 	src/cpp/operations/types_addition.cpp \
@@ -1181,6 +1184,8 @@ src/cpp/ast/libsciast_la-runvisitor.lo: src/cpp/ast/$(am__dirstamp) \
 src/cpp/ast/libsciast_la-shortcutvisitor.lo:  \
 	src/cpp/ast/$(am__dirstamp) \
 	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
+src/cpp/ast/libsciast_la-treevisitor.lo: src/cpp/ast/$(am__dirstamp) \
+	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 src/cpp/ast/libsciast_la-visitor_common.lo:  \
 	src/cpp/ast/$(am__dirstamp) \
 	src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
@@ -1439,6 +1444,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-printvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-runvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-shortcutvisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-interface_addition.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/operations/$(DEPDIR)/libsciast_la-operations.Plo@am__quote@
@@ -1676,6 +1682,13 @@ src/cpp/ast/libsciast_la-shortcutvisitor.lo: src/cpp/ast/shortcutvisitor.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/shortcutvisitor.cpp' object='src/cpp/ast/libsciast_la-shortcutvisitor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-shortcutvisitor.lo `test -f 'src/cpp/ast/shortcutvisitor.cpp' || echo '$(srcdir)/'`src/cpp/ast/shortcutvisitor.cpp
+
+src/cpp/ast/libsciast_la-treevisitor.lo: src/cpp/ast/treevisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-treevisitor.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Tpo -c -o src/cpp/ast/libsciast_la-treevisitor.lo `test -f 'src/cpp/ast/treevisitor.cpp' || echo '$(srcdir)/'`src/cpp/ast/treevisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Tpo src/cpp/ast/$(DEPDIR)/libsciast_la-treevisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ast/treevisitor.cpp' object='src/cpp/ast/libsciast_la-treevisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/ast/libsciast_la-treevisitor.lo `test -f 'src/cpp/ast/treevisitor.cpp' || echo '$(srcdir)/'`src/cpp/ast/treevisitor.cpp
 
 src/cpp/ast/libsciast_la-visitor_common.lo: src/cpp/ast/visitor_common.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/ast/libsciast_la-visitor_common.lo -MD -MP -MF src/cpp/ast/$(DEPDIR)/libsciast_la-visitor_common.Tpo -c -o src/cpp/ast/libsciast_la-visitor_common.lo `test -f 'src/cpp/ast/visitor_common.cpp' || echo '$(srcdir)/'`src/cpp/ast/visitor_common.cpp

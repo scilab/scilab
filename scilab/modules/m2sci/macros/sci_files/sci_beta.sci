@@ -20,14 +20,14 @@ function [tree]=sci_beta(tree)
 
     if is_a_scalar(A) & not_a_scalar(B) then // A is a scalar but not B
         n=gettempvar()
-        insert(Equal(list(n),B))
-        insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),A))
+        m2sci_insert(Equal(list(n),B))
+        m2sci_insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),A))
         tree.rhs(1)=n
         tree.lhs(1).dims=B.dims
     elseif is_a_scalar(B) & not_a_scalar(A) then // B is be a scalar but not A
         n=gettempvar()
-        insert(Equal(list(n),A))
-        insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),B))
+        m2sci_insert(Equal(list(n),A))
+        m2sci_insert(Equal(list(Operation("ins",list(n,Cste(":")),list())),B))
         tree.rhs(2)=n
         tree.lhs(1).dims=A.dims
     elseif is_a_scalar(A) & is_a_scalar(B) then // Both A and B are scalars

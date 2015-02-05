@@ -255,6 +255,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\ast\dynlib_ast.h" />
     <ClInclude Include="includes\ast\execvisitor.hxx" />
     <ClInclude Include="includes\ast\expHistory.hxx" />
+    <ClInclude Include="includes\ast\treevisitor.hxx" />
     <ClInclude Include="includes\ast\macrovarvisitor.hxx" />
     <ClInclude Include="includes\ast\mutevisitor.hxx" />
     <ClInclude Include="includes\ast\printvisitor.hxx" />
@@ -424,6 +425,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\expHistory.cpp" />
+    <ClCompile Include="src\cpp\ast\treevisitor.cpp" />
     <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\mutevisitor.cpp" />
     <ClCompile Include="src\cpp\ast\printvisitor.cpp" />
