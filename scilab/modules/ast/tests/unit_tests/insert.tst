@@ -76,6 +76,9 @@ assert_checkequal(st.f.e, list(22, [], 112));
 
 st.f(2).j = 1124;
 assert_checkequal(st.f.j, list([], 1124, []));
+
+st.f.e = 5;
+assert_checkequal(st.f.e, list(5, 5, 5));
 clear st;
 
 //tlist
@@ -291,6 +294,11 @@ assert_checkequal(ml.ff.gg.ee, 44);
 clear tl;
 
 // List
+l=list();
+// call insertion overload
+err = execstr("l.x = 2;","errcatch");
+assert_checkequal(err, 999);
+
 st.l = list([1 2 3], "toto");
 st.l = 44;
 assert_checkequal(st.l, 44);
@@ -352,7 +360,9 @@ assert_checkequal(tl(2), 89);
 assert_checkequal(tl(3), 87);
 
 tl = tlist(["toto" "gg" "ff" "uu"], 45, 89, 87);
-//tl.gg = null();
+// call overload
+err = execstr("tl.gg = null();","errcatch");
+assert_checkequal(err, 999);
 
 function l=%0_i_toto(varargin)
     idx = find(varargin(3)(1) == varargin(1));
@@ -375,7 +385,9 @@ assert_checkequal(l(2), 89);
 assert_checkequal(l(3), 87);
 
 l = list(["toto" "gg" "ff" "uu"], 45, 89, 87);
-//l.gg = null();
+// call overload
+err = execstr("l.gg = null();","errcatch");
+assert_checkequal(err, 999);
 
 clear l;
 
