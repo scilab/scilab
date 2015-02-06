@@ -6,30 +6,29 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetFieldByNumber mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mxArray *value = mxGetFieldByNumber(prhs[0], 0, 1);';
-       '    if (value == NULL) value = mxCreateDoubleScalar(-1);';
-       '    plhs[0] = value;';
-       '}'],'mexgetFieldByNumber.c');
-ilib_mex_build('libmextest',['getFieldByNumber','mexgetFieldByNumber','cmex'], 'mexgetFieldByNumber.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mxArray *value = mxGetFieldByNumber(prhs[0], 0, 1);";
+"    if (value == NULL) value = mxCreateDoubleScalar(-1);";
+"    plhs[0] = value;";
+"}"],"mexgetFieldByNumber.c");
+ilib_mex_build("libmextest",["getFieldByNumber","mexgetFieldByNumber","cmex"], "mexgetFieldByNumber.c",[],"","","","");
+exec("loader.sce");
 
 c = struct("a", 5, "b", 2);
 r = getFieldByNumber(c);
-if r <> 2 then pause end
+assert_checkequal(r, 2);
 
 c = struct("b", 32);
 r = getFieldByNumber(c);
-if r <> -1 then pause end
+assert_checkequal(r, -1);
 
 r = getFieldByNumber(1);
-if r <> -1 then pause end
+assert_checkequal(r, -1);

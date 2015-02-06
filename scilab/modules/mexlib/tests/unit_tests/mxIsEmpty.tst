@@ -6,51 +6,50 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxIsEmpty mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        '';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '   int bEmpty = 0;';
-        '   mxArray* pOut = NULL;';
-        '';
-        '   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)';
-        '   {';
-        '       mexErrMsgTxt(""Wrong number or type of input argument"");';
-        '   }';
-        '';
-        '   bEmpty = mxIsEmpty(prhs[0]);';
-        '   pOut = mxCreateLogicalScalar(bEmpty);';
-        '   plhs[0] = pOut;';
-        '}'],'mexIsEmpty.c');
-ilib_mex_build('libmextest',['isEmpty','mexIsEmpty','cmex'], 'mexIsEmpty.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   int bEmpty = 0;";
+"   mxArray* pOut = NULL;";
+"";
+"   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)";
+"   {";
+"       mexErrMsgTxt(""Wrong number or type of input argument"");";
+"   }";
+"";
+"   bEmpty = mxIsEmpty(prhs[0]);";
+"   pOut = mxCreateLogicalScalar(bEmpty);";
+"   plhs[0] = pOut;";
+"}"],"mexIsEmpty.c");
+ilib_mex_build("libmextest",["isEmpty","mexIsEmpty","cmex"], "mexIsEmpty.c",[],"","","","");
+exec("loader.sce");
 
 a = list();
-if isEmpty(a) <> %t then pause end
+assert_checktrue(isEmpty(a));
 
 a = list(1);
-if isEmpty(a) <> %f then pause end
+assert_checkfalse(isEmpty(a));
 
 a = {};
-if isEmpty(a) <> %t then pause end
+assert_checktrue(isEmpty(a));
 
 a = {1};
-if isEmpty(a) <> %f then pause end
+assert_checkfalse(isEmpty(a));
 
 a = [];
-if isEmpty(a) <> %t then pause end
+assert_checktrue(isEmpty(a));
 
 a = [1];
-if isEmpty(a) <> %f then pause end
+assert_checkfalse(isEmpty(a));
 
 a = "";
-if isEmpty(a) <> %f then pause end
+assert_checkfalse(isEmpty(a));
 
 

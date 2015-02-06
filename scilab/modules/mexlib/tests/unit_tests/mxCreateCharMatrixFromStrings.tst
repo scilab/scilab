@@ -6,26 +6,25 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxCreateCharMatrixFromStrings mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '    char *strings[2];';
-        '    strings[0] = ""value"";';
-        '    strings[1] = ""another value"";';
-        '    mxArray *pOut = mxCreateCharMatrixFromStrings(2, strings);';
-        '    char *res = mxArrayToString(pOut);';
-        '    plhs[0] = pOut;';
-        '}'],'mexcreateCharMatrixFromStrings.c');
-ilib_mex_build('libmextest', ['createCharMatrixFromStrings', 'mexcreateCharMatrixFromStrings', 'cmex'], 'mexcreateCharMatrixFromStrings.c', [], 'Makelib', '', '', '');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    char *strings[2];";
+"    strings[0] = ""value"";";
+"    strings[1] = ""another value"";";
+"    mxArray *pOut = mxCreateCharMatrixFromStrings(2, strings);";
+"    char *res = mxArrayToString(pOut);";
+"    plhs[0] = pOut;";
+"}"],"mexcreateCharMatrixFromStrings.c");
+ilib_mex_build("libmextest", ["createCharMatrixFromStrings", "mexcreateCharMatrixFromStrings", "cmex"], "mexcreateCharMatrixFromStrings.c", [], "", "", "", "");
+exec("loader.sce");
 
 res = createCharMatrixFromStrings();
-if res(1) <> "value" then pause end
-if res(2) <> "another value" then pause end
+assert_checkequal(res(1), "value");
+assert_checkequal(res(2), "another value");

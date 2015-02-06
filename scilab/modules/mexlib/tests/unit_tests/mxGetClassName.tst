@@ -6,24 +6,23 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetClassName mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mexPrintf(mxGetClassName(prhs[0]));';
-       '}'],'mexgetClassName.c');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mexPrintf(mxGetClassName(prhs[0]));";
+"}"],"mexgetClassName.c");
 
-ilib_mex_build('libmextest',['printClassName','mexgetClassName','cmex'], 'mexgetClassName.c',[],'Makelib','','','');
-exec('loader.sce');
+ilib_mex_build("libmextest",["printClassName","mexgetClassName","cmex"], "mexgetClassName.c",[],"","","","");
+exec("loader.sce");
 
 printClassName(cell());
-printClassName('s');
+printClassName("s");
 printClassName(1);
 printClassName(sum);
 printClassName(int8(1));

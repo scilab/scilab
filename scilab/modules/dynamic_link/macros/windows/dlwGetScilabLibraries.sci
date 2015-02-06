@@ -31,6 +31,7 @@ function scilablibrarieslist = dlwGetScilabLibraries()
     "string.lib"; ..
     "threads.lib"; ..
     "sciconsole.lib"; ..
-    "scilab_windows.lib"];
+    "scilab_windows.lib"; ..
+    "libmex.lib"];
 endfunction
 //=============================================================================

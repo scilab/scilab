@@ -6,23 +6,22 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxSetDimentsions mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    int dims[2] = {2,2};';
-       '    mxSetDimensions(prhs[0], dims, 2);';
-       '}'],'mexsetDimensions.c');
-ilib_mex_build('libmextest',['setDimensions','mexsetDimensions','cmex'], 'mexsetDimensions.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    int dims[2] = {2,2};";
+"    mxSetDimensions(prhs[0], dims, 2);";
+"}"],"mexsetDimensions.c");
+ilib_mex_build("libmextest",["setDimensions","mexsetDimensions","cmex"], "mexsetDimensions.c",[],"","","","");
+exec("loader.sce");
 
 a = [3];
 setDimensions(a);
-if size(a, "*") <> 4 then pause end
-if a(1) <> 3 then pause end
+assert_checkequal(size(a, "*"), 4);
+assert_checkequal(a(1), 3);

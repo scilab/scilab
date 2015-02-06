@@ -6,24 +6,23 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxCreateLogicalArray mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        '';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '   int ndim = (int) mxGetScalar(prhs[0]);';
-        '   int *dims = (int *) mxGetData(prhs[1]);';
-        '   plhs[0] = mxCreateLogicalArray(ndim, dims);';
-        '}'],'mexCreateLogicalArray.c');
-ilib_mex_build('libmextest',['createLogicalArray', 'mexCreateLogicalArray', 'cmex'], 'mexCreateLogicalArray.c', [], 'Makelib', '', '', '');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   int ndim = (int) mxGetScalar(prhs[0]);";
+"   int *dims = (int *) mxGetData(prhs[1]);";
+"   plhs[0] = mxCreateLogicalArray(ndim, dims);";
+"}"],"mexCreateLogicalArray.c");
+ilib_mex_build("libmextest",["createLogicalArray", "mexCreateLogicalArray", "cmex"], "mexCreateLogicalArray.c", [], "", "", "", "");
+exec("loader.sce");
 
 a = createLogicalArray(4, int32([2 2 2 2]));
-if size(a, "*") <> 16 then pause end
-if typeof(a) <> "boolean" then pause end
+assert_checkequal(size(a, "*"), 16);
+assert_checkequal(typeof(a), "boolean");

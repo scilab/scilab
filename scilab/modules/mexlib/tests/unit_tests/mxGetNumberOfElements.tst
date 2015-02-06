@@ -6,44 +6,43 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetNumberOfElements mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '   int iSize = 0;';
-        '   mxArray* pOut = NULL;';
-        '';
-        '   if(nrhs != 1)';
-        '   {';
-        '       mexErrMsgTxt(""Wrong number of input argument"");';
-        '   }';
-        '';
-        '   iSize = mxGetNumberOfElements(prhs[0]);';
-        '   pOut = mxCreateDoubleScalar((double)iSize);';
-        '   plhs[0] = pOut;';
-        '}'],'mexGetNumberOfElements.c');
-ilib_mex_build('libmextest',['getNumberOfElements','mexGetNumberOfElements','cmex'], 'mexGetNumberOfElements.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   int iSize = 0;";
+"   mxArray* pOut = NULL;";
+"";
+"   if(nrhs != 1)";
+"   {";
+"       mexErrMsgTxt(""Wrong number of input argument"");";
+"   }";
+"";
+"   iSize = mxGetNumberOfElements(prhs[0]);";
+"   pOut = mxCreateDoubleScalar((double)iSize);";
+"   plhs[0] = pOut;";
+"}"],"mexGetNumberOfElements.c");
+ilib_mex_build("libmextest",["getNumberOfElements","mexGetNumberOfElements","cmex"], "mexGetNumberOfElements.c",[],"","","","");
+exec("loader.sce");
 
 a = ones(1);
 var = getNumberOfElements(a);
-if var <> size(a, "*") then pause end
+assert_checkequal(var, size(a, "*"));
 
 a = ones(1, 2);
 var = getNumberOfElements(a);
-if var <> size(a, "*") then pause end
+assert_checkequal(var, size(a, "*"));
 
 a = ones(1, 2, 3);
 var = getNumberOfElements(a);
-if var <> size(a, "*") then pause end
+assert_checkequal(var, size(a, "*"));
 
 a = ones(1, 2, 3, 4);
 var = getNumberOfElements(a);
-if var <> size(a, "*") then pause end
+assert_checkequal(var, size(a, "*"));
 

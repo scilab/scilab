@@ -6,34 +6,33 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxCreateNumericArray mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        '';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '   int piDims[3] = {4,3,2};';
-        '   int iDims = 3;';
-        '   mxClassID CLASS = 0;';
-        '   double* pdblType = NULL;';
-        '   mxArray* pOut = NULL;';
-        '';
-        '   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)';
-        '   {';
-        '       mexErrMsgTxt(""Wrong number or type of input argument"");';
-        '   }';
-        '';
-        '   pdblType = mxGetPr(prhs[0]);';
-        '   pOut = mxCreateNumericArray(iDims, piDims, (mxClassID)pdblType[0], mxREAL);';
-        '   plhs[0] = pOut;';
-        '}'],'mexCreateNumericArray.c');
-ilib_mex_build('libmextest',['createNumericArray','mexCreateNumericArray','cmex'], 'mexCreateNumericArray.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   int piDims[3] = {4,3,2};";
+"   int iDims = 3;";
+"   mxClassID CLASS = 0;";
+"   double* pdblType = NULL;";
+"   mxArray* pOut = NULL;";
+"";
+"   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)";
+"   {";
+"       mexErrMsgTxt(""Wrong number or type of input argument"");";
+"   }";
+"";
+"   pdblType = mxGetPr(prhs[0]);";
+"   pOut = mxCreateNumericArray(iDims, piDims, (mxClassID)pdblType[0], mxREAL);";
+"   plhs[0] = pOut;";
+"}"],"mexCreateNumericArray.c");
+ilib_mex_build("libmextest",["createNumericArray","mexCreateNumericArray","cmex"], "mexCreateNumericArray.c",[],"","","","");
+exec("loader.sce");
 
 ref_int8 = int8(1);
 ref_int8(4,3,2) = int8(1);

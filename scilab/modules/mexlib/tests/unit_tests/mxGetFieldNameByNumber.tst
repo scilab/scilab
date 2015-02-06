@@ -6,24 +6,23 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetFieldNameByNumber mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    int fieldnum = mxGetScalar(prhs[1]);';
-       '    char *fieldname = mxGetFieldNameByNumber(prhs[0], fieldnum);';
-       '    plhs[0] = mxCreateString(fieldname != NULL ? fieldname : """");';
-       '}'],'mexGetFieldNameByNumber.c');
-ilib_mex_build('libmextest',['getFieldNameByNumber','mexGetFieldNameByNumber','cmex'], 'mexGetFieldNameByNumber.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    int fieldnum = mxGetScalar(prhs[1]);";
+"    char *fieldname = mxGetFieldNameByNumber(prhs[0], fieldnum);";
+"    plhs[0] = mxCreateString(fieldname != NULL ? fieldname : """");";
+"}"],"mexGetFieldNameByNumber.c");
+ilib_mex_build("libmextest",["getFieldNameByNumber","mexGetFieldNameByNumber","cmex"], "mexGetFieldNameByNumber.c",[],"","","","");
+exec("loader.sce");
 
 s = struct("a", 1, "b", 2);
-if getFieldNameByNumber(s, 0) <> "a" then pause end
-if getFieldNameByNumber(s, 1) <> "b" then pause end
-if getFieldNameByNumber(s, 2) <> "" then pause end
+assert_checkequal(getFieldNameByNumber(s, 0), "a");
+assert_checkequal(getFieldNameByNumber(s, 1), "b");
+assert_checkequal(getFieldNameByNumber(s, 2), "");

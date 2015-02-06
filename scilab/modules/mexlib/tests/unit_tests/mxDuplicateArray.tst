@@ -6,30 +6,29 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxDuplicateArray mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        '';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '   mxArray* pOut = NULL;';
-        '';
-        '   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)';
-        '   {';
-        '       mexErrMsgTxt(""Wrong number or type of input argument"");';
-        '   }';
-        '';
-        '   pOut = mxDuplicateArray(prhs[0]);';
-        '   plhs[0] = pOut;';
-        '}'],'mexDuplicateArray.c');
-ilib_mex_build('libmextest',['duplicateArray','mexDuplicateArray','cmex'], 'mexDuplicateArray.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"   mxArray* pOut = NULL;";
+"";
+"   if(nrhs != 1 /*|| !mxIsDouble(prhs[0])*/)";
+"   {";
+"       mexErrMsgTxt(""Wrong number or type of input argument"");";
+"   }";
+"";
+"   pOut = mxDuplicateArray(prhs[0]);";
+"   plhs[0] = pOut;";
+"}"],"mexDuplicateArray.c");
+ilib_mex_build("libmextest",["duplicateArray","mexDuplicateArray","cmex"], "mexDuplicateArray.c",[],"","","","");
+exec("loader.sce");
 
 a = rand(4,3);
 b = duplicateArray(a);
-if a <> b then pause end
+assert_checkequal(a, b);

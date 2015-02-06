@@ -6,28 +6,27 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxCreateStructMatrix and mxCreateStructArray mex functions
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    int dims[2] = {3, 3};';
-       '    char *fields[2];';
-       '    fields[0] = ""f1"";';
-       '    fields[1] = ""f2"";';
-       '    plhs[0] = mxCreateStructArray(2, dims, 2, fields);';
-       '    plhs[1] = mxCreateStructMatrix(2, 2, 2, fields);';
-       '}'],'mexcreateStruct.c');
-ilib_mex_build('libmextest',['createStruct','mexcreateStruct','cmex'], 'mexcreateStruct.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    int dims[2] = {3, 3};";
+"    char *fields[2];";
+"    fields[0] = ""f1"";";
+"    fields[1] = ""f2"";";
+"    plhs[0] = mxCreateStructArray(2, dims, 2, fields);";
+"    plhs[1] = mxCreateStructMatrix(2, 2, 2, fields);";
+"}"],"mexcreateStruct.c");
+ilib_mex_build("libmextest",["createStruct","mexcreateStruct","cmex"], "mexcreateStruct.c",[],"","","","");
+exec("loader.sce");
 
 [out1, out2] = createStruct();
 
-if size(out1, "*") <> 9 then pause end
+assert_checkequal(size(out1, "*"), 9);
 
-if size(out2, "*") <> 4 then pause end
+assert_checkequal(size(out2, "*"), 4);

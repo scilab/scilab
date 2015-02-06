@@ -6,22 +6,21 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetInf mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    double dblInf = mxGetInf();';
-       '    mxArray* pOut = mxCreateDoubleScalar(dblInf);';
-       '    plhs[0] = pOut;';
-       '}'],'mexgetInf.c');
-ilib_mex_build('libmextest',['getInf','mexgetInf','cmex'], 'mexgetInf.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    double dblInf = mxGetInf();";
+"    mxArray* pOut = mxCreateDoubleScalar(dblInf);";
+"    plhs[0] = pOut;";
+"}"],"mexgetInf.c");
+ilib_mex_build("libmextest",["getInf","mexgetInf","cmex"], "mexgetInf.c",[],"","","","");
+exec("loader.sce");
 
 a = getInf();
-if a <> %inf then pause end
+assert_checkequal(a, %inf);

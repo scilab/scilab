@@ -7,7 +7,6 @@
 
 // <-- JVM NOT MANDATORY -->
 // <-- ENGLISH IMPOSED -->
-// <-- INTERACTIVE TEST -->
 // ============================================================================
 // Unitary tests for mexWarnMsgTxt mex function
 // ============================================================================
@@ -16,12 +15,12 @@ cd(TMPDIR);
 
 ilib_verbose(0);
 
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mexWarnMsgTxt(""If you read this message, mexWarnMsgTxt works!"");';
-       '}'],'mexwarnMsgTxt.c');
-ilib_mex_build('libmextest',['warnMsgTxt','mexwarnMsgTxt','cmex'], 'mexwarnMsgTxt.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mexWarnMsgTxt(""If you read this message, mexWarnMsgTxt works!"");";
+"}"],"mexwarnMsgTxt.c");
+ilib_mex_build("libmextest",["warnMsgTxt","mexwarnMsgTxt","cmex"], "mexwarnMsgTxt.c",[],"","","","");
+exec("loader.sce");
 
 warnMsgTxt()

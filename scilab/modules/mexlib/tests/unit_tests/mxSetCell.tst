@@ -6,27 +6,26 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxSetCell mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mxArray *pOut = mxCreateCellMatrix(3, 3);';
-       '    mxSetCell(pOut, 0, mxCreateDoubleScalar(1));';
-       '    mxSetCell(pOut, 5, mxCreateDoubleScalar(9));';
-       '    mxSetCell(pOut, 7, mxGetCell(pOut, 5));';
-       '    plhs[0] = pOut;';
-       '}'],'mexsetCell.c');
-ilib_mex_build('libmextest',['setCell','mexsetCell','cmex'], 'mexsetCell.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mxArray *pOut = mxCreateCellMatrix(3, 3);";
+"    mxSetCell(pOut, 0, mxCreateDoubleScalar(1));";
+"    mxSetCell(pOut, 5, mxCreateDoubleScalar(9));";
+"    mxSetCell(pOut, 7, mxGetCell(pOut, 5));";
+"    plhs[0] = pOut;";
+"}"],"mexsetCell.c");
+ilib_mex_build("libmextest",["setCell","mexsetCell","cmex"], "mexsetCell.c",[],"","","","");
+exec("loader.sce");
 
 out = setCell();
-if size(out) <> [3,3] then pause end;
+assert_checkequal(size(out), [3,3]);
 
-ref = {1,[],[];[],[],9;[],9,[]}
-if out <> ref then pause end;
+ref = {1,[],[];[],[],9;[],9,[]};
+assert_checkequal(out, ref);

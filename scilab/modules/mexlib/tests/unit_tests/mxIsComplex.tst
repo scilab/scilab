@@ -6,32 +6,31 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxIsComplex mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    bool isComplex = mxIsComplex(prhs[0]);';
-       '    mxArray* pOut = mxCreateLogicalScalar(isComplex);';
-       '    plhs[0] = pOut;';
-       '}'],'mexisComplex.c');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    bool isComplex = mxIsComplex(prhs[0]);";
+"    mxArray* pOut = mxCreateLogicalScalar(isComplex);";
+"    plhs[0] = pOut;";
+"}"],"mexisComplex.c");
 
-ilib_mex_build('libmextest',['isComplex','mexisComplex','cmex'], 'mexisComplex.c',[],'Makelib','','','');
-exec('loader.sce');
+ilib_mex_build("libmextest",["isComplex","mexisComplex","cmex"], "mexisComplex.c",[],"","","","");
+exec("loader.sce");
 
 a = isComplex(1);
-if a <> %f then pause end
+assert_checkfalse(a);
 
 a = isComplex(1+0*%i);
-if a <> %t then pause end
+assert_checktrue(a);
 
 a = isComplex(2+1*%i);
-if a <> %t then pause end
+assert_checktrue(a);
 
 a = isComplex(complex(1, 1));
-if a <> %t then pause end
+assert_checktrue(a);
