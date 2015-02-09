@@ -45,6 +45,8 @@ Scilab Bug Fixes
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
+* Bug #13725 fixed - Polyline was not correctly filled with big values.
+
 
 
                      Changes between version 5.5.0 and 5.5.1
