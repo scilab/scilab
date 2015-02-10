@@ -28,20 +28,28 @@ struct Parameter
 {
     std::vector<double> rpar;
     std::vector<int> ipar;
-    std::vector<int> opar;
+    std::vector<double> opar;
 
-    // opar default value is an empty list
-    Parameter() : rpar(), ipar(), opar(1, 0) {}
+    // opar default value is an empty list encoded by var2vec()
+    Parameter() : rpar(), ipar(), opar(2)
+    {
+        opar[0] = 22;
+        opar[1] = 0;
+    }
 };
 
 struct State
 {
     std::vector<double> state;
     std::vector<double> dstate;
-    std::vector<int> odstate;
+    std::vector<double> odstate;
 
-    // odstate default value is an empty list
-    State() : state(), dstate(), odstate(1, 0) {}
+    // odstate default value is an empty list encoded by var2vec()
+    State() : state(), dstate(), odstate(2)
+    {
+        odstate[0] = 22;
+        odstate[1] = 0;
+    }
 };
 
 /**
@@ -472,12 +480,12 @@ private:
         return SUCCESS;
     }
 
-    void getOpar(std::vector<int>& data) const
+    void getOpar(std::vector<double>& data) const
     {
         data = m_parameter.opar;
     }
 
-    update_status_t setOpar(const std::vector<int>& data)
+    update_status_t setOpar(const std::vector<double>& data)
     {
         if (data == m_parameter.opar)
         {
@@ -643,12 +651,12 @@ private:
         return SUCCESS;
     }
 
-    void getODState(std::vector<int>& data) const
+    void getODState(std::vector<double>& data) const
     {
         data = m_state.odstate;
     }
 
-    update_status_t setODState(const std::vector<int>& data)
+    update_status_t setODState(const std::vector<double>& data)
     {
         if (data == m_state.odstate)
         {

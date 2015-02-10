@@ -19,7 +19,6 @@
 #include <sstream>
 #include <memory>
 
-#include "int.hxx"
 #include "bool.hxx"
 #include "double.hxx"
 #include "string.hxx"
@@ -33,6 +32,9 @@
 #include "DiagramAdapter.hxx"
 #include "ports_management.hxx"
 #include "utilities.hxx"
+
+#include "var2vec.hxx"
+#include "vec2var.hxx"
 
 extern "C" {
 #include "sci_malloc.h"
@@ -368,298 +370,6 @@ struct dstate
     }
 };
 
-void decodeDims(std::vector<int>::iterator& prop_it, std::vector<int>& dims)
-{
-    const int iDims = *prop_it++;
-    dims.resize(iDims);
-
-    memcpy(&dims[0], &(*prop_it), iDims * sizeof(int));
-    prop_it += iDims;
-}
-
-void encodeDims(std::vector<int>& prop_content, types::GenericType* v)
-{
-    const int iDims = v->getDims();
-    prop_content.push_back(iDims);
-
-    const int index = prop_content.size();
-    prop_content.resize(index + iDims);
-
-    memcpy(&prop_content[index], v->getDimsArray(), iDims * sizeof(int));
-}
-
-/**
- * Calculate the length increment depending on the ::value_type of the buffer and the type of the Scilab type
- *
- * @param V buffer type which must have a ::value_type field
- * @param T Scilab type
- * @param v the instance on the Scilab type
- * @return the number of V elements used to store the data
- */
-template<typename V, typename T>
-size_t required_length(const V& /*it*/, T* v)
-{
-    const size_t sizeof_prop_value = sizeof(typename V::value_type);
-    if (sizeof(typename T::type) >= sizeof_prop_value)
-    {
-        return v->getSize() * sizeof(typename T::type) / sizeof_prop_value;
-    }
-    else
-    {
-        // increase the size to contain enough space, manage the size_t rounding issue
-        return v->getSize() * sizeof(typename T::type) + (sizeof_prop_value - 1) / sizeof_prop_value;
-    }
-}
-
-template <typename T>
-T* decode(std::vector<int>::iterator& prop_it)
-{
-    std::vector<int> dims;
-    decodeDims(prop_it, dims);
-
-    T* v = new T(static_cast<int>(dims.size()), &dims[0]);
-    memcpy(v->get(), &(*prop_it), v->getSize() * sizeof(typename T::type));
-
-    prop_it += required_length(prop_it, v);
-    return v;
-}
-
-template <typename T>
-bool encode(std::vector<int>& prop_content, T* v)
-{
-    encodeDims(prop_content, v);
-
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
-    prop_content.resize(index + len);
-
-    // Using contiguity of the memory, we save the input into 'prop_content'
-    memcpy(&prop_content[index], v->get(), v->getSize() * sizeof(typename T::type));
-    return true;
-}
-
-template<>
-types::Double* decode(std::vector<int>::iterator& prop_it)
-{
-    std::vector<int> dims;
-    decodeDims(prop_it, dims);
-
-    bool isComplex = *prop_it++;
-
-    types::Double* v = new types::Double(static_cast<int>(dims.size()), &dims[0], isComplex);
-    memcpy(v->getReal(), &(*prop_it), v->getSize() * sizeof(double));
-
-    if (isComplex)
-    {
-        prop_it += required_length(prop_it, v);
-        memcpy(v->getImg(), &(*prop_it), v->getSize() * sizeof(double));
-    }
-
-    prop_it += required_length(prop_it, v);
-    return v;
-}
-
-bool encode(std::vector<int>& prop_content, types::Double* v)
-{
-    encodeDims(prop_content, v);
-
-    // Flag for complex
-    prop_content.push_back(v->isComplex());
-
-    const int index = prop_content.size();
-    const int len = required_length(prop_content, v);
-    prop_content.resize(index + len);
-
-    // Using contiguity of the memory, we save the input into 'prop_content'
-    memcpy(&prop_content[index], v->get(), v->getSize() * sizeof(double));
-
-    if (v->isComplex())
-    {
-        prop_content.resize(index + 2 * len);
-        // Using contiguity of the memory, we save the input into 'prop_content'
-        memcpy(&prop_content[index + len], v->getImg(), v->getSize() * sizeof(double));
-    }
-
-    return true;
-}
-
-template<>
-types::String* decode(std::vector<int>::iterator& prop_it)
-{
-    std::vector<int> dims;
-    decodeDims(prop_it, dims);
-
-    types::String* v = new types::String(static_cast<int>(dims.size()), &dims[0]);
-    // retrieving the first value iterator
-    std::vector<int>::iterator strData = prop_it + v->getSize();
-
-    v->set(0, (char*) & (*strData));
-    strData += static_cast<size_t>(*prop_it++);
-    for (int i = 1; i < v->getSize(); i++)
-    {
-        v->set(i, (char*) & (*strData));
-
-        // increment the value iterator by the number of element
-        const size_t numberOfElem = static_cast<size_t>(*prop_it) - static_cast<size_t>(*(prop_it - 1)) ;
-        prop_it++;
-        strData += numberOfElem;
-    }
-
-    prop_it = strData;
-    return v;
-}
-
-bool encode(std::vector<int>& prop_content, types::String* v)
-{
-    encodeDims(prop_content, v);
-
-    const int index = prop_content.size();
-
-    std::vector<char*> utf8;
-    utf8.reserve(v->getSize());
-
-    std::vector<size_t> str_len;
-    str_len.reserve(v->getSize());
-
-    int offset = 0;
-    for (int i = 0; i < v->getSize(); i++)
-    {
-        char* str = wide_string_to_UTF8(v->get(i));
-        utf8.push_back(str);
-
-        // adding the '\0' byte to the len
-        const size_t len = strlen(str) + 1;
-        str_len.push_back(len);
-
-        offset += (len * sizeof(char) + sizeof(int) - 1) / sizeof(int);
-        prop_content.push_back(offset);
-    }
-
-    // reserve space for the string offsets and contents
-    prop_content.resize(index + v->getSize() + offset);
-
-    size_t len = str_len[0];
-    memcpy(&prop_content[index + v->getSize()], &(*utf8[0]), len * sizeof(char));
-    for (int i = 1; i < v->getSize(); i++)
-    {
-        len = str_len[i];
-        memcpy(&prop_content[index + v->getSize() + prop_content[index + i - 1]], &(*utf8[i]), len * sizeof(char));
-    }
-
-    // free all the string, after being copied
-    for (std::vector<char*>::iterator it = utf8.begin(); it != utf8.end(); it++)
-    {
-        FREE(*it);
-    }
-
-    return true;
-}
-
-
-template<>
-types::List* decode(std::vector<int>::iterator& prop_it)
-{
-    int length = *prop_it++;
-
-    types::List* list = new types::List();
-    for (int i = 0; i < length; i++)
-    {
-        switch (*prop_it++)
-        {
-            case types::InternalType::ScilabDouble:
-                list->set(i, decode<types::Double>(prop_it));
-                break;
-            case types::InternalType::ScilabInt8:
-                list->set(i, decode<types::Int8>(prop_it));
-                break;
-            case types::InternalType::ScilabUInt8:
-                list->set(i, decode<types::UInt8>(prop_it));
-                break;
-            case types::InternalType::ScilabInt16:
-                list->set(i, decode<types::Int16>(prop_it));
-                break;
-            case types::InternalType::ScilabUInt16:
-                list->set(i, decode<types::UInt16>(prop_it));
-                break;
-            case types::InternalType::ScilabInt32:
-                list->set(i, decode<types::Int32>(prop_it));
-                break;
-            case types::InternalType::ScilabUInt32:
-                list->set(i, decode<types::UInt32>(prop_it));
-                break;
-            case types::InternalType::ScilabInt64:
-                list->set(i, decode<types::Int64>(prop_it));
-                break;
-            case types::InternalType::ScilabUInt64:
-                list->set(i, decode<types::UInt64>(prop_it));
-                break;
-            case types::InternalType::ScilabString:
-                list->set(i, decode<types::String>(prop_it));
-                break;
-            case types::InternalType::ScilabBool:
-                list->set(i, decode<types::Bool>(prop_it));
-                break;
-            case types::InternalType::ScilabList:
-                list->set(i, decode<types::List>(prop_it));
-                break;
-        }
-    }
-    return list;
-}
-
-bool encode(std::vector<int>& prop_content, types::List* list)
-{
-    // Save the number of list elements in the first element
-    prop_content.push_back(list->getSize());
-
-    for (int i = 0; i < list->getSize(); ++i)
-    {
-        // Insert a new element and save its variable type
-        prop_content.push_back(list->get(i)->getType());
-
-        switch (list->get(i)->getType())
-        {
-            case types::InternalType::ScilabDouble:
-                encode(prop_content, list->get(i)->getAs<types::Double>());
-                break;
-            case types::InternalType::ScilabInt8:
-                encode(prop_content, list->get(i)->getAs<types::Int8>());
-                break;
-            case types::InternalType::ScilabUInt8:
-                encode(prop_content, list->get(i)->getAs<types::UInt8>());
-                break;
-            case types::InternalType::ScilabInt16:
-                encode(prop_content, list->get(i)->getAs<types::Int16>());
-                break;
-            case types::InternalType::ScilabUInt16:
-                encode(prop_content, list->get(i)->getAs<types::UInt16>());
-                break;
-            case types::InternalType::ScilabInt32:
-                encode(prop_content, list->get(i)->getAs<types::Int32>());
-                break;
-            case types::InternalType::ScilabUInt32:
-                encode(prop_content, list->get(i)->getAs<types::UInt32>());
-                break;
-            case types::InternalType::ScilabInt64:
-                encode(prop_content, list->get(i)->getAs<types::Int64>());
-                break;
-            case types::InternalType::ScilabUInt64:
-                encode(prop_content, list->get(i)->getAs<types::UInt64>());
-                break;
-            case types::InternalType::ScilabString:
-                encode(prop_content, list->get(i)->getAs<types::String>());
-                break;
-            case types::InternalType::ScilabBool:
-                encode(prop_content, list->get(i)->getAs<types::Bool>());
-                break;
-            default:
-                return false;
-        }
-    }
-
-    return true;
-}
-
 struct odstate
 {
 
@@ -667,24 +377,28 @@ struct odstate
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::vector<int> prop_content;
+        std::vector<double> prop_content;
         controller.getObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
 
-        // corner-case, the empty content is an empty double
+        // Corner-case, the empty content is an empty double
         if (prop_content.empty())
         {
             return types::Double::Empty();
         }
 
-        // the returned value is a list
-        std::vector<int>::iterator prop_it = prop_content.begin();
-        return decode<types::List>(prop_it);
+        // The returned value is a list
+        types::InternalType* res;
+        if (!vec2var(prop_content, res))
+        {
+            return 0;
+        }
+
+        return res;
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
-        std::vector<int> prop_content;
 
         // corner-case the empty content is an empty-double
         if (v->getType() == types::InternalType::ScilabDouble)
@@ -695,7 +409,8 @@ struct odstate
                 return false;
             }
 
-            // propr_content is empty
+            // prop_content is empty
+            std::vector<double> prop_content;
             controller.setObjectProperty(adaptee, BLOCK, ODSTATE, prop_content);
             return true;
         }
@@ -705,8 +420,8 @@ struct odstate
             return false;
         }
 
-        types::List* list = v->getAs<types::List>();
-        if (!encode(prop_content, list))
+        std::vector<double> prop_content;
+        if (!var2vec(v->getAs<types::List>(), prop_content))
         {
             return false;
         }
@@ -966,24 +681,28 @@ struct opar
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::vector<int> prop_content;
+        std::vector<double> prop_content;
         controller.getObjectProperty(adaptee, BLOCK, OPAR, prop_content);
 
-        // corner-case, the empty content is an empty double
+        // Corner-case, the empty content is an empty double
         if (prop_content.empty())
         {
             return types::Double::Empty();
         }
 
-        // the returned value is a list
-        std::vector<int>::iterator prop_it = prop_content.begin();
-        return decode<types::List>(prop_it);
+        // The returned value is a list
+        types::InternalType* res;
+        if (!vec2var(prop_content, res))
+        {
+            return 0;
+        }
+
+        return res;
     }
 
     static bool set(ModelAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
         ScicosID adaptee = adaptor.getAdaptee()->id();
-        std::vector<int> prop_content;
 
         // corner-case the empty content is an empty-double
         if (v->getType() == types::InternalType::ScilabDouble)
@@ -995,6 +714,7 @@ struct opar
             }
 
             // prop_content should be empty
+            std::vector<double> prop_content;
             controller.setObjectProperty(adaptee, BLOCK, OPAR, prop_content);
             return true;
         }
@@ -1004,8 +724,8 @@ struct opar
             return false;
         }
 
-        types::List* list = v->getAs<types::List>();
-        if (!encode(prop_content, list))
+        std::vector<double> prop_content;
+        if (!var2vec(v->getAs<types::List>(), prop_content))
         {
             return false;
         }

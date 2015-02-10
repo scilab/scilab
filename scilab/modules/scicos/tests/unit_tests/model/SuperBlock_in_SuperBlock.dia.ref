@@ -75,13 +75,13 @@ propertyUpdated( 5 , BLOCK , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , OPAR ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES

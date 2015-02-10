@@ -16,6 +16,8 @@ DISABLE_HELP_CLEAN=yes
 SCICOS_CXX_SOURCES = \
 src/cpp/il_state.cpp \
 src/cpp/il_sim.cpp \
+src/cpp/var2vec.cpp \
+src/cpp/vec2var.cpp \
 src/cpp/Controller.cpp \
 src/cpp/LoggerView.cpp \
 src/cpp/Model.cpp \

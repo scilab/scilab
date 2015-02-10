@@ -357,8 +357,12 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setState(v);
             case DSTATE:
                 return o->setDState(v);
+            case ODSTATE:
+                return o->setODState(v);
             case RPAR:
                 return o->setRpar(v);
+            case OPAR:
+                return o->setOpar(v);
             default:
                 break;
         }
@@ -416,16 +420,12 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case SIM_DEP_UT:
                 return o->setSimDepUT(v);
-            case ODSTATE:
-                return o->setODState(v);
             case NZCROSS:
                 return o->setNZcross(v);
             case NMODE:
                 return o->setNMode(v);
             case IPAR:
                 return o->setIpar(v);
-            case OPAR:
-                return o->setOpar(v);
             default:
                 break;
         }

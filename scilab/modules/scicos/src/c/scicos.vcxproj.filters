@@ -167,6 +167,12 @@
     <ClCompile Include="scilab5_needed_stubs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\var2vec.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\vec2var.cpp">
+      <Filter>Source Files\MVC</Filter>
+    </ClCompile>
     <ClCompile Include="..\cpp\Controller.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
@@ -339,6 +345,12 @@
     </ClInclude>
     <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\var2vec.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\vec2var.hxx">
+      <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
