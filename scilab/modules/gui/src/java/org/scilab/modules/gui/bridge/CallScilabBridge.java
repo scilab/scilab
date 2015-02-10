@@ -25,12 +25,14 @@ import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
+import java.awt.image.BufferedImage;
 import java.awt.print.PrinterJob;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.print.Doc;
 import javax.print.DocFlavor;
 import javax.print.DocPrintJob;
@@ -872,11 +874,28 @@ public class CallScilabBridge {
             if (isWindowsPlateform()) {
                 Figure figure = (Figure) GraphicController.getController().getObjectFromId(figID);
                 int figureID = figure.getId();
-                SwingScilabCanvas canvas;
-                canvas = ((SwingScilabDockablePanel) SwingView.getFromId(figID)).getContentCanvas();
-                ScilabPrint scilabPrint = new ScilabPrint(canvas.dumpAsBufferedImage(), printerJob, scilabPageFormat);
-                if (scilabPrint != null) {
-                    return true;
+                BufferedImage bimage = null;
+                if (figure.getVisible()) {
+                    bimage = ((SwingScilabDockablePanel) SwingView.getFromId(figID)).getContentCanvas().dumpAsBufferedImage();
+                } else {
+                    try {
+                        File tmpPrinterFile = File.createTempFile("scilabfigure", ".png");
+                        tmpPrinterFile.delete();
+                        FileExporter.fileExport(figID, tmpPrinterFile.getAbsolutePath(), "PNG", 1, 0);
+                        bimage = ImageIO.read(tmpPrinterFile);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        return false;
+                    }
+                }
+
+                if (bimage != null) {
+                    ScilabPrint scilabPrint = new ScilabPrint(bimage, printerJob, scilabPageFormat);
+                    if (scilabPrint != null) {
+                        return true;
+                    } else {
+                        return false;
+                    }
                 } else {
                     return false;
                 }

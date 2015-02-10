@@ -47,6 +47,7 @@ Scilab Bug Fixes
 
 * Bug #13725 fixed - Polyline was not correctly filled with big values.
 
+* Bug #13741 fixed - Impossible to print an invisible figure under Windows.
 
 
                      Changes between version 5.5.0 and 5.5.1
