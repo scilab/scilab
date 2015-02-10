@@ -49,6 +49,8 @@ Scilab Bug Fixes
 
 * Bug #13741 fixed - Impossible to print an invisible figure under Windows.
 
+* Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
+
 
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
