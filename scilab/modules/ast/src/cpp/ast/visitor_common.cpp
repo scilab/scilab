@@ -2064,12 +2064,20 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     throw ast::ScilabError(os.str(), 999, e.getLocation());
                 }
 
-                pStruct->addField(pS->get(0));
-                for (int i = 0; i < pStruct->getSize(); i++)
+                if (_pInsert->isListDelete())
                 {
-                    pStruct->get(i)->set(pS->get(0), _pInsert);
+                    /* Remove a field */
+                    pStruct->removeField(pS->get(0));
                 }
-
+                else
+                {
+                    /* Add a field */
+                    pStruct->addField(pS->get(0));
+                    for (int i = 0; i < pStruct->getSize(); i++)
+                    {
+                        pStruct->get(i)->set(pS->get(0), _pInsert);
+                    }
+                }
                 pRet = pStruct;
             }
             else // insert something in a struct
