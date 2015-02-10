@@ -378,6 +378,12 @@ public class SwingScilabLabel extends JScrollPane implements SwingViewObject, Si
                 return;
             }
 
+            if (labelText.startsWith("<a href") && labelText.endsWith("</a>")) {
+                changeLabelType(LabelStyle.HTML);
+                ((JEditorPane) label).setText(labelText);
+                return;
+            }
+
             if (labelText.startsWith("$") && labelText.endsWith("$")) {
                 boolean latex = ScilabSpecialTextUtilities.setText(new JLabel(), labelText);
 
