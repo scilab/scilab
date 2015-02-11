@@ -14,7 +14,7 @@
 #define MODEL_HXX_
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <string>
 #include <memory>
 
@@ -70,7 +70,7 @@ public:
 
 private:
     ScicosID lastId;
-    typedef std::map<ScicosID, std::shared_ptr<model::BaseObject> > objects_map_t;
+    typedef std::unordered_map<ScicosID, std::shared_ptr<model::BaseObject> > objects_map_t;
     objects_map_t allObjects;
 
     typedef std::vector<model::Datatype*> datatypes_set_t;

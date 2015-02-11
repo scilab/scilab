@@ -82,8 +82,8 @@ ScicosID Model::createObject(kind_t k)
     // full map, detection
     bool has_looped = false;
 
-    objects_map_t::iterator iter = allObjects.lower_bound(lastId);
-    while (iter != allObjects.end() && !(lastId < iter->first)) // while key is found
+    objects_map_t::iterator iter = allObjects.find(lastId);
+    while (iter != allObjects.end()) // while key is found
     {
         // try a valid ID
         lastId++;
@@ -100,7 +100,7 @@ ScicosID Model::createObject(kind_t k)
         }
 
         // look for it
-        iter = allObjects.lower_bound(lastId);
+        iter = allObjects.find(lastId);
     }
 
     /*
@@ -113,8 +113,8 @@ ScicosID Model::createObject(kind_t k)
 
 void Model::deleteObject(ScicosID uid)
 {
-    objects_map_t::iterator iter = allObjects.lower_bound(uid);
-    if (iter == allObjects.end() || uid < iter->first)
+    objects_map_t::iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
     {
         throw std::string("key has not been found");
     }
@@ -124,8 +124,8 @@ void Model::deleteObject(ScicosID uid)
 
 std::shared_ptr<model::BaseObject> Model::getObject(ScicosID uid) const
 {
-    objects_map_t::const_iterator iter = allObjects.lower_bound(uid);
-    if (iter == allObjects.end() || uid < iter->first)
+    objects_map_t::const_iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
     {
         throw std::string("key has not been found");
     }
