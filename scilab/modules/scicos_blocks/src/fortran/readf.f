@@ -1,23 +1,23 @@
 c     Scicos
-c     
+c
 c     Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
-c     
+c
 c     This program is free software; you can redistribute it and/or modify
 c     it under the terms of the GNU General Public License as published by
 c     the Free Software Foundation; either version 2 of the License, or
 c     (at your option) any later version.
-c     
+c
 c     This program is distributed in the hope that it will be useful,
 c     but WITHOUT ANY WARRANTY; without even the implied warranty of
 c     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
 c     GNU General Public License for more details.
-c     
+c
 c     You should have received a copy of the GNU General Public License
 c     along with this program; if not, write to the Free Software
 c     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
-c     
+c
 c     See the file ./license.txt
-c     
+c
 
       subroutine readf(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
      &     rpar,nrpar,ipar,nipar,u,nu,y,ny)
@@ -82,7 +82,9 @@ c     file opening
          lfil=ipar(1)
          ievt=ipar(3)
          N=ipar(4)
-         call cvstr(lfil,ipar(5),buf,1)
+         do 5, i=1,lfil
+            buf(i:i)=char(ipar(4+i))
+ 5       continue
          lfmt=ipar(2)
          lunit=0
          if(lfmt.gt.0) then
@@ -124,7 +126,9 @@ c     buffer initialisation
       return
  110  continue
       lfil=ipar(1)
-      call cvstr(lfil,ipar(5),buf,1)
+      do 6, i=1,lfil
+         buf(i:i)=char(ipar(4+i))
+ 6    continue
       call clunit(-lunit,buf(1:lfil),mode)
       call basout(io,wte,'Read error on file '//buf(1:lfil))
       flag=-1
@@ -165,7 +169,9 @@ c     unformatted read
       else
 c     formatted read
          if (fmttyp(ipar(5+ipar(1)),ipar(2)).ne.1) GOTO 100
-         call cvstr(ipar(2),ipar(5+ipar(1)),buf,1)
+         do 7, i=1,ipar(2)
+            buf(i:i)=char(ipar(4+ipar(1)+i))
+ 7       continue
          do 14 i=1,N
             read(lunit,buf(1:lfmt),err=100,end=20) (tmp(j),j=1,mm)
             do 13 j=0,no-1
@@ -177,6 +183,6 @@ c     formatted read
  20   continue
       ierr=0
       return
- 100  ierr=1 
+ 100  ierr=1
       return
       end
