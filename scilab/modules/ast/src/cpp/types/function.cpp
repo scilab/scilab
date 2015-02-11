@@ -229,44 +229,53 @@ Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int
     }
     else
     {
-        for (std::size_t i(0); i != (size_t)_iRetCount && outOrder[i] != -1 && outOrder[i] != 0 ; ++i)
+        if (_iRetCount == 1 && outOrder[0] == -1)
         {
-            if (outOrder[i] - 1 < gStr.m_iIn)
+            //special case gateways that just call PutLhsVar()
+            //without LhsVar or createEmptyMatrix to return []
+            out.push_back(Double::Empty());
+        }
+        else
+        {
+            for (std::size_t i(0); i != (size_t)_iRetCount && outOrder[i] != -1 && outOrder[i] != 0; ++i)
             {
-                std::size_t const iPos(outOrder[i] - 1);
-                //protect variable to deletion
-                inCopy[iPos]->IncreaseRef();
-                if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsInteger())
+                if (outOrder[i] - 1 < gStr.m_iIn)
                 {
-                    types::Double* pD = inCopy[iPos]->getAs<types::Double>();
-                    pD->convertFromInteger();
-                }
+                    std::size_t const iPos(outOrder[i] - 1);
+                    //protect variable to deletion
+                    inCopy[iPos]->IncreaseRef();
+                    if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsInteger())
+                    {
+                        types::Double* pD = inCopy[iPos]->getAs<types::Double>();
+                        pD->convertFromInteger();
+                    }
 
-                if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsZComplex())
+                    if (inCopy[iPos]->isDouble() && ((types::Double*)inCopy[iPos])->isViewAsZComplex())
+                    {
+                        types::Double* pD = inCopy[iPos]->getAs<types::Double>();
+                        pD->convertFromZComplex();
+                    }
+
+                    out.push_back(inCopy[iPos]);
+                }
+                else
                 {
-                    types::Double* pD = inCopy[iPos]->getAs<types::Double>();
-                    pD->convertFromZComplex();
-                }
+                    std::size_t const iPos(outOrder[i] - gStr.m_iIn - 1);
+                    if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
+                    {
+                        types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
+                        pD->convertFromInteger();
+                    }
 
-                out.push_back(inCopy[iPos]);
-            }
-            else
-            {
-                std::size_t const iPos(outOrder[i] - gStr.m_iIn - 1);
-                if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsInteger())
-                {
-                    types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
-                    pD->convertFromInteger();
-                }
+                    if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsZComplex())
+                    {
+                        types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
+                        pD->convertFromZComplex();
+                    }
 
-                if (tmpOut[iPos]->isDouble() && ((types::Double*)tmpOut[iPos])->isViewAsZComplex())
-                {
-                    types::Double* pD = tmpOut[iPos]->getAs<types::Double>();
-                    pD->convertFromZComplex();
+                    out.push_back(tmpOut[iPos]);
+                    tmpOut[iPos] = 0;
                 }
-
-                out.push_back(tmpOut[iPos]);
-                tmpOut[iPos] = 0;
             }
         }
     }

@@ -562,19 +562,19 @@ void ScilabJavaEnvironmentWrapper::unwrapmatuint(int id, const ScilabUIntStackAl
 void ScilabJavaEnvironmentWrapper::unwraplong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapSingle<jlong, int, long long>(vm, id, allocator, true);
+    unwrapSingle<jlong, long long, long long>(vm, id, allocator, true);
 }
 
 void ScilabJavaEnvironmentWrapper::unwraprowlong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapRow<jlong, int, long long>(vm, id, allocator, true);
+    unwrapRow<jlong, long long>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapmatlong(int id, const ScilabLongStackAllocator & allocator) const
 {
     JavaVM * vm = getScilabJavaVM();
-    unwrapMat<jlong, int, long long>(vm, id, allocator);
+    unwrapMat<jlong, long long>(vm, id, allocator);
 }
 
 void ScilabJavaEnvironmentWrapper::unwrapulong(int id, const ScilabULongStackAllocator & allocator) const

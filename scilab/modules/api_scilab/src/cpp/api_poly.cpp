@@ -68,6 +68,7 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
     char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
     strcpy(_pstVarName, pstTemp);
     FREE(pstTemp);
+    *_piVarNameLen = static_cast<int>(strlen(_pstVarName));
     return sciErr;
 }
 

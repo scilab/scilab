@@ -65,7 +65,7 @@ int ScilabGateway::addToClasspath(char * fname, const int envId, void * pvApiCtx
                 {
                     env.addtoclasspath(expandedPath);
                 }
-                catch (std::exception & e)
+                catch (std::exception & /*e*/)
                 {
                     FREE(expandedPath);
                     freeAllocatedMatrixOfString(rows, cols, className);

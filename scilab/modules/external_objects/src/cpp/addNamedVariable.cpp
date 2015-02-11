@@ -45,7 +45,7 @@ int ScilabGateway::addNamedVariable(char * fname, const int envId, void * pvApiC
     {
         idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         freeAllocatedSingleString(varName);
         throw;
@@ -55,7 +55,7 @@ int ScilabGateway::addNamedVariable(char * fname, const int envId, void * pvApiC
     {
         env.addNamedVariable(idObj, varName);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         freeAllocatedSingleString(varName);
         ScilabObjects::removeTemporaryVars(envId, tmpvar);

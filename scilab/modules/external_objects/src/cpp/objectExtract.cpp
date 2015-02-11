@@ -76,7 +76,9 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
         {
             ret = env.getarrayelement(idObj, tab, Rhs - 1);
         }
-        catch (std::exception & e) { }
+        catch (std::exception & /*e*/)
+        {
+        }
 
         delete[] tab;
     }
@@ -100,7 +102,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
             {
                 type = env.getfieldtype(idObj, fieldName);
             }
-            catch (std::exception & e)
+            catch (std::exception & /*e*/)
             {
                 freeAllocatedSingleString(fieldName);
                 throw;
@@ -135,7 +137,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
                 {
                     args[i] = ScilabObjects::getArgumentId(laddr, tmpvar, false, false, eId, pvApiCtx);
                 }
-                catch (ScilabAbstractEnvironmentException & e)
+                catch (ScilabAbstractEnvironmentException & /*e*/)
                 {
                     delete[] tmpvar;
                     delete[] args;
@@ -147,7 +149,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
             {
                 ret = env.extract(idObj, args, Rhs - 1);
             }
-            catch (std::exception & e)
+            catch (std::exception & /*e*/)
             {
                 ScilabObjects::removeTemporaryVars(eId, tmpvar);
                 delete[] tmpvar;
@@ -167,7 +169,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
                 options.setMethodName(fieldName);
                 options.setObjId(idObj);
                 OptionsHelper::setEnvId(eId);
-                ScilabObjects::copyInvocationMacroToStack(Rhs + 1, env, pvApiCtx);
+                ScilabObjects::copyInvocationMacroToStack(Rhs + 1, eId, options.getIsNew(), pvApiCtx);
 
                 LhsVar(1) = Rhs + 1;
                 PutLhsVar();
@@ -180,7 +182,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
                 {
                     ret = env.getfield(idObj, fieldName);
                 }
-                catch (std::exception & e)
+                catch (std::exception & /*e*/)
                 {
                     freeAllocatedSingleString(fieldName);
                     throw;
@@ -200,7 +202,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
 
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & e)
+            catch (ScilabAbstractEnvironmentException & /*e*/)
             {
                 env.removeobject(ret);
                 throw;
@@ -217,7 +219,7 @@ int ScilabGateway::objectExtract(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             env.removeobject(ret);
             throw;

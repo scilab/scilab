@@ -64,7 +64,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         {
             idClass = env.loadclass(className, cwd, false, helper.getAllowReload());
         }
-        catch (std::exception & e)
+        catch (std::exception & /*e*/)
         {
             if (cwd)
             {
@@ -102,7 +102,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
         {
             args[i] = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             delete[] args;
             delete[] tmpvar;
@@ -119,7 +119,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.newinstance(idClass, args, nbArgs);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -135,7 +135,7 @@ int ScilabGateway::newInstance(char * fname, const int envId, void * pvApiCtx)
     {
         ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         env.removeobject(ret);
         throw;

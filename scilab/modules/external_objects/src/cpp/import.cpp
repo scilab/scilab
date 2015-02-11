@@ -172,9 +172,9 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
     {
         try
         {
-            ret = env.loadclass(className[i], cwd, static_cast<bool>(named), helper.getAllowReload());
+            ret = env.loadclass(className[i], cwd, named != 0, helper.getAllowReload());
         }
-        catch (std::exception & e)
+        catch (std::exception & /*e*/)
         {
             FREE(cwd);
             freeAllocatedMatrixOfString(rows, cols, className);
@@ -191,7 +191,7 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createNamedEnvironmentObject(type, name[i].c_str(), ret, envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & e)
+            catch (ScilabAbstractEnvironmentException & /*e*/)
             {
                 FREE(cwd);
                 freeAllocatedMatrixOfString(rows, cols, className);
@@ -205,7 +205,7 @@ int ScilabGateway::import(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(type, Rhs + i + 1, ret, envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & e)
+            catch (ScilabAbstractEnvironmentException & /*e*/)
             {
                 FREE(cwd);
                 freeAllocatedMatrixOfString(rows, cols, className);

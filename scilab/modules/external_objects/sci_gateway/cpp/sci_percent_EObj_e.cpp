@@ -15,6 +15,7 @@
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects.h"
+#include "sciprint.h"
 }
 
 using namespace org_modules_external_objects;

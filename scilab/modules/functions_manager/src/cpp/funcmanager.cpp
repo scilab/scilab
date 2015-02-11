@@ -348,6 +348,8 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"xcos"] = pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
     m_ModuleMap[L"fftw"] = pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
     m_ModuleMap[L"mpi"] = pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
+    m_ModuleMap[L"external_objects"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
+    m_ModuleMap[L"external_objects_java"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
@@ -425,7 +427,7 @@ bool FuncManager::StartModules()
     //excute .start file
     for (; it != itEnd; ++it)
     {
-        ExecuteStartFile(*it);
+        //ExecuteStartFile(*it);
     }
 
     return true;

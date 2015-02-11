@@ -72,6 +72,9 @@
     <ClInclude Include="includes\ScilabStream.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\cpp\EOType.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\c\gw_external_objects.c">
@@ -311,6 +314,9 @@
     <ClCompile Include="src\cpp\invoke_asref.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\EOType.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\bin\libintl.lib" />
@@ -328,5 +334,8 @@
     <ResourceCompile Include="external_objects.rc">
       <Filter>Resource File</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Xml Include="sci_gateway\external_objects_gateway.xml" />
   </ItemGroup>
 </Project>
