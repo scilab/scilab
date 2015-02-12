@@ -20,6 +20,7 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -29,7 +30,6 @@ extern "C"
 #include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "checkodeerror.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -618,7 +618,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() == 0)
                 {
                     // maxl and kmp need default values
-                    maxl = min(5, pDblX0->getSize());
+                    maxl = min(5, pDblX0->getRows());
                     kmp = maxl;
                 }
                 else
@@ -753,7 +753,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     //compute itol and set the tolerances rtol and atol.
     double* rtol    = NULL;
     double* atol    = NULL;
-    double rpar[2]  = {0, 0};
+    double rpar[2] = {0, 0 };
     int ipar[30];
     memset(ipar, 0x00, 30 * sizeof(int));
 
@@ -839,7 +839,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         // LENWP is the length ot the rwork segment containing
         // the matrix elements of the preconditioner P
 
-        LENWP = 7 * pDblX0->getRows();
+        LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
                      + (maxl + 3 + min(1, maxl - kmp)) * pDblX0->getRows()
                      + (maxl + 3) * maxl + 1 + LENWP;
@@ -862,7 +862,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         // LENIWP is the length ot the iwork segment containing
         // the matrix indexes of the preconditioner P
         // (compressed sparse row format)
-        LENIWP = 25 * pDblX0->getRows() + 1;
+        LENIWP = 2 * pDblX0->getRows() * pDblX0->getRows();
         iworksize += LENIWP;
     }
 
@@ -964,7 +964,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         ipar[3] = 2;
         ipar[4] = 1;
         rpar[0] = 0.005;
-        rpar[1] = 0.005;
+        rpar[1] = 0.05;
     }
 
     if (info[15] == 1)
@@ -1046,7 +1046,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
 
             // use the same error function that dasrt
-            iret = checkDasslError(idid);
+            iret = checkError(idid, "daskr");
             if (iret == 1) // error
             {
                 Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);

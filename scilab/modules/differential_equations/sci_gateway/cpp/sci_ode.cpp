@@ -20,6 +20,7 @@
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
 #include "context.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -30,7 +31,6 @@ extern "C"
 #include "configvariable_interface.h"
 #include "sciprint.h"
 #include "common_structure.h"
-#include "checkodeerror.h"
 #include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/

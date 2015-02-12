@@ -19,6 +19,7 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -28,7 +29,6 @@ extern "C"
 #include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "checkodeerror.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -744,7 +744,7 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
         try
         {
             C2F(ddasrt)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t, info, rtol, atol, &idid, rwork, &rworksize, iwork, &iworksize, &rpar, &ipar, dassl_jac, dasrt_g, &ng, root);
-            iret = checkDasslError(idid);
+            iret = checkError(idid, "dasrt");
             if (iret == 1) // error
             {
                 Scierror(999, _("%s: ddasrt return with state %d.\n"), "dasrt", idid);

@@ -10,7 +10,13 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#ifndef __CHECK_ODE_ERROR__
+#define __CHECK_ODE_ERROR__
+
+#include <string>
 #include "dynlib_differential_equations.h"
 
 DIFFERENTIAL_EQUATIONS_IMPEXP int checkOdeError(int meth, int istate);
-DIFFERENTIAL_EQUATIONS_IMPEXP int checkDasslError(int idid);
+DIFFERENTIAL_EQUATIONS_IMPEXP int checkError(int idid, std::string strName);
+
+#endif // __CHECK_ODE_ERROR__

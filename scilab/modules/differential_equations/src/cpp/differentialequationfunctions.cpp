@@ -2635,9 +2635,15 @@ void DifferentialEquationFunctions::callDasslMacroF(double* t, double* y, double
 
     C2F(dcopy)(&m_odeYRows, pDblOutDelta->get(), &one, delta, &one);
     *ires = (int)pDblOutIres->get(0);
+
     if (out[0]->isDeletable())
     {
         delete out[0];
+    }
+
+    if (out[1]->isDeletable())
+    {
+        delete out[1];
     }
 }
 
@@ -2909,6 +2915,8 @@ void DifferentialEquationFunctions::callDaskrMacroPjac(double* res, int* ires, i
     }
 
     out[0]->IncreaseRef();
+    out[1]->IncreaseRef();
+    out[2]->IncreaseRef();
 
     pDblNeq->DecreaseRef();
     if (pDblNeq->isDeletable())
@@ -3060,12 +3068,12 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     ast::ExecVisitor execFunc;
 
     // input arguments psol(R, iR, b)
-    types::Double* pDblR = new types::Double(1, *neq **neq);
+    types::Double* pDblR = new types::Double(*neq **neq, 1);
     pDblR->set(wp);
     pDblR->IncreaseRef();
     in.push_back(pDblR);
 
-    types::Double* pDblIR = new types::Double(1, 2 * *neq **neq);
+    types::Double* pDblIR = new types::Double(*neq **neq, 2);
     double* pdblIR = pDblIR->get();
     for (int i = 0; i < pDblIR->getSize(); i++)
     {
@@ -3074,7 +3082,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     pDblIR->IncreaseRef();
     in.push_back(pDblIR);
 
-    types::Double* pDblB = new types::Double(1, *neq);
+    types::Double* pDblB = new types::Double(*neq, 1);
     pDblB->set(b);
     pDblB->IncreaseRef();
     in.push_back(pDblB);
@@ -3104,6 +3112,7 @@ void DifferentialEquationFunctions::callDaskrMacroPsol(int* neq, double* t, doub
     }
 
     out[0]->IncreaseRef();
+    out[1]->IncreaseRef();
 
     // free input arguments
     pDblR->DecreaseRef();

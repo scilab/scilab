@@ -19,6 +19,7 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -27,7 +28,6 @@ extern "C"
 #include "Scierror.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "checkodeerror.h"
 #include "sciprint.h"
 #include "common_structure.h"
 }
@@ -575,7 +575,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
         nyh = C2F(ls0001).nyh;
     }
 
-    rworkSize = 20 + nyh * (maxord + 1) + 3 * *YSize + *YSize * *YSize + 2;
+    rworkSize = 20 + nyh * (maxord + 1) + 3 * *YSize + *YSize **YSize + 2;
     iworkSize = 20 + *YSize;
 
     rwSize = rworkSize + dStructTabSize;
