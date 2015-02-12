@@ -944,28 +944,36 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                     }
                     else
                     {
+                        // Avoid insertion in most of one element.
+                        if (pStruct->isScalar() == false)
+                        {
+                            std::wostringstream os;
+                            os << _W("Unable to insert multiple item in a Struct.");
+                            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+                        }
+
                         // extract field x and append it to elements for next recursion.
                         List* pLOut = pStruct->extractFieldWithoutClone(pwcsFieldname);
-                        for (int iList = 0; iList < pLOut->getSize(); iList++)
-                        {
-                            InternalType* pIT = pLOut->get(iList);
-                            if (pIT->getRef() > 2) //One for my own ref + 1 for "extractFieldWithoutClone" artificial ref
-                            {
-                                // clone element before modify it.
-                                //pIT->DecreaseRef();
-                                pIT = pIT->clone();
-                                pStruct->get(iList)->set(pwcsFieldname, pIT);
-                            }
 
-                            ExpHistory* pEHChield = new ExpHistory(pEH,
-                                                                   (*iterFields)->getExp(),
-                                                                   (*iterFields)->getArgs(),
-                                                                   (*iterFields)->getLevel(),
-                                                                   (*iterFields)->isCellExp(),
-                                                                   pIT);
-                            pEHChield->setWhereReinsert(iList);
-                            workFields.push_back(pEHChield);
+                        // pStruct must be scalar because we cant insert most of one element in the same insertion
+                        InternalType* pIT = pLOut->get(0);
+                        if (pIT->getRef() > 2) //One for my own ref + 1 for "extractFieldWithoutClone" artificial ref
+                        {
+                            // clone element before modify it.
+                            //pIT->DecreaseRef();
+                            pIT = pIT->clone();
+                            pStruct->get(0)->set(pwcsFieldname, pIT);
                         }
+
+                        ExpHistory* pEHChield = new ExpHistory(pEH,
+                                                               (*iterFields)->getExp(),
+                                                               (*iterFields)->getArgs(),
+                                                               (*iterFields)->getLevel(),
+                                                               (*iterFields)->isCellExp(),
+                                                               pIT);
+
+                        pEHChield->setWhereReinsert(0);
+                        workFields.push_back(pEHChield);
 
                         pLOut->killMe();
                     }
@@ -1010,30 +1018,30 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
 
                         InternalType* pIT = pTL->extract(pArgs);
                         List* pList = pIT->getAs<List>();
-                        double* pdblArgs = (*pArgs)[0]->getAs<Double>()->get();
 
-                        int listSize = pList->getSize();
+                        if (pList->getSize() > 1)
+                        {
+                            std::wostringstream os;
+                            os << _W("Unable to insert multiple item in a List.");
+                            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+                        }
+
+                        double* pdblArgs = (*pArgs)[0]->getAs<Double>()->get();
                         if ((*iterFields)->getExp() == NULL)
                         {
                             // a(x)(y)
                             // extract a(x) and push_BACK to extract y
-                            for (int i = 0; i < listSize; i++)
-                            {
-                                ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(i));
-                                pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
-                                workFields.push_back(pEHExtract);
-                            }
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(0));
+                            pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
+                            workFields.push_back(pEHExtract);
                         }
                         else
                         {
                             // a(x).b
                             // extract a(x) and push_FRONT to extract b
-                            for (int i = 0; i < listSize; i++)
-                            {
-                                ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(i));
-                                pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
-                                workFields.push_front(pEHExtract);
-                            }
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(0));
+                            pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
+                            workFields.push_front(pEHExtract);
                         }
 
                         //extract create a list to store items
@@ -1113,13 +1121,17 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                 List* pL = pITCurrent->getAs<List>();
                 if (pEH->getParent() && pEH->getParent()->getLevel() == pEH->getLevel())
                 {
-                    // pITCurrent is an extraction of other Type
-                    for (int iLoop = 0; iLoop < pL->getSize(); iLoop++)
-                    {
-                        ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pL->get(iLoop));
-                        pEHExtract->setWhereReinsert(iLoop);
-                        workFields.push_front(pEHExtract);
-                    }
+                    std::wostringstream os;
+                    os << _W("Wrong insertion.");
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+
+                    //                    // pITCurrent is an extraction of other Type
+                    //                    for (int iLoop = 0; iLoop < pL->getSize(); iLoop++)
+                    //                    {
+                    //                        ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pL->get(iLoop));
+                    //                        pEHExtract->setWhereReinsert(iLoop);
+                    //                        workFields.push_front(pEHExtract);
+                    //                    }
                 }
                 else
                 {

@@ -91,31 +91,29 @@ assert_checkequal(a.b.den, [2 2 2]);
 a(2).b = [rl rl rl] * %s;
 assert_checkequal(size(a), [2 1]);
 assert_checkequal(a(2).b.num, [%s**2 %s**2 %s**2]);
-a.b(1,3).num = 5;
-assert_checkequal(a.b(1).num, [%s 14 5]);
-assert_checkequal(a(2).b.num, [%s**2 %s**2 5]);
+err = execstr("a.b(1,3).num = 5;", "errcatch");
+assert_checktrue(err <> 0);
 a(3).b.num = 12;
-a.b(1,1).num = -9;
-assert_checkequal(a.b(1).num, [-9 14 5]+(0*%s));
-assert_checkequal(a(2).b.num, [-9 %s**2 5]);
-assert_checkequal(a(3).b.num, -9);
+assert_checkequal(a(3).b.num, 12);
+execstr("a.b(1,1).num = -9;", "errcatch");
+assert_checktrue(err <> 0);
 clear a;
 tt = tlist(["toto" "gg" "ff"] , 12, 13);
 tt(3).c = 23;
 assert_checkequal(tt.ff.c, 23);
 tt(2).c = 22;
 assert_checkequal(tt.gg.c, 22);
-tt([2 3]).d = 99;
-assert_checkequal(tt.gg.d, 99);
-assert_checkequal(tt.ff.d, 99);
-tt([2 3]).d.e = 98;
-assert_checkequal(tt.gg.d.e, 98);
-assert_checkequal(tt.ff.d.e, 98);
-tt([2 3]).d(3).e = 78;
-assert_checkequal(tt.ff.d.e, list(98, [], 78));
-assert_checkequal(tt.gg.d.e, list(98, [], 78));
+err = execstr("tt([2 3]).d = 99;", "errcatch");
+assert_checktrue(err <> 0);
+err = execstr("tt([2 3]).d.e = 98;", "errcatch");
+assert_checktrue(err <> 0);
+err = execstr("tt([2 3]).d(3).e = 78;", "errcatch");
+assert_checktrue(err <> 0);
 tt(2).d.e(4) = 12;
-assert_checkequal(tt.gg.d.e, list([98; 0; 0; 12], [0; 0; 0; 12], [78; 0; 0; 12]));
+assert_checkequal(tt(2).d.e, [0; 0; 0; 12]);
+tt(2).d(2).o = 15;
+err = execstr("tt(2).d.e(4) = 16;", "errcatch");
+assert_checktrue(err <> 0);
 clear tt;
 tl=tlist(["toto" "gg"],11);
 function tutu(tl)
@@ -170,17 +168,17 @@ mm(3).c = 23;
 assert_checkequal(mm.ff.c, 23);
 mm(2).c = 22;
 assert_checkequal(mm.gg.c, 22);
-mm([2 3]).d = 99;
-assert_checkequal(mm.gg.d, 99);
-assert_checkequal(mm.ff.d, 99);
-mm([2 3]).d.e = 98;
-assert_checkequal(mm.gg.d.e, 98);
-assert_checkequal(mm.ff.d.e, 98);
-mm([2 3]).d(3).e = 78;
-assert_checkequal(mm.ff.d.e, list(98, [], 78));
-assert_checkequal(mm.gg.d.e, list(98, [], 78));
+err = execstr("mm([2 3]).d = 99;", "errcatch");
+assert_checktrue(err <> 0);
+err = execstr("mm([2 3]).d.e = 98;", "errcatch");
+assert_checktrue(err <> 0);
+err = execstr("mm([2 3]).d(3).e = 78;", "errcatch");
+assert_checktrue(err <> 0);
 mm(2).d.e(4) = 12;
-assert_checkequal(mm.gg.d.e, list([98; 0; 0; 12], [0; 0; 0; 12], [78; 0; 0; 12]));
+assert_checkequal(mm(2).d.e, [0; 0; 0; 12]);
+mm(2).d(2).o = 15;
+err = execstr("mm(2).d.e(4) = 16;", "errcatch");
+assert_checktrue(err <> 0);
 clear mm;
 ml = mlist(["tutu" "t"], 12);
 std=struct("d", 5);
@@ -199,7 +197,6 @@ assert_checkequal(ml.t, 21);
 function r=%s_i_tutu(varargin)
     s1=varargin($-1);
     s2=varargin($);
-    //s2(i,j)=s1 s1 matrix of scalar
     r=s2;
     r.t = s1;
 endfunction
@@ -234,7 +231,6 @@ endfunction
 function r=%toto_i_tata(varargin)
     s1=varargin($-1);
     s2=varargin($);
-    //s2(i,j)=s1 s1 is a struct
     r=s2;
     r.ff = s1;
 endfunction
@@ -399,3 +395,20 @@ assert_checkequal(tl.f1, 12);
 assert_checkequal(ml.f.f1, 12);
 assert_checkequal(mml.ff1.f.f1, 14);
 funcprot(oldFuncProt);
+// multiple insertion in struct
+function r = initst()
+    r.f.e = list()
+    r.f(3).e = 3
+endfunction
+st=initst();
+st.f(:).e = 5;
+assert_checkequal(st.f.e, list(5,5,5));
+st=initst();
+st.f(1:4).e = 5;
+assert_checkequal(st.f.e, list(5,5,5,5));
+st=initst();
+err=execstr("st.f(1:2).e(2) = 5;", "errcatch");
+assert_checktrue(err <> 0);
+st=initst();
+err=execstr("st(1:2).f(1:4).e = 5;", "errcatch");
+assert_checktrue(err <> 0);
