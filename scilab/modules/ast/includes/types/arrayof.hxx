@@ -576,6 +576,26 @@ public :
             //std::cout << "]" << std::endl;
 
             int iPos = getIndexWithDims(piCoord, piViewDims, iDims);
+            if (iPos < 0)
+            {
+                if (bNeedToResize)
+                {
+                    delete[] piNewDims;
+                }
+
+                delete[] piMaxDim;
+                delete[] piCountDim;
+                delete[] piIndex;
+                delete[] piCoord;
+                delete[] piViewDims;
+
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
+
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
+                throw ast::ScilabError(szError);
+            }
 
             if (pSource->isScalar())
             {
