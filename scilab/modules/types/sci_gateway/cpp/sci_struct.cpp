@@ -58,7 +58,7 @@ Function::ReturnValue sci_struct(typed_list &in, int _piRetCount, typed_list &ou
     /* Second check if dimensions of data are good*/
     for (itInput = in.begin() + 1; itInput != in.end() ; ((itInput + 1) != in.end()) ? itInput += 2 : itInput += 1)
     {
-        if ((*itInput)->getAs<Cell>() && (*itInput)->getAs<Cell>()->isScalar() == false)
+        if ((*itInput)->isCell() && (*itInput)->getAs<Cell>()->isScalar() == false)
         {
             Cell* pCell = (*itInput)->getAs<Cell>();
             if (piDimsRef == NULL)
