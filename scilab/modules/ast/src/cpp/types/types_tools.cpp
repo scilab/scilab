@@ -68,7 +68,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     //not enough information to compute indexes.
                     _pArgsOut->push_back(NULL);
                     bUndefine = true;
-                    pIL->killMe();;
+                    pIL->killMe();
                     continue;
                 }
                 //evalute polynom with "MaxDim"
@@ -228,17 +228,25 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
         {
             const int iCountDim = pCurrentArg->getSize();
             _piMaxDim[i] = 0;
+            double* pdblArgs = pCurrentArg->get();
             for (int j = 0 ; j < iCountDim ; j++)
             {
                 //checks if size < size(int)
-                if (pCurrentArg->get(j) >= INT_MAX)
+                if (pdblArgs[j] >= INT_MAX)
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
                     throw ast::ScilabError(szError);
                 }
 
-                const int d = static_cast<int>(pCurrentArg->get(j));
+                if (pdblArgs[j] < 1)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
+                    throw ast::ScilabError(szError);
+                }
+
+                const int d = static_cast<int>(pdblArgs[j]);
                 if (d > _piMaxDim[i])
                 {
                     _piMaxDim[i] = d;
