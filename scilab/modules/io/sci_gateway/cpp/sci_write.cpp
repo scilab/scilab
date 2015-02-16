@@ -491,6 +491,8 @@ int checkformat(char* format)
     int ret = 0;
     int size = (int)strlen(format);
     int count = 0;
+    bool isString = false;
+
     if (size < 2 || format[0] != '(' || format[size - 1] != ')')
     {
         return 0;
@@ -499,7 +501,13 @@ int checkformat(char* format)
     for (int i = 1; i < size - 1; i++)
     {
         char c = format[i];
+
         if (c == '\'')
+        {
+            isString = !isString;
+        }
+
+        if (isString)
         {
             if (count == 0)
             {
