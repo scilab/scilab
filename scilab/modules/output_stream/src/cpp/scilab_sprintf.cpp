@@ -294,6 +294,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                     else
                     {
                         wchar_t* newToken = addl(&pToken[i]);
+
                         if (ISNAN(dblVal))
                         {
                             os_swprintf(pwstTemp, bsiz, newToken, NanString);
@@ -314,9 +315,30 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                 }
                 else if (pToken[i].outputType == InternalType::ScilabInt32)
                 {
+
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
-                    os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                    if (isinf(dblVal))
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+                        if (dblVal < 0)
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                        }
+                        else
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                        }
+                    }
+                    else if (ISNAN(dblVal))
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+                        os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                    }
+                    else
+                    {
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                    }
                     iPosArg++;
                     oFirstOutput << pwstTemp;
                 }
