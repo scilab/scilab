@@ -2050,8 +2050,8 @@ function id = getBlockIds(path)
     k = path(:);
     for i = k
         b = scs_m.objs(i);
-        if typeof(b) == "Block" &  size(scs_m.objs(i).doc) >= 1 then
-            id($ + 1) = scs_m.objs(i).doc(1);
+        if typeof(b) == "Block" &  length(scs_m.objs(i).model.uid) >= 1 then
+            id($ + 1) = scs_m.objs(i).model.uid;
         end
         if typeof(b.model.rpar) == "diagram" then
             scs_m = b.model.rpar;
