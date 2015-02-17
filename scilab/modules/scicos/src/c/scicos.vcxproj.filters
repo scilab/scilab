@@ -47,9 +47,6 @@
     <ClCompile Include="DllmainScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="extractblklist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ezxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -66,9 +63,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ddaskr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_diffobjs.c">
@@ -89,16 +83,10 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sciblk2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sciblk4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scicos.c">
@@ -266,18 +254,27 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_vec2var.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\extractblklist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\createblklist.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\sciblk4.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_callblk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_model2blk.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="copyvarfromlistentry.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="createblklist.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_scicos.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="extractblklist.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ezxml.h">
@@ -413,6 +410,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\il_state.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\createblklist.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\extractblklist.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

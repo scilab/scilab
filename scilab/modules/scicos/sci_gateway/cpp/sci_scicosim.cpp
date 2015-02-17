@@ -1339,7 +1339,7 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
             char* c_str = wide_string_to_UTF8(w_str);
             void* f = funnum2(c_str); // Search associated function number of function name
             // Block is defined by a C or Fortran function
-            if (f != NULL)
+            if (f != nullptr)
             {
                 // C interface from "tabsim" defined in blocks.h
                 lfunpt[i] = f;

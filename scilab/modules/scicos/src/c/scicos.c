@@ -71,7 +71,6 @@
 #include "realtime.h"
 #include "sci_malloc.h"
 #include "ezxml.h"
-#include "xscion.h"
 
 #include "sciblk2.h"
 #include "sciblk4.h"
@@ -1480,7 +1479,6 @@ static void cossim(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
     int Discrete_Jump = 0;
     int *jroot = NULL, *zcros = NULL;
@@ -1713,7 +1711,6 @@ static void cossim(double *told)
     C2F(coshlt).halt = 0;
     *ierr = 0;
 
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
 
@@ -2174,7 +2171,6 @@ static void cossimdaskr(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
 
     int *jroot = NULL, *zcros = NULL;
@@ -2901,8 +2897,6 @@ static void cossimdaskr(double *told)
     phase = 1;
     hot = 0;
 
-    /*      stuck=.false. */
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
     /*     ATOL and RTOL are scalars */
@@ -3695,9 +3689,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */

@@ -1269,11 +1269,7 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
 
         //real paramaters
-        if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
-            if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
-        else
-            rpark=ll.rpar(:)
-        end
+        rpark=ll.rpar(:)
         rpar=[rpar;rpark]
         rpptr(i+1)=rpptr(i)+size(rpark,"*")
 

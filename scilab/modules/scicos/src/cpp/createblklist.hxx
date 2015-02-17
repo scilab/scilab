@@ -1,5 +1,6 @@
 /*  Scicos
 *
+*  Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *  Copyright (C) DIGITEO - 2009 - Allan CORNET
 *
 * This program is free software; you can redistribute it and/or modify
@@ -19,10 +20,15 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#ifndef __CREATEBLKLIST_H__
-#define __CREATEBLKLIST_H__
+#ifndef __CREATEBLKLIST_HXX__
+#define __CREATEBLKLIST_HXX__
 
+#include "internal.hxx"
+
+extern "C"
+{
 #include "scicos_block4.h"
+}
 
 /* createblklist : function to create a Typed List
 *                 of a scicos_block structure
@@ -54,8 +60,8 @@
 *
 */
 
-int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp);
+types::InternalType* createblklist(const scicos_block* const Blocks, const int flag_imp, const int funtyp);
 
-#endif /* __CREATEBLKLIST_H__ */
+#endif /* __CREATEBLKLIST_HXX__ */
 /*--------------------------------------------------------------------------*/
 

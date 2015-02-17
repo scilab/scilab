@@ -26,7 +26,6 @@
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
-    <gateway type="0" name="sci_callblk" function="callblk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
     <gateway type="1" name="sci_buildouttb" function="buildouttb"/>
@@ -55,4 +54,6 @@
     <gateway type="1" name="sci_validvar" function="validvar"/>
     <gateway type="1" name="sci_var2vec" function="var2vec"/>
     <gateway type="1" name="sci_vec2var" function="vec2var"/>
+    <gateway type="1" name="sci_model2blk" function="model2blk"/>
+    <gateway type="1" name="sci_callblk" function="callblk"/>
 </module>
