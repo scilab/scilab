@@ -257,15 +257,12 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicosim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-<<<<<<< HEAD
-=======
     <ClCompile Include="..\..\sci_gateway\cpp\sci_var2vec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_vec2var.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
->>>>>>> 6605e76... xcos : allow scicossim to call function and macros
     <ClCompile Include="..\cpp\il_sim.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -346,13 +343,13 @@
     <ClInclude Include="sciblk4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\cpp\LoggerView.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
     <ClInclude Include="..\cpp\var2vec.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\vec2var.hxx">
-      <Filter>Header Files\MVC</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\LoggerView.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\view_scilab\TextAdapter.hxx">

@@ -334,9 +334,9 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClInclude Include="..\..\includes\View.hxx" />
     <ClInclude Include="..\cpp\il_sim.hxx" />
     <ClInclude Include="..\cpp\il_state.hxx" />
+    <ClInclude Include="..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\cpp\var2vec.hxx" />
     <ClInclude Include="..\cpp\vec2var.hxx" />
-    <ClInclude Include="..\cpp\LoggerView.hxx" />
     <ClInclude Include="..\cpp\model\Annotation.hxx" />
     <ClInclude Include="..\cpp\model\Block.hxx" />
     <ClInclude Include="..\cpp\model\Diagram.hxx" />
