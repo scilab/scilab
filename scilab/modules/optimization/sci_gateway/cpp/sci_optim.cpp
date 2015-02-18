@@ -694,13 +694,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         // algorithme n1qn3 : Gradient Conjugate without constraints
         else if (iContr == 1 && iAlgo == 2) // bounds not setted && algo gc
         {
+            double dxmin = dEpsg;
+            double dZng = 0;
+
             if (bMem == false)
             {
                 iMem = 10;
             }
 
             // compute epsrel
-            double dZng = 0;
             for (int i = 0; i < iSizeX0; i++)
             {
                 dZng += (pdblG[i] * pdblG[i]);
@@ -714,7 +716,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
 
             // compute dxmin
-            double dxmin = dEpsg;
             if (iEpsx == 0)
             {
                 dxmin = pdblEpsx[0];
