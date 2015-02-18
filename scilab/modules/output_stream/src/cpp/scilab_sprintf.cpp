@@ -330,26 +330,32 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
 
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
-                    if (isinf(dblVal))
+
+                    if (finite(dblVal))
                     {
-                        wchar_t* newToken = addl(&pToken[i]);
-                        if (dblVal < 0)
-                        {
-                            os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
-                        }
-                        else
-                        {
-                            os_swprintf(pwstTemp, bsiz, newToken, InfString);
-                        }
-                    }
-                    else if (ISNAN(dblVal))
-                    {
-                        wchar_t* newToken = addl(&pToken[i]);
-                        os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
                     }
                     else
                     {
-                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                        wchar_t* newToken = addl(&pToken[i]);
+
+                        if (ISNAN(dblVal))
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        }
+                        else
+                        {
+                            if (std::signbit(dblVal))
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                            }
+                            else
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                            }
+                        }
+
+                        delete[] newToken;
                     }
                     iPosArg++;
                     oFirstOutput << pwstTemp;
@@ -359,26 +365,32 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
 
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
-                    if (isinf(dblVal))
+
+                    if (finite(dblVal))
                     {
-                        wchar_t* newToken = addl(&pToken[i]);
-                        if (dblVal < 0)
-                        {
-                            os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
-                        }
-                        else
-                        {
-                            os_swprintf(pwstTemp, bsiz, newToken, InfString);
-                        }
-                    }
-                    else if (ISNAN(dblVal))
-                    {
-                        wchar_t* newToken = addl(&pToken[i]);
-                        os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (unsigned int)dblVal);
                     }
                     else
                     {
-                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (unsigned int)dblVal);
+                        wchar_t* newToken = addl(&pToken[i]);
+
+                        if (ISNAN(dblVal))
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        }
+                        else
+                        {
+                            if (std::signbit(dblVal))
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                            }
+                            else
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                            }
+                        }
+
+                        delete[] newToken;
                     }
                     iPosArg++;
                     oFirstOutput << pwstTemp;
