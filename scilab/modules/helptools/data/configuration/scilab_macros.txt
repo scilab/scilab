@@ -1917,7 +1917,6 @@ datatipsGUI
 orthProj
 pixDist
 setStringPosition
-%_listvarinfile
 %dir_p
 dir
 dirname

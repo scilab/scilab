@@ -1006,12 +1006,6 @@ msgstr ""
 msgid "Can't get current directory.\n"
 msgstr ""
 
-# File: macros/%_listvarinfile.sci, line: 63
-#, c-format
-msgid ""
-"%s: Wrong variable type (%s) found in '%s'. File may be wrong or corrupted.\n"
-msgstr ""
-
 #
 # File: macros/fullfile.sci, line: 16
 #, c-format
