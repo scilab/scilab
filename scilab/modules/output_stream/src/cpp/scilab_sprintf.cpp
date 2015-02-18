@@ -191,6 +191,18 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                 {
                     case L'i' : //integer
                     case L'd' : //integer
+                        if (_pArgs[iPosArg].type != InternalType::ScilabDouble)
+                        {
+                            Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pstName);
+                            *_piOutputRows = 0;
+                            return NULL;
+                        }
+
+                        pToken[iToken].outputType = InternalType::ScilabInt32;
+
+                        iPosArg++;
+                        break;
+
                     case L'o' : //octal
                     case L'u' : //unsigned
                     case L'x' : //hex
@@ -202,7 +214,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                             return NULL;
                         }
 
-                        pToken[iToken].outputType = InternalType::ScilabInt32;
+                        pToken[iToken].outputType = InternalType::ScilabUInt32;
 
                         iPosArg++;
                         break;
@@ -338,6 +350,35 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                     else
                     {
                         os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                    }
+                    iPosArg++;
+                    oFirstOutput << pwstTemp;
+                }
+                else if (pToken[i].outputType == InternalType::ScilabUInt32)
+                {
+
+                    wchar_t pwstTemp[bsiz];
+                    double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
+                    if (isinf(dblVal))
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+                        if (dblVal < 0)
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                        }
+                        else
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                        }
+                    }
+                    else if (ISNAN(dblVal))
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+                        os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                    }
+                    else
+                    {
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (unsigned int)dblVal);
                     }
                     iPosArg++;
                     oFirstOutput << pwstTemp;
