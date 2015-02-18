@@ -431,7 +431,15 @@ static int serialize_sparse(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_p
 
 int serialize_to_mpi(void *_pvCtx, int *_piAddr, int **_piBuffer, int *_piBufferSize)
 {
-    switch (*_piAddr)
+    int iType = 0;
+    SciErr sciErr = getVarType(_pvCtx, _piAddr, &iType);
+    if (sciErr.iErr)
+    {
+        printError(&sciErr, 0);
+        return 0;
+    }
+
+    switch (iType)
     {
         case sci_matrix:
             return serialize_double(_pvCtx, _piAddr, _piBuffer, _piBufferSize);

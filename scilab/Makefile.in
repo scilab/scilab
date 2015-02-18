@@ -836,7 +836,8 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/ast/includes/ast/ \
 	-I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/core/src/c/ \
 	-I$(top_srcdir)/modules/dynamic_link/includes/ \
-	$(EIGEN_CPPFLAGS) $(AM_CPPFLAGS) $(am__append_10)
+	-I$(top_srcdir)/modules/startup/src/c/ $(EIGEN_CPPFLAGS) \
+	$(AM_CPPFLAGS) $(am__append_10)
 
 # --no-undefined --relax
 

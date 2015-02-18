@@ -80,6 +80,7 @@ scilab_bin_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/core/src/c/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/startup/src/c/ \
     $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
