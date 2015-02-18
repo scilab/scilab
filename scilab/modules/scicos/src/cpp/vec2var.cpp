@@ -58,14 +58,14 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     int* pDims = new int[iDims];
     for (int i = 0; i < iDims; ++i)
     {
-        pDims[i] = tab[i];
+        pDims[i] = static_cast<int>(tab[i]);
         iElements *= pDims[i];
     }
 
     res = new T(iDims, pDims);
     delete[] pDims;
 
-    const int numberOfDoubleNeeded = required_length(res);
+    const int numberOfDoubleNeeded = static_cast<int>(required_length(res));
     if (tabSize < numberOfDoubleNeeded + 2 + iDims)
     {
         // Error case: the input doesn't have enough elements
@@ -90,7 +90,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     int* pDims = new int[iDims];
     for (int i = 0; i < iDims; ++i)
     {
-        pDims[i] = tab[i];
+        pDims[i] = static_cast<int>(tab[i]);
         iElements *= pDims[i];
     }
     if (tabSize < iElements + 3 + iDims)
@@ -127,7 +127,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     int* pDims = new int[iDims];
     for (int i = 0; i < iDims; ++i)
     {
-        pDims[i] = tab[i];
+        pDims[i] = static_cast<int>(tab[i]);
         iElements *= pDims[i];
     }
     if (tabSize < iElements * 2 + 2 + iDims)
@@ -145,7 +145,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
 
     res->set(0, (char*) & (*strData));
     strData += static_cast<size_t>(tab[iDims]);
-    int stringOffset = static_cast<size_t>(tab[iDims]);
+    int stringOffset = static_cast<int>(tab[iDims]);
     for (int i = 1; i < iElements; i++)
     {
         res->set(i, (char*) & (*strData));
@@ -397,8 +397,8 @@ static bool readElement(const double* const input, const int iType, const int iD
                     return false;
                 }
                 // Extract the list elements infos and recursively call readElement
-                const int elementType = *(input + offset);
-                const int elementDims = *(input + offset + 1);
+                int elementType = static_cast<int>(*(input + offset));
+                int elementDims = static_cast<int>(*(input + offset + 1));
                 types::InternalType* element;
                 if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
                 {
@@ -420,8 +420,8 @@ static bool readElement(const double* const input, const int iType, const int iD
 
 bool vec2var(const std::vector<double> in, types::InternalType* &out)
 {
-    const int iType = in[0];
-    const int iDims = in[1];
+    const int iType = static_cast<int>(in[0]);
+    const int iDims = static_cast<int>(in[1]);
 
     int offset = 0;
     if (!readElement(&in[0], iType, iDims, static_cast<int>(in.size()), offset, out))

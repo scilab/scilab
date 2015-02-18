@@ -79,7 +79,7 @@ void encode(T* input, std::vector<double> &ret)
     int* pDims;
     computeDims(input, iDims, pDims, iElements, totalSize);
 
-    const int nDoubleNeeded = required_length(ret, input);
+    const int nDoubleNeeded = static_cast<int>(required_length(ret, input));
     totalSize += nDoubleNeeded;
 
     // Allocation for type + number of dimensions + each dimension + each element
@@ -147,7 +147,7 @@ static void encode(types::String* input, std::vector<double> &ret)
         const size_t len = strlen(str) + 1;
         pLengths[i] = len;
 
-        offset_cur = (len * sizeof(char) + sizeof(double) - 1) / sizeof(double);
+        offset_cur = static_cast<int>((len * sizeof(char) + sizeof(double) - 1) / sizeof(double));
         totalSize += offset_cur;
         offset_acc += offset_cur;
         offsets[i] = offset_acc;
@@ -204,7 +204,7 @@ static void encode(types::List* input, std::vector<double> &ret)
     for (int i = 0; i < iElements; ++i)
     {
         memcpy(&ret[2 + offset], &listElements[i][0], listElements[i].size() * sizeof(double));
-        offset += listElements[i].size();
+        offset += static_cast<int>(listElements[i].size());
     }
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
 }
@@ -213,7 +213,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
 {
     switch (in->getType())
     {
-            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case types::InternalType::ScilabDouble :
             encode(in->getAs<types::Double>(), out);
             break;
