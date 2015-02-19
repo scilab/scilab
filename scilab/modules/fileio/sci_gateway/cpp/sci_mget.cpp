@@ -48,7 +48,14 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     //check parameter 1
     if (in[0]->isDouble() == false || in[0]->getAs<Double>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A positive integer value expected.\n"), "mget", 1);
+        return Function::Error;
+    }
+
+    Double* pDoubleTest = in[0]->getAs<Double>();
+    if ((pDoubleTest->get(0) != (int)pDoubleTest->get(0)) || (pDoubleTest->get(0) < 0))
+    {
+        Scierror(999, _("%s: Wrong value for input argument #%d: A positive integer value expected.\n"), "mget", 1);
         return Function::Error;
     }
 
@@ -72,6 +79,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "mget", 3);
             return Function::Error;
         }
+
         iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
     }
 
