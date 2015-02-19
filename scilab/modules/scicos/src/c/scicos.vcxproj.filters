@@ -113,12 +113,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_scicos_debug_count.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -208,6 +202,12 @@
     </ClCompile>
     <ClCompile Include="..\cpp\view_scilab\BlockAdapter.cpp">
       <Filter>Source Files\MVC\view_scilab</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_debug.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_debug_count.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_log.cpp">
       <Filter>Source Files</Filter>

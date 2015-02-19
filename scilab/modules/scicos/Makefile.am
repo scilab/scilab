@@ -72,6 +72,8 @@ src/fortran/scifunc.f
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
 
 GATEWAY_CXX_SOURCES = \
+sci_gateway/cpp/sci_scicos_debug.cpp \
+sci_gateway/cpp/sci_scicos_debug_count.cpp \
 sci_gateway/cpp/sci_scicos_log.cpp \
 sci_gateway/cpp/sci_buildouttb.cpp \
 sci_gateway/cpp/sci_ctree2.cpp \
@@ -104,17 +106,13 @@ sci_gateway/c/sci_loadScicos.c \
 sci_gateway/c/sci_model2blk.c \
 sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
-sci_gateway/c/sci_scicos_debug.c \
-sci_gateway/c/sci_scicos_debug_count.c \
 sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_sig2data.c
 
 GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
-sci_gateway/fortran/sci_f_debug_count.f \
 sci_gateway/fortran/sci_f_getblocklabel.f \
-sci_gateway/fortran/sci_f_scicos_debug.f \
 sci_gateway/fortran/sci_f_tree2.f \
 sci_gateway/fortran/sci_f_tree3.f \
 sci_gateway/fortran/sci_f_tree4.f
