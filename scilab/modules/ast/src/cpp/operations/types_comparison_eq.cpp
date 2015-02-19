@@ -2830,36 +2830,8 @@ InternalType* compequal_M_P(T *_pL, U *_pR)
 template<>
 InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 {
-    if (_pL->getSize() == _pR->getSize())
-    {
-        //check dims
-        int iDimsL = _pL->getDims();
-        int iDimsR = _pR->getDims();
 
-        if (iDimsL != iDimsR)
-        {
-            return new Bool(false);
-        }
-
-        int* piDimsL = _pL->getDimsArray();
-        int* piDimsR = _pR->getDimsArray();
-
-        for (int i = 0; i < iDimsL; ++i)
-        {
-            if (piDimsL[i] != piDimsR[i])
-            {
-                return new Bool(false);
-            }
-        }
-        Bool*  pOut = new Bool(iDimsL, piDimsL);
-
-        for (int i = 0; i < _pL->getSize(); i++)
-        {
-            pOut->set(i, wcscmp(_pL->get(i), _pR->get(i)) == 0);
-        }
-        return pOut;
-    }
-    else if (_pL->getSize() == 1)
+    if (_pL->isScalar())
     {
         Bool*  pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
         for (int i = 0; i < _pR->getSize(); i++)
@@ -2868,7 +2840,8 @@ InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
         }
         return pOut;
     }
-    else if (_pR->getSize() == 1)
+
+    if (_pR->isScalar())
     {
         Bool*  pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
         for (int i = 0; i < _pL->getSize(); i++)
@@ -2878,6 +2851,38 @@ InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
         return pOut;
     }
 
+    int iDimsL = _pL->getDims();
+    int iDimsR = _pR->getDims();
+
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
+
+
+    if (iDimsL != iDimsR)
+    {
+        return new Bool(false);
+    }
+
+
+    for (int i = 0; i < iDimsL; ++i)
+    {
+        if (piDimsL[i] != piDimsR[i])
+        {
+            return new Bool(false);
+        }
+    }
+
+
+    if (_pL->getSize() == _pR->getSize())
+    {
+        Bool*  pOut = new Bool(iDimsL, piDimsL);
+
+        for (int i = 0; i < _pL->getSize(); i++)
+        {
+            pOut->set(i, wcscmp(_pL->get(i), _pR->get(i)) == 0);
+        }
+        return pOut;
+    }
     return NULL;
 }
 
