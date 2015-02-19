@@ -19,7 +19,11 @@ Removed functions (previously declared as obsolete)
 
 * maxfile function is now obsolete.
 
-* intersci has been removed. Please use swig instead
+* intersci has been removed. Please use swig instead.
+
+* numdiff removed. Please use numderivative instead.
+
+* derivative removed. Please use numderivative instead.
 
 
 Functions modified
