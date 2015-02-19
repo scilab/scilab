@@ -146,6 +146,16 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         out.push_back(types::Double::Empty());
     }
 
+    if (wcReadedStrings)
+    {
+        for (int i = 0; i < iLinesRead; i++)
+        {
+            FREE(wcReadedStrings[i]);
+        }
+
+        FREE(wcReadedStrings);
+    }
+
     if (bCloseFile)
     {
         mclose(iFileID);
