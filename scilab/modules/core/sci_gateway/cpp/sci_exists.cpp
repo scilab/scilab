@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_existsOrIsdef(types::typed_list &in, int _iRetC
 
     if (!in[0]->isString())
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: Matrix of strings expected.\n"), fname, 1);
         return types::Function::Error;
     }
 
