@@ -35,7 +35,6 @@
     <gateway type="0" name="sci_curblockc" function="curblockc"/>
     <gateway type="0" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="0" name="sci_coserror" function="coserror"/>
-    <gateway type="0" name="sci_haltscicos" function="sci_haltscicos"/>
     <gateway type="0" name="sci_data2sig" function="data2sig"/>
     <gateway type="0" name="sci_sig2data" function="sig2data"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
@@ -48,6 +47,7 @@
     <gateway type="1" name="sci_ctree4" function="ctree4"/>
     <gateway type="1" name="sci_curblock" function="curblock"/>
     <gateway type="1" name="sci_duplicate" function="duplicate"/>
+    <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
     <gateway type="1" name="sci_scicos_log" function="scicos_log"/>
     <gateway type="1" name="sci_scicos_new" function="scicos_new"/>
     <gateway type="1" name="sci_scicos_setfield" function="scicos_setfield"/>
