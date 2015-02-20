@@ -188,7 +188,7 @@ wchar_t** FileManager::getFilenames()
     int iFileIndex          = 0;
     wchar_t** pstFilenames  = NULL;
 
-    pstFilenames = new wchar_t*[getOpenedCount()];
+    pstFilenames = (wchar_t**) MALLOC(getOpenedCount() * sizeof(wchar_t*));
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)

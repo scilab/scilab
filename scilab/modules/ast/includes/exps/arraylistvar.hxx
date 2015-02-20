@@ -44,17 +44,19 @@ public:
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &vars;
     }
 
     virtual ArrayListVar* clone()
     {
-        exps_t exps;
+        exps_t* exps = new exps_t;
         for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            exps.push_back((*it)->clone());
+            exps->push_back((*it)->clone());
         }
 
-        ArrayListVar* cloned = new ArrayListVar(getLocation(), exps);
+        ArrayListVar* cloned = new ArrayListVar(getLocation(), *exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

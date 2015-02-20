@@ -44,9 +44,12 @@ types::Function::ReturnValue sci_ones(types::typed_list &in, int _iRetCount, typ
             case -1 :
                 Scierror(21, _("Invalid index.\n"));
                 break;
-            case 1 :
+            case 1:
+            {
                 //call overload
-                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, new ast::ExecVisitor());
+                ast::ExecVisitor exec;
+                return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, &exec);
+            }
         }
 
         return types::Function::Error;

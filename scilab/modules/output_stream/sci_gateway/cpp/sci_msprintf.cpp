@@ -23,6 +23,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -47,8 +48,9 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_msprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_msprintf";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
     }
 
@@ -120,21 +122,16 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     int iNewLine = 0;
     wchar_t** pwstOutput = scilab_sprintf("msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
 
+    delete[] pArgs;
     if (pwstOutput == NULL)
     {
-        delete[] pArgs;
         return types::Function::Error;
     }
 
     types::String* pOut = new types::String(iOutputRows, 1);
     pOut->set(pwstOutput);
+    freeArrayOfWideString(pwstOutput, iOutputRows);
     out.push_back(pOut);
-
-    for (int i = 0 ; i < iOutputRows ; i++)
-    {
-        FREE(pwstOutput[i]);
-    }
-    FREE(pwstOutput);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

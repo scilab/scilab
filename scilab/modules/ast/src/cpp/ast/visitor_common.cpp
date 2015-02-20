@@ -727,7 +727,9 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         int iListSize = 0;
 
         ast::ExecVisitor execMe;
-        typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->getArgs());
+        ast::exps_t* args = pCall->getArgs();
+        typed_list* pCurrentArgs = execMe.GetArgumentList(*args);
+        delete args;
 
         if (getFieldsFromExp(&pCall->getName(), fields) == false)
         {
@@ -758,7 +760,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             {
                 // a("b") => a.b or a(x)("b") => a(x).b
                 ExpHistory * pEHParent = fields.back();
-                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
                 ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
                 pEH->setLevel(pEHParent->getLevel() + 1);
                 pEH->setExpOwner(true);
@@ -2375,13 +2377,12 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     {
         pList = getPropertyTree(&pCall->getName(), pList);
         ast::ExecVisitor exec;
-        ast::exps_t l = pCall->getArgs();
-        ast::exps_t::const_iterator it;
-        for (ast::exps_t::const_iterator it = l.begin(), itEnd = l.end() ; it != itEnd ; ++it)
+        ast::exps_t* exps = pCall->getArgs();
+        for (auto exp : *exps)
         {
             try
             {
-                (*it)->accept(exec);
+                exp->accept(exec);
                 pList->append(exec.getResult());
                 exec.clearResult();
             }
@@ -2390,7 +2391,7 @@ List* getPropertyTree(ast::Exp* e, List* pList)
                 throw e;
             }
         }
-
+        delete exps;
         return pList;
     }
 

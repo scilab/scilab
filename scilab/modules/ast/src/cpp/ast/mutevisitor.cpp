@@ -125,22 +125,26 @@ void MuteVisitor::visit (const AssignExp  &e)
 
 void MuteVisitor::visit(const CallExp &e)
 {
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
-        (*it)->mute();
-        (*it)->accept(*this);
+        arg->mute();
+        arg->accept(*this);
     }
+
+    delete args;
 }
 
 void MuteVisitor::visit(const CellCallExp &e)
 {
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
-        (*it)->mute();
-        (*it)->accept(*this);
+        arg->mute();
+        arg->accept(*this);
     }
+
+    delete args;
 }
 
 void MuteVisitor::visit (const IfExp  &e)

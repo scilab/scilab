@@ -55,13 +55,15 @@ types::Function::ReturnValue sci_and(types::typed_list &in, int _iRetCount, type
     if (in[0]->isGenericType() && in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
         //hypermatrix are manage in external macro
-        return Overload::call(L"%hm_and", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%hm_and", in, _iRetCount, out, &exec);
     }
 
     if (in[0]->isBool() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_and";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_and";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() == 2)

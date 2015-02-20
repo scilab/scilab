@@ -42,13 +42,13 @@ public:
 
     virtual AssignListExp* clone()
     {
-        exps_t exps;
+        exps_t* exps = new exps_t;
         for (exps_t::const_iterator it = _exps.begin() ; it != _exps.end() ; ++it)
         {
-            exps.push_back((*it)->clone());
+            exps->push_back((*it)->clone());
         }
 
-        AssignListExp* cloned = new AssignListExp(getLocation(), exps);
+        AssignListExp* cloned = new AssignListExp(getLocation(), *exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

@@ -47,7 +47,7 @@ public:
     ** \param body
     */
     FunctionDec (const Location& location,
-                 symbol::Symbol& name,
+                 symbol::Symbol name,
                  Exp& args,
                  Exp& returns,
                  Exp& body)
@@ -67,12 +67,12 @@ public:
     {
         //body will be deleted by types::Macro
         //so replace by NULL to avoir delete in ~Exp()
-        _exps[2] = NULL;
+        //_exps[2] = NULL;
     }
 
     virtual FunctionDec* clone()
     {
-        FunctionDec* cloned = new FunctionDec(getLocation(), *new symbol::Symbol(getSymbol().getName()), *getArgs().clone(), *getReturns().clone(), *getBody().clone());
+        FunctionDec* cloned = new FunctionDec(getLocation(), getSymbol(), *getArgs().clone(), *getReturns().clone(), *getBody().clone());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -93,7 +93,7 @@ public:
 
     // \name Accessors.
 public:
-    symbol::Symbol& getSymbol(void) const
+    symbol::Symbol getSymbol(void) const
     {
         return _name;
     }
@@ -152,7 +152,7 @@ public:
         return true;
     }
 protected:
-    symbol::Symbol& _name;
+    symbol::Symbol _name;
     symbol::Variable* _stack;
 };
 

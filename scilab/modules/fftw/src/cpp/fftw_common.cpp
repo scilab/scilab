@@ -61,7 +61,8 @@ types::Function::ReturnValue fftw_common(std::wstring& name, types::typed_list &
 
     if (in[0]->isDouble() == false)
     {
-        return Overload::generateNameAndCall(name, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::generateNameAndCall(name, in, _iRetCount, out, &exec);
     }
 
     //check option, last parameter

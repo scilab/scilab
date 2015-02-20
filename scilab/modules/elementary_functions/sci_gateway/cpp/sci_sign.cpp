@@ -97,8 +97,9 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sign";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

@@ -48,7 +48,7 @@ public:
     ** \li "2097" is the initial value of the variable
     */
     VarDec (const Location& location,
-            symbol::Symbol& name, Exp& init)
+            symbol::Symbol name, Exp& init)
         : Dec (location),
           _name (name),
           _stack(NULL)
@@ -62,13 +62,12 @@ public:
     ** Delete type_name if it exist, init and name (see constructor). */
     virtual ~VarDec()
     {
-        delete &_name;
     }
     /** \} */
 
     virtual VarDec* clone()
     {
-        VarDec* cloned = new VarDec(getLocation(), *new symbol::Symbol(getSymbol().getName()), *getInit().clone());
+        VarDec* cloned = new VarDec(getLocation(), getSymbol(), *getInit().clone());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -92,7 +91,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the variable name (read only). */
-    symbol::Symbol& getSymbol (void) const
+    symbol::Symbol getSymbol (void) const
     {
         return _name;
     }
@@ -149,7 +148,7 @@ public:
 protected:
     analysis::ForList64 list_info;
     /** \brief Name of the declared variable. */
-    symbol::Symbol& _name;
+    symbol::Symbol _name;
     symbol::Variable* _stack;
 };
 

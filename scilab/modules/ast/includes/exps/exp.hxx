@@ -20,7 +20,7 @@
 
 #include <list>
 #include <vector>
-
+#include <algorithm>
 #include "ast.hxx"
 
 namespace ast

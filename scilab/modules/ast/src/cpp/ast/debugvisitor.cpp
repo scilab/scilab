@@ -209,11 +209,13 @@ void DebugVisitor::visit(const CellCallExp &e)
     DEBUG(L"Exec CellCallExp", e);
     e.getName().accept (*this);
 
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
-        (*it)->accept(*this);
+        arg->accept(*this);
     }
+
+    delete args;
     DEBUG_END_NODE();
 }
 
@@ -223,11 +225,13 @@ void DebugVisitor::visit(const CallExp &e)
     DEBUG(L"Exec CallExp", e);
     e.getName().accept (*this);
 
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
-        (*it)->accept (*this);
+        arg->accept (*this);
     }
+
+    delete args;
     DEBUG_END_NODE();
 }
 

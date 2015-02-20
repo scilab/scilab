@@ -601,7 +601,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         {
             std::wostringstream os;
             os << _W("Invalid index.\n");
-            throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+            throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
         }
         out.push_back(_out);
     }

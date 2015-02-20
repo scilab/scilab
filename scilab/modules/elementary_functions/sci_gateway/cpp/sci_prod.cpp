@@ -143,8 +143,9 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_prod";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_prod";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() >= 2)

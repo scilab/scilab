@@ -207,7 +207,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="rk4.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\checkodeerror.h" />
+    <ClInclude Include="..\..\includes\checkodeerror.hxx" />
     <ClInclude Include="..\..\includes\common_structure.h" />
     <ClInclude Include="..\..\includes\differentialequationfunctions.hxx" />
     <ClInclude Include="..\..\includes\scifunctions.h" />

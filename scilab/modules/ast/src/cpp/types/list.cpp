@@ -168,6 +168,8 @@ InternalType* List::extract(typed_list* _pArgs)
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {

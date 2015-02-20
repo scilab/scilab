@@ -454,11 +454,14 @@ void TreeVisitor::visit(const AssignExp &e)
         lhs->append(getList());
 
         //indexes
-        for (auto arg : call->getArgs())
+        ast::exps_t* args = call->getArgs();
+        for (auto arg : *args)
         {
             arg->accept(*this);
             lhs->append(getList());
         }
+
+        delete args;
         if (dlhs)
         {
             dlhs[0] = 1;//lhs = 1
@@ -539,11 +542,14 @@ void TreeVisitor::visit(const CallExp &e)
 
     //rhs
     types::List* rhs = new types::List();
-    for (auto arg : e.getArgs())
+    ast::exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
         arg->accept(*this);
         rhs->append(getList());
     }
+    delete args;
+
     call->append(rhs);
 
     //name
@@ -571,7 +577,7 @@ void TreeVisitor::visit(const ForExp &e)
     //expression
     //create a AssignExp to call visitor it
     VarDec* vardec = e.getVardec().getAs<VarDec>();
-    SimpleVar* var = new SimpleVar(*vardec->getLocation().clone(), *new symbol::Symbol(vardec->getSymbol()));
+    SimpleVar* var = new SimpleVar(*vardec->getLocation().clone(), vardec->getSymbol());
     Exp* init = vardec->getInit().clone();
     AssignExp* assign = new AssignExp(*vardec->getLocation().clone(), *var, *init);
     assign->setVerbose(true);

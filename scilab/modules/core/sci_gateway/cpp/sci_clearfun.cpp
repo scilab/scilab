@@ -73,6 +73,7 @@ Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types:
             pSV->m_pIT->killMe();
             stack.pop();
             bDeleted = true;
+            delete pSV;
         }
 
         //move all elements at orginal place and order

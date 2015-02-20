@@ -42,7 +42,8 @@ COMPLETION_CPP_SOURCES = \
     src/cpp/EOFieldsGetter.cpp \
     src/cpp/UnknownMlistFieldsGetter.cpp \
     src/cpp/StructFieldsGetter.cpp \
-    src/cpp/HandleFieldsGetter.cpp
+    src/cpp/HandleFieldsGetter.cpp \
+    src/cpp/DllmainCompletion.cpp
 
 # List of the gateway c files
 GATEWAY_CPP_SOURCES = \

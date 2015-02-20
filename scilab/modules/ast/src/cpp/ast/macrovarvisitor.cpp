@@ -28,12 +28,14 @@ void MacrovarVisitor::visit(const CallExp &e)
     e.getName().accept (*this);
     add();
 
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    exps_t* args = e.getArgs();
+    for (auto arg : *args)
     {
-        (*it)->getOriginal()->accept (*this);
+        arg->getOriginal()->accept(*this);
         add();
     }
+
+    delete args;
 }
 
 void MacrovarVisitor::visit(const AssignExp &e)

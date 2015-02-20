@@ -44,9 +44,6 @@
     <ClCompile Include="completion_wrap_java.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllmainCompletion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getCommonPart.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,6 +99,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\XMLSetFieldsGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\DllmainCompletion.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

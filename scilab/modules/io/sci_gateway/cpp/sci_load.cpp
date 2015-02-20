@@ -61,10 +61,9 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
 
             //call overload
             std::wstring wstFuncName = L"%_sodload";
-            ast::ExecVisitor* exec = new ast::ExecVisitor();
+            ast::ExecVisitor exec;
             Callable::ReturnValue Ret = Callable::Error;
-            Ret = Overload::call(wstFuncName, in, _iRetCount, out, exec);
-            delete exec;
+            Ret = Overload::call(wstFuncName, in, _iRetCount, out, &exec);
             return Ret;
         }
         else

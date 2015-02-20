@@ -82,6 +82,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 {
                     clearCurrentLine();
                     copyLine(newline);
+                    FREE(common);
                     FREE(newline);
                     return;
                 }

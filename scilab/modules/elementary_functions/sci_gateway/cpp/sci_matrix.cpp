@@ -52,8 +52,9 @@ types::Function::ReturnValue sci_matrix(types::typed_list &in, int _iRetCount, t
             in[0]->isSparse()       == false &&
             in[0]->isSparseBool()   == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_matrix";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_matrix";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pGTIn = in[0]->getAs<types::GenericType>();

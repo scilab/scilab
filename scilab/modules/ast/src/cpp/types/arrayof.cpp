@@ -145,6 +145,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     if (iSeqCount == 0)
     {
         //free pArg content
+        delete[] piCountDim;
+        delete[] piMaxDim;
         cleanIndexesArguments(_pArgs, &pArg);
         return this;
     }
@@ -248,6 +250,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 {
                     if (pIdx[j] >= m_piDims[i])
                     {
+                        delete[] piCountDim;
+                        delete[] piMaxDim;
                         //free pArg content
                         cleanIndexesArguments(_pArgs, &pArg);
                         return NULL;
@@ -265,6 +269,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             {
                 if (pIdx[i] > iMaxLastDim)
                 {
+                    delete[] piCountDim;
+                    delete[] piMaxDim;
                     //free pArg content
                     cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
@@ -280,6 +286,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         bool bPass = resize(piNewDims, iNewDims);
         if (bPass == false)
         {
+            delete[] piCountDim;
+            delete[] piMaxDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -434,6 +442,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (iSeqCount == 0)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
@@ -524,6 +534,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (checkArgValidity(pArg) == false)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         //contain bad index, like <= 0, ...
@@ -571,6 +583,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
 
     if (bIsImpli && (pArrayOut->getSize() != _pSource->getAs<types::GenericType>()->getSize()))
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
@@ -582,6 +596,8 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         delete pOut;
     }
 
+    delete[] piMaxDim;
+    delete[] piCountDim;
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
@@ -648,6 +664,8 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
     if (iSeqCount == 0)
     {
         //free pArg content
@@ -865,6 +883,8 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
     if (iSeqCount == 0)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         return createEmptyDouble();
@@ -891,6 +911,8 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 
             if (piMaxDim[i] > iDimToCheck)
             {
+                delete[] piMaxDim;
+                delete[] piCountDim;
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
                 return NULL;
@@ -905,6 +927,8 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
             {
                 if (piMaxDim[i] > 1)
                 {
+                    delete[] piMaxDim;
+                    delete[] piCountDim;
                     //free pArg content
                     cleanIndexesArguments(_pArgs, &pArg);
                     return NULL;
@@ -917,6 +941,8 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         {
             if (piMaxDim[i] > m_piDims[i])
             {
+                delete[] piMaxDim;
+                delete[] piCountDim;
                 //free pArg content
                 cleanIndexesArguments(_pArgs, &pArg);
                 //exrtact must be in dimension limits
@@ -943,6 +969,8 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     {
         if (piCountDim[0] == 0)
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return createEmptyDouble();

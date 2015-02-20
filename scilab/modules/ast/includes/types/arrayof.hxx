@@ -229,6 +229,8 @@ public :
         {
             return false;
         }
+
+        deleteData(m_pRealData[_iPos]);
         m_pRealData[_iPos] = copyValue(_data);
         return true;
     }
@@ -251,6 +253,7 @@ public :
 
         for (int i = 0 ; i < m_iSize ; i++)
         {
+            deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
         return true;
@@ -265,6 +268,7 @@ public :
 
         for (int i = 0 ; i < m_iSize ; i++)
         {
+            deleteData(m_pRealData[i]);
             m_pRealData[i] = copyValue(_pdata[i]);
         }
         return true;
@@ -377,7 +381,10 @@ public :
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                ast::exps_t* args = e.getArgs();
+                Location loc((*args->begin())->getLocation());
+                delete args;
+                throw ast::ScilabError(os.str(), 999, loc);
             }
             out.push_back(_out);
         }

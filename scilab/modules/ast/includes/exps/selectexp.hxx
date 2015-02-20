@@ -44,6 +44,8 @@ public :
             _exps.push_back(*it);
         }
 
+        delete &cases;
+
         if (&defaultCase != NULL)
         {
             defaultCase.setParent(this);
@@ -69,6 +71,8 @@ public :
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &cases;
     }
 
     ~SelectExp()
@@ -77,7 +81,7 @@ public :
 
     virtual SelectExp* clone()
     {
-        exps_t cases;
+        exps_t* cases = new exps_t;
         exps_t::const_iterator it = ++(_exps.begin());
         exps_t::const_iterator itEnd = _exps.end();
         if (_hasDefault)
@@ -87,17 +91,17 @@ public :
 
         for (; it != itEnd ; ++it)
         {
-            cases.push_back((*it)->clone());
+            cases->push_back((*it)->clone());
         }
 
         SelectExp* cloned = NULL;
         if (_hasDefault)
         {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases, *getDefaultCase()->clone());
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
         }
         else
         {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases);
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
         }
 
         cloned->setVerbose(isVerbose());

@@ -219,7 +219,7 @@ void PrintVisitor::visit(const OpExp &e)
 
     switch (e.getOper())
     {
-            // Arithmetics.
+        // Arithmetics.
         case OpExp::plus:
             *ostr << SCI_PLUS;
             break;
@@ -239,7 +239,7 @@ void PrintVisitor::visit(const OpExp &e)
         case OpExp::power:
             *ostr << SCI_POWER;
             break;
-            // Element Ways.
+        // Element Ways.
         case OpExp::dottimes:
             *ostr << SCI_DOTTIMES;
             break;
@@ -252,7 +252,7 @@ void PrintVisitor::visit(const OpExp &e)
         case OpExp::dotpower:
             *ostr << SCI_DOTPOWER;
             break;
-            // Kroneckers
+        // Kroneckers
         case OpExp::krontimes:
             *ostr << SCI_KRONTIMES;
             break;
@@ -262,7 +262,7 @@ void PrintVisitor::visit(const OpExp &e)
         case OpExp::kronldivide:
             *ostr << SCI_KRONLDIVIDE;
             break;
-            // Control
+        // Control
         case OpExp::controltimes:
             *ostr << SCI_CONTROLTIMES;
             break;
@@ -272,7 +272,7 @@ void PrintVisitor::visit(const OpExp &e)
         case OpExp::controlldivide:
             *ostr << SCI_CONTROLLDIVIDE;
             break;
-            // Comparisons
+        // Comparisons
         case OpExp::eq:
             *ostr << SCI_EQ;
             break;
@@ -325,7 +325,7 @@ void PrintVisitor::visit(const LogicalOpExp &e)
     *ostr << " ";
     switch (e.getOper())
     {
-            // Binary Operators
+        // Binary Operators
         case LogicalOpExp::logicalAnd:
             *ostr << SCI_AND;
             break;
@@ -366,8 +366,8 @@ void PrintVisitor::visit(const CellCallExp &e)
 {
     e.getName().getOriginal()->accept(*this);
     *ostr << SCI_OPEN_CELL;
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; /**/)
+    exps_t* args = e.getArgs();
+    for (exps_t::const_iterator it = args->begin (), itEnd = args->end(); it != itEnd; /**/)
     {
         (*it)->getOriginal()->accept(*this);
         if (++it != itEnd)
@@ -375,6 +375,8 @@ void PrintVisitor::visit(const CellCallExp &e)
             *ostr << SCI_COMMA << " ";
         }
     }
+
+    delete args;
     *ostr << SCI_CLOSE_CELL;
 }
 
@@ -382,10 +384,9 @@ void PrintVisitor::visit(const CallExp &e)
 {
     e.getName().getOriginal()->accept(*this);
     *ostr << SCI_OPEN_CALL;
-    std::list<Exp *>::const_iterator	i;
 
-    exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; /**/)
+    exps_t* args = e.getArgs();
+    for (exps_t::const_iterator it = args->begin(), itEnd = args->end(); it != itEnd; /**/)
     {
         (*it)->getOriginal()->accept(*this);
         if (++it != itEnd)
@@ -393,6 +394,7 @@ void PrintVisitor::visit(const CallExp &e)
             *ostr << SCI_COMMA << " ";
         }
     }
+    delete args;
     *ostr << SCI_CLOSE_CALL;
 }
 

@@ -71,8 +71,9 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_svd";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_svd";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
     pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
@@ -188,7 +189,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             }
         }
         break;
-        // default: // makes at the beginning of this gateway
+            // default: // makes at the beginning of this gateway
     }
 
     if (iRet != 0)

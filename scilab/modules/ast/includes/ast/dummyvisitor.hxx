@@ -134,21 +134,23 @@ protected:
     {
         e.getName().accept (*this);
 
-        exps_t args = e.getArgs();
-        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+        exps_t* args = e.getArgs();
+        for (auto arg : *args)
         {
-            (*it)->accept(*this);
+            arg->accept(*this);
         }
+
+        delete args;
     }
 
     virtual void visit(const CallExp &e)
     {
         e.getName().accept (*this);
 
-        exps_t args = e.getArgs();
-        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+        exps_t* args = e.getArgs();
+        for (auto arg : *args)
         {
-            (*it)->accept (*this);
+            arg->accept(*this);
         }
     }
 

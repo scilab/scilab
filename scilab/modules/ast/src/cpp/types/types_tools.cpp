@@ -333,21 +333,19 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
         //call overload %type_p
         types::typed_list in;
         types::typed_list out;
-        ast::ExecVisitor* exec = new ast::ExecVisitor();
+        ast::ExecVisitor exec;
 
         pIT->IncreaseRef();
         in.push_back(pIT);
 
         try
         {
-            ret = Overload::generateNameAndCall(L"p", in, 1, out, exec);
-            delete exec;
+            ret = Overload::generateNameAndCall(L"p", in, 1, out, &exec);
             pIT->DecreaseRef();
             return ret;
         }
         catch (ast::ScilabError &e)
         {
-            delete exec;
             pIT->DecreaseRef();
             throw e;
         }

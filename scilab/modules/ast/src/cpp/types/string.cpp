@@ -125,7 +125,7 @@ void String::deleteString(int _iPos)
 
 void String::deleteAll()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0 ; i < m_iSizeMax ; i++)
     {
         deleteString(i);
     }
@@ -559,12 +559,22 @@ wchar_t* String::copyValue(const wchar_t* _pwstData)
     return os_wcsdup(_pwstData);
 }
 
+void String::deleteData(wchar_t* data)
+{
+    if (data)
+    {
+        delete[] data;
+    }
+}
+
 bool String::set(int _iPos, const wchar_t* _pwstData)
 {
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
         return false;
     }
+
+    deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
     return true;
 }
@@ -577,12 +587,7 @@ bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 
 bool String::set(const wchar_t* const* _pwstData)
 {
-    if (m_pRealData == NULL)
-    {
-        return false;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < getSize(); i++)
     {
         if (set(i, _pwstData[i]) == false)
         {
@@ -594,12 +599,10 @@ bool String::set(const wchar_t* const* _pwstData)
 
 bool String::set(int _iPos, const char* _pcData)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
-    {
-        return false;
-    }
-    m_pRealData[_iPos] = to_wide_string(_pcData);
-    return true;
+    wchar_t* w = to_wide_string(_pcData);
+    bool ret = set(_iPos, w);
+    FREE(w);
+    return ret;
 }
 
 bool String::set(int _iRows, int _iCols, const char* _pcData)
@@ -610,12 +613,7 @@ bool String::set(int _iRows, int _iCols, const char* _pcData)
 
 bool String::set(const char* const* _pstrData)
 {
-    if (m_pRealData == NULL)
-    {
-        return false;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < getSize(); i++)
     {
         if (set(i, _pstrData[i]) == false)
         {

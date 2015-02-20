@@ -885,6 +885,10 @@ assign			"="
         FREE (pwstBuffer);
         return scan_throw(COMMENT);
     }
+    else
+    {
+        delete pstBuffer;
+    }
   }
 
   <<EOF>>	{

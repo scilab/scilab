@@ -43,14 +43,16 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() == 2)
@@ -112,8 +114,9 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
             break;
         default :
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
     }
 

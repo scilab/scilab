@@ -16,8 +16,6 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
-    exps_t::const_iterator itExp;
-
     e.getName().accept(*this);
 
     if (getResult() != NULL && getResult()->isInvokable())
@@ -41,12 +39,12 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         //get function arguments
-        exps_t args = e.getArgs();
-        for (itExp = args.begin (); itExp != args.end (); ++itExp)
+        exps_t* args = e.getArgs();
+        for (auto arg : *args)
         {
-            if ((*itExp)->isAssignExp())
+            if (arg->isAssignExp())
             {
-                AssignExp* pAssign = static_cast<AssignExp*>(*itExp);
+                AssignExp* pAssign = static_cast<AssignExp*>(arg);
                 //optional parameter
                 Exp* pL = &pAssign->getLeftExp();
                 if (!pL->isSimpleVar())
@@ -89,7 +87,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             int iSize = getExpectedSize();
             setExpectedSize(-1);
-            (*itExp)->accept(*this);
+            arg->accept(*this);
             setExpectedSize(iSize);
 
             if (getResult() == NULL)
@@ -127,6 +125,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 clearResult();
             }
         }
+        delete args;
 
         try
         {
@@ -172,7 +171,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                             std::wostringstream os;
                             os << _W("Invalid index.\n");
-                            throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                            throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
                         }
                     }
                     else
@@ -226,7 +225,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("Invalid index.\n");
-                    throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                    throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
                 }
             }
 
@@ -295,10 +294,12 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pIT->isCell() == false)
             {
-                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, (*e.getArgs().begin())->getLocation());
+                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
             //Create list of indexes
-            types::typed_list *pArgs = GetArgumentList(e.getArgs());
+            ast::exps_t* exps = e.getArgs();
+            types::typed_list *pArgs = GetArgumentList(*exps);
+            delete exps;
 
             types::List* pList = pIT->getAs<types::Cell>()->extractCell(pArgs);
 
@@ -308,7 +309,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
-                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
             }
 
             if (pList->getSize() == 1)

@@ -63,11 +63,7 @@ wchar_t* computeHOMEW(void)
 {
     char* pstTemp = computeHOME();
     wchar_t* pstReturn = to_wide_string(pstTemp);
-    if (pstTemp)
-    {
-        delete[] pstTemp;
-    }
-
+    delete[] pstTemp;
     return pstReturn;
 }
 /*--------------------------------------------------------------------------*/
@@ -113,6 +109,7 @@ char* getenvHOME(void)
 
         if (ierr == 1)
         {
+            delete[] Home;
             return NULL;
         }
     }

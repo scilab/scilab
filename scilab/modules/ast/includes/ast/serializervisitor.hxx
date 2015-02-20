@@ -559,7 +559,9 @@ private :
     {
         add_ast(35, e);
         add_exp(e.getName());
-        add_exps(e.getArgs());
+        ast::exps_t* args = e.getArgs();
+        add_exps(*args);
+        delete args;
     }
     void visit(const MatrixLineExp& e)  /* SHOULD NEVER HAPPEN */
     {
@@ -569,7 +571,9 @@ private :
     {
         add_ast(37, e);
         add_exp(e.getName());
-        add_exps(e.getArgs());
+        ast::exps_t* args = e.getArgs();
+        add_exps(*args);
+        delete args;
     }
 
     /* optimized */

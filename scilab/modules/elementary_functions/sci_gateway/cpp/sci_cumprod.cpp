@@ -141,8 +141,9 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_cumprod";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_cumprod";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() >= 2)

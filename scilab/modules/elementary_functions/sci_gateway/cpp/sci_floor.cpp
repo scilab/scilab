@@ -150,8 +150,9 @@ types::Function::ReturnValue sci_floor(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_floor";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_floor";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

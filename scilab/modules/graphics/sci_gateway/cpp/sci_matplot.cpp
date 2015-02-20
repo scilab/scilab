@@ -65,7 +65,8 @@ types::Function::ReturnValue sci_matplot(types::typed_list &in, types::optional_
 
     if (in.size() < 1)
     {
-        return Overload::call(L"%_Matplot", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%_Matplot", in, _iRetCount, out, &exec);
 
     }
     else if (in.size() > 5)

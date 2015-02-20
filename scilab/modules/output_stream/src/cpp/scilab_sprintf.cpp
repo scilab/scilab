@@ -293,7 +293,6 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             //start at 1, the 0th is always without %
             for (int i = 1 ; i < _iArgsCount + 1 ; i++)
             {
-                void* pvVal = NULL;
                 if (pToken[i].outputType == InternalType::ScilabDouble)
                 {
                     wchar_t pwstTemp[bsiz];
@@ -474,6 +473,13 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
         }
 
         pwstFirstOutput = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+
+        for (int j = 0; j < _iArgsCount + 1; ++j)
+        {
+            delete[] pToken[j].pwstToken;
+        }
+        delete[] pToken;
+
     }
 
     pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));

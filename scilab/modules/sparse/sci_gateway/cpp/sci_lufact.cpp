@@ -85,8 +85,9 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isSparse() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_lufact";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_lufact";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pSpIn = in[0]->getAs<types::Sparse>();

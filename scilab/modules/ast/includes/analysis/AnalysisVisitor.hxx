@@ -90,9 +90,9 @@ public:
 
         std::wcout << std::endl;
 
-        for (MapSymInfo::const_iterator i = symsinfo.begin(), end = symsinfo.end(); i != end; ++i)
+        for (auto sym : symsinfo)
         {
-            std::wcout << i->first.getName() << L" -> " << i->second << std::endl;
+            std::wcout << sym.first.getName() << L" -> " << sym.second << std::endl;
         }
 
         std::wcout << std::endl;
@@ -280,7 +280,7 @@ private:
 
     void visit(ast::SimpleVar & e)
     {
-        symbol::Symbol & sym = e.getSymbol();
+        symbol::Symbol sym = e.getSymbol();
         TIType typ = get_ti(sym);
         e.getDecorator().res = Result(typ, false, false);
         setResult(e.getDecorator().res);
@@ -299,10 +299,10 @@ private:
 
     void visit(ast::ArrayListVar & e)
     {
-        const ast::exps_t vars = e.getVars();
-        for (ast::exps_t::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
+        const ast::exps_t& vars = e.getVars();
+        for (auto var : vars)
         {
-            (*i)->accept(*this);
+            var->accept(*this);
         }
     }
 
@@ -337,11 +337,13 @@ private:
     void visit(ast::CallExp & e)
     {
         e.getName().accept(*this);
-        const ast::exps_t args = e.getArgs();
-        for (ast::exps_t::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
+        const ast::exps_t* args = e.getArgs();
+        for (auto arg : *args)
         {
-            (*i)->accept(*this);
+            arg->accept(*this);
         }
+
+        delete args;
     }
 
     void visit(ast::CellCallExp & e)
@@ -426,7 +428,7 @@ private:
         if (e.getLeftExp().isSimpleVar())
         {
             ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
-            symbol::Symbol & sym = var.getSymbol();
+            symbol::Symbol sym = var.getSymbol();
 
             e.getRightExp().accept(*this);
             var.getDecorator().res = getResult();
@@ -488,9 +490,9 @@ private:
     {
         e.getSelect()->accept(*this);
         ast::exps_t* cases = e.getCases();
-        for (ast::exps_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
+        for (auto c : *cases)
         {
-            (*i)->accept(*this);
+            c->accept(*this);
         }
         delete cases;
 
@@ -528,12 +530,12 @@ private:
 
     void visit(ast::MatrixExp & e)
     {
-        const ast::exps_t lines = e.getLines();
+        const ast::exps_t& lines = e.getLines();
         bool constant = true;
-        for (ast::exps_t::const_iterator i = lines.begin(), itEnd = lines.end(); i != itEnd; ++i)
+        for (auto line : lines)
         {
-            (*i)->accept(*this);
-            if ((*i)->getDecorator().res.isConstant() == false)
+            line->accept(*this);
+            if (line->getDecorator().res.isConstant() == false)
             {
                 constant = false;
             }
@@ -547,12 +549,12 @@ private:
 
     void visit(ast::MatrixLineExp & e)
     {
-        const ast::exps_t columns = e.getColumns();
+        const ast::exps_t& columns = e.getColumns();
         bool constant = true;
-        for (ast::exps_t::const_iterator i = columns.begin(), itEnd = columns.end(); i != itEnd; ++i)
+        for (auto col : columns)
         {
-            (*i)->accept(*this);
-            if ((*i)->getDecorator().res.isConstant() == false)
+            col->accept(*this);
+            if (col->getDecorator().res.isConstant() == false)
             {
                 constant = false;
             }
@@ -569,19 +571,19 @@ private:
 
     void visit(ast::SeqExp & e)
     {
-        const ast::exps_t exps = e.getExps();
-        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
+        const ast::exps_t& exps = e.getExps();
+        for (auto exp : exps)
         {
-            (*i)->accept(*this);
+            exp->accept(*this);
         }
     }
 
     void visit(ast::ArrayListExp & e)
     {
-        const ast::exps_t exps = e.getExps();
-        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
+        const ast::exps_t& exps = e.getExps();
+        for (auto exp : exps)
         {
-            (*i)->accept(*this);
+            exp->accept(*this);
         }
     }
 
@@ -593,7 +595,7 @@ private:
     void visit(ast::VarDec & e)
     {
         // VarDec is only used in For loop for iterator declaration
-        symbol::Symbol & sym = e.getSymbol();
+        symbol::Symbol sym = e.getSymbol();
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());

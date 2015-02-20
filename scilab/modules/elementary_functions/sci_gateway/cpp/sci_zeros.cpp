@@ -45,8 +45,11 @@ types::Function::ReturnValue sci_zeros(types::typed_list &in, int _iRetCount, ty
                 Scierror(21, _("Invalid index.\n"));
                 break;
             case 1:
+            {
                 //call overload
-                return Overload::generateNameAndCall(L"zeros", in, _iRetCount, out, new ast::ExecVisitor());
+                ast::ExecVisitor exec;
+                return Overload::generateNameAndCall(L"zeros", in, _iRetCount, out, &exec);
+            }
         }
 
         return types::Function::Error;

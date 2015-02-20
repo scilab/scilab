@@ -32,7 +32,7 @@ public:
     ** \param name the name of the variable
     */
     SimpleVar (const Location& location,
-               symbol::Symbol& name)
+               const symbol::Symbol& name)
         : Var (location),
           _name (name),
           _stack(NULL)
@@ -43,12 +43,11 @@ public:
     ** Delete name, see constructor. */
     virtual ~SimpleVar ()
     {
-        delete &_name;
     }
 
     virtual SimpleVar* clone()
     {
-        SimpleVar* cloned = new SimpleVar(getLocation(), *new symbol::Symbol(getSymbol().getName()));
+        SimpleVar* cloned = new SimpleVar(getLocation(), getSymbol());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -73,7 +72,7 @@ public:
     ** \{ */
 public:
     /** \brief Return the Variable's name. */
-    symbol::Symbol& getSymbol () const
+    symbol::Symbol getSymbol () const
     {
         return _name;
     }
@@ -106,7 +105,7 @@ public:
     }
 protected:
     /** \brief Variable's name */
-    symbol::Symbol& _name;
+    symbol::Symbol _name;
     symbol::Variable* _stack;
 };
 

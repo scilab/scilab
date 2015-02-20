@@ -42,14 +42,16 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     // get offset
@@ -139,8 +141,9 @@ types::Function::ReturnValue sci_tril(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_tril";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tril";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

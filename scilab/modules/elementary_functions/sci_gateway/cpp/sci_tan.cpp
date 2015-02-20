@@ -44,8 +44,9 @@ types::Function::ReturnValue sci_tan(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_tan";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_tan";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();

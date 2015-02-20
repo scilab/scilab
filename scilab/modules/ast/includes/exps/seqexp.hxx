@@ -45,6 +45,8 @@ public:
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &body;
     }
 
     virtual ~SeqExp ()
@@ -53,13 +55,13 @@ public:
 
     virtual SeqExp* clone()
     {
-        exps_t exp;
+        exps_t* exp = new exps_t;
         for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
         {
-            exp.push_back((*it)->clone());
+            exp->push_back((*it)->clone());
         }
 
-        SeqExp* cloned = new SeqExp(getLocation(), exp);
+        SeqExp* cloned = new SeqExp(getLocation(), *exp);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

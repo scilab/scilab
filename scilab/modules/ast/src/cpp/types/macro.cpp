@@ -36,7 +36,7 @@ namespace types
 {
 Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputArgs, std::list<symbol::Variable*>& _outputArgs, ast::SeqExp &_body, const std::wstring& _stModule):
     Callable(),
-    m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
+    m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(_body.clone()),
     m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
     m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
     m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
@@ -70,7 +70,7 @@ Macro::~Macro()
         delete m_outputArgs;
     }
 
-for (const auto & sub : m_submacro)
+    for (const auto & sub : m_submacro)
     {
         sub.second->DecreaseRef();
         sub.second->killMe();
@@ -292,7 +292,7 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
 
 
     //add sub macro in current context
-for (const auto & sub : m_submacro)
+    for (const auto & sub : m_submacro)
     {
         pContext->put(sub.first, sub.second);
     }

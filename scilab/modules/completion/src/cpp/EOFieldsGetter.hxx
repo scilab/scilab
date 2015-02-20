@@ -45,9 +45,8 @@ public :
      */
     static void initializeEO()
     {
-        EOFieldsGetter * getter = new EOFieldsGetter();
-        FieldsManager::addFieldsGetter(std::string("_EClass"), getter);
-        FieldsManager::addFieldsGetter(std::string("_EObj"), getter);
+        FieldsManager::addFieldsGetter(std::string("_EClass"), new EOFieldsGetter());
+        FieldsManager::addFieldsGetter(std::string("_EObj"), new EOFieldsGetter());
     }
 
 private :

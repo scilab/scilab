@@ -125,8 +125,9 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_roots";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_roots";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     // If "fast" algo was chosen and polynomial is complex,
@@ -245,12 +246,13 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             C2F(dcopy)(&iSize, pdblTempImg, &iOne, pdblOutImg, &iOne);
         }
 
+        ast::ExecVisitor exec;
         //call spec
         types::typed_list tlInput;
         types::optional_list tlOpt;
         tlInput.push_back(pDblOut);
         types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-        funcSpec->call(tlInput, tlOpt, 1, out, new ast::ExecVisitor());
+        funcSpec->call(tlInput, tlOpt, 1, out, &exec);
     }
 
     if (pDblIn)

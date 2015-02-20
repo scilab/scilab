@@ -10,6 +10,12 @@
  *
  */
 
+//for Visual Leak Detector
+//#define DEBUG_VLD
+#if defined(DEBUG_VLD)
+#include <vld.h>
+#endif
+
 #include <string>
 
 #include "runvisitor.hxx"
@@ -37,8 +43,6 @@ extern "C"
 #include "os_string.h"
 #include "elem_common.h"
 }
-
-
 
 namespace ast
 {
@@ -688,6 +692,8 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     }
 
     clearResult();
+
+    pIT->killMe();
 }
 
 template <class T>
@@ -1012,6 +1018,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const FunctionDec & e)
 {
+
     /*
       function foo
       endfunction
@@ -1038,7 +1045,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     }
 
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,
-                                            *const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())).clone(), L"script");
+                                            const_cast<SeqExp&>(static_cast<const SeqExp&>(e.getBody())), L"script");
     pMacro->setFirstLine(e.getLocation().first_line);
 
     bool bEquals = false;

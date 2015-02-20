@@ -45,8 +45,9 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_log";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_log";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();

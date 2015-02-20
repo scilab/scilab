@@ -195,7 +195,7 @@ types::Function::ReturnValue sci_strsplit(types::typed_list &in, int _iRetCount,
         }
     }
 
-    std::wstring wstFuncName = L"%_strsplit";
-    return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+    ast::ExecVisitor exec;
+    return Overload::call(L"%_strsplit", in, _iRetCount, out, &exec);
 }
 /*-------------------------------------------------------------------------------------*/

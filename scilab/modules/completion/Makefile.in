@@ -184,7 +184,8 @@ am__libscicompletion_algo_la_SOURCES_DIST = src/jni/Completion_wrap.c \
 	src/cpp/XMLListFieldsGetter.cpp src/cpp/XMLSetFieldsGetter.cpp \
 	src/cpp/EOFieldsGetter.cpp \
 	src/cpp/UnknownMlistFieldsGetter.cpp \
-	src/cpp/StructFieldsGetter.cpp src/cpp/HandleFieldsGetter.cpp
+	src/cpp/StructFieldsGetter.cpp src/cpp/HandleFieldsGetter.cpp \
+	src/cpp/DllmainCompletion.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @GUI_TRUE@am__objects_1 =  \
 @GUI_TRUE@	src/jni/libscicompletion_algo_la-Completion_wrap.lo
@@ -210,7 +211,8 @@ am__objects_3 = src/cpp/libscicompletion_algo_la-FieldsManager.lo \
 	src/cpp/libscicompletion_algo_la-EOFieldsGetter.lo \
 	src/cpp/libscicompletion_algo_la-UnknownMlistFieldsGetter.lo \
 	src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo \
-	src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo
+	src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo \
+	src/cpp/libscicompletion_algo_la-DllmainCompletion.lo
 am_libscicompletion_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscicompletion_algo_la_OBJECTS =  \
@@ -628,7 +630,8 @@ COMPLETION_CPP_SOURCES = \
     src/cpp/EOFieldsGetter.cpp \
     src/cpp/UnknownMlistFieldsGetter.cpp \
     src/cpp/StructFieldsGetter.cpp \
-    src/cpp/HandleFieldsGetter.cpp
+    src/cpp/HandleFieldsGetter.cpp \
+    src/cpp/DllmainCompletion.cpp
 
 
 # List of the gateway c files
@@ -944,6 +947,8 @@ src/cpp/libscicompletion_algo_la-StructFieldsGetter.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicompletion_algo_la-DllmainCompletion.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscicompletion-algo.la: $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_DEPENDENCIES) $(EXTRA_libscicompletion_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscicompletion_algo_la_OBJECTS) $(libscicompletion_algo_la_LIBADD) $(LIBS)
@@ -984,6 +989,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getPartLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-getfilesdictionary.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicompletion_algo_la-toolsdictionary.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-DllmainCompletion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-EOFieldsGetter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-FieldsManager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicompletion_algo_la-HandleFieldsGetter.Plo@am__quote@
@@ -1215,6 +1221,13 @@ src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo: src/cpp/HandleFieldsGett
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/HandleFieldsGetter.cpp' object='src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-HandleFieldsGetter.lo `test -f 'src/cpp/HandleFieldsGetter.cpp' || echo '$(srcdir)/'`src/cpp/HandleFieldsGetter.cpp
+
+src/cpp/libscicompletion_algo_la-DllmainCompletion.lo: src/cpp/DllmainCompletion.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicompletion_algo_la-DllmainCompletion.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicompletion_algo_la-DllmainCompletion.Tpo -c -o src/cpp/libscicompletion_algo_la-DllmainCompletion.lo `test -f 'src/cpp/DllmainCompletion.cpp' || echo '$(srcdir)/'`src/cpp/DllmainCompletion.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicompletion_algo_la-DllmainCompletion.Tpo src/cpp/$(DEPDIR)/libscicompletion_algo_la-DllmainCompletion.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/DllmainCompletion.cpp' object='src/cpp/libscicompletion_algo_la-DllmainCompletion.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicompletion_algo_la-DllmainCompletion.lo `test -f 'src/cpp/DllmainCompletion.cpp' || echo '$(srcdir)/'`src/cpp/DllmainCompletion.cpp
 
 sci_gateway/cpp/libscicompletion_la-sci_completion.lo: sci_gateway/cpp/sci_completion.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicompletion_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicompletion_la-sci_completion.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicompletion_la-sci_completion.Tpo -c -o sci_gateway/cpp/libscicompletion_la-sci_completion.lo `test -f 'sci_gateway/cpp/sci_completion.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_completion.cpp

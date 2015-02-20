@@ -114,6 +114,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
             }
             else
             {
+                freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
                 LhsVar(1) = Rhs + 1;
                 PutLhsVar();

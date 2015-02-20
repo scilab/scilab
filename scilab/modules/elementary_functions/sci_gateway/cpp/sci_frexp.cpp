@@ -41,16 +41,18 @@ types::Function::ReturnValue sci_frexp(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_frexp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_frexp";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%hm_frexp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (pDblIn->isComplex())

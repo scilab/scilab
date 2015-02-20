@@ -282,21 +282,20 @@ bool TList::toString(std::wostringstream& ostr)
     //call overload %type_p if exists
     types::typed_list in;
     types::typed_list out;
-    ast::ExecVisitor* exec = new ast::ExecVisitor();
+    ast::ExecVisitor exec;
 
     IncreaseRef();
     in.push_back(this);
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::Error)
+        if (Overload::generateNameAndCall(L"p", in, 1, out, &exec) == Function::Error)
         {
             ConfigVariable::setError();
         }
 
         ostr.str(L"");
         DecreaseRef();
-        delete exec;
         return true;
     }
     catch (ast::ScilabError /* &e */)
@@ -306,7 +305,6 @@ bool TList::toString(std::wostringstream& ostr)
     }
 
     DecreaseRef();
-    delete exec;
 
     // special case for lss
     if (getSize() != 0 &&

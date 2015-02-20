@@ -2748,6 +2748,10 @@ YY_RULE_SETUP
         FREE (pwstBuffer);
         return scan_throw(COMMENT);
     }
+    else
+    {
+        delete pstBuffer;
+    }
   }
 	YY_BREAK
 case YY_STATE_EOF(LINECOMMENT):

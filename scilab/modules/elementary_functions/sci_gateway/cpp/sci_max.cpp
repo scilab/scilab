@@ -91,7 +91,8 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         wchar_t* wcsMinMax = to_wide_string(fname);
         std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
         FREE(wcsMinMax);
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::GenericType* pGT = NULL;

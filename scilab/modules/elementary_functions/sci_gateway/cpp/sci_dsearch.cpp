@@ -68,7 +68,8 @@ types::Function::ReturnValue sci_dsearch(types::typed_list &in, int _iRetCount, 
             stType = in[1]->getShortTypeStr();
         }
 
-        return Overload::call(L"%" + stType + L"_dsearch", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%" + stType + L"_dsearch", in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();

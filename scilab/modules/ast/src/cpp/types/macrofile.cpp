@@ -163,7 +163,6 @@ bool MacroFile::parse(void)
         }
         sub.clear();
 
-        ((ast::SeqExp*)tree)->clearExps();
         delete tree;
 
     }

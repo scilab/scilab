@@ -225,7 +225,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
     }
 
-    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
+    ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
 
     char pstPrompt[64];
     //get prompt

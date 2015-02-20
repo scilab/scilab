@@ -11,10 +11,6 @@
  *
  */
 
-//#define DEBUG_VLD
-#if defined(DEBUG_VLD)
-#include <vld.h>
-#endif
 
 #pragma comment(lib,"../../../../../bin/libintl.lib")
 

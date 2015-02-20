@@ -543,3 +543,11 @@ void pasteClipBoard(void)
     CloseClipboard ();
 }
 /*--------------------------------------------------------------------------*/
+void finalizeLineBuffer(void)
+{
+    if (cur_line)
+    {
+        FREE(cur_line);
+        cur_line = NULL;
+    }
+}

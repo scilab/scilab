@@ -51,8 +51,9 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isPoly() == false && in[i]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_bezout";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_bezout";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
 
         types::GenericType* pGT = in[i]->getAs<types::GenericType>();

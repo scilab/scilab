@@ -46,17 +46,19 @@ public:
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &args;
     }
 
     virtual CallExp* clone()
     {
-        exps_t args;
+        exps_t* args = new exps_t;
         for (exps_t::const_iterator it = ++(_exps.begin()); it != _exps.end() ; ++it)
         {
-            args.push_back((*it)->clone());
+            args->push_back((*it)->clone());
         }
 
-        CallExp* cloned = new CallExp(getLocation(), *getName().clone(), args);
+        CallExp* cloned = new CallExp(getLocation(), *getName().clone(), *args);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -92,24 +94,34 @@ public:
         _exps[0] = name;
     }
 
-    const exps_t& getArgs() const
+    exps_t* getArgs() const
     {
         exps_t* args = new exps_t;
         for (exps_t::const_iterator it = ++(_exps.begin()), itEnd = _exps.end(); it != itEnd ; ++it)
         {
             args->push_back(*it);
         }
-        return *args;
+        return args;
     }
 
-    exps_t& getArgs()
+    exps_t* getArgs()
     {
         exps_t* args = new exps_t;
         for (exps_t::const_iterator it = ++(_exps.begin()), itEnd = _exps.end(); it != itEnd ; ++it)
         {
             args->push_back(*it);
         }
-        return *args;
+        return args;
+    }
+
+    Location getFirstLocation() const
+    {
+        return _exps[0]->getLocation();
+    }
+
+    Location getFirstLocation()
+    {
+        return _exps[0]->getLocation();
     }
 
     void addArg(ast::Exp* exp)

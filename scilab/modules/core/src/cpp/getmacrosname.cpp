@@ -38,10 +38,9 @@ char **getMacrosName(int *sizearray)
         {
             macros[i] = wide_string_to_UTF8((*it).c_str());
         }
-
-        delete plMacrosList;
     }
 
+    delete plMacrosList;
     return macros;
 }
 /*----------------------------------------------------------------------------------*/

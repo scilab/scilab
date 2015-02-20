@@ -216,6 +216,7 @@ private :
         symbol::Symbol *name = get_Symbol();
         Exp *init = get_exp();
         VarDec* vardec = new VarDec(vardec_location, *name, *init);
+        delete name;
         return vardec;
     }
 
@@ -269,7 +270,9 @@ private :
             }
             case 9:
             {
-                exp = new SimpleVar(loc, *get_Symbol());
+                symbol::Symbol* sym = get_Symbol();
+                exp = new SimpleVar(loc, *sym);
+                delete sym;
                 break;
             }
             case 10:
@@ -454,6 +457,7 @@ private :
                 ArrayListVar *args = new ArrayListVar(args_loc, *args_list);
                 ArrayListVar *returns = new ArrayListVar(returns_loc, *returns_list);
                 exp = new FunctionDec(loc, *name, *args, *returns, *body);
+                delete name;
                 break;
             }
             case 30:

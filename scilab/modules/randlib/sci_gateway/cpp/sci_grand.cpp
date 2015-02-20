@@ -90,8 +90,9 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     if ((iStrPos == 0) && (in[0]->isString() == false))
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;

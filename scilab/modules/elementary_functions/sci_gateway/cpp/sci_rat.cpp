@@ -51,21 +51,24 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     /***** get data *****/
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        return Overload::call(L"%hm_rat", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%hm_rat", in, _iRetCount, out, &exec);
     }
 
     if (pDblIn->isComplex())
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() == 2)

@@ -70,9 +70,6 @@
     <ClInclude Include="rk4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\checkodeerror.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\differentialequationfunctions.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -89,6 +86,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Ex-ode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\checkodeerror.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
