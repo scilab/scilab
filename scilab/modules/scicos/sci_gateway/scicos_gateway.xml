@@ -27,7 +27,6 @@
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_pointer_xproperty" function="pointer_xproperty"/>
     <gateway type="0" name="sci_set_xproperty" function="set_xproperty"/>
-    <gateway type="0" name="sci_set_blockerror" function="set_blockerror"/>
     <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
     <gateway type="0" name="sci_curblockc" function="curblockc"/>
     <gateway type="0" name="sci_coserror" function="coserror"/>
@@ -53,6 +52,7 @@
     <gateway type="1" name="sci_scicos_setfield" function="scicos_setfield"/>
     <gateway type="1" name="sci_scicos_time" function="scicos_time"/>
     <gateway type="1" name="sci_scicosim" function="scicosim"/>
+    <gateway type="1" name="sci_set_blockerror" function="set_blockerror"/>
     <gateway type="1" name="sci_validvar" function="validvar"/>
     <gateway type="1" name="sci_var2vec" function="var2vec"/>
     <gateway type="1" name="sci_vec2var" function="vec2var"/>

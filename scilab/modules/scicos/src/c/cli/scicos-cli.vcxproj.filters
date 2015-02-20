@@ -92,9 +92,6 @@
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_blockerror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp">

@@ -88,6 +88,7 @@ sci_gateway/cpp/sci_scicos_new.cpp \
 sci_gateway/cpp/sci_scicos_setfield.cpp \
 sci_gateway/cpp/sci_scicos_time.cpp \
 sci_gateway/cpp/sci_scicosim.cpp \
+sci_gateway/cpp/sci_set_blockerror.cpp \
 sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp
@@ -107,7 +108,6 @@ sci_gateway/c/sci_loadScicos.c \
 sci_gateway/c/sci_model2blk.c \
 sci_gateway/c/sci_pointer_xproperty.c \
 sci_gateway/c/sci_sctree.c \
-sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_sig2data.c
 
