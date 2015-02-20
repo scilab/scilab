@@ -259,6 +259,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree3.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree4.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
@@ -291,7 +292,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\c\sci_pointer_xproperty.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug_count.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_time.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_blockerror.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_set_xproperty.c" />

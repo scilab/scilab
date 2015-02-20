@@ -40,7 +40,6 @@ SCICOS_IMPEXP int sci_ftree2(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_ftree3(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_ftree4(char *fname, void* pvApiCtx);
 
-SCICOS_IMPEXP int sci_scicos_time(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_diffobjs(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_pointer_xproperty(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_phase_simulation(char *fname, void* pvApiCtx);

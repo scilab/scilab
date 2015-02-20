@@ -81,6 +81,7 @@ sci_gateway/cpp/sci_curblock.cpp \
 sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_scicos_new.cpp \
 sci_gateway/cpp/sci_scicos_setfield.cpp \
+sci_gateway/cpp/sci_scicos_time.cpp \
 sci_gateway/cpp/sci_scicosim.cpp \
 sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
@@ -105,7 +106,6 @@ sci_gateway/c/sci_phase_simulation.c \
 sci_gateway/c/sci_pointer_xproperty.c \
 sci_gateway/c/sci_scicos_debug.c \
 sci_gateway/c/sci_scicos_debug_count.c \
-sci_gateway/c/sci_scicos_time.c \
 sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_blockerror.c \
 sci_gateway/c/sci_set_xproperty.c \

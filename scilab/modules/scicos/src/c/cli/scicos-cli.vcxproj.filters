@@ -104,9 +104,6 @@
     <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_debug_count.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_scicos_time.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -162,6 +159,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp">
