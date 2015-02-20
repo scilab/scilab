@@ -76,6 +76,7 @@ public:
 
 private:
     ScicosID lastId;
+    bool has_looped;
 
     struct ModelObject
     {
