@@ -26,7 +26,6 @@
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_pointer_xproperty" function="pointer_xproperty"/>
-    <gateway type="0" name="sci_phase_simulation" function="phase_simulation"/>
     <gateway type="0" name="sci_set_xproperty" function="set_xproperty"/>
     <gateway type="0" name="sci_set_blockerror" function="set_blockerror"/>
     <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
@@ -46,6 +45,7 @@
     <gateway type="1" name="sci_duplicate" function="duplicate"/>
     <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
+    <gateway type="1" name="sci_phase_simulation" function="phase_simulation"/>
     <gateway type="1" name="sci_scicos_debug" function="scicos_debug"/>
     <gateway type="1" name="sci_scicos_debug_count" function="scicos_debug_count"/>
     <gateway type="1" name="sci_scicos_log" function="scicos_log"/>
