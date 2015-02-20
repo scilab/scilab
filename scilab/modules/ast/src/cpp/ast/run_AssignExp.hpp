@@ -71,7 +71,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 return;
             }
 
-            if(pIT->isList())
+            if(pIT->isList() && pIT->getRef() > 0)
             {
                 // Prevent modification of all scilab variable
                 // which point to this container when it is used
