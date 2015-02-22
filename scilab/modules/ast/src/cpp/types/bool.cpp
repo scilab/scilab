@@ -29,6 +29,8 @@ Bool::~Bool()
     {
         deleteAll();
     }
+
+    delete m_pRealData;
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif

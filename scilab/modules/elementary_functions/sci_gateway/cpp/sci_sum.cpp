@@ -51,10 +51,12 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
+    bool isCopy = true;
     /***** get data *****/
     if (in[0]->isDouble()) // double
     {
         pDblIn = in[0]->getAs<types::Double>();
+        isCopy = false;
     }
     else if (in[0]->isBool()) // bool
     {
@@ -146,7 +148,14 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sum";
-        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        types::Function::ReturnValue ret = Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+
+        if (isCopy && pDblIn)
+        {
+            pDblIn->killMe();
+        }
+
+        return ret;
     }
 
     if (in.size() >= 2)
@@ -157,6 +166,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pDbl->isScalar() == false)
             {
+                if (isCopy && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -165,6 +179,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (iOrientation <= 0)
             {
+                if (isCopy && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -175,6 +194,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
             if (pStr->isScalar() == false)
             {
+                if (isCopy && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 2);
                 return types::Function::Error;
             }
@@ -239,12 +263,22 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
+                if (isCopy && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "sum", 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
+            if (isCopy && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "sum", 2);
             return types::Function::Error;
         }
@@ -254,6 +288,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     {
         if (in[2]->isString() == false)
         {
+            if (isCopy && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
             return types::Function::Error;
         }
@@ -262,6 +301,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
 
         if (pStr->isScalar() == false)
         {
+            if (isCopy && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "sum", 3);
             return types::Function::Error;
         }
@@ -278,6 +322,11 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         }
         else
         {
+            if (isCopy && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "sum", 3, "\"native\"", "\"double\"");
             return types::Function::Error;
         }
@@ -297,24 +346,17 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                 out.push_back(Double::Empty());
             }
 
-            if (in[0]->isDouble() == false)
+            if (isCopy)
             {
-                delete pDblIn;
-                pDblIn = NULL;
+                pDblIn->killMe();
             }
+
 
             return types::Function::OK;
         }
         else if (iOrientation > pDblIn->getDims())
         {
-            if (in[0]->isDouble())
-            {
-                pDblOut = pDblIn->clone()->getAs<types::Double>();
-            }
-            else
-            {
-                pDblOut = pDblIn;
-            }
+            pDblOut = pDblIn;
 
             if (in[0]->isBool() == false)
             {
@@ -324,10 +366,9 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         else
         {
             pDblOut = sum(pDblIn, iOrientation);
-            if (in[0]->isDouble() == false)
+            if (isCopy)
             {
-                delete pDblIn;
-                pDblIn = NULL;
+                pDblIn->killMe();
             }
         }
     }
@@ -336,7 +377,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
         iOuttype = 1;
         if (iOrientation > pPolyIn->getDims())
         {
-            pPolyOut = pPolyIn->clone()->getAs<types::Polynom>();
+            pPolyOut = pPolyIn->getAs<types::Polynom>();
         }
         else
         {
@@ -345,7 +386,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
     }
 
     /***** set result *****/
-    if ((iOuttype == 1) && (in[0]->isDouble() == false))
+    if ((iOuttype == 1) && isCopy)
     {
         if (in[0]->isBool())
         {
@@ -354,6 +395,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pDblOut->get(i) ? pBOut->set(i, 1) : pBOut->set(i, 0);
             }
+
             out.push_back(pBOut);
         }
         else if (in[0]->isPoly())
@@ -367,6 +409,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<char>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isInt16())
@@ -376,6 +419,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<short int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isInt32())
@@ -385,6 +429,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isInt64())
@@ -394,6 +439,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<long long int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isUInt8())
@@ -403,6 +449,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<unsigned char>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isUInt16())
@@ -412,6 +459,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<unsigned short int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isUInt32())
@@ -421,6 +469,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<unsigned int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
         }
         else if (in[0]->isUInt64())
@@ -430,7 +479,13 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             {
                 pIOut->set(i, static_cast<unsigned long long int>(pDblOut->get(i)));
             }
+
             out.push_back(pIOut);
+        }
+
+        if (pDblOut)
+        {
+            pDblOut->killMe();
         }
     }
     else

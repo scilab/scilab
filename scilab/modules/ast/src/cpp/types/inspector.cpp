@@ -44,36 +44,17 @@ size_t Inspector::getUnreferencedItemCount()
 void Inspector::addItem(InternalType* _pIT)
 {
     types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-
-    if (pGT)
-    {
-        //std::wcout << L"addItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
-    }
-    else
-    {
-        //std::wcout << L"addItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
-    }
     m_vIT.push_back(_pIT);
 }
 
 void Inspector::removeItem(InternalType* _pIT)
 {
     std::vector<InternalType*>::iterator it;
-
     for (it = m_vIT.begin() ; it != m_vIT.end() ; it++)
     {
         if ((*it) == _pIT)
         {
             types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-
-            if (pGT)
-            {
-                //std::wcout << L"removeItem " << pGT->getTypeStr() << L"[" << pGT->getSize() << L"] : " << pGT << std::endl;
-            }
-            else
-            {
-                //std::wcout << L"removeItem " << _pIT->getTypeStr() << L" : " << _pIT << std::endl;
-            }
             m_vIT.erase(it);
             break;
         }

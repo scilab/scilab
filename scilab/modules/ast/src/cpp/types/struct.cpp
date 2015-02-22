@@ -69,7 +69,7 @@ Struct::~Struct()
 {
     if (isDeletable() == true)
     {
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0 ; i < m_iSizeMax ; i++)
         {
             SingleStruct *pStr = m_pRealData[i];
             if (pStr)

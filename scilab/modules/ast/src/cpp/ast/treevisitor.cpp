@@ -720,14 +720,16 @@ void TreeVisitor::visit(const SelectExp &e)
 
 
     //cases
-    types::List* cases = new types::List();
-    for (auto c : *e.getCases())
+    types::List* lcases = new types::List();
+    ast::exps_t* cases = e.getCases();
+    for (auto c : *cases)
     {
         c->accept(*this);
-        cases->append(getList());
+        lcases->append(getList());
     }
+    delete cases;
 
-    select->append(cases);
+    select->append(lcases);
 
     //default
     if (e.hasDefault())

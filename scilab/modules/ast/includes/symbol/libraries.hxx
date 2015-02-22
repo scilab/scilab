@@ -218,19 +218,19 @@ struct Libraries
 
     void clearAll()
     {
-        for (MapLibs::iterator it = libs.begin(); it != libs.end() ; ++it)
+        for (auto lib : libs)
         {
-            while (!it->second->empty())
+            while (!lib.second->empty())
             {
-                ScopedLibrary * pSL = it->second->top();
+                ScopedLibrary * pSL = lib.second->top();
                 types::InternalType * pIT = pSL->m_pLib;
                 pIT->DecreaseRef();
                 pIT->killMe();
-                it->second->pop();
+                lib.second->pop();
                 delete pSL;
             }
 
-            delete it->second;
+            delete lib.second;
         }
     }
 

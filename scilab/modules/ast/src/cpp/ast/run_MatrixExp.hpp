@@ -185,11 +185,13 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
 
                 InternalType *pNewSize = AddElementToVariable(NULL, poRow, pGTResult->getRows(), pGTResult->getCols() + pGT->getCols());
                 InternalType* p = AddElementToVariable(pNewSize, pGT, 0, pGTResult->getCols());
-
+                if (p != pNewSize)
+                {
+                    pNewSize->killMe();
+                }
                 // call overload
                 if (p == NULL)
                 {
-                    pNewSize->killMe();
                     poRow = callOverloadMatrixExp(L"c", pGTResult, pGT);
                     continue;
                 }

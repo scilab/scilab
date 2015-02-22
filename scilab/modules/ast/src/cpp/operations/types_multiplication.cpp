@@ -519,6 +519,7 @@ int MultiplyDoubleByPoly(Double* _pDouble, Polynom* _pPoly, Polynom** _pPolyOut)
                                            pTemp->get(), pTemp->getImg());
     }
 
+    pCoef->killMe();
     (*_pPolyOut)->setCoef(pTemp);
     (*_pPolyOut)->updateRank();
     delete pTemp;
@@ -994,6 +995,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 }
             }
         }
+
+        pTemp->killMe();
     }
     else if (bComplex1 == false && bComplex2 == true)
     {
@@ -1027,6 +1030,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 }
             }
         }
+
+        pTemp->killMe();
     }
     else if (bComplex1 == true && bComplex2 == false)
     {
@@ -1060,6 +1065,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 }
             }
         }
+
+        pTemp->killMe();
     }
     else if (bComplex1 == true && bComplex2 == true)
     {
@@ -1093,6 +1100,8 @@ int MultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOut)
                 }
             }
         }
+
+        pTemp->killMe();
     }
     (*_pPolyOut)->updateRank();
 
@@ -1569,6 +1578,7 @@ int DotMultiplyPolyByPoly(Polynom* _pPoly1, Polynom* _pPoly2, Polynom** _pPolyOu
         }
 
         (*_pPolyOut) = new Polynom(_pPoly1->getVariableName(), _pPoly1->getDims(), _pPoly1->getDimsArray(), piRank);
+        delete[] piRank;
 
         if (_pPoly1->isComplex() && _pPoly2->isComplex())
         {

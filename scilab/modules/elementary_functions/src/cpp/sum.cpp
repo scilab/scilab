@@ -151,6 +151,8 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 }
             }
         }
+
+        delete[] piRanks;
     }
     else // sum on one dimension
     {
@@ -194,6 +196,8 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
             int iIndex = pDblRanksOut->getIndex(piIndex);
             pdblOut[iIndex] = std::max(pdblOut[iIndex], pdblIn[i]);
         }
+        
+        pDblRanks->killMe();
 
         // move output ranks from types::Double to int*
         int* piRankMax = new int[pDblRanksOut->getSize()];
@@ -202,8 +206,11 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
             piRankMax[i] = static_cast<int>(pdblOut[i]);
         }
 
+        pDblRanksOut->killMe();
+
         // create the outpout polynom
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
+        delete[] piRankMax;
         pOut->setComplex(pIn->isComplex());
         pOut->setZeros();
 

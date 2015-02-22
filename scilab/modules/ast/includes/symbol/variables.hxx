@@ -397,20 +397,19 @@ struct Variables
     {
         std::list<Symbol>* symb = new std::list<Symbol>();
 
-        MapVars::iterator it = vars.begin();
-        for (; it != vars.end() ; ++it)
+        for (auto var : vars)
         {
-            if (it->second->empty())
+            if (var.second->empty())
             {
                 continue;
             }
 
-            if ((it->second->top()->m_iLevel == _iLevel || _iLevel == 1) && it->second->top()->m_pIT->isCallable())
+            if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
             {
-                types::Callable* pCall = it->second->top()->m_pIT->getAs<types::Callable>();
+                types::Callable* pCall = var.second->top()->m_pIT->getAs<types::Callable>();
                 if (_stModuleName == L"" || _stModuleName == pCall->getModule())
                 {
-                    symb->push_back(it->first);
+                    symb->push_back(var.first);
                 }
             }
         }
@@ -486,9 +485,9 @@ struct Variables
 
     void clearAll()
     {
-        for (MapVars::iterator it = vars.begin(); it != vars.end() ; ++it)
+        for (auto var : vars)
         {
-            delete it->second;
+            delete var.second;
         }
     }
 

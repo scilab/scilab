@@ -100,16 +100,15 @@ bool Context::clearCurrentScope(bool _bClose)
     }
 
     VarList* varList = varStack.top();
-    std::map<Symbol, Variable*>::iterator it = varList->begin();
-    for (; it != varList->end() ; ++it)
+    for (auto var : *varList)
     {
-        if (it->second->empty() == false && it->second->top()->m_iLevel == m_iLevel)
+        if (var.second->empty() == false && var.second->top()->m_iLevel == m_iLevel)
         {
-            ScopedVariable * pSV = it->second->top();
+            ScopedVariable * pSV = var.second->top();
             types::InternalType * pIT = pSV->m_pIT;
             pIT->DecreaseRef();
             pIT->killMe();
-            it->second->pop();
+            var.second->pop();
             delete pSV;
         }
     }

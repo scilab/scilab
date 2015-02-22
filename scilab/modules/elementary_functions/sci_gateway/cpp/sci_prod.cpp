@@ -50,10 +50,12 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
+    bool isNotDouble = true;
     /***** get data *****/
     if (in[0]->isDouble()) // double
     {
         pDblIn = in[0]->getAs<types::Double>();
+        isNotDouble = false;
     }
     else if (in[0]->isBool()) // bool
     {
@@ -156,6 +158,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
             if (pDbl->isScalar() == false)
             {
+                if (isNotDouble && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "prod", 2);
                 return types::Function::Error;
             }
@@ -164,6 +171,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
             if (iOrientation <= 0)
             {
+                if (isNotDouble && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "prod", 2);
                 return types::Function::Error;
             }
@@ -174,6 +186,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
             if (pStr->isScalar() == false)
             {
+                if (isNotDouble && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "prod", 2);
                 return types::Function::Error;
             }
@@ -238,12 +255,22 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
+                if (isNotDouble && pDblIn)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "prod", 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
+            if (isNotDouble && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "prod", 2);
             return types::Function::Error;
         }
@@ -253,6 +280,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
     {
         if (in[2]->isString() == false)
         {
+            if (isNotDouble && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "prod", 3);
             return types::Function::Error;
         }
@@ -261,6 +293,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
         if (pStr->isScalar() == false)
         {
+            if (isNotDouble && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "prod", 3);
             return types::Function::Error;
         }
@@ -277,6 +314,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
+            if (isNotDouble && pDblIn)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "prod", 3, "\"native\"", "\"double\"");
             return types::Function::Error;
         }
@@ -297,7 +339,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 out.push_back(types::Double::Empty());
             }
 
-            if (in[0]->isDouble() == false)
+            if (isNotDouble)
             {
                 delete pDblIn;
                 pDblIn = NULL;
@@ -308,19 +350,19 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
         if (iOrientation > pDblIn->getDims())
         {
-            if (in[0]->isDouble())
+            if (isNotDouble)
             {
-                pDblOut = pDblIn->clone()->getAs<types::Double>();
+                pDblOut = pDblIn;
             }
             else
             {
-                pDblOut = pDblIn;
+                pDblOut = pDblIn->clone()->getAs<types::Double>();
             }
         }
         else
         {
             pDblOut = prod(pDblIn, iOrientation);
-            if (in[0]->isDouble() == false)
+            if (isNotDouble)
             {
                 delete pDblIn;
                 pDblIn = NULL;
@@ -341,7 +383,7 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
     }
 
     /***** set result *****/
-    if ((iOuttype == 1) && (in[0]->isDouble() == false))
+    if ((iOuttype == 1) && isNotDouble)
     {
         if (in[0]->isBool())
         {
@@ -427,6 +469,11 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
                 pIOut->set(i, static_cast<unsigned long long int>(pDblOut->get(i)));
             }
             out.push_back(pIOut);
+        }
+
+        if (pDblOut)
+        {
+            pDblOut->killMe();
         }
     }
     else

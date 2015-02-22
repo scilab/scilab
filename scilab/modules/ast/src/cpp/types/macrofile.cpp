@@ -101,35 +101,34 @@ bool MacroFile::parse(void)
         //find FunctionDec
         ast::FunctionDec* pFD = NULL;
 
-        ast::exps_t::iterator j;
         ast::exps_t LExp = tree->getAs<ast::SeqExp>()->getExps();
         std::map<symbol::Symbol, Macro*> sub;
 
-        for (j = LExp.begin() ; j != LExp.end() ; j++)
+        for (auto exp : LExp)
         {
-            if ((*j)->isFunctionDec() == false)
+            if (exp->isFunctionDec() == false)
             {
                 continue;
             }
 
-            pFD = (*j)->getAs<ast::FunctionDec>();
+            pFD = exp->getAs<ast::FunctionDec>();
 
             //get input parameters list
             std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
             ast::ArrayListVar *pListVar = pFD->getArgs().getAs<ast::ArrayListVar>();
             ast::exps_t & vars = pListVar->getVars();
-            for (ast::exps_t::const_iterator it = vars.begin(), itEnd = vars.end(); it != itEnd; ++it)
+            for (auto var : vars)
             {
-                pVarList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
+                pVarList->push_back(var->getAs<ast::SimpleVar>()->getStack());
             }
 
             //get output parameters list
             std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
             ast::ArrayListVar *pListRet = pFD->getReturns().getAs<ast::ArrayListVar>();
             ast::exps_t & recs = pListRet->getVars();
-            for (ast::exps_t::const_iterator it = recs.begin(), itEnd = recs.end(); it != itEnd; ++it)
+            for (auto rec : recs)
             {
-                pRetList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
+                pRetList->push_back(rec->getAs<ast::SimpleVar>()->getStack());
             }
 
             const symbol::Symbol & sym = pFD->getSymbol();

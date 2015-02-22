@@ -23,21 +23,6 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 }
-
-
-int mint(int *tab, int length)
-{
-    int ret  = *tab;
-    for (int i = 1; i < length ; i++)
-    {
-        if (ret > tab[i])
-        {
-            ret = tab[i];
-        }
-    }
-    return ret;
-}
-
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

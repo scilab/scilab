@@ -33,9 +33,9 @@ Library::Library(const std::wstring& _wstPath) :
 Library::~Library()
 {
     //delete all macrofile*
-    for (MacroMap::iterator it = m_macros.begin(); it != m_macros.end() ; ++it)
+    for (auto macro : m_macros)
     {
-        MacroFile* pMacro = it->second;
+        MacroFile* pMacro = macro.second;
         pMacro->DecreaseRef();
         if (pMacro->isDeletable())
         {
@@ -56,16 +56,15 @@ bool Library::toString(std::wostringstream& ostr)
     size_t iLineLen = (size_t)ConfigVariable::getConsoleWidth();
 
     size_t iCurrentLen = 0;
-    MacroMap::iterator it = m_macros.begin();
-    for (int i = 0; it != m_macros.end() ; ++it, ++i)
+    for (auto macro : m_macros)
     {
-        if (iCurrentLen + it->first.length() + 2 > iLineLen)
+        if (iCurrentLen + macro.first.length() + 2 > iLineLen)
         {
             ostr << std::endl;
             iCurrentLen = 0;
         }
-        ostr << it->first << "  ";
-        iCurrentLen += it->first.length() + 2;
+        ostr << macro.first << "  ";
+        iCurrentLen += macro.first.length() + 2;
     }
 
     ostr << std::endl;
@@ -112,10 +111,9 @@ MacroFile* Library::get(const std::wstring& _wstName)
 std::list<std::wstring>* Library::getMacrosName()
 {
     std::list<std::wstring>* pOut = new std::list<std::wstring>;
-    MacroMap::iterator it = m_macros.begin();
-    for (; it != m_macros.end() ; ++it)
+    for (auto macro : m_macros)
     {
-        pOut->push_back(it->first);
+        pOut->push_back(macro.first);
     }
 
     return pOut;

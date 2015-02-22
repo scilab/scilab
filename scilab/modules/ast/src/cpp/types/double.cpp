@@ -66,9 +66,9 @@ Double* Double::Identity(int _iDims, int* _piDims)
         }
     }
 
-    for (int i = 0 ; i < iMinDim ; i++)
+    int* piIndex = new int[_iDims];
+    for (int i = 0; i < iMinDim; i++)
     {
-        int* piIndex = new int[_iDims];
         for (int j = 0 ; j < _iDims ; j++)
         {
             piIndex[j] = i;
@@ -77,6 +77,8 @@ Double* Double::Identity(int _iDims, int* _piDims)
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
         pI->set(index, 1);
     }
+
+    delete[] piIndex;
     return pI;
 }
 
@@ -93,9 +95,9 @@ Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
         }
     }
 
+    int* piIndex = new int[_iDims];
     for (int i = 0; i < iMinDim; i++)
     {
-        int* piIndex = new int[_iDims];
         for (int j = 0; j < _iDims; j++)
         {
             piIndex[j] = i;
@@ -104,6 +106,8 @@ Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
         pI->set(index, _dblReal);
     }
+
+    delete[] piIndex;
     return pI;
 }
 

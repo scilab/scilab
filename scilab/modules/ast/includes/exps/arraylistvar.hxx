@@ -39,10 +39,10 @@ public:
                   exps_t& vars)
         : Var (location)
     {
-        for (exps_t::iterator it = vars.begin(), itEnd = vars.end(); it != itEnd ; ++it)
+        for (auto var : vars)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            var->setParent(this);
+            _exps.push_back(var);
         }
 
         delete &vars;

@@ -116,10 +116,9 @@ void MacrovarVisitor::add()
 
 bool MacrovarVisitor::isAlreadyIn(std::list<std::wstring>& lst)
 {
-    std::list<std::wstring>::iterator it;
-    for (it = lst.begin(); it != lst.end() ; it++)
+    for (auto l : lst)
     {
-        if (*it == m_current)
+        if (l == m_current)
         {
             return true;
         }

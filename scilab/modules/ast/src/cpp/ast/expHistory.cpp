@@ -63,10 +63,9 @@ ExpHistory::~ExpHistory()
 
     if (m_pArgs && m_pArgsOwner)
     {
-        types::typed_list::iterator iter = m_pArgs->begin();
-        for (; iter != m_pArgs->end(); ++iter)
+        for (auto arg : *m_pArgs)
         {
-            (*iter)->killMe();
+            arg->killMe();
         }
 
         delete m_pArgs;

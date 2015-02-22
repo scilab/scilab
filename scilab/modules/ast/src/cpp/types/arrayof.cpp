@@ -583,14 +583,17 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         T* pImgData = pArrayOut->getImg();
         for (int i = 0 ; i < pArrayOut->getSize() ; i++)
         {
+            pArrayOut->deleteData(pRealData[i]);
             pRealData[i] = pSource->getNullValue();
-            pImgData[i]  = pSource->getNullValue();
+            pArrayOut->deleteData(pImgData[i]);
+            pImgData[i] = pSource->getNullValue();
         }
     }
     else
     {
         for (int i = 0 ; i < pArrayOut->getSize() ; i++)
         {
+            pArrayOut->deleteData(pRealData[i]);
             pRealData[i] = pSource->getNullValue();
         }
     }

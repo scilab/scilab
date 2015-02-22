@@ -537,7 +537,7 @@ private :
  */
 struct EXTERN_AST SparseBool : GenericType
 {
-
+    virtual ~SparseBool();
     /* @param src: Bool matrix to copy into a new sparse matrix
     **/
     SparseBool(Bool SPARSE_CONST& src);

@@ -346,9 +346,11 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
             if (_iRetCount == 2)
             {
                 out.push_back(pDblOut[0]);
+                pDblOut[0] = NULL;
             }
 
             out.push_back(pDbl[0]); // pDbl[0] has been overwritten by its real Schur form T.
+
             break;
         }
         case 11: // double double
@@ -356,14 +358,17 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
             for (int i = 0; i < 2; i++)
             {
                 out.push_back(pDbl[i]);
+                pDbl[1] = NULL;
             }
 
             if (_iRetCount == 4)
             {
                 out.push_back(pDblOut[0]);
+                pDblOut[0] = NULL;
                 if (_iRetCount > 1)
                 {
                     out.push_back(pDblOut[1]);
+                    pDblOut[1] = NULL;
                 }
             }
 
@@ -378,7 +383,9 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
             else
             {
                 out.push_back(pDblOut[0]);
+                pDblOut[0] = NULL;
                 out.push_back(pDblOut[2]);
+                pDblOut[2] = NULL;
 
                 if (_iRetCount == 3)
                 {
@@ -399,25 +406,43 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
                     for (int i = 0; i < 2; i++)
                     {
                         out.push_back(pDbl[i]);
+                        pDbl[1] = NULL;
                     }
                     out.push_back(pDblOut[1]);
+                    pDblOut[1] = NULL;
                     break;
                 }
                 case 3 : // Q Z dim
                 {
                     out.push_back(pDblOut[0]);
+                    pDblOut[0] = NULL;
                 }
                 case 2 : // Z dim
                 {
                     out.push_back(pDblOut[1]);
+                    pDblOut[1] = NULL;
                     break;
                 }
             }
             out.push_back(pDblOut[2]);
+            pDblOut[2] = NULL;
             break;
         }
     }
 
+    for (int i = 0; i < 3; ++i)
+    {
+        if (pDblOut[i])
+        {
+            pDblOut[i]->killMe();
+        }
+    }
+
+
+    if (pDbl[1])
+    {
+        pDbl[1]->killMe();
+    }
     ConfigVariable::setSchurFunction(NULL);
     return types::Function::OK;
 }

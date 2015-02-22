@@ -57,7 +57,7 @@ types::Function::ReturnValue sci_bdiag(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    pDblMatrix = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>(); // input data will be modified
+    pDblMatrix = in[0]->clone()->getAs<types::Double>(); // input data will be modified
     if (pDblMatrix->getRows() != pDblMatrix->getCols())
     {
         Scierror(20, _("%s: Wrong type for argument %d: Square matrix expected.\n"), "bdiag", 1);

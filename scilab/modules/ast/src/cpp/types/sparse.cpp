@@ -310,7 +310,7 @@ Sparse::Sparse(Double SPARSE_CONST& src)
         p[i + size] = (double)(i / row) + 1;
     }
     create2(src.getRows(), src.getCols(), src, *idx);
-    delete idx;
+    idx->killMe();
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
@@ -1568,6 +1568,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -1620,6 +1622,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -1628,6 +1632,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
 
     pOut->finalize();
 
+    delete[] piMaxDim;
+    delete[] piCountDim;
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
@@ -2194,6 +2200,7 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src)
         p[i + size] = (double)(i / row) + 1;
     }
     create2(src.getRows(), src.getCols(), src, *idx);
+    idx->killMe();
 }
 /* @param src : Bool matrix to copy into a new sparse matrix
 @param idx : Double matrix to use as indexes to get values from the src
@@ -2271,6 +2278,11 @@ void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPAR
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
     finalize();
+}
+
+SparseBool::~SparseBool()
+{
+    delete matrixBool;
 }
 
 bool SparseBool::toString(std::wostringstream& ostr) const
@@ -3007,11 +3019,15 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         cleanIndexesArguments(_pArgs, &pArg);
         if (_pArgs->size() == 0)
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //a()
             return this;
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //a([])
             return Double::Empty();
         }
@@ -3064,6 +3080,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -3106,6 +3124,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -3114,6 +3134,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
 
     finalize();
 
+    delete[] piMaxDim;
+    delete[] piCountDim;
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 

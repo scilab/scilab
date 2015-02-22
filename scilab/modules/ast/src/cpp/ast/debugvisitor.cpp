@@ -307,9 +307,9 @@ void DebugVisitor::visit (const SelectExp &e)
     e.getSelect()->accept(*this);
 
     exps_t* cases = e.getCases();
-    for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
+    for (auto exp : *cases)
     {
-        (*it)->accept(*this);
+        exp->accept(*this);
     }
     delete cases;
 

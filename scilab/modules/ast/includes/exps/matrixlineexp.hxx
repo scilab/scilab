@@ -39,10 +39,10 @@ public:
                    exps_t& columns)
         : MathExp (location)
     {
-        for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
+        for (auto exp : columns)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            exp->setParent(this);
+            _exps.push_back(exp);
         }
 
         delete &columns;

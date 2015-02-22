@@ -948,7 +948,7 @@ SinglePoly* Polynom::copyValue(SinglePoly* _pData)
 
 void Polynom::deleteAll()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0 ; i < m_iSizeMax ; i++)
     {
         m_pRealData[i]->killMe();
     }

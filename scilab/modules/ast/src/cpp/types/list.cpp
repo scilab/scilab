@@ -48,11 +48,10 @@ List::~List()
 {
     if (isDeletable() == true)
     {
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
+        for (auto data : *m_plData)
         {
-            (*itValues)->DecreaseRef();
-            (*itValues)->killMe();
+            data->DecreaseRef();
+            data->killMe();
         }
         delete m_plData;
     }
@@ -66,7 +65,6 @@ List::~List()
 */
 List::List(List *_oListCopyMe)
 {
-    std::vector<InternalType *>::iterator itValues;
     m_plData = new std::vector<InternalType *>;
 
     for (int i = 0 ; i < (int)_oListCopyMe->getData()->size() ; i++)
@@ -128,15 +126,14 @@ bool List::toString(std::wostringstream& ostr)
     {
         wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        for (auto val : *m_plData)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
-            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition << L")";
+            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition++ << L")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
             scilabForcedWriteW(ostr.str().c_str());
-            if (VariableToString(*itValues, nextVarName.str().c_str()) == types::Function::Error)
+            if (VariableToString(val, nextVarName.str().c_str()) == types::Function::Error)
             {
                 free(wcsVarName);
                 ostr.str(L"");
@@ -205,6 +202,8 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     int* piCountDim     = new int[iDims];
 
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
     if (iSeqCount == 0)
     {
         //free pArg content

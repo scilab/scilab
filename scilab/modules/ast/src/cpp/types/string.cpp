@@ -92,7 +92,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
     create(piDims, 2, &pwsData, NULL);
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        set(i, os_wcsdup(_pstData[i]));
+        set(i, _pstData[i]);
     }
 #ifndef NDEBUG
     Inspector::addItem(this);

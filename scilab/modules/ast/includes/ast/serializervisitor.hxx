@@ -189,9 +189,12 @@ private :
     void add_exps(const exps_t& exps)
     {
         add_uint32((unsigned int)exps.size());
-        for (exps_t::const_iterator it = exps.begin(), itEnd = exps.end(); it != itEnd ; ++it)
+        if (exps.size() != 0)
         {
-            (*it)->getOriginal()->accept(*this);
+            for (auto exp : exps)
+            {
+                exp->getOriginal()->accept(*this);
+            }
         }
     }
 
@@ -471,9 +474,9 @@ private :
         exps_t* cases = e.getCases();
         add_uint32((unsigned int)cases->size());
 
-        for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
+        for (auto exp : *cases)
         {
-            const CaseExp *ce = (*it)->getAs<CaseExp>();
+            const CaseExp *ce = exp->getAs<CaseExp>();
             add_location(ce->getLocation());
             add_location(ce->getBody()->getLocation());
             add_exp(ce->getTest());

@@ -54,13 +54,15 @@ public:
 
     virtual MatrixExp* clone()
     {
-        exps_t* lines = new exps_t;
-        for (exps_t::const_iterator it = getLines().begin(), itEnd = getLines().end(); it != itEnd; ++it)
+        exps_t* newlines = new exps_t;
+        exps_t& lines = getLines();
+
+        for (auto line : lines)
         {
-            lines->push_back((*it)->clone());
+            newlines->push_back(line->clone());
         }
 
-        MatrixExp* cloned = new MatrixExp(getLocation(), *lines);
+        MatrixExp* cloned = new MatrixExp(getLocation(), *newlines);
         cloned->setVerbose(isVerbose());
         return cloned;
     }

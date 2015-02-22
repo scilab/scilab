@@ -364,7 +364,8 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 
     //condition
     e.getTest().accept(*this);
-    while (getResult()->isTrue())
+    InternalType* pIT = getResult();
+    while (pIT->isTrue())
     {
         e.getBody().accept(*this);
         if (e.getBody().isBreak())
@@ -394,9 +395,13 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
             getResult()->killMe();
         }
 
+        std::wcout << L"ref : " << pIT->getRef();
+        pIT->killMe();
         e.getTest().accept(*this);
+        pIT = getResult();
     }
 
+    //pIT->killMe();
     //clear result of condition or result of body
     clearResult();
 }
@@ -623,17 +628,15 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     e.getSelect()->accept(*this);
     bool bCase = false;
 
-
     InternalType* pIT = getResult();
     setResult(NULL);
     if (pIT)
     {
         //find good case
-        exps_t::iterator it;
         exps_t* cases = e.getCases();
-        for (it = cases->begin(); it != cases->end() ; it++)
+        for (auto exp : *cases)
         {
-            CaseExp* pCase = (*it)->getAs<CaseExp>();
+            CaseExp* pCase = exp->getAs<CaseExp>();
             pCase->getTest()->accept(*this);
             InternalType *pITCase = getResult();
             setResult(NULL);
@@ -663,8 +666,17 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                         pCase->getBody()->setReturnable();
                     }
 
-                    //the good one
-                    pCase->getBody()->accept(*this);
+                    try
+                    {
+                        //the good one
+                        pCase->getBody()->accept(*this);
+                    }
+                    catch (ScilabMessage& sm)
+                    {
+                        pIT->killMe();
+                        delete cases;
+                        throw sm;
+                    }
 
                     if (e.isBreakable() && pCase->getBody()->isBreak())
                     {
@@ -684,9 +696,12 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                         pCase->getBody()->resetReturn();
                     }
 
+                    pITCase->killMe();
                     bCase = true;
                     break;
                 }
+
+                pITCase->killMe();
             }
         }
 
@@ -804,7 +819,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
                         bImplicitCall = true;
                     }
-                    catch (ScilabMessage sm)
+                    catch (ScilabMessage& sm)
                     {
                         wostringstream os;
                         PrintVisitor printMe(os);
@@ -942,7 +957,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         throw ScilabMessage(os.str(), 999, (*itExp)->getLocation());
                     }
                 }
-                catch (ScilabError se2)
+                catch (ScilabError& se2)
                 {
                     //just to catch exception, do nothing
                 }

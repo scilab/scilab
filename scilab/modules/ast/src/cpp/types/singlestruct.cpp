@@ -32,11 +32,10 @@ SingleStruct::~SingleStruct()
 {
     if (isDeletable() == true)
     {
-        std::list<InternalType*>::iterator iterFieldData;
-        for (iterFieldData = m_Data.begin(); iterFieldData != m_Data.end() ; iterFieldData++)
+        for (auto data : m_Data)
         {
-            (*iterFieldData)->DecreaseRef();
-            (*iterFieldData)->killMe();
+            data->DecreaseRef();
+            data->killMe();
         }
     }
 #ifndef NDEBUG
@@ -49,13 +48,13 @@ SingleStruct::SingleStruct(SingleStruct *_oSingleStructCopyMe)
     std::list<std::wstring> wstFields = _oSingleStructCopyMe->getFields();
     std::list<InternalType *> Data = _oSingleStructCopyMe->getData();
 
-    std::list<InternalType*>::iterator iterFieldData;
     std::list<std::wstring>::iterator iterFieldName = wstFields.begin();
-    for (iterFieldData = Data.begin(); iterFieldData != Data.end() ; iterFieldData++, iterFieldName++)
+    for (auto data : Data)
     {
         m_wstFields.push_back(*iterFieldName);
-        m_Data.push_back(*iterFieldData);
+        m_Data.push_back(data);
         m_Data.back()->IncreaseRef();
+        iterFieldName++;
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -74,13 +73,15 @@ std::list<std::wstring> SingleStruct::getFields()
 
 int SingleStruct::getFieldIndex(const std::wstring& _field)
 {
+    int idx = 0;
     std::list<std::wstring>::iterator iterFieldNames = m_wstFields.begin();
-    for (int idx = 0; iterFieldNames != m_wstFields.end() ; iterFieldNames++, idx++)
+    for (auto name : m_wstFields)
     {
-        if (*iterFieldNames == _field)
+        if (name == _field)
         {
             return idx;
         }
+        idx++;
     }
 
     return -1;
@@ -196,11 +197,10 @@ std::vector<InternalType*> SingleStruct::extract(std::list<std::wstring> _stFiel
 String* SingleStruct::getFieldNames()
 {
     String* pOut = new String((int)m_wstFields.size(), 1);
-    std::list<std::wstring>::iterator iterFieldNames = m_wstFields.begin();
-
-    for (int i = 0 ; iterFieldNames != m_wstFields.end() ; iterFieldNames++, i++)
+    int i = 0;
+    for (auto name : m_wstFields)
     {
-        pOut->set(i, (*iterFieldNames).c_str());
+        pOut->set(i++, name.c_str());
     }
     return pOut;
 }

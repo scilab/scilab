@@ -58,7 +58,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_spec";
         return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
-    pDblA = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    pDblA = in[0]->clone()->getAs<types::Double>();
 
     if (pDblA->getCols() != pDblA->getRows())
     {

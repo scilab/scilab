@@ -315,15 +315,15 @@ bool TList::toString(std::wostringstream& ostr)
         wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
         const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        for (auto val : *m_plData)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
             nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
             ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
             scilabWriteW(ostr.str().c_str());
-            VariableToString(*itValues, nextVarName.str().c_str());
+            VariableToString(val, nextVarName.str().c_str());
+            iPosition++;
         }
         ostr.str(L"");
         free(wcsVarName);

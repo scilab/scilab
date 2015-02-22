@@ -464,7 +464,9 @@ public:
     {
         if (_old && _new)
         {
-            for (exps_t::iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
+            exps_t::iterator it = _exps.begin();
+            exps_t::iterator itEnd = _exps.end();
+            for (; it != itEnd; ++it)
             {
                 if (*it == _old)
                 {

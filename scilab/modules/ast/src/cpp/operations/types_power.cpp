@@ -362,6 +362,7 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
         }
 
         Polynom* pOut = new Polynom(_pPoly->getVariableName(), _pDouble->getRows(), _pDouble->getCols(), piRank);
+        delete[] piRank;
         pOut->setComplex(bComplex1);
 
         for (int i = 0 ; i < _pDouble->getSize() ; i++)
@@ -379,16 +380,17 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
 
             while (iLoop)
             {
+                SinglePoly* ps = pP->get()[0];
                 if (iLoop % 2)
                 {
                     int iRank = pP->getMaxRank();
                     if (bComplex1)
                     {
-                        C2F(wpmul1)(pCoeffOut->get(), pCoeffOut->getImg(), &iCurrentRank, pP->getCoef()->get(), pP->getCoef()->getImg(), &iRank, pCoeffOut->get(), pCoeffOut->getImg());
+                        C2F(wpmul1)(pCoeffOut->get(), pCoeffOut->getImg(), &iCurrentRank, ps->get(), ps->getImg(), &iRank, pCoeffOut->get(), pCoeffOut->getImg());
                     }
                     else
                     {
-                        C2F(dpmul1)(pCoeffOut->get(), &iCurrentRank, pP->getCoef()->get(), &iRank, pCoeffOut->get());
+                        C2F(dpmul1)(pCoeffOut->get(), &iCurrentRank, ps->get(), &iRank, pCoeffOut->get());
                     }
                     iCurrentRank += iRank;
                 }
@@ -399,10 +401,12 @@ int PowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut)
                     //p = p * p
                     Polynom* pTemp = NULL;
                     MultiplyPolyByPoly(pP, pP, &pTemp);
-                    delete pP;
+                    pP->killMe();
                     pP = pTemp;
                 }
             }
+
+            pP->killMe();
         }
         *_pOut = pOut;
     }

@@ -28,7 +28,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, types::typed_list &out, const char* fname)
 {
-    int iCountElem   = in.size();
+    int iCountElem   = static_cast<int>(in.size());
     int iDims        = 0;
     int* piDimsArray = NULL;
     int iOrientation = 0;

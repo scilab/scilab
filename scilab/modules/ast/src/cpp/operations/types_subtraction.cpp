@@ -2127,6 +2127,7 @@ template<> InternalType* sub_M_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         }
 
         pOut = new Polynom(_pR->getVariableName(), _pL->getDims(), _pL->getDimsArray(), piRank);
+        delete[] piRank;
         if (bComplex1 || bComplex2)
         {
             pOut->setComplex(true);

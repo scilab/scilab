@@ -490,9 +490,9 @@ void PrintVisitor::visit (const SelectExp &e)
     *ostr << SCI_CLOSE_TEST << std::endl;
     ++indent;
     exps_t* cases = e.getCases();
-    for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
+    for (auto exp : *cases)
     {
-        (*it)->getOriginal()->accept(*this);
+        exp->getOriginal()->accept(*this);
     }
     delete cases;
 

@@ -256,6 +256,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             int iIndex = pDblRanksOut->getIndex(piIndex);
             pdblOut[iIndex] += pdblIn[i];
         }
+        pDblRanks->killMe();
 
         // move output ranks from types::Double to int*
         int* piRankMax = new int[pDblRanksOut->getSize()];
@@ -266,6 +267,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             iMaxOutputRank = std::max(iMaxOutputRank, piRankMax[i]);
         }
 
+        pDblRanksOut->killMe();
         // create the outpout polynom
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
         pOut->setComplex(pIn->isComplex());
