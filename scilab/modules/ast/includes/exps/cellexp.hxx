@@ -44,9 +44,15 @@ public:
 
     virtual CellExp* clone()
     {
-        exps_t lines;
-        std::copy(getLines().begin(), getLines().end(), lines.begin());
-        CellExp* cloned = new CellExp(getLocation(), lines);
+        exps_t* newlines = new exps_t;
+        exps_t& lines = getLines();
+
+        for (auto line : lines)
+        {
+            newlines->push_back(line->clone());
+        }
+
+        CellExp* cloned = new CellExp(getLocation(), *newlines);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
