@@ -22,6 +22,8 @@ Removed Functions
 
 * relocate_handle removed.
 
+* chart removed. Please use nicholschart instead.
+
 
 Compilation
 ===========

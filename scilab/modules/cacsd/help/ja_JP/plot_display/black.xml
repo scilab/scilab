@@ -105,7 +105,7 @@
         <para>
             <literal>y/(1+y)</literal>の
             等ゲイン,等位相のグリッドをプロットするには,
-            <link linkend="chart">chart()</link>を使用してください.
+            <link linkend="nicholschart">nicholschart()</link>を使用してください.
         </para>
         <para>
             <literal>fmin</literal> および<literal>fmax</literal> のデフォルト値は,
@@ -169,7 +169,7 @@
                 <link linkend="nyquist">nyquist</link>
             </member>
             <member>
-                <link linkend="chart">chart</link>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
             <member>
                 <link linkend="freq">freq</link>
