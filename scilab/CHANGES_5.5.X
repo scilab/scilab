@@ -20,6 +20,9 @@ Removed Functions
 
 * milk_drop removed.
 
+* relocate_handle removed.
+
+
 Scilab Bug Fixes
 ================
 
@@ -45,6 +48,11 @@ Scilab Bug Fixes
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
+* Bug #13725 fixed - Polyline was not correctly filled with big values.
+
+* Bug #13741 fixed - Impossible to print an invisible figure under Windows.
+
+* Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
 
 
                      Changes between version 5.5.0 and 5.5.1

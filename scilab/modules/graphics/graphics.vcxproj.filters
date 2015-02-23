@@ -581,9 +581,6 @@
     <ClCompile Include="sci_gateway\c\sci_plot3d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_relocate_handle.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_rotate_axes.c">
       <Filter>Source Files</Filter>
     </ClCompile>

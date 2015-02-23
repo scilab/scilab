@@ -432,7 +432,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_plot3d.c \
     sci_gateway/c/sci_move.c \
     sci_gateway/c/sci_copy.c \
-    sci_gateway/c/sci_relocate_handle.c \
     sci_gateway/c/sci_xarcs.c \
     sci_gateway/c/sci_xfpoly.c \
     sci_gateway/c/sci_drawlater.c \
@@ -470,7 +469,6 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_matplot.cpp \
     sci_gateway/cpp/sci_matplot1.cpp \
     sci_gateway/cpp/sci_winsid.cpp
-
 
 libscigraphics_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

@@ -98,7 +98,6 @@ int GraphicsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"get", &sci_get, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"set", &sci_set, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"newaxes", &sci_newaxes, &GraphicsModule::LoadDeps, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"relocate_handle", &sci_relocate_handle, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"swap_handles", &sci_swap_handles, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rubberbox", &sci_rubberbox, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"rotate_axes", &sci_rotate_axes, &GraphicsModule::LoadDeps, MODULE_NAME));

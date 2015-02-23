@@ -1078,7 +1078,8 @@ public final class SwingView implements GraphicView {
         SwingScilabFrame updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
         boolean hasOpenGLAxes = false;
-
+        int oldComponentCount = updatedComponent.getComponentCount();
+        
         // Add new children
         for (Integer childId : newChildren) {
             int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
@@ -1128,11 +1129,17 @@ public final class SwingView implements GraphicView {
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.revalidate();
         }
+        
+        // Force repaint if we removed components
+        if (oldComponentCount > updatedComponent.getComponentCount()) {
+            updatedComponent.repaint();
+        }
     }
 
     private void updateScrollableFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
         SwingScilabScrollableFrame updatedComponent = (SwingScilabScrollableFrame) updatedObject.getValue();
         boolean needRevalidate = false;
+        int oldComponentCount = updatedComponent.getPanel().getComponentCount();
 
         // Add new children
         for (Integer childId : newChildren) {
@@ -1171,8 +1178,14 @@ public final class SwingView implements GraphicView {
             }
         }
         if (needRevalidate && updatedComponent != null) {
-            updatedComponent.revalidate();
+            updatedComponent.getPanel().revalidate();
         }
+        
+        // Force repaint if we removed components
+        if (oldComponentCount > updatedComponent.getPanel().getComponentCount()) {
+            updatedComponent.repaint();
+        }
+
     }
 
     /**

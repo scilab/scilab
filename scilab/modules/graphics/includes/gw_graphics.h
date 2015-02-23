@@ -61,7 +61,6 @@ GRAPHICS_IMPEXP int sci_show_window(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_set(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_rubberbox(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_rotate_axes(char *fname, void *pvApiCtx);
-GRAPHICS_IMPEXP int sci_relocate_handle(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot3d(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_plot2d1_1(char *fname, void *pvApiCtx);
@@ -99,7 +98,6 @@ GRAPHICS_IMPEXP int sci_light(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_addcolor(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_name2rgb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_color(char *fname, void *pvApiCtx);
-
 /*--------------------------------------------------------------------------*/
 #endif /* __INTGRAPHICS__ */
 /*--------------------------------------------------------------------------*/

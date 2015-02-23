@@ -141,6 +141,9 @@ public final class UnitsConverter {
     }
 
     public static double convertFromPixel(int value, UicontrolUnits newUnit, Widget uicontrol, boolean widthAsRef) {
+        if (uicontrol == null) {
+            return (double) value;
+        }
 
         SwingViewObject uicontrolAsView = (SwingViewObject) uicontrol;
         int widgetType = (Integer) GraphicController.getController().getProperty(uicontrolAsView.getId(), __GO_TYPE__);

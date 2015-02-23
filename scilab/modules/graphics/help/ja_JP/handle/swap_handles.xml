@@ -226,12 +226,6 @@ swap_handles( axes1, axes2 ) ;
                 
             </member>
             
-            <member>
-                
-                <link linkend="relocate_handle">relocate_handle</link>
-                
-            </member>
-            
         </simplelist>
         
     </refsection>
