@@ -259,6 +259,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\cpp\sci_curblock.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_haltscicos.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_phase_simulation.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_pointer_xproperty.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicosim.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_debug.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_scicos_debug_count.cpp" />
@@ -312,7 +313,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\c\sci_getscicosvars.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_model2blk.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_pointer_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_set_xproperty.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_sig2data.c" />
