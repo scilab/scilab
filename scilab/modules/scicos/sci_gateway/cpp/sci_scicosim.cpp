@@ -36,11 +36,18 @@ extern "C"
 #include "machine.h" /* C2F */
 #include "import.h"
 #include "sci_malloc.h"
+#include "scicos.h" /* funnum2() */
 #include "scicos-def.h"
-#include "scicos.h"
 
 #include "localization.h"
 #include "Scierror.h"
+
+    COSIM_struct C2F(cosim);
+    /*--------------------------------------------------------------------------*/
+    // Variables defined in scicos.c
+    extern COSERR_struct coserr;
+    extern CURBLK_struct C2F(curblk);
+    /*--------------------------------------------------------------------------*/
 }
 
 #ifdef _MSC_VER
@@ -138,19 +145,7 @@ extern "C"
 */
 /*--------------------------------------------------------------------------*/
 
-const std::string funname = "scicosim";
-
-extern "C"
-{
-    extern COSIM_struct C2F(cosim); // Declaration of cosim -valable partout-
-
-    extern COSERR_struct coserr;    // Declaration of coserr -defined in scicos-
-    extern int C2F(funnum)(char *fname);
-
-    // Variable defined in scicos.c
-    extern CURBLK_struct C2F(curblk);
-}
-/*--------------------------------------------------------------------------*/
+static const std::string funname = "scicosim";
 
 types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
