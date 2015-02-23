@@ -49,7 +49,7 @@ public :
 
     virtual ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc) = 0;
 
-    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e);
+    virtual bool invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e);
 
     virtual bool isInvokable() const
     {
@@ -75,7 +75,7 @@ public :
     {
         m_wstName = _wstName;
     }
-    std::wstring        getName()
+    const std::wstring&   getName()
     {
         return m_wstName;
     }

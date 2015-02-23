@@ -194,7 +194,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -207,7 +207,7 @@ struct EXTERN_AST Sparse : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }
@@ -591,7 +591,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -604,7 +604,7 @@ struct EXTERN_AST SparseBool : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }

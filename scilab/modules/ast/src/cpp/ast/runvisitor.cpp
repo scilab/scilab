@@ -749,41 +749,20 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         //in this case of calling, we can return only one values
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
-                        Function::ReturnValue Ret = pCall->call(in, opt, getExpectedSize(), out, this);
+
+                        pCall->invoke(in, opt, getExpectedSize(), out, *this, e);
                         setExpectedSize(iSaveExpectedSize);
 
-                        if (Ret == Callable::OK)
+                        if (out.size() == 0)
                         {
-                            if (out.size() == 0)
-                            {
-                                setResult(NULL);
-                            }
-                            else
-                            {
-                                setResult(out[0]);
-                            }
-                            bImplicitCall = true;
+                            setResult(NULL);
                         }
-                        else if (Ret == Callable::Error)
+                        else
                         {
-                            if (ConfigVariable::getLastErrorFunction() == L"")
-                            {
-                                ConfigVariable::setLastErrorFunction(pCall->getName());
-                                ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-                                throw ScilabError();
-                            }
+                            setResult(out[0]);
+                        }
 
-                            if (pCall->isMacro() || pCall->isMacroFile())
-                            {
-                                wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*itExp)->getLocation().first_line, pCall->getName().c_str());
-                                throw ScilabMessage(szError);
-                            }
-                            else
-                            {
-                                throw ScilabMessage();
-                            }
-                        }
+                        bImplicitCall = true;
                     }
                     catch (ScilabMessage sm)
                     {
@@ -806,6 +785,26 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         {
                             sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
                             throw sm;
+                        }
+                    }
+                    catch (ast::ScilabError & se)
+                    {
+                        if (ConfigVariable::getLastErrorFunction() == L"")
+                        {
+                            ConfigVariable::setLastErrorFunction(pCall->getName());
+                            ConfigVariable::setLastErrorLine(e.getLocation().first_line);
+                            throw ScilabError();
+                        }
+
+                        if (pCall->isMacro() || pCall->isMacroFile())
+                        {
+                            wchar_t szError[bsiz];
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*itExp)->getLocation().first_line, pCall->getName().c_str());
+                            throw ScilabMessage(szError);
+                        }
+                        else
+                        {
+                            throw ScilabMessage();
                         }
                     }
                 }

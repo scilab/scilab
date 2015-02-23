@@ -9,6 +9,8 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+
+#include <vector>
 #include <list>
 #include "configvariable.hxx"
 #include "context.hxx"
@@ -1102,22 +1104,19 @@ int ConfigVariable::getFuncprot()
 ** \{
 */
 
-std::list< std::pair<int, std::wstring> > ConfigVariable::m_Where;
-std::list<int> ConfigVariable::m_FirstMacroLine;
-void ConfigVariable::where_begin(int _iLineNum, std::wstring _wstName)
+std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
+std::vector<int> ConfigVariable::m_FirstMacroLine;
+void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, const std::wstring& _wstName)
 {
-    m_Where.push_front(std::pair<int, std::wstring>(_iLineNum, _wstName));
+    m_Where.emplace_back(_iLineNum, _iLineLocation, _wstName);
 }
 
 void ConfigVariable::where_end()
 {
-    if (m_Where.empty() == false)
-    {
-        m_Where.pop_front();
-    }
+    m_Where.pop_back();
 }
 
-std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
+const std::vector<ConfigVariable::WhereEntry>& ConfigVariable::getWhere()
 {
     return m_Where;
 }

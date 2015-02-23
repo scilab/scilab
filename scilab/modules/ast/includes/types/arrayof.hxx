@@ -368,7 +368,7 @@ public :
     InternalType* extract(typed_list* _pArgs);
     bool resize(int* _piDims, int _iDims);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -381,10 +381,7 @@ public :
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                ast::exps_t* args = e.getArgs();
-                Location loc((*args->begin())->getLocation());
-                delete args;
-                throw ast::ScilabError(os.str(), 999, loc);
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }

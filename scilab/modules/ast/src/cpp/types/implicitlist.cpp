@@ -588,7 +588,7 @@ bool ImplicitList::neg(InternalType *& out)
     return false;
 }
 
-bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -601,7 +601,7 @@ bool ImplicitList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetC
         {
             std::wostringstream os;
             os << _W("Invalid index.\n");
-            throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+            throw ast::ScilabError(os.str(), 999, e.getLocation());
         }
         out.push_back(_out);
     }

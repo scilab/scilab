@@ -150,7 +150,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     return true;
 }
 
-bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -176,7 +176,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
-                    throw ast::ScilabError(szError, 999, e.getFirstLocation());
+                    throw ast::ScilabError(szError, 999, e.getLocation());
                 }
             }
 

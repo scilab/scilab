@@ -10,6 +10,8 @@
  *
  */
 
+#include <vector>
+
 #include "core_gw.hxx"
 #include "function.hxx"
 #include "configvariable.hxx"
@@ -36,28 +38,27 @@ types::Function::ReturnValue sci_where(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    std::list<std::pair<int, std::wstring> > lWhereAmI = ConfigVariable::getWhere();
-    if (lWhereAmI.size() == 1)
+    const std::vector<ConfigVariable::WhereEntry>& lWhereAmI = ConfigVariable::getWhere();
+    if (lWhereAmI.size() <= 1)
     {
         out.push_back(types::Double::Empty());
         out.push_back(types::Double::Empty());
         return types::Function::OK;
     }
 
-    std::list<std::pair<int, std::wstring> >::const_iterator it;
     types::Double* pDblLines = new types::Double((int)lWhereAmI.size() - 1, 1);
     types::String* pStrNames = new types::String((int)lWhereAmI.size() - 1, 1);
 
-    it = lWhereAmI.begin();
-    pDblLines->set(0, (double)it->first);
+    auto it = lWhereAmI.rbegin();
+    pDblLines->set(0, it->m_line);
     it++;
-    for (int i = 0; it != lWhereAmI.end(); it++, i++)
+    for (int i = 0; it != lWhereAmI.rend(); it++, i++)
     {
-        pDblLines->set(i + 1, (double)(it->first));
-        pStrNames->set(i, it->second.c_str());
+        pDblLines->set(i + 1, it->m_line);
+        pStrNames->set(i, it->m_name.c_str());
     }
 
-    pStrNames->set((int)lWhereAmI.size() - 1, lWhereAmI.front().second.c_str());
+    pStrNames->set(static_cast<int>(lWhereAmI.size()) - 1, lWhereAmI.back().m_name.c_str());
 
     out.push_back(pDblLines);
     out.push_back(pStrNames);
