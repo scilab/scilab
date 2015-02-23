@@ -14,18 +14,24 @@
 #define TRIANGULATOR_HXX
 
 #include <algorithm>
+#include <limits>
 #include <list>
 #include <vector>
+
+#include <iostream>
 
 /*
  * A structure representing a point.
  */
-typedef struct
+struct Vector3d
 {
     double x;
     double y;
     double z;
-} Vector3d;
+
+    Vector3d() { }
+    Vector3d(const double _x, const double _y, const double _z) : x(_x), y(_y), z(_z) { }
+};
 
 /**
  * Triangulator class
@@ -112,6 +118,8 @@ private:
 
     /** The number of colinear vertices. */
     int numColinearVertices;
+
+    double xmin, xmax, ymin, ymax, zmin, zmax;
 
 private:
     /**

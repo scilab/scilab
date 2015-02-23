@@ -429,7 +429,6 @@ sci_gateway/c/sci_xarrows.c \
 sci_gateway/c/sci_plot3d.c \
 sci_gateway/c/sci_move.c \
 sci_gateway/c/sci_copy.c \
-sci_gateway/c/sci_relocate_handle.c \
 sci_gateway/c/sci_get.c \
 sci_gateway/c/sci_xarcs.c \
 sci_gateway/c/sci_xfpoly.c \

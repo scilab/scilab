@@ -789,7 +789,6 @@ real
 realtime
 realtimeinit
 regexp
-relocate_handle
 remez
 removeModulePreferences
 removedir

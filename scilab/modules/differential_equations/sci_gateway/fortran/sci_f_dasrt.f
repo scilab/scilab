@@ -1,16 +1,16 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA/ENPC
 c ...
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 c
       subroutine dasrti(fname)
 c ====================================================================
-C     dasrt 
+C     dasrt
 c ====================================================================
 c
       INCLUDE 'stack.h'
@@ -29,9 +29,9 @@ c
       common /dassln/ namer,namej,names
       external bresd,bjacd,bsurfd
       external setfresd,setfjacd,setfsurfd
-c     
+c
       data atol/1.d-7/,rtol/1.d-9/
-c     
+c
       iadr(l)=l+l-1
       sadr(l)=(l/2)+1
 
@@ -64,7 +64,7 @@ c     -------------------------------
          err = 1
          call error(89)
          return
-      else 
+      else
          il1 = iadr(lstk(top-rhs+1))
          istk(il1+2)=1
       endif
@@ -77,7 +77,7 @@ c     checking variable t1 (number 3)
 c     -------------------------------
       if(.not.getrmat(fname,topk,top-rhs+3,m3,n3,l3))return
       nt=m3*n3
-c     
+c
 c     checking variable atol (number 4)
 c     --------------------------------
       iskip=0
@@ -117,7 +117,7 @@ c     --------------------------------
       else
          info(2)=1
       endif
-      
+
 c     checking variable res (number 6)
 c     --------------------------------
  1105 kres=top-rhs+6-iskip
@@ -162,7 +162,7 @@ c     checking variable number 9
       ksurf=top-rhs+9-iskip
       if (.not.getexternal(fname,topk,ksurf,names,type,
      $        setfsurfd)) return
-c     
+c
 c     checking variable info (number 10)
 c     ------------------------------------
       kinfo = top-rhs+10-iskip
@@ -192,7 +192,7 @@ c     default info values
       endif
       n10=istk(il10+1)
       l10=sadr(il10+n10+3)
-c     
+c
 c     --   subvariable tstop(info) --
       il10e1=iadr(l10+istk(il10+1+1)-1)
       l10e1 = sadr(il10e1+4)
@@ -203,14 +203,14 @@ c     --   subvariable tstop(info) --
          info(4)=1
          tstop=stk(l10e1)
       endif
-      
-c     
+
+c
 c     --   subvariable imode(info) --
       il10e2=iadr(l10+istk(il10+1+2)-1)
       l10e2 = sadr(il10e2+4)
       info(3)=stk(l10e2)
-      
-c     
+
+c
 c     --   subvariable band(info) --
       il10e3=iadr(l10+istk(il10+1+3)-1)
       m10e3 =istk(il10e3+2)*istk(il10e3+2)
@@ -226,7 +226,7 @@ c     --   subvariable band(info) --
          call error(89)
          return
       endif
-c     
+c
 c     --   subvariable maxstep(info) --
       il10e4=iadr(l10+istk(il10+1+4)-1)
       m10e4 =istk(il10e4+2)*istk(il10e4+2)
@@ -237,8 +237,8 @@ c     --   subvariable maxstep(info) --
          info(7)=1
          maxstep=stk(l10e4)
       endif
-      
-c     
+
+c
 c     --   subvariable stepin(info) --
       il10e5=iadr(l10+istk(il10+1+5)-1)
       m10e5 =istk(il10e5+2)*istk(il10e5+2)
@@ -249,27 +249,27 @@ c     --   subvariable stepin(info) --
          info(8)=1
          stepin=stk(l10e5)
       endif
-      
-c     
+
+c
 c     --   subvariable nonneg(info) --
       il10e6=iadr(l10+istk(il10+1+6)-1)
       l10e6 = sadr(il10e6+4)
       info(10)=stk(l10e6)
-c     
+c
 c     --   subvariable isest(info) --
       il10e7=iadr(l10+istk(il10+1+7)-1)
       l10e7 = sadr(il10e7+4)
       isest=stk(l10e7)
       if(isest.eq.1) info(11)=1
-      
-      
+
+
  10   hotstart=.false.
       if(rhs.eq.11-iskip) then
          hotstart=.true.
-c     
+c
 c     checking variable hotdata (number 11)
 c     --------------------------------------
-         
+
          il11 = iadr(lstk(top-rhs+11-iskip))
          if (istk(il11) .ne. 1) then
             err = 11-iskip
@@ -282,19 +282,19 @@ c     --------------------------------------
          call error(39)
          return
       endif
-c     --------------------Work Tables 
+c     --------------------Work Tables
       if (.not.cremat(fname,topw,0,1,1,lw15,lc)) return
-      topw=topw+1      
+      topw=topw+1
       if (.not.cremat(fname,topw,0,1,1,lw17,lc)) return
-      topw=topw+1      
+      topw=topw+1
       il17=iadr(lw17)
 c     dasrt needs more
       if (.not.cremat(fname,topw,0,1,nh,lgr,lc)) return
-      topw=topw+1      
+      topw=topw+1
       lgroot=iadr(lgr)
-c     
+c
       if(info(6).eq.0) then
-C     for the full (dense) JACOBIAN case 
+C     for the full (dense) JACOBIAN case
          lrw = 50+(maxord+4)*neq+neq**2+3*nh
       elseif(info(5).eq.1) then
 C     for the banded user-defined JACOBIAN case
@@ -320,7 +320,7 @@ C     for the banded finite-difference-generated JACOBIAN case
          liwork=lhot+lrw
          call entier(liw,stk(liwork),istk(iadr(liwork)))
       endif
-c     
+c
       if(info(4).eq.1) then
          stk(lrwork)=tstop
       endif
@@ -356,7 +356,7 @@ c     structure d'info pour les externals
       istk(ilext+15)=ky
 c     istk(ilext+16)=ky
       lw=sadr(ilext)+16
-      
+
       lw0=lw
       ilyr=iadr(lw)
       istk(ilyr)=1
@@ -370,7 +370,7 @@ c     istk(ilext+16)=ky
       info(9)=0
       do 1120 i=0,nt-1
          tout=stk(l3+i)
-c     
+c
  1115    k=k+1
          lyri=lyri+(2*n1+1)
          lw=lyri+(2*n1+1)
@@ -391,7 +391,7 @@ c     not enough memory
             l1=lyri+1
             lydot=lyri+n1+1
             t0=tout
-            goto 1120            
+            goto 1120
          else
             stk(lyri)=tout
             call unsfdcopy(n1,stk(l1),1,stk(lyri+1),1)
@@ -408,18 +408,18 @@ C     *  G,NG,JROOT)
          endif
          if(err.gt.0.or.err1.gt.0)  return
          if(idid.eq.1) then
-C     A step was successfully taken in the intermediate-output mode. 
+C     A step was successfully taken in the intermediate-output mode.
 C     The code has not yet reached TOUT.
             stk(lyri)=t0
             info(1)=1
             goto 1115
-            
+
          elseif(idid.eq.2) then
 C     The integration to TSTOP was successfully completed (T=TSTOP)
             goto 1125
-            
+
          elseif(idid.eq.3) then
-C     The integration to TOUT was successfully completed (T=TOUT) by 
+C     The integration to TOUT was successfully completed (T=TOUT) by
 C     stepping past TOUT. Y,ydot are obtained by interpolation.
             t0=tout
             info(1)=1
@@ -428,7 +428,7 @@ C     stepping past TOUT. Y,ydot are obtained by interpolation.
 C     one or more root found
             stk(lyri)=t0
 C     stk(lrw+41)
-            goto 1125 
+            goto 1125
          elseif(idid.eq.-1) then
 C     A large amount of work has been expended (About 500 steps)
             call msgstxt('Too many steps necessary to reach next '//
@@ -446,9 +446,9 @@ c     buf='The error tolerances are too stringent'
 c     call error(9982)
 c     return
          elseif(idid.eq.-3) then
-C     The local error test cannot be satisfied because you specified 
+C     The local error test cannot be satisfied because you specified
 C     a zero component in ATOL and the corresponding computed solution
-C     component is zero. Thus, a pure relative error test is impossible 
+C     component is zero. Thus, a pure relative error test is impossible
 C     for this component.
             buf='atol and computed test value are zero'
             call error(9983)
@@ -470,7 +470,7 @@ C     The matrix of partial derivatives is singular.
             call error(9986)
             return
          elseif(idid.eq.-9) then
-C     The corrector could not converge. there were repeated error 
+C     The corrector could not converge. there were repeated error
 c     test failures in this step.
             call msgstxt('Either ill-posed problem or '//
      &           'discontinuity or singularity encountered')
@@ -487,7 +487,7 @@ C     calling program.
             return
          elseif(idid.eq.-12) then
 C     DDASSL failed to compute the initial YPRIME.
-            buf='dassrt failed to compute the initial Ydot.'
+            buf='dasrt failed to compute the initial Ydot.'
             call error(9990)
             return
          elseif(idid.eq.-33) then
@@ -496,26 +496,26 @@ C     it cannot recover. A message is printed
 C     explaining the trouble and control is returned
 C     to the calling program. For example, this occurs
 C     when invalid input is detected.
-            call msgstxt('dassrt encountered trouble')
+            call msgstxt('dasrt encountered trouble')
             goto 1125
          endif
          t0=tout
          info(1)=1
  1120 continue
-c     
+c
  1125 top=topk-rhs
       mv=lw0-l0
-c     
+c
 c     Variable de sortie: y0
-c     
+c
       top=top+1
       if(k.eq.0) istk(ilyr+1)=0
       istk(ilyr+2)=k
       lw=lyr+(2*n1+1)*k
       lstk(top+1)=lw-mv
-c     
+c
 c     Variable de sortie: roots
-c     
+c
       top=top+1
       ilw=iadr(lw)
       err=lw+4+nh+1-lstk(bot)
@@ -541,9 +541,9 @@ c
       lw=l+1
       lstk(top+1)=lw-mv
       if(lhs.eq.2) goto 1150
-c     
+c
 c     Variable de sortie: rwork
-c     
+c
       top=top+1
       ilw=iadr(lw)
       err=lw+4+lrw+liw-lstk(bot)
@@ -560,9 +560,9 @@ c
       call int2db(liw,istk(iadr(liwork)),1,stk(lw+lrw),1)
       lw=lw+lrw+liw
       lstk(top+1)=lw-mv
-c     
+c
 c     Remise en place de la pile
- 1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)      
+ 1150 call unsfdcopy(lw-lw0,stk(lw0),1,stk(l0),1)
       return
-      end	
+      end
 

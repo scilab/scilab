@@ -86,7 +86,6 @@ static gw_generic_table Tab[] =
     {sci_get, "get"},
     {sci_set, "set"},
     {sci_newaxes, "newaxes"},
-    {sci_relocate_handle, "relocate_handle"},
     {sci_swap_handles, "swap_handles"},
     {sci_rubberbox, "rubberbox"},
     {sci_rotate_axes, "rotate_axes"},
