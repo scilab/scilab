@@ -2020,6 +2020,107 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(MacroFile, Handle, M_E, MacroFile, GraphicHandle, Bool);
     scilab_fill_comparison_no_equal(Handle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
 
+
+    //ScalarHandle
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarHandle, M_M, GraphicHandle, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarHandle, M_M, GraphicHandle, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, Handle, M_M, GraphicHandle, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, ScalarHandle, E_M, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Double, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, DoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarDouble, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarDoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, Identity, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, IdentityComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, ScalarHandle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Int8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, ScalarHandle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, UInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, ScalarHandle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Int16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, ScalarHandle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, UInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, ScalarHandle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Int32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, ScalarHandle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, UInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, ScalarHandle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Int64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, ScalarHandle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, UInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, ScalarHandle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarInt8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, ScalarHandle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarUInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, ScalarHandle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarInt16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, ScalarHandle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarUInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, ScalarHandle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarInt32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, ScalarHandle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarUInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, ScalarHandle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarInt64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, ScalarHandle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarUInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, ScalarHandle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, String, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparison_no_equal(String, ScalarHandle, M_E, String, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, ScalarString, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, ScalarHandle, M_E, String, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, SparseComplex, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, ScalarHandle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Sparse, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, ScalarHandle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, SparseBool, M_E, GraphicHandle, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, ScalarHandle, M_E, SparseBool, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Struct, M_E, GraphicHandle, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, ScalarHandle, M_E, Struct, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, List, M_E, GraphicHandle, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarHandle, M_E, List, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, TList, M_E, GraphicHandle, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarHandle, M_E, TList, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, MList, M_E, GraphicHandle, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarHandle, M_E, MList, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Cell, M_E, GraphicHandle, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarHandle, M_E, Cell, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(ScalarHandle, Macro, M_E, GraphicHandle, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarHandle, M_E, Macro, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(ScalarHandle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarHandle, M_E, MacroFile, GraphicHandle, Bool);
+
+
 #undef scilab_fill_comparison_no_equal
 
 }
@@ -3566,6 +3667,19 @@ types::InternalType* compnoequal_M_M<Cell, Cell, Bool>(types::Cell* _pL, types::
 template<>
 types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(GraphicHandle* _pL, GraphicHandle* _pR)
 {
+    if (_pL->isScalar())
+    {
+        Bool* pOut = new Bool(_pR->getDims(), _pR->getDimsArray());
+        compnoequal(_pL->get(0), _pR->getSize(), _pR->get(), pOut->get());
+        return pOut;
+    }
+
+    if (_pR->isScalar())
+    {
+        Bool* pOut = new Bool(_pL->getDims(), _pL->getDimsArray());
+        compnoequal(_pR->get(0), _pL->getSize(), _pL->get(), pOut->get());
+        return pOut;
+    }
 
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
