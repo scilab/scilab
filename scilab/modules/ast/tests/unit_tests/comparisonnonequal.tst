@@ -1070,3 +1070,37 @@ assert_checkequal(SPB <> STR, %t);
 assert_checkequal(SPB <> b, sparse([1,2;2,1],[%t;%t],[2,2]));
 assert_checkequal(SPB <> B, sparse([1,1;1,2;2,1;2,2],[%t;%t;%t;%t],[2,2]));
 assert_checkequal(SPB <> SPB, sparse([1,1],[%f],[2,2]));
+
+assert_checkequal(["a" "b"] <> ["a" "b" "c"],%t);
+assert_checkequal(["a" "b"] <> ["a" ; "b"],%t);
+assert_checkequal(["a" "b" "c"] <> ["a" "b"],%t);
+assert_checkequal(["a" "b"; "a" "b"] <> ["a" "b"],%t);
+
+//macro
+deff("[x]=myplus(y,z)","x=y+z");
+
+deff("[x]=mymacro(y,z)",["a=3*y+1"; "x=a*z+y"]);
+
+assert_checkequal(myplus <> myplus,%f);
+assert_checkequal(myplus <> mymacro,%t);
+assert_checkequal(myplus <> [],%t);
+assert_checkequal(myplus <> 2,%t);
+
+//struct
+test_st=struct("double",1,"string","test","int8",int8(2),"struct",struct("valeur",0));
+test_st2=struct("double",1,"string","test","int16",int8(2),"struct",1);
+test_st4=struct("double",1,"string","test","int8",int8(4),"struct",struct("valeur",0));
+test_st8=struct("double",8,"string","test","int8",int8(8),"struct",struct("valeur",0));
+
+assert_checkequal(test_st <> test_st, %f);
+assert_checkequal(test_st <> test_st2, %t);
+assert_checkequal([test_st4 test_st8] <> [test_st test_st], [%t,%t]);
+assert_checkequal([test_st, test_st4;test_st4,test_st8] <> [test_st, test_st; test_st,test_st], [%f,%t;%t,%t]);
+assert_checkequal(test_st <> [], %t);
+
+//function
+assert_checkequal(acosh <> acosh, %f);
+assert_checkequal(acosh <> [], %t);
+assert_checkequal(acosh <> 2, %t);
+
+

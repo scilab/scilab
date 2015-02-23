@@ -1341,7 +1341,10 @@ void fillComparisonNoEqualFunction()
     //struct
     scilab_fill_comparison_no_equal(Struct, Struct, M_M, Struct, Struct, Bool);
 
-    /*scilab_fill_comparison_no_equal(Struct, Double, M_E, Struct, Double, Bool);
+    scilab_fill_comparison_no_equal(Struct, Empty, M_E, Struct, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Struct, E_M, Double, Struct, Bool);
+
+    scilab_fill_comparison_no_equal(Struct, Double, M_E, Struct, Double, Bool);
     scilab_fill_comparison_no_equal(Double, Struct, M_E, Double, Struct, Bool);
     scilab_fill_comparison_no_equal(Struct, DoubleComplex, M_E, Struct, Double, Bool);
     scilab_fill_comparison_no_equal(DoubleComplex, Struct, M_E, Double, Struct, Bool);
@@ -1351,8 +1354,6 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(Struct, ScalarDoubleComplex, M_E, Struct, Double, Bool);
     scilab_fill_comparison_no_equal(ScalarDoubleComplex, Struct, M_E, Double, Struct, Bool);
 
-    scilab_fill_comparison_no_equal(Struct, Empty, M_E, Struct, Double, Bool);
-    scilab_fill_comparison_no_equal(Empty, Struct, M_E, Double, Struct, Bool);
     scilab_fill_comparison_no_equal(Struct, Identity, M_E, Struct, Double, Bool);
     scilab_fill_comparison_no_equal(Identity, Struct, M_E, Double, Struct, Bool);
     scilab_fill_comparison_no_equal(Struct, IdentityComplex, M_E, Struct, Double, Bool);
@@ -1410,7 +1411,7 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(Sparse, Struct, M_E, Sparse, Struct, Bool);
 
     scilab_fill_comparison_no_equal(Struct, SparseBool, M_E, Struct, SparseBool, Bool);
-    scilab_fill_comparison_no_equal(SparseBool, Struct, M_E, SparseBool, Struct, Bool);*/
+    scilab_fill_comparison_no_equal(SparseBool, Struct, M_E, SparseBool, Struct, Bool);
 
     //List, TList, MList
     scilab_fill_comparison_no_equal(List, List, LT_LT, List, List, Bool);
@@ -1425,11 +1426,410 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(TList, MList, LT_LT, TList, MList, Bool);
     scilab_fill_comparison_no_equal(MList, TList, LT_LT, MList, TList, Bool);
 
+    scilab_fill_comparison_no_equal(List, Empty, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(TList, Empty, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(MList, Empty, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, List, E_M, Double, List, Bool);
+    scilab_fill_comparison_no_equal(Empty, TList, E_M, Double, TList, Bool);
+    scilab_fill_comparison_no_equal(Empty, MList, E_M, Double, MList, Bool);
+
+    scilab_fill_comparison_no_equal(List, Double, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, List, M_E, Double, List, Bool);
+    scilab_fill_comparison_no_equal(List, DoubleComplex, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, ScalarDouble, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, List, M_E, Double, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarDoubleComplex, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Identity, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, List, M_E, Double, List, Bool);
+    scilab_fill_comparison_no_equal(List, IdentityComplex, M_E, List, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Int8, M_E, List, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, List, M_E, Int8, List, Bool);
+    scilab_fill_comparison_no_equal(List, UInt8, M_E, List, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, List, M_E, UInt8, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Int16, M_E, List, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, List, M_E, Int16, List, Bool);
+    scilab_fill_comparison_no_equal(List, UInt16, M_E, List, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, List, M_E, UInt16, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Int32, M_E, List, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, List, M_E, Int32, List, Bool);
+    scilab_fill_comparison_no_equal(List, UInt32, M_E, List, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, List, M_E, UInt32, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Int64, M_E, List, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, List, M_E, Int64, List, Bool);
+    scilab_fill_comparison_no_equal(List, UInt64, M_E, List, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, List, M_E, UInt64, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, ScalarInt8, M_E, List, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, List, M_E, Int8, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarUInt8, M_E, List, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, List, M_E, UInt8, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, ScalarInt16, M_E, List, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, List, M_E, Int16, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarUInt16, M_E, List, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, List, M_E, UInt16, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, ScalarInt32, M_E, List, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, List, M_E, Int32, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarUInt32, M_E, List, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, List, M_E, UInt32, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, ScalarInt64, M_E, List, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, List, M_E, Int64, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarUInt64, M_E, List, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, List, M_E, UInt64, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, String, M_E, List, String, Bool);
+    scilab_fill_comparison_no_equal(String, List, M_E, String, List, Bool);
+    scilab_fill_comparison_no_equal(List, ScalarString, M_E, List, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, List, M_E, String, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, SparseComplex, M_E, List, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, List, M_E, Sparse, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Sparse, M_E, List, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, List, M_E, Sparse, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, SparseBool, M_E, List, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, List, M_E, SparseBool, List, Bool);
+
+    scilab_fill_comparison_no_equal(List, Struct, M_E, List, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, List, M_E, Struct, List, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Double, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, DoubleComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, ScalarDouble, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarDoubleComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Identity, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, IdentityComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Int8, M_E, TList, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, TList, M_E, Int8, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, UInt8, M_E, TList, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, TList, M_E, UInt8, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Int16, M_E, TList, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, TList, M_E, Int16, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, UInt16, M_E, TList, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, TList, M_E, UInt16, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Int32, M_E, TList, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, TList, M_E, Int32, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, UInt32, M_E, TList, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, TList, M_E, UInt32, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Int64, M_E, TList, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, TList, M_E, Int64, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, UInt64, M_E, TList, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, TList, M_E, UInt64, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, ScalarInt8, M_E, TList, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, TList, M_E, Int8, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarUInt8, M_E, TList, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, TList, M_E, UInt8, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, ScalarInt16, M_E, TList, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, TList, M_E, Int16, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarUInt16, M_E, TList, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, TList, M_E, UInt16, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, ScalarInt32, M_E, TList, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, TList, M_E, Int32, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarUInt32, M_E, TList, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, TList, M_E, UInt32, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, ScalarInt64, M_E, TList, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, TList, M_E, Int64, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarUInt64, M_E, TList, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, TList, M_E, UInt64, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, String, M_E, TList, String, Bool);
+    scilab_fill_comparison_no_equal(String, TList, M_E, String, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, ScalarString, M_E, TList, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, TList, M_E, String, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, SparseComplex, M_E, TList, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, TList, M_E, Sparse, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Sparse, M_E, TList, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, TList, M_E, Sparse, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, SparseBool, M_E, TList, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, TList, M_E, SparseBool, TList, Bool);
+
+    scilab_fill_comparison_no_equal(TList, Struct, M_E, TList, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, TList, M_E, Struct, TList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Double, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, DoubleComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, ScalarDouble, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarDoubleComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Identity, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, IdentityComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Int8, M_E, MList, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, MList, M_E, Int8, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, UInt8, M_E, MList, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, MList, M_E, UInt8, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Int16, M_E, MList, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, MList, M_E, Int16, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, UInt16, M_E, MList, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, MList, M_E, UInt16, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Int32, M_E, MList, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, MList, M_E, Int32, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, UInt32, M_E, MList, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, MList, M_E, UInt32, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Int64, M_E, MList, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, MList, M_E, Int64, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, UInt64, M_E, MList, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, MList, M_E, UInt64, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, ScalarInt8, M_E, MList, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, MList, M_E, Int8, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarUInt8, M_E, MList, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, MList, M_E, UInt8, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, ScalarInt16, M_E, MList, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, MList, M_E, Int16, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarUInt16, M_E, MList, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, MList, M_E, UInt16, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, ScalarInt32, M_E, MList, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, MList, M_E, Int32, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarUInt32, M_E, MList, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, MList, M_E, UInt32, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, ScalarInt64, M_E, MList, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, MList, M_E, Int64, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarUInt64, M_E, MList, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, MList, M_E, UInt64, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, String, M_E, MList, String, Bool);
+    scilab_fill_comparison_no_equal(String, MList, M_E, String, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, ScalarString, M_E, MList, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, MList, M_E, String, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, SparseComplex, M_E, MList, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, MList, M_E, Sparse, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Sparse, M_E, MList, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, MList, M_E, Sparse, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, SparseBool, M_E, MList, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, MList, M_E, SparseBool, MList, Bool);
+
+    scilab_fill_comparison_no_equal(MList, Struct, M_E, MList, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, MList, M_E, Struct, MList, Bool);
+
     //Cell
     scilab_fill_comparison_no_equal(Cell, Cell, M_M, Cell, Cell, Bool);
 
+    scilab_fill_comparison_no_equal(Cell, Empty, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Cell, E_M, Double, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Double, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, DoubleComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, ScalarDouble, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarDoubleComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Empty, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Identity, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, IdentityComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Int8, M_E, Cell, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, Cell, M_E, Int8, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt8, M_E, Cell, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, Cell, M_E, UInt8, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Int16, M_E, Cell, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, Cell, M_E, Int16, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt16, M_E, Cell, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, Cell, M_E, UInt16, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Int32, M_E, Cell, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, Cell, M_E, Int32, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt32, M_E, Cell, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, Cell, M_E, UInt32, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Int64, M_E, Cell, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, Cell, M_E, Int64, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, UInt64, M_E, Cell, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, Cell, M_E, UInt64, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, ScalarInt8, M_E, Cell, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, Cell, M_E, Int8, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt8, M_E, Cell, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, Cell, M_E, UInt8, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, ScalarInt16, M_E, Cell, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, Cell, M_E, Int16, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt16, M_E, Cell, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, Cell, M_E, UInt16, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, ScalarInt32, M_E, Cell, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, Cell, M_E, Int32, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt32, M_E, Cell, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, Cell, M_E, UInt32, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, ScalarInt64, M_E, Cell, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, Cell, M_E, Int64, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarUInt64, M_E, Cell, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, Cell, M_E, UInt64, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, String, M_E, Cell, String, Bool);
+    scilab_fill_comparison_no_equal(String, Cell, M_E, String, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, ScalarString, M_E, Cell, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, Cell, M_E, String, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, SparseComplex, M_E, Cell, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, Cell, M_E, Sparse, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Sparse, M_E, Cell, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, Cell, M_E, Sparse, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, SparseBool, M_E, Cell, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, Cell, M_E, SparseBool, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, Struct, M_E, Cell, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, Cell, M_E, Struct, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, List, M_E, Cell, List, Bool);
+    scilab_fill_comparison_no_equal(List, Cell, M_E, List, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, TList, M_E, Cell, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, Cell, M_E, TList, Cell, Bool);
+
+    scilab_fill_comparison_no_equal(Cell, MList, M_E, Cell, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, Cell, M_E, MList, Cell, Bool);
+
+
     //Handle
     scilab_fill_comparison_no_equal(Handle, Handle, M_M, GraphicHandle, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Handle, E_M, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Double, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, DoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, ScalarDouble, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarDoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, Identity, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, IdentityComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Int8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, Handle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, UInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, Handle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Int16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, Handle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, UInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, Handle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Int32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, Handle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, UInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, Handle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Int64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, Handle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, UInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, Handle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, ScalarInt8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, Handle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarUInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, Handle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, ScalarInt16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, Handle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarUInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, Handle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, ScalarInt32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, Handle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarUInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, Handle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, ScalarInt64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, Handle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarUInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, Handle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, String, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparison_no_equal(String, Handle, M_E, String, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, ScalarString, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, Handle, M_E, String, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, SparseComplex, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, Handle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Sparse, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, Handle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, SparseBool, M_E, GraphicHandle, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, Handle, M_E, SparseBool, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Struct, M_E, GraphicHandle, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, Handle, M_E, Struct, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, List, M_E, GraphicHandle, List, Bool);
+    scilab_fill_comparison_no_equal(List, Handle, M_E, List, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, TList, M_E, GraphicHandle, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, Handle, M_E, TList, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, MList, M_E, GraphicHandle, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, Handle, M_E, MList, GraphicHandle, Bool);
+
+    scilab_fill_comparison_no_equal(Handle, Cell, M_E, GraphicHandle, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Handle, M_E, Cell, GraphicHandle, Bool);
 
     //Macro
     scilab_fill_comparison_no_equal(Macro, Macro, MCR_MCR, Macro, Macro, Bool);
@@ -1437,6 +1837,188 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(Macro, MacroFile, MCR_MCR, Macro, MacroFile, Bool);
     scilab_fill_comparison_no_equal(MacroFile, Macro, MCR_MCR, MacroFile, Macro, Bool);
 
+    scilab_fill_comparison_no_equal(Macro, Empty, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Macro, E_M, Double, Macro, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, Empty, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, MacroFile, E_M, Double, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Double, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, DoubleComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, ScalarDouble, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarDoubleComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Empty, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, Identity, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, IdentityComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Int8, M_E, Macro, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, Macro, M_E, Int8, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, UInt8, M_E, Macro, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, Macro, M_E, UInt8, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Int16, M_E, Macro, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, Macro, M_E, Int16, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, UInt16, M_E, Macro, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, Macro, M_E, UInt16, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Int32, M_E, Macro, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, Macro, M_E, Int32, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, UInt32, M_E, Macro, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, Macro, M_E, UInt32, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Int64, M_E, Macro, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, Macro, M_E, Int64, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, UInt64, M_E, Macro, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, Macro, M_E, UInt64, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, ScalarInt8, M_E, Macro, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, Macro, M_E, Int8, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarUInt8, M_E, Macro, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, Macro, M_E, UInt8, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, ScalarInt16, M_E, Macro, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, Macro, M_E, Int16, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarUInt16, M_E, Macro, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, Macro, M_E, UInt16, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, ScalarInt32, M_E, Macro, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, Macro, M_E, Int32, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarUInt32, M_E, Macro, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, Macro, M_E, UInt32, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, ScalarInt64, M_E, Macro, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, Macro, M_E, Int64, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarUInt64, M_E, Macro, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, Macro, M_E, UInt64, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, String, M_E, Macro, String, Bool);
+    scilab_fill_comparison_no_equal(String, Macro, M_E, String, Macro, Bool);
+    scilab_fill_comparison_no_equal(Macro, ScalarString, M_E, Macro, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, Macro, M_E, String, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, SparseComplex, M_E, Macro, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, Macro, M_E, Sparse, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Sparse, M_E, Macro, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, Macro, M_E, Sparse, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, SparseBool, M_E, Macro, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, Macro, M_E, SparseBool, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Struct, M_E, Macro, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, Macro, M_E, Struct, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, List, M_E, Macro, List, Bool);
+    scilab_fill_comparison_no_equal(List, Macro, M_E, List, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, TList, M_E, Macro, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, Macro, M_E, TList, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, MList, M_E, Macro, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, Macro, M_E, MList, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Cell, M_E, Macro, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, Macro, M_E, Cell, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(Macro, Handle, M_E, Macro, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, Macro, M_E, GraphicHandle, Macro, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Double, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(Double, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, DoubleComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(DoubleComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, ScalarDouble, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDouble, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarDoubleComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(ScalarDoubleComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Empty, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(Empty, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, Identity, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(Identity, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, IdentityComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparison_no_equal(IdentityComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Int8, M_E, MacroFile, Int8, Bool);
+    scilab_fill_comparison_no_equal(Int8, MacroFile, M_E, Int8, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, UInt8, M_E, MacroFile, UInt8, Bool);
+    scilab_fill_comparison_no_equal(UInt8, MacroFile, M_E, UInt8, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Int16, M_E, MacroFile, Int16, Bool);
+    scilab_fill_comparison_no_equal(Int16, MacroFile, M_E, Int16, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, UInt16, M_E, MacroFile, UInt16, Bool);
+    scilab_fill_comparison_no_equal(UInt16, MacroFile, M_E, UInt16, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Int32, M_E, MacroFile, Int32, Bool);
+    scilab_fill_comparison_no_equal(Int32, MacroFile, M_E, Int32, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, UInt32, M_E, MacroFile, UInt32, Bool);
+    scilab_fill_comparison_no_equal(UInt32, MacroFile, M_E, UInt32, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Int64, M_E, MacroFile, Int64, Bool);
+    scilab_fill_comparison_no_equal(Int64, MacroFile, M_E, Int64, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, UInt64, M_E, MacroFile, UInt64, Bool);
+    scilab_fill_comparison_no_equal(UInt64, MacroFile, M_E, UInt64, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, ScalarInt8, M_E, MacroFile, Int8, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt8, MacroFile, M_E, Int8, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarUInt8, M_E, MacroFile, UInt8, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt8, MacroFile, M_E, UInt8, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, ScalarInt16, M_E, MacroFile, Int16, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt16, MacroFile, M_E, Int16, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarUInt16, M_E, MacroFile, UInt16, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt16, MacroFile, M_E, UInt16, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, ScalarInt32, M_E, MacroFile, Int32, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt32, MacroFile, M_E, Int32, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarUInt32, M_E, MacroFile, UInt32, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt32, MacroFile, M_E, UInt32, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, ScalarInt64, M_E, MacroFile, Int64, Bool);
+    scilab_fill_comparison_no_equal(ScalarInt64, MacroFile, M_E, Int64, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarUInt64, M_E, MacroFile, UInt64, Bool);
+    scilab_fill_comparison_no_equal(ScalarUInt64, MacroFile, M_E, UInt64, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, String, M_E, MacroFile, String, Bool);
+    scilab_fill_comparison_no_equal(String, MacroFile, M_E, String, MacroFile, Bool);
+    scilab_fill_comparison_no_equal(MacroFile, ScalarString, M_E, MacroFile, String, Bool);
+    scilab_fill_comparison_no_equal(ScalarString, MacroFile, M_E, String, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, SparseComplex, M_E, MacroFile, Sparse, Bool);
+    scilab_fill_comparison_no_equal(SparseComplex, MacroFile, M_E, Sparse, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Sparse, M_E, MacroFile, Sparse, Bool);
+    scilab_fill_comparison_no_equal(Sparse, MacroFile, M_E, Sparse, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, SparseBool, M_E, MacroFile, SparseBool, Bool);
+    scilab_fill_comparison_no_equal(SparseBool, MacroFile, M_E, SparseBool, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Struct, M_E, MacroFile, Struct, Bool);
+    scilab_fill_comparison_no_equal(Struct, MacroFile, M_E, Struct, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, List, M_E, MacroFile, List, Bool);
+    scilab_fill_comparison_no_equal(List, MacroFile, M_E, List, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, TList, M_E, MacroFile, TList, Bool);
+    scilab_fill_comparison_no_equal(TList, MacroFile, M_E, TList, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, MList, M_E, MacroFile, MList, Bool);
+    scilab_fill_comparison_no_equal(MList, MacroFile, M_E, MList, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Cell, M_E, MacroFile, Cell, Bool);
+    scilab_fill_comparison_no_equal(Cell, MacroFile, M_E, Cell, MacroFile, Bool);
+
+    scilab_fill_comparison_no_equal(MacroFile, Handle, M_E, MacroFile, GraphicHandle, Bool);
+    scilab_fill_comparison_no_equal(Handle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
 
 #undef scilab_fill_comparison_no_equal
 
@@ -2892,73 +3474,35 @@ InternalType* compnoequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 template<>
 types::InternalType* compnoequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, types::Struct* _pR)
 {
-
-    if (_pL->getSize() != _pR->getSize())
+    /* check dimension*/
+    if (_pL->getDims() != _pR->getDims())
     {
         return new Bool(true);
     }
 
-    String* pStringFielNamesPL = _pL->getFieldNames();
-    String* pStringFielNamesPR = _pR->getFieldNames();
-    wchar_t** ppwchPR = pStringFielNamesPR->get();
-    wchar_t** ppwchPL = pStringFielNamesPL->get();
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
 
-    Bool* pOut = new Bool(1, 2 * pStringFielNamesPL->getSize());
-    pOut->setTrue();
-    int* piPOut = pOut->get();
-
-    for (int iComptSStruct = 0; iComptSStruct < _pL->getSize(); iComptSStruct++)
+    for (int i = 0; i < _pL->getDims(); i++)
     {
-        for (int i = 0; i < pStringFielNamesPL->getSize(); i++)
+        if (piDimsL[i] != piDimsR[i])
         {
-            piPOut[i * 2] = (wcscmp(ppwchPR[i], ppwchPL[i]) != 0) && (piPOut[i * 2] == 1);
-
-
-            if (_pL->get(iComptSStruct)->get(ppwchPL[i])->getType() == _pR->get(iComptSStruct)->get(ppwchPR[i])->getType())
-            {
-                if (_pL->get(iComptSStruct)->get(ppwchPL[i])->getType() == types::InternalType::ScilabStruct)
-                {
-                    piPOut[i * 2 + 1] = _pL->get(iComptSStruct)->get(ppwchPL[i]) != _pR->get(iComptSStruct)->get(ppwchPR[i]) && (piPOut[i * 2] == 1);
-                }
-                else
-                {
-                    types::InternalType* pResolution = GenericComparisonNonEqual(_pL->get(iComptSStruct)->get(ppwchPL[i]), _pR->get(iComptSStruct)->get(ppwchPR[i]));
-                    bool bValeur = true;
-                    if (pResolution->getType() == types::InternalType::ScilabBool)
-                    {
-                        Bool* pBoolTempo = pResolution->getAs<Bool>();
-                        for (int j = 0; j < pBoolTempo->getSize() && bValeur == true; j++)
-                        {
-                            if (pBoolTempo->get(j) != 1)
-                            {
-                                bValeur = false;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        SparseBool* pSparseBoolTempo = pResolution->getAs<SparseBool>();
-                        for (int j = 0; j < pSparseBoolTempo->getSize() && bValeur == true; j++)
-                        {
-                            if (pSparseBoolTempo->get(j) != 1)
-                            {
-                                bValeur = false;
-                                break;
-                            }
-                        }
-                    }
-                    piPOut[i * 2 + 1] = bValeur && (piPOut[i * 2 + 1] == 1);
-                }
-            }
-            else
-            {
-                piPOut[i * 2 + 1] = true;
-            }
+            return new Bool(true);
         }
     }
 
+    if (_pL->getSize() == 0)
+    {
+        return new Bool(false);
+    }
+
+    Bool *pOut = new Bool(_pL->getDims(), piDimsL);
+    for (int i = 0; i < _pL->getSize(); i++)
+    {
+        pOut->set(i, *_pL->get(i) != *_pR->get(i));
+    }
     return pOut;
+
 }
 
 //List, TList, MList

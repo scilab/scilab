@@ -1341,76 +1341,77 @@ void fillComparisonEqualFunction()
     //struct
     scilab_fill_comparisonequal(Struct, Struct, M_M, Struct, Struct, Bool);
 
-    /*    scilab_fill_comparisonequal(Struct, Double, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(Double, Struct, M_E, Double, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, DoubleComplex, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(DoubleComplex, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Empty, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Struct, E_M, Double, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, ScalarDouble, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(ScalarDouble, Struct, M_E, Double, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarDoubleComplex, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(ScalarDoubleComplex, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Double, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(Double, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, DoubleComplex, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, Struct, M_E, Double, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Empty, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(Empty, Struct, M_E, Double, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, Identity, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(Identity, Struct, M_E, Double, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, IdentityComplex, M_E, Struct, Double, Bool);
-        scilab_fill_comparisonequal(IdentityComplex, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarDouble, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarDoubleComplex, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, Struct, M_E, Double, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Int8, M_E, Struct, Int8, Bool);
-        scilab_fill_comparisonequal(Int8, Struct, M_E, Int8, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, UInt8, M_E, Struct, UInt8, Bool);
-        scilab_fill_comparisonequal(UInt8, Struct, M_E, UInt8, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Identity, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(Identity, Struct, M_E, Double, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, IdentityComplex, M_E, Struct, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, Struct, M_E, Double, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Int16, M_E, Struct, Int16, Bool);
-        scilab_fill_comparisonequal(Int16, Struct, M_E, Int16, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, UInt16, M_E, Struct, UInt16, Bool);
-        scilab_fill_comparisonequal(UInt16, Struct, M_E, UInt16, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Int8, M_E, Struct, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, Struct, M_E, Int8, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, UInt8, M_E, Struct, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, Struct, M_E, UInt8, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Int32, M_E, Struct, Int32, Bool);
-        scilab_fill_comparisonequal(Int32, Struct, M_E, Int32, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, UInt32, M_E, Struct, UInt32, Bool);
-        scilab_fill_comparisonequal(UInt32, Struct, M_E, UInt32, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Int16, M_E, Struct, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, Struct, M_E, Int16, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, UInt16, M_E, Struct, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, Struct, M_E, UInt16, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Int64, M_E, Struct, Int64, Bool);
-        scilab_fill_comparisonequal(Int64, Struct, M_E, Int64, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, UInt64, M_E, Struct, UInt64, Bool);
-        scilab_fill_comparisonequal(UInt64, Struct, M_E, UInt64, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Int32, M_E, Struct, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, Struct, M_E, Int32, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, UInt32, M_E, Struct, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, Struct, M_E, UInt32, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, ScalarInt8, M_E, Struct, Int8, Bool);
-        scilab_fill_comparisonequal(ScalarInt8, Struct, M_E, Int8, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarUInt8, M_E, Struct, UInt8, Bool);
-        scilab_fill_comparisonequal(ScalarUInt8, Struct, M_E, UInt8, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Int64, M_E, Struct, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, Struct, M_E, Int64, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, UInt64, M_E, Struct, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, Struct, M_E, UInt64, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, ScalarInt16, M_E, Struct, Int16, Bool);
-        scilab_fill_comparisonequal(ScalarInt16, Struct, M_E, Int16, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarUInt16, M_E, Struct, UInt16, Bool);
-        scilab_fill_comparisonequal(ScalarUInt16, Struct, M_E, UInt16, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarInt8, M_E, Struct, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, Struct, M_E, Int8, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarUInt8, M_E, Struct, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, Struct, M_E, UInt8, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, ScalarInt32, M_E, Struct, Int32, Bool);
-        scilab_fill_comparisonequal(ScalarInt32, Struct, M_E, Int32, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarUInt32, M_E, Struct, UInt32, Bool);
-        scilab_fill_comparisonequal(ScalarUInt32, Struct, M_E, UInt32, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarInt16, M_E, Struct, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, Struct, M_E, Int16, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarUInt16, M_E, Struct, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, Struct, M_E, UInt16, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, ScalarInt64, M_E, Struct, Int64, Bool);
-        scilab_fill_comparisonequal(ScalarInt64, Struct, M_E, Int64, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarUInt64, M_E, Struct, UInt64, Bool);
-        scilab_fill_comparisonequal(ScalarUInt64, Struct, M_E, UInt64, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarInt32, M_E, Struct, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, Struct, M_E, Int32, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarUInt32, M_E, Struct, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, Struct, M_E, UInt32, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, String, M_E, Struct, String, Bool);
-        scilab_fill_comparisonequal(String, Struct, M_E, String, Struct, Bool);
-        scilab_fill_comparisonequal(Struct, ScalarString, M_E, Struct, String, Bool);
-        scilab_fill_comparisonequal(ScalarString, Struct, M_E, String, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarInt64, M_E, Struct, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, Struct, M_E, Int64, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarUInt64, M_E, Struct, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, Struct, M_E, UInt64, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, SparseComplex, M_E, Struct, Sparse, Bool);
-        scilab_fill_comparisonequal(SparseComplex, Struct, M_E, Sparse, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, String, M_E, Struct, String, Bool);
+    scilab_fill_comparisonequal(String, Struct, M_E, String, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, ScalarString, M_E, Struct, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, Struct, M_E, String, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, Sparse, M_E, Struct, Sparse, Bool);
-        scilab_fill_comparisonequal(Sparse, Struct, M_E, Sparse, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, SparseComplex, M_E, Struct, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, Struct, M_E, Sparse, Struct, Bool);
 
-        scilab_fill_comparisonequal(Struct, SparseBool, M_E, Struct, SparseBool, Bool);
-        scilab_fill_comparisonequal(SparseBool, Struct, M_E, SparseBool, Struct, Bool);*/
+    scilab_fill_comparisonequal(Struct, Sparse, M_E, Struct, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, Struct, M_E, Sparse, Struct, Bool);
+
+    scilab_fill_comparisonequal(Struct, SparseBool, M_E, Struct, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, Struct, M_E, SparseBool, Struct, Bool);
 
     //List, TList, MList
     scilab_fill_comparisonequal(List, List, LT_LT, List, List, Bool);
@@ -1425,17 +1426,599 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(TList, MList, LT_LT, TList, MList, Bool);
     scilab_fill_comparisonequal(MList, TList, LT_LT, MList, TList, Bool);
 
+    scilab_fill_comparisonequal(List, Empty, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(TList, Empty, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(MList, Empty, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(Empty, List, E_M, Double, List, Bool);
+    scilab_fill_comparisonequal(Empty, TList, E_M, Double, TList, Bool);
+    scilab_fill_comparisonequal(Empty, MList, E_M, Double, MList, Bool);
+
+    scilab_fill_comparisonequal(List, Double, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(Double, List, M_E, Double, List, Bool);
+    scilab_fill_comparisonequal(List, DoubleComplex, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparisonequal(List, ScalarDouble, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, List, M_E, Double, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarDoubleComplex, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparisonequal(List, Identity, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(Identity, List, M_E, Double, List, Bool);
+    scilab_fill_comparisonequal(List, IdentityComplex, M_E, List, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, List, M_E, Double, List, Bool);
+
+    scilab_fill_comparisonequal(List, Int8, M_E, List, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, List, M_E, Int8, List, Bool);
+    scilab_fill_comparisonequal(List, UInt8, M_E, List, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, List, M_E, UInt8, List, Bool);
+
+    scilab_fill_comparisonequal(List, Int16, M_E, List, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, List, M_E, Int16, List, Bool);
+    scilab_fill_comparisonequal(List, UInt16, M_E, List, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, List, M_E, UInt16, List, Bool);
+
+    scilab_fill_comparisonequal(List, Int32, M_E, List, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, List, M_E, Int32, List, Bool);
+    scilab_fill_comparisonequal(List, UInt32, M_E, List, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, List, M_E, UInt32, List, Bool);
+
+    scilab_fill_comparisonequal(List, Int64, M_E, List, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, List, M_E, Int64, List, Bool);
+    scilab_fill_comparisonequal(List, UInt64, M_E, List, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, List, M_E, UInt64, List, Bool);
+
+    scilab_fill_comparisonequal(List, ScalarInt8, M_E, List, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, List, M_E, Int8, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarUInt8, M_E, List, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, List, M_E, UInt8, List, Bool);
+
+    scilab_fill_comparisonequal(List, ScalarInt16, M_E, List, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, List, M_E, Int16, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarUInt16, M_E, List, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, List, M_E, UInt16, List, Bool);
+
+    scilab_fill_comparisonequal(List, ScalarInt32, M_E, List, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, List, M_E, Int32, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarUInt32, M_E, List, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, List, M_E, UInt32, List, Bool);
+
+    scilab_fill_comparisonequal(List, ScalarInt64, M_E, List, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, List, M_E, Int64, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarUInt64, M_E, List, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, List, M_E, UInt64, List, Bool);
+
+    scilab_fill_comparisonequal(List, String, M_E, List, String, Bool);
+    scilab_fill_comparisonequal(String, List, M_E, String, List, Bool);
+    scilab_fill_comparisonequal(List, ScalarString, M_E, List, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, List, M_E, String, List, Bool);
+
+    scilab_fill_comparisonequal(List, SparseComplex, M_E, List, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, List, M_E, Sparse, List, Bool);
+
+    scilab_fill_comparisonequal(List, Sparse, M_E, List, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, List, M_E, Sparse, List, Bool);
+
+    scilab_fill_comparisonequal(List, SparseBool, M_E, List, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, List, M_E, SparseBool, List, Bool);
+
+    scilab_fill_comparisonequal(List, Struct, M_E, List, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, List, M_E, Struct, List, Bool);
+
+    scilab_fill_comparisonequal(TList, Double, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(Double, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparisonequal(TList, DoubleComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, ScalarDouble, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarDoubleComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Identity, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(Identity, TList, M_E, Double, TList, Bool);
+    scilab_fill_comparisonequal(TList, IdentityComplex, M_E, TList, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, TList, M_E, Double, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Int8, M_E, TList, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, TList, M_E, Int8, TList, Bool);
+    scilab_fill_comparisonequal(TList, UInt8, M_E, TList, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, TList, M_E, UInt8, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Int16, M_E, TList, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, TList, M_E, Int16, TList, Bool);
+    scilab_fill_comparisonequal(TList, UInt16, M_E, TList, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, TList, M_E, UInt16, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Int32, M_E, TList, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, TList, M_E, Int32, TList, Bool);
+    scilab_fill_comparisonequal(TList, UInt32, M_E, TList, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, TList, M_E, UInt32, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Int64, M_E, TList, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, TList, M_E, Int64, TList, Bool);
+    scilab_fill_comparisonequal(TList, UInt64, M_E, TList, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, TList, M_E, UInt64, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, ScalarInt8, M_E, TList, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, TList, M_E, Int8, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarUInt8, M_E, TList, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, TList, M_E, UInt8, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, ScalarInt16, M_E, TList, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, TList, M_E, Int16, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarUInt16, M_E, TList, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, TList, M_E, UInt16, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, ScalarInt32, M_E, TList, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, TList, M_E, Int32, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarUInt32, M_E, TList, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, TList, M_E, UInt32, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, ScalarInt64, M_E, TList, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, TList, M_E, Int64, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarUInt64, M_E, TList, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, TList, M_E, UInt64, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, String, M_E, TList, String, Bool);
+    scilab_fill_comparisonequal(String, TList, M_E, String, TList, Bool);
+    scilab_fill_comparisonequal(TList, ScalarString, M_E, TList, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, TList, M_E, String, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, SparseComplex, M_E, TList, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, TList, M_E, Sparse, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Sparse, M_E, TList, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, TList, M_E, Sparse, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, SparseBool, M_E, TList, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, TList, M_E, SparseBool, TList, Bool);
+
+    scilab_fill_comparisonequal(TList, Struct, M_E, TList, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, TList, M_E, Struct, TList, Bool);
+
+    scilab_fill_comparisonequal(MList, Double, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(Double, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparisonequal(MList, DoubleComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, ScalarDouble, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarDoubleComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Identity, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(Identity, MList, M_E, Double, MList, Bool);
+    scilab_fill_comparisonequal(MList, IdentityComplex, M_E, MList, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, MList, M_E, Double, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Int8, M_E, MList, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, MList, M_E, Int8, MList, Bool);
+    scilab_fill_comparisonequal(MList, UInt8, M_E, MList, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, MList, M_E, UInt8, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Int16, M_E, MList, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, MList, M_E, Int16, MList, Bool);
+    scilab_fill_comparisonequal(MList, UInt16, M_E, MList, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, MList, M_E, UInt16, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Int32, M_E, MList, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, MList, M_E, Int32, MList, Bool);
+    scilab_fill_comparisonequal(MList, UInt32, M_E, MList, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, MList, M_E, UInt32, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Int64, M_E, MList, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, MList, M_E, Int64, MList, Bool);
+    scilab_fill_comparisonequal(MList, UInt64, M_E, MList, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, MList, M_E, UInt64, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, ScalarInt8, M_E, MList, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, MList, M_E, Int8, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarUInt8, M_E, MList, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, MList, M_E, UInt8, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, ScalarInt16, M_E, MList, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, MList, M_E, Int16, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarUInt16, M_E, MList, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, MList, M_E, UInt16, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, ScalarInt32, M_E, MList, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, MList, M_E, Int32, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarUInt32, M_E, MList, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, MList, M_E, UInt32, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, ScalarInt64, M_E, MList, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, MList, M_E, Int64, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarUInt64, M_E, MList, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, MList, M_E, UInt64, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, String, M_E, MList, String, Bool);
+    scilab_fill_comparisonequal(String, MList, M_E, String, MList, Bool);
+    scilab_fill_comparisonequal(MList, ScalarString, M_E, MList, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, MList, M_E, String, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, SparseComplex, M_E, MList, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, MList, M_E, Sparse, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Sparse, M_E, MList, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, MList, M_E, Sparse, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, SparseBool, M_E, MList, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, MList, M_E, SparseBool, MList, Bool);
+
+    scilab_fill_comparisonequal(MList, Struct, M_E, MList, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, MList, M_E, Struct, MList, Bool);
+
     //Cell
     scilab_fill_comparisonequal(Cell, Cell, M_M, Cell, Cell, Bool);
 
+    scilab_fill_comparisonequal(Cell, Empty, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Cell, E_M, Double, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Double, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(Double, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, DoubleComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, ScalarDouble, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarDoubleComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Empty, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Identity, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(Identity, Cell, M_E, Double, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, IdentityComplex, M_E, Cell, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, Cell, M_E, Double, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Int8, M_E, Cell, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, Cell, M_E, Int8, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt8, M_E, Cell, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, Cell, M_E, UInt8, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Int16, M_E, Cell, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, Cell, M_E, Int16, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt16, M_E, Cell, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, Cell, M_E, UInt16, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Int32, M_E, Cell, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, Cell, M_E, Int32, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt32, M_E, Cell, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, Cell, M_E, UInt32, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Int64, M_E, Cell, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, Cell, M_E, Int64, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, UInt64, M_E, Cell, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, Cell, M_E, UInt64, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, ScalarInt8, M_E, Cell, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, Cell, M_E, Int8, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt8, M_E, Cell, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, Cell, M_E, UInt8, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, ScalarInt16, M_E, Cell, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, Cell, M_E, Int16, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt16, M_E, Cell, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, Cell, M_E, UInt16, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, ScalarInt32, M_E, Cell, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, Cell, M_E, Int32, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt32, M_E, Cell, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, Cell, M_E, UInt32, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, ScalarInt64, M_E, Cell, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, Cell, M_E, Int64, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarUInt64, M_E, Cell, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, Cell, M_E, UInt64, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, String, M_E, Cell, String, Bool);
+    scilab_fill_comparisonequal(String, Cell, M_E, String, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, ScalarString, M_E, Cell, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, Cell, M_E, String, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, SparseComplex, M_E, Cell, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, Cell, M_E, Sparse, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Sparse, M_E, Cell, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, Cell, M_E, Sparse, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, SparseBool, M_E, Cell, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, Cell, M_E, SparseBool, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, Struct, M_E, Cell, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Cell, M_E, Struct, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, List, M_E, Cell, List, Bool);
+    scilab_fill_comparisonequal(List, Cell, M_E, List, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, TList, M_E, Cell, TList, Bool);
+    scilab_fill_comparisonequal(TList, Cell, M_E, TList, Cell, Bool);
+
+    scilab_fill_comparisonequal(Cell, MList, M_E, Cell, MList, Bool);
+    scilab_fill_comparisonequal(MList, Cell, M_E, MList, Cell, Bool);
+
+
     //Handle
     scilab_fill_comparisonequal(Handle, Handle, M_M, GraphicHandle, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Handle, E_M, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Double, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(Double, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, DoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, ScalarDouble, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarDoubleComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Empty, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, Identity, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(Identity, Handle, M_E, Double, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, IdentityComplex, M_E, GraphicHandle, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, Handle, M_E, Double, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Int8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, Handle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, UInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, Handle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Int16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, Handle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, UInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, Handle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Int32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, Handle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, UInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, Handle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Int64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, Handle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, UInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, Handle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, ScalarInt8, M_E, GraphicHandle, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, Handle, M_E, Int8, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarUInt8, M_E, GraphicHandle, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, Handle, M_E, UInt8, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, ScalarInt16, M_E, GraphicHandle, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, Handle, M_E, Int16, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarUInt16, M_E, GraphicHandle, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, Handle, M_E, UInt16, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, ScalarInt32, M_E, GraphicHandle, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, Handle, M_E, Int32, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarUInt32, M_E, GraphicHandle, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, Handle, M_E, UInt32, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, ScalarInt64, M_E, GraphicHandle, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, Handle, M_E, Int64, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarUInt64, M_E, GraphicHandle, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, Handle, M_E, UInt64, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, String, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparisonequal(String, Handle, M_E, String, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, ScalarString, M_E, GraphicHandle, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, Handle, M_E, String, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, SparseComplex, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, Handle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Sparse, M_E, GraphicHandle, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, Handle, M_E, Sparse, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, SparseBool, M_E, GraphicHandle, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, Handle, M_E, SparseBool, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Struct, M_E, GraphicHandle, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Handle, M_E, Struct, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, List, M_E, GraphicHandle, List, Bool);
+    scilab_fill_comparisonequal(List, Handle, M_E, List, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, TList, M_E, GraphicHandle, TList, Bool);
+    scilab_fill_comparisonequal(TList, Handle, M_E, TList, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, MList, M_E, GraphicHandle, MList, Bool);
+    scilab_fill_comparisonequal(MList, Handle, M_E, MList, GraphicHandle, Bool);
+
+    scilab_fill_comparisonequal(Handle, Cell, M_E, GraphicHandle, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Handle, M_E, Cell, GraphicHandle, Bool);
 
     //Macro
     scilab_fill_comparisonequal(Macro, Macro, MCR_MCR, Macro, Macro, Bool);
     scilab_fill_comparisonequal(MacroFile, MacroFile, MCR_MCR, MacroFile, MacroFile, Bool);
     scilab_fill_comparisonequal(Macro, MacroFile, MCR_MCR, Macro, MacroFile, Bool);
     scilab_fill_comparisonequal(MacroFile, Macro, MCR_MCR, MacroFile, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Empty, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Macro, E_M, Double, Macro, Bool);
+    scilab_fill_comparisonequal(MacroFile, Empty, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(Empty, MacroFile, E_M, Double, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(Macro, Double, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(Double, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, DoubleComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, ScalarDouble, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarDoubleComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Empty, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(Empty, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, Identity, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(Identity, Macro, M_E, Double, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, IdentityComplex, M_E, Macro, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, Macro, M_E, Double, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Int8, M_E, Macro, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, Macro, M_E, Int8, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, UInt8, M_E, Macro, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, Macro, M_E, UInt8, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Int16, M_E, Macro, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, Macro, M_E, Int16, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, UInt16, M_E, Macro, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, Macro, M_E, UInt16, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Int32, M_E, Macro, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, Macro, M_E, Int32, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, UInt32, M_E, Macro, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, Macro, M_E, UInt32, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Int64, M_E, Macro, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, Macro, M_E, Int64, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, UInt64, M_E, Macro, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, Macro, M_E, UInt64, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, ScalarInt8, M_E, Macro, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, Macro, M_E, Int8, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarUInt8, M_E, Macro, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, Macro, M_E, UInt8, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, ScalarInt16, M_E, Macro, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, Macro, M_E, Int16, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarUInt16, M_E, Macro, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, Macro, M_E, UInt16, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, ScalarInt32, M_E, Macro, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, Macro, M_E, Int32, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarUInt32, M_E, Macro, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, Macro, M_E, UInt32, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, ScalarInt64, M_E, Macro, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, Macro, M_E, Int64, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarUInt64, M_E, Macro, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, Macro, M_E, UInt64, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, String, M_E, Macro, String, Bool);
+    scilab_fill_comparisonequal(String, Macro, M_E, String, Macro, Bool);
+    scilab_fill_comparisonequal(Macro, ScalarString, M_E, Macro, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, Macro, M_E, String, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, SparseComplex, M_E, Macro, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, Macro, M_E, Sparse, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Sparse, M_E, Macro, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, Macro, M_E, Sparse, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, SparseBool, M_E, Macro, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, Macro, M_E, SparseBool, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Struct, M_E, Macro, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, Macro, M_E, Struct, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, List, M_E, Macro, List, Bool);
+    scilab_fill_comparisonequal(List, Macro, M_E, List, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, TList, M_E, Macro, TList, Bool);
+    scilab_fill_comparisonequal(TList, Macro, M_E, TList, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, MList, M_E, Macro, MList, Bool);
+    scilab_fill_comparisonequal(MList, Macro, M_E, MList, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Cell, M_E, Macro, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, Macro, M_E, Cell, Macro, Bool);
+
+    scilab_fill_comparisonequal(Macro, Handle, M_E, Macro, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, Macro, M_E, GraphicHandle, Macro, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Double, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(Double, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, DoubleComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(DoubleComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, ScalarDouble, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDouble, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarDoubleComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(ScalarDoubleComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Empty, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(Empty, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, Identity, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(Identity, MacroFile, M_E, Double, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, IdentityComplex, M_E, MacroFile, Double, Bool);
+    scilab_fill_comparisonequal(IdentityComplex, MacroFile, M_E, Double, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Int8, M_E, MacroFile, Int8, Bool);
+    scilab_fill_comparisonequal(Int8, MacroFile, M_E, Int8, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, UInt8, M_E, MacroFile, UInt8, Bool);
+    scilab_fill_comparisonequal(UInt8, MacroFile, M_E, UInt8, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Int16, M_E, MacroFile, Int16, Bool);
+    scilab_fill_comparisonequal(Int16, MacroFile, M_E, Int16, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, UInt16, M_E, MacroFile, UInt16, Bool);
+    scilab_fill_comparisonequal(UInt16, MacroFile, M_E, UInt16, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Int32, M_E, MacroFile, Int32, Bool);
+    scilab_fill_comparisonequal(Int32, MacroFile, M_E, Int32, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, UInt32, M_E, MacroFile, UInt32, Bool);
+    scilab_fill_comparisonequal(UInt32, MacroFile, M_E, UInt32, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Int64, M_E, MacroFile, Int64, Bool);
+    scilab_fill_comparisonequal(Int64, MacroFile, M_E, Int64, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, UInt64, M_E, MacroFile, UInt64, Bool);
+    scilab_fill_comparisonequal(UInt64, MacroFile, M_E, UInt64, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, ScalarInt8, M_E, MacroFile, Int8, Bool);
+    scilab_fill_comparisonequal(ScalarInt8, MacroFile, M_E, Int8, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarUInt8, M_E, MacroFile, UInt8, Bool);
+    scilab_fill_comparisonequal(ScalarUInt8, MacroFile, M_E, UInt8, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, ScalarInt16, M_E, MacroFile, Int16, Bool);
+    scilab_fill_comparisonequal(ScalarInt16, MacroFile, M_E, Int16, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarUInt16, M_E, MacroFile, UInt16, Bool);
+    scilab_fill_comparisonequal(ScalarUInt16, MacroFile, M_E, UInt16, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, ScalarInt32, M_E, MacroFile, Int32, Bool);
+    scilab_fill_comparisonequal(ScalarInt32, MacroFile, M_E, Int32, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarUInt32, M_E, MacroFile, UInt32, Bool);
+    scilab_fill_comparisonequal(ScalarUInt32, MacroFile, M_E, UInt32, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, ScalarInt64, M_E, MacroFile, Int64, Bool);
+    scilab_fill_comparisonequal(ScalarInt64, MacroFile, M_E, Int64, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarUInt64, M_E, MacroFile, UInt64, Bool);
+    scilab_fill_comparisonequal(ScalarUInt64, MacroFile, M_E, UInt64, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, String, M_E, MacroFile, String, Bool);
+    scilab_fill_comparisonequal(String, MacroFile, M_E, String, MacroFile, Bool);
+    scilab_fill_comparisonequal(MacroFile, ScalarString, M_E, MacroFile, String, Bool);
+    scilab_fill_comparisonequal(ScalarString, MacroFile, M_E, String, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, SparseComplex, M_E, MacroFile, Sparse, Bool);
+    scilab_fill_comparisonequal(SparseComplex, MacroFile, M_E, Sparse, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Sparse, M_E, MacroFile, Sparse, Bool);
+    scilab_fill_comparisonequal(Sparse, MacroFile, M_E, Sparse, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, SparseBool, M_E, MacroFile, SparseBool, Bool);
+    scilab_fill_comparisonequal(SparseBool, MacroFile, M_E, SparseBool, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Struct, M_E, MacroFile, Struct, Bool);
+    scilab_fill_comparisonequal(Struct, MacroFile, M_E, Struct, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, List, M_E, MacroFile, List, Bool);
+    scilab_fill_comparisonequal(List, MacroFile, M_E, List, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, TList, M_E, MacroFile, TList, Bool);
+    scilab_fill_comparisonequal(TList, MacroFile, M_E, TList, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, MList, M_E, MacroFile, MList, Bool);
+    scilab_fill_comparisonequal(MList, MacroFile, M_E, MList, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Cell, M_E, MacroFile, Cell, Bool);
+    scilab_fill_comparisonequal(Cell, MacroFile, M_E, Cell, MacroFile, Bool);
+
+    scilab_fill_comparisonequal(MacroFile, Handle, M_E, MacroFile, GraphicHandle, Bool);
+    scilab_fill_comparisonequal(Handle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
 
 
 #undef scilab_fill_comparisonequal
@@ -2889,72 +3472,33 @@ InternalType* compequal_M_M<String, String, Bool>(String* _pL, String* _pR)
 template<>
 types::InternalType* compequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, types::Struct* _pR)
 {
-
-    if (_pL->getSize() != _pR->getSize())
+    /* check dimension*/
+    if (_pL->getDims() != _pR->getDims())
     {
         return new Bool(false);
     }
 
-    String* pStringFielNamesPL = _pL->getFieldNames();
-    String* pStringFielNamesPR = _pR->getFieldNames();
-    wchar_t** ppwchPR = pStringFielNamesPR->get();
-    wchar_t** ppwchPL = pStringFielNamesPL->get();
+    int* piDimsL = _pL->getDimsArray();
+    int* piDimsR = _pR->getDimsArray();
 
-    Bool* pOut = new Bool(1, 2 * pStringFielNamesPL->getSize());
-    pOut->setTrue();
-    int* piPOut = pOut->get();
-
-    for (int iComptSStruct = 0; iComptSStruct < _pL->getSize(); iComptSStruct++)
+    for (int i = 0; i < _pL->getDims(); i++)
     {
-        for (int i = 0; i < pStringFielNamesPL->getSize(); i++)
+        if (piDimsL[i] != piDimsR[i])
         {
-            piPOut[i * 2] = (wcscmp(ppwchPR[i], ppwchPL[i]) == 0) && (piPOut[i * 2] == 1);
-
-
-            if (_pL->get(iComptSStruct)->get(ppwchPL[i])->getType() == _pR->get(iComptSStruct)->get(ppwchPR[i])->getType())
-            {
-                if (_pL->get(iComptSStruct)->get(ppwchPL[i])->getType() == types::InternalType::ScilabStruct)
-                {
-                    piPOut[i * 2 + 1] = _pL->get(iComptSStruct)->get(ppwchPL[i]) == _pR->get(iComptSStruct)->get(ppwchPR[i]) && (piPOut[i * 2] == 1);
-                }
-                else
-                {
-                    types::InternalType* pResolution = GenericComparisonEqual(_pL->get(iComptSStruct)->get(pStringFielNamesPL->get(i)), _pR->get(iComptSStruct)->get(pStringFielNamesPR->get(i)));
-                    bool bValeur = true;
-                    if (pResolution->getType() == types::InternalType::ScilabBool)
-                    {
-                        Bool* pBoolTempo = pResolution->getAs<Bool>();
-                        for (int j = 0; j < pBoolTempo->getSize() && bValeur == true; j++)
-                        {
-                            if (pBoolTempo->get(j) != 1)
-                            {
-                                bValeur = false;
-                                break;
-                            }
-                        }
-                    }
-                    else
-                    {
-                        SparseBool* pSparseBoolTempo = pResolution->getAs<SparseBool>();
-                        for (int j = 0; j < pSparseBoolTempo->getSize() && bValeur == true; j++)
-                        {
-                            if (pSparseBoolTempo->get(j) != 1)
-                            {
-                                bValeur = false;
-                                break;
-                            }
-                        }
-                    }
-                    piPOut[i * 2 + 1] = bValeur && (piPOut[i * 2 + 1] == 1);
-                }
-            }
-            else
-            {
-                piPOut[i * 2 + 1] = false;
-            }
+            return new Bool(false);
         }
     }
 
+    if (_pL->getSize() == 0)
+    {
+        return new Bool(true);
+    }
+
+    Bool *pOut = new Bool(_pL->getDims(), piDimsL);
+    for (int i = 0; i < _pL->getSize(); i++)
+    {
+        pOut->set(i, *_pL->get(i) == *_pR->get(i));
+    }
     return pOut;
 }
 
