@@ -77,7 +77,7 @@ c     &       (stk(li+j*m),j=0,n-1)
  69   lb1=lb1-1
       if(buf(lb1:lb1).eq.' ') goto 69
       
-      call basout(io, 6, buf)
+      call basout(io, 6, buf(1:lb1))
       return
       
 20    ierr = 2

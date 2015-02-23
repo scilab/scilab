@@ -26,7 +26,7 @@ int C2F(basout)(int *io, int *lunit, char *string, long int nbcharacters)
     strMsg[nbcharacters] = '\0';
     scilabForcedWrite(strMsg);
     scilabForcedWrite("\n");
-    delete strMsg;
+    delete[] strMsg;
     return 0;
 }
 

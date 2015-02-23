@@ -123,6 +123,12 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
     {
         iCols = in[1]->getAs<types::GenericType>()->getCols();
     }
+    if (iCols == 0)
+    {
+        // the value is empty : do not display anything
+        return Function::OK;
+    }
+
 
     if (iRhs > 2)
     {
