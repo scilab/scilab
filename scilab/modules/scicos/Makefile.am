@@ -97,7 +97,6 @@ sci_gateway/cpp/sci_vec2var.cpp
 GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
 sci_gateway/c/sci_coserror.c \
-sci_gateway/c/sci_curblockc.c \
 sci_gateway/c/sci_data2sig.c \
 sci_gateway/c/sci_diffobjs.c \
 sci_gateway/c/sci_ftree2.c \

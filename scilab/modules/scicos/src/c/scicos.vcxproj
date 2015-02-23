@@ -303,7 +303,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="ddaskr.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_curblockc.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_data2sig.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_diffobjs.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c" />

@@ -77,9 +77,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_curblockc.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_data2sig.c">
       <Filter>Source Files</Filter>
     </ClCompile>

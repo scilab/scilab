@@ -27,7 +27,6 @@
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_set_xproperty" function="set_xproperty"/>
     <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
-    <gateway type="0" name="sci_curblockc" function="curblockc"/>
     <gateway type="0" name="sci_coserror" function="coserror"/>
     <gateway type="0" name="sci_data2sig" function="data2sig"/>
     <gateway type="0" name="sci_sig2data" function="sig2data"/>

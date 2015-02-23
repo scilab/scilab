@@ -53,6 +53,8 @@ Removed functions
 
 * derivative removed. Please use numderivative instead.
 
+* curblockc removed. Please use curblock instead.
+
 
 Scilab Bug Fixes
 ================
