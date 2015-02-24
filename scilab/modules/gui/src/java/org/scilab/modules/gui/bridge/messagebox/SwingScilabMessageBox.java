@@ -459,10 +459,10 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     final String initial = defaultInput[col * lineLabels.length + line];
 
                     final Component c;
-                    if ("T".equalsIgnoreCase(initial)) {
+                    if ("%T".equalsIgnoreCase(initial)) {
                         c = new JCheckBox();
                         ((JCheckBox) c).setSelected(true);
-                    } else if ("F".equalsIgnoreCase(initial)) {
+                    } else if ("%F".equalsIgnoreCase(initial)) {
                         c = new JCheckBox();
                         ((JCheckBox) c).setSelected(false);
                     } else {
