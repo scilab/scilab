@@ -11,6 +11,7 @@
  */
 #ifndef __DYNAMICLIBRARY_WINDOWS_H__
 #define __DYNAMICLIBRARY_WINDOWS_H__
+#ifdef _WIN32 // guard against mis-compilation
 
 //avoid declaration on macro min/max
 #define NOMINMAX
@@ -59,20 +60,24 @@ DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const
 */
 DYNAMIC_LINK_IMPEXP char * GetLastDynLibError(void);
 
-typedef int (*PROC_GATEWAY) (void);
+typedef int(*PROC_GATEWAY) (void);
 
-typedef enum { DYN_GW_NO_ERROR = 0,
-               DYN_GW_LOAD_LIBRARY_ERROR = 1,
-               DYN_GW_PTR_FUNCTION_ERROR = 2,
-               DYN_GW_CALL_FUNCTION_ERROR = 3
+typedef enum
+{
+    DYN_GW_NO_ERROR = 0,
+    DYN_GW_LOAD_LIBRARY_ERROR = 1,
+    DYN_GW_PTR_FUNCTION_ERROR = 2,
+    DYN_GW_CALL_FUNCTION_ERROR = 3
 
-             } dynamic_gateway_error_code;
+} dynamic_gateway_error_code;
 
-typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0,
-               DYNLIB_NAME_FORMAT_1 = 1,
-               DYNLIB_NAME_FORMAT_2 = 2,
-               DYNLIB_NAME_FORMAT_3 = 3
-             } dynlib_name_format;
+typedef enum
+{
+    DYNLIB_NAME_FORMAT_AUTO = 0,
+    DYNLIB_NAME_FORMAT_1 = 1,
+    DYNLIB_NAME_FORMAT_2 = 2,
+    DYNLIB_NAME_FORMAT_3 = 3
+} dynlib_name_format;
 
 #define FORMATGATEWAYLIBNAME_1 L"%ls%ls"
 #define FORMATGATEWAYLIBNAME_2 L"sci%ls%ls"
@@ -87,5 +92,6 @@ typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0,
 DYNAMIC_LINK_IMPEXP wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
 DYNAMIC_LINK_IMPEXP char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
 
+#endif /* _WIN32 // guard against mis-compilation */
 #endif /* __DYNAMICLIBRARY_WINDOWS_H__ */
 
