@@ -24,6 +24,7 @@
 #include "mlist.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "overload.hxx"
 
 using namespace types;
 
@@ -3610,6 +3611,21 @@ types::InternalType* compnoequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, t
 template<class T, class U, class O>
 InternalType* compnoequal_LT_LT(T *_pL, U *_pR)
 {
+    if ((_pL->getType() != _pR->getType()) && (_pL->getType() == GenericType::ScilabList || _pR->getType() == GenericType::ScilabList))
+    {
+        //try to find overload function, if symbol exist, return NULL to let opexep to call it.
+        //otherwise do a "binary" comparison
+        types::typed_list in;
+        in.push_back(_pL);
+        in.push_back(_pR);
+        std::wstring overloadName(Overload::buildOverloadName(Overload::getNameFromOper(ast::OpExp::ne), in, 1, true));
+        types::InternalType* pIT = symbol::Context::getInstance()->get(symbol::Symbol(overloadName));
+        if (pIT)
+        {
+            return NULL;
+        }
+    }
+
     if (_pL->getSize() != _pR->getSize())
     {
         return new Bool(true);
