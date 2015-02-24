@@ -1618,7 +1618,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                 if (pIT == NULL)
                 {
                     std::wostringstream os;
-                    os << _W("Submatrix incorrectly defined.");
+                    os << _W("Submatrix incorrectly defined.\n");
                     throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
 
