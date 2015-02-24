@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
-
 s = %s;
 
 empty = [];
@@ -1103,4 +1101,20 @@ assert_checkequal(acosh <> acosh, %f);
 assert_checkequal(acosh <> [], %t);
 assert_checkequal(acosh <> 2, %t);
 
+
+//handle
+handle1 = gcf();
+handle2 = gca();
+
+assert_checkequal(handle1 <> handle1, %f);
+assert_checkequal(handle1 <> handle2, %t);
+
+delete(handle1);
+
+//polynom
+res = horner(1/(1-%s),1/(1-%s));
+
+assert_checkequal(res <> (1-%s)/-%s, [%f %f %f %f]);
+assert_checkequal(res <> (1-%s)/1, %t);
+assert_checkequal(res <> 1/-%s, [%f %t %f %f]);
 

@@ -903,11 +903,6 @@ bool Polynom::operator==(const InternalType& it)
         return false;
     }
 
-    if (pM->isComplex() != isComplex())
-    {
-        return false;
-    }
-
     for (int i = 0 ; i < getSize() ; i++)
     {
         SinglePoly* p1 = get(i);
