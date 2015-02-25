@@ -26,11 +26,13 @@ Removed Functions
 Compilation
 ===========
 
-* Required version of JOGL updated to 2.2.4 (See Bug #13586).
+* Required version of JOGL updated to 2.2.4 (See bugs #12788 & #13586).
 
 
 Scilab Bug Fixes
 ================
+
+* Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
