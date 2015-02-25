@@ -196,10 +196,13 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\ConvertSciVarToMatVar.cpp" />
     <ClCompile Include="src\cpp\CreateCellVariable.cpp" />
     <ClCompile Include="src\cpp\CreateHyperMatrixVariable.cpp" />
     <ClCompile Include="src\cpp\CreateMatlabTreeVariable.cpp" />
     <ClCompile Include="src\cpp\CreateStructVariable.cpp" />
+    <ClCompile Include="src\cpp\GetCellVariable.cpp" />
+    <ClCompile Include="src\cpp\GetStructVariable.cpp" />
     <ClCompile Include="src\c\CreateBooleanVariable.c" />
     <ClCompile Include="src\c\CreateCharVariable.c" />
     <ClCompile Include="src\c\CreateDoubleVariable.c" />
@@ -207,18 +210,17 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\CreateMatlabVariable.c" />
     <ClCompile Include="src\c\CreateSparseVariable.c" />
     <ClCompile Include="src\c\DllmainMatio.c" />
-    <ClCompile Include="src\c\GetCellVariable.c" />
     <ClCompile Include="src\c\GetCharVariable.c" />
     <ClCompile Include="src\c\GetDoubleVariable.c" />
     <ClCompile Include="src\c\GetIntegerVariable.c" />
     <ClCompile Include="src\c\GetMatlabVariable.c" />
     <ClCompile Include="src\c\GetMlistVariable.c" />
     <ClCompile Include="src\c\GetSparseVariable.c" />
-    <ClCompile Include="src\c\GetStructVariable.c" />
     <ClCompile Include="sci_gateway\c\gw_matio.c" />
     <ClCompile Include="src\c\matfile_manager.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cpp\ConvertSciVarToMatVar.hxx" />
     <ClInclude Include="src\cpp\CreateMatlabTreeVariable.hxx" />
     <ClInclude Include="src\c\CreateMatlabVariable.h" />
     <ClInclude Include="includes\dynlib_matio.h" />

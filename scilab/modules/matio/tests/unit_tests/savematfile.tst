@@ -9,10 +9,10 @@
 
 // This Scilab script saves MAT-files to test the MATIO module
 
-chdir("SCI/modules/matio/tests/unit_tests/")
+chdir("SCI/modules/matio/tests/unit_tests/");
 
 clear
-names=who('local');
+names=who("local");
 //
 // TESTS FOR CELL ARRAYS
 //
@@ -203,32 +203,40 @@ eye100x100 = eye(100,100);
 // Create files
 //
 varNames = who("local");
-varNames = varNames(1:($-size(names,"*")-1));
+varNamesTemp = [];
+for varIndex=1:size(varNames,"*")
+    if ~or(varNames(varIndex)==names) then
+        varNamesTemp($+1)=varNames(varIndex);
+    end
+end
+varNames = varNamesTemp;
+clear varNamesTemp
 varNames(grep(varNames,"%")) = [];
 varNames(varNames=="makecell") = [];
 varNames(varNames=="struct") = [];
+varNames(varNames=="names") = [];
 binFormats = ["-v4";"-v6";"-v7"];
 for varIndex=1:size(varNames,"*")
-  for formatIndex=1:size(binFormats,"*")
-    // Integers and NDarrays not saved in -v4 format
-    if formatIndex>1 | ...
-	(formatIndex==1 & isempty(strindex(varNames(varIndex), "int")) ...
-	& isempty(strindex(varNames(varIndex), "NDarray")) & isempty(strindex(varNames(varIndex), "cell")) & isempty(strindex(varNames(varIndex), "struct")) & isempty(strindex(varNames(varIndex), "sparse")))
+    for formatIndex=1:size(binFormats,"*")
+        // Integers and NDarrays not saved in -v4 format
+        if formatIndex>1 | ...
+            (formatIndex==1 & isempty(strindex(varNames(varIndex), "int")) ...
+            & isempty(strindex(varNames(varIndex), "NDarray")) & isempty(strindex(varNames(varIndex), "cell")) & isempty(strindex(varNames(varIndex), "struct")) & isempty(strindex(varNames(varIndex), "sparse")))
 
-        // Save data in Matlab format
-        filename = TMPDIR+filesep()+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
-	saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
-        execstr(saveCmd);
-	// Read saved file
-	execstr("sci"+varNames(varIndex)+"="+varNames(varIndex)); // Save variable for comparison
-	execstr("clear "+varNames(varIndex)); // Clear variable
-	execstr("loadmatfile "+filename); // Load file contaning variable
-	execstr("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")"); // Compare
-	if ~compareOK then pause;end // Stop execution if necessary
-	clear compareOK
-	mdelete(filename)
+            // Save data in Matlab format
+            filename = TMPDIR+filesep()+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
+            saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
+            execstr(saveCmd);
+            // Read saved file
+            execstr("sci"+varNames(varIndex)+"="+varNames(varIndex)); // Save variable for comparison
+            execstr("clear "+varNames(varIndex)); // Clear variable
+            execstr("loadmatfile "+filename); // Load file contaning variable
+            execstr("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")"); // Compare
+            if ~compareOK then pause;end // Stop execution if necessary
+            clear compareOK
+            mdelete(filename)
+        end
     end
-  end
 end
 
 // TODO: save all variables in a single file ?

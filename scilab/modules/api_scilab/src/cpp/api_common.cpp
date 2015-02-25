@@ -521,9 +521,9 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
-            //case GenericType::RealMatlabSparse :
-            //    *_piType = sci_matlab_sparse;
-            //    break;
+        //case GenericType::RealMatlabSparse :
+        //    *_piType = sci_matlab_sparse;
+        //    break;
         case GenericType::ScilabInt8 :
         case GenericType::ScilabUInt8 :
         case GenericType::ScilabInt16 :
@@ -1185,6 +1185,24 @@ int isNamedVector(void *_pvCtx, const char *_pstName)
     return isNamedRowVector(_pvCtx, _pstName) || isNamedColumnVector(_pvCtx, _pstName);
 }
 
+/*--------------------------------------------------------------------------*/
+int isStruct(void *_pvCtx, int *_piAddress)
+{
+    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabStruct)
+    {
+        return 1;
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isCell(void *_pvCtx, int *_piAddress)
+{
+    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabCell)
+    {
+        return 1;
+    }
+    return 0;
+}
 /*--------------------------------------------------------------------------*/
 int isScalar(void *_pvCtx, int *_piAddress)
 {

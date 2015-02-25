@@ -45,9 +45,6 @@
     <ClCompile Include="src\c\DllmainMatio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\GetCellVariable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\GetCharVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -64,9 +61,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\GetSparseVariable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\GetStructVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\gw_matio.c">
@@ -87,6 +81,15 @@
     <ClCompile Include="src\cpp\CreateStructVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\GetCellVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ConvertSciVarToMatVar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GetStructVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\CreateMatlabVariable.h">
@@ -105,6 +108,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\CreateMatlabTreeVariable.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\ConvertSciVarToMatVar.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

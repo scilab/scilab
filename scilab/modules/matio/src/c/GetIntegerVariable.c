@@ -196,6 +196,43 @@ matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * p
 
                 createdVar = Mat_VarCreate(name, MAT_C_UINT32, MAT_T_UINT32, rank, pszDims, tmp_uint32, 0);
                 break;
+#ifdef __SCILAB_INT64__
+            case SCI_INT64: /* INT64 */
+                if (parent == NULL)
+                {
+                    sciErr = getMatrixOfInteger64(pvApiCtx, var_addr, &piDims[0], &piDims[1], &tmp_int64);
+                }
+                else
+                {
+                    sciErr = getMatrixOfInteger64InList(pvApiCtx, parent, item_position, &piDims[0], &piDims[1], &tmp_int64);
+                }
+
+                for (i = 0; i < rank; i++)
+                {
+                    pszDims[i] = piDims[i];
+                }
+
+                createdVar = Mat_VarCreate(name, MAT_C_INT64, MAT_T_INT64, rank, pszDims, tmp_int64, 0);
+                break;
+            case SCI_UINT64: /* UINT64 */
+                if (parent == NULL)
+                {
+                    sciErr = getMatrixOfUnsignedInteger64(pvApiCtx, var_addr, &piDims[0], &piDims[1], &tmp_uint64);
+                }
+                else
+                {
+                    sciErr = getMatrixOfUnsignedInteger64InList(pvApiCtx, parent, item_position, &piDims[0], &piDims[1], &tmp_uint64);
+                }
+
+                for (i = 0; i < rank; i++)
+                {
+                    pszDims[i] = piDims[i];
+                }
+
+                createdVar = Mat_VarCreate(name, MAT_C_UINT64, MAT_T_UINT64, rank, pszDims, tmp_uint64, 0);
+                break;
+
+#endif
             default:
                 createdVar = NULL;
                 break;

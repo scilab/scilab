@@ -95,7 +95,7 @@ matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfi
         }
         else if (strcmp(fieldNames[0], "st") == 0)
         {
-            tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, fieldNames, nbFields, parent, item_position);
+            tmp_res = GetStructVariable(pvApiCtx, iVar, name, matfile_version, parent, item_position);
             freeArrayOfString(fieldNames, nbFields);
             return tmp_res;
         }
