@@ -44,6 +44,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     int imOne = -1;
     int iSize = 0;
     bool bComplex = false;
+    types::Function::ReturnValue ret = types::Function::OK;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -252,7 +253,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         types::optional_list tlOpt;
         tlInput.push_back(pDblOut);
         types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-        funcSpec->call(tlInput, tlOpt, 1, out, &exec);
+        ret = funcSpec->call(tlInput, tlOpt, 1, out, &exec);
     }
 
     if (pDblIn)
@@ -264,7 +265,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    return types::Function::OK;
+    return ret;
 }
 /*--------------------------------------------------------------------------*/
 

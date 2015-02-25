@@ -288,13 +288,12 @@ bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, dou
 
 void SinglePoly::updateRank(void)
 {
-    double dblEps = getRelativeMachinePrecision();
     int iNewRank = getRank();
     if (m_pImgData)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) <= dblEps && abs(m_pImgData[i]) <= dblEps)
+            if (fabs(m_pRealData[i]) == 0.0 && abs(m_pImgData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -308,7 +307,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) <= dblEps)
+            if (fabs(m_pRealData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -367,7 +366,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
     int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        if (isRealZero(_pdblVal[i]) == false)
+        //if (isRealZero(_pdblVal[i]) == false)
         {
             DoubleFormat df;
             getDoubleFormat(_pdblVal[i], &df);
