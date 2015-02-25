@@ -139,7 +139,11 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block *block, int flag)
     if (flag == 4)
     {
         /* convert scilab code of the variable name to C string */
-        C2F(cvstr)(&(Fnlength), &(FName), str, (j = 1, &j), sizeof(str));
+        for (j = 0; j < Fnlength; ++j)
+        {
+            str[j] = (char) FName + j;
+        }
+
         str[Fnlength] = '\0';
 
         /* retrieve path of TMPDIR/workspace */
