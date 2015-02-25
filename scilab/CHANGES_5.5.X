@@ -69,6 +69,14 @@ Scilab Bug Fixes
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
 
 
+Known incompatibilities
+=======================
+
+* Undocumented use of exec with "errcatch" as third input argument now returns an error:
+  exec(path, mode, 'errcatch') must be replaced by exec(path, 'errcatch', mode)
+
+
+
                      Changes between version 5.5.0 and 5.5.1
                      =======================================
 

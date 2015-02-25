@@ -283,10 +283,6 @@ int C2F(sci_exec)(char *fname, unsigned long fname_len)
                     }
                 }
 
-                if ((iType2 == sci_matrix) && (iType3 == sci_strings))
-                {
-                    bCombo = TRUE;
-                }
                 if ((iType2 == sci_strings) && (iType3 == sci_matrix))
                 {
                     bCombo = TRUE;
