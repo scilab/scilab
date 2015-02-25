@@ -196,7 +196,7 @@ assert_checkerror("msprintf();", refMsg);
 s=poly(0,"s");
 p=1+s+2*s^2;
 
-assert_checkfalse(execstr("msprintf(""plop"",p);","errcatch") <> 246);
+assert_checkfalse(execstr("msprintf(""plop"",p);","errcatch") <> 999);
 
 assert_checkfalse(execstr("msprintf(""%s %s"",""plop"");","errcatch")     <> 999);
 refMsg = msprintf(_("%s: Wrong number of input arguments: data doesn''t fit with format.\n"), "msprintf");
