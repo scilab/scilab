@@ -403,7 +403,7 @@ bool Cell::operator!=(const InternalType& it)
 List* Cell::extractCell(typed_list* _pArgs)
 {
     InternalType* pIT = extract(_pArgs);
-    if (pIT->isCell() == false)
+    if (pIT == NULL || pIT->isCell() == false)
     {
         return NULL;
     }
