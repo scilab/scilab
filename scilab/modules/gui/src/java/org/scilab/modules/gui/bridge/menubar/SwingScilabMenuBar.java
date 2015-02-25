@@ -63,22 +63,6 @@ public class SwingScilabMenuBar extends JMenuBar implements SimpleMenuBar {
     }
 
     /**
-     * Get the element id for this menubar
-     * @return id the id of the corresponding menubar object
-     */
-    public int getElementId() {
-        return this.elementId;
-    }
-
-    /**
-     * Set the element id for this menubar
-     * @param id the id of the corresponding menubar object
-     */
-    public void setElementId(int id) {
-        this.elementId = id;
-    }
-
-    /**
      * Enabale/Disable a menu giving its name
      * @param menuName the name of the menu
      * @param status true to enable the menu

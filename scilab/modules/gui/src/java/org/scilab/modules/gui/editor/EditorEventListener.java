@@ -18,7 +18,6 @@ import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
-import java.awt.Component;
 
 import org.scilab.modules.gui.datatip.DatatipCreate;
 import org.scilab.modules.gui.datatip.DatatipDelete;
@@ -34,7 +33,6 @@ import org.scilab.modules.gui.editor.EntityPicker;
 import org.scilab.modules.gui.events.GlobalEventWatcher;
 
 import org.scilab.modules.gui.ged.Inspector;
-import org.scilab.modules.gui.ged.SwapObject;
 
 import org.scilab.modules.gui.plotbrowser.PlotBrowser;
 
