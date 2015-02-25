@@ -310,6 +310,8 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //create a new AssignExp and run it
                 pIT[i] = (exec.getResult(i));
+                //protet rhs against removal [a,b] = (b,a);
+                pIT[i]->IncreaseRef();
             }
 
             for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
@@ -320,6 +322,12 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 pAssign.accept(*this);
                 //clear result to take care of [n,n]
                 exec.setResult(i, NULL);
+            }
+
+            for (i = iLhsCount - 1; i >= 0; i--)
+            {
+                //unprotect rhs
+                pIT[i]->DecreaseRef();
             }
 
             delete[] pIT;
