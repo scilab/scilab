@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -258,13 +258,18 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree2.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree3.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree4.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_curblock.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_end_scicosim.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_haltscicos.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicosim.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_validvar.cpp" />
+    <ClCompile Include="..\..\cpp\il_sim.cpp" />
+    <ClCompile Include="..\..\cpp\il_state.cpp" />
     <ClCompile Include="..\..\cpp\var2vec.cpp" />
     <ClCompile Include="..\..\cpp\vec2var.cpp" />
     <ClCompile Include="..\copyvarfromlistentry.c" />
