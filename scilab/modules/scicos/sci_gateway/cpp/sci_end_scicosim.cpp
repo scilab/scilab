@@ -27,12 +27,11 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 
+    /*--------------------------------------------------------------------------*/
+    // Variable defined in sci_scicosim.cpp
+    extern COSIM_struct C2F(cosim);
+    /*--------------------------------------------------------------------------*/
 }
-
-/*--------------------------------------------------------------------------*/
-// Variable defined in sci_scicosim.cpp
-extern COSIM_struct C2F(cosim);
-/*--------------------------------------------------------------------------*/
 
 static const std::string funname = "end_scicosim";
 
