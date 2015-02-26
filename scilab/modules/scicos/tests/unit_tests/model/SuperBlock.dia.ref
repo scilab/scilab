@@ -340,14 +340,14 @@ propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 5 , PORT )
 objectDeleted( 4 , BLOCK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 6 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 7 , PORT )
 objectDeleted( 6 , BLOCK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 8 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 8 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 8 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -1499,7 +1499,12 @@ propertyUpdated( 43 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 43 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 43 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 43 , BLOCK , UID ) : NO_CHANGES
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 28 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 30 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 34 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 35 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 40 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 42 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 28 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 28 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -1507,7 +1512,6 @@ propertyUpdated( 28 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 propertyUpdated( 40 , LINK , DESTINATION_PORT ) : SUCCESS
 objectDeleted( 29 , PORT )
 objectDeleted( 28 , BLOCK )
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 30 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 30 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -1521,10 +1525,8 @@ propertyUpdated( 30 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 propertyUpdated( 34 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 32 , PORT )
 objectDeleted( 30 , BLOCK )
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 36 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 objectDeleted( 34 , LINK )
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 35 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 35 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 35 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -1543,9 +1545,7 @@ propertyUpdated( 35 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 propertyUpdated( 42 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 38 , PORT )
 objectDeleted( 35 , BLOCK )
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 40 , LINK )
-propertyUpdated( 27 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 42 , LINK )
 objectDeleted( 27 , DIAGRAM )
 propertyUpdated( 18 , BLOCK , INPUTS ) : NO_CHANGES
@@ -2017,22 +2017,8 @@ clk.model.rpar.objs(6).to
     2.    1.    1.
 // Check that all the model items are freed
 clear sb clk
-propertyUpdated( 13 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-propertyUpdated( 14 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 14 , BLOCK , OUTPUTS ) : SUCCESS
-propertyUpdated( 14 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 14 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 15 , PORT )
-objectDeleted( 14 , BLOCK )
-propertyUpdated( 13 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 10 , BLOCK , CHILDREN ) : SUCCESS
-propertyUpdated( 16 , BLOCK , INPUTS ) : SUCCESS
-propertyUpdated( 16 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
-objectDeleted( 17 , PORT )
-objectDeleted( 16 , BLOCK )
+propertyUpdated( 14 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 13 , DIAGRAM )
 propertyUpdated( 10 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 10 , BLOCK , OUTPUTS ) : NO_CHANGES
@@ -2044,9 +2030,39 @@ propertyUpdated( 10 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 10 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 10 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 objectDeleted( 12 , PORT )
+propertyUpdated( 14 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 14 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , OUTPUTS ) : SUCCESS
+propertyUpdated( 14 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 14 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 15 , PORT )
+objectDeleted( 14 , BLOCK )
+propertyUpdated( 16 , BLOCK , INPUTS ) : SUCCESS
+propertyUpdated( 16 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
+objectDeleted( 17 , PORT )
+objectDeleted( 16 , BLOCK )
 objectDeleted( 10 , BLOCK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
+propertyUpdated( 46 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 48 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 51 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 52 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 56 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 57 , LINK , PARENT_DIAGRAM ) : SUCCESS
+objectDeleted( 45 , DIAGRAM )
+propertyUpdated( 43 , BLOCK , INPUTS ) : NO_CHANGES
+propertyUpdated( 43 , BLOCK , OUTPUTS ) : NO_CHANGES
+propertyUpdated( 43 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
+propertyUpdated( 43 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
+objectDeleted( 44 , PORT )
+propertyUpdated( 46 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 48 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 51 , LINK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 52 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 56 , LINK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 57 , LINK , PARENT_BLOCK ) : SUCCESS
 propertyUpdated( 46 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 46 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 46 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -2054,8 +2070,6 @@ propertyUpdated( 46 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 propertyUpdated( 56 , LINK , DESTINATION_PORT ) : SUCCESS
 objectDeleted( 47 , PORT )
 objectDeleted( 46 , BLOCK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
 propertyUpdated( 48 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 48 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 48 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -2069,12 +2083,8 @@ propertyUpdated( 48 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 propertyUpdated( 51 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 50 , PORT )
 objectDeleted( 48 , BLOCK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
 propertyUpdated( 53 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 objectDeleted( 51 , LINK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
 propertyUpdated( 52 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 52 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 52 , BLOCK , EVENT_INPUTS ) : SUCCESS
@@ -2093,16 +2103,6 @@ propertyUpdated( 52 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 propertyUpdated( 57 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 55 , PORT )
 objectDeleted( 52 , BLOCK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
 objectDeleted( 56 , LINK )
-propertyUpdated( 45 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 43 , BLOCK , CHILDREN ) : SUCCESS
 objectDeleted( 57 , LINK )
-objectDeleted( 45 , DIAGRAM )
-propertyUpdated( 43 , BLOCK , INPUTS ) : NO_CHANGES
-propertyUpdated( 43 , BLOCK , OUTPUTS ) : NO_CHANGES
-propertyUpdated( 43 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
-propertyUpdated( 43 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
-objectDeleted( 44 , PORT )
 objectDeleted( 43 , BLOCK )

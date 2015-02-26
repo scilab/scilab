@@ -116,7 +116,8 @@ assert_checkequal(newLink.from, [3 1 0]);
 // Check that all the model items are freed
 clear
 objectDeleted( 7 , LINK )
-propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 5 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 4 , BLOCK , INPUTS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 4 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -124,6 +125,5 @@ propertyUpdated( 4 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 propertyUpdated( 5 , LINK , SOURCE_PORT ) : SUCCESS
 objectDeleted( 6 , PORT )
 objectDeleted( 4 , BLOCK )
-propertyUpdated( 3 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 5 , LINK )
 objectDeleted( 3 , DIAGRAM )

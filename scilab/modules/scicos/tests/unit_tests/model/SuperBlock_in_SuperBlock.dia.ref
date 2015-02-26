@@ -467,28 +467,28 @@ assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).from, [2 1 0]);
 assert_checkequal(Super2.model.rpar.objs(1).model.rpar.objs(1).to,   [3 1 1]);
 // Check that all the model items are freed
 clear
-propertyUpdated( 5 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 4 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 6 , LINK )
+propertyUpdated( 6 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 5 , DIAGRAM )
+propertyUpdated( 6 , LINK , PARENT_BLOCK ) : SUCCESS
+objectDeleted( 6 , LINK )
 objectDeleted( 4 , BLOCK )
-propertyUpdated( 14 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 13 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 15 , LINK )
+propertyUpdated( 15 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 14 , DIAGRAM )
-propertyUpdated( 12 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 11 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 13 , BLOCK )
+propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 12 , DIAGRAM )
+propertyUpdated( 13 , BLOCK , PARENT_BLOCK ) : SUCCESS
+propertyUpdated( 15 , LINK , PARENT_BLOCK ) : SUCCESS
+objectDeleted( 15 , LINK )
+objectDeleted( 13 , BLOCK )
 objectDeleted( 11 , BLOCK )
-propertyUpdated( 9 , DIAGRAM , CHILDREN ) : SUCCESS
-propertyUpdated( 8 , BLOCK , CHILDREN ) : SUCCESS
-objectDeleted( 10 , LINK )
+propertyUpdated( 10 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 9 , DIAGRAM )
-propertyUpdated( 7 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 8 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 10 , LINK , PARENT_BLOCK ) : SUCCESS
+objectDeleted( 10 , LINK )
 objectDeleted( 8 , BLOCK )
 objectDeleted( 7 , DIAGRAM )
 objectDeleted( 1 , LINK )
-propertyUpdated( 2 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 3 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 3 , LINK )
 objectDeleted( 2 , DIAGRAM )

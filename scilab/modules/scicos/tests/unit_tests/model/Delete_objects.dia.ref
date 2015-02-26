@@ -369,8 +369,8 @@ objectDeleted( 9 , PORT )
 objectDeleted( 6 , BLOCK )
 objectDeleted( 10 , LINK )
 objectDeleted( 11 , LINK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
+propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 20 , LINK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 21 , LINK )
 objectDeleted( 1 , DIAGRAM )

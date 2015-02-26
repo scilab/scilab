@@ -56,6 +56,7 @@ propertyUpdated( 2 , ANNOTATION , FONT ) : NO_CHANGES
 propertyUpdated( 2 , ANNOTATION , FONT_SIZE ) : NO_CHANGES
 propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 2 , ANNOTATION , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 2 , ANNOTATION , PARENT_BLOCK ) : NO_CHANGES
 propertyUpdated( 2 , ANNOTATION , RELATED_TO ) : FAIL
 propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 2 , ANNOTATION , GEOMETRY ) : SUCCESS

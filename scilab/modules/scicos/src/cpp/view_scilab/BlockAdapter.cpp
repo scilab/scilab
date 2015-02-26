@@ -166,7 +166,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
 
     if (adapter.getDiagram() != nullptr)
     {
-    	types::InternalType* model = model::get(adapter, controller);
+        types::InternalType* model = model::get(adapter, controller);
         model::set(*this, model, controller);
         model->killMe();
     }
@@ -176,17 +176,7 @@ BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
 
 BlockAdapter::~BlockAdapter()
 {
-    Controller controller;
-
-    /*
-     * The block own a reference to their children
-     */
-    std::vector<ScicosID> v;
-    controller.getObjectProperty(getAdaptee()->id(), BLOCK, CHILDREN, v);
-    for (const ScicosID& id : v)
-    {
-        controller.deleteObject(id);
-    }
+    // CHILDREN will be unreferenced on Controller::deleteObject
 
     if (diagramAdapter != nullptr)
     {

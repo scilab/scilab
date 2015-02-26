@@ -86,11 +86,11 @@ struct objs
             return v;
         }
 
-		// avoid a copy, if v is already in the previous children list and will be cleanup later
-		if (v->getRef() == 1 && std::binary_search(oldChildren.begin(), oldChildren.end(), v))
-		{
-			return v;
-		}
+        // avoid a copy, if v is already in the previous children list and will be cleanup later
+        if (v->getRef() == 1 && std::binary_search(oldChildren.begin(), oldChildren.end(), v))
+        {
+            return v;
+        }
 
         return v->clone();
     }
@@ -437,17 +437,7 @@ DiagramAdapter::DiagramAdapter(const DiagramAdapter& adapter) :
 
 DiagramAdapter::~DiagramAdapter()
 {
-    Controller controller;
-    std::vector<ScicosID> v;
-
-    /*
-     * The diagram own a reference to their children
-     */
-    controller.getObjectProperty(getAdaptee()->id(), DIAGRAM, CHILDREN, v);
-    for (const ScicosID& id : v)
-    {
-        controller.deleteObject(id);
-    }
+    // CHILDREN will be unreferenced on Controller::deleteObject
 
     list_objects->DecreaseRef();
     list_objects->killMe();
