@@ -239,7 +239,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     FREE(wcsStringToWrite);
-    FREE(pArgs);
+    delete[] pArgs;
 
     return types::Function::OK;
 }
