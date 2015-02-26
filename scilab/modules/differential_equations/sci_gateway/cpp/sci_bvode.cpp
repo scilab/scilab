@@ -50,6 +50,10 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     int iflag       = 0;
     int ipar[11];
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() != 15)
     {
@@ -553,19 +557,29 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     {
         C2F(colnew)(&ncomp, M, &aleft, &aright, pDblZeta->get(), ipar, ltol, pDblTol->get(), pDblFixpnt->get(), iwork, rwork, &iflag, bvode_fsub, bvode_dfsub, bvode_gsub, bvode_dgsub, bvode_guess);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = true;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "bvode", "colnew");
-        Scierror(999, pstrMsg);
-        FREE(pstrMsg);
+        os << e.GetErrorMessage();
+        bCatch = true;
+    }
+
+    if (bCatch)
+    {
         FREE(iwork);
         FREE(rwork);
         FREE(M);
         FREE(ltol);
         DifferentialEquation::removeDifferentialEquationFunctions();
 
-        return types::Function::Error;
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "bvode", "bvode");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
     }
 
     if (iflag != 1)

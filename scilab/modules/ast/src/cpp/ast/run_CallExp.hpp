@@ -243,6 +243,22 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             cleanOpt(opt);
             pIT->killMe();
 
+            if (pIT->isCallable())
+            {
+                Callable *pCall = pIT->getAs<Callable>();
+                if (ConfigVariable::getLastErrorFunction() == L"")
+                {
+                    ConfigVariable::setLastErrorFunction(pCall->getName());
+                }
+
+                if (pCall->isMacro() || pCall->isMacroFile())
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
+                    throw ScilabMessage(szError);
+                }
+            }
+
             throw sm;
         }
         catch (InternalAbort & ia)

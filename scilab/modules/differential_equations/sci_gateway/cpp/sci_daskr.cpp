@@ -97,6 +97,10 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     // Indicate if info list is given.
     bool bListInfo  = false;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if ((int)in.size() < 6 || (int)in.size() > 13)
     {
@@ -593,8 +597,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
                 //  --   subvariable consistent(info) --
                 pDblTemp = pList->get(6)->getAs<types::Double>();
-                if (pDblTemp->getSize() != 0)
+                if (pDblTemp->isEmpty() || (pDblTemp->isScalar() && pDblTemp->get(0) == 0))
                 {
+                    // info(11) is then [] or [0]
+                    info[10] = 0;
+                }
+                else
+                {
+                    //info then looks like list(..., [+-1 +-1 ... +-1 +-1],...)
                     info[10] = 1;
                     if (info[9] == 0 || info[9] == 2)
                     {
@@ -1019,6 +1029,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             // SUBROUTINE DDASKR(RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
             //                  IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC, PSOL,
             //                  RT, NRT, JROOT)
+
             C2F(ddaskr)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t,
                         info, rtol, atol, &idid, rwork, &rworksize,
                         iwork, &iworksize, rpar, ipar,
@@ -1049,15 +1060,19 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             iret = checkError(idid, "daskr");
             if (iret == 1) // error
             {
-                Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);
+                Scierror(999, _("%s: %s return with state %d.\n"), "daskr", "ddaskr", ididtmp);
             }
+        }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatch = true;
+            iret = 1;
         }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "daskr", "ddaskr");
-            Scierror(999, pstrMsg);
-            // set iret to 1 for free allocated memory
+            os << e.GetErrorMessage();
+            bCatch = true;
             iret = 1;
         }
 
@@ -1080,6 +1095,15 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             {
                 FREE(rtol);
             }
+
+            if (bCatch)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "daskr", "ddaskr");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 

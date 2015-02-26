@@ -85,6 +85,10 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     // For root methode
     int* jroot = NULL;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 4)
     {
@@ -1095,13 +1099,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "ode", strMeth.c_str());
-                Scierror(999, pstrMsg);
-                FREE(pstrMsg);
-                err = 1;
+                os << e.GetErrorMessage();
+                bCatch = true;
             }
 
             // FREE allocated data
@@ -1132,6 +1138,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 {
                     FREE(rtol);
                 }
+
+                if (bCatch)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
+                }
+
                 return types::Function::Error;
             }
 
@@ -1309,12 +1324,16 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+                err = 1;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "ode", strMeth.c_str());
-                Scierror(999, pstrMsg);
-                FREE(pstrMsg);
+                os << e.GetErrorMessage();
+                bCatch = true;
                 err = 1;
             }
 
@@ -1346,6 +1365,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 {
                     FREE(rtol);
                 }
+
+                if (bCatch)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
+                }
+
                 return types::Function::Error;
             }
 

@@ -71,6 +71,10 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
     // Indicate if info list is given.
     bool bListInfo  = false;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 6 || in.size() > 11)
     {
@@ -747,15 +751,19 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             iret = checkError(idid, "dasrt");
             if (iret == 1) // error
             {
-                Scierror(999, _("%s: ddasrt return with state %d.\n"), "dasrt", idid);
+                Scierror(999, _("%s: %s return with state %d.\n"), "dasrt", "ddasrt", idid);
             }
+        }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatch = true;
+            iret = 1;
         }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "dasrt", "ddasrt");
-            Scierror(999, pstrMsg);
-            FREE(pstrMsg);
+            os << e.GetErrorMessage();
+            bCatch = true;
             iret = 1;
         }
 
@@ -777,6 +785,15 @@ types::Function::ReturnValue sci_dasrt(types::typed_list &in, int _iRetCount, ty
             {
                 FREE(rtol);
             }
+
+            if (bCatch)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dasrt", "ddasrt");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 

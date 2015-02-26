@@ -50,6 +50,10 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     int nu          = 0;
     int nd          = 0;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 4)
     {
@@ -238,20 +242,28 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(twodq)(int2d_f, &size, pDblX->get(), pDblY->get(), &tol, &iclose, &maxtri, &mevals, &result, &err, &nu, &nd, &nevals, &iflag, dwork, iwork);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = false;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "int2d", "twodq");
-        Scierror(999, pstrMsg);
-        FREE(dwork);
-        FREE(iwork);
-        DifferentialEquation::removeDifferentialEquationFunctions();
-        return types::Function::Error;
+        os << e.GetErrorMessage();
+        bCatch = false;
     }
 
     FREE(dwork);
     FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
+
+    if (bCatch)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int2d", "twodq");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
+    }
 
     if (iflag)
     {

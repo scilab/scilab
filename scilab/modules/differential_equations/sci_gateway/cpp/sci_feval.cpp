@@ -34,6 +34,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 {
     int iPos = 0;
     int nn   = 1;
+    int iErr = 0;
 
     //input
     types::Double* pDblX = NULL;
@@ -41,6 +42,10 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
     // output
     types::Double* pDblOut = NULL;
+
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
 
     // *** check the minimal number of input args. ***
     if (in.size() < 2 || in.size() > 3)
@@ -172,15 +177,27 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
             {
                 deFunctionsManager->execFevalF(&nn, &valX, &valY, res, &itype);
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "feval", "execFevalF");
-                Scierror(999, pstrMsg);
+                os << e.GetErrorMessage();
+                bCatch = true;
+            }
+
+            if (bCatch)
+            {
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 FREE(res);
                 delete pDblOut;
-                return types::Function::Error;
+
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "feval", "execFevalF");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
             }
 
             if (itype) // is complex

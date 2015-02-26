@@ -45,6 +45,10 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     int iOne = 1;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 5)
     {
@@ -234,20 +238,28 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
                    &result, &abserr, &neval, &ier,
                    &limit, &lenw, &last, iwork, dwork);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = true;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "intg", "dqags");
-        Scierror(999, pstrMsg);
-        FREE(dwork);
-        FREE(iwork);
-        DifferentialEquation::removeDifferentialEquationFunctions();
-        return types::Function::Error;
+        os << e.GetErrorMessage();
+        bCatch = true;
     }
 
     FREE(dwork);
     FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
+
+    if (bCatch)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "intg", "dqags");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
+    }
 
     if (ier)
     {

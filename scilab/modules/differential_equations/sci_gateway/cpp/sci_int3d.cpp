@@ -49,6 +49,10 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     int ifail = 0;
     int nevals = 0;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 6)
     {
@@ -315,22 +319,30 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(dcutet)(int3d_f, &nf, pdData, &cols, &minpts, &maxpts, &epsabs, &epsrel, &maxsub, &dworkSize, &irestar, pdResult, pdErr, &nevals, &ifail, dwork, iwork);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = true;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "int3d", "dcutet");
-        Scierror(999, pstrMsg);
-        FREE(pdData);
-        FREE(dwork);
-        FREE(iwork);
-        DifferentialEquation::removeDifferentialEquationFunctions();
-        return types::Function::Error;
+        os << e.GetErrorMessage();
+        bCatch = true;
     }
+
 
     FREE(pdData);
     FREE(dwork);
     FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
+
+    if (bCatch)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int3d", "dcutet");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
+    }
 
     if (ifail)
     {

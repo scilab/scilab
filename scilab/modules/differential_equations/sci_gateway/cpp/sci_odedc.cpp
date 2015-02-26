@@ -85,6 +85,10 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     // For root methode
     int* jroot = NULL;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 4)
     {
@@ -1092,16 +1096,24 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     sciprint(_("update at t = %lf\n"), tright);
                 }
+
                 try
                 {
                     ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc);
                 }
+                catch (ast::ScilabMessage &sm)
+                {
+                    os << sm.GetErrorMessage();
+                    bCatch = true;
+                }
                 catch (ast::ScilabError &e)
                 {
-                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                    sciprint(_("%s: Update failed at t = %lf\n"), "odedc", tright);
-                    Scierror(999, pstrMsg);
+                    os << e.GetErrorMessage();
+                    bCatch = true;
+                }
 
+                if (bCatch)
+                {
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYData);
                     FREE(YSize);
@@ -1125,7 +1137,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     {
                         FREE(rtol);
                     }
-                    return types::Function::Error;
+
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", "tright");
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
                 }
 
                 deFunctionsManager->resetOdedcFlag();
@@ -1204,12 +1220,16 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                         Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth.c_str(), istate);
                     }
                 }
+                catch (ast::ScilabMessage &sm)
+                {
+                    os << sm.GetErrorMessage();
+                    bCatch = true;
+                    err = 1;
+                }
                 catch (ast::ScilabError &e)
                 {
-                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                    sciprint(_("%s: exception caught in '%s' subroutine.\n"), "odedc", strMeth.c_str());
-                    Scierror(999, pstrMsg);
-                    FREE(pstrMsg);
+                    os << e.GetErrorMessage();
+                    bCatch = true;
                     err = 1;
                 }
 
@@ -1238,6 +1258,15 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     {
                         FREE(rtol);
                     }
+
+                    if (bCatch)
+                    {
+                        wchar_t szError[bsiz];
+                        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                        os << szError;
+                        throw ast::ScilabMessage(os.str());
+                    }
+
                     return types::Function::Error;
                 }
 
@@ -1392,12 +1421,16 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     Scierror(999, _("%s: %s exit with state %d.\n"), "odedc", strMeth.c_str(), istate);
                 }
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+                err = 1;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "odedc", strMeth.c_str());
-                Scierror(999, pstrMsg);
-                FREE(pstrMsg);
+                os << e.GetErrorMessage();
+                bCatch = true;
                 err = 1;
             }
 
@@ -1426,6 +1459,15 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     FREE(rtol);
                 }
+
+                if (bCatch)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", strMeth.c_str());
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
+                }
+
                 return types::Function::Error;
             }
 
@@ -1442,11 +1484,19 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 {
                     ode_f(&sizeYc, &tright, pdYData, pdYData + sizeYc);
                 }
+                catch (ast::ScilabMessage &sm)
+                {
+                    os << sm.GetErrorMessage();
+                    bCatch = true;
+                }
                 catch (ast::ScilabError &e)
                 {
-                    char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                    sciprint(_("%s: Update failed at t = %lf\n"), "odedc", tright);
-                    Scierror(999, pstrMsg);
+                    os << e.GetErrorMessage();
+                    bCatch = true;
+                }
+
+                if (bCatch)
+                {
                     DifferentialEquation::removeDifferentialEquationFunctions();
                     FREE(pdYData);
                     FREE(YSize);
@@ -1470,7 +1520,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     {
                         FREE(rtol);
                     }
-                    return types::Function::Error;
+
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "odedc", tright);
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
                 }
 
                 deFunctionsManager->resetOdedcFlag();

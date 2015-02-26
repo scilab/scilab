@@ -70,6 +70,10 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
     // Indicate if info list is given.
     bool bListInfo  = false;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatched = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 9)
     {
@@ -683,15 +687,19 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
             iret = checkError(idid, "dassl");
             if (iret == 1) // error
             {
-                Scierror(999, _("%s: dassl return with state %d.\n"), "dassl", idid);
+                Scierror(999, _("%s: %s return with state %d.\n"), "dassl", "dassl",  idid);
             }
+        }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatched = true;
+            iret = 1;
         }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "dassl", "dassl");
-            Scierror(999, pstrMsg);
-            // set iret to 1 for FREE allocated memory
+            os << e.GetErrorMessage();
+            bCatched = true;
             iret = 1;
         }
 
@@ -712,6 +720,15 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
             {
                 FREE(rtol);
             }
+
+            if (bCatched)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dassl", "dassl");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 

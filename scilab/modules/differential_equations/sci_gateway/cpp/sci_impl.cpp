@@ -75,6 +75,10 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
 
     int one = 1; // use in dcopy
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 6 || in.size() > 12)
     {
@@ -653,12 +657,16 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatch = true;
+            err = 1;
+        }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "impl", "lsodi");
-            Scierror(999, pstrMsg);
-            FREE(pstrMsg);
+            os << e.GetErrorMessage();
+            bCatch = true;
             err = 1;
         }
 
@@ -681,6 +689,15 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
             {
                 free(rtol);
             }
+
+            if (bCatch)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "impl", "lsodi");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 
