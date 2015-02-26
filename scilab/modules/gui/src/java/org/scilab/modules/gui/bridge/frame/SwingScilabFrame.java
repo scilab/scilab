@@ -119,7 +119,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
     protected boolean hasLayout = false;
     private Border defaultBorder = null;
     private SwingScilabCanvas canvas = null;
-    private EditorEventListener editorEventHandler = null;
+    
+    // BJ: This EditorEventListener leads to a huge leak mem openning many Axes withih Frames.
+    // DO NOT ACTIVATE THIS until EditorEventListener can manage Axes within Frames (Only Figure is working now)
+    //private EditorEventListener editorEventHandler = null;
+    
     private ScilabEventListener eventHandler;
     private boolean eventEnabled = false;
 
@@ -236,13 +240,13 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
 
         if (member instanceof SwingScilabAxes) {
             if (canvas == null) {
-                editorEventHandler = new EditorEventListener(getId());
+                //editorEventHandler = new EditorEventListener(getId());
                 AxesContainer frame = (AxesContainer) GraphicModel.getModel().getObjectFromId(getId());
                 canvas = new SwingScilabCanvas(frame);
-                canvas.addEventHandlerKeyListener(editorEventHandler);
-                canvas.addEventHandlerMouseListener(editorEventHandler);
-                canvas.addEventHandlerMouseMotionListener(editorEventHandler);
-                editorEventHandler.setEnable(true);
+                //canvas.addEventHandlerKeyListener(editorEventHandler);
+                //canvas.addEventHandlerMouseListener(editorEventHandler);
+                //canvas.addEventHandlerMouseMotionListener(editorEventHandler);
+                //editorEventHandler.setEnable(true);
 
                 setLayout(new GridLayout(1, 1));
                 hasLayout = true;
@@ -777,8 +781,10 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
      * Destroy the Frame
      */
     public void destroy() {
-        getParent().remove(this);
         this.setVisible(false);
+        //if (editorEventHandler != null) {
+        //    editorEventHandler.onExit();
+        //}
     }
 
     /**
@@ -1118,7 +1124,7 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         disableEventHandler();
         eventHandler = new ScilabEventListener(funName, getId());
         if (eventEnabled) {
-            editorEventHandler.setEnable(false);
+            //editorEventHandler.setEnable(false);
             enableEventHandler();
         }
     }
@@ -1133,11 +1139,11 @@ public class SwingScilabFrame extends JPanel implements SwingViewObject, SimpleF
         }
 
         if (status) {
-            editorEventHandler.setEnable(false);
+            //editorEventHandler.setEnable(false);
             enableEventHandler();
             eventEnabled = true;
         } else {
-            editorEventHandler.setEnable(true);
+            //editorEventHandler.setEnable(true);
             disableEventHandler();
             eventEnabled = false;
         }
