@@ -708,7 +708,15 @@ void DifferentialEquationFunctions::execOdeF(int* n, double* t, double* y, doubl
             sprintf(errorMsg, _("Undefined fonction '%ls'.\n"), m_pStringFFunctionDyn->get(0));
             throw ast::ScilabError(errorMsg);
         }
-        ((ode_f_t)(func->functionPtr))(n, t, y, yout);
+
+        if (m_wstrCaller == L"ode")
+        {
+            ((ode_f_t)(func->functionPtr))(n, t, y, yout);
+        }
+        else
+        {
+            ((odedc_f_t)(func->functionPtr))(&m_odedcFlag, n, &m_odedcYDSize, t, y, yout);
+        }
     }
     else if (m_pStringFFunctionStatic) // function static
     {
