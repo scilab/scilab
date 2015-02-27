@@ -157,89 +157,79 @@ types::Function::ReturnValue allocate(types::typed_list &in, int _iRetCount, typ
     {
         case view_scilab::Adapters::BLOCK_ADAPTER:
             returnType = alloc_and_set<view_scilab::BlockAdapter, model::Block>(BLOCK, type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::CPR_ADAPTER:
             returnType = alloc_and_set_as_tlist<view_scilab::CprAdapter, model::Diagram>(type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::DIAGRAM_ADAPTER:
             returnType = alloc_and_set<view_scilab::DiagramAdapter, model::Diagram>(DIAGRAM, type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::GRAPHIC_ADAPTER:
             returnType = alloc_and_set_as_mlist<view_scilab::GraphicsAdapter, model::Block>(type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::LINK_ADAPTER:
             returnType = alloc_and_set<view_scilab::LinkAdapter, model::Link>(LINK, type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::MODEL_ADAPTER:
             returnType = alloc_and_set_as_mlist<view_scilab::ModelAdapter, model::Block>(type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::PARAMS_ADAPTER:
             returnType = alloc_and_set_as_tlist<view_scilab::ParamsAdapter, model::Diagram>(type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::SCS_ADAPTER:
             returnType = alloc_and_set<view_scilab::ScsAdapter, model::Diagram>(DIAGRAM, type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::STATE_ADAPTER:
             returnType = alloc_and_set_as_tlist<view_scilab::StateAdapter, model::Diagram>(type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         case view_scilab::Adapters::TEXT_ADAPTER:
             returnType = alloc_and_set<view_scilab::TextAdapter, model::Annotation>(ANNOTATION, type_name, in);
-            if (returnType == 0)
+            if (returnType == nullptr)
             {
                 return types::Function::Error;
             }
-            out.push_back(returnType);
             break;
         default:
             Scierror(999, _("%s: Wrong value for input argument #%d:  \"%ls\" type is not managed.\n"), funame.data(), 1, type_name->get(0));
             return types::Function::Error;
-            break;
     }
+    out.push_back(returnType);
 
     return types::Function::OK;
 }

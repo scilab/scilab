@@ -213,6 +213,7 @@ struct objs
                 if (header->get(0) == Deleted)
                 {
                     deletedAsMListIndices.push_back(i);
+                    // will be filled later
                     diagramChildren.push_back(ScicosID());
                     diagramChildrenKind.push_back(ANNOTATION);
                 }
