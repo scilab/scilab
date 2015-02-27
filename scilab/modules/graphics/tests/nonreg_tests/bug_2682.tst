@@ -16,23 +16,23 @@
 //
 // <-- Short Description -->
 // chart() is inconsistent in the second argument, angle. It might be treated as degrees or radian.
-// 
+// Obsolete chart() replaced by nicholschart() to check the bug is still fixed.
 
-s=poly(0,'s');
-h=syslin('c',(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
+s=poly(0,"s");
+h=syslin("c",(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01));
 
 
 f0 = scf(0);
-black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)');
-chart([-8 -6 -4],[80 120]);
+black(h,0.01,100,"(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)");
+nicholschart([-8 -6 -4],[80 120]);
 c0 = gce();
 
 f1 = scf(1);
-black(h,0.01,100,'(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)');
-chart([-8 -6 -4],[80 120],list(0,0));
+black(h,0.01,100,"(s^2+2*0.9*10*s+100)/(s^2+2*0.3*10.1*s+102.01)");
+nicholschart([-8 -6 -4],[80 120],color("light gray"));
 c1 = gce();
 
-// The two above figure should be identical
+// The two above figure should be identical except colors
 // the current entities are compounds containing two polylines
 if (c0.children(1).data <> c1.children(1).data) then pause; end
 if (c0.children(2).data <> c1.children(2).data) then pause; end

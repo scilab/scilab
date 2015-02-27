@@ -15,9 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-12-02 16:09+0100\n"
+"Revision-Date: 2015-02-27 11:39+0100\n"
 
-# File: sci_gateway/c/gw_graphics.c, line: 134
+# File: sci_gateway/c/gw_graphics.c, line: 133
 # File: src/nographics/nographics.c, line: 83
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -47,7 +47,6 @@ msgstr ""
 # File: sci_gateway/c/sci_plot2d1.c, line: 239
 # File: sci_gateway/c/sci_plot2d1.c, line: 266
 # File: sci_gateway/c/sci_plot2d1.c, line: 288
-# File: sci_gateway/c/sci_relocate_handle.c, line: 118
 # File: sci_gateway/c/sci_rubberbox.c, line: 151
 # File: sci_gateway/c/sci_rubberbox.c, line: 162
 # File: sci_gateway/c/sci_rubberbox.c, line: 177
@@ -100,8 +99,6 @@ msgstr ""
 # File: sci_gateway/c/sci_glue.c, line: 74
 # File: sci_gateway/c/sci_move.c, line: 93
 # File: sci_gateway/c/sci_newaxes.c, line: 100
-# File: sci_gateway/c/sci_relocate_handle.c, line: 76
-# File: sci_gateway/c/sci_relocate_handle.c, line: 93
 # File: sci_gateway/c/sci_rotate_axes.c, line: 77
 # File: sci_gateway/c/sci_show_window.c, line: 80
 # File: sci_gateway/c/sci_swap_handles.c, line: 77
@@ -190,6 +187,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_axes_visible_property.c, line: 74
 # File: src/c/getHandleProperty/get_figures_id_property.c, line: 47
 # File: src/c/getHandleProperty/get_links_property.c, line: 58
+# File: src/c/getHandleProperty/get_tight_limits_property.c, line: 75
 # File: src/c/getHandleProperty/set_data_property.c, line: 157
 # File: src/c/getHandleProperty/set_data_property.c, line: 374
 # File: src/c/getHandleProperty/set_data_property.c, line: 392
@@ -903,39 +901,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_relocate_handle.c, line: 54
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_relocate_handle.c, line: 54
-# File: sci_gateway/c/sci_relocate_handle.c, line: 55
-# File: sci_gateway/c/sci_relocate_handle.c, line: 56
-msgid "Warning"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_relocate_handle.c, line: 55
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_relocate_handle.c, line: 56
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_relocate_handle.c, line: 100
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_rotate_axes.c, line: 61
 # File: sci_gateway/c/sci_rotate_axes.c, line: 84
 #, c-format
@@ -1437,7 +1402,7 @@ msgid "Default axes cannot be created.\n"
 msgstr ""
 
 #
-# File: src/c/InitObjects.c, line: 688
+# File: src/c/InitObjects.c, line: 690
 msgid "This object has not any graphic mode\n"
 msgstr ""
 
@@ -1692,7 +1657,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_tics_label_property.c, line: 44
 # File: src/c/getHandleProperty/get_tics_label_property.c, line: 52
 # File: src/c/getHandleProperty/get_tics_segment_property.c, line: 42
-# File: src/c/getHandleProperty/get_tight_limits_property.c, line: 41
+# File: src/c/getHandleProperty/get_tight_limits_property.c, line: 55
 # File: src/c/getHandleProperty/get_title_property.c, line: 53
 # File: src/c/getHandleProperty/get_title_property.c, line: 61
 # File: src/c/getHandleProperty/get_toolbar_property.c, line: 30
@@ -1890,7 +1855,9 @@ msgstr ""
 # File: src/c/getHandleProperty/set_tics_labels_property.c, line: 78
 # File: src/c/getHandleProperty/set_tics_segment_property.c, line: 53
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 82
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 53
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 67
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 88
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 129
 # File: src/c/getHandleProperty/set_title_property.c, line: 43
 # File: src/c/getHandleProperty/set_toolbar_property.c, line: 53
 # File: src/c/getHandleProperty/set_toolbar_property.c, line: 73
@@ -1962,6 +1929,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 98
 # File: src/c/getHandleProperty/set_box_property.c, line: 116
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 55
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 114
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
@@ -2167,6 +2135,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 47
 # File: src/c/getHandleProperty/set_text_property.c, line: 35
 # File: src/c/getHandleProperty/set_tics_labels_property.c, line: 45
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 80
 #, c-format
 msgid "Wrong type for '%s' property: String matrix expected.\n"
 msgstr ""
@@ -2176,6 +2145,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 117
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 115
 # File: src/c/getHandleProperty/set_ticks_format_property.c, line: 47
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 135
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
@@ -3106,7 +3076,7 @@ msgid "Axes are scaled with [xmin  ymin  xmax  ymax] specified"
 msgstr ""
 
 #
-# File: macros/%h_load.sci, line: 516
+# File: macros/%h_load.sci, line: 520
 #, c-format
 msgid "%s: Legend does not fit with the current context. Skipped\n"
 msgstr ""
@@ -3118,7 +3088,7 @@ msgid "%s: handle no more valid ignored.\n"
 msgstr ""
 
 #
-# File: macros/%h_save.sci, line: 751
+# File: macros/%h_save.sci, line: 752
 #, c-format
 msgid "%s : Invalid entity %s\n"
 msgstr ""

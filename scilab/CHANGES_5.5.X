@@ -22,15 +22,19 @@ Removed Functions
 
 * relocate_handle removed.
 
+* chart removed. Please use nicholschart instead.
+
 
 Compilation
 ===========
 
-* Required version of JOGL updated to 2.2.4 (See Bug #13586).
+* Required version of JOGL updated to 2.2.4 (See bugs #12788 & #13586).
 
 
 Scilab Bug Fixes
 ================
+
+* Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
@@ -63,6 +67,14 @@ Scilab Bug Fixes
 * Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
 
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
+
+
+Known incompatibilities
+=======================
+
+* Undocumented use of exec with "errcatch" as third input argument now returns an error:
+  exec(path, mode, 'errcatch') must be replaced by exec(path, 'errcatch', mode)
+
 
 
                      Changes between version 5.5.0 and 5.5.1
