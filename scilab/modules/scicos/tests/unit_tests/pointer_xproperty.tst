@@ -5,6 +5,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
+// <-- CLI SHELL MODE -->
 
 refMsg = msprintf(_("%s: scicosim is not running.\n"), "pointer_xproperty");
 assert_checkerror("pointer_xproperty()", refMsg);
