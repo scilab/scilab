@@ -32,7 +32,7 @@ extern "C"
     /*--------------------------------------------------------------------------*/
 }
 
-const std::string funname = "curblock";
+static const std::string funname = "curblock";
 
 types::Function::ReturnValue sci_curblock(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

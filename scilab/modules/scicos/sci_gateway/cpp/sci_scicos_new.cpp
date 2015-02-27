@@ -47,7 +47,7 @@ extern "C"
 #include "localization.h"
 }
 
-const std::string funame = "scicos_new";
+static const std::string funame = "scicos_new";
 
 using namespace org_scilab_modules_scicos;
 

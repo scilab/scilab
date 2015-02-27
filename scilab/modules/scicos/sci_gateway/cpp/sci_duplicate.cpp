@@ -24,7 +24,7 @@ extern "C"
 #include "Scierror.h"
 }
 
-const std::string funname = "duplicate";
+static const std::string funname = "duplicate";
 
 static void duplicata(int n, double* v, double* w, double* ww, int& nw)
 {

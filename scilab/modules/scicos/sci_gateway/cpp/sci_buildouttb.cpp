@@ -60,7 +60,7 @@ extern "C"
 */
 /*--------------------------------------------------------------------------*/
 
-const std::string funname = "buildouttb";
+static const std::string funname = "buildouttb";
 
 types::Function::ReturnValue sci_buildouttb(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

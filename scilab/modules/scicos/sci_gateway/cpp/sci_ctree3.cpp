@@ -27,7 +27,7 @@ extern "C"
 #include "tree.h"
 }
 
-const std::string funname = "ctree3";
+static const std::string funname = "ctree3";
 
 static double toDouble(const int a)
 {
