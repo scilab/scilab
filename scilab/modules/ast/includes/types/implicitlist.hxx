@@ -119,11 +119,14 @@ public :
     }
 
     //extract single value in a InternalType
-    InternalType* extractValue(int _iOccur); //Single value
-    double extractValueInDouble(int _iOccur);
-    long long extractValueInInteger(int _iOccur);
-    unsigned long long extractValueInUnsignedInteger(int _iOccur);
+    void extractValue(int _iOccur, InternalType*); //Single value
+    void extractValueAsDouble(int _iOccur, Double*);
+    template<typename T>
+    void extractValueAsInteger(int _iOccur, T* val);
+    template<typename T>
+    void extractValueAsUnsignedInteger(int _iOccur, T* val);
 
+    InternalType* getInitalType();
     //extract matrix in a Internaltype
     InternalType* extractFullMatrix();
 
@@ -146,7 +149,7 @@ public :
     // double / char / short / int / long long / unsigned ...
     template<typename T>
     void extractFullMatrix(T *_pT);
-    void extractFullMatrix(double *_pdbl);
+    void extractFullMatrix(Double *_pdbl);
 
     virtual bool isTrue()
     {

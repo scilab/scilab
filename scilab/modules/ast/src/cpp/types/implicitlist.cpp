@@ -247,25 +247,6 @@ bool ImplicitList::compute()
             {
                 m_iSize++;
             }
-
-            //if(dblStep > 0)
-            //{
-            //    m_iSize = static_cast<int>(floor((dblEnd - dblStart) / dblStep)) + 1;
-            //}
-            //else if(dblStep < 0)
-            //{
-            //    m_iSize = static_cast<int>(floor((dblStart - dblEnd) / -dblStep)) + 1;
-            //}
-            //else
-            //{
-            //    m_iSize = 0;
-            //}
-
-            //if(m_iSize < 0)
-            //{
-            //    m_iSize = 0;
-            //}
-            //                m_iSize = static_cast<long long>(floor(fabs(dblEnd - dblStart) / fabs(dblStep))) + 1;
         }
         else //m_eOutType == ScilabInt
         {
@@ -405,72 +386,101 @@ InternalType::ScilabType ImplicitList::getOutputType()
     return m_eOutType;
 }
 
-double ImplicitList::extractValueInDouble(int _iOccur)
+void ImplicitList::extractValueAsDouble(int _iOccur, Double* d)
 {
     double dblStart		= m_pDblStart->get(0);
     double dblStep		= m_pDblStep->get(0);
-    return dblStart + _iOccur * dblStep;
+    d->get()[0] = dblStart + _iOccur * dblStep;
 }
 
-long long ImplicitList::extractValueInInteger(int _iOccur)
+template<typename T>
+void ImplicitList::extractValueAsInteger(int _iOccur, T* val)
 {
-    return convert_input(m_poStart) + _iOccur * convert_input(m_poStep);
+
+    val->get()[0] = static_cast<typename T::type>(convert_input(m_poStart)) +
+                    _iOccur * static_cast<typename T::type>(convert_input(m_poStep));
 }
 
-unsigned long long ImplicitList::extractValueInUnsignedInteger(int _iOccur)
+template<typename T>
+void ImplicitList::extractValueAsUnsignedInteger(int _iOccur, T* val)
 {
-    return convert_unsigned_input(m_poStart) + _iOccur * convert_unsigned_input(m_poStep);
+    val->get()[0] = static_cast<typename T::type>(convert_unsigned_input(m_poStart)) +
+                    _iOccur * static_cast<typename T::type>(convert_unsigned_input(m_poStep));
+}
+
+InternalType* ImplicitList::getInitalType()
+{
+    if (compute())
+    {
+        int iDims = 2;
+        int piDms[2] = {1, 1};
+        switch (m_eOutType)
+        {
+            case ScilabDouble:
+                return new Double(iDims, piDms);
+            case ScilabInt8:
+                return new Int8(iDims, piDms);
+            case ScilabInt16:
+                return new Int16(iDims, piDms);
+            case ScilabInt32:
+                return new Int32(iDims, piDms);
+            case ScilabInt64:
+                return new Int64(iDims, piDms);
+            case ScilabUInt8:
+                return new UInt8(iDims, piDms);
+            case ScilabUInt16:
+                return new UInt16(iDims, piDms);
+            case ScilabUInt32:
+                return new UInt32(iDims, piDms);
+            case ScilabUInt64:
+                return new UInt64(iDims, piDms);
+        }
+    }
+
+    return nullptr;
 }
 
 //extract single value in a InternalType
-InternalType* ImplicitList::extractValue(int _iOccur)
+void ImplicitList::extractValue(int _iOccur, InternalType* pIT)
 {
-    InternalType* pIT = NULL;
+    if (pIT == nullptr)
+    {
+        return;
+    }
+
     if (compute())
     {
-        long long llVal             = extractValueInInteger(_iOccur);
-        unsigned long long ullVal   = extractValueInUnsignedInteger(_iOccur);
-        if (m_eOutType == ScilabInt8)
+        switch (m_eOutType)
         {
-            pIT	= new Int8((char)llVal);
-        }
-        else if (m_eOutType == ScilabUInt8)
-        {
-            pIT	= new UInt8((unsigned char)ullVal);
-        }
-        else if (m_eOutType == ScilabInt16)
-        {
-            pIT	= new Int16((short)llVal);
-        }
-        else if (m_eOutType == ScilabUInt16)
-        {
-            pIT	= new UInt16((unsigned short)ullVal);
-        }
-        else if (m_eOutType == ScilabInt32)
-        {
-            pIT	= new Int32((int)llVal);
-        }
-        else if (m_eOutType == ScilabUInt32)
-        {
-            pIT	= new UInt32((unsigned int)ullVal);
-        }
-        else if (m_eOutType == ScilabInt64)
-        {
-            pIT	= new Int64((long long)llVal);
-        }
-        else if (m_eOutType == ScilabUInt64)
-        {
-            pIT	= new UInt64((unsigned long long)ullVal);
-        }
-        else //ScilabDouble
-        {
-            double dblStart = m_poStart->getAs<Double>()->getReal(0, 0);
-            double dblStep  = m_poStep->getAs<Double>()->getReal(0, 0);
-            Double* pD      = new Double(dblStart + _iOccur * dblStep);
-            pIT = pD;
+            case ScilabInt8:
+                extractValueAsInteger(_iOccur, pIT->getAs<Int8>());
+                break;
+            case ScilabInt16:
+                extractValueAsInteger(_iOccur, pIT->getAs<Int16>());
+                break;
+            case ScilabInt32:
+                extractValueAsInteger(_iOccur, pIT->getAs<Int32>());
+                break;
+            case ScilabInt64:
+                extractValueAsInteger(_iOccur, pIT->getAs<Int64>());
+                break;
+            case ScilabUInt8:
+                extractValueAsUnsignedInteger(_iOccur, pIT->getAs<UInt8>());
+                break;
+            case ScilabUInt16:
+                extractValueAsUnsignedInteger(_iOccur, pIT->getAs<UInt16>());
+                break;
+            case ScilabUInt32:
+                extractValueAsUnsignedInteger(_iOccur, pIT->getAs<UInt32>());
+                break;
+            case ScilabUInt64:
+                extractValueAsUnsignedInteger(_iOccur, pIT->getAs<UInt64>());
+                break;
+            case ScilabDouble:
+                extractValueAsDouble(_iOccur, pIT->getAs<Double>());
+                break;
         }
     }
-    return pIT;
 }
 
 //extract matrix in a Internaltype
@@ -492,72 +502,74 @@ InternalType* ImplicitList::extractFullMatrix()
         else if (m_eOutType == ScilabDouble)
         {
             pIT = new Double(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Double>()->get());
+            extractFullMatrix(pIT->getAs<Double>());
         }
         else if (m_eOutType == ScilabInt8)
         {
             pIT	= new Int8(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int8>()->get());
+            extractFullMatrix(pIT->getAs<Int8>());
         }
         else if (m_eOutType == ScilabUInt8)
         {
             pIT	= new UInt8(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt8>()->get());
+            extractFullMatrix(pIT->getAs<UInt8>());
         }
         else if (m_eOutType == ScilabInt16)
         {
             pIT	= new Int16(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int16>()->get());
+            extractFullMatrix(pIT->getAs<Int16>());
         }
         else if (m_eOutType == ScilabUInt16)
         {
             pIT	= new UInt16(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt16>()->get());
+            extractFullMatrix(pIT->getAs<UInt16>());
         }
         else if (m_eOutType == ScilabInt32)
         {
             pIT	= new Int32(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int32>()->get());
+            extractFullMatrix(pIT->getAs<Int32>());
         }
         else if (m_eOutType == ScilabUInt32)
         {
             pIT	= new UInt32(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt32>()->get());
+            extractFullMatrix(pIT->getAs<UInt32>());
         }
         else if (m_eOutType == ScilabInt64)
         {
             pIT	= new Int64(1, m_iSize);
-            extractFullMatrix(pIT->getAs<Int64>()->get());
+            extractFullMatrix(pIT->getAs<Int64>());
         }
         else if (m_eOutType == ScilabUInt64)
         {
             pIT	= new UInt64(1, m_iSize);
-            extractFullMatrix(pIT->getAs<UInt64>()->get());
+            extractFullMatrix(pIT->getAs<UInt64>());
         }
     }
     return pIT;
 }
 
-void ImplicitList::extractFullMatrix(double *_pdbl)
+void ImplicitList::extractFullMatrix(Double *_p)
 {
     double dblStart = m_poStart->getAs<Double>()->get(0);
     double dblStep  = m_poStep->getAs<Double>()->get(0);
 
+    double* p = _p->get();
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        _pdbl[i] = dblStart + i * dblStep;
+        p[i] = dblStart + i * dblStep;
     }
 }
 
 template<typename T>
 void ImplicitList::extractFullMatrix(T *_pT)
 {
-    T tStart = static_cast<T>(convert_input(m_poStart));
-    T tStep	= static_cast<T>(convert_input(m_poStep));
+    typename T::type tStart = static_cast<typename T::type>(convert_input(m_poStart));
+    typename T::type tStep = static_cast<typename T::type>(convert_input(m_poStep));
 
+    typename T::type* p = _pT->get();
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        _pT[i] = tStart + i * tStep;
+        p[i] = tStart + i * tStep;
     }
 }
 
@@ -567,7 +579,7 @@ bool ImplicitList::transpose(InternalType *& out)
     {
         Double * pIT = new Double(m_iSize, 1);
         out = pIT;
-        extractFullMatrix(pIT->get());
+        extractFullMatrix(pIT);
 
         return true;
     }
@@ -734,79 +746,56 @@ std::wstring printDouble(types::Double* _pD)
 
 long long convert_input(types::InternalType* _poIT)
 {
-    long long llValue = 0;
     switch (_poIT->getType())
     {
-        case types::GenericType::ScilabDouble :
-            llValue = static_cast<long long>(_poIT->getAs<types::Double>()->get(0));
-            break;
-        case types::GenericType::ScilabInt8 :
-            llValue = static_cast<long long>(_poIT->getAs<types::Int8>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt8 :
-            llValue = static_cast<long long>(_poIT->getAs<types::UInt8>()->get(0));
-            break;
-        case types::GenericType::ScilabInt16 :
-            llValue = static_cast<long long>(_poIT->getAs<types::Int16>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt16 :
-            llValue = static_cast<long long>(_poIT->getAs<types::UInt16>()->get(0));
-            break;
-        case types::GenericType::ScilabInt32 :
-            llValue = static_cast<long long>(_poIT->getAs<types::Int32>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt32 :
-            llValue = static_cast<long long>(_poIT->getAs<types::UInt32>()->get(0));
-            break;
-        case types::GenericType::ScilabInt64 :
-            llValue = static_cast<long long>(_poIT->getAs<types::Int64>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt64 :
-            llValue = static_cast<long long>(_poIT->getAs<types::UInt64>()->get(0));
-            break;
+        case types::InternalType::ScilabDouble:
+            return static_cast<long long>(_poIT->getAs<types::Double>()->get(0));
+        case types::InternalType::ScilabInt8:
+            return static_cast<long long>(_poIT->getAs<types::Int8>()->get(0));
+        case types::InternalType::ScilabUInt8:
+            return static_cast<long long>(_poIT->getAs<types::UInt8>()->get(0));
+        case types::InternalType::ScilabInt16:
+            return static_cast<long long>(_poIT->getAs<types::Int16>()->get(0));
+        case types::InternalType::ScilabUInt16:
+            return static_cast<long long>(_poIT->getAs<types::UInt16>()->get(0));
+        case types::InternalType::ScilabInt32:
+            return static_cast<long long>(_poIT->getAs<types::Int32>()->get(0));
+        case types::InternalType::ScilabUInt32:
+            return static_cast<long long>(_poIT->getAs<types::UInt32>()->get(0));
+        case types::InternalType::ScilabInt64:
+            return static_cast<long long>(_poIT->getAs<types::Int64>()->get(0));
+        case types::InternalType::ScilabUInt64:
+            return static_cast<long long>(_poIT->getAs<types::UInt64>()->get(0));
         default:
-            // FIXME : Trigger an error ??
-            break;
+            return 0;
     }
-    return llValue;
+    return 0;
 }
 
 unsigned long long convert_unsigned_input(types::InternalType* _poIT)
 {
-    unsigned long long ullValue = 0;
     switch (_poIT->getType())
     {
-        case types::GenericType::ScilabDouble :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Double>()->get(0));
-            break;
-        case types::GenericType::ScilabInt8 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int8>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt8 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt8>()->get(0));
-            break;
-        case types::GenericType::ScilabInt16 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int16>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt16 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt16>()->get(0));
-            break;
-        case types::GenericType::ScilabInt32 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int32>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt32 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt32>()->get(0));
-            break;
-        case types::GenericType::ScilabInt64 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::Int64>()->get(0));
-            break;
-        case types::GenericType::ScilabUInt64 :
-            ullValue = static_cast<unsigned long long>(_poIT->getAs<types::UInt64>()->get(0));
-            break;
+        case types::InternalType::ScilabDouble:
+            return static_cast<unsigned long long>(_poIT->getAs<types::Double>()->get(0));
+        case types::InternalType::ScilabInt8:
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int8>()->get(0));
+        case types::InternalType::ScilabUInt8:
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt8>()->get(0));
+        case types::InternalType::ScilabInt16:
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int16>()->get(0));
+        case types::InternalType::ScilabUInt16:
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt16>()->get(0));
+        case types::InternalType::ScilabInt32:
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int32>()->get(0));
+        case types::InternalType::ScilabUInt32:
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt32>()->get(0));
+        case types::InternalType::ScilabInt64:
+            return static_cast<unsigned long long>(_poIT->getAs<types::Int64>()->get(0));
+        case types::InternalType::ScilabUInt64:
+            return static_cast<unsigned long long>(_poIT->getAs<types::UInt64>()->get(0));
         default:
-            // FIXME : Trigger an error ??
-            break;
+            return 0;
     }
-    return ullValue;
-
+    return 0;
 }

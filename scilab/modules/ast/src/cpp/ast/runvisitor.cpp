@@ -419,12 +419,48 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
     if (pIT->isImplicitList())
     {
+        symbol::Context* ctx = symbol::Context::getInstance();
+        //get IL
         ImplicitList* pVar = pIT->getAs<ImplicitList>();
-        for (int i = 0; i < pVar->getSize(); ++i)
+        //get IL initial Type
+        InternalType * pIL = pVar->getInitalType();
+        //get index stack
+        symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
+
+        ctx->put(var, pIL);
+        //use ref count to lock var against clear and detect any changes
+        pIL->IncreaseRef();
+
+
+        int size = pVar->getSize();
+        for (int i = 0; i < size; ++i)
         {
-            //TODO : maybe it would be interesting here to reuse the same InternalType (to avoid delete/new)
-            InternalType * pIL = pVar->extractValue(i);
-            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pIL);
+            //check if loop index has changed, deleted, copy ...
+            switch (pIL->getRef())
+            {
+                case 2:
+                    //normal case
+                    break;
+                case 1:
+                    //someone clear me
+                    ctx->put(var, pIL);
+                    break;
+                default:
+                    //someone assign me to another var
+                    //a = i;
+                    //unlock me
+                    pIL->DecreaseRef();
+
+                    //create a new me
+                    pIL = pVar->getInitalType();
+                    //lock loop index
+                    pIL->IncreaseRef();
+                    //update me ( must decrease ref of a
+                    symbol::Context::getInstance()->put(var, pIL);
+                    break;
+            }
+
+            pVar->extractValue(i, pIL);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -446,6 +482,10 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 break;
             }
         }
+
+        //unlock loop index
+        pIL->DecreaseRef();
+        pIL->killMe();
     }
     else if (pIT->isList())
     {
