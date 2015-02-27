@@ -213,7 +213,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         {
             Ret = Overload::call(L"%" + stType + L"_e", in, 1, out, this);
         }
-        catch (ast::ScilabError &/*se*/)
+        catch (ast::ScilabError & se)
         {
             try
             {
@@ -222,6 +222,10 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
                 if (stType.size() > 8)
                 {
                     Ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, this);
+                }
+                else
+                {
+                    throw se;
                 }
             }
             catch (ast::ScilabError & se)
