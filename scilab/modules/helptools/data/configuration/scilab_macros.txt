@@ -1560,7 +1560,6 @@ calfrq
 canon
 ccontrg
 cfspec
-chart
 cls2dls
 colinout
 colregul

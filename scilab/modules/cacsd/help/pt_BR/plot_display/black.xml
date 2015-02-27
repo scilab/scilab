@@ -100,7 +100,7 @@
             cada resposta.
         </para>
         <para>Para esboçar o grid de iso-ganho e iso-fase de
-            <literal>y/(1+y)</literal> use <link linkend="chart">chart()</link>.
+            <literal>y/(1+y)</literal> use <link linkend="nicholschart">nicholschart()</link>.
         </para>
         <para>
             Valores padrões para <literal>fmin</literal> e
@@ -163,7 +163,7 @@
                 <link linkend="nyquist">nyquist</link>
             </member>
             <member>
-                <link linkend="chart">chart</link>
+                <link linkend="nicholschart">nicholschart</link>
             </member>
             <member>
                 <link linkend="freq">freq</link>

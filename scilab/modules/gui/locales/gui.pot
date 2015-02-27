@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-12-02 16:09+0100\n"
+"Revision-Date: 2015-02-27 11:39+0100\n"
 
 # File: sci_gateway/c/gw_gui.c, line: 89
 #, c-format
@@ -2257,17 +2257,17 @@ msgid "Wrong value for '%s' property: '%s', '%s', or '%s' expected.\n"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 765
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 767
 msgid "Console Font..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 784
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 786
 msgid "Console Background..."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 918
+# File: src/java/org/scilab/modules/gui/bridge/CallScilabBridge.java, line: 937
 msgid "No print service found."
 msgstr ""
 
@@ -2513,7 +2513,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/bridge/fontchooser/SwingScilabFontChooser.java, line: 116
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 230
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 232
 msgid "Font"
 msgstr ""
 
@@ -2685,7 +2685,7 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/editor/Editor.java, line: 293
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 225
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 227
 msgid "Label"
 msgstr ""
 
@@ -3648,206 +3648,216 @@ msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 202
-msgid "Tight Limits"
+msgid "X Tight Limits"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 205
-msgid "Enter a x position."
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 203
+msgid "Y Tight Limits"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 206
-msgid "Enter a y position."
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 204
+msgid "Z Tight Limits"
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 207
-msgid "Enter a x size."
+msgid "Enter a x position."
 msgstr ""
 
 #
 # File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 208
+msgid "Enter a y position."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 209
+msgid "Enter a x size."
+msgstr ""
+
+#
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 210
 msgid "Enter a y size."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 211
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 213
 msgid "Axis Rulers"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 212
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 214
 msgid "X Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 213
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 215
 msgid "Y Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 214
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 216
 msgid "Location"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 215
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 217
 msgid "bottom"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 216
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 218
 msgid "middle"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 217
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 219
 msgid "origin"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 218
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 220
 msgid "top"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 219
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 221
 msgid "left"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 220
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 222
 msgid "right"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 221
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 223
 msgid "Reverse"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 224
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 226
 msgid "Box Mode"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 226
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 228
 msgid "Title Page"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 227
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 229
 msgid "Axis Title"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 231
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 233
 msgid "Font Angle"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 232
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 234
 msgid "Font Color"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 233
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 235
 msgid "Font Size"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 234
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 236
 msgid "Font Style"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 235
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 237
 msgid "Fractional Font"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 238
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 240
 msgid "Sub Ticks"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 239
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 241
 msgid "Coordinates"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 240
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 242
 msgid "X Coordinate"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 241
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 243
 msgid "Y Coordinate"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 242
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 244
 msgid "Position"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 243
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 245
 msgid "Axes Bounds"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 244
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 246
 msgid "Mark Size Unit"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 245
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 247
 msgid "Shift"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 246
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 248
 msgid "Up"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 247
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 249
 msgid "Width"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 248
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 250
 msgid "Height"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 249
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 251
 msgid "Margins"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 250
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 252
 msgid "Rotation Angles"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 251
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 253
 msgid "Tabulated"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 252
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 254
 msgid "X Shift"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 253
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 255
 msgid "Y Shift"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 254
+# File: src/java/org/scilab/modules/gui/ged/MessagesGED.java, line: 256
 msgid "Z Shift"
 msgstr ""
 
