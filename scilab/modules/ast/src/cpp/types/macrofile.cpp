@@ -23,6 +23,10 @@
 #include "deserializervisitor.hxx"
 #include "scilabWrite.hxx"
 
+extern "C"
+{
+#include "Scierror.h"
+}
 namespace types
 {
 MacroFile::MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule) :
@@ -77,6 +81,12 @@ bool MacroFile::parse(void)
         //load file, only for the first call
         char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
         std::ifstream f(pstPath, ios::in | ios::binary | ios::ate);
+        if (f.is_open() == false)
+        {
+            Scierror(999, _("Unable to open : %s.\n"), pstPath);
+            FREE(pstPath);
+            return false;
+        }
         FREE(pstPath);
 
         int size = (int)f.tellg();
