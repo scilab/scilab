@@ -54,6 +54,34 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 // will prevent double delete.
                 pCurrentArg = pIT->clone()->getAs<Double>();
             }
+
+            //check valid values neg or complex
+            if (pCurrentArg->isComplex())
+            {
+                if (pCurrentArg->isDeletable())
+                {
+                    pCurrentArg->killMe();
+                }
+                pCurrentArg = NULL;
+            }
+
+            if (pCurrentArg)
+            {
+                int size = pCurrentArg->getSize();
+                double* dbl = pCurrentArg->get();
+                for (int j = 0; j < size; ++j)
+                {
+                    if (dbl[j] < 0)
+                    {
+                        if (pCurrentArg->isDeletable())
+                        {
+                            pCurrentArg->killMe();
+                        }
+                        pCurrentArg = NULL;
+                        break;
+                    }
+                }
+            }
         }
 
         if (pIT->isColon() || pIT->isImplicitList())
@@ -251,7 +279,15 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 _piCountDim[i] = iCountDim;
             }
         }
+        else
+        {
+            wchar_t szError[bsiz];
+            os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
 
+            cleanIndexesArguments(_pArgsIn, _pArgsOut);
+
+            throw ast::ScilabError(szError);
+        }
         _pArgsOut->push_back(pCurrentArg);
 
     }
@@ -263,16 +299,19 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
 void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
 {
-    //free pArg content
-    for (int iArg = 0; iArg < _pArgsNew->size(); iArg++)
+    if (_pArgsNew)
     {
-        if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
+        //free pArg content
+        for (int iArg = 0; iArg < _pArgsNew->size(); iArg++)
         {
-            (*_pArgsNew)[iArg]->killMe();
+            if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
+            {
+                (*_pArgsNew)[iArg]->killMe();
+            }
         }
-    }
 
-    _pArgsNew->clear();
+        _pArgsNew->clear();
+    }
 }
 
 void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims)
