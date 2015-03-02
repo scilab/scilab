@@ -1326,7 +1326,8 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     char errorMsg[256];
     int iRetCount   = 1;
     int one         = 1;
-    int size        = (*n) * (*nrpd);
+    // nrpd is not used in case where Jacobian is defined as a macro
+    //int size        = (*n) * (*nrpd);
     bool bOk        = false;
 
     typed_list in;
@@ -1412,8 +1413,9 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
         throw ast::ScilabError(errorMsg);
     }
 
-    // dimension y(*), pd(nrowpd,*)
-    C2F(dcopy)(&size, out[0]->getAs<types::Double>()->get(), &one, J, &one);
+    types::Double* pDblOut = out[0]->getAs<types::Double>();
+    int iSizeOut = pDblOut->getSize();
+    C2F(dcopy)(&iSizeOut, pDblOut->get(), &one, J, &one);
 }
 
 void DifferentialEquationFunctions::callMacroG(int* n, double* t, double* y, int* ng, double* gout)
