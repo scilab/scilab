@@ -315,6 +315,14 @@ private:
             out = value;
             return true;
         }
+
+        // specific case : to ease debugging let the user retrieve the model ID
+        if (name == L"modelID")
+        {
+            out = new types::Double(m_adaptee->id());
+            return true;
+        }
+
         return false;
     }
 
