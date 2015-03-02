@@ -1326,8 +1326,7 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
     char errorMsg[256];
     int iRetCount   = 1;
     int one         = 1;
-    // nrpd is not used in case where Jacobian is defined as a macro
-    //int size        = (*n) * (*nrpd);
+    int iMaxSize    = (*n) * (*nrpd);
     bool bOk        = false;
 
     typed_list in;
@@ -1413,8 +1412,18 @@ void DifferentialEquationFunctions::callMacroJac(int* n, double* t, double* y, i
         throw ast::ScilabError(errorMsg);
     }
 
+
     types::Double* pDblOut = out[0]->getAs<types::Double>();
     int iSizeOut = pDblOut->getSize();
+
+    if (iSizeOut > iMaxSize)
+    {
+        char* pstrName = wide_string_to_UTF8(m_pCallJacFunction->getName().c_str());
+        sprintf(errorMsg, _("%s: Wrong size for output argument #%d: A size less or equal than %d expected.\n"), pstrName, 1, iMaxSize);
+        FREE(pstrName);
+        throw ast::ScilabError(errorMsg);
+    }
+
     C2F(dcopy)(&iSizeOut, pDblOut->get(), &one, J, &one);
 }
 
