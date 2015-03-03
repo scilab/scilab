@@ -71,9 +71,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_callblk.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_coserror.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_data2sig.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -234,6 +231,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_end_scicosim.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_coserror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_curblock.cpp">

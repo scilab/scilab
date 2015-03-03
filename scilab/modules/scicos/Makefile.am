@@ -74,6 +74,7 @@ sci_gateway/cpp/sci_buildouttb.cpp \
 sci_gateway/cpp/sci_ctree2.cpp \
 sci_gateway/cpp/sci_ctree3.cpp \
 sci_gateway/cpp/sci_ctree4.cpp \
+sci_gateway/cpp/sci_coserror.cpp \
 sci_gateway/cpp/sci_curblock.cpp \
 sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_end_scicosim.cpp \
@@ -92,7 +93,6 @@ sci_gateway/cpp/sci_vec2var.cpp
 GATEWAY_C_SOURCES = \
 sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
-sci_gateway/c/sci_coserror.c \
 sci_gateway/c/sci_data2sig.c \
 sci_gateway/c/sci_diffobjs.c \
 sci_gateway/c/sci_ftree2.c \
