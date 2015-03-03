@@ -132,6 +132,8 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             delete[] ret;
         }
 
+        createEmptyMatrix(pvApiCtx, Rhs + 1);
+        LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
         return 0;
