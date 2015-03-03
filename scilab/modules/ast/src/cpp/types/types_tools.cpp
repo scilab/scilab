@@ -170,7 +170,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             }
             else if (_pRef->isTList())
             {
-                // List cant be extract by field and MList must call overload
+                // List can't be extract by field and MList must call overload
                 TList* pTL = _pRef->getAs<TList>();
                 pCurrentArg = new Double(pStr->getDims(), pStr->getDimsArray());
                 double* pdbl = pCurrentArg->get();
@@ -185,6 +185,14 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     }
                     pdbl[i] = (double)(iIndex + 1);
                 }
+            }
+            else if (_pRef->isList())
+            {
+                bUndefine = true;
+                break;
+            }
+            else if (_pRef->isCell())
+            {
             }
         }
         else if (pIT->isPoly())
