@@ -186,14 +186,6 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                     pdbl[i] = (double)(iIndex + 1);
                 }
             }
-            else if (_pRef->isCell())
-            {
-            }
-            else
-            {
-                bUndefine = true;
-                break;
-            }
         }
         else if (pIT->isPoly())
         {
@@ -292,9 +284,16 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
     }
 
+
+    //return 0 to force extract to create an empty matrix
+    if (_pRef &&  _pRef->isDouble() && _pRef->getAs<Double>()->isEmpty())
+    {
+        return 0;
+    }
+
     //returns a negative value if at least one parameter is undefined
     //case with : or $ for creation by insertion
-    return (!bUndefine ? iSeqCount : - iSeqCount);
+    return (!bUndefine ? iSeqCount : -iSeqCount);
 }
 
 void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
