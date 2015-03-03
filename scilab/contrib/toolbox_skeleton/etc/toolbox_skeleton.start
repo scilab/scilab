@@ -32,7 +32,7 @@ function toolbox_skeletonlib = startModule()
   mprintf("\tLoad gateways\n");
   exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce",%f));
   mprintf("\tLoad Java libraries\n");
-  //exec(pathconvert(root_tlbx+"/src/java/loader.sce",%f));
+  exec(pathconvert(root_tlbx+"/src/java/loader.sce",%f));
   ilib_verbose(verboseMode);
 
 // load localization
