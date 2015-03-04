@@ -16,6 +16,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.GraphicsEnvironment;
+import java.awt.event.MouseEvent;
 
 import com.mxgraph.model.mxICell;
 import com.mxgraph.model.mxIGraphModel;
@@ -209,6 +210,18 @@ public class ScilabComponent extends mxGraphComponent {
                     }
                 }
             });
+        }
+
+        /**
+         * @see javax.swing.JComponent#processMouseMotionEvent(java.awt.event.MouseEvent)
+         *
+         * Overloaded to filter out any cursor update if the graph is locked
+         */
+        @Override
+        protected void processMouseMotionEvent(MouseEvent e) {
+            if (!getGraph().isCellsLocked()) {
+                super.processMouseMotionEvent(e);
+            }
         }
     }
 

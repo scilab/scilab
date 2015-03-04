@@ -68,6 +68,8 @@ Scilab Bug Fixes
 
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
 
+* Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
+
 
 Known incompatibilities
 =======================
