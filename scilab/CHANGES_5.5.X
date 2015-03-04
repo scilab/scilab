@@ -36,6 +36,8 @@ Scilab Bug Fixes
 
 * Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
+* Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
+
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
@@ -67,6 +69,8 @@ Scilab Bug Fixes
 * Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
 
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
+
+* Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 
 
 Known incompatibilities

@@ -97,6 +97,12 @@ for i=1:size(modules,"*")
      exit(2);
    end
 end
+// Fix for bug #12842: to be removed in Scilab 6
+function bug_12842()
+  execstr("[%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(""SCI\modules\atoms\macros\atoms_internals\lib"")", "errcatch");
+endfunction
+bug_12842();
+clear bug_12842
 clear modules i load ierr startFile;
 
 // Create some configuration variables ================================
