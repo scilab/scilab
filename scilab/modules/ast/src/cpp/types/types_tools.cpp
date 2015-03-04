@@ -313,7 +313,10 @@ void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew)
         {
             if ((*_pArgsNew)[iArg] != (*_pArgsOrig)[iArg])
             {
-                (*_pArgsNew)[iArg]->killMe();
+                if ((*_pArgsNew)[iArg])
+                {
+                    (*_pArgsNew)[iArg]->killMe();
+                }
             }
         }
 

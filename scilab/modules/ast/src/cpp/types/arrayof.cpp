@@ -151,6 +151,29 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         return this;
     }
 
+    //only scalar can be used to ".=" operation
+    if (iSeqCount != pSource->getSize() && pSource->isScalar() == false)
+    {
+        return NULL;
+    }
+
+    //remove last dimension at size 1
+    //remove last dimension if are == 1
+    for (int i = (iDims - 1); i >= 2; i--)
+    {
+        if (piMaxDim[i] == 1)
+        {
+            iDims--;
+            pArg.back()->killMe();
+            pArg.pop_back();
+        }
+        else
+        {
+            break;
+        }
+    }
+
+
     if (iDims >= m_iDims)
     {
         //all case are good, we can do almost everything
@@ -185,35 +208,15 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             bool bPassed = false;
             int *piSourceDims = pSource->getDimsArray();
 
-            for (int i = (iNewDims - 1); i >= m_iDims; i--)
+            for (int i = m_iDims; i < iNewDims; ++i)
             {
-                if ((*_pArgs)[i]->isColon())
-                {
-                    bIsColon = true;
-                    if (pSource->isVector() && ( bPassed == false ))
-                    {
-                        piNewDims[i] = std::max(piSourceDims[0], piSourceDims[1]);
-                    }
-                    else if ((iSource < 0) || (bPassed))
-                    {
-                        piNewDims[i] = 1;
-                    }
-                    else
-                    {
-                        piNewDims[i] = piSourceDims[iSource];
-                        iSource--;
-                    }
-                }
-                else
-                {
-                    piNewDims[i] = piMaxDim[i];
-                }
+                piNewDims[i] = piMaxDim[i];
             }
         }
     }
     else // _iDims < m_iDims
     {
-        if (isVector() || isScalar() || getSize() == 0) //getSize() == 0, on ly for [] and {}
+        if (isVector() || isScalar() || getSize() == 0) //getSize() == 0, only for [] and {}
         {
             if (getSize() < piMaxDim[0])
             {
@@ -248,7 +251,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
                 int iSize = pArg[i]->getAs<ArrayOf>()->getSize();
                 for (int j = 0 ; j < iSize ; j++)
                 {
-                    if (pIdx[j] >= m_piDims[i])
+                    if (pIdx[j] > m_piDims[i])
                     {
                         delete[] piCountDim;
                         delete[] piMaxDim;
@@ -305,10 +308,11 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         setComplex(true);
     }
 
-    int* piIndex    = new int[_pArgs->size()];
-    int* piCoord    = new int[_pArgs->size()];
+    int argSize = static_cast<int>(pArg.size());
+    int* piIndex = new int[argSize];
+    int* piCoord = new int[argSize];
     int* piViewDims = new int[iDims];
-    memset(piIndex, 0x00, sizeof(int) * _pArgs->size());
+    memset(piIndex, 0x00, sizeof(int) * argSize);
 
     //convert  current dimension to view dimension
     for (int i = 0 ; i < iDims ; i++)
@@ -322,10 +326,10 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
-        computeTuples(piCountDim, (int)_pArgs->size(), (int)_pArgs->size() - 1, piIndex);
+        computeTuples(piCountDim, argSize, argSize - 1, piIndex);
 
         //std::cout << "[";
-        for (int j = 0 ; j < (int)_pArgs->size() ; j++)
+        for (int j = 0; j < argSize; j++)
         {
             piCoord[j] = getIntValueFromDouble(pArg[j], piIndex[j]) - 1;
             //InternalType* pVar = pArg[j];
@@ -458,16 +462,16 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
     if (bUndefine)
     {
         //manage : and $ in creation by insertion
-        int iSource = (pSource->getDims() - 1);
-        int *piSourceDims   = pSource->getDimsArray();
+        int *piSourceDims = pSource->getDimsArray();
+        int iSourceDims = pSource->getDims();
         int iCompteurNull = 0;
-        bool bPassed = false;
-
+        int iLastNull = 0;
         for (int i = 0; i < iDims; i++)
         {
             if (pArg[i] == NULL)
             {
                 iCompteurNull++;
+                iLastNull = i;
             }
             else
             {
@@ -478,40 +482,50 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
             }
         }
 
-        for (int i = (iDims - 1); i >= 0; i--)
+        //if all index are : -> a = x
+        if (iCompteurNull == pArg.size())
         {
-            if (pArg[i] == NULL)
-            {
-                //undefine value
-                if (pSource->isScalar())
-                {
-                    piMaxDim[i]     = 1;
-                    //piCountDim[i]   = 1;
-                }
-                else if (pSource->isVector() && (iCompteurNull != pSource->getSize()) && (bPassed == false))
-                {
-                    piMaxDim[i] = std::max(piSourceDims[0], piSourceDims[1]);
-                    bPassed = true;
-                }
-                else if ((iCompteurNull > pSource->getRows()) && (bPassed == false))
-                {
-                    piMaxDim[i] = pSource->getSize();
-                    bPassed = true;
-                }
-                else if ((iSource < 0) || (bPassed))
-                {
-                    piMaxDim[i] = 1;
-                    iSource = -1;
-                }
-                else
-                {
-                    piMaxDim[i]     = piSourceDims[iSource];
-                    //piCountDim[i]   = piSourceDims[iSource];
-                }
+            return _pSource;
+        }
 
-                iSource--;
-                //replace pArg value by the new one
-                pArg[i] = createDoubleVector(piMaxDim[i]);
+        //vector case
+        if (pSource->isVector() && iCompteurNull == 1)
+        {
+            piMaxDim[iLastNull] = pSource->getSize();
+            pArg[iLastNull] = createDoubleVector(piMaxDim[iLastNull]);
+        }
+        else
+        {
+            //matrix and hypermatrix case
+            if (iCompteurNull < pSource->getDims())
+            {
+                delete[] piMaxDim;
+                delete[] piCountDim;
+                //free pArg content
+                cleanIndexesArguments(_pArgs, &pArg);
+                //contain bad index, like <= 0, ...
+                return NULL;
+            }
+
+            //replace ":" by know source dimensions
+            int iSource = 0;
+            for (int i = 0; i < iDims; ++i)
+            {
+                if (pArg[i] == NULL)
+                {
+                    if (iSource < iSourceDims)
+                    {
+                        piMaxDim[i] = piSourceDims[iSource];
+                        pArg[i] = createDoubleVector(piMaxDim[i]);
+                        ++iSource;
+                    }
+                    else
+                    {
+                        //fill dimensions after pSource->getDimes() with 1
+                        piMaxDim[i] = 1;
+                        pArg[i] = createDoubleVector(piMaxDim[i]);
+                    }
+                }
             }
         }
     }

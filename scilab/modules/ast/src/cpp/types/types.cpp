@@ -62,7 +62,7 @@ bool GenericType::isIdentity(void)
 {
     if (m_piDims)
     {
-        for (int i = 0 ; i < getDims() ; i++)
+        for (int i = 0; i < getDims(); i++)
         {
             if (m_piDims[i] != -1)
             {
@@ -77,7 +77,7 @@ bool GenericType::isIdentity(void)
 bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
 {
     bool bAll = true;
-    for (int i = 0 ; i < getCols() ; i++)
+    for (int i = 0; i < getCols(); i++)
     {
         //+1 to keep 1 based index
         int iIdx = _iRow + i * getCols() + 1;
@@ -95,7 +95,7 @@ bool GenericType::hasAllIndexesOfRow(int _iRow, int* _piCoord, int _iCoordCount)
 bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
 {
     bool bAll = true;
-    for (int i = 0 ; i < getRows() ; i++)
+    for (int i = 0; i < getRows(); i++)
     {
         //+1 to keep 1 based index
         int iIdx = i + _iCol * getRows() + 1;
@@ -112,15 +112,15 @@ bool GenericType::hasAllIndexesOfCol(int _iCol, int* _piCoord, int _iCoordCount)
 
 int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
 {
-    int iDim    = 1;
+    int iDim = 1;
     if (m_iDims != 0)
     {
-        if (_iMaxDim != m_iDims)
+        if (_iMaxDim < m_iDims)
         {
             //view as "vector", not all dimensions are used
             if (_iCurrentDim == (_iMaxDim - 1))
             {
-                for (int i = _iCurrentDim ; i < m_iDims ; i++)
+                for (int i = _iCurrentDim; i < m_iDims; i++)
                 {
                     iDim *= m_piDims[i];
                 }
@@ -129,6 +129,10 @@ int GenericType::getVarMaxDim(int _iCurrentDim, int _iMaxDim)
             {
                 iDim = m_piDims[_iCurrentDim];
             }
+        }
+        else if (_iCurrentDim >= m_iDims)
+        {
+            iDim = 1;
         }
         else
         {

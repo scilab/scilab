@@ -294,7 +294,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             exec.setExpectedSize(iLhsCount);
             e.getRightExp().accept(exec);
 
-            if (exec.getResultSize() != iLhsCount)
+            if (exec.getResultSize() < iLhsCount)
             {
                 std::wostringstream os;
                 os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
