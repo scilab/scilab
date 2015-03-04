@@ -1685,6 +1685,7 @@ InternalType* add_E_S<Double, String, String>(Double* /*_pL*/, String* _pR)
 
 template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polynom* _pR)
 {
+
     Polynom* pOut = NULL;
     if (_pL->getVariableName() != _pR->getVariableName())
     {
@@ -1693,6 +1694,65 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
         //os << ((Location)e.right_get().getLocation()).getLocationString() << std::endl;
         throw ast::ScilabError(os.str());
     }
+    if (_pR->isIdentity())
+    {
+        SinglePoly *sp  = _pR->get(0);
+
+        int iDims = _pL->getDims();
+        int* piDims = _pL->getDimsArray();
+        int iLeadDims = piDims[0];
+        int* piIndex = new int[iDims];
+        piIndex[0] = 0;
+        _pR->resize(piDims, iDims);
+        //find smaller dims
+        for (int i = 1 ; i < iDims ; ++i)
+        {
+            //init
+            piIndex[i] = 0;
+
+            if (iLeadDims > piDims[i])
+            {
+                iLeadDims = piDims[i];
+            }
+        }
+        for (int i = 1 ; i < iLeadDims ; ++i)
+        {
+
+            _pR->set(i, i, sp);
+
+        }
+    };
+    if (_pL->isIdentity())
+    {
+        SinglePoly *sp  = _pL->get(0);
+
+        int iDims = _pR->getDims();
+        int* piDims = _pR->getDimsArray();
+        int iLeadDims = piDims[0];
+        int* piIndex = new int[iDims];
+        piIndex[0] = 0;
+        _pL->resize(piDims, iDims);
+        //find smaller dims
+        for (int i = 1 ; i < iDims ; ++i)
+        {
+            //init
+            piIndex[i] = 0;
+
+            if (iLeadDims > piDims[i])
+            {
+                iLeadDims = piDims[i];
+            }
+        }
+        for (int i = 1 ; i < iLeadDims ; ++i)
+        {
+
+            _pL->set(i, i, sp);
+
+        }
+
+
+    }
+
 
     if (_pL->isScalar())
     {
@@ -1848,7 +1908,7 @@ template<> InternalType* add_M_M<Polynom, Polynom, Polynom>(Polynom* _pL, Polyno
 
     for (int i = 0 ; i < iDims1 ; i++)
     {
-        if (piDims1[i] != piDims2[i])
+        if ((piDims1[i] != piDims2[i]))
         {
             wchar_t pMsg[bsiz];
             os_swprintf(pMsg, bsiz, _W("Error: operator %ls: Matrix dimensions must agree (op1 is %ls, op2 is %ls).\n").c_str(),  L"+", _pL->DimToString().c_str(), _pR->DimToString().c_str());
@@ -2116,7 +2176,6 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
     int iLeadDims = piDims[0];
     int* piIndex = new int[iDims];
     piIndex[0] = 0;
-
     //find smaller dims
     for (int i = 1 ; i < iDims ; ++i)
     {
