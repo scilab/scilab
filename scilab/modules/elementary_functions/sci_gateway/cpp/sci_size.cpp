@@ -73,6 +73,12 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         default :
             // All types inherits of GenericType, so have this algorithm as default.
         {
+            if (in[0]->isGenericType() == false)
+            {
+                ast::ExecVisitor exec;
+                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
+                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            }
             int iMode = -1;
 
             if (in.size() > 2)
