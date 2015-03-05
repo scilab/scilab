@@ -247,7 +247,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
         if (SwingUtilities.isEventDispatchThread()) {
             context.makeCurrent();
             AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
-            image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), false);
+            image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
             context.release();
         } else {
             try {
@@ -255,7 +255,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
                     public void run() {
                         context.makeCurrent();
                         AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
-                        image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), false);
+                        image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
                         context.release();
                     }
                 });
