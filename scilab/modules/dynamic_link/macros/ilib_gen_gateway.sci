@@ -24,7 +24,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         return
     end
 
-    gateway_filename = ["","",""];
+    gateway_filename = ["";"";""];
     k = strindex(name,["/","\"]);
     if k~=[] then
         path = part(name,1:k($));
