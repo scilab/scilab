@@ -20,35 +20,35 @@
 ilib_verbose(0)
 cd TMPDIR;
 //creating the interface file
-c_code = ['#define __USE_DEPRECATED_STACK_FUNCTIONS__'
-   '#include <stack-c.h>'
-   '#include <api_scilab.h>'
-   'int sci_funxxx(char *fname)' 
-   '{'
-   '  double dOut = Fin;'
-   '  int m_out = 1;'
-   '  int n_out = 1;'
-   '  createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);"
-   '  LhsVar(1) = 1;'
-   '  return 0;'
-   '}'];
-mputl(c_code,'bug_4675.c');
+c_code = ["#define __USE_DEPRECATED_STACK_FUNCTIONS__"
+"#include <stack-c.h>"
+"#include <api_scilab.h>"
+"int sci_funxxx(char *fname)"
+"{"
+"  double dOut = Fin;"
+"  int m_out = 1;"
+"  int n_out = 1;"
+"  createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);"
+"  LhsVar(1) = 1;"
+"  return 0;"
+"}"];
+mputl(c_code,"bug_4675.c");
 
 test_table = [];
 for i=1:999,
-  test_table = [ test_table; 'fun'+string(i), 'sci_funxxx'];
+    test_table = [ test_table; "fun"+string(i), "sci_funxxx"];
 end
 
-files =['bug_4675.c'];
-ilib_build('test_bug_4675',test_table,files,[]);
+files =["bug_4675.c"];
+ilib_build("test_bug_4675",test_table,files,[]);
 
-// load the shared library 
-exec('loader.sce');
+// load the shared library
+exec("loader.sce");
 
 //using the new primitive
 for i=1:999,
-  execstr("res = fun"+string(i)+"();");
-  if res <> i then pause,end
+    execstr("res = fun"+string(i)+"();");
+    if res <> i then pause,end
 end
 
 ulink();
@@ -57,7 +57,7 @@ ulink();
 
 test_table = [];
 for i=1:1024,
-  test_table = [ test_table; 'fun'+string(i), 'sci_funxxx'];
+    test_table = [ test_table; "fun"+string(i), "sci_funxxx"];
 end
 
 ierr = execstr("ilib_build(''test_bug_4675'',test_table,files,[]);","errcatch");
