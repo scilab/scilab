@@ -75,7 +75,7 @@ public :
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & /*e*/);
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/);
 
 private:
     static types::Callable* pFunc;

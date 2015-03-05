@@ -238,10 +238,14 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         catch (ScilabMessage & sm)
         {
             setExpectedSize(iSaveExpectedSize);
-            setResult(NULL);
+            if(pIT != getResult())
+            {
+                pIT->killMe();
+            }
+
+            clearResult();
             cleanInOut(in, out);
             cleanOpt(opt);
-            pIT->killMe();
 
             if (pIT->isCallable())
             {
@@ -264,20 +268,28 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         catch (InternalAbort & ia)
         {
             setExpectedSize(iSaveExpectedSize);
+            if(pIT != getResult())
+            {
+                pIT->killMe();
+            }
+
             clearResult();
             cleanInOut(in, out);
             cleanOpt(opt);
-            pIT->killMe();
 
             throw ia;
         }
         catch (ScilabError & se)
         {
             setExpectedSize(iSaveExpectedSize);
+            if(pIT != getResult())
+            {
+                pIT->killMe();
+            }
+
             clearResult();
             cleanInOut(in, out);
             cleanOpt(opt);
-            pIT->killMe();
 
             throw se;
         }

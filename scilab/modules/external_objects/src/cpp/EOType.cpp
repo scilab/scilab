@@ -13,7 +13,7 @@
 namespace org_modules_external_objects
 {
 types::Callable* EOType::pFunc = nullptr;
-bool EOType::invoke(types::typed_list & in, types::optional_list & opt, int _iRetCount, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & /*e*/)
+bool EOType::invoke(types::typed_list & in, types::optional_list & opt, int _iRetCount, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
 {
     //check some flag before call invoke
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(id);
