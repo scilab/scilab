@@ -49,13 +49,13 @@ types::Function::ReturnValue sci_set_blockerror(types::typed_list &in, int _iRet
 {
     if (in.size() != 1)
     {
-        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), funname.c_str(), 1);
+        Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), funname.c_str(), 1);
         return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
-        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), funname.c_str(), 1);
+        Scierror(78, _("%s: Wrong number of output arguments: %d expected.\n"), funname.c_str(), 1);
         return types::Function::Error;
     }
 
