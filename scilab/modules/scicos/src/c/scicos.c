@@ -1468,7 +1468,7 @@ static void cossim(double *told)
     int i3 = 0;
 
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -1768,9 +1768,11 @@ static void cossim(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            SeqSync = GetCommand(&CommandToUnstack, &iUnused); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -2159,7 +2161,7 @@ static void cossimdaskr(double *told)
     /* System generated locals */
     int i3;
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -2951,9 +2953,11 @@ static void cossimdaskr(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            SeqSync = GetCommand(&CommandToUnstack, &iUnused); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -3137,9 +3141,11 @@ L30:
                         while (ismenu()) //** if the user has done something, do the actions
                         {
                             int ierr2 = 0;
-                            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                            int iUnused;
+                            SeqSync = GetCommand(&CommandToUnstack, &iUnused); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
                             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                            FREE(CommandToUnstack);
                         }
                         if (C2F(coshlt).halt != 0)
                         {
@@ -3487,9 +3493,11 @@ L30:
                 while (ismenu()) //** if the user has done something, do the actions
                 {
                     int ierr2 = 0;
-                    SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                    int iUnused;
+                    SeqSync = GetCommand(&CommandToUnstack, &iUnused); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
                     //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                    FREE(CommandToUnstack);
                 }
 
                 if (C2F(coshlt).halt != 0)
@@ -6999,7 +7007,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 static int CallKinsol(double *told)
 {
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -7154,9 +7162,11 @@ static int CallKinsol(double *told)
             while (ismenu()) //** if the user has done something, do the actions
             {
                 int ierr2 = 0;
-                SeqSync = GetCommand(CommandToUnstack); //** get at the action
+                int iUnused;
+                SeqSync = GetCommand(&CommandToUnstack, &iUnused); //** get to the action
                 CommandLength = (int)strlen(CommandToUnstack);
                 //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                FREE(CommandToUnstack);
             }
 
             if (C2F(coshlt).halt != 0)

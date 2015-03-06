@@ -36,6 +36,8 @@ ThreadId::ThreadId(__threadId _id, __threadKey _key)
     m_threadKey = _key;
     __InitLock(&m_threadLock);
     m_threadStatus = Running;
+    m_isInterruptible = true;
+    m_doInterrupt = false;
 }
 
 __threadId ThreadId::getThreadId()
@@ -143,5 +145,26 @@ bool ThreadId::toString(std::wostringstream& ostr)
     ostr << L"Status : " << StatusToString(this->getStatus());
     return true;
 }
+
+void ThreadId::setInterrupt(bool _doInterrupt)
+{
+    m_doInterrupt = _doInterrupt;
+}
+
+bool ThreadId::getInterrupt()
+{
+    return m_doInterrupt;
+}
+
+void ThreadId::setInterruptible(bool _isInterruptible)
+{
+    m_isInterruptible = _isInterruptible;
+}
+
+bool ThreadId::isInterruptible()
+{
+    return m_isInterruptible;
+}
+
 }
 

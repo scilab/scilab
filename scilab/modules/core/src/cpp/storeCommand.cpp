@@ -15,6 +15,17 @@ extern "C"
 #define NOMINMAX
 #include "storeCommand.h"
 #include "Thread_Wrapper.h"
+
+    // mmap
+#ifdef _MSC_VER
+#include "mmapWindows.h"
+#else
+#include <sys/mman.h>
+#ifndef MAP_ANONYMOUS
+# define MAP_ANONYMOUS MAP_ANON
+#endif
+#endif
+
 }
 
 #include "parser.hxx"
@@ -23,6 +34,7 @@ extern "C"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "localization.hxx"
+#include "runner.hxx"
 
 using namespace ast;
 /*--------------------------------------------------------------------------*/
@@ -35,120 +47,130 @@ using namespace ast;
  *           int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
  */
 /*--------------------------------------------------------------------------*/
-#define IMPORT_SIGNAL extern
-/*--------------------------------------------------------------------------*/
-typedef struct commandRec
+struct CommandRec
 {
-    char              *command;		/* command info one string two integers */
-    int               flag; /* 1 if the command execution cannot be interrupted */
-    struct commandRec *next;
-} CommandRec;
+    char*   m_command;              /* command info one string two integers */
+    int     m_isInterruptible;      /* 1 if the command execution can be interrupted */
+    int     m_consoleCmd;           /* 1 if the command come from console */
+    CommandRec(char* command, int isInterruptible, int consoleCmd) : m_command(command), m_isInterruptible(isInterruptible), m_consoleCmd(consoleCmd) {}
+};
 /*--------------------------------------------------------------------------*/
 /* Extern Signal to say we git a StoreCommand. */
-IMPORT_SIGNAL __threadSignal LaunchScilab;
-/*--------------------------------------------------------------------------*/
-static CommandRec *commandQueue = NULL;
-static __threadLock commandQueueSingleAccess = __StaticInitLock;
-/*--------------------------------------------------------------------------*/
-int StoreCommand (wchar_t *command)
+extern "C"
 {
-    return StoreCommandWithFlag (command, 0);
+    extern __threadSignal LaunchScilab;
 }
+/*--------------------------------------------------------------------------*/
+static std::list<CommandRec> commandQueue;
+static std::list<CommandRec> commandQueuePrioritary;
+//static __threadLock commandQueueSingleAccess = __StaticInitLock;
+static void release(void);
+static __threadLock* getCommandQueueSingleAccess()
+{
+    static __threadLock* ptr = NULL;
+    if (!ptr)
+    {
+        ptr = (__threadLock*)mmap(0, sizeof(__threadLock), PROT_READ | PROT_WRITE, MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
+#ifdef _MSC_VER
+        *ptr =  __StaticInitLock;
+#else
+        __InitSignalLock(ptr);
+#endif
+        atexit(release);
+    }
+    return ptr;
+}
+
+static void release(void)
+{
+    if (getCommandQueueSingleAccess())
+    {
+        __UnLock(getCommandQueueSingleAccess());
+    }
+}
+/*--------------------------------------------------------------------------*/
+int StoreCommand (char *command)
+{
+    return StoreCommandWithFlag (command, 1);
+}
+
 /*--------------------------------------------------------------------------*/
 /*
  * try to execute a command or add it to the end of command queue
- * flag = 0 : the command is not shown in scilab window
- * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StoreCommandWithFlag (wchar_t *command, int flag)
+int StoreCommandWithFlag (char *command, int isInterruptible)
 {
-    Parser parser;
-    try
-    {
-        parser.parse(command);
-        if (parser.getExitStatus() == Parser::Succeded)
-        {
-            ast::ExecVisitor exec;
-            parser.getTree()->accept(exec);
-        }
-        else
-        {
-            throw ast::ScilabException(parser.getErrorMessage());
-        }
-    }
-    catch (const ast::ScilabException& se)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(se.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback").c_str());
-    }
+    __Lock(getCommandQueueSingleAccess());
+    commandQueue.emplace_back(os_strdup(command), isInterruptible, 0);
+    __UnLock(getCommandQueueSingleAccess());
+    __Signal(&LaunchScilab);
 
-    delete parser.getTree();
     return 0;
 }
 /*--------------------------------------------------------------------------*/
 /*
  * try to execute a command or add it to the _BEGINNING_ of command queue
- * flag = 0 : the command is not shown in scilab window
- * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
  */
-int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
+int StoreConsoleCommandWithFlag (char *command, int isInterruptible)
 {
-    Parser parser;
+    __Lock(getCommandQueueSingleAccess());
+    commandQueuePrioritary.emplace_back(os_strdup(command), isInterruptible, 1);
+    __UnLock(getCommandQueueSingleAccess());
+    __Signal(&LaunchScilab);
+    Runner::UnlockPrompt();
+    return 0;
+}
 
-    try
-    {
-        parser.parse(command);
-        if (parser.getExitStatus() == Parser::Succeded)
-        {
-            ast::ExecVisitor exec;
-            parser.getTree()->accept(exec);
-        }
-        else
-        {
-            throw ast::ScilabException(parser.getErrorMessage());
-        }
-    }
-    catch (const ast::ScilabException& se)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(se.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback").c_str());
-    }
-
-    delete parser.getTree();
-    return (0);
+int StorePrioritaryCommandWithFlag (char *command, int isInterruptible)
+{
+    __Lock(getCommandQueueSingleAccess());
+    commandQueuePrioritary.emplace_back(os_strdup(command), isInterruptible, 0);
+    __UnLock(getCommandQueueSingleAccess());
+    __Signal(&LaunchScilab);
+    Runner::UnlockPrompt();
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int isEmptyCommandQueue(void)
 {
-#pragma message("WARNING : isEmptyCommandQueue is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-    // FIXME : Do not forget to remove me.
-    return 0;
+    return (commandQueuePrioritary.empty() && commandQueue.empty());
 }
 /*--------------------------------------------------------------------------*/
 /*
  * Gets info on the first queue element
  * and remove it from the queue
  */
-int GetCommand ( char *str)
+int GetCommand (char** cmd, int* piConsoleCmd)
 {
-#pragma message("WARNING : GetCommand is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-    // FIXME : Do not forget to remove me.
-    return 0;
+    int isInterruptible = 0;
+    __Lock(getCommandQueueSingleAccess());
+
+    if (commandQueuePrioritary.empty() == false)
+    {
+        *cmd = os_strdup(commandQueuePrioritary.front().m_command);
+        isInterruptible = commandQueuePrioritary.front().m_isInterruptible;
+        *piConsoleCmd = commandQueuePrioritary.front().m_consoleCmd;
+
+        FREE (commandQueuePrioritary.front().m_command);
+        commandQueuePrioritary.pop_front();
+    }
+    else if (commandQueue.empty() == false)
+    {
+        *cmd = os_strdup(commandQueue.front().m_command);
+        isInterruptible = commandQueue.front().m_isInterruptible;
+        *piConsoleCmd = commandQueue.front().m_consoleCmd;
+
+        FREE (commandQueue.front().m_command);
+        commandQueue.pop_front();
+    }
+    __UnLock(getCommandQueueSingleAccess());
+
+    return isInterruptible;
 }
 /*--------------------------------------------------------------------------*/
 int ismenu(void)
 {
-#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+    //#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
     // FIXME : Do not forget to remove me.
     return 0;
 }
@@ -156,7 +178,7 @@ int ismenu(void)
 /* menu/button info for Scilab */
 int C2F(getmen)(char * btn_cmd, int * lb, int * entry)
 {
-#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+    //#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
     // FIXME : Do not forget to remove me.
     return 0;
 }

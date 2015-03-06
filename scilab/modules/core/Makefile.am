@@ -38,7 +38,6 @@ CORE_C_SOURCES = \
     src/c/dynamic_gateways.c \
     src/c/comparehandles.c \
     src/c/setPrecisionFPU.c \
-    src/c/LaunchScilabSignal.c \
     src/c/getos.c \
     src/c/mode_exec.c \
     src/c/transposeMatrix.c \

@@ -20,7 +20,6 @@
 #include "sci_malloc.h"
 #include "configvariable_interface.h"
 #include "fromc.h"
-#include "LaunchScilabSignal.h"
 #include "isdir.h"
 #include "sci_path.h"
 #include "scilabDefaults.h"
@@ -165,7 +164,6 @@ BOOL TerminateScilab(char *ScilabQuit)
         pSEI->pstFile = ScilabQuit;
         StopScilabEngine(pSEI);
 
-        ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
 
         /* restore default mode */

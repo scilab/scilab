@@ -125,7 +125,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
                     FREE(pstCommand);
                     return TCL_ERROR;
                 }
-                seqf[ncomm] = GetCommand (comm[ncomm]);
+                //                seqf[ncomm] = GetCommand (comm[ncomm]);
             }
             if (ismenu())
             {

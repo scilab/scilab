@@ -27,7 +27,7 @@ void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const w
 **
 ** Parse the given command and create the AST.
 */
-void parseCommandTask(Parser *parser, bool timed, wchar_t *command);
+void parseCommandTask(Parser *parser, bool timed, char *command);
 
 /*
 ** Dump AST
@@ -48,7 +48,7 @@ void printAstTask(ast::Exp *tree, bool timed);
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose);
+void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose, bool _isPrioritaryThread);
 
 /*
 ** Exec Tree with original visitor ( without template )

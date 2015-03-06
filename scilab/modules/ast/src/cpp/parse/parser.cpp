@@ -106,7 +106,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     fclose(yyin);
 }
 
-void Parser::parse(wchar_t *command)
+void Parser::parse(char *command)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -120,8 +120,7 @@ void Parser::parse(wchar_t *command)
         ParserSingleInstance::disableParseTrace();
     }
 
-    char* pstCommand = wide_string_to_UTF8(command);
-    ParserSingleInstance::parse(pstCommand);
+    ParserSingleInstance::parse(command);
     this->setExitStatus(ParserSingleInstance::getExitStatus());
     this->setControlStatus(ParserSingleInstance::getControlStatus());
     if (getExitStatus() == Parser::Succeded)
@@ -139,8 +138,14 @@ void Parser::parse(wchar_t *command)
         scan_throw(YYEOF);
     }
 
-    FREE(pstCommand);
     // FIXME : UNLOCK
+}
+
+void Parser::parse(wchar_t *command)
+{
+    char* pstCommand = wide_string_to_UTF8(command);
+    parse(pstCommand);
+    FREE(pstCommand);
 }
 
 /** \brief parse the given file command */

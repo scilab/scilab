@@ -37,11 +37,15 @@
 #include "macrofile.hxx"
 #include "macro.hxx"
 
+#include "runner.hxx"
+
 extern "C"
 {
 #include "sciprint.h"
 #include "os_string.h"
 #include "elem_common.h"
+
+#include "Thread_Wrapper.h"
 }
 
 namespace ast
@@ -762,8 +766,16 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
     exps_t::const_iterator itExp;
     exps_t exps = e.getExps();
 
+    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+
     for (itExp = exps.begin (); itExp != exps.end (); ++itExp)
     {
+        if (pThreadMe && pThreadMe->getInterrupt())
+        {
+            __Signal(getAstPendingSignal());
+            pThreadMe->suspend();
+        }
+
         if (e.isBreakable())
         {
             (*itExp)->resetBreak();

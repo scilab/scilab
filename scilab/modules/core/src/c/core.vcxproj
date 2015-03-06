@@ -291,7 +291,6 @@ cd ..
     <ClCompile Include="InitializePreferences.c" />
     <ClCompile Include="isanan.c" />
     <ClCompile Include="islittleendian.c" />
-    <ClCompile Include="LaunchScilabSignal.c" />
     <ClCompile Include="loadversion.c" />
     <ClCompile Include="md5.c" />
     <ClCompile Include="mode_exec.c" />
@@ -369,7 +368,6 @@ cd ..
     <ClInclude Include="..\..\includes\InitScilab.h" />
     <ClInclude Include="..\..\includes\isanan.h" />
     <ClInclude Include="..\..\includes\islittleendian.h" />
-    <ClInclude Include="..\..\includes\LaunchScilabSignal.h" />
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
     <ClInclude Include="..\..\includes\sci_malloc.h" />

@@ -4,3 +4,4 @@ LIBRARY    core.dll
 EXPORTS
 MyHeapFree
 MyHeapAlloc
+getAstPendingSignal

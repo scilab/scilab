@@ -30,7 +30,7 @@ int ismenu(void);
  * @param command the command
  * @return <ReturnValue>
  */
-int StoreCommand (wchar_t *command);
+int StoreCommand (char *command);
 
 /**
  * try to execute a command or add it to the end of command queue
@@ -39,7 +39,8 @@ int StoreCommand (wchar_t *command);
  * @param flag a internal execution flag for sequential execution
  * @return <ReturnValue>
  */
-int StoreCommandWithFlag (wchar_t *command, int flag);
+int StoreConsoleCommandWithFlag (char *command, int flag);
+int StoreCommandWithFlag (char *command, int flag);
 
 /**
  * @TODO add comment
@@ -47,14 +48,12 @@ int StoreCommandWithFlag (wchar_t *command, int flag);
  * @param str
  * @return <ReturnValue>
  */
-int GetCommand (char *str);
+int GetCommand (char** str, int* piConsoleCmd);
 
 /**
 * try to execute a command or add it to the _BEGINNING_ of command queue
-* flag = 0 : the command is not shown in scilab window
-* flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
 */
-int StorePrioritaryCommandWithFlag (wchar_t *command, int flag);
+int StorePrioritaryCommandWithFlag (char *command, int flag);
 
 /**
 *

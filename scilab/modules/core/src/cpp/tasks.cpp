@@ -61,7 +61,7 @@ void parseFileTask(Parser *parser, bool timed, const wchar_t* file_name, const w
 **
 ** Parse the given command and create the AST.
 */
-void parseCommandTask(Parser *parser, bool timed, wchar_t *command)
+void parseCommandTask(Parser *parser, bool timed, char *command)
 {
 #ifdef DEBUG
     std::cerr << "*** Processing [" <<  command << "]..." << std::endl;
@@ -134,7 +134,7 @@ void printAstTask(ast::Exp *tree, bool timed)
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose)
+void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose, bool isPriorityThread)
 {
     if (tree == NULL)
     {
@@ -188,7 +188,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         exec = new ast::ExecVisitor();
     }
 
-    Runner::execAndWait(newTree, exec);
+    Runner::execAndWait(newTree, exec, isPriorityThread);
     //DO NOT DELETE tree or newTree, they was deleted by Runner or previously;
 
     if (timed)
@@ -236,7 +236,7 @@ void execScilabStartTask(bool _bSerialize)
         return;
     }
 
-    execAstTask(parse.getTree(), _bSerialize, false, false, false);
+    execAstTask(parse.getTree(), _bSerialize, false, false, false, true);
 }
 
 /*
@@ -258,7 +258,7 @@ void execScilabQuitTask(bool _bSerialize)
         return;
     }
 
-    execAstTask(parse.getTree(), _bSerialize, false, false, false);
+    execAstTask(parse.getTree(), _bSerialize, false, false, false, true);
 }
 
 

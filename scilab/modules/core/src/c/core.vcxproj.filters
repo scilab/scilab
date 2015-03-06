@@ -113,9 +113,6 @@
     <ClCompile Include="islittleendian.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LaunchScilabSignal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="loadversion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -343,9 +340,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\islittleendian.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\LaunchScilabSignal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\loadversion.h">

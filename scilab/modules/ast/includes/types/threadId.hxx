@@ -68,6 +68,13 @@ public :
     void                    suspend();
     void                    resume();
     void                    abort();
+
+    void                    setInterrupt(bool _doInterrupt);
+    bool                    getInterrupt();
+
+    void                    setInterruptible(bool _isInterruptible);
+    bool                    isInterruptible();
+
 private :
     std::wstring            StatusToString(Status _status);
 
@@ -87,7 +94,8 @@ private :
     __threadKey             m_threadKey;
     __threadLock            m_threadLock;
     Status                  m_threadStatus;
-
+    bool                    m_doInterrupt;
+    bool                    m_isInterruptible;
 };
 }
 #endif /* !__THREADID_HH__ */

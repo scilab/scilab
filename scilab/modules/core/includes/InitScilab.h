@@ -35,6 +35,9 @@ typedef struct
     int iSerialize;
     int iKeepConsole;
     int iNoBanner;
+    void* pExpTree;
+    int iMultiLine;
+    int isInterruptible;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

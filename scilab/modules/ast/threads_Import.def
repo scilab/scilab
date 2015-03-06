@@ -6,3 +6,4 @@ __InitLock
 __SuspendThread
 __ResumeThread
 __GetCurrentThreadKey
+__Signal
