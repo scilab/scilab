@@ -30,7 +30,8 @@ exec(TMPDIR+'/myscript');
 exec(TMPDIR+'/myscript','errcatch');
 exec(TMPDIR+'/myscript',-1);
 exec(TMPDIR+'/myscript','errcatch',-1);
-exec(TMPDIR+'/myscript',-1,'errcatch');
+ierr = execstr("exec(TMPDIR+''/myscript'',-1,''blabla'');","errcatch");
+if ierr <> 999 then bugmes();quit;end
 // =============================================================================
 ierr = execstr("exec(TMPDIR+''/myscript'',0,''blabla'');","errcatch");
 if ierr <> 999 then bugmes();quit;end
