@@ -34,6 +34,7 @@ src/cpp/view_scilab/ParamsAdapter.cpp \
 src/cpp/view_scilab/ScsAdapter.cpp \
 src/cpp/view_scilab/StateAdapter.cpp \
 src/cpp/view_scilab/TextAdapter.cpp \
+src/cpp/sciblk2.cpp \
 src/cpp/sciblk4.cpp \
 src/cpp/createblklist.cpp \
 src/cpp/extractblklist.cpp
@@ -47,7 +48,6 @@ src/c/scicos_print.c \
 src/c/import.c \
 src/c/scicos.c \
 src/c/scicos_free.c \
-src/c/sciblk2.c \
 src/c/ezxml.c \
 src/c/var2sci.c \
 src/c/MlistGetFieldNumber.c \

@@ -280,6 +280,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\cpp\createblklist.cpp" />
     <ClCompile Include="..\cpp\extractblklist.cpp" />
+    <ClCompile Include="..\cpp\sciblk2.cpp" />
     <ClCompile Include="..\cpp\sciblk4.cpp" />
     <ClCompile Include="..\cpp\copyvarfromtlist.cpp" />
     <ClCompile Include="..\cpp\var2vec.cpp" />
@@ -315,7 +316,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_sctree.c" />
-    <ClCompile Include="sciblk2.c" />
     <ClCompile Include="scicos.c" />
     <ClCompile Include="scicos_free.c" />
     <ClCompile Include="scicos_malloc.c" />
