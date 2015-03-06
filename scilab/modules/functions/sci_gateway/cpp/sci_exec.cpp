@@ -194,14 +194,35 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
+                if (file)
+                {
+                    delete pExp;
+                    mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
                 return Function::Error;
             }
 
             if (in.size() > 2)
             {
+
                 if (in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
                 {
+                    if (file)
+                    {
+                        delete pExp;
+                        mclose(iID);
+                        file->close();
+                        delete file;
+                        FREE(pstFile);
+                        FREE(pwstFile);
+                    }
+
                     //mode
                     Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
                     return Function::Error;
@@ -213,12 +234,37 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         else if (in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
         {
+            if (in.size() > 2)
+            {
+                if (file)
+                {
+                    delete pExp;
+                    mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
+                }
+
+                Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
+                return Function::Error;
+            }
             //mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
             bPromptMode = true;
         }
         else
         {
+            if (file)
+            {
+                delete pExp;
+                mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
+            }
+
             //not managed
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
