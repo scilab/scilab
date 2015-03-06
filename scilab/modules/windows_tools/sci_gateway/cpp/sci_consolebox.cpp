@@ -24,21 +24,19 @@ extern "C"
 #include "configvariable_interface.h"
 }
 
-using namespace types;
-
-Function::ReturnValue sci_consolebox(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_consolebox(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() < 0 || in.size() > 1)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d or %d expected.\n"), "consolebox", 0, 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (getScilabMode() != SCILAB_STD)
     {
         sciprint(_("Only on Windows Mode, not in Console Mode.\n"));
-        out.push_back(new String(L"off"));
-        return Function::OK;
+        out.push_back(new types::String(L"off"));
+        return types::Function::OK;
     }
 
 
@@ -47,28 +45,28 @@ Function::ReturnValue sci_consolebox(typed_list &in, int _iRetCount, typed_list 
     {
         if (GetConsoleState())
         {
-            out.push_back(new String(L"on"));
+            out.push_back(new types::String(L"on"));
         }
         else
         {
-            out.push_back(new String(L"off"));
+            out.push_back(new types::String(L"off"));
         }
-        return Function::OK;
+        return types::Function::OK;
     }
 
-    InternalType* pIT1 = in[0];
+    types::InternalType* pIT1 = in[0];
 
     if (pIT1->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), "consolebox", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    String* pS1 = pIT1->getAs<String>();
+    types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
         Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "consolebox", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     std::wstring wcsAction(pS1->get(0));
@@ -90,18 +88,18 @@ Function::ReturnValue sci_consolebox(typed_list &in, int _iRetCount, typed_list 
     else
     {
         Scierror(999, ("%s: Wrong input argument: '%s', '%s' or '%s' expected.\n"), "consolebox", "on", "off", "toggle");
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (GetConsoleState())
     {
-        out.push_back(new String(L"on"));
+        out.push_back(new types::String(L"on"));
     }
     else
     {
-        out.push_back(new String(L"off"));
+        out.push_back(new types::String(L"off"));
     }
 
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

@@ -21,30 +21,26 @@
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"shlwapi.lib") /* AssocQueryString */
 /*--------------------------------------------------------------------------*/
-char *FindFileAssociation (char *ptrFindStr, char *Extra)
+wchar_t* FindFileAssociation (const wchar_t* ptrFindStr, const wchar_t* Extra)
 {
-    char *ptrResult = NULL ;
-
-    if ( ptrFindStr )
+    if (ptrFindStr)
     {
-        wchar_t *wcptrFindStr = to_wide_string(ptrFindStr);
-        wchar_t *wcExtra = to_wide_string(Extra);
         wchar_t szDefault[PATH_MAX + FILENAME_MAX];
         DWORD ccDefault = PATH_MAX + FILENAME_MAX;
 
-        if (wcptrFindStr)
+        if (ptrFindStr)
         {
-            HRESULT rc = AssocQueryStringW (0, ASSOCSTR_EXECUTABLE, wcptrFindStr, wcExtra, szDefault, &ccDefault);
+            HRESULT rc = AssocQueryStringW(0, ASSOCSTR_EXECUTABLE, ptrFindStr, Extra, szDefault, &ccDefault);
             if (ccDefault)
             {
                 if (rc == S_OK)
                 {
-                    ptrResult = wide_string_to_UTF8(szDefault);
+                    return os_wcsdup(szDefault);
                 }
             }
         }
     }
-    return ptrResult;
+    return NULL;
 }
 /*--------------------------------------------------------------------------*/
 

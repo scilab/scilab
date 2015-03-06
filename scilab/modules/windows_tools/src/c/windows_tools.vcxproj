@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -121,7 +121,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -162,7 +162,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -210,7 +210,7 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../cpp;../../includes;../../../core/includes;../../../output_stream/includes;../../../localization/includes;../../../fileio/includes;../../../../libs/intl;../../../../libs/GetWindowsVersion;../../../call_scilab/src/c;../../../call_scilab/includes;./scilab_windows;../../../api_scilab/includes;../../../string/includes;../../../functions_manager/includes;../../../dynamic_link/includes;../../../../libs/Eigen/includes;../../../ast/includes/system_env;../../../ast/includes/symbol;../../../ast/includes/operations;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;WINDOWS_TOOLS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -251,22 +251,22 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_consolebox.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_createGUID.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_dos.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_findfileassociation.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_getsystemmetrics.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_istssession.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_mcisendstring.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_win64.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_winopen.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_winqueryreg.cpp" />
+    <ClCompile Include="..\cpp\registry.cpp" />
     <ClCompile Include="createGUID.c" />
     <ClCompile Include="DllmainWindows_Tools.c" />
     <ClCompile Include="FindFileAssociation.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_windows_tools.c" />
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
-    <ClCompile Include="registry.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_createGUID.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_dos.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_findfileassociation.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_getsystemmetrics.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_istssession.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_mcisendstring.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_win64.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_winopen.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_winqueryreg.c" />
     <ClCompile Include="TerminateWindows_tools.c" />
     <ClCompile Include="WinConsole.c" />
     <ClCompile Include="..\cpp\windows_tools_gw.cpp" />
@@ -323,10 +323,10 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="..\..\includes\MutexClosingScilab.h" />
     <ClInclude Include="..\..\includes\TerminateWindows_tools.h" />
     <ClInclude Include="..\..\includes\windows_tools_gw.hxx" />
+    <ClInclude Include="..\cpp\registry.hxx" />
     <ClInclude Include="createGUID.h" />
     <ClInclude Include="FindFileAssociation.h" />
     <ClInclude Include="httpdownloadfile.h" />
-    <ClInclude Include="registry.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="WinConsole.h" />
     <ClInclude Include="winopen.h" />

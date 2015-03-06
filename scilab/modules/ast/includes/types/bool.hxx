@@ -29,6 +29,17 @@ namespace types
 class EXTERN_AST Bool : public ArrayOf<int>
 {
 public :
+    static Bool* True()
+    {
+        return new Bool(1);
+    }
+
+    static Bool* False()
+    {
+        return new Bool(0);
+    }
+
+public:
     Bool(int _bReal);
     Bool(int _iRows, int _iCols);
     Bool(int _iDims, int* _piDims);

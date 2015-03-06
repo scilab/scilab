@@ -14,32 +14,32 @@
 #ifndef __REGISTY_H__
 #define __REGISTY_H__
 
-#include <Windows.h>
-#include "BOOL.h" /* BOOL */
+#include <string>
+#include <vector>
 
 /**
 * WindowsQueryRegistry
 * Query a value in a registry key
-* @param[in] ParamIn1 (HKEY)
-* @param[in] ParamIn2 (SUBKEY)
-* @param[in] ParamIn3 (value name)
-* @param[out] ParamOut1 (value REG_SZ format)
-* @param[out] ParamOut2 (value int)
-* @param[out] OuputIsREG_SZ
-* @return TRUE or FALSE
+* @param[in] param1 (HKEY)
+* @param[in] param2 (SUBKEY)
+* @param[in] param3 (value name)
+* @param[out] out1 (value REG_SZ format)
+* @param[out] out2 (value int)
+* @param[out] isStringKey
+* @return true or false
 */
-BOOL WindowsQueryRegistry(char *ParamIn1, char *ParamIn2, char *ParamIn3, char *ParamOut1, int *ParamOut2, BOOL *OuputIsREG_SZ);
+bool WindowsQueryRegistry(const std::wstring& param1, const std::wstring& param2, const std::wstring& param3, std::wstring& out1, int& out2, bool& isStringKey);
 
 /**
 * WindowsQueryRegistryValuesList
 * Query a list of values in a registry key
-* @param[in] ParamIn1 (HKEY)
-* @param[in] ParamIn2 (SUBKEY)
+* @param[in] param1 (HKEY)
+* @param[in] param2 (SUBKEY)
 * @param[in] dimMax
 * @param[out] ListKeys (values)
-* @return TRUE or FALSE
+* @return true or false
 */
-BOOL WindowsQueryRegistryValuesList(char *ParamIn1, char *ParamIn2, int dimMax, char **ListKeys);
+bool WindowsQueryRegistryValuesList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys);
 
 /**
 * WindowsQueryRegistryKeysList
@@ -48,9 +48,9 @@ BOOL WindowsQueryRegistryValuesList(char *ParamIn1, char *ParamIn2, int dimMax, 
 * @param[in] ParamIn2 (SUBKEY)
 * @param[in] dimMax
 * @param[out] ListKeys (values)
-* @return TRUE or FALSE
+* @return true or false
 */
-BOOL WindowsQueryRegistryKeysList(char *ParamIn1, char *ParamIn2, int dimMax, char **ListKeys);
+bool WindowsQueryRegistryKeysList(const std::wstring& param1, const std::wstring& param2, int dimMax, std::vector<std::wstring>& ListKeys);
 
 
 /**
@@ -59,9 +59,9 @@ BOOL WindowsQueryRegistryKeysList(char *ParamIn1, char *ParamIn2, int dimMax, ch
 * @param[in] ParamIn1 (HKEY)
 * @param[in] ParamIn2 (SUBKEY)
 * @param[out] Number
-* @return TRUE or FALSE
+* @return true or false
 */
-BOOL WindowsQueryRegistryNumberOfValuesInList(char *ParamIn1, char *ParamIn2, int *Number);
+bool WindowsQueryRegistryNumberOfValuesInList(const std::wstring& param1, const std::wstring& param2, int& number);
 
 /**
 * WindowsQueryRegistryNumberOfKeysInList
@@ -69,9 +69,9 @@ BOOL WindowsQueryRegistryNumberOfValuesInList(char *ParamIn1, char *ParamIn2, in
 * @param[in] ParamIn1 (HKEY)
 * @param[in] ParamIn2 (SUBKEY)
 * @param[out] Number
-* @return TRUE or FALSE
+* @return true or false
 */
-BOOL WindowsQueryRegistryNumberOfKeysInList(char *ParamIn1, char *ParamIn2, int *Number);
+bool WindowsQueryRegistryNumberOfKeysInList(const std::wstring& param1, const std::wstring& param2, int &Number);
 
 /**
 * GetHkeyrootFromString
@@ -79,7 +79,7 @@ BOOL WindowsQueryRegistryNumberOfKeysInList(char *ParamIn1, char *ParamIn2, int 
 * @param[in] string example "HKEY_CLASSES_ROOT"
 * @return HKEY
 */
-HKEY GetHkeyrootFromString(char *string);
+HKEY GetHkeyrootFromString(const std::wstring& param);
 
 
 #endif /* __REGISTY_H__ */

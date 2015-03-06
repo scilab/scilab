@@ -35,5 +35,12 @@ public :
 };
 
 CPP_GATEWAY_PROTOTYPE(sci_consolebox);
-
+CPP_GATEWAY_PROTOTYPE(sci_createGUID);
+CPP_GATEWAY_PROTOTYPE(sci_win64);
+CPP_GATEWAY_PROTOTYPE(sci_winqueryreg);
+CPP_GATEWAY_PROTOTYPE(sci_winopen);
+CPP_GATEWAY_PROTOTYPE(sci_findfileassociation);
+CPP_GATEWAY_PROTOTYPE(sci_mcisendstring);
+CPP_GATEWAY_PROTOTYPE(sci_istssession);
+CPP_GATEWAY_PROTOTYPE(sci_getsystemmetrics);
 #endif /* !__WINDOWS_TOOLS_GW_HXX__ */

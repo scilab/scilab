@@ -12,6 +12,9 @@
 
 /*--------------------------------------------------------------------------*/
 #include <stdio.h>
+
+extern "C"
+{
 #include "gw_windows_tools.h"
 #include "PATH_MAX.h"
 #include "sci_malloc.h" /* MALLOC */
@@ -25,6 +28,7 @@
 #include "getshortpathname.h"
 #include "api_scilab.h"
 #include "charEncoding.h"
+}
 /*--------------------------------------------------------------------------*/
 #define BUFSIZE 4096
 /*--------------------------------------------------------------------------*/
