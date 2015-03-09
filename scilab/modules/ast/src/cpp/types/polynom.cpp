@@ -30,7 +30,6 @@ Polynom::Polynom()
 
 Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols)
 {
-
     int piDims[2]   = {_iRows, _iCols};
     createPoly(_szVarName, 2, piDims, NULL);
 }
@@ -83,18 +82,6 @@ void Polynom::createPoly(std::wstring _szVarName, int _iDims, int* _piDims, cons
 
 bool Polynom::set(int _iPos, SinglePoly* _pS)
 {
-    Polynom *pIn = new Polynom();
-    pIn->set(&_pS);
-    if ((getMaxRank() != 0) && (m_szVarName.c_str() != pIn->getVariableName().c_str()))
-    {
-        char szError[512];
-        os_sprintf(szError, _("Input arguments should have the same formal variable name.\n"));
-        wchar_t* pwstError = to_wide_string(szError);
-        std::wstring wstError(pwstError);
-        FREE(pwstError);
-
-        throw ast::ScilabError(wstError, 999, *new Location());
-    }
     bool bComplex = isComplex();
     if (m_pRealData == NULL || _iPos >= m_iSize)
     {
