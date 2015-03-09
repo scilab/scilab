@@ -45,16 +45,8 @@ public :
         }
 
         delete &cases;
-
-        if (&defaultCase != NULL)
-        {
-            defaultCase.setParent(this);
-            _exps.push_back(&defaultCase);
-        }
-        else
-        {
-            _hasDefault = false;
-        }
+        defaultCase.setParent(this);
+        _exps.push_back(&defaultCase);
     }
 
     SelectExp(const Location& location,
@@ -108,6 +100,11 @@ public :
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return Exp::equal(e) && hasDefault() == static_cast<const SelectExp &>(e).hasDefault();
+    }
+
 public :
     Exp* getSelect() const
     {
@@ -159,7 +156,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return SELECTEXP;
     }

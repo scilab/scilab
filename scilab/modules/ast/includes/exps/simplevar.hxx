@@ -52,6 +52,11 @@ public:
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == SIMPLEVAR && _name == static_cast<const SimpleVar &>(e)._name;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -95,7 +100,7 @@ public:
     }
 
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return SIMPLEVAR;
     }

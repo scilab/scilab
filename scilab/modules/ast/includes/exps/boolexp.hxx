@@ -52,6 +52,11 @@ public:
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == BOOLEXP && _value == static_cast<const BoolExp &>(e)._value;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -77,7 +82,7 @@ public:
         return _value;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return BOOLEXP;
     }

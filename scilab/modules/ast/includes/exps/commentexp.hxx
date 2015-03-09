@@ -45,6 +45,11 @@ public:
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == COMMENTEXP;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -71,7 +76,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return COMMENTEXP;
     }

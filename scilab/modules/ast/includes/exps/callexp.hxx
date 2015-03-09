@@ -129,7 +129,7 @@ public:
         _exps.push_back(exp);
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return CALLEXP;
     }

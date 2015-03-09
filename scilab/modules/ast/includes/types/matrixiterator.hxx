@@ -209,44 +209,44 @@ template<> bool set(types::SparseBool::BoolSparse_t& s, int r, int c, bool v)
 
 
 
-template<typename S> int rows(S SPARSE_CONST&s)
+template<typename S> inline int rows(S SPARSE_CONST&s)
 {
     return s.rows();
 }
-template<typename S> int cols(S SPARSE_CONST&s)
+template<typename S> inline int cols(S SPARSE_CONST&s)
 {
     return s.cols();
 }
 
-template<> int rows(types::Double SPARSE_CONST&d)
+template<> inline int rows(types::Double SPARSE_CONST&d)
 {
     return d.getRows();
 }
-template<> int cols(types::Double SPARSE_CONST&d)
+template<> inline int cols(types::Double SPARSE_CONST&d)
 {
     return d.getCols();
 }
-template<> int rows(types::Sparse SPARSE_CONST&s)
+template<> inline int rows(types::Sparse SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::Sparse SPARSE_CONST&s)
+template<> inline int cols(types::Sparse SPARSE_CONST&s)
 {
     return s.getCols();
 }
-template<> int rows(types::Bool SPARSE_CONST&s)
+template<> inline int rows(types::Bool SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::Bool SPARSE_CONST&s)
+template<> inline int cols(types::Bool SPARSE_CONST&s)
 {
     return s.getCols();
 }
-template<> int rows(types::SparseBool SPARSE_CONST&s)
+template<> inline int rows(types::SparseBool SPARSE_CONST&s)
 {
     return s.getRows();
 }
-template<> int cols(types::SparseBool SPARSE_CONST&s)
+template<> inline int cols(types::SparseBool SPARSE_CONST&s)
 {
     return s.getCols();
 }

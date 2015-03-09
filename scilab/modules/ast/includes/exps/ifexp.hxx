@@ -128,7 +128,7 @@ public:
         return _hasElse;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return IFEXP;
     }

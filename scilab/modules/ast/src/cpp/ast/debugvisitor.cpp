@@ -427,7 +427,14 @@ void DebugVisitor::visit(const OptimizedExp &e)
 
 void DebugVisitor::visit(const DAXPYExp &e)
 {
-    e.getOriginal()->accept(*this);
+    DEBUG_START_NODE(e);
+    DEBUG(L"Exec DAXPYExp", e);
+    e.getA().accept (*this);
+    e.getX().accept (*this);
+    e.getY().accept (*this);
+    DEBUG_END_NODE();
+
+    //e.getOriginal()->accept(*this);
 }
 
 }

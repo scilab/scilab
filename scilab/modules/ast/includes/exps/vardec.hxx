@@ -71,6 +71,12 @@ public:
         cloned->setVerbose(isVerbose());
         return cloned;
     }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return Exp::equal(e) && _name == static_cast<const VarDec &>(e)._name;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -137,7 +143,7 @@ public:
         list_info = _list_info;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return VARDEC;
     }

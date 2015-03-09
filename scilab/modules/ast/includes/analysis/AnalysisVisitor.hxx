@@ -384,13 +384,6 @@ private:
         switch (e.getOper())
         {
             case ast::OpExp::plus :
-            {
-                if (replaceDAXPY(e))
-                {
-                    return;
-                }
-                //continue in generic case
-            }
             case ast::OpExp::minus :
             case ast::OpExp::dottimes :
             {
@@ -429,6 +422,38 @@ private:
         {
             ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
             symbol::Symbol sym = var.getSymbol();
+
+            if (e.getRightExp().isOpExp())
+            {
+                ast::OpExp * oe = e.getRightExp().getAs<ast::OpExp>();
+                if (oe->getOper() == ast::OpExp::plus)
+                {
+                    ast::Exp& le = oe->getLeft();
+                    ast::Exp& re = oe->getRight();
+                    if (le.isSimpleVar() && re.isOpExp())
+                    {
+                        ast::OpExp * _oe = re.getAs<ast::OpExp>();
+                        if (static_cast<ast::SimpleVar &>(le).getSymbol() == sym && _oe->getOper() == ast::OpExp::times)
+                        {
+                            ast::Exp* exp = new ast::DAXPYExp(e.getLocation(), _oe->getLeft(), _oe->getRight(), var);
+                            exp->setVerbose(e.isVerbose());
+                            exp->getDecorator().res = e.getDecorator().res;
+                            e.replace(exp);
+                        }
+                    }
+                    else if (re.isSimpleVar() && le.isOpExp())
+                    {
+                        ast::OpExp * _oe = le.getAs<ast::OpExp>();
+                        if (static_cast<ast::SimpleVar &>(re).getSymbol() == sym && _oe->getOper() == ast::OpExp::times)
+                        {
+                            ast::Exp* exp = new ast::DAXPYExp(e.getLocation(), _oe->getLeft(), _oe->getRight(), var);
+                            exp->setVerbose(e.isVerbose());
+                            exp->getDecorator().res = e.getDecorator().res;
+                            e.replace(exp);
+                        }
+                    }
+                }
+            }
 
             e.getRightExp().accept(*this);
             var.getDecorator().res = getResult();
@@ -676,14 +701,14 @@ private:
             if (le.isOpExp() && le.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
             {
                 ast::OpExp* dt = le.getAs<ast::OpExp>();
-                y = &le;
+                y = &re;
                 a = &dt->getLeft();
                 x = &dt->getRight();
             }
             else if (re.isOpExp() && re.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
             {
                 ast::OpExp* rt = re.getAs<ast::OpExp>();
-                y = &re;
+                y = &le;
                 a = &rt->getLeft();
                 x = &rt->getRight();
             }

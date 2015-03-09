@@ -85,6 +85,11 @@ public:
         return *_exps[2];
     }
 
+    virtual ExpType getType() const
+    {
+        return DAXPYEXP;
+    }
+
 };
 } // namespace ast
 #endif /* !AST_DAXPYEXP_HXX */

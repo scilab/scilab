@@ -77,6 +77,11 @@ public:
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return Exp::equal(e) && _name == static_cast<const FunctionDec &>(e)._name;
+    }
+
     // \name Visitors entry point.
 public:
     // \brief Accept a const visitor
@@ -143,7 +148,7 @@ public:
         return _stack;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return FUNCTIONDEC;
     }

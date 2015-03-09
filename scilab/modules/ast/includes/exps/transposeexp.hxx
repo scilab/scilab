@@ -99,7 +99,7 @@ public:
         return _conjugate;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return TRANSPOSEEXP;
     }

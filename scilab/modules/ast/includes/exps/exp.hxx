@@ -72,6 +72,32 @@ public:
 
     virtual Exp* clone() = 0;
 
+    virtual bool equal(const Exp & e) const
+    {
+        if (getType() == e.getType() && _exps.size() == e._exps.size())
+        {
+            for (exps_t::const_iterator i = _exps.begin(), j = e._exps.begin(), _e = _exps.end(); i != _e; ++i, ++j)
+            {
+                if (!(*i)->equal(**j))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    inline bool operator==(const Exp & R) const
+    {
+        return equal(R);
+    }
+
+    inline bool operator!=(const Exp & R) const
+    {
+        return !equal(R);
+    }
+
 public:
     /** \brief Return if an expression should be displayed or not. */
     inline void mute(void)
@@ -220,10 +246,11 @@ public:
         VARDEC,
         FUNCTIONDEC,
         LISTEXP,
-        OPTIMIZEDEXP
+        OPTIMIZEDEXP,
+        DAXPYEXP
     };
 
-    virtual ExpType getType() = 0;
+    virtual ExpType getType() const = 0;
 
     template <class T>
     inline T* getAs(void)

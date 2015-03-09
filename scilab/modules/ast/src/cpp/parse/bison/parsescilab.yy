@@ -1488,9 +1488,28 @@ ELSEIF condition then thenBody						{
 /* Select Case Then End control block */
 selectControl :
 select selectable selectConditionBreak casesControl END									{ $$ = new ast::SelectExp(@$, *$2, *$4); }
-| select selectable selectConditionBreak casesControl defaultCase elseBody END			{ $$ = new ast::SelectExp(@$, *$2, *$4, *$6); }
+| select selectable selectConditionBreak casesControl defaultCase elseBody END			{
+                                        if($6 == NULL)
+                                        {
+                                            $$ = new ast::SelectExp(@$, *$2, *$4);
+                                        }
+                                        else
+                                        {
+                                            $$ = new ast::SelectExp(@$, *$2, *$4, *$6);
+                                        }
+                                    }
 | select selectable COMMENT selectConditionBreak casesControl END						{ $$ = new ast::SelectExp(@$, *$2, *$5); delete $3;}
-| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END	{ $$ = new ast::SelectExp(@$, *$2, *$5, *$7); delete $3;}
+| select selectable COMMENT selectConditionBreak casesControl defaultCase elseBody END	{
+                                        if($7 == NULL)
+                                        {
+                                            $$ = new ast::SelectExp(@$, *$2, *$5);
+                                        }
+                                        else
+                                        {
+                                            $$ = new ast::SelectExp(@$, *$2, *$5, *$7);
+                                        }
+                                        delete $3;
+                                    }
 ;
 
 /*

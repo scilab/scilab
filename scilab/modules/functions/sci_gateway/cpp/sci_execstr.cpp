@@ -13,6 +13,7 @@
 #include <string.h>
 #include "parser.hxx"
 #include "functions_gw.hxx"
+//#include "debugvisitor.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "printvisitor.hxx"
@@ -197,6 +198,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     {
         analysis::AnalysisVisitor analysis;
         pExp->accept(analysis);
+        //ast::DebugVisitor debugMe;
+        //pExp->accept(debugMe);
     }
 
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();

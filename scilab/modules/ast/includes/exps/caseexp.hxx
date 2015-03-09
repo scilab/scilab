@@ -68,7 +68,7 @@ public :
         return _exps[1];
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return CASEEXP;
     }

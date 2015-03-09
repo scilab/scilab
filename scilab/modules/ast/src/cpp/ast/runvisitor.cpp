@@ -1387,10 +1387,10 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
         {
             //a is a and it must be scalar
             ad = pIT->getAs<Double>();
-            if (ad->isScalar() && ad->isComplex() == false)
+            if (/*ad->isScalar() && */ad->isComplex() == false)
             {
-                ar = 1;
-                ac = 1;
+                ar = ad->getRows(); //1;
+                ac = ad->getCols();//1;
             }
             else
             {
@@ -1421,10 +1421,19 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
             //go !
             int one = 1;
             int size = xc * xr;
-            Double* od = (Double*)yd->clone();
-            C2F(daxpy)(&size, ad->get(), xd->get(), &one, od->get(), &one);
-            setResult(od);
-            yd->killMe();
+            //Double* od = (Double*)yd->clone();
+            C2F(daxpy)(&size, ad->get(), xd->get(), &one, yd->get(), &one);
+            //setResult(od);
+            //yd->killMe();
+            xd->killMe();
+            ad->killMe();
+            return;
+        }
+        else if (ac == xr && ar == yr && xc == yc)
+        {
+            char n = 'n';
+            double one = 1;
+            C2F(dgemm)(&n, &n, &ar, &xc, &ac, &one, ad->get(), &ar, xd->get(), &ac, &one, yd->get(), &ar);
             xd->killMe();
             ad->killMe();
             return;
