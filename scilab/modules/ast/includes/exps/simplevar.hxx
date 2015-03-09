@@ -77,7 +77,12 @@ public:
     ** \{ */
 public:
     /** \brief Return the Variable's name. */
-    symbol::Symbol getSymbol () const
+    const symbol::Symbol & getSymbol() const
+    {
+        return _name;
+    }
+
+    symbol::Symbol & getSymbol()
     {
         return _name;
     }

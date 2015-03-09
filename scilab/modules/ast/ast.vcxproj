@@ -262,6 +262,14 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\Checkers.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
     <ClInclude Include="includes\analysis\ForList.hxx" />
+    <ClInclude Include="includes\analysis\gvn\GVN.hxx" />
+    <ClInclude Include="includes\analysis\gvn\MultivariateMonomial.hxx" />
+    <ClInclude Include="includes\analysis\gvn\MultivariatePolynomial.hxx" />
+    <ClInclude Include="includes\analysis\gvn\OpValue.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicDimension.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicRange.hxx" />
+    <ClInclude Include="includes\analysis\gvn\TestGVNVisitor.hxx" />
+    <ClInclude Include="includes\analysis\gvn\VarExp.hxx" />
     <ClInclude Include="includes\analysis\Result.hxx" />
     <ClInclude Include="includes\analysis\SymInfo.hxx" />
     <ClInclude Include="includes\analysis\TIType.hxx" />

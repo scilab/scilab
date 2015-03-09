@@ -84,15 +84,6 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const exps_t& getExps() const
-    {
-        return _exps;
-    }
-
-    exps_t& getExps()
-    {
-        return _exps;
-    }
 
     void clearExps()
     {

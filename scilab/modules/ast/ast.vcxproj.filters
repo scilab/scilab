@@ -57,6 +57,9 @@
     <Filter Include="Header Files\analysis">
       <UniqueIdentifier>{86c0db79-0efd-47e5-b679-e5d4faef469b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\analysis\gvn">
+      <UniqueIdentifier>{f05ded2d-aeba-4235-9374-99bcb9247786}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -630,6 +633,30 @@
     </ClInclude>
     <ClInclude Include="includes\ast\treevisitor.hxx">
       <Filter>Header Files\ast</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\GVN.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\MultivariateMonomial.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\MultivariatePolynomial.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\OpValue.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicDimension.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\SymbolicRange.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\TestGVNVisitor.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\VarExp.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
