@@ -100,7 +100,8 @@ src/cpp/types/tlist.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
-src/cpp/types/void.cpp
+src/cpp/types/void.cpp \
+src/cpp/analysis/InferenceConstraints.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp

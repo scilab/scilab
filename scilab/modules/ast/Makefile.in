@@ -223,6 +223,7 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
+	src/cpp/analysis/InferenceConstraints.cpp \
 	src/cpp/types/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
@@ -314,7 +315,9 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/types/libsciast_la-tostring_common.lo \
 	src/cpp/types/libsciast_la-types.lo \
 	src/cpp/types/libsciast_la-types_tools.lo \
-	src/cpp/types/libsciast_la-void.lo $(am__objects_1)
+	src/cpp/types/libsciast_la-void.lo \
+	src/cpp/analysis/libsciast_la-InferenceConstraints.lo \
+	$(am__objects_1)
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -749,7 +752,7 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
-	$(am__append_1)
+	src/cpp/analysis/InferenceConstraints.cpp $(am__append_1)
 libsciast_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ast \
 	-I$(srcdir)/includes/exps \
@@ -1400,6 +1403,15 @@ src/cpp/types/libsciast_la-types_tools.lo:  \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-void.lo: src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/analysis
+	@: > src/cpp/analysis/$(am__dirstamp)
+src/cpp/analysis/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) src/cpp/analysis/$(DEPDIR)
+	@: > src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-InferenceConstraints.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-inspector.lo:  \
 	src/cpp/types/$(am__dirstamp) \
 	src/cpp/types/$(DEPDIR)/$(am__dirstamp)
@@ -1411,6 +1423,8 @@ mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f src/c/operations/*.$(OBJEXT)
 	-rm -f src/c/operations/*.lo
+	-rm -f src/cpp/analysis/*.$(OBJEXT)
+	-rm -f src/cpp/analysis/*.lo
 	-rm -f src/cpp/ast/*.$(OBJEXT)
 	-rm -f src/cpp/ast/*.lo
 	-rm -f src/cpp/operations/*.$(OBJEXT)
@@ -1437,6 +1451,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-operations_tools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-expHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-macrovarvisitor.Plo@am__quote@
@@ -2173,6 +2188,13 @@ src/cpp/types/libsciast_la-void.lo: src/cpp/types/void.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-void.lo `test -f 'src/cpp/types/void.cpp' || echo '$(srcdir)/'`src/cpp/types/void.cpp
 
+src/cpp/analysis/libsciast_la-InferenceConstraints.lo: src/cpp/analysis/InferenceConstraints.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-InferenceConstraints.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Tpo -c -o src/cpp/analysis/libsciast_la-InferenceConstraints.lo `test -f 'src/cpp/analysis/InferenceConstraints.cpp' || echo '$(srcdir)/'`src/cpp/analysis/InferenceConstraints.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/InferenceConstraints.cpp' object='src/cpp/analysis/libsciast_la-InferenceConstraints.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-InferenceConstraints.lo `test -f 'src/cpp/analysis/InferenceConstraints.cpp' || echo '$(srcdir)/'`src/cpp/analysis/InferenceConstraints.cpp
+
 src/cpp/types/libsciast_la-inspector.lo: src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-inspector.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo -c -o src/cpp/types/libsciast_la-inspector.lo `test -f 'src/cpp/types/inspector.cpp' || echo '$(srcdir)/'`src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Plo
@@ -2186,6 +2208,7 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf src/c/operations/.libs src/c/operations/_libs
+	-rm -rf src/cpp/analysis/.libs src/cpp/analysis/_libs
 	-rm -rf src/cpp/ast/.libs src/cpp/ast/_libs
 	-rm -rf src/cpp/operations/.libs src/cpp/operations/_libs
 	-rm -rf src/cpp/parse/.libs src/cpp/parse/_libs
@@ -2376,6 +2399,8 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f src/c/operations/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/operations/$(am__dirstamp)
+	-rm -f src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+	-rm -f src/cpp/analysis/$(am__dirstamp)
 	-rm -f src/cpp/ast/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/ast/$(am__dirstamp)
 	-rm -f src/cpp/operations/$(DEPDIR)/$(am__dirstamp)
@@ -2399,7 +2424,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -2447,7 +2472,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf src/c/operations/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
+	-rm -rf src/c/operations/$(DEPDIR) src/cpp/analysis/$(DEPDIR) src/cpp/ast/$(DEPDIR) src/cpp/operations/$(DEPDIR) src/cpp/parse/$(DEPDIR) src/cpp/symbol/$(DEPDIR) src/cpp/system_env/$(DEPDIR) src/cpp/types/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

@@ -263,6 +263,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\Decorator.hxx" />
     <ClInclude Include="includes\analysis\ForList.hxx" />
     <ClInclude Include="includes\analysis\gvn\GVN.hxx" />
+    <ClInclude Include="includes\analysis\gvn\InferenceConstraint.hxx" />
     <ClInclude Include="includes\analysis\gvn\MultivariateMonomial.hxx" />
     <ClInclude Include="includes\analysis\gvn\MultivariatePolynomial.hxx" />
     <ClInclude Include="includes\analysis\gvn\OpValue.hxx" />
@@ -273,6 +274,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\Result.hxx" />
     <ClInclude Include="includes\analysis\SymInfo.hxx" />
     <ClInclude Include="includes\analysis\TIType.hxx" />
+    <ClInclude Include="includes\analysis\tools.hxx" />
     <ClInclude Include="includes\ast\debugvisitor.hxx" />
     <ClInclude Include="includes\ast\deserializervisitor.hxx" />
     <ClInclude Include="includes\ast\dummyvisitor.hxx" />
@@ -447,6 +449,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="src\cpp\ast\run_OpExp.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\analysis\InferenceConstraints.cpp" />
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\expHistory.cpp" />
     <ClCompile Include="src\cpp\ast\treevisitor.cpp" />

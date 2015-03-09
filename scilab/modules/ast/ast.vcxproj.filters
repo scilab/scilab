@@ -60,6 +60,9 @@
     <Filter Include="Header Files\analysis\gvn">
       <UniqueIdentifier>{f05ded2d-aeba-4235-9374-99bcb9247786}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ast\analysis">
+      <UniqueIdentifier>{d2899833-14f7-4af4-8054-128d479c51c7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -658,6 +661,12 @@
     <ClInclude Include="includes\analysis\gvn\VarExp.hxx">
       <Filter>Header Files\analysis\gvn</Filter>
     </ClInclude>
+    <ClInclude Include="includes\analysis\tools.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\gvn\InferenceConstraint.hxx">
+      <Filter>Header Files\analysis\gvn</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -920,6 +929,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\ast\treevisitor.cpp">
       <Filter>Source Files\ast</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\InferenceConstraints.cpp">
+      <Filter>Source Files\ast\analysis</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
