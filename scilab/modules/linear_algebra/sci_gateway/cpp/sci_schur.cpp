@@ -358,7 +358,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
             for (int i = 0; i < 2; i++)
             {
                 out.push_back(pDbl[i]);
-                pDbl[1] = NULL;
+                pDbl[i] = NULL;
             }
 
             if (_iRetCount == 4)
@@ -406,7 +406,7 @@ types::Function::ReturnValue sci_schur(types::typed_list &in, int _iRetCount, ty
                     for (int i = 0; i < 2; i++)
                     {
                         out.push_back(pDbl[i]);
-                        pDbl[1] = NULL;
+                        pDbl[i] = NULL;
                     }
                     out.push_back(pDblOut[1]);
                     pDblOut[1] = NULL;
