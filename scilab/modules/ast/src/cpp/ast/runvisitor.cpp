@@ -793,8 +793,10 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         {
             //reset default values
             setResult(NULL);
+            int iExpectedSize = getExpectedSize();
             setExpectedSize(-1);
             (*itExp)->accept(*this);
+            setExpectedSize(iExpectedSize);
             InternalType * pIT = getResult();
 
             if (pIT != NULL)
