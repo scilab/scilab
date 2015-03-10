@@ -22,8 +22,8 @@
 #include "NgonGridData.hxx"
 #include "NgonGridMatplotData.hxx"
 #include "NgonPolylineData.hxx"
-#include "TriangleMeshData.hxx"
-#include "TriangleMeshFecData.hxx"
+#include "MeshData.hxx"
+#include "MeshFecData.hxx"
 
 #include "graphicObjectProperties.h"
 

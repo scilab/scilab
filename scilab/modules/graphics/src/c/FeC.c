@@ -75,7 +75,7 @@ static void coloutPatch(int colout[2]);
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
 ---------------------------------------------------------------*/
 
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr,
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex, 
              char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
              int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2)
 {
@@ -223,7 +223,7 @@ int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, 
     /* [-1,-1] */
     coloutPatch(colout);
     iFecUID = ConstructFec(iSubwinUID, x, y, triangles, func,
-                           *Nnode, *Ntr, zminmax, colminmax, colout, with_mesh);
+                           *Nnode, *Ntr, *Nvertex, zminmax, colminmax, colout, with_mesh);
 
     if (iFecUID == 0)
     {

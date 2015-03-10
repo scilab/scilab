@@ -25,8 +25,8 @@ public class ObjectData {
         return ObjectDataJNI.getSegsData(uid);
     }
 
-    public static Object getFecTriangles(int uid) {
-        return ObjectDataJNI.getFecTriangles(uid);
+    public static Object getFecElements(int uid) {
+        return ObjectDataJNI.getFecElements(uid);
     }
 
     public static Object getFecData(int uid) {
@@ -39,6 +39,10 @@ public class ObjectData {
 
     public static Object getArcData(int uid) {
         return ObjectDataJNI.getArcData(uid);
+    }
+
+    public static int getFecNumVerticesByElement(int uid) {
+        return ObjectDataJNI.getFecNumVerticesByElement(uid);
     }
 
 }

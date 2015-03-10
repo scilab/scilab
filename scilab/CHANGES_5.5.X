@@ -31,6 +31,12 @@ Compilation
 * Required version of JOGL updated to 2.2.4 (See bugs #12788 & #13586).
 
 
+Graphics Evolutions
+===================
+
+* fec function can now plot meshes based on any convex polygon type (not only triangles).
+
+
 Scilab Bug Fixes
 ================
 

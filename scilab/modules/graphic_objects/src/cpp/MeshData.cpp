@@ -10,7 +10,7 @@
  *
  */
 
-#include "TriangleMeshData.hxx"
+#include "MeshData.hxx"
 #include "DataProperties.hxx"
 
 extern "C" {
@@ -20,29 +20,30 @@ extern "C" {
 #include "graphicObjectProperties.h"
 }
 
-TriangleMeshData::TriangleMeshData(void)
+MeshData::MeshData(void)
 {
     vertices = NULL;
     indices = NULL;
     values = NULL;
 
     numberVertices = 0;
-    numberTriangles = 0;
+    numberElements = 0;
+    numberVerticesByElem = 3;
 }
 
 /* To be correctly implemented */
-TriangleMeshData::TriangleMeshData(unsigned int numberVertices, unsigned int numberTriangles)
+MeshData::MeshData(unsigned int numberVertices, unsigned int numberElements, unsigned int numberVerticesByElem)
 {
-    vertices = new double[3 * numberVertices];
-
-    indices = new unsigned int[3 * numberTriangles];
+    vertices = new double[numberVerticesByElem * numberVertices];
+    indices = new unsigned int[numberVerticesByElem * numberElements];
 
     this->numberVertices = numberVertices;
-    this->numberTriangles = numberTriangles;
+    this->numberElements = numberElements;
+    this->numberVerticesByElem = numberVerticesByElem;
 }
 
 /* To be correctly implemented */
-TriangleMeshData::~TriangleMeshData(void)
+MeshData::~MeshData(void)
 {
     if (numberVertices > 0)
     {
@@ -50,14 +51,14 @@ TriangleMeshData::~TriangleMeshData(void)
         delete [] values;
     }
 
-    if (numberTriangles > 0)
+    if (numberElements > 0)
     {
         delete [] indices;
     }
 
 }
 
-int TriangleMeshData::getPropertyFromName(int propertyName)
+int MeshData::getPropertyFromName(int propertyName)
 {
     switch (propertyName)
     {
@@ -77,6 +78,8 @@ int TriangleMeshData::getPropertyFromName(int propertyName)
             return INDICES;
         case __GO_DATA_MODEL_VALUES__ :
             return VALUES;
+        case __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__ :
+            return NUM_VERTICES_BY_ELEM;
         default :
             return Data3D::getPropertyFromName(propertyName);
     }
@@ -84,7 +87,7 @@ int TriangleMeshData::getPropertyFromName(int propertyName)
 }
 
 
-int TriangleMeshData::setDataProperty(int property, void const* value, int numElements)
+int MeshData::setDataProperty(int property, void const* value, int numElements)
 {
     switch (property)
     {
@@ -110,6 +113,9 @@ int TriangleMeshData::setDataProperty(int property, void const* value, int numEl
         case VALUES :
             setValues((double const*) value, numElements);
             break;
+        case NUM_VERTICES_BY_ELEM :
+	    numberVerticesByElem = *((unsigned int const*) value);
+	    break;
         default :
             return Data3D::setDataProperty(property, value, numElements);
     }
@@ -117,7 +123,7 @@ int TriangleMeshData::setDataProperty(int property, void const* value, int numEl
     return 1;
 }
 
-void TriangleMeshData::getDataProperty(int property, void **_pvData)
+void MeshData::getDataProperty(int property, void **_pvData)
 {
     switch (property)
     {
@@ -136,12 +142,15 @@ void TriangleMeshData::getDataProperty(int property, void **_pvData)
         case VALUES :
             *_pvData = getValues();
             break;
+        case NUM_VERTICES_BY_ELEM :
+	    ((int *) *_pvData)[0] = numberVerticesByElem;
+	    break;
         default :
             Data3D::getDataProperty(property, _pvData);
     }
 }
 
-unsigned int TriangleMeshData::getNumVertices(void)
+unsigned int MeshData::getNumVertices(void)
 {
     return numberVertices;
 }
@@ -150,7 +159,7 @@ unsigned int TriangleMeshData::getNumVertices(void)
  * Values are considered as being specified per-vertex for now
  * To be corrected
  */
-int TriangleMeshData::setNumVertices(unsigned int numVertices)
+int MeshData::setNumVertices(unsigned int numVertices)
 {
     int result = 1;
 
@@ -223,22 +232,22 @@ int TriangleMeshData::setNumVertices(unsigned int numVertices)
     return result;
 }
 
-unsigned int TriangleMeshData::getNumIndices(void)
+unsigned int MeshData::getNumIndices(void)
 {
-    return numberTriangles;
+    return numberElements;
 }
 
-int TriangleMeshData::setNumIndices(unsigned int numIndices)
+int MeshData::setNumIndices(unsigned int numIndices)
 {
     int result = 1;
 
-    if (numIndices != this->numberTriangles)
+    if (numIndices != this->numberElements)
     {
         unsigned int* newIndices = NULL;
 
         try
         {
-            newIndices = new unsigned int[3 * numIndices];
+            newIndices = new unsigned int[numberVerticesByElem * numIndices];
         }
         catch (const std::exception& e)
         {
@@ -248,14 +257,14 @@ int TriangleMeshData::setNumIndices(unsigned int numIndices)
 
         if (result)
         {
-            if (this->numberTriangles > 0)
+            if (this->numberElements > 0)
             {
                 delete [] indices;
             }
 
             indices = newIndices;
 
-            this->numberTriangles =  numIndices;
+            this->numberElements = numIndices;
         }
         else
         {
@@ -271,12 +280,12 @@ int TriangleMeshData::setNumIndices(unsigned int numIndices)
     return result;
 }
 
-double* TriangleMeshData::getVertices(void)
+double* MeshData::getVertices(void)
 {
     return vertices;
 }
 
-void TriangleMeshData::setVertices(double const* vertices, unsigned int numElements)
+void MeshData::setVertices(double const* vertices, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
@@ -284,20 +293,20 @@ void TriangleMeshData::setVertices(double const* vertices, unsigned int numEleme
     }
 }
 
-unsigned int* TriangleMeshData::getIndices(void)
+unsigned int* MeshData::getIndices(void)
 {
     return indices;
 }
 
-void TriangleMeshData::setIndices(unsigned int const* indices, unsigned int numElements)
+void MeshData::setIndices(unsigned int const* indices, unsigned int numElements)
 {
-    if (numElements <= numberTriangles)
+    if (numElements <= numberElements)
     {
-        memcpy(this->indices, indices, numElements * 3 * sizeof(unsigned int));
+        memcpy(this->indices, indices, numElements * numberVerticesByElem * sizeof(unsigned int));
     }
 }
 
-void TriangleMeshData::setDataX(double const* data, unsigned int numElements)
+void MeshData::setDataX(double const* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
@@ -308,7 +317,7 @@ void TriangleMeshData::setDataX(double const* data, unsigned int numElements)
     }
 }
 
-void TriangleMeshData::setDataY(double const* data, unsigned int numElements)
+void MeshData::setDataY(double const* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
@@ -319,7 +328,7 @@ void TriangleMeshData::setDataY(double const* data, unsigned int numElements)
     }
 }
 
-void TriangleMeshData::setDataZ(double const* data, unsigned int numElements)
+void MeshData::setDataZ(double const* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
@@ -330,7 +339,7 @@ void TriangleMeshData::setDataZ(double const* data, unsigned int numElements)
     }
 }
 
-void TriangleMeshData::setValues(double const* data, unsigned int numElements)
+void MeshData::setValues(double const* data, unsigned int numElements)
 {
     if (numElements <= numberVertices)
     {
@@ -338,23 +347,18 @@ void TriangleMeshData::setValues(double const* data, unsigned int numElements)
     }
 }
 
-double* TriangleMeshData::getValues(void)
+double* MeshData::getValues(void)
 {
     return values;
 }
 
-unsigned int TriangleMeshData::scilabIndexToIndex(unsigned int scilabIndex)
+unsigned int MeshData::scilabIndexToIndex(unsigned int scilabIndex)
 {
     return (scilabIndex - 1);
 }
 
-void TriangleMeshData::resetCoordinates(void)
+void MeshData::resetCoordinates(void)
 {
-    for (unsigned int i = 0; i < numberVertices; i++)
-    {
-        vertices[3 * i] = 0.0;
-        vertices[3 * i + 1] = 0.0;
-        vertices[3 * i + 2] = 0.0;
-    }
+    memset(vertices, 0, numberVertices * 3 * sizeof(double));
 }
 

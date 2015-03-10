@@ -145,11 +145,13 @@ int sci_fec(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (n3 != 5)
+    if (n3 < 5)
     {
-        Scierror(999, _("%s: Wrong number of columns for input argument #%d: %d expected.\n"), fname, 3, 5);
+        Scierror(999, _("%s: Wrong number of columns for input argument #%d: at least %d expected.\n"), fname, 3, 5);
         return 0;
     }
+    // remove number and flag
+    n3 -= 2;
 
     //get variable address
     sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddr4);
@@ -203,7 +205,7 @@ int sci_fec(char *fname, unsigned long fname_len)
     }
     mn1 = m1 * n1;
 
-    Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
+    Objfec ((l1), (l2), (l3), (l4), &mn1, &m3, &n3, strf, legend, rect, nax, zminmax, colminmax, colOut, withMesh, flagNax);
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
