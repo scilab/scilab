@@ -615,16 +615,16 @@ void* scilabReadAndStore(void* param)
         }
         while (controlStatus != Parser::AllControlClosed);
 
+        if (command == NULL)
+        {
+            continue;
+        }
+
         if (exitStatus == Parser::Failed)
         {
             FREE(command);
             command = NULL;
             scilabForcedWriteW(parserErrorMsg);
-            continue;
-        }
-
-        if (command == NULL)
-        {
             continue;
         }
 
