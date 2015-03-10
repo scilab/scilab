@@ -56,7 +56,12 @@ inline static uint64_t clzll(const uint64_t x)
 #else
 inline static double trunc(const double x)
 {
+#ifdef __APPLE__
+    // Needed for compilation with GCC 4.8.2
+    return x > 0 ? floor(x) : ceil(x);
+#else
     return std::trunc(x);
+#endif
 }
 
 inline static uint32_t clz(const uint32_t x)
