@@ -61,7 +61,7 @@ public :
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
-       : isComplex() ? IdPolynomComplex
+               : isComplex() ? IdPolynomComplex
                : IdPolynom;
     }
 
@@ -85,6 +85,7 @@ public :
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
+    InternalType*           insert(typed_list* _pArgs, InternalType* _pSource);
 
     bool                    set(int _iPos, SinglePoly* _pS);
     bool                    set(int _iRows, int _iCols, SinglePoly* _pS);

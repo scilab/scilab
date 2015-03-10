@@ -860,6 +860,7 @@ Double* Polynom::extractCoef(int _iRank)
 
     return pdbl;
 }
+
 bool Polynom::insertCoef(int _iRank, Double* _pCoef)
 {
     double *pReal = _pCoef->getReal();
@@ -976,5 +977,22 @@ void Polynom::deleteData(SinglePoly* data)
         data->killMe();
     }
 }
+
+//overload to check variable name and call arrayof<>::insert after
+InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    Polynom* p = _pSource->getAs<Polynom>();
+    if (p->getVariableName() != getVariableName())
+    {
+        char szError[512];
+        os_sprintf(szError, _("Input arguments should have the same formal variable name.\n"));
+        wchar_t* pwstError = to_wide_string(szError);
+        std::wstring wstError(pwstError);
+        FREE(pwstError);
+        throw ast::ScilabError(wstError, 999, *new Location());
+    }
+    return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource);
+}
+
 }
 
