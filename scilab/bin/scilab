@@ -644,6 +644,13 @@ if test $IS_SCILAB_BINARY -eq 1; then
     esac
 
 else
+    # Scilab compiled using prerequirements
+    if test -d $curdir/../usr; then
+        TCL_LIBRARY="$SCI/usr/lib/tcl8.5"
+        TK_LIBRARY="$SCI/usr/lib/tk8.5"
+        export TCL_LIBRARY
+        export TK_LIBRARY
+    fi
     PATH="$SCI:$SCI/bin:$PATH"
 fi
 
