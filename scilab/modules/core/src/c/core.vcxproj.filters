@@ -194,9 +194,6 @@
     <ClCompile Include="setPrecisionFPU.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="withf2c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="hashtable\hashtable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
