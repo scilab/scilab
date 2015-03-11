@@ -100,7 +100,7 @@
     <gateway name="sci_xmlName"                     function="xmlName"              type="0" />
     <gateway name="sci_xmlAppend"                   function="xmlAppend"            type="0" />
     <gateway name="sci_htmlRead"                    function="htmlRead"             type="0" />
-    <gateway name="sci_htmlReadStr"                 function="htmlRadStr"           type="0" />
+    <gateway name="sci_htmlReadStr"                 function="htmlReadStr"           type="0" />
     <gateway name="sci_htmlWrite"                   function="htmlWrite"            type="0" />
     <gateway name="sci_htmlDump"                    function="htmlDump"             type="0" />
 </module>
