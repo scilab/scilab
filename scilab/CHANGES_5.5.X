@@ -52,6 +52,8 @@ Scilab Bug Fixes
 
 * Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
 
+* Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
+
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
