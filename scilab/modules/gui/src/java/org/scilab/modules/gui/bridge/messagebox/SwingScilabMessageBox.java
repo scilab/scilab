@@ -583,12 +583,14 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
             objs[1] = createXchooseListBox();
 
             // And now the buttons
-            buttons = new Object[1];
+            buttons = new Object[2];
             if (buttonsLabels != null) {
                 btnCancel.setText(buttonsLabels[0]);
             }
+            btnOK.addActionListener(this);
             btnCancel.addActionListener(this);
             buttons[0] = btnCancel;
+            buttons[1] = btnOK;
         } else if (scilabDialogType == X_DIALOG_TYPE) {
             // Create a MessageBox for Scilab x_dialog
 
@@ -766,6 +768,8 @@ public class SwingScilabMessageBox extends JDialog implements SimpleMessageBox, 
                     }
                 }
                 userValue = ""; /* To make getValueSize return a non zero value */
+            } else if (scilabDialogType == X_CHOOSE_TYPE) {
+                selectedItem = listBox.getSelectedIndex() + 1;
             }
             selectedButton = 1;
         } else if (ae.getSource() == btnCancel) {
