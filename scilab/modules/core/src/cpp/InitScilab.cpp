@@ -95,6 +95,7 @@ extern "C"
     extern BOOL isItTheDisabledLib(void);
 }
 
+__threadLock m_StartLock;
 __threadLock m_ParseLock;
 __threadSignal ExecDone;
 __threadSignalLock *pExecDoneLock;
@@ -135,7 +136,8 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iNoBanner = 1;
 
     pSEI->iMultiLine = 0;
-    pSEI->isInterruptible = 1; // by default al thread are interruptible
+    pSEI->isInterruptible = 1;  // by default all thread are interruptible
+    pSEI->isPrioritary = 0;     // by default all thread are non-prioritary
 
     return pSEI;
 }
@@ -293,8 +295,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             }
             else
             {
-                _pSEI->pExpTree = parser.getTree();
-                processCommand(_pSEI);
+                StoreConsoleCommand(_pSEI->pstExec);
             }
 
             iMainRet = ConfigVariable::getExitStatus();
@@ -306,12 +307,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
             sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
-            _pSEI->pstExec = pstCommand;
-            parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
-            FREE(pstCommand);
-
-            _pSEI->pExpTree = parser.getTree();
-            processCommand(_pSEI);
+            StoreConsoleCommand(pstCommand);
 
             iMainRet = ConfigVariable::getExitStatus();
             _pSEI->pstExec = NULL;
@@ -345,7 +341,11 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
     if (_pSEI->pstExec)
     {
-        processCommand(_pSEI);
+        StoreConsoleCommand(_pSEI->pstExec);
+        __LockSignal(pExecDoneLock);
+        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
+        __UnLockSignal(pExecDoneLock);
+
         return ConfigVariable::getExitStatus();
     }
 
@@ -475,11 +475,10 @@ static void processCommand(ScilabEngineInfo* _pSEI)
      */
     if (_pSEI->iExecAst)
     {
-        //before calling YaspReader, try to call %onprompt function
-        callOnPrompt();
         execAstTask((ast::Exp*)_pSEI->pExpTree, _pSEI->iSerialize != 0,
                     _pSEI->iTimed != 0, _pSEI->iAstTimed != 0,
-                    _pSEI->iExecVerbose != 0, _pSEI->isInterruptible == 0);
+                    _pSEI->iExecVerbose != 0, _pSEI->isInterruptible != 0,
+                    _pSEI->isPrioritary != 0, _pSEI->isConsoleCommand != 0);
     }
 
     /*
@@ -494,23 +493,31 @@ static void processCommand(ScilabEngineInfo* _pSEI)
 // Thread used to parse and execute Scilab command setted in storeCommand
 void* scilabReadAndExecCommand(void* param)
 {
-    int iconsoleCmd = 0;
-    char* command = NULL;
+
+    int iInterruptibleCmd   = 0;
+    int iPrioritaryCmd      = 0;
+    int iConsoleCmd         = 0;
+    char* command           = NULL;
+
     ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
 
-    while (!ConfigVariable::getForceQuit())
+    while (ConfigVariable::getForceQuit() == false)
     {
-        if (isEmptyCommandQueue())
+        if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
         {
+            // command queue is empty
             __LockSignal(pLaunchScilabLock);
             __Wait(&LaunchScilab, pLaunchScilabLock);
             __UnLockSignal(pLaunchScilabLock);
+
+            continue;
         }
 
-        _pSEI->isInterruptible = GetCommand(&command, &iconsoleCmd);
+        _pSEI->isInterruptible = iInterruptibleCmd;
+        _pSEI->isPrioritary = iPrioritaryCmd;
+        _pSEI->isConsoleCommand = iConsoleCmd;
 
         __Lock(&m_ParseLock);
-
         Parser parser;
         parser.setParseTrace(_pSEI->iParseTrace != 0);
         parseCommandTask(&parser, _pSEI->iTimed != 0, command);
@@ -526,13 +533,7 @@ void* scilabReadAndExecCommand(void* param)
         __UnLock(&m_ParseLock);
 
         processCommand(_pSEI);
-
         FREE(command);
-
-        if (iconsoleCmd)
-        {
-            __Signal(&ExecDone);
-        }
     }
 
     return NULL;
@@ -541,6 +542,9 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
+    __Lock(&m_StartLock);
+    __UnLock(&m_StartLock);
+
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     char *command = NULL;
@@ -553,15 +557,34 @@ void* scilabReadAndStore(void* param)
         command = _pSEI->pstExec;
     }
 
-    while (!ConfigVariable::getForceQuit())
+    if (isEmptyCommandQueue() == false)
+    {
+        // unlock scilabReadAndExecCommand thread
+        __LockSignal(pExecDoneLock);
+        __Signal(&ExecDone);
+        __UnLockSignal(pExecDoneLock);
+
+        // Command stored as console command by -f
+        // We have to wait this execution before
+        // callOnPrompt (ie: onPrompt perform a quit in test_run)
+        __LockSignal(pExecDoneLock);
+        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
+        __UnLockSignal(pExecDoneLock);
+    }
+
+    // unlock scilabReadAndExecCommand thread
+    __LockSignal(pExecDoneLock);
+    __Signal(&ExecDone);
+    __UnLockSignal(pExecDoneLock);
+
+    callOnPrompt();
+
+    while (ConfigVariable::getForceQuit() == false)
     {
         Parser parser;
         parser.setParseTrace(_pSEI->iParseTrace != 0);
 
         Parser::ParserStatus exitStatus = Parser::Failed;
-
-        //before calling reader, try to call %onprompt function
-        callOnPrompt();
 
         if (ConfigVariable::isEmptyLineShow())
         {
@@ -611,6 +634,10 @@ void* scilabReadAndStore(void* param)
             controlStatus = parser.getControlStatus();
             exitStatus = parser.getExitStatus();
             parserErrorMsg = parser.getErrorMessage();
+            if (parser.getTree())
+            {
+                delete (parser.getTree());
+            }
             __UnLock(&m_ParseLock);
         }
         while (controlStatus != Parser::AllControlClosed);
@@ -628,16 +655,19 @@ void* scilabReadAndStore(void* param)
             continue;
         }
 
-        StoreConsoleCommandWithFlag(command, 1);
+        StoreConsoleCommand(command);
 
         FREE(command);
         command = NULL;
 
         __LockSignal(pExecDoneLock);
-        __Wait(&ExecDone, pExecDoneLock);
+        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
         __UnLockSignal(pExecDoneLock);
+
+        callOnPrompt();
     }
 
+    __Signal(&LaunchScilab);
     return NULL;
 }
 
@@ -704,12 +734,23 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     __threadId threadIdCommand;
     __threadKey threadKeyCommand;
 
+    __InitLock(&m_StartLock);
     __InitLock(&m_ParseLock);
+
     InitializeScilabSignal(&LaunchScilab, &pLaunchScilabLock, ReleaseLaunchScilabSignal);
     InitializeScilabSignal(&ExecDone, &pExecDoneLock, ReleaseDoneScilabSignal);
 
+    __Lock(&m_StartLock);
     // thread to manage console command
     __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
+
+    // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
+    // to be such that the -f command stored is not removed
+    // from queue before scilabReadAndStore is waiting for.
+    __LockSignal(pExecDoneLock);
+    __UnLock(&m_StartLock);
+    __Wait(&ExecDone, pExecDoneLock);
+    __UnLockSignal(pExecDoneLock);
 
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);

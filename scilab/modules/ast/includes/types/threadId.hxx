@@ -75,6 +75,9 @@ public :
     void                    setInterruptible(bool _isInterruptible);
     bool                    isInterruptible();
 
+    void                    setConsoleCommandFlag(bool _isConsoleCommand);
+    bool                    isConsoleCommand();
+
 private :
     std::wstring            StatusToString(Status _status);
 
@@ -96,6 +99,7 @@ private :
     Status                  m_threadStatus;
     bool                    m_doInterrupt;
     bool                    m_isInterruptible;
+    bool                    m_isConsoleCommand;
 };
 }
 #endif /* !__THREADID_HH__ */

@@ -38,6 +38,8 @@ typedef struct
     void* pExpTree;
     int iMultiLine;
     int isInterruptible;
+    int isPrioritary;
+    int isConsoleCommand;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

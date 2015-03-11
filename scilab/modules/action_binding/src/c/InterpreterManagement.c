@@ -30,7 +30,7 @@ int putCommandInScilabQueue(char *command)
 */
 int requestScilabExec(char *command)
 {
-    return StorePrioritaryCommandWithFlag(command, 0);
+    return StorePrioritaryCommand(command);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)

@@ -2,17 +2,16 @@ LIBRARY    core.dll
 
 
 EXPORTS
-callFunctionFromGateway 
+callFunctionFromGateway
 com_
 intersci_
 stack_
 vstk_
 iop_
 StoreCommand
-StoreCommandWithFlag
-GetCommand 
+GetCommand
 ismenu
-StorePrioritaryCommandWithFlag
+StorePrioritaryCommand
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

@@ -38,6 +38,7 @@ ThreadId::ThreadId(__threadId _id, __threadKey _key)
     m_threadStatus = Running;
     m_isInterruptible = true;
     m_doInterrupt = false;
+    m_isConsoleCommand = false;
 }
 
 __threadId ThreadId::getThreadId()
@@ -166,5 +167,14 @@ bool ThreadId::isInterruptible()
     return m_isInterruptible;
 }
 
+void ThreadId::setConsoleCommandFlag(bool _isConsoleCommand)
+{
+    m_isConsoleCommand = _isConsoleCommand;
 }
 
+bool ThreadId::isConsoleCommand()
+{
+    return m_isConsoleCommand;
+}
+
+}

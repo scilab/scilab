@@ -4,7 +4,7 @@ LIBRARY    core.dll
 EXPORTS
 ;
 StoreCommand
-StorePrioritaryCommandWithFlag
+StorePrioritaryCommand
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

@@ -24,6 +24,7 @@
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "types_tools.hxx"
+#include "runner.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -287,10 +288,18 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     ConfigVariable::setPromptMode(promptMode);
 
+    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+
     for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
     {
         try
         {
+            if (pThreadMe && pThreadMe->getInterrupt())
+            {
+                __Signal(getAstPendingSignal());
+                pThreadMe->suspend();
+            }
+
             ast::exps_t::iterator k = j;
             //mode == 0, print new variable but not command
             if (file && ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)

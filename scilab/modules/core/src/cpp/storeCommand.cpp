@@ -43,6 +43,8 @@ using namespace ast;
  *  This function is used to store Scilab command in a queue
  *
  *  PUBLIC : int StoreCommand( char *command)
+ *           int StoreConsoleCommand(char *command)
+ *           int StorePrioritaryCommand(char *command)
  *           int C2F(ismenu)()
  *           int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
  */
@@ -51,8 +53,9 @@ struct CommandRec
 {
     char*   m_command;              /* command info one string two integers */
     int     m_isInterruptible;      /* 1 if the command execution can be interrupted */
-    int     m_consoleCmd;           /* 1 if the command come from console */
-    CommandRec(char* command, int isInterruptible, int consoleCmd) : m_command(command), m_isInterruptible(isInterruptible), m_consoleCmd(consoleCmd) {}
+    int     m_isPrioritary;         /* 1 if the command is prioritary */
+    int     m_isConsole;            /* 1 if the command come from console */
+    CommandRec(char* command, int isInterruptible, int isPrioritary, int isConsole) : m_command(command), m_isInterruptible(isInterruptible), m_isPrioritary(isPrioritary), m_isConsole(isConsole) {}
 };
 /*--------------------------------------------------------------------------*/
 /* Extern Signal to say we git a StoreCommand. */
@@ -89,83 +92,86 @@ static void release(void)
     }
 }
 /*--------------------------------------------------------------------------*/
-int StoreCommand (char *command)
-{
-    return StoreCommandWithFlag (command, 1);
-}
-
-/*--------------------------------------------------------------------------*/
-/*
- * try to execute a command or add it to the end of command queue
- */
-int StoreCommandWithFlag (char *command, int isInterruptible)
+int StoreCommand(char *command)
 {
     __Lock(getCommandQueueSingleAccess());
-    commandQueue.emplace_back(os_strdup(command), isInterruptible, 0);
+    commandQueue.emplace_back(os_strdup(command),
+                              /*is prioritary*/ 0,
+                              /* is interruptible*/ 1,
+                              /* from console */ 0);
     __UnLock(getCommandQueueSingleAccess());
     __Signal(&LaunchScilab);
 
     return 0;
 }
-/*--------------------------------------------------------------------------*/
-/*
- * try to execute a command or add it to the _BEGINNING_ of command queue
- */
-int StoreConsoleCommandWithFlag (char *command, int isInterruptible)
+
+int StoreConsoleCommand(char *command)
 {
     __Lock(getCommandQueueSingleAccess());
-    commandQueuePrioritary.emplace_back(os_strdup(command), isInterruptible, 1);
+    commandQueuePrioritary.emplace_back(os_strdup(command),
+                                        /*is prioritary*/ 1,
+                                        /* is interruptible*/ 1,
+                                        /* from console */ 1);
     __UnLock(getCommandQueueSingleAccess());
     __Signal(&LaunchScilab);
     Runner::UnlockPrompt();
     return 0;
 }
 
-int StorePrioritaryCommandWithFlag (char *command, int isInterruptible)
+int StorePrioritaryCommand(char *command)
 {
     __Lock(getCommandQueueSingleAccess());
-    commandQueuePrioritary.emplace_back(os_strdup(command), isInterruptible, 0);
+    commandQueuePrioritary.emplace_back(os_strdup(command),
+                                        /*is prioritary*/ 1,
+                                        /* is interruptible*/ 0,
+                                        /* from console */ 0);
     __UnLock(getCommandQueueSingleAccess());
     __Signal(&LaunchScilab);
     Runner::UnlockPrompt();
     return 0;
 }
-/*--------------------------------------------------------------------------*/
+
 int isEmptyCommandQueue(void)
 {
     return (commandQueuePrioritary.empty() && commandQueue.empty());
 }
-/*--------------------------------------------------------------------------*/
+
 /*
- * Gets info on the first queue element
+ * Gets the next command to execute
  * and remove it from the queue
  */
-int GetCommand (char** cmd, int* piConsoleCmd)
+int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piConsole)
 {
-    int isInterruptible = 0;
-    __Lock(getCommandQueueSingleAccess());
+    int iCommandReturned = 0;
 
+    __Lock(getCommandQueueSingleAccess());
     if (commandQueuePrioritary.empty() == false)
     {
         *cmd = os_strdup(commandQueuePrioritary.front().m_command);
-        isInterruptible = commandQueuePrioritary.front().m_isInterruptible;
-        *piConsoleCmd = commandQueuePrioritary.front().m_consoleCmd;
+        *piInterruptible = commandQueuePrioritary.front().m_isInterruptible;
+        *piPrioritary = commandQueuePrioritary.front().m_isPrioritary;
+        *piConsole = commandQueuePrioritary.front().m_isConsole;
 
         FREE (commandQueuePrioritary.front().m_command);
         commandQueuePrioritary.pop_front();
+
+        iCommandReturned = 1;
     }
     else if (commandQueue.empty() == false)
     {
         *cmd = os_strdup(commandQueue.front().m_command);
-        isInterruptible = commandQueue.front().m_isInterruptible;
-        *piConsoleCmd = commandQueue.front().m_consoleCmd;
+        *piInterruptible = commandQueue.front().m_isInterruptible;
+        *piPrioritary = commandQueue.front().m_isPrioritary;
+        *piConsole = commandQueue.front().m_isConsole;
 
         FREE (commandQueue.front().m_command);
         commandQueue.pop_front();
+
+        iCommandReturned = 1;
     }
     __UnLock(getCommandQueueSingleAccess());
 
-    return isInterruptible;
+    return iCommandReturned;
 }
 /*--------------------------------------------------------------------------*/
 int ismenu(void)

@@ -23,6 +23,7 @@
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "context.hxx"
+#include "runner.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -204,10 +205,18 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
+    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+
     for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd ; ++j)
     {
         try
         {
+            if (pThreadMe && pThreadMe->getInterrupt())
+            {
+                __Signal(getAstPendingSignal());
+                pThreadMe->suspend();
+            }
+
             //excecute script
             ExecVisitor execMe;
             (*j)->accept(execMe);

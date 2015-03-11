@@ -48,7 +48,8 @@ void printAstTask(ast::Exp *tree, bool timed);
 **
 ** Execute the stored AST.
 */
-void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose, bool _isPrioritaryThread);
+void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose,
+                 bool _isInterruptibleThread, bool _isPrioritaryThread, bool _isConsoleCommand);
 
 /*
 ** Exec Tree with original visitor ( without template )
