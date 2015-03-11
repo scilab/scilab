@@ -399,7 +399,6 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
             getResult()->killMe();
         }
 
-        std::wcout << L"ref : " << pIT->getRef();
         pIT->killMe();
         e.getTest().accept(*this);
         pIT = getResult();
