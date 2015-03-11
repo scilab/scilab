@@ -39,8 +39,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
         }
 
         //get function arguments
-        exps_t* args = e.getArgs();
-        for (auto arg : *args)
+        exps_t args = e.getArgs();
+        for (auto arg : args)
         {
             if (arg->isAssignExp())
             {
@@ -125,7 +125,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 clearResult();
             }
         }
-        delete args;
 
         try
         {
@@ -325,9 +324,8 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
             //Create list of indexes
-            ast::exps_t* exps = e.getArgs();
-            types::typed_list *pArgs = GetArgumentList(*exps);
-            delete exps;
+            ast::exps_t exps = e.getArgs();
+            types::typed_list *pArgs = GetArgumentList(exps);
 
             types::List* pList = pIT->getAs<types::Cell>()->extractCell(pArgs);
 

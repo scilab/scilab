@@ -98,7 +98,7 @@ public:
 
     // \name Accessors.
 public:
-    symbol::Symbol getSymbol(void) const
+    const symbol::Symbol & getSymbol(void) const
     {
         return _name;
     }
@@ -113,24 +113,24 @@ public:
         return *_exps[2];
     }
 
-    const Exp& getArgs() const
+    inline const ArrayListVar & getArgs() const
     {
-        return *_exps[0];
+        return *static_cast<const ArrayListVar *>(_exps[0]);
     }
 
-    Exp& getArgs()
+    inline ArrayListVar & getArgs()
     {
-        return *_exps[0];
+        return *static_cast<ArrayListVar *>(_exps[0]);
     }
 
-    const Exp& getReturns() const
+    const ArrayListVar & getReturns() const
     {
-        return *_exps[1];
+        return *static_cast<const ArrayListVar *>(_exps[1]);
     }
 
-    Exp& getReturns()
+    ArrayListVar & getReturns()
     {
-        return *_exps[1];
+        return *static_cast<ArrayListVar *>(_exps[1]);
     }
 
     void setBody(Exp *body)

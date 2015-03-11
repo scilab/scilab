@@ -183,6 +183,11 @@ public:
         return true;
     }
 
+    inline bool isBooleanOp() const
+    {
+	return _oper == eq || _oper == ne || _oper == lt || _oper == le || _oper == gt || _oper == ge || _oper == logicalAnd || _oper == logicalOr || _oper == logicalShortCutAnd || _oper == logicalShortCutOr; 
+    }
+
 protected:
     /** \brief Operator. */
     Oper _oper;

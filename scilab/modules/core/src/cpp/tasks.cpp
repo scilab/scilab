@@ -10,6 +10,7 @@
 *
 */
 
+#include "AnalysisVisitor.hxx"
 #include "tasks.hxx"
 #include "timer.hxx"
 #include "context.hxx"
@@ -19,7 +20,6 @@
 #include "timedvisitor.hxx"
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
-#include "AnalysisVisitor.hxx"
 #include "visitor_common.hxx"
 
 #include "scilabWrite.hxx"

@@ -366,8 +366,8 @@ void PrintVisitor::visit(const CellCallExp &e)
 {
     e.getName().getOriginal()->accept(*this);
     *ostr << SCI_OPEN_CELL;
-    exps_t* args = e.getArgs();
-    for (exps_t::const_iterator it = args->begin (), itEnd = args->end(); it != itEnd; /**/)
+    exps_t args = e.getArgs();
+    for (exps_t::const_iterator it = args.begin(), itEnd = args.end(); it != itEnd; /**/)
     {
         (*it)->getOriginal()->accept(*this);
         if (++it != itEnd)
@@ -375,8 +375,6 @@ void PrintVisitor::visit(const CellCallExp &e)
             *ostr << SCI_COMMA << " ";
         }
     }
-
-    delete args;
     *ostr << SCI_CLOSE_CELL;
 }
 
@@ -385,8 +383,8 @@ void PrintVisitor::visit(const CallExp &e)
     e.getName().getOriginal()->accept(*this);
     *ostr << SCI_OPEN_CALL;
 
-    exps_t* args = e.getArgs();
-    for (exps_t::const_iterator it = args->begin(), itEnd = args->end(); it != itEnd; /**/)
+    exps_t args = e.getArgs();
+    for (exps_t::const_iterator it = args.begin(), itEnd = args.end(); it != itEnd; /**/)
     {
         (*it)->getOriginal()->accept(*this);
         if (++it != itEnd)
@@ -394,7 +392,6 @@ void PrintVisitor::visit(const CallExp &e)
             *ostr << SCI_COMMA << " ";
         }
     }
-    delete args;
     *ostr << SCI_CLOSE_CALL;
 }
 
@@ -489,12 +486,11 @@ void PrintVisitor::visit (const SelectExp &e)
     e.getSelect()->getOriginal()->accept(*this);
     *ostr << SCI_CLOSE_TEST << std::endl;
     ++indent;
-    exps_t* cases = e.getCases();
-    for (auto exp : *cases)
+    exps_t cases = e.getCases();
+    for (auto exp : cases)
     {
         exp->getOriginal()->accept(*this);
     }
-    delete cases;
 
     if (e.hasDefault())
     {

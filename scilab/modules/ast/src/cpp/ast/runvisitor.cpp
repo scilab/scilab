@@ -636,8 +636,8 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     if (pIT)
     {
         //find good case
-        exps_t* cases = e.getCases();
-        for (auto exp : *cases)
+        exps_t cases = e.getCases();
+        for (auto exp : cases)
         {
             CaseExp* pCase = exp->getAs<CaseExp>();
             pCase->getTest()->accept(*this);
@@ -677,7 +677,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                     catch (ScilabMessage& sm)
                     {
                         pIT->killMe();
-                        delete cases;
                         throw sm;
                     }
 
@@ -707,8 +706,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                 pITCase->killMe();
             }
         }
-
-        delete cases;
     }
 
     if (bCase == false && e.getDefaultCase() != NULL)
@@ -1097,20 +1094,18 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     // funcprot(1) && warning(on) : warning
     //get input parameters list
     std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
-    const ArrayListVar* pListVar = e.getArgs().getAs<ArrayListVar>();
-    exps_t vars = pListVar->getVars();
-    for (exps_t::const_iterator it = vars.begin(), end = vars.end(); it != end; ++it)
+    const exps_t & vars = e.getArgs().getVars();
+    for (const auto var : vars)
     {
-        pVarList->push_back((*it)->getAs<SimpleVar>()->getStack());
+        pVarList->push_back(var->getAs<SimpleVar>()->getStack());
     }
 
     //get output parameters list
     std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
-    const ArrayListVar *pListRet = e.getReturns().getAs<ArrayListVar>();
-    exps_t rets = pListRet->getVars();
-    for (exps_t::const_iterator it = rets.begin(), end = rets.end(); it != end; ++it)
+    const exps_t & rets = e.getReturns().getVars();
+    for (const auto ret : rets)
     {
-        pRetList->push_back((*it)->getAs<SimpleVar>()->getStack());
+        pRetList->push_back(ret->getAs<SimpleVar>()->getStack());
     }
 
     types::Macro *pMacro = new types::Macro(e.getSymbol().getName(), *pVarList, *pRetList,

@@ -25,13 +25,13 @@ InferenceConstraint::Result SameDimsConstraint::check(const std::vector<GVN::Val
     {
         if (C1.value == C2.value)
         {
-            return Result::TRUE;
+            return Result::RESULT_TRUE;
         }
 
         MultivariatePolynomial mp = *C1.poly - *C2.poly;
         if (mp.constant != 0 && mp.isCoeffPositive(false))
         {
-            return Result::FALSE;
+            return Result::RESULT_FALSE;
         }
     }
     else
@@ -39,10 +39,10 @@ InferenceConstraint::Result SameDimsConstraint::check(const std::vector<GVN::Val
         MultivariatePolynomial mp = *R1.poly - *R2.poly;
         if (mp.constant > 0 && mp.isCoeffPositive(false))
         {
-            return Result::FALSE;
+            return Result::RESULT_FALSE;
         }
     }
-    return Result::DUNNO;
+    return Result::RESULT_DUNNO;
 }
 
 MPolyConstraintSet SameDimsConstraint::getMPConstraints(const std::vector<GVN::Value *> & values) const
@@ -77,17 +77,17 @@ InferenceConstraint::Result EqualConstraint::check(const std::vector<GVN::Value 
 
     if (x.value == y.value)
     {
-        return Result::TRUE;
+        return Result::RESULT_TRUE;
     }
     else
     {
         MultivariatePolynomial mp = *x.poly - *y.poly;
         if (mp.constant > 0 && mp.isCoeffPositive(false))
         {
-            return Result::FALSE;
+            return Result::RESULT_FALSE;
         }
     }
-    return Result::DUNNO;
+    return Result::RESULT_DUNNO;
 }
 
 void EqualConstraint::applyConstraints(const std::vector<GVN::Value *> & values) const
@@ -115,62 +115,62 @@ InferenceConstraint::Result MPolyConstraint::check(const std::vector<GVN::Value 
     //std::wcerr << "MPolyConstraint=" << poly << "::" << mp << std::endl;
     switch (kind)
     {
-        case EQ0 :
+        case EQ0:
         {
             if (mp.isConstant(0))
             {
                 // for all X, P(X) == 0
-                return Result::TRUE;
+                return Result::RESULT_TRUE;
             }
             else if (mp.constant != 0 && mp.isCoeffPositive(false))
             {
                 // P(X) = Q(X) + K where K != 0 and Q with positive coeffs
-                return Result::FALSE;
+                return Result::RESULT_FALSE;
             }
             else
             {
-                return Result::DUNNO;
+                return Result::RESULT_DUNNO;
             }
         }
-        case NEQ0 :
+        case NEQ0:
             if (mp.constant != 0 && mp.isCoeffPositive(false))
             {
-                return Result::TRUE;
+                return Result::RESULT_TRUE;
             }
             else if (mp.isConstant(0))
             {
-                return Result::FALSE;
+                return Result::RESULT_FALSE;
             }
             else
             {
-                return Result::DUNNO;
+                return Result::RESULT_DUNNO;
             }
-        case GT0 :
+        case GT0:
             if (mp.isCoeffStrictPositive())
             {
-                return Result::TRUE;
+                return Result::RESULT_TRUE;
             }
             else if (mp.constant < 0 && mp.isCoeffNegative(false))
             {
-                return Result::FALSE;
+                return Result::RESULT_FALSE;
             }
             else
             {
-                return Result::DUNNO;
+                return Result::RESULT_DUNNO;
             }
-        case GEQ0 :
+        case GEQ0:
         {
             if (mp.isCoeffPositive())
             {
-                return Result::TRUE;
+                return Result::RESULT_TRUE;
             }
             else if (mp.isConstant() && mp.constant < 0)
             {
-                return Result::FALSE;
+                return Result::RESULT_FALSE;
             }
             else
             {
-                return Result::DUNNO;
+                return Result::RESULT_DUNNO;
             }
         }
     }
@@ -210,12 +210,12 @@ InferenceConstraint::Result MPolyConstraintSet::check(const std::vector<GVN::Val
     for (const auto & constraint : constraints)
     {
         Result res = constraint.check(values);
-        if (res != Result::TRUE)
+        if (res != Result::RESULT_TRUE)
         {
             return res;
         }
     }
-    return Result::TRUE;
+    return Result::RESULT_TRUE;
 }
 
 MPolyConstraintSet MPolyConstraintSet::getMPConstraints(const std::vector<GVN::Value *> & values) const
@@ -243,14 +243,14 @@ InferenceConstraint::Result PositiveConstraint::check(const std::vector<GVN::Val
 
     if (x.poly->isCoeffPositive())
     {
-        return Result::TRUE;
+        return Result::RESULT_TRUE;
     }
     else if (x.poly->isConstant() && x.poly->constant < 0)
     {
-        return Result::FALSE;
+        return Result::RESULT_FALSE;
     }
 
-    return Result::DUNNO;
+    return Result::RESULT_DUNNO;
 }
 
 void PositiveConstraint::applyConstraints(const std::vector<GVN::Value *> & values) const { }
@@ -272,20 +272,20 @@ InferenceConstraint::Result GreaterConstraint::check(const std::vector<GVN::Valu
 
     if (x.value == y.value)
     {
-        return Result::FALSE;
+        return Result::RESULT_FALSE;
     }
 
     MultivariatePolynomial mp = *x.poly - *y.poly;
     if (mp.constant > 0 && mp.isCoeffPositive(false))
     {
-        return Result::TRUE;
+        return Result::RESULT_TRUE;
     }
     else if (mp.constant < 0 && mp.isCoeffNegative(false))
     {
-        return Result::FALSE;
+        return Result::RESULT_FALSE;
     }
 
-    return Result::DUNNO;
+    return Result::RESULT_DUNNO;
 }
 
 void GreaterConstraint::applyConstraints(const std::vector<GVN::Value *> & values) const { }

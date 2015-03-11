@@ -51,12 +51,12 @@ public:
         std::wcout << gvn << std::endl;
     }
 
-    inline void result_set(const GVN::Value * val)
+    inline void setResult(const GVN::Value * val)
     {
         _result = val;
     }
 
-    inline const GVN::Value & result_get()
+    inline const GVN::Value & getResult()
     {
         return *_result;
     }
@@ -70,7 +70,7 @@ private:
 
     void visit(ast::SimpleVar & e)
     {
-        result_set(gvn.getValue(e.getSymbol()));
+        setResult(gvn.getValue(e.getSymbol()));
     }
 
     void visit(ast::DollarVar & e)
@@ -89,7 +89,7 @@ private:
 
     void visit(ast::DoubleExp & e)
     {
-        result_set(gvn.getValue(e.getValue()));
+        setResult(gvn.getValue(e.getValue()));
     }
 
     void visit(ast::BoolExp & e)
@@ -121,57 +121,57 @@ private:
     void visit(ast::OpExp & e)
     {
         e.getLeft().accept(*this);
-        const GVN::Value & LV = result_get();
+        const GVN::Value & LV = getResult();
         e.getRight().accept(*this);
-        const GVN::Value & RV = result_get();
+        const GVN::Value & RV = getResult();
 
         switch (e.getOper())
         {
-            case ast::OpExp::plus :
-                result_set(gvn.getValue(OpValue::PLUS, LV, RV));
+            case ast::OpExp::plus:
+                setResult(gvn.getValue(OpValue::PLUS, LV, RV));
                 break;
-            case ast::OpExp::minus :
-                result_set(gvn.getValue(OpValue::MINUS, LV, RV));
+            case ast::OpExp::minus:
+                setResult(gvn.getValue(OpValue::MINUS, LV, RV));
                 break;
-            case ast::OpExp::unaryMinus :
-                result_set(gvn.getValue(OpValue::UNARYMINUS, RV));
+            case ast::OpExp::unaryMinus:
+                setResult(gvn.getValue(OpValue::UNARYMINUS, RV));
                 break;
-            case ast::OpExp::rdivide :
-                result_set(gvn.getValue(OpValue::RDIV, LV, RV));
+            case ast::OpExp::rdivide:
+                setResult(gvn.getValue(OpValue::RDIV, LV, RV));
                 break;
-            case ast::OpExp::dotrdivide :
-                result_set(gvn.getValue(OpValue::DOTRDIV, LV, RV));
+            case ast::OpExp::dotrdivide:
+                setResult(gvn.getValue(OpValue::DOTRDIV, LV, RV));
                 break;
-            case ast::OpExp::times :
-                result_set(gvn.getValue(OpValue::TIMES, LV, RV));
+            case ast::OpExp::times:
+                setResult(gvn.getValue(OpValue::TIMES, LV, RV));
                 break;
-            case ast::OpExp::dottimes :
-                result_set(gvn.getValue(OpValue::DOTTIMES, LV, RV));
+            case ast::OpExp::dottimes:
+                setResult(gvn.getValue(OpValue::DOTTIMES, LV, RV));
                 break;
-            case ast::OpExp::power :
-                result_set(gvn.getValue(OpValue::POWER, LV, RV));
+            case ast::OpExp::power:
+                setResult(gvn.getValue(OpValue::POWER, LV, RV));
                 break;
-            case ast::OpExp::dotpower :
-                result_set(gvn.getValue(OpValue::DOTPOWER, LV, RV));
+            case ast::OpExp::dotpower:
+                setResult(gvn.getValue(OpValue::DOTPOWER, LV, RV));
                 break;
-            case ast::OpExp::eq :
+            case ast::OpExp::eq:
                 if (LV.value == RV.value)
                 {
-                    result_set(gvn.getValue(1));
+                    setResult(gvn.getValue(1));
                 }
                 else
                 {
-                    result_set(gvn.getValue(0));
+                    setResult(gvn.getValue(0));
                 }
                 break;
-            case ast::OpExp::ne :
+            case ast::OpExp::ne:
                 if (LV.value != RV.value)
                 {
-                    result_set(gvn.getValue(1));
+                    setResult(gvn.getValue(1));
                 }
                 else
                 {
-                    result_set(gvn.getValue(0));
+                    setResult(gvn.getValue(0));
                 }
                 break;
         }
@@ -200,7 +200,7 @@ private:
                         ast::AssignExp & ae = static_cast<ast::AssignExp &>(*arg);
                         const symbol::Symbol & _Lsym = static_cast<ast::SimpleVar &>(ae.getLeftExp()).getSymbol();
                         ae.getRightExp().accept(*this);
-                        args[gvn.getValue(_Lsym)->value] = result_get().poly;
+                        args[gvn.getValue(_Lsym)->value] = getResult().poly;
                     }
                 }
                 const GVN::Value * callee = gvn.getValue(sym);
@@ -209,7 +209,7 @@ private:
             else
             {
                 e.getRightExp().accept(*this);
-                gvn.setValue(Lsym, result_get());
+                gvn.setValue(Lsym, getResult());
             }
         }
     }

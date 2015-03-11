@@ -471,10 +471,10 @@ private :
         }
         add_exp(e.getSelect());
 
-        exps_t* cases = e.getCases();
-        add_uint32((unsigned int)cases->size());
+        exps_t cases = e.getCases();
+        add_uint32((unsigned int)cases.size());
 
-        for (auto exp : *cases)
+        for (auto exp : cases)
         {
             const CaseExp *ce = exp->getAs<CaseExp>();
             add_location(ce->getLocation());
@@ -482,8 +482,6 @@ private :
             add_exp(ce->getTest());
             add_exps(ce->getBody()->getAs<SeqExp>()->getExps());
         }
-
-        delete cases;
     }
     void visit(const CellExp& e)  /* done */
     {
@@ -562,9 +560,8 @@ private :
     {
         add_ast(35, e);
         add_exp(e.getName());
-        ast::exps_t* args = e.getArgs();
-        add_exps(*args);
-        delete args;
+        ast::exps_t args = e.getArgs();
+        add_exps(args);
     }
     void visit(const MatrixLineExp& e)  /* SHOULD NEVER HAPPEN */
     {
@@ -574,9 +571,8 @@ private :
     {
         add_ast(37, e);
         add_exp(e.getName());
-        ast::exps_t* args = e.getArgs();
-        add_exps(*args);
-        delete args;
+        ast::exps_t args = e.getArgs();
+        add_exps(args);
     }
 
     /* optimized */

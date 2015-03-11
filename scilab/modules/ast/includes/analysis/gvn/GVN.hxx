@@ -269,12 +269,12 @@ public:
 
         switch (kind)
         {
-            case OpValue::UNARYMINUS :
+            case OpValue::UNARYMINUS:
                 return getValue([](const MultivariatePolynomial & mp)
                 {
                     return -mp;
                 }, LV, ov);
-            default :
+            default:
                 return getValue([](const MultivariatePolynomial & mp)
                 {
                     return MultivariatePolynomial::getInvalid();
@@ -295,35 +295,35 @@ public:
 
         switch (kind)
         {
-            case OpValue::PLUS :
+            case OpValue::PLUS:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return LMP + RMP;
                 }, LV, RV, ov);
-            case OpValue::MINUS :
+            case OpValue::MINUS:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return LMP - RMP;
                 }, LV, RV, ov);
-            case OpValue::TIMES :
-            case OpValue::DOTTIMES :
+            case OpValue::TIMES:
+            case OpValue::DOTTIMES:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return LMP * RMP;
                 }, LV, RV, ov);
-            case OpValue::RDIV :
-            case OpValue::DOTRDIV :
+            case OpValue::RDIV:
+            case OpValue::DOTRDIV:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return LMP / RMP;
                 }, LV, RV, ov);
-            case OpValue::POWER :
-            case OpValue::DOTPOWER :
+            case OpValue::POWER:
+            case OpValue::DOTPOWER:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return LMP ^ RMP;
                 }, LV, RV, ov);
-            default :
+            default:
                 return getValue([](const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP)
                 {
                     return MultivariatePolynomial::getInvalid();
@@ -428,7 +428,7 @@ private:
      * \param ov the operation kind
      * \return a Value
      */
-    inline Value * getValue(MultivariatePolynomial (OPER)(const MultivariatePolynomial & mp), const Value & LV, const OpValue & ov)
+    inline Value * getValue(MultivariatePolynomial(OPER)(const MultivariatePolynomial & mp), const Value & LV, const OpValue & ov)
     {
         const auto i = mapv.find(ov);
         if (i == mapv.end())
@@ -449,7 +449,7 @@ private:
      * \param ov the operation kind
      * \return a Value
      */
-    inline Value * getValue(MultivariatePolynomial (OPER)(const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP), const Value & LV, const Value & RV, const OpValue & ov)
+    inline Value * getValue(MultivariatePolynomial(OPER)(const MultivariatePolynomial & LMP, const MultivariatePolynomial & RMP), const Value & LV, const Value & RV, const OpValue & ov)
     {
         const auto i = mapv.find(ov);
         if (i == mapv.end())

@@ -111,22 +111,14 @@ public :
         return _exps[0];
     }
 
-    exps_t* getCases() const
+    inline exps_t getCases() const
     {
-        exps_t* cases = new exps_t;
-        exps_t::const_iterator it = ++(_exps.begin());
-        exps_t::const_iterator itEnd = _exps.end();
-        if (_hasDefault)
-        {
-            --itEnd;
-        }
+	return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
+    }
 
-        for (; it != itEnd ; ++it)
-        {
-            cases->push_back(*it);
-        }
-
-        return cases;
+    inline exps_t getCases()
+    {
+	return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
     }
 
     Exp* getDefaultCase() const

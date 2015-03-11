@@ -101,7 +101,25 @@ src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
 src/cpp/types/void.cpp \
-src/cpp/analysis/InferenceConstraints.cpp
+src/cpp/analysis/AnalysisVisitor.cpp \
+src/cpp/analysis/ArgnAnalyzer.cpp \
+src/cpp/analysis/Block.cpp \
+src/cpp/analysis/Checkers.cpp \
+src/cpp/analysis/CompleteMacroSignature.cpp \
+src/cpp/analysis/ConstraintManager.cpp \
+src/cpp/analysis/DiagAnalyzer.cpp \
+src/cpp/analysis/FunctionBlock.cpp \
+src/cpp/analysis/InferenceConstraints.cpp \
+src/cpp/analysis/LengthAnalyzer.cpp \
+src/cpp/analysis/LoopBlock.cpp \
+src/cpp/analysis/MacroDef.cpp \
+src/cpp/analysis/MatrixAnalyzer.cpp \
+src/cpp/analysis/MemInitAnalyzer.cpp \
+src/cpp/analysis/PolymorphicMacroCache.cpp \
+src/cpp/analysis/SizeAnalyzer.cpp \
+src/cpp/analysis/VisitListExp.cpp \
+src/cpp/analysis/VisitMatrixExp.cpp \
+src/cpp/analysis/XBlock.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp
@@ -152,7 +170,7 @@ libsciast_la_etc_DATA = \
 libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
-includes/analysis/Checkers.hxx \
+includes/analysis/checkers/Checkers.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
 includes/analysis/Result.hxx \

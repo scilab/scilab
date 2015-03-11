@@ -134,21 +134,19 @@ protected:
     {
         e.getName().accept (*this);
 
-        exps_t* args = e.getArgs();
-        for (auto arg : *args)
+        exps_t args = e.getArgs();
+        for (auto arg : args)
         {
             arg->accept(*this);
         }
-
-        delete args;
     }
 
     virtual void visit(const CallExp &e)
     {
         e.getName().accept (*this);
 
-        exps_t* args = e.getArgs();
-        for (auto arg : *args)
+        exps_t args = e.getArgs();
+        for (auto arg : args)
         {
             arg->accept(*this);
         }
@@ -204,12 +202,11 @@ protected:
     {
         e.getSelect()->accept(*this);
 
-        exps_t* cases = e.getCases();
-        for (auto exp : *cases)
+        exps_t cases = e.getCases();
+        for (auto exp : cases)
         {
             exp->accept(*this);
         }
-        delete cases;
 
         if (e.getDefaultCase() != NULL)
         {

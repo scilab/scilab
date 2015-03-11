@@ -26,7 +26,10 @@ namespace analysis
  */
 struct OpValue
 {
-    enum Kind : unsigned char { UNARYMINUS = 0, UNARYNEG, PLUS, MINUS, TIMES, DOTTIMES, RDIV, DOTRDIV, POWER, DOTPOWER };
+    enum Kind : unsigned char
+    {
+        UNARYMINUS = 0, UNARYNEG, PLUS, MINUS, TIMES, DOTTIMES, RDIV, DOTRDIV, POWER, DOTPOWER
+    };
     const Kind kind;
     unsigned long long lnum : 60;
     unsigned long long rnum : 60;
@@ -107,31 +110,31 @@ struct OpValue
     {
         switch (ov.kind)
         {
-            case UNARYMINUS :
+            case UNARYMINUS:
                 out << L"-" << ov.lnum;
                 break;
-            case UNARYNEG :
+            case UNARYNEG:
                 out << L"~" << ov.lnum;
                 break;
-            case PLUS :
+            case PLUS:
                 out << ov.lnum << L"+" << ov.rnum;
                 break;
-            case MINUS :
+            case MINUS:
                 out << ov.lnum << L"-" << ov.rnum;
                 break;
-            case TIMES :
-            case DOTTIMES :
+            case TIMES:
+            case DOTTIMES:
                 out << ov.lnum << L"*" << ov.rnum;
                 break;
-            case RDIV :
-            case DOTRDIV :
+            case RDIV:
+            case DOTRDIV:
                 out << ov.lnum << L"/" << ov.rnum;
                 break;
-            case POWER :
-            case DOTPOWER :
+            case POWER:
+            case DOTPOWER:
                 out << ov.lnum << L"^" << ov.rnum;
                 break;
-            default :
+            default:
                 out << ov.lnum << L"??" << ov.rnum;
                 break;
         }

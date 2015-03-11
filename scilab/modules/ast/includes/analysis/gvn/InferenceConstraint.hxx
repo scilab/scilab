@@ -28,7 +28,10 @@ struct MPolyConstraintSet;
 
 struct InferenceConstraint
 {
-    enum Result { TRUE, FALSE, DUNNO } ;
+    enum Result
+    {
+        RESULT_TRUE, RESULT_FALSE, RESULT_DUNNO
+    };
 
     virtual Result check(const std::vector<GVN::Value *> & values) const = 0;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const = 0;
@@ -63,35 +66,38 @@ struct InferenceConstraint
 
 struct SameDimsConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
-    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
-    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct EqualConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
-    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
-    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct PositiveConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
-    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
-    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct GreaterConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
-    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
-    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct MPolyConstraint : public InferenceConstraint
 {
-    enum Kind { EQ0, NEQ0, GT0, GEQ0 };
+    enum Kind
+    {
+        EQ0, NEQ0, GT0, GEQ0
+    };
 
     MultivariatePolynomial poly;
     Kind kind;

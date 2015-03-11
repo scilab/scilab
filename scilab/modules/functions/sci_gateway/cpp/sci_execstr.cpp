@@ -11,13 +11,13 @@
 */
 
 #include <string.h>
+#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
 //#include "debugvisitor.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "printvisitor.hxx"
-#include "AnalysisVisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"

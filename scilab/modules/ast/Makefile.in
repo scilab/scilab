@@ -223,8 +223,23 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
+	src/cpp/analysis/AnalysisVisitor.cpp \
+	src/cpp/analysis/ArgnAnalyzer.cpp src/cpp/analysis/Block.cpp \
+	src/cpp/analysis/Checkers.cpp \
+	src/cpp/analysis/CompleteMacroSignature.cpp \
+	src/cpp/analysis/ConstraintManager.cpp \
+	src/cpp/analysis/DiagAnalyzer.cpp \
+	src/cpp/analysis/FunctionBlock.cpp \
 	src/cpp/analysis/InferenceConstraints.cpp \
-	src/cpp/types/inspector.cpp
+	src/cpp/analysis/LengthAnalyzer.cpp \
+	src/cpp/analysis/LoopBlock.cpp src/cpp/analysis/MacroDef.cpp \
+	src/cpp/analysis/MatrixAnalyzer.cpp \
+	src/cpp/analysis/MemInitAnalyzer.cpp \
+	src/cpp/analysis/PolymorphicMacroCache.cpp \
+	src/cpp/analysis/SizeAnalyzer.cpp \
+	src/cpp/analysis/VisitListExp.cpp \
+	src/cpp/analysis/VisitMatrixExp.cpp \
+	src/cpp/analysis/XBlock.cpp src/cpp/types/inspector.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @ENABLE_DEBUG_TRUE@am__objects_1 =  \
 @ENABLE_DEBUG_TRUE@	src/cpp/types/libsciast_la-inspector.lo
@@ -316,8 +331,25 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/types/libsciast_la-types.lo \
 	src/cpp/types/libsciast_la-types_tools.lo \
 	src/cpp/types/libsciast_la-void.lo \
+	src/cpp/analysis/libsciast_la-AnalysisVisitor.lo \
+	src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-Block.lo \
+	src/cpp/analysis/libsciast_la-Checkers.lo \
+	src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo \
+	src/cpp/analysis/libsciast_la-ConstraintManager.lo \
+	src/cpp/analysis/libsciast_la-DiagAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-FunctionBlock.lo \
 	src/cpp/analysis/libsciast_la-InferenceConstraints.lo \
-	$(am__objects_1)
+	src/cpp/analysis/libsciast_la-LengthAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-LoopBlock.lo \
+	src/cpp/analysis/libsciast_la-MacroDef.lo \
+	src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo \
+	src/cpp/analysis/libsciast_la-SizeAnalyzer.lo \
+	src/cpp/analysis/libsciast_la-VisitListExp.lo \
+	src/cpp/analysis/libsciast_la-VisitMatrixExp.lo \
+	src/cpp/analysis/libsciast_la-XBlock.lo $(am__objects_1)
 libsciast_la_OBJECTS = $(am_libsciast_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -752,7 +784,23 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/types/threadId.cpp src/cpp/types/tlist.cpp \
 	src/cpp/types/tostring_common.cpp src/cpp/types/types.cpp \
 	src/cpp/types/types_tools.cpp src/cpp/types/void.cpp \
-	src/cpp/analysis/InferenceConstraints.cpp $(am__append_1)
+	src/cpp/analysis/AnalysisVisitor.cpp \
+	src/cpp/analysis/ArgnAnalyzer.cpp src/cpp/analysis/Block.cpp \
+	src/cpp/analysis/Checkers.cpp \
+	src/cpp/analysis/CompleteMacroSignature.cpp \
+	src/cpp/analysis/ConstraintManager.cpp \
+	src/cpp/analysis/DiagAnalyzer.cpp \
+	src/cpp/analysis/FunctionBlock.cpp \
+	src/cpp/analysis/InferenceConstraints.cpp \
+	src/cpp/analysis/LengthAnalyzer.cpp \
+	src/cpp/analysis/LoopBlock.cpp src/cpp/analysis/MacroDef.cpp \
+	src/cpp/analysis/MatrixAnalyzer.cpp \
+	src/cpp/analysis/MemInitAnalyzer.cpp \
+	src/cpp/analysis/PolymorphicMacroCache.cpp \
+	src/cpp/analysis/SizeAnalyzer.cpp \
+	src/cpp/analysis/VisitListExp.cpp \
+	src/cpp/analysis/VisitMatrixExp.cpp \
+	src/cpp/analysis/XBlock.cpp $(am__append_1)
 libsciast_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ast \
 	-I$(srcdir)/includes/exps \
@@ -795,7 +843,7 @@ libsciast_la_etc_DATA = \
 libsciast_scilab_la_includedir = $(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
-includes/analysis/Checkers.hxx \
+includes/analysis/checkers/Checkers.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
 includes/analysis/Result.hxx \
@@ -1409,7 +1457,61 @@ src/cpp/analysis/$(am__dirstamp):
 src/cpp/analysis/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/analysis/$(DEPDIR)
 	@: > src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-AnalysisVisitor.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-Block.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-Checkers.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-ConstraintManager.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-DiagAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-FunctionBlock.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/analysis/libsciast_la-InferenceConstraints.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-LengthAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-LoopBlock.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-MacroDef.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-SizeAnalyzer.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitListExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-VisitMatrixExp.lo:  \
+	src/cpp/analysis/$(am__dirstamp) \
+	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
+src/cpp/analysis/libsciast_la-XBlock.lo:  \
 	src/cpp/analysis/$(am__dirstamp) \
 	src/cpp/analysis/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/libsciast_la-inspector.lo:  \
@@ -1451,7 +1553,25 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_power.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-matrix_transpose.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/operations/$(DEPDIR)/libsciast_la-operations_tools.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-ArgnAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-Checkers.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-CompleteMacroSignature.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstraintManager.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-DiagAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-FunctionBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-LengthAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-LoopBlock.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroDef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MatrixAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-MemInitAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-PolymorphicMacroCache.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-SizeAnalyzer.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitListExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitMatrixExp.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-debugvisitor.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-expHistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/ast/$(DEPDIR)/libsciast_la-macrovarvisitor.Plo@am__quote@
@@ -2188,12 +2308,138 @@ src/cpp/types/libsciast_la-void.lo: src/cpp/types/void.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/types/libsciast_la-void.lo `test -f 'src/cpp/types/void.cpp' || echo '$(srcdir)/'`src/cpp/types/void.cpp
 
+src/cpp/analysis/libsciast_la-AnalysisVisitor.lo: src/cpp/analysis/AnalysisVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-AnalysisVisitor.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Tpo -c -o src/cpp/analysis/libsciast_la-AnalysisVisitor.lo `test -f 'src/cpp/analysis/AnalysisVisitor.cpp' || echo '$(srcdir)/'`src/cpp/analysis/AnalysisVisitor.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-AnalysisVisitor.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/AnalysisVisitor.cpp' object='src/cpp/analysis/libsciast_la-AnalysisVisitor.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-AnalysisVisitor.lo `test -f 'src/cpp/analysis/AnalysisVisitor.cpp' || echo '$(srcdir)/'`src/cpp/analysis/AnalysisVisitor.cpp
+
+src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo: src/cpp/analysis/ArgnAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-ArgnAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo `test -f 'src/cpp/analysis/ArgnAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/ArgnAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-ArgnAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-ArgnAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/ArgnAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-ArgnAnalyzer.lo `test -f 'src/cpp/analysis/ArgnAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/ArgnAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-Block.lo: src/cpp/analysis/Block.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-Block.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Tpo -c -o src/cpp/analysis/libsciast_la-Block.lo `test -f 'src/cpp/analysis/Block.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Block.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-Block.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/Block.cpp' object='src/cpp/analysis/libsciast_la-Block.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-Block.lo `test -f 'src/cpp/analysis/Block.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Block.cpp
+
+src/cpp/analysis/libsciast_la-Checkers.lo: src/cpp/analysis/Checkers.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-Checkers.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-Checkers.Tpo -c -o src/cpp/analysis/libsciast_la-Checkers.lo `test -f 'src/cpp/analysis/Checkers.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Checkers.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-Checkers.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-Checkers.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/Checkers.cpp' object='src/cpp/analysis/libsciast_la-Checkers.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-Checkers.lo `test -f 'src/cpp/analysis/Checkers.cpp' || echo '$(srcdir)/'`src/cpp/analysis/Checkers.cpp
+
+src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo: src/cpp/analysis/CompleteMacroSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-CompleteMacroSignature.Tpo -c -o src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo `test -f 'src/cpp/analysis/CompleteMacroSignature.cpp' || echo '$(srcdir)/'`src/cpp/analysis/CompleteMacroSignature.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-CompleteMacroSignature.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-CompleteMacroSignature.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/CompleteMacroSignature.cpp' object='src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-CompleteMacroSignature.lo `test -f 'src/cpp/analysis/CompleteMacroSignature.cpp' || echo '$(srcdir)/'`src/cpp/analysis/CompleteMacroSignature.cpp
+
+src/cpp/analysis/libsciast_la-ConstraintManager.lo: src/cpp/analysis/ConstraintManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-ConstraintManager.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstraintManager.Tpo -c -o src/cpp/analysis/libsciast_la-ConstraintManager.lo `test -f 'src/cpp/analysis/ConstraintManager.cpp' || echo '$(srcdir)/'`src/cpp/analysis/ConstraintManager.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstraintManager.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-ConstraintManager.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/ConstraintManager.cpp' object='src/cpp/analysis/libsciast_la-ConstraintManager.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-ConstraintManager.lo `test -f 'src/cpp/analysis/ConstraintManager.cpp' || echo '$(srcdir)/'`src/cpp/analysis/ConstraintManager.cpp
+
+src/cpp/analysis/libsciast_la-DiagAnalyzer.lo: src/cpp/analysis/DiagAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-DiagAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-DiagAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-DiagAnalyzer.lo `test -f 'src/cpp/analysis/DiagAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/DiagAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-DiagAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-DiagAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/DiagAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-DiagAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-DiagAnalyzer.lo `test -f 'src/cpp/analysis/DiagAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/DiagAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-FunctionBlock.lo: src/cpp/analysis/FunctionBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-FunctionBlock.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-FunctionBlock.Tpo -c -o src/cpp/analysis/libsciast_la-FunctionBlock.lo `test -f 'src/cpp/analysis/FunctionBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/FunctionBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-FunctionBlock.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-FunctionBlock.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/FunctionBlock.cpp' object='src/cpp/analysis/libsciast_la-FunctionBlock.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-FunctionBlock.lo `test -f 'src/cpp/analysis/FunctionBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/FunctionBlock.cpp
+
 src/cpp/analysis/libsciast_la-InferenceConstraints.lo: src/cpp/analysis/InferenceConstraints.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-InferenceConstraints.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Tpo -c -o src/cpp/analysis/libsciast_la-InferenceConstraints.lo `test -f 'src/cpp/analysis/InferenceConstraints.cpp' || echo '$(srcdir)/'`src/cpp/analysis/InferenceConstraints.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-InferenceConstraints.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/InferenceConstraints.cpp' object='src/cpp/analysis/libsciast_la-InferenceConstraints.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-InferenceConstraints.lo `test -f 'src/cpp/analysis/InferenceConstraints.cpp' || echo '$(srcdir)/'`src/cpp/analysis/InferenceConstraints.cpp
+
+src/cpp/analysis/libsciast_la-LengthAnalyzer.lo: src/cpp/analysis/LengthAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-LengthAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-LengthAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-LengthAnalyzer.lo `test -f 'src/cpp/analysis/LengthAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/LengthAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-LengthAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-LengthAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/LengthAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-LengthAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-LengthAnalyzer.lo `test -f 'src/cpp/analysis/LengthAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/LengthAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-LoopBlock.lo: src/cpp/analysis/LoopBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-LoopBlock.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-LoopBlock.Tpo -c -o src/cpp/analysis/libsciast_la-LoopBlock.lo `test -f 'src/cpp/analysis/LoopBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/LoopBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-LoopBlock.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-LoopBlock.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/LoopBlock.cpp' object='src/cpp/analysis/libsciast_la-LoopBlock.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-LoopBlock.lo `test -f 'src/cpp/analysis/LoopBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/LoopBlock.cpp
+
+src/cpp/analysis/libsciast_la-MacroDef.lo: src/cpp/analysis/MacroDef.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-MacroDef.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroDef.Tpo -c -o src/cpp/analysis/libsciast_la-MacroDef.lo `test -f 'src/cpp/analysis/MacroDef.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MacroDef.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroDef.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-MacroDef.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/MacroDef.cpp' object='src/cpp/analysis/libsciast_la-MacroDef.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-MacroDef.lo `test -f 'src/cpp/analysis/MacroDef.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MacroDef.cpp
+
+src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo: src/cpp/analysis/MatrixAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-MatrixAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo `test -f 'src/cpp/analysis/MatrixAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MatrixAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-MatrixAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-MatrixAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/MatrixAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-MatrixAnalyzer.lo `test -f 'src/cpp/analysis/MatrixAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MatrixAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo: src/cpp/analysis/MemInitAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-MemInitAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo `test -f 'src/cpp/analysis/MemInitAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MemInitAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-MemInitAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-MemInitAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/MemInitAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-MemInitAnalyzer.lo `test -f 'src/cpp/analysis/MemInitAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/MemInitAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo: src/cpp/analysis/PolymorphicMacroCache.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-PolymorphicMacroCache.Tpo -c -o src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo `test -f 'src/cpp/analysis/PolymorphicMacroCache.cpp' || echo '$(srcdir)/'`src/cpp/analysis/PolymorphicMacroCache.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-PolymorphicMacroCache.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-PolymorphicMacroCache.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/PolymorphicMacroCache.cpp' object='src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-PolymorphicMacroCache.lo `test -f 'src/cpp/analysis/PolymorphicMacroCache.cpp' || echo '$(srcdir)/'`src/cpp/analysis/PolymorphicMacroCache.cpp
+
+src/cpp/analysis/libsciast_la-SizeAnalyzer.lo: src/cpp/analysis/SizeAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-SizeAnalyzer.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-SizeAnalyzer.Tpo -c -o src/cpp/analysis/libsciast_la-SizeAnalyzer.lo `test -f 'src/cpp/analysis/SizeAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/SizeAnalyzer.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-SizeAnalyzer.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-SizeAnalyzer.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/SizeAnalyzer.cpp' object='src/cpp/analysis/libsciast_la-SizeAnalyzer.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-SizeAnalyzer.lo `test -f 'src/cpp/analysis/SizeAnalyzer.cpp' || echo '$(srcdir)/'`src/cpp/analysis/SizeAnalyzer.cpp
+
+src/cpp/analysis/libsciast_la-VisitListExp.lo: src/cpp/analysis/VisitListExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitListExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitListExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitListExp.lo `test -f 'src/cpp/analysis/VisitListExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitListExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitListExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitListExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitListExp.cpp' object='src/cpp/analysis/libsciast_la-VisitListExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitListExp.lo `test -f 'src/cpp/analysis/VisitListExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitListExp.cpp
+
+src/cpp/analysis/libsciast_la-VisitMatrixExp.lo: src/cpp/analysis/VisitMatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-VisitMatrixExp.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitMatrixExp.Tpo -c -o src/cpp/analysis/libsciast_la-VisitMatrixExp.lo `test -f 'src/cpp/analysis/VisitMatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitMatrixExp.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitMatrixExp.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-VisitMatrixExp.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/VisitMatrixExp.cpp' object='src/cpp/analysis/libsciast_la-VisitMatrixExp.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-VisitMatrixExp.lo `test -f 'src/cpp/analysis/VisitMatrixExp.cpp' || echo '$(srcdir)/'`src/cpp/analysis/VisitMatrixExp.cpp
+
+src/cpp/analysis/libsciast_la-XBlock.lo: src/cpp/analysis/XBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/analysis/libsciast_la-XBlock.lo -MD -MP -MF src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Tpo -c -o src/cpp/analysis/libsciast_la-XBlock.lo `test -f 'src/cpp/analysis/XBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/XBlock.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Tpo src/cpp/analysis/$(DEPDIR)/libsciast_la-XBlock.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/analysis/XBlock.cpp' object='src/cpp/analysis/libsciast_la-XBlock.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/analysis/libsciast_la-XBlock.lo `test -f 'src/cpp/analysis/XBlock.cpp' || echo '$(srcdir)/'`src/cpp/analysis/XBlock.cpp
 
 src/cpp/types/libsciast_la-inspector.lo: src/cpp/types/inspector.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-inspector.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-inspector.Tpo -c -o src/cpp/types/libsciast_la-inspector.lo `test -f 'src/cpp/types/inspector.cpp' || echo '$(srcdir)/'`src/cpp/types/inspector.cpp

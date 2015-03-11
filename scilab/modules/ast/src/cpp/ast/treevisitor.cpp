@@ -454,14 +454,13 @@ void TreeVisitor::visit(const AssignExp &e)
         lhs->append(getList());
 
         //indexes
-        ast::exps_t* args = call->getArgs();
-        for (auto arg : *args)
+        ast::exps_t args = call->getArgs();
+        for (auto arg : args)
         {
             arg->accept(*this);
             lhs->append(getList());
         }
 
-        delete args;
         if (dlhs)
         {
             dlhs[0] = 1;//lhs = 1
@@ -542,13 +541,12 @@ void TreeVisitor::visit(const CallExp &e)
 
     //rhs
     types::List* rhs = new types::List();
-    ast::exps_t* args = e.getArgs();
-    for (auto arg : *args)
+    ast::exps_t args = e.getArgs();
+    for (auto arg : args)
     {
         arg->accept(*this);
         rhs->append(getList());
     }
-    delete args;
 
     call->append(rhs);
 
@@ -721,13 +719,12 @@ void TreeVisitor::visit(const SelectExp &e)
 
     //cases
     types::List* lcases = new types::List();
-    ast::exps_t* cases = e.getCases();
-    for (auto c : *cases)
+    ast::exps_t cases = e.getCases();
+    for (auto c : cases)
     {
         c->accept(*this);
         lcases->append(getList());
     }
-    delete cases;
 
     select->append(lcases);
 

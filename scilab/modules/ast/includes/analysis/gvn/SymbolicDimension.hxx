@@ -30,7 +30,7 @@ class SymbolicDimension
     GVN * gvn;
     GVN::Value * value;
 
-public :
+public:
 
     /**
      * \brief default constructor

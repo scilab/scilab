@@ -209,13 +209,12 @@ void DebugVisitor::visit(const CellCallExp &e)
     DEBUG(L"Exec CellCallExp", e);
     e.getName().accept (*this);
 
-    exps_t* args = e.getArgs();
-    for (auto arg : *args)
+    exps_t args = e.getArgs();
+    for (auto arg : args)
     {
         arg->accept(*this);
     }
 
-    delete args;
     DEBUG_END_NODE();
 }
 
@@ -225,13 +224,12 @@ void DebugVisitor::visit(const CallExp &e)
     DEBUG(L"Exec CallExp", e);
     e.getName().accept (*this);
 
-    exps_t* args = e.getArgs();
-    for (auto arg : *args)
+    exps_t args = e.getArgs();
+    for (auto arg : args)
     {
         arg->accept (*this);
     }
 
-    delete args;
     DEBUG_END_NODE();
 }
 
@@ -306,12 +304,11 @@ void DebugVisitor::visit (const SelectExp &e)
     DEBUG(L"Exec SelectExp", e);
     e.getSelect()->accept(*this);
 
-    exps_t* cases = e.getCases();
-    for (auto exp : *cases)
+    exps_t cases = e.getCases();
+    for (auto exp : cases)
     {
         exp->accept(*this);
     }
-    delete cases;
 
     if (e.getDefaultCase() != NULL)
     {

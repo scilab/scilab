@@ -209,10 +209,10 @@ void RunVisitorT<T>::visitprivate(const OpExp &e)
         throw error;
     }
 
-    if (e.getDecorator().res.isConstant())
+    /*if (e.getDecorator().res.isConstant())
     {
 
-    }
+    }*/
 }
 
 template<class T>

@@ -93,12 +93,12 @@ inline static double NaN()
 
 inline static bool isNaN(const double x)
 {
-    return ISNAN(x);
+    return ISNAN(x) != 0;
 }
 
 inline static bool isFinite(const double x)
 {
-    return finite(x);
+    return finite(x) != 0;
 }
 
 inline static bool isInfinite(const double x)

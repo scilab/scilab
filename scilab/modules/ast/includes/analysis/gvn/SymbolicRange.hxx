@@ -31,7 +31,7 @@ class SymbolicRange
     GVN::Value * start;
     GVN::Value * end;
 
-public :
+public:
 
     /**
      * \brief default constructor

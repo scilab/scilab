@@ -711,9 +711,8 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
         int iListSize = 0;
 
         ast::ExecVisitor execMe;
-        ast::exps_t* args = pCall->getArgs();
-        typed_list* pCurrentArgs = execMe.GetArgumentList(*args);
-        delete args;
+        ast::exps_t args = pCall->getArgs();
+        typed_list* pCurrentArgs = execMe.GetArgumentList(args);
 
         if (getFieldsFromExp(&pCall->getName(), fields) == false)
         {
@@ -2361,8 +2360,8 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     {
         pList = getPropertyTree(&pCall->getName(), pList);
         ast::ExecVisitor exec;
-        ast::exps_t* exps = pCall->getArgs();
-        for (auto exp : *exps)
+        ast::exps_t exps = pCall->getArgs();
+        for (auto exp : exps)
         {
             try
             {
@@ -2375,7 +2374,6 @@ List* getPropertyTree(ast::Exp* e, List* pList)
                 throw e;
             }
         }
-        delete exps;
         return pList;
     }
 

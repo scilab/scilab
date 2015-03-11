@@ -80,12 +80,13 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const exps_t& getVars() const
+    
+    inline const exps_t& getVars() const
     {
         return _exps;
     }
 
-    exps_t& getVars()
+    inline exps_t& getVars()
     {
         return _exps;
     }
