@@ -316,12 +316,14 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 
             for (i = iLhsCount - 1, it = exps.rbegin(); it != exps.rend(); it++, i--)
             {
-                AssignExp pAssign((*it)->getLocation(), *(*it), e.getRightExp(), pIT[i]);
+                Exp* pExp = e.getRightExp().clone();
+                AssignExp pAssign((*it)->getLocation(), *(*it), *pExp, pIT[i]);
                 pAssign.setLrOwner(false);
                 pAssign.setVerbose(e.isVerbose());
                 pAssign.accept(*this);
                 //clear result to take care of [n,n]
                 exec.setResult(i, NULL);
+                delete pExp;
             }
 
             for (i = iLhsCount - 1; i >= 0; i--)
