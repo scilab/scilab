@@ -29,17 +29,17 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     {
         if (lhs == 1)
         {
-            e.getDecorator().res = Result(type);
-            e.getDecorator().res.setValue(0, tools::IntType::UNSIGNED);
+            Result & res = e.getDecorator().setResult(type);
+            res.getConstant().set(0.);
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
-            visitor.setResult(e.getDecorator().res);
+            visitor.setResult(res);
             return true;
         }
         return false;
     }
 
 
-    enum Kind
+    enum Kind 
     {
         LHS, RHS, LHSRHS
     } kind;
@@ -104,10 +104,10 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         case RHS:
         {
             const unsigned int val = kind == LHS ? fblock->getLHS() : fblock->getRHS();
-            e.getDecorator().res = Result(type);
-            e.getDecorator().res.setValue(val, tools::IntType::UNSIGNED);
+            Result & res = e.getDecorator().setResult(type);
+            res.getConstant().set(val);
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
-            visitor.setResult(e.getDecorator().res);
+            visitor.setResult(res);
         }
         case LHSRHS:
         {
@@ -118,9 +118,9 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             const unsigned int flhs = fblock->getLHS();
             const unsigned int frhs = fblock->getRHS();
             mlhs.emplace_back(type);
-            mlhs.back().setValue(flhs, tools::IntType::UNSIGNED);
+            mlhs.back().getConstant().set((double)flhs);
             mlhs.emplace_back(type);
-            mlhs.back().setValue(frhs, tools::IntType::UNSIGNED);
+            mlhs.back().getConstant().set((double)frhs);
 
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
         }

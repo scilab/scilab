@@ -18,119 +18,89 @@
 #include "gvn/GVN.hxx"
 #include "TIType.hxx"
 #include "tools.hxx"
+#include "ConstantValue.hxx"
 
 namespace analysis
 {
-    class Result
+class Result
+{
+
+public:
+
+    enum FnName { ZEROS, ONES, RAND, DUNNO };
+
+private:
+
+    bool visited;
+    TIType type;
+    int tempId;
+    FnName fnname;
+    ConstantValue constant;
+
+public:
+
+    Result() : visited(false), type(), tempId(-1) { }
+    Result(const TIType & _type, const int _tempId = -1) : visited(true), type(_type), tempId(_tempId) { }
+    Result(TIType && _type, const int _tempId = -1) : visited(true), type(_type), tempId(_tempId) { }
+
+    inline bool istemp() const
     {
+        return tempId >= 0;
+    }
 
-    public:
+    inline void setFnName(FnName _fnname)
+    {
+        visited = true;
+        fnname = _fnname;
+    }
 
-        enum FnName { ZEROS, ONES, RAND, DUNNO };
+    inline FnName getFnName() const
+    {
+        return fnname;
+    }
 
-    private:
+    inline const TIType & getType() const
+    {
+        return type;
+    }
 
-	bool visited;
-        TIType type;
-	tools::IntType inttype;
-        int tempId;
-        FnName fnname;
-	double value;
-	bool hasValue;
-	GVN::Value * gvnValue;
-	
-    public:
+    inline TIType & getType()
+    {
+        return type;
+    }
 
-        Result() : visited(false), type(), inttype(tools::NOTANINT), tempId(-1), hasValue(false), gvnValue(nullptr) { }
-        Result(const TIType & _type, const int _tempId = -1) : visited(true), type(_type), inttype(tools::NOTANINT), tempId(_tempId), hasValue(false), gvnValue(nullptr) { }
-        Result(TIType && _type, const int _tempId = -1) : visited(true), type(_type), inttype(tools::NOTANINT), tempId(_tempId), hasValue(false), gvnValue(nullptr) { }
+    inline int getTempId() const
+    {
+        return tempId;
+    }
 
-        inline bool istemp() const
-            {
-                return tempId >= 0;
-            }
+    inline ConstantValue & getConstant()
+    {
+        return constant;
+    }
 
-        inline void setFnName(FnName _fnname)
-            {
-		visited = true;
-                fnname = _fnname;
-            }
+    inline const ConstantValue & getConstant() const
+    {
+        return constant;
+    }
 
-        inline FnName getFnName() const
-            {
-                return fnname;
-            }
+    inline ConstantValue & setConstant(ConstantValue & val)
+    {
+        constant = val;
+        return constant;
+    }
 
-        inline const TIType & getType() const
-            {
-                return type;
-            }
+    inline bool hasBeenVisited() const
+    {
+        return visited;
+    }
 
-        inline TIType & getType()
-            {
-                return type;
-            }
-
-        inline int getTempId() const
-            {
-                return tempId;
-            }
-
-	inline tools::IntType getIntType() const
-	    {
-		return inttype;
-	    }
-
-	inline void setIntType(tools::IntType it)
-	    {
-		visited = true;
-		inttype = it;
-	    }
-
-	inline void setValue(const double _value)
-	    {
-		setValue(_value, tools::getIntType(_value));
-	    }
-
-	inline void setValue(const double _value, const tools::IntType _inttype)
-	    {
-		value = _value;
-		inttype = _inttype;
-		hasValue = true;
-		visited = true;
-	    }
-
-	inline void setGVNValue(GVN::Value * _value)
-	    {
-		gvnValue = _value;
-	    }
-
-	inline GVN::Value * getGVNValue()
-	    {
-		return gvnValue;
-	    }
-
-	inline bool getValue(double & _value)
-	    {
-		if (hasValue)
-		{
-		    _value = value;
-		    return true;
-		}
-		return false;
-	    }
-
-	inline bool hasBeenVisited() const
-	    {
-		return visited;
-	    }
-
-        friend std::wostream & operator<<(std::wostream & out, const Result & res)
-            {
-                out << L"Result {" << res.type << L", temp id:" << res.tempId << L", int:" << res.inttype << L"}";
-                return out;
-            }
-    };
+    friend std::wostream & operator<<(std::wostream & out, const Result & res)
+    {
+        out << L"Result {" << res.type << L", temp id:" << res.tempId << L", constant:" << res.constant << L"}";
+        return out;
+    }
+};
 
 } // namespace analysis
 

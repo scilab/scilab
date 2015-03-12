@@ -32,7 +32,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
         SymbolicDimension rows, cols;
         bool empty = false;
 
-        if (R1.getValue(val))
+        if (R1.getConstant().getDblValue(val))
         {
             const int nrows = tools::cast<int>(val);
             if (nrows <= 0)
@@ -44,7 +44,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                 rows = SymbolicDimension(visitor.getGVN(), nrows);
             }
         }
-        else if (GVN::Value * gvnValue = R1.getGVNValue())
+        else if (GVN::Value * gvnValue = R1.getConstant().getGVNValue())
         {
             rows.setValue(gvnValue);
             rows.setGVN(&visitor.getGVN());
@@ -56,7 +56,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
 
         if (!empty)
         {
-            if (R2.getValue(val))
+            if (R2.getConstant().getDblValue(val))
             {
                 const int ncols = tools::cast<int>(val);
                 if (ncols <= 0)
@@ -68,7 +68,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                     cols = SymbolicDimension(visitor.getGVN(), ncols);
                 }
             }
-            else if (GVN::Value * gvnValue = R2.getGVNValue())
+            else if (GVN::Value * gvnValue = R2.getConstant().getGVNValue())
             {
                 cols.setValue(gvnValue);
                 cols.setGVN(&visitor.getGVN());
@@ -81,7 +81,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
 
         if (empty)
         {
-            e.getDecorator().res = Result(TIType(visitor.getGVN(), TIType::EMPTY));
+            e.getDecorator().setResult(TIType(visitor.getGVN(), TIType::EMPTY));
         }
         else
         {
@@ -99,7 +99,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                 return false;
             }
             TIType resT(visitor.getGVN(), TIType::DOUBLE, rows, cols);
-            e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
+            e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
         }
         visitor.setResult(e.getDecorator().res);
 

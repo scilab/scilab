@@ -193,7 +193,7 @@ void MPolyConstraint::applyConstraints(const std::vector<GVN::Value *> & values)
             const MultivariateMonomial & m1 = *poly.polynomial.begin();
             const MultivariateMonomial & m2 = *std::next(poly.polynomial.begin());
 
-            if ((m1.coeff == 1 && m2.coeff == -1) || (m1.coeff == -1 && m2.coeff == 1) && (m1.monomial.size() == 1 && m2.monomial.size() == 1))
+            if (((m1.coeff == 1 && m2.coeff == -1) || (m1.coeff == -1 && m2.coeff == 1)) && (m1.monomial.size() == 1 && m2.monomial.size() == 1))
             {
                 // We have a polynomial P such as P(X,Y)=X-Y
                 GVN::Value & x = *values[m1.monomial.begin()->var];

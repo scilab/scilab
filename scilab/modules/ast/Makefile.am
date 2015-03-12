@@ -107,6 +107,7 @@ src/cpp/analysis/ArgnAnalyzer.cpp \
 src/cpp/analysis/Block.cpp \
 src/cpp/analysis/Checkers.cpp \
 src/cpp/analysis/CompleteMacroSignature.cpp \
+src/cpp/analysis/ConstantValue.cpp \
 src/cpp/analysis/ConstraintManager.cpp \
 src/cpp/analysis/DiagAnalyzer.cpp \
 src/cpp/analysis/FunctionBlock.cpp \

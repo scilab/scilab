@@ -925,6 +925,12 @@
     <ClInclude Include="includes\system_env\threadmanagement.hxx">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
+    <ClInclude Include="includes\analysis\ConstantValue.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\ConstantVisitor.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -1247,6 +1253,9 @@
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\threadmanagement.cpp">
       <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\analysis\ConstantValue.cpp">
+      <Filter>Source Files\ast\analysis</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

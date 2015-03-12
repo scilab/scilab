@@ -47,11 +47,11 @@ bool LengthAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
     SymbolicDimension & rows = res.getType().rows;
     SymbolicDimension & cols = res.getType().cols;
     SymbolicDimension prod = rows * cols;
-    e.getDecorator().res = Result(type);
-    e.getDecorator().res.setGVNValue(prod.getValue());
-    e.getDecorator().setCall(Call(Call::IDENTITY, type, L"length"));
-    visitor.setResult(e.getDecorator().res);
 
+    Result & _res = e.getDecorator().setResult(type);
+    _res.getConstant().set(prod.getValue());
+    e.getDecorator().setCall(Call(Call::IDENTITY, type, L"length"));
+    visitor.setResult(_res);
     return true;
 }
 }

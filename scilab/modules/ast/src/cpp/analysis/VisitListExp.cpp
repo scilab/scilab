@@ -26,10 +26,10 @@ void AnalysisVisitor::visit(ast::ListExp & e)
         switch (type)
         {
             case 0:
-                e.getDecorator().res = Result(TIType(dm.getGVN(), TIType::EMPTY), -1);
+                e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::EMPTY), -1));
                 break;
             case 1:
-                e.getDecorator().res = Result(TIType(dm.getGVN(), TIType::DOUBLE), -1);
+                e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::DOUBLE), -1));
                 break;
             case 2:
             {
@@ -39,7 +39,7 @@ void AnalysisVisitor::visit(ast::ListExp & e)
                 {
                     out = start;
                 }
-                e.getDecorator().res = Result(T, temp.add(T));
+                e.getDecorator().setResult(Result(T, temp.add(T)));
                 break;
             }
             default:
@@ -56,9 +56,8 @@ void AnalysisVisitor::visit(ast::ListExp & e)
 
     if (!AnalysisVisitor::asDouble(e.getStep(), step) || (step != -1 && step != 1))
     {
-        e.getDecorator().res = Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1);
-        setResult(e.getDecorator().res);
-
+        Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
+        setResult(res);
         return;
     }
 
@@ -66,15 +65,14 @@ void AnalysisVisitor::visit(ast::ListExp & e)
 
     if (!Rstart.getType().isscalar())
     {
-        e.getDecorator().res = Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1);
-        setResult(e.getDecorator().res);
-
+        Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
+        setResult(res);
         return;
     }
 
-    if (Rstart.getValue(start))
+    if (Rstart.getConstant().getDblValue(start))
     {
-        if (Rstart.getIntType() == tools::NOTANINT)
+        if (tools::getIntType(start) == tools::NOTANINT)
         {
             gvnStart = getGVN().getValue((double)tools::cast<int>(start + step));
         }
@@ -85,12 +83,11 @@ void AnalysisVisitor::visit(ast::ListExp & e)
     }
     else
     {
-        gvnStart = Rstart.getGVNValue();
+        gvnStart = Rstart.getConstant().getGVNValue();
         if (!gvnStart)
         {
-            e.getDecorator().res = Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1);
-            setResult(e.getDecorator().res);
-
+            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
+            setResult(res);
             return;
         }
     }
@@ -99,9 +96,9 @@ void AnalysisVisitor::visit(ast::ListExp & e)
     Result & Rend = getResult();
     GVN::Value * gvnEnd;
 
-    if (Rend.getValue(end))
+    if (Rend.getConstant().getDblValue(end))
     {
-        if (Rend.getIntType() == tools::NOTANINT)
+        if (tools::getIntType(end) == tools::NOTANINT)
         {
             gvnEnd = getGVN().getValue((double)tools::cast<int>(end - step));
         }
@@ -112,12 +109,11 @@ void AnalysisVisitor::visit(ast::ListExp & e)
     }
     else
     {
-        gvnEnd = Rend.getGVNValue();
+        gvnEnd = Rend.getConstant().getGVNValue();
         if (!gvnEnd)
         {
-            e.getDecorator().res = Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1);
-            setResult(e.getDecorator().res);
-
+            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
+            setResult(res);
             return;
         }
     }
@@ -146,13 +142,12 @@ void AnalysisVisitor::visit(ast::ListExp & e)
         if (res)
         {
             TIType type(getGVN(), TIType::DOUBLE, ONE, SymbolicDimension(getGVN(), v));
-            e.getDecorator().res = Result(type);
+            e.getDecorator().setResult(type);
         }
         else
         {
-            e.getDecorator().res = Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1);
-            setResult(e.getDecorator().res);
-
+            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
+            setResult(res);
             return;
         }
     }

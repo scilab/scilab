@@ -121,19 +121,19 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         case ROWS:
         {
             SymbolicDimension & rows = res.getType().rows;
-            e.getDecorator().res = Result(type);
-            e.getDecorator().res.setGVNValue(rows.getValue());
+            Result & _res = e.getDecorator().setResult(type);
+            _res.getConstant().set(rows.getValue());
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
-            visitor.setResult(e.getDecorator().res);
+            visitor.setResult(_res);
             break;
         }
         case COLS:
         {
             SymbolicDimension & cols = res.getType().cols;
-            e.getDecorator().res = Result(type);
-            e.getDecorator().res.setGVNValue(cols.getValue());
+            Result & _res = e.getDecorator().setResult(type);
+            _res.getConstant().set(cols.getValue());
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
-            visitor.setResult(e.getDecorator().res);
+            visitor.setResult(_res);
             break;
         }
         case ROWSTIMESCOLS:
@@ -141,10 +141,10 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             SymbolicDimension & rows = res.getType().rows;
             SymbolicDimension & cols = res.getType().cols;
             SymbolicDimension prod = rows * cols;
-            e.getDecorator().res = Result(type);
-            e.getDecorator().res.setGVNValue(prod.getValue());
+            Result & _res = e.getDecorator().setResult(type);
+            _res.getConstant().set(prod.getValue());
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
-            visitor.setResult(e.getDecorator().res);
+            visitor.setResult(_res);
             break;
         }
         case ROWSCOLS:
@@ -155,9 +155,9 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.clear();
             mlhs.reserve(2);
             mlhs.emplace_back(type);
-            mlhs.back().setGVNValue(rows.getValue());
+            mlhs.back().getConstant().set(rows.getValue());
             mlhs.emplace_back(type);
-            mlhs.back().setGVNValue(cols.getValue());
+            mlhs.back().getConstant().set(cols.getValue());
 
             e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
             break;

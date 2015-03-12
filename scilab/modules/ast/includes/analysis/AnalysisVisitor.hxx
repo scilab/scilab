@@ -251,18 +251,9 @@ private:
     {
         symbol::Symbol & sym = e.getSymbol();
         Info & info = dm.read(sym, &e);
-        e.getDecorator().res = Result(info.type);
-        double val;
-        if (info.asDouble(val))
-        {
-            e.getDecorator().res.setValue(val);
-        }
-        else if (GVN::Value * gvnValue = info.getValue())
-        {
-            e.getDecorator().res.setGVNValue(gvnValue);
-        }
-
-        setResult(e.getDecorator().res);
+        Result & res = e.getDecorator().setResult(info.type);
+        res.setConstant(info.getConstant());
+        setResult(res);
     }
 
     void visit(ast::DollarVar & e)
@@ -286,21 +277,23 @@ private:
 
     void visit(ast::DoubleExp & e)
     {
-        e.getDecorator().res = Result(TIType(dm.getGVN(), TIType::DOUBLE));
-        e.getDecorator().res.setValue(e.getValue());
-        setResult(e.getDecorator().res);
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE));
+        res.getConstant().set(e.getValue());
+        setResult(res);
     }
 
     void visit(ast::BoolExp & e)
     {
-        e.getDecorator().res = Result(TIType(dm.getGVN(), TIType::BOOLEAN));
-        setResult(e.getDecorator().res);
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::BOOLEAN));
+        res.getConstant().set(e.getValue());
+        setResult(res);
     }
 
     void visit(ast::StringExp & e)
     {
-        e.getDecorator().res = Result(TIType(dm.getGVN(), TIType::STRING));
-        setResult(e.getDecorator().res);
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::STRING));
+        res.getConstant().set(&e.getValue());
+        setResult(res);
     }
 
     void visit(ast::CommentExp & e)
@@ -502,13 +495,13 @@ private:
                 var.getDecorator().res = RR;
                 Info & info = dm.define(sym, RR.getType(), &e);
                 double value;
-                if (asDouble(e.getRightExp(), value) || RR.getValue(value))
+                if (asDouble(e.getRightExp(), value) || RR.getConstant().getDblValue(value))
                 {
-                    info.setValue(value);
+                    info.getConstant().set(value);
                 }
-                if (GVN::Value * gvnValue = RR.getGVNValue())
+                if (GVN::Value * gvnValue = RR.getConstant().getGVNValue())
                 {
-                    info.setValue(gvnValue);
+                    info.getConstant().set(gvnValue);
                 }
             }
         }
@@ -541,15 +534,7 @@ private:
                         ast::SimpleVar & var = *static_cast<ast::SimpleVar *>(exp);
                         symbol::Symbol & sym = var.getSymbol();
                         Info & info = dm.define(sym, j->getType(), exp);
-                        double value;
-                        if (j->getValue(value))
-                        {
-                            info.setValue(value);
-                        }
-                        if (GVN::Value * gvnValue = j->getGVNValue())
-                        {
-                            info.setValue(gvnValue);
-                        }
+                        info.setConstant(j->getConstant());
                         ++j;
                     }
                 }

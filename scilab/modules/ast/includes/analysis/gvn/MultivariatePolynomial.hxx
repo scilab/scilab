@@ -21,6 +21,7 @@
 #include <sstream>
 #include <string>
 #include <unordered_set>
+#include <vector>
 
 #include "core_math.h"
 #include "tools.hxx"

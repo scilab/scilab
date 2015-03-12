@@ -18,11 +18,12 @@
 #include "TIType.hxx"
 #include "Data.hxx"
 #include "gvn/GVN.hxx"
-#include "dynlib_ast.h"
+#include "ConstantValue.hxx"
+
 namespace analysis
 {
 
-struct EXTERN_AST Info
+struct Info
 {
     enum Local
     {
@@ -36,15 +37,13 @@ struct EXTERN_AST Info
     Local local;
     bool cleared;
     bool exists;
-    bool knownValue;
-    double value;
     TIType type;
     Data * data;
-    GVN::Value * gvnValue;
     ast::Exp * exp;
+    ConstantValue constant;
 
-    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), knownValue(false), data(_data), gvnValue(nullptr), exp(nullptr) { }
-    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), knownValue(i.knownValue), value(i.value), type(i.type), data(i.data ? new Data(*i.data) : nullptr), gvnValue(i.gvnValue), exp(i.exp) { }
+    Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
+    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
 
     inline void merge(Info & info)
     {
@@ -58,7 +57,8 @@ struct EXTERN_AST Info
         }
         cleared = cleared && info.cleared;
         exists = exists || info.exists;
-        knownValue = knownValue && info.knownValue && value == info.value;
+        constant.merge(info.constant);
+        //knownValue = knownValue && info.knownValue && value == info.value;
         type.merge(info.type);
         data->valid = data->same(info.data);
     }
@@ -73,31 +73,20 @@ struct EXTERN_AST Info
         data->add(sym);
     }
 
-    inline void setValue(double _value)
+    inline ConstantValue & getConstant()
     {
-        knownValue = true;
-        value = _value;
+        return constant;
     }
 
-    inline void setValue(GVN::Value * _value)
+    inline const ConstantValue & getConstant() const
     {
-        gvnValue = _value;
+        return constant;
     }
 
-    inline GVN::Value * getValue()
+    inline ConstantValue & setConstant(ConstantValue & val)
     {
-        return gvnValue;
-    }
-
-    inline bool asDouble(double & _value) const
-    {
-        if (knownValue)
-        {
-            _value = value;
-            return true;
-        }
-
-        return false;
+        constant = val;
+        return constant;
     }
 
     inline bool isknown() const
@@ -124,17 +113,8 @@ struct EXTERN_AST Info
             << L" - int:" << (info.isint ? L"T" : L"F")
             << L" - local:" << (info.local == Local::INFO_TRUE ? L"T" : (info.local == Local::INFO_FALSE ? L"F" : L"U"))
             << L" - cleared:" << (info.cleared ? L"T" : L"F")
-            << L" - exists:" << (info.exists ? L"T" : L"F");
-
-        if (info.knownValue)
-        {
-            out << L" - value:" << info.value;
-        }
-
-        if (info.gvnValue)
-        {
-            out << L" - GVN value:" << *info.gvnValue;
-        }
+            << L" - exists:" << (info.exists ? L"T" : L"F")
+            << L" - constant:" << info.constant;
 
         out << L" - data:";
         if (info.data)

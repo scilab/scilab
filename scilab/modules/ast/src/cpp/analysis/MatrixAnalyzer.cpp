@@ -49,7 +49,7 @@ bool MatrixAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
     SymbolicDimension rows;
     SymbolicDimension cols;
 
-    if (R2.getValue(val))
+    if (R2.getConstant().getDblValue(val))
     {
         const int nrows = tools::cast<int>(val);
         if (nrows <= 0)
@@ -61,7 +61,7 @@ bool MatrixAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
             rows = SymbolicDimension(visitor.getGVN(), nrows);
         }
     }
-    else if (GVN::Value * gvnValue = R2.getGVNValue())
+    else if (GVN::Value * gvnValue = R2.getConstant().getGVNValue())
     {
         if (gvnValue->poly->isConstant() && gvnValue->poly->constant <= 0)
         {
@@ -75,7 +75,7 @@ bool MatrixAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
         return false;
     }
 
-    if (R3.getValue(val))
+    if (R3.getConstant().getDblValue(val))
     {
         const int ncols = tools::cast<int>(val);
         if (ncols <= 0)
@@ -87,7 +87,7 @@ bool MatrixAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
             cols = SymbolicDimension(visitor.getGVN(), ncols);
         }
     }
-    else if (GVN::Value * gvnValue = R3.getGVNValue())
+    else if (GVN::Value * gvnValue = R3.getConstant().getGVNValue())
     {
         if (gvnValue->poly->isConstant() && gvnValue->poly->constant <= 0)
         {
@@ -119,9 +119,8 @@ bool MatrixAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
     }
 
     TIType resT(visitor.getGVN(), R1.getType().type, rows, cols);
-    e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
-    visitor.setResult(e.getDecorator().res);
-
+    Result & _res = e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+    visitor.setResult(_res);
     return true;
 }
 }

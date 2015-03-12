@@ -18,89 +18,105 @@
 
 namespace analysis
 {
-    bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
+{
+    if (lhs > 1)
     {
-        if (lhs > 1)
-        {
-            return false;
-        }
+        return false;
+    }
 
-        const ast::exps_t args = e.getArgs();
-        const std::size_t size = args.size();
-        if (size != 1 && size != 2)
-        {
-            return false;
-        }
+    const ast::exps_t args = e.getArgs();
+    const std::size_t size = args.size();
+    if (size != 1 && size != 2)
+    {
+        return false;
+    }
 
-        ast::Exp * first = *args.begin();
-        ast::Exp * second = size == 2 ? *std::next(args.begin()) : nullptr;
-        int index = 0;
+    ast::Exp * first = *args.begin();
+    ast::Exp * second = size == 2 ? *std::next(args.begin()) : nullptr;
+    int index = 0;
 
-        first->accept(visitor);
-        Result R1 = visitor.getResult();
-        if (!R1.getType().ismatrix())
-        {
-            return false;
-        }
+    first->accept(visitor);
+    Result R1 = visitor.getResult();
+    if (!R1.getType().ismatrix())
+    {
+        return false;
+    }
 
-        if (second)
+    if (second)
+    {
+        second->accept(visitor);
+        Result & R2 = visitor.getResult();
+        double val;
+        if (R2.getConstant().getDblValue(val))
         {
-            second->accept(visitor);
-            Result & R2 = visitor.getResult();
-            double val;
-            if (R2.getValue(val))
-            {
-                index = tools::cast<int>(val);
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        bool isOneDim = false;
-        GVN::Value * dim;
-        TIType & type = R1.getType();
-        GVN::Value * ONE = visitor.getGVN().getValue(1.);
-        isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), ONE);
-        if (isOneDim)
-        {
-            dim = type.cols.getValue();
+            index = tools::cast<int>(val);
         }
         else
         {
-            isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.cols.getValue(), ONE);
-            if (isOneDim)
-            {
-                dim = type.rows.getValue();
-            }
+            return false;
         }
+    }
 
+    bool isOneDim = false;
+    GVN::Value * dim;
+    TIType & type = R1.getType();
+    GVN::Value * ONE = visitor.getGVN().getValue(1.);
+    isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), ONE);
+    if (isOneDim)
+    {
+        dim = type.cols.getValue();
+    }
+    else
+    {
+        isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.cols.getValue(), ONE);
         if (isOneDim)
         {
-            SymbolicDimension sdim = index == 0 ? SymbolicDimension(&visitor.getGVN(), dim) : SymbolicDimension(&visitor.getGVN(), visitor.getGVN().getValue(OpValue::Kind::PLUS, *dim, *visitor.getGVN().getValue(std::abs(index))));
-            TIType resT(visitor.getGVN(), R1.getType().type, sdim, sdim);
-            e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
+            dim = type.rows.getValue();
+        }
+    }
+
+    if (isOneDim)
+    {
+        SymbolicDimension sdim = index == 0 ? SymbolicDimension(&visitor.getGVN(), dim) : SymbolicDimension(&visitor.getGVN(), visitor.getGVN().getValue(OpValue::Kind::PLUS, *dim, *visitor.getGVN().getValue(std::abs(index))));
+        TIType resT(visitor.getGVN(), R1.getType().type, sdim, sdim);
+        e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+    }
+    else
+    {
+        bool res = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), type.cols.getValue());
+        if (res)
+        {
+            SymbolicDimension dimONE(visitor.getGVN(), 1.);
+            TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
+            e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
         }
         else
         {
-            bool res = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), type.cols.getValue());
+            res = visitor.getCM().check(ConstraintManager::GREATER, type.rows.getValue(), type.cols.getValue());
             if (res)
             {
-                SymbolicDimension dimONE(visitor.getGVN(), 1.);
-                TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
-                e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
+                if (index == 0)
+                {
+                    SymbolicDimension dimONE(visitor.getGVN(), 1);
+                    TIType resT(visitor.getGVN(), R1.getType().type, type.cols, dimONE);
+                    e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+                }
+                else
+                {
+                    return false;
+                }
             }
             else
             {
-                res = visitor.getCM().check(ConstraintManager::GREATER, type.rows.getValue(), type.cols.getValue());
+                res = visitor.getCM().check(ConstraintManager::GREATER, type.cols.getValue(), type.rows.getValue());
                 if (res)
                 {
                     if (index == 0)
                     {
                         SymbolicDimension dimONE(visitor.getGVN(), 1);
-                        TIType resT(visitor.getGVN(), R1.getType().type, type.cols, dimONE);
-                        e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
+                        TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
+                        e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
                     }
                     else
                     {
@@ -109,30 +125,14 @@ namespace analysis
                 }
                 else
                 {
-                    res = visitor.getCM().check(ConstraintManager::GREATER, type.cols.getValue(), type.rows.getValue());
-                    if (res)
-                    {
-                        if (index == 0)
-                        {
-                            SymbolicDimension dimONE(visitor.getGVN(), 1);
-                            TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
-                            e.getDecorator().res = Result(resT, visitor.getTemp().add(resT));
-                        }
-                        else
-                        {
-                            return false;
-                        }
-                    }
-                    else
-                    {
-                        return false;
-                    }
+                    return false;
                 }
             }
         }
-
-        visitor.setResult(e.getDecorator().res);
-
-        return true;
     }
+
+    visitor.setResult(e.getDecorator().res);
+
+    return true;
+}
 }

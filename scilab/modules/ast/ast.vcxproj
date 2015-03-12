@@ -319,6 +319,8 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\checkers\check_uint8.hxx" />
     <ClInclude Include="includes\analysis\checkers\check_zeros.hxx" />
     <ClInclude Include="includes\analysis\Chrono.hxx" />
+    <ClInclude Include="includes\analysis\ConstantValue.hxx" />
+    <ClInclude Include="includes\analysis\ConstantVisitor.hxx" />
     <ClInclude Include="includes\analysis\data\Block.hxx" />
     <ClInclude Include="includes\analysis\data\CompleteMacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\Data.hxx" />
@@ -532,6 +534,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\analysis\Block.cpp" />
     <ClCompile Include="src\cpp\analysis\Checkers.cpp" />
     <ClCompile Include="src\cpp\analysis\CompleteMacroSignature.cpp" />
+    <ClCompile Include="src\cpp\analysis\ConstantValue.cpp" />
     <ClCompile Include="src\cpp\analysis\ConstraintManager.cpp" />
     <ClCompile Include="src\cpp\analysis\DiagAnalyzer.cpp" />
     <ClCompile Include="src\cpp\analysis\FunctionBlock.cpp" />

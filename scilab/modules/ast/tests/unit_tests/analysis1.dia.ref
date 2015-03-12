@@ -6,7 +6,7 @@
 // ============================================================================
 // <-- JVM NOT MANDATORY -->
 function y=test1(a, b)
-  y = a+b;
+    y = a+b;
 endfunction
 a = 12;
 b = ones(13, 17);
@@ -39,7 +39,7 @@ assert_checkequal(out.type, "uint32");
 assert_checkequal(out.rows, 12);
 assert_checkequal(out.cols, 11);
 function y = test2(a, b, c)
-  y = [a b;c]
+    y = [a b;c]
 endfunction
 a = 1:3;
 b = 1:7;
@@ -57,12 +57,12 @@ assert_checkequal(out.type, "double");
 assert_checkequal(out.rows, 3);
 assert_checkequal(out.cols, 10);
 function y = test3(a, b, c)
-   row = size(a, "r");
-   col = size(a, "c");
-   a = matrix(a, col, row);
-   [row, col] = size(b);
-   b = matrix(b, col, row);
-   y = (a .*. b) * c'
+    row = size(a, "r");
+    col = size(a, "c");
+    a = matrix(a, col, row);
+    [row, col] = size(b);
+    b = matrix(b, col, row);
+    y = (a .*. b) * c'
 endfunction
 a = ones(2, 4);
 b = ones(5, 9);
@@ -86,7 +86,7 @@ assert_checkequal(out.type, "uint32");
 assert_checkequal(out.rows, %nan);
 assert_checkequal(out.cols, %nan);
 function y = test4(a, b, c)
-   y = test1(a, b) * test2(a, b, c)
+    y = test1(a, b) * test2(a, b, c)
 endfunction
 a = ones(5, 8);
 b = ones(5, 8);
