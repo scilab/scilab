@@ -89,11 +89,6 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 
             if (in.size() == 2)
             {
-                if (in[1]->getAs<Double>()->get(0) < 0)
-                {
-                    Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
-                    return Function::Error;
-                }
                 iMode = getMode(in, 1, 0);
                 if (iMode == -2)
                 {

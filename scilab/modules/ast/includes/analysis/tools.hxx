@@ -47,11 +47,22 @@ inline static uint32_t clz(const uint32_t x)
     return r;
 }
 
-inline static uint64_t clzll(const uint64_t x)
+inline static uint32_t clzll(const uint64_t x)
 {
+#ifdef _WIN64
     unsigned long r = 0;
     _BitScanForward64(&r, x);
     return r;
+#else
+    uint32_t u32 = (x >> 32);
+    uint32_t result = u32 ? clz(u32) : 32;
+    if (result == 32)
+    {
+        u32 = x & 0xFFFFFFFFUL;
+        result += (u32 ? clz(u32) : 32);
+    }
+    return result;
+#endif
 }
 #else
 inline static double trunc(const double x)
