@@ -16,21 +16,22 @@
 // exec does not check second and third input arguments.
 // =============================================================================
 function mytestfunc()
-  disp('mytestfunc: called ok');
+    disp("mytestfunc: called ok");
 endfunction
 // =============================================================================
 exec(mytestfunc);
 // =============================================================================
-mputl('a=1;b=2;',TMPDIR+'/myscript');
+mputl("a=1;b=2;",TMPDIR+"/myscript");
 ierr = execstr("exec(TMPDIR+''/myscript'',''toto'',''tata'');","errcatch");
 if ierr <> 999 then pause,end
 // =============================================================================
-exec(TMPDIR+'/myscript');
+exec(TMPDIR+"/myscript");
 // =============================================================================
-exec(TMPDIR+'/myscript','errcatch');
-exec(TMPDIR+'/myscript',-1);
-exec(TMPDIR+'/myscript','errcatch',-1);
-exec(TMPDIR+'/myscript',-1,'errcatch');
+exec(TMPDIR+"/myscript","errcatch");
+exec(TMPDIR+"/myscript",-1);
+exec(TMPDIR+"/myscript","errcatch",-1);
+ierr = execstr("exec(TMPDIR+''/myscript'',-1,''blabla'');","errcatch");
+if ierr <> 999 then pause,end
 // =============================================================================
 ierr = execstr("exec(TMPDIR+''/myscript'',0,''blabla'');","errcatch");
 if ierr <> 999 then pause,end

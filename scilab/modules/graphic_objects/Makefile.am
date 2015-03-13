@@ -56,8 +56,8 @@ GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/NgonGridData.cpp \
     src/cpp/NgonGridMatplotData.cpp \
     src/cpp/NgonPolylineData.cpp \
-    src/cpp/TriangleMeshData.cpp \
-    src/cpp/TriangleMeshFecData.cpp \
+    src/cpp/MeshData.cpp \
+    src/cpp/MeshFecData.cpp \
     src/cpp/ColorComputer.cpp \
     src/cpp/DecompositionUtils.cpp \
     src/cpp/Fac3DColorComputer.cpp \
@@ -68,7 +68,7 @@ GRAPHIC_OBJECTS_CXX_SOURCES = \
     src/cpp/NgonGridMatplotDataDecomposer.cpp \
     src/cpp/Plot3DDecomposer.cpp \
     src/cpp/PolylineDecomposer.cpp \
-    src/cpp/TriangleMeshFecDataDecomposer.cpp \
+    src/cpp/MeshFecDataDecomposer.cpp \
     src/cpp/Triangulator.cpp \
     src/cpp/ScilabView.cpp \
     src/cpp/FigureList.cpp \

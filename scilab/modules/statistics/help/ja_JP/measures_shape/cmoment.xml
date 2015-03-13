@@ -80,7 +80,7 @@ mom=cmoment(x,3,'c')
                 <link linkend="median">median</link>
             </member>
             <member>
-                <link linkend="st_deviation">st_deviation</link>
+                <link linkend="stdev">stdev</link>
             </member>
             <member>
                 <link linkend="mean">mean</link>

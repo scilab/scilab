@@ -13,15 +13,19 @@
 #ifndef __XMLOBJECTS_HXX__
 #define __XMLOBJECTS_HXX__
 
+#include <iostream>
 #include <string>
 #include <sstream>
 #include <typeinfo>
+#include <set>
 
 extern "C"
 {
 #include "xml_mlist.h"
 #include "dynlib_xml_scilab.h"
 }
+
+//#define SCILAB_DEBUG_XML
 
 namespace org_modules_xml
 {
@@ -37,6 +41,11 @@ class XML_SCILAB_IMPEXP XMLObject
 {
 
 public:
+
+#ifdef SCILAB_DEBUG_XML
+    static std::set<XMLObject *> pointers;
+#endif
+
     /**
      * Default constructor
      */
@@ -47,6 +56,10 @@ public:
      */
     virtual ~ XMLObject()
     {
+#ifdef SCILAB_DEBUG_XML
+        //std::cout << "Delete = " << (void*)this << std::endl;
+        pointers.erase(this);
+#endif
     }
 
     /**
@@ -110,9 +123,19 @@ public:
     /**
      * @return the object id
      */
-    int getId() const
+    inline int getId() const
     {
         return id;
+    }
+
+    inline bool isValid() const
+    {
+        return valid;
+    }
+
+    inline void invalid()
+    {
+        valid = false;
     }
 
     /**
@@ -134,6 +157,7 @@ public:
 protected:
     int id;
     int scilabType;
+    bool valid;
 
     static VariableScope *scope;
 

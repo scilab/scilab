@@ -92,15 +92,6 @@
     <ClCompile Include="..\cpp\setGraphicObjectProperty.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\TriangleMeshData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\TriangleMeshFecData.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -165,6 +156,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\CallXmlLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\MeshData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\MeshFecData.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\MeshFecDataDecomposer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

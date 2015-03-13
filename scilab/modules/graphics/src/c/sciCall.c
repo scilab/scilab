@@ -943,6 +943,7 @@ void Objfec (double    x[]        ,
              double  * fun        ,
              int * n          ,
              int * m          ,
+             int * p          ,
              char      strflag[]  ,
              char      legend[]   ,
              double    brect[]    ,
@@ -953,7 +954,7 @@ void Objfec (double    x[]        ,
              BOOL      WithMesh   ,
              BOOL      flagNax)
 {
-    C2F(fec)(x, y, noeud, fun, n, m, strflag, legend, brect, aaint,
+    C2F(fec)(x, y, noeud, fun, n, m, p, strflag, legend, brect, aaint,
              Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
 }
 /*------------------------------------------------------------------------*/

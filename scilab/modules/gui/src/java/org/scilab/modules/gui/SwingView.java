@@ -723,6 +723,10 @@ public final class SwingView implements GraphicView {
                     SwingScilabWaitBar bar = (SwingScilabWaitBar) requestedObject.getValue();
                     bar.close();
                     break;
+                case Frame:
+                    SwingScilabFrame frame = (SwingScilabFrame) requestedObject.getValue();
+                    frame.destroy();
+                    break;
                 default:
                     // Nothing to do
                     // uicontrol case: the object is destroyed when its parent updates its children

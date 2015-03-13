@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef TRIANGLE_MESH_DATA_HXX
-#define TRIANGLE_MESH_DATA_HXX
+#ifndef MESH_DATA_HXX
+#define MESH_DATA_HXX
 
 #include "Data3D.hxx"
 
@@ -20,10 +20,10 @@ extern "C" {
 }
 
 /**
- * Triangle mesh data class
+ * Mesh data class
  */
 
-class TriangleMeshData: public Data3D
+class MeshData: public Data3D
 {
 
 protected:
@@ -34,8 +34,8 @@ protected:
      */
     double* vertices;
 
-    /** Triangle indices array
-     * Contiguous (v0, v1, v2) triplets
+    /** Element indices array
+     * Contiguous (v0, v1, v2, ...) triplets
      */
     unsigned int* indices;
 
@@ -49,25 +49,27 @@ protected:
     /** Number of vertices */
     unsigned int numberVertices;
 
-    /** Number of triangles */
-    unsigned int numberTriangles;
+    /** Number of elements */
+    unsigned int numberElements;
+
+    unsigned int numberVerticesByElem;
 
 public:
     /**
      * Constructor
      */
-    TriangleMeshData(void);
+    MeshData(void);
 
     /**
      * Constructor
      * To be implemented
      */
-    TriangleMeshData(unsigned int numberVertices, unsigned int numberTriangles);
+    MeshData(unsigned int numberVertices, unsigned int numberElements, unsigned int numberVerticesByElem = 3);
 
     /**
      * Destructor
      */
-    virtual ~TriangleMeshData();
+    virtual ~MeshData();
 
     /**
      * Returns the identifier associated to a property name
@@ -107,7 +109,7 @@ public:
     int setNumVertices(unsigned int numVertices);
 
     /**
-     * Returns the number of index triplets (number of triangles)
+     * Returns the number of index triplets (number of elements)
      * @return the number of index triplets
      */
     unsigned int getNumIndices();
@@ -126,13 +128,13 @@ public:
     void setVertices(double const* vertices, unsigned int numElements);
 
     /**
-     * Returns the array of triangle indices
-     * @return a pointer to the array of triangle indices
+     * Returns the array of indices
+     * @return a pointer to the array indices
      */
     unsigned int* getIndices(void);
 
     /**
-     * Sets the number of index triplets (number of triangles)
+     * Sets the number of index triplets
      * Resizes the array of indices if required
      * @param[in] numIndices the number of index triplets to set
      * @return 1 if the number of index triplets has been successfully set, 0 otherwise (failed allocation)
@@ -186,9 +188,9 @@ public:
     void resetCoordinates(void);
 
     /**
-     * Converts a triangle vertex index as seen by Scilab to an internal format triangle vertex index
+     * Converts a vertex index as seen by Scilab to an internal format vertex index
      * @param[in] scilabIndex the Scilab index to convert
-     * @return the internal format triangle vertex index
+     * @return the internal format vertex index
      */
     static unsigned int scilabIndexToIndex(unsigned int scilabIndex);
 };

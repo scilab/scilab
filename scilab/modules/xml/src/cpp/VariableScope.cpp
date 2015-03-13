@@ -13,13 +13,14 @@
 #include "VariableScope.hxx"
 #include "XMLObject.hxx"
 #include "XMLNodeList.hxx"
+#include <iostream>
 
 namespace org_modules_xml
 {
 xmlFreeFunc VariableScope::XMLFreeFunc = 0;
 std::map < void *, XMLObject * > VariableScope::mapLibXMLToXMLObject = std::map < void *, XMLObject * >();
 std::map < void *, XMLNodeList * > VariableScope::mapLibXMLToXMLNodeList = std::map < void *, XMLNodeList * >();
-std::map < const XMLObject *, std::vector < const XMLObject *>*> VariableScope::parentToChildren = std::map < const XMLObject *, std::vector < const XMLObject *>*>();
+std::map < const XMLObject *, std::map < const XMLObject *, bool>*> VariableScope::parentToChildren = std::map < const XMLObject *, std::map < const XMLObject *, bool>*>();
 
 VariableScope::VariableScope(int _initialSize)
 {
@@ -65,17 +66,25 @@ int VariableScope::getVariableId(const XMLObject & obj)
 
     if (parent)
     {
-        std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren.find(parent);
+        std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::const_iterator it = parentToChildren.find(parent);
 
         if (it != parentToChildren.end())
         {
-            it->second->push_back(&obj);
+            std::map < const XMLObject *, bool>::iterator jt = it->second->find(&obj);
+            if (jt != it->second->end())
+            {
+                jt->second = true;
+            }
+            else
+            {
+                it->second->insert(std::pair<const XMLObject *, bool>(&obj, true));
+            }
         }
         else
         {
-            parentToChildren[parent] = new std::vector < const XMLObject *>();
-
-            parentToChildren[parent]->push_back(&obj);
+            std::map < const XMLObject *, bool> * map = new std::map < const XMLObject *, bool>();
+            map->insert(std::pair<const XMLObject *, bool>(&obj, true));
+            parentToChildren.insert(std::pair<const XMLObject *, std::map < const XMLObject *, bool>*>(parent, map));
         }
     }
 
@@ -165,8 +174,9 @@ void VariableScope::removeId(int id)
 {
     if (id >= 0 && id < (int)scope->size() && (*scope)[id])
     {
-        removeChildFromParent((*scope)[id]);
-        removeDependencies((*scope)[id]);
+        XMLObject * const child = (*scope)[id];
+        removeChildFromParent(child);
+        removeDependencies(child);
         (*scope)[id] = 0;
         freePlaces->push(id);
     }
@@ -174,15 +184,14 @@ void VariableScope::removeId(int id)
 
 void VariableScope::removeDependencies(XMLObject * obj)
 {
-    std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren.find(obj);
+    std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::const_iterator it = parentToChildren.find(obj);
 
     if (it != parentToChildren.end())
     {
-        for (unsigned int i = 0; i < it->second->size(); i++)
+        for (std::map < const XMLObject *, bool>::const_iterator i = it->second->begin(), e = it->second->end(); i != e; ++i)
         {
-            const XMLObject *child = (*(it->second))[i];
-
-            if (child && getVariableFromId(child->getId()) == child)
+            const XMLObject *child = i->first;
+            if (child && i->second && getVariableFromId(child->getId()) == child)
             {
                 delete child;
             }
@@ -241,16 +250,14 @@ void VariableScope::_xmlFreeFunc(void *mem)
 inline void VariableScope::removeChildFromParent(const XMLObject * child)
 {
     const XMLObject *parent = child->getXMLObjectParent();
-    std::map < const XMLObject *, std::vector < const XMLObject *>*>::const_iterator it = parentToChildren.find(parent);
+    std::map < const XMLObject *, std::map < const XMLObject *, bool>*>::iterator i = parentToChildren.find(parent);
 
-    if (it != parentToChildren.end())
+    if (i != parentToChildren.end())
     {
-        for (unsigned int i = 0; i < it->second->size(); i++)
+        std::map < const XMLObject *, bool>::iterator j = i->second->find(child);
+        if (j != i->second->end())
         {
-            if (child == (*(it->second))[i])
-            {
-                (*(it->second))[i] = 0;
-            }
+            j->second = false;
         }
     }
 }

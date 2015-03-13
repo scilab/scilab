@@ -26,7 +26,7 @@ extern "C"
 namespace org_modules_xml
 {
 
-XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), doc(_doc)
+XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), allocated(false), doc(_doc)
 {
     node = _node;
     scope->registerPointers(node, this);
@@ -34,7 +34,7 @@ XMLElement::XMLElement(const XMLDocument & _doc, xmlNode * _node): XMLObject(), 
     id = scope->getVariableId(*this);
 }
 
-XMLElement::XMLElement(const XMLDocument & _doc, const char *name): XMLObject(), doc(_doc)
+XMLElement::XMLElement(const XMLDocument & _doc, const char *name): XMLObject(), allocated(true), doc(_doc)
 {
     node = xmlNewNode(0, (const xmlChar *)name);
     scope->registerPointers(node, this);
@@ -46,6 +46,11 @@ XMLElement::~XMLElement()
 {
     scope->unregisterPointer(node);
     scope->removeId(id);
+
+    if (allocated)
+    {
+        xmlFreeNode(node);
+    }
 }
 
 void *XMLElement::getRealXMLPointer() const

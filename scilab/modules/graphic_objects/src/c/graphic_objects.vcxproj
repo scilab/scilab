@@ -250,6 +250,9 @@
     <ClCompile Include="..\cpp\getConsoleIdentifier.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
+    <ClCompile Include="..\cpp\MeshData.cpp" />
+    <ClCompile Include="..\cpp\MeshFecData.cpp" />
+    <ClCompile Include="..\cpp\MeshFecDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\NormalGenerator.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
@@ -282,9 +285,6 @@
     <ClCompile Include="..\cpp\Plot3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\PolylineDecomposer.cpp" />
     <ClCompile Include="..\cpp\setGraphicObjectProperty.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshData.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshFecData.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
     <ClCompile Include="..\jni\SurfaceData_wrap.c" />
     <ClCompile Include="..\cpp\createObjectData.cpp" />
     <ClCompile Include="..\cpp\pickSurface.cpp" />

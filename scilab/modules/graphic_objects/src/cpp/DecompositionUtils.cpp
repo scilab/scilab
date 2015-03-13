@@ -74,6 +74,18 @@ int DecompositionUtils::isValid(double x, double y, double z)
     }
 }
 
+int DecompositionUtils::isValid(double x, double y)
+{
+    if (isnan(x) || isnan(y) || isinf(x) || isinf(y))
+    {
+        return 0;
+    }
+    else
+    {
+        return 1;
+    }
+}
+
 double DecompositionUtils::getLog10Value(double value)
 {
     return log10(value);
@@ -108,6 +120,23 @@ int DecompositionUtils::isLogValid(double x, double y, double z, int logMask)
     if (logMask & 0x4)
     {
         valid &= (z > 0.0);
+    }
+
+    return valid;
+}
+
+int DecompositionUtils::isLogValid(double x, double y, int logMask)
+{
+    int valid = 1;
+
+    if (logMask & 0x1)
+    {
+        valid &= (x > 0.0);
+    }
+
+    if (logMask & 0x2)
+    {
+        valid &= (y > 0.0);
     }
 
     return valid;

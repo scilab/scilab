@@ -37,7 +37,7 @@ class VariableScope
     int initialSize;
     std::stack < int >*freePlaces;
 
-    static std::map < const XMLObject *, std::vector < const XMLObject *>*> parentToChildren;
+    static std::map < const XMLObject *, std::map < const XMLObject *, bool>*> parentToChildren;
     static std::map < void *, XMLObject * > mapLibXMLToXMLObject;
     static std::map < void *, XMLNodeList * > mapLibXMLToXMLNodeList;
     static xmlFreeFunc XMLFreeFunc;

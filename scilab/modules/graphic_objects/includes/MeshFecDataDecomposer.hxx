@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef TRIANGLEMESHFECDATA_DECOMPOSER_HXX
-#define TRIANGLEMESHFECDATA_DECOMPOSER_HXX
+#ifndef MESHFECDATA_DECOMPOSER_HXX
+#define MESHFECDATA_DECOMPOSER_HXX
 
 /**
  * TriangleMeshFecData decomposer class
@@ -20,7 +20,7 @@
  * It only has static member functions since it stores no actual state.
  */
 
-class TriangleMeshFecDataDecomposer
+class MeshFecDataDecomposer
 {
 
 private :
@@ -46,6 +46,16 @@ private :
     static int areFaceVerticesValid(double* coordinates, int v0, int v1, int v2, int logMask);
 
     /**
+     * Determines whether a face's vertices are valid or not.
+     * @param[in] the coordinates array.
+     * @param[in] the first vertex index.
+     * @param[in] the second vertex index.
+     * @param[in] a flag specifying whether logarithmic coordinates are used.
+     * @return 1 if the face is valid, 0 if it is not.
+     */
+    static int areSegmentVerticesValid(double* coordinates, int v0, int v1, int logMask);
+
+    /**
      * Determines whether a face's vertex values are valid or not.
      * @param[in] the values array.
      * @param[in] the first vertex index.
@@ -54,6 +64,15 @@ private :
      * @return 1 if all face values are valid, 0 if not.
      */
     static int areFaceValuesValid(double* values, int v0, int v1, int v2);
+
+    /**
+     * Determines whether a face's vertex values are valid or not.
+     * @param[in] the values array.
+     * @param[in] the first vertex index.
+     * @param[in] the second vertex index.
+     * @return 1 if all face values are valid, 0 if not.
+     */
+    static int areSegmentValuesValid(double* values, int v0, int v1);
 
     /**
      * Determines whether all the vertex indices making up a face are valid.
@@ -65,6 +84,16 @@ private :
      * @return 1 if all indices are valid, 0 if not.
      */
     static int areFaceIndicesValid(int numVertices, int v0, int v1, int v2);
+
+    /**
+     * Determines whether all the vertex indices making up a face are valid.
+     * To be valid, an index must belong to the interval [0, numVertices-1]
+     * @param[in] the number of vertices giving the largest valid vertex index.
+     * @param[in] the first vertex index.
+     * @param[in] the second vertex index.
+     * @return 1 if all indices are valid, 0 if not.
+     */
+    static int areSegmentIndicesValid(int numVertices, int v0, int v1);
 
     /**
      * Returns the coordinates of a single vertex.

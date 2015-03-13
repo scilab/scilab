@@ -60,10 +60,17 @@ int set_triangles_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
         return SET_PROPERTY_ERROR;
     }
 
-    if (nbCol != 5)
+    if (nbCol < 5)
     {
-        Scierror(999, _("Wrong size for '%s' property: Must have %d columns.\n"), "triangles", 5);
+        Scierror(999, _("Wrong size for '%s' property: Must have at least %d columns.\n"), "triangles", 5);
         return SET_PROPERTY_ERROR;
+    }
+
+    result = setGraphicObjectPropertyAndNoWarn(iObjUID, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, &nbCol, jni_int, 1);
+    if (result == FALSE)
+    {
+        Scierror(999, _("%s: No more memory.\n"), "set_triangles_property");
+        return 0;
     }
 
     /* Resizes the triangle array if required */
@@ -77,7 +84,7 @@ int set_triangles_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
 
     pnoeud = (double*)_pvData;
 
-    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, nbRow);
+    setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_FEC_ELEMENTS__, pnoeud, jni_double_vector, nbRow);
 
     return SET_PROPERTY_SUCCEED;
 }

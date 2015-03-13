@@ -953,6 +953,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 JOGL2=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL2)
 
+                AC_JAVA_CHECK_VERSION_MANIFEST([jogl2],$JOGL2,[2.2],[Specification-Version])
+
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
                 else

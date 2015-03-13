@@ -70,7 +70,8 @@ void getGraphicObjectProperty(int iUID, int _iName, _ReturnType_ _returnType, vo
         case __GO_DATA_MODEL_NUM_INDICES__ :
         case __GO_DATA_MODEL_INDICES__ :
         case __GO_DATA_MODEL_VALUES__ :
-        case __GO_DATA_MODEL_FEC_TRIANGLES__ :
+        case __GO_DATA_MODEL_FEC_ELEMENTS__ :
+        case __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__ :
         case __GO_DATA_MODEL_NUM_X__ :
         case __GO_DATA_MODEL_NUM_Y__ :
         case __GO_DATA_MODEL_NUM_Z__ :
@@ -213,7 +214,8 @@ void releaseGraphicObjectProperty(int _iName, void * _pvData, enum _ReturnType_ 
             || _iName == __GO_DATA_MODEL_NUM_INDICES__
             || _iName == __GO_DATA_MODEL_INDICES__
             || _iName == __GO_DATA_MODEL_VALUES__
-            || _iName == __GO_DATA_MODEL_FEC_TRIANGLES__
+            || _iName == __GO_DATA_MODEL_FEC_ELEMENTS__
+	    || _iName == __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__
             || _iName == __GO_DATA_MODEL_NUM_X__
             || _iName == __GO_DATA_MODEL_NUM_Y__
             || _iName == __GO_DATA_MODEL_NUM_Z__

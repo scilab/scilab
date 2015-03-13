@@ -233,6 +233,14 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      * @return an image
      */
     public BufferedImage getImage() {
+        return getImage(true);
+    }
+
+    /**
+     * Get an image from the autoDrawable
+     * @return an image
+     */
+    public BufferedImage getImage(final boolean alpha) {
         while (!canvasAnimator.isDrawFinished() || !displayFinished) {
             try {
                 Thread.sleep(10);
@@ -246,16 +254,16 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         if (SwingUtilities.isEventDispatchThread()) {
             context.makeCurrent();
-            AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
-            image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), false);
+            AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
+            image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
             context.release();
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
                     public void run() {
                         context.makeCurrent();
-                        AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
-                        image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), false);
+                        AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
+                        image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
                         context.release();
                     }
                 });

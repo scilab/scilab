@@ -19,12 +19,22 @@ namespace org_modules_xml
 {
 VariableScope *XMLObject::scope = 0;
 
-XMLObject::XMLObject(): id(0)
+#ifdef SCILAB_DEBUG_XML
+std::set<XMLObject *> XMLObject::pointers;
+#endif
+
+XMLObject::XMLObject(): id(0), valid(true)
 {
     if (!scope)
     {
         scope = new VariableScope(SCOPE_SIZE);
     }
+
+#ifdef SCILAB_DEBUG_XML
+    XMLObject::pointers.insert(this);
+    //std::cout << "Create = " << (void*)this << std::endl;
+#endif
+
     scilabType = -1;
 }
 

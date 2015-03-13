@@ -186,7 +186,7 @@ C
       RETURN
 
   140 CONTINUE
-  150 IF (which.EQ.4) GO TO 170
+  150 IF (which.EQ.2) GO TO 160
 C
 C     X
 C
@@ -212,6 +212,8 @@ C
             x = SIGN(inf,x)
          ENDIF
       ENDIF
+      
+  160 IF (which.EQ.3) GO TO 170  
 C
 C     MEAN
 C
@@ -223,6 +225,8 @@ C
          RETURN
       ENDIF
       IF (vfinite(1,mean).EQ.0) mean = SIGN(inf,mean)
+      
+  170 IF (which.EQ.4) GO TO 190
 C
 C     SD
 C
@@ -234,16 +238,16 @@ C
          RETURN
       ENDIF
       IF (vfinite(1,sd).EQ.0) sd = SIGN(inf,sd)
-      IF (.NOT. (sd.LE.0.0D0)) GO TO 160
+      IF (.NOT. (sd.LE.0.0D0)) GO TO 180
       bound = 0.0D0
       status = -6
       RETURN
 
-  160 CONTINUE
+  180 CONTINUE
 C
 C     Calculate ANSWERS
 C
-  170 IF ((1).EQ. (which)) THEN
+  190 IF ((1).EQ. (which)) THEN
 C
 C     Computing P
 C
