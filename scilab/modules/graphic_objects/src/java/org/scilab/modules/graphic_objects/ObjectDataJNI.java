@@ -23,8 +23,9 @@ public class ObjectDataJNI {
     public final static native Object getChampY(int jarg1);
     public final static native Object getArrows(int jarg1);
     public final static native Object getSegsData(int jarg1);
-    public final static native Object getFecTriangles(int jarg1);
+    public final static native Object getFecElements(int jarg1);
     public final static native Object getFecData(int jarg1);
     public final static native Object getArcUpperLeftPoint(int jarg1);
     public final static native Object getArcData(int jarg1);
+    public final static native int getFecNumVerticesByElement(int jarg1);
 }

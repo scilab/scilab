@@ -17,7 +17,6 @@ import org.scilab.modules.gui.menu.Menu;
 import org.scilab.modules.gui.uielement.ScilabUIElement;
 import org.scilab.modules.gui.utils.Position;
 import org.scilab.modules.gui.utils.Size;
-import org.scilab.modules.gui.utils.UIElementMapper;
 
 /**
  * Class for Scilab MenuBars in GUIs
@@ -32,7 +31,6 @@ public class ScilabMenuBar extends ScilabUIElement implements MenuBar {
      */
     protected ScilabMenuBar() {
         component = ScilabBridge.createMenuBar();
-        component.setElementId(UIElementMapper.add(this));
     }
 
     /**

@@ -10,11 +10,11 @@
  *
  */
 
-#ifndef TRIANGLE_MESH_FEC_DATA_HXX
-#define TRIANGLE_MESH_FEC_DATA_HXX
+#ifndef MESH_FEC_DATA_HXX
+#define MESH_FEC_DATA_HXX
 
 #include "Data3D.hxx"
-#include "TriangleMeshData.hxx"
+#include "MeshData.hxx"
 
 extern "C" {
 #include "BOOL.h"
@@ -24,7 +24,7 @@ extern "C" {
  * Fec triangle mesh data class
  */
 
-class TriangleMeshFecData: public TriangleMeshData
+class MeshFecData: public MeshData
 {
 
 private:
@@ -42,18 +42,18 @@ public:
     /**
      * Constructor
      */
-    TriangleMeshFecData(void);
+    MeshFecData(void);
 
     /**
      * Constructor
      * To be implemented
      */
-    TriangleMeshFecData(unsigned int numberVertices, unsigned int numberTriangles);
+    MeshFecData(unsigned int numberVertices, unsigned int numberTriangles, unsigned int numberVerticesByElem = 3);
 
     /**
      * Destructor
      */
-    virtual ~TriangleMeshFecData();
+    virtual ~MeshFecData();
 
     /**
      * Returns the identifier associated to a property name
@@ -79,13 +79,13 @@ public:
     void getDataProperty(int property, void **_pvData);
 
     /**
-     * Returns the number of index triplets (number of triangles)
+     * Returns the number of index triplets
      * @return the number of index triplets
      */
     unsigned int getNumIndices();
 
     /**
-     * Sets the number of number of index triplets (number of triangles)
+     * Sets the number of number of index triplets
      * Resizes the arrays of indices and fec triangle values if required
      * @param[in] numIndices the number of index triplets to set
      * @return 1 if the number of index triplets has been successfully set, 0 otherwise (failed allocation)
@@ -97,13 +97,13 @@ public:
      * @param[in] a pointer to the array of fec triangles values
      * @param[in] numElements the number of triangles to set
      */
-    void setFecTriangles(double const* data, int numElements);
+    void setFecElements(double const* data, int numElements);
 
     /**
      * Returns the array of fec triangle values
      * @return a pointer to the array of fec triangle values
      */
-    double* getFecTriangles(void);
+    double* getFecElements(void);
 };
 
 #endif

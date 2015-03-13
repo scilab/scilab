@@ -419,18 +419,15 @@ nanmin
 nanreglin
 nanstdev
 nansum
-nfreq
 pca
 perctl
 princomp
 quart
 reglin
-regress
 sample
 samplef
 samwr
 show_pca
-st_deviation
 stdev
 stdevf
 strange
@@ -1891,7 +1888,6 @@ xnumb
 xrpoly
 xsave
 xsetech
-xsetm
 xstringl
 ylabel
 zlabel

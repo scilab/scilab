@@ -12,7 +12,9 @@
 
 #include "ColorComputer.hxx"
 #include "DecompositionUtils.hxx"
-#include "TriangleMeshFecDataDecomposer.hxx"
+#include "MeshFecDataDecomposer.hxx"
+
+#include <iostream>
 
 extern "C"
 {
@@ -23,7 +25,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int TriangleMeshFecDataDecomposer::getDataSize(int id)
+int MeshFecDataDecomposer::getDataSize(int id)
 {
     int numVertices = 0;
     int* piNumVertices = &numVertices;
@@ -33,7 +35,7 @@ int TriangleMeshFecDataDecomposer::getDataSize(int id)
     return numVertices;
 }
 
-void TriangleMeshFecDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
+void MeshFecDataDecomposer::fillVertices(int id, float* buffer, int bufferLength, int elementsSize, int coordinateMask, double* scale, double* translation, int logMask)
 {
     double* coordinates = NULL;
 
@@ -83,7 +85,7 @@ void TriangleMeshFecDataDecomposer::fillVertices(int id, float* buffer, int buff
 
 }
 
-void TriangleMeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
+void MeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)
 {
     int parentFigure = 0;
     int * piParentFigure = &parentFigure;
@@ -173,7 +175,7 @@ void TriangleMeshFecDataDecomposer::fillTextureCoordinates(int id, float* buffer
     }
 }
 
-void TriangleMeshFecDataDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
+void MeshFecDataDecomposer::fillColors(int id, float* buffer, int bufferLength, int elementsSize)
 {
     int parent = 0;
     int parentFigure = 0;
@@ -328,7 +330,7 @@ void TriangleMeshFecDataDecomposer::fillColors(int id, float* buffer, int buffer
     releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
 }
 
-void TriangleMeshFecDataDecomposer::computeMinMaxValues(double* values, int numValues, double* valueMin, double* valueMax)
+void MeshFecDataDecomposer::computeMinMaxValues(double* values, int numValues, double* valueMin, double* valueMax)
 {
     double maxDouble = DecompositionUtils::getMaxDoubleValue();
     double tmpValueMin = maxDouble;
@@ -354,17 +356,20 @@ void TriangleMeshFecDataDecomposer::computeMinMaxValues(double* values, int numV
     *valueMax = tmpValueMax;
 }
 
-int TriangleMeshFecDataDecomposer::getIndicesSize(int id)
+int MeshFecDataDecomposer::getIndicesSize(int id)
 {
     int numIndices = 0;
     int* piNumIndices = &numIndices;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumIndices);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
 
-    return 3 * numIndices;
+    return 3 * (nVertex - 2) * numIndices;
 }
 
-int TriangleMeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
+int MeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* values = NULL;
@@ -373,6 +378,8 @@ int TriangleMeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLe
     int* piNumIndices = &numIndices;
     int numVertices = 0;
     int* piNumVertices = &numVertices;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
 
     int* triangleIndices = NULL;
 
@@ -383,6 +390,7 @@ int TriangleMeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLe
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumIndices);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**) &piNumVertices);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**) &coordinates);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_VALUES__, jni_double_vector, (void**) &values);
@@ -397,27 +405,28 @@ int TriangleMeshFecDataDecomposer::fillIndices(int id, int* buffer, int bufferLe
 
     for (int i = 0; i < numIndices; i++)
     {
-        v0 = triangleIndices[3 * i];
-        v1 = triangleIndices[3 * i + 1];
-        v2 = triangleIndices[3 * i + 2];
-
-        if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
+	v0 = triangleIndices[nVertex * i];
+	for (unsigned int j = 1; j < nVertex - 1; ++j)
+	{
+	    v1 = triangleIndices[nVertex * i + j];
+	    v2 = triangleIndices[nVertex * i + j + 1];
+	    
+	    if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
                 areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
                 areFaceValuesValid(values, v0, v1, v2))
-        {
-            buffer[bufferOffset] = v0;
-            buffer[bufferOffset + 1] = v1;
-            buffer[bufferOffset + 2] = v2;
-
-            bufferOffset += 3;
-        }
-
+	    {
+		buffer[bufferOffset] = v0;
+		buffer[bufferOffset + 1] = v1;
+		buffer[bufferOffset + 2] = v2;
+		bufferOffset += 3;
+	    }
+	}
     }
 
     return bufferOffset;
 }
 
-int TriangleMeshFecDataDecomposer::areFaceVerticesValid(double* coordinates, int v0, int v1, int v2, int logMask)
+int MeshFecDataDecomposer::areFaceVerticesValid(double* coordinates, int v0, int v1, int v2, int logMask)
 {
     double vertex0[3];
     double vertex1[3];
@@ -440,7 +449,26 @@ int TriangleMeshFecDataDecomposer::areFaceVerticesValid(double* coordinates, int
     return 0;
 }
 
-int TriangleMeshFecDataDecomposer::areFaceValuesValid(double* values, int v0, int v1, int v2)
+int MeshFecDataDecomposer::areSegmentVerticesValid(double* coordinates, int v0, int v1, int logMask)
+{
+    double vertex0[3];
+    double vertex1[3];
+
+    getVertexCoordinates(coordinates, v0, vertex0);
+    getVertexCoordinates(coordinates, v1, vertex1);
+    
+    if (DecompositionUtils::isValid(vertex0[0], vertex0[1], vertex0[2]) &&
+	DecompositionUtils::isLogValid(vertex0[0], vertex0[1], vertex0[2], logMask) &&
+	DecompositionUtils::isValid(vertex1[0], vertex1[1], vertex1[2]) &&
+	DecompositionUtils::isLogValid(vertex1[0], vertex1[1], vertex1[2], logMask))
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+int MeshFecDataDecomposer::areFaceValuesValid(double* values, int v0, int v1, int v2)
 {
     if (DecompositionUtils::isValid(values[v0], values[v1], values[v2]))
     {
@@ -450,7 +478,17 @@ int TriangleMeshFecDataDecomposer::areFaceValuesValid(double* values, int v0, in
     return 0;
 }
 
-int TriangleMeshFecDataDecomposer::areFaceIndicesValid(int numVertices, int v0, int v1, int v2)
+int MeshFecDataDecomposer::areSegmentValuesValid(double* values, int v0, int v1)
+{
+    if (DecompositionUtils::isValid(values[v0], values[v1]))
+    {
+        return 1;
+    }
+
+    return 0;
+}
+
+int MeshFecDataDecomposer::areFaceIndicesValid(int numVertices, int v0, int v1, int v2)
 {
     if (v0 < 0 || v0 >= numVertices || v1 < 0 || v1 >= numVertices || v2 < 0 || v2 >= numVertices)
     {
@@ -460,27 +498,41 @@ int TriangleMeshFecDataDecomposer::areFaceIndicesValid(int numVertices, int v0, 
     return 1;
 }
 
-void TriangleMeshFecDataDecomposer::getVertexCoordinates(double* coordinates, int index, double* vertexCoordinates)
+int MeshFecDataDecomposer::areSegmentIndicesValid(int numVertices, int v0, int v1)
+{
+    if (v0 < 0 || v0 >= numVertices || v1 < 0 || v1 >= numVertices)
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+
+void MeshFecDataDecomposer::getVertexCoordinates(double* coordinates, int index, double* vertexCoordinates)
 {
     vertexCoordinates[0] = coordinates[3 * index];
     vertexCoordinates[1] = coordinates[3 * index + 1];
     vertexCoordinates[2] = coordinates[3 * index + 2];
 }
 
-int TriangleMeshFecDataDecomposer::getWireIndicesSize(int id)
+int MeshFecDataDecomposer::getWireIndicesSize(int id)
 {
     int numTriangles = 0;
     int* piNumTriangles = &numTriangles;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
 
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**) &piNumTriangles);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
 
-    return 6 * numTriangles;
+    return 2 * nVertex * numTriangles;
 }
 
 /*
  * To do: output shared edges once instead of twice (once per adjacent face).
  */
-int TriangleMeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
+int MeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int bufferLength, int logMask)
 {
     double* coordinates = NULL;
     double* values = NULL;
@@ -490,6 +542,8 @@ int TriangleMeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int buff
     int numIndices = 0;
     int* piNumIndices = &numIndices;
     int* triangleIndices = NULL;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
 
     int v0 = 0;
     int v1 = 0;
@@ -501,6 +555,7 @@ int TriangleMeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int buff
     getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES__, jni_int, (void**) &piNumVertices);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_COORDINATES__, jni_double_vector, (void**) &coordinates);
     getGraphicObjectProperty(id, __GO_DATA_MODEL_VALUES__, jni_double_vector, (void**) &values);
+    getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
 
     /* 0 segments */
     if (numIndices == 0 || numVertices < 3)
@@ -512,24 +567,30 @@ int TriangleMeshFecDataDecomposer::fillWireIndices(int id, int* buffer, int buff
 
     for (int i = 0; i < numIndices; i++)
     {
-        v0 = triangleIndices[3 * i];
-        v1 = triangleIndices[3 * i + 1];
-        v2 = triangleIndices[3 * i + 2];
+	for (unsigned int j = 0; j < nVertex - 1; ++j)
+	{
+	    v0 = triangleIndices[nVertex * i + j];
+	    v1 = triangleIndices[nVertex * i + j + 1];
+	    if (areSegmentIndicesValid(numVertices, v0, v1) &&
+                areSegmentVerticesValid(coordinates, v0, v1, logMask) &&
+                areSegmentValuesValid(values, v0, v1))
+	    {
+		buffer[bufferOffset] = v0;
+		buffer[bufferOffset + 1] = v1;
+		bufferOffset += 2;
+	    }
+	}
 
-        if (areFaceIndicesValid(numVertices, v0, v1, v2) &&
-                areFaceVerticesValid(coordinates, v0, v1, v2, logMask) &&
-                areFaceValuesValid(values, v0, v1, v2))
-        {
-            buffer[bufferOffset] = v0;
-            buffer[bufferOffset + 1] = v1;
-            buffer[bufferOffset + 2] = v1;
-            buffer[bufferOffset + 3] = v2;
-            buffer[bufferOffset + 4] = v2;
-            buffer[bufferOffset + 5] = v0;
-
-            bufferOffset += 6;
-        }
-
+	v0 = triangleIndices[nVertex * i + nVertex - 1];
+	v1 = triangleIndices[nVertex * i];
+	if (areSegmentIndicesValid(numVertices, v0, v1) &&
+	    areSegmentVerticesValid(coordinates, v0, v1, logMask) &&
+	    areSegmentValuesValid(values, v0, v1))
+	{
+	    buffer[bufferOffset] = v0;
+	    buffer[bufferOffset + 1] = v1;
+	    bufferOffset += 2;
+	}
     }
 
     return bufferOffset;

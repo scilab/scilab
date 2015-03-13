@@ -24,11 +24,25 @@ Removed Functions
 
 * chart removed. Please use nicholschart instead.
 
+* nfreq removed. Please use tabul instead.
+
+* regress removed. Please use reglin instead.
+
+* st_deviation removed. Please use stdev instead.
+
+* xsetm removed. Please use ged instead.
+
 
 Compilation
 ===========
 
 * Required version of JOGL updated to 2.2.4 (See bugs #12788 & #13586).
+
+
+Graphics Evolutions
+===================
+
+* fec function can now plot meshes based on any convex polygon type (not only triangles).
 
 
 Scilab Bug Fixes
@@ -38,11 +52,15 @@ Scilab Bug Fixes
 
 * Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
 
+* Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
+
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
 
 * Bug #13605 fixed - harmean returned an inverted result when called with parameters "r" or "c".
+
+* Bug #13608 fixed - logm produced an error with complex values.
 
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
@@ -51,6 +69,8 @@ Scilab Bug Fixes
 * Bug #13676 fixed - An invisible figure could not be exported.
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
+
+* Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
 
 * Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
 
@@ -63,6 +83,8 @@ Scilab Bug Fixes
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
 * Bug #13725 fixed - Polyline was not correctly filled with big values.
+
+* Bug #13731 fixed - xmlDelete could be very slow.
 
 * Bug #13741 fixed - Impossible to print an invisible figure under Windows.
 

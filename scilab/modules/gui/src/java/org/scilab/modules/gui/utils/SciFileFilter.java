@@ -135,6 +135,8 @@ public class SciFileFilter extends FileFilter {
             // Bug 2861: have to return true for all files if no mask given
             return true;
         } else if (mask.equals(".*\\..*")) {
+            int selectedIndex = this.filterIndex + 1;
+            FileChooserInfos.getInstance().setFilterIndex(selectedIndex);
             // bug 7285: *.* as filter returns also files without extension
             return true;
         } else {

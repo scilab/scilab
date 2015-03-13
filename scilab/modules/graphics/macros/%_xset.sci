@@ -16,5 +16,5 @@
 //
 
 function [] = %_xset()
-    xsetm();
+    ged(1);
 endfunction

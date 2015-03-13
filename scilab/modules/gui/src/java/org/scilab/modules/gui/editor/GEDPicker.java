@@ -491,8 +491,8 @@ public class GEDPicker {
      * @return true if picked the fec otherwise returns false
      */
     boolean getFec(Integer obj, Integer[] position) {
-
-        double[] triangles = (double[])ObjectData.getFecTriangles(obj);
+        int numVerticesByElem = ObjectData.getFecNumVerticesByElement(obj);
+        double[] elements = (double[])ObjectData.getFecElements(obj);
         double[] data = (double[])ObjectData.getFecData(obj);
 
         double[] pos = { position[0] * 1.0, position[1] * 1.0, 0.0 };
@@ -507,18 +507,20 @@ public class GEDPicker {
         int idx1, idx2, idx3;
         Vector3d p1, p2, p3;
 
-        int tSize = triangles.length / 5;
+        int tSize = elements.length / (numVerticesByElem + 2);
         for (int i = 0; i < tSize; i++) {
-            idx1 = (int)triangles[tSize + i];
-            idx2 = (int)triangles[2 * tSize + i];
-            idx3 = (int)triangles[3 * tSize + i];
+            idx1 = (int)elements[tSize + i];
+            for (int j = 2; j < numVerticesByElem; ++j) {
+                idx2 = (int)elements[j * tSize + i];
+                idx3 = (int)elements[(j + 1) * tSize + i];
 
-            p1 = new Vector3d(data[(idx1 - 1) * 3], data[(idx1 - 1) * 3 + 1], data[(idx1 - 1) * 3 + 2]);
-            p2 = new Vector3d(data[(idx2 - 1) * 3], data[(idx2 - 1) * 3 + 1], data[(idx2 - 1) * 3 + 2]);
-            p3 = new Vector3d(data[(idx3 - 1) * 3], data[(idx3 - 1) * 3 + 1], data[(idx3 - 1) * 3 + 2]);
+                p1 = new Vector3d(data[(idx1 - 1) * 3], data[(idx1 - 1) * 3 + 1], data[(idx1 - 1) * 3 + 2]);
+                p2 = new Vector3d(data[(idx2 - 1) * 3], data[(idx2 - 1) * 3 + 1], data[(idx2 - 1) * 3 + 2]);
+                p3 = new Vector3d(data[(idx3 - 1) * 3], data[(idx3 - 1) * 3 + 1], data[(idx3 - 1) * 3 + 2]);
 
-            if (testTri(p1, p2, p3, l0, dir)) {
-                return true;
+                if (testTri(p1, p2, p3, l0, dir)) {
+                    return true;
+                }
             }
         }
         return false;

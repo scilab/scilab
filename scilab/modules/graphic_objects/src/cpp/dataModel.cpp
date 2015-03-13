@@ -94,7 +94,7 @@ int DataModel::createDataObject(int iUID, int _iType)
             newObject = new NgonPolylineData();
             break;
         case __GO_FEC__ :
-            newObject = new TriangleMeshFecData();
+            newObject = new MeshFecData();
             break;
         default :
             return 0;

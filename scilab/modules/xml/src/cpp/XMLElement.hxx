@@ -36,6 +36,7 @@ class XMLAttr;
  */
 class XML_SCILAB_IMPEXP XMLElement: public XMLObject, public XMLRemovable
 {
+    bool allocated;
     xmlNode *node;
     const XMLDocument & doc;
 

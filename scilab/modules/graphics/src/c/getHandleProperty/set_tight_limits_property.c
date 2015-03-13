@@ -47,7 +47,14 @@ int set_tight_limits_property(void* _pvCtx, int iObjUID, void* _pvData, int valu
     {
         int tightLimits = (int) FALSE;
 
-        tightLimits = tryGetBooleanValueFromStack(((char**)_pvData)[0], valueType, nbRow, nbCol, "tight_limits");
+        if (valueType == sci_strings)
+        {
+            tightLimits = tryGetBooleanValueFromStack(((char **)_pvData)[0], valueType, nbRow, nbCol, "tight_limits");
+        }
+        else
+        {
+            tightLimits = tryGetBooleanValueFromStack(_pvData, valueType, nbRow, nbCol, "tight_limits");
+        }
 
         if (tightLimits == NOT_A_BOOLEAN_VALUE)
         {

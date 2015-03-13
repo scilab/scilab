@@ -261,19 +261,34 @@ int _getSegsSize(int uid) {
 
 
 
-double * getFecTriangles(int uid) {
+double * getFecElements(int uid) {
 
-    double * triangles;
-    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void**)&triangles);
-    return triangles;
+    double * elements;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_ELEMENTS__, jni_double_vector, (void**)&elements);
+    return elements;
 }
 
-int _getFecTrianglesSize(int uid) {
+int _getFecElementsSize(int uid) {
     
     int indices;
     int * pIndices = &indices;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&pIndices);
-    return indices * 5;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return indices * (nVertex + 2);
+}
+
+int getFecNumVerticesByElement(int uid) {
+    
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return nVertex;
 }
 
 
@@ -397,7 +412,7 @@ SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJN
 }
 
 
-SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJNI_getFecTriangles(JNIEnv *jenv, jclass jcls, jint jarg1) {
+SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJNI_getFecElements(JNIEnv *jenv, jclass jcls, jint jarg1) {
   jobject jresult = 0 ;
   int arg1 ;
   double *result = 0 ;
@@ -405,10 +420,10 @@ SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJN
   (void)jenv;
   (void)jcls;
   arg1 = (int)jarg1; 
-  result = (double *)getFecTriangles(arg1);
+  result = (double *)getFecElements(arg1);
   {
-    jresult = (*jenv)->NewDoubleArray(jenv, _getFecTrianglesSize(arg1));
-    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, _getFecTrianglesSize(arg1), result);
+    jresult = (*jenv)->NewDoubleArray(jenv, _getFecElementsSize(arg1));
+    (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, _getFecElementsSize(arg1), result);
   }
   return jresult;
 }
@@ -461,6 +476,20 @@ SWIGEXPORT jobject JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJN
     jresult = (*jenv)->NewDoubleArray(jenv, 4);
     (*jenv)->SetDoubleArrayRegion(jenv, jresult, 0, 4, result);
   }
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_graphic_1objects_ObjectDataJNI_getFecNumVerticesByElement(JNIEnv *jenv, jclass jcls, jint jarg1) {
+  jint jresult = 0 ;
+  int arg1 ;
+  int result;
+  
+  (void)jenv;
+  (void)jcls;
+  arg1 = (int)jarg1; 
+  result = (int)getFecNumVerticesByElement(arg1);
+  jresult = (jint)result; 
   return jresult;
 }
 

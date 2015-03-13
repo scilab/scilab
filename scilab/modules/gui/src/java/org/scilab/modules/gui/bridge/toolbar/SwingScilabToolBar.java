@@ -24,8 +24,6 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
 
     private static final long serialVersionUID = 1L;
 
-    private int elementId;
-
     /**
      * Constructor
      */
@@ -42,21 +40,4 @@ public class SwingScilabToolBar extends JToolBar implements SimpleToolBar {
     public void addSeparator() {
         super.addSeparator();
     }
-
-    /**
-     * Get the element id for this toolbar
-     * @return id the id of the corresponding toolbar object
-     */
-    public int getElementId() {
-        return this.elementId;
-    }
-
-    /**
-     * Set the element id for this toolbar
-     * @param id the id of the corresponding toolbar object
-     */
-    public void setElementId(int id) {
-        this.elementId = id;
-    }
-
 }
