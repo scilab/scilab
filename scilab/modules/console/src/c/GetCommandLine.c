@@ -65,9 +65,9 @@ static char *__CommandLine = NULL;
 
 /*--------------------------------------------------------------------------*/
 
-IMPORT_SIGNAL __threadSignal LaunchScilab;
-
-IMPORT_SIGNAL __threadSignalLock *pLaunchScilabLock;
+//IMPORT_SIGNAL __threadSignal LaunchScilab;
+//
+//IMPORT_SIGNAL __threadSignalLock *pLaunchScilabLock;
 
 static __threadSignal TimeToWork;
 
@@ -179,14 +179,14 @@ static void initAll(void)
 */
 static void *watchStoreCommand(void *in)
 {
-    __LockSignal(pLaunchScilabLock);
-    __Wait(&LaunchScilab, pLaunchScilabLock);
-    __UnLockSignal(pLaunchScilabLock);
+    //__LockSignal(pLaunchScilabLock);
+    //__Wait(&LaunchScilab, pLaunchScilabLock);
+    //__UnLockSignal(pLaunchScilabLock);
 
-    __LockSignal(pReadyForLaunch);
-    WatchStoreCmdThreadAlive = FALSE;
-    __Signal(&TimeToWork);
-    __UnLockSignal(pReadyForLaunch);
+    //__LockSignal(pReadyForLaunch);
+    //WatchStoreCmdThreadAlive = FALSE;
+    //__Signal(&TimeToWork);
+    //__UnLockSignal(pReadyForLaunch);
 
     return NULL;
 }
@@ -199,12 +199,12 @@ static void *watchStoreCommand(void *in)
 */
 static void *watchGetCommandLine(void *in)
 {
-    getCommandLine();
+    //getCommandLine();
 
-    __LockSignal(pReadyForLaunch);
-    WatchGetCmdLineThreadAlive = FALSE;
-    __Signal(&TimeToWork);
-    __UnLockSignal(pReadyForLaunch);
+    //__LockSignal(pReadyForLaunch);
+    //WatchGetCmdLineThreadAlive = FALSE;
+    //__Signal(&TimeToWork);
+    //__UnLockSignal(pReadyForLaunch);
 
     return NULL;
 }

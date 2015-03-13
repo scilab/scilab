@@ -11,49 +11,17 @@
  */
 
 #include "runner.hxx"
-
-__threadLock Runner::m_lock;
-
-__threadSignal Runner::m_consoleExecDone;
-
-__threadSignal Runner::m_awakeScilab;
-__threadSignalLock Runner::m_awakeScilabLock;
-
-__threadSignal Runner::m_AstPending;
-__threadSignalLock Runner::m_AstPendingLock;
-
+#include "threadmanagement.hxx"
 
 using namespace ast;
-
-__threadSignal* getAstPendingSignal(void)
-{
-    return Runner::getAstPendingSignal();
-}
-
-__threadSignal* getConsoleExecDone(void)
-{
-    return Runner::getConsoleExecDone();
-}
-
-
-void Runner::init()
-{
-    __InitSignal(&m_awakeScilab);
-    __InitSignalLock(&m_awakeScilabLock);
-
-    __InitSignal(&m_consoleExecDone);
-
-    __InitSignal(&m_AstPending);
-    __InitSignalLock(&m_AstPendingLock);
-}
 
 void *Runner::launch(void *args)
 {
     bool bdoUnlock = false;
     //try to lock locker ( waiting parent thread register me )
-    __Lock(&m_lock);
+    ThreadManagement::LockRunner();
     //just release locker
-    __UnLock(&m_lock);
+    ThreadManagement::UnlockRunner();
 
     __threadKey currentThreadKey = __GetCurrentThreadKey();
     ThreadId* pThread = ConfigVariable::getThread(currentThreadKey);
@@ -88,12 +56,12 @@ void *Runner::launch(void *args)
         // This case appear when error is throw or when
         // non-prioritary execute this last SeqExp.
         pThread->setInterrupt(false);
-        __Signal(&Runner::m_AstPending);
+        ThreadManagement::SendAstPendingSignal();
     }
 
     if (pThread->isConsoleCommand())
     {
-        __Signal(&Runner::m_consoleExecDone);
+        ThreadManagement::SendConsoleExecDoneSignal();
     }
 
     //unregister thread
@@ -103,28 +71,11 @@ void *Runner::launch(void *args)
 
     if (bdoUnlock)
     {
-        UnlockPrompt();
+        ThreadManagement::SendAwakeRunnerSignal();
     }
 
     return NULL;
 }
-
-void Runner::LockPrompt()
-{
-    __LockSignal(&m_awakeScilabLock);
-    //free locker to release thread
-    __UnLock(&m_lock);
-    __Wait(&m_awakeScilab, &m_awakeScilabLock);
-    __UnLockSignal(&m_awakeScilabLock);
-}
-
-void Runner::UnlockPrompt()
-{
-    __LockSignal(&m_awakeScilabLock);
-    __Signal(&m_awakeScilab);
-    __UnLockSignal(&m_awakeScilabLock);
-}
-
 
 void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
                          bool _isPrioritaryThread, bool _isInterruptibleThread, bool _isConsoleCommand)
@@ -135,10 +86,8 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
         __threadKey threadKey;
         __threadId threadId;
 
-        //init locker
-        __InitLock(&m_lock);
         //lock locker
-        __Lock(&m_lock);
+        ThreadManagement::LockRunner();
 
         types::ThreadId* pInterruptibleThread = ConfigVariable::getLastRunningThread();
         if (_isPrioritaryThread)
@@ -148,9 +97,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
                 if (pInterruptibleThread->isInterruptible())
                 {
                     pInterruptibleThread->setInterrupt(true);
-                    __LockSignal(&m_AstPendingLock);
-                    __Wait(&m_AstPending, &m_AstPendingLock);
-                    __UnLockSignal(&m_AstPendingLock);
+                    ThreadManagement::WaitForAstPendingSignal();
                 }
                 else
                 {
@@ -177,7 +124,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
         pThread->setInterruptible(_isInterruptibleThread);
 
         //free locker to release thread && wait and of thread execution
-        LockPrompt();
+        ThreadManagement::WaitForAwakeRunnerSignal();
 
         if (pInterruptibleThread && pInterruptibleThread->getInterrupt())
         {

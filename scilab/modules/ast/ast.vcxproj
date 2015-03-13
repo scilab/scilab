@@ -110,7 +110,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -121,7 +121,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -148,7 +147,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -159,7 +158,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -183,7 +181,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -194,7 +192,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -221,7 +218,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -232,7 +229,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -255,7 +251,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <None Include="linear_algebra_f_Import.def" />
     <None Include="output_stream_Import.def" />
     <None Include="polynomials_f_Import.def" />
-    <None Include="threads_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\analysis\AnalysisVisitor.hxx" />
@@ -478,6 +473,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\system_env\sci_path.h" />
     <ClInclude Include="includes\system_env\sci_tmpdir.h" />
     <ClInclude Include="includes\system_env\setenvvar.h" />
+    <ClInclude Include="includes\system_env\threadmanagement.hxx" />
     <ClInclude Include="includes\types\alltypes.hxx" />
     <ClInclude Include="includes\types\arrayof.hxx" />
     <ClInclude Include="includes\types\bool.hxx" />
@@ -593,6 +589,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\system_env\sci_path.cpp" />
     <ClCompile Include="src\cpp\system_env\sci_tmpdir.cpp" />
     <ClCompile Include="src\cpp\system_env\setenvvar.cpp" />
+    <ClCompile Include="src\cpp\system_env\threadmanagement.cpp" />
     <ClCompile Include="src\cpp\types\addfunction.cpp" />
     <ClCompile Include="src\cpp\types\arrayof.cpp" />
     <ClCompile Include="src\cpp\types\bool.cpp" />
@@ -644,6 +641,9 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

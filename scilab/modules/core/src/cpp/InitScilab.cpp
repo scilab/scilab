@@ -29,6 +29,7 @@
 #include "runner.hxx"
 #include "visitor_common.hxx"
 #include "operations.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
@@ -77,28 +78,9 @@ extern "C"
 
 #include "storeCommand.h"
 
-#ifdef _MSC_VER
-    __declspec(dllexport) __threadSignal        LaunchScilab = __StaticInitThreadSignal;
-    __declspec(dllexport) __threadSignalLock    *pLaunchScilabLock = NULL;
-
-#include "mmapWindows.h"
-#else
-#include <sys/mman.h>
-#ifndef MAP_ANONYMOUS
-# define MAP_ANONYMOUS MAP_ANON
-#endif
-    __threadSignal      LaunchScilab        = __StaticInitThreadSignal;
-    __threadSignalLock  *pLaunchScilabLock  = NULL;
-#endif
-
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
 }
-
-__threadLock m_StartLock;
-__threadLock m_ParseLock;
-__threadSignal ExecDone;
-__threadSignalLock *pExecDoneLock;
 
 static void Add_i(void);
 static void Add_pi(void);
@@ -167,7 +149,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     fpsetmask(0);
 #endif
 
-    Runner::init();
+    ThreadManagement::initialize();
 
     checkForLinkerErrors();
 
@@ -342,10 +324,7 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
     if (_pSEI->pstExec)
     {
         StoreConsoleCommand(_pSEI->pstExec);
-        __LockSignal(pExecDoneLock);
-        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
-        __UnLockSignal(pExecDoneLock);
-
+        ThreadManagement::WaitForConsoleExecDoneSignal();
         return ConfigVariable::getExitStatus();
     }
 
@@ -493,7 +472,6 @@ static void processCommand(ScilabEngineInfo* _pSEI)
 // Thread used to parse and execute Scilab command setted in storeCommand
 void* scilabReadAndExecCommand(void* param)
 {
-
     int iInterruptibleCmd   = 0;
     int iPrioritaryCmd      = 0;
     int iConsoleCmd         = 0;
@@ -506,10 +484,7 @@ void* scilabReadAndExecCommand(void* param)
         if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
         {
             // command queue is empty
-            __LockSignal(pLaunchScilabLock);
-            __Wait(&LaunchScilab, pLaunchScilabLock);
-            __UnLockSignal(pLaunchScilabLock);
-
+            ThreadManagement::WaitForCommandStoredSignal();
             continue;
         }
 
@@ -517,7 +492,7 @@ void* scilabReadAndExecCommand(void* param)
         _pSEI->isPrioritary = iPrioritaryCmd;
         _pSEI->isConsoleCommand = iConsoleCmd;
 
-        __Lock(&m_ParseLock);
+        ThreadManagement::LockParser();
         Parser parser;
         parser.setParseTrace(_pSEI->iParseTrace != 0);
         parseCommandTask(&parser, _pSEI->iTimed != 0, command);
@@ -525,12 +500,12 @@ void* scilabReadAndExecCommand(void* param)
         if (parser.getExitStatus() == Parser::Failed)
         {
             scilabWriteW(parser.getErrorMessage());
-            __UnLock(&m_ParseLock);
+            ThreadManagement::UnlockParser();
             continue;
         }
 
         _pSEI->pExpTree = parser.getTree();
-        __UnLock(&m_ParseLock);
+        ThreadManagement::UnlockParser();
 
         processCommand(_pSEI);
         FREE(command);
@@ -542,8 +517,8 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
-    __Lock(&m_StartLock);
-    __UnLock(&m_StartLock);
+    ThreadManagement::LockStart();
+    ThreadManagement::UnlockStart();
 
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
@@ -559,23 +534,17 @@ void* scilabReadAndStore(void* param)
 
     if (isEmptyCommandQueue() == false)
     {
-        // unlock scilabReadAndExecCommand thread
-        __LockSignal(pExecDoneLock);
-        __Signal(&ExecDone);
-        __UnLockSignal(pExecDoneLock);
+        // unlock main thread
+        ThreadManagement::SendStartPendingSignal();
 
         // Command stored as console command by -f
         // We have to wait this execution before
         // callOnPrompt (ie: onPrompt perform a quit in test_run)
-        __LockSignal(pExecDoneLock);
-        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
-        __UnLockSignal(pExecDoneLock);
+        ThreadManagement::WaitForConsoleExecDoneSignal();
     }
 
-    // unlock scilabReadAndExecCommand thread
-    __LockSignal(pExecDoneLock);
-    __Signal(&ExecDone);
-    __UnLockSignal(pExecDoneLock);
+    // unlock main thread
+    ThreadManagement::SendStartPendingSignal();
 
     callOnPrompt();
 
@@ -629,7 +598,7 @@ void* scilabReadAndStore(void* param)
                 command = pstNewCommand;
             }
 
-            __Lock(&m_ParseLock);
+            ThreadManagement::LockParser();
             parseCommandTask(&parser, _pSEI->iTimed != 0, command);
             controlStatus = parser.getControlStatus();
             exitStatus = parser.getExitStatus();
@@ -638,7 +607,7 @@ void* scilabReadAndStore(void* param)
             {
                 delete (parser.getTree());
             }
-            __UnLock(&m_ParseLock);
+            ThreadManagement::UnlockParser();
         }
         while (controlStatus != Parser::AllControlClosed);
 
@@ -660,55 +629,14 @@ void* scilabReadAndStore(void* param)
         FREE(command);
         command = NULL;
 
-        __LockSignal(pExecDoneLock);
-        __Wait(Runner::getConsoleExecDone(), pExecDoneLock);
-        __UnLockSignal(pExecDoneLock);
+        ThreadManagement::WaitForConsoleExecDoneSignal();
 
         callOnPrompt();
     }
 
-    __Signal(&LaunchScilab);
+    // Awake scilabReadAndExecCommand thread in case of scilab exit
+    ThreadManagement::SendCommandStoredSignal();
     return NULL;
-}
-
-void ReleaseScilabSignal(__threadSignal* _Signal, __threadSignalLock* _Lock)
-{
-#ifdef _MSC_VER
-    /* http://msdn.microsoft.com/en-us/magazine/cc164040.aspx */
-    if (_Lock && (_Lock->LockCount == -1))
-#else
-    if (_Lock)
-#endif
-    {
-        __UnLockSignal(_Lock);
-        munmap(_Lock, sizeof(__threadSignalLock));
-        _Lock = NULL;
-#ifdef _MSC_VER
-        /* On Windows , we need to force value */
-        _Signal = __StaticInitThreadSignal;
-#endif
-    }
-}
-
-void InitializeScilabSignal(__threadSignal* _Signal, __threadSignalLock** _Lock, void (*func)(void))
-{
-    if (*_Lock == NULL)
-    {
-        *_Lock = (__threadSignalLock*)mmap(0, sizeof(__threadSignalLock), PROT_READ | PROT_WRITE, MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
-        __InitSignal(_Signal);
-        __InitSignalLock(*_Lock);
-        atexit(func);
-    }
-}
-
-void ReleaseLaunchScilabSignal(void)
-{
-    ReleaseScilabSignal(&LaunchScilab, pLaunchScilabLock);
-}
-
-void ReleaseDoneScilabSignal(void)
-{
-    ReleaseScilabSignal(&ExecDone, pExecDoneLock);
 }
 
 /*
@@ -734,23 +662,14 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     __threadId threadIdCommand;
     __threadKey threadKeyCommand;
 
-    __InitLock(&m_StartLock);
-    __InitLock(&m_ParseLock);
-
-    InitializeScilabSignal(&LaunchScilab, &pLaunchScilabLock, ReleaseLaunchScilabSignal);
-    InitializeScilabSignal(&ExecDone, &pExecDoneLock, ReleaseDoneScilabSignal);
-
-    __Lock(&m_StartLock);
+    ThreadManagement::LockStart();
     // thread to manage console command
     __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
 
     // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
     // to be such that the -f command stored is not removed
     // from queue before scilabReadAndStore is waiting for.
-    __LockSignal(pExecDoneLock);
-    __UnLock(&m_StartLock);
-    __Wait(&ExecDone, pExecDoneLock);
-    __UnLockSignal(pExecDoneLock);
+    ThreadManagement::WaitForStartPendingSignal();
 
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);

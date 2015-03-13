@@ -12,20 +12,7 @@
 /*--------------------------------------------------------------------------*/
 extern "C"
 {
-#define NOMINMAX
 #include "storeCommand.h"
-#include "Thread_Wrapper.h"
-
-    // mmap
-#ifdef _MSC_VER
-#include "mmapWindows.h"
-#else
-#include <sys/mman.h>
-#ifndef MAP_ANONYMOUS
-# define MAP_ANONYMOUS MAP_ANON
-#endif
-#endif
-
 }
 
 #include "parser.hxx"
@@ -35,6 +22,7 @@ extern "C"
 #include "scilabexception.hxx"
 #include "localization.hxx"
 #include "runner.hxx"
+#include "threadmanagement.hxx"
 
 using namespace ast;
 /*--------------------------------------------------------------------------*/
@@ -58,76 +46,55 @@ struct CommandRec
     CommandRec(char* command, int isInterruptible, int isPrioritary, int isConsole) : m_command(command), m_isInterruptible(isInterruptible), m_isPrioritary(isPrioritary), m_isConsole(isConsole) {}
 };
 /*--------------------------------------------------------------------------*/
-/* Extern Signal to say we git a StoreCommand. */
-extern "C"
-{
-    extern __threadSignal LaunchScilab;
-}
-/*--------------------------------------------------------------------------*/
 static std::list<CommandRec> commandQueue;
 static std::list<CommandRec> commandQueuePrioritary;
-//static __threadLock commandQueueSingleAccess = __StaticInitLock;
-static void release(void);
-static __threadLock* getCommandQueueSingleAccess()
-{
-    static __threadLock* ptr = NULL;
-    if (!ptr)
-    {
-        ptr = (__threadLock*)mmap(0, sizeof(__threadLock), PROT_READ | PROT_WRITE, MAP_SHARED |  MAP_ANONYMOUS, -1, 0);
-#ifdef _MSC_VER
-        *ptr =  __StaticInitLock;
-#else
-        __InitSignalLock(ptr);
-#endif
-        atexit(release);
-    }
-    return ptr;
-}
-
-static void release(void)
-{
-    if (getCommandQueueSingleAccess())
-    {
-        __UnLock(getCommandQueueSingleAccess());
-    }
-}
 /*--------------------------------------------------------------------------*/
 int StoreCommand(char *command)
 {
-    __Lock(getCommandQueueSingleAccess());
+    ThreadManagement::LockStoreCommand();
     commandQueue.emplace_back(os_strdup(command),
                               /*is prioritary*/ 0,
                               /* is interruptible*/ 1,
                               /* from console */ 0);
-    __UnLock(getCommandQueueSingleAccess());
-    __Signal(&LaunchScilab);
+
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
 
     return 0;
 }
 
 int StoreConsoleCommand(char *command)
 {
-    __Lock(getCommandQueueSingleAccess());
+    ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
                                         /*is prioritary*/ 1,
                                         /* is interruptible*/ 1,
                                         /* from console */ 1);
-    __UnLock(getCommandQueueSingleAccess());
-    __Signal(&LaunchScilab);
-    Runner::UnlockPrompt();
+
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+    // Awake Runner to execute this prioritary command
+    ThreadManagement::SendAwakeRunnerSignal();
+
     return 0;
 }
 
 int StorePrioritaryCommand(char *command)
 {
-    __Lock(getCommandQueueSingleAccess());
+    ThreadManagement::LockStoreCommand();
     commandQueuePrioritary.emplace_back(os_strdup(command),
                                         /*is prioritary*/ 1,
                                         /* is interruptible*/ 0,
                                         /* from console */ 0);
-    __UnLock(getCommandQueueSingleAccess());
-    __Signal(&LaunchScilab);
-    Runner::UnlockPrompt();
+
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+    // Awake Runner to execute this prioritary command
+    ThreadManagement::SendAwakeRunnerSignal();
+
     return 0;
 }
 
@@ -144,7 +111,7 @@ int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piCons
 {
     int iCommandReturned = 0;
 
-    __Lock(getCommandQueueSingleAccess());
+    ThreadManagement::LockStoreCommand();
     if (commandQueuePrioritary.empty() == false)
     {
         *cmd = os_strdup(commandQueuePrioritary.front().m_command);
@@ -169,7 +136,7 @@ int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piCons
 
         iCommandReturned = 1;
     }
-    __UnLock(getCommandQueueSingleAccess());
+    ThreadManagement::UnlockStoreCommand();
 
     return iCommandReturned;
 }

@@ -24,6 +24,7 @@
 #include "configvariable.hxx"
 #include "context.hxx"
 #include "runner.hxx"
+#include "threadmanagement.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -213,7 +214,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         {
             if (pThreadMe && pThreadMe->getInterrupt())
             {
-                __Signal(getAstPendingSignal());
+                ThreadManagement::SendAstPendingSignal();
                 pThreadMe->suspend();
             }
 

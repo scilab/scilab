@@ -38,14 +38,13 @@
 #include "macro.hxx"
 
 #include "runner.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
 #include "sciprint.h"
 #include "os_string.h"
 #include "elem_common.h"
-
-#include "Thread_Wrapper.h"
 }
 
 namespace ast
@@ -768,7 +767,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
     {
         if (pThreadMe && pThreadMe->getInterrupt())
         {
-            __Signal(getAstPendingSignal());
+            ThreadManagement::SendAstPendingSignal();
             pThreadMe->suspend();
         }
 

@@ -2,8 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-LaunchScilab
-pLaunchScilabLock
 callFunctionFromGateway
 com_
 stack_

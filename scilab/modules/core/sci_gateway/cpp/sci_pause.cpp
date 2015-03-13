@@ -12,7 +12,8 @@
 
 #include "core_gw.hxx"
 #include "function.hxx"
-#include "runner.hxx"
+#include "threadmanagement.hxx"
+#include "configvariable.hxx"
 #include "threadId.hxx"
 #include "scilabexception.hxx"
 
@@ -36,9 +37,9 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
     ConfigVariable::IncreasePauseLevel();
 
     //unlock prompt thread.
-    Runner::UnlockPrompt();
+    ThreadManagement::SendAwakeRunnerSignal();
 
-    ThreadId* pThread = ConfigVariable::getLastRunningThread();
+    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
     if (pThread == NULL)
     {
         return types::Function::OK;
