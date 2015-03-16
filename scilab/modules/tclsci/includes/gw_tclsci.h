@@ -16,24 +16,22 @@
 #define __GW_TCLSCI__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_tclsci.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-TCLSCI_IMPEXP int gw_tclsci(void);
-/*--------------------------------------------------------------------------*/
-int sci_TCL_DoOneEvent (char *fname, unsigned long fname_len);
-int sci_TCL_EvalFile(char *fname, unsigned long fname_len);
-int sci_TCL_EvalStr(char *fname, unsigned long fname_len);
-int sci_TCL_GetVar(char *fname, unsigned long fname_len);
-int sci_TCL_SetVar(char *fname, unsigned long fname_len);
-int sci_opentk(char *fname, unsigned long fname_len);
-int sci_TCL_GetVersion(char *fname, unsigned long fname_len);
-int sci_TCL_UnsetVar(char *fname, unsigned long fname_len);
-int sci_TCL_ExistVar(char *fname, unsigned long fname_len);
-int sci_TCL_UpVar(char *fname, unsigned long fname_len);
-int sci_TCL_DeleteInterp(char *fname, unsigned long fname_len);
-int sci_TCL_CreateSlave(char *fname, unsigned long fname_len);
-int sci_TCL_ExistInterp(char *fname, unsigned long fname_len);
-int sci_TCL_ExistArray(char *fname, unsigned long fname_len);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_EvalStr);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_ExistInterp);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_GetVar);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_DoOneEvent);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_EvalFile);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_SetVar);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_ExistVar);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_ExistArray);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_opentk);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_GetVersion);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_UnsetVar);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_UpVar);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_CreateSlave);
+TCLSCI_IMPEXP C_GATEWAY_PROTOTYPE(sci_TCL_DeleteInterp);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_TCLSCI__ */
 /*--------------------------------------------------------------------------*/
-

@@ -25,6 +25,7 @@ extern "C"
 class EXTERN_AST ThreadManagement
 {
 private :
+
     static __threadLock m_RunnerLock;
     static __threadLock m_ParseLock;
     static __threadLock m_StoreCommandLock;
@@ -48,6 +49,9 @@ private :
     static __threadSignal m_RunMe;
     static __threadSignalLock m_RunMeLock;
 
+    static __threadSignal m_EmptyQueue;
+    static __threadSignalLock m_EmptyQueueLock;
+
     // used to avoid "Spurious Wakeups"
     static bool m_AvailableRunnerWasSignalled;
     static bool m_ConsoleExecDoneWasSignalled;
@@ -55,6 +59,7 @@ private :
     static bool m_StartPendingWasSignalled;
     static bool m_CommandStoredWasSignalled;
     static bool m_RunMeWasSignalled;
+    static bool m_EmptyQueueWasSignalled;
 
 #ifdef DEBUG_THREAD
     static __threadKey m_tkMain;
@@ -93,7 +98,6 @@ public :
 private :
     static void PrintDebug(const char* pcfunName);
 #endif // DEBUG_THREAD
-
 
 };
 

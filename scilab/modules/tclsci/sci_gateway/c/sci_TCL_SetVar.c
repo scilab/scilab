@@ -18,146 +18,214 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "GlobalTclInterp.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_SetVar(char *fname, unsigned long l)
+int sci_TCL_SetVar(char *fname, void* pvApiCtx)
 {
-    /*    static int l1, n1, m1;
-        static int l2, n2, m2;
-        int *paramoutINT = (int*)MALLOC(sizeof(int));
-        Tcl_Interp *TCLinterpreter = NULL;
+    SciErr sciErr;
 
-        CheckRhs(2, 3);
-        CheckLhs(0, 1);
+    int* piAddrl2 = NULL;
+    char* l2 = NULL;
 
-        if (getTclInterp() == NULL)
-        {
-            releaseTclInterp();
-            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
-            return 0;
-        }
+    int* piAddrl1 = NULL;
+    int* piAddrStr = NULL;
+    char *VarName = NULL;
+
+    static int n1, m1;
+    static int n2, m2;
+
+    int paramoutINT = 0;
+    Tcl_Interp *TCLinterpreter = NULL;
+
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if (getTclInterp() == NULL)
+    {
         releaseTclInterp();
+        Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+        return 0;
+    }
+    releaseTclInterp();
 
-        if (Rhs == 3)
+    if (nbInputArgument(pvApiCtx) == 3)
+    {
+        // three arguments given - get a pointer on the slave interpreter
+        if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
         {
-            // three arguments given - get a pointer on the slave interpreter
-            if (GetType(3) == sci_strings)
+            sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl2);
+            if (sciErr.iErr)
             {
-                GetRhsVar(3, STRING_DATATYPE, &m2, &n2, &l2);
-                TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
-                if (TCLinterpreter == NULL)
-                {
-                    releaseTclInterp();
-                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
-                    return 0;
-                }
+                printError(&sciErr, 0);
+                return 1;
             }
-            else
+
+            // Retrieve a matrix of double at position 3.
+            if (getAllocatedSingleString(pvApiCtx, piAddrl2, &l2))
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+                Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+                return 1;
+            }
+
+            TCLinterpreter = Tcl_GetSlave(getTclInterp(), (l2));
+            freeAllocatedSingleString(l2);
+            if (TCLinterpreter == NULL)
+            {
+                releaseTclInterp();
+                Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                 return 0;
             }
         }
         else
         {
-            // only two arguments given - use the main interpreter
-            TCLinterpreter = getTclInterp();
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+            return 0;
+        }
+    }
+    else
+    {
+        // only two arguments given - use the main interpreter
+        TCLinterpreter = getTclInterp();
+    }
+
+    if (checkInputArgumentType(pvApiCtx, 1, sci_strings) && checkInputArgumentType(pvApiCtx, 2, sci_strings))
+    {
+        char **Str = NULL;
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
         }
 
-        if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+        // Retrieve a matrix of double at position 1.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl1, &VarName))
         {
-            char *VarName = NULL;
-            char **Str = NULL;
-
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            VarName = cstk(l1);
-
-            GetRhsVar(2, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &Str);
-
-            // Efface valeur precedente
-            Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
-
-            if ( (m1 == 1) && (n1 == 1) )
-            {
-                *paramoutINT = SetVarAString(TCLinterpreter, VarName, Str);
-            }
-            else
-            {
-                *paramoutINT = SetVarStrings(TCLinterpreter, VarName, Str, m1, n1);
-            }
-            freeArrayOfString(Str, m1 * n1);
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            return 1;
         }
-        else if ( (GetType(1) == sci_strings) && (GetType(2) == sci_matrix) )
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrStr);
+        if (sciErr.iErr)
         {
-    #define COMPLEX 1
-            char *VarName = NULL;
-            int *header = NULL;
-            int Cmplx;
+            printError(&sciErr, 0);
+            return 1;
+        }
 
-            header = (int *) GetData(2);
-            Cmplx = header[3];
-            if (Cmplx == COMPLEX)
-            {
-                releaseTclInterp();
-                Scierror(999, _("This function doesn't work with Complex.\n"));
-                return 0;
-            }
+        // Retrieve a matrix of string at position 2.
+        if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m1, &n1, &Str))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 2);
+            return 1;
+        }
 
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            VarName = cstk(l1);
 
-            GetRhsVar(2, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+        // Efface valeur precedente
+        Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
 
-            if ( (m1 == 0) && (n1 == 0) )
-            {
-                releaseTclInterp();
-                Scierror(999, _("[] doesn't work with Tcl/Tk.\n"));
-                return 0;
-            }
-
-            if ( (m1 == 1) && (n1 == 1) )
-            {
-                *paramoutINT = SetVarScalar(TCLinterpreter, VarName, (double) * stk(l1));
-            }
-            else
-            {
-                *paramoutINT = SetVarMatrix(TCLinterpreter, VarName, l1, m1, n1);
-            }
+        if ( (m1 == 1) && (n1 == 1) )
+        {
+            paramoutINT = SetVarAString(TCLinterpreter, VarName, Str);
         }
         else
         {
-            if (paramoutINT)
-            {
-                FREE(paramoutINT);
-                paramoutINT = NULL;
-            }
-            if (GetType(1) != sci_strings)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname , 1);
-            }
-            if (GetType(2) != sci_matrix)
-            {
-                Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), fname , 2);
-            }
+            paramoutINT = SetVarStrings(TCLinterpreter, VarName, Str, m1, n1);
+        }
+
+        freeAllocatedSingleString(VarName);
+        freeAllocatedMatrixOfString(m1, n1, Str);
+    }
+    else if (checkInputArgumentType(pvApiCtx, 1, sci_strings) && checkInputArgumentType(pvApiCtx, 2, sci_matrix))
+    {
+#define COMPLEX 1
+        int *header = NULL;
+        int Cmplx;
+        double* l1 = NULL;
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
+        {
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        // Retrieve a matrix of double at position 1.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl1, &VarName))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            return 1;
+        }
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl1);
+        if (sciErr.iErr)
+        {
+            freeAllocatedSingleString(VarName);
+            printError(&sciErr, 0);
+            return 1;
+        }
+
+        if (isVarComplex(pvApiCtx, piAddrl1))
+        {
             releaseTclInterp();
+            Scierror(999, _("This function doesn't work with Complex.\n"));
             return 0;
         }
 
-        m1 = 1;
-        n1 = 1;
-        l1 = 0;
-        CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE,  &m1, &n1, &l1);
-        *istk(l1) = *paramoutINT;
-
-        if (paramoutINT)
+        // Retrieve a matrix of double at position 2.
+        sciErr = getMatrixOfDouble(pvApiCtx, piAddrl1, &m1, &n1, &l1);
+        if (sciErr.iErr)
         {
-            FREE(paramoutINT);
-            paramoutINT = NULL;
+            freeAllocatedSingleString(VarName);
+            printError(&sciErr, 0);
+            Scierror(202, _("%s: Wrong type for argument %d: A real expected.\n"), fname, 2);
+            return 1;
+        }
+
+        if ( (m1 == 0) && (n1 == 0) )
+        {
+            freeAllocatedSingleString(VarName);
+            releaseTclInterp();
+            Scierror(999, _("[] doesn't work with Tcl/Tk.\n"));
+            return 0;
+        }
+
+        if ( (m1 == 1) && (n1 == 1) )
+        {
+            paramoutINT = SetVarScalar(TCLinterpreter, VarName, *l1);
+        }
+        else
+        {
+            paramoutINT = SetVarMatrix(TCLinterpreter, VarName, l1, m1, n1);
+        }
+
+        freeAllocatedSingleString(VarName);
+    }
+    else
+    {
+        if ((!checkInputArgumentType(pvApiCtx, 1, sci_strings)))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname , 1);
+        }
+        if ((!checkInputArgumentType(pvApiCtx, 2, sci_matrix)))
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), fname , 2);
         }
         releaseTclInterp();
+        return 0;
+    }
 
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
-    */
+    if (createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, paramoutINT))
+    {
+        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        return 1;
+    }
+
+    releaseTclInterp();
+
+    AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+    ReturnArguments(pvApiCtx);
+
     return 0;
 }
 /*--------------------------------------------------------------------------*/

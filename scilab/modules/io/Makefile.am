@@ -60,6 +60,7 @@ libsciio_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/hdf5/includes \
+    -I$(top_srcdir)/modules/tclsci/includes \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

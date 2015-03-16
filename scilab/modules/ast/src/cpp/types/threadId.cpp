@@ -38,7 +38,7 @@ ThreadId::ThreadId(__threadId _id, __threadKey _key)
     m_threadStatus = Running;
     m_isInterruptible = true;
     m_doInterrupt = false;
-    m_isConsoleCommand = false;
+    m_iCmdOrigin = 0; // NONE
 }
 
 __threadId ThreadId::getThreadId()
@@ -167,14 +167,14 @@ bool ThreadId::isInterruptible()
     return m_isInterruptible;
 }
 
-void ThreadId::setConsoleCommandFlag(bool _isConsoleCommand)
+void ThreadId::setCommandOrigin(int _iCmdOrigin)
 {
-    m_isConsoleCommand = _isConsoleCommand;
+    m_iCmdOrigin = _iCmdOrigin;
 }
 
-bool ThreadId::isConsoleCommand()
+int ThreadId::getCommandOrigin()
 {
-    return m_isConsoleCommand;
+    return m_iCmdOrigin;
 }
 
 }

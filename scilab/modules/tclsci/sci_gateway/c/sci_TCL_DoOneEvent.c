@@ -13,18 +13,18 @@
 /*--------------------------------------------------------------------------*/
 #include "TCL_Global.h"
 #include "gw_tclsci.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_DoOneEvent (char *fname, unsigned long l)
+int sci_TCL_DoOneEvent (char *fname, void* pvApiCtx)
 {
-    /*    CheckRhs(0, 0);
-        CheckLhs(1, 1);
+    CheckInputArgument(pvApiCtx, 0, 0);
+    CheckOutputArgument(pvApiCtx, 1, 1);
 
-        // wait for events and invoke event handlers
-        Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
+    // wait for events and invoke event handlers
+    Tcl_DoOneEvent(TCL_ALL_EVENTS | TCL_DONT_WAIT);
 
-        LhsVar(1) = 0;
-        PutLhsVar();
-
-    */    return 0;
+    AssignOutputVariable(pvApiCtx, 1) = 0;
+    ReturnArguments(pvApiCtx);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -15,22 +15,13 @@
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int m, int n)
+BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, double* MatrixDouble, int m, int n)
 {
     BOOL bOK = TRUE;
     int i = 0, j = 0;
 
-    double *MatrixDouble = (double*)MALLOC((m * n) * sizeof(double));
-
     /* Efface valeur precedente */
     Tcl_UnsetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY);
-
-    for (i = 0; i < m * n; i++)
-    {
-        //MatrixDouble[i] = *stk(ptrValues++);
-    }
-
-
     for (i = 1; i < m + 1; i++)
     {
         char VarValueWithIndice[2048];
@@ -62,11 +53,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int 
             }
         }
     }
-    if (MatrixDouble)
-    {
-        FREE(MatrixDouble);
-        MatrixDouble = NULL;
-    }
+
     return bOK;
 }
 /*--------------------------------------------------------------------------*/

@@ -13,7 +13,6 @@
 #include <stdlib.h>
 #include "dynamic_gateways.h"
 #include "gw_dynamic_generic.h"
-#include "dynamic_parallel.h"
 #include "configvariable_interface.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/

@@ -349,6 +349,7 @@ bool FuncManager::CreateModuleList(void)
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
+        m_ModuleMap[L"tclsci"] = std::pair<GW_MOD, GW_MOD>(&TclsciModule::Load, &TclsciModule::Unload);
         m_ModuleMap[L"jvm"] = std::pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
         m_ModuleMap[L"ui_data"] = std::pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
     }

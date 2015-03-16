@@ -165,6 +165,7 @@ void startTclLoop()
             /* Reinit local interpreter,
                default is the biggest one. */
             LocalTCLinterp = getTclInterp();
+            releaseTclInterp();
 
             /* Check if it's supposed to be run in root or slave */
             if (TclSlave != NULL)

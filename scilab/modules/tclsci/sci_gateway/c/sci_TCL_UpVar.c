@@ -17,93 +17,150 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "GlobalTclInterp.h"
+#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_TCL_UpVar (char *fname, unsigned long l)
+int sci_TCL_UpVar (char *fname, void* pvApiCtx)
 {
-    /*    CheckRhs(2, 3);
-        CheckLhs(0, 1);
+    SciErr sciErr;
 
-        if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+    int* piAddrl1 = NULL;
+    int* piAddrl2 = NULL;
+    int* piAddrl3 = NULL;
+    char* l3 = NULL;
+
+    CheckInputArgument(pvApiCtx, 2, 3);
+    CheckOutputArgument(pvApiCtx, 0, 1);
+
+    if (checkInputArgumentType(pvApiCtx, 1, sci_strings) && (checkInputArgumentType(pvApiCtx, 2, sci_strings)))
+    {
+        int m1 = 0, n1 = 0;
+        int m2 = 0, n2 = 0;
+
+        Tcl_Interp *TCLinterpreter = NULL;
+        char *sourceName = NULL, *destName = NULL;
+        int paramoutINT = 0;
+
+        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrl1);
+        if (sciErr.iErr)
         {
-            int m1 = 0, n1 = 0, l1 = 0;
-            int m2 = 0, n2 = 0, l2 = 0;
+            printError(&sciErr, 0);
+            return 1;
+        }
 
-            Tcl_Interp *TCLinterpreter = NULL;
-            char *sourceName = NULL, *destName = NULL;
-            int *paramoutINT = (int*)MALLOC(sizeof(int));
+        // Retrieve a matrix of double at position 1.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl1, &sourceName))
+        {
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+            return 1;
+        }
 
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            sourceName = cstk(l1);
+        sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrl2);
+        if (sciErr.iErr)
+        {
+            freeAllocatedSingleString(sourceName);
+            printError(&sciErr, 0);
+            return 1;
+        }
 
-            GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-            destName = cstk(l2);
+        // Retrieve a matrix of double at position 2.
+        if (getAllocatedSingleString(pvApiCtx, piAddrl2, &destName))
+        {
+            freeAllocatedSingleString(sourceName);
+            Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+            return 1;
+        }
 
-            if (getTclInterp() == NULL)
-            {
-                releaseTclInterp();
-                Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
-                return 0;
-            }
+        if (getTclInterp() == NULL)
+        {
+            freeAllocatedSingleString(destName);
+            freeAllocatedSingleString(sourceName);
             releaseTclInterp();
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            return 0;
+        }
+        releaseTclInterp();
 
-            if (Rhs == 3)
+        if (nbInputArgument(pvApiCtx) == 3)
+        {
+            int m3 = 0, n3 = 0;
+            // three arguments given - get a pointer on the slave interpreter
+            if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
             {
-                int m3 = 0, n3 = 0, l3 = 0;
-                // three arguments given - get a pointer on the slave interpreter
-                if (GetType(3) == sci_strings)
+                sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrl3);
+                if (sciErr.iErr)
                 {
-                    GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
-                    TCLinterpreter = Tcl_GetSlave(getTclInterp() , cstk(l3));
-                    releaseTclInterp();
-                    if (TCLinterpreter == NULL)
-                    {
-                        Scierror(999, _("%s: No such slave interpreter.\n"), fname);
-                        return 0;
-                    }
+                    freeAllocatedSingleString(sourceName);
+                    printError(&sciErr, 0);
+                    return 1;
                 }
-                else
+
+                // Retrieve a matrix of double at position 3.
+                if (getAllocatedSingleString(pvApiCtx, piAddrl3, &l3))
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+                    freeAllocatedSingleString(destName);
+                    freeAllocatedSingleString(sourceName);
+                    Scierror(202, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+                    return 1;
+                }
+
+                TCLinterpreter = Tcl_GetSlave(getTclInterp() , (l3));
+                freeAllocatedSingleString(l3);
+                releaseTclInterp();
+                if (TCLinterpreter == NULL)
+                {
+                    freeAllocatedSingleString(destName);
+                    freeAllocatedSingleString(sourceName);
+                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                     return 0;
                 }
             }
             else
             {
-                // only two arguments given - use the main interpreter
-                TCLinterpreter = getTclInterp();
-                releaseTclInterp();
+                freeAllocatedSingleString(destName);
+                freeAllocatedSingleString(sourceName);
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+                return 0;
             }
-
-            if ( Tcl_GetVar(TCLinterpreter, sourceName, TCL_GLOBAL_ONLY) )
-            {
-                if ( Tcl_UpVar(TCLinterpreter, "#0", sourceName, destName, TCL_GLOBAL_ONLY) == TCL_ERROR )
-                {
-                    *paramoutINT = (int)(FALSE);
-                }
-                else
-                {
-                    *paramoutINT = (int)(TRUE);
-                }
-            }
-            else
-            {
-                *paramoutINT = (int)(FALSE);
-            }
-
-            n1 = 1;
-            CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
-            LhsVar(1) = Rhs + 1;
-            if (paramoutINT)
-            {
-                FREE(paramoutINT);
-                paramoutINT = NULL;
-            }
-            PutLhsVar();
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
+            // only two arguments given - use the main interpreter
+            TCLinterpreter = getTclInterp();
+            releaseTclInterp();
         }
-    */    return 0;
+
+        if ( Tcl_GetVar(TCLinterpreter, sourceName, TCL_GLOBAL_ONLY) )
+        {
+            if ( Tcl_UpVar(TCLinterpreter, "#0", sourceName, destName, TCL_GLOBAL_ONLY) == TCL_ERROR )
+            {
+                paramoutINT = (int)(FALSE);
+            }
+            else
+            {
+                paramoutINT = (int)(TRUE);
+            }
+        }
+        else
+        {
+            paramoutINT = (int)(FALSE);
+        }
+
+        freeAllocatedSingleString(destName);
+        freeAllocatedSingleString(sourceName);
+
+        if (createScalarBoolean(pvApiCtx, nbInputArgument(pvApiCtx) + 1, paramoutINT))
+        {
+            Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            return 1;
+        }
+
+        AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+        ReturnArguments(pvApiCtx);
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
