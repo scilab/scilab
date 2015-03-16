@@ -105,7 +105,7 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    nonZeros = pSpIn->nonZeros();
+    nonZeros = (int)pSpIn->nonZeros();
     dbl = new double[nonZeros];
     colPos = new int[nonZeros];
     itemsRow = new int[m];

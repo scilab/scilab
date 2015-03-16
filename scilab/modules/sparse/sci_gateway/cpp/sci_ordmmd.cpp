@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_ordmmd(types::typed_list &in, int _iRetCount, t
     }
 
     int NEQNS = (int)pdbl3->get(0);
-    if (NEQNS != pdbl1->getSize())
+    if (NEQNS != (pdbl1->getSize() - 1))
     {
 
         Scierror(999, _(" The provided \"n\" does not correspond to the matrix defined by xadj and iadj\n"));

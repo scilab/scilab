@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
             return types::Function::Error;
         }
 
-        nonZeros = pSpIn->nonZeros();
+        nonZeros = (int)pSpIn->nonZeros();
         dbl = new double[nonZeros];
         pSpIn->outputValues(dbl, NULL);
         colPos = new int[nonZeros];

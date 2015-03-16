@@ -31,5 +31,10 @@ int SparseModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"luget", &sci_luget, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"ludel", &sci_ludel, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"spchol", &sci_spchol, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sfinit", &sci_sfinit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"symfcti", &sci_symfcti, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"bfinit", &sci_bfinit, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"inpnvi", &sci_inpnv, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"blkfc1i", &sci_blkfc1i, MODULE_NAME));
     return 1;
 }
