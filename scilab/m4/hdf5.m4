@@ -42,9 +42,15 @@ else
     if $WITH_DEVTOOLS; then # Scilab thirdparties
         HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
     else
-        AC_CHECK_HEADER([hdf5.h],
-            [HDF5_CFLAGS=""],
-            [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+        if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
+            AC_CHECK_HEADER([hdf5.h],
+                [HDF5_CFLAGS="-I/usr/include/hdf5/serial"],
+                [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+        else
+            AC_CHECK_HEADER([hdf5.h],
+                [HDF5_CFLAGS=""],
+                [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
+        fi
     fi
 fi
 
@@ -63,13 +69,23 @@ else
     if $WITH_DEVTOOLS; then # Scilab thirparties
         HDF5_LIBS="-L$DEVTOOLS_LIBDIR -lhdf5 -lhdf5_hl"
     else
-        HDF5_LIBS="-lhdf5 -lhdf5_hl"
-        LIBS="$LIBS $HDF5_LIBS"
-        AC_CHECK_LIB([hdf5], [H5Fopen],
-            [],
-            [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])]
-            [-lsz -lz]
-            )
+        if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
+            HDF5_LIBS="-lhdf5_serial -lhdf5_serial_hl"
+            LIBS="$LIBS $HDF5_LIBS"
+            AC_CHECK_LIB([hdf5_serial], [H5Fopen],
+                [],
+                [AC_MSG_ERROR([libhdf5_serial or libhdf5_serial_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
+                [-lz]
+                )
+        else
+            HDF5_LIBS="-lhdf5 -lhdf5_hl"
+            LIBS="$LIBS $HDF5_LIBS"
+            AC_CHECK_LIB([hdf5], [H5Fopen],
+                [],
+                [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
+                [-lsz -lz]
+                )
+        fi
     fi
 fi
 
