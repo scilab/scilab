@@ -8,5 +8,11 @@
 //
 // <-- CLI SHELL MODE -->
 
-refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "buildouttb", 2);
+res = buildouttb([2 2], 1); // Request a list containing a 2x2 matrix of doubles
+
+resRef = list([0 0; 0 0]);
+assert_checkequal(res, resRef);
+
+
+refMsg = msprintf(_("%s: Wrong number of input argument(s): %d expected."), "buildouttb", 2);
 assert_checkerror("buildouttb()", refMsg);
