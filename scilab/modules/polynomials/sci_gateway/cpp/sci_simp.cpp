@@ -156,8 +156,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
                     if (iErr)
                     {
-                        delete pdblNumTmp;
-                        delete pdblDenTmp;
+                        delete[] pdblNumTmp;
+                        delete[] pdblDenTmp;
                         break;
                     }
 
@@ -170,13 +170,13 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     pPolyNumOut->set(i, pSPNum);
                     pPolyDenOut->set(i, pSPDen);
 
-                    delete pdblNumTmp;
-                    delete pdblDenTmp;
+                    delete[] pdblNumTmp;
+                    delete[] pdblDenTmp;
                     delete pSPNum;
                     delete pSPDen;
                 }
 
-                delete pdblWork;
+                delete[] pdblWork;
                 delete pNum;
                 delete pDen;
 

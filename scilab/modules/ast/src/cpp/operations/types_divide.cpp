@@ -537,6 +537,13 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
     }
     else
     {
+        for (int i = 0; i < iSize; ++i)
+        {
+            delete pDbl[i];
+            delete pDblSp[i];
+        }
+
+        delete[] pDbl;
         delete[] pDblSp;
         throw ast::ScilabError(_W("Invalid exponent.\n"));
         return 1;
@@ -554,14 +561,27 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
             {
+                delete ppDblGet;
                 return iResultat;
             }
             std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
             pSpTemp->set(iPositVal[i], cplx, true);
+            delete ppDblGet;
         }
     }
+
     delete Col;
+    delete Row;
     delete iPositVal;
+
+    for (int i = 0; i < iSize; ++i)
+    {
+        delete pDbl[i];
+        delete pDblSp[i];
+    }
+
+    delete[] pDbl;
+    delete[] pDblSp;
 
     *_pSpOut = pSpTemp;
     return 0;

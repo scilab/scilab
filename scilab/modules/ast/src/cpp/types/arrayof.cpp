@@ -485,6 +485,10 @@ InternalType* ArrayOf<T>::insertNew(typed_list* _pArgs, InternalType* _pSource)
         //if all index are : -> a = x
         if (iCompteurNull == pArg.size())
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return _pSource;
         }
 
@@ -909,6 +913,10 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 
     if (iSeqCount < 0)
     {
+        delete[] piMaxDim;
+        delete[] piCountDim;
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
         return NULL;
     }
 
@@ -1249,7 +1257,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
     else
     {
         iNewSize = get_max_size(_piDims, _iDims);
-        if (m_iSizeMax < iNewSize)
+        if (iNewSize > m_iSizeMax)
         {
             //alloc 10% bigger than asked to prevent future resize
             int iOldSizeMax = m_iSizeMax;
@@ -1270,6 +1278,7 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
                 getIndexes(i, piIndexes);
                 int iNewIdx = getIndexWithDims(piIndexes, _piDims, _iDims);
                 pRealData[iNewIdx] = m_pRealData[i];
+                m_pRealData[i] = NULL;
                 for (int j = iPreviousNewIdx; j < iNewIdx; ++j)
                 {
                     T pTemp = getNullValue();
@@ -1284,22 +1293,28 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
                 iPreviousNewIdx = iNewIdx + 1;
             }
 
-            // if it's not the first resize,
-            // fill new data with element of last allocation
-            if (iPreviousNewIdx < iOldSizeMax)
+            //clean section between m_iSize and iOldSizeMax
+            for (int i = m_iSize; i < iOldSizeMax; ++i)
             {
-                for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
-                {
-                    pRealData[i] = m_pRealData[i];
-                }
-            }
-            else
-            {
-                // first resize, iOldSizeMax don't contain the 10%
-                iOldSizeMax = iPreviousNewIdx;
+                deleteData(m_pRealData[i]);
+                m_pRealData[i] = NULL;
             }
 
-            for (int i = iOldSizeMax; i < m_iSizeMax; ++i)
+            //if (iPreviousNewIdx < iOldSizeMax)
+            //{
+            //    for (int i = iPreviousNewIdx; i < iOldSizeMax; ++i)
+            //    {
+            //        pRealData[i] = m_pRealData[i];
+            //        m_pRealData[i] = NULL;
+            //    }
+            //}
+            //else
+            //{
+            //    iOldSizeMax = iPreviousNewIdx;
+            //}
+
+            //fill exceeded with NullValue
+            for (int i = iPreviousNewIdx; i < m_iSizeMax; ++i)
             {
                 T pTemp = getNullValue();
                 T pTemp2 = copyValue(pTemp);

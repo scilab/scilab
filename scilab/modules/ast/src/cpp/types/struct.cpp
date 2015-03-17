@@ -120,11 +120,14 @@ bool Struct::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        Struct * pSt = new Struct();
-        out = pSt;
-        SingleStruct** pSSt = NULL;
         int piDims[2] = {getCols(), getRows()};
-        pSt->create(piDims, 2, &pSSt, NULL);
+        Struct * pSt = new Struct(2, piDims);
+        out = pSt;
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            pSt->m_pRealData[i]->DecreaseRef();
+            pSt->m_pRealData[i]->killMe();
+        }
 
         Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
 
@@ -558,6 +561,9 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     int* piCountDim     = new int[iDims];
 
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
+
     if (iSeqCount == 0)
     {
         //free pArg content

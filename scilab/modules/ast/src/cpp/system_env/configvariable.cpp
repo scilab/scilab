@@ -22,6 +22,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "elem_common.h"
 }
+
 /*
 ** Module List
 ** \{
@@ -48,12 +49,12 @@ std::list<std::wstring> ConfigVariable::getModuleList()
 */
 std::wstring ConfigVariable::m_SCIPath;
 
-void ConfigVariable::setSCIPath(std::wstring& _SCIPath)
+void ConfigVariable::setSCIPath(const std::wstring& _SCIPath)
 {
     m_SCIPath = _SCIPath;
 }
 
-std::wstring ConfigVariable::getSCIPath()
+std::wstring& ConfigVariable::getSCIPath()
 {
     return m_SCIPath;
 }
@@ -69,12 +70,12 @@ std::wstring ConfigVariable::getSCIPath()
 
 std::wstring ConfigVariable::m_SCIHOME;
 
-void ConfigVariable::setSCIHOME(std::wstring& _SCIHOME)
+void ConfigVariable::setSCIHOME(const std::wstring& _SCIHOME)
 {
     m_SCIHOME = _SCIHOME;
 }
 
-std::wstring ConfigVariable::getSCIHOME()
+std::wstring& ConfigVariable::getSCIHOME()
 {
     return m_SCIHOME;
 }
@@ -89,12 +90,12 @@ std::wstring ConfigVariable::getSCIHOME()
 
 std::wstring ConfigVariable::m_TMPDIR;
 
-void ConfigVariable::setTMPDIR(std::wstring& _TMPDIR)
+void ConfigVariable::setTMPDIR(const std::wstring& _TMPDIR)
 {
     m_TMPDIR = _TMPDIR;
 }
 
-std::wstring ConfigVariable::getTMPDIR()
+std::wstring& ConfigVariable::getTMPDIR()
 {
     return m_TMPDIR;
 }
@@ -259,12 +260,12 @@ bool ConfigVariable::getWarningMode(void)
 
 std::wstring ConfigVariable::m_HOME;
 
-void ConfigVariable::setHOME(std::wstring& _HOME)
+void ConfigVariable::setHOME(const std::wstring& _HOME)
 {
     m_HOME = _HOME;
 }
 
-std::wstring ConfigVariable::getHOME()
+std::wstring& ConfigVariable::getHOME()
 {
     return m_HOME;
 }
@@ -305,12 +306,12 @@ void ConfigVariable::clearLastError(void)
 
 std::wstring ConfigVariable::m_wstError;
 
-void ConfigVariable::setLastErrorMessage(std::wstring _wstError)
+void ConfigVariable::setLastErrorMessage(const std::wstring& _wstError)
 {
     m_wstError = _wstError;
 }
 
-std::wstring ConfigVariable::getLastErrorMessage()
+std::wstring& ConfigVariable::getLastErrorMessage()
 {
     return m_wstError;
 }
@@ -379,12 +380,12 @@ int ConfigVariable::getLastErrorLine(void)
 
 std::wstring ConfigVariable::m_wstErrorFunction;
 
-void ConfigVariable::setLastErrorFunction(std::wstring _wstErrorFunction)
+void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
 {
     m_wstErrorFunction = _wstErrorFunction;
 }
 
-std::wstring ConfigVariable::getLastErrorFunction()
+std::wstring& ConfigVariable::getLastErrorFunction()
 {
     return m_wstErrorFunction;
 }
@@ -621,7 +622,7 @@ std::list<ConfigVariable::EntryPointStr*> ConfigVariable::m_EntryPointList;
 ConfigVariable::DynamicLibraryStr* ConfigVariable::getNewDynamicLibraryStr()
 {
     DynamicLibraryStr* pDL = (DynamicLibraryStr*)MALLOC(sizeof(DynamicLibraryStr));
-    pDL->pwstLibraryName = NULL;
+    pDL->wstLibraryName = L"";
     pDL->hLib = 0;
     return pDL;
 }
@@ -632,31 +633,23 @@ ConfigVariable::EntryPointStr* ConfigVariable::getNewEntryPointStr()
     pEP->bOK = false;
     pEP->functionPtr = NULL;
     pEP->iLibIndex = -1;
-    pEP->pwstEntryPointName = NULL;
+    pEP->wstEntryPointName = L"";
     return pEP;
 }
 
-void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName)
+void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, const std::wstring& _wstLibraryName)
 {
     if (_pDynamicLibrary)
     {
-        if (_pDynamicLibrary->pwstLibraryName)
-        {
-            FREE(_pDynamicLibrary->pwstLibraryName);
-        }
-        _pDynamicLibrary->pwstLibraryName = os_wcsdup(_pwstLibraryName);
+        _pDynamicLibrary->wstLibraryName = _wstLibraryName;
     }
 }
 
-void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName)
+void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, const std::wstring& _wstEntryPointName)
 {
     if (_pEntryPoint)
     {
-        if (_pEntryPoint->pwstEntryPointName)
-        {
-            FREE(_pEntryPoint->pwstEntryPointName);
-        }
-        _pEntryPoint->pwstEntryPointName = os_wcsdup(_pwstEntryPointName);;
+        _pEntryPoint->wstEntryPointName = _wstEntryPointName;
     }
 }
 
@@ -686,7 +679,9 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
             {
+                EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
+                delete pEP;
                 if (m_EntryPointList.size() == 0)
                 {
                     break;
@@ -695,6 +690,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             }
         }
         //remove dynamic library
+        delete m_DynLibList[_iDynamicLibraryIndex];
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
 
@@ -734,7 +730,7 @@ void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
     }
 }
 
-ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
+ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex)
 {
     std::list<EntryPointStr*>::const_iterator it;
     for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
@@ -742,7 +738,7 @@ ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntry
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
         {
-            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            if ((*it)->wstEntryPointName == _wstEntryPointName)
             {
                 return *it;
             }
@@ -765,7 +761,7 @@ dynlib_ptr ConfigVariable::getEntryPointFromPosition(int position)
     return NULL;
 }
 
-int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
+int ConfigVariable::getEntryPointPosition(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex)
 {
     int pos = 0;
     std::list<EntryPointStr*>::const_iterator it;
@@ -774,7 +770,7 @@ int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDy
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
         {
-            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            if ((*it)->wstEntryPointName == _wstEntryPointName)
             {
                 return pos;
             }
@@ -789,7 +785,7 @@ std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
     std::list<EntryPointStr*>::const_iterator it;
     for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
     {
-        EntryPointNames.push_back((*it)->pwstEntryPointName);
+        EntryPointNames.push_back((*it)->wstEntryPointName);
     }
     return EntryPointNames;
 }
@@ -1138,7 +1134,7 @@ int ConfigVariable::getMacroFirstLines()
 
 std::list<std::wstring> ConfigVariable::m_ReferenceModules;
 
-bool ConfigVariable::checkReferenceModule(std::wstring _module)
+bool ConfigVariable::checkReferenceModule(const std::wstring& _module)
 {
     for (auto ref : m_ReferenceModules)
     {
@@ -1151,7 +1147,7 @@ bool ConfigVariable::checkReferenceModule(std::wstring _module)
     return false;
 }
 
-void ConfigVariable::addReferenceModule(std::wstring _module)
+void ConfigVariable::addReferenceModule(const std::wstring& _module)
 {
     if (checkReferenceModule(_module) == false)
     {
@@ -1159,7 +1155,7 @@ void ConfigVariable::addReferenceModule(std::wstring _module)
     }
 }
 
-void ConfigVariable::removeReferenceModule(std::wstring _module)
+void ConfigVariable::removeReferenceModule(const std::wstring& _module)
 {
     if (checkReferenceModule(_module))
     {

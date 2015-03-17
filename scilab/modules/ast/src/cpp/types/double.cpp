@@ -135,6 +135,7 @@ Double* Double::Identity(int _iDims, int* _piDims, double _dblReal, double _dblI
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
         pI->set(index, _dblReal);
         pI->setImg(index, _dblImg);
+        delete[] piIndex;
     }
     return pI;
 }

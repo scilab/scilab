@@ -37,10 +37,10 @@ class EXTERN_AST Polynom : public ArrayOf<SinglePoly*>
 {
 public :
     Polynom();
-    Polynom(std::wstring _szVarName, int _iRows, int _iCols);
-    Polynom(std::wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
-    Polynom(std::wstring _szVarName, int _iDims, int* _piDims);
-    Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    Polynom(std::wstring& _szVarName, int _iRows, int _iCols);
+    Polynom(std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
+    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims);
+    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
     virtual                 ~Polynom();
 
@@ -73,7 +73,7 @@ public :
     }
 
     void                    whoAmI(void);
-    std::wstring            getVariableName();
+    std::wstring&           getVariableName();
     void                    setVariableName(std::wstring);
     bool                    getSizes(int *_piSizes);
     bool                    getRank(int *_piRank);
@@ -120,7 +120,7 @@ public :
 
 protected :
     std::wstring            m_szVarName;
-    void                    createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    void                    createPoly(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

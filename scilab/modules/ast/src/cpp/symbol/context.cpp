@@ -307,8 +307,8 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
         if (varStack.empty() == false)
         {
             (*varStack.top())[_var->getSymbol()] = _var;
-            varStack.push(list);
         }
+        varStack.push(list);
     }
     return true;
 }

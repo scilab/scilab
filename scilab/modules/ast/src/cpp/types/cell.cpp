@@ -49,7 +49,7 @@ void Cell::createCell(int _iDims, int* _piDims)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    for (int i = 0; i < getSize(); i++)
+    for (int i = 0; i < m_iSizeMax; i++)
     {
         m_pRealData[i] = Double::Empty();
         m_pRealData[i]->IncreaseRef();

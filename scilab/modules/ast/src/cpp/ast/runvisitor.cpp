@@ -370,6 +370,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     InternalType* pIT = getResult();
     while (pIT->isTrue())
     {
+        pIT->killMe();
         e.getBody().accept(*this);
         if (e.getBody().isBreak())
         {
@@ -398,7 +399,6 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
             getResult()->killMe();
         }
 
-        pIT->killMe();
         e.getTest().accept(*this);
         pIT = getResult();
     }
@@ -727,8 +727,16 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
             e.getDefaultCase()->setReturnable();
         }
 
-        //default case
-        e.getDefaultCase()->accept(*this);
+        try
+        {
+            //default case
+            e.getDefaultCase()->accept(*this);
+        }
+        catch (ScilabMessage& sm)
+        {
+            pIT->killMe();
+            throw sm;
+        }
 
         if (e.isBreakable() && e.getDefaultCase()->isBreak())
         {
@@ -1143,6 +1151,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         os_swprintf(pwstFuncName, 1024, L"%-24ls", e.getSymbol().getName().c_str());
         char* pstFuncName = wide_string_to_UTF8(pwstFuncName);
 
+
         sciprint(_("Warning : redefining function: %s. Use funcprot(0) to avoid this message"), pstFuncName);
         sciprint("\n");
         FREE(pstFuncName);
@@ -1156,6 +1165,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         std::wstring wstError(pwstError);
         FREE(pstFuncName);
         FREE(pwstError);
+        delete pMacro;
         throw ScilabError(wstError, 999, e.getLocation());
     }
 
@@ -1238,24 +1248,39 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     types::typed_list out;
 
     piStart->IncreaseRef();
-    piStep->IncreaseRef();
-    piEnd->IncreaseRef();
-
     in.push_back(piStart);
-    if (e.hasExplicitStep())
+
+    try
     {
-        // 1:2:4
-        //call overload %typeStart_b_typeEnd
-        in.push_back(piStep);
-        in.push_back(piEnd);
-        Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, this, true);
+        if (e.hasExplicitStep())
+        {
+            // 1:2:4
+            //call overload %typeStart_b_typeStep
+            piStep->IncreaseRef();
+            in.push_back(piStep);
+            piEnd->IncreaseRef();
+            in.push_back(piEnd);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, this, true);
+        }
+        else
+        {
+            // 1:2
+            //call overload %typeStart_b_typeEnd
+            piStep->killMe();
+            piEnd->IncreaseRef();
+            in.push_back(piEnd);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, this, true);
+        }
     }
-    else
+    catch (ScilabError& error)
     {
-        // 1:2
-        //call overload %typeStart_b_typeStep
-        in.push_back(piEnd);
-        Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, this, true);
+        cleanInOut(in, out);
+        throw error;
+    }
+    catch (ast::ScilabMessage msg)
+    {
+        cleanInOut(in, out);
+        throw msg;
     }
 
     if (Ret != Callable::OK)

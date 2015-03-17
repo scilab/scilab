@@ -732,6 +732,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             pCurrentArgs->clear();
             pCurrentArgs->push_back(pList->get(iListIncr));
             iListSize = pList->getSize();
+
         }
 
         do
@@ -777,11 +778,16 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
                 {
                     // create new args for next loop.
                     pCurrentArgs = new typed_list();
-                    pCurrentArgs->push_back(pList->get(iListIncr));
+                    pCurrentArgs->push_back(pList->get(iListIncr)->clone());
                 }
             }
         }
         while (iListIncr < iListSize);
+
+        if (bArgList)
+        {
+            pList->killMe();
+        }
 
         if (pCell)
         {
@@ -997,11 +1003,12 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         List* pList = pIT->getAs<List>();
                         double* pdblArgs = (*pArgs)[0]->getAs<Double>()->get();
 
+                        int listSize = pList->getSize();
                         if ((*iterFields)->getExp() == NULL)
                         {
                             // a(x)(y)
                             // extract a(x) and push_BACK to extract y
-                            for (int i = 0; i < pList->getSize(); i++)
+                            for (int i = 0; i < listSize; i++)
                             {
                                 ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(i));
                                 pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
@@ -1012,13 +1019,16 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         {
                             // a(x).b
                             // extract a(x) and push_FRONT to extract b
-                            for (int i = 0; i < pList->getSize(); i++)
+                            for (int i = 0; i < listSize; i++)
                             {
                                 ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(i));
                                 pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
                                 workFields.push_front(pEHExtract);
                             }
                         }
+
+                        //extract create a list to store items
+                        pList->killMe();
                     }
                 }
                 else
@@ -2102,6 +2112,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                                 {
                                     // set elements in the new position
                                     pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                    pLExtract->get(i)->DecreaseRef();
                                 }
 
                                 pLExtract->killMe();

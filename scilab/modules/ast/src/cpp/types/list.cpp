@@ -242,6 +242,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             InternalType* pIT = (*m_plData)[idx - 1];
             if (pIT)
             {
+                pIT->DecreaseRef();
                 pIT->killMe();
             }
             m_plData->erase(m_plData->begin() + idx - 1);

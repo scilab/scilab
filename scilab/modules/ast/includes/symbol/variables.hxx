@@ -428,6 +428,8 @@ struct Variables
             ScopedVariable* pVar = _var->top();
             _var->pop();
             putInPreviousScope(_var, _pIT, _iLevel);
+            //decresef ref before, increase it in put
+            pVar->m_pIT->DecreaseRef();
             _var->put(pVar->m_pIT, pVar->m_iLevel);
             delete pVar;
         }

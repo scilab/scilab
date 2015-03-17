@@ -330,6 +330,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 //unprotect rhs
                 pIT[i]->DecreaseRef();
+                pIT[i]->killMe();
             }
 
             delete[] pIT;
@@ -375,20 +376,32 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
             }
 
-            if (evaluateFields(pField, fields, pIT) == NULL)
+            try
             {
-                for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                if (evaluateFields(pField, fields, pIT) == NULL)
                 {
-                    delete *i;
+                    for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+                    {
+                        delete *i;
+                    }
+                    std::wostringstream os;
+                    os << _W("Fields evaluation failed.");
+                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
                 }
-                std::wostringstream os;
-                os << _W("Fields evaluation failed.");
-                throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+            }
+            catch (ScilabError error)
+            {
+                for (auto i : fields)
+                {
+                    delete i;
+                }
+
+                throw error;
             }
 
-            for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
+            for (auto i : fields)
             {
-                delete *i;
+                delete i;
             }
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())

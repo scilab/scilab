@@ -1114,6 +1114,7 @@ InternalType* sub_I_M(T *_pL, U *_pR)
         sub(dblLeft, _pR->get(index), pOut->get() + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1153,6 +1154,7 @@ InternalType* sub_I_MC(T *_pL, U *_pR)
         sub(dblLeft, pdblRight[index], pdblOut + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1195,6 +1197,7 @@ InternalType* sub_IC_M(T *_pL, U *_pR)
         sub(&dblLeftR, &dblLeftI, (size_t)1, pdblRight[index], pdblOutR + index, pdblOutI + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1236,6 +1239,7 @@ InternalType* sub_IC_MC(T *_pL, U *_pR)
         sub(dblLeftR, dblLeftI, pdblRightR[index], pdblRightI[index], pdblOutR + index, pdblOutI + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1298,6 +1302,7 @@ template<class T, class U, class O> InternalType* sub_M_I(T *_pL, U *_pR)
         sub(pdblLeft[index], (size_t)1, &dblRight, pdblOutR + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1344,6 +1349,7 @@ template<class T, class U, class O> InternalType* sub_M_IC(T *_pL, U *_pR)
         sub(pdblLeft[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1386,6 +1392,7 @@ template<class T, class U, class O> InternalType* sub_MC_IC(T *_pL, U *_pR)
         sub(pdblLeftR[index], pdblLeftI[index], (size_t)1, &dblRightR, &dblRightI, pdblOutR + index, pdblOutI + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1804,6 +1811,8 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 sub(pSPLeft[index]->get(0), (size_t)1, &dblRightR, pSPOut[index]->get());
             }
         }
+
+        delete[] piIndex;
         return pOut;
 
     }
@@ -1861,6 +1870,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 pSPOut->get()[0] -= pdblR[i];
                 pSPOut->getImg()[0] -= pdblI[i];
                 pOut->set(i, pSPOut);
+                delete pSPOut;
             }
         }
         else
@@ -1873,6 +1883,7 @@ template<> InternalType* sub_M_M<Polynom, Double, Polynom>(Polynom* _pL, Double*
                 //update 0th rank value
                 pSPOut->get()[0] -= pdblR[i];
                 pOut->set(i, pSPOut);
+                delete pSPOut;
             }
         }
 
@@ -1984,6 +1995,7 @@ template<> InternalType* sub_I_M<Double, Polynom, Polynom>(Double* _pL, Polynom*
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -2022,6 +2034,7 @@ template<> InternalType* sub_I_MC<Double, Polynom, Polynom>(Double* _pL, Polynom
         sub(dblLeft, pSP[index]->get(0), pSPOut[index]->get());
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -2062,6 +2075,7 @@ template<> InternalType* sub_IC_M<Double, Polynom, Polynom>(Double* _pL, Polynom
         sub(&dblLeftR, &dblLeftI, (size_t)1, pSP[index]->get(0), pSPOut[index]->get(), pSPOut[index]->getImg());
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -2101,6 +2115,7 @@ template<> InternalType* sub_IC_MC<Double, Polynom, Polynom>(Double* _pL, Polyno
         sub(dblLeftR, dblLeftI, pSP[index]->get(0), pSP[index]->getImg(0), pSPOut[index]->get(), pSPOut[index]->getImg());
     }
 
+    delete[] piIndex;
     return pOut;
 }
 

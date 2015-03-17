@@ -1342,6 +1342,7 @@ InternalType* add_I_M(T *_pL, U *_pR)
         add(dblLeft, pdblRight[index], pdblOut + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1384,6 +1385,7 @@ InternalType* add_IC_M(T *_pL, U *_pR)
         add(_pR->get() + index, 1, _pL->get(0), _pL->getImg(0), pOut->get() + index, pOut->getImg() + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -1420,6 +1422,7 @@ InternalType* add_IC_MC(T *_pL, U *_pR)
         add(_pL->get(0), _pL->getImg(0), _pR->get(index), _pR->getImg(index), pOut->get() + index, pOut->getImg() + index);
     }
 
+    delete[] piIndex;
     return pOut;
 }
 
@@ -2225,6 +2228,8 @@ template<> InternalType* add_M_I<Polynom, Double, Polynom>(Polynom* _pL, Double*
             add(dblR, pSP[index]->get(0), pSP[index]->get());
         }
     }
+
+    delete[] piIndex;
     return pOut;
 }
 
@@ -2469,7 +2474,7 @@ template<> InternalType* add_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _p
     if (_pR->isIdentity())
     {
         //convert to _pL
-        pOut = (Sparse*)_pL->clone();
+        pOut  = _pL->clone()->getAs<Sparse>();
         bool isComplex = _pL->isComplex() || _pR->isComplex();
         if (isComplex)
         {

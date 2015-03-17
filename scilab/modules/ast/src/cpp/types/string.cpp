@@ -564,7 +564,7 @@ void String::deleteData(wchar_t* data)
     if (data)
     {
         // data are always allocated using C-like malloc API
-        free(data);
+        FREE(data);
     }
 }
 

@@ -284,6 +284,8 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
 
+            delete[] _piMaxDim;
+            delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
             throw ast::ScilabError(szError);

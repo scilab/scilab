@@ -152,6 +152,7 @@ Function::ReturnValue sci_sparse(typed_list &in, int _piRetCount, typed_list &ou
             pDims = new Double(1, 2, false);
             pDims->set(0, *std::max_element(i, i + size));
             pDims->set(1, *std::max_element(j, j + size));
+            alloc = true;
         }
 
         if (in[1]->isDouble())

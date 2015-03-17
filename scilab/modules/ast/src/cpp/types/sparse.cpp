@@ -273,16 +273,25 @@ Sparse::~Sparse()
 {
     delete matrixReal;
     delete matrixCplx;
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
-Sparse::Sparse( Sparse const& src) : GenericType(src)
-    , matrixReal(src.matrixReal ? new RealSparse_t(*src.matrixReal) : 0)
+Sparse::Sparse(Sparse const& src)
+    : matrixReal(src.matrixReal ? new RealSparse_t(*src.matrixReal) : 0)
     , matrixCplx(src.matrixCplx ? new CplxSparse_t(*src.matrixCplx) : 0)
 
 {
+    m_iRows = const_cast<Sparse*>(&src)->getRows();
+    m_iCols = const_cast<Sparse*>(&src)->getCols();
+    m_iSize = m_iRows * m_iCols;
     m_iDims = 2;
-    m_piDims[0] = const_cast<Sparse*>(&src)->getRows();
-    m_piDims[1] = const_cast<Sparse*>(&src)->getCols();
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(int _iRows, int _iCols, bool cplx)
@@ -295,6 +304,9 @@ Sparse::Sparse(int _iRows, int _iCols, bool cplx)
     m_iDims = 2;
     m_piDims[0] = _iRows;
     m_piDims[1] = _iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src)
@@ -311,6 +323,9 @@ Sparse::Sparse(Double SPARSE_CONST& src)
     }
     create2(src.getRows(), src.getCols(), src, *idx);
     idx->killMe();
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
@@ -320,11 +335,17 @@ Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
     int cols = static_cast<int>(*std::max_element(idx.get() + idxrow, idx.get() + idxrow * 2));
 
     create2(rows, cols, src, idx);
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
     create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp), matrixCplx(cplxSp)
@@ -343,12 +364,18 @@ Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp),
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SPARSE_CONST& src, std::size_t r, std::size_t c)
 {
     Adjacency a(xadj.get(), adjncy.get());
     create(static_cast<int>(r), static_cast<int>(c), src, makeIteratorFromVar(a), src.getSize());
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 template<typename DestIter>
@@ -1372,6 +1399,9 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     {
         if (iNewDimSize == 0)
         {
+            delete[] piNewDims;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return new Sparse(0, 0);
         }
         else
@@ -1503,11 +1533,19 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         if (_pArgs->size() == 0)
         {
             //a()
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return this;
         }
         else
         {
             //a([])
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return Double::Empty();
         }
     }
@@ -2201,6 +2239,9 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src)
     }
     create2(src.getRows(), src.getCols(), src, *idx);
     idx->killMe();
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 /* @param src : Bool matrix to copy into a new sparse matrix
 @param idx : Double matrix to use as indexes to get values from the src
@@ -2211,6 +2252,9 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
     int rows = static_cast<int>(*std::max_element(idx.get(), idx.get() + idxrow));
     int cols = static_cast<int>(*std::max_element(idx.get() + idxrow, idx.get() + idxrow * 2));
     create2(rows, cols, src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 /* @param src : Bool matrix to copy into a new sparse matrix
@@ -2220,6 +2264,9 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
     create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SparseBool::SparseBool(int _iRows, int _iCols) : matrixBool(new BoolSparse_t(_iRows, _iCols))
@@ -2230,9 +2277,12 @@ SparseBool::SparseBool(int _iRows, int _iCols) : matrixBool(new BoolSparse_t(_iR
     m_iDims = 2;
     m_piDims[0] = _iRows;
     m_piDims[1] = _iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
-SparseBool::SparseBool(SparseBool const& src) : GenericType(src),  matrixBool(new BoolSparse_t(*src.matrixBool))
+SparseBool::SparseBool(SparseBool const& src) : matrixBool(new BoolSparse_t(*src.matrixBool))
 {
     m_iDims = 2;
     m_iRows = const_cast<SparseBool*>(&src)->getRows();
@@ -2240,6 +2290,9 @@ SparseBool::SparseBool(SparseBool const& src) : GenericType(src),  matrixBool(ne
     m_iSize = m_iRows * m_iCols;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
@@ -2250,6 +2303,9 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
@@ -2283,6 +2339,9 @@ void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPAR
 SparseBool::~SparseBool()
 {
     delete matrixBool;
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 bool SparseBool::toString(std::wostringstream& ostr) const
