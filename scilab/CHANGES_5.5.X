@@ -123,6 +123,8 @@ Scilab Bug Fixes
 * Bug #13758 fixed - x_mdialog interpreted 'F' and 'T' as boolean values
                      whereas it should interpret '%F' and '%T' instead.
 
+* Bug #13766 fixed - Setting figure_size property lead to wrong display and figure properties values.
+
 * Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 
 
