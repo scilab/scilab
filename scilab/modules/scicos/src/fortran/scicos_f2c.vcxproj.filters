@@ -63,9 +63,6 @@
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_curblock.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -76,12 +73,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tree4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_var2vec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_vec2var.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -128,9 +119,6 @@
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ctree.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_curblock.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -141,12 +129,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tree4.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_var2vec.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_vec2var.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>
@@ -163,9 +145,6 @@
       <Filter>Imports</Filter>
     </None>
     <None Include="elementary_functions_f_Import.def">
-      <Filter>Imports</Filter>
-    </None>
-    <None Include="Core_f_Import.def">
       <Filter>Imports</Filter>
     </None>
   </ItemGroup>

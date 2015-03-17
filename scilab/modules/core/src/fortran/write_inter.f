@@ -8,7 +8,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-      subroutine write_double(form, dat, m, n, ierr)
+      subroutine writedouble(form, dat, m, n, ierr)
 c         write(buf(ib:),buf(1:nc),err=139)
 c     &       (stk(li+j*m),j=0,n-1)
       parameter (lch=4096)
@@ -35,7 +35,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_int(form, dat, m, n, ierr)
+      subroutine writeint(form, dat, m, n, ierr)
 c         write(buf(ib:),buf(1:nc),err=139)
 c     &       (stk(li+j*m),j=0,n-1)
       parameter (lch=4096)
@@ -63,7 +63,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       end      
 
 
-      subroutine write_string(form, dat, ierr)
+      subroutine writestring(form, dat, ierr)
 
       parameter (lch=4096)
       character buf*(lch)
@@ -85,7 +85,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_string_file(ID, form, dat, ierr)
+      subroutine writestringfile(ID, form, dat, ierr)
       
       parameter (lch=4096)
       character buf*(lch)
@@ -108,7 +108,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end  
       
-      subroutine write_double_file(ID, form, dat,  m, n, ierr)
+      subroutine writedoublefile(ID, form, dat,  m, n, ierr)
 
       parameter (lch=4096)
       character buf*(lch)
@@ -128,7 +128,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_int_file(ID, form, dat, m, n, ierr)
+      subroutine writeintfile(ID, form, dat, m, n, ierr)
 
       parameter (lch=4096)
       integer dat(*)
@@ -146,7 +146,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end 
 
-      subroutine write_double_szsc(form, dat, szsc, m, n, ierr)
+      subroutine writedoubleszsc(form, dat, szsc, m, n, ierr)
 
       parameter (lch=4096)
       character buf*(lch)
@@ -180,7 +180,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_double_szsc_file(ID, dat, szsc,  m, n,ierr)
+      subroutine writedoubleszscfile(ID, dat, szsc,  m, n,ierr)
 
       parameter (lch=4096)
       character buf*(lch)
@@ -197,7 +197,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_int_szsc(form, dat, szsc, m, n, ierr)
+      subroutine writeintszsc(form, dat, szsc, m, n, ierr)
 
       parameter (lch=4096)
       character buf*(lch)
@@ -231,7 +231,7 @@ c     &       (stk(li+j*m),j=0,n-1)
       
       end
 
-      subroutine write_int_szsc_file(ID, form, dat, szsc,  m, n, ierr)
+      subroutine writeintszscfile(ID, form, dat, szsc,  m, n, ierr)
 
       parameter (lch=4096)
       character buf*(lch)

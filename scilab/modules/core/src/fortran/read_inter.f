@@ -8,7 +8,7 @@ c you should have received as part of this distribution.  The terms
 c are also available at    
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-      subroutine read_double_file(ID, dat, m, n, ierr)
+      subroutine readdoublefile(ID, dat, m, n, ierr)
 
       double precision dat(*)
       integer m,n
@@ -27,7 +27,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
 
-      subroutine read_double_file_form(ID, form, dat,  m, n, ierr)
+      subroutine readdoublefileform(ID, form, dat,  m, n, ierr)
 
       double precision dat(*)
       integer m,n
@@ -47,14 +47,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
 
-      subroutine read_double_line_file(ID, dat, n, ierr)
+      subroutine readdoublelinefile(ID, dat, n, ierr)
 
       double precision dat(*)
       integer n
-      integer m
       integer ierr
 
-      read(ID,*,end=10,err=20) dat(1:n)
+      read(ID,*,end=10,err=20) (dat(j), j=1, n)
       
       return
 
@@ -65,14 +64,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
       
-      subroutine read_double_line_file_form(ID, form, dat, n, ierr)
+      subroutine readdoublelinefileform(ID, form, dat, n, ierr)
 
       double precision dat(*)
       integer n
       character form*(*)
       integer ierr
 
-      read(ID,form,end=10,err=20) dat(1:n)
+      read(ID,form,end=10,err=20) (dat(j), j=1, n)
       
       return
 
@@ -83,7 +82,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
       
-       subroutine read_string_file(ID, form, dat, siz, ierr)
+       subroutine readstringfile(ID, form, dat, siz, ierr)
 
       parameter (lch=4096)
       character dat*(lch)
@@ -91,7 +90,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer siz,ierr
                      
       read(ID,form,end=10,err=20) dat
-      mn = lch;
+      mn = lch
 127   mn=mn-1
       if(dat(mn:mn).eq.' ') goto 127
             siz=max(1,mn)
@@ -105,7 +104,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
          
       end
 
-      subroutine read_string(form, dat, siz, ierr)
+      subroutine readstring(form, dat, siz, ierr)
 
       parameter (lch=4096)
       character string*(lch)
@@ -123,7 +122,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       endif
       
       read(string,form,end=10,err=20) dat
-      mn = lch;
+      mn = lch
 128   mn=mn-1
       if(dat(mn:mn).eq.' ') goto 128
             siz=max(1,mn)
@@ -137,7 +136,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       end  
       
       
-      subroutine read_int_file_form(ID, form, dat,  m, n, ierr)
+      subroutine readintfileform(ID, form, dat,  m, n, ierr)
 
       integer dat(*)
       integer m,n
@@ -157,14 +156,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
       
-      subroutine read_int_line_file_form(ID, form, dat, n, ierr)
+      subroutine readintlinefileform(ID, form, dat, n, ierr)
 
       integer dat(*)
       integer n
       character form*(*)
       integer ierr
 
-      read(ID,form,end=10,err=20) dat(1:n)
+      read(ID,form,end=10,err=20) (dat(j), j=1, n)
       
       return
 

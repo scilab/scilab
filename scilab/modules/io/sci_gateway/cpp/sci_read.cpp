@@ -28,16 +28,16 @@ extern "C"
 
     extern int C2F(clunit)(int*, char const*, int*, int);
 
-    extern int C2F(read_double_file)(int* ID, double* dat, int* m, int* n, int* err);
-    extern int C2F(read_double_file_form)(int* ID, char* form, double* dat, int* m, int* n, int* err, int);
-    extern int C2F(read_double_line_file)(int* ID, double* dat, int* n, int* err);
-    extern int C2F(read_double_line_file_form)(int* ID, char* form, double* dat, int* n, int* err);
+    extern int C2F(readdoublefile)(int* ID, double* dat, int* m, int* n, int* err);
+    extern int C2F(readdoublefileform)(int* ID, char* form, double* dat, int* m, int* n, int* err, int);
+    extern int C2F(readdoublelinefile)(int* ID, double* dat, int* n, int* err);
+    extern int C2F(readdoublelinefileform)(int* ID, char* form, double* dat, int* n, int* err);
 
-    extern int C2F(read_int_file_form)(int* ID, char* form, int* dat, int* m, int* n, int* err, int);
-    extern int C2F(read_int_line_file_form)(int* ID, char* form, int* dat, int* n, int* err);
+    extern int C2F(readintfileform)(int* ID, char* form, int* dat, int* m, int* n, int* err, int);
+    extern int C2F(readintlinefileform)(int* ID, char* form, int* dat, int* n, int* err);
 
-    extern int C2F(read_string_file)(int* ID, char* form, char* dat, int* siz, int* err, int);
-    extern int C2F(read_string)(char* form, char* dat, int* siz, int* err, int);
+    extern int C2F(readstringfile)(int* ID, char* form, char* dat, int* siz, int* err, int);
+    extern int C2F(readstring)(char* form, char* dat, int* siz, int* err, int);
 
 }
 
@@ -192,7 +192,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         while (error == 0)
                         {
                             double* pdData = new double[iCols];
-                            C2F(read_double_line_file)(&iID, pdData, &iCols, &error);
+                            C2F(readdoublelinefile)(&iID, pdData, &iCols, &error);
                             if (error == 0)
                             {
                                 pD->resize(iRows, iCols);
@@ -212,7 +212,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         while (error == 0)
                         {
                             double* pdData = new double[iCols];
-                            C2F(read_double_line_file_form)(&iID, pstFormat, pdData, &iCols, &error);
+                            C2F(readdoublelinefileform)(&iID, pstFormat, pdData, &iCols, &error);
                             if (error == 0)
                             {
                                 pD->resize(iRows, iCols);
@@ -247,7 +247,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     while (error == 0)
                     {
                         int* piData = new int[iCols];
-                        C2F(read_int_line_file_form)(&iID, pstFormat, piData, &iCols, &error);
+                        C2F(readintlinefileform)(&iID, pstFormat, piData, &iCols, &error);
                         if (error == 0)
                         {
                             pI->resize(iRows, iCols);
@@ -289,7 +289,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         {
                             char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                             int siz = 0;
-                            C2F(read_string_file)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                            C2F(readstringfile)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
 
                             if (error == 1)
                             {
@@ -371,7 +371,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     {
                         char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                         int siz = 0;
-                        C2F(read_string)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                        C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
 
                         if ((siz == 1) && (pCt[0] == ' '))
                         {
@@ -453,7 +453,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         {
                             char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                             int siz = 0;
-                            C2F(read_string)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                            C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
                             if ((siz == 1) && (pCt[0] == ' '))
                             {
                                 bEndWrite = true;
@@ -501,11 +501,11 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 
                     if (pstFormat == NULL)
                     {
-                        C2F(read_double_file)(&iID, pd, &iRows, &iCols, &error);
+                        C2F(readdoublefile)(&iID, pd, &iRows, &iCols, &error);
                     }
                     else
                     {
-                        C2F(read_double_file_form)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                        C2F(readdoublefileform)(&iID, pstFormat, pd, &iRows, &iCols, &error, (int)strlen(pstFormat));
                     }
 
                     if (error == 0)
@@ -523,7 +523,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     types::Int32* pI = new types::Int32(iRows, iCols);
                     int* pi = pI->get();
 
-                    C2F(read_int_file_form)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
+                    C2F(readintfileform)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
 
                     if (error == 0)
                     {
@@ -542,7 +542,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     {
                         char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                         int siz = 0;
-                        C2F(read_string_file)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                        C2F(readstringfile)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
                         char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
                         pC[0] = '\0';
                         strncat(pC, pCt, siz);
@@ -615,7 +615,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     {
                         char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                         int siz = 0;
-                        C2F(read_string)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                        C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
                         char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
                         strncat(pC, pCt, siz);
                         FREE(pCt);
@@ -679,7 +679,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         {
                             char* pCt = (char *)MALLOC(sizeof(char) * 4096);
                             int siz = 0;
-                            C2F(read_string)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                            C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
                             char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
                             strncat(pC, pCt, siz);
                             pS->set(i, pC);

@@ -102,6 +102,12 @@
     <ClCompile Include="rewindinter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="read_inter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="write_inter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\callinter.h.f">
@@ -188,6 +194,12 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="rewindinter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="read_inter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="write_inter.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
   </ItemGroup>

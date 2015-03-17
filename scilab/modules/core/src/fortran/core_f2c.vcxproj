@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -29,23 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -341,11 +341,13 @@ cd ..
     <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
+    <ClCompile Include="read_inter.c" />
     <ClCompile Include="rewindinter.c" />
     <ClCompile Include="setgetmode.c" />
     <ClCompile Include="setippty.c" />
     <ClCompile Include="showstack.c" />
     <ClCompile Include="whatln.c" />
+    <ClCompile Include="write_inter.c" />
     <ClCompile Include="xerbla.c" />
   </ItemGroup>
   <ItemGroup>
@@ -373,11 +375,13 @@ cd ..
     <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />
+    <f2c_rule Include="read_inter.f" />
     <f2c_rule Include="rewindinter.f" />
     <f2c_rule Include="setgetmode.f" />
     <f2c_rule Include="setippty.f" />
     <f2c_rule Include="showstack.f" />
     <f2c_rule Include="whatln.f" />
+    <f2c_rule Include="write_inter.f" />
     <f2c_rule Include="xerbla.f" />
   </ItemGroup>
   <ItemGroup>
