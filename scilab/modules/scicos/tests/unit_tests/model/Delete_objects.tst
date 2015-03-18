@@ -37,6 +37,12 @@ assert_checkequal(scs_m.objs(3), mlist("Deleted"));
 scs_m.objs(4)=scicos_new("Deleted");
 assert_checkequal(scs_m.objs(4), mlist("Deleted"));
 
+// Test that all objects are simultaneously "deleted"
+assert_checkequal(scs_m.objs(1), mlist("Deleted"));
+assert_checkequal(scs_m.objs(2), mlist("Deleted"));
+assert_checkequal(scs_m.objs(3), mlist("Deleted"));
+assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+
 
 // Check that all the model items are freed
 clear

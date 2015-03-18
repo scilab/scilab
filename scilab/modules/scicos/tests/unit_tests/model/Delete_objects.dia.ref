@@ -331,10 +331,24 @@ propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(2), mlist("Deleted"));
 scs_m.objs(3)=scicos_new("Deleted");
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
+objectDeleted( 20 , LINK )
+propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
+propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 assert_checkequal(scs_m.objs(3), mlist("Deleted"));
-assert_checkequal : Arguments d'entrée #1 et #2 incompatibles : Même types attendus.
-assert_checkequal(scs_m.objs(3), mlist("Deleted"))
-at line    48 of exec file called by :
+scs_m.objs(4)=scicos_new("Deleted");
+propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
+objectDeleted( 21 , LINK )
+assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+// Test that all objects are simultaneously "deleted"
+assert_checkequal(scs_m.objs(1), mlist("Deleted"));
+assert_checkequal(scs_m.objs(2), mlist("Deleted"));
+assert_checkequal(scs_m.objs(3), mlist("Deleted"));
+assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+// Check that all the model items are freed
+clear
 propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 2 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -369,8 +383,4 @@ objectDeleted( 9 , PORT )
 objectDeleted( 6 , BLOCK )
 objectDeleted( 10 , LINK )
 objectDeleted( 11 , LINK )
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
-objectDeleted( 20 , LINK )
-objectDeleted( 21 , LINK )
 objectDeleted( 1 , DIAGRAM )

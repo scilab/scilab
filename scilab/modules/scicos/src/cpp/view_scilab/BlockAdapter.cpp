@@ -45,8 +45,6 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring Deleted (L"Deleted");
-
 struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)

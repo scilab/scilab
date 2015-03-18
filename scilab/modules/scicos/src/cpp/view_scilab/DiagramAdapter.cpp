@@ -206,6 +206,7 @@ struct objs
 
                 if (header->get(0) == Deleted)
                 {
+                    deletedAsMListIndices.push_back(i);
                     diagramChildren.push_back(0ll);
                     diagramChildrenKind.push_back(ANNOTATION);
                 }
