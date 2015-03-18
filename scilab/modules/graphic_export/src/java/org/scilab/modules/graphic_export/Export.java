@@ -79,6 +79,7 @@ public class Export {
     public static final int MEMORY_ERROR = 3;
     public static final int UNKNOWN_ERROR = 4;
     public static final int FILENOTFOUND_ERROR = 5;
+    public static final int NOWRITER_ERROR = 5;
 
     private static final float DEFAULT_JPEG_COMPRESSION = 0.95f;
 
@@ -365,11 +366,21 @@ public class Export {
 
             if (joglCanvas != null) {
                 BufferedImage image = joglCanvas.getImage();
-                //joglCanvas.destroy();
                 PNGExporter exporter = (PNGExporter) getExporter(type);
                 exporter.setImage(file, image, params);
-                exporter.write();
+                int exportStatus = exporter.write();
                 exporter.dispose();
+                if (isBitmapFormat(type) && exportStatus == Export.NOWRITER_ERROR) {
+                    // If export fails because no writer was found for bitmap format
+                    // ==> Retry without Alpha channel in image
+                    // Needed after JoGL 2.2.4 version
+                    image = joglCanvas.getImage(false);
+                    exporter = (PNGExporter) getExporter(type);
+                    exporter.setImage(file, image, params);
+                    exporter.write();
+                    exporter.dispose();
+                }
+
             }
         }
     }
@@ -498,7 +509,7 @@ public class Export {
         /**
          * Write the file
          */
-        abstract void write() throws IOException;
+        abstract int write() throws IOException;
 
         abstract void dispose();
     }
@@ -531,8 +542,8 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "png", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "png", file);
         }
 
         @Override
@@ -551,8 +562,8 @@ public class Export {
         public GIFExporter() { }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "gif", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "gif", file);
         }
     }
 
@@ -574,8 +585,8 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
-            ExportBitmap.writeFile(image, "bmp", file);
+        public int write() throws IOException {
+            return ExportBitmap.writeFile(image, "bmp", file);
         }
     }
 
@@ -587,11 +598,11 @@ public class Export {
         public JPEGExporter() { }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (params.compressionQuality == -1) {
-                ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
+                return ExportBitmap.writeJPEG(image, DEFAULT_JPEG_COMPRESSION, file);
             } else {
-                ExportBitmap.writeJPEG(image, params.compressionQuality, file);
+                return ExportBitmap.writeJPEG(image, params.compressionQuality, file);
             }
         }
     }
@@ -604,7 +615,7 @@ public class Export {
         public PPMExporter() { }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             OutputStream out = new BufferedOutputStream(new FileOutputStream(file));
             PPMEncoder encoder = new PPMEncoder(image, out);
             int[] pixels = image.getRGB(0, 0, image.getWidth(), image.getHeight(), null, 0, image.getWidth());
@@ -612,6 +623,7 @@ public class Export {
             encoder.encodePixels(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
             out.flush();
             out.close();
+            return Export.SUCCESS;
         }
     }
 
@@ -662,13 +674,14 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             boolean useCSS = true;
             OutputStream svgs = new BufferedOutputStream(new FileOutputStream(file));
             Writer out = new OutputStreamWriter(svgs, "UTF-8");
             g2d.stream(out, useCSS);
             svgs.flush();
             svgs.close();
+            return Export.SUCCESS;
         }
 
         @Override
@@ -723,7 +736,7 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (g2d != null) {
                 g2d.finish();
             }
@@ -737,6 +750,7 @@ public class Export {
             if (out != null) {
                 out.close();
             }
+            return Export.SUCCESS;
         }
 
         @Override
@@ -895,7 +909,7 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (g2d != null) {
                 g2d.finish();
             }
@@ -909,6 +923,7 @@ public class Export {
             if (out != null) {
                 out.close();
             }
+            return Export.SUCCESS;
         }
 
         @Override
@@ -1139,7 +1154,7 @@ public class Export {
         }
 
         @Override
-        public void write() throws IOException {
+        public int write() throws IOException {
             if (g2d != null) {
                 try {
                     g2dClass.getMethod("endExport").invoke(g2d);
@@ -1161,6 +1176,7 @@ public class Export {
             if (out != null) {
                 out.close();
             }
+            return Export.SUCCESS;
         }
 
         @Override

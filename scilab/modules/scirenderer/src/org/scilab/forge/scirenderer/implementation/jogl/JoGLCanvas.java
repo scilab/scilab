@@ -11,17 +11,6 @@
 
 package org.scilab.forge.scirenderer.implementation.jogl;
 
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.Drawer;
-import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
-import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
-import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
-import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
-import org.scilab.forge.scirenderer.picking.PickingManager;
-
-import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
-import com.jogamp.opengl.util.awt.ImageUtil;
-
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
@@ -38,6 +27,16 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLOffscreenAutoDrawable;
 import javax.media.opengl.GLProfile;
 import javax.swing.SwingUtilities;
+
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.Drawer;
+import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
+import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
+import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
+import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
+import org.scilab.forge.scirenderer.picking.PickingManager;
+
+import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
 
 /**
  * JoGL implementation of a Canvas.
@@ -233,6 +232,14 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      * @return an image
      */
     public BufferedImage getImage() {
+        return getImage(true);
+    }
+
+    /**
+     * Get an image from the autoDrawable
+     * @return an image
+     */
+    public BufferedImage getImage(final boolean alpha) {
         while (!canvasAnimator.isDrawFinished() || !displayFinished) {
             try {
                 Thread.sleep(10);
@@ -246,7 +253,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         if (SwingUtilities.isEventDispatchThread()) {
             context.makeCurrent();
-            AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
+            AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
             image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
             context.release();
         } else {
@@ -254,7 +261,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
                 SwingUtilities.invokeAndWait(new Runnable() {
                     public void run() {
                         context.makeCurrent();
-                        AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), true);
+                        AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
                         image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
                         context.release();
                     }
