@@ -38,6 +38,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "scicos.h" /* funnum2() */
 #include "scicos-def.h"
+#include "charEncoding.h"
 
 #include "localization.h"
 #include "Scierror.h"

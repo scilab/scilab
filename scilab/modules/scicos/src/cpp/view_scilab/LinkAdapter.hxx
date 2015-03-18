@@ -15,10 +15,8 @@
 
 #include <string>
 
-#include "utilities.hxx"
 #include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
-
 #include "model/Link.hxx"
 
 namespace org_scilab_modules_scicos

@@ -13,6 +13,7 @@
 #ifndef CONTROLLER_HXX_
 #define CONTROLLER_HXX_
 
+#include <string>
 #include <vector>
 #include <map>
 

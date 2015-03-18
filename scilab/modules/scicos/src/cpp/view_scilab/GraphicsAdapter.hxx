@@ -15,6 +15,8 @@
 
 #include <string>
 
+#include "internal.hxx"
+
 #include "BaseAdapter.hxx"
 #include "model/Block.hxx"
 

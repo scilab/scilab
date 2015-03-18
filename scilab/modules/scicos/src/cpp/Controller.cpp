@@ -15,7 +15,9 @@
 #include <map>
 #include <utility>
 #include <algorithm>
+#include <iterator>
 
+#include "utilities.hxx"
 
 #define REF_DEBUG 0
 #if REF_DEBUG

@@ -20,7 +20,6 @@
 #include "mlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
-#include "user.hxx"
 
 #include "utilities.hxx"
 #include "adapters_utilities.hxx"
@@ -66,10 +65,10 @@ struct model
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
         ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
-        types::InternalType* tlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
+        types::InternalType* mlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
 
         const_cast<BlockAdapter&>(adaptor).setDiagram(localAdaptor.getDiagram());
-        return tlist;
+        return mlist;
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)

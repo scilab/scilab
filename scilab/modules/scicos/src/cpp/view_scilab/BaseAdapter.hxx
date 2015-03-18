@@ -30,6 +30,7 @@
 #include "overload.hxx"
 #include "scilabexception.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "Adapters.hxx"
 #include "model/BaseObject.hxx"

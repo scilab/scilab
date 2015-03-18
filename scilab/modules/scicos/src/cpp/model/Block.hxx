@@ -16,6 +16,7 @@
 #include <string>
 #include <vector>
 
+#include "utilities.hxx"
 #include "Model.hxx"
 #include "model/BaseObject.hxx"
 

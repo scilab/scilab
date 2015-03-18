@@ -10,6 +10,7 @@
  *
  */
 
+#include <cstring>
 #include <string>
 #include <algorithm>
 
@@ -23,8 +24,6 @@
 
 extern "C"
 {
-#include <string.h>
-
 #include "localization.h"
 #include "Scierror.h"
 }

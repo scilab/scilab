@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef ADAPTERS_H_
-#define ADAPTERS_H_
+#ifndef ADAPTERS_HXX_
+#define ADAPTERS_HXX_
 
 #include <vector>
 #include <string>
@@ -79,4 +79,4 @@ private:
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
-#endif /* ADAPTERS_H_ */
+#endif /* ADAPTERS_HXX_ */

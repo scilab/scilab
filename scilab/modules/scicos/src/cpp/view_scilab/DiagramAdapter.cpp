@@ -14,7 +14,6 @@
 #include <vector>
 #include <sstream>
 #include <algorithm>
-#include <iterator>
 
 #include "internal.hxx"
 #include "double.hxx"

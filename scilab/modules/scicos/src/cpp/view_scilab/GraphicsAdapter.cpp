@@ -21,6 +21,7 @@
 #include "double.hxx"
 #include "string.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "GraphicsAdapter.hxx"
 #include "ports_management.hxx"

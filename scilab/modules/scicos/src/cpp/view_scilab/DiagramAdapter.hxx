@@ -16,9 +16,9 @@
 #include <string>
 #include <vector>
 
+#include "internal.hxx"
 #include "list.hxx"
 
-#include "utilities.hxx"
 #include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Diagram.hxx"

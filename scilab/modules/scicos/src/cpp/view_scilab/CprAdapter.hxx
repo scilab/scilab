@@ -16,7 +16,6 @@
 #include <string>
 
 #include "BaseAdapter.hxx"
-
 #include "model/Diagram.hxx"
 
 namespace org_scilab_modules_scicos

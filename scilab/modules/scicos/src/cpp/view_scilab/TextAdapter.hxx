@@ -15,9 +15,6 @@
 
 #include <string>
 
-#include "internal.hxx"
-
-#include "utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Annotation.hxx"
 

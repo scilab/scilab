@@ -30,6 +30,7 @@
 
 extern "C"
 {
+#include "charEncoding.h"
 #include "Scierror.h"
 #include "localization.h"
 }

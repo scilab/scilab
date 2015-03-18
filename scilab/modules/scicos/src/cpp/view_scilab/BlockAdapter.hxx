@@ -15,7 +15,8 @@
 
 #include <string>
 
-#include "utilities.hxx"
+#include "internal.hxx"
+
 #include "BaseAdapter.hxx"
 #include "DiagramAdapter.hxx"
 #include "model/Block.hxx"

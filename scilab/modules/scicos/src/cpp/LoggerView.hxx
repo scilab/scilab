@@ -13,8 +13,10 @@
 #ifndef LOGGERVIEW_HXX_
 #define LOGGERVIEW_HXX_
 
+#include <cwchar>
 #include <sstream>
 #include "View.hxx"
+#include "utilities.hxx"
 
 namespace org_scilab_modules_scicos
 {

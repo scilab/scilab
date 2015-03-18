@@ -18,6 +18,7 @@
 #include "mlist.hxx"
 #include "internal.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "TextAdapter.hxx"
 

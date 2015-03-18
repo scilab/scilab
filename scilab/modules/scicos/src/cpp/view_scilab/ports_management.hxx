@@ -14,10 +14,13 @@
 #ifndef PORTS_MANAGEMENT_HXX_
 #define PORTS_MANAGEMENT_HXX_
 
+#include <cmath>
+
 #include <deque>
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 #include "internal.hxx"
 #include "bool.hxx"
@@ -79,10 +82,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
                 return new types::Double(1);
             }
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_COLS:
             datatypeIndex++;
-        // no break
+            // no break
         case DATATYPE_ROWS:
         {
             datatypeIndex++;
@@ -273,10 +276,10 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
 
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -427,10 +430,10 @@ inline bool updateNewPort(const ScicosID oldPort, int newPort, Controller& contr
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -477,10 +480,10 @@ inline bool addNewPort(const ScicosID newPortID, int newPort, const std::vector<
         {
             case DATATYPE_TYPE:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_COLS:
                 datatypeIndex++;
-            // no break
+                // no break
             case DATATYPE_ROWS:
             {
                 datatypeIndex++;
@@ -634,7 +637,7 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     // remove objects from the model after de-association
     if (parentDiagram != 0)
     {
-        for (const ScicosID& id : children)
+        for (const ScicosID & id : children)
         {
             controller.referenceObject(id);
         }

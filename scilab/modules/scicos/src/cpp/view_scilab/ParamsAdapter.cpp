@@ -19,6 +19,7 @@
 #include "list.hxx"
 #include "tlist.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "ParamsAdapter.hxx"
 
