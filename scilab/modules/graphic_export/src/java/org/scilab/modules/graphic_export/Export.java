@@ -364,8 +364,9 @@ public class Export {
             }
 
             if (joglCanvas != null) {
+                BufferedImage image = joglCanvas.getImage();
+                //joglCanvas.destroy();
                 PNGExporter exporter = (PNGExporter) getExporter(type);
-                BufferedImage image = joglCanvas.getImage(exporter.isAlphaChannelSupported());
                 exporter.setImage(file, image, params);
                 exporter.write();
                 exporter.dispose();
@@ -540,11 +541,6 @@ public class Export {
                 g2d.dispose();
             }
         }
-
-        public boolean isAlphaChannelSupported() {
-            return true;
-        }
-
     }
 
     /**
@@ -558,11 +554,6 @@ public class Export {
         public void write() throws IOException {
             ExportBitmap.writeFile(image, "gif", file);
         }
-
-        public boolean isAlphaChannelSupported() {
-            return false;
-        }
-
     }
 
     /**
@@ -586,11 +577,6 @@ public class Export {
         public void write() throws IOException {
             ExportBitmap.writeFile(image, "bmp", file);
         }
-
-        public boolean isAlphaChannelSupported() {
-            return false;
-        }
-
     }
 
     /**
@@ -608,11 +594,6 @@ public class Export {
                 ExportBitmap.writeJPEG(image, params.compressionQuality, file);
             }
         }
-
-        public boolean isAlphaChannelSupported() {
-            return false;
-        }
-
     }
 
     /**
