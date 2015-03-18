@@ -38,6 +38,7 @@ types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, ty
 
     //unlock prompt thread.
     ThreadManagement::SendAwakeRunnerSignal();
+    ThreadManagement::SendConsoleExecDoneSignal();
 
     types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
     if (pThread == NULL)
