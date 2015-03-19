@@ -10,5 +10,5 @@
 // timer
 
 timer();
-for i=1:100000,end;
+for i=1:1000000,end;
 if timer()<=0 then pause,end
