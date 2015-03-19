@@ -287,8 +287,6 @@ libscisundials_la_CFLAGS = -I$(top_srcdir)/modules/scicos/src/scicos_sundials/in
 
 libscisundials_la_SOURCES = $(SUNDIALS_SOURCES)
 
-.NOTPARALLEL: libscisundials.la libsciscicos-algo.la
-
 include $(top_srcdir)/Makefile.incl.am
 
 # Build modelica stuff

@@ -23,6 +23,21 @@ function [J, H] = numderivative(varargin)
     //
     // Get input arguments
     __numderivative_f__ = varargin(1)
+    if and(type(__numderivative_f__) <> [11 13 15 130]) then
+        // Must be a function (uncompiled or compiled) or a list
+        error(msprintf(gettext("%s: Wrong type for argument #%d: Function or list expected.\n"), "numderivative", 1));
+    end
+    if type(__numderivative_f__) == 15 then
+        // List case
+        // Check that the first element in the list is a function
+        if and(type(__numderivative_f__(1)) <> [11 13]) then
+            error(msprintf(gettext("%s: Wrong type for argument #%d: Function expected in first element of list.\n"), "numderivative", 1));
+        end
+        if length(__numderivative_f__) < 2 then
+            error(msprintf(gettext("%s: Wrong number of elements in input argument #%d: At least %d elements expected, but current number is %d.\n"), "numderivative", 1, 2, length(__numderivative_f__)));
+        end
+    end
+
     //
     // Manage x, to get the size n.
     x = varargin(2);
@@ -43,93 +58,72 @@ function [J, H] = numderivative(varargin)
     h = [];
     if rhs >= 3 then
         h = varargin(3);
-    end
-    if type(h) ~= 1 then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 3));
-    end
-    if h <> [] then
-        if size(h, "*") <> 1 then
-            [nrows, ncols] = size(h);
-            if (nrows <> 1 & ncols <> 1) then
-                error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "numderivative", 3));
+        if type(h) ~= 1 then
+            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 3));
+        end
+        if h <> [] then
+            if size(h, "*") <> 1 then
+                [nrows, ncols] = size(h);
+                if (nrows <> 1 & ncols <> 1) then
+                    error(msprintf(gettext("%s: Wrong size for input argument #%d: Vector expected.\n"), "numderivative", 3));
+                end
+                if ncols <> 1 then
+                    h = h(:);
+                end
+                if or(size(h) <> [n 1]) then
+                    error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "numderivative", 3, 1));
+                end
             end
-            if ncols <> 1 then
-                h = h(:);
-            end
-            if or(size(h) <> [n 1]) then
-                error(msprintf(gettext("%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"), "numderivative", 3, 1));
+            if or(h < 0) then
+                error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"), "numderivative", 3, 0));
             end
         end
     end
+
     order = 2;
     if (rhs >= 4 & varargin(4) <> []) then
         order = varargin(4);
+        if type(order) ~= 1 then
+            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 4));
+        end
+        if or(size(order) <> [1 1]) then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 4, 1, 1));
+        end
+        if and(order <> [1 2 4]) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 4, "1, 2, 4"));
+        end
     end
+
     H_form = "default";
     if (rhs >= 5 & varargin(5) <> []) then
         H_form = varargin(5);
+        if type(H_form) ~= 10 then
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "numderivative", 5));
+        end
+        if or(size(H_form) <> [1 1]) then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 5, 1, 1));
+        end
+        if and(H_form <> ["default" "blockmat" "hypermat"]) then
+            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 5, "default, blockmat, hypermat"));
+        end
     end
+
     Q = eye(n, n);
     Q_not_given = %t;
     if (rhs >= 6 & varargin(6) <> []) then
         Q = varargin(6);
         Q_not_given = %f;
-    end
-    //
-    // Check types
-    if and(type(__numderivative_f__) <> [11 13 15 130]) then
-        // Must be a function (uncompiled or compiled) or a list
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Function or list expected.\n"), "numderivative", 1));
-    end
-    if type(__numderivative_f__) == 15 then
-        // List case
-        // Check that the first element in the list is a function
-        if and(type(__numderivative_f__(1)) <> [11 13]) then
-            error(msprintf(gettext("%s: Wrong type for argument #%d: Function expected in first element of list.\n"), "numderivative", 1));
+        if type(Q) ~= 1 then
+            error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 6));
+        end
+        if or(size(Q) <> [n n]) then
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 6, n ,n));
+        end
+        if norm(clean(Q*Q'-eye(n, n))) > 0 then
+            error(msprintf(gettext("%s: Q must be orthogonal.\n"), "numderivative"));
         end
     end
-    if type(order) ~= 1 then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 4));
-    end
-    if type(H_form) ~= 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: String array expected.\n"), "numderivative", 5));
-    end
-    if type(Q) ~= 1 then
-        error(msprintf(gettext("%s: Wrong type for argument #%d: Matrix expected.\n"), "numderivative", 6));
-    end
-    //
-    // Check sizes
-    if type(__numderivative_f__) == 15 then
-        // List case
-        if length(__numderivative_f__) < 2 then
-            error(msprintf(gettext("%s: Wrong number of elements in input argument #%d: At least %d elements expected, but current number is %d.\n"), "numderivative", 1, 2, length(__numderivative_f__)));
-        end
-    end
-    if or(size(order) <> [1 1]) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 4, 1, 1));
-    end
-    if or(size(H_form) <> [1 1]) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 5, 1, 1));
-    end
-    if or(size(Q) <> [n n]) then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"), "numderivative", 6, n ,n));
-    end
-    //
-    // Check value
-    if h <> [] then
-        if or(h < 0) then
-            error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be > %d.\n"), "numderivative", 3, 0));
-        end
-    end
-    if and(order <> [1 2 4]) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 4, "1, 2, 4"));
-    end
-    if and(H_form <> ["default" "blockmat" "hypermat"]) then
-        error(msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"), "numderivative", 5, "default, blockmat, hypermat"));
-    end
-    if norm(clean(Q*Q'-eye(n, n))) > 0 then
-        error(msprintf(gettext("%s: Q must be orthogonal.\n"), "numderivative"));
-    end
+
     //
     // Proceed...
     if h == [] then
@@ -147,12 +141,13 @@ function [J, H] = numderivative(varargin)
         h = numderivative_step(x, order, 1);
     end
     J = numderivative_deriv1(__numderivative_f__, x, h, order, Q);
-    m = size(J, 1);
     //
     // Quick return if possible
     if lhs == 1 then
         return
     end
+
+    m = size(J, 1);
     //
     // Compute Hessian matrix
     if ( h_not_given ) then
@@ -242,7 +237,7 @@ endfunction
 //   This function is used for the computation of the jacobian matrix.
 function g = numderivative_deriv1(__numderivative_f__, x, h, order, Q)
     n = size(x, "*");
-    Dy = []; // At this point, we do not know 'm' yet, so we cannot allocate Dy.
+    %Dy = []; // At this point, we do not know 'm' yet, so we cannot allocate Dy.
     select order
     case 1
         D = Q * diag(h);
@@ -251,9 +246,9 @@ function g = numderivative_deriv1(__numderivative_f__, x, h, order, Q)
             d = D(:, i);
             yplus = numderivative_evalf(__numderivative_f__, x+d);
             Dyi = (yplus-y)/h(i);
-            Dy = [Dy Dyi];
+            %Dy = [%Dy Dyi];
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     case 2
         D = Q * diag(h);
         for i=1:n
@@ -261,9 +256,9 @@ function g = numderivative_deriv1(__numderivative_f__, x, h, order, Q)
             yplus = numderivative_evalf(__numderivative_f__, x+d);
             yminus = numderivative_evalf(__numderivative_f__, x-d);
             Dyi = (yplus-yminus)/(2*h(i));
-            Dy = [Dy Dyi];
+            %Dy = [%Dy Dyi];
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     case 4
         D = Q * diag(h);
         for i=1:n
@@ -275,9 +270,9 @@ function g = numderivative_deriv1(__numderivative_f__, x, h, order, Q)
             dFh =  (yplus-yminus)/(2*h(i));
             dF2h = (yplus2-yminus2)/(4*h(i));
             Dyi = (4*dFh - dF2h)/3;
-            Dy = [Dy Dyi];
+            %Dy = [%Dy Dyi];
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     end
 endfunction
 
@@ -286,7 +281,7 @@ endfunction
 //   This function is used for the computation of the hessian matrix, to take advantage of its symmetry
 function g = numderivative_deriv2(__numderivative_f__, x, h, order, Q)
     n = size(x, "*");
-    Dy = zeros(m*n, n); // 'm' is known at this point, so we can allocate Dy to reduce memory operations
+    %Dy = zeros(m*n, n); // 'm' is known at this point, so we can allocate Dy to reduce memory operations
     select order
     case 1
         D = Q * diag(h);
@@ -295,12 +290,12 @@ function g = numderivative_deriv2(__numderivative_f__, x, h, order, Q)
             d = D(:, i);
             yplus = numderivative_evalf(__numderivative_f__, x+d);
             for j=0:m-1
-                Dyi(1+j*n:i-1+j*n) = Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
+                Dyi(1+j*n:i-1+j*n) = %Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
                 Dyi(i+j*n:(j+1)*n) = (yplus(i+j*n:(j+1)*n)-y(i+j*n:(j+1)*n))/h(i); // Computing the new ones
             end
-            Dy(:, i) = Dyi;
+            %Dy(:, i) = Dyi;
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     case 2
         D = Q * diag(h);
         for i=1:n
@@ -308,12 +303,12 @@ function g = numderivative_deriv2(__numderivative_f__, x, h, order, Q)
             yplus = numderivative_evalf(__numderivative_f__, x+d);
             yminus = numderivative_evalf(__numderivative_f__, x-d);
             for j=0:m-1
-                Dyi(1+j*n:i-1+j*n) = Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
+                Dyi(1+j*n:i-1+j*n) = %Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
                 Dyi(i+j*n:(j+1)*n) = (yplus(i+j*n:(j+1)*n)-yminus(i+j*n:(j+1)*n))/(2*h(i)); // Computing the new ones
             end
-            Dy(:, i) = Dyi;
+            %Dy(:, i) = Dyi;
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     case 4
         D = Q * diag(h);
         for i=1:n
@@ -323,15 +318,15 @@ function g = numderivative_deriv2(__numderivative_f__, x, h, order, Q)
             yplus2 = numderivative_evalf(__numderivative_f__, x+2*d);
             yminus2 = numderivative_evalf(__numderivative_f__, x-2*d);
             for j=0:m-1
-                dFh(1+j*n:i-1+j*n) = Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
+                dFh(1+j*n:i-1+j*n) = %Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
                 dFh(i+j*n:(j+1)*n) = (yplus(i+j*n:(j+1)*n)-yminus(i+j*n:(j+1)*n))/(2*h(i)); // Computing the new ones
-                dF2h(1+j*n:i-1+j*n) = Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
+                dF2h(1+j*n:i-1+j*n) = %Dy(i+j*n, 1:i-1)'; // Retrieving symmetric elements (will not be done for the first vector)
                 dF2h(i+j*n:(j+1)*n) = (yplus2(i+j*n:(j+1)*n)-yminus2(i+j*n:(j+1)*n))/(4*h(i)); // Computing the new ones
             end
             Dyi = (4*dFh - dF2h)/3;
-            Dy(:, i) = Dyi;
+            %Dy(:, i) = Dyi;
         end
-        g = Dy*Q';
+        g = %Dy*Q';
     end
 endfunction
 

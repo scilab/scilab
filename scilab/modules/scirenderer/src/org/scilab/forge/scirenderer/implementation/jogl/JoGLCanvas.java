@@ -11,17 +11,6 @@
 
 package org.scilab.forge.scirenderer.implementation.jogl;
 
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.Drawer;
-import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
-import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
-import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
-import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
-import org.scilab.forge.scirenderer.picking.PickingManager;
-
-import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
-import com.jogamp.opengl.util.awt.ImageUtil;
-
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
@@ -38,6 +27,16 @@ import javax.media.opengl.GLException;
 import javax.media.opengl.GLOffscreenAutoDrawable;
 import javax.media.opengl.GLProfile;
 import javax.swing.SwingUtilities;
+
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.Drawer;
+import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
+import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
+import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
+import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
+import org.scilab.forge.scirenderer.picking.PickingManager;
+
+import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
 
 /**
  * JoGL implementation of a Canvas.
