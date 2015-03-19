@@ -376,7 +376,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::destroyInstance();
 #ifndef NDEBUG
     //uncomment to print mem leak log
-    types::Inspector::displayMemleak();
+    //types::Inspector::displayMemleak();
 #endif
 
     // cleanup Java dependent features
