@@ -487,27 +487,25 @@ endif
 
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CXX_SOURCES)
 	@echo "-- Generates build/CPPblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_CXX_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 	@echo "-- Generates build/Fblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
 
 includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 	@echo "-- Building includes/blocks.h --"
-	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
-		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
-	fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/includes;
 	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES=$(top_srcdir)/modules/scicos_blocks/includes/blocks.h \
@@ -553,8 +551,6 @@ MACROSSPECIALEXT=*.mo \
 *.moc
 
 TESTS_DIREXT= tests/unit_tests/Linear
-
-.NOTPARALLEL: build/Fblocknames build/Cblocknames
 
 include $(top_srcdir)/Makefile.incl.am
 

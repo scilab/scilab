@@ -124,7 +124,7 @@ libscihdf5_algo_la_CPPFLAGS = $(libscihdf5_la_CPPFLAGS)
 CHECK_SRC= $(HDF5_SOURCES) $(GATEWAY_CXX_SOURCES)
 INCLUDE_FLAGS = $(libscihdf5_la_CPPFLAGS)
 
-libscihdf5_la_LIBADD = libscihdf5-algo.la $(HDF5_LIBS) -lhdf5_hl
+libscihdf5_la_LIBADD = libscihdf5-algo.la $(HDF5_LIBS)
 
 #### Target ######
 modulename=hdf5

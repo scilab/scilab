@@ -33,6 +33,12 @@ Removed Functions
 * xsetm removed. Please use ged instead.
 
 
+Toolbox Skeleton
+=================
+
+* Modelica user-defined block added in xcos_toolbox_skeleton.
+
+
 Compilation
 ===========
 
@@ -48,11 +54,17 @@ Graphics Evolutions
 Scilab Bug Fixes
 ================
 
+* Bug #8066 fixed - There was no OK button in x_choose window.
+
+* Bug #9890 fixed - xarrows demonstration added in Graphics/Basic functions category.
+
 * Bug #12788 fixed - All graphics were displayed in red on some platforms.
 
 * Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
 
 * Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
+
+* Bug #13531 fixed - sylv help page fixed to include the real Sylvester equation.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
@@ -91,6 +103,9 @@ Scilab Bug Fixes
 * Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
 
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
+
+* Bug #13758 fixed - x_mdialog interpreted 'F' and 'T' as boolean values
+                     whereas it should interpret '%F' and '%T' instead.
 
 * Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 

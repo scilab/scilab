@@ -16,9 +16,9 @@ zh_CN.LANGUAGE =zh_CN
 
 zh_CN.MsgBoxJRENotFound =Java Runtime Environment not detected.
 zh_CN.MsgBoxJREURL =Please download & Install JRE at http://www.java.com/zh_CN/download/
-zh_CN.MsgBoxJREReinstall = Reinstall Scilab after your JRE update.
-zh_CN.MsgBoxSSERequired = CPU SSE2 instructions are required for Scilab to run correctly.
-zh_CN.MsgBoxX64Ready = For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
+zh_CN.MsgBoxJREReinstall =Reinstall Scilab after your JRE update.
+zh_CN.MsgBoxSSERequired =CPU SSE2 instructions are required for Scilab to run correctly.
+zh_CN.MsgBoxX64Ready =For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
 
 zh_CN.MsgBoxJavaDetection1 =Java is not installed on this computer and this program needs it.
 zh_CN.MsgBoxJavaDetection2 =Please choose to install Java Runtime:
@@ -65,21 +65,21 @@ zh_CN.DescriptionTclTK =TCL/TK in Scilab
 zh_CN.DescriptionSpreadsheet =Spreadsheet Toolbox
 zh_CN.DescriptionJVM =Java Runtime
 zh_CN.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
-zh_CN.DescriptionFftwModule = FFTW interface for Scilab
-zh_CN.DescriptionFftwMKLDownload = Download FFTW library optimized by Intel Math Kernel Library
-zh_CN.DescriptionRefFftwLibrary = Reference FFTW library
+zh_CN.DescriptionFftwModule =FFTW interface for Scilab
+zh_CN.DescriptionFftwMKLDownload =Download FFTW library optimized by Intel Math Kernel Library
+zh_CN.DescriptionRefFftwLibrary =Reference FFTW library
 zh_CN.DescriptionParametersTlbx =Parameters Toolbox
 zh_CN.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
 zh_CN.DescriptionSimulAnnealingTlbx =Simulated Annealing Toolbox
 zh_CN.DescriptionDevTools =Development Tools
 zh_CN.DescriptionTests =Tests for Scilab
-zh_CN.DescriptionTlbxSkeleton =A toolbox skeleton (to extend scilab)
-zh_CN.DescriptionComConnector = COM connector
-zh_CN.DescriptionSciNotes = SciNotes: Editor for Scilab
-zh_CN.DescriptionXcos = XCos 1.1
-zh_CN.DescriptionParallel = Parallel Computing with Scilab
-zh_CN.DescriptionModulesManager = Tools for management of extern modules 
-zh_CN.DescriptionModuleJVM = JVM Module
+zh_CN.DescriptionTlbxSkeleton =A toolbox skeleton (to extend Scilab)
+zh_CN.DescriptionComConnector =COM connector
+zh_CN.DescriptionSciNotes =SciNotes: Editor for Scilab
+zh_CN.DescriptionXcos =Xcos
+zh_CN.DescriptionParallel =Parallel Computing with Scilab
+zh_CN.DescriptionModulesManager =Tools for management of extern modules
+zh_CN.DescriptionModuleJVM =JVM Module
 ;
 zh_CN.ConsoleIconName =Scilab Console
 ;
@@ -101,15 +101,15 @@ zh_CN.DescriptionCreateDesktopIcon =Create a &desktop icon
 ;
 zh_CN.DescriptionQuickLaunch =Create a shortcut in Quick Launch Bar
 ;
-zh_CN.DescriptionAssociateSceSci =Associate *.sce,*.sci files with scilab
+zh_CN.DescriptionAssociateSceSci =Associate *.sce,*.sci files with Scilab
 ;
-zh_CN.DescriptionAssociateTstDem =Associate *.tst files with scilab
+zh_CN.DescriptionAssociateTstDem =Associate *.tst files with Scilab
 ;
-zh_CN.DescriptionAssociateBinSav =Associate *.bin, *.sav files with scilab
+zh_CN.DescriptionAssociateBinSav =Associate *.bin, *.sav files with Scilab
 ;
-zh_CN.DescriptionAssociateGraph =Associate *.graph *.graphb files with scilab
+zh_CN.DescriptionAssociateGraph =Associate *.graph *.graphb files with Scilab
 ;
-zh_CN.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scilab
+zh_CN.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with Scilab
 ;
 zh_CN.DescriptionDefaultInstall =Installation (Default)
 zh_CN.DescriptionFullInstall =Full installation
