@@ -26,8 +26,6 @@
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
-    <gateway type="0" name="sci_data2sig" function="data2sig"/>
-    <gateway type="0" name="sci_sig2data" function="sig2data"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_callblk" function="callblk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
@@ -38,6 +36,7 @@
     <gateway type="1" name="sci_ctree4" function="ctree4"/>
     <gateway type="1" name="sci_coserror" function="coserror"/>
     <gateway type="1" name="sci_curblock" function="curblock"/>
+    <gateway type="1" name="sci_data2sig" function="data2sig"/>
     <gateway type="1" name="sci_duplicate" function="duplicate"/>
     <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
@@ -52,6 +51,7 @@
     <gateway type="1" name="sci_scicosim" function="scicosim"/>
     <gateway type="1" name="sci_set_blockerror" function="set_blockerror"/>
     <gateway type="1" name="sci_set_xproperty" function="set_xproperty"/>
+    <gateway type="1" name="sci_sig2data" function="sig2data"/>
     <gateway type="1" name="sci_validvar" function="validvar"/>
     <gateway type="1" name="sci_var2vec" function="var2vec"/>
     <gateway type="1" name="sci_vec2var" function="vec2var"/>

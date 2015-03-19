@@ -42,8 +42,6 @@ SCICOS_IMPEXP int sci_diffobjs(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_getscicosvars(char *fname, void* pvApiCtx);
 
 /* it was in a separate gateway */
-SCICOS_IMPEXP int sci_data2sig(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_sig2data(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_model2blk(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_callblk(char *fname, void* pvApiCtx);
 

@@ -260,6 +260,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_ctree4.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_coserror.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_curblock.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_data2sig.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_duplicate.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_end_scicosim.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_haltscicos.cpp" />
@@ -271,6 +272,7 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_scicos_time.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_blockerror.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_xproperty.cpp" />
+    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_sig2data.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_loadScicos.c" />
@@ -289,7 +291,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\MlistGetFieldNumber.c" />
     <ClCompile Include="..\lsodar.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_callblk.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_data2sig.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_diffobjs.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree2.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_ftree3.c" />
@@ -298,7 +299,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\..\sci_gateway\c\sci_getscicosvars.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_model2blk.c" />
     <ClCompile Include="..\..\..\sci_gateway\c\sci_sctree.c" />
-    <ClCompile Include="..\..\..\sci_gateway\c\sci_sig2data.c" />
     <ClCompile Include="..\sciblk2.c" />
     <ClCompile Include="..\sciblk4.c" />
     <ClCompile Include="..\scicos.c" />
