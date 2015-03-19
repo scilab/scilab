@@ -50,6 +50,8 @@ Graphics Evolutions
 
 * fec function can now plot meshes based on any convex polygon type (not only triangles).
 
+* New datatips positions available: "left", "right", "upper", "lower".
+
 
 Scilab Bug Fixes
 ================

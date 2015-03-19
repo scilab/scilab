@@ -126,10 +126,50 @@ int sci_datatip_set_orient(char *fname, unsigned long fname_len)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "automatic");
+                        compVar = stricmp(pstData, "left");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 4);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "right");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 5);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "upper");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 6);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "lower");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 7);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "automatic");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 8);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);
