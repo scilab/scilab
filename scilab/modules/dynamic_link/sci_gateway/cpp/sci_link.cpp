@@ -210,7 +210,7 @@ void displayDynLibInfo(void)
     {
         if (getIlibVerboseLevel() != ILIB_VERBOSE_NO_OUTPUT)
         {
-            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->wstEntryPointName.c_str(), (*it)->iLibIndex);
+            sciprint(_("Entry point %ls in shared library %d.\n"), (*it)->pwstEntryPointName, (*it)->iLibIndex);
         }
     }
 }

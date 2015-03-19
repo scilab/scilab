@@ -252,7 +252,7 @@ public :
 
     typedef struct
     {
-        std::wstring wstLibraryName;    /** name of dynamic library **/
+         wchar_t* pwstLibraryName;      /** name of dynamic library **/
         DynLibHandle hLib;              /** handle of the library **/
     } DynamicLibraryStr;
 
@@ -260,7 +260,7 @@ public :
 
     typedef struct
     {
-        std::wstring wstEntryPointName; /** name of interface **/
+        wchar_t* pwstEntryPointName;    /** name of interface **/
         int iLibIndex;                  /** name of interface **/
         dynlib_ptr functionPtr;         /** entrypoint for the interface **/
         bool bOK;                       /** flag set to TRUE if entrypoint can be used **/
@@ -272,8 +272,8 @@ private :
 public :
 
     /* tools fucntions */
-    static void setLibraryName(DynamicLibraryStr* _pDynamicLibrary, const std::wstring& _wstLibraryName);
-    static void setEntryPointName(EntryPointStr* _pEntryPoint, const std::wstring& _wstEntryPointName);
+    static void setLibraryName(DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName);
+    static void setEntryPointName(EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName);
 
     /* "Constructors" */
     static DynamicLibraryStr* getNewDynamicLibraryStr();
@@ -290,8 +290,8 @@ public :
     static std::list<EntryPointStr*>* getEntryPointList();
     static void addEntryPoint(EntryPointStr* _pEP);
     static void removeEntryPoint(int _iEntryPointIndex);
-    static EntryPointStr* getEntryPoint(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex = -1);
-    static int getEntryPointPosition(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static int getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
     static dynlib_ptr getEntryPointFromPosition(int position);
     static std::vector<std::wstring> getEntryPointNameList();
 

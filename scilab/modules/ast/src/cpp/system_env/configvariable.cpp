@@ -622,7 +622,7 @@ std::list<ConfigVariable::EntryPointStr*> ConfigVariable::m_EntryPointList;
 ConfigVariable::DynamicLibraryStr* ConfigVariable::getNewDynamicLibraryStr()
 {
     DynamicLibraryStr* pDL = (DynamicLibraryStr*)MALLOC(sizeof(DynamicLibraryStr));
-    pDL->wstLibraryName = L"";
+    pDL->pwstLibraryName = NULL;
     pDL->hLib = 0;
     return pDL;
 }
@@ -633,23 +633,31 @@ ConfigVariable::EntryPointStr* ConfigVariable::getNewEntryPointStr()
     pEP->bOK = false;
     pEP->functionPtr = NULL;
     pEP->iLibIndex = -1;
-    pEP->wstEntryPointName = L"";
+    pEP->pwstEntryPointName = NULL;
     return pEP;
 }
 
-void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, const std::wstring& _wstLibraryName)
+void ConfigVariable::setLibraryName(ConfigVariable::DynamicLibraryStr* _pDynamicLibrary, wchar_t* _pwstLibraryName)
 {
     if (_pDynamicLibrary)
     {
-        _pDynamicLibrary->wstLibraryName = _wstLibraryName;
+        if (_pDynamicLibrary->pwstLibraryName)
+        {
+            FREE(_pDynamicLibrary->pwstLibraryName);
+        }
+        _pDynamicLibrary->pwstLibraryName = os_wcsdup(_pwstLibraryName);
     }
 }
 
-void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, const std::wstring& _wstEntryPointName)
+void ConfigVariable::setEntryPointName(ConfigVariable::EntryPointStr* _pEntryPoint, wchar_t* _pwstEntryPointName)
 {
     if (_pEntryPoint)
     {
-        _pEntryPoint->wstEntryPointName = _wstEntryPointName;
+        if (_pEntryPoint->pwstEntryPointName)
+        {
+            FREE(_pEntryPoint->pwstEntryPointName);
+        }
+        _pEntryPoint->pwstEntryPointName = os_wcsdup(_pwstEntryPointName);;
     }
 }
 
@@ -681,6 +689,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             {
                 EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
+                FREE(pEP->pwstEntryPointName);
                 delete pEP;
                 if (m_EntryPointList.size() == 0)
                 {
@@ -690,6 +699,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             }
         }
         //remove dynamic library
+        FREE(m_DynLibList[_iDynamicLibraryIndex]->pwstLibraryName);
         delete m_DynLibList[_iDynamicLibraryIndex];
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
@@ -730,7 +740,7 @@ void ConfigVariable::addEntryPoint(ConfigVariable::EntryPointStr* _pEP)
     }
 }
 
-ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex)
+ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
 {
     std::list<EntryPointStr*>::const_iterator it;
     for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
@@ -738,7 +748,7 @@ ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(const std::wstring&
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
         {
-            if ((*it)->wstEntryPointName == _wstEntryPointName)
+            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
             {
                 return *it;
             }
@@ -761,7 +771,7 @@ dynlib_ptr ConfigVariable::getEntryPointFromPosition(int position)
     return NULL;
 }
 
-int ConfigVariable::getEntryPointPosition(const std::wstring& _wstEntryPointName, int _iDynamicLibraryIndex)
+int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
 {
     int pos = 0;
     std::list<EntryPointStr*>::const_iterator it;
@@ -770,7 +780,7 @@ int ConfigVariable::getEntryPointPosition(const std::wstring& _wstEntryPointName
         //by pass iLibIndex check if _iDynamicLibraryIndex == -1
         if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
         {
-            if ((*it)->wstEntryPointName == _wstEntryPointName)
+            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
             {
                 return pos;
             }
@@ -785,7 +795,7 @@ std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
     std::list<EntryPointStr*>::const_iterator it;
     for (it = m_EntryPointList.begin() ; it != m_EntryPointList.end() ; it++)
     {
-        EntryPointNames.push_back((*it)->wstEntryPointName);
+        EntryPointNames.push_back((*it)->pwstEntryPointName);
     }
     return EntryPointNames;
 }
