@@ -43,9 +43,16 @@ extern "C"
 
 using namespace types;
 
-int checkformatread(char* format);
+InternalType::ScilabType checkformatread(const char* format);
+
 template<typename T>
-bool is_of_type(const std::string & Str);
+bool is_of_type(const std::string & Str)
+{
+    std::istringstream iss(Str);
+
+    T tmp;
+    return (iss >> tmp) && (iss.eof());
+}
 
 
 /*--------------------------------------------------------------------------*/
@@ -53,10 +60,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
 {
     int iID = 0;
     int iAcces = 0;
-    int iRhs = (int)in.size();
+    int iRhs = static_cast<int>(in.size());
     char* pstFormat = NULL;
-
-    types::InternalType::ScilabType itTypeOfData = types::InternalType::ScilabDouble;
+    InternalType::ScilabType itTypeOfData = InternalType::ScilabDouble;
 
     if (iRhs < 3 || iRhs > 5)
     {
@@ -135,35 +141,44 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         //checkformat
         pstFormat = wide_string_to_UTF8(pSFormat->get(0));
 
-        char cTypeData = checkformatread(pstFormat);
-        if (cTypeData == 0)
+        itTypeOfData = checkformatread(pstFormat);
+        if (itTypeOfData == InternalType::ScilabNull)
         {
             Scierror(999, _("Incorrect file or format.\n"));
             return Function::Error;
         }
-        switch (cTypeData)
-        {
-            case '1':
-                itTypeOfData = types::InternalType::ScilabDouble;
-                break;
-            case '2':
-                itTypeOfData = types::InternalType::ScilabInt32;
-                break;
-            case '3':
-                itTypeOfData = types::InternalType::ScilabBool;
-                break;
-            case '4':
-                itTypeOfData = types::InternalType::ScilabString;
-                break;
-            default:
-                break;
-        }
-
     }
 
     int error = 0;
-    int iRows = (int) in[1]->getAs<Double>()->get(0);
-    int iCols = (int) in[2]->getAs<Double>()->get(0);
+
+    if (in[1]->isDouble() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 2);
+        return Function::Error;
+    }
+
+    Double* pIn1 = in[1]->getAs<Double>();
+    if (pIn1->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 2);
+        return Function::Error;
+    }
+
+    if (in[2]->isDouble() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A scalar integer value expected.\n"), "read", 3);
+        return Function::Error;
+    }
+
+    Double* pIn2 = in[2]->getAs<Double>();
+    if (pIn2->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong size for input argument #%d: A scalar integer value expected.\n"), "read", 3);
+        return Function::Error;
+    }
+
+    int iRows = (int)pIn1->get(0);
+    int iCols = (int) pIn2->get(0);
 
     //test dims
     if ( (iCols <= 0) || (iRows == 0))
@@ -172,20 +187,20 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         {
             FREE(pstFormat);
         }
-        out.push_back(types::Double::Empty());
+        out.push_back(Double::Empty());
         return Function::OK;
     }
+
     if (iRows < 0)
     {
-        if (iID != 5 /*stdout*/)
+        if (iID != 5 /*stdin*/)
         {
-
             switch (itTypeOfData)
             {
-                case types::InternalType::ScilabDouble:
+                case InternalType::ScilabDouble:
                 {
                     iRows = 1;
-                    Double* pD = new types::Double(iRows, iCols, false);
+                    Double* pD = new Double(iRows, iCols, false);
 
                     if (pstFormat == NULL)
                     {
@@ -196,16 +211,14 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                             if (error == 0)
                             {
                                 pD->resize(iRows, iCols);
-                                for (int i = 0; i < iCols; i++)
+                                for (int i = 0; i < iCols; ++i)
                                 {
                                     pD->set((iRows - 1), i, pdData[i]);
                                 }
-                                iRows++;
+                                ++iRows;
                             }
                             delete[] pdData;
-
                         }
-
                     }
                     else
                     {
@@ -216,15 +229,14 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                             if (error == 0)
                             {
                                 pD->resize(iRows, iCols);
-                                for (int i = 0; i < iCols; i++)
+                                for (int i = 0; i < iCols; ++i)
                                 {
                                     pD->set((iRows - 1), i, pdData[i]);
                                 }
-                                iRows++;
+                                ++iRows;
                             }
                             delete[] pdData;
                         }
-
                     }
 
                     if (error != 2)
@@ -235,14 +247,12 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     {
                         delete pD;
                     }
-
                 }
                 break;
-                case types::InternalType::ScilabInt32:
+                case InternalType::ScilabInt32:
                 {
-
                     iRows = 1;
-                    types::Int32* pI = new types::Int32(iRows, iCols);
+                    Int32* pI = new Int32(iRows, iCols);
 
                     while (error == 0)
                     {
@@ -251,14 +261,13 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         if (error == 0)
                         {
                             pI->resize(iRows, iCols);
-                            for (int i = 0; i < iCols; i++)
+                            for (int i = 0; i < iCols; ++i)
                             {
                                 pI->set((iRows - 1), i, piData[i]);
                             }
-                            iRows++;
+                            ++iRows;
                         }
                         delete[] piData;
-
                     }
 
                     if (error != 2)
@@ -271,9 +280,8 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case types::InternalType::ScilabString:
+                case InternalType::ScilabString:
                 {
-
                     if (iCols != 1)
                     {
                         Scierror(999, _("%s: Wrong input argument %d.\n"), "read", 3);
@@ -281,32 +289,21 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                     else
                     {
-                        bool bEndWrite = false;
-                        iRows = 1;
-                        String* pS = new types::String(iRows, iCols);
+                        String* pS = new String(iRows, iCols);
 
-                        for (; bEndWrite == false; iRows++)
+                        while (error == 0)
                         {
-                            char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                            char pCt[4096];
                             int siz = 0;
                             C2F(readstringfile)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                            pCt[siz] = '\0';
 
-                            if (error == 1)
+                            if (error == 0)
                             {
-                                bEndWrite = true;
-                            }
-                            else
-                            {
-                                char* pC = new char[(siz + 1)];
-                                pC[0] = '\0';
-                                strncat(pC, pCt, siz);
                                 pS->resize(iRows, iCols);
-                                pS->set((iRows - 1), (iCols - 1), pC);
-                                delete[] pC;
-
+                                pS->set((iRows - 1), (iCols - 1), pCt);
+                                ++iRows;
                             }
-                            FREE(pCt);
-
                         }
 
                         if (error != 2)
@@ -318,10 +315,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                             delete pS;
                         }
                     }
-
                 }
                 break;
                 default:
+                {
                     Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "read", 2);
 
                     //close file
@@ -336,6 +333,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                     return Function::Error;
                     break;
+                }
             }
 
             //close file
@@ -351,80 +349,66 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         }
         else//read from the console
         {
-
             switch (itTypeOfData)
             {
-                case types::InternalType::ScilabDouble:
+                case InternalType::ScilabDouble:
                 {
-                    iRows = 1;
-                    Double* pD = new types::Double(iRows, iCols, false);
+                    Double* pD = new Double(iRows, iCols, false);
 
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(a)\0") + 1));
-                    pstFormat[0] = '(';
-                    pstFormat[1] = 'a';
-                    pstFormat[2] = ')';
-                    pstFormat[3] = '\0';
+                    char pstString[4] = "(a)";
 
-                    bool bEndWrite = false;
-
-                    for (; (bEndWrite == false) && (error == 0); iRows++)
+                    while (error != 2)
                     {
-                        char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                        char pCt[4096];
                         int siz = 0;
-                        C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                        C2F(readstring)(pstString, pCt, &siz, &error, (int)strlen(pstString));
+                        pCt[siz] = '\0';
 
                         if ((siz == 1) && (pCt[0] == ' '))
                         {
-                            bEndWrite = true;
+                            break;
                         }
-                        else
+
+                        char* pch;
+                        int iColsTempo = 0;
+                        pch = strtok(pCt, " ");
+                        double* pdData = new double[iCols];
+                        while ((pch != NULL) && (error == 0) && (iColsTempo < iCols))
                         {
-                            char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
-                            pC[0] = '\0';
-                            strncat(pC, pCt, siz);
-                            FREE(pCt);
-
-                            char* pch;
-                            int iColsTempo = 0;
-                            pch = strtok(pC, " ");
-                            double* pdData = new double[iCols];
-                            while ((pch != NULL) && (error == 0) && (iColsTempo < iCols))
+                            if (is_of_type<double>(pch))
                             {
-                                if (is_of_type<double>(pch))
-                                {
 
-                                    pdData[iColsTempo] = atof(pch);
-                                    iColsTempo++;
-                                }
-                                else
-                                {
-                                    error = 2;
-                                }
-                                pch = strtok(NULL, " ");
-                            }
-
-                            FREE(pC);
-
-                            if (iColsTempo != iCols)
-                            {
-                                FREE(pstFormat);
-
-                                delete[] pdData;
-                                delete pD;
-
-                                Scierror(999, _("End of file at line %d.\n"));
-                                return Function::Error;
+                                pdData[iColsTempo] = atof(pch);
+                                iColsTempo++;
                             }
                             else
                             {
-                                pD->resize(iRows, iCols);
-                                for (int i = 0; i < iCols; i++)
-                                {
-                                    pD->set((iRows - 1), i, pdData[i]);
-                                }
+                                error = 2;
                             }
+                            pch = strtok(NULL, " ");
                         }
 
+                        if ((siz == 1) && (iColsTempo == 0))
+                        {
+                            delete[] pdData;
+                            break;
+                        }
+                        if (iColsTempo != iCols)
+                        {
+                            delete[] pdData;
+                            delete pD;
+
+                            Scierror(999, _("End of file at line %d.\n"));
+                            return Function::Error;
+                        }
+                        else
+                        {
+                            pD->resize(iRows, iCols);
+                            for (int i = 0; i < iCols; i++)
+                            {
+                                pD->set((iRows - 1), i, pdData[i]);
+                            }
+                        }
                     }
 
                     if (error == 0)
@@ -433,10 +417,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case types::InternalType::ScilabInt32:
+                case InternalType::ScilabInt32:
                     Scierror(999, _("Incorrect file or format.\n"));
                     return Function::Error;
-                case types::InternalType::ScilabString:
+                case InternalType::ScilabString:
                 {
                     if (iCols != 1)
                     {
@@ -447,25 +431,23 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     {
                         bool bEndWrite = false;
                         iRows = 1;
-                        String* pS = new types::String(iRows, iCols);
+                        String* pS = new String(iRows, iCols);
 
                         for (; bEndWrite == false; iRows++)
                         {
-                            char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                            char pCt[4096];
                             int siz = 0;
                             C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
+                            pCt[siz] = '\0';
+
                             if ((siz == 1) && (pCt[0] == ' '))
                             {
                                 bEndWrite = true;
                             }
                             else
                             {
-                                char* pC = new char[(siz + 1)];
-                                pC[0] = '\0';
-                                strncat(pC, pCt, siz);
                                 pS->resize(iRows, iCols);
-                                pS->set((iRows - 1), (iCols - 1), pC);
-                                delete[] pC;
+                                pS->set((iRows - 1), (iCols - 1), pCt);
                             }
                             FREE(pCt);
 
@@ -489,14 +471,13 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
     }
     else
     {
-        if (iID != 5 /*stdout*/)
+        if (iID != 5 /*stdin*/)
         {
-
             switch (itTypeOfData)
             {
-                case types::InternalType::ScilabDouble:
+                case InternalType::ScilabDouble:
                 {
-                    Double* pD = new types::Double(iRows, iCols, false);
+                    Double* pD = new Double(iRows, iCols, false);
                     double* pd = pD->get();
 
                     if (pstFormat == NULL)
@@ -518,9 +499,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case types::InternalType::ScilabInt32:
+                case InternalType::ScilabInt32:
                 {
-                    types::Int32* pI = new types::Int32(iRows, iCols);
+                    Int32* pI = new Int32(iRows, iCols);
                     int* pi = pI->get();
 
                     C2F(readintfileform)(&iID, pstFormat, pi, &iRows, &iCols, &error, (int)strlen(pstFormat));
@@ -535,20 +516,16 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case types::InternalType::ScilabString:
+                case InternalType::ScilabString:
                 {
-                    String* pS = new types::String(iRows, iCols);
-                    for (int i = 0; i < (iCols * iRows); i++)
+                    String* pS = new String(iRows, iCols);
+                    for (int i = 0; i < iCols * iRows; ++i)
                     {
-                        char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                        char pCt[4096];
                         int siz = 0;
                         C2F(readstringfile)(&iID, pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
-                        char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
-                        pC[0] = '\0';
-                        strncat(pC, pCt, siz);
-                        pS->set(i, pC);
-                        FREE(pCt);
-                        FREE(pC);
+                        pCt[siz] = '\0';
+                        pS->set(i, pCt);
                     }
 
                     if (error == 0)
@@ -594,36 +571,28 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                 Scierror(999, _("Incorrect file or format.\n"));
                 return Function::Error;
             }
-
         }
         else//read from the console
         {
-
             switch (itTypeOfData)
             {
-                case types::InternalType::ScilabDouble:
+                case InternalType::ScilabDouble:
                 {
-                    Double* pD = new types::Double(iRows, iCols, false);
+                    Double* pD = new Double(iRows, iCols, false);
 
-                    pstFormat = (char*)MALLOC(sizeof(char) * (strlen("(a)\0") + 1));
-                    pstFormat[0] = '(';
-                    pstFormat[1] = 'a';
-                    pstFormat[2] = ')';
-                    pstFormat[3] = '\0';
+                    char pstString[4] = "(a)";
 
-                    for (int i = 0; i < (iRows) && (error == 0); i++)
+                    for (int i = 0; i < iRows && error == 0; ++i)
                     {
-                        char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                        char pCt[4096];
                         int siz = 0;
-                        C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
-                        char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
-                        strncat(pC, pCt, siz);
-                        FREE(pCt);
+                        C2F(readstring)(pstString, pCt, &siz, &error, (int)strlen(pstString));
+                        pCt[siz] = '\0';
 
                         char* pch;
                         int iColsTempo = 0;
-                        pch = strtok(pC, " ");
-                        while ((pch != NULL) && (error == 0))
+                        pch = strtok(pCt, " ");
+                        while (pch != NULL && error == 0)
                         {
                             if (is_of_type<double>(pch))
                             {
@@ -636,8 +605,6 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                             }
                             pch = strtok(NULL, " ");
                         }
-
-                        FREE(pC);
 
                         if (iColsTempo != iCols)
                         {
@@ -661,10 +628,10 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                 }
                 break;
-                case types::InternalType::ScilabInt32:
+                case InternalType::ScilabInt32:
                     Scierror(999, _("Incorrect file or format.\n"));
                     return Function::Error;
-                case types::InternalType::ScilabString:
+                case InternalType::ScilabString:
                 {
                     if (iCols != 1)
                     {
@@ -673,20 +640,16 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                     }
                     else
                     {
-                        String* pS = new types::String(iRows, iCols);
+                        String* pS = new String(iRows, iCols);
 
                         for (int i = 0; i < (iRows); i++)
                         {
-                            char* pCt = (char *)MALLOC(sizeof(char) * 4096);
+                            char pCt[4096];
                             int siz = 0;
                             C2F(readstring)(pstFormat, pCt, &siz, &error, (int)strlen(pstFormat));
-                            char* pC = (char *)MALLOC(sizeof(char) * (siz + 1));
-                            strncat(pC, pCt, siz);
-                            pS->set(i, pC);
-                            FREE(pCt);
-                            FREE(pC);
+                            pCt[siz] = '\0';
+                            pS->set(i, pCt);
                         }
-
 
                         if (error == 0)
                         {
@@ -715,20 +678,35 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
     return Function::OK;
 }
 
-int checkformatread(char* format)
+InternalType::ScilabType checkformatread(const char* format)
 {
-    char type1[] = { 'i', 'f', 'e', 'd', 'g', 'l', 'a', 'I', 'F', 'E', 'D', 'G', 'L', 'A' };
-    char type2[] = { '2', '1', '1', '1', '1', '3', '4', '2', '1', '1', '1', '1', '3', '4' };
-    int ret = 0;
+    const char type1[] =
+    {
+        'i', 'f', 'e',
+        'd', 'g', 'l',
+        'a', 'I', 'F',
+        'E', 'D', 'G',
+        'L', 'A'
+    };
+    const InternalType::ScilabType type2[] =
+    {
+        InternalType::ScilabInt32, InternalType::ScilabDouble, InternalType::ScilabDouble,
+        InternalType::ScilabDouble, InternalType::ScilabDouble, InternalType::ScilabBool,
+        InternalType::ScilabString, InternalType::ScilabInt32, InternalType::ScilabDouble,
+        InternalType::ScilabDouble, InternalType::ScilabDouble, InternalType::ScilabDouble,
+        InternalType::ScilabBool, InternalType::ScilabString
+    };
+
     int size = (int)strlen(format);
-    int count = 0;
     bool isString = false;
+    InternalType::ScilabType previousType = InternalType::ScilabNull;
+
     if (size < 2 || format[0] != '(' || format[size - 1] != ')')
     {
-        return 0;
+        return InternalType::ScilabNull;
     }
 
-    for (int i = 1; i < size - 1; i++)
+    for (int i = 1; i < size - 1; ++i)
     {
         char c = format[i];
 
@@ -737,16 +715,9 @@ int checkformatread(char* format)
             isString = !isString;
         }
 
+        //while we are in string continue
         if (isString)
         {
-            if (count == 0)
-            {
-                count++;
-            }
-            else
-            {
-                count--;
-            }
             continue;
         }
 
@@ -754,14 +725,15 @@ int checkformatread(char* format)
         {
             if (c == type1[j])
             {
-                if (ret == 0)
+                if (previousType == InternalType::ScilabNull)
                 {
-                    ret = type2[j];
+                    previousType = type2[j];
                 }
 
-                if (type2[j] != ret)
+                //must have same format for all values
+                if (type2[j] != previousType)
                 {
-                    return 0;
+                    return InternalType::ScilabNull;
                 }
 
                 break;
@@ -769,14 +741,5 @@ int checkformatread(char* format)
         }
     }
 
-    return ret;
-}
-
-template<typename T>
-bool is_of_type(const std::string & Str)
-{
-    std::istringstream iss(Str);
-
-    T tmp;
-    return (iss >> tmp) && (iss.eof());
+    return previousType;
 }

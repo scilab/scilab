@@ -82,7 +82,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       
       end
       
-       subroutine readstringfile(ID, form, dat, siz, ierr)
+      subroutine readstringfile(ID, form, dat, siz, ierr)
 
       parameter (lch=4096)
       character dat*(lch)
