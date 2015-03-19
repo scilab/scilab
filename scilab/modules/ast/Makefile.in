@@ -856,6 +856,7 @@ includes/analysis/ForList.hxx \
 includes/analysis/Result.hxx \
 includes/analysis/SymInfo.hxx \
 includes/analysis/TIType.hxx \
+includes/analysis/tools.hxx \
 includes/ast/debugvisitor.hxx \
 includes/ast/deserializervisitor.hxx \
 includes/ast/dummyvisitor.hxx \
