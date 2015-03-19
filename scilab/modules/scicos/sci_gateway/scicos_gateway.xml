@@ -24,7 +24,6 @@
     <gateway type="0" name="sci_tree3" function="sci_tree3"/>
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
     <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
-    <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
@@ -38,6 +37,7 @@
     <gateway type="1" name="sci_duplicate" function="duplicate"/>
     <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="1" name="sci_getblocklabel" function="getblocklabel"/>
+    <gateway type="1" name="sci_getscicosvars" function="getscicosvars"/>
     <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
     <gateway type="1" name="sci_phase_simulation" function="phase_simulation"/>
     <gateway type="1" name="sci_pointer_xproperty" function="pointer_xproperty"/>

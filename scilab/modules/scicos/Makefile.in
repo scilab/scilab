@@ -224,11 +224,10 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/scilab5_needed_stubs.c src/c/tree.c \
 	src/c/scicos_malloc.c src/c/scicos_print.c src/c/import.c \
 	src/c/scicos.c src/c/scicos_free.c src/c/sciblk2.c \
-	src/c/ezxml.c src/c/var2sci.c src/c/copyvarfromlistentry.c \
-	src/c/MlistGetFieldNumber.c src/c/lsodar.c src/c/ddaskr.c \
-	src/fortran/skipvars.f src/fortran/coselm.f \
-	src/fortran/sctree.f src/fortran/scierr.f src/fortran/ftree2.f \
-	src/fortran/ftree3.f src/fortran/ftree4.f \
+	src/c/ezxml.c src/c/var2sci.c src/c/MlistGetFieldNumber.c \
+	src/c/lsodar.c src/c/ddaskr.c src/fortran/skipvars.f \
+	src/fortran/coselm.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/fortran/ftree2.f src/fortran/ftree3.f src/fortran/ftree4.f \
 	src/fortran/scifunc.f
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
@@ -265,7 +264,6 @@ am__objects_3 = src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo \
 	src/c/libsciscicos_algo_la-sciblk2.lo \
 	src/c/libsciscicos_algo_la-ezxml.lo \
 	src/c/libsciscicos_algo_la-var2sci.lo \
-	src/c/libsciscicos_algo_la-copyvarfromlistentry.lo \
 	src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo \
 	src/c/libsciscicos_algo_la-lsodar.lo \
 	src/c/libsciscicos_algo_la-ddaskr.lo
@@ -300,6 +298,7 @@ am__libsciscicos_cli_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_duplicate.cpp \
 	sci_gateway/cpp/sci_end_scicosim.cpp \
 	sci_gateway/cpp/sci_getblocklabel.cpp \
+	sci_gateway/cpp/sci_getscicosvars.cpp \
 	sci_gateway/cpp/sci_haltscicos.cpp \
 	sci_gateway/cpp/sci_phase_simulation.cpp \
 	sci_gateway/cpp/sci_pointer_xproperty.cpp \
@@ -317,7 +316,6 @@ am__libsciscicos_cli_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_model2blk.cpp sci_gateway/c/gw_scicos.c \
 	sci_gateway/c/sci_diffobjs.c sci_gateway/c/sci_ftree2.c \
 	sci_gateway/c/sci_ftree3.c sci_gateway/c/sci_ftree4.c \
-	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_loadScicos.c sci_gateway/c/sci_sctree.c \
 	sci_gateway/fortran/sci_f_tree2.f \
 	sci_gateway/fortran/sci_f_tree3.f \
@@ -336,6 +334,7 @@ am__objects_5 =  \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_duplicate.lo \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_end_scicosim.lo \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_getblocklabel.lo \
+	sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_haltscicos.lo \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_phase_simulation.lo \
 	sci_gateway/cpp/libsciscicos_cli_la-sci_pointer_xproperty.lo \
@@ -356,7 +355,6 @@ am__objects_6 = sci_gateway/c/libsciscicos_cli_la-gw_scicos.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_ftree2.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_ftree3.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_ftree4.lo \
-	sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_loadScicos.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_sctree.lo
 am__objects_7 = sci_gateway/fortran/sci_f_tree2.lo \
@@ -385,6 +383,7 @@ am__libsciscicos_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_duplicate.cpp \
 	sci_gateway/cpp/sci_end_scicosim.cpp \
 	sci_gateway/cpp/sci_getblocklabel.cpp \
+	sci_gateway/cpp/sci_getscicosvars.cpp \
 	sci_gateway/cpp/sci_haltscicos.cpp \
 	sci_gateway/cpp/sci_phase_simulation.cpp \
 	sci_gateway/cpp/sci_pointer_xproperty.cpp \
@@ -402,7 +401,6 @@ am__libsciscicos_la_SOURCES_DIST =  \
 	sci_gateway/cpp/sci_model2blk.cpp sci_gateway/c/gw_scicos.c \
 	sci_gateway/c/sci_diffobjs.c sci_gateway/c/sci_ftree2.c \
 	sci_gateway/c/sci_ftree3.c sci_gateway/c/sci_ftree4.c \
-	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_loadScicos.c sci_gateway/c/sci_sctree.c \
 	sci_gateway/fortran/sci_f_tree2.f \
 	sci_gateway/fortran/sci_f_tree3.f \
@@ -420,6 +418,7 @@ am__objects_8 = sci_gateway/cpp/libsciscicos_la-sci_scicos_debug.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_duplicate.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_end_scicosim.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_getblocklabel.lo \
+	sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_haltscicos.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_phase_simulation.lo \
 	sci_gateway/cpp/libsciscicos_la-sci_pointer_xproperty.lo \
@@ -440,7 +439,6 @@ am__objects_9 = sci_gateway/c/libsciscicos_la-gw_scicos.lo \
 	sci_gateway/c/libsciscicos_la-sci_ftree2.lo \
 	sci_gateway/c/libsciscicos_la-sci_ftree3.lo \
 	sci_gateway/c/libsciscicos_la-sci_ftree4.lo \
-	sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo \
 	sci_gateway/c/libsciscicos_la-sci_loadScicos.lo \
 	sci_gateway/c/libsciscicos_la-sci_sctree.lo
 @XCOS_TRUE@am_libsciscicos_la_OBJECTS = $(am__objects_8) \
@@ -966,7 +964,6 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/ezxml.c \
 src/c/var2sci.c \
-src/c/copyvarfromlistentry.c \
 src/c/MlistGetFieldNumber.c \
 src/c/lsodar.c \
 src/c/ddaskr.c
@@ -996,6 +993,7 @@ sci_gateway/cpp/sci_data2sig.cpp \
 sci_gateway/cpp/sci_duplicate.cpp \
 sci_gateway/cpp/sci_end_scicosim.cpp \
 sci_gateway/cpp/sci_getblocklabel.cpp \
+sci_gateway/cpp/sci_getscicosvars.cpp \
 sci_gateway/cpp/sci_haltscicos.cpp \
 sci_gateway/cpp/sci_phase_simulation.cpp \
 sci_gateway/cpp/sci_pointer_xproperty.cpp \
@@ -1018,7 +1016,6 @@ sci_gateway/c/sci_diffobjs.c \
 sci_gateway/c/sci_ftree2.c \
 sci_gateway/c/sci_ftree3.c \
 sci_gateway/c/sci_ftree4.c \
-sci_gateway/c/sci_getscicosvars.c \
 sci_gateway/c/sci_loadScicos.c \
 sci_gateway/c/sci_sctree.c
 
@@ -1539,8 +1536,6 @@ src/c/libsciscicos_algo_la-ezxml.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-copyvarfromlistentry.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-lsodar.lo: src/c/$(am__dirstamp) \
@@ -1617,6 +1612,9 @@ sci_gateway/cpp/libsciscicos_cli_la-sci_end_scicosim.lo:  \
 sci_gateway/cpp/libsciscicos_cli_la-sci_getblocklabel.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libsciscicos_cli_la-sci_haltscicos.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1683,9 +1681,6 @@ sci_gateway/c/libsciscicos_cli_la-sci_ftree3.lo:  \
 sci_gateway/c/libsciscicos_cli_la-sci_ftree4.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libsciscicos_cli_la-sci_loadScicos.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1749,6 +1744,9 @@ sci_gateway/cpp/libsciscicos_la-sci_end_scicosim.lo:  \
 sci_gateway/cpp/libsciscicos_la-sci_getblocklabel.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libsciscicos_la-sci_haltscicos.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1807,9 +1805,6 @@ sci_gateway/c/libsciscicos_la-sci_ftree3.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libsciscicos_la-sci_ftree4.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libsciscicos_la-sci_loadScicos.lo:  \
@@ -2022,7 +2017,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_ftree2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_ftree3.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_ftree4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_loadScicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_sctree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-gw_scicos.Plo@am__quote@
@@ -2030,7 +2024,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_ftree2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_ftree3.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_ftree4.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_loadScicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_sctree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_buildouttb.Plo@am__quote@
@@ -2044,6 +2037,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_duplicate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_end_scicosim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_getblocklabel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_haltscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_model2blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_phase_simulation.Plo@am__quote@
@@ -2072,6 +2066,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_duplicate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_end_scicosim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_getblocklabel.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_haltscicos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_model2blk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_phase_simulation.Plo@am__quote@
@@ -2090,7 +2085,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_var2vec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-import.Plo@am__quote@
@@ -2248,13 +2242,6 @@ src/c/libsciscicos_algo_la-var2sci.lo: src/c/var2sci.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-var2sci.lo `test -f 'src/c/var2sci.c' || echo '$(srcdir)/'`src/c/var2sci.c
 
-src/c/libsciscicos_algo_la-copyvarfromlistentry.lo: src/c/copyvarfromlistentry.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-copyvarfromlistentry.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Tpo -c -o src/c/libsciscicos_algo_la-copyvarfromlistentry.lo `test -f 'src/c/copyvarfromlistentry.c' || echo '$(srcdir)/'`src/c/copyvarfromlistentry.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/copyvarfromlistentry.c' object='src/c/libsciscicos_algo_la-copyvarfromlistentry.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-copyvarfromlistentry.lo `test -f 'src/c/copyvarfromlistentry.c' || echo '$(srcdir)/'`src/c/copyvarfromlistentry.c
-
 src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo: src/c/MlistGetFieldNumber.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Tpo -c -o src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo `test -f 'src/c/MlistGetFieldNumber.c' || echo '$(srcdir)/'`src/c/MlistGetFieldNumber.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo
@@ -2311,13 +2298,6 @@ sci_gateway/c/libsciscicos_cli_la-sci_ftree4.lo: sci_gateway/c/sci_ftree4.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciscicos_cli_la-sci_ftree4.lo `test -f 'sci_gateway/c/sci_ftree4.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ftree4.c
 
-sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo: sci_gateway/c/sci_getscicosvars.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Tpo -c -o sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo `test -f 'sci_gateway/c/sci_getscicosvars.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getscicosvars.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Tpo sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getscicosvars.c' object='sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciscicos_cli_la-sci_getscicosvars.lo `test -f 'sci_gateway/c/sci_getscicosvars.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getscicosvars.c
-
 sci_gateway/c/libsciscicos_cli_la-sci_loadScicos.lo: sci_gateway/c/sci_loadScicos.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciscicos_cli_la-sci_loadScicos.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_loadScicos.Tpo -c -o sci_gateway/c/libsciscicos_cli_la-sci_loadScicos.lo `test -f 'sci_gateway/c/sci_loadScicos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadScicos.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_loadScicos.Tpo sci_gateway/c/$(DEPDIR)/libsciscicos_cli_la-sci_loadScicos.Plo
@@ -2366,13 +2346,6 @@ sci_gateway/c/libsciscicos_la-sci_ftree4.lo: sci_gateway/c/sci_ftree4.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_ftree4.c' object='sci_gateway/c/libsciscicos_la-sci_ftree4.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciscicos_la-sci_ftree4.lo `test -f 'sci_gateway/c/sci_ftree4.c' || echo '$(srcdir)/'`sci_gateway/c/sci_ftree4.c
-
-sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo: sci_gateway/c/sci_getscicosvars.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Tpo -c -o sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo `test -f 'sci_gateway/c/sci_getscicosvars.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getscicosvars.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Tpo sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getscicosvars.c' object='sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciscicos_la-sci_getscicosvars.lo `test -f 'sci_gateway/c/sci_getscicosvars.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getscicosvars.c
 
 sci_gateway/c/libsciscicos_la-sci_loadScicos.lo: sci_gateway/c/sci_loadScicos.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciscicos_la-sci_loadScicos.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciscicos_la-sci_loadScicos.Tpo -c -o sci_gateway/c/libsciscicos_la-sci_loadScicos.lo `test -f 'sci_gateway/c/sci_loadScicos.c' || echo '$(srcdir)/'`sci_gateway/c/sci_loadScicos.c
@@ -2797,6 +2770,13 @@ sci_gateway/cpp/libsciscicos_cli_la-sci_getblocklabel.lo: sci_gateway/cpp/sci_ge
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciscicos_cli_la-sci_getblocklabel.lo `test -f 'sci_gateway/cpp/sci_getblocklabel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getblocklabel.cpp
 
+sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo: sci_gateway/cpp/sci_getscicosvars.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Tpo -c -o sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo `test -f 'sci_gateway/cpp/sci_getscicosvars.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getscicosvars.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Tpo sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_getscicosvars.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getscicosvars.cpp' object='sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciscicos_cli_la-sci_getscicosvars.lo `test -f 'sci_gateway/cpp/sci_getscicosvars.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getscicosvars.cpp
+
 sci_gateway/cpp/libsciscicos_cli_la-sci_haltscicos.lo: sci_gateway/cpp/sci_haltscicos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciscicos_cli_la-sci_haltscicos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_haltscicos.Tpo -c -o sci_gateway/cpp/libsciscicos_cli_la-sci_haltscicos.lo `test -f 'sci_gateway/cpp/sci_haltscicos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_haltscicos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_haltscicos.Tpo sci_gateway/cpp/$(DEPDIR)/libsciscicos_cli_la-sci_haltscicos.Plo
@@ -2992,6 +2972,13 @@ sci_gateway/cpp/libsciscicos_la-sci_getblocklabel.lo: sci_gateway/cpp/sci_getblo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getblocklabel.cpp' object='sci_gateway/cpp/libsciscicos_la-sci_getblocklabel.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciscicos_la-sci_getblocklabel.lo `test -f 'sci_gateway/cpp/sci_getblocklabel.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getblocklabel.cpp
+
+sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo: sci_gateway/cpp/sci_getscicosvars.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Tpo -c -o sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo `test -f 'sci_gateway/cpp/sci_getscicosvars.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getscicosvars.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Tpo sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_getscicosvars.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_getscicosvars.cpp' object='sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libsciscicos_la-sci_getscicosvars.lo `test -f 'sci_gateway/cpp/sci_getscicosvars.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_getscicosvars.cpp
 
 sci_gateway/cpp/libsciscicos_la-sci_haltscicos.lo: sci_gateway/cpp/sci_haltscicos.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libsciscicos_la-sci_haltscicos.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_haltscicos.Tpo -c -o sci_gateway/cpp/libsciscicos_la-sci_haltscicos.lo `test -f 'sci_gateway/cpp/sci_haltscicos.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_haltscicos.cpp

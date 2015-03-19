@@ -1,2 +1,15 @@
-ierr=execstr("[myvar]=getscicosvars(''blocks'')","errcatch");
-if ierr <> 999 then bugmes();quit;end
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+refMsg = msprintf(_("%s: Undefined field in string matrix position : %d\n"), "getscicosvars", 2);
+assert_checkerror("getscicosvars([""x"" ""fake""])", refMsg);
+assert_checkerror: Assertion failed: expected error message = "getscicosvars: Undefined field in string matrix position : 2" while computed error message = "getscicosvars: Undefined field in string matrix position: 2.".
+at line   120 of function assert_checkerror called by :
+assert_checkerror("getscicosvars([""x"" ""fake""])", refMsg)
+at line    25 of exec file called by :

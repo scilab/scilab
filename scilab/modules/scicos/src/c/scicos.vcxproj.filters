@@ -41,9 +41,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="copyvarfromlistentry.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,9 +74,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getscicosvars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_loadScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -109,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="scilab5_needed_stubs.c">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\copyvarfromtlist.cpp">
+      <Filter>Source Files\MVC</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\var2vec.cpp">
       <Filter>Source Files\MVC</Filter>
@@ -221,6 +218,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getblocklabel.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_getscicosvars.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_haltscicos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -271,9 +271,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="copyvarfromlistentry.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_scicos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -332,6 +329,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\LoggerView.hxx">
+      <Filter>Header Files\MVC</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cpp\copyvarfromtlist.hxx">
       <Filter>Header Files\MVC</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\var2vec.hxx">
