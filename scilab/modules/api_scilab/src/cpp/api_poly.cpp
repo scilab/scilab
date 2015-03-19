@@ -54,15 +54,15 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    if (_pstVarName == NULL)
-    {
-        return sciErr;
-    }
-
     if (*_piVarNameLen == 0)
     {
         *_piVarNameLen = (int)((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
         //No error
+    }
+
+    if (_pstVarName == NULL)
+    {
+        return sciErr;
     }
 
     char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
@@ -221,6 +221,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
             pD->setImg(_pdblImg[i]);
         }
         pP->setCoef(i, pD);
+        delete pD;
     }
 
     return sciErr;

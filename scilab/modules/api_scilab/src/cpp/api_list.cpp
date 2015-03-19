@@ -1282,6 +1282,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
             pD->setImg(_pdblImg[i]);
         }
         pP->setCoef(i, pD);
+        delete pD;
     }
 
     pParent->set(_iItemPos - 1, pP);
