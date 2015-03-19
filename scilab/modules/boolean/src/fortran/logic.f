@@ -710,7 +710,7 @@ c
 c     la matrice a ete modifie sur place 
          k=istk(iadr(lstk(top0))+2)
          top=top-1
-         call setref(k)
+c         call setref(k)
       endif
       goto 999
 
@@ -1000,7 +1000,7 @@ c
 c     la matrice a ete modifie sur place 
          k=istk(iadr(lstk(top0))+2)
          top=top-1
-         call setref(k)
+c         call setref(k)
       endif
       goto 999
 

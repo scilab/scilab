@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -24,16 +24,7 @@
     <ClCompile Include="allowptr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basnms.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clunit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cmplxt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cvdm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="cvname.c">
@@ -48,34 +39,10 @@
     <ClCompile Include="folhp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getch.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="intstr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="isbrk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isinstring.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mkindx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ptrback.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="putid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setgetmode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setippty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="whatln.c">
@@ -121,16 +88,7 @@
     <f2c_rule Include="allowptr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="basnms.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="clunit.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cmplxt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cvdm.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="cvname.f">
@@ -145,34 +103,10 @@
     <f2c_rule Include="folhp.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="getch.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="intstr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="isbrk.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isinstring.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mkindx.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="prompt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ptrback.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="putid.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="setgetmode.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="setippty.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="whatln.f">

@@ -7,8 +7,6 @@ EXPORTS
 ;
 clunit_
 allowptr_
-btof_
-ftob_
 funs_
 isbyref_
 ref2val_

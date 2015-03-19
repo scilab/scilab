@@ -24,7 +24,6 @@ getpoly_
 getmat_
 getwimat_
 getilist_
-namstr_
 getsmat_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 

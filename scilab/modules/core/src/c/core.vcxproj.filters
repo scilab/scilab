@@ -80,9 +80,6 @@
     <ClCompile Include="getstaticDebugInfo_Windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getversion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -132,9 +129,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnanan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scimem.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="str2sci.c">
@@ -484,9 +478,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="getstaticDebugInfo_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="getval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="gw_dynamic_generic.h">

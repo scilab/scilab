@@ -6,7 +6,6 @@ EXPORTS
 ;core_f
 ;
 
-setref_
 isany_
 indxgc_
 indxg_

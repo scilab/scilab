@@ -178,13 +178,11 @@ libscicore_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-cs2st.lo \
-	src/c/libscicore_algo_la-getval.lo \
 	src/c/libscicore_algo_la-md5.lo \
 	src/c/libscicore_algo_la-texmacs.lo \
 	src/c/libscicore_algo_la-str2sci.lo \
 	src/c/libscicore_algo_la-getmodules.lo \
 	src/c/libscicore_algo_la-getmemory.lo \
-	src/c/libscicore_algo_la-scimem.lo \
 	src/c/libscicore_algo_la-isanan.lo \
 	src/c/libscicore_algo_la-xscion.lo \
 	src/c/libscicore_algo_la-returnanan.lo \
@@ -225,8 +223,7 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-getmaxMALLOC.lo \
 	src/c/libscicore_algo_la-sci_mem_alloc.lo \
 	src/c/hashtable/libscicore_algo_la-hashtable.lo \
-	src/c/hashtable/libscicore_algo_la-hashtable_utility.lo \
-	src/c/libscicore_algo_la-scimem64.lo
+	src/c/hashtable/libscicore_algo_la-hashtable_utility.lo
 am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
 	src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-backtrace_print.lo \
@@ -239,30 +236,17 @@ am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
 	src/cpp/libscicore_algo_la-getmacrosname.lo \
 	src/cpp/libscicore_algo_la-getfunctionsname.lo \
 	src/cpp/libscicore_algo_la-InitScilab.lo
-am__objects_3 = src/fortran/clunit.lo src/fortran/getlin.lo \
-	src/fortran/allowptr.lo src/fortran/isany.lo \
-	src/fortran/setgetmode.lo src/fortran/showstack.lo \
-	src/fortran/setippty.lo src/fortran/cmplxt.lo \
+am__objects_3 = src/fortran/clunit.lo src/fortran/allowptr.lo \
+	src/fortran/isany.lo src/fortran/showstack.lo \
 	src/fortran/folhp.lo src/fortran/cvname.lo \
-	src/fortran/prompt.lo src/fortran/intstr.lo \
-	src/fortran/createref.lo src/fortran/btof.lo \
-	src/fortran/btofm.lo src/fortran/find.lo \
-	src/fortran/ref2val.lo src/fortran/isbrk.lo \
-	src/fortran/xerbla.lo src/fortran/dtosci.lo \
-	src/fortran/bexec.lo src/fortran/savlod.lo \
-	src/fortran/error.lo src/fortran/cvdm.lo src/fortran/mkindx.lo \
-	src/fortran/whatln.lo src/fortran/errmgr.lo \
-	src/fortran/mklist.lo src/fortran/indxg.lo \
-	src/fortran/istrue.lo src/fortran/extlarg.lo \
-	src/fortran/lst2vars.lo src/fortran/basnms.lo \
-	src/fortran/ptrback.lo src/fortran/getch.lo \
-	src/fortran/ftob.lo src/fortran/expsum.lo \
-	src/fortran/copyvar.lo src/fortran/putid.lo \
-	src/fortran/itosci.lo src/fortran/stackr2d.lo \
-	src/fortran/stacki2d.lo src/fortran/stackc2i.lo \
-	src/fortran/isinstring.lo src/fortran/readinter.lo \
-	src/fortran/rewindinter.lo src/fortran/backspaceinter.lo \
-	src/fortran/relocstack.lo src/fortran/write_inter.lo \
+	src/fortran/intstr.lo src/fortran/find.lo \
+	src/fortran/ref2val.lo src/fortran/xerbla.lo \
+	src/fortran/dtosci.lo src/fortran/savlod.lo \
+	src/fortran/whatln.lo src/fortran/mklist.lo \
+	src/fortran/indxg.lo src/fortran/expsum.lo \
+	src/fortran/putid.lo src/fortran/itosci.lo \
+	src/fortran/readinter.lo src/fortran/rewindinter.lo \
+	src/fortran/backspaceinter.lo src/fortran/write_inter.lo \
 	src/fortran/read_inter.lo
 am_libscicore_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
@@ -710,13 +694,11 @@ yacc_present = @yacc_present@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/cs2st.c \
-    src/c/getval.c \
     src/c/md5.c \
     src/c/texmacs.c \
     src/c/str2sci.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
-    src/c/scimem.c \
     src/c/isanan.c \
     src/c/xscion.c \
     src/c/returnanan.c \
@@ -757,8 +739,7 @@ CORE_C_SOURCES = \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
-    src/c/hashtable/hashtable_utility.c \
-    src/c/scimem64.c
+    src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
     src/cpp/namstr.cpp \
@@ -776,53 +757,26 @@ CORE_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/getlin.f \
     src/fortran/allowptr.f \
     src/fortran/isany.f \
-    src/fortran/setgetmode.f \
     src/fortran/showstack.f \
-    src/fortran/setippty.f \
-    src/fortran/cmplxt.f \
     src/fortran/folhp.f \
     src/fortran/cvname.f \
-    src/fortran/prompt.f \
     src/fortran/intstr.f \
-    src/fortran/createref.f \
-    src/fortran/btof.f \
-    src/fortran/btofm.f \
     src/fortran/find.f \
     src/fortran/ref2val.f \
-    src/fortran/isbrk.f \
     src/fortran/xerbla.f \
     src/fortran/dtosci.f \
-    src/fortran/bexec.f \
     src/fortran/savlod.f \
-    src/fortran/error.f \
-    src/fortran/cvdm.f \
-    src/fortran/mkindx.f \
     src/fortran/whatln.f \
-    src/fortran/errmgr.f \
     src/fortran/mklist.f \
     src/fortran/indxg.f \
-    src/fortran/istrue.f \
-    src/fortran/extlarg.f \
-    src/fortran/lst2vars.f \
-    src/fortran/basnms.f \
-    src/fortran/ptrback.f \
-    src/fortran/getch.f \
-    src/fortran/ftob.f \
     src/fortran/expsum.f \
-    src/fortran/copyvar.f \
     src/fortran/putid.f \
     src/fortran/itosci.f \
-    src/fortran/stackr2d.f \
-    src/fortran/stacki2d.f \
-    src/fortran/stackc2i.f \
-    src/fortran/isinstring.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
-    src/fortran/relocstack.f \
 	src/fortran/write_inter.f \
 	src/fortran/read_inter.f
 
@@ -1143,8 +1097,6 @@ src/c/libscicore_algo_la-csignal.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-cs2st.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-getval.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-md5.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-texmacs.lo: src/c/$(am__dirstamp) \
@@ -1154,8 +1106,6 @@ src/c/libscicore_algo_la-str2sci.lo: src/c/$(am__dirstamp) \
 src/c/libscicore_algo_la-getmodules.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getmemory.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-scimem.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-isanan.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1247,8 +1197,6 @@ src/c/hashtable/libscicore_algo_la-hashtable.lo:  \
 src/c/hashtable/libscicore_algo_la-hashtable_utility.lo:  \
 	src/c/hashtable/$(am__dirstamp) \
 	src/c/hashtable/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-scimem64.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -1287,99 +1235,45 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/clunit.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/getlin.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/allowptr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/isany.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/setgetmode.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/showstack.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/setippty.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/cmplxt.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/folhp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cvname.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/prompt.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/intstr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/createref.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/btof.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/btofm.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/find.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ref2val.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isbrk.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/xerbla.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dtosci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/bexec.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/savlod.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/error.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/cvdm.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mkindx.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/whatln.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/errmgr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/mklist.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/indxg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/istrue.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/extlarg.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/lst2vars.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/basnms.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ptrback.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/getch.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ftob.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/expsum.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/copyvar.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/putid.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/itosci.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/stackr2d.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/stacki2d.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/stackc2i.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isinstring.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/readinter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rewindinter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/backspaceinter.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/relocstack.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/write_inter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1615,7 +1509,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getmodules.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getstaticdebuginfo.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getversion.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-ifexpr.Plo@am__quote@
@@ -1629,8 +1522,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-saveCWDInPreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-sci_tools.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-scimem.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-scimem64.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setPrecisionFPU.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setformat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setlines.Plo@am__quote@
@@ -1694,13 +1585,6 @@ src/c/libscicore_algo_la-cs2st.lo: src/c/cs2st.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-cs2st.lo `test -f 'src/c/cs2st.c' || echo '$(srcdir)/'`src/c/cs2st.c
 
-src/c/libscicore_algo_la-getval.lo: src/c/getval.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-getval.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-getval.Tpo -c -o src/c/libscicore_algo_la-getval.lo `test -f 'src/c/getval.c' || echo '$(srcdir)/'`src/c/getval.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-getval.Tpo src/c/$(DEPDIR)/libscicore_algo_la-getval.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getval.c' object='src/c/libscicore_algo_la-getval.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getval.lo `test -f 'src/c/getval.c' || echo '$(srcdir)/'`src/c/getval.c
-
 src/c/libscicore_algo_la-md5.lo: src/c/md5.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-md5.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-md5.Tpo -c -o src/c/libscicore_algo_la-md5.lo `test -f 'src/c/md5.c' || echo '$(srcdir)/'`src/c/md5.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-md5.Tpo src/c/$(DEPDIR)/libscicore_algo_la-md5.Plo
@@ -1735,13 +1619,6 @@ src/c/libscicore_algo_la-getmemory.lo: src/c/getmemory.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getmemory.c' object='src/c/libscicore_algo_la-getmemory.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getmemory.lo `test -f 'src/c/getmemory.c' || echo '$(srcdir)/'`src/c/getmemory.c
-
-src/c/libscicore_algo_la-scimem.lo: src/c/scimem.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-scimem.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-scimem.Tpo -c -o src/c/libscicore_algo_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-scimem.Tpo src/c/$(DEPDIR)/libscicore_algo_la-scimem.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scimem.c' object='src/c/libscicore_algo_la-scimem.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-scimem.lo `test -f 'src/c/scimem.c' || echo '$(srcdir)/'`src/c/scimem.c
 
 src/c/libscicore_algo_la-isanan.lo: src/c/isanan.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-isanan.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-isanan.Tpo -c -o src/c/libscicore_algo_la-isanan.lo `test -f 'src/c/isanan.c' || echo '$(srcdir)/'`src/c/isanan.c
@@ -2029,13 +1906,6 @@ src/c/hashtable/libscicore_algo_la-hashtable_utility.lo: src/c/hashtable/hashtab
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/hashtable/hashtable_utility.c' object='src/c/hashtable/libscicore_algo_la-hashtable_utility.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/hashtable/libscicore_algo_la-hashtable_utility.lo `test -f 'src/c/hashtable/hashtable_utility.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_utility.c
-
-src/c/libscicore_algo_la-scimem64.lo: src/c/scimem64.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-scimem64.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-scimem64.Tpo -c -o src/c/libscicore_algo_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-scimem64.Tpo src/c/$(DEPDIR)/libscicore_algo_la-scimem64.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scimem64.c' object='src/c/libscicore_algo_la-scimem64.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-scimem64.lo `test -f 'src/c/scimem64.c' || echo '$(srcdir)/'`src/c/scimem64.c
 
 sci_gateway/c/libscicore_la-gw_core.lo: sci_gateway/c/gw_core.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-gw_core.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-gw_core.Tpo -c -o sci_gateway/c/libscicore_la-gw_core.lo `test -f 'sci_gateway/c/gw_core.c' || echo '$(srcdir)/'`sci_gateway/c/gw_core.c

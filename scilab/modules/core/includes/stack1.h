@@ -41,12 +41,6 @@ extern int C2F(entier)(int *n, double *d__, int *s);
 extern int C2F(simple)(int *n, double *d__, float *s);
 extern int C2F(iset)(int *n, int *dx, int *dy, int *incy);
 
-/* stack0.c */
-
-extern int C2F(stacki2d)(int *n, int *il1, int *dl1);
-extern int C2F(stackr2d)(int *n, int *sl1, int *dl1);
-extern int C2F(stackc2i)(int *n, int *sl1, int *il1);
-
 /* stack1.c */
 
 int C2F(getwsmat)(char *fname, int *topk, int *lw, int *m, int *n, int *ilr, int *ilrd, unsigned long fname_len);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -323,28 +323,17 @@ cd ..
     <ClCompile Include="..\c\withf2c.c" />
     <ClCompile Include="allowptr.c" />
     <ClCompile Include="backspaceinter.c" />
-    <ClCompile Include="basnms.c" />
     <ClCompile Include="clunit.c" />
-    <ClCompile Include="cmplxt.c" />
-    <ClCompile Include="cvdm.c" />
     <ClCompile Include="cvname.c" />
     <ClCompile Include="expsum.c" />
     <ClCompile Include="find.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="getch.c" />
     <ClCompile Include="indxg.c" />
     <ClCompile Include="intstr.c" />
-    <ClCompile Include="isbrk.c" />
-    <ClCompile Include="isinstring.c" />
-    <ClCompile Include="mkindx.c" />
-    <ClCompile Include="prompt.c" />
-    <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
     <ClCompile Include="read_inter.c" />
     <ClCompile Include="rewindinter.c" />
-    <ClCompile Include="setgetmode.c" />
-    <ClCompile Include="setippty.c" />
     <ClCompile Include="showstack.c" />
     <ClCompile Include="whatln.c" />
     <ClCompile Include="write_inter.c" />
@@ -357,28 +346,17 @@ cd ..
   <ItemGroup>
     <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="backspaceinter.f" />
-    <f2c_rule Include="basnms.f" />
     <f2c_rule Include="clunit.f" />
-    <f2c_rule Include="cmplxt.f" />
-    <f2c_rule Include="cvdm.f" />
     <f2c_rule Include="cvname.f" />
     <f2c_rule Include="expsum.f" />
     <f2c_rule Include="find.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="getch.f" />
     <f2c_rule Include="indxg.f" />
     <f2c_rule Include="intstr.f" />
-    <f2c_rule Include="isbrk.f" />
-    <f2c_rule Include="isinstring.f" />
-    <f2c_rule Include="mkindx.f" />
-    <f2c_rule Include="prompt.f" />
-    <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />
     <f2c_rule Include="read_inter.f" />
     <f2c_rule Include="rewindinter.f" />
-    <f2c_rule Include="setgetmode.f" />
-    <f2c_rule Include="setippty.f" />
     <f2c_rule Include="showstack.f" />
     <f2c_rule Include="whatln.f" />
     <f2c_rule Include="write_inter.f" />
