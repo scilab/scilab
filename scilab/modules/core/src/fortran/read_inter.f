@@ -1,11 +1,11 @@
 c Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 c Copyright (C) INRIA
 c Copyright (C) ENPC
-c 
+c
 c This file must be used under the terms of the CeCILL.
 c This source file is licensed as described in the file COPYING, which
 c you should have received as part of this distribution.  The terms
-c are also available at    
+c are also available at
 c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
       subroutine readdoublefile(ID, dat, m, n, ierr)
@@ -13,18 +13,18 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       double precision dat(*)
       integer m,n
       integer ierr
-      
+
       do 70 i=1,m
           read(ID,*,end=10,err=20) (dat(j*m+i),j=0, n-1)
-      
- 70   continue 
+
+ 70   continue
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end
 
       subroutine readdoublefileform(ID, form, dat,  m, n, ierr)
@@ -33,18 +33,18 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer m,n
       character form*(*)
       integer ierr
-      
+
       do 71 i=1,m
           read(ID,form,end=10,err=20) (dat(j*m+i),j=0, n-1)
-      
- 71   continue    
+
+ 71   continue
       return
-      
+
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end
 
       subroutine readdoublelinefile(ID, dat, n, ierr)
@@ -54,16 +54,16 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer ierr
 
       read(ID,*,end=10,err=20) (dat(j), j=1, n)
-      
+
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end
-      
+
       subroutine readdoublelinefileform(ID, form, dat, n, ierr)
 
       double precision dat(*)
@@ -72,14 +72,14 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer ierr
 
       read(ID,form,end=10,err=20) (dat(j), j=1, n)
-      
+
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end
       
       subroutine readstringfile(ID, form, dat, siz, ierr)
@@ -88,7 +88,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       character dat*(lch)
       character form*(*)
       integer siz,ierr
-                     
+
       read(ID,form,end=10,err=20) dat
       mn = lch
 127   mn=mn-1
@@ -97,11 +97,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return  
-            
-         
+      return
+
+
       end
 
       subroutine readstring(form, dat, siz, ierr)
@@ -109,18 +109,12 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       parameter (lch=4096)
       character string*(lch)
       character dat*(lch)
-      
+
       character form*(*)
       integer siz,ierr
-             
+
       string=' '
-      call eventloopprompt(string,len(string),lline,status,0,iflag)
-      if(status.ne.0) goto 10
-      if (lline.eq.0) then
-        string(1:1)=' '
-        lline=1
-      endif
-      
+      call scilabread(string,len(string));
       read(string,form,end=10,err=20) dat
       mn = lch
 128   mn=mn-1
@@ -129,33 +123,33 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return  
-               
-      end  
-      
-      
+      return
+
+      end
+
+
       subroutine readintfileform(ID, form, dat,  m, n, ierr)
 
       integer dat(*)
       integer m,n
       character form*(*)
       integer ierr
-      
+
       do 72 i=1,m
           read(ID,form,end=10,err=20) (dat(j*m+i),j=0, n-1)
-      
+
  72   continue
       return
-      
+
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end
-      
+
       subroutine readintlinefileform(ID, form, dat, n, ierr)
 
       integer dat(*)
@@ -164,12 +158,12 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       integer ierr
 
       read(ID,form,end=10,err=20) (dat(j), j=1, n)
-      
+
       return
 
 10      ierr = 1
-      return        
+      return
 20      ierr = 2
-      return 
-      
+      return
+
       end

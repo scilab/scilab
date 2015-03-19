@@ -353,6 +353,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
             {
                 case InternalType::ScilabDouble:
                 {
+                    iRows = 1;
                     Double* pD = new Double(iRows, iCols, false);
 
                     char pstString[4] = "(a)";
@@ -377,7 +378,6 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                         {
                             if (is_of_type<double>(pch))
                             {
-
                                 pdData[iColsTempo] = atof(pch);
                                 iColsTempo++;
                             }
@@ -409,6 +409,9 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                                 pD->set((iRows - 1), i, pdData[i]);
                             }
                         }
+
+                        //next line
+                        ++iRows;
                     }
 
                     if (error == 0)
