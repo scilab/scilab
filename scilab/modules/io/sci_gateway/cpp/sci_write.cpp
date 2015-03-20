@@ -209,6 +209,18 @@ Function::ReturnValue sci_write(typed_list &in, int _iRetCount, typed_list &out)
             default:
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+
+                //close file
+                if (in[0]->isString())
+                {
+                    int piMode[2] = { 0, 0 };
+                    String* pSPath = in[0]->getAs<String>();
+                    char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
+                    int  close = -iID;
+                    int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
+                    FREE(pstFilename);
+                }
+
                 return Function::Error;
                 break;
             }
