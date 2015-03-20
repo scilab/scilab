@@ -103,7 +103,13 @@ BOOL HistoryFile::writeToFile(std::string _stFilename)
             return FALSE;
         }
 
+#ifdef _MSC_VER
+        wchar_t* filename = to_wide_string(_stFilename.c_str());
+        fOut.open(filename, std::ios::trunc);
+        FREE(filename);
+#else
         fOut.open(_stFilename.c_str(), std::ios::trunc);
+#endif
         if (fOut.is_open() == false)
         {
             return FALSE;
