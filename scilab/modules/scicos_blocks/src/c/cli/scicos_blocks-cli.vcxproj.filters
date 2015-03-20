@@ -38,6 +38,9 @@
     <ClCompile Include="..\..\cpp\affich2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cpp\fromws.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="..\andlog.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -363,9 +366,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\foriterator.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\fromws_c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\gain.c">

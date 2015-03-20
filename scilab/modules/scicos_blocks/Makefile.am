@@ -128,7 +128,6 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/exttriu.c \
     src/c/exttriuz.c \
     src/c/foriterator.c \
-    src/c/fromws_c.c \
     src/c/gainblk.c \
     src/c/gainblk_i16e.c \
     src/c/gainblk_i16n.c \
@@ -329,7 +328,8 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/zcross2.c
 
 SCICOS_BLOCKS_CXX_SOURCES = \
-    src/cpp/affich2.cpp
+    src/cpp/affich2.cpp \
+    src/cpp/fromws_c.cpp
 
 NON_BLOCK_C_SOURCES = \
     src/c/scicos_evalhermite.c \
@@ -438,6 +438,7 @@ libsciscicos_blocks_algo_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/graphic_objects/includes/ \
+    -I$(top_srcdir)/modules/hdf5/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/renderer/includes/ \

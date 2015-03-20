@@ -228,6 +228,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="acos_blk.c" />
     <ClCompile Include="acosh_blk.c" />
     <ClCompile Include="..\cpp\affich2.cpp" />
+    <ClCompile Include="..\cpp\fromws.cpp" />
     <ClCompile Include="..\cpp\scoUtils.cpp" />
     <ClCompile Include="..\jni\AfficheBlock.cpp" />
     <ClCompile Include="andlog.c" />
@@ -339,7 +340,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="exttriu.c" />
     <ClCompile Include="exttriuz.c" />
     <ClCompile Include="foriterator.c" />
-    <ClCompile Include="fromws_c.c" />
     <ClCompile Include="gain.c" />
     <ClCompile Include="gainblk.c" />
     <ClCompile Include="gainblk_i16e.c" />
