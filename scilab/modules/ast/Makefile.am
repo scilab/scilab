@@ -169,11 +169,25 @@ libsciast_la_etc_DATA = \
 
 #### ast : include files ####
 # find includes/ src/ -type f -name '*.h' -or -name '*.hxx' -or -name '*.hpp' | sort |xargs printf '%s \\\n'
+libsciast_gvn_scilab_la_includedir=$(pkgincludedir)/gvn/
+libsciast_gvn_scilab_la_include_HEADERS = \
+includes/analysis/gvn/ConstraintManager.hxx \
+includes/analysis/gvn/GVN.hxx \
+includes/analysis/gvn/InferenceConstraint.hxx \
+includes/analysis/gvn/MultivariateMonomial.hxx \
+includes/analysis/gvn/MultivariatePolynomial.hxx \
+includes/analysis/gvn/OpValue.hxx \
+includes/analysis/gvn/SymbolicDimension.hxx \
+includes/analysis/gvn/SymbolicRange.hxx \
+includes/analysis/gvn/TestGVNVisitor.hxx \
+includes/analysis/gvn/VarExp.hxx
+
 libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
 includes/analysis/checkers/Checkers.hxx \
 includes/analysis/Call.hxx \
+includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
 includes/analysis/Result.hxx \
