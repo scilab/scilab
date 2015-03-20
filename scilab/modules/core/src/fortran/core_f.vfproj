@@ -67,26 +67,19 @@
 		<File RelativePath=".\string_Import.def"/></Filter>
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe"/>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath="allowptr.f"/>
 		<File RelativePath=".\backspaceinter.f"/>
 		<File RelativePath="clunit.f"/>
 		<File RelativePath="cvname.f"/>
 		<File RelativePath="dtosci.f"/>
 		<File RelativePath="expsum.f"/>
-		<File RelativePath="find.f"/>
 		<File RelativePath="folhp.f"/>
-		<File RelativePath="indxg.f"/>
 		<File RelativePath="intstr.f"/>
-		<File RelativePath="isany.f"/>
 		<File RelativePath="itosci.f"/>
-		<File RelativePath="mklist.f"/>
 		<File RelativePath="putid.f"/>
 		<File RelativePath=".\read_inter.f"/>
 		<File RelativePath=".\readinter.f"/>
-		<File RelativePath="ref2val.f"/>
 		<File RelativePath=".\rewindinter.f"/>
-		<File RelativePath="savlod.f"/>
-		<File RelativePath="showstack.f"/>
+		<File RelativePath=".\showstack.f"/>
 		<File RelativePath="whatln.f"/>
 		<File RelativePath=".\withf2c.f"/>
 		<File RelativePath=".\write_inter.f"/>

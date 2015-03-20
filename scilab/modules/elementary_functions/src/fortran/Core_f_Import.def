@@ -7,6 +7,5 @@ EXPORTS
 ;
 allops_
 funnam_
-ref2val_
 setfunnam_
 putfunnam_

@@ -17,7 +17,6 @@
 #include "machine.h"
 #include "dynlib_data_structures.h"
 /*--------------------------------------------------------------------------*/
-/* it can be called by fortran mklist.f */
 DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void);
 DATA_STRUCTURES_IMPEXP int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/

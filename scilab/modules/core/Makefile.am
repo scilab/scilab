@@ -74,20 +74,13 @@ CORE_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/allowptr.f \
-    src/fortran/isany.f \
     src/fortran/showstack.f \
     src/fortran/folhp.f \
     src/fortran/cvname.f \
     src/fortran/intstr.f \
-    src/fortran/find.f \
-    src/fortran/ref2val.f \
     src/fortran/xerbla.f \
     src/fortran/dtosci.f \
-    src/fortran/savlod.f \
     src/fortran/whatln.f \
-    src/fortran/mklist.f \
-    src/fortran/indxg.f \
     src/fortran/expsum.f \
     src/fortran/putid.f \
     src/fortran/itosci.f \

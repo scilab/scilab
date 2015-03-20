@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -146,9 +146,6 @@
     <ClCompile Include="xscion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scirun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="DllmainCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -258,9 +255,6 @@
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\callinterf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\commandwords.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -367,9 +361,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scimem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scirun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scisparse.h">

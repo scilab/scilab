@@ -16,7 +16,6 @@
 /**
 * PLEASE DO NOT USE RECURSION CALL TO A FUNCTION.
 * ONLY FOR COMPATIBILITY
-* see also callinter.h.f (fortran part)
 */
 
 #include "machine.h"

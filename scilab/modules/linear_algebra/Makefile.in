@@ -164,7 +164,8 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscilinear_algebra_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/fortran/DGELSY1.lo src/fortran/ZGELSY1.lo
+am__objects_1 = src/fortran/DGELSY1.lo src/fortran/ZGELSY1.lo \
+	src/fortran/find.lo
 am__objects_2 = src/c/libscilinear_algebra_algo_la-schurtable.lo \
 	src/c/libscilinear_algebra_algo_la-issymmetric.lo \
 	src/c/libscilinear_algebra_algo_la-lu.lo \
@@ -621,7 +622,8 @@ LINEAR_ALGEBRA_C_SOURCES = \
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f
+    src/fortran/ZGELSY1.f \
+    src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_linear_algebra2.c \
@@ -857,6 +859,8 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 src/fortran/DGELSY1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ZGELSY1.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/find.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/c/$(am__dirstamp):
 	@$(MKDIR_P) src/c

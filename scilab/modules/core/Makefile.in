@@ -236,18 +236,14 @@ am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
 	src/cpp/libscicore_algo_la-getmacrosname.lo \
 	src/cpp/libscicore_algo_la-getfunctionsname.lo \
 	src/cpp/libscicore_algo_la-InitScilab.lo
-am__objects_3 = src/fortran/clunit.lo src/fortran/allowptr.lo \
-	src/fortran/isany.lo src/fortran/showstack.lo \
+am__objects_3 = src/fortran/clunit.lo src/fortran/showstack.lo \
 	src/fortran/folhp.lo src/fortran/cvname.lo \
-	src/fortran/intstr.lo src/fortran/find.lo \
-	src/fortran/ref2val.lo src/fortran/xerbla.lo \
-	src/fortran/dtosci.lo src/fortran/savlod.lo \
-	src/fortran/whatln.lo src/fortran/mklist.lo \
-	src/fortran/indxg.lo src/fortran/expsum.lo \
-	src/fortran/putid.lo src/fortran/itosci.lo \
-	src/fortran/readinter.lo src/fortran/rewindinter.lo \
-	src/fortran/backspaceinter.lo src/fortran/write_inter.lo \
-	src/fortran/read_inter.lo
+	src/fortran/intstr.lo src/fortran/xerbla.lo \
+	src/fortran/dtosci.lo src/fortran/whatln.lo \
+	src/fortran/expsum.lo src/fortran/putid.lo \
+	src/fortran/itosci.lo src/fortran/readinter.lo \
+	src/fortran/rewindinter.lo src/fortran/backspaceinter.lo \
+	src/fortran/write_inter.lo src/fortran/read_inter.lo
 am_libscicore_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
@@ -757,20 +753,13 @@ CORE_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/allowptr.f \
-    src/fortran/isany.f \
     src/fortran/showstack.f \
     src/fortran/folhp.f \
     src/fortran/cvname.f \
     src/fortran/intstr.f \
-    src/fortran/find.f \
-    src/fortran/ref2val.f \
     src/fortran/xerbla.f \
     src/fortran/dtosci.f \
-    src/fortran/savlod.f \
     src/fortran/whatln.f \
-    src/fortran/mklist.f \
-    src/fortran/indxg.f \
     src/fortran/expsum.f \
     src/fortran/putid.f \
     src/fortran/itosci.f \
@@ -1235,10 +1224,6 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/clunit.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/allowptr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/isany.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/showstack.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/folhp.lo: src/fortran/$(am__dirstamp) \
@@ -1247,21 +1232,11 @@ src/fortran/cvname.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/intstr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/find.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/ref2val.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/xerbla.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dtosci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/savlod.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/whatln.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/mklist.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/indxg.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/expsum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

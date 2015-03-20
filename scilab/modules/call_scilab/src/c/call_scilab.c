@@ -24,7 +24,7 @@
 #include "sci_path.h"
 #include "scilabDefaults.h"
 #include "sci_tmpdir.h"
-#include "scirun.h"
+//#include "scirun.h"
 #include "storeCommand.h"
 #include "FigureList.h"
 #include "api_scilab.h"

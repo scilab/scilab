@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -298,7 +298,6 @@ cd ..
     <ClCompile Include="recursionFunction.c" />
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="saveCWDInPreferences.c" />
-    <ClCompile Include="scirun.c" />
     <ClCompile Include="sci_tools.c" />
     <ClCompile Include="setformat.c" />
     <ClCompile Include="setieee.c" />
@@ -332,7 +331,6 @@ cd ..
     <ClInclude Include="..\..\includes\banner.hxx" />
     <ClInclude Include="..\..\includes\BOOL.h" />
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h" />
-    <ClInclude Include="..\..\includes\callinterf.h" />
     <ClInclude Include="..\..\includes\commandwords.h" />
     <ClInclude Include="..\..\includes\core_gw.hxx" />
     <ClInclude Include="..\..\includes\core_math.h" />
@@ -377,7 +375,6 @@ cd ..
     <ClInclude Include="..\..\includes\runner.hxx" />
     <ClInclude Include="..\..\includes\scilabDefaults.h" />
     <ClInclude Include="..\..\includes\scimem.h" />
-    <ClInclude Include="..\..\includes\scirun.h" />
     <ClInclude Include="..\..\includes\scisparse.h" />
     <ClInclude Include="..\..\includes\sci_tools.h" />
     <ClInclude Include="..\..\includes\sci_types.h" />

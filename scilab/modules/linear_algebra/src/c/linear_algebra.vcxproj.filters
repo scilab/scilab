@@ -123,6 +123,9 @@
     <None Include="slicot_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="linear_algebra_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="linear_algebra.rc">

@@ -45,7 +45,6 @@ C
 
       integer ptr
       integer mlhs,mrhs
-      logical allowptr
 C
       common /scsptr/ ptr
 C
@@ -96,7 +95,7 @@ C
       icall = 5
       krec = -1
 C      FIXME implement for YaSp
-C      include "callinter.h.f"
+C      include "callinter.h.f" (REMOVED)
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       flag= ids(3,pt)

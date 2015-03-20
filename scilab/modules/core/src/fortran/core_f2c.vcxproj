@@ -317,14 +317,11 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\c\withf2c.c" />
-    <ClCompile Include="allowptr.c" />
     <ClCompile Include="backspaceinter.c" />
     <ClCompile Include="clunit.c" />
     <ClCompile Include="cvname.c" />
     <ClCompile Include="expsum.c" />
-    <ClCompile Include="find.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="indxg.c" />
     <ClCompile Include="intstr.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
@@ -336,18 +333,14 @@ cd ..
     <ClCompile Include="xerbla.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h.f" />
     <ClInclude Include="..\..\includes\stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="backspaceinter.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="cvname.f" />
     <f2c_rule Include="expsum.f" />
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="indxg.f" />
     <f2c_rule Include="intstr.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />

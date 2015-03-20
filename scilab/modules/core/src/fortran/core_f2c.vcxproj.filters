@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="allowptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clunit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -31,9 +28,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="expsum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="find.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="folhp.c">
@@ -57,9 +51,6 @@
     <ClCompile Include="showstack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="indxg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="backspaceinter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -77,17 +68,11 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h.f">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="allowptr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="clunit.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -95,9 +80,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="expsum.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="find.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="folhp.f">
@@ -116,9 +98,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="showstack.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="indxg.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="backspaceinter.f">

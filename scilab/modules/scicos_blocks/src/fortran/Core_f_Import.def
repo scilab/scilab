@@ -5,10 +5,8 @@ EXPORTS
 ;
 ;core_f
 ;
-allowptr_
 clunit_
 dtosci_
 funs_
 isbyref_
 itosci_
-ref2val_

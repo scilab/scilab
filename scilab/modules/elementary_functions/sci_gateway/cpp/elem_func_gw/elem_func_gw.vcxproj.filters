@@ -190,9 +190,6 @@
     <None Include="elementary_functions_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
-    <None Include="core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\..\..\..\..\bin\blasplus.lib" />

@@ -24,7 +24,8 @@ LINEAR_ALGEBRA_C_SOURCES = \
 
 LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/DGELSY1.f \
-    src/fortran/ZGELSY1.f
+    src/fortran/ZGELSY1.f \
+    src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_linear_algebra2.c \

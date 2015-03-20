@@ -30,7 +30,6 @@ c     Copyright INRIA
       include "stack.h"
       integer ptr
       integer mlhs,mrhs
-      logical allowptr
 C
 Cc (DLL Intel Fortran)     
 cDEC$ IF DEFINED (FORDLL)
@@ -58,7 +57,7 @@ C
       icall = 5
       krec = -1
 C      FIXME implement for YaSp
-C      include "callinter.h.f"
+C      include "callinter.h.f" (REMOVED)
  200  lhs = ids(1,pt)
       rhs = ids(2,pt)
       pt = pt - 1

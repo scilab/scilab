@@ -5,11 +5,9 @@ EXPORTS
 ;
 ;core_f
 ;
-indxg_
 putid_
 eptover_
 ptover_
 createref1_
-mklist_
 stackp_
 defmat_

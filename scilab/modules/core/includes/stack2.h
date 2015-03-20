@@ -25,12 +25,9 @@ extern  int C2F(tpconv)(int *, int *, int *, void *, int *, void *, int *);
 
 /* from system */
 
-extern int C2F(mklist)(int *);
 extern int C2F(mklistt)(int *, int *);
 extern int C2F(funs)(int *);
 extern int C2F(putid)(int *, int *);
-extern int C2F(allowptr)(int *);
-extern int C2F(ref2val)(void);
 extern int C2F(allops)(void);
 extern int C2F(putfunnam)(char *fname, int *lw, unsigned long);
 

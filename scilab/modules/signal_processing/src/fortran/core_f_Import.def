@@ -4,8 +4,6 @@
 EXPORTS
 ;core_f
 ;
-allowptr_
 funnam_
 funs_
-ref2val_
 isbyref_

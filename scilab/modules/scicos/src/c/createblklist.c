@@ -32,6 +32,7 @@ extern void C2F(dtosci)();
 extern int C2F(scierr)();
 extern void C2F(vvtosci)();
 extern int C2F(mktlist)();
+extern int C2F(mklist)();
 /*--------------------------------------------------------------------------*/
 int createblklist(scicos_block *Blocks, int *ierr, int flag_imp, int funtyp)
 {
