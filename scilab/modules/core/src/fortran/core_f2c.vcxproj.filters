@@ -140,9 +140,6 @@
   <ItemGroup>
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="boolean_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="console_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>

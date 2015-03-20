@@ -11,9 +11,6 @@ BOOLEAN_C_SOURCES = \
     src/c/vect_or.c \
     src/c/vect_and.c
 
-BOOLEAN_FORTRAN_SOURCES = \
-    src/fortran/logic.f
-
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_bool2s.cpp \
     sci_gateway/cpp/sci_find.cpp \
@@ -52,7 +49,7 @@ endif
 
 
 
-libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_FORTRAN_SOURCES) $(BOOLEAN_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
+libsciboolean_algo_la_SOURCES = $(BOOLEAN_C_SOURCES) $(BOOLEAN_CPP_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciboolean_la_SOURCES = $(GATEWAY_C_SOURCES)
 libsciboolean_algo_la_CPPFLAGS = $(libsciboolean_la_CPPFLAGS)
 
