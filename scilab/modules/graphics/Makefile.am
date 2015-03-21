@@ -460,9 +460,14 @@ sci_gateway/c/sci_color.c \
 sci_gateway/c/sci_name2rgb.c \
 sci_gateway/c/sci_addcolor.c
 
+GRAPHICS_CXX_SOURCES = src/cpp/ContourOnMesh.cpp
+
+GATEWAY_CXX_SOURCES = sci_gateway/cpp/sci_contour2dm.cpp
+
 libscigraphics_la_CPPFLAGS = \
 	-I$(srcdir)/includes/ \
 	-I$(srcdir)/src/c/ \
+	-I$(srcdir)/src/cpp/ \
 	-I$(srcdir)/src/c/getHandleProperty/ \
 	-I$(top_srcdir)/modules/action_binding/includes/ \
 	-I$(top_srcdir)/modules/api_scilab/includes/ \
@@ -479,7 +484,7 @@ libscigraphics_la_CPPFLAGS = \
 	$(AM_CPPFLAGS)
 
 libscigraphics_algo_la_SOURCES = $(GRAPHICS_C_SOURCES) $(GRAPHICS_CXX_SOURCES)
-libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscigraphics_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscigraphics_algo_la_CPPFLAGS = $(libscigraphics_la_CPPFLAGS)
 
 # For the code check (splint)
