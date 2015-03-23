@@ -90,6 +90,8 @@ Scilab Bug Fixes
 
 * Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
 
+* Bug #13685 fixed - LaTeX was not detected when specified in ticks_format.
+
 * Bug #13689 fixed - There were errors in reading enum from hdf5 files.
 
 * Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.

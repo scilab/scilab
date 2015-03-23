@@ -194,6 +194,16 @@ public class AxesRulerSpriteFactory implements RulerSpriteFactory {
      * @return a simple texture representing the given value with the adapted format.
      */
     private Texture createSimpleSprite(String text, TextureManager textureManager) {
+        if (FormattedTextSpriteDrawer.isLatex(text) || FormattedTextSpriteDrawer.isMathML(text)) {
+            FormattedTextSpriteDrawer textObjectSpriteDrawer = new FormattedTextSpriteDrawer(colorMap, text, axisProperty.getTicks().getDefaultFont());
+            Texture texture = textureManager.createTexture();
+            texture.setMagnificationFilter(Texture.Filter.LINEAR);
+            texture.setMinifyingFilter(Texture.Filter.LINEAR);
+            texture.setDrawer(textObjectSpriteDrawer);
+
+            return texture;
+        }
+
         Font font = FontManager.getSciFontManager().getFontFromIndex(axisProperty.getFontStyle(), axisProperty.getFontSize());
         final TextEntity textEntity = new TextEntity(text);
         textEntity.setTextAntiAliased(true);

@@ -43,6 +43,10 @@ public class UserDefinedFormat extends DecimalFormat {
         this.fallback = fallback;
     }
 
+    public String getFormat() {
+        return format;
+    }
+
     /**
      * {@inheritDoc}
      */
