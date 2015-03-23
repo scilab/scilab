@@ -57,12 +57,9 @@
 		<Filter Name="Resource Files" Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe">
 		<File RelativePath=".\data_structures_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
-		<File RelativePath=".\extractfields.f"/>
 		<File RelativePath=".\forcerhs.f"/>
 		<File RelativePath=".\gratyp.f"/>
-		<File RelativePath=".\insertfield.f"/>
 		<File RelativePath=".\lsstyp.f"/>
-		<File RelativePath=".\mlist.f"/>
 		<File RelativePath=".\rattyp.f"/>
 		<File RelativePath=".\udptr.f"/></Filter>
 		<File RelativePath="..\..\sci_gateway\data_structures_gateway.xml"/>

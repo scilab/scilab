@@ -299,11 +299,10 @@ am__objects_5 = src/fortran/wasum.lo src/fortran/dexpm1.lo \
 	src/fortran/dipow.lo src/fortran/wshrsl.lo \
 	src/fortran/wwrdiv.lo src/fortran/coshin.lo \
 	src/fortran/iwamax.lo src/fortran/dipowe.lo \
-	src/fortran/getorient.lo src/fortran/cusum.lo \
-	src/fortran/d1mach.lo src/fortran/wbdiag.lo \
-	src/fortran/ddpow1.lo src/fortran/vpythag.lo \
-	src/fortran/isova0.lo src/fortran/wswap.lo \
-	src/fortran/wwpow1.lo src/fortran/getdimfromvar.lo \
+	src/fortran/cusum.lo src/fortran/d1mach.lo \
+	src/fortran/wbdiag.lo src/fortran/ddpow1.lo \
+	src/fortran/vpythag.lo src/fortran/isova0.lo \
+	src/fortran/wswap.lo src/fortran/wwpow1.lo \
 	src/fortran/gdcp2i.lo src/fortran/drdiv.lo \
 	src/fortran/wmsum.lo src/fortran/corth.lo src/fortran/mtran.lo \
 	src/fortran/wwpow.lo src/fortran/dvmul.lo \
@@ -346,7 +345,6 @@ libscielementary_functions_la_DEPENDENCIES =  \
 	libscielementary_functions-algo.la
 am__objects_7 =  \
 	sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo \
-	sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_testmatrix.lo \
 	sci_gateway/c/libscielementary_functions_la-sci_nearfloat.lo \
@@ -1012,7 +1010,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
     src/fortran/dipowe.f \
-    src/fortran/getorient.f \
     src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
@@ -1021,7 +1018,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/isova0.f \
     src/fortran/wswap.f \
     src/fortran/wwpow1.f \
-    src/fortran/getdimfromvar.f \
     src/fortran/gdcp2i.f \
     src/fortran/drdiv.f \
     src/fortran/wmsum.f \
@@ -1072,7 +1068,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_sqrt.c \
-    sci_gateway/c/gw_elementary_functions.c \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \
@@ -1796,8 +1791,6 @@ src/fortran/iwamax.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/dipowe.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/getorient.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/cusum.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/d1mach.lo: src/fortran/$(am__dirstamp) \
@@ -1813,8 +1806,6 @@ src/fortran/isova0.lo: src/fortran/$(am__dirstamp) \
 src/fortran/wswap.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/wwpow1.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/getdimfromvar.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/gdcp2i.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1946,9 +1937,6 @@ sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo:  \
@@ -2133,7 +2121,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-gw_elementary_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_base2dec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_dec2base.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_isequalbitwise.Plo@am__quote@
@@ -2586,13 +2573,6 @@ sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo: sci_gateway/c/sci_sqrt.
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_sqrt.c' object='sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-sci_sqrt.lo `test -f 'sci_gateway/c/sci_sqrt.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrt.c
-
-sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo: sci_gateway/c/gw_elementary_functions.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-gw_elementary_functions.Tpo -c -o sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo `test -f 'sci_gateway/c/gw_elementary_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementary_functions.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-gw_elementary_functions.Tpo sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-gw_elementary_functions.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_elementary_functions.c' object='sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscielementary_functions_la-gw_elementary_functions.lo `test -f 'sci_gateway/c/gw_elementary_functions.c' || echo '$(srcdir)/'`sci_gateway/c/gw_elementary_functions.c
 
 sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo: sci_gateway/c/sci_number_properties.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscielementary_functions_la-sci_number_properties.Tpo -c -o sci_gateway/c/libscielementary_functions_la-sci_number_properties.lo `test -f 'sci_gateway/c/sci_number_properties.c' || echo '$(srcdir)/'`sci_gateway/c/sci_number_properties.c

@@ -44,7 +44,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wspdsp.f \
 	src/fortran/wmdsp.f \
 	src/fortran/strdsp.f \
-	src/fortran/prntid.f \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \

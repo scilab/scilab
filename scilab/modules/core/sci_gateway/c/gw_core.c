@@ -14,8 +14,6 @@
 #include "sci_malloc.h"
 #include "api_scilab.h"
 #include "machine.h"
-#include "callFunctionFromGateway.h"
-#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 int gw_core(void)
 {

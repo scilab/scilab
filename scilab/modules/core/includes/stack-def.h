@@ -80,44 +80,6 @@ IMPORT STACK_struct C2F(stack);
  */
 typedef struct
 {
-    int bot; /**< @TODO : add comment */
-    int top; /**< @TODO : add comment */
-    int idstk[nsiz*isizt]; /**< @TODO : add comment */
-    int lstk[isizt]; /**< @TODO : add comment */
-    int leps; /**< @TODO : add comment */
-    int bbot; /**< @TODO : add comment */
-    int bot0; /**< @TODO : add comment */
-    int infstk[isizt]; /**< @TODO : add comment */
-    int gbot; /**< @TODO : add comment */
-    int gtop; /**< @TODO : add comment */
-    int isiz; /**< @TODO : add comment */
-} VSTK_struct;
-
-IMPORT VSTK_struct C2F(vstk);
-
-/**
- * @TODO : add comment
- */
-typedef struct
-{
-    int ids[nsiz*psiz]; /**< @TODO : add comment */
-    int pstk[psiz]; /**< @TODO : add comment */
-    int rstk[psiz];  /**< @TODO : add comment */
-    int pt;  /**< @TODO : add comment */
-    int niv;  /**< @TODO : add comment */
-    int macr;  /**< @TODO : add comment */
-    int paus;  /**< @TODO : add comment */
-    int icall;  /**< @TODO : add comment */
-    int krec; /**< @TODO : add comment */
-} RECU_struct;
-
-IMPORT RECU_struct C2F(recu);
-
-/**
- * @TODO : add comment
- */
-typedef struct
-{
     int ddt; /**< @TODO : add comment */
     int err; /**< @TODO : add comment */
     int lct[8]; /**< @TODO : add comment */
@@ -202,23 +164,10 @@ IMPORT INTERSCI_struct C2F(intersci);
  */
 typedef struct
 {
-    /* see SCI/modules/string/src/c/setScilabCharactersCodes.h */
-    char alfa[csiz]; /* Scilab Characters Codes 0 to 62 */
-    char alfb[csiz]; /* Scilab Characters Codes 63 to 124 */
-    char buf[bsiz]; /* buffer to exchange strings (fortran)*/
-} CHA1_struct;
-
-IMPORT CHA1_struct C2F(cha1);
-
-/**
- * @TODO : add comment
- */
-typedef struct
-{
     int wmac; /**< @TODO : add comment */
     int lcntr; /**< @TODO : add comment */
     int nmacs; /**< @TODO : add comment */
-    int macnms[nsiz*maxdb]; /**< @TODO : add comment */
+    int macnms[nsiz * maxdb]; /**< @TODO : add comment */
     int lgptrs[maxdb + 1]; /**< @TODO : add comment */
     int bptlg[maxbpt]; /**< @TODO : add comment */
 } DBG_struct;

@@ -48,20 +48,6 @@ extern "C"
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
-/* Defined in SCI/modules/core/src/fortran/cvname.f */
-extern "C"
-{
-    extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
-    extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
-    /* *jobptr==0: Get Scilab codes from C-string */
-    /* *jobptr==1: Get C-string from Scilab codes */
-
-    extern int C2F(stackp) (int *, int *);
-};
-/*--------------------------------------------------------------------------*/
-#define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
-#define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
-
 static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
 
 /*--------------------------------------------------------------------------*/
@@ -420,7 +406,7 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     typed_list in = *pStr->m_pIn;
     optional_list opt = *pStr->m_pOpt;
     int* piRetCount = pStr->m_piRetCount;
-    int iInputSize = in.size() + opt.size();
+    int iInputSize = static_cast<int>(in.size()) + static_cast<int>(opt.size());
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
     if (_iVar > *piRetCount + iInputSize)

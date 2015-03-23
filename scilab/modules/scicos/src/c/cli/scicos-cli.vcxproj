@@ -278,7 +278,6 @@ lib /DEF:"$(ProjectDir)../differential_equations_f_Import.def" /SUBSYSTEM:WINDOW
     <ClCompile Include="..\..\cpp\var2vec.cpp" />
     <ClCompile Include="..\..\cpp\vec2var.cpp" />
     <ClCompile Include="..\copyvarfromlistentry.c" />
-    <ClCompile Include="..\createblklist.c" />
     <ClCompile Include="..\ddaskr.c" />
     <ClCompile Include="..\DllmainScicos.c" />
     <ClCompile Include="..\extractblklist.c" />

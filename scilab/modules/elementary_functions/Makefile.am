@@ -224,7 +224,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/coshin.f \
     src/fortran/iwamax.f \
     src/fortran/dipowe.f \
-    src/fortran/getorient.f \
     src/fortran/cusum.f \
     src/fortran/d1mach.f \
     src/fortran/wbdiag.f \
@@ -233,7 +232,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/isova0.f \
     src/fortran/wswap.f \
     src/fortran/wwpow1.f \
-    src/fortran/getdimfromvar.f \
     src/fortran/gdcp2i.f \
     src/fortran/drdiv.f \
     src/fortran/wmsum.f \
@@ -284,7 +282,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_sqrt.c \
-    sci_gateway/c/gw_elementary_functions.c \
     sci_gateway/c/sci_number_properties.c \
     sci_gateway/c/sci_testmatrix.c \
     sci_gateway/c/sci_nearfloat.c \

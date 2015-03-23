@@ -26,10 +26,8 @@
 #include "machine.h" /* C2F */
 #include "gw_scicos.h"
 /*--------------------------------------------------------------------------*/
-extern int C2F(intgetlabel)(char *fname, void* pvApiCtx); /* fortran subroutine */
-/*--------------------------------------------------------------------------*/
 int sci_getblocklabel(char *fname, void* pvApiCtx)
 {
-    return C2F(intgetlabel)(fname, pvApiCtx);
+    return 0;// C2F(intgetlabel)(fname, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

@@ -66,37 +66,6 @@ int convertAsciiCodeToScilabCode(unsigned char scilab_char)
 /*--------------------------------------------------------------------------*/
 unsigned char convertScilabCodeToAsciiCode(int scilab_code)
 {
-#define eol 99
-#define EXCLAMATION_CHAR '!'
-
-    if (scilab_code == eol)
-    {
-        return (unsigned char)EXCLAMATION_CHAR;
-    }
-    else
-    {
-        if (Abs(scilab_code) > csiz)
-        {
-            if (scilab_code > eol)
-            {
-                return (unsigned char)(scilab_code - (eol + 1));
-            }
-            else
-            {
-                return EXCLAMATION_CHAR;
-            }
-        }
-        else
-        {
-            if (scilab_code < 0)
-            {
-                return (unsigned char)C2F(cha1).alfb[Abs(scilab_code)];
-            }
-            else
-            {
-                return(unsigned char) C2F(cha1).alfa[scilab_code];
-            }
-        }
-    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

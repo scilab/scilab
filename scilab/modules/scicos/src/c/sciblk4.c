@@ -31,14 +31,6 @@
 #include "localization.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-/* Define external function */
-extern int C2F(scierr)();
-extern void C2F(scifunc)();
-extern int *listentry(int *header, int i);
-extern void C2F(itosci)();
-/*--------------------------------------------------------------------------*/
-static int sci2var(void *x, void *y, int typ_var);
-/*--------------------------------------------------------------------------*/
 void sciblk4(scicos_block *Blocks, int flag)
 {
     //    /*counter and address variable declaration*/

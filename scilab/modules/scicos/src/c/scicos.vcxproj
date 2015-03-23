@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -292,7 +292,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\cpp\view_scilab\StateAdapter.cpp" />
     <ClCompile Include="..\cpp\view_scilab\TextAdapter.cpp" />
     <ClCompile Include="copyvarfromlistentry.c" />
-    <ClCompile Include="createblklist.c" />
     <ClCompile Include="DllmainScicos.c" />
     <ClCompile Include="extractblklist.c" />
     <ClCompile Include="ezxml.c" />

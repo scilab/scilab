@@ -47,7 +47,6 @@
 	<Files>
 		<Filter Name="Header Files" Filter="fi;fd"/>
 		<Filter Name="Libraries Dependencies">
-		<File RelativePath=".\core_import.def"/>
 		<File RelativePath=".\elementary_functions_f_Import.def"/>
 		<File RelativePath=".\elementary_functions_Import.def"/>
 		<File RelativePath=".\Output_stream_Import.def"/>
@@ -59,20 +58,13 @@
 		<File RelativePath=".\ftree2.f"/>
 		<File RelativePath=".\ftree3.f"/>
 		<File RelativePath=".\ftree4.f"/>
-		<File RelativePath=".\list2vars.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ctree.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_getblocklabel.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree2.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree3.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\sci_f_tree4.f"/>
 		<File RelativePath=".\scierr.f"/>
 		<File RelativePath=".\scifunc.f"/>
-		<File RelativePath=".\scitod.f"/>
-		<File RelativePath=".\scitoi.f"/>
-		<File RelativePath=".\scitovv.f"/>
 		<File RelativePath=".\sctree.f"/>
-		<File RelativePath=".\skipvars.f"/>
-		<File RelativePath=".\vvtosci.f"/></Filter>
+		<File RelativePath=".\skipvars.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\scicos_gateway.xml"/></Files>
 	<Globals/></VisualStudioProject>

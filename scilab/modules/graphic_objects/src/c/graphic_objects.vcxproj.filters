@@ -226,12 +226,6 @@
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\TriangleMeshData.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\NgonGridMatplotDataDecomposer.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -290,9 +284,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\HandleManagement.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\TriangleMeshFecData.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\Matplot.h">

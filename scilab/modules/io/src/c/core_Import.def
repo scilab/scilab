@@ -7,8 +7,6 @@ EXPORTS
 ;
 callFunctionFromGateway
 com_
-getRecursionFunctionToCall
-isRecursionCallToFunction
 putlhsvar_
 intersci_
 freeArrayOfString

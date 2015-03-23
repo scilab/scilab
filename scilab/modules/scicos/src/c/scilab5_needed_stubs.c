@@ -112,12 +112,13 @@ SCICOS_IMPEXP void F2C(mktlist)()
     abort();
 }
 
-#ifndef _MSC_VER
-SCICOS_IMPEXP void F2C(vstk)()
+SCICOS_IMPEXP void F2C(cha1)()
 {
     abort();
 }
-SCICOS_IMPEXP void F2C(cha1)()
+
+#ifndef _MSC_VER
+SCICOS_IMPEXP void F2C(vstk)()
 {
     abort();
 }

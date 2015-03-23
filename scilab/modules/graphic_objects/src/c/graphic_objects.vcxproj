@@ -310,7 +310,6 @@
     <ClInclude Include="..\..\includes\returnType.h" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />
     <ClInclude Include="..\..\includes\setGraphicObjectProperty.h" />
-    <ClInclude Include="..\..\includes\TriangleMeshFecData.hxx" />
     <ClInclude Include="..\..\includes\Texture.hxx" />
     <ClInclude Include="..\..\includes\Triangulator.hxx" />
     <ClInclude Include="..\jni\Builder.hxx" />
@@ -333,8 +332,6 @@
     <ClInclude Include="..\..\includes\NormalGenerator.hxx" />
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx" />
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
     <ClInclude Include="..\jni\CallXmlLoader.hxx" />
   </ItemGroup>
   <ItemGroup>

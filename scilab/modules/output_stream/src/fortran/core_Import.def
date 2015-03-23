@@ -7,11 +7,9 @@ EXPORTS
 ; import required by f2C
 gethmat_
 ;
-recu_
 com_
 vstk_
 iop_
-cha1_
 stack_
 isanan_
 objvide_

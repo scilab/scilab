@@ -9,17 +9,9 @@
 
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_symbolic.c \
-    sci_gateway/c/sci_mulf.c \
-    sci_gateway/c/sci_ldivf.c \
-    sci_gateway/c/sci_addsubf.c \
-    sci_gateway/c/sci_rdivf.c
+    sci_gateway/c/gw_symbolic.c 
 
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/sci_f_addsubf.f \
-    sci_gateway/fortran/sci_f_mulf.f \
-    sci_gateway/fortran/sci_f_ldivf.f \
-    sci_gateway/fortran/sci_f_rdivf.f
+GATEWAY_FORTRAN_SOURCES =
 
 FORTRAN_SOURCES = \
     src/fortran/atome.f \

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -285,7 +285,6 @@ cd ..
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
     <ClCompile Include="hashtable\hashtable.c" />
     <ClCompile Include="hashtable\hashtable_utility.c" />
-    <ClCompile Include="ifexpr.c" />
     <ClCompile Include="InitializeCore.c" />
     <ClCompile Include="InitializePreferences.c" />
     <ClCompile Include="isanan.c" />
@@ -295,7 +294,6 @@ cd ..
     <ClCompile Include="mode_exec.c" />
     <ClCompile Include="..\cpp\namstr.cpp" />
     <ClCompile Include="readGateway.c" />
-    <ClCompile Include="recursionFunction.c" />
     <ClCompile Include="returnanan.c" />
     <ClCompile Include="saveCWDInPreferences.c" />
     <ClCompile Include="sci_tools.c" />
@@ -303,7 +301,6 @@ cd ..
     <ClCompile Include="setieee.c" />
     <ClCompile Include="setlines.c" />
     <ClCompile Include="setPrecisionFPU.c" />
-    <ClCompile Include="str2sci.c" />
     <ClCompile Include="texmacs.c" />
     <ClCompile Include="transposeMatrix.c" />
     <ClCompile Include="version.c" />
@@ -370,7 +367,6 @@ cd ..
     <ClInclude Include="..\..\includes\PARAMS.h" />
     <ClInclude Include="..\..\includes\PATH_MAX.h" />
     <ClInclude Include="..\..\includes\realmain.h" />
-    <ClInclude Include="..\..\includes\recursionFunction.h" />
     <ClInclude Include="..\..\includes\returnanan.h" />
     <ClInclude Include="..\..\includes\runner.hxx" />
     <ClInclude Include="..\..\includes\scilabDefaults.h" />
@@ -418,7 +414,6 @@ cd ..
     <ClInclude Include="getstaticdebuginfo.h" />
     <ClInclude Include="getstaticDebugInfo_Windows.h" />
     <ClInclude Include="gw_dynamic_generic.h" />
-    <ClInclude Include="ifexpr.h" />
     <ClInclude Include="inittypenames.h" />
     <ClInclude Include="LoadFunctionsTab.h" />
     <ClInclude Include="md5.h" />
@@ -428,7 +423,6 @@ cd ..
     <ClInclude Include="readGateway.h" />
     <ClInclude Include="run.h" />
     <ClInclude Include="saveCWDInPreferences.h" />
-    <ClInclude Include="str2sci.h" />
     <ClInclude Include="terme.h" />
   </ItemGroup>
   <ItemGroup>

@@ -29,9 +29,6 @@
     <ClCompile Include="..\copyvarfromlistentry.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\createblklist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\DllmainScicos.c">
       <Filter>Source Files</Filter>
     </ClCompile>

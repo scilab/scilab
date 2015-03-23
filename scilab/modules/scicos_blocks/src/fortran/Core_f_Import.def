@@ -6,7 +6,5 @@ EXPORTS
 ;core_f
 ;
 clunit_
-dtosci_
 funs_
 isbyref_
-itosci_

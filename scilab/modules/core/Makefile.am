@@ -13,7 +13,6 @@ CORE_C_SOURCES = \
     src/c/cs2st.c \
     src/c/md5.c \
     src/c/texmacs.c \
-    src/c/str2sci.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
@@ -25,7 +24,6 @@ CORE_C_SOURCES = \
     src/c/coretable.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
-    src/c/ifexpr.c \
     src/c/getcommandlineargs.c \
     src/c/callFunctionFromGateway.c \
     src/c/commandwords.c \
@@ -39,7 +37,6 @@ CORE_C_SOURCES = \
     src/c/getos.c \
     src/c/mode_exec.c \
     src/c/transposeMatrix.c \
-    src/c/recursionFunction.c \
     src/c/eqid.c \
     src/c/exitCodeValue.c \
     src/c/getversion.c \
@@ -74,16 +71,12 @@ CORE_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/showstack.f \
     src/fortran/folhp.f \
-    src/fortran/cvname.f \
     src/fortran/intstr.f \
     src/fortran/xerbla.f \
-    src/fortran/dtosci.f \
     src/fortran/whatln.f \
     src/fortran/expsum.f \
     src/fortran/putid.f \
-    src/fortran/itosci.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \

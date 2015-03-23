@@ -29,7 +29,6 @@
 #define DATA_END    ((char) 5)
 #endif
 #define DATA_ESCAPE  ((char) 27)
-#define Pause C2F(recu).paus
 /*--------------------------------------------------------------------------*/
 static int first = 1;
 static int texmacs_mode = 0;
@@ -47,14 +46,14 @@ int C2F(intexmacs)(void)
 void next_input (void)
 {
     fprintf(stdout, "%cchannel:prompt%c", DATA_BEGIN, DATA_END);
-    if (Pause == 0)
+    //if (Pause == 0)
     {
         fprintf(stdout, SCIPROMPT);
     }
-    else
-    {
-        fprintf(stdout, SCIPROMPT_INTERRUPT, Pause);
-    }
+    //else
+    //{
+    //    fprintf(stdout, SCIPROMPT_INTERRUPT, Pause);
+    //}
 
     fprintf(stdout, "%c", DATA_END);
     fflush (stdout);

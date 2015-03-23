@@ -47,7 +47,6 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/sciblk4.c \
 src/c/ezxml.c \
-src/c/createblklist.c \
 src/c/var2sci.c \
 src/c/copyvarfromlistentry.c \
 src/c/MlistGetFieldNumber.c \
@@ -55,18 +54,14 @@ src/c/extractblklist.c \
 src/c/lsodar.c \
 src/c/ddaskr.c
 
-SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
-src/fortran/vvtosci.f \
+SCICOS_FORTRAN_SOURCES = \
 src/fortran/skipvars.f \
 src/fortran/coselm.f \
-src/fortran/scitod.f \
 src/fortran/sctree.f \
 src/fortran/scierr.f \
 src/fortran/ftree2.f \
 src/fortran/ftree3.f \
-src/fortran/list2vars.f \
 src/fortran/ftree4.f \
-src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
@@ -94,7 +89,8 @@ sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
 sci_gateway/c/sci_coserror.c \
 sci_gateway/c/sci_data2sig.c \
@@ -110,8 +106,7 @@ sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_sig2data.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
-sci_gateway/fortran/sci_f_getblocklabel.f \
+GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_f_tree2.f \
 sci_gateway/fortran/sci_f_tree3.f \
 sci_gateway/fortran/sci_f_tree4.f

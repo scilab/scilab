@@ -20,7 +20,6 @@
 DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void);
 DATA_STRUCTURES_IMPEXP int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/
-int sci_glist(char *fname, unsigned long fname_len);
 int sci_scilist(char *fname, unsigned long fname_len);
 int sci_scitlist(char *fname, unsigned long fname_len);
 int sci_lstcat(char *fname, unsigned long fname_len);

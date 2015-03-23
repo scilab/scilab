@@ -223,15 +223,13 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/scilab5_needed_stubs.c src/c/tree.c \
 	src/c/scicos_malloc.c src/c/scicos_print.c src/c/import.c \
 	src/c/scicos.c src/c/scicos_free.c src/c/sciblk2.c \
-	src/c/sciblk4.c src/c/ezxml.c src/c/createblklist.c \
-	src/c/var2sci.c src/c/copyvarfromlistentry.c \
-	src/c/MlistGetFieldNumber.c src/c/extractblklist.c \
-	src/c/lsodar.c src/c/ddaskr.c src/fortran/scitovv.f \
-	src/fortran/vvtosci.f src/fortran/skipvars.f \
-	src/fortran/coselm.f src/fortran/scitod.f src/fortran/sctree.f \
-	src/fortran/scierr.f src/fortran/ftree2.f src/fortran/ftree3.f \
-	src/fortran/list2vars.f src/fortran/ftree4.f \
-	src/fortran/scitoi.f src/fortran/scifunc.f
+	src/c/sciblk4.c src/c/ezxml.c src/c/var2sci.c \
+	src/c/copyvarfromlistentry.c src/c/MlistGetFieldNumber.c \
+	src/c/extractblklist.c src/c/lsodar.c src/c/ddaskr.c \
+	src/fortran/skipvars.f src/fortran/coselm.f \
+	src/fortran/sctree.f src/fortran/scierr.f src/fortran/ftree2.f \
+	src/fortran/ftree3.f src/fortran/ftree4.f \
+	src/fortran/scifunc.f
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
 am__objects_2 = src/cpp/libsciscicos_algo_la-il_state.lo \
@@ -264,20 +262,16 @@ am__objects_3 = src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo \
 	src/c/libsciscicos_algo_la-sciblk2.lo \
 	src/c/libsciscicos_algo_la-sciblk4.lo \
 	src/c/libsciscicos_algo_la-ezxml.lo \
-	src/c/libsciscicos_algo_la-createblklist.lo \
 	src/c/libsciscicos_algo_la-var2sci.lo \
 	src/c/libsciscicos_algo_la-copyvarfromlistentry.lo \
 	src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo \
 	src/c/libsciscicos_algo_la-extractblklist.lo \
 	src/c/libsciscicos_algo_la-lsodar.lo \
 	src/c/libsciscicos_algo_la-ddaskr.lo
-am__objects_4 = src/fortran/scitovv.lo src/fortran/vvtosci.lo \
-	src/fortran/skipvars.lo src/fortran/coselm.lo \
-	src/fortran/scitod.lo src/fortran/sctree.lo \
-	src/fortran/scierr.lo src/fortran/ftree2.lo \
-	src/fortran/ftree3.lo src/fortran/list2vars.lo \
-	src/fortran/ftree4.lo src/fortran/scitoi.lo \
-	src/fortran/scifunc.lo
+am__objects_4 = src/fortran/skipvars.lo src/fortran/coselm.lo \
+	src/fortran/sctree.lo src/fortran/scierr.lo \
+	src/fortran/ftree2.lo src/fortran/ftree3.lo \
+	src/fortran/ftree4.lo src/fortran/scifunc.lo
 @XCOS_FALSE@am_libsciscicos_algo_la_OBJECTS = $(am__objects_1)
 @XCOS_TRUE@am_libsciscicos_algo_la_OBJECTS = $(am__objects_2) \
 @XCOS_TRUE@	$(am__objects_3) $(am__objects_4)
@@ -320,9 +314,7 @@ am__libsciscicos_cli_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_loadScicos.c sci_gateway/c/sci_model2blk.c \
 	sci_gateway/c/sci_sctree.c sci_gateway/c/sci_set_xproperty.c \
-	sci_gateway/c/sci_sig2data.c sci_gateway/fortran/sci_f_ctree.f \
-	sci_gateway/fortran/sci_f_getblocklabel.f \
-	sci_gateway/fortran/sci_f_tree2.f \
+	sci_gateway/c/sci_sig2data.c sci_gateway/fortran/sci_f_tree2.f \
 	sci_gateway/fortran/sci_f_tree3.f \
 	sci_gateway/fortran/sci_f_tree4.f
 am__objects_5 =  \
@@ -362,9 +354,7 @@ am__objects_6 = sci_gateway/c/libsciscicos_cli_la-gw_scicos.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_sctree.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_set_xproperty.lo \
 	sci_gateway/c/libsciscicos_cli_la-sci_sig2data.lo
-am__objects_7 = sci_gateway/fortran/sci_f_ctree.lo \
-	sci_gateway/fortran/sci_f_getblocklabel.lo \
-	sci_gateway/fortran/sci_f_tree2.lo \
+am__objects_7 = sci_gateway/fortran/sci_f_tree2.lo \
 	sci_gateway/fortran/sci_f_tree3.lo \
 	sci_gateway/fortran/sci_f_tree4.lo
 @XCOS_TRUE@am_libsciscicos_cli_la_OBJECTS = $(am__objects_5) \
@@ -405,9 +395,7 @@ am__libsciscicos_la_SOURCES_DIST =  \
 	sci_gateway/c/sci_getscicosvars.c \
 	sci_gateway/c/sci_loadScicos.c sci_gateway/c/sci_model2blk.c \
 	sci_gateway/c/sci_sctree.c sci_gateway/c/sci_set_xproperty.c \
-	sci_gateway/c/sci_sig2data.c sci_gateway/fortran/sci_f_ctree.f \
-	sci_gateway/fortran/sci_f_getblocklabel.f \
-	sci_gateway/fortran/sci_f_tree2.f \
+	sci_gateway/c/sci_sig2data.c sci_gateway/fortran/sci_f_tree2.f \
 	sci_gateway/fortran/sci_f_tree3.f \
 	sci_gateway/fortran/sci_f_tree4.f
 am__objects_8 = sci_gateway/cpp/libsciscicos_la-sci_scicos_debug.lo \
@@ -966,7 +954,6 @@ src/c/scicos_free.c \
 src/c/sciblk2.c \
 src/c/sciblk4.c \
 src/c/ezxml.c \
-src/c/createblklist.c \
 src/c/var2sci.c \
 src/c/copyvarfromlistentry.c \
 src/c/MlistGetFieldNumber.c \
@@ -974,18 +961,14 @@ src/c/extractblklist.c \
 src/c/lsodar.c \
 src/c/ddaskr.c
 
-SCICOS_FORTRAN_SOURCES = src/fortran/scitovv.f \
-src/fortran/vvtosci.f \
+SCICOS_FORTRAN_SOURCES = \
 src/fortran/skipvars.f \
 src/fortran/coselm.f \
-src/fortran/scitod.f \
 src/fortran/sctree.f \
 src/fortran/scierr.f \
 src/fortran/ftree2.f \
 src/fortran/ftree3.f \
-src/fortran/list2vars.f \
 src/fortran/ftree4.f \
-src/fortran/scitoi.f \
 src/fortran/scifunc.f
 
 NO_SCICOS_C_SOURCES = src/c/noscicos/noscicos.c
@@ -1012,7 +995,8 @@ sci_gateway/cpp/sci_validvar.cpp \
 sci_gateway/cpp/sci_var2vec.cpp \
 sci_gateway/cpp/sci_vec2var.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_scicos.c \
+GATEWAY_C_SOURCES = \
+sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_callblk.c \
 sci_gateway/c/sci_coserror.c \
 sci_gateway/c/sci_data2sig.c \
@@ -1028,8 +1012,7 @@ sci_gateway/c/sci_sctree.c \
 sci_gateway/c/sci_set_xproperty.c \
 sci_gateway/c/sci_sig2data.c
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_ctree.f \
-sci_gateway/fortran/sci_f_getblocklabel.f \
+GATEWAY_FORTRAN_SOURCES = \
 sci_gateway/fortran/sci_f_tree2.f \
 sci_gateway/fortran/sci_f_tree3.f \
 sci_gateway/fortran/sci_f_tree4.f
@@ -1539,8 +1522,6 @@ src/c/libsciscicos_algo_la-sciblk4.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-ezxml.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-createblklist.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-copyvarfromlistentry.lo:  \
@@ -1559,15 +1540,9 @@ src/fortran/$(am__dirstamp):
 src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/$(DEPDIR)
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/scitovv.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/vvtosci.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/skipvars.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/coselm.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/scitod.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/sctree.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1577,11 +1552,7 @@ src/fortran/ftree2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ftree3.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/list2vars.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ftree4.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/scitoi.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/scifunc.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1714,12 +1685,6 @@ sci_gateway/fortran/$(am__dirstamp):
 sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/fortran/$(DEPDIR)
 	@: > sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/fortran/sci_f_ctree.lo:  \
-	sci_gateway/fortran/$(am__dirstamp) \
-	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/fortran/sci_f_getblocklabel.lo:  \
-	sci_gateway/fortran/$(am__dirstamp) \
-	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/sci_f_tree2.lo:  \
 	sci_gateway/fortran/$(am__dirstamp) \
 	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -2113,7 +2078,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciscicos_la-sci_vec2var.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-MlistGetFieldNumber.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-copyvarfromlistentry.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-createblklist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ddaskr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-extractblklist.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-ezxml.Plo@am__quote@
@@ -2269,13 +2233,6 @@ src/c/libsciscicos_algo_la-ezxml.lo: src/c/ezxml.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ezxml.c' object='src/c/libsciscicos_algo_la-ezxml.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-ezxml.lo `test -f 'src/c/ezxml.c' || echo '$(srcdir)/'`src/c/ezxml.c
-
-src/c/libsciscicos_algo_la-createblklist.lo: src/c/createblklist.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-createblklist.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-createblklist.Tpo -c -o src/c/libsciscicos_algo_la-createblklist.lo `test -f 'src/c/createblklist.c' || echo '$(srcdir)/'`src/c/createblklist.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-createblklist.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-createblklist.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/createblklist.c' object='src/c/libsciscicos_algo_la-createblklist.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-createblklist.lo `test -f 'src/c/createblklist.c' || echo '$(srcdir)/'`src/c/createblklist.c
 
 src/c/libsciscicos_algo_la-var2sci.lo: src/c/var2sci.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-var2sci.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-var2sci.Tpo -c -o src/c/libsciscicos_algo_la-var2sci.lo `test -f 'src/c/var2sci.c' || echo '$(srcdir)/'`src/c/var2sci.c

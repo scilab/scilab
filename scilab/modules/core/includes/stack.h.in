@@ -22,7 +22,7 @@ c intersiz used in interfaces
 c*-------------------------------------------------------------------
 Cc (DLL Digital Visual Fortran)
 cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /vstk/, /recu/, /iop/
+cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /recu/, /iop/
 cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/
 cDEC$ ATTRIBUTES DLLIMPORT:: /intersci/ ,/cha1/, /dbg/
 cDEC$ ENDIF
@@ -45,11 +45,6 @@ c
       complex*16,       pointer, dimension(:) :: zstk
       common /stack/ stack_reserved_for_c__, stk,
      $  istk, sstk, cstk, zstk
-
-      integer bot,top,idstk(nsiz,isizt),lstk(isizt),leps,bbot,bot0,isiz
-      integer gbot,gtop,infstk(isizt)
-      common /vstk/ bot,top,idstk,lstk,leps,bbot,bot0,infstk,
-     $     gbot,gtop,isiz
 
       integer ids(nsiz,psiz),pstk(psiz),rstk(psiz),pt,niv,macr,paus
       integer icall,krec

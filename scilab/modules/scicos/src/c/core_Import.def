@@ -10,8 +10,6 @@ vstk_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
-str2sci 
-cha1_
 intersci_
 xscion_
 iop_

@@ -7,10 +7,8 @@ EXPORTS
 vstk_
 com_
 stack_
-recu_
 iop_
 csimp_
-cha1_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
 ;

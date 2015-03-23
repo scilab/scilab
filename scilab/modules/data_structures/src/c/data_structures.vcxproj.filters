@@ -32,12 +32,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_glist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\data_structures_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

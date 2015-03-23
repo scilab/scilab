@@ -3,7 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 ;core
-cha1_
 callFunctionFromGateway
 freeArrayOfString
 freeArrayOfWideString

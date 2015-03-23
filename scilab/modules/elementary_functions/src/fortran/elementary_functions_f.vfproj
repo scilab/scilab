@@ -106,8 +106,6 @@
 		<File RelativePath=".\exch.f"/>
 		<File RelativePath=".\franck.f"/>
 		<File RelativePath=".\gdcp2i.f"/>
-		<File RelativePath=".\getdimfromvar.f"/>
-		<File RelativePath=".\getorient.f"/>
 		<File RelativePath=".\hilber.f"/>
 		<File RelativePath=".\i1mach.f"/>
 		<File RelativePath=".\imcopy.f"/>

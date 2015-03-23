@@ -57,10 +57,6 @@
 		<File RelativePath=".\atome.f"/>
 		<File RelativePath=".\iseye.f"/>
 		<File RelativePath=".\isnum.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_addsubf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ldivf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_mulf.f"/>
-		<File RelativePath="..\..\sci_gateway\fortran\sci_f_rdivf.f"/>
 		<File RelativePath=".\termf.f"/></Filter>
 		<File RelativePath="..\..\Makefile.am"/>
 		<File RelativePath="..\..\sci_gateway\symbolic_gateway.xml"/></Files>

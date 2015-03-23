@@ -206,8 +206,6 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile Include="DllmainData_structures.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures1.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_glist.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\data_structures_gw.hxx" />
