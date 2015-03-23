@@ -129,26 +129,50 @@ protected :
 
                 m_iSize = iTmpSize;
             }
+
+            if (m_iSize < 0)
+            {
+                m_pRealData = NULL;
+                m_pImgData = NULL;
+                char message[bsiz];
+                os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
+                ast::ScilabError se(message);
+                se.SetErrorNumber(999);
+                throw (se);
+            }
+
         }
 
-        if (_pRealData)
+        try
         {
-            m_pRealData = allocData(m_iSize);
-            *_pRealData = m_pRealData;
-        }
-        else
-        {
-            m_pRealData = NULL;
-        }
 
-        if (_pImgData)
-        {
-            m_pImgData = allocData(m_iSize);
-            *_pImgData = m_pImgData;
+            if (_pRealData)
+            {
+                m_pRealData = allocData(m_iSize);
+                *_pRealData = m_pRealData;
+            }
+            else
+            {
+                m_pRealData = NULL;
+            }
+
+            if (_pImgData)
+            {
+                m_pImgData = allocData(m_iSize);
+                *_pImgData = m_pImgData;
+            }
+            else
+            {
+                m_pImgData = NULL;
+            }
         }
-        else
+        catch (std::bad_alloc & /*e*/)
         {
-            m_pImgData = NULL;
+            char message[bsiz];
+            os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
+            ast::ScilabError se(message);
+            se.SetErrorNumber(999);
+            throw (se);
         }
 
         m_iSizeMax = m_iSize;

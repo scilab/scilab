@@ -551,7 +551,20 @@ String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 wchar_t* String::copyValue(wchar_t* _pwstData)
 {
-    return os_wcsdup(_pwstData);
+    try
+    {
+        return os_wcsdup(_pwstData);
+    }
+    catch (std::bad_alloc & /*e*/)
+    {
+        char message[bsiz];
+        os_sprintf(message, _("Can not allocate data.\n"));
+        ast::ScilabError se(message);
+        se.SetErrorNumber(999);
+        throw (se);
+    }
+    return NULL;
+
 }
 
 wchar_t* String::copyValue(const wchar_t* _pwstData)
@@ -626,8 +639,20 @@ bool String::set(const char* const* _pstrData)
 
 wchar_t** String::allocData(int _iSize)
 {
-    wchar_t** pStr = new wchar_t*[_iSize];
-    memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+    wchar_t** pStr = nullptr;
+    try
+    {
+        pStr = new wchar_t*[_iSize];
+        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+    }
+    catch (std::bad_alloc & /*e*/)
+    {
+        char message[bsiz];
+        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
+        ast::ScilabError se(message);
+        se.SetErrorNumber(999);
+        throw (se);
+    }
     return pStr;
 }
 
