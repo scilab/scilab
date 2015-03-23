@@ -78,6 +78,8 @@ Scilab Bug Fixes
 
 * Bug #13608 fixed - logm produced an error with complex values.
 
+* Bug #13619 fixed - xstringl returned wrong first point.
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
