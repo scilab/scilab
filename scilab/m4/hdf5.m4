@@ -43,7 +43,7 @@ else
         HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
     else
         if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
-            AC_CHECK_HEADER([hdf5.h],
+            AC_CHECK_HEADER([hdf5/serial/hdf5.h],
                 [HDF5_CFLAGS="-I/usr/include/hdf5/serial"],
                 [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
         else
