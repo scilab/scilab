@@ -163,11 +163,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscidata_structures_algo_la_LIBADD =
-am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/fortran/forcerhs.lo src/fortran/lsstyp.lo \
-	src/fortran/udptr.lo src/fortran/rattyp.lo \
-	src/fortran/gratyp.lo
-am_libscidata_structures_algo_la_OBJECTS = $(am__objects_1)
+am_libscidata_structures_algo_la_OBJECTS =
 libscidata_structures_algo_la_OBJECTS =  \
 	$(am_libscidata_structures_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -177,16 +173,17 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libscidata_structures_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidata_structures_algo_la_rpath =
 libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la
-am__objects_2 =  \
+am__dirstamp = $(am__leading_dot)dirstamp
+am__objects_1 =  \
 	sci_gateway/c/libscidata_structures_la-gw_data_structures1.lo \
 	sci_gateway/c/libscidata_structures_la-gw_data_structures2.lo
-am__objects_3 = sci_gateway/cpp/libscidata_structures_la-data_structures_gw.lo \
+am__objects_2 = sci_gateway/cpp/libscidata_structures_la-data_structures_gw.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_getfield.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_setfield.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_rlist.lo \
 	sci_gateway/cpp/libscidata_structures_la-sci_definedfields.lo
-am_libscidata_structures_la_OBJECTS = $(am__objects_2) \
-	$(am__objects_3)
+am_libscidata_structures_la_OBJECTS = $(am__objects_1) \
+	$(am__objects_2)
 libscidata_structures_la_OBJECTS =  \
 	$(am_libscidata_structures_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscidata_structures_la_rpath =
@@ -244,21 +241,6 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
-LTF77COMPILE = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
-AM_V_F77 = $(am__v_F77_@AM_V@)
-am__v_F77_ = $(am__v_F77_@AM_DEFAULT_V@)
-am__v_F77_0 = @echo "  F77     " $@;
-am__v_F77_1 = 
-F77LD = $(F77)
-F77LINK = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(F77LD) $(AM_FFLAGS) $(FFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_F77LD = $(am__v_F77LD_@AM_V@)
-am__v_F77LD_ = $(am__v_F77LD_@AM_DEFAULT_V@)
-am__v_F77LD_0 = @echo "  F77LD   " $@;
-am__v_F77LD_1 = 
 SOURCES = $(libscidata_structures_algo_la_SOURCES) \
 	$(libscidata_structures_la_SOURCES)
 DIST_SOURCES = $(libscidata_structures_algo_la_SOURCES) \
@@ -575,13 +557,6 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
-DATA_STRUCTURES_FORTRAN_SOURCES = \
-    src/fortran/forcerhs.f \
-    src/fortran/lsstyp.f \
-    src/fortran/udptr.f \
-    src/fortran/rattyp.f \
-    src/fortran/gratyp.f 
-
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_data_structures1.c \
     sci_gateway/c/gw_data_structures2.c
@@ -614,7 +589,7 @@ libscidata_structures_la_CPPFLAGS = \
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidata_structures.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
 @MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscidata_structures-algo.la
-libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_FORTRAN_SOURCES)
+libscidata_structures_algo_la_SOURCES = 
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
@@ -716,7 +691,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -794,25 +769,9 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-src/fortran/$(am__dirstamp):
-	@$(MKDIR_P) src/fortran
-	@: > src/fortran/$(am__dirstamp)
-src/fortran/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/fortran/$(DEPDIR)
-	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/forcerhs.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/lsstyp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/udptr.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/rattyp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/gratyp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscidata_structures-algo.la: $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_DEPENDENCIES) $(EXTRA_libscidata_structures_algo_la_DEPENDENCIES) 
-	$(AM_V_F77LD)$(F77LINK) $(am_libscidata_structures_algo_la_rpath) $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(LINK) $(am_libscidata_structures_algo_la_rpath) $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
@@ -856,8 +815,6 @@ mostlyclean-compile:
 	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
-	-rm -f src/fortran/*.$(OBJEXT)
-	-rm -f src/fortran/*.lo
 
 distclean-compile:
 	-rm -f *.tab.c
@@ -967,15 +924,6 @@ sci_gateway/cpp/libscidata_structures_la-sci_definedfields.lo: sci_gateway/cpp/s
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidata_structures_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscidata_structures_la-sci_definedfields.lo `test -f 'sci_gateway/cpp/sci_definedfields.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_definedfields.cpp
 
-.f.o:
-	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
-
-.f.obj:
-	$(AM_V_F77)$(F77COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.f.lo:
-	$(AM_V_F77)$(LTF77COMPILE) -c -o $@ $<
-
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -983,7 +931,6 @@ clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
-	-rm -rf src/fortran/.libs src/fortran/_libs
 install-libscidata_structures_la_etcDATA: $(libscidata_structures_la_etc_DATA)
 	@$(NORMAL_INSTALL)
 	@list='$(libscidata_structures_la_etc_DATA)'; test -n "$(libscidata_structures_la_etcdir)" || list=; \
@@ -1168,8 +1115,6 @@ distclean-generic:
 	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
-	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/fortran/$(am__dirstamp)
 
 maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"

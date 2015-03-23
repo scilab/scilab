@@ -4,13 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-DATA_STRUCTURES_FORTRAN_SOURCES = \
-    src/fortran/forcerhs.f \
-    src/fortran/lsstyp.f \
-    src/fortran/udptr.f \
-    src/fortran/rattyp.f \
-    src/fortran/gratyp.f 
-
 GATEWAY_C_SOURCES = \
     sci_gateway/c/gw_data_structures1.c \
     sci_gateway/c/gw_data_structures2.c
@@ -48,7 +41,7 @@ noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
 endif
 
 
-libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_FORTRAN_SOURCES)
+libscidata_structures_algo_la_SOURCES = 
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 

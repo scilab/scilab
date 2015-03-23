@@ -87,7 +87,6 @@
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -126,7 +125,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -142,7 +141,6 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -184,7 +182,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -200,7 +198,6 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -240,7 +237,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -258,7 +255,6 @@ cd ..
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -301,7 +297,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -355,7 +351,6 @@ cd ..
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="console_Import.def" />
-    <None Include="data_structures_f_Import.def" />
     <None Include="data_structures_Import.def" />
     <None Include="double_Import.def" />
     <None Include="elementary_functions_f_Import.def" />
