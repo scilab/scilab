@@ -1212,11 +1212,26 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             }
             else if (pITCurrent->isHandle())
             {
-                // call overload
-                if (pEH->getArgs())
+                typed_list* pArgs = pEH->getArgs();
+                GraphicHandle* pGH = pITCurrent->getAs<GraphicHandle>();
+                if (pArgs)
                 {
-                    // call overload
-                    InternalType* pExtract = callOverload(*pEH->getExp(), L"e", pEH->getArgs(), pITCurrent, NULL);
+                    InternalType* pExtract = NULL;
+
+                    for (int i = 0; i < pArgs->size(); i++)
+                    {
+                        if ((*pArgs)[i]->isImplicitList())
+                        {
+                            pExtract = pGH->extract(pArgs);
+                            break;
+                        }
+                    }
+
+                    if (pExtract == NULL)
+                    {
+                        // call overload
+                        pExtract = callOverload(*pEH->getExp(), L"e", pArgs, pITCurrent, NULL);
+                    }
 
                     if ((*iterFields)->getExp() == NULL)
                     {
