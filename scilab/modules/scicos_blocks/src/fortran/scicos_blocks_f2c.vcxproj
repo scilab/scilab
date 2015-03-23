@@ -113,7 +113,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;scicos_f.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -161,7 +161,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;scicos_f.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -207,7 +207,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;scicos_f.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -258,7 +258,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;scicos_f.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>output_stream.lib;output_stream_f.lib;string.lib;elementary_functions.lib;elementary_functions_f.lib;scicos.lib;polynomials_f.lib;core_f.lib;../../../../bin/blasplus.lib;../../../../bin/libf2c.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>scicos_blocks_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>

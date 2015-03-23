@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -24,9 +24,6 @@
     <ClCompile Include="clunit.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cvname.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="expsum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,9 +43,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\c\withf2c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="showstack.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="backspaceinter.c">
@@ -76,9 +70,6 @@
     <f2c_rule Include="clunit.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="cvname.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="expsum.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -95,9 +86,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="xerbla.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="showstack.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="backspaceinter.f">

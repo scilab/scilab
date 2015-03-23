@@ -33,37 +33,16 @@
     <ClCompile Include="ftree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="list2vars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scierr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scifunc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scitod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scitoi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scitovv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sctree.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="skipvars.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="vvtosci.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ctree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tree2.c">
@@ -89,37 +68,16 @@
     <f2c_rule Include="ftree4.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="list2vars.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="scierr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="scifunc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="scitod.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scitoi.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="scitovv.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="sctree.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="skipvars.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="vvtosci.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ctree.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_getblocklabel.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tree2.f">
