@@ -66,6 +66,8 @@ Scilab Bug Fixes
 
 * Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
 
+* Bug #13462 fixed - Low levels functions modified bounds even with auto_scale="off".
+
 * Bug #13531 fixed - sylv help page fixed to include the real Sylvester equation.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.

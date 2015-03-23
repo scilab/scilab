@@ -4,6 +4,7 @@
  * Copyright (C) 2004-2006 - INRIA - Fabrice Leray
  * Copyright (C) 2005 - INRIA - Jean-Baptiste Silvy
  * Copyright (C) 2010-2011 - DIGITEO - Manuel Juliachs
+ * Copyright (C) 2014-2015 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -49,6 +50,9 @@
 #include "Format.h"
 #include "deleteGraphicObject.h"
 
+/** Check if auto_scale is on/off */
+static int mustUpdate(int iSubwinUID);
+
 /** Update data bounds according to the given data bound passed in rect */
 static void updateXYDataBounds(int iSubwinUID, double rect[6]);
 static void updateXYZDataBounds(int iSubwinUID, double rect[6]);
@@ -72,19 +76,22 @@ void Objrect (double* x         ,
 {
     int iNewObjUID = 0;
     int iSubwinUID = 0;
-    double rect[6];
 
     iSubwinUID = getCurrentSubWin();
 
     /* check if the auto_clear property is on and then erase everything */
     checkRedrawing();
 
-    rect[0] = *x;
-    rect[1] = *x + *width;
-    rect[2] = *y - *height;
-    rect[3] = *y;
+    if (mustUpdate(iSubwinUID))
+    {
+        double rect[6];
+        rect[0] = *x;
+        rect[1] = *x + *width;
+        rect[2] = *y - *height;
+        rect[3] = *y;
 
-    updateXYDataBounds(iSubwinUID, rect);
+        updateXYDataBounds(iSubwinUID, rect);
+    }
 
     /*newObjUID = ConstructRectangle(iSubwinUID , *x, *y, *height, *width,
       foreground, background, isfilled, isline);*/
@@ -124,84 +131,87 @@ void Objarc(double* angle1    ,
 {
     int iSubwinUID = 0;
     int iObjUID = 0;
-    double rect[6];
-    const double two_pi = 2 * M_PI;
 
     iSubwinUID = getCurrentSubWin();
     checkRedrawing();
 
-    if (abs(*angle2) >= two_pi)
+    if (mustUpdate(iSubwinUID))
     {
-        rect[0] = *x;
-        rect[1] = *x + *width;
-        rect[2] = *y - *height;
-        rect[3] = *y;
-    }
-    else
-    {
-        double a = *angle1;
-        double s = *angle2;
-        double a1, b1;
-        double b;
-
-        a -= (floor(a / two_pi)) * two_pi;
-        b = a + s;
-
-        if (s >= 0)
-        {
-            b = a + s;
-        }
-        else
-        {
-            b = a;
-            a += s;
-        }
-
-        b1 = b / M_PI;
-        a1 = a / M_PI;
-
-        // is there a 2k\pi in [a,b] ?
-        if (ceil(a1 / 2) <= floor(b1 / 2))
-        {
-            rect[1] = *x + *width;
-        }
-        else
-        {
-            rect[1] = *x + 0.5 * *width * (1 + Max(cos(a), cos(b)));
-        }
-
-        // is there a (2k+1)\pi in [a,b] ?
-        if (ceil((a1 - 1) / 2) <= floor((b1 - 1) / 2))
+        double rect[6];
+        const double two_pi = 2 * M_PI;
+        if (abs(*angle2) >= two_pi)
         {
             rect[0] = *x;
-        }
-        else
-        {
-            rect[0] = *x + 0.5 * *width * (1 + Min(cos(a), cos(b)));
-        }
-
-        // is there a (2k+1/2)\pi in [a,b] ?
-        if (ceil((a1 - 0.5) / 2) <= floor((b1 - 0.5) / 2))
-        {
+            rect[1] = *x + *width;
+            rect[2] = *y - *height;
             rect[3] = *y;
         }
         else
         {
-            rect[3] = *y + 0.5 * *height * (-1 + Max(sin(a), sin(b)));
+            double a = *angle1;
+            double s = *angle2;
+            double a1, b1;
+            double b;
+
+            a -= (floor(a / two_pi)) * two_pi;
+            b = a + s;
+
+            if (s >= 0)
+            {
+                b = a + s;
+            }
+            else
+            {
+                b = a;
+                a += s;
+            }
+
+            b1 = b / M_PI;
+            a1 = a / M_PI;
+
+            // is there a 2k\pi in [a,b] ?
+            if (ceil(a1 / 2) <= floor(b1 / 2))
+            {
+                rect[1] = *x + *width;
+            }
+            else
+            {
+                rect[1] = *x + 0.5 * *width * (1 + Max(cos(a), cos(b)));
+            }
+
+            // is there a (2k+1)\pi in [a,b] ?
+            if (ceil((a1 - 1) / 2) <= floor((b1 - 1) / 2))
+            {
+                rect[0] = *x;
+            }
+            else
+            {
+                rect[0] = *x + 0.5 * *width * (1 + Min(cos(a), cos(b)));
+            }
+
+            // is there a (2k+1/2)\pi in [a,b] ?
+            if (ceil((a1 - 0.5) / 2) <= floor((b1 - 0.5) / 2))
+            {
+                rect[3] = *y;
+            }
+            else
+            {
+                rect[3] = *y + 0.5 * *height * (-1 + Max(sin(a), sin(b)));
+            }
+
+            // is there a (2k+3/2)\pi in [a,b] ?
+            if (ceil((a1 - 1.5) / 2) <= floor((b1 - 1.5) / 2))
+            {
+                rect[2] = *y - *height;
+            }
+            else
+            {
+                rect[2] = *y + 0.5 * *height * (-1 + Min(sin(a), sin(b)));
+            }
         }
 
-        // is there a (2k+3/2)\pi in [a,b] ?
-        if (ceil((a1 - 1.5) / 2) <= floor((b1 - 1.5) / 2))
-        {
-            rect[2] = *y - *height;
-        }
-        else
-        {
-            rect[2] = *y + 0.5 * *height * (-1 + Min(sin(a), sin(b)));
-        }
+        updateXYDataBounds(iSubwinUID, rect);
     }
-
-    updateXYDataBounds(iSubwinUID, rect);
 
     iObjUID = createArc(iSubwinUID, *x, *y,
                         *height, *width, *angle1, *angle2, foreground, background, isfilled, isline);
@@ -223,14 +233,14 @@ void Objpoly (double  * x     ,
 {
     int iSubwinUID = 0;
     int iObjUID = 0;
-    double rect[6];
 
     iSubwinUID = getCurrentSubWin();
 
     checkRedrawing();
 
-    if (n)
+    if (n && mustUpdate(iSubwinUID))
     {
+        double rect[6];
         MiniMaxi(x, n, rect, rect + 1);
         MiniMaxi(y, n, rect + 2, rect + 3);
 
@@ -279,14 +289,14 @@ void Objfpoly (double  * x    ,
     int *piContourColor = &contourcolor;
 
     int closed = 1; /* we close the polyline by default */
-    double rect[6];
 
     iSubwinUID = getOrCreateDefaultSubwin();
 
     checkRedrawing();
 
-    if (n)
+    if (n && mustUpdate(iSubwinUID))
     {
+        double rect[6];
         MiniMaxi(x, n, rect, rect + 1);
         MiniMaxi(y, n, rect + 2, rect + 3);
 
@@ -353,13 +363,13 @@ void Objsegs (int * style,
     int type = 0, colored = 0;
     double *fx = NULL, *fy = NULL; // No fx or fy
     int typeofchamp = -1; /* no champ here, only segs ; this info is useless */
-    double rect[6];
 
     checkRedrawing();
     iSubwinUID = getCurrentSubWin();
 
-    if (n1)
+    if (n1 && mustUpdate(iSubwinUID))
     {
+        double rect[6];
         MiniMaxi(x, n1, rect, rect + 1);
         MiniMaxi(y, n1, rect + 2, rect + 3);
 
@@ -956,6 +966,14 @@ void Objfec (double    x[]        ,
 {
     C2F(fec)(x, y, noeud, fun, n, m, p, strflag, legend, brect, aaint,
              Zminmax, Colminmax, ColOut, WithMesh, flagNax, 4L, bsiz);
+}
+/*------------------------------------------------------------------------*/
+static int mustUpdate(int iSubwinUID)
+{
+    int iTmp = 0;
+    int * piTmp = &iTmp;
+    getGraphicObjectProperty(iSubwinUID, __GO_AUTO_SCALE__, jni_bool, (void **)&piTmp);
+    return iTmp;
 }
 /*------------------------------------------------------------------------*/
 static void updateXYDataBounds(int iSubwinUID, double rect[6])
