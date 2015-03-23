@@ -92,6 +92,8 @@ Scilab Bug Fixes
 
 * Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
 
+* Bug #13684 fixed - SciNotes editor component did not fill all the window content pane when wrap-lines was set to false.
+
 * Bug #13685 fixed - LaTeX was not detected when specified in ticks_format.
 
 * Bug #13689 fixed - There were errors in reading enum from hdf5 files.
