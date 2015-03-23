@@ -85,6 +85,12 @@ public class MarkSpriteFactory {
             appearance.setLineWidth(usedAppearance.getLineWidth());
         }
 
+        if (finalSize == 0) {
+            // when finalSize is 0 then a dot is drawn so we draw a dot with a PlusSpriteDrawer
+            // which is well exported with size equal to 1 (see bug 13551)
+            finalSize = 1;
+        }
+
         if (finalSize != 1) {
             switch (mark.getStyle()) {
                 case  0:

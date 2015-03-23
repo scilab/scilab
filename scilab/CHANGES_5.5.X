@@ -72,6 +72,8 @@ Scilab Bug Fixes
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
 
+* Bug #13551 fixed - Marks with null size were not correctly exported in vectorial formats.
+
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
 
 * Bug #13605 fixed - harmean returned an inverted result when called with parameters "r" or "c".
