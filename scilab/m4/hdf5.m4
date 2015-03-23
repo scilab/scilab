@@ -63,7 +63,7 @@ if test "x$with_hdf5_library" != "xyes"; then
     AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
             [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])],
-            [-lsz -lz]
+            [-lz]
             )
 else
     if $WITH_DEVTOOLS; then # Scilab thirparties
@@ -83,7 +83,7 @@ else
             AC_CHECK_LIB([hdf5], [H5Fopen],
                 [],
                 [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
-                [-lsz -lz]
+                [-lz]
                 )
         fi
     fi
