@@ -736,4 +736,7 @@ public class TicksProperty {
         */
     }
 
+    public Font getDefaultFont() {
+        return defaultFont;
+    }
 }

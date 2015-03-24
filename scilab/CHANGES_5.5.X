@@ -50,6 +50,8 @@ Graphics Evolutions
 
 * fec function can now plot meshes based on any convex polygon type (not only triangles).
 
+* New datatips positions available: "left", "right", "upper", "lower".
+
 
 Scilab Bug Fixes
 ================
@@ -64,15 +66,21 @@ Scilab Bug Fixes
 
 * Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
 
+* Bug #13462 fixed - Low levels functions modified bounds even with auto_scale="off".
+
 * Bug #13531 fixed - sylv help page fixed to include the real Sylvester equation.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
+
+* Bug #13551 fixed - Marks with null size were not correctly exported in vectorial formats.
 
 * Bug #13586 fixed - Scilab compilation failed with recent versions of JoGL package.
 
 * Bug #13605 fixed - harmean returned an inverted result when called with parameters "r" or "c".
 
 * Bug #13608 fixed - logm produced an error with complex values.
+
+* Bug #13619 fixed - xstringl returned wrong first point.
 
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
@@ -83,6 +91,12 @@ Scilab Bug Fixes
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
 
 * Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
+
+* Bug #13684 fixed - SciNotes editor component did not fill all the window content pane when wrap-lines was set to false.
+
+* Bug #13685 fixed - LaTeX was not detected when specified in ticks_format.
+
+* Bug #13689 fixed - There were errors in reading enum from hdf5 files.
 
 * Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
 
@@ -98,6 +112,8 @@ Scilab Bug Fixes
 
 * Bug #13731 fixed - xmlDelete could be very slow.
 
+* Bug #13733 fixed - fmt could not be used as a singular optional argument in colorbar.
+
 * Bug #13741 fixed - Impossible to print an invisible figure under Windows.
 
 * Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
@@ -106,6 +122,8 @@ Scilab Bug Fixes
 
 * Bug #13758 fixed - x_mdialog interpreted 'F' and 'T' as boolean values
                      whereas it should interpret '%F' and '%T' instead.
+
+* Bug #13766 fixed - Setting figure_size property lead to wrong display and figure properties values.
 
 * Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 

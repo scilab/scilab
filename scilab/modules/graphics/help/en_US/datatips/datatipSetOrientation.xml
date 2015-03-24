@@ -37,14 +37,13 @@
                 <listitem>
                     <para>
                         A character string with possible values:
-                        <literal>"automatic"</literal> <literal>"upper
+                        <literal>"automatic"</literal>, <literal>"upper
                             left"
                         </literal>
-                        <literal>"upper right"</literal>,
-                        <literal>"lower left"</literal>, <literal>"lower
-                            right"
-                        </literal>
-                        .
+                        ,<literal>"upper right"</literal>,
+                        <literal>"lower left"</literal>, <literal>"lower right"</literal>, 
+                        <literal>"left"</literal>, <literal>"right"</literal>, 
+                        <literal>"upper"</literal>, or <literal>"lower"</literal>.
                     </para>
                 </listitem>
             </varlistentry>
@@ -95,5 +94,18 @@
                 <link linkend="datatipRemove">datatipRemove</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.5.2</revnumber>
+                <revremark>
+                    <para>
+                        New "orient" values available: "left", "right", "upper", "lower".
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

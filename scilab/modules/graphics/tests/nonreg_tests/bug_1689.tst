@@ -23,6 +23,8 @@ hf = gcf();
 xset ("wpdim", figureSize(1), figureSize(2));
 if (hf.figure_size <> figureSize) then pause; end;
 
+sleep(200);//Wait for MVC update
+
 figureSize = [640, 480];
 hf.figure_size = figureSize;
 if (hf.figure_size <> figureSize) then pause; end;

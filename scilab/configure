@@ -10903,8 +10903,8 @@ else
         HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
     else
         if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
-            ac_fn_c_check_header_mongrel "$LINENO" "hdf5.h" "ac_cv_header_hdf5_h" "$ac_includes_default"
-if test "x$ac_cv_header_hdf5_h" = xyes; then :
+            ac_fn_c_check_header_mongrel "$LINENO" "hdf5/serial/hdf5.h" "ac_cv_header_hdf5_serial_hdf5_h" "$ac_includes_default"
+if test "x$ac_cv_header_hdf5_serial_hdf5_h" = xyes; then :
   HDF5_CFLAGS="-I/usr/include/hdf5/serial"
 else
   as_fn_error $? "Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package" "$LINENO" 5
@@ -10936,7 +10936,7 @@ if ${ac_cv_lib_hdf5_H5Fopen+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lhdf5 -lsz -lz
+LIBS="-lhdf5 -lz
              $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
@@ -11042,7 +11042,7 @@ if ${ac_cv_lib_hdf5_H5Fopen+:} false; then :
   $as_echo_n "(cached) " >&6
 else
   ac_check_lib_save_LIBS=$LIBS
-LIBS="-lhdf5 -lsz -lz
+LIBS="-lhdf5 -lz
                  $LIBS"
 cat confdefs.h - <<_ACEOF >conftest.$ac_ext
 /* end confdefs.h.  */
