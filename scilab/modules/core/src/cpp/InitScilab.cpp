@@ -57,6 +57,9 @@ extern "C"
 #include "saveCWDInPreferences.h"
 #include "h5_fileManagement.h"
 #include "with_fftw.h"
+#include "BrowseVarManager.h"
+#include "scicurdir.h"
+#include "FileBrowserChDir.h"
 
 
 #ifdef _MSC_VER
@@ -513,6 +516,22 @@ void* scilabReadAndExecCommand(void* param)
 
         processCommand(_pSEI);
         FREE(command);
+
+        if (getScilabMode() != SCILAB_NWNI)
+        {
+
+            char *cwd = NULL;
+
+            int err = 0;
+
+            UpdateBrowseVar();
+            cwd = scigetcwd(&err);
+            if (cwd)
+            {
+                FileBrowserChDir(cwd);
+                FREE(cwd);
+            }
+        }
     }
 
     return NULL;
@@ -653,7 +672,7 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 #ifndef _MSC_VER
     if (getScilabMode() != SCILAB_NWNI)
     {
-        fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or us the -nwni option.\n");
+        fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or use the -nwni option.\n");
         initConsoleMode(ATTR_RESET);
         exit(1);
     }
@@ -661,6 +680,22 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 #endif
 
     InitializeHistoryManager();
+
+    if (getScilabMode() != SCILAB_NWNI)
+    {
+
+        char *cwd = NULL;
+
+        int err = 0;
+
+        UpdateBrowseVar();
+        cwd = scigetcwd(&err);
+        if (cwd)
+        {
+            FileBrowserChDir(cwd);
+            FREE(cwd);
+        }
+    }
 
     __threadId threadIdConsole;
     __threadKey threadKeyConsole;

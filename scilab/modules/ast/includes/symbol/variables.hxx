@@ -417,6 +417,27 @@ struct Variables
         return symb;
     }
 
+    std::list<Variable*>* getVarsToVariableBrowser()
+    {
+        std::list<Variable*>* lst = new std::list<Variable*>();
+        for (auto var : vars)
+        {
+            if (var.second->empty() == false)
+            {
+                types::InternalType* pIT = var.second->top()->m_pIT;
+                if (pIT &&
+                        pIT->isMacro() == false &&
+                        pIT->isMacroFile() == false &&
+                        pIT->isFunction() == false)
+                {
+                    lst->push_back(var.second);
+                }
+            }
+        }
+
+        return lst;
+    }
+
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel)
     {
         if (_var->empty())

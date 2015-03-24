@@ -195,7 +195,6 @@
     <ClCompile Include="..\cpp\scilabRead.cpp" />
     <ClCompile Include="..\c\clc.c" />
     <ClCompile Include="..\c\DllmainConsole.c" />
-    <ClCompile Include="..\c\GetCommandLine.c" />
     <ClCompile Include="..\c\more.c" />
     <ClCompile Include="..\c\prompt.c" />
     <ClCompile Include="..\c\promptecho.c" />

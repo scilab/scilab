@@ -74,14 +74,15 @@ public :
     /*return function list in the module _stModuleName*/
     std::list<Symbol>* getFunctionList(std::wstring _stModuleName);
 
-    std::list<std::wstring>* getVarsName();
-    std::list<std::wstring>* getMacrosName();
-    std::list<std::wstring>* getFunctionsName();
-    std::list<std::wstring>* getVarsNameForWho(bool sorted);
-    std::list<std::wstring>* getGlobalNameForWho(bool sorted);
-    std::list<std::wstring>* getWhereIs(const std::wstring& _str);
-    std::list<std::wstring>* getLibrariesList();
-
+    std::list<std::wstring>*    getVarsName();
+    std::list<std::wstring>*    getMacrosName();
+    std::list<std::wstring>*    getFunctionsName();
+    std::list<std::wstring>*    getVarsNameForWho(bool sorted);
+    std::list<std::wstring>*    getGlobalNameForWho(bool sorted);
+    std::list<std::wstring>*    getWhereIs(const std::wstring& _str);
+    std::list<std::wstring>*    getLibrariesList();
+    std::list<Variable*>*       getVarsToVariableBrowser();
+    std::list<Library*>*        getLibsToVariableBrowser();
     /* global functions */
 
     /*return global variable visibility status*/

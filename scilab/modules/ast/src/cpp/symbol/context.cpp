@@ -479,4 +479,34 @@ bool Context::isValidVariableName(const char* name)
 
     return isValid;
 }
+
+std::list<Library*>* Context::getLibsToVariableBrowser()
+{
+    std::list<Library*>* libs = libraries.getVarsToVariableBrowser();
+
+    std::list<Library*> toremove;
+    //list lib that have a variable with the same name
+    for (auto lib : *libs)
+    {
+        Variable* var = getOrCreate(lib->getSymbol());
+        if (var->empty() == false)
+        {
+            toremove.push_back(lib);
+        }
+    }
+
+    //remove
+    for (auto lib : toremove)
+    {
+        libs->remove(lib);
+    }
+
+    return libs;
+}
+
+std::list<Variable*>* Context::getVarsToVariableBrowser()
+{
+    return variables.getVarsToVariableBrowser();
+}
+
 }

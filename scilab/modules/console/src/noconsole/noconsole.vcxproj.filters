@@ -48,9 +48,6 @@
     <ClCompile Include="..\c\tohome.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\GetCommandLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\windows\TermReadAndProcess.c">
       <Filter>Source Files</Filter>
     </ClCompile>

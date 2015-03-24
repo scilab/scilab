@@ -77,9 +77,6 @@
     <ClCompile Include="clc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="GetCommandLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="more.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -150,9 +147,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\dynlib_console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\GetCommandLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\gw_console.h">

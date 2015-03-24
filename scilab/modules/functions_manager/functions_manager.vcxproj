@@ -340,6 +340,9 @@
     <ProjectReference Include="..\types\sci_gateway\cpp\types_gw.vcxproj">
       <Project>{c2e5f4f6-5ee7-4b36-bfac-4ac36bb41420}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\ui_data\src\c\ui_data.vcxproj">
+      <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\windows_tools.vcxproj">
       <Project>{9594ac02-20ee-4fbf-95b4-bfa5865ed7ca}</Project>
     </ProjectReference>

@@ -79,7 +79,6 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/tohome.c \
     src/c/more.c \
     src/c/scilines.c \
-    src/c/GetCommandLine.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
@@ -216,7 +215,6 @@ includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
 includes/dynlib_console_gw.h \
 includes/dynlib_console.h \
-includes/GetCommandLine.h \
 includes/getKey.h \
 includes/getNbrLine.h \
 includes/gotoFunctions.h \

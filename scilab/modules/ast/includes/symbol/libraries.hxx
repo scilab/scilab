@@ -96,6 +96,11 @@ struct Library
         stack.pop();
     }
 
+    inline Symbol getSymbol() const
+    {
+        return name;
+    }
+
 private :
     StackLib stack;
     Symbol name;
@@ -214,6 +219,20 @@ struct Libraries
         }
 
         return plOut;
+    }
+
+    std::list<Library*>* getVarsToVariableBrowser()
+    {
+        std::list<Library*>* lst = new std::list<Library*>();
+        for (auto lib : libs)
+        {
+            if (lib.second->empty() == false)
+            {
+                lst->push_back(lib.second);
+            }
+        }
+
+        return lst;
     }
 
     void clearAll()

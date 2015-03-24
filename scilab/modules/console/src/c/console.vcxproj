@@ -261,7 +261,6 @@
     <ClCompile Include="dropFiles.c" />
     <ClCompile Include="..\jni\DropFiles_wrap.c" />
     <ClCompile Include="..\cpp\GetCharWithoutOutput.cpp" />
-    <ClCompile Include="GetCommandLine.c" />
     <ClCompile Include="GuiManagement.c" />
     <ClCompile Include="..\jni\GuiManagement_wrap.c" />
     <ClCompile Include="InitializeConsole.c" />
@@ -298,7 +297,6 @@
     <ClInclude Include="..\..\includes\ConsolePrintf.h" />
     <ClInclude Include="..\..\includes\ConsoleRead.h" />
     <ClInclude Include="..\..\includes\dynlib_console.h" />
-    <ClInclude Include="..\..\includes\GetCommandLine.h" />
     <ClInclude Include="..\..\includes\gw_console.h" />
     <ClInclude Include="..\..\includes\InitializeConsole.h" />
     <ClInclude Include="..\..\includes\more.h" />

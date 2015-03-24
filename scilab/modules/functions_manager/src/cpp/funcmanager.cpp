@@ -354,6 +354,7 @@ bool FuncManager::CreateModuleList(void)
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
         m_ModuleMap[L"jvm"] = pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
+        m_ModuleMap[L"ui_data"] = pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
     }
 #ifdef _MSC_VER
     m_ModuleMap[L"windows_tools"] = pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);

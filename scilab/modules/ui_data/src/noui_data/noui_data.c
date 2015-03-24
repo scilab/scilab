@@ -35,7 +35,7 @@ int gw_ui_data(void)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-void UpdateBrowseVar(BOOL b)
+void UpdateBrowseVar()
 {
     return;
 }

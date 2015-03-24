@@ -197,7 +197,6 @@ am_libsciconsole_minimal_la_OBJECTS =  \
 	src/c/libsciconsole_minimal_la-tohome.lo \
 	src/c/libsciconsole_minimal_la-more.lo \
 	src/c/libsciconsole_minimal_la-scilines.lo \
-	src/c/libsciconsole_minimal_la-GetCommandLine.lo \
 	src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo \
 	src/c/others/libsciconsole_minimal_la-clrscr_nw.lo \
 	src/c/libsciconsole_minimal_la-prompt.lo \
@@ -672,7 +671,6 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/tohome.c \
     src/c/more.c \
     src/c/scilines.c \
-    src/c/GetCommandLine.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
@@ -786,7 +784,6 @@ includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
 includes/dynlib_console_gw.h \
 includes/dynlib_console.h \
-includes/GetCommandLine.h \
 includes/getKey.h \
 includes/getNbrLine.h \
 includes/gotoFunctions.h \
@@ -998,8 +995,6 @@ src/c/libsciconsole_minimal_la-more.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciconsole_minimal_la-scilines.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciconsole_minimal_la-GetCommandLine.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/others/$(am__dirstamp):
 	@$(MKDIR_P) src/c/others
 	@: > src/c/others/$(am__dirstamp)
@@ -1138,7 +1133,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciconsole_minimal_la-sci_tohome.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_la-GuiManagement.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_la-dropFiles.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-clc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-more.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciconsole_minimal_la-prompt.Plo@am__quote@
@@ -1238,13 +1232,6 @@ src/c/libsciconsole_minimal_la-scilines.lo: src/c/scilines.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scilines.c' object='src/c/libsciconsole_minimal_la-scilines.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-scilines.lo `test -f 'src/c/scilines.c' || echo '$(srcdir)/'`src/c/scilines.c
-
-src/c/libsciconsole_minimal_la-GetCommandLine.lo: src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciconsole_minimal_la-GetCommandLine.lo -MD -MP -MF src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo -c -o src/c/libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Tpo src/c/$(DEPDIR)/libsciconsole_minimal_la-GetCommandLine.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetCommandLine.c' object='src/c/libsciconsole_minimal_la-GetCommandLine.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciconsole_minimal_la-GetCommandLine.lo `test -f 'src/c/GetCommandLine.c' || echo '$(srcdir)/'`src/c/GetCommandLine.c
 
 src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo: src/c/others/gotoxy_nw.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciconsole_minimal_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo -MD -MP -MF src/c/others/$(DEPDIR)/libsciconsole_minimal_la-gotoxy_nw.Tpo -c -o src/c/others/libsciconsole_minimal_la-gotoxy_nw.lo `test -f 'src/c/others/gotoxy_nw.c' || echo '$(srcdir)/'`src/c/others/gotoxy_nw.c

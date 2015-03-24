@@ -149,13 +149,6 @@ SciErr checkListItemPosition(void* _pvCtx, int* _piParent, int _iItemPos, int _a
     SciErr sciErr = sciErrInit();
     int iItem = 0;
 
-    // check a valid pointer
-    if (_pvCtx == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _functionName);
-        return sciErr;
-    }
-
     // get a number of items
     sciErr = getListItemNumber(_pvCtx, _piParent, &iItem);
     if (sciErr.iErr)

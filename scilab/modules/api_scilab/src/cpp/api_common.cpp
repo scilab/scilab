@@ -555,10 +555,13 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabImplicitList :
             *_piType = sci_implicit_poly;
             break;
-        case GenericType::ScilabFunction :
+        case GenericType::ScilabFunction:
             *_piType = sci_intrinsic_function;
             break;
-        default :
+        case GenericType::ScilabLibrary:
+            *_piType = sci_lib;
+            break;
+        default:
             *_piType = 0;
     }
 

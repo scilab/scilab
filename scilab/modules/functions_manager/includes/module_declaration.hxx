@@ -52,4 +52,5 @@
 #include "../../completion/includes/completion_gw.hxx"
 #include "../../special_functions/includes/special_functions_gw.hxx"
 #include "../../fftw/includes/fftw_gw.hxx"
+#include "../../ui_data/includes/ui_data_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */
