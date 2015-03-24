@@ -68,6 +68,8 @@ Scilab Bug Fixes
 
 * Bug #13462 fixed - Low levels functions modified bounds even with auto_scale="off".
 
+* Bug #13494 fixed - Wrong vertical range of plot3d and plot3d1 fixed.
+
 * Bug #13531 fixed - sylv help page fixed to include the real Sylvester equation.
 
 * Bug #13549 fixed - Slider uicontrols triggered three callbacks instead of one.
