@@ -9,6 +9,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 if (getscilabmode() <> 'NWNI') then
+    intppty("graphics");
     load(SCI+"/modules/graphics/macros/lib");
     load(SCI+"/modules/graphics/macros/datatips/lib");
 end
