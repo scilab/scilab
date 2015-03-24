@@ -106,6 +106,8 @@ Scilab Bug Fixes
 
 * Bug #13695 fixed - Scilab used bash-specific features in scripts.
 
+* Bug #13702 fixed - Problems with * prefix for modified files in SciNotes fixed.
+
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
 * Bug #13725 fixed - Polyline was not correctly filled with big values.

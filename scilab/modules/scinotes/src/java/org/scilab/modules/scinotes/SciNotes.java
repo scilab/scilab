@@ -1627,8 +1627,16 @@ public class SciNotes extends SwingScilabDockablePanel {
      * isContentModified().
      */
     public void updateTabTitle() {
+        updateTabTitle(getTabPane().getSelectedIndex());
+    }
+
+    /**
+     * Add or remove '*' prefix in tab title (corresponding to the given index) according to
+     * isContentModified().
+     */
+    public void updateTabTitle(int index) {
         StringBuffer newTitle = new StringBuffer();
-        ScilabEditorPane currentTextPane = getTextPane();
+        ScilabEditorPane currentTextPane = getTextPane(index);
         if (((ScilabDocument) currentTextPane.getDocument()).isContentModified()) {
             newTitle.append('*');
         }
@@ -1639,14 +1647,14 @@ public class SciNotes extends SwingScilabDockablePanel {
             newTitle.append(f.getName());
         } catch (NullPointerException e) { // not a file name, no path prefix to
             // remove, but maybe a '*'
-            textPaneName = getTabPane().getScilabTitleAt(getTabPane().getSelectedIndex());
+            textPaneName = getTabPane().getScilabTitleAt(index);
             if (textPaneName.charAt(0) == '*') {
                 newTitle.append(textPaneName.substring(1, textPaneName.length()));
             } else {
                 newTitle.append(textPaneName);
             }
         }
-        getTabPane().setTitleAt(getTabPane().getSelectedIndex(), newTitle.toString());
+        getTabPane().setTitleAt(index, newTitle.toString());
     }
 
     /**
@@ -1829,6 +1837,18 @@ public class SciNotes extends SwingScilabDockablePanel {
                 createNewFile(f);
             }
         }
+    }
+
+    public int getTextPaneIndex(ScilabEditorPane sep) {
+        int n = tabPane.getTabCount();
+        for (int i = 0; i < n; ++i) {
+            ScilabEditorPane pane = getTextPane(i);
+            if (pane == sep || pane.getOtherPaneInSplit() == sep) {
+                return i;
+            }
+        }
+
+        return -1;
     }
 
     /**

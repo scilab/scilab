@@ -815,7 +815,10 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      */
     public void updateTitle() {
         if (editor != null) {
-            editor.updateTabTitle();
+            int index = editor.getTextPaneIndex(this);
+            if (index != -1) {
+                editor.updateTabTitle(index);
+            }
         }
     }
 
