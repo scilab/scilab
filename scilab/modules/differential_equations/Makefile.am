@@ -10,6 +10,7 @@ DIFFERENTIAL_EQUATIONS_CPP_SOURCES = \
 
 
 DIFFERENTIAL_EQUATIONS_C_SOURCES = \
+    src/c/colnewmsgs.c \
     src/c/dassl.c \
     src/c/feval.c \
     src/c/arnol.c \
