@@ -162,17 +162,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_rootdir)" \
 	"$(DESTDIR)$(libscidata_structures_la_sci_gatewaydir)"
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscidata_structures_algo_la_LIBADD =
-am_libscidata_structures_algo_la_OBJECTS =
-libscidata_structures_algo_la_OBJECTS =  \
-	$(am_libscidata_structures_algo_la_OBJECTS)
-AM_V_lt = $(am__v_lt_@AM_V@)
-am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
-am__v_lt_0 = --silent
-am__v_lt_1 = 
-@MAINTAINER_MODE_FALSE@am_libscidata_structures_algo_la_rpath =
-@MAINTAINER_MODE_TRUE@am_libscidata_structures_algo_la_rpath =
-libscidata_structures_la_DEPENDENCIES = libscidata_structures-algo.la
+libscidata_structures_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 =  \
 	sci_gateway/c/libscidata_structures_la-gw_data_structures1.lo \
@@ -186,6 +176,10 @@ am_libscidata_structures_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2)
 libscidata_structures_la_OBJECTS =  \
 	$(am_libscidata_structures_la_OBJECTS)
+AM_V_lt = $(am__v_lt_@AM_V@)
+am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
+am__v_lt_0 = --silent
+am__v_lt_1 = 
 @MAINTAINER_MODE_FALSE@am_libscidata_structures_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscidata_structures_la_rpath = -rpath \
 @MAINTAINER_MODE_TRUE@	$(pkglibdir)
@@ -241,10 +235,8 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libscidata_structures_algo_la_SOURCES) \
-	$(libscidata_structures_la_SOURCES)
-DIST_SOURCES = $(libscidata_structures_algo_la_SOURCES) \
-	$(libscidata_structures_la_SOURCES)
+SOURCES = $(libscidata_structures_la_SOURCES)
+DIST_SOURCES = $(libscidata_structures_la_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -587,16 +579,12 @@ libscidata_structures_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidata_structures.la
-@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
-@MAINTAINER_MODE_TRUE@noinst_LTLIBRARIES = libscidata_structures-algo.la
-libscidata_structures_algo_la_SOURCES = 
+@MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libscidata_structures.la
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
-libscidata_structures_la_LIBADD = libscidata_structures-algo.la
 
 #### Target ######
 modulename = data_structures
@@ -769,9 +757,6 @@ clean-pkglibLTLIBRARIES:
 	  echo rm -f $${locs}; \
 	  rm -f $${locs}; \
 	}
-
-libscidata_structures-algo.la: $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_DEPENDENCIES) $(EXTRA_libscidata_structures_algo_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) $(am_libscidata_structures_algo_la_rpath) $(libscidata_structures_algo_la_OBJECTS) $(libscidata_structures_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)

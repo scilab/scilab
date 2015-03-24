@@ -35,22 +35,15 @@ libscidata_structures_la_CPPFLAGS = \
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
-noinst_LTLIBRARIES = libscidata_structures-algo.la
 else
-noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
+noinst_LTLIBRARIES = libscidata_structures.la
 endif
 
-
-libscidata_structures_algo_la_SOURCES = 
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
-
-libscidata_structures_la_LIBADD = libscidata_structures-algo.la
-
 
 #### Target ######
 modulename=data_structures
