@@ -14,7 +14,7 @@
 //
 // <-- Short Description -->
 // figure.axes_size and figure.figure_size might not be updated immediately.
-// 
+//
 
 // Test 1 : axes_size, auto_resize = "on"
 // ===========================
@@ -72,6 +72,7 @@ my_default_axes_size   = my_figure.axes_size;
 // auto_resize = "on"
 my_figure.auto_resize = "on";
 my_figure.figure_size = my_default_figure_size + 200;
+sleep(200);//Wait for MVC update
 if or( my_figure.figure_size <> (my_default_figure_size + 200) ) then pause; end
 if or( my_figure.axes_size   <> (my_default_axes_size   + 200) ) then pause; end
 

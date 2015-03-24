@@ -181,7 +181,23 @@ public class DatatipOrientation {
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 3);
                 break;
-            case 4: // automatic
+            case 4: // left
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 4);
+                break;
+            case 5: // right
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 5);
+                break;
+            case 6: // upper
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 6);
+                break;
+            case 7: // lower
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, false);
+                GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_ORIENTATION__, 7);
+                break;
+            case 8: // automatic
                 GraphicController.getController().setProperty(datatipUid, __GO_DATATIP_AUTOORIENTATION__, true);
                 break;
             default:

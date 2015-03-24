@@ -372,7 +372,11 @@ public class ScilabEditorPane extends JEditorPane implements Highlighter.Highlig
      * that there is no horizontal scrollbar.
      */
     public boolean getScrollableTracksViewportWidth() {
-        return ((ScilabDocument) getDocument()).getView() instanceof ScilabView && !edComponent.isSplited();
+        if (((ScilabDocument) getDocument()).getView() instanceof ScilabView) {
+            return !edComponent.isSplited();
+        } else {
+            return super.getScrollableTracksViewportWidth();
+        }
     }
 
     /**

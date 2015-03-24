@@ -43,7 +43,7 @@ else
         HDF5_CFLAGS="-I$DEVTOOLS_INCDIR"
     else
         if test -d /usr/include/hdf5/serial; then # New Debian packaging layout since hdf5-1.8.13
-            AC_CHECK_HEADER([hdf5.h],
+            AC_CHECK_HEADER([hdf5/serial/hdf5.h],
                 [HDF5_CFLAGS="-I/usr/include/hdf5/serial"],
                 [AC_MSG_ERROR([Cannot find headers (hdf5.h) of the library HDF5. Please install the dev package])])
         else
@@ -63,7 +63,7 @@ if test "x$with_hdf5_library" != "xyes"; then
     AC_CHECK_LIB([hdf5], [H5Fopen],
             [],
             [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen) in $with_hdf5_library. Check if libhdf5 is installed and if the version is correct])],
-            [-lsz -lz]
+            [-lz]
             )
 else
     if $WITH_DEVTOOLS; then # Scilab thirparties
@@ -83,7 +83,7 @@ else
             AC_CHECK_LIB([hdf5], [H5Fopen],
                 [],
                 [AC_MSG_ERROR([libhdf5 or libhdf5_hl: library missing. (Cannot find symbol H5Fopen). Check if libhdf5 is installed and if the version is correct])],
-                [-lsz -lz]
+                [-lz]
                 )
         fi
     fi

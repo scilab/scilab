@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2014 - Scilab Enterprises - Bruno JOFRET
+ * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -139,11 +140,14 @@ public class SwingScilabCommonPanel {
                 Integer[] size = (Integer[]) value;
                 SwingScilabWindow figure = SwingScilabWindow.allScilabWindows.get(component.getParentWindowId());
                 Size oldFigureSize = figure.getDims();
+
                 if (oldFigureSize.getWidth() != 0 && oldFigureSize.getHeight() != 0 && ((oldFigureSize.getWidth() != size[0]) || (oldFigureSize.getHeight() != size[1]))
                         && ((Boolean) GraphicController.getController().getProperty(component.getId(), __GO_AUTORESIZE__))) {
                     figure.setDims(new Size(size[0], size[1]));
                     figure.validate();
-                    GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, new Integer[] { figure.getContentPane().getWidth(), figure.getContentPane().getHeight() });
+                    // Axes are resized by resize event: SwingScilabDockablePanel::componentResized or SwingScilabStaticPanel::componentResized
+                    // ==> NO NEED TO FORCE RESIZE
+                    // GraphicController.getController().setProperty(component.getId(), __GO_AXES_SIZE__, new Integer[] { figure.getContentPane().getWidth(), figure.getContentPane().getHeight() });
 
                 }
                 break;
