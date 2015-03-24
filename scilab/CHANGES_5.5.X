@@ -82,6 +82,8 @@ Scilab Bug Fixes
 
 * Bug #13619 fixed - xstringl returned wrong first point.
 
+* Bug #13640 fixed - Graphics in isoview mode were too small when in subplots.
+
 * Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
