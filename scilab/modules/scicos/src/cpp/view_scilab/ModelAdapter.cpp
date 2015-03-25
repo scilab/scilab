@@ -1111,6 +1111,24 @@ struct equations
         }
         parametersField->set(1, parametersValues);
 
+        // 'parameters' states (optional, only check its presence if at least one parameter is present)
+        if (parametersSize != 0)
+        {
+            std::string parametersStatesBool (equations[4 + inputsSize + outputsSize + 2 * parametersSize]);
+            if (strcmp(parametersStatesBool.c_str(), "T") == 0) // Check the presence of the "states" field
+            {
+                types::Double* parametersStates = new types::Double(parametersSize, 1);
+                for (int i = 0; i < parametersSize; ++i)
+                {
+                    std::istringstream parametersStateStr (equations[i + 5 + inputsSize + outputsSize + 2 * parametersSize]);
+                    double parametersState;
+                    parametersStateStr >> parametersState;
+                    parametersStates->set(i, parametersState);
+                }
+                parametersField->set(2, parametersStates);
+            }
+        }
+
         o->set(4, parametersField);
 
         return o;
@@ -1295,7 +1313,7 @@ struct equations
         }
 
         types::List* list = current->get(parametersIndex)->getAs<types::List>();
-        if (list->getSize() < 1)
+        if (list->getSize() != 2 && list->getSize() != 3)
         {
             return false;
         }
@@ -1391,6 +1409,31 @@ struct equations
                 strParametersVal << parametersVal->get(0);
                 std::string parametersValStr = strParametersVal.str();
                 equations[i + 4 + inputsSize + outputsSize + parametersSize] = parametersValStr;
+            }
+        }
+
+        // 'parameters' states (optional)
+        equations.push_back("F"); // String boolean to indicate the presence, or not, of a "states" field
+        if (list->getSize() == 3)
+        {
+            equations.back() = "T";
+            if (list->get(2)->getType() != types::InternalType::ScilabDouble)
+            {
+                return false;
+            }
+
+            types::Double* parameterStates = list->get(2)->getAs<types::Double>();
+            if (parameterStates->getSize() != static_cast<int>(parametersSize))
+            {
+                return false;
+            }
+
+            for (size_t i = 0; i < parametersSize; ++i)
+            {
+                std::ostringstream strParameterStates;
+                strParameterStates << parameterStates->get(static_cast<int>(i));
+                std::string parameterStatesStr = strParameterStates.str();
+                equations.push_back(parameterStatesStr);
             }
         }
 
