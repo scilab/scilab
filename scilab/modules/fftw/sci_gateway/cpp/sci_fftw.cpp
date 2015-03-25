@@ -72,12 +72,12 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
     int i = 0;
     int errflag = 0;
 
+    bool bFreeAi = false;
 
     for (i = 0; i < ndimsA; i++)
     {
         lA *= dimsA[i];
     }
-
 
     if (iopt == 0)
     {
@@ -106,35 +106,17 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             /*MKL does not implement the r2c nor r2r guru split methods, make A complex */
             if (issymA)
             {
-                Ai = (double*)malloc(sizeof(double) * lA);
+                /* result will be real, the imaginary part of A can be allocated alone */
+                Ai = (double*)MALLOC(sizeof(double) * lA);
                 C2F(dset)(&lA, &dzero, Ai, &one);
-                //do not forget to release memory
-                //Ai != null && isrealA == 1
-
-                ///* result will be real, the imaginary part of A can be allocated alone */
-                //sciErr = allocMatrixOfDouble(_pvCtx, *getNbInputArgument(_pvCtx) + 1, 1, lA, &Ai);
-                //if (sciErr.iErr)
-                //{
-                //    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                //    return 0;
-                //}
-                //C2F(dset)(&lA, &dzero, Ai, &one);
+                bFreeAi = true;
             }
             else
             {
-                Ai = (double*)malloc(sizeof(double) * lA);
+                /* result will be complex, set clone of A complex for inplace computation */
+                tmp->setComplex(true);
+                Ai = tmp->getImg();
                 C2F(dset)(&lA, &dzero, Ai, &one);
-                ///* result will be complex, realloc A for inplace computation */
-                //sciErr = allocComplexArrayOfDouble(_pvCtx, *getNbInputArgument(_pvCtx) + 1, ndimsA, dimsA, &ri, &Ai);
-                //if (sciErr.iErr)
-                //{
-                //    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                //    return 0;
-                //}
-                //C2F(dcopy)(&lA, Ar, &one, ri, &one);
-                //Ar = ri;
-                //C2F(dset)(&lA, &dzero, Ai, &one);
-                //AssignOutputVariable(_pvCtx, 1) = nbInputArgument(_pvCtx) + 1;
                 isrealA = 0;
             }
         }
@@ -158,10 +140,13 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             ///* there is no general plan able to compute r2r transform so it is tranformed into
             //a R2c plan. The computed imaginary part will be zero*/
             double dzero = 0.0;
-            *O = A->clone()->getAs<types::Double>();
+            *O = tmp;
+            tmp = NULL;
             (*O)->setComplex(false);
             ro = (*O)->get();
-            io = (double*)malloc(sizeof(double) * lA);
+            Ai = (double*)MALLOC(sizeof(double) * lA);
+            io = Ai;
+            bFreeAi = true;
             C2F(dset)(&lA, &dzero, io, &one);
             type = R2C_PLAN;
         }
@@ -184,13 +169,13 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
     }
     else
     {
-        *O = A->clone()->getAs<types::Double>();
+        *O = tmp;
+        tmp = NULL;
         /* A is complex */
         if (!WITHMKL && issymA) /*result is real*/
         {
             /*c2r =  ~isrealA &&  issymA*/
-            (*O)->setComplex(false);
-            ro = (*O)->get();
+            ro = ri;
             io = NULL;
 
             type = C2R_PLAN; /*fftw_plan_guru_split_dft_c2r plans for an FFTW_BACKWARD transform*/
@@ -212,16 +197,16 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
                 /*transform problem into a FORWARD fft*/
                 /* ifft(A) = %i*conj(fft(%i*conj(A)/N) */
                 /* reverse input */
-                ri = tmp->getImg();
-                ii = tmp->get();
+                ri = Ai;
+                ii = Ar;
                 /* reverse output */
-                ro = (*O)->getImg();
-                io = (*O)->get();
+                ro = Ai;
+                io = Ar;
             }
             else
             {
-                ro = (*O)->get();
-                io = (*O)->getImg();
+                ro = ri;
+                io = ii;
             }
         }
     }
@@ -249,16 +234,36 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
     {
         /* Set Plan */
         p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn, (fftw_r2r_kind *)NULL, &errflag);
-        if (errflag == 1)
+        if (errflag)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            if (errflag == 1)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+            }
+            else if (errflag == 2)
+            {
+                Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            }
+
+            if (*O)
+            {
+                delete (*O);
+                (*O) = NULL;
+            }
+
+            if (tmp)
+            {
+                delete tmp;
+            }
+
+            if (bFreeAi)
+            {
+                FREE(Ai);
+            }
+
             return 0;
         }
-        else if (errflag == 2)
-        {
-            Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
-            return 0;
-        }
+
         /* execute FFTW plan */
         ExecuteFFTWPlan(type, p, ri, ii, ro, io);
     }
@@ -278,18 +283,36 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
         gdim.howmany_dims = NULL;
 
         p = GetFFTWPlan(type, &gdim, ri, ii, ro, io, getCurrentFftwFlags(), isn, (fftw_r2r_kind *)NULL, &errflag);
-        if (errflag == 1)
+        if (errflag)
         {
-            Scierror(999, _("%s: No more memory.\n"), fname);
+            if (errflag == 1)
+            {
+                Scierror(999, _("%s: No more memory.\n"), fname);
+            }
+            else if (errflag == 2)
+            {
+                Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
+            }
+
             FREE(dims1);
             FREE(incr1);
-            return 0;
-        }
-        else if (errflag == 2)
-        {
-            Scierror(999, _("%s: Creation of requested fftw plan failed.\n"), fname);
-            FREE(dims1);
-            FREE(incr1);
+
+            if (*O)
+            {
+                delete (*O);
+                (*O) = NULL;
+            }
+
+            if (tmp)
+            {
+                delete tmp;
+            }
+
+            if (bFreeAi)
+            {
+                FREE(Ai);
+            }
+
             return 0;
         }
 
@@ -300,6 +323,23 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             Scierror(999, _("%s: No more memory.\n"), fname);
             FREE(dims1);
             FREE(incr1);
+
+            if (*O)
+            {
+                delete (*O);
+                (*O) = NULL;
+            }
+
+            if (tmp)
+            {
+                delete tmp;
+            }
+
+            if (bFreeAi)
+            {
+                FREE(Ai);
+            }
+
             return 0;
         }
         dims1[0] = howmany_dims[0].n;
@@ -314,6 +354,23 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             Scierror(999, _("%s: No more memory.\n"), fname);
             FREE(dims1);
             FREE(incr1);
+
+            if (*O)
+            {
+                delete (*O);
+                (*O) = NULL;
+            }
+
+            if (tmp)
+            {
+                delete tmp;
+            }
+
+            if (bFreeAi)
+            {
+                FREE(Ai);
+            }
+
             return 0;
         }
         t = 1;
@@ -351,14 +408,11 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
 
     }
     /* Post treatment */
+    int iErr = 0;
     switch (type)
     {
         case R2R_PLAN:
-            if (complete_array(ro, NULL, gdim) == -1)
-            {
-                Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                return 0;
-            }
+            iErr = complete_array(ro, NULL, gdim);
             break;
         case C2R_PLAN:
             break;
@@ -366,20 +420,12 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             if (issymA)
             {
                 /*R2C has been used to solve an r2r problem*/
-                if (complete_array(ro, NULL, gdim) == -1)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
+                iErr = complete_array(ro, NULL, gdim);
             }
             else
             {
-                if (complete_array(ro, io, gdim) == -1)
-                {
-                    Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                    return 0;
-                }
-                if (isn == FFTW_BACKWARD)
+                iErr = complete_array(ro, io, gdim);
+                if (iErr != -1 && isn == FFTW_BACKWARD)
                 {
                     /*conjugate result */
                     double ak = -1.0;
@@ -392,19 +438,11 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
             {
                 if (isn == FFTW_FORWARD)
                 {
-                    if (complete_array(ro, io, gdim) == -1)
-                    {
-                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                        return 0;
-                    }
+                    iErr = complete_array(ro, io, gdim);
                 }
                 else
                 {
-                    if (complete_array(io, ro, gdim) == -1)
-                    {
-                        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
-                        return 0;
-                    }
+                    iErr = complete_array(io, ro, gdim);
                 }
             }
             break;
@@ -414,5 +452,28 @@ int sci_fft_gen(const char *fname, types::Double* A, types::Double** O, int isn,
     {
         delete tmp;
     }
+
+    if (bFreeAi)
+    {
+        FREE(Ai);
+    }
+
+    if (iErr == -1)
+    {
+        if (*O)
+        {
+            delete (*O);
+            (*O) = NULL;
+        }
+
+        Scierror(999, _("%s: Cannot allocate more memory.\n"), fname);
+        return 0;
+    }
+
+    if (io == NULL)
+    {
+        (*O)->setComplex(false);
+    }
+
     return 1;
 }
