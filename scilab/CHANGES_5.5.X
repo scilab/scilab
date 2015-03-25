@@ -1,42 +1,50 @@
                      Changes between version 5.5.1 and 5.5.2
                      =======================================
 
-Removed Functions
-=================
+Graphics Evolutions
+===================
 
-* xmltochm removed.
+* fec function can now plot meshes based on any convex polygon type (not only triangles).
 
-* jmat removed. Please use flipdim instead.
-
-* %asn removed. Please use delip instead.
-
-* mfft removed. Please use fft instead.
-
-* IsAScalar removed. Please use isscalar instead.
-
-* msd removed. Please use stdev instead.
-
-* pcg removed. Please use conjgrad instead.
-
-* milk_drop removed.
-
-* relocate_handle removed.
-
-* chart removed. Please use nicholschart instead.
-
-* nfreq removed. Please use tabul instead.
-
-* regress removed. Please use reglin instead.
-
-* st_deviation removed. Please use stdev instead.
-
-* xsetm removed. Please use ged instead.
+* New datatips positions are now available: "left", "right", "upper", "lower".
 
 
 Toolbox Skeleton
 =================
 
-* Modelica user-defined block added in xcos_toolbox_skeleton.
+* Modelica user-defined block has been added to xcos_toolbox_skeleton.
+
+
+Removed Functions
+=================
+
+* %asn removed. Please use delip instead.
+
+* chart removed. Please use nicholschart instead.
+
+* IsAScalar removed. Please use isscalar instead.
+
+* jmat removed. Please use flipdim instead.
+
+* mfft removed. Please use fft instead.
+
+* milk_drop removed.
+
+* msd removed. Please use stdev instead.
+
+* nfreq removed. Please use tabul instead.
+
+* pcg removed. Please use conjgrad instead.
+
+* regress removed. Please use reglin instead.
+
+* relocate_handle removed.
+
+* st_deviation removed. Please use stdev instead.
+
+* xmltochm removed.
+
+* xsetm removed. Please use ged instead.
 
 
 Compilation
@@ -45,24 +53,16 @@ Compilation
 * Required version of JOGL updated to 2.2.4 (See bugs #12788 & #13586).
 
 
-Graphics Evolutions
-===================
-
-* fec function can now plot meshes based on any convex polygon type (not only triangles).
-
-* New datatips positions available: "left", "right", "upper", "lower".
-
-
 Scilab Bug Fixes
 ================
 
 * Bug #8066 fixed - There was no OK button in x_choose window.
 
-* Bug #9890 fixed - xarrows demonstration added in Graphics/Basic functions category.
+* Bug #9890 fixed - xarrows demonstration was added to Graphics/Basic functions category.
 
-* Bug #12788 fixed - All graphics were displayed in red on some platforms.
+* Bug #12788 fixed - All graphics were displayed in red under some platforms.
 
-* Bug #12842 fixed - Scilab could not be launched on some platforms (ATOMS internal library loading problem).
+* Bug #12842 fixed - Scilab could not be launched under some platforms (ATOMS internal library loading problem).
 
 * Bug #13372 fixed - xsetm should have been removed in Scilab 5.5.0.
 
@@ -86,25 +86,26 @@ Scilab Bug Fixes
 
 * Bug #13619 fixed - xstringl returned wrong first point.
 
-* Bug #13640 fixed - Graphics in isoview mode were too small when in subplots.
+* Bug #13640 fixed - Graphics in isoview mode were too small when they were in subplots.
 
-* Bug #13673 fixed - Anti-aliasing of xpoly marks did not render correctly.
+* Bug #13673 fixed - Anti-aliasing of xpoly marks had not a proper render.
 
 * Bug #13674 fixed - User .wgetrc configuration file is now by-passed when ATOMS does not use a proxy.
 
 * Bug #13676 fixed - An invisible figure could not be exported.
 
-* Bug #13677 fixed - Indentation of examples in assert_checkerror help page was wrong.
+* Bug #13677 fixed - Indentation of examples in assert_checkerror help page was not correct.
 
-* Bug #13681 fixed - Calling cdfnor to get the X vector sometimes produced a vector with some NaN values.
+* Bug #13681 fixed - Calling cdfnor to get the X vector could produced a vector with some NaN values.
 
-* Bug #13684 fixed - SciNotes editor component did not fill all the window content pane when wrap-lines was set to false.
+* Bug #13684 fixed - SciNotes editor component did not fill all the window content pane when wrap-lines
+                     option was set to false.
 
 * Bug #13685 fixed - LaTeX was not detected when specified in ticks_format.
 
 * Bug #13689 fixed - There were errors in reading enum from hdf5 files.
 
-* Bug #13690 fixed - tight_limits property can now manage X, Y and Z axis separately.
+* Bug #13690 fixed - tight_limits property can now manage X, Y and Z axes separately.
 
 * Bug #13692 fixed - group returned an error for a discrete dynamical system with a specified sample time.
 
@@ -122,16 +123,16 @@ Scilab Bug Fixes
 
 * Bug #13733 fixed - fmt could not be used as a singular optional argument in colorbar.
 
-* Bug #13741 fixed - Impossible to print an invisible figure under Windows.
+* Bug #13741 fixed - An invisible figure could not be printed under Windows.
 
-* Bug #13742 fixed - Figure was not well printed when there is a xstring with latex.
+* Bug #13742 fixed - Figure was not well-printed when there was a xstring with LaTeX.
 
 * Bug #13752 fixed - The 'Supported compilers' page was outdated.
 
 * Bug #13758 fixed - x_mdialog interpreted 'F' and 'T' as boolean values
-                     whereas it should interpret '%F' and '%T' instead.
+                     whereas it should have interpreted '%F' and '%T' instead.
 
-* Bug #13766 fixed - Setting figure_size property lead to wrong display and figure properties values.
+* Bug #13766 fixed - Setting figure_size property led to wrong display and figure properties values.
 
 * Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 
@@ -382,7 +383,7 @@ Scilab Bug Fixes
 
 * Bug #13543 fixed - "slider" uicontrols did not work with the mouse wheel.
 
-* Bug #13554 fixed - rubberbox returns wrong values.
+* Bug #13554 fixed - rubberbox returned wrong values.
 
 * Bug #13579 fixed - bar displayed useless warnings.
 
