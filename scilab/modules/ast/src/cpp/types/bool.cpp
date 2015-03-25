@@ -135,7 +135,7 @@ bool Bool::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
             _piDims[1] = 0;
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
-            ostr << (get(iPos) == 1 ? L"  T" : L"  F");
+            ostr << (get(iPos) ? L" T" : L" F");
             ostr << std::endl;
         }
     }
