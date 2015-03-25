@@ -38,7 +38,7 @@ function colorbar(umin, umax, colminmax, fmt)
 
     // Check number of input argument
     [lhs, rhs] = argn();
-    if rhs <= 2 then 
+    if rhs < 2 then
         error(msprintf(gettext("%s: Wrong number of input arguments: %d to %d expected.\n"), "colorbar", 2, 4));
     end
     nb_grad = 5
