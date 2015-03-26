@@ -96,6 +96,8 @@ Scilab Bug Fixes
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was not correct.
 
+* Bug #13679 fixed - Invalid subticks in log scale after copy.
+
 * Bug #13681 fixed - Calling cdfnor to get the X vector could produced a vector with some NaN values.
 
 * Bug #13684 fixed - SciNotes editor component did not fill all the window content pane when wrap-lines
