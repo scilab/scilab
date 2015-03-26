@@ -765,12 +765,15 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     //mode
+    winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
+        winbin = "scilex.exe";
         mode_arg = "-nwni";
     else
         if execMode == "NWNI" then
+            winbin = "scilex.exe";
             mode_arg = "-nwni";
         elseif execMode == "NW" then
             mode_arg = "-nw";
@@ -800,9 +803,9 @@ function status = test_single(_module, _testPath, _testName)
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\WScilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\WScilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
