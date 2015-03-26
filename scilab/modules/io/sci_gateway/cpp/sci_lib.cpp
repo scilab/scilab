@@ -19,6 +19,7 @@
 
 extern "C"
 {
+#include "Scierror.h"
 #include "sci_malloc.h"
 #include "expandPathVariable.h"
 }
@@ -31,6 +32,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
     int iXMLFileLen = 0;
     if (in.size() != 1)
     {
+        Scierror(78, _("%s: Wrong number of input argument(s): %d expected.\n"), "lib", 1);
         return Function::Error;
     }
 
@@ -38,6 +40,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pIT->isString() == false)
     {
+        Scierror(999, _("%s: Wrong type for intput argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
@@ -45,6 +48,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pS->isScalar() == false)
     {
+        Scierror(999, _("%s: Wrong size for intput argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
@@ -55,9 +59,11 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (lib == NULL)
     {
+        char* path = wide_string_to_UTF8(pstPath);
+        Scierror(999, "File %s does not exist or read access denied.", path);
+        FREE(path);
         return Function::Error;
     }
-
 
     out.push_back(lib);
     return Function::OK;
