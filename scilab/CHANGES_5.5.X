@@ -96,7 +96,7 @@ Scilab Bug Fixes
 
 * Bug #13677 fixed - Indentation of examples in assert_checkerror help page was not correct.
 
-* Bug #13679 fixed - Invalid subticks in log scale after copy.
+* Bug #13679 fixed - There were invalid subticks in log scale after a copy.
 
 * Bug #13681 fixed - Calling cdfnor to get the X vector could produced a vector with some NaN values.
 
@@ -118,6 +118,8 @@ Scilab Bug Fixes
 * Bug #13702 fixed - Problems with * prefix for modified files in SciNotes fixed.
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
+
+* Bug #13723 fixed - It was not possible to insert a single double in double[][].
 
 * Bug #13725 fixed - Polyline was not correctly filled with big values.
 
