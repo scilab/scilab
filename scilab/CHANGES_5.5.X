@@ -119,6 +119,8 @@ Scilab Bug Fixes
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
+* Bug #13721 fixed - Writing in a file opened in r+ mode was not possible.
+
 * Bug #13723 fixed - It was not possible to insert a single double in double[][].
 
 * Bug #13725 fixed - Polyline was not correctly filled with big values.

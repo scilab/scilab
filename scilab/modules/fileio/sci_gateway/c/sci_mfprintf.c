@@ -106,7 +106,7 @@ int sci_mfprintf(char *fname, unsigned long fname_len)
     /* checks file mode */
     /* bug 3898 */
     /* read only attrib 1xx*/
-    if ( (fileMode >= 100) && (fileMode < 200) && !isSTD)
+    if ( (fileMode >= 100) && (fileMode < 200) && ((fileMode % 100) < 10) /* check that it is not r+ */ &&  !isSTD)
     {
         Scierror(999, _("%s: Wrong file mode: READ only.\n"), fname);
         return 0;
