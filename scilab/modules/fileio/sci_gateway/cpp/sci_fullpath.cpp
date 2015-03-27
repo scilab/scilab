@@ -13,6 +13,7 @@
 #include "fileio_gw.hxx"
 #include "function.hxx"
 #include "string.hxx"
+#include "double.hxx"
 
 extern "C"
 {
@@ -22,50 +23,55 @@ extern "C"
 #include "PATH_MAX.h"
 }
 /*--------------------------------------------------------------------------*/
-
-using namespace types;
-
-Function::ReturnValue sci_fullpath(typed_list &in, int _iRetCount, typed_list &out)
+types::Function::ReturnValue sci_fullpath(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     if (in.size() != 1)
     {
         Scierror(77, _("%s: Wrong number of input arguments: %d expected.\n"), "fullpath" , 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
     if (_iRetCount != 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "fullpath", 1);
-        return Function::Error;
+        return types::Function::Error;
     }
 
-    /*
-        if(in[0]->isString() == false || in[0]->getAs<String>()->getSize() != 1)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "fullpath", 1);
-            return Function::Error;
-        }
-    */
+    if (in[0]->isDouble() && in[0]->getAs<types::Double>()->isEmpty())
+    {
+        out.push_back(types::Double::Empty());
+        return types::Function::OK;
+    }
 
-    wchar_t fullpath[PATH_MAX * 4];
-    String* pIn = in[0]->getAs<String>();
-    String* pOut = new String(pIn->getDims(), pIn->getDimsArray());
+    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fullpath", 1);
+        return types::Function::Error;
+    }
+
+    char fullpath[PATH_MAX * 4];
+    types::String* pIn = in[0]->getAs<types::String>();
+    types::String* pOut = new types::String(pIn->getDims(), pIn->getDimsArray());
 
     for (int i = 0 ; i < pIn->getSize() ; i++)
     {
-        wchar_t *relPath = pIn->get(i);
-        if ( get_full_pathW( fullpath, relPath, PATH_MAX * 4 ) != NULL )
+        char *relPath = wide_string_to_UTF8(pIn->get(i));
+        if ( get_full_path(fullpath, relPath, PATH_MAX * 4 ) != NULL)
         {
             pOut->set(i, fullpath);
+            FREE(relPath);
         }
         else
         {
-            pOut->set(i, relPath);
+            Scierror(999, _("%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"), "fullpath", 1, relPath);
+            FREE(relPath);
+            return types::Function::Error;
         }
+
         fullpath[0] = L'\0';
     }
 
     out.push_back(pOut);
-    return Function::OK;
+    return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
