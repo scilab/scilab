@@ -15,9 +15,9 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-02-27 11:39+0100\n"
+"Revision-Date: 2015-03-27 13:54+0100\n"
 
-# File: sci_gateway/c/gw_graphics.c, line: 133
+# File: sci_gateway/c/gw_graphics.c, line: 134
 # File: src/nographics/nographics.c, line: 83
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -79,6 +79,8 @@ msgstr ""
 # File: sci_gateway/c/sci_xlfont.c, line: 318
 # File: sci_gateway/c/sci_xlfont.c, line: 337
 # File: sci_gateway/c/sci_xrects.c, line: 120
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 214
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 222
 #, c-format
 msgid "%s: Memory allocation error.\n"
 msgstr ""
@@ -195,20 +197,21 @@ msgstr ""
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 72
 # File: src/c/getHandleProperty/set_log_flags_property.c, line: 82
 # File: src/c/getHandleProperty/set_segs_color_property.c, line: 76
-# File: src/c/getHandleProperty/set_triangles_property.c, line: 74
+# File: src/c/getHandleProperty/set_triangles_property.c, line: 72
+# File: src/c/getHandleProperty/set_triangles_property.c, line: 81
 # File: src/c/getHandleProperty/set_x_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_x_ticks_property.c, line: 70
 # File: src/c/getHandleProperty/set_y_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_y_ticks_property.c, line: 72
 # File: src/c/getHandleProperty/set_z_shift_property.c, line: 79
 # File: src/c/getHandleProperty/set_z_ticks_property.c, line: 72
-# File: src/c/sciCall.c, line: 254
-# File: src/c/sciCall.c, line: 331
-# File: src/c/sciCall.c, line: 381
-# File: src/c/sciCall.c, line: 435
-# File: src/c/sciCall.c, line: 705
-# File: src/c/sciCall.c, line: 764
-# File: src/c/sciCall.c, line: 861
+# File: src/c/sciCall.c, line: 264
+# File: src/c/sciCall.c, line: 341
+# File: src/c/sciCall.c, line: 391
+# File: src/c/sciCall.c, line: 445
+# File: src/c/sciCall.c, line: 715
+# File: src/c/sciCall.c, line: 774
+# File: src/c/sciCall.c, line: 871
 #, c-format
 msgid "%s: No more memory.\n"
 msgstr ""
@@ -250,7 +253,7 @@ msgstr ""
 # File: sci_gateway/c/sci_fec.c, line: 101
 # File: sci_gateway/c/sci_fec.c, line: 118
 # File: sci_gateway/c/sci_fec.c, line: 143
-# File: sci_gateway/c/sci_fec.c, line: 166
+# File: sci_gateway/c/sci_fec.c, line: 168
 # File: sci_gateway/c/sci_geom3d.c, line: 78
 # File: sci_gateway/c/sci_geom3d.c, line: 95
 # File: sci_gateway/c/sci_geom3d.c, line: 112
@@ -279,11 +282,11 @@ msgstr ""
 # File: sci_gateway/c/sci_plot2d1.c, line: 185
 # File: sci_gateway/c/sci_plot2d1.c, line: 211
 # File: sci_gateway/c/sci_plot3d.c, line: 113
-# File: sci_gateway/c/sci_plot3d.c, line: 164
-# File: sci_gateway/c/sci_plot3d.c, line: 199
-# File: sci_gateway/c/sci_plot3d.c, line: 212
-# File: sci_gateway/c/sci_plot3d.c, line: 234
-# File: sci_gateway/c/sci_plot3d.c, line: 249
+# File: sci_gateway/c/sci_plot3d.c, line: 170
+# File: sci_gateway/c/sci_plot3d.c, line: 205
+# File: sci_gateway/c/sci_plot3d.c, line: 218
+# File: sci_gateway/c/sci_plot3d.c, line: 240
+# File: sci_gateway/c/sci_plot3d.c, line: 255
 # File: sci_gateway/c/sci_rubberbox.c, line: 60
 # File: sci_gateway/c/sci_show_window.c, line: 116
 # File: sci_gateway/c/sci_xarc.c, line: 72
@@ -349,6 +352,16 @@ msgstr ""
 # File: sci_gateway/c/sci_xstringb.c, line: 167
 # File: sci_gateway/c/sci_xtitle.c, line: 97
 # File: sci_gateway/c/sci_zoom_rect.c, line: 72
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 49
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 57
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 73
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 81
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 104
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 112
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 137
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 145
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 160
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 168
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
 msgstr ""
@@ -457,6 +470,7 @@ msgstr ""
 # File: sci_gateway/c/sci_xpolys.c, line: 99
 # File: sci_gateway/c/sci_xsegs.c, line: 92
 # File: sci_gateway/c/sci_xsegs.c, line: 184
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 89
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
 msgstr ""
@@ -542,7 +556,7 @@ msgstr ""
 # File: sci_gateway/c/sci_rotate_axes.c, line: 99
 # File: sci_gateway/c/sci_set.c, line: 292
 # File: sci_gateway/c/sci_unglue.c, line: 81
-# File: src/c/BuildObjects.c, line: 814
+# File: src/c/BuildObjects.c, line: 822
 #, c-format
 msgid "%s: The handle is not or no more valid.\n"
 msgstr ""
@@ -623,8 +637,10 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_fec.c, line: 150
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 119
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
 
 #
@@ -807,7 +823,7 @@ msgstr ""
 
 #
 # File: sci_gateway/c/sci_param3d1.c, line: 180
-# File: sci_gateway/c/sci_plot3d.c, line: 219
+# File: sci_gateway/c/sci_plot3d.c, line: 225
 #, c-format
 msgid "%s: Wrong size for input argument #%d: List of size %d expected.\n"
 msgstr ""
@@ -832,27 +848,39 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 417
+# File: sci_gateway/c/sci_plot2d.c, line: 389
+#, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_plot2d.c, line: 407
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_plot2d.c, line: 440
 #, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 427
+# File: sci_gateway/c/sci_plot2d.c, line: 450
 #, c-format
 msgid ""
 "%s: Bounds on x axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 437
+# File: sci_gateway/c/sci_plot2d.c, line: 460
 #, c-format
 msgid ""
 "%s: Bounds on y axis must be strictly positive to use logarithmic mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 479
+# File: sci_gateway/c/sci_plot2d.c, line: 502
 #, c-format
 msgid ""
 "%s: At least one x data must be strictly positive to compute the bounds and "
@@ -860,7 +888,7 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot2d.c, line: 494
+# File: sci_gateway/c/sci_plot2d.c, line: 517
 #, c-format
 msgid ""
 "%s: At least one y data must be strictly positive to compute the bounds and "
@@ -874,28 +902,34 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot3d.c, line: 257
+# File: sci_gateway/c/sci_plot3d.c, line: 131
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
+# File: sci_gateway/c/sci_plot3d.c, line: 263
 # File: sci_gateway/c/sci_xsegs.c, line: 216
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot3d.c, line: 290
+# File: sci_gateway/c/sci_plot3d.c, line: 288
 #, c-format
 msgid ""
 "%s: Wrong value for input arguments #%d, #%d and #%d: Incompatible length.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot3d.c, line: 298
-# File: sci_gateway/c/sci_plot3d.c, line: 304
+# File: sci_gateway/c/sci_plot3d.c, line: 296
+# File: sci_gateway/c/sci_plot3d.c, line: 302
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: Incompatible length.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_plot3d.c, line: 310
+# File: sci_gateway/c/sci_plot3d.c, line: 308
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
@@ -1277,12 +1311,18 @@ msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 
 #
+# File: sci_gateway/cpp/sci_contour2dm.cpp, line: 205
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
+
+#
 # File: src/c/BuildObjects.c, line: 107
 # File: src/c/BuildObjects.c, line: 347
 # File: src/c/BuildObjects.c, line: 437
 # File: src/c/BuildObjects.c, line: 545
 # File: src/c/BuildObjects.c, line: 651
-# File: src/c/BuildObjects.c, line: 824
+# File: src/c/BuildObjects.c, line: 832
 msgid "The parent has to be a SUBWIN\n"
 msgstr ""
 
@@ -1662,7 +1702,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_title_property.c, line: 61
 # File: src/c/getHandleProperty/get_toolbar_property.c, line: 30
 # File: src/c/getHandleProperty/get_toolbar_property.c, line: 52
-# File: src/c/getHandleProperty/get_triangles_property.c, line: 43
+# File: src/c/getHandleProperty/get_triangles_property.c, line: 45
 # File: src/c/getHandleProperty/get_use_color_material_property.c, line: 35
 # File: src/c/getHandleProperty/get_view_property.c, line: 41
 # File: src/c/getHandleProperty/get_viewport_property.c, line: 41
@@ -1855,9 +1895,9 @@ msgstr ""
 # File: src/c/getHandleProperty/set_tics_labels_property.c, line: 78
 # File: src/c/getHandleProperty/set_tics_segment_property.c, line: 53
 # File: src/c/getHandleProperty/set_tics_style_property.c, line: 82
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 67
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 88
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 129
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 74
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 95
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 136
 # File: src/c/getHandleProperty/set_title_property.c, line: 43
 # File: src/c/getHandleProperty/set_toolbar_property.c, line: 53
 # File: src/c/getHandleProperty/set_toolbar_property.c, line: 73
@@ -1929,7 +1969,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 98
 # File: src/c/getHandleProperty/set_box_property.c, line: 116
 # File: src/c/getHandleProperty/set_rotation_style_property.c, line: 55
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 114
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 121
 #, c-format
 msgid "Wrong value for '%s' property: '%s' or '%s' expected.\n"
 msgstr ""
@@ -1990,7 +2030,7 @@ msgstr ""
 # File: src/c/getHandleProperty/get_tics_style_property.c, line: 43
 # File: src/c/getHandleProperty/get_tics_style_property.c, line: 61
 # File: src/c/getHandleProperty/get_title_property.c, line: 47
-# File: src/c/getHandleProperty/get_triangles_property.c, line: 50
+# File: src/c/getHandleProperty/get_triangles_property.c, line: 52
 # File: src/c/getHandleProperty/get_x_location_property.c, line: 64
 # File: src/c/getHandleProperty/get_y_location_property.c, line: 66
 #, c-format
@@ -2135,7 +2175,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 47
 # File: src/c/getHandleProperty/set_text_property.c, line: 35
 # File: src/c/getHandleProperty/set_tics_labels_property.c, line: 45
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 80
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 87
 #, c-format
 msgid "Wrong type for '%s' property: String matrix expected.\n"
 msgstr ""
@@ -2145,7 +2185,7 @@ msgstr ""
 # File: src/c/getHandleProperty/set_axes_reverse_property.c, line: 117
 # File: src/c/getHandleProperty/set_axes_visible_property.c, line: 115
 # File: src/c/getHandleProperty/set_ticks_format_property.c, line: 47
-# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 135
+# File: src/c/getHandleProperty/set_tight_limits_property.c, line: 142
 #, c-format
 msgid "Wrong size for '%s' property: At most %d elements expected.\n"
 msgstr ""
@@ -2631,7 +2671,7 @@ msgstr ""
 #
 # File: src/c/getHandleProperty/set_triangles_property.c, line: 65
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
 msgstr ""
 
 #
@@ -2650,19 +2690,19 @@ msgid "Wrong size for '%s' property: Row vector expected.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 664
+# File: src/c/sciCall.c, line: 674
 #, c-format
 msgid "%s: x vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 694
+# File: src/c/sciCall.c, line: 704
 #, c-format
 msgid "%s: y vector is not monotonous.\n"
 msgstr ""
 
 #
-# File: src/c/sciCall.c, line: 899
+# File: src/c/sciCall.c, line: 909
 msgid "Impossible case when building axis\n"
 msgstr ""
 
@@ -3103,7 +3143,7 @@ msgstr ""
 #
 # File: macros/Sfgrayplot.sci, line: 28
 # File: macros/bar.sci, line: 62
-# File: macros/colorbar.sci, line: 41
+# File: macros/colorbar.sci, line: 42
 # File: macros/colordef.sci, line: 13
 # File: macros/comet.sci, line: 50
 # File: macros/fac3d.sci, line: 41
@@ -3423,7 +3463,7 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/colorbar.sci, line: 57
+# File: macros/colorbar.sci, line: 49
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s data structure expected.\n"
 msgstr ""

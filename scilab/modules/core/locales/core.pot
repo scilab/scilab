@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-02-27 11:39+0100\n"
+"Revision-Date: 2015-03-27 13:54+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -1801,70 +1801,56 @@ msgstr ""
 
 #
 # File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 73
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 73
 msgid "Startup execution:"
 msgstr ""
 
 #
 # File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 74
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 74
 msgid "  loading initial environment"
 msgstr ""
 
 #
 # File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 95
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 95
 #, c-format
 msgid "Failed to execute %s:"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 163
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 180
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 169
 msgid "&File"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 164
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 181
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 170
 msgid "&Edit"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 165
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 182
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 171
 msgid "&Preferences"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 166
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 183
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 172
 msgid "&Control"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 167
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 169
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 172
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 173
 # File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 175
 # File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 178
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 184
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 186
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 189
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 192
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 195
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 181
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 184
 msgid "&Applications"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 180
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 197
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 186
 msgid "&?"
 msgstr ""
 
 #
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 181
-# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start.otrs, line: 198
+# File: /home/couvert/git/scilab_5.5/scilab/etc/scilab.start, line: 187
 msgid "&Toolboxes"
 msgstr ""
 
