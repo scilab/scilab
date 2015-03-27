@@ -331,6 +331,7 @@ bool List::set(const int _iIndex, InternalType* _pIT)
     {
         //incease list size and fill with "Undefined"
         m_plData->push_back(new ListUndefined());
+        m_plData->back()->IncreaseRef();
         m_iSize = getSize();
     }
 
