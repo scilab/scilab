@@ -153,7 +153,7 @@ function [d, v] = eigs(varargin)
                 error(msprintf(gettext("%s: Wrong type for input argument #%d: A structure expected"), "eigs",5));
             end
             if(size(intersect(fieldnames(opts), ["tol", "maxiter", "ncv", "resid", "cholB", "issym", "isreal"]), "*") < size(fieldnames(opts),"*"))
-                error(msprintf(gettext("%s: Wrong type for input argument: If A is a matrix, use opts with tol, maxiter, ncv, resid, cholB"), "eigs"));
+                error(msprintf(gettext("%s: Wrong type for input argument: If A is a function, use opts with tol, maxiter, ncv, resid, cholB, issym", "isreal"), "eigs"));
             end
             if(isfield(opts,"tol"))
                 tol = opts.tol;
