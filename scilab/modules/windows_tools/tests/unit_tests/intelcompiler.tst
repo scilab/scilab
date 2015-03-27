@@ -10,5 +10,5 @@
 // - and uses MKL
 
 [a,b]=getdebuginfo();
-assert_checkequal(b(5), "Compiled with Intel compiler (1500)");
+assert_checkequal(b(5), "Compiled with Intel compiler (1400)");
 assert_checkequal(b(6), "BLAS library optimized version: MKL");
