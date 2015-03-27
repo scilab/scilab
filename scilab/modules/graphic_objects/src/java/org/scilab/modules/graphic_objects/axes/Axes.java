@@ -2,7 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Manuel JULIACHS
  * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013 - 2015 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -2396,7 +2396,8 @@ public class Axes extends GraphicObject {
             bounds[5] += inc;
         }
 
-        if (getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
+        if (false && getZAxisLocationAsEnum() == AxisProperty.AxisLocation.ORIGIN) {
+            // We ignore this flag axis location since it cannot be set by the user (bug 13494)
             if (0 < bounds[4]) {
                 bounds[4] = 0.;
             } else if (bounds[5] < 0) {

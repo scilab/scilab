@@ -43,7 +43,7 @@ mputlError mputl(int fileDescriptor, char **pStrings, int sizeStrings)
         {
             int mode = GetFileModeOpenedInScilab(fileDescriptor);
 
-            if ( (mode >= 100) && (mode < 200) )
+            if ( (mode >= 100) && (mode < 200) && ((mode % 100) < 10) /* not r+ */)
             {
                 return MPUTL_NO_WRITE_RIGHT;
             }

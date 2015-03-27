@@ -94,7 +94,8 @@ static gw_generic_table Tab[] =
     {sci_light, "light"},
     {sci_addcolor, "addcolor"},
     {sci_name2rgb, "name2rgb"},
-    {sci_color, "color"}
+    {sci_color, "color"},
+    {sci_contour2dm, "contour2dm"}
 };
 
 /*--------------------------------------------------------------------------*/

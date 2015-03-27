@@ -126,6 +126,12 @@ int sci_plot3d(char * fname, unsigned long fname_len)
             return 0;
         }
 
+        if (m1 == 1 || n1 == 1)
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
+            return 1;
+        }
+
         l3 = l1;
         m3 = m1;
         n3 = n1;
@@ -134,14 +140,14 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         m2 = 1;
         n2 = n3;
         l1 = (double *)MALLOC(sizeof(double) * n1);
-        for (i = 0; i < n1; l1[i] = (++i))
+        for (i = 0; i < n1; ++i)
         {
-            ;
+            l1[i] = i + 1;
         }
         l2 = (double *)MALLOC(sizeof(double) * n2);
-        for (i = 0; i < n2; l2[i] = (++i))
+        for (i = 0; i < n2; ++i)
         {
-            ;
+            l1[i] = i + 1;
         }
 
         mustFree = 1;
@@ -275,14 +281,6 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         }
     }
 
-    iflag_def[1] = 8;
-
-    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
-    GetLabels(pvApiCtx, fname, 6, opts, &legend);
-    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
-    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
-
     if (m1 * n1 == m3 * n3 && m1 * n1 == m2 * n2 && m1 * n1 != 1)
     {
         if (! (m1 == m2 && m2 == m3 && n1 == n2 && n2 == n3))
@@ -318,6 +316,15 @@ int sci_plot3d(char * fname, unsigned long fname_len)
         ReturnArguments(pvApiCtx);
         return 0;
     }
+
+    iflag_def[1] = 8;
+
+    GetOptionalDoubleArg(pvApiCtx, fname, 4, "theta", &theta, 1, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 5, "alpha", &alpha, 1, opts);
+    GetLabels(pvApiCtx, fname, 6, opts, &legend);
+    GetOptionalIntArg(pvApiCtx, fname, 7, "flag", &iflag, 3, opts);
+    GetOptionalDoubleArg(pvApiCtx, fname, 8, "ebox", &ebox, 6, opts);
+
 
     getOrCreateDefaultSubwin();
 

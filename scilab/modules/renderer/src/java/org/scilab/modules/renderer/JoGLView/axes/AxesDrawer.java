@@ -630,10 +630,17 @@ public class AxesDrawer {
         // Scale projected data to fit in the cube.
         Transformation isoScale;
         if (axes.getIsoview()) {
-            double w = zone.getWidth();
-            double h = zone.getHeight();
-            double minScale = Math.min(tmpX * w, tmpY * h);
-            isoScale = TransformationFactory.getScaleTransformation(minScale / w, minScale / h, tmpZ);
+            Double[] axesBounds = axes.getAxesBounds();
+            Double[] margins = axes.getMargins();
+            double w = (1 - margins[0] - margins[1]) * axesBounds[2];
+            double h = (1 - margins[2] - margins[3]) * axesBounds[3];
+            double minScale;
+            if (h > w) {
+                minScale = Math.min(tmpX, tmpY * (h / w));
+            } else {
+                minScale = Math.min(tmpX * (w / h), tmpY);
+            }
+            isoScale = TransformationFactory.getScaleTransformation(minScale, minScale, tmpZ);
         } else {
             isoScale = TransformationFactory.getScaleTransformation(tmpX, tmpY, tmpZ);
         }
@@ -641,7 +648,6 @@ public class AxesDrawer {
 
         return transformation;
     }
-
 
     /**
      * Computes and sets the reversed bounds of the given Axes.

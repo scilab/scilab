@@ -1,7 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009-2011 - DIGITEO - Pierre Lando
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2013-2015 - Scilab Enterprises - Calixte DENIZET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -45,7 +45,7 @@ public abstract class AbstractGraduations implements Graduations {
 
     private final Graduations parentGraduations;
     private DecimalFormat numberFormat;
-    private List<Double> subValues;
+    protected List<Double> subValues;
 
     /**
      * Constructor from parent graduations.
@@ -226,7 +226,7 @@ public abstract class AbstractGraduations implements Graduations {
         } else {
             upperBoundBracket = LEFT_BRACKET;
         }
-        return "Graduation " + lowerBoundBracket
+        return getClass().getSimpleName() + lowerBoundBracket
                + getFormat().format(lowerBound) + ", "
                + getFormat().format(upperBound) + upperBoundBracket;
     }
