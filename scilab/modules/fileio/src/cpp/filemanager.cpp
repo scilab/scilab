@@ -52,6 +52,11 @@ bool FileManager::isOpened(wstring _stFilename)
 
 types::File* FileManager::getFile(int _iID)
 {
+    if (_iID == -1 && m_iCurrentFile == -1)
+    {
+        return NULL;
+    }
+
     if (_iID == -1 && m_iCurrentFile != -1)
     {
         return m_fileList[m_iCurrentFile];
