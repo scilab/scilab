@@ -380,14 +380,37 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         GetOptionalIntArg(pvApiCtx, fname, 9, "frameflag", &frame, 1, opts);
         if (frame != &frame_def)
         {
-            strfl[1] = (char)(*frame + 48);
+            if (*frame >= 0 && *frame <= 8)
+            {
+                strfl[1] = (char)(*frame + 48);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for frameflag option.\n"), fname);
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
+                return -1;
+            }
         }
 
         GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
-
         if (axes != &axes_def)
         {
-            strfl[2] = (char)(*axes + 48);
+            if (*axes >= 0 && *axes <= 5)
+            {
+                strfl[2] = (char)(*axes + 48);
+            }
+            else
+            {
+                Scierror(999, _("%s: Wrong value for axesflag option.\n"), fname);
+                if (freeStrf)
+                {
+                    freeAllocatedSingleString(strf);
+                }
+                return -1;
+            }
         }
     }
 

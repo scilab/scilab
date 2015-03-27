@@ -129,6 +129,8 @@ Scilab Bug Fixes
 
 * Bug #13733 fixed - fmt could not be used as a singular optional argument in colorbar.
 
+* Bug #13735 fixed - There was no check of frameflag value in plot2d.
+
 * Bug #13741 fixed - An invisible figure could not be printed under Windows.
 
 * Bug #13742 fixed - Figure was not well-printed when there was a xstring with LaTeX.
