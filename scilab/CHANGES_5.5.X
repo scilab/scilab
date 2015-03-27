@@ -117,6 +117,8 @@ Scilab Bug Fixes
 
 * Bug #13702 fixed - Problems with * prefix for modified files in SciNotes fixed.
 
+* Bug #13706 fixed - Random crash with plot3d([1 1 1]) fixed.
+
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
 * Bug #13721 fixed - Writing in a file opened in r+ mode was not possible.
