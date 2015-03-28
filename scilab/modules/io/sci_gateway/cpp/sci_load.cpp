@@ -11,12 +11,11 @@
  */
 
 #include <string.h>
-#include "api_scilab.hxx"
+#include "io_gw.hxx"
 #include "function.hxx"
+#include "string.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-#include "io_gw.hxx"
-#include "string.hxx"
 #include "library.hxx"
 #include "loadlib.hxx"
 
@@ -27,6 +26,7 @@ extern "C"
 #include "expandPathVariable.h"
 #include "h5_fileManagement.h"
 #include "FileExist.h"
+#include "Scierror.h"
 }
 
 using namespace types;

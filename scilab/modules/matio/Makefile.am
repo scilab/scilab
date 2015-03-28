@@ -71,7 +71,6 @@ libscimatio_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     $(MATIO_CFLAGS) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscimatio.la

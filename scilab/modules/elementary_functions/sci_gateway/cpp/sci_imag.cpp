@@ -15,7 +15,7 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "sparse.hxx"
 
 extern "C"
 {

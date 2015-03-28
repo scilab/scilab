@@ -123,7 +123,6 @@ libscidifferential_equations_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

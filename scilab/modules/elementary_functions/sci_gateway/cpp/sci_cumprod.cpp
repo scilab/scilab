@@ -17,6 +17,7 @@
 #include "overload.hxx"
 #include "execvisitor.hxx"
 #include "cumprod.hxx"
+#include "int.hxx"
 
 extern "C"
 {

@@ -18,6 +18,7 @@
 #include "execvisitor.hxx"
 #include "max.hxx"
 #include "min.hxx"
+#include "int.hxx"
 
 extern "C"
 {

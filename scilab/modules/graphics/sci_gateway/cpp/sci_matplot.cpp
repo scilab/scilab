@@ -24,6 +24,7 @@
 #include "graphichandle.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "int.hxx"
 
 extern "C"
 {

@@ -640,7 +640,7 @@ libsciinteger_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/console/includes/ \
-    $(EIGEN_CPPFLAGS)
+    $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciinteger.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciinteger-algo.la libsciinteger.la
@@ -1598,7 +1598,6 @@ uninstall-am: uninstall-libsciinteger_la_etcDATA \
 	uninstall-libsciinteger_la_sci_gatewayDATA \
 	uninstall-pkglibLTLIBRARIES
 
-    $(AM_CPPFLAGS)
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

@@ -43,9 +43,6 @@ matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfil
 
     matvar_t **cellEntries = NULL;
     int * var_addr = NULL;
-    int var_type;
-    SciErr sciErr;
-
     Cell* pCell = in[iVar - 1]->getAs<Cell>();
 
     Dims = pCell->getDims();

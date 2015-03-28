@@ -62,7 +62,7 @@ BOOL LoadClasspath(char *xmlfilename)
             char *classpath = NULL;
             char *load = "";
             typeOfLoad eLoad = STARTUP;
-            char *currentMode = getScilabModeString();
+            const char *currentMode = getScilabModeString();
             /* Xpath Query :
              * Retrieve all the path which are not disabled in our mode
              */

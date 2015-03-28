@@ -91,7 +91,6 @@ libsciui_data_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/console/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 # Without the ui_data module

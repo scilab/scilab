@@ -99,7 +99,6 @@ libscifftw_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
     $(FFTW3_CFLAGS) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 else

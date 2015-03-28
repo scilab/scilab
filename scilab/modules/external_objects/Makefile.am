@@ -143,9 +143,7 @@ libsciexternal_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/src/c \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/threads/includes \
-    -I$(top_srcdir)/modules/console/includes \
-    $(EIGEN_CPPFLAGS)
-
+    -I$(top_srcdir)/modules/console/includes
 
 pkglib_LTLIBRARIES = libsciexternal_objects.la 
 noinst_LTLIBRARIES = libsciexternal_objects-algo.la 

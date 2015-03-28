@@ -139,7 +139,6 @@ libscifileio_la_CPPFLAGS = \
 	$(HDF5_CFLAGS) \
 	$(XML_FLAGS) \
 	$(CURL_CFLAGS) \
-	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 

@@ -13,6 +13,7 @@
 #include "fftw_common.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "int.hxx"
 
 extern "C"
 {

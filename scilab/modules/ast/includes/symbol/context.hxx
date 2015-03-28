@@ -19,7 +19,6 @@
 #define __CONTEXT_HXX__
 
 #include "function.hxx"
-#include "typesdecl.hxx"
 #include "variables.hxx"
 #include "libraries.hxx"
 

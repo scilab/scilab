@@ -44,9 +44,6 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
 
     matvar_t **structEntries = NULL;
     int * var_addr = NULL;
-    int var_type;
-    SciErr sciErr;
-
     Struct* pStruct = in[iVar - 1]->getAs<Struct>();
 
     Dims = pStruct->getDims();

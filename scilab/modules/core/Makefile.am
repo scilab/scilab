@@ -167,7 +167,6 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/hdf5/includes/ \
     -I$(top_srcdir)/modules/fftw/includes/ \
     -I$(top_srcdir)/modules/ui_data/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

@@ -19,6 +19,7 @@
 #include "overload.hxx"
 #include "execvisitor.hxx"
 #include "sum.hxx"
+#include "int.hxx"
 
 extern "C"
 {

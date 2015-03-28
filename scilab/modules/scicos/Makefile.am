@@ -149,7 +149,6 @@ libsciscicos_algo_la_CPPFLAGS= -I$(srcdir)/includes/ \
 			-I$(top_srcdir)/modules/ast/includes/types/ \
 			-I$(top_srcdir)/modules/ast/includes/analysis/ \
 			-I$(top_srcdir)/modules/threads/includes/ \
-			$(EIGEN_CPPFLAGS) \
 			$(AM_CPPFLAGS)
 else
 libsciscicos_algo_la_CPPFLAGS= -I$(top_srcdir)/modules/output_stream/includes/ \

@@ -17,6 +17,9 @@
 #include <complex>
 #include "double.hxx"
 #include "bool.hxx"
+#include "keepForSparse.hxx"
+
+#pragma message("include sparse.hxx")
 
 #define SPARSE_CONST
 
@@ -532,6 +535,23 @@ private :
     template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
     static bool copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
 };
+
+template<typename T>
+inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            out->coeffRef(i, j) = !in->coeff(i, j);
+        }
+    }
+
+    out->prune(&keepForSparse<bool>);
+    out->finalize();
+}
+
+
 /*
   Implement sparse boolean matrix
  */
@@ -691,7 +711,7 @@ struct EXTERN_AST SparseBool : GenericType
     bool neg(InternalType *& out)
     {
         SparseBool * _out = new SparseBool(getRows(), getCols());
-        type_traits::neg(getRows(), getCols(), matrixBool, _out->matrixBool);
+        types::neg(getRows(), getCols(), matrixBool, _out->matrixBool);
         _out->finalize();
         out = _out;
         return true;
@@ -727,6 +747,7 @@ struct EXTERN_AST SparseBool : GenericType
 private:
     void create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
 };
+
 template<typename T>
 struct SparseTraits
 {

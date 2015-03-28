@@ -373,7 +373,7 @@ libscielementary_functions_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
-	$(EIGEN_CPPFLAGS) \
+    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

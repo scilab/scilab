@@ -13,15 +13,18 @@
 #ifndef AST_RUNVISITOR_HXX
 #define AST_RUNVISITOR_HXX
 
-#include <set>
-
+#include "context.hxx"
 #include "all.hxx"
 #include "types.hxx"
-#include "alltypes.hxx"
+#include "double.hxx"
+#include "bool.hxx"
+#include "dollar.hxx"
+#include "colon.hxx"
+#include "string.hxx"
+#include "void.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabWrite.hxx"
-#include "context.hxx"
 #include "variables.hxx"
 
 extern "C" {

@@ -18,6 +18,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "sparse.hxx"
+#include "int.hxx"
 
 #define MODULE_NAME L"elementary_functions"
 extern "C"

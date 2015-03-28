@@ -518,7 +518,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\types\tlist.hxx" />
     <ClInclude Include="includes\types\tostring_common.hxx" />
     <ClInclude Include="includes\types\types.hxx" />
-    <ClInclude Include="includes\types\typesdecl.hxx" />
     <ClInclude Include="includes\types\types_tools.hxx" />
     <ClInclude Include="includes\types\type_traits.hxx" />
     <ClInclude Include="includes\types\user.hxx" />

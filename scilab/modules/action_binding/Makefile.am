@@ -56,7 +56,6 @@ libsciaction_binding_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/libs/dynamiclibrary/includes \
-	$(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 # Includes need for the compilation
@@ -81,7 +80,6 @@ libsciaction_binding_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/functions_manager/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/string/includes \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 # Name of the future library (.la will be replace by .so, .a, etc regarding

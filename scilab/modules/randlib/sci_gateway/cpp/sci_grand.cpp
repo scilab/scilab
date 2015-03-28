@@ -1631,15 +1631,15 @@ void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
     {
         for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
         {
-            pOut[0]->getAs<U>()->set(i , pIn->get(pDblOut->get(i)));
-            pOut[0]->getAs<U>()->setImg(i , pIn->getImg(pDblOut->get(i)));
+            pOut[0]->getAs<U>()->set(i , pIn->get(static_cast<int>(pDblOut->get(i))));
+            pOut[0]->getAs<U>()->setImg(i, pIn->getImg(static_cast<int>(pDblOut->get(i))));
         }
     }
     else
     {
         for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
         {
-            pOut[0]->getAs<U>()->set(i, pIn->get(pDblOut->get(i)));
+            pOut[0]->getAs<U>()->set(i, pIn->get(static_cast<int>(pDblOut->get(i))));
         }
     }
 

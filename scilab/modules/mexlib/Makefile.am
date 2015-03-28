@@ -41,7 +41,6 @@ libmex_la_LIBADD = $(MEXLIB_DEP)
 
 libmex_la_CPPFLAGS =  \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 libmat_la_SOURCES = $(MEXLIB_CPP_SOURCES)
@@ -50,7 +49,6 @@ libmat_la_LIBADD = $(MEXLIB_DEP)
 
 libmat_la_CPPFLAGS = \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 libmat_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
@@ -61,7 +59,6 @@ libmx_la_LIBADD = $(MEXLIB_DEP)
 
 libmx_la_CPPFLAGS = \
     $(MEXLIB_FLAGS) \
-    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 libmx_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)

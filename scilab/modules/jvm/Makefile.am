@@ -49,7 +49,6 @@ libscijvm_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/preferences/includes/ \
     $(XML_FLAGS) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscijvm-disable.la

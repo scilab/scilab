@@ -687,7 +687,6 @@ libscifftw_la_etc_DATA = \
 @FFTW_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
 @FFTW_TRUE@    -I$(top_srcdir)/modules/elementary_functions/includes/ \
 @FFTW_TRUE@    $(FFTW3_CFLAGS) \
-@FFTW_TRUE@    $(EIGEN_CPPFLAGS) \
 @FFTW_TRUE@    $(AM_CPPFLAGS)
 
 

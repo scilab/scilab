@@ -43,7 +43,6 @@ libscifunctions_manager_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/string/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	$(AM_CPPFLAGS) \
-    $(EIGEN_CPPFLAGS) \
 	$(XML_FLAGS)
 
 libscifunctions_manager_la_includedir=$(pkgincludedir)

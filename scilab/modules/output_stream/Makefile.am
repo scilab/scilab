@@ -84,7 +84,6 @@ libscioutput_stream_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

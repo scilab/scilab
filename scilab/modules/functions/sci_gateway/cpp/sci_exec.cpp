@@ -26,6 +26,8 @@
 #include "types_tools.hxx"
 #include "runner.hxx"
 #include "threadmanagement.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 #include <iostream>
 #include <fstream>

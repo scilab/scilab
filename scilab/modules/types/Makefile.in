@@ -787,7 +787,6 @@ libscitypes_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/api_scilab/includes \
     -I$(top_srcdir)/modules/console/includes \
 	-I$(srcdir)/src/cpp \
-    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscitypes.la $(am__append_4)

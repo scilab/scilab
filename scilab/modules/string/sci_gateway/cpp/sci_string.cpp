@@ -26,6 +26,8 @@
 #include "tlist.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "sparse.hxx"
+#include "int.hxx"
 
 extern "C"
 {

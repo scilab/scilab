@@ -499,7 +499,6 @@ libscigraphics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    $(EIGEN_CPPFLAGS) \
     $(TCL_INC_PATH) \
     $(TK_INC_PATH) \
     $(AM_CPPFLAGS)
@@ -583,7 +582,6 @@ libscigraphics_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 # endif
