@@ -168,5 +168,5 @@ function comet(varargin)
         delete(body)
     endfunction
     //not to generate an error message if the window is closed
-    exec(anim,-1,"errcatch")
+    exec(anim, "errcatch", -1);
 endfunction
