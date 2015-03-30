@@ -888,13 +888,19 @@ function status = test_single(_module, _testPath, _testName)
 
         if getos() == "Windows" then // Ignore JOGL 2.2.4 debug message
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "Info: GLReadBufferUtil.readPixels: pre-exisiting GL error 0x500"
+            msg = "Info: GLReadBufferUtil.readPixels: pre-exisiting GL error 0x500";
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
                 txt(txt==msg) = [];
                 if isempty(txt) then
                     deletefile(tmp_err);
+                else // Ignore JOGL 2.1.4 debug message
+                    msg = "Info: GLDrawableHelper.reshape: pre-exisiting GL error 0x500";
+                    txt(txt==msg) = [];
+                    if isempty(txt) then
+                        deletefile(tmp_err);
+                    end
                 end
             end
         end
