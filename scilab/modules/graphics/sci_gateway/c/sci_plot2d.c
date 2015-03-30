@@ -398,7 +398,7 @@ int sci_plot2d(char* fname, unsigned long fname_len)
         GetOptionalIntArg(pvApiCtx, fname, 9, "axesflag", &axes, 1, opts);
         if (axes != &axes_def)
         {
-            if (*axes >= 0 && *axes <= 5)
+            if ((*axes >= 0 && *axes <= 5) || *axes == 9)
             {
                 strfl[2] = (char)(*axes + 48);
             }

@@ -123,7 +123,7 @@
                             <term>axesflag</term>
                             <listitem>
                                 <para>specifies how the axes are drawn. The associated value
-                                    should be an integer ranging from 0 to 5.
+                                    should be an integer ranging from 0 to 5 or 9 (default value).
                                 </para>
                             </listitem>
                         </varlistentry>
@@ -616,7 +616,7 @@
                             <listitem>
                                 <para>axes are drawn, the y-axis is displayed on the left
                                     (axes_visible=["on" "on"];box="off",y_location="left"). This
-                                    is the default value
+                                    is the default value.
                                 </para>
                             </listitem>
                         </varlistentry>
