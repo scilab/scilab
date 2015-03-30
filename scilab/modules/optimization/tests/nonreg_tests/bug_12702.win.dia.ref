@@ -262,16 +262,16 @@ WARNING: Feature derivative is obsolete.
          This feature will be permanently removed in Scilab 6.0
 
      nlis0   fin sur tmin        pas            fonctions     derivees
-     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
-     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+     nlis0                  0.00000000D+00    0.53783484D-16 -0.248D-29
+     nlis0                  0.38722999D+01    0.53783488D-16  0.743D-29
  -------------------------------------------------------------------------------
  n1qn3: output mode is  6
      number of iterations:   42
      number of simulations:     53
-     realized relative precision on g:  0.11D-15
+     realized relative precision on g:  0.21D-15
      norm of x =  0.14142135D+01
-     f         =  0.53783322D-16
-     norm of x =  0.74770897D-13
+     f         =  0.53783484D-16
+     norm of x =  0.14924691D-12
 Optimization stops because too small variations for x.
 
 WARNING: Feature derivative is obsolete.
@@ -453,12 +453,12 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  26, simul  34, f= 0.93394212D-01, h'(0)=-0.12026D+00
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  27, simul  35, f= 0.68247217D-01, h'(0)=-0.20762D-01
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
@@ -477,7 +477,7 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  30, simul  39, f= 0.28635823D-01, h'(0)=-0.25872D-01
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
@@ -487,7 +487,7 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  32, simul  41, f= 0.47312381D-02, h'(0)=-0.12658D-01
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
@@ -496,12 +496,12 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  33, simul  43, f= 0.27115837D-02, h'(0)=-0.27047D-02
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  34, simul  44, f= 0.78628297D-03, h'(0)=-0.10616D-02
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
@@ -511,52 +511,52 @@ WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: iter  36, simul  46, f= 0.65777606D-05, h'(0)=-0.12835D-04
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: iter  37, simul  47, f= 0.65293408D-06, h'(0)=-0.24132D-05
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: iter  38, simul  48, f= 0.48527633D-06, h'(0)=-0.97036D-06
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: iter  39, simul  49, f= 0.73395789D-12, h'(0)=-0.14314D-11
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: iter  40, simul  50, f= 0.20622903D-15, h'(0)=-0.99086D-16
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: iter  41, simul  51, f= 0.53784084D-16, h'(0)=-0.47400D-24
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
- n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+ n1qn3: iter  42, simul  52, f= 0.53783484D-16, h'(0)=-0.24769D-29
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
      nlis0   fin sur tmin        pas            fonctions     derivees
-     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
-     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+     nlis0                  0.00000000D+00    0.53783484D-16 -0.248D-29
+     nlis0                  0.38722999D+01    0.53783488D-16  0.743D-29
  -------------------------------------------------------------------------------
  n1qn3: output mode is  6
      number of iterations:   42
      number of simulations:     53
-     realized relative precision on g:  0.11D-15
+     realized relative precision on g:  0.21D-15
      norm of x =  0.14142135D+01
-     f         =  0.53783322D-16
-     norm of x =  0.74770897D-13
+     f         =  0.53783484D-16
+     norm of x =  0.14924691D-12
 Optimization stops because too small variations for x.
 
 WARNING: Feature derivative is obsolete.
@@ -824,7 +824,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.155D-01  0.179D+00
 
- n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  26, simul  34, f= 0.93394212D-01, h'(0)=-0.12026D+00
      nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -832,7 +832,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.251D-01  0.437D-01
 
- n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  27, simul  35, f= 0.68247217D-01, h'(0)=-0.20762D-01
      nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -861,7 +861,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.813D-02 -0.718D-02
 
- n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  30, simul  39, f= 0.28635823D-01, h'(0)=-0.25872D-01
      nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -877,7 +877,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.648D-02 -0.412D-02
 
- n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  32, simul  41, f= 0.47312381D-02, h'(0)=-0.12658D-01
      nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -890,7 +890,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.308D+00 -0.202D-02  0.129D-02
 
- n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  33, simul  43, f= 0.27115837D-02, h'(0)=-0.27047D-02
      nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -898,7 +898,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.193D-02 -0.124D-02
 
- n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  34, simul  44, f= 0.78628297D-03, h'(0)=-0.10616D-02
      nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -914,7 +914,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.994D-04 -0.378D-04
 
- n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: iter  36, simul  46, f= 0.65777606D-05, h'(0)=-0.12835D-04
      nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -922,7 +922,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.592D-05  0.983D-06
 
- n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: iter  37, simul  47, f= 0.65293408D-06, h'(0)=-0.24132D-05
      nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -930,7 +930,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.168D-06  0.208D-05
 
- n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: iter  38, simul  48, f= 0.48527633D-06, h'(0)=-0.97036D-06
      nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -938,7 +938,7 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.485D-06 -0.183D-09
 
- n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: iter  39, simul  49, f= 0.73395789D-12, h'(0)=-0.14314D-11
      nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
@@ -946,40 +946,40 @@ WARNING: Feature derivative is obsolete.
 
      nlis0     0.100D+01 -0.734D-12 -0.116D-13
 
- n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: iter  40, simul  50, f= 0.20622903D-15, h'(0)=-0.99086D-16
      nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.152D-15 -0.806D-21
+     nlis0     0.100D+01 -0.152D-15 -0.112D-20
 
- n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
-     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+ n1qn3: iter  41, simul  51, f= 0.53784084D-16, h'(0)=-0.47400D-24
+     nlis0       fpn=-0.474D-24 d2= 0.19D-25  tmin= 0.17D-02 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.267D-21 -0.536D-27
+     nlis0     0.100D+01 -0.599D-21 -0.107D-26
 
- n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
-     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+ n1qn3: iter  42, simul  52, f= 0.53783484D-16, h'(0)=-0.24769D-29
+     nlis0       fpn=-0.248D-29 d2= 0.33D-32  tmin= 0.39D+01 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0                                      0.387D+01  0.326D-23  0.743D-29
      nlis0   fin sur tmin        pas            fonctions     derivees
-     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
-     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+     nlis0                  0.00000000D+00    0.53783484D-16 -0.248D-29
+     nlis0                  0.38722999D+01    0.53783488D-16  0.743D-29
  -------------------------------------------------------------------------------
  n1qn3: output mode is  6
      number of iterations:   42
      number of simulations:     53
-     realized relative precision on g:  0.11D-15
+     realized relative precision on g:  0.21D-15
      norm of x =  0.14142135D+01
-     f         =  0.53783322D-16
-     norm of x =  0.74770897D-13
+     f         =  0.53783484D-16
+     norm of x =  0.14924691D-12
 Optimization stops because too small variations for x.
 
 WARNING: Feature derivative is obsolete.
@@ -1446,7 +1446,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  26, simul  34, f= 0.93394212D-01, h'(0)=-0.12026D+00
  n1qn3: line search
      nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1462,7 +1462,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  27, simul  35, f= 0.68247217D-01, h'(0)=-0.20762D-01
  n1qn3: line search
      nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1515,7 +1515,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  30, simul  39, f= 0.28635823D-01, h'(0)=-0.25872D-01
  n1qn3: line search
      nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1547,7 +1547,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  28.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  32, simul  41, f= 0.47312381D-02, h'(0)=-0.12658D-01
  n1qn3: line search
      nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1568,7 +1568,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  33, simul  43, f= 0.27115837D-02, h'(0)=-0.27047D-02
  n1qn3: line search
      nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1584,7 +1584,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  34, simul  44, f= 0.78628297D-03, h'(0)=-0.10616D-02
  n1qn3: line search
      nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1616,7 +1616,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: iter  36, simul  46, f= 0.65777606D-05, h'(0)=-0.12835D-04
  n1qn3: line search
      nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1632,7 +1632,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: iter  37, simul  47, f= 0.65293408D-06, h'(0)=-0.24132D-05
  n1qn3: line search
      nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1648,7 +1648,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  26.4 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: iter  38, simul  48, f= 0.48527633D-06, h'(0)=-0.97036D-06
  n1qn3: line search
      nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1664,7 +1664,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: iter  39, simul  49, f= 0.73395789D-12, h'(0)=-0.14314D-11
  n1qn3: line search
      nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -1672,7 +1672,7 @@ WARNING: Feature derivative is obsolete.
          This feature will be permanently removed in Scilab 6.0
 
      nlis0     0.100D+01 -0.734D-12 -0.116D-13
- n1qn3: stopping criterion on g:  0.61628D-10
+ n1qn3: stopping criterion on g:  0.61631D-10
  n1qn3: convergence rate, s(k)/s(k-1) =  0.53526D-01
  n1qn3: matrix update:
      fitting the ellipsoid: factor  0.399D+02
@@ -1680,57 +1680,57 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  64.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: iter  40, simul  50, f= 0.20622903D-15, h'(0)=-0.99086D-16
  n1qn3: line search
      nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.152D-15 -0.806D-21
- n1qn3: stopping criterion on g:  0.92929D-13
- n1qn3: convergence rate, s(k)/s(k-1) =  0.84645D-02
+     nlis0     0.100D+01 -0.152D-15 -0.112D-20
+ n1qn3: stopping criterion on g:  0.92861D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84647D-02
  n1qn3: matrix update:
      fitting the ellipsoid: factor  0.571D+01
      Oren-Spedicato factor (not used) =  0.482D+00     diagonal: average value =  0.356D+00
- n1qn3: descent direction d: angle(-g,d) =  75.5 degrees
+ n1qn3: descent direction d: angle(-g,d) =  80.8 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: iter  41, simul  51, f= 0.53784084D-16, h'(0)=-0.47400D-24
  n1qn3: line search
-     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+     nlis0       fpn=-0.474D-24 d2= 0.19D-25  tmin= 0.17D-02 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.267D-21 -0.536D-27
- n1qn3: stopping criterion on g:  0.10705D-15
- n1qn3: convergence rate, s(k)/s(k-1) =  0.55083D-05
+     nlis0     0.100D+01 -0.599D-21 -0.107D-26
+ n1qn3: stopping criterion on g:  0.21365D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.86648D-05
  n1qn3: matrix update:
-     fitting the ellipsoid: factor  0.349D-02
-     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.227D-02
- n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+     fitting the ellipsoid: factor  0.352D-02
+     Oren-Spedicato factor (not used) =  0.102D-02     diagonal: average value =  0.198D-02
+ n1qn3: descent direction d: angle(-g,d) =  29.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+ n1qn3: iter  42, simul  52, f= 0.53783484D-16, h'(0)=-0.24769D-29
  n1qn3: line search
-     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+     nlis0       fpn=-0.248D-29 d2= 0.33D-32  tmin= 0.39D+01 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0                                      0.387D+01  0.326D-23  0.743D-29
      nlis0   fin sur tmin        pas            fonctions     derivees
-     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
-     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+     nlis0                  0.00000000D+00    0.53783484D-16 -0.248D-29
+     nlis0                  0.38722999D+01    0.53783488D-16  0.743D-29
  -------------------------------------------------------------------------------
  n1qn3: output mode is  6
      number of iterations:   42
      number of simulations:     53
-     realized relative precision on g:  0.11D-15
+     realized relative precision on g:  0.21D-15
      norm of x =  0.14142135D+01
-     f         =  0.53783322D-16
-     norm of x =  0.74770897D-13
+     f         =  0.53783484D-16
+     norm of x =  0.14924691D-12
 Optimization stops because too small variations for x.
 
 WARNING: Feature derivative is obsolete.
@@ -2196,7 +2196,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  26, simul  34, f= 0.93394213D-01, h'(0)=-0.12026D+00
+ n1qn3: iter  26, simul  34, f= 0.93394212D-01, h'(0)=-0.12026D+00
  n1qn3: line search
      nlis0       fpn=-0.120D+00 d2= 0.12D-01  tmin= 0.26D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2212,7 +2212,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  27, simul  35, f= 0.68247218D-01, h'(0)=-0.20762D-01
+ n1qn3: iter  27, simul  35, f= 0.68247217D-01, h'(0)=-0.20762D-01
  n1qn3: line search
      nlis0       fpn=-0.208D-01 d2= 0.45D-02  tmin= 0.41D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2265,7 +2265,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  85.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  30, simul  39, f= 0.28635824D-01, h'(0)=-0.25872D-01
+ n1qn3: iter  30, simul  39, f= 0.28635823D-01, h'(0)=-0.25872D-01
  n1qn3: line search
      nlis0       fpn=-0.259D-01 d2= 0.13D-01  tmin= 0.22D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2297,7 +2297,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  28.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  32, simul  41, f= 0.47312383D-02, h'(0)=-0.12658D-01
+ n1qn3: iter  32, simul  41, f= 0.47312381D-02, h'(0)=-0.12658D-01
  n1qn3: line search
      nlis0       fpn=-0.127D-01 d2= 0.37D-01  tmin= 0.13D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2318,7 +2318,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  86.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  33, simul  43, f= 0.27115836D-02, h'(0)=-0.27047D-02
+ n1qn3: iter  33, simul  43, f= 0.27115837D-02, h'(0)=-0.27047D-02
  n1qn3: line search
      nlis0       fpn=-0.270D-02 d2= 0.13D-02  tmin= 0.68D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2334,7 +2334,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  87.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  34, simul  44, f= 0.78628305D-03, h'(0)=-0.10616D-02
+ n1qn3: iter  34, simul  44, f= 0.78628297D-03, h'(0)=-0.10616D-02
  n1qn3: line search
      nlis0       fpn=-0.106D-02 d2= 0.11D-02  tmin= 0.73D-14 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2366,7 +2366,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  86.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  36, simul  46, f= 0.65777622D-05, h'(0)=-0.12835D-04
+ n1qn3: iter  36, simul  46, f= 0.65777606D-05, h'(0)=-0.12835D-04
  n1qn3: line search
      nlis0       fpn=-0.128D-04 d2= 0.34D-04  tmin= 0.43D-13 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2382,7 +2382,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  77.4 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  37, simul  47, f= 0.65293786D-06, h'(0)=-0.24132D-05
+ n1qn3: iter  37, simul  47, f= 0.65293408D-06, h'(0)=-0.24132D-05
  n1qn3: line search
      nlis0       fpn=-0.241D-05 d2= 0.96D-07  tmin= 0.92D-12 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2398,7 +2398,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  26.4 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  38, simul  48, f= 0.48527539D-06, h'(0)=-0.97036D-06
+ n1qn3: iter  38, simul  48, f= 0.48527633D-06, h'(0)=-0.97036D-06
  n1qn3: line search
      nlis0       fpn=-0.970D-06 d2= 0.12D-08  tmin= 0.80D-11 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2414,7 +2414,7 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  83.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  39, simul  49, f= 0.73398571D-12, h'(0)=-0.14314D-11
+ n1qn3: iter  39, simul  49, f= 0.73395789D-12, h'(0)=-0.14314D-11
  n1qn3: line search
      nlis0       fpn=-0.143D-11 d2= 0.35D-11  tmin= 0.13D-09 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
@@ -2422,7 +2422,7 @@ WARNING: Feature derivative is obsolete.
          This feature will be permanently removed in Scilab 6.0
 
      nlis0     0.100D+01 -0.734D-12 -0.116D-13
- n1qn3: stopping criterion on g:  0.61628D-10
+ n1qn3: stopping criterion on g:  0.61631D-10
  n1qn3: convergence rate, s(k)/s(k-1) =  0.53526D-01
  n1qn3: matrix update:
      fitting the ellipsoid: factor  0.399D+02
@@ -2430,56 +2430,56 @@ WARNING: Feature derivative is obsolete.
  n1qn3: descent direction d: angle(-g,d) =  64.0 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  40, simul  50, f= 0.20622707D-15, h'(0)=-0.99085D-16
+ n1qn3: iter  40, simul  50, f= 0.20622903D-15, h'(0)=-0.99086D-16
  n1qn3: line search
      nlis0       fpn=-0.991D-16 d2= 0.25D-15  tmin= 0.16D-07 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.152D-15 -0.806D-21
- n1qn3: stopping criterion on g:  0.92929D-13
- n1qn3: convergence rate, s(k)/s(k-1) =  0.84645D-02
+     nlis0     0.100D+01 -0.152D-15 -0.112D-20
+ n1qn3: stopping criterion on g:  0.92861D-13
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.84647D-02
  n1qn3: matrix update:
      fitting the ellipsoid: factor  0.571D+01
      Oren-Spedicato factor (not used) =  0.482D+00     diagonal: average value =  0.356D+00
- n1qn3: descent direction d: angle(-g,d) =  75.5 degrees
+ n1qn3: descent direction d: angle(-g,d) =  80.8 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  41, simul  51, f= 0.53783589D-16, h'(0)=-0.47026D-24
+ n1qn3: iter  41, simul  51, f= 0.53784084D-16, h'(0)=-0.47400D-24
  n1qn3: line search
-     nlis0       fpn=-0.470D-24 d2= 0.75D-26  tmin= 0.26D-02 tmax= 0.10D+21
+     nlis0       fpn=-0.474D-24 d2= 0.19D-25  tmin= 0.17D-02 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0     0.100D+01 -0.267D-21 -0.536D-27
- n1qn3: stopping criterion on g:  0.10705D-15
- n1qn3: convergence rate, s(k)/s(k-1) =  0.55083D-05
+     nlis0     0.100D+01 -0.599D-21 -0.107D-26
+ n1qn3: stopping criterion on g:  0.21365D-15
+ n1qn3: convergence rate, s(k)/s(k-1) =  0.86648D-05
  n1qn3: matrix update:
-     fitting the ellipsoid: factor  0.349D-02
-     Oren-Spedicato factor (not used) =  0.101D-02     diagonal: average value =  0.227D-02
- n1qn3: descent direction d: angle(-g,d) =  72.3 degrees
+     fitting the ellipsoid: factor  0.352D-02
+     Oren-Spedicato factor (not used) =  0.102D-02     diagonal: average value =  0.198D-02
+ n1qn3: descent direction d: angle(-g,d) =  29.9 degrees
  -------------------------------------------------------------------------------
 
- n1qn3: iter  42, simul  52, f= 0.53783322D-16, h'(0)=-0.62345D-30
+ n1qn3: iter  42, simul  52, f= 0.53783484D-16, h'(0)=-0.24769D-29
  n1qn3: line search
-     nlis0       fpn=-0.623D-30 d2= 0.68D-32  tmin= 0.38D+01 tmax= 0.10D+21
+     nlis0       fpn=-0.248D-29 d2= 0.33D-32  tmin= 0.39D+01 tmax= 0.10D+21
 WARNING: Feature derivative is obsolete.
          Please use numderivative instead.
          This feature will be permanently removed in Scilab 6.0
 
-     nlis0                                      0.375D+01  0.326D-23  0.187D-29
+     nlis0                                      0.387D+01  0.326D-23  0.743D-29
      nlis0   fin sur tmin        pas            fonctions     derivees
-     nlis0                  0.00000000D+00    0.53783322D-16 -0.623D-30
-     nlis0                  0.37536580D+01    0.53783325D-16  0.187D-29
+     nlis0                  0.00000000D+00    0.53783484D-16 -0.248D-29
+     nlis0                  0.38722999D+01    0.53783488D-16  0.743D-29
  -------------------------------------------------------------------------------
  n1qn3: output mode is  6
      number of iterations:   42
      number of simulations:     53
-     realized relative precision on g:  0.11D-15
+     realized relative precision on g:  0.21D-15
      norm of x =  0.14142135D+01
-     f         =  0.53783322D-16
-     norm of x =  0.74770897D-13
+     f         =  0.53783484D-16
+     norm of x =  0.14924691D-12
 Optimization stops because too small variations for x.
 
