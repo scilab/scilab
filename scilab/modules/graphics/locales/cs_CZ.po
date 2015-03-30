@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #, c-format
 msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
@@ -193,8 +193,9 @@ msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Špatná hodnota pro %s '%c': Očekáváno '%s' a '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
-msgstr "%s: Špatný počet sloupců vstupního argumentu #%d: Očekáváno %d.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -300,6 +301,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s: Nemožný stav min > max v datech reál. vektoru x nebo y.\n"
 
@@ -338,6 +347,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno %d nebo %d.\n"
 
@@ -357,29 +370,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr "%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávána %s.\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: Funkce %s je zastaralá.\n"
-
-msgid "Warning"
-msgstr "Varování"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: Pro další informace si prosím prohlédněte dokumentaci.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: Tato funkce bude trvale odstraněna ve Scilab %s\n"
-"\n"
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr "%s: Obslužné rutiny musí být přemístěny pod jednu nadřízenou.\n"
 
 #, c-format
 msgid ""
@@ -654,6 +644,10 @@ msgstr ""
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 "%s: Chyba ve vstupním argumentu #%d: Určené hranice nejsou správné.\n"
+
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Nadřazena musí být PODOKNO\n"
@@ -1139,8 +1133,8 @@ msgid "Can not set directly a label object.\n"
 msgstr "Nelze přímo nastavit objekt štítku.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
-msgstr "Špatná velikost vlastnosti '%s': Musí mít %d sloupců.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"

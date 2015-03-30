@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-26 00:59+0000\n"
+"PO-Revision-Date: 2015-03-08 12:21+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <ru@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: ru\n"
 
 #, c-format
@@ -375,10 +375,11 @@ msgid "Default End-Of-Line: "
 msgstr "Конец строки по умолчанию: "
 
 msgid "Completion"
-msgstr ""
+msgstr "Завершение"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
 msgstr ""
+"Автоматически закрывать скобки, когда курсор находится в конце строки"
 
 msgid "General display options"
 msgstr "Общие настройки отображения"
@@ -390,7 +391,7 @@ msgid "Show line numbers: "
 msgstr "Показать номера строк: "
 
 msgid "Local numbering"
-msgstr ""
+msgstr "Местная нумерация"
 
 msgid "Normal"
 msgstr "Стандартная"

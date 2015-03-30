@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-07 20:14+0000\n"
+"PO-Revision-Date: 2014-09-30 17:00+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: uk\n"
 
 msgid "X,Y,A and B"
@@ -530,25 +530,11 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: виявлено NaN-и, скористайтеся краще %s().\n"
 
 #, c-format
-msgid "%s: Wrong type for input arguments: Numerical expected.\n"
-msgstr ""
-"%s: помилковий тип вхідних параметрів: слід використовувати числове "
-"значення.\n"
-
-#, c-format
-msgid "%s: Wrong size for both input arguments: same size expected.\n"
-msgstr ""
-"%s: помилкова розмірність обох вхідних параметрів: розмірності мали бути "
-"однаковими.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
-msgstr "%s: помилкова розмірність вхідного параметра №%d: має бути > %d.\n"
-
-#, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути вказано невід’ємні "
+"значення.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d and #%d: Same size expected.\n"
@@ -577,6 +563,8 @@ msgid ""
 "%s: Wrong value of input argument #%d: Lower than or equal to size of input "
 "argument #%d expected.\n"
 msgstr ""
+"%s: помилкове значення вхідного параметра №%d: мало бути використано менше "
+"або рівне значення до розмірності вхідного параметра №%d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Size %s expected.\n"
