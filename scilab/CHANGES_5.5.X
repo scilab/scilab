@@ -149,6 +149,8 @@ Scilab Bug Fixes
 
 * Bug #13772 fixed - Xcos GUI was not locked while setting parameters.
 
+* Bug #13791 fixed - ricc no longer managed the 'invf' method.
+
 
 Known incompatibilities
 =======================

@@ -1,0 +1,26 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Vincent COUVERT
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 13791 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/13791
+//
+// <-- Short Description -->
+// ricc() no longer accepts the 'invf' method.
+//
+F = rand(3,3);
+G1 = rand(3,2);
+R = rand(2,2);
+G2 = R*R'+eye();
+G = G1/G2*G1';
+C = rand(3,3);
+H = C*C';
+ierr = execstr("X=ricc(F,G,H,""disc"",""invf"");", "errcatch");
+assert_checktrue(ierr==0);

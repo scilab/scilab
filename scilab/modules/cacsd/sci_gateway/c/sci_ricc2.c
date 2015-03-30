@@ -190,7 +190,7 @@ int sci_ricc2(char *fname, unsigned long fname_len)
         }
         else
         {
-            WSIGN  = (strcmp((lMETHOD), "invf") == 0 || strcmp((lMETHOD), "INVF") == 0);
+            WINVF  = (strcmp((lMETHOD), "invf") == 0 || strcmp((lMETHOD), "INVF") == 0);
             if (WSCHUR == FALSE && WINVF == FALSE)
             {
                 freeAllocatedSingleString(lMETHOD);
