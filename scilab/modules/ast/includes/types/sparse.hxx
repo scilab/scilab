@@ -19,8 +19,6 @@
 #include "bool.hxx"
 #include "keepForSparse.hxx"
 
-#pragma message("include sparse.hxx")
-
 #define SPARSE_CONST
 
 namespace types
