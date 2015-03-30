@@ -8,6 +8,7 @@ Graphics Evolutions
 
 * New datatips positions are now available: "left", "right", "upper", "lower".
 
+* New contour2dm function.
 
 Toolbox Skeleton
 =================
@@ -68,7 +69,7 @@ Scilab Bug Fixes
 
 * Bug #13437 fixed - axis drawn by drawaxis used different font than those drawn by plot.
 
-* Bug #13462 fixed - Low levels functions modified bounds even with auto_scale="off".
+* Bug #13462 fixed - Low level functions modified bounds even with auto_scale="off".
 
 * Bug #13494 fixed - Wrong vertical range of plot3d and plot3d1 fixed.
 
@@ -120,7 +121,7 @@ Scilab Bug Fixes
 
 * Bug #13702 fixed - Problems with * prefix for modified files in SciNotes fixed.
 
-* Bug #13706 fixed - Random crash with plot3d([1 1 1]) fixed.
+* Bug #13706 fixed - plot3d([1 1 1]) randomly crashed.
 
 * Bug #13712 fixed - Details added in strcat help page for strcat(strings, "", "r") case.
 
