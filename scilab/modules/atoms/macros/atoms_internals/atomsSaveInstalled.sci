@@ -103,9 +103,6 @@ function  atomsSaveInstalled(installed_struct,section)
     // =========================================================================
 
     mputl( installed_str , installed_txt);
-    wMode = warning("query");
-    warning("off");
-    save( installed_bin , installed_struct , installed_mat );
-    warning(wMode);
+    save( installed_bin , "installed_struct" , "installed_mat" );
 
 endfunction
