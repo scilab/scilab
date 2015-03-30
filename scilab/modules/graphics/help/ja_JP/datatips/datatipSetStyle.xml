@@ -166,7 +166,13 @@
 
     d1=datatipCreate(e(1),540);
 
-    function str=mydisplay(pt),str=msprintf('%0.2g', pt(1)),endfunction
+    function str=mydisplay(h)
+	
+	pt = h.data;
+	
+	str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
+		
+	endfunction
 
     datatipSetDisplay(d1,"mydisplay")
 
@@ -196,7 +202,13 @@
             
             d1=datatipCreate(e(1),540);
             
-            function str=mydisplay(pt),str=msprintf('%0.2g', pt(1)),endfunction
+            function str=mydisplay(h)
+			
+			pt = h.data;
+			
+			str=msprintf('%0.2g \n %0.2g', pt(1), pt(2))
+		
+			endfunction
             
             datatipSetDisplay(d1,"mydisplay")
             
