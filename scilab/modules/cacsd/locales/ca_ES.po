@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: ca\n"
 
 #, c-format
@@ -561,15 +561,6 @@ msgstr ""
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
-msgid "Amplitude and phase contours of y/(1+y)"
-msgstr "amplitud i fase de y/(1+y)"
-
-msgid "magnitude(y) (Db)"
-msgstr "magnitud(y) (Db)"
-
-msgid "phase(y) (degree)"
-msgstr "fase(y) (graus)"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Nombre incorrecte d'arguments d'entrada: Han de ser %d"
@@ -1054,6 +1045,12 @@ msgstr "%s: Nombre incorrecte d'arguments de sortida: Se'n necessiten %d.\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr "%s: Els arguments d'entrada #%d i #%d són incompatibles: "
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "amplitud i fase de y/(1+y)"
+
+msgid "phase(y) (degree)"
+msgstr "fase(y) (graus)"
 
 msgid "magnitude(y) (dB)"
 msgstr "magnitude(y) (dB)"

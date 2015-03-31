@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: uk\n"
 
 #, c-format
@@ -1267,6 +1267,18 @@ msgstr ""
 "від %d до %d.\n"
 
 #, c-format
+msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: мало бути використано функцію або список.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for argument #%d: Function expected in first element of "
+"list.\n"
+msgstr ""
+"%s: помилковий тип параметра №%d: першим елементом списку має бути функція.\n"
+
+#, c-format
 msgid "%s: Wrong type for argument #%d: Matrix expected.\n"
 msgstr "%s: помилковий тип параметра %d: слід використовувати матрицю.\n"
 
@@ -1283,24 +1295,6 @@ msgstr ""
 "розмірність.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: мало бути використано функцію або список.\n"
-
-#, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Function expected in first element of "
-"list.\n"
-msgstr ""
-"%s: помилковий тип параметра №%d: першим елементом списку має бути функція.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String array expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
-"значень типу «string».\n"
-
-#, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати > %d.\n"
@@ -1310,6 +1304,12 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d. Значення має належати набору "
 "{%s}.\n"
+
+#, c-format
+msgid "%s: Wrong type for input argument #%d: String array expected.\n"
+msgstr ""
+"%s: помилковий тип вхідного параметра №%d: слід використовувати масив "
+"значень типу «string».\n"
 
 #, c-format
 msgid "%s: Unknown value %s for option %s.\n"

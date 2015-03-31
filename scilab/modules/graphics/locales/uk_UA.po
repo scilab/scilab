@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-04-03 05:57+0000\n"
+"PO-Revision-Date: 2015-03-28 17:21+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: uk\n"
 
 #, c-format
@@ -234,10 +234,11 @@ msgstr ""
 "%: помилкове значення %s «%c»: слід використовувати «%s», «%s» або «%s».\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
-"%s: помилкова кількість стовпчиків для вхідного параметра №%d: мало бути "
-"%d.\n"
+"%s: помилкова кількість стовпчиків для вхідного параметра %d: мало бути "
+"принаймні %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -362,6 +363,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr "%s: помилкове значення параметра strf: %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr "%s: помилкова значення параметра frameflag.\n"
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr "%s: помилкове значення параметра axesflag.\n"
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s: помилкові значення min > max у даних прямокутника за x або y.\n"
 
@@ -400,6 +409,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: помилкова кількість вхідних параметрів.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути %d або %d.\n"
@@ -421,30 +434,6 @@ msgstr ""
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
 "%s: помилкові розмірності вхідних параметрів №%d та №%d: мало бути %s.\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: функція %s є застрарілою.\n"
-
-msgid "Warning"
-msgstr "Попередження"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: докладніші відомості можна знайти у документації.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: цю функцію буде назавжди вилучено у Scilab %s\n"
-"\n"
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr ""
-"%s: елементи керування мають належати одному батьківському елементу.\n"
 
 #, c-format
 msgid ""
@@ -751,6 +740,10 @@ msgstr ""
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: помилка у вхідному параметрі №%d: вказано помилкові межі.\n"
 
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr "%s: некоректний індекс вершини.\n"
+
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Батьківським елементом має бути SUBWIN\n"
 
@@ -977,6 +970,7 @@ msgstr ""
 #, c-format
 msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
 msgstr ""
+"Помилковий тип властивості «%s»: мало бути використано матрицю або tlist.\n"
 
 #, c-format
 msgid ""
@@ -1339,9 +1333,9 @@ msgid "Can not set directly a label object.\n"
 msgstr "Неможливо напряму встановлювати значення об’єкта мітки.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
 msgstr ""
-"Помилкова розмірність значення властивості «%s»: мало бути %d стовпчиків.\n"
+"Помилкова розмірність властивості «%s»: має бути принаймні %d стовпчиків.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"
@@ -1448,28 +1442,28 @@ msgid "Customize your complex function"
 msgstr "Налаштування вашої комплексної функції"
 
 msgid "Control panel"
-msgstr ""
+msgstr "Панель керування"
 
 msgid "Function definition"
-msgstr ""
+msgstr "Визначення функції"
 
 msgid "Domain type"
-msgstr ""
+msgstr "Тип області"
 
 msgid "Radius of the domain"
-msgstr ""
+msgstr "Радіус області"
 
 msgid "Cut on axes"
-msgstr ""
+msgstr "Обрізати на осях"
 
 msgid "Function should contain z"
-msgstr ""
+msgstr "Функція має містити z"
 
 msgid "Wrong definition of f(z)"
-msgstr ""
+msgstr "Помилкове визначення f(z)"
 
 msgid "Radius should be real and finite"
-msgstr ""
+msgstr "Радіус має бути дійсним і скінченним"
 
 msgid "datatips on 2D curves"
 msgstr "позначки даних на плоских кривих"
@@ -2096,30 +2090,30 @@ msgid "Edit label generator"
 msgstr "Змінити параметри створення міток"
 
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 msgid "Tools"
-msgstr ""
+msgstr "Інструменти"
 
 msgid "Edit"
-msgstr ""
+msgstr "Змінити"
 
 msgid "Select a file to load"
-msgstr ""
+msgstr "Вкажіть файл для завантаження"
 
 #, c-format
 msgid "%s: The file "
-msgstr ""
+msgstr "%s: файл "
 
 #, c-format
 msgid "%s: Cannot open file "
-msgstr ""
+msgstr "%s: не вдалося відкрити файл "
 
 msgid "Error in file format."
-msgstr ""
+msgstr "Помилка у форматуванні файла."
 
 msgid "Select a file to write"
-msgstr ""
+msgstr "Вкажіть файл для запису"
 
 #, c-format
 msgid ""

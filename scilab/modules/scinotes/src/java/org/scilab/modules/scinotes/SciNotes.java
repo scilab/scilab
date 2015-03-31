@@ -1843,7 +1843,7 @@ public class SciNotes extends SwingScilabDockablePanel {
         int n = tabPane.getTabCount();
         for (int i = 0; i < n; ++i) {
             ScilabEditorPane pane = getTextPane(i);
-            if (pane == sep || pane.getOtherPaneInSplit() == sep) {
+            if (pane != null && (pane == sep || pane.getOtherPaneInSplit() == sep)) {
                 return i;
             }
         }

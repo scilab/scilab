@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-04-03 06:14+0000\n"
-"Last-Translator: Scilab.team <Unknown>\n"
+"PO-Revision-Date: 2015-03-17 14:41+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: fr\n"
 
 #, c-format
@@ -2126,8 +2126,14 @@ msgstr "Y en haut"
 msgid "Log Flags"
 msgstr "Indicateurs logarithmiques"
 
-msgid "Tight Limits"
-msgstr "Limites fines"
+msgid "X Tight Limits"
+msgstr "Limites fines en X"
+
+msgid "Y Tight Limits"
+msgstr "Limites fines en Y"
+
+msgid "Z Tight Limits"
+msgstr "Limites fines en Z"
 
 msgid "Enter a x position."
 msgstr "Entrer une position pour x."

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-10-12 08:11+0000\n"
+"PO-Revision-Date: 2015-02-14 21:27+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 msgid "Exception thrown in file"
 msgstr "Eccezione lanciata nel file"
@@ -24,7 +24,7 @@ msgstr "alla riga"
 
 #, c-format
 msgid "%s: An error occurred: %s"
-msgstr ""
+msgstr "%s: Si è verificato un errore: %s"
 
 #, c-format
 msgid "Invalid environment: identifier %d is invalid"
@@ -35,7 +35,7 @@ msgstr "Ambiente non valido"
 
 #, c-format
 msgid "Invalid variable name: %s"
-msgstr ""
+msgstr "Nome di variabile non valido: %s"
 
 msgid "Cannot allocate memory"
 msgstr "Impossibile allocare della memoria"
@@ -53,11 +53,11 @@ msgid "External object expected"
 msgstr "Era atteso un oggetto esterno"
 
 msgid "Incompatible External object"
-msgstr ""
+msgstr "Oggetto esterno non compatibile"
 
 #, c-format
 msgid "Unable to wrap. Unmanaged datatype (%d) ?"
-msgstr ""
+msgstr "Impossibile incapsulare. Tipo di dato (%d) non gestito?"
 
 msgid "Invalid String"
 msgstr "Stringa non valida"
@@ -194,8 +194,9 @@ msgid "Can only wrap as a reference to a named variable"
 msgstr ""
 
 msgid "Invalid variable: cannot retrieve the data type"
-msgstr ""
+msgstr "Variabile non valida: impossibile trovare il tipo di dato"
 
 #, c-format
 msgid "%s: Wrong argument type at position %i: Double expected\n"
 msgstr ""
+"%s: L'argomento in posizione %i è di tipo sbagliato: era atteso un double.\n"

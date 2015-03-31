@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: \n"
 
 #, c-format
@@ -214,22 +214,6 @@ msgstr ""
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr "%s: 輸入參數個數錯誤: 應該有 %d 個.\n"
 
-#, c-format
-msgid "%s: This function is only supported on Windows platforms.\n"
-msgstr "%s: 這功能只在 Windows platforms上有支援.\n"
-
-#, c-format
-msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
-msgstr "%s: 輸入參數之數目錯誤(s): At most 應為 %d.\n"
-
-#, c-format
-msgid "%s: hhc.exe not found.\n"
-msgstr "%s: hhc.exe 不見了.\n"
-
-#, c-format
-msgid "%s: no file generate.\n"
-msgstr "%s: 沒生成檔案.\n"
-
 msgid "Help chapter"
 msgstr "Help 章節"
 
@@ -339,3 +323,7 @@ msgstr "%s: 第 #%d 輸入參數型態錯誤: 應為矩陣串列 (mlist).\n"
 #, c-format
 msgid "%s: The 2 mlist must not have any field in common .\n"
 msgstr "%s: The 2 mlist 在一般情況必須沒有 field .\n"
+
+#, c-format
+msgid "%s: Wrong number of input argument(s): At most %d expected.\n"
+msgstr "%s: 輸入參數之數目錯誤(s): At most 應為 %d.\n"

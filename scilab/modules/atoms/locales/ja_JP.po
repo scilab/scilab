@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-30 13:26+0000\n"
+"PO-Revision-Date: 2014-12-15 14:11+0000\n"
 "Last-Translator: Rui Hirokawa <Unknown>\n"
 "Language-Team: Japanese <z-saito@guitar.ocn.ne.jp>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "X-Poedit-Country: Japan\n"
 "Language: ja\n"
 "X-Poedit-Language: Japanese\n"
@@ -659,6 +659,15 @@ msgstr "%s: gzipが見つかりません.\n"
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: 記述ファイル('%s')の抽出に失敗しました。\n"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Scanning repository"
+msgstr "レポジトリをスキャン中"
+
+msgid "Skipped"
+msgstr "スキップ"
 
 #, c-format
 msgid "%s: save ('%s') has failed.\n"

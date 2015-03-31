@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: \n"
 
 #, c-format
@@ -510,15 +510,6 @@ msgstr ""
 msgid "%s: Wrong values for input argument #%d: Elements must be positive.\n"
 msgstr ""
 
-msgid "Amplitude and phase contours of y/(1+y)"
-msgstr "y/(1+y)的幅度和相位衬度"
-
-msgid "magnitude(y) (Db)"
-msgstr "幅度（y）（Db）"
-
-msgid "phase(y) (degree)"
-msgstr "相位（y）（度）"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s：输入参数的数目错误：应该为%d个。"
@@ -950,6 +941,12 @@ msgstr "%s：输出参数的数目错误：应该为%d个。\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr "%s：输入参数#%d和参数#%d不兼容。 "
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "y/(1+y)的幅度和相位衬度"
+
+msgid "phase(y) (degree)"
+msgstr "相位（y）（度）"
 
 msgid "magnitude(y) (dB)"
 msgstr ""
