@@ -16,6 +16,7 @@ namespace ast {
 template<class T>
 void RunVisitorT<T>::visitprivate(const AssignExp  &e)
 {
+    symbol::Context* ctx = symbol::Context::getInstance();
     /*Create local exec visitor*/
     try
     {
@@ -64,7 +65,17 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
                 if (pIT->isListDelete())
                 {
                     //used to delete a variable in current scope
-                    symbol::Context::getInstance()->remove(pVar->getSymbol());
+                    symbol::Symbol sym = pVar->getSymbol();
+                    if (ctx->isprotected(sym) == false)
+                    {
+                        ctx->remove(sym);
+                    }
+                    else
+                    {
+                        std::wostringstream os;
+                        os << _W("Redefining permanent variable.\n");
+                        throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                    }
                 }
 
                 setResult(NULL);
@@ -83,12 +94,21 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             if (e.getRightExp().isReturnExp())
             {
                 //ReturnExp so, put the value in the previous scope
-                symbol::Context::getInstance()->putInPreviousScope(pVar->getStack(), pIT);
+                ctx->putInPreviousScope(pVar->getStack(), pIT);
                 ((AssignExp*)&e)->setReturn();
             }
             else
             {
-                symbol::Context::getInstance()->put(pVar->getStack(), pIT);
+                if (ctx->isprotected(pVar->getStack()) == false)
+                {
+                    ctx->put(pVar->getStack(), pIT);
+                }
+                else
+                {
+                    std::wostringstream os;
+                    os << _W("Redefining permanent variable.\n");
+                    throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                }
             }
 
             if (e.isVerbose() && ConfigVariable::isPromptShow())
@@ -408,7 +428,7 @@ void RunVisitorT<T>::visitprivate(const AssignExp  &e)
             {
                 const wstring *pstName = getStructNameFromExp(pField);
 
-                types::InternalType* pPrint = symbol::Context::getInstance()->get(symbol::Symbol(*pstName));
+                types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
                 std::wostringstream ostr;
                 ostr << *pstName << L"  = " << std::endl << std::endl;
                 scilabWriteW(ostr.str().c_str());

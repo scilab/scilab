@@ -31,7 +31,8 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
     bool bSorted = false;
     types::String* pStrOut = NULL;
     types::Double* pDblOut = NULL;
-    std::list<std::wstring>* lstVar = NULL;
+    std::list<std::wstring> lstVar;
+    int size = 0;
 
     if (in.size() < 0 || in.size() > 2)
     {
@@ -102,11 +103,11 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
 
     if (wcscmp(wcsWhat, L"local") == 0 || wcscmp(wcsWhat, L"get") == 0)
     {
-        lstVar = symbol::Context::getInstance()->getVarsNameForWho(bSorted);
+        size = symbol::Context::getInstance()->getVarsNameForWho(lstVar, bSorted);
     }
     else if (wcscmp(wcsWhat, L"global") == 0)
     {
-        lstVar = symbol::Context::getInstance()->getGlobalNameForWho(bSorted);
+        size = symbol::Context::getInstance()->getGlobalNameForWho(lstVar, bSorted);
     }
     else if (bSorted == false && wcscmp(wcsWhat, L"sorted") == 0)
     {
@@ -131,7 +132,7 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if (lstVar->empty())
+    if (lstVar.empty())
     {
         out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
@@ -139,18 +140,16 @@ types::Function::ReturnValue sci_who(types::typed_list& in, int _iRetCount, type
             out.push_back(types::Double::Empty());
         }
 
-        delete lstVar;
         return types::Function::OK;
     }
 
-    pStrOut = new types::String(lstVar->size(), 1);
-    std::list<std::wstring>::const_iterator it = lstVar->begin();
-    for (int i = 0; it != lstVar->end(); ++it, i++)
+    pStrOut = new types::String(size, 1);
+    int i = 0;
+    for (auto it : lstVar)
     {
-        pStrOut->set(i, (*it).c_str());
+        pStrOut->set(i++, it.c_str());
     }
 
-    delete lstVar;
     out.push_back(pStrOut);
 
     if (_iRetCount == 2)

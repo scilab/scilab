@@ -108,15 +108,14 @@ MacroFile* Library::get(const std::wstring& _wstName)
     return NULL;
 }
 
-std::list<std::wstring>* Library::getMacrosName()
+int Library::getMacrosName(std::list<std::wstring>& lst)
 {
-    std::list<std::wstring>* pOut = new std::list<std::wstring>;
     for (auto macro : m_macros)
     {
-        pOut->push_back(macro.first);
+        lst.push_back(macro.first);
     }
 
-    return pOut;
+    return static_cast<int>(lst.size());
 }
 
 std::wstring Library::getPath()

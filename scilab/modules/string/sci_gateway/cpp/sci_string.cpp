@@ -494,13 +494,14 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         {
             Library* pL = in[0]->getAs<Library>();
             std::wstring path = pL->getPath();
-            std::list<std::wstring>* macros = pL->getMacrosName();
-            String* pS = new String((int)macros->size() + 1, 1);
+            std::list<std::wstring> macros;
+            int size = pL->getMacrosName(macros);
+            String* pS = new String(size + 1, 1);
             pS->set(0, path.c_str());
             int i = 1;
-            for (auto it = macros->begin(), itEnd = macros->end(); it != itEnd; ++it, ++i)
+            for (auto it : macros)
             {
-                pS->set(i, (*it).c_str());
+                pS->set(i++, it.c_str());
             }
 
             out.push_back(pS);

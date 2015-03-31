@@ -411,6 +411,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const ForExp  &e)
 {
+    symbol::Context* ctx = symbol::Context::getInstance();
     e.getVardec().accept(*this);
     InternalType* pIT = getResult();
     //allow break and continue operations
@@ -426,13 +427,19 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
     if (pIT->isImplicitList())
     {
-        symbol::Context* ctx = symbol::Context::getInstance();
         //get IL
         ImplicitList* pVar = pIT->getAs<ImplicitList>();
         //get IL initial Type
         InternalType * pIL = pVar->getInitalType();
         //get index stack
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
+
+        if (ctx->isprotected(var))
+        {
+            std::wostringstream os;
+            os << _W("Redefining permanent variable.\n");
+            throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
+        }
 
         ctx->put(var, pIL);
         //use ref count to lock var against clear and detect any changes
@@ -462,8 +469,15 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                     pIL = pVar->getInitalType();
                     //lock loop index
                     pIL->IncreaseRef();
-                    //update me ( must decrease ref of a
-                    symbol::Context::getInstance()->put(var, pIL);
+                    //update me ( must decrease ref of a )
+                    if (ctx->isprotected(var))
+                    {
+                        std::wostringstream os;
+                        os << _W("Redefining permanent variable.\n");
+                        throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
+                    }
+
+                    ctx->put(var, pIL);
                     break;
             }
 
@@ -498,10 +512,18 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     {
         List* pL = pIT->getAs<List>();
         const int size = pL->getSize();
+        symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
         for (int i = 0; i < size; ++i)
         {
             InternalType* pNew = pL->get(i);
-            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
+
+            if (ctx->isprotected(var))
+            {
+                std::wostringstream os;
+                os << _W("Redefining permanent variable.\n");
+                throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
+            }
+            ctx->put(var, pNew);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -535,6 +557,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             throw ScilabError(_W("for expression can only manage 1 or 2 dimensions variables\n"), 999, e.getVardec().getLocation());
         }
 
+        symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
         for (int i = 0; i < pVar->getCols(); i++)
         {
             GenericType* pNew = pVar->getColumnValues(i);
@@ -545,7 +568,13 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                 throw ScilabError(_W("for expression : Wrong type for loop iterator.\n"), 999, e.getVardec().getLocation());
             }
 
-            symbol::Context::getInstance()->put(e.getVardec().getAs<VarDec>()->getStack(), pNew);
+            if (ctx->isprotected(var))
+            {
+                std::wostringstream os;
+                os << _W("Redefining permanent variable.\n");
+                throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
+            }
+            ctx->put(var, pNew);
 
             e.getBody().accept(*this);
             if (e.getBody().isBreak())
@@ -1093,7 +1122,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const FunctionDec & e)
 {
-
+    symbol::Context* ctx = symbol::Context::getInstance();
     /*
       function foo
       endfunction
@@ -1125,7 +1154,7 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
     int iFuncProt = ConfigVariable::getFuncprot();
     if (iFuncProt != 0)
     {
-        types::InternalType* pITFunc = symbol::Context::getInstance()->get(((FunctionDec&)e).getStack());
+        types::InternalType* pITFunc = ctx->get(((FunctionDec&)e).getStack());
         if (pITFunc && pITFunc->isCallable())
         {
             if (pITFunc->isMacroFile())
@@ -1169,7 +1198,16 @@ void RunVisitorT<T>::visitprivate(const FunctionDec & e)
         throw ScilabError(wstError, 999, e.getLocation());
     }
 
-    symbol::Context::getInstance()->addMacro(pMacro);
+
+    if (ctx->isprotected(symbol::Symbol(pMacro->getName())))
+    {
+        delete pMacro;
+        std::wostringstream os;
+        os << _W("Redefining permanent variable.\n");
+        throw ScilabError(os.str(), 999, e.getLocation());
+    }
+
+    ctx->addMacro(pMacro);
 
 }
 

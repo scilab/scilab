@@ -183,7 +183,18 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
     if (_bAddInContext)
     {
-        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), lib);
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Symbol sym = symbol::Symbol(pstLibName);
+        if (ctx->isprotected(sym) == false)
+        {
+            ctx->put(symbol::Symbol(pstLibName), lib);
+        }
+        else
+        {
+            delete lib;
+            lib = NULL;
+        }
+
     }
 
     xmlFreeDoc(doc);

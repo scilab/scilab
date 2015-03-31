@@ -71,17 +71,17 @@ public :
     types::InternalType* getFunction(const Symbol& key);
 
     /*return function list in the module _stModuleName*/
-    std::list<Symbol>* getFunctionList(std::wstring _stModuleName);
+    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName);
 
-    std::list<std::wstring>*    getVarsName();
-    std::list<std::wstring>*    getMacrosName();
-    std::list<std::wstring>*    getFunctionsName();
-    std::list<std::wstring>*    getVarsNameForWho(bool sorted);
-    std::list<std::wstring>*    getGlobalNameForWho(bool sorted);
-    std::list<std::wstring>*    getWhereIs(const std::wstring& _str);
-    std::list<std::wstring>*    getLibrariesList();
-    std::list<Variable*>*       getVarsToVariableBrowser();
-    std::list<Library*>*        getLibsToVariableBrowser();
+    int getVarsName(std::list<std::wstring>& lst);
+    int getMacrosName(std::list<std::wstring>& lst);
+    int getFunctionsName(std::list<std::wstring>& lst);
+    int getVarsNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getGlobalNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str);
+    int getLibrariesList(std::list<std::wstring>& lst);
+    int getVarsToVariableBrowser(std::list<Variable*>& lst);
+    int getLibsToVariableBrowser(std::list<Library*>& lst);
     /* global functions */
 
     /*return global variable visibility status*/
@@ -97,8 +97,14 @@ public :
     /*remove all global variables and references */
     //clearglobal
     void removeGlobalAll();
-
     void clearAll();
+
+    //predef
+    void protect();
+    void unprotect();
+    bool isprotected(const Symbol& key);
+    bool isprotected(Variable* _var);
+    int protectedVars(std::list<std::wstring>& lst);
 
     /*set variable visible/hidden in current global scope*/
     void setGlobalVisible(const Symbol& key, bool bVisible);
@@ -129,6 +135,7 @@ private:
 
     types::InternalType* get(const Symbol& key, int _iLevel);
     bool clearCurrentScope(bool _bClose);
+    void updateProtection(bool protect);
 
     std::list<Symbol>* globals;
     VarStack varStack;

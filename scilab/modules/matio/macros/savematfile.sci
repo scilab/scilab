@@ -127,9 +127,11 @@ function savematfile(varargin)
         mtlb_names=vars;
 
         // Part to delete Scilab variables from mtlb_names (should be improved)
-        mtlb_names(1)=[];// remove varargin
-        mtlb_names(mtlb_names=="savematfile")=[];
-        mtlb_names(($-predef()+1):$)=[]; // clear predefined variables
+        predef_names = [predef("names");"savematfile";"varargin"];
+        for i=1:size(predef_names, "*")
+            mtlb_names(mtlb_names==predef_names(i))=[];
+        end
+        //mtlb_names(($-predef()+1):$)=[]; // clear predefined variables
     end
 
     // If binary format and no extension for filename, .mat is added
@@ -225,6 +227,7 @@ function savematfile(varargin)
                 MOPT=[M O P T]
 
                 [m,n]=size(x)
+
                 head=[MOPT*[1000;100;10;1] m,n,it,length(mtlb_names(mtlb_k))+1]
 
                 mput(head,"uil",mtlb_fd);

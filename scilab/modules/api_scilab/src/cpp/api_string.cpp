@@ -194,9 +194,18 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
-
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pS);
+    }
+    else
+    {
+        delete pS;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -358,9 +367,18 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
-
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pS);
+    }
+    else
+    {
+        delete pS;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/

@@ -86,9 +86,12 @@ void SetBrowseVarData()
     int i = 0;
 
     symbol::Context* ctx = symbol::Context::getInstance();
-    std::list<symbol::Variable*>* lstVars = ctx->getVarsToVariableBrowser();
-    std::list<symbol::Library*>* lstLibs = ctx->getLibsToVariableBrowser();
-    iLocalVariablesUsed = static_cast<int>(lstVars->size() + lstLibs->size());
+
+    std::list<symbol::Variable*> lstVars;
+    std::list<symbol::Library*> lstLibs;
+
+    iLocalVariablesUsed = ctx->getVarsToVariableBrowser(lstVars);
+    iLocalVariablesUsed += ctx->getLibsToVariableBrowser(lstLibs);
 
     char **pstAllVariableNames = new char*[iLocalVariablesUsed];
     char **pstAllVariableVisibility = new char*[iLocalVariablesUsed];
@@ -109,7 +112,7 @@ void SetBrowseVarData()
     int iLevel = ctx->getScopeLevel();
 
     // for each local variable get information
-    for (auto var : *lstVars)
+    for (auto var : lstVars)
     {
         //get top level value
         symbol::ScopedVariable* sv = var->top();
@@ -213,7 +216,7 @@ void SetBrowseVarData()
         ++i;
     }
 
-    for (auto lib : *lstLibs)
+    for (auto lib : lstLibs)
     {
         //get top level value
         symbol::ScopedLibrary* sl = lib->top();
@@ -275,8 +278,6 @@ void SetBrowseVarData()
     delete[] piAllVariableIntegerTypes;
     delete[] piAllVariableNbRows;
     delete[] piAllVariableNbCols;
-
-    delete lstVars;
 }
 
 /*--------------------------------------------------------------------------*/

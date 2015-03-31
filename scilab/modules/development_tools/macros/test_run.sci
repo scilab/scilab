@@ -705,7 +705,7 @@ function status = test_single(_module, _testPath, _testName)
     "   quit;" ;
     "endfunction" ;
     "function []=bugmes(), printf(''error on test'');endfunction"
-    "//predef(''all'');";
+    "predef(''all'');";
     "tmpdirToPrint = msprintf(''TMPDIR1=''''%s'''';//\n'',TMPDIR);"
     ];
 
@@ -1116,6 +1116,7 @@ function msg = checkthefile( filename )
     if params.show_error == %t then
         msg=[msg; mgetl(filename)]
     end
+
 endfunction
 
 // launchthecommand

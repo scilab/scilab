@@ -32,16 +32,16 @@ Function::ReturnValue sci_librarieslist(types::typed_list &in, int _iRetCount, t
         return Function::Error;
     }
 
-    std::list<std::wstring>* lst = symbol::Context::getInstance()->getLibrariesList();
+    std::list<std::wstring> lst;
+    int size = symbol::Context::getInstance()->getLibrariesList(lst);
 
-    String* pOut = new String(static_cast<int>(lst->size()), 1);
+    String* pOut = new String(size, 1);
     int i = 0;
-    for (auto l : *lst)
+    for (auto l : lst)
     {
         pOut->set(i++, l.c_str());
     }
 
-    delete lst;
     out.push_back(pOut);
     return Function::OK;
 }

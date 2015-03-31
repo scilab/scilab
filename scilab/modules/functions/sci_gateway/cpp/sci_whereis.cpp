@@ -52,26 +52,22 @@ Function::ReturnValue sci_whereis(types::typed_list &in, int _iRetCount, types::
             return Function::Error;
         }
 
-        std::list<std::wstring>* lst = symbol::Context::getInstance()->getWhereIs(pS->get(0));
-        if (lst == NULL || lst->empty())
+        std::list<std::wstring> lst;
+        int size = symbol::Context::getInstance()->getWhereIs(lst, pS->get(0));
+        if (lst.empty())
         {
             out.push_back(types::Double::Empty());
-            if (lst)
-            {
-                delete lst;
-            }
             return Function::OK;
         }
 
-        types::String* pOut = new types::String(static_cast<int>(lst->size()), 1);
+        types::String* pOut = new types::String(size, 1);
         int i = 0;
-        for (std::wstring l : *lst)
+        for (std::wstring l : lst)
         {
             pOut->set(i++, l.c_str());
         }
 
         out.push_back(pOut);
-        delete lst;
     }
     else
     {

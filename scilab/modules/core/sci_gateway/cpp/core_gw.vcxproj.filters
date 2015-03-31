@@ -135,6 +135,9 @@
     <ClCompile Include="..\c\sci_type.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_predef.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\banner.hxx">

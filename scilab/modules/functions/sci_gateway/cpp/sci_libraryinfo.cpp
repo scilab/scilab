@@ -68,15 +68,15 @@ Function::ReturnValue sci_libraryinfo(types::typed_list &in, int _iRetCount, typ
 
     types::Library* lib = pIT->getAs<Library>();
 
-    std::list<std::wstring>* names = lib->getMacrosName();
-    String* pNames = new String(static_cast<int>(names->size()), 1);
+    std::list<std::wstring> names;
+    int size = lib->getMacrosName(names);
+    String* pNames = new String(size, 1);
     int i = 0;
-    for (auto name : *names)
+    for (auto name : names)
     {
         pNames->set(i++, name.c_str());
     }
 
-    delete names;
     out.push_back(pNames);
 
     if (_iRetCount == 2)

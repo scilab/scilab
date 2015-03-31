@@ -60,7 +60,7 @@ public :
 
     void add(const std::wstring& _wstName, MacroFile* _macro);
     MacroFile* get(const std::wstring& _wstName);
-    std::list<std::wstring>* getMacrosName();
+    int getMacrosName(std::list<std::wstring>& lst);
     std::wstring getPath();
 private:
     std::wstring m_wstPath;

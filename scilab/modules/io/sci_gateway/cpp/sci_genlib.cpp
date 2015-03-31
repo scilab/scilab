@@ -48,6 +48,7 @@ extern "C"
 #include "os_wfopen.h"
 #include "sciprint.h"
 #include "freeArrayOfString.h"
+#include "Scierror.h"
 }
 
 
@@ -218,7 +219,17 @@ Function::ReturnValue sci_genlib(types::typed_list &in, int _iRetCount, types::t
             delete parser.getTree();
         }
 
-        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), pLib);
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Symbol sym = symbol::Symbol(pstLibName);
+        if (ctx->isprotected(sym) == false)
+        {
+            ctx->put(symbol::Symbol(pstLibName), pLib);
+        }
+        else
+        {
+            Scierror(999, _("Redefining permanent variable.\n"));
+            return Function::Error;
+        }
     }
 
     freeArrayOfWideString(pstPath, iNbFile);

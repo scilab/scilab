@@ -20,8 +20,8 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getVariablesName(int *sizearray, BOOL sorted)
 {
-    std::list<std::wstring>* plVarNames = symbol::Context::getInstance()->getVarsName();
-    *sizearray = (int)plVarNames->size();
+    std::list<std::wstring> varNames;
+    *sizearray = symbol::Context::getInstance()->getVarsName(varNames);
     char** variables = NULL;
 
     if (*sizearray != 0)
@@ -30,16 +30,14 @@ char **getVariablesName(int *sizearray, BOOL sorted)
 
         if (sorted)
         {
-            plVarNames->sort();
+            varNames.sort();
         }
 
-        std::list<std::wstring>::iterator it = plVarNames->begin();
-        for (int i = 0; it != plVarNames->end(); ++it, i++)
+        int i = 0;
+        for (auto it : varNames)
         {
-            variables[i] = wide_string_to_UTF8((*it).c_str());
+            variables[i++] = wide_string_to_UTF8(it.c_str());
         }
-
-        delete plVarNames;
     }
 
     return variables;

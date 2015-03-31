@@ -1540,9 +1540,18 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context* pCtx = symbol::Context::getInstance();
-    bool ret = pCtx->remove(symbol::Symbol(pwstName));
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
+    bool ret = false;
+    if (ctx->isprotected(sym) == false)
+    {
+        ret = ctx->remove(symbol::Symbol(pwstName));
+    }
+    else
+    {
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
 
     return ret ? 1 : 0;
 }

@@ -71,14 +71,14 @@ struct Library
         return NULL;
     }
 
-    std::list<std::wstring>* getMacrosName()
+    int getMacrosName(std::list<std::wstring>& lst)
     {
         if (empty() == false)
         {
-            return top()->m_pLib->getMacrosName();
+            top()->m_pLib->getMacrosName(lst);
         }
 
-        return new std::list<std::wstring>();
+        return static_cast<int>(lst.size());
     }
 
     bool empty() const
@@ -192,47 +192,42 @@ struct Libraries
         return false;
     }
 
-    std::list<std::wstring>* getMacrosName()
+    int getMacrosName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* names = new std::list<std::wstring>();
         MapLibs::iterator it = libs.begin();
         MapLibs::iterator itEnd = libs.end();
-        for (; it != itEnd ; ++it)
+        for (auto it : libs)
         {
-            std::list<std::wstring>* temp = it->second->getMacrosName();
-            names->insert(names->end(), temp->begin(), temp->end());
-            delete temp;
+            it.second->getMacrosName(lst);
         }
 
-        return names;
+        return static_cast<int>(lst.size());
     }
 
-    std::list<std::wstring>* getVarsName()
+    int getVarsName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* plOut = new std::list<std::wstring>();
-        for (auto it = libs.begin(), itEnd = libs.end(); it != itEnd; ++it)
+        for (auto it : libs)
         {
-            if (it->second->empty() == false)
+            if (it.second->empty() == false)
             {
-                plOut->push_back(it->first.getName().c_str());
+                lst.push_back(it.first.getName().c_str());
             }
         }
 
-        return plOut;
+        return static_cast<int>(lst.size());
     }
 
-    std::list<Library*>* getVarsToVariableBrowser()
+    int getVarsToVariableBrowser(std::list<Library*>& lst)
     {
-        std::list<Library*>* lst = new std::list<Library*>();
         for (auto lib : libs)
         {
             if (lib.second->empty() == false)
             {
-                lst->push_back(lib.second);
+                lst.push_back(lib.second);
             }
         }
 
-        return lst;
+        return static_cast<int>(lst.size());
     }
 
     void clearAll()
@@ -276,30 +271,26 @@ struct Libraries
         return true;
     }
 
-    std::list<std::wstring>* whereis(const Symbol& _key)
+    int whereis(std::list<std::wstring>& lst, const Symbol& _key)
     {
-        std::list<std::wstring>* ret = new std::list<std::wstring>();
-
         for (auto lib : libs)
         {
             if (lib.second->get(_key) != NULL)
             {
-                ret->push_back(lib.first.getName());
+                lst.push_back(lib.first.getName());
             }
         }
-        return ret;
+        return static_cast<int>(lst.size());
     }
 
-    std::list<std::wstring>* librarieslist()
+    int librarieslist(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* ret = new std::list<std::wstring>();
-
         for (auto lib : libs)
         {
-            ret->push_back(lib.first.getName());
+            lst.push_back(lib.first.getName());
         }
 
-        return ret;
+        return static_cast<int>(lst.size());
     }
 
 private:

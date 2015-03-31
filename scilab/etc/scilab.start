@@ -77,6 +77,10 @@ if with_module("atoms") then
   clear atomsSystemInit;
 end
 
+
+// Protect variable previously defined  ================================
+predef("all");
+
 // At startup, no interactive vertical paging by default. ==============
 lines(0);
 

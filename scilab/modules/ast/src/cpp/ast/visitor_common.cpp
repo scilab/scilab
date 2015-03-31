@@ -813,12 +813,21 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
         //*** get main variable ***//
         std::list<ExpHistory*>::iterator iterFields = fields.begin();
         ExpHistory* pFirstField = *iterFields;
-        InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
+        symbol::Context* ctx = symbol::Context::getInstance();
+
+        if (ctx->isprotected(pFirstField->getExp()->getSymbol()))
+        {
+            std::wostringstream os;
+            os << _W("Redefining permanent variable.\n");
+            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+        }
+
+        InternalType* pIT = ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
 
         if (pIT == NULL)
         {
             // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
-            symbol::Variable* var = symbol::Context::getInstance()->getOrCreate(pFirstField->getExp()->getSymbol());
+            symbol::Variable* var = ctx->getOrCreate(pFirstField->getExp()->getSymbol());
             if (var->empty() == false && var->top()->m_iLevel == 0)
             {
                 std::wostringstream os;
@@ -830,7 +839,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             {
                 // a{x}, where "a" doesn't exists
                 pIT = new Cell(1, 1);
-                symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+                ctx->put(pFirstField->getExp()->getStack(), pIT);
             }
             else if (fields.size() > 1)
             {
@@ -838,7 +847,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                 //"a" does not exist or it is another type, create it with size 1,1 and return it
                 //create new structure variable
                 pIT = new Struct(1, 1);
-                symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+                ctx->put(pFirstField->getExp()->getStack(), pIT);
             }
             // else
             // is a call exp
@@ -848,7 +857,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
         else if (pIT->getRef() > 1 && pIT->isHandle() == false)
         {
             pIT = pIT->clone();
-            symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+            ctx->put(pFirstField->getExp()->getStack(), pIT);
         }
         else if (pIT == _pAssignValue)
         {
@@ -1522,7 +1531,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
 
                 if (pEHParent == NULL)
                 {
-                    symbol::Context::getInstance()->put(pEH->getExp()->getStack(), pEH->getCurrent());
+                    ctx->put(pEH->getExp()->getStack(), pEH->getCurrent());
                     break;
                 }
 
@@ -1641,7 +1650,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             }
         }
 
-        return symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
+        return ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
     }
     catch (ast::ScilabError error)
     {

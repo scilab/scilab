@@ -100,27 +100,37 @@ bool Context::clearCurrentScope(bool _bClose)
     }
 
     VarList* varList = varStack.top();
+    std::list<Symbol> toremove;
     for (auto var : *varList)
     {
-        if (var.second->empty() == false && var.second->top()->m_iLevel == m_iLevel)
+        if (var.second->empty() == false)
         {
-            ScopedVariable * pSV = var.second->top();
-            types::InternalType * pIT = pSV->m_pIT;
-            pIT->DecreaseRef();
-            pIT->killMe();
-            var.second->pop();
-            delete pSV;
+            ScopedVariable* pSV = var.second->top();
+            if (pSV->m_iLevel == m_iLevel && (_bClose || pSV->protect == false))
+            {
+                ScopedVariable * pSV = var.second->top();
+                types::InternalType * pIT = pSV->m_pIT;
+                pIT->DecreaseRef();
+                pIT->killMe();
+                var.second->pop();
+                delete pSV;
+                toremove.push_back(var.first);
+            }
         }
     }
-
-    varList->clear();
 
     if (_bClose)
     {
         delete varList;
         varStack.pop();
     }
-
+    else
+    {
+        for (auto var : toremove)
+        {
+            varList->erase(var);
+        }
+    }
     return true;
 }
 
@@ -194,63 +204,53 @@ types::InternalType* Context::getFunction(const Symbol& _key)
     return get(_key);
 }
 
-std::list<Symbol>* Context::getFunctionList(std::wstring _stModuleName)
+int Context::getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName)
 {
-    return variables.getFunctionList(_stModuleName, m_iLevel);
+    return variables.getFunctionList(lst, _stModuleName, m_iLevel);
 }
 
-std::list<std::wstring>* Context::getVarsName()
+int Context::getVarsName(std::list<std::wstring>& lst)
 {
-    std::list<std::wstring>* vars = variables.getVarsName();
-    std::list<std::wstring>* libs = libraries.getVarsName();
-    vars->insert(vars->end(), libs->begin(), libs->end());
-    delete libs;
+    variables.getVarsName(lst);
+    libraries.getVarsName(lst);
 
-    for (auto it = globals->begin(), itEnd = globals->end(); it != itEnd; ++it)
-    {
-        vars->push_back((*it).getName());
-    }
-    return vars;
+    return static_cast<int>(lst.size());
 }
 
-std::list<std::wstring>* Context::getMacrosName()
+int Context::getMacrosName(std::list<std::wstring>& lst)
 {
-    std::list<std::wstring>* vars = variables.getMacrosName();
-    std::list<std::wstring>* libs = libraries.getMacrosName();
-    vars->insert(vars->end(), libs->begin(), libs->end());
-    delete libs;
-    return vars;
+    variables.getMacrosName(lst);
+    libraries.getMacrosName(lst);
+    return static_cast<int>(lst.size());
 }
 
-std::list<std::wstring>* Context::getFunctionsName()
+int Context::getFunctionsName(std::list<std::wstring>& lst)
 {
-    return variables.getFunctionsName();
+    return variables.getFunctionsName(lst);
 }
 
-std::list<std::wstring>* Context::getVarsNameForWho(bool bSorted)
+int Context::getVarsNameForWho(std::list<std::wstring>& lst, bool bSorted)
 {
-    std::list<std::wstring>* lstVar = new std::list<std::wstring>();
     int iZero = 0;
-    variables.getVarsNameForWho(lstVar, &iZero, NULL, &iZero, bSorted);
-    return lstVar;
+    variables.getVarsNameForWho(lst, &iZero, bSorted);
+    return static_cast<int>(lst.size());
 }
 
-std::list<std::wstring>* Context::getGlobalNameForWho(bool bSorted)
+int Context::getGlobalNameForWho(std::list<std::wstring>& lst, bool bSorted)
 {
-    std::list<std::wstring>* lstVar = new std::list<std::wstring>();
     int iZero = 0;
-    variables.getVarsNameForWho(NULL, &iZero, lstVar, &iZero, bSorted);
-    return lstVar;
+    variables.getGlobalNameForWho(lst, &iZero, bSorted);
+    return static_cast<int>(lst.size());
 }
 
-std::list<std::wstring>* Context::getWhereIs(const std::wstring& _str)
+int Context::getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str)
 {
-    return libraries.whereis(Symbol(_str));
+    return libraries.whereis(lst, Symbol(_str));
 }
 
-std::list<std::wstring>* Context::getLibrariesList()
+int Context::getLibrariesList(std::list<std::wstring>& lst)
 {
-    return libraries.librarieslist();
+    return libraries.librarieslist(lst);
 }
 
 void Context::put(Variable* _var, types::InternalType* _pIT)
@@ -383,7 +383,8 @@ void Context::print(std::wostream& ostr, bool sorted) const
     std::list<std::wstring> lstGlobal;
     int iVarLenMax = 10; // initialise to the minimal value of padding
     int iGlobalLenMax = 10; // initialise to the minimal value of padding
-    variables.getVarsNameForWho(&lstVar, &iVarLenMax, &lstGlobal, &iGlobalLenMax);
+    variables.getVarsNameForWho(lstVar, &iVarLenMax);
+    variables.getGlobalNameForWho(lstGlobal, &iGlobalLenMax);
     libraries.getVarsNameForWho(&lstVar, &iVarLenMax);
 
     if (sorted)
@@ -480,13 +481,13 @@ bool Context::isValidVariableName(const char* name)
     return isValid;
 }
 
-std::list<Library*>* Context::getLibsToVariableBrowser()
+int Context::getLibsToVariableBrowser(std::list<Library*>& lst)
 {
-    std::list<Library*>* libs = libraries.getVarsToVariableBrowser();
+    libraries.getVarsToVariableBrowser(lst);
 
     std::list<Library*> toremove;
     //list lib that have a variable with the same name
-    for (auto lib : *libs)
+    for (auto lib : lst)
     {
         Variable* var = getOrCreate(lib->getSymbol());
         if (var->empty() == false)
@@ -498,15 +499,78 @@ std::list<Library*>* Context::getLibsToVariableBrowser()
     //remove
     for (auto lib : toremove)
     {
-        libs->remove(lib);
+        lst.remove(lib);
     }
 
-    return libs;
+    return static_cast<int>(lst.size());
 }
 
-std::list<Variable*>* Context::getVarsToVariableBrowser()
+int Context::getVarsToVariableBrowser(std::list<Variable*>& lst)
 {
-    return variables.getVarsToVariableBrowser();
+    variables.getVarsToVariableBrowser(lst);
+    return static_cast<int>(lst.size());
 }
 
+void Context::updateProtection(bool protect)
+{
+    if (varStack.empty() == false)
+    {
+        VarList* lst = varStack.top();
+        for (auto var : *lst)
+        {
+            if (var.second->empty() == false)
+            {
+                ScopedVariable* pSV = var.second->top();
+                //only for current scope but normally vars in VarStack are in the current scope
+                if (pSV->m_iLevel == m_iLevel)
+                {
+                    pSV->protect = protect;
+                }
+                else
+                {
+                    std::wcerr << L"heu ... " << var.first.getName() << std::endl;
+                }
+            }
+        }
+    }
+}
+
+void Context::protect()
+{
+    updateProtection(true);
+}
+
+void Context::unprotect()
+{
+    updateProtection(false);
+}
+
+bool Context::isprotected(const Symbol& key)
+{
+    return isprotected(getOrCreate(key));
+}
+
+bool Context::isprotected(Variable* _var)
+{
+    //don't check protection on "ans"
+    if (_var->getSymbol().getName() == L"ans")
+    {
+        return false;
+    }
+
+    if (_var->empty() == false)
+    {
+        ScopedVariable* pSV = _var->top();
+        if (pSV->m_iLevel == m_iLevel && pSV->protect)
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+int Context::protectedVars(std::list<std::wstring>& vars)
+{
+    return variables.getProtectedVarsName(vars);
+}
 }
