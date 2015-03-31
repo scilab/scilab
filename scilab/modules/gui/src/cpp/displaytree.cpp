@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2012 - Scilab Enterprises - Cedric Delamarre
+ * Copyright (C) 2015 - Scilab Enterprises - Paul Bignier
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,167 +13,136 @@
  */
 /*--------------------------------------------------------------------------*/
 
-extern "C"
-{
-#include <string.h>
-#include "sci_malloc.h"
-#include "api_scilab.h"
-#include "localization.h"
-#include "Scierror.h"
-}
+#include <vector>
+#include <string>
 
 #include "displaytree.hxx"
 
-bool bParseListItem(void* _pvCtx, int *_piAddrTree, int _iItemCount, std::vector<std::string> *_pvStructList, std::string _szLevel)
+#include "internal.hxx"
+#include "string.hxx"
+#include "list.hxx"
+#include "tlist.hxx"
+#include "struct.hxx"
+
+extern "C"
 {
-    SciErr sciErr;
+#include "sci_malloc.h"
+#include "charEncoding.h" /* wide_string_to_UTF8 */
+}
 
-    int* piAddrTreeI        = NULL;
-    int* piAddrTreeStr      = NULL;
-    int* piAddrTreeMList    = NULL;
-    int* piAddrLabel        = NULL;
-    int* piAddrIcon         = NULL;
-    int* piAddrCallback     = NULL;
-
-    char* strItem1      = NULL;
-    char* strLabel      = NULL;
-    char* strIcon       = NULL;
-    char* strCallback   = NULL;
-
-    int iItemCount = 0;
+bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> &_pvStructList, std::string _szLevel)
+{
+    char* cstr; // Buffer
 
     std::string szCurLvl = "";
 
-    //parse item
-    for (int i = 3; i < _iItemCount + 1; i++) //tlist
+    // Parse item
+    for (int i = 2; i < _iItemCount; ++i) // Look for tlists in the passed list pIn
     {
-        sciErr = getListItemAddress(_pvCtx, _piAddrTree, i, &piAddrTreeI);
-        if (sciErr.iErr)
+        if (!pIn->get(i)->isTList()) // Potential tree
         {
-            printError(&sciErr, 0);
-            return 1;
+            // Go up, it is finished for this node
+            return true;
         }
+        types::TList* tlist = pIn->get(i)->getAs<types::TList>();
 
-        if (isTListType(_pvCtx, piAddrTreeI) == FALSE) //potential tree
-        {
-            //go up, it is finish for this node
-            return 0;
-        }
-
-        /*retrieve next item*/
-        sciErr = getListItemNumber(_pvCtx, piAddrTreeI, &iItemCount);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
+        // Retrieve next item
+        int iItemCount = tlist->getSize();
         if (iItemCount < 2)
         {
-            return 1;
+            return false;
         }
 
+        // Get first element as a string
+        if (!tlist->get(0)->isString())
+        {
+            return false;
+        }
+        types::String* strItem1 = tlist->get(0)->getAs<types::String>();
+        if (strItem1->getSize() < 1)
+        {
+            return false;
+        }
+
+        // Check tree structure
+        cstr = wide_string_to_UTF8(strItem1->get(0));
+        if (strcmp(cstr, TREE_REF_NAME) != 0)
+        {
+            FREE(cstr);
+            return false;
+        }
+        FREE(cstr);
+
+        // Get the second element as a struct
+        if (!tlist->get(1)->isStruct())
+        {
+            return false;
+        }
+        types::Struct* node = tlist->get(1)->getAs<types::Struct>();
+        types::String* fields = node->get(0)->getFieldNames();
+        if (fields->getSize() < 3)
+        {
+            return false;
+        }
+
+        // Add node level
         szCurLvl = _szLevel;
-
-        // get first element as a string
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeI, 1, &piAddrTreeStr);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
-        if (getAllocatedSingleString(_pvCtx, piAddrTreeStr, &strItem1))
-        {
-            return 1;
-        }
-
-        /*check tree structure */
-        if (strcmp(strItem1, TREE_REF_NAME))
-        {
-            freeAllocatedSingleString(strItem1);
-            return 1;
-        }
-        freeAllocatedSingleString(strItem1);
-
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeI, 2, &piAddrTreeMList);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 1;
-        }
-
-        if (isMListType(_pvCtx, piAddrTreeMList) == false)
-        {
-            return 1;
-        }
-
-        //Add node level
         szCurLvl += ".";
         std::ostringstream out;
         out << i - 1;
         szCurLvl += out.str();
 
-        _pvStructList->push_back(szCurLvl);
+        _pvStructList.push_back(szCurLvl);
 
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeMList, 1, &piAddrLabel);
-        if (sciErr.iErr)
+        types::InternalType* temp;
+
+        // Get label name
+        temp = node->get(0)->get(Label);
+        if (!temp->isString())
         {
-            printError(&sciErr, 0);
-            return 1;
+            return false;
         }
-        int iType = 0;
-        getVarType(_pvCtx, piAddrTreeMList, &iType);
-
-        //get label name
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeMList, 3, &piAddrLabel);
-        if (sciErr.iErr)
+        types::String* strLabel = temp->getAs<types::String>();
+        if (strLabel->getSize() != 1)
         {
-            printError(&sciErr, 0);
-            return 1;
+            return false;
         }
+        cstr = wide_string_to_UTF8(strLabel->get(0));
+        _pvStructList.push_back(std::string(cstr));
+        FREE(cstr);
 
-        if (getAllocatedSingleString(_pvCtx, piAddrLabel, &strLabel))
+        // Get icon name
+        temp = node->get(0)->get(Icon);
+        if (!temp->isString())
         {
-            return 1;
+            return false;
         }
-
-        _pvStructList->push_back(strLabel);
-        freeAllocatedSingleString(strLabel);
-
-        //get Icon name
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeMList, 4, &piAddrIcon);
-        if (sciErr.iErr)
+        types::String* strIcon = temp->getAs<types::String>();
+        if (strIcon->getSize() != 1)
         {
-            printError(&sciErr, 0);
-            return 1;
+            return false;
         }
+        cstr = wide_string_to_UTF8(strIcon->get(0));
+        _pvStructList.push_back(std::string(cstr));
+        FREE(cstr);
 
-        if (getAllocatedSingleString(_pvCtx, piAddrIcon, &strIcon))
+        // Get callback name
+        temp = node->get(0)->get(Callback);
+        if (!temp->isString())
         {
-            return 1;
+            return false;
         }
-
-        _pvStructList->push_back(strIcon);
-        freeAllocatedSingleString(strIcon);
-
-        //get callback name
-        sciErr = getListItemAddress(_pvCtx, piAddrTreeMList, 5, &piAddrCallback);
-        if (sciErr.iErr)
+        types::String* strCallback = temp->getAs<types::String>();
+        if (strCallback->getSize() != 1)
         {
-            printError(&sciErr, 0);
-            return 1;
+            return false;
         }
+        cstr = wide_string_to_UTF8(strCallback->get(0));
+        _pvStructList.push_back(std::string(cstr));
+        FREE(cstr);
 
-        if (getAllocatedSingleString(_pvCtx, piAddrCallback, &strCallback))
-        {
-            return 1;
-        }
-
-        _pvStructList->push_back(strCallback);
-        freeAllocatedSingleString(strCallback);
-
-        bParseListItem(_pvCtx, piAddrTreeI, iItemCount, _pvStructList, szCurLvl);
+        bParseListItem(tlist, iItemCount, _pvStructList, szCurLvl);
     }
-    return 0;
+
+    return true;
 }

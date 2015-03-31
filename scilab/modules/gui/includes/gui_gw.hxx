@@ -32,6 +32,7 @@ public :
     static bool loadedDep;
 };
 
+CPP_GATEWAY_PROTOTYPE(sci_displaytree);
 CPP_GATEWAY_PROTOTYPE(sci_helpbrowser);
 
 #endif /* !__GUI_GW_HXX__ */

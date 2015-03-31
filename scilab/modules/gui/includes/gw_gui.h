@@ -47,7 +47,6 @@ GUI_IMPEXP int sci_printsetupbox(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_toprint(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_uigetfile(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_usecanvas(char* fname, void* pvApiCtx);
-GUI_IMPEXP int sci_displaytree(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_uiputfile(char* fname, void* pvApiCtx);
 GUI_IMPEXP int sci_raise_window (char* fname, void* pvApiCtx);
 
