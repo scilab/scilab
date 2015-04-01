@@ -482,7 +482,7 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
     const char* funcName = NULL;
     int apiError         = API_ERROR_CREATE_LIST_IN_LIST;
 
-    if (_pstName == NULL)
+    if (_piParent != NULL)
     {
         funcName = "createListInList";
     }

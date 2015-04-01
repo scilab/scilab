@@ -258,3 +258,35 @@ assert_checktrue(exists("l")==0);
 // import from hdf5
 assert_checktrue(import_from_hdf5(fileName));
 assert_checkequal(l == list(1, , 3), [%t %f %t]);
+
+// Struct
+data.data.data = 0;
+data.data.string = "Scilab";
+data.list = list(1,["S" "E"]);
+checkValue(data);
+
+data2.data.data = 42;
+data2.data.string = "Test";
+data2.list = list(1,["a" "b"]);
+checkValue(data2);
+
+struct_ = [data, data, data2; data2, data2, data];
+checkValue(struct_);
+
+emptyStruct = struct();
+checkValue(emptyStruct);
+
+// Cell
+Cell_ = cell(2,2,2);
+Cell_{1} = "scilab";
+Cell_{2} = 42;
+Cell_{3} = list(1,["a" "b"]);
+Cell_{4} = int8(2);
+Cell_{5} = 5;
+Cell_{6} = 6;
+Cell_{7} = poly(1:3,"s");
+Cell_{8} = "Yasp";
+checkValue(Cell_);
+
+emptyCell = cell();
+checkValue(emptyCell);
