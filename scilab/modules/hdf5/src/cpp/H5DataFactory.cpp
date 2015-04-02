@@ -170,7 +170,15 @@ H5Data & H5DataFactory::getObjectData(H5Object & parent, const hsize_t totalSize
             {
                 char * mname = H5Tget_member_name(type, i);
                 names[i] = std::string(mname);
+                //HDF5 version > 1.8.13
+                //H5free_memory(mnale);
+
+                //freed memory allocated by H5Tget_member_name trigger a segfault on Windows.
+                //http://lists.hdfgroup.org/pipermail/hdf-forum_lists.hdfgroup.org/2014-September/008061.html
+                //little memory leaks are better then crashs :x
+#ifndef _MSC_VER
                 free(mname);
+#endif
             }
 
             if (H5Tget_sign(type) == H5T_SGN_NONE)

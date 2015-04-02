@@ -90,4 +90,5 @@
     <PRIMITIVE gatewayId="7" primitiveId="66" primitiveName="addcolor"/>
     <PRIMITIVE gatewayId="7" primitiveId="67" primitiveName="name2rgb"/>
     <PRIMITIVE gatewayId="7" primitiveId="68" primitiveName="color"/>
+    <PRIMITIVE gatewayId="7" primitiveId="69" primitiveName="contour2dm"/>
 </GATEWAY>

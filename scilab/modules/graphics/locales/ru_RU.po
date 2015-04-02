@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: graphics-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-23 14:25+0000\n"
+"PO-Revision-Date: 2015-03-28 14:59+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: ru\n"
 
 #, c-format
@@ -114,15 +114,18 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector 1x3 expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный вектор 1x3.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real vector nx3 expected.\n"
 msgstr ""
+"%s: Неверный тип входного аргумента №%d: ожидался вещественный вектор nx3.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: Must be between 0.0 and 1.0.\n"
 msgstr ""
+"%s: Неверное значение входного аргумента №%d: должно быть между 0.0 и 1.0.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -207,9 +210,11 @@ msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Неверное значение %s «%c»: Ожидалось «%s», «%s» и «%s».\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
-"%s: Неверное количество столбцов входного параметра №%d: ожидалось %d.\n"
+"%s: Неверное количество столбцов у входного аргумента №%d: ожидалось не "
+"менее %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -325,6 +330,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr "%s: Неверное значение для опции strf: %s.\n"
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr "%s: Неверное значении для параметра frameflag.\n"
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr "%s: Неверное значение для параметра axesflag.\n"
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr ""
 "%s: Невозможный статус min > max по x или y в данных прямоугольника.\n"
@@ -364,6 +377,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr "%s: Неверное количество аргументов.\n"
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr "%s: Неверный размер входного аргумента №%d.\n"
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидался %d или %d.\n"
 
@@ -383,29 +400,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr "%s: Неверный размер входных параметров №%d и №%d: ожидался %s.\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr "%s: Функция %s устарела.\n"
-
-msgid "Warning"
-msgstr "Предупреждение"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr "%s: Пожалуйста, смотрите подробности в документации.\n"
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-"%s: Эта функция будет окончательно удалена в  Scilab %s\n"
-"\n"
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr "%s: Перемещаемые дескрипторы должны иметь одного предка.\n"
 
 #, c-format
 msgid ""
@@ -695,6 +689,10 @@ msgstr ""
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s: Ошибка во входном параметре №%d: границы указаны неправильно.\n"
 
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
+
 msgid "The parent has to be a SUBWIN\n"
 msgstr "Предок должен быть «Subwin»\n"
 
@@ -900,6 +898,7 @@ msgstr "Неверный тип свойства «%s»:  ожидалось ц�
 #, c-format
 msgid "Wrong type for '%s' property: An empty matrix or a tlist expected.\n"
 msgstr ""
+"Неверный тип для свойства '%s': ожидалась пустая матрица либо tlist.\n"
 
 #, c-format
 msgid ""
@@ -984,7 +983,7 @@ msgstr "Дескриптор «%s» (более) не существует.\n"
 
 #, c-format
 msgid "Wrong value for '%s' property: A '%s' handle expected.\n"
-msgstr ""
+msgstr "Неверное значение свойства '%s': ожидался дескриптор '%s'.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Real or '%s' handle expected.\n"
@@ -1206,8 +1205,8 @@ msgid "Can not set directly a label object.\n"
 msgstr "Не удалось напрямую установить метку.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
-msgstr "Неверный размер свойства «%s»: должно быть %d столбцов.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
+msgstr "Неверный размер свойства '%s': должно быть не менее %d столбцов.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"
@@ -1309,28 +1308,28 @@ msgid "Customize your complex function"
 msgstr "Настройте вашу комплексную функцию"
 
 msgid "Control panel"
-msgstr ""
+msgstr "Панель управления"
 
 msgid "Function definition"
-msgstr ""
+msgstr "Определение функции"
 
 msgid "Domain type"
-msgstr ""
+msgstr "Тип области"
 
 msgid "Radius of the domain"
-msgstr ""
+msgstr "Радиус области"
 
 msgid "Cut on axes"
-msgstr ""
+msgstr "Срез на осях"
 
 msgid "Function should contain z"
-msgstr ""
+msgstr "Функция должна содержать z"
 
 msgid "Wrong definition of f(z)"
-msgstr ""
+msgstr "Неверное определение f(z)"
 
 msgid "Radius should be real and finite"
-msgstr ""
+msgstr "Радиус должен быть вещественным и конечным"
 
 msgid "datatips on 2D curves"
 msgstr "ярлыки данных на двумерных кривых"
@@ -1387,13 +1386,13 @@ msgid "Colormap"
 msgstr "Цветовая карта"
 
 msgid "Matplot"
-msgstr ""
+msgstr "Matplot"
 
 msgid "Classical Matplot"
-msgstr ""
+msgstr "Классический Matplot"
 
 msgid "Classical Matplot1"
-msgstr ""
+msgstr "Классический Matplot1"
 
 msgid "Java Image"
 msgstr ""
@@ -1919,30 +1918,30 @@ msgid "Edit label generator"
 msgstr "Править параметры формирования меток"
 
 msgid "File"
-msgstr ""
+msgstr "Файл"
 
 msgid "Tools"
-msgstr ""
+msgstr "Инструменты"
 
 msgid "Edit"
-msgstr ""
+msgstr "Правка"
 
 msgid "Select a file to load"
-msgstr ""
+msgstr "Выберите файл для загрузки"
 
 #, c-format
 msgid "%s: The file "
-msgstr ""
+msgstr "%s: Файл "
 
 #, c-format
 msgid "%s: Cannot open file "
-msgstr ""
+msgstr "%s: Нельзя открыть файл "
 
 msgid "Error in file format."
-msgstr ""
+msgstr "Ошибка в формате файла."
 
 msgid "Select a file to write"
-msgstr ""
+msgstr "Выберите файл для записи"
 
 #, c-format
 msgid ""

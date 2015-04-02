@@ -138,7 +138,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     /* checks file mode */
     /* bug 3898 */
     /* read only attrib 1xx*/
-    if ((ifileMode >= 100) && (ifileMode < 200) && !isSTD)
+    if ((ifileMode >= 100) && (ifileMode < 200) && ((ifileMode % 100) < 10) /* check that it is not r+ */ && !isSTD)
     {
         Scierror(999, _("%s: Wrong file mode: READ only.\n"), "mfprintf");
         return types::Function::Error;

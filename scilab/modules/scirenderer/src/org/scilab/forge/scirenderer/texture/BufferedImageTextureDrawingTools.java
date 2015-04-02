@@ -83,9 +83,8 @@ public class BufferedImageTextureDrawingTools implements TextureDrawingTools {
     public void drawPlus(int size, Appearance appearance) {
         int r = size / 2;
         int[] coords1 = new int[] { -r, 0, r, 0};
-        if (r == 0) {
-            drawPolyline(coords1, appearance);
-        } else {
+        drawPolyline(coords1, appearance);
+        if (r != 0) {
             int[] coords2 = new int[] {0, -r, 0, r};
             drawPolyline(coords2, appearance);
         }

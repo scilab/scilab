@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: ca\n"
 
 #, c-format
@@ -212,10 +212,9 @@ msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Valor incorrecte de %s '%c': Ha de ser '%s', '%s' i '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
-"%s: El nombre de columnes de l'argument d'entrada #%d és incorrecte: Ha de "
-"ser %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -328,6 +327,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s: Estat impossible. min > max a x o y rect dada.\n"
 
@@ -365,6 +372,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser %d o %d.\n"
@@ -388,27 +399,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
 "%s: Els arguments d'entrada #%d i #%d tenen una mida incorrecta: Ha de ser "
 "%s.\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr "%s: Els tractaments s'han de tornar a posicionar sota un sol pare.\n"
 
 #, c-format
 msgid ""
@@ -688,6 +678,10 @@ msgstr ""
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 "%s: Error a l'argument d'entrada #%d: Els límits indicats no són correctes.\n"
+
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El pare ha de ser un SUBWIN\n"
@@ -1195,8 +1189,8 @@ msgid "Can not set directly a label object.\n"
 msgstr "No es pot establir directament un objecte etiqueta.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
-msgstr "La propietat '%s' té una mida incorrecta: Ha de tenir %d columnes.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"

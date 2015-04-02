@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2012-09-30 15:49+0000\n"
+"PO-Revision-Date: 2015-02-15 22:07+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: it\n"
 
 #, c-format
@@ -97,6 +97,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso \"%s\" o "
+"\"%s\".\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer expected.\n"
@@ -202,34 +204,35 @@ msgid "Linking %s.\n"
 msgstr "Collegamento di %s in corso.\n"
 
 msgid "Calling a C function from Scilab.\n"
-msgstr ""
+msgstr "Chiamare una funzione del C da Scilab.\n"
 
 msgid "Calling ilib_for_link to build C function.\n"
-msgstr ""
+msgstr "Chiamata di ilib_for_link per costruire una funzione in C.\n"
 
 msgid "Calling C function. Z = X+Y"
-msgstr ""
+msgstr "Chiamata di una funzione in C. Z = X+Y"
 
 #, c-format
 msgid "with X = %d"
-msgstr ""
+msgstr "con X = %d"
 
 #, c-format
 msgid "with Y = %d"
-msgstr ""
+msgstr "con Y = %d"
 
 #, c-format
 msgid "Result Z = %d"
-msgstr ""
+msgstr "Risultato Z = %d"
 
 msgid "Calling a Fortran subroutine from Scilab.\n"
-msgstr ""
+msgstr "Chiamata di una subroutine del Fortran da Scilab.\n"
 
 msgid "Calling ilib_for_link to build a Fortran subroutine.\n"
 msgstr ""
+"Chiamata di ilib_for_link per costruire uan subroutine del Fortran.\n"
 
 msgid "Calling Fortran subroutine. Z = X+Y"
-msgstr ""
+msgstr "Chiamata di una subroutine del Fortran. Z = X+Y"
 
 msgid "Dynamic link"
 msgstr "Collegamento dinamico"
@@ -250,6 +253,7 @@ msgstr "%s: Il numero degli argomenti in ingresso è sbagliato.\n"
 
 msgid "Microsoft Visual Studio C x86 Compiler not found."
 msgstr ""
+"Il compilatore Microsoft Visual Studio C versione x86 non è stato trovato."
 
 msgid "Intel Fortran Compiler 9, 10, 11 or 12 Compiler not found."
 msgstr "Non è stato trovato né Intel Fortran Compiler 9, né 10 né 11 né 12."
@@ -257,9 +261,13 @@ msgstr "Non è stato trovato né Intel Fortran Compiler 9, né 10 né 11 né 12.
 msgid ""
 "Microsoft Visual Studio C 2008 (or more recent) x64 Compiler not installed."
 msgstr ""
+"Il compilatore Microsoft Visual Studio C 2008 (o più recente) versione x64 "
+"non è installato."
 
 msgid "Microsoft Visual Studio C 2008 (or more recent) Compiler not found."
 msgstr ""
+"Il compilatore Microsoft Visual Studio C 2008 (o più recente) non è stato "
+"trovato."
 
 #, c-format
 msgid "%s: This feature has been implemented for Windows.\n"
@@ -350,72 +358,77 @@ msgstr "   Genera un file del pulitore\n"
 
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
-msgstr ""
+msgstr "%s: funzione non disponibile nella modalità NWNI.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): 3 to 5 expected.\n"
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi 3 o "
+"5.\n"
 
 #, c-format
 msgid "   Building JAR library %s\n"
-msgstr ""
+msgstr "   Costruzione della libreria JAR %s\n"
 
 #, c-format
 msgid "Cannot create jar build dir %s"
-msgstr ""
+msgstr "Impossibile creare la dir %s per la creazione dei jar"
 
 #, c-format
 msgid ""
 "   Add dependency class paths:\n"
 "%s\n"
 msgstr ""
+"   Aggiungere il percorso della classe di dipendenza:\n"
+"%s\n"
 
 #, c-format
 msgid "   Build package %s\n"
-msgstr ""
+msgstr "   Costruire il pacchetto %s\n"
 
 msgid "   Compiling source files:\n"
-msgstr ""
+msgstr "   Compilazione dei file sorgente in corso:\n"
 
 #, c-format
 msgid "   Compiling Java sources in %s\n"
-msgstr ""
+msgstr "   Compilazione dei sorgenti Java in corso in %s\n"
 
 #, c-format
 msgid "No Java sources in %s to compile for package %s"
-msgstr ""
+msgstr "Non ci sono sorgenti Java da compilare in %s per il pacchetto %s"
 
 #, c-format
 msgid "Cannot create jar package directory %s"
-msgstr ""
+msgstr "Impossibile creare la directory per il pacchetto jar %s"
 
 #, c-format
 msgid "   Copying compiled package from %s to %s\n"
-msgstr ""
+msgstr "   Copia in corso del pacchetto compilato da %s a %s\n"
 
 #, c-format
 msgid "Cannot find compilation directory %s for package %s"
 msgstr ""
+"Impossibile trovare la directory di compilaaizone %s per il pacchetto %s"
 
 #, c-format
 msgid "   Creating JAR archive %s\n"
-msgstr ""
+msgstr "   Creazione in corso del pacchetto JAR %s\n"
 
 #, c-format
 msgid "Cannot create JAR file %s"
-msgstr ""
+msgstr "Impossibile creare il file JAR %s"
 
 #, c-format
 msgid "   Creating scripts for JAR relative path %s\n"
-msgstr ""
+msgstr "   Creazione in corso degli script per il percorso relativo JAR %s\n"
 
 #, c-format
 msgid "   Create loader script for Java %s\n"
-msgstr ""
+msgstr "   Creare lo script di caricamento per Java %s\n"
 
 #, c-format
 msgid "   Create cleaner script for Java %s\n"
-msgstr ""
+msgstr "   Creare lo script di pulizia per Java %s\n"
 
 msgid "A Fortran or C compiler is required."
 msgstr "È richiesto un compilatore per il Fortran o per il C."
@@ -572,6 +585,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era atteso un "
+"vettore.\n"
 
 #, c-format
 msgid "%s: Failed to add include path : %s"
@@ -605,8 +620,9 @@ msgstr ""
 "almeno %d.\n"
 
 msgid "not found."
-msgstr ""
+msgstr "non trovato."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected."
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa."

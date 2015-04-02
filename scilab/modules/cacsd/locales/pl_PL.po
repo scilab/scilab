@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: pl\n"
 
 #, c-format
@@ -563,15 +563,6 @@ msgstr ""
 "%s: Nieprawidłowe wartości argumentu wejściowego nr %d: Elementy muszą być "
 "dodatnie.\n"
 
-msgid "Amplitude and phase contours of y/(1+y)"
-msgstr "Krzywe zmiany amplitudy i fazy y/(y+1)"
-
-msgid "magnitude(y) (Db)"
-msgstr "Amplituda(y) (Db)"
-
-msgid "phase(y) (degree)"
-msgstr "faza(y) (stopnie)"
-
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected"
 msgstr "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d."
@@ -1046,6 +1037,12 @@ msgstr "%s: Nieprawidłowa liczba argumentów wyjściowych: oczekiwano %d.\n"
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: "
 msgstr "%s: Niekompatybilne parametry wejściowe nr %d i nr %d: "
+
+msgid "Amplitude and phase contours of y/(1+y)"
+msgstr "Krzywe zmiany amplitudy i fazy y/(y+1)"
+
+msgid "phase(y) (degree)"
+msgstr "faza(y) (stopnie)"
 
 msgid "magnitude(y) (dB)"
 msgstr "Amplituda (dB)"

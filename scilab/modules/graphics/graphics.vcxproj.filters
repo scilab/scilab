@@ -1298,6 +1298,12 @@
     <ClCompile Include="sci_gateway\c\sci_color.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_contour2dm.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\ContourOnMesh.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_border_property.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1483,6 +1489,9 @@
     <ClInclude Include="includes\name2rgb.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="src\cpp\ContourOnMesh.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="Gui_Import.def">
@@ -1500,6 +1509,7 @@
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />
     <None Include="locales\graphics.pot" />

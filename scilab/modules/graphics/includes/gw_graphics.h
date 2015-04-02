@@ -98,6 +98,7 @@ GRAPHICS_IMPEXP int sci_light(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_addcolor(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_name2rgb(char *fname, void *pvApiCtx);
 GRAPHICS_IMPEXP int sci_color(char *fname, void *pvApiCtx);
+GRAPHICS_IMPEXP int sci_contour2dm(char *fname, void *pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __INTGRAPHICS__ */
 /*--------------------------------------------------------------------------*/

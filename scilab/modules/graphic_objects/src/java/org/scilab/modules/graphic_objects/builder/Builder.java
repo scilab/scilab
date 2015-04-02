@@ -522,8 +522,18 @@ public final class Builder {
         cloneFontContext(parent, iAxis);
 
         Font font = axis.getFont();
-        font.setSize(new Double(fontSize));
-        font.setColor(textColor);
+        if (fontSize == -1) {
+            font.setSize(axes.getFontSize());
+        } else {
+            font.setSize(new Double(fontSize));
+        }
+        if (textColor == -1) {
+            font.setColor(axes.getFontColor());
+        } else {
+            font.setColor(textColor);
+        }
+        font.setStyle(axes.getFontStyle());
+
         axis.setTicksColor(ticsColor);
 
         controller.objectCreated(iAxis);

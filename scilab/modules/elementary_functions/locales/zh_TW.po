@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: \n"
 "Revision-Date: 2011-04-04 22:09+0100\n"
 
@@ -171,6 +171,16 @@ msgstr ""
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s' 或 '%s'.\n"
 
+#
+# File: macros/bitxor.sci, line: 24
+# File: macros/bitor.sci, line: 27
+# File: macros/bitget.sci, line: 28
+# File: macros/bitcmp.sci, line: 38
+# File: macros/bitand.sci, line: 27
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
+msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
+
 #, c-format
 msgid "%s: Wrong size for input argument #%d: sparse vectors expected.\n"
 msgstr "%s: 第 %d 輸入參數的資料長度錯誤: 應該是稀疏矩陣.\n"
@@ -218,16 +228,6 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected"
 msgstr ""
-
-#
-# File: macros/bitxor.sci, line: 24
-# File: macros/bitor.sci, line: 27
-# File: macros/bitget.sci, line: 28
-# File: macros/bitcmp.sci, line: 38
-# File: macros/bitand.sci, line: 27
-#, c-format
-msgid "%s: Wrong number of input argument(s): %d expected.\n"
-msgstr "%s: 輸入參數數目錯誤:應為  %d.\n"
 
 #, c-format
 msgid ""

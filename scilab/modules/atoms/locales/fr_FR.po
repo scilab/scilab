@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-31 08:13+0000\n"
-"Last-Translator: Vincent Couvert <Unknown>\n"
+"PO-Revision-Date: 2014-12-10 13:04+0000\n"
+"Last-Translator: Julie PAUL <Unknown>\n"
 "Language-Team: French <fr@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: fr\n"
 
 #, c-format
@@ -752,6 +752,15 @@ msgstr "%s : Impossible de trouver gzip.\n"
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s : L'extraction du fichier DESCRIPTION ('%s') a échoué.\n"
+
+msgid "Done"
+msgstr "Terminé"
+
+msgid "Scanning repository"
+msgstr "Examen du dépôt"
+
+msgid "Skipped"
+msgstr "Ignoré"
 
 #, c-format
 msgid "%s: save ('%s') has failed.\n"

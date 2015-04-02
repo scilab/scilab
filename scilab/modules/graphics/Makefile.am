@@ -400,7 +400,8 @@ GRAPHICS_C_SOURCES = \
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
-    src/cpp/set_data_property.cpp
+    src/cpp/set_data_property.cpp \
+    src/cpp/ContourOnMesh.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_swap_handles.c \
@@ -468,7 +469,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_xset.cpp \
     sci_gateway/cpp/sci_matplot.cpp \
     sci_gateway/cpp/sci_matplot1.cpp \
-    sci_gateway/cpp/sci_winsid.cpp
+    sci_gateway/cpp/sci_winsid.cpp \
+    sci_gateway/cpp/sci_contour2dm.cpp
 
 libscigraphics_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \

@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-04-03 05:59+0000\n"
+"PO-Revision-Date: 2015-02-15 21:59+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: it\n"
 
 #, c-format
@@ -2083,7 +2083,13 @@ msgstr ""
 msgid "Log Flags"
 msgstr ""
 
-msgid "Tight Limits"
+msgid "X Tight Limits"
+msgstr ""
+
+msgid "Y Tight Limits"
+msgstr ""
+
+msgid "Z Tight Limits"
 msgstr ""
 
 msgid "Enter a x position."
@@ -2589,26 +2595,31 @@ msgstr "%s: La proprietà '%s' è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
 msgid "%s: function not available in NWNI mode.\n"
-msgstr "%s: funzione non disponibile nella modalità NWNI\n"
+msgstr "%s: funzione non disponibile nella modalità NWNI.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A graphic handle or a real expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un gestore "
-"grafico o un numero reale.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un handle a "
+"un grafico o un numero reale.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected."
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi "
+"almeno %d."
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected."
 msgstr ""
+"%s: Il numero degli argomenti in ingresso è sbagliato: ne erano attesi da %d "
+"a %d."
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A integer expected.\n"
 msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un intero.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."

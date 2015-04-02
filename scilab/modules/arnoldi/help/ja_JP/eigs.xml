@@ -369,6 +369,7 @@ function y = A ( x )
         <title>実対称問題の例</title>
         <programlisting role="example">
             <![CDATA[ 
+clear opts
 A            = diag(10*ones(10,1));
 A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
 A(2:$,1:$-1) = A(2:$,1:$-1) + diag(6*ones(9,1));
@@ -414,6 +415,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         <title>実非対称問題の例</title>
         <programlisting role="example">
             <![CDATA[ 
+	clear opts
     A            = diag(10*ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
     A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));
@@ -459,6 +461,7 @@ d = eigs(fn, 10, [], k, 4, opts)
         <title>複素問題の例</title>
         <programlisting role="example">
             <![CDATA[ 
+	clear opts
     A            = diag(10*ones(10,1) + %i * ones(10,1));
     A(1:$-1,2:$) = A(1:$-1,2:$) + diag(6*ones(9,1));
     A(2:$,1:$-1) = A(2:$,1:$-1) + diag(-6*ones(9,1));

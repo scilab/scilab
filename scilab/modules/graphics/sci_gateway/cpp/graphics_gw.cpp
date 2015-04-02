@@ -107,5 +107,6 @@ int GraphicsModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"addcolor", &sci_addcolor, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"name2rgb", &sci_name2rgb, &GraphicsModule::LoadDeps, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"color", &sci_color, &GraphicsModule::LoadDeps, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"contour2dm", &sci_contour2dm, &GraphicsModule::LoadDeps, MODULE_NAME));
     return 1;
 }

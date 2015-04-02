@@ -9,13 +9,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-03-21 11:19+0000\n"
+"PO-Revision-Date: 2014-09-30 16:53+0000\n"
 "Last-Translator: Yuri Chornoivan <yurchor@gmail.com>\n"
 "Language-Team: Ukrainian <translation@linux.org.ua>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: uk\n"
 
 #, c-format
@@ -379,10 +379,11 @@ msgid "Default End-Of-Line: "
 msgstr "Типове завершення рядка: "
 
 msgid "Completion"
-msgstr ""
+msgstr "Доповнення"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
 msgstr ""
+"Автоматично доповнювати дужки, коли курсор перебуває наприкінці рядка"
 
 msgid "General display options"
 msgstr "Загальні параметри показу"
@@ -394,7 +395,7 @@ msgid "Show line numbers: "
 msgstr "Показ номерів рядків: "
 
 msgid "Local numbering"
-msgstr ""
+msgstr "Локальна нумерація"
 
 msgid "Normal"
 msgstr "Звичайна"

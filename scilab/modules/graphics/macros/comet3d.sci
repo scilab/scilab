@@ -192,6 +192,6 @@ function comet3d(varargin)
         drawnow()
     endfunction
     //not to generate an error message if the window is closed
-    exec(anim,-1,"errcatch")
+    exec(anim, "errcatch", -1)
     //exec(anim,-1)
 endfunction
