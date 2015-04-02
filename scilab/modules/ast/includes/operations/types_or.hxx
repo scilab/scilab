@@ -50,6 +50,8 @@ DECLARE_OR_PROTO(or_int_S_S);
 template<> inline types::InternalType* or_M_M<types::SparseBool, types::SparseBool, types::SparseBool>(types::SparseBool* _pL, types::SparseBool* _pR);
 template<> inline types::InternalType* or_M_M<types::SparseBool, types::Bool, types::SparseBool>(types::SparseBool* _pL, types::Bool* _pR);
 template<> inline types::InternalType* or_M_M<types::Bool, types::SparseBool, types::SparseBool>(types::Bool* _pL, types::SparseBool* _pR);
+template<> inline types::InternalType* or_M_E<types::Bool, types::Double, types::Bool>(types::Bool* _pL, types::Double* _pR);
+template<> inline types::InternalType* or_E_M<types::Double, types::Bool, types::Bool>(types::Double* _pL, types::Bool* _pR);
 
 //x & x
 template<typename T, typename U, typename O> inline static void bit_or(T* l, long long size, U* r, O* o)
