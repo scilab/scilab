@@ -43,7 +43,7 @@ types::Function::ReturnValue sci_fullpath(types::typed_list &in, int _iRetCount,
         return types::Function::OK;
     }
 
-    if (in[0]->isString() == false || in[0]->getAs<types::String>()->isScalar() == false)
+    if (in[0]->isString() == false)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fullpath", 1);
         return types::Function::Error;
