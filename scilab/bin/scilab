@@ -711,14 +711,20 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
     PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
 
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
+                10)
+                    # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
                 6)
-		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
