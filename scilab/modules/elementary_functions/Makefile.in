@@ -249,8 +249,6 @@ am__objects_4 = src/c/libscielementary_functions_algo_la-finite.lo \
 	src/c/libscielementary_functions_algo_la-qsort-string.lo \
 	src/c/libscielementary_functions_algo_la-basic_functions.lo \
 	src/c/libscielementary_functions_algo_la-abs.lo \
-	src/c/libscielementary_functions_algo_la-acos.lo \
-	src/c/libscielementary_functions_algo_la-asin.lo \
 	src/c/libscielementary_functions_algo_la-atan.lo \
 	src/c/libscielementary_functions_algo_la-cos.lo \
 	src/c/libscielementary_functions_algo_la-cosh.lo \
@@ -813,8 +811,6 @@ ELEMENTARIES_FUNCTIONS_C_SOURCES = \
     src/c/qsort-string.c \
     src/c/basic_functions.c \
     src/c/abs.c \
-    src/c/acos.c \
-    src/c/asin.c \
     src/c/atan.c \
     src/c/cos.c \
     src/c/cosh.c \
@@ -1641,10 +1637,6 @@ src/c/libscielementary_functions_algo_la-basic_functions.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-abs.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-acos.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscielementary_functions_algo_la-asin.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-atan.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscielementary_functions_algo_la-cos.lo:  \
@@ -2210,9 +2202,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscielementary_functions_la-sci_zeros.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libdummy_elementary_functions_la-unsfdcopy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-abs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-add_vector.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-asin.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-atan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-basic_functions.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscielementary_functions_algo_la-ceil.Plo@am__quote@
@@ -2420,20 +2410,6 @@ src/c/libscielementary_functions_algo_la-abs.lo: src/c/abs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/abs.c' object='src/c/libscielementary_functions_algo_la-abs.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-abs.lo `test -f 'src/c/abs.c' || echo '$(srcdir)/'`src/c/abs.c
-
-src/c/libscielementary_functions_algo_la-acos.lo: src/c/acos.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-acos.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-acos.Tpo -c -o src/c/libscielementary_functions_algo_la-acos.lo `test -f 'src/c/acos.c' || echo '$(srcdir)/'`src/c/acos.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-acos.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-acos.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/acos.c' object='src/c/libscielementary_functions_algo_la-acos.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-acos.lo `test -f 'src/c/acos.c' || echo '$(srcdir)/'`src/c/acos.c
-
-src/c/libscielementary_functions_algo_la-asin.lo: src/c/asin.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-asin.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-asin.Tpo -c -o src/c/libscielementary_functions_algo_la-asin.lo `test -f 'src/c/asin.c' || echo '$(srcdir)/'`src/c/asin.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscielementary_functions_algo_la-asin.Tpo src/c/$(DEPDIR)/libscielementary_functions_algo_la-asin.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/asin.c' object='src/c/libscielementary_functions_algo_la-asin.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscielementary_functions_algo_la-asin.lo `test -f 'src/c/asin.c' || echo '$(srcdir)/'`src/c/asin.c
 
 src/c/libscielementary_functions_algo_la-atan.lo: src/c/atan.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscielementary_functions_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscielementary_functions_algo_la-atan.lo -MD -MP -MF src/c/$(DEPDIR)/libscielementary_functions_algo_la-atan.Tpo -c -o src/c/libscielementary_functions_algo_la-atan.lo `test -f 'src/c/atan.c' || echo '$(srcdir)/'`src/c/atan.c
