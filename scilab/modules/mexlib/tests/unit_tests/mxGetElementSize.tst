@@ -43,7 +43,7 @@ mputl(["#include ""mex.h""";
 "}"],"mexgetElementSize.c");
 
 
-ilib_mex_build("libmextest",["getElementSize","mexgetElementSize","cmex"], "mexgetElementSize.c",[],"","","","");
+ilib_mex_build("libmextest",["getElementSize","mexgetElementSize","cmex"], "mexgetElementSize.c",[]);
 exec("loader.sce");
 
 getElementSize();

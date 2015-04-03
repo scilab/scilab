@@ -34,7 +34,7 @@ mputl([ "#include ""mex.h""";
 "   mxSetN(prhs[0], iCols * 2);";
 "   plhs[0] = prhs[0];";
 "}"],"mexGetSetMN.c");
-ilib_mex_build("libmextest",["expand","mexGetSetMN","cmex"], "mexGetSetMN.c",[],"","","","");
+ilib_mex_build("libmextest",["expand","mexGetSetMN","cmex"], "mexGetSetMN.c",[]);
 exec("loader.sce");
 
 a = [1,2;3,4];

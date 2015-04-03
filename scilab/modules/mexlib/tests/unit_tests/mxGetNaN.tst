@@ -19,8 +19,7 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateDoubleScalar(dblNaN);";
 "    plhs[0] = pOut;";
 "}"],"mexgetNaN.c");
-ilib_mex_build("libmextest",["getNaN","mexgetNaN","cmex"], "mexgetNaN.c",[],"","","","");
+ilib_mex_build("libmextest",["getNaN","mexgetNaN","cmex"], "mexgetNaN.c",[]);
 exec("loader.sce");
 
-a = getNaN();
-assert_checktrue(isnan(a));
+assert_checktrue(isnan(getNaN()));

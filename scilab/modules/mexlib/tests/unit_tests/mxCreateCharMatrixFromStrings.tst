@@ -19,10 +19,9 @@ mputl([ "#include ""mex.h""";
 "    strings[0] = ""value"";";
 "    strings[1] = ""another value"";";
 "    mxArray *pOut = mxCreateCharMatrixFromStrings(2, strings);";
-"    char *res = mxArrayToString(pOut);";
 "    plhs[0] = pOut;";
 "}"],"mexcreateCharMatrixFromStrings.c");
-ilib_mex_build("libmextest", ["createCharMatrixFromStrings", "mexcreateCharMatrixFromStrings", "cmex"], "mexcreateCharMatrixFromStrings.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["createCharMatrixFromStrings", "mexcreateCharMatrixFromStrings", "cmex"], "mexcreateCharMatrixFromStrings.c", []);
 exec("loader.sce");
 
 res = createCharMatrixFromStrings();

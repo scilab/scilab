@@ -20,17 +20,10 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = pOut;";
 "}"],"mexisComplex.c");
 
-ilib_mex_build("libmextest",["isComplex","mexisComplex","cmex"], "mexisComplex.c",[],"","","","");
+ilib_mex_build("libmextest",["isComplex","mexisComplex","cmex"], "mexisComplex.c",[]);
 exec("loader.sce");
 
-a = isComplex(1);
-assert_checkfalse(a);
-
-a = isComplex(1+0*%i);
-assert_checktrue(a);
-
-a = isComplex(2+1*%i);
-assert_checktrue(a);
-
-a = isComplex(complex(1, 1));
-assert_checktrue(a);
+assert_checkfalse(isComplex(1));
+assert_checktrue(isComplex(1+0*%i));
+assert_checktrue(isComplex(2+1*%i));
+assert_checktrue(isComplex(complex(1, 1)));

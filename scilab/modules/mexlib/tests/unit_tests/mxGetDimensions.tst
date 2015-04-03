@@ -21,7 +21,7 @@ mputl(["#include ""mex.h""";
 "    mxSetPr(ptr, dims);";
 "    plhs[0] = ptr;";
 "}"],"mexgetDimensions.c");
-ilib_mex_build("libmextest",["getDimensions","mexgetDimensions","cmex"], "mexgetDimensions.c",[],"","","","");
+ilib_mex_build("libmextest",["getDimensions","mexgetDimensions","cmex"], "mexgetDimensions.c",[]);
 exec("loader.sce");
 
 assert_checkequal(getDimensions([1]), int32([1 1]));

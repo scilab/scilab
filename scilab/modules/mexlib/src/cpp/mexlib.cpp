@@ -48,6 +48,7 @@
 #include <stdarg.h>
 
 #include <limits>
+#include <list>
 
 #include "scilabWrite.hxx"
 #include "context.hxx"
@@ -72,705 +73,389 @@ extern "C"
 {
 #include "machine.h"
 #include "mex.h"
-#include "freeArrayOfString.h"
 #include "os_string.h"
+#include "freeArrayOfString.h"
 }
 
-#ifdef getType
-#undef getType
-#endif
+//#ifdef getType
+//#undef getType
+//#endif
+//
+//#ifdef isComplex
+//#undef isComplex
+//#endif
 
-#ifdef isComplex
-#undef isComplex
-#endif
-
-using namespace ast;
-static char *the_current_mex_name;
 static void (*exitFcn)(void);
 
-mxClassID mxGetClassID(const mxArray *ptr)
+static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
 {
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return mxUNKNOWN_CLASS;
-    }
-    types::InternalType::ScilabType type = pIT->getType();
+    wchar_t* pwst = to_wide_string(name);
+    symbol::Context *context = symbol::Context::getInstance();
+    symbol::Symbol *symbol = new symbol::Symbol(pwst);
+    FREE(pwst);
 
-    switch (type)
-    {
-        case types::InternalType::ScilabInt8:
-            return mxINT8_CLASS;
-        case types::InternalType::ScilabUInt8:
-            return mxUINT8_CLASS;
-        case types::InternalType::ScilabInt16:
-            return mxINT16_CLASS;
-        case types::InternalType::ScilabUInt16:
-            return mxUINT16_CLASS;
-        case types::InternalType::ScilabInt32:
-            return mxINT32_CLASS;
-        case types::InternalType::ScilabUInt32:
-            return mxUINT32_CLASS;
-        case types::InternalType::ScilabInt64:
-            return mxINT64_CLASS;
-        case types::InternalType::ScilabUInt64:
-            return mxUINT64_CLASS;
-        case types::InternalType::ScilabString:
-            return mxCHAR_CLASS;
-        case types::InternalType::ScilabDouble:
-            return mxDOUBLE_CLASS;
-        case types::InternalType::ScilabBool:
-            return mxLOGICAL_CLASS;
-        case types::InternalType::ScilabFloat:
-            return mxSINGLE_CLASS;
-        case types::InternalType::ScilabStruct:
-            return mxSTRUCT_CLASS;
-        case types::InternalType::ScilabCell:
-            return mxCELL_CLASS;
-        case types::InternalType::ScilabFunction:
-            return mxFUNCTION_CLASS;
-        default:
-            return mxUNKNOWN_CLASS;
-    }
-}
-
-bool mxIsInt8(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxINT8_CLASS;
-}
-
-bool mxIsInt16(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxINT16_CLASS;
-}
-
-bool mxIsInt32(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxINT32_CLASS;
-}
-
-bool mxIsInt64(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxINT64_CLASS;
-}
-
-bool mxIsUint8(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxUINT8_CLASS;
-}
-
-bool mxIsUint16(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxUINT16_CLASS;
-}
-
-bool mxIsUint32(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxUINT32_CLASS;
-}
-
-bool mxIsUint64(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxUINT64_CLASS;
-}
-
-bool mxIsFunction(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxFUNCTION_CLASS;
-}
-
-double mxGetEps(void)
-{
-    types::InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
-    if (pITEps && pITEps->isDouble())
-    {
-        return pITEps->getAs<types::Double>()->get(0);
-    }
-
-    return -1;
-}
-
-double mxGetInf(void)
-{
-    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
-    if (pITInf && pITInf->isDouble())
-    {
-        return pITInf->getAs<types::Double>()->get(0);
-    }
-
-    return -1;
-}
-
-double mxGetNaN(void)
-{
-    types::InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
-    if (pITInf)
-    {
-        return pITInf->getAs<types::Double>()->get(0);
-    }
-
-    return -1;
-}
-
-bool mxIsInf(double x)
-{
-    if (x == x + 1)
+    InternalType *value = context->get(*symbol);
+    Function *func = value->getAs<Function>();
+    if (func == NULL)
     {
         return 1;
     }
-    else
-    {
-        return 0;
-    }
-}
 
-bool mxIsFinite(double x)
-{
-    if (x < x + 1)
+    typed_list in;
+    typed_list out;
+    optional_list opt;
+    for (int i = 0; i < nrhs; i++)
     {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-bool mxIsNaN(double x)
-{
-    if (x != x)
-    {
-        return 1;
-    }
-    else
-    {
-        return 0;
-    }
-}
-
-int mxGetNumberOfElements(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return 0;
+        in.push_back((InternalType*)prhs[i]);
     }
 
-    types::GenericType *pGT = dynamic_cast<types::GenericType *>(pIT);
-    if (pGT == NULL)
+    func->call(in, opt, nlhs, out, NULL);
+
+    for (int i = 0; i < nlhs; i++)
     {
-        return 0;
+        plhs[i] = (mxArray *) (out[i]);
     }
 
-    return pGT->getSize();
+    return 0;
 }
 
-double *mxGetPr(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return NULL;
-    }
+//Validated
 
-    types::Double *pD = dynamic_cast<types::Double *>(pIT);
-    if (pD == NULL)
-    {
-        return NULL;
-    }
-
-    return pD->get();
-}
-
-double *mxGetPi(const mxArray *ptr)
-{
-    return ((types::Double *) ptr)->getImg();
-}
-
-int mxGetNumberOfDimensions(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return 0;
-    }
-
-    types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        //InternalType but not GenericType, so mono dimension type.
-        return 1;
-    }
-
-    return pGT->getDims();
-}
-
-int *mxGetDimensions(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return NULL;
-    }
-
-    switch (pIT->getType())
-    {
-        case types::InternalType::ScilabList:
-        case types::InternalType::ScilabMList:
-        case types::InternalType::ScilabTList:
-        {
-            int *piDims = (int *) MALLOC(sizeof(int));
-
-            piDims[0] = pIT->getAs<types::Container>()->getSize();
-            return piDims;
-        }
-        default:
-        {
-            types::GenericType *pGT = pIT->getAs<types::GenericType>();
-            if (pGT == NULL)
-            {
-                return NULL;
-            }
-            return pGT->getDimsArray();
-        }
-    }
-    return NULL;
-}
-
-int mxGetM(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return 0;
-    }
-
-    types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return 0;
-    }
-    return pGT->getRows();
-}
-
-void mxSetM(mxArray *ptr, int M)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return;
-    }
-
-    types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
-
-    pGT->resize(M, pGT->getCols());
-}
-
-int *mxGetJc(const mxArray *ptr)
-{
-    // TODO: sparse
-    return NULL;
-}
-
-int *mxGetIr(const mxArray *ptr)
-{
-    // TODO: sparse
-    return NULL;
-}
-
-void mxSetJc(mxArray *array_ptr, int *jc_data)
-{
-    // TODO: sparse
-}
-
-void mxSetIr(mxArray *array_ptr, int *ir_data)
-{
-    // TODO: sparse
-}
-
-void mxSetNzmax(mxArray *array_ptr, int nzmax)
-{
-    // TODO: sparse
-}
-
-int mxGetN(const mxArray *ptr)
-{
-    types::InternalType * pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return 0;
-    }
-
-    types::GenericType * pGT = pIT->getAs<types::GenericType>();
-    if (pGT == 0)
-    {
-        return 0;
-    }
-    return pGT->getCols();
-}
-
-void mxSetN(mxArray *ptr, int N)
-{
-    types::InternalType * pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return;
-    }
-
-    types::GenericType * pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return;
-    }
-
-    pGT->resize(pGT->getRows(), N);
-}
-
-bool mxIsString(const mxArray *ptr)
-{
-    /* mxIsString is obsolete. */
-    return mxIsChar(ptr);
-}
-
-bool mxIsChar(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxCHAR_CLASS;
-}
-
-bool mxIsNumeric(const mxArray *ptr)
-{
-    return mxIsDouble(ptr) || mxIsSingle(ptr) ||
-           mxIsInt8(ptr) || mxIsUint8(ptr) ||
-           mxIsInt16(ptr) || mxIsUint16(ptr) || mxIsInt32(ptr) || mxIsUint32(ptr) || mxIsInt64(ptr) || mxIsUint64(ptr);
-}
-
-bool mxIsDouble(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxDOUBLE_CLASS;
-}
-
-bool mxIsSingle(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxSINGLE_CLASS;
-}
-
-bool mxIsEmpty(const mxArray *ptr)
-{
-    types::InternalType * pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        //true or false, whatever ;)
-        return true;
-    }
-
-    switch (pIT->getType())
-    {
-        case types::InternalType::ScilabDouble:
-        {
-            types::Double *pD = pIT->getAs<types::Double>();
-            return pD->getSize() == 0;
-        }
-        case types::InternalType::ScilabCell:
-        {
-            types::Cell *pC = pIT->getAs<types::Cell>();
-            return pC->getSize() == 0;
-        }
-        case types::InternalType::ScilabContainer:
-        case types::InternalType::ScilabList:
-        case types::InternalType::ScilabMList:
-        case types::InternalType::ScilabTList:
-        {
-            types::Container *pC = pIT->getAs<types::Container>();
-            return pC->getSize() == 0;
-        }
-        default:
-        {
-            //other type can not be empty
-            return false;
-        }
-    }
-}
-
-bool mxIsFull(const mxArray *ptr)
-{
-    /* mxIsFull is obsolete. */
-    return !mxIsSparse(ptr);
-}
-
-bool mxIsSparse(const mxArray *ptr)
-{
-    // TODO: sparse
-    return false;
-}
-
-bool mxIsLogical(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxLOGICAL_CLASS;
-}
-
-void mxSetLogical(mxArray *ptr)
-{
-    /* obsolete */
-    if (!mxIsNumeric(ptr))
-    {
-        return;
-    }
-    int *data = (int *) mxGetData(ptr);
-    mxArray *newPtr = (mxArray *) new types::Bool(mxGetNumberOfDimensions(ptr), mxGetDimensions(ptr));
-    mxSetData(newPtr, data);
-    *ptr = *newPtr;
-}
-
-void mxClearLogical(mxArray *ptr)
-{
-    /* obsolete */
-    if (!mxIsLogical(ptr))
-    {
-        return;
-    }
-    int *data = (int *) mxGetData(ptr);
-    mxArray *newPtr = (mxArray *) new types::Int32(mxGetNumberOfDimensions(ptr), mxGetDimensions(ptr));
-    mxSetData(newPtr, data);
-    *ptr = *newPtr;
-}
-
-bool mxIsComplex(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return false;
-    }
-
-    types::GenericType *pGT = pIT->getAs<types::GenericType>();
-    if (pGT == NULL)
-    {
-        return false;
-    }
-
-    return pGT->isComplex();
-}
-
-double mxGetScalar(const mxArray *ptr)
-{
-    // TODO: review spec
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return 0;
-    }
-
-    switch (pIT->getType())
-    {
-        case types::InternalType::ScilabDouble:
-        {
-            types::Double *pD = pIT->getAs<types::Double>();
-            return pD->get(0);
-        }
-        case types::InternalType::ScilabBool:
-        {
-            types::Bool *pB = pIT->getAs<types::Bool>();
-            return (double) pB->get(0);
-        }
-        case types::InternalType::ScilabInt8:
-        {
-            types::Int8 *pI = pIT->getAs<types::Int8>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabUInt8:
-        {
-            types::UInt8 *pI = pIT->getAs<types::UInt8>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabInt16:
-        {
-            types::Int16 *pI = pIT->getAs<types::Int16>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabUInt16:
-        {
-            types::UInt16 *pI = pIT->getAs<types::UInt16>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabInt32:
-        {
-            types::Int32 *pI = pIT->getAs<types::Int32>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabUInt32:
-        {
-            types::UInt32 *pI = pIT->getAs<types::UInt32>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabInt64:
-        {
-            types::Int64 *pI = pIT->getAs<types::Int64>();
-            return (double) pI->get(0);
-        }
-        case types::InternalType::ScilabUInt64:
-        {
-            types::UInt64 *pI = pIT->getAs<types::UInt64>();
-            return (double) pI->get(0);
-        }
-        default:
-            return 0;
-    }
-}
-
-void *mxGetData(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return NULL;
-    }
-
-    switch (pIT->getType())
-    {
-        case types::InternalType::ScilabDouble:
-        {
-            types::Double *pD = pIT->getAs<types::Double>();
-            return pD->get();
-        }
-        case types::InternalType::ScilabBool:
-        {
-            types::Bool *pB = pIT->getAs<types::Bool>();
-            return pB->get();
-        }
-        case types::InternalType::ScilabInt8:
-        {
-            types::Int8 *pI = pIT->getAs<types::Int8>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabUInt8:
-        {
-            types::UInt8 *pI = pIT->getAs<types::UInt8>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabInt16:
-        {
-            types::Int16 *pI = pIT->getAs<types::Int16>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabUInt16:
-        {
-            types::UInt16 *pI = pIT->getAs<types::UInt16>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabInt32:
-        {
-            types::Int32 *pI = pIT->getAs<types::Int32>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabUInt32:
-        {
-            types::UInt32 *pI = pIT->getAs<types::UInt32>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabInt64:
-        {
-            types::Int64 *pI = pIT->getAs<types::Int64>();
-            return pI->get();
-        }
-        case types::InternalType::ScilabUInt64:
-        {
-            types::UInt64 *pI = pIT->getAs<types::UInt64>();
-            return pI->get();
-        }
-        default:
-            return NULL;
-    }
-}
-
-void *mxGetImagData(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
-    {
-        return NULL;
-    }
-
-    switch (pIT->getType())
-    {
-        case types::InternalType::ScilabDouble:
-        {
-            types::Double *pD = pIT->getAs<types::Double>();
-            return pD->getImg();
-        }
-        case types::InternalType::ScilabBool:
-        {
-            types::Bool *pB = pIT->getAs<types::Bool>();
-            return pB->getImg();
-        }
-        case types::InternalType::ScilabInt8:
-        {
-            types::Int8 *pI = pIT->getAs<types::Int8>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabUInt8:
-        {
-            types::UInt8 *pI = pIT->getAs<types::UInt8>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabInt16:
-        {
-            types::Int16 *pI = pIT->getAs<types::Int16>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabUInt16:
-        {
-            types::UInt16 *pI = pIT->getAs<types::UInt16>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabInt32:
-        {
-            types::Int32 *pI = pIT->getAs<types::Int32>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabUInt32:
-        {
-            types::UInt32 *pI = pIT->getAs<types::UInt32>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabInt64:
-        {
-            types::Int64 *pI = pIT->getAs<types::Int64>();
-            return pI->getImg();
-        }
-        case types::InternalType::ScilabUInt64:
-        {
-            types::UInt64 *pI = pIT->getAs<types::UInt64>();
-            return pI->getImg();
-        }
-        default:
-            return NULL;
-    }
-}
-
-void mexErrMsgTxt(const char *error_msg)
-{
-    throw new ScilabException(error_msg);
-}
-
+//Create or Delete Array
 mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity complexFlag)
 {
-    types::Double *ptr = new types::Double(m, n, complexFlag == mxCOMPLEX);
-    return (mxArray *) ptr;
+    Double *ptr = new Double(m, n, complexFlag == mxCOMPLEX);
+    return (mxArray *)ptr;
 }
 
 mxArray *mxCreateDoubleScalar(double value)
 {
     mxArray *ptr = mxCreateDoubleMatrix(1, 1, mxREAL);
 
-    ((types::Double *) ptr)->set(0, value);
+    ((Double *)ptr)->set(0, value);
     return ptr;
 }
 
-bool mxIsClass(const mxArray *ptr, const char *name)
+mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, mxComplexity complexFlag)
+{
+    int dims[2] = {m, n};
+    return mxCreateNumericArray(2, dims, CLASS, complexFlag);
+}
+
+mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComplexity complexFlag)
+{
+    GenericType *ptr;
+
+    switch (CLASS)
+    {
+        case mxDOUBLE_CLASS:
+            ptr = new Double(ndim, (int *)dims, complexFlag == mxCOMPLEX);
+            break;
+        case mxINT8_CLASS:
+            ptr = new Int8(ndim, (int *)dims);
+            break;
+        case mxUINT8_CLASS:
+            ptr = new UInt8(ndim, (int *)dims);
+            break;
+        case mxINT16_CLASS:
+            ptr = new Int16(ndim, (int *)dims);
+            break;
+        case mxUINT16_CLASS:
+            ptr = new UInt16(ndim, (int *)dims);
+            break;
+        case mxINT32_CLASS:
+            ptr = new Int32(ndim, (int *)dims);
+            break;
+        case mxUINT32_CLASS:
+            ptr = new UInt32(ndim, (int *)dims);
+            break;
+        case mxINT64_CLASS:
+            ptr = new Int64(ndim, (int *)dims);
+            break;
+        case mxUINT64_CLASS:
+            ptr = new UInt64(ndim, (int *)dims);
+            break;
+        default:
+            ptr = NULL;
+    }
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateUninitNumericMatrix(size_t m, size_t n, mxClassID classid, mxComplexity ComplexFlag)
+{
+    //TODO
+    return NULL;
+}
+
+mxArray *mxCreateUninitNumericArray(size_t ndim, size_t *dims, mxClassID classid, mxComplexity ComplexFlag)
+{
+    //TODO
+    return NULL;
+}
+
+mxArray *mxCreateString(const char *string)
+{
+    String *ptr = new String(string);
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
+{
+    int n = 1;
+    wchar_t** strings = NULL;
+    strings = (wchar_t**)MALLOC(sizeof(wchar_t*) * m);
+    for (int k = 0; k < m; k++)
+    {
+        strings[k] = to_wide_string(str[k]);
+    }
+    String *ptr = new String(m, n, strings);
+    freeArrayOfWideString(strings, m);
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateCharArray(int ndim, const int *dims)
+{
+    if (ndim == 0 || ndim == 1)
+    {
+        ndim = 2;
+    }
+    String *ptr = new String(ndim, (int *)dims);
+
+    int size = ptr->getSize();
+    for (int i = 0; i < size; ++i)
+    {
+        ptr->set(i, L"");
+    }
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateLogicalScalar(mxLogical value)
+{
+    mxArray *ptr = mxCreateLogicalMatrix(1, 1);
+
+    ((Bool *)ptr)->set(0, value);
+    return ptr;
+}
+
+mxArray *mxCreateLogicalMatrix(int m, int n)
+{
+    Bool *ptr = new Bool(m, n);
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateLogicalArray(int ndim, const int *dims)
+{
+    Bool *ptr = new Bool(ndim, (int *)dims);
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax)
+{
+    //TODO
+    return NULL;
+}
+
+mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
+{
+    //TODO
+    return NULL;
+}
+
+mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
+{
+    int dims[2] = {m, n};
+    return mxCreateStructArray(2, dims, nfields, field_names);
+}
+
+mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char **field_names)
+{
+    Struct *ptr = new Struct(ndim, (int *)dims);
+    for (int i = 0; i < nfields; i++)
+    {
+        wchar_t *name = to_wide_string(field_names[i]);
+        ptr->addField(name);
+        FREE(name);
+    }
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateCellArray(int ndim, const int *dims)
+{
+    Cell *ptr = new Cell(ndim, (int *)dims);
+    return (mxArray *)ptr;
+}
+
+mxArray *mxCreateCellMatrix(int m, int n)
+{
+    int dims[2] = {m, n};
+    return mxCreateCellArray(2, dims);
+}
+
+void mxDestroyArray(mxArray *ptr)
+{
+    if (mxGetClassID(ptr) != mxUNKNOWN_CLASS)
+    {
+        delete (InternalType*)ptr;
+        *ptr = NULL;
+    }
+}
+
+mxArray *mxDuplicateArray(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    return (mxArray *)pIT->clone();
+}
+
+void *mxCalloc(size_t n, size_t size)
+{
+    //TODO
+    return CALLOC(n, size);
+}
+
+void *mxMalloc(size_t nsize)
+{
+    //TODO
+    return MALLOC(nsize);
+}
+
+void *mxRealloc(void *ptr, size_t nsize)
+{
+    //TODO
+    return REALLOC(ptr, nsize);
+}
+
+void mxFree(void *ptr)
+{
+    //TODO
+}
+
+//Validate Data
+int mxIsDouble(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxDOUBLE_CLASS;
+}
+
+int mxIsSingle(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxSINGLE_CLASS;
+}
+
+int mxIsComplex(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    GenericType *pGT = pIT->getAs<GenericType>();
+    if (pGT == NULL)
+    {
+        return 0;
+    }
+
+    return pGT->isComplex() ? 1 : 0;
+}
+
+int mxIsNumeric(const mxArray *ptr)
+{
+    return mxIsDouble(ptr) || mxIsSingle(ptr) ||
+           mxIsInt8(ptr) || mxIsUint8(ptr) ||
+           mxIsInt16(ptr) || mxIsUint16(ptr) || mxIsInt32(ptr) || mxIsUint32(ptr) || mxIsInt64(ptr) || mxIsUint64(ptr);
+}
+
+int mxIsInt64(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxINT64_CLASS;
+}
+
+int mxIsUint64(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxUINT64_CLASS;
+}
+
+int mxIsInt32(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxINT32_CLASS;
+}
+
+int mxIsUint32(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxUINT32_CLASS;
+}
+
+int mxIsInt16(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxINT16_CLASS;
+}
+
+int mxIsUint16(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxUINT16_CLASS;
+}
+
+int mxIsInt8(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxINT8_CLASS;
+}
+
+int mxIsUint8(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxUINT8_CLASS;
+}
+
+int mxIsScalar(const mxArray *array_ptr)
+{
+    //TODO
+    return 0;
+}
+
+int mxIsChar(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxCHAR_CLASS;
+}
+
+int mxIsLogical(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxLOGICAL_CLASS;
+}
+
+int mxIsLogicalScalar(const mxArray *ptr)
+{
+    return mxIsLogical(ptr) && mxGetNumberOfElements(ptr) == 1;
+}
+
+int mxIsLogicalScalarTrue(const mxArray *ptr)
+{
+    if (mxIsLogicalScalar(ptr) == false)
+    {
+        return 0;
+    }
+
+    if (*mxGetLogicals(ptr) == 0)
+    {
+        return 0;
+    }
+
+    return 1;
+}
+
+int mxIsStruct(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxSTRUCT_CLASS;
+}
+
+int mxIsCell(const mxArray *ptr)
+{
+    return mxGetClassID(ptr) == mxCELL_CLASS;
+}
+
+int mxIsClass(const mxArray *ptr, const char *name)
 {
     if (strcmp(name, "cell") == 0)
     {
@@ -783,10 +468,6 @@ bool mxIsClass(const mxArray *ptr, const char *name)
     if (strcmp(name, "double") == 0)
     {
         return mxIsDouble(ptr);
-    }
-    if (strcmp(name, "function_handle") == 0)
-    {
-        return mxIsFunction(ptr);
     }
     if (strcmp(name, "int8") == 0)
     {
@@ -833,286 +514,129 @@ bool mxIsClass(const mxArray *ptr, const char *name)
         return mxIsUint64(ptr);
     }
     // TODO: how to handle <class_name> and <class_id>?
-    return false;
+    return 0;
 }
 
-mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char **field_names)
+int mxIsInf(double x)
 {
-    types::Struct *ptr = new types::Struct(ndim, (int *) dims);
-    for (int i = 0; i < nfields; i++)
+    if (x == x + 1)
     {
-        wchar_t *name = to_wide_string(field_names[i]);
-        ptr->addField(name);
-        FREE(name);
+        return 1;
     }
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names)
-{
-    int dims[2] = {m, n};
-    return mxCreateStructArray(2, dims, nfields, field_names);
-}
-
-void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
-{
-    if (mxIsStruct(array_ptr) && lindex < mxGetNumberOfElements(array_ptr))
-    {
-        types::SingleStruct *ptr = ((types::Struct *) array_ptr)->get(lindex);
-        types::String *names = ptr->getFieldNames();
-        ptr->set(names->get(field_number), (types::InternalType *) value);
-    }
-}
-
-void mxSetField(mxArray *array_ptr, int lindex, const char *field_name, mxArray *value)
-{
-    int field_num = mxGetFieldNumber(array_ptr, field_name);
-    if (field_num >= 0)
-    {
-        mxSetFieldByNumber(array_ptr, lindex, field_num, value);
-    }
-}
-
-const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
-{
-    if (!mxIsStruct(array_ptr))
-    {
-        return NULL;
-    }
-    if (field_number < 0 || field_number >= mxGetNumberOfFields(array_ptr))
-    {
-        return NULL;
-    }
-    types::String *names = ((types::Struct *) array_ptr)->getFieldNames();
-    wchar_t *name = names->get(field_number);
-    return (const char *) wide_string_to_UTF8(name);
-}
-
-int mxAddField(mxArray *ptr, const char *fieldname)
-{
-    if (!mxIsStruct(ptr))
-    {
-        return -1;
-    }
-    types::Struct *pa = (types::Struct *) ptr;
-    wchar_t *wfieldname = to_wide_string(fieldname);
-    pa->addField(wfieldname);
-    return mxGetFieldNumber(ptr, fieldname);
-}
-
-mxChar *mxGetChars(mxArray *array_ptr)
-{
-    if (!mxIsChar(array_ptr))
-    {
-        return NULL;
-    }
-    wchar_t *chars = ((types::String *) array_ptr)->get(0);
-    return (mxChar *) wide_string_to_UTF8(chars);
-}
-
-mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID CLASS, mxComplexity complexFlag)
-{
-    types::GenericType *ptr;
-
-    switch (CLASS)
-    {
-        case mxDOUBLE_CLASS:
-            ptr = new types::Double(ndim, (int *) dims, complexFlag == mxCOMPLEX);
-            break;
-        case mxINT8_CLASS:
-            ptr = new types::Int8(ndim, (int *) dims);
-            break;
-        case mxUINT8_CLASS:
-            ptr = new types::UInt8(ndim, (int *) dims);
-            break;
-        case mxINT16_CLASS:
-            ptr = new types::Int16(ndim, (int *) dims);
-            break;
-        case mxUINT16_CLASS:
-            ptr = new types::UInt16(ndim, (int *) dims);
-            break;
-        case mxINT32_CLASS:
-            ptr = new types::Int32(ndim, (int *) dims);
-            break;
-        case mxUINT32_CLASS:
-            ptr = new types::UInt32(ndim, (int *) dims);
-            break;
-        case mxINT64_CLASS:
-            ptr = new types::Int64(ndim, (int *) dims);
-            break;
-        case mxUINT64_CLASS:
-            ptr = new types::UInt64(ndim, (int *) dims);
-            break;
-        default:
-            ptr = NULL;
-    }
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateNumericMatrix(int m, int n, mxClassID CLASS, mxComplexity complexFlag)
-{
-    int dims[2] = {m, n};
-    return mxCreateNumericArray(2, dims, CLASS, complexFlag);
-}
-
-mxArray *mxCreateCharArray(int ndim, const int *dims)
-{
-    if (ndim == 0 || ndim == 1)
-    {
-        ndim = 2;
-    }
-    types::String *ptr = new types::String(ndim, (int *) dims);
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateCellArray(int ndim, const int *dims)
-{
-    types::Cell *ptr = new types::Cell(ndim, (int *) dims);
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateCellMatrix(int m, int n)
-{
-    int dims[2] = {m, n};
-    return mxCreateCellArray(2, dims);
-}
-
-mxArray *mxGetCell(const mxArray *ptr, int lindex)
-{
-    types::Cell * pa = (types::Cell *) ptr;
-    return (mxArray *) pa->get(lindex);
-}
-
-int mxGetFieldNumber(const mxArray *ptr, const char *string)
-{
-    if (!mxIsStruct(ptr))
-    {
-        return -1;
-    }
-    types::Struct *pa = (types::Struct *) ptr;
-    types::String *names = pa->getFieldNames();
-    wchar_t *field_name = to_wide_string(string);
-
-    for (int i = 0; i < names->getSize(); i++)
-    {
-        if (wcscmp(names->get(i), field_name) == 0)
-        {
-            FREE(field_name);
-            return i;
-        }
-    }
-    FREE(field_name);
-    return -1;
-}
-
-mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
-{
-    int field_num = mxGetFieldNumber(ptr, string);
-    if (field_num < 0)
-    {
-        return NULL;
-    }
-    return mxGetFieldByNumber(ptr, lindex, field_num);
-}
-
-mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
-{
-    if (!mxIsStruct(ptr))
-    {
-        return NULL;
-    }
-    if (lindex >= mxGetNumberOfElements(ptr) || lindex < 0)
-    {
-        return NULL;
-    }
-    if (field_number >= mxGetNumberOfFields(ptr) || field_number < 0)
-    {
-        return NULL;
-    }
-    types::Struct *pa = (types::Struct *) ptr;
-    types::String *names = pa->getFieldNames();
-    types::SingleStruct *s = pa->get(lindex);
-    return (mxArray *) s->get(names->get(field_number));
-}
-
-int mxGetNumberOfFields(const mxArray *ptr)
-{
-    if (!mxIsStruct(ptr))
+    else
     {
         return 0;
     }
-    types::Struct * pa = (types::Struct *) ptr;
-    return pa->getFieldNames()->getSize();
 }
 
-/*----------------------------------------------------
-* mxCalloc is supposed to initialize data to 0
-* but what does it means since size can be anythink
-* we initialize to zero for double and int data types
-*----------------------------------------------------*/
-
-void *mxRealloc(void *ptr, size_t nsize)
+int mxIsFinite(double x)
 {
-    // TODO: manage this memory
-    return REALLOC(ptr, nsize);
+    if (x < x + 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-void *mxCalloc(size_t n, size_t size)
+int mxIsNaN(double x)
 {
-    // TODO: manage this memory
-    return CALLOC(n, size);
+    if (x != x)
+    {
+        return 1;
+    }
+    else
+    {
+        return 0;
+    }
 }
 
-void *mxMalloc(size_t nsize)
+int mxIsEmpty(const mxArray *ptr)
 {
-    // TODO: manage this memory
-    return MALLOC(nsize);
+    InternalType * pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        //true or false, whatever ;)
+        return 1;
+    }
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabDouble:
+        {
+            Double *pD = pIT->getAs<Double>();
+            return pD->getSize() == 0;
+        }
+        case InternalType::ScilabCell:
+        {
+            Cell *pC = pIT->getAs<Cell>();
+            return pC->getSize() == 0;
+        }
+        case InternalType::ScilabContainer:
+        case InternalType::ScilabList:
+        case InternalType::ScilabMList:
+        case InternalType::ScilabTList:
+        {
+            Container *pC = pIT->getAs<Container>();
+            return pC->getSize() == 0;
+        }
+        default:
+        {
+            //other type can not be empty
+            return 0;
+        }
+    }
 }
 
-void mexMakeMemoryPersistent(void *ptr)
+int mxIsSparse(const mxArray *ptr)
 {
-    // FIXME
+    //TODO
+    return 0;
 }
 
-
-void *mxCalloc_m(unsigned int n, unsigned int size)
+int mxIsFromGlobalWS(const mxArray *pm)
 {
-    // FIXME
+    //TODO
+    return 0;
+}
+
+//Convert Data Types
+char *mxArrayToString(const mxArray *ptr)
+{
+    if (!mxIsChar(ptr))
+    {
+        return (char *)0;
+    }
+
+    String *pa = (String *)ptr;
+    int items = mxGetM(ptr);
+    int index = 0;
+    int length = 1; // one extra char to \0
+    wchar_t **wstrings = pa->get();
+    for (int k = 0; k < items; k++)
+    {
+        length += (int)wcslen(wstrings[k]);
+    }
+
+    char *str = (char *)malloc(sizeof(char *) * length);
+    for (int k = 0; k < items; k++)
+    {
+        char *dest = wide_string_to_UTF8(wstrings[k]);
+        int dest_length = strlen(dest);
+        memcpy(str + index, dest, dest_length);
+        index += dest_length;
+    }
+
+    str[index] = '\0';
+    return str;
+}
+
+char *mxArrayToUTF8String(const mxArray *array_ptr)
+{
+    //TODO
     return NULL;
-}
-
-void *mxMalloc_m(unsigned int n)
-{
-    // FIXME
-    return NULL;
-}
-
-/* free : explicit free of a mxCalloc_m allocated space
-*        except if space is protected
-*/
-
-void mxFree_m(void *ptr)
-{
-    // FIXME
-}
-
-/* free : explicit free of all mxCalloc_m allocated space
-*        except if space is protected
-*/
-
-static void mxFree_m_all()
-{
-    // FIXME
-}
-
-bool mxIsCell(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxCELL_CLASS;
-}
-
-bool mxIsStruct(const mxArray *ptr)
-{
-    return mxGetClassID(ptr) == mxSTRUCT_CLASS;
 }
 
 int mxGetString(const mxArray *ptr, char *str, int strl)
@@ -1121,7 +645,8 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
     {
         return 1;
     }
-    types::String *pa = (types::String *) ptr;
+
+    String *pa = (String *)ptr;
     int items = mxGetM(ptr);
     int index = 0;
     int free_space = strl - 1;
@@ -1139,281 +664,40 @@ int mxGetString(const mxArray *ptr, char *str, int strl)
             break;
         }
     }
+
     str[index] = '\0';
     return free_space >= 0 ? 0 : 1;
 }
 
-char *mxArrayToString(const mxArray *ptr)
+int mxSetClassName(mxArray *array_ptr, const char *classname)
 {
-    if (!mxIsChar(ptr))
-    {
-        return (char *) 0;
-    }
-    types::String *pa = (types::String *) ptr;
-    int items = mxGetM(ptr);
-    int index = 0;
-    int length = 1; // one extra char to \0
-    wchar_t **wstrings = pa->get();
-    for (int k = 0; k < items; k++)
-    {
-        length += (int)wcslen(wstrings[k]);
-    }
-    char *str = (char *) malloc(sizeof(char *) * length);
-    for (int k = 0; k < items; k++)
-    {
-        char *dest = wide_string_to_UTF8(wstrings[k]);
-        int dest_length = strlen(dest);
-        memcpy(str + index, dest, dest_length);
-        index += dest_length;
-    }
-    str[index] = '\0';
-    return str;
+    //TODO
+    return 0;
 }
 
-void mxFreeMatrix(mxArray *ptr)
+int mxGetNumberOfDimensions(const mxArray *ptr)
 {
-    mxDestroyArray(ptr);
-}
-
-bool mexIsGlobal(const mxArray *ptr)
-{
-    symbol::Context *context = symbol::Context::getInstance();
-    int size = symbol::Symbol::getSize();
-    wchar_t **keys = symbol::Symbol::getAll();
-
-    for (int i = 0; i < size; i++)
-    {
-        symbol::Symbol *s = new symbol::Symbol(keys[i]);
-        const mxArray *value = (const mxArray *) context->get(*s);
-        if (value == ptr)
-        {
-            return context->isGlobalVisible(*s);
-        }
-    }
-    return false;
-}
-
-mxArray *mxDuplicateArray(const mxArray *ptr)
-{
-    types::InternalType *pIT = (types::InternalType *) ptr;
+    InternalType *pIT = (InternalType *)ptr;
     if (pIT == NULL)
     {
         return 0;
     }
 
-    return (mxArray *) pIT->clone();
-}
-
-void mxDestroyArray(mxArray *ptr)
-{
-    if (mxIsDouble(ptr))
+    GenericType *pGT = pIT->getAs<GenericType>();
+    if (pGT == NULL)
     {
-        delete (types::Double *) ptr;
-    }
-    else if (mxIsChar(ptr))
-    {
-        delete (types::String *) ptr;
-    }
-    else if (mxIsLogical(ptr))
-    {
-        delete (types::Bool *) ptr;
-    }
-    else if (mxIsSparse(ptr))
-    {
-        // TODO: sparse
-    }
-    else if (mxIsInt8(ptr))
-    {
-        delete (types::Int8 *) ptr;
-    }
-    else if (mxIsInt16(ptr))
-    {
-        delete (types::Int16 *) ptr;
-    }
-    else if (mxIsInt32(ptr))
-    {
-        delete(types::Int32 *) ptr;
-    }
-    else if (mxIsInt64(ptr))
-    {
-        delete((types::Int64 *) ptr);
-    }
-    else if (mxIsUint8(ptr))
-    {
-        delete((types::UInt8 *) ptr);
-    }
-    else if (mxIsUint16(ptr))
-    {
-        delete((types::UInt16 *) ptr);
-    }
-    else if (mxIsUint32(ptr))
-    {
-        delete((types::UInt32 *) ptr);
-    }
-    else if (mxIsUint64(ptr))
-    {
-        delete((types::UInt64 *) ptr);
-    }
-    else if (mxIsCell(ptr))
-    {
-        delete((types::Cell *) ptr);
-    }
-    else if (mxIsStruct(ptr))
-    {
-        delete((types::Struct *) ptr);
-    }
-}
-
-void mxFree(void *ptr)
-{
-    // TODO: manage this memory
-    FREE(ptr);
-}
-
-int mexAtExit(void (*func)(void))
-{
-    exitFcn = func;
-    return 0;
-}
-
-mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx)
-{
-    // TODO: sparse
-    return NULL;
-}
-
-mxArray *mxCreateString(const char *string)
-{
-    types::String *ptr = new types::String(string);
-    return (mxArray *) ptr;
-}
-
-
-mxArray *mxCreateLogicalArray(int ndim, const int *dims)
-{
-    types::Bool *ptr = new types::Bool(ndim, (int *) dims);
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateLogicalMatrix(int m, int n)
-{
-    types::Bool *ptr = new types::Bool(m, n);
-    return (mxArray *) ptr;
-}
-
-mxArray *mxCreateLogicalScalar(mxLogical value)
-{
-    mxArray *ptr = mxCreateLogicalMatrix(1, 1);
-
-    ((types::Bool *) ptr)->set(0, value);
-    return ptr;
-}
-
-bool mxIsLogicalScalarTrue(const mxArray *ptr)
-{
-    if (mxIsLogicalScalar(ptr) == false)
-    {
-        return false;
-    }
-
-    if (*mxGetLogicals(ptr) == 0)
-    {
-        return false;
-    }
-
-    return true;
-}
-
-bool mxIsLogicalScalar(const mxArray *ptr)
-{
-    return mxIsLogical(ptr) && mxGetNumberOfElements(ptr) == 1;
-}
-
-int mexPrintf(const char *format, ...)
-{
-    // TODO: define this size limit
-    char string[1024];
-    va_list arg_ptr;
-    va_start(arg_ptr, format);
-    vsnprintf(string, 1024, format, arg_ptr);
-    va_end(arg_ptr);
-    scilabWrite(string);
-    return 0;
-}
-
-void mexWarnMsgTxt(const char *error_msg)
-{
-    scilabError(_("Warning: "));
-    scilabError(error_msg);
-    scilabError("\n\n");
-}
-
-int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
-{
-    wchar_t* pwst = to_wide_string(name);
-    symbol::Context *context = symbol::Context::getInstance();
-    symbol::Symbol *symbol = new symbol::Symbol(pwst);
-    FREE(pwst);
-
-    types::InternalType *value = context->get(*symbol);
-    types::Function *func = value->getAs<types::Function>();
-    if (func == NULL)
-    {
+        //InternalType but not GenericType, so mono dimension type.
         return 1;
     }
 
-    types::typed_list in;
-    types::typed_list out;
-    types::optional_list opt;
-    for (int i = 0; i < nrhs; i++)
-    {
-        in.push_back((types::InternalType*)prhs[i]);
-    }
-
-    func->call(in, opt, nlhs, out, NULL);
-
-    for (int i = 0; i < nlhs; i++)
-    {
-        plhs[i] = (mxArray *) (out[i]);
-    }
-
-    return 0;
-}
-
-int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
-{
-    return mexCallSCILAB(nlhs, plhs, nrhs, prhs, name);
-}
-
-int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
-{
-    int index = 0;
-    int iMult = 1;
-    int *dims = mxGetDimensions(ptr);
-    for (int i = 0; i < nsubs; i++)
-    {
-        index += subs[i] * iMult;
-        iMult *= dims[i];
-    }
-    return index;
-}
-
-int C2F(mexcallscilab) (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs, char *name, int namelen)
-{
-    return mexCallSCILAB(*nlhs, plhs, *nrhs, prhs, name);
-}
-
-/** generic mex interface **/
-const char *mexFunctionName(void)
-{
-    return the_current_mex_name;
+    return pGT->getDims();
 }
 
 int mxGetElementSize(const mxArray *ptr)
 {
     if (mxIsChar(ptr))
     {
-        return sizeof(wchar_t *);
+        return sizeof(wchar_t*);
     }
     else if (mxIsLogical(ptr))
     {
@@ -1425,7 +709,7 @@ int mxGetElementSize(const mxArray *ptr)
     }
     else if (mxIsSparse(ptr))
     {
-        // TODO: sparse
+        return sizeof(double);
     }
     else if (mxIsInt8(ptr))
     {
@@ -1461,27 +745,861 @@ int mxGetElementSize(const mxArray *ptr)
     }
     else if (mxIsCell(ptr))
     {
-        return sizeof(types::InternalType *);
+        return sizeof(InternalType*);
     }
     else if (mxIsStruct(ptr))
     {
-        return sizeof(types::SingleStruct *);
+        return sizeof(SingleStruct*);
     }
     return 0;
 }
 
-mxArray *mxCreateCharMatrixFromStrings(int m, const char **str)
+mwSize *mxGetDimensions(const mxArray *ptr)
 {
-    int n = 1;
-    wchar_t** strings = NULL;
-    strings = (wchar_t**)MALLOC(sizeof(wchar_t*) * m);
-    for (int k = 0; k < m; k++)
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
     {
-        strings[k] = to_wide_string(str[k]);
+        return NULL;
     }
-    types::String *ptr = new types::String(m, n, strings);
-    freeArrayOfWideString(strings, m);
-    return (mxArray *) ptr;
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabList:
+        case InternalType::ScilabMList:
+        case InternalType::ScilabTList:
+        {
+            int *piDims = (int *)MALLOC(sizeof(int));
+
+            piDims[0] = pIT->getAs<Container>()->getSize();
+            return piDims;
+        }
+        default:
+        {
+            GenericType *pGT = pIT->getAs<GenericType>();
+            if (pGT == NULL)
+            {
+                return NULL;
+            }
+            return pGT->getDimsArray();
+        }
+    }
+    return NULL;
+}
+
+int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
+{
+    if (mxIsCell(array_ptr))
+    {
+        ((Cell *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsChar(array_ptr))
+    {
+        ((String *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsDouble(array_ptr))
+    {
+        ((Double *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsSparse(array_ptr))
+    {
+        //TODO
+    }
+    else if (mxIsInt8(array_ptr))
+    {
+        ((Int8 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsInt16(array_ptr))
+    {
+        ((Int16 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsInt32(array_ptr))
+    {
+        ((Int32 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsInt64(array_ptr))
+    {
+        ((Int64 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsLogical(array_ptr))
+    {
+        ((Bool *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsStruct(array_ptr))
+    {
+        ((Struct *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsUint8(array_ptr))
+    {
+        ((UInt8 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsUint16(array_ptr))
+    {
+        ((UInt16 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsUint32(array_ptr))
+    {
+        ((UInt32 *)array_ptr)->resize((int *)dims, ndim);
+    }
+    else if (mxIsUint64(array_ptr))
+    {
+        ((UInt64 *)array_ptr)->resize((int *)dims, ndim);
+    }
+
+    return 0;
+}
+
+int mxGetNumberOfElements(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    GenericType *pGT = dynamic_cast<GenericType *>(pIT);
+    if (pGT == NULL)
+    {
+        return 0;
+    }
+
+    return pGT->getSize();
+}
+
+int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs)
+{
+    int index = 0;
+    int iMult = 1;
+    mwSize *dims = mxGetDimensions(ptr);
+    for (int i = 0; i < nsubs; i++)
+    {
+        index += subs[i] * iMult;
+        iMult *= dims[i];
+    }
+    return index;
+}
+
+int mxGetM(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    GenericType *pGT = pIT->getAs<GenericType>();
+    if (pGT == NULL)
+    {
+        return 0;
+    }
+    return pGT->getRows();
+}
+
+void mxSetM(mxArray *ptr, int M)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return;
+    }
+
+    GenericType *pGT = pIT->getAs<GenericType>();
+    if (pGT == NULL)
+    {
+        return;
+    }
+
+    pGT->resize(M, pGT->getCols());
+}
+
+int mxGetN(const mxArray *ptr)
+{
+    InternalType * pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    GenericType * pGT = pIT->getAs<GenericType>();
+    if (pGT == 0)
+    {
+        return 0;
+    }
+    return pGT->getCols();
+}
+
+void mxSetN(mxArray *ptr, int N)
+{
+    InternalType * pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return;
+    }
+
+    GenericType * pGT = pIT->getAs<GenericType>();
+    if (pGT == NULL)
+    {
+        return;
+    }
+
+    pGT->resize(pGT->getRows(), N);
+}
+
+double mxGetScalar(const mxArray *ptr)
+{
+    // TODO: review spec
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return 0;
+    }
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabDouble:
+        {
+            Double *pD = pIT->getAs<Double>();
+            return pD->get(0);
+        }
+        case InternalType::ScilabBool:
+        {
+            Bool *pB = pIT->getAs<Bool>();
+            return (double)pB->get(0);
+        }
+        case InternalType::ScilabInt8:
+        {
+            Int8 *pI = pIT->getAs<Int8>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabUInt8:
+        {
+            UInt8 *pI = pIT->getAs<UInt8>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabInt16:
+        {
+            Int16 *pI = pIT->getAs<Int16>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabUInt16:
+        {
+            UInt16 *pI = pIT->getAs<UInt16>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabInt32:
+        {
+            Int32 *pI = pIT->getAs<Int32>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabUInt32:
+        {
+            UInt32 *pI = pIT->getAs<UInt32>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabInt64:
+        {
+            Int64 *pI = pIT->getAs<Int64>();
+            return (double)pI->get(0);
+        }
+        case InternalType::ScilabUInt64:
+        {
+            UInt64 *pI = pIT->getAs<UInt64>();
+            return (double)pI->get(0);
+        }
+        default:
+            return 0;
+    }
+}
+
+double *mxGetPr(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return NULL;
+    }
+
+    Double *pD = dynamic_cast<Double *>(pIT);
+    if (pD == NULL)
+    {
+        return NULL;
+    }
+
+    return pD->get();
+}
+
+void mxSetPr(mxArray *ptr, double *pr)
+{
+    ((Double *)ptr)->set(pr);
+}
+
+double *mxGetPi(const mxArray *ptr)
+{
+    return ((Double *)ptr)->getImg();
+}
+
+void mxSetPi(mxArray *ptr, double *pi)
+{
+    ((Double *)ptr)->setImg(pi);
+}
+
+void *mxGetData(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return NULL;
+    }
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabDouble:
+        {
+            Double *pD = pIT->getAs<Double>();
+            return pD->get();
+        }
+        case InternalType::ScilabBool:
+        {
+            Bool *pB = pIT->getAs<Bool>();
+            return pB->get();
+        }
+        case InternalType::ScilabInt8:
+        {
+            Int8 *pI = pIT->getAs<Int8>();
+            return pI->get();
+        }
+        case InternalType::ScilabUInt8:
+        {
+            UInt8 *pI = pIT->getAs<UInt8>();
+            return pI->get();
+        }
+        case InternalType::ScilabInt16:
+        {
+            Int16 *pI = pIT->getAs<Int16>();
+            return pI->get();
+        }
+        case InternalType::ScilabUInt16:
+        {
+            UInt16 *pI = pIT->getAs<UInt16>();
+            return pI->get();
+        }
+        case InternalType::ScilabInt32:
+        {
+            Int32 *pI = pIT->getAs<Int32>();
+            return pI->get();
+        }
+        case InternalType::ScilabUInt32:
+        {
+            UInt32 *pI = pIT->getAs<UInt32>();
+            return pI->get();
+        }
+        case InternalType::ScilabInt64:
+        {
+            Int64 *pI = pIT->getAs<Int64>();
+            return pI->get();
+        }
+        case InternalType::ScilabUInt64:
+        {
+            UInt64 *pI = pIT->getAs<UInt64>();
+            return pI->get();
+        }
+        default:
+            return NULL;
+    }
+}
+
+void mxSetData(mxArray *array_ptr, void *data_ptr)
+{
+    if (mxIsChar(array_ptr))
+    {
+        ((String *)array_ptr)->set((wchar_t **)data_ptr);
+    }
+    else if (mxIsDouble(array_ptr))
+    {
+        ((Double *)array_ptr)->set((double *)data_ptr);
+    }
+    else if (mxIsInt8(array_ptr))
+    {
+        ((Int8 *)array_ptr)->set((char *)data_ptr);
+    }
+    else if (mxIsInt16(array_ptr))
+    {
+        ((Int16 *)array_ptr)->set((short *)data_ptr);
+    }
+    else if (mxIsInt32(array_ptr))
+    {
+        ((Int32 *)array_ptr)->set((int *)data_ptr);
+    }
+    else if (mxIsInt64(array_ptr))
+    {
+        ((Int64 *)array_ptr)->set((long long *)data_ptr);
+    }
+    else if (mxIsLogical(array_ptr))
+    {
+        ((Bool *)array_ptr)->set((int *)data_ptr);
+    }
+    // else if (mxIsSingle(array_ptr)) {
+    //   ((Float *) array_ptr)->set((float *) data_ptr);
+    // }
+    else if (mxIsUint8(array_ptr))
+    {
+        ((UInt8 *)array_ptr)->set((unsigned char *)data_ptr);
+    }
+    else if (mxIsUint16(array_ptr))
+    {
+        ((UInt16 *)array_ptr)->set((unsigned short *)data_ptr);
+    }
+    else if (mxIsUint32(array_ptr))
+    {
+        ((UInt32 *)array_ptr)->set((unsigned int *)data_ptr);
+    }
+    else if (mxIsUint64(array_ptr))
+    {
+        ((UInt64 *)array_ptr)->set((unsigned long long *) data_ptr);
+    }
+}
+
+void *mxGetImagData(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return NULL;
+    }
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabDouble:
+        {
+            Double *pD = pIT->getAs<Double>();
+            return pD->getImg();
+        }
+        case InternalType::ScilabBool:
+        {
+            Bool *pB = pIT->getAs<Bool>();
+            return pB->getImg();
+        }
+        case InternalType::ScilabInt8:
+        {
+            Int8 *pI = pIT->getAs<Int8>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabUInt8:
+        {
+            UInt8 *pI = pIT->getAs<UInt8>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabInt16:
+        {
+            Int16 *pI = pIT->getAs<Int16>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabUInt16:
+        {
+            UInt16 *pI = pIT->getAs<UInt16>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabInt32:
+        {
+            Int32 *pI = pIT->getAs<Int32>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabUInt32:
+        {
+            UInt32 *pI = pIT->getAs<UInt32>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabInt64:
+        {
+            Int64 *pI = pIT->getAs<Int64>();
+            return pI->getImg();
+        }
+        case InternalType::ScilabUInt64:
+        {
+            UInt64 *pI = pIT->getAs<UInt64>();
+            return pI->getImg();
+        }
+        default:
+            return NULL;
+    }
+}
+
+void mxSetImagData(mxArray *array_ptr, void *data_ptr)
+{
+    if (mxIsChar(array_ptr))
+    {
+        ((String *)array_ptr)->setImg((wchar_t **)data_ptr);
+    }
+    else if (mxIsDouble(array_ptr))
+    {
+        ((Double *)array_ptr)->setImg((double *)data_ptr);
+    }
+    else if (mxIsInt8(array_ptr))
+    {
+        ((Int8 *)array_ptr)->setImg((char *)data_ptr);
+    }
+    else if (mxIsInt16(array_ptr))
+    {
+        ((Int16 *)array_ptr)->setImg((short *)data_ptr);
+    }
+    else if (mxIsInt32(array_ptr))
+    {
+        ((Int32 *)array_ptr)->setImg((int *)data_ptr);
+    }
+    else if (mxIsInt64(array_ptr))
+    {
+        ((Int64 *)array_ptr)->setImg((long long *)data_ptr);
+    }
+    else if (mxIsLogical(array_ptr))
+    {
+        ((Bool *)array_ptr)->setImg((int *)data_ptr);
+    }
+    // else if (mxIsSingle(array_ptr)) {
+    //   ((Float *) array_ptr)->setImg((float *) data_ptr);
+    // }
+    else if (mxIsUint8(array_ptr))
+    {
+        ((UInt8 *)array_ptr)->setImg((unsigned char *)data_ptr);
+    }
+    else if (mxIsUint16(array_ptr))
+    {
+        ((UInt16 *)array_ptr)->setImg((unsigned short *)data_ptr);
+    }
+    else if (mxIsUint32(array_ptr))
+    {
+        ((UInt32 *)array_ptr)->setImg((unsigned int *)data_ptr);
+    }
+    else if (mxIsUint64(array_ptr))
+    {
+        ((UInt64 *)array_ptr)->setImg((unsigned long long *) data_ptr);
+    }
+}
+
+mxChar *mxGetChars(mxArray *array_ptr)
+{
+    if (!mxIsChar(array_ptr))
+    {
+        return NULL;
+    }
+    wchar_t *chars = ((String *)array_ptr)->get(0);
+    return (mxChar *)wide_string_to_UTF8(chars);
+}
+
+mxLogical *mxGetLogicals(const mxArray *ptr)
+{
+    InternalType *pIT = (InternalType *)ptr;
+    if (pIT == NULL)
+    {
+        return NULL;
+    }
+
+    Bool *pB = pIT->getAs<Bool>();
+    if (pB == NULL)
+    {
+        return NULL;
+    }
+
+    return (mxLogical *)pB->get();
+}
+
+mxClassID mxGetClassID(const mxArray *ptr)
+{
+    InternalType *pIT = dynamic_cast<InternalType*>((InternalType*)ptr);
+    if (pIT == NULL)
+    {
+        return mxUNKNOWN_CLASS;
+    }
+
+    switch (pIT->getType())
+    {
+        case InternalType::ScilabInt8:
+            return mxINT8_CLASS;
+        case InternalType::ScilabUInt8:
+            return mxUINT8_CLASS;
+        case InternalType::ScilabInt16:
+            return mxINT16_CLASS;
+        case InternalType::ScilabUInt16:
+            return mxUINT16_CLASS;
+        case InternalType::ScilabInt32:
+            return mxINT32_CLASS;
+        case InternalType::ScilabUInt32:
+            return mxUINT32_CLASS;
+        case InternalType::ScilabInt64:
+            return mxINT64_CLASS;
+        case InternalType::ScilabUInt64:
+            return mxUINT64_CLASS;
+        case InternalType::ScilabString:
+            return mxCHAR_CLASS;
+        case InternalType::ScilabDouble:
+            return mxDOUBLE_CLASS;
+        case InternalType::ScilabBool:
+            return mxLOGICAL_CLASS;
+        case InternalType::ScilabFloat:
+            return mxSINGLE_CLASS;
+        case InternalType::ScilabStruct:
+            return mxSTRUCT_CLASS;
+        case InternalType::ScilabCell:
+            return mxCELL_CLASS;
+        case InternalType::ScilabFunction:
+            return mxFUNCTION_CLASS;
+        default:
+            return mxUNKNOWN_CLASS;
+    }
+}
+
+const char *mxGetClassName(const mxArray *ptr)
+{
+    if (mxIsDouble(ptr))
+    {
+        return "double";
+    }
+    if (mxIsChar(ptr))
+    {
+        return "char";
+    }
+    if (mxIsLogical(ptr))
+    {
+        return "bool";
+    }
+    if (mxIsSparse(ptr))
+    {
+        return "sparse";
+    }
+    if (mxIsInt8(ptr))
+    {
+        return "int8";
+    }
+    if (mxIsInt16(ptr))
+    {
+        return "int16";
+    }
+    if (mxIsInt32(ptr))
+    {
+        return "int32";
+    }
+    if (mxIsInt64(ptr))
+    {
+        return "int64";
+    }
+    if (mxIsUint8(ptr))
+    {
+        return "uint8";
+    }
+    if (mxIsUint16(ptr))
+    {
+        return "uint16";
+    }
+    if (mxIsUint32(ptr))
+    {
+        return "uint32";
+    }
+    if (mxIsUint64(ptr))
+    {
+        return "uint64";
+    }
+    if (mxIsCell(ptr))
+    {
+        return "cell";
+    }
+    if (mxIsStruct(ptr))
+    {
+        return "struct";
+    }
+    return "unknown";
+}
+
+mxArray *mxGetProperty(const mxArray *pa, mwIndex index, const char *propname)
+{
+    //TODO
+    return NULL;
+}
+
+void mxSetProperty(mxArray *pa, mwIndex index, const char *propname, const mxArray *value)
+{
+    //TODO
+}
+
+mxArray *mxGetField(const mxArray *ptr, int lindex, const char *string)
+{
+    int field_num = mxGetFieldNumber(ptr, string);
+    if (field_num < 0)
+    {
+        return NULL;
+    }
+    return mxGetFieldByNumber(ptr, lindex, field_num);
+}
+
+void mxSetField(mxArray *array_ptr, int lindex, const char *field_name, mxArray *value)
+{
+    int field_num = mxGetFieldNumber(array_ptr, field_name);
+    if (field_num >= 0)
+    {
+        mxSetFieldByNumber(array_ptr, lindex, field_num, value);
+    }
+}
+
+int mxGetNumberOfFields(const mxArray *ptr)
+{
+    if (!mxIsStruct(ptr))
+    {
+        return 0;
+    }
+    Struct * pa = (Struct *)ptr;
+    return pa->getFieldNames()->getSize();
+}
+
+const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number)
+{
+    if (!mxIsStruct(array_ptr))
+    {
+        return NULL;
+    }
+    if (field_number < 0 || field_number >= mxGetNumberOfFields(array_ptr))
+    {
+        return NULL;
+    }
+    String *names = ((Struct *)array_ptr)->getFieldNames();
+    wchar_t *name = names->get(field_number);
+    return (const char *)wide_string_to_UTF8(name);
+}
+
+int mxGetFieldNumber(const mxArray *ptr, const char *string)
+{
+    if (!mxIsStruct(ptr))
+    {
+        return -1;
+    }
+    Struct *pa = (Struct *)ptr;
+    String *names = pa->getFieldNames();
+    wchar_t *field_name = to_wide_string(string);
+
+    for (int i = 0; i < names->getSize(); i++)
+    {
+        if (wcscmp(names->get(i), field_name) == 0)
+        {
+            FREE(field_name);
+            return i;
+        }
+    }
+    FREE(field_name);
+    return -1;
+}
+
+mxArray *mxGetFieldByNumber(const mxArray *ptr, int lindex, int field_number)
+{
+    if (!mxIsStruct(ptr))
+    {
+        return NULL;
+    }
+    if (lindex >= mxGetNumberOfElements(ptr) || lindex < 0)
+    {
+        return NULL;
+    }
+    if (field_number >= mxGetNumberOfFields(ptr) || field_number < 0)
+    {
+        return NULL;
+    }
+    Struct *pa = (Struct *)ptr;
+    String *names = pa->getFieldNames();
+    SingleStruct *s = pa->get(lindex);
+    return (mxArray *)s->get(names->get(field_number));
+}
+
+void mxSetFieldByNumber(mxArray *array_ptr, int lindex, int field_number, mxArray *value)
+{
+    if (mxIsStruct(array_ptr) && lindex < mxGetNumberOfElements(array_ptr))
+    {
+        SingleStruct *ptr = ((Struct *)array_ptr)->get(lindex);
+        String *names = ptr->getFieldNames();
+        ptr->set(names->get(field_number), (InternalType *)value);
+    }
+}
+
+int mxAddField(mxArray *ptr, const char *fieldname)
+{
+    if (!mxIsStruct(ptr))
+    {
+        return -1;
+    }
+    Struct *pa = (Struct *)ptr;
+    wchar_t *wfieldname = to_wide_string(fieldname);
+    pa->addField(wfieldname);
+    return mxGetFieldNumber(ptr, fieldname);
+}
+
+void mxRemoveField(mxArray *pm, int fieldnumber)
+{
+    //TODO
+}
+
+mxArray *mxGetCell(const mxArray *ptr, int lindex)
+{
+    Cell * pa = (Cell *)ptr;
+    return (mxArray *)pa->get(lindex);
+}
+
+void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
+{
+    ((Cell *)array_ptr)->set(lindex, (InternalType *)value);
+}
+
+int mxGetNzmax(const mxArray *ptr)
+{
+    // TODO
+    return 0;
+}
+
+void mxSetNzmax(mxArray *array_ptr, int nzmax)
+{
+    // TODO
+}
+
+int *mxGetIr(const mxArray *ptr)
+{
+    // TODO
+    return NULL;
+}
+
+void mxSetIr(mxArray *array_ptr, int *ir_data)
+{
+    // TODO
+}
+
+int *mxGetJc(const mxArray *ptr)
+{
+    // TODO
+    return NULL;
+}
+
+void mxSetJc(mxArray *array_ptr, int *jc_data)
+{
+    // TODO
+}
+
+void setmexFunctionName(const char* name)
+{
+    ConfigVariable::setMexFunctionName(name);
+}
+
+const char *mexFunctionName(void)
+{
+    return ConfigVariable::getMexFunctionName().c_str();
+}
+
+int mexAtExit(void(*func)(void))
+{
+    exitFcn = func;
+    return 0;
+}
+
+int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name)
+{
+    return mexCallSCILAB(nlhs, plhs, nrhs, prhs, name);;
+}
+
+mxArray *mexCallMATLABWithTrap(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[], const char *functionName)
+{
+    //TODO
+    return NULL;
 }
 
 int mexEvalString(const char *name)
@@ -1492,13 +1610,13 @@ int mexEvalString(const char *name)
     bool bMute = true;
     Parser parser;
     parser.parse(to_wide_string(name));
-    if (parser.getExitStatus() !=  Parser::Succeded)
+    if (parser.getExitStatus() != Parser::Succeded)
     {
         //mexPrintf(wide_string_to_UTF8(parser.getErrorMessage()));
         return 1;
     }
 
-    Exp *pExp = parser.getTree();
+    ast::Exp *pExp = parser.getTree();
 
     if (pExp == NULL)
     {
@@ -1512,26 +1630,26 @@ int mexEvalString(const char *name)
     {
         ConfigVariable::setPromptMode(-1);
     }
-    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
+    ast::exps_t LExp = pExp->getAs<ast::SeqExp>()->getExps();
 
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
     {
         try
         {
             //excecute script
-            ExecVisitor execMe;
+            ast::ExecVisitor execMe;
             (*j)->accept(execMe);
 
             //to manage call without ()
             if (execMe.getResult() != NULL && execMe.getResult()->getAs<Callable>())
             {
                 Callable *pCall = execMe.getResult()->getAs<Callable>();
-                types::typed_list out;
-                types::typed_list in;
-                types::optional_list opt;
+                typed_list out;
+                typed_list in;
+                optional_list opt;
                 try
                 {
-                    ExecVisitor execCall;
+                    ast::ExecVisitor execCall;
                     Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
                     if (Ret == Callable::OK)
                     {
@@ -1546,7 +1664,7 @@ int mexEvalString(const char *name)
                         }
                         else
                         {
-                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            for (int i = 0; i < static_cast<int>(out.size()); i++)
                             {
                                 out[i]->DecreaseRef();
                                 execMe.setResult(i, out[i]);
@@ -1572,10 +1690,10 @@ int mexEvalString(const char *name)
                         }
                     }
                 }
-                catch (ScilabMessage sm)
+                catch (ast::ScilabMessage sm)
                 {
                     wostringstream os;
-                    PrintVisitor printMe(os);
+                    ast::PrintVisitor printMe(os);
                     (*j)->accept(printMe);
                     os << std::endl << std::endl;
                     if (ConfigVariable::getLastErrorFunction() == L"")
@@ -1616,17 +1734,17 @@ int mexEvalString(const char *name)
                 }
             }
         }
-        catch (ScilabMessage sm)
+        catch (ast::ScilabMessage sm)
         {
-            if (bErrCatch  == false && bMute == false)
+            if (bErrCatch == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
 
-                CallExp* pCall = dynamic_cast<CallExp*>(*j);
+                ast::CallExp* pCall = dynamic_cast<ast::CallExp*>(*j);
                 if (pCall != NULL)
                 {
                     //to print call expression only of it is a macro
-                    ExecVisitor execFunc;
+                    ast::ExecVisitor execFunc;
                     pCall->getName().accept(execFunc);
 
                     if (execFunc.getResult() != NULL &&
@@ -1635,7 +1753,7 @@ int mexEvalString(const char *name)
                         wostringstream os;
 
                         //add function failed
-                        PrintVisitor printMe(os);
+                        ast::PrintVisitor printMe(os);
                         pCall->accept(printMe);
                         os << std::endl;
 
@@ -1700,36 +1818,62 @@ int mexEvalString(const char *name)
     return 0;
 }
 
-mxArray *mexGetArray(char *name, char *workspace)
+mxArray *mexEvalStringWithTrap(const char *command)
 {
-    return mexGetVariable(workspace, name);
+    //TODO
+    return NULL;
 }
 
-const mxArray *mexGetVariablePtr(const char *workspace, const char *var_name)
+const mxArray *mexGet(double handle, const char *property)
 {
-    const mxArray *value = mexGetVariable(workspace, var_name);
-    return value;
+    //TODO
+    return NULL;
+}
+
+int mexSet(double handle, const char *property, mxArray *value)
+{
+    //TODO
+    return 0;
 }
 
 mxArray *mexGetVariable(const char *workspace, const char *name)
 {
+    mxArray* ret = NULL;
+    const mxArray* ptr = mexGetVariablePtr(workspace, name);
+
+    if (ptr)
+    {
+        ret = (mxArray*)((InternalType*)ptr)->clone();
+    }
+    return ret;
+}
+
+const mxArray *mexGetVariablePtr(const char *workspace, const char *name)
+{
     symbol::Context *context = symbol::Context::getInstance();
     wchar_t *key = to_wide_string(name);
-    types::InternalType *value = NULL;
+    InternalType *value = NULL;
+    symbol::Symbol sym = symbol::Symbol(key);
     if (strcmp(workspace, "base") == 0)
     {
-        value = context->get(*(new symbol::Symbol(key)));
+        value = context->get(sym);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        value = context->getCurrentLevel(*(new symbol::Symbol(key)));
+        if (context->isGlobalVisible(sym) == false)
+        {
+            value = context->get(sym);
+        }
     }
     else if (strcmp(workspace, "global") == 0)
     {
-        value = context->getGlobalValue(*(new symbol::Symbol(key)));
+        if (context->isGlobalVisible(sym))
+        {
+            value = context->getGlobalValue(sym);
+        }
     }
     FREE(key);
-    return (mxArray *) value;
+    return (mxArray *)value;
 }
 
 int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm)
@@ -1738,16 +1882,16 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     wchar_t *dest = to_wide_string(varname);
     if (strcmp(workspace, "base") == 0)
     {
-        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (types::InternalType *) pm);
+        context->putInPreviousScope(context->getOrCreate(symbol::Symbol(dest)), (InternalType *)pm);
     }
     else if (strcmp(workspace, "caller") == 0)
     {
-        context->put(symbol::Symbol(dest), (types::InternalType *) pm);
+        context->put(symbol::Symbol(dest), (InternalType *)pm);
     }
     else if (strcmp(workspace, "global") == 0)
     {
         context->setGlobalVisible(symbol::Symbol(dest), true);
-        context->put(symbol::Symbol(dest), (types::InternalType *) pm);
+        context->put(symbol::Symbol(dest), (InternalType *)pm);
     }
     else
     {
@@ -1756,442 +1900,119 @@ int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm
     return 0;
 }
 
-int mexPutFull(char *name, int m, int n, double *pr, double *pi)
+int mexIsGlobal(const mxArray *ptr)
 {
-    /* obsolete */
-    mxArray *array_ptr = mxCreateDoubleMatrix(m, n, pi == NULL ? mxREAL : mxCOMPLEX);
-    mxSetPr(array_ptr, pr);
-    mxSetPi(array_ptr, pi);
-    mexPutVariable("caller", name, array_ptr);
+    symbol::Context *context = symbol::Context::getInstance();
+    std::list<std::wstring> lst;
+    int size = context->getGlobalNameForWho(lst, false);
+
+    for (auto it : lst)
+    {
+        symbol::Symbol s = symbol::Symbol(it);
+        const mxArray *value = (const mxArray *)context->getGlobalValue(s);
+        if (value == ptr)
+        {
+            return 1;
+        }
+    }
     return 0;
 }
 
-void mxSetName(mxArray *array_ptr, const char *name)
+int mexPrintf(const char *format, ...)
 {
-    /* obsolete */
-    mexErrMsgTxt(_("Routine mxSetName not implemented !\n"));
-    exit(1);
-}
-
-void mxSetData(mxArray *array_ptr, void *data_ptr)
-{
-    if (mxIsChar(array_ptr))
-    {
-        ((types::String *) array_ptr)->set((wchar_t **) data_ptr);
-    }
-    else if (mxIsDouble(array_ptr))
-    {
-        ((types::Double *) array_ptr)->set((double *) data_ptr);
-    }
-    else if (mxIsInt8(array_ptr))
-    {
-        ((types::Int8 *) array_ptr)->set((char *) data_ptr);
-    }
-    else if (mxIsInt16(array_ptr))
-    {
-        ((types::Int16 *) array_ptr)->set((short *) data_ptr);
-    }
-    else if (mxIsInt32(array_ptr))
-    {
-        ((types::Int32 *) array_ptr)->set((int *) data_ptr);
-    }
-    else if (mxIsInt64(array_ptr))
-    {
-        ((types::Int64 *) array_ptr)->set((long long *) data_ptr);
-    }
-    else if (mxIsLogical(array_ptr))
-    {
-        ((types::Bool *) array_ptr)->set((int *) data_ptr);
-    }
-    // else if (mxIsSingle(array_ptr)) {
-    //   ((types::Float *) array_ptr)->set((float *) data_ptr);
-    // }
-    else if (mxIsUint8(array_ptr))
-    {
-        ((types::UInt8 *) array_ptr)->set((unsigned char *) data_ptr);
-    }
-    else if (mxIsUint16(array_ptr))
-    {
-        ((types::UInt16 *) array_ptr)->set((unsigned short *) data_ptr);
-    }
-    else if (mxIsUint32(array_ptr))
-    {
-        ((types::UInt32 *) array_ptr)->set((unsigned int *) data_ptr);
-    }
-    else if (mxIsUint64(array_ptr))
-    {
-        ((types::UInt64 *) array_ptr)->set((unsigned long long *) data_ptr);
-    }
-}
-
-void mxSetImagData(mxArray *array_ptr, void *data_ptr)
-{
-    if (mxIsChar(array_ptr))
-    {
-        ((types::String *) array_ptr)->setImg((wchar_t **) data_ptr);
-    }
-    else if (mxIsDouble(array_ptr))
-    {
-        ((types::Double *) array_ptr)->setImg((double *) data_ptr);
-    }
-    else if (mxIsInt8(array_ptr))
-    {
-        ((types::Int8 *) array_ptr)->setImg((char *) data_ptr);
-    }
-    else if (mxIsInt16(array_ptr))
-    {
-        ((types::Int16 *) array_ptr)->setImg((short *) data_ptr);
-    }
-    else if (mxIsInt32(array_ptr))
-    {
-        ((types::Int32 *) array_ptr)->setImg((int *) data_ptr);
-    }
-    else if (mxIsInt64(array_ptr))
-    {
-        ((types::Int64 *) array_ptr)->setImg((long long *) data_ptr);
-    }
-    else if (mxIsLogical(array_ptr))
-    {
-        ((types::Bool *) array_ptr)->setImg((int *) data_ptr);
-    }
-    // else if (mxIsSingle(array_ptr)) {
-    //   ((types::Float *) array_ptr)->setImg((float *) data_ptr);
-    // }
-    else if (mxIsUint8(array_ptr))
-    {
-        ((types::UInt8 *) array_ptr)->setImg((unsigned char *) data_ptr);
-    }
-    else if (mxIsUint16(array_ptr))
-    {
-        ((types::UInt16 *) array_ptr)->setImg((unsigned short *) data_ptr);
-    }
-    else if (mxIsUint32(array_ptr))
-    {
-        ((types::UInt32 *) array_ptr)->setImg((unsigned int *) data_ptr);
-    }
-    else if (mxIsUint64(array_ptr))
-    {
-        ((types::UInt64 *) array_ptr)->setImg((unsigned long long *) data_ptr);
-    }
-}
-
-void mxSetPr(mxArray *ptr, double *pr)
-{
-    ((types::Double *) ptr)->set(pr);
-}
-
-void mxSetPi(mxArray *ptr, double *pi)
-{
-    ((types::Double *) ptr)->setImg(pi);
-}
-
-const char *mxGetName(const mxArray *array_ptr)
-{
-    /* obsolete */
-    mexPrintf(_("Routine mxGetName not implemented.\n"));
-    exit(1);
+    // TODO: define this size limit
+    char string[1024];
+    va_list arg_ptr;
+    va_start(arg_ptr, format);
+    vsnprintf(string, 1024, format, arg_ptr);
+    va_end(arg_ptr);
+    scilabWrite(string);
     return 0;
 }
 
-int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim)
+void mexSetTrapFlag(int trapflag)
 {
-    if (mxIsCell(array_ptr))
-    {
-        ((types::Cell *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsChar(array_ptr))
-    {
-        ((types::String *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsDouble(array_ptr))
-    {
-        ((types::Double *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsFunction(array_ptr))
-    {
-        //((types::Function *) array_ptr)->resize((int *) dims, ndim);
-    }
-    // else if (mxIsSparse(array_ptr)) {
-    //     TODO: we don't have Sparse classes yet
-    // }
-    else if (mxIsInt8(array_ptr))
-    {
-        ((types::Int8 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsInt16(array_ptr))
-    {
-        ((types::Int16 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsInt32(array_ptr))
-    {
-        ((types::Int32 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsInt64(array_ptr))
-    {
-        ((types::Int64 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsLogical(array_ptr))
-    {
-        ((types::Bool *) array_ptr)->resize((int *) dims, ndim);
-    }
-    // else if (mxIsSingle(array_ptr)) {
-    //     ((types::Float *) array_ptr)->resize((int *) dims, ndim);
-    // }
-    else if (mxIsStruct(array_ptr))
-    {
-        ((types::Struct *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsUint8(array_ptr))
-    {
-        ((types::UInt8 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsUint16(array_ptr))
-    {
-        ((types::UInt16 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsUint32(array_ptr))
-    {
-        ((types::UInt32 *) array_ptr)->resize((int *) dims, ndim);
-    }
-    else if (mxIsUint64(array_ptr))
-    {
-        ((types::UInt64 *) array_ptr)->resize((int *) dims, ndim);
-    }
+    //TODO
+}
 
+void mexErrMsgIdAndTxt(const char *errorid, const char *errormsg, ...)
+{
+    //TODO
+}
+
+void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...)
+{
+    //TODO
+}
+
+void mexErrMsgTxt(const char *error_msg)
+{
+    throw ast::ScilabError(error_msg);
+}
+
+void mexWarnMsgTxt(const char *error_msg)
+{
+    scilabError(_("Warning: "));
+    scilabError(error_msg);
+    scilabError("\n\n");
+}
+
+int mexIsLocked(void)
+{
+    //TODO
     return 0;
 }
 
-const char *mxGetClassName(const mxArray *ptr)
+void mexLock(void)
 {
-    if (mxIsDouble(ptr))
-    {
-        return "double";
-    }
-    if (mxIsChar(ptr))
-    {
-        return "char";
-    }
-    if (mxIsSparse(ptr))
-    {
-        return "sparse";
-    }
-    if (mxIsInt8(ptr))
-    {
-        return "int8";
-    }
-    if (mxIsInt16(ptr))
-    {
-        return "int16";
-    }
-    if (mxIsInt32(ptr))
-    {
-        return "int32";
-    }
-    if (mxIsInt64(ptr))
-    {
-        return "int64";
-    }
-    if (mxIsUint8(ptr))
-    {
-        return "uint8";
-    }
-    if (mxIsUint16(ptr))
-    {
-        return "uint16";
-    }
-    if (mxIsUint32(ptr))
-    {
-        return "uint32";
-    }
-    if (mxIsUint64(ptr))
-    {
-        return "uint64";
-    }
-    if (mxIsCell(ptr))
-    {
-        return "cell";
-    }
-    if (mxIsStruct(ptr))
-    {
-        return "struct";
-    }
-    if (mxIsFunction(ptr))
-    {
-        return "function_handle";
-    }
-    return "unknown";
+    //TODO
 }
 
-void mxSetCell(mxArray *array_ptr, int lindex, mxArray *value)
+void mexUnlock(void)
 {
-    ((types::Cell *) array_ptr)->set(lindex, (types::InternalType *) value);
+    //TODO
 }
 
-int mxGetNzmax(const mxArray *ptr)
+void mexMakeArrayPersistent(void *ptr)
 {
-    // TODO: sparse
-    return 0;
+    //TODO
 }
 
-mxLogical *mxGetLogicals(const mxArray *ptr)
+void mexMakeMemoryPersistent(void *ptr)
 {
-    types::InternalType *pIT = (types::InternalType *) ptr;
-    if (pIT == NULL)
+    //TODO
+}
+
+double mxGetInf(void)
+{
+    InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%inf"));
+    if (pITInf && pITInf->isDouble())
     {
-        return NULL;
+        return pITInf->getAs<Double>()->get(0);
     }
 
-    types::Bool *pB = pIT->getAs<types::Bool>();
-    if (pB == NULL)
+    return -1;
+}
+
+double mxGetNaN(void)
+{
+    InternalType *pITInf = symbol::Context::getInstance()->get(symbol::Symbol(L"%nan"));
+    if (pITInf)
     {
-        return NULL;
+        return pITInf->getAs<Double>()->get(0);
     }
 
-    return (mxLogical *) pB->get();
+    return -1;
 }
 
-void mexInfo(char *str)
+double mxGetEps(void)
 {
-    mexPrintf("mexInfo: %s", str);
-    // FIXME : Use scilabWrite
+    InternalType *pITEps = symbol::Context::getInstance()->get(symbol::Symbol(L"%eps"));
+    if (pITEps && pITEps->isDouble())
+    {
+        return pITEps->getAs<Double>()->get(0);
+    }
+
+    return -1;
 }
 
-int mexCheck(char *str, int nbvars)
-{
-    // FIXME : Where does Nbvars come from ??
-    // if ( nbvars != -1 && Nbvars != nbvars)
-    //     fprintf(stderr,"%s %d %d\n",str,Nbvars,nbvars);
-    // return Nbvars ;
-    return 0;
-}
-
-/****************************************************
-* C functions for Fortran  mexfunctions
-****************************************************/
-
-double *C2F(mxgetpr) (mxArray *ptr)
-{
-    return mxGetPr(ptr);
-}
-
-double *C2F(mxgetpi) (mxArray *ptr)
-{
-    return mxGetPi(ptr);
-}
-
-int C2F(mxgetm) (mxArray *ptr)
-{
-    return mxGetM(ptr);
-}
-
-int C2F(mxgetn) (mxArray *ptr)
-{
-    return mxGetN(ptr);
-}
-
-int C2F(mxisstring) (mxArray *ptr)
-{
-    return mxIsString(ptr);
-}
-
-int C2F(mxisnumeric) (mxArray *ptr)
-{
-    return mxIsNumeric(ptr);
-}
-
-int C2F(mxisfull) (mxArray *ptr)
-{
-    return mxIsFull(ptr);
-}
-
-int C2F(mxissparse) (mxArray *ptr)
-{
-    return mxIsSparse(ptr);
-}
-
-int C2F(mxiscomplex) (mxArray *ptr)
-{
-    return mxIsComplex(ptr);
-}
-
-double C2F(mxgetscalar) (mxArray *ptr)
-{
-    return mxGetScalar(ptr);
-}
-
-void C2F(mexprintf) (char *error_msg, int len)
-{
-    error_msg[len] = '\0';
-    mexPrintf(error_msg);
-}
-
-void C2F(mexerrmsgtxt) (char *error_msg, int len)
-{
-    error_msg[len] = '\0';
-    mexErrMsgTxt(error_msg);
-}
-
-mxArray *C2F(mxcreatefull) (int *m, int *n, int *it)
-{
-    /* mxCreateFull is obsolete. Call mxCreateDoubleMatrix instead. */
-    return (mxArray *) mxCreateDoubleMatrix(*m, *n, (mxComplexity) * it);
-}
-
-mxArray *C2F(mxcreatedoublematrix) (int *m, int *n, int *it)
-{
-    return (mxArray *) mxCreateDoubleMatrix(*m, *n, (mxComplexity) * it);
-}
-
-unsigned long int C2F(mxcalloc) (unsigned int *n, unsigned int *size)
-{
-    mxCalloc(*n, *size);
-    return 0;
-}
-
-int C2F(mxgetstring) (mxArray *ptr, char *str, int *strl)
-{
-    return mxGetString(ptr, str, *strl);
-}
-
-void C2F(mxfreematrix) (mxArray *ptr)
-{
-    mxFreeMatrix(ptr);
-}
-
-mxArray *C2F(mxcreatestring) (char *string, long int l)
-{
-    string[l] = '\0';
-    return mxCreateString(string);
-}
-
-int C2F(mxcopyreal8toptr) (double *y, mxArray *ptr, int *n)
-{
-    double *pr = mxGetPr(ptr);
-    memcpy(y, pr, (*n) * sizeof(double));
-    return 0;
-}
-
-int C2F(mxcopycomplex16toptr) (double *y, mxArray *ptr, mxArray *pti, int *n)
-{
-    // FIXME : Wrap this one to the C one
-    return 0;
-}
-
-int C2F(mxcopyptrtoreal8) (mxArray *ptr, double *y, int *n)
-{
-    double *pr = mxGetPr(ptr);
-    memcpy(pr, y, (*n) * sizeof(double));
-    return 0;
-}
-
-int C2F(mxcopyptrtocomplex16) (mxArray *ptr, mxArray *pti, double *y, int *n)
-{
-    // FIXME : Wrap this one to the C one
-    return 0;
-}
-
-/* *mxRealloc(void *ptr, size_t size);
-   mxArray *mxCreateStringFromNChars(const char *str, int n);
-   int mxSetClassName(mxArray *pa, const char *classname);
-   void mxRemoveField(mxArray *pa, int field);
-   void mxSetCopyInCell(mxArray *pa, int i, mxArray *value);  */

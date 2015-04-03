@@ -17,7 +17,7 @@ mputl([ "#include ""mex.h""";
 "{";
 "    mexCallMATLAB(nlhs, plhs, nrhs, prhs, ""sum"");";
 "}"],"mexcallMATLAB.c");
-ilib_mex_build("libmextest", ["callMATLAB", "mexcallMATLAB", "cmex"], "mexcallMATLAB.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["callMATLAB", "mexcallMATLAB", "cmex"], "mexcallMATLAB.c", []);
 exec("loader.sce");
 
 res = callMATLAB([1 2 3 4]);

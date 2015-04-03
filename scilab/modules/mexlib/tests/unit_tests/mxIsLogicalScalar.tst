@@ -18,7 +18,7 @@ mputl([ "#include ""mex.h""";
 "    plhs[0] = mxCreateLogicalScalar(mxIsLogicalScalar(prhs[0]));";
 "    plhs[1] = mxCreateLogicalScalar(mxIsLogicalScalarTrue(prhs[0]));";
 "}"],"mexisLogicalScalar.c");
-ilib_mex_build("libmextest", ["isLogicalScalar", "mexisLogicalScalar", "cmex"], "mexisLogicalScalar.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["isLogicalScalar", "mexisLogicalScalar", "cmex"], "mexisLogicalScalar.c", []);
 exec("loader.sce");
 
 [out1, out2] = isLogicalScalar(%t);

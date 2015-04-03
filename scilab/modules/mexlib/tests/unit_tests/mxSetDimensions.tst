@@ -18,10 +18,10 @@ mputl(["#include ""mex.h""";
 "    int dims[2] = {2,2};";
 "    mxSetDimensions(prhs[0], dims, 2);";
 "}"],"mexsetDimensions.c");
-ilib_mex_build("libmextest",["setDimensions","mexsetDimensions","cmex"], "mexsetDimensions.c",[],"","","","");
+ilib_mex_build("libmextest",["setDimensions","mexsetDimensions","cmex"], "mexsetDimensions.c",[]);
 exec("loader.sce");
 
-a = [3];
+a = 3;
 setDimensions(a);
 assert_checkequal(size(a, "*"), 4);
 assert_checkequal(a(1), 3);

@@ -19,8 +19,7 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateDoubleScalar(dblEps);";
 "    plhs[0] = pOut;";
 "}"],"mexgetEps.c");
-ilib_mex_build("libmextest",["getEps","mexgetEps","cmex"], "mexgetEps.c",[],"","","","");
+ilib_mex_build("libmextest",["getEps","mexgetEps","cmex"], "mexgetEps.c",[]);
 exec("loader.sce");
 
-a = getEps();
-assert_checkequal(a, %eps);
+assert_checkequal(getEps(), %eps);

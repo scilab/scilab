@@ -12,6 +12,7 @@
 
 cd(TMPDIR);
 ilib_verbose(0);
+ieee(2);
 mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
@@ -20,15 +21,10 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateLogicalScalar(isNaN);";
 "    plhs[0] = pOut;";
 "}"],"mexisNaN.c");
-ilib_mex_build("libmextest",["isNaN","mexisNaN","cmex"], "mexisNaN.c",[],"","","","");
+ilib_mex_build("libmextest",["isNaN","mexisNaN","cmex"], "mexisNaN.c",[]);
 exec("loader.sce");
 
-a = isNaN(%inf);
-assert_checkfalse(a);
-ieee(2);
-a = isNaN(1/0);
-assert_checkfalse(a);
-a = isNaN(1);
-assert_checkfalse(a);
-a = isNaN(%nan);
-assert_checktrue(a);
+assert_checkfalse(isNaN(%inf));
+assert_checkfalse(isNaN(1/0));
+assert_checkfalse(isNaN(1));
+assert_checktrue(isNaN(%nan));

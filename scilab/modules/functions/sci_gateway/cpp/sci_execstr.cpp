@@ -208,7 +208,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
 
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd ; ++j)
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
     {
         try
         {
@@ -248,7 +248,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         }
                         else
                         {
-                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            for (int i = 0; i < static_cast<int>(out.size()); i++)
                             {
                                 out[i]->DecreaseRef();
                                 execMe.setResult(i, out[i]);
@@ -310,7 +310,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             {
                 InternalType* pITAns = execMe.getResult();
                 symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                if ( (*j)->isVerbose() && bErrCatch == false)
+                if ((*j)->isVerbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
                     ostr << L" ans  =" << std::endl;
@@ -330,7 +330,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         catch (ScilabMessage sm)
         {
             ConfigVariable::setSilentError(iOldSilentError);
-            if (bErrCatch  == false && bMute == false)
+            if (bErrCatch == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
 

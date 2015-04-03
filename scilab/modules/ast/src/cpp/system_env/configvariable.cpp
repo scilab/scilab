@@ -1221,3 +1221,15 @@ bool ConfigVariable::isDivideByZero(void)
 /*
 ** \}
 */
+
+//mex info
+std::string ConfigVariable::mexFunctionName;
+void ConfigVariable::setMexFunctionName(const std::string& name)
+{
+    mexFunctionName = name;
+}
+
+std::string& ConfigVariable::getMexFunctionName()
+{
+    return mexFunctionName;
+}

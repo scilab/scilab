@@ -22,7 +22,7 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = mxCreateStructArray(2, dims, 2, fields);";
 "    plhs[1] = mxCreateStructMatrix(2, 2, 2, fields);";
 "}"],"mexcreateStruct.c");
-ilib_mex_build("libmextest",["createStruct","mexcreateStruct","cmex"], "mexcreateStruct.c",[],"","","","");
+ilib_mex_build("libmextest",["createStruct","mexcreateStruct","cmex"], "mexcreateStruct.c",[]);
 exec("loader.sce");
 
 [out1, out2] = createStruct();

@@ -6,6 +6,8 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
+//
+// <-- NOT FIXED -->
 // ============================================================================
 // Unitary tests for mxMalloc mex function
 // ============================================================================
@@ -21,7 +23,7 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = mxCreateDoubleMatrix(2, 1, mxREAL);"
 "    mxSetPr(plhs[0], data);";
 "}"],"mexmalloc.c");
-ilib_mex_build("libmextest",["malloc","mexmalloc","cmex"], "mexmalloc.c",[],"","","","");
+ilib_mex_build("libmextest",["malloc","mexmalloc","cmex"], "mexmalloc.c",[]);
 exec("loader.sce");
 
 r = malloc();

@@ -19,7 +19,7 @@ mputl([ "#include ""mex.h""";
 "    mexPrintf(""Some UTF-8 chars are áãâéíóúü.\n"");";
 "    mexPrintf(""Printing %s %s."", ""with"", ""parameters"");";
 "}"],"mexprintf.c");
-ilib_mex_build("libmextest", ["mprintf", "mexprintf", "cmex"], "mexprintf.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["mprintf", "mexprintf", "cmex"], "mexprintf.c", []);
 exec("loader.sce");
 
 mprintf();

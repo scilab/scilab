@@ -28,28 +28,15 @@ mputl([ "#include ""mex.h""";
 "   pOut = mxCreateLogicalScalar(bEmpty);";
 "   plhs[0] = pOut;";
 "}"],"mexIsEmpty.c");
-ilib_mex_build("libmextest",["isEmpty","mexIsEmpty","cmex"], "mexIsEmpty.c",[],"","","","");
+ilib_mex_build("libmextest",["isEmpty","mexIsEmpty","cmex"], "mexIsEmpty.c",[]);
 exec("loader.sce");
 
-a = list();
-assert_checktrue(isEmpty(a));
-
-a = list(1);
-assert_checkfalse(isEmpty(a));
-
-a = {};
-assert_checktrue(isEmpty(a));
-
-a = {1};
-assert_checkfalse(isEmpty(a));
-
-a = [];
-assert_checktrue(isEmpty(a));
-
-a = [1];
-assert_checkfalse(isEmpty(a));
-
-a = "";
-assert_checkfalse(isEmpty(a));
+assert_checktrue(isEmpty(list()));
+assert_checkfalse(isEmpty(list(1)));
+assert_checktrue(isEmpty({}));
+assert_checkfalse(isEmpty({1}));
+assert_checktrue(isEmpty([]));
+assert_checkfalse(isEmpty(1));
+assert_checkfalse(isEmpty(""));
 
 

@@ -19,7 +19,7 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = mxCreateLogicalScalar(logicals[0]);";
 "    plhs[1] = mxCreateLogicalScalar(logicals[1]);";
 "}"],"mexgetLogicals.c");
-ilib_mex_build("libmextest",["getLogicals","mexgetLogicals","cmex"], "mexgetLogicals.c",[],"","","","");
+ilib_mex_build("libmextest",["getLogicals","mexgetLogicals","cmex"], "mexgetLogicals.c",[]);
 exec("loader.sce");
 
 [out1, out2] = getLogicals([%t %f]);

@@ -12,6 +12,7 @@
 
 cd(TMPDIR);
 ilib_verbose(0);
+ieee(2);
 mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
@@ -20,17 +21,11 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateLogicalScalar(isFinite);";
 "    plhs[0] = pOut;";
 "}"],"mexisFinite.c");
-ilib_mex_build("libmextest",["isFinite","mexisFinite","cmex"], "mexisFinite.c",[],"","","","");
+ilib_mex_build("libmextest",["isFinite","mexisFinite","cmex"], "mexisFinite.c",[]);
 exec("loader.sce");
 
-a = isFinite(%inf);
-assert_checkfalse(a);
-ieee(2);
-a = isFinite(1/0);
-assert_checkfalse(a);
-a = isFinite(100);
-assert_checktrue(a);
-a = isFinite(0);
-assert_checktrue(a);
-a = isFinite(%nan);
-assert_checkfalse(a);
+assert_checkfalse(isFinite(%inf));
+assert_checkfalse(isFinite(1/0));
+assert_checktrue(isFinite(100));
+assert_checktrue(isFinite(0));
+assert_checkfalse(isFinite(%nan));

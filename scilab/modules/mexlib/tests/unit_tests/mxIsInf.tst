@@ -12,6 +12,7 @@
 
 cd(TMPDIR);
 ilib_verbose(0);
+ieee(2);
 mputl(["#include ""mex.h""";
 "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
 "{";
@@ -20,15 +21,10 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateLogicalScalar(isInf);";
 "    plhs[0] = pOut;";
 "}"],"mexisInf.c");
-ilib_mex_build("libmextest",["isInf","mexisInf","cmex"], "mexisInf.c",[],"","","","");
+ilib_mex_build("libmextest",["isInf","mexisInf","cmex"], "mexisInf.c",[]);
 exec("loader.sce");
 
-a = isInf(%inf);
-assert_checktrue(a);
-ieee(2);
-a = isInf(1/0);
-assert_checktrue(a);
-a = isInf(1);
-assert_checkfalse(a);
-a = isInf(%nan);
-assert_checkfalse(a);
+assert_checktrue(isInf(%inf));
+assert_checktrue(isInf(1/0));
+assert_checkfalse(isInf(1));
+assert_checkfalse(isInf(%nan));

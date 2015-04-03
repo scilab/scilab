@@ -18,20 +18,17 @@ mputl(["#include ""mex.h""";
 "    int num = mxGetNumberOfFields(prhs[0]);";
 "    plhs[0] = mxCreateDoubleScalar(num);";
 "}"],"mexgetNumberOfFields.c");
-ilib_mex_build("libmextest",["getNumberOfFields","mexgetNumberOfFields","cmex"], "mexgetNumberOfFields.c",[],"","","","");
+ilib_mex_build("libmextest",["getNumberOfFields","mexgetNumberOfFields","cmex"], "mexgetNumberOfFields.c",[]);
 exec("loader.sce");
 
 c = struct("a", 5, "b", 3, "e", 1, "another key", "hello");
-r = getNumberOfFields(c);
-assert_checkequal(r, 4);
+assert_checkequal(getNumberOfFields(c), 4);
 
 c = struct("a", 5, "b", 3);
-r = getNumberOfFields(c);
-assert_checkequal(r, 2);
+assert_checkequal(getNumberOfFields(c), 2);
 
 c = struct("b", 32);
-r = getNumberOfFields(c);
-assert_checkequal(r, 1);
+assert_checkequal(getNumberOfFields(c), 1);
 
 r = getNumberOfFields("not_a_struct");
 assert_checkequal(r, 0);

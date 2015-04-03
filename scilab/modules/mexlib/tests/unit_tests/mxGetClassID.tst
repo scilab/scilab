@@ -62,7 +62,7 @@ mputl(["#include ""mex.h""";
 "    }"
 "}"],"mexgetClassID.c");
 
-ilib_mex_build("libmextest",["printClass","mexgetClassID","cmex"], "mexgetClassID.c",[],"","","","");
+ilib_mex_build("libmextest",["printClass","mexgetClassID","cmex"], "mexgetClassID.c",[]);
 exec("loader.sce");
 
 printClass(cell());

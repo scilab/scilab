@@ -19,7 +19,7 @@ mputl(["#include ""mex.h""";
 "    mxSetImagData(prhs[0], data);";
 "    plhs[0] = prhs[0];";
 "}"],"mexGetSetImagData.c");
-ilib_mex_build("libmextest",["getSetImagData","mexGetSetImagData","cmex"], "mexGetSetImagData.c",[],"","","","");
+ilib_mex_build("libmextest",["getSetImagData","mexGetSetImagData","cmex"], "mexGetSetImagData.c",[]);
 exec("loader.sce");
 
 r = getSetImagData(complex(1, 2));

@@ -4,32 +4,32 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
+//
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
+//
 // ============================================================================
 // Unitary tests for mxDestroyArray mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mxArray *d = prhs[0];'
-       '    mxDestroyArray(d);';
-       '    if (*d == NULL)';
-       '    {';
-       '        mexPrintf(""It works."");';
-       '    }';
-       '}'],'mexdestroyArray.c');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mxArray *d = mxDuplicateArray(prhs[0]);"
+"    mxDestroyArray(d);";
+"    if (*d == NULL)";
+"    {";
+"        mexPrintf(""It works."");";
+"    }";
+"}"],"mexdestroyArray.c");
 
-ilib_mex_build('libmextest',['destroyArray','mexdestroyArray','cmex'], 'mexdestroyArray.c',[],'Makelib','','','');
-exec('loader.sce');
+ilib_mex_build("libmextest",["destroyArray","mexdestroyArray","cmex"], "mexdestroyArray.c",[]);
+exec("loader.sce");
 
 destroyArray(cell());
-destroyArray('s');
-destroyArray(double(1));
+destroyArray("s");
+destroyArray(1);
 destroyArray(int8(1));
 destroyArray(int16(1));
 destroyArray(int32(1));

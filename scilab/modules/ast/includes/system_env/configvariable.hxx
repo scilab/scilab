@@ -252,7 +252,7 @@ public :
 
     typedef struct
     {
-         wchar_t* pwstLibraryName;      /** name of dynamic library **/
+        wchar_t* pwstLibraryName;      /** name of dynamic library **/
         DynLibHandle hLib;              /** handle of the library **/
     } DynamicLibraryStr;
 
@@ -417,6 +417,13 @@ private:
 public:
     static void setDivideByZero(bool _dividebyzero);
     static bool isDivideByZero(void);
+
+    //mex info
+private:
+    static std::string mexFunctionName;
+public:
+    static void setMexFunctionName(const std::string& name);
+    static std::string& getMexFunctionName();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

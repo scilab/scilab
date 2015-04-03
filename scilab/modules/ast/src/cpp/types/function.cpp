@@ -336,18 +336,31 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
 
     ReturnValue retVal = Callable::OK;
 
+    char* name = wide_string_to_UTF8(getName().c_str());
+    ConfigVariable::setMexFunctionName(name);
+    FREE(name);
+
     int nlhs = _iRetCount;
     int** plhs = new int*[nlhs];
     memset(plhs, 0x00, sizeof(int*) * nlhs);
 
     int nrhs = (int)in.size();
     int** prhs = new int*[nrhs];
-    for (int i = 0 ; i < nrhs ; i++)
+    for (int i = 0; i < nrhs; i++)
     {
         prhs[i] = (int*)(in[i]);
     }
 
-    m_pOldFunc(nlhs, plhs, nrhs, prhs);
+    try
+    {
+        m_pOldFunc(nlhs, plhs, nrhs, prhs);
+    }
+    catch (ast::ScilabError& se)
+    {
+        delete[] plhs;
+        delete[] prhs;
+        throw se;
+    }
 
     if (_iRetCount == 1 && plhs[0] == NULL)
     {
@@ -355,11 +368,13 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
         return retVal;
     }
 
-    for (int i = 0 ; i < nlhs ; i++)
+    for (int i = 0; i < nlhs; i++)
     {
         out.push_back((types::InternalType*)plhs[i]);
     }
 
+    delete[] plhs;
+    delete[] prhs;
     return retVal;
 }
 

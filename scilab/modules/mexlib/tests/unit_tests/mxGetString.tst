@@ -19,7 +19,7 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = mxCreateDoubleScalar(mxGetString(prhs[0], string, 20));";
 "    plhs[1] = mxCreateString(string);";
 "}"],"mexgetString.c");
-ilib_mex_build("libmextest",["getString","mexgetString","cmex"], "mexgetString.c",[],"","","","");
+ilib_mex_build("libmextest",["getString","mexgetString","cmex"], "mexgetString.c",[]);
 exec("loader.sce");
 
 [out1, out2] = getString("String to copy.");

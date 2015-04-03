@@ -19,7 +19,7 @@ mputl([ "#include ""mex.h""";
 "    int fieldnumber = mxAddField(ptr, ""another"");";
 "    mxSetFieldByNumber(ptr, 0, fieldnumber, mxCreateDoubleScalar(3));";
 "}"],"mexaddField.c");
-ilib_mex_build("libmextest", ["addField", "mexaddField", "cmex"], "mexaddField.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["addField", "mexaddField", "cmex"], "mexaddField.c", []);
 exec("loader.sce");
 
 s = struct();

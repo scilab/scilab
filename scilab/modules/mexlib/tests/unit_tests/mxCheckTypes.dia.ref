@@ -25,9 +25,6 @@ mputl(["#include ""mex.h""";
 "    if (mxIsDouble(prhs[0])) {";
 "        mexPrintf(""double"");";
 "    }"
-"    if (mxIsFunction(prhs[0])) {";
-"        mexPrintf(""function_handle"");";
-"    }"
 "    if (mxIsInt8(prhs[0])) {";
 "        mexPrintf(""int8"");";
 "    }"
@@ -62,7 +59,7 @@ mputl(["#include ""mex.h""";
 "        mexPrintf(""uint64"");";
 "    }"
 "}"],"mexcheckTypes.c");
-ilib_mex_build("libmextest",["printClass","mexcheckTypes","cmex"], "mexcheckTypes.c",[],"","","","");
+ilib_mex_build("libmextest",["printClass","mexcheckTypes","cmex"], "mexcheckTypes.c",[]);
 exec("loader.sce");
 printClass(cell());
 cell
@@ -70,8 +67,6 @@ printClass("s");
 char
 printClass(1);
 double
-printClass(sum);
-function_handle
 printClass(int8(1));
 int8
 printClass(int16(1));

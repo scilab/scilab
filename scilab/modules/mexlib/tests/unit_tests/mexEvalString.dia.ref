@@ -11,12 +11,12 @@
 cd(TMPDIR);
 ilib_verbose(0);
 mputl(["#include ""mex.h""";
-       "void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
-       "{";
-       "    char *string = mxArrayToString(prhs[0]);";
-       "    plhs[0] = mxCreateDoubleScalar(mexEvalString(string));";
-       "}"],"mexevalString.c");
-ilib_mex_build("libmextest",["evalString","mexevalString","cmex"], "mexevalString.c",[],"","","","");
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    char *string = mxArrayToString(prhs[0]);";
+"    plhs[0] = mxCreateDoubleScalar(mexEvalString(string));";
+"}"],"mexevalString.c");
+ilib_mex_build("libmextest",["evalString","mexevalString","cmex"], "mexevalString.c",[]);
 exec("loader.sce");
 r = evalString("printf ""mexEvalString works!\n"";");
 mexEvalString works!

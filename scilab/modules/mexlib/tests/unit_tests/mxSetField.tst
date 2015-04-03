@@ -18,10 +18,9 @@ mputl(["#include ""mex.h""";
 "    mxSetField(prhs[0], 0, ""a"", mxCreateDoubleScalar(3));";
 "    plhs[0] = prhs[0];";
 "}"],"mexsetField.c");
-ilib_mex_build("libmextest",["setField","mexsetField","cmex"], "mexsetField.c",[],"","","","");
+ilib_mex_build("libmextest",["setField","mexsetField","cmex"], "mexsetField.c",[]);
 exec("loader.sce");
 
 
 s = struct("a", 1, "b", 2);
-r = setField(s);
-assert_checkequal(r("a"), 3);
+assert_checkequal(setField(s).a, 3);

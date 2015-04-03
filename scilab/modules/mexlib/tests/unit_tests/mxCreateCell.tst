@@ -21,7 +21,7 @@ mputl(["#include ""mex.h""";
 "    plhs[0] = pOut1;";
 "    plhs[1] = pOut2;";
 "}"],"mexCreateCell.c");
-ilib_mex_build("libmextest",["createCell","mexCreateCell","cmex"], "mexCreateCell.c",[],"","","","");
+ilib_mex_build("libmextest",["createCell","mexCreateCell","cmex"], "mexCreateCell.c",[]);
 exec("loader.sce");
 
 [out1, out2] = createCell();

@@ -20,7 +20,7 @@ mputl([ "#include ""mex.h""";
 "   int *dims = (int *) mxGetData(prhs[1]);";
 "   plhs[0] = mxCreateLogicalArray(ndim, dims);";
 "}"],"mexCreateLogicalArray.c");
-ilib_mex_build("libmextest",["createLogicalArray", "mexCreateLogicalArray", "cmex"], "mexCreateLogicalArray.c", [], "", "", "", "");
+ilib_mex_build("libmextest",["createLogicalArray", "mexCreateLogicalArray", "cmex"], "mexCreateLogicalArray.c", []);
 exec("loader.sce");
 
 a = createLogicalArray(4, int32([2 2 2 2]));

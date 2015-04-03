@@ -18,13 +18,12 @@ mputl(["#include ""mex.h""";
 "    mexPrintf(mxGetClassName(prhs[0]));";
 "}"],"mexgetClassName.c");
 
-ilib_mex_build("libmextest",["printClassName","mexgetClassName","cmex"], "mexgetClassName.c",[],"","","","");
+ilib_mex_build("libmextest",["printClassName","mexgetClassName","cmex"], "mexgetClassName.c",[]);
 exec("loader.sce");
 
 printClassName(cell());
 printClassName("s");
 printClassName(1);
-printClassName(sum);
 printClassName(int8(1));
 printClassName(int16(1));
 printClassName(int32(1));

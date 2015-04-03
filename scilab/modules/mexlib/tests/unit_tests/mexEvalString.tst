@@ -18,7 +18,7 @@ mputl(["#include ""mex.h""";
 "    char *string = mxArrayToString(prhs[0]);";
 "    plhs[0] = mxCreateDoubleScalar(mexEvalString(string));";
 "}"],"mexevalString.c");
-ilib_mex_build("libmextest",["evalString","mexevalString","cmex"], "mexevalString.c",[],"","","","");
+ilib_mex_build("libmextest",["evalString","mexevalString","cmex"], "mexevalString.c",[]);
 exec("loader.sce");
 
 r = evalString("printf ""mexEvalString works!\n"";");

@@ -26,9 +26,7 @@ mputl([ "#include ""mex.h""";
 "   pOut = mxCreateString(""Create new String"");";
 "   plhs[0] = pOut;";
 "}"],"mexCreateString.c");
-ilib_mex_build("libmextest",["createString","mexCreateString","cmex"], "mexCreateString.c",[],"","","","");
+ilib_mex_build("libmextest",["createString","mexCreateString","cmex"], "mexCreateString.c",[]);
 exec("loader.sce");
 
-ref = "Create new String";
-a = createString();
-assert_checkequal(a, ref);
+assert_checkequal(createString(), "Create new String");

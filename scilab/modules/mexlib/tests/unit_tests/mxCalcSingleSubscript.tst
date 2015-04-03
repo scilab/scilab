@@ -19,7 +19,7 @@ mputl([ "#include ""mex.h""";
 "    int ndim = mxGetScalar(prhs[1]);";
 "    plhs[0] = mxCreateDoubleScalar(mxCalcSingleSubscript(prhs[0], ndim, dims));";
 "}"],"mexcalcSingleSubscript.c");
-ilib_mex_build("libmextest", ["calcSingleSubscript", "mexcalcSingleSubscript", "cmex"], "mexcalcSingleSubscript.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["calcSingleSubscript", "mexcalcSingleSubscript", "cmex"], "mexcalcSingleSubscript.c", []);
 exec("loader.sce");
 
 a = zeros(3, 3);

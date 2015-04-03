@@ -18,7 +18,7 @@ mputl([ "#include ""mex.h""";
 "    char *str = mxArrayToString(prhs[0]);";
 "    mexPrintf(""%s"", str);";
 "}"],"mexArrayToString.c");
-ilib_mex_build("libmextest", ["arrayToString", "mexArrayToString", "cmex"], "mexArrayToString.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["arrayToString", "mexArrayToString", "cmex"], "mexArrayToString.c", []);
 exec("loader.sce");
 
 arrayToString("hello world");

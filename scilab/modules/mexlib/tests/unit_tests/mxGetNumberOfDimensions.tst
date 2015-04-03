@@ -27,11 +27,8 @@ mputl([ "#include ""mex.h""";
 "   pOut = mxCreateDoubleScalar((double)iDims);";
 "   plhs[0] = pOut;";
 "}"],"mexGetNumberOfDimensions.c");
-ilib_mex_build("libmextest",["getDims","mexGetNumberOfDimensions","cmex"], "mexGetNumberOfDimensions.c",[],"","","","");
+ilib_mex_build("libmextest",["getDims","mexGetNumberOfDimensions","cmex"], "mexGetNumberOfDimensions.c",[]);
 exec("loader.sce");
 
 a = ones(5,4,3,2);
-iDims = getDims(a);
-assert_checkequal(iDims, 4);
-
-
+assert_checkequal(getDims(a), 4);

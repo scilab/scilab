@@ -19,7 +19,7 @@ mputl([ "#include ""mex.h""";
 "    char *name = mxArrayToString(prhs[1]);";
 "    mxArray *pOut = mexPutVariable(workspace, name, prhs[2]);";
 "}"],"mexputVariable.c");
-ilib_mex_build("libmextest", ["putVariable", "mexputVariable", "cmex"], "mexputVariable.c", [], "", "", "", "");
+ilib_mex_build("libmextest", ["putVariable", "mexputVariable", "cmex"], "mexputVariable.c", []);
 exec("loader.sce");
 
 global globalvar;

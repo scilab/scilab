@@ -56,6 +56,11 @@ struct Variable
         }
     }
 
+    void put(ScopedVariable* pSV)
+    {
+        stack.push(pSV);
+    }
+
     void put(types::InternalType* _pIT, int _iLevel)
     {
         if (isGlobal() && isGlobalVisible(_iLevel))
@@ -154,7 +159,6 @@ struct Variable
         {
             stack.push(new ScopedVariable(_iLevel, types::Double::Empty()));
         }
-
 
         top()->m_globalVisible = _bVisible;
     }
@@ -256,8 +260,7 @@ struct Variables
                 ScopedVariable* pSave = it->second->top();
                 it->second->pop();
                 types::InternalType* pIT = getAllButCurrentLevel(_key, _iLevel);
-                it->second->put(pSave->m_pIT, pSave->m_iLevel);
-                delete pSave;
+                it->second->put(pSave);
                 return pIT;
             }
         }
@@ -465,9 +468,8 @@ struct Variables
             _var->pop();
             putInPreviousScope(_var, _pIT, _iLevel);
             //decresef ref before, increase it in put
-            pVar->m_pIT->DecreaseRef();
-            _var->put(pVar->m_pIT, pVar->m_iLevel);
-            delete pVar;
+            //pVar->m_pIT->DecreaseRef();
+            _var->put(pVar);
         }
         else
         {

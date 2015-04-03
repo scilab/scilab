@@ -19,8 +19,7 @@ mputl(["#include ""mex.h""";
 "    mxArray* pOut = mxCreateDoubleScalar(dblInf);";
 "    plhs[0] = pOut;";
 "}"],"mexgetInf.c");
-ilib_mex_build("libmextest",["getInf","mexgetInf","cmex"], "mexgetInf.c",[],"","","","");
+ilib_mex_build("libmextest",["getInf","mexgetInf","cmex"], "mexgetInf.c",[]);
 exec("loader.sce");
 
-a = getInf();
-assert_checkequal(a, %inf);
+assert_checkequal(getInf(), %inf);

@@ -27,22 +27,18 @@ mputl([ "#include ""mex.h""";
 "   pOut = mxCreateDoubleScalar((double)iSize);";
 "   plhs[0] = pOut;";
 "}"],"mexGetNumberOfElements.c");
-ilib_mex_build("libmextest",["getNumberOfElements","mexGetNumberOfElements","cmex"], "mexGetNumberOfElements.c",[],"","","","");
+ilib_mex_build("libmextest",["getNumberOfElements","mexGetNumberOfElements","cmex"], "mexGetNumberOfElements.c",[]);
 exec("loader.sce");
 
 a = ones(1);
-var = getNumberOfElements(a);
-assert_checkequal(var, size(a, "*"));
+assert_checkequal(getNumberOfElements(a), size(a, "*"));
 
 a = ones(1, 2);
-var = getNumberOfElements(a);
-assert_checkequal(var, size(a, "*"));
+assert_checkequal(getNumberOfElements(a), size(a, "*"));
 
 a = ones(1, 2, 3);
-var = getNumberOfElements(a);
-assert_checkequal(var, size(a, "*"));
+assert_checkequal(getNumberOfElements(a), size(a, "*"));
 
 a = ones(1, 2, 3, 4);
-var = getNumberOfElements(a);
-assert_checkequal(var, size(a, "*"));
+assert_checkequal(getNumberOfElements(a), size(a, "*"));
 
