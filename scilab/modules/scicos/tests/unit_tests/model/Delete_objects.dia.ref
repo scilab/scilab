@@ -281,7 +281,8 @@ propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 // Consecutively delete the diagram objects,
 // check that they were replaced with "Deleted" mlists.
-scs_m.objs(1)=scicos_new("Deleted");
+DeletedBlock = mlist("Deleted");
+scs_m.objs(1) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
@@ -306,8 +307,8 @@ propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 20 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(1), mlist("Deleted"));
-scs_m.objs(2)=scicos_new("Deleted");
+assert_checkequal(scs_m.objs(1), DeletedBlock);
+scs_m.objs(2) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 16 , BLOCK , INPUTS ) : SUCCESS
@@ -329,24 +330,24 @@ objectDeleted( 19 , PORT )
 objectDeleted( 16 , BLOCK )
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(2), mlist("Deleted"));
-scs_m.objs(3)=scicos_new("Deleted");
+assert_checkequal(scs_m.objs(2), DeletedBlock);
+scs_m.objs(3) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 20 , LINK )
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(3), mlist("Deleted"));
-scs_m.objs(4)=scicos_new("Deleted");
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+scs_m.objs(4) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 21 , LINK )
-assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+assert_checkequal(scs_m.objs(4), DeletedBlock);
 // Test that all objects are simultaneously "deleted"
-assert_checkequal(scs_m.objs(1), mlist("Deleted"));
-assert_checkequal(scs_m.objs(2), mlist("Deleted"));
-assert_checkequal(scs_m.objs(3), mlist("Deleted"));
-assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+assert_checkequal(scs_m.objs(1), DeletedBlock);
+assert_checkequal(scs_m.objs(2), DeletedBlock);
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+assert_checkequal(scs_m.objs(4), DeletedBlock);
 // Check that all the model items are freed
 clear
 propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS

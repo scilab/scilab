@@ -2099,7 +2099,7 @@ function scs_m_new=do_version27(scs_m)
         scs_m_new.props.options.Background=[8 1]
     end
 
-    scs_m_new.objs(1)=scicos_new("Deleted") // not to change the internal numbering
+    scs_m_new.objs(1)=mlist("Deleted") // not to change the internal numbering
     n=lstsize(scs_m)
     back_col=8   //white background
 
@@ -2175,7 +2175,7 @@ function scs_m_new=do_version27(scs_m)
             objsi.graphics.exprs=o(2)(4)
             scs_m_new.objs(i)=objsi
         elseif o(1)=="Deleted" then
-            scs_m_new.objs(i)=scicos_new("Deleted")
+            scs_m_new.objs(i)=mlist("Deleted")
         end
     end
 
@@ -2272,7 +2272,7 @@ function scs_m_new=do_versionxx(scs_m)
     if typeof(scs_m(1))<>"params" then scs_m_new=scs_m,return,end
     scs_m_new=scicos_diagram()
     scs_m_new.props=scs_m(1)
-    scs_m_new.objs(1)=scicos_new("Deleted") // not to change the internal numbering
+    scs_m_new.objs(1)=mlist("Deleted") // not to change the internal numbering
     n=lstsize(scs_m)
     for i=2:n //loop on objects
         o=scs_m(i)

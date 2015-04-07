@@ -48,7 +48,6 @@ Adapters::Adapters()
 
     adapters.push_back(adapter_t(view_scilab::BlockAdapter::getSharedTypeStr(), BLOCK_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::CprAdapter::getSharedTypeStr(), CPR_ADAPTER));
-    adapters.push_back(adapter_t(L"Deleted", DELETED_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::DiagramAdapter::getSharedTypeStr(), DIAGRAM_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::GraphicsAdapter::getSharedTypeStr(), GRAPHIC_ADAPTER));
     adapters.push_back(adapter_t(view_scilab::LinkAdapter::getSharedTypeStr(), LINK_ADAPTER));

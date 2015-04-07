@@ -31,7 +31,6 @@ public:
     {
         BLOCK_ADAPTER = 0,  //!< \see view_scilab::BlockAdapter
         CPR_ADAPTER,        //!< \see view_scilab::CprAdapter
-        DELETED_ADAPTER,    //!< \see view_scilab::DeletedAdapter
         DIAGRAM_ADAPTER,    //!< \see view_scilab::DiagramAdapter
         GRAPHIC_ADAPTER,    //!< \see view_scilab::GraphicAdapter
         LINK_ADAPTER,       //!< \see view_scilab::LinkAdapter

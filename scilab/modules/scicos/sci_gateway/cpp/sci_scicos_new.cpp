@@ -186,10 +186,6 @@ types::Function::ReturnValue sci_scicos_new(types::typed_list &in, int _iRetCoun
             }
             out.push_back(returnType);
             break;
-        case view_scilab::Adapters::DELETED_ADAPTER:
-            returnType = new types::List();
-            out.push_back(returnType);
-            break;
         case view_scilab::Adapters::DIAGRAM_ADAPTER:
             returnType = alloc_and_set<view_scilab::DiagramAdapter, model::Diagram>(DIAGRAM, type_name, in);
             if (returnType == 0)
