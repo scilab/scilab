@@ -70,7 +70,7 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::acosh(pInR[i]);
+                pOutR[i] = acosh(pInR[i]);
             }
         }
 

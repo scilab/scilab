@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_atanh(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::atanh(pInR[i]);
+                pOutR[i] = atanh(pInR[i]);
             }
         }
 

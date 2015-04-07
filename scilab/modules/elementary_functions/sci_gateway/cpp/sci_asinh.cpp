@@ -71,7 +71,7 @@ types::Function::ReturnValue sci_asinh(types::typed_list &in, int _iRetCount, ty
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = std::asinh(pInR[i]);
+                pOutR[i] = asinh(pInR[i]);
             }
         }
 
