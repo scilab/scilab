@@ -803,9 +803,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_color_range_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_color_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_colored_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
