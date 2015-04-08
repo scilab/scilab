@@ -30,7 +30,7 @@ extern "C"
 #include "charEncoding.h" /* wide_string_to_UTF8 */
 }
 
-bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> &_pvStructList, std::string _szLevel)
+bool parseListItem(types::List* pIn, int _iItemCount, std::vector<std::string>& _pvStructList, const std::string& _szLevel)
 {
     char* cstr; // Buffer
 
@@ -39,11 +39,12 @@ bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> 
     // Parse item
     for (int i = 2; i < _iItemCount; ++i) // Look for tlists in the passed list pIn
     {
-        if (!pIn->get(i)->isTList()) // Potential tree
+        if (pIn->get(i)->isTList() == false) // Potential tree
         {
             // Go up, it is finished for this node
             return true;
         }
+
         types::TList* tlist = pIn->get(i)->getAs<types::TList>();
 
         // Retrieve next item
@@ -54,7 +55,7 @@ bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> 
         }
 
         // Get first element as a string
-        if (!tlist->get(0)->isString())
+        if (tlist->get(0)->isString() == false)
         {
             return false;
         }
@@ -65,19 +66,17 @@ bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> 
         }
 
         // Check tree structure
-        cstr = wide_string_to_UTF8(strItem1->get(0));
-        if (strcmp(cstr, TREE_REF_NAME) != 0)
+        if (wcscmp(strItem1->get(0), TREE_REF_NAME) != 0)
         {
-            FREE(cstr);
             return false;
         }
-        FREE(cstr);
 
         // Get the second element as a struct
-        if (!tlist->get(1)->isStruct())
+        if (tlist->get(1)->isStruct() == false)
         {
             return false;
         }
+
         types::Struct* node = tlist->get(1)->getAs<types::Struct>();
         types::String* fields = node->get(0)->getFieldNames();
         if (fields->getSize() < 3)
@@ -94,54 +93,60 @@ bool bParseListItem(types::List* pIn, int _iItemCount, std::vector<std::string> 
 
         _pvStructList.push_back(szCurLvl);
 
-        types::InternalType* temp;
+        types::InternalType* temp = nullptr;
 
         // Get label name
         temp = node->get(0)->get(Label);
-        if (!temp->isString())
+        if (temp->isString() == false)
         {
             return false;
         }
+
         types::String* strLabel = temp->getAs<types::String>();
         if (strLabel->getSize() != 1)
         {
             return false;
         }
+
         cstr = wide_string_to_UTF8(strLabel->get(0));
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
         // Get icon name
         temp = node->get(0)->get(Icon);
-        if (!temp->isString())
+        if (temp->isString() == false)
         {
             return false;
         }
+
         types::String* strIcon = temp->getAs<types::String>();
         if (strIcon->getSize() != 1)
         {
             return false;
         }
+
         cstr = wide_string_to_UTF8(strIcon->get(0));
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
         // Get callback name
         temp = node->get(0)->get(Callback);
-        if (!temp->isString())
+        if (temp->isString() == false)
         {
             return false;
         }
+
         types::String* strCallback = temp->getAs<types::String>();
         if (strCallback->getSize() != 1)
         {
             return false;
         }
+
         cstr = wide_string_to_UTF8(strCallback->get(0));
         _pvStructList.push_back(std::string(cstr));
         FREE(cstr);
 
-        bParseListItem(tlist, iItemCount, _pvStructList, szCurLvl);
+        parseListItem(tlist, iItemCount, _pvStructList, szCurLvl);
     }
 
     return true;

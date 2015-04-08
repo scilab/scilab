@@ -20,16 +20,15 @@
 #include <string>
 #include <sstream>
 
+#include "dynlib_gui.h"
 #include "list.hxx"
 
-using namespace std;
-
-#define TREE_REF_NAME "uitree"
+#define TREE_REF_NAME L"uitree"
 
 static const std::wstring Label(L"label");
 static const std::wstring Icon(L"icon");
 static const std::wstring Callback(L"callback");
 
-bool bParseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, std::string _szLevel);
+GUI_IMPEXP bool parseListItem(types::List* pIn, int icountItem, std::vector<std::string> &_pvStructList, const std::string& _szLevel);
 
 #endif /* __DISPLAYTREE__ */

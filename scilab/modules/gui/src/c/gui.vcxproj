@@ -284,7 +284,6 @@
     <ClCompile Include="messageboxoptions.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ClipBoard.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_delmenu.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_displaytree.cpp" />
     <ClCompile Include="..\..\sci_gateway\c\sci_exportUI.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_getcallbackobject.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_getinstalledlookandfeels.cpp" />
