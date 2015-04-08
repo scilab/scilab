@@ -495,6 +495,12 @@ void* scilabReadAndExecCommand(void* param)
             continue;
         }
 
+        // empty command
+        if (command == NULL || strlen(command) == 0)
+        {
+            continue;
+        }
+
         _pSEI->isInterruptible = iInterruptibleCmd;
         _pSEI->isPrioritary = iPrioritaryCmd;
         _pSEI->isConsoleCommand = iConsoleCmd;
