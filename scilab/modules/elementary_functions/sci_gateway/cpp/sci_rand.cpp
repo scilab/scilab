@@ -32,7 +32,7 @@ const wchar_t g_pwstTypeUniform[] = {L"uniform"};
 const wchar_t g_pwstTypeNormal[] = {L"normal"};
 
 int setRandType(wchar_t _wcType);
-void getNextRandValue(int _iRandType, int* _piRandSave, double* _dbl, int size, int _iForceInit);
+double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
 /*
 clear a;nb = 2500;a = rand(nb, nb);tic();rand(a);toc
@@ -50,9 +50,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
     if (iSizeIn == 0 || iSizeIn == -1)
     {
         //rand or rand()
-
-        double dblRand = 0;
-        getNextRandValue(siRandType, &siRandSave, &dblRand, 1, iForceInit);
+        double dblRand = getNextRandValue(siRandType, &siRandSave, 0);
         out.push_back(new types::Double(dblRand));
         return types::Function::OK;
     }
@@ -176,13 +174,19 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         }
 
         double* pd = pOut->get();
-        int size = pOut->getSize();
-
-        getNextRandValue(siRandType, &siRandSave, pd, size, iForceInit);
+        for (int i = 0; i < pOut->getSize(); i++)
+        {
+            pd[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+            iForceInit = 0;
+        }
 
         if (pOut->isComplex())
         {
-            getNextRandValue(siRandType, &siRandSave, pOut->getImg(), size, iForceInit);
+            double* pImg = pOut->getImg();
+            for (int i = 0; i < pOut->getSize(); i++)
+            {
+                pImg[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
+            }
         }
         out.push_back(pOut);
         //retore previous law
@@ -192,13 +196,14 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
-void getNextRandValue(int _iRandType, int* _piRandSave, double* _dbl, int size, int _iForceInit)
+double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
 {
-    static int siInit       = TRUE;
-    static double sdblImg   = 0;
-    static double sdblR     = 0;
-    double dblReal          = 0;
-    double dblTemp          = 2;
+    static int siInit = TRUE;
+    static double sdblImg = 0;
+    static double sdblR = 0;
+    double dblReal = 0;
+    double dblVal = 0;
+    double dblTemp = 2;
 
     if (_iForceInit)
     {
@@ -207,37 +212,28 @@ void getNextRandValue(int _iRandType, int* _piRandSave, double* _dbl, int size, 
 
     if (_iRandType == 0)
     {
-        for (int i = 0; i < size; ++i)
-        {
-            _dbl[i] = durands(_piRandSave);
-        }
+        dblVal = durands(_piRandSave);
     }
     else
     {
-        for (int i = 0; i < size; ++i)
+        if (siInit == TRUE)
         {
-            double dblVal = 0;
-            if (siInit == TRUE)
+            while (dblTemp > 1)
             {
-                while (dblTemp > 1)
-                {
-                    dblReal = 2 * durands(_piRandSave) - 1;
-                    sdblImg = 2 * durands(_piRandSave) - 1;
-                    dblTemp = dblReal * dblReal + sdblImg * sdblImg;
-                }
-                sdblR = dsqrts(-2 * dlogs(dblTemp) / dblTemp);
-                dblVal = dblReal * sdblR;
+                dblReal = 2 * durands(_piRandSave) - 1;
+                sdblImg = 2 * durands(_piRandSave) - 1;
+                dblTemp = dblReal * dblReal + sdblImg * sdblImg;
             }
-            else
-            {
-                dblVal = sdblImg * sdblR;
-            }
-
-            siInit = !siInit;
-            _dbl[i] = dblVal;
+            sdblR = dsqrts(-2 * dlogs(dblTemp) / dblTemp);
+            dblVal = dblReal * sdblR;
         }
+        else
+        {
+            dblVal = sdblImg * sdblR;
+        }
+        siInit = !siInit;
     }
-    return;
+    return dblVal;
 }
 
 int setRandType(wchar_t _wcType)
