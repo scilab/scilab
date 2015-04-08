@@ -99,3 +99,8 @@ mlEmpties = mlist(["Type" "f1" "f2" "f3" "f4" "f5", "f6"]);
 assert_checkequal(vec2var(var2vec(mlEmpties)), mlEmpties);
 mlMixed = mlist(["Type" "f1" "f2" "f3" "f4" "f5", "f6"], [], Mat, HyperMat, int32(Mat), string(Mat), Mat>15);
 assert_checkequal(vec2var(var2vec(mlMixed)), mlMixed);
+// Struct
+st = struct();
+assert_checkequal(vec2var(var2vec(st)), st);
+stFull = struct("f1", [], "f2", Mat, "f3", HyperMat, "f4", int32(Mat), "f5", string(Mat), "f6", Mat>15);
+assert_checkequal(vec2var(var2vec(stFull)), stFull);

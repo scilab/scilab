@@ -414,13 +414,8 @@ struct odstate
             return true;
         }
 
-        if (v->getType() != types::InternalType::ScilabList)
-        {
-            return false;
-        }
-
         std::vector<double> prop_content;
-        if (!var2vec(v->getAs<types::List>(), prop_content))
+        if (!var2vec(v, prop_content))
         {
             return false;
         }
@@ -748,13 +743,8 @@ struct opar
             return true;
         }
 
-        if (v->getType() != types::InternalType::ScilabList)
-        {
-            return false;
-        }
-
         std::vector<double> prop_content;
-        if (!var2vec(v->getAs<types::List>(), prop_content))
+        if (!var2vec(v, prop_content))
         {
             return false;
         }

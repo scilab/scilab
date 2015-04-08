@@ -17,7 +17,6 @@
 
 #include "types.hxx"
 #include "internal.hxx"
-#include "double.hxx"
 
 bool var2vec(types::InternalType* in, std::vector<double> &out);
 

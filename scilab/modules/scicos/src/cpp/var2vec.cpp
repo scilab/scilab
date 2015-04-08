@@ -26,6 +26,7 @@
 #include "list.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
+#include "struct.hxx"
 
 extern "C"
 {
@@ -209,11 +210,50 @@ static void encode(types::List* input, std::vector<double> &ret)
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
 }
 
+static void encode(types::Struct* input, std::vector<double> &ret)
+{
+    int iElements = 0;
+    types::String* fields;
+    if (input->getSize() > 0)
+    {
+        fields = input->get(0)->getFieldNames();
+        iElements = fields->getSize();
+    }
+    int totalSize = 2;
+
+    std::vector<std::vector<double>> fieldsContent (1 + iElements);
+    if (input->getSize() > 0)
+    {
+        // Call var2vec on the struct's fields to extract a header
+        var2vec(fields, fieldsContent[0]);
+        totalSize += static_cast<int>(fieldsContent[0].size());
+        // Now extract the fields' content
+        for (int i = 1; i < iElements + 1; ++i)
+        {
+            // Recursively call var2vec on each element and extract the obtained results
+            var2vec(input->get(0)->get(fields->get(i - 1)), fieldsContent[i]);
+            totalSize += static_cast<int>(fieldsContent[i].size());
+        }
+    }
+    // Allocation for type + fields names + fields content
+    ret.resize(totalSize);
+
+    ret[0] = input->getType();
+    ret[1] = iElements;
+    int offset = 0;
+    for (int i = 0; i < iElements + 1; ++i)
+    {
+        memcpy(&ret[2 + offset], &fieldsContent[i][0], fieldsContent[i].size() * sizeof(double));
+        offset += static_cast<int>(fieldsContent[i].size());
+    }
+    // An empty struct input will return [26; 0]
+}
+
 bool var2vec(types::InternalType* in, std::vector<double> &out)
 {
     switch (in->getType())
     {
-        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case types::InternalType::ScilabDouble :
             encode(in->getAs<types::Double>(), out);
             break;
@@ -260,8 +300,12 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
             encode(in->getAs<types::List>(), out);
             break;
 
+        case types::InternalType::ScilabStruct :
+            encode(in->getAs<types::Struct>(), out);
+            break;
+
         default :
-            Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List");
+            Scierror(999, _("%s: Wrong type for input argument #%d: %s, %s, %s, %s, %s or %s type.\n"), var2vecName.c_str(), 1, "Double", "Integer", "Boolean", "String", "List", "Struct");
             return false;
     }
 

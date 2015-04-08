@@ -1738,6 +1738,62 @@ propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
 assert_checkequal(o.model.opar, listRef);
+// With tlist
+tlistRef = tlist(["tl" "f1" "f2" "f3"], [], testHM, []);
+o.model.opar = tlistRef;
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 33 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , OPAR ) : SUCCESS
+propertyUpdated( 29 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.opar, tlistRef);
+// With struct
+structRef = struct("f1", [], "f2", testHM, "f3", []);
+o.model.opar = structRef;
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_NAME ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_FUNCTION_API ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 30 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 31 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 32 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 33 , PORT , DATATYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , STATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , DSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , ODSTATE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , RPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , OPAR ) : SUCCESS
+propertyUpdated( 29 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , LABEL ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 29 , BLOCK , UID ) : NO_CHANGES
+assert_checkequal(o.model.opar, structRef);
 // Test 'equations'
 o = VsourceAC("define")
 objectCreated( 34 , BLOCK )

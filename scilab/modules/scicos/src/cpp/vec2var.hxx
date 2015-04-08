@@ -18,12 +18,6 @@
 #include "types.hxx"
 #include "internal.hxx"
 
-extern "C"
-{
-#include "Scierror.h"
-#include "localization.h"
-}
-
 bool vec2var(const std::vector<double> in, types::InternalType* &out);
 
 #endif /* VEC2VAR_HXX_ */

@@ -26,6 +26,13 @@
 #include "list.hxx"
 #include "tlist.hxx"
 #include "mlist.hxx"
+#include "struct.hxx"
+
+extern "C"
+{
+#include "Scierror.h"
+#include "localization.h"
+}
 
 static const std::string vec2varName = "vec2var";
 
@@ -407,6 +414,64 @@ static bool readElement(const double* const input, const int iType, const int iD
                 pList->append(element);
             }
             res = pList;
+            break;
+        }
+
+        case types::InternalType::ScilabStruct :
+        {
+            if (inputRows < 2)
+            {
+                Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
+                return false;
+            }
+
+            if (iDims <= 0)
+            {
+                res = new types::Struct();
+                offset += 2;
+                break;
+            }
+
+            types::Struct* pStruct = new types::Struct(1, 1);
+
+            offset += 2;
+            // Read the header...
+            int elementType = static_cast<int>(*(input + offset));
+            if (elementType != types::InternalType::ScilabString)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: %d (String) expected.\n"), vec2varName.c_str(), 1, 11);
+                return false;
+            }
+            int elementDims = static_cast<int>(*(input + offset + 1));
+            types::InternalType* element;
+            if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
+            {
+                return false;
+            }
+            types::String* header = element->getAs<types::String>();
+            // ... and copy it in 'pStruct'
+            for (int i = 0; i < header->getSize(); ++i)
+            {
+                pStruct->get(0)->addField(header->get(i));
+            }
+
+            for (int i = 1; i < iDims + 1; ++i)
+            {
+                if (inputRows < 2 + offset)
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
+                    return false;
+                }
+                // Extract the fields content infos and recursively call readElement
+                elementType = static_cast<int>(*(input + offset));
+                elementDims = static_cast<int>(*(input + offset + 1));
+                if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
+                {
+                    return false;
+                }
+                pStruct->get(0)->set(header->get(i - 1), element);
+            }
+            res = pStruct;
             break;
         }
 
