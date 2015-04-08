@@ -35,6 +35,13 @@ types::Function::ReturnValue sci_sciargs(types::typed_list &in, int _iRetCount, 
 
     wchar_t** pwstCmdLineArgs = ConfigVariable::getCommandLineArgs(&iCount);
 
+    if (iCount == 0)
+    {
+        // call_scilab
+        out.push_back(new types::String(L""));
+        return types::Function::OK;
+    }
+
     types::String* pS = new types::String(iCount, 1);
     pS->set(pwstCmdLineArgs);
     out.push_back(pS);

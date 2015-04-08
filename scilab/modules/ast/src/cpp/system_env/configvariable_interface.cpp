@@ -191,3 +191,8 @@ dynlib_ptr getEntryPointFromPosition(int position)
 {
     return ConfigVariable::getEntryPointFromPosition(position);
 }
+
+int getForceQuit()
+{
+    return ConfigVariable::getForceQuit();
+}

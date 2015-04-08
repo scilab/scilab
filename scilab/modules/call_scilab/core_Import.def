@@ -20,3 +20,5 @@ StartScilabEngine
 ExecExternalCommand
 StopScilabEngine
 InitScilabEngineInfo
+StoreConsoleCommand
+RunScilabEngine

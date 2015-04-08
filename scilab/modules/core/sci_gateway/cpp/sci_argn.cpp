@@ -25,9 +25,6 @@ using namespace types;
 
 types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    static symbol::Variable* varIn = NULL;
-    static symbol::Variable* varOut = NULL;
-
     int iRhs = static_cast<int>(in.size());
     //check input arguments
     if (iRhs > 1)
@@ -71,29 +68,15 @@ types::Function::ReturnValue sci_argn(types::typed_list &in, int _iRetCount, typ
 
     symbol::Context* pContext = symbol::Context::getInstance();
 
-    InternalType *pIn = NULL;
-    InternalType *pOut = NULL;
-
-    if (varIn == NULL)
-    {
-        varIn = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"));
-    }
-
-    if (varOut == NULL)
-    {
-        varOut = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"));
-    }
-
-    pIn = pContext->get(varIn);
-    pOut = pContext->get(varOut);
+    InternalType* pIn = pContext->get(symbol::Symbol(L"nargin"));
+    InternalType* pOut = pContext->get(symbol::Symbol(L"nargout"));
 
     if (pIn == NULL || pOut == NULL)
     {
-        Double* pD = new Double(0);
-        out.push_back(pD);
+        out.push_back(types::Double::Empty());
         if (_iRetCount == 2)
         {
-            out.push_back(pD);
+            out.push_back(types::Double::Empty());
         }
     }
     else

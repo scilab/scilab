@@ -31,6 +31,8 @@
 #include "operations.hxx"
 #include "threadmanagement.hxx"
 
+#include "expandPathVariable.h"
+
 extern "C"
 {
 #include "machine.h"
@@ -121,8 +123,9 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->iNoBanner = 1;
 
     pSEI->iMultiLine = 0;
-    pSEI->isInterruptible = 1;  // by default all thread are interruptible
-    pSEI->isPrioritary = 0;     // by default all thread are non-prioritary
+    pSEI->isInterruptible = 1;      // by default all thread are interruptible
+    pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
+    pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
 
     return pSEI;
 }
@@ -131,6 +134,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
     ConfigVariable::setStartProcessing(true);
+    ConfigVariable::setForceQuit(false);
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -159,7 +163,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #ifdef _MSC_VER
     //get current console window and hide it
     int scilabMode = getScilabMode();
-    if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW)
+    if (scilabMode == SCILAB_STD || scilabMode == SCILAB_NW || scilabMode == SCILAB_API)
     {
         CreateScilabHiddenWndThread();
     }
@@ -404,6 +408,11 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         TerminateGraphics();
         TerminateJVM();
     }
+
+    // reset struct to prevent the use of deleted objects
+    // when we start scilab again without kill process (ie: call_scilab)
+    resetVariableValueDefinedInScilab();
+
     /* TerminateCorePart2 */
 
     //clear opened files
@@ -445,6 +454,8 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
      */
     terminateMutexClosingScilab();
 #endif
+
+    ConfigVariable::clearLastError();
     ConfigVariable::setEndProcessing(false);
 }
 
@@ -679,7 +690,7 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 
     InitializeHistoryManager();
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
 
         char *cwd = NULL;
@@ -700,14 +711,17 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     __threadId threadIdCommand;
     __threadKey threadKeyCommand;
 
-    ThreadManagement::LockStart();
-    // thread to manage console command
-    __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
+    if (_pSEI->iStartConsoleThread)
+    {
+        ThreadManagement::LockStart();
+        // thread to manage console command
+        __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
 
-    // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
-    // to be such that the -f command stored is not removed
-    // from queue before scilabReadAndStore is waiting for.
-    ThreadManagement::WaitForStartPendingSignal();
+        // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
+        // to be such that the -f command stored is not removed
+        // from queue before scilabReadAndStore is waiting for.
+        ThreadManagement::WaitForStartPendingSignal();
+    }
 
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
@@ -862,7 +876,7 @@ static void checkForLinkerErrors(void)
 #define LINKER_ERROR_1 "Scilab startup function detected that the function proposed to the engine is the wrong one. Usually, it comes from a linker problem in your distribution/OS.\n"
 #define LINKER_ERROR_2 "If you do not know what it means, please report a bug on http://bugzilla.scilab.org/. If you do, you probably know that you should change the link order in SCI/modules/Makefile.am\n"
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
         if (isItTheDisabledLib())
         {
@@ -870,7 +884,6 @@ static void checkForLinkerErrors(void)
             fprintf(stderr, "Here, Scilab should have 'libscijvm' defined but gets 'libscijvm-disable' instead.\n");
             fprintf(stderr, LINKER_ERROR_2);
             exit(1);
-
         }
     }
     else

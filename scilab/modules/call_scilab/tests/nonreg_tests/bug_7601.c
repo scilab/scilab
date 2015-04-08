@@ -2,7 +2,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2010 - DIGITEO - Allan CORNET
 // Copyright (C) 2015 - Scilab-Enterprises - Cedric Delamarre
-//
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
@@ -18,11 +17,20 @@
 // <-- Short Description -->
 // call_scilab C functions did not check if engine is started.
 
-// export SCI=/your/scilab/install/share/scilab
-// export LD_LIBRARY_PATH=/your/scilab/install/lib/scilab/:/your/scilab/install/lib/thirdparty/
-// make bug_7601
-// ./bug_7601
+// Create a C code to use call_scilab:
 
-// display   - 42.    42.
+#include <stdlib.h>
+#include <stdio.h>
+#include "call_scilab.h"
 
-// default value returned by main will be -1
+int main(void)
+{
+#ifdef _MSC_VER
+    StartScilab(NULL, NULL, 0);
+#else
+    StartScilab(getenv("SCI"), NULL, 0);
+#endif
+    SendScilabJob("disp([2,3]+[-44,39]);"); // Will display   - 42.    42.
+    TerminateScilab(NULL);
+    return SendScilabJob("disp([2,3]+[-44,39]);");
+}

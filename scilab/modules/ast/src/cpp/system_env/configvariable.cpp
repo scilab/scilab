@@ -221,7 +221,7 @@ int ConfigVariable::getConsoleLines(void)
 ** \{
 */
 
-int ConfigVariable::m_iScilabMode = 0;
+int ConfigVariable::m_iScilabMode = 1; //SCILAB_API = 1  Scilab is launch as an API
 
 void ConfigVariable::setScilabMode(int _iScilabMode)
 {
@@ -878,13 +878,16 @@ void ConfigVariable::setCommandLineArgs(int _iArgs, char** _pstArgs)
 
 wchar_t** ConfigVariable::getCommandLineArgs(int* _piCount)
 {
-    wchar_t** pwstArgs = (wchar_t**)MALLOC(m_Args.size() * sizeof(wchar_t*));
-    for (int i = 0 ; i < (int)m_Args.size() ; i++)
-    {
-        pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
-    }
-
+    wchar_t** pwstArgs = NULL;
     *_piCount = (int)m_Args.size();
+    if (*_piCount != 0)
+    {
+        pwstArgs = (wchar_t**)MALLOC(*_piCount * sizeof(wchar_t*));
+        for (int i = 0; i < *_piCount; i++)
+        {
+            pwstArgs[i] = os_wcsdup(m_Args[i].c_str());
+        }
+    }
     return pwstArgs;
 }
 

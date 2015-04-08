@@ -28,19 +28,24 @@
 extern "C"
 {
 #endif
-    /**
-    * expand in_name to produce out_name
-    * @param[in] string where to find a variable and expand
-    * @return string with expanded variable
-    */
-    FILEIO_IMPEXP char *expandPathVariable(char* str);
+/**
+* expand in_name to produce out_name
+* @param[in] string where to find a variable and expand
+* @return string with expanded variable
+*/
+FILEIO_IMPEXP char *expandPathVariable(char* str);
 
-    /**
-    * expand in_name to produce out_name (wide string)
-    * @param[in] wide string where to find a variable and expand
-    * @return wide string with expanded variable
-    */
-    FILEIO_IMPEXP wchar_t *expandPathVariableW(wchar_t *wcstr);
+/**
+* expand in_name to produce out_name (wide string)
+* @param[in] wide string where to find a variable and expand
+* @return wide string with expanded variable
+*/
+FILEIO_IMPEXP wchar_t *expandPathVariableW(wchar_t *wcstr);
+
+/**
+* set NULL to all scilab "Variable" (ie: SCI, SCIHOME, ....)
+*/
+FILEIO_IMPEXP void resetVariableValueDefinedInScilab(void);
 
 #ifdef __cplusplus
 }

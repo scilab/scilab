@@ -166,6 +166,14 @@ wchar_t *getVariableValueDefinedInScilab(VARIABLEALIAS* _var)
     return NULL;
 }
 /*--------------------------------------------------------------------------*/
+void resetVariableValueDefinedInScilab(void)
+{
+    for (int i = 0; i < NB_ALIAS; i++)
+    {
+        VARIABLES_words[i].var = NULL;
+    }
+}
+/*--------------------------------------------------------------------------*/
 wchar_t *convertFileSeparators(wchar_t *wcStr)
 {
     if (wcStr)

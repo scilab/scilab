@@ -37,8 +37,8 @@ int SendScilabJob(char *job)
     int retCode = -1;
     char *command = NULL;
 
-#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;"
-#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;quit;"
+#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\");"
+#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;"
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STOP)
     {
@@ -53,10 +53,6 @@ int SendScilabJob(char *job)
         double Err_Job = 0.;
         int m = 0, n = 0;
         ScilabEngineInfo* pSEI = InitScilabEngineInfo();
-
-        /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        pSEI->pstExec = COMMAND_CLEAR;
-        ExecExternalCommand(pSEI);
 
         SetLastJob(command);
 
@@ -78,8 +74,6 @@ int SendScilabJob(char *job)
             FREE(pSEI);
             return retCode;
         }
-
-
 
         /* Run the command within an execstr */
         pSEI->pstExec = COMMAND_EXECSTR;

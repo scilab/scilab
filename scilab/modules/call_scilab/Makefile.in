@@ -567,6 +567,7 @@ libscicall_scilab_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/src/c/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscicall_scilab.la

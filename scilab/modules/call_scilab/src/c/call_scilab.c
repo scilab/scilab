@@ -24,7 +24,7 @@
 #include "sci_path.h"
 #include "scilabDefaults.h"
 #include "sci_tmpdir.h"
-//#include "scirun.h"
+#include "Thread_Wrapper.h"
 #include "storeCommand.h"
 #include "FigureList.h"
 #include "api_scilab.h"
@@ -49,7 +49,8 @@ static void TermPrintf(const char *text)
     printf("%s", text);
 }
 
-
+static ScilabEngineInfo* pGlobalSEI = NULL;
+static __threadId threadIdScilab;
 
 /*--------------------------------------------------------------------------*/
 static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
@@ -77,19 +78,17 @@ BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize)
 * -1: already running
 * -2: Could not find SCI
 * -3: No existing directory
-* 10001: Stacksize failed (not enought memory ?).
 * Any other positive integer: A Scilab internal error
 */
 
-#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1); exit(_errorCall_ScilabOpen);"
+#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1);"
 
 int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
+    __threadKey threadKeyScilab;
     char *InitStringToScilab = NULL;
     static int iflag = -1, ierr = 0;
-    ScilabEngineInfo* pSEI = NULL;
 
-    setScilabMode(SCILAB_API);
     if (advancedMode == FALSE)
     {
         DisableInteractiveMode();
@@ -120,24 +119,31 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
         }
     }
 
-    pSEI = InitScilabEngineInfo();
+    pGlobalSEI = InitScilabEngineInfo();
     if (ScilabStartup)
     {
         int lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartup) + 1);
         InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
         sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartup);
-        pSEI->iNoStart = 1;
+        pGlobalSEI->iNoStart = 1;
     }
 
     setScilabInputMethod(&getCmdLine);
     setScilabOutputMethod(&TermPrintf);
 
     /* Scilab Initialization */
-    pSEI->pstFile = InitStringToScilab;
-    pSEI->iNoJvm = 1;
-    pSEI->iConsoleMode = 1;
-    ierr = StartScilabEngine(pSEI);
-    FREE(pSEI);
+    pGlobalSEI->pstFile = InitStringToScilab;
+    pGlobalSEI->iConsoleMode = 1;
+    pGlobalSEI->iStartConsoleThread = 0;
+
+    if (getScilabMode() != SCILAB_NWNI)
+    {
+        pGlobalSEI->iNoJvm = 1;
+    }
+
+    pGlobalSEI->iNoJvm = 0;
+
+    ierr = StartScilabEngine(pGlobalSEI);
 
     if (InitStringToScilab)
     {
@@ -147,8 +153,11 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     if (ierr)
     {
+        FREE(pGlobalSEI);
         return ierr;
     }
+
+    __CreateThreadWithParams(&threadIdScilab, &threadKeyScilab, &RunScilabEngine, pGlobalSEI);
 
     setCallScilabEngineState(CALL_SCILAB_ENGINE_STARTED);
 
@@ -160,14 +169,29 @@ BOOL TerminateScilab(char *ScilabQuit)
 {
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
     {
-        ScilabEngineInfo* pSEI = InitScilabEngineInfo();
-        pSEI->pstFile = ScilabQuit;
-        StopScilabEngine(pSEI);
+        if (getForceQuit() == 0)
+        {
+            if (pGlobalSEI->iNoStart)
+            {
+                StoreConsoleCommand("exit(_errorCall_ScilabOpen)");
+            }
+            else
+            {
+                StoreConsoleCommand("exit()");
+            }
+        }
+
+        __WaitThreadDie(threadIdScilab);
+        pGlobalSEI->pstFile = ScilabQuit;
+        StopScilabEngine(pGlobalSEI);
 
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
 
         /* restore default mode */
         setScilabMode(SCILAB_API);
+
+        FREE(pGlobalSEI);
+        pGlobalSEI = NULL;
 
         return TRUE;
     }
@@ -249,8 +273,6 @@ char *getLastErrorMessageSingle(void)
 int getLastErrorValue(void)
 {
     /* defined in lasterror.h */
-    // FIXME : Call system_env function
-    //return getInternalLastErrorValue();
-    return 0;
+    return getLastErrorNumber();
 }
 /*--------------------------------------------------------------------------*/

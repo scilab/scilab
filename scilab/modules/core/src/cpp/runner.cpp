@@ -52,7 +52,7 @@ void *Runner::launch(void *args)
         ConfigVariable::resetWhereError();
     }
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)
     {
         char *cwd = NULL;
         int err = 0;

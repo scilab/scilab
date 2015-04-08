@@ -40,6 +40,7 @@ typedef struct
     int isInterruptible;
     int isPrioritary;
     int isConsoleCommand;
+    int iStartConsoleThread;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();
