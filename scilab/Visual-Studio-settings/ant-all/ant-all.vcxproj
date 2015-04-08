@@ -72,13 +72,13 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
@@ -86,13 +86,13 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanComma
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <NMakePreprocessorDefinitions>WIN32;_DEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
@@ -100,13 +100,13 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanComma
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK32)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
@@ -114,13 +114,13 @@ cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanComma
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <NMakePreprocessorDefinitions>WIN32;NDEBUG;$(NMakePreprocessorDefinitions)</NMakePreprocessorDefinitions>
-    <NMakeBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant</NMakeBuildCommandLine>
-    <NMakeReBuildCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeReBuildCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean &amp;&amp; call ant</NMakeReBuildCommandLine>
-    <NMakeCleanCommandLine>set JAVA_HOME=$(SolutionDir)java\jdk
+    <NMakeCleanCommandLine>set JAVA_HOME=$(SCILAB_JDK64)
 set PATH=$(SolutionDir)java\ant\bin;%PATH%;
 cd $(SolutionDir)modules\prebuildjava &amp;&amp; call ant clean</NMakeCleanCommandLine>
     <NMakeOutput>
