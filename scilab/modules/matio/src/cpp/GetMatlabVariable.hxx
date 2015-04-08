@@ -15,6 +15,9 @@
 
 #include "gatewaystruct.hxx"
 #include "double.hxx"
+#include "int.hxx"
+#include "struct.hxx"
+#include "context.hxx"
 
 extern "C"
 {
@@ -23,6 +26,8 @@ extern "C"
 }
 
 
-matvar_t * GetDoubleMatVar(types::Double* pDblIn, const char* name, int matfile_version);
+matvar_t* GetDoubleMatVar(types::Double* pDblIn, const char* name, int matfile_version);
+
+matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char* name);
 
 #endif /* !__GETMATLABVARIABLE_HXX__ */

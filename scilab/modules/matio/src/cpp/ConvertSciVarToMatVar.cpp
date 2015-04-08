@@ -42,58 +42,23 @@ matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name, int matfile
         }
         break;
         case GenericType::ScilabInt8:
-        {
-            Int8* pInt8 = pIT->getAs<Int8>();
-            return Mat_VarCreate(name, MAT_C_INT8, MAT_T_INT8, Dims, psize_t, pInt8->get(), 0);
-        }
-        break;
         case GenericType::ScilabUInt8:
-        {
-            UInt8* pUInt8 = pIT->getAs<UInt8>();
-            return Mat_VarCreate(name, MAT_C_INT8, MAT_T_INT8, Dims, psize_t, pUInt8->get(), 0);
-        }
-        break;
         case GenericType::ScilabInt16:
-        {
-            Int16* pInt16 = pIT->getAs<Int16>();
-            return Mat_VarCreate(name, MAT_C_INT16, MAT_T_INT16, Dims, psize_t, pInt16->get(), 0);
-        }
-        break;
         case GenericType::ScilabUInt16:
-        {
-            UInt16* pUInt16 = pIT->getAs<UInt16>();
-            return Mat_VarCreate(name, MAT_C_INT16, MAT_T_INT16, Dims, psize_t, pUInt16->get(), 0);
-        }
-        break;
         case GenericType::ScilabInt32:
-        {
-            Int32* pInt32 = pIT->getAs<Int32>();
-            return Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, Dims, psize_t, pInt32->get(), 0);
-        }
-        break;
         case GenericType::ScilabUInt32:
-        {
-            UInt32* pUInt32 = pIT->getAs<UInt32>();
-            return Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, Dims, psize_t, pUInt32->get(), 0);
-        }
-        break;
 #ifdef __SCILAB_INT64__
         case GenericType::ScilabInt64:
+        case GenericType::ScilabUInt64:
+#endif
         {
-            Int64* pInt64 = pIT->getAs<Int64>();
-            return Mat_VarCreate(name, MAT_C_INT64, MAT_T_INT64, Dims, psize_t, pInt64->get(), 0);
+            return GetIntegerMatVar(pIT, name);
         }
         break;
-        case GenericType::ScilabUInt64:
-        {
-            UInt64* pUInt64 = pIT->getAs<UInt64>();
-            return Mat_VarCreate(name, MAT_C_INT64, MAT_T_INT64, Dims, psize_t, pUInt64->get(), 0);
-        }
-#endif
         case GenericType::ScilabString:
         {
-            String* pUInt32 = pIT->getAs<String>();
-            return Mat_VarCreate(name, MAT_C_CHAR, MAT_T_UINT8, Dims, psize_t, pUInt32->get(), 0);
+            String* pStr = pIT->getAs<String>();
+            return Mat_VarCreate(name, MAT_C_CHAR, MAT_T_UINT8, Dims, psize_t, pStr->get(), 0);
         }
         break;
         case GenericType::ScilabSparse:

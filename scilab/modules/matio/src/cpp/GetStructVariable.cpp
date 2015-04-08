@@ -14,8 +14,6 @@
  */
 
 #include "GetMatlabVariable.hxx"
-#include "struct.hxx"
-#include "context.hxx"
 #include "ConvertSciVarToMatVar.hxx"
 
 extern "C"
