@@ -13,14 +13,13 @@
  *
  */
 
-#include "gatewaystruct.hxx"
+#include "GetMatlabVariable.hxx"
 #include "struct.hxx"
 #include "context.hxx"
 #include "ConvertSciVarToMatVar.hxx"
 
 extern "C"
 {
-#include "GetMatlabVariable.h"
 #include "sci_types.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
@@ -86,7 +85,7 @@ matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matf
     {
         for (int j = 0; j < isizeFieldNames; j++)
         {
-            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)));
+            structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)), matfile_version);
             if (structEntries[i * isizeFieldNames + j] == NULL)
             {
                 FREE(structEntries);

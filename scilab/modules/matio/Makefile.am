@@ -27,7 +27,6 @@ MATIO_C_SOURCES = \
     src/c/CreateIntegerVariable.c \
     src/c/CreateSparseVariable.c \
     src/c/GetMatlabVariable.c \
-    src/c/GetDoubleVariable.c \
     src/c/GetCharVariable.c \
     src/c/GetIntegerVariable.c \
     src/c/GetMlistVariable.c \
@@ -41,7 +40,8 @@ MATIO_CPP_SOURCES = \
     src/cpp/GetCellVariable.cpp \
     src/cpp/GetStructVariable.cpp \
     src/cpp/CreateStructVariable.cpp \
-	src/cpp/ConvertSciVarToMatVar.cpp 
+	src/cpp/ConvertSciVarToMatVar.cpp \
+	src/cpp/GetDoubleVariable.cpp
 
 libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 

@@ -10,7 +10,8 @@
  *
  */
 
-#include "CreateMatlabTreeVariable.hxx"
+#include "ConvertSciVarToMatVar.hxx"
+#include "GetMatlabVariable.hxx"
 
 extern "C"
 {
@@ -20,7 +21,7 @@ extern "C"
 
 using namespace types;
 
-matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name)
+matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name, int matfile_version)
 {
     int Dims = pIT->getAs<GenericType>()->getDims();
     int* pDims = pIT->getAs<GenericType>()->getDimsArray();
@@ -37,17 +38,7 @@ matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name)
     {
         case GenericType::ScilabDouble:
         {
-            Double* pDouble = pIT->getAs<Double>();
-            if (pDouble->isComplex())
-            {
-                mat5ComplexData.Re = pDouble->get();
-                mat5ComplexData.Im = pDouble->getImg();
-                return Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, Dims, psize_t, &mat5ComplexData, MAT_F_COMPLEX);
-            }
-            else
-            {
-                return Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, Dims, psize_t, pDouble->get(), 0);
-            }
+            return GetDoubleMatVar(pIT->getAs<Double>(), name, matfile_version);
         }
         break;
         case GenericType::ScilabInt8:
@@ -149,7 +140,7 @@ matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name)
 
             for (int K = 0; K < isize; K++)
             {
-                cellEntries[K] = ConvertSciVarToMatVar(ppIT[K], name);
+                cellEntries[K] = ConvertSciVarToMatVar(ppIT[K], name, matfile_version);
                 if (cellEntries[K] == NULL)
                 {
                     FREE(cellEntries);
@@ -185,7 +176,7 @@ matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name)
             {
                 for (int j = 0; j < isizeFieldNames; j++)
                 {
-                    structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)));
+                    structEntries[i * isizeFieldNames + j] = ConvertSciVarToMatVar(ppSingleStruct[i]->get(pFieldNames->get(j)), wide_string_to_UTF8(pFieldNames->get(j)), matfile_version);
                     if (structEntries[i * isizeFieldNames + j] == NULL)
                     {
                         FREE(structEntries);

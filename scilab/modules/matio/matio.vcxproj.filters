@@ -48,9 +48,6 @@
     <ClCompile Include="src\c\GetCharVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\GetDoubleVariable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\GetIntegerVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -90,6 +87,9 @@
     <ClCompile Include="src\cpp\GetStructVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\GetDoubleVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\c\CreateMatlabVariable.h">
@@ -111,6 +111,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\cpp\ConvertSciVarToMatVar.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\GetMatlabVariable.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

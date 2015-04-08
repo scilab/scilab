@@ -168,15 +168,15 @@ am__libscimatio_algo_la_SOURCES_DIST = src/c/matfile_manager.c \
 	src/c/CreateMatlabVariable.c src/c/CreateBooleanVariable.c \
 	src/c/CreateCharVariable.c src/c/CreateDoubleVariable.c \
 	src/c/CreateIntegerVariable.c src/c/CreateSparseVariable.c \
-	src/c/GetMatlabVariable.c src/c/GetDoubleVariable.c \
-	src/c/GetCharVariable.c src/c/GetIntegerVariable.c \
-	src/c/GetMlistVariable.c src/c/GetSparseVariable.c \
-	src/cpp/CreateCellVariable.cpp \
+	src/c/GetMatlabVariable.c src/c/GetCharVariable.c \
+	src/c/GetIntegerVariable.c src/c/GetMlistVariable.c \
+	src/c/GetSparseVariable.c src/cpp/CreateCellVariable.cpp \
 	src/cpp/CreateHyperMatrixVariable.cpp \
 	src/cpp/CreateMatlabTreeVariable.cpp \
 	src/cpp/GetCellVariable.cpp src/cpp/GetStructVariable.cpp \
 	src/cpp/CreateStructVariable.cpp \
-	src/cpp/ConvertSciVarToMatVar.cpp
+	src/cpp/ConvertSciVarToMatVar.cpp \
+	src/cpp/GetDoubleVariable.cpp
 am__dirstamp = $(am__leading_dot)dirstamp
 @MATIO_TRUE@am__objects_1 =  \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-matfile_manager.lo \
@@ -187,7 +187,6 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @MATIO_TRUE@	src/c/libscimatio_algo_la-CreateIntegerVariable.lo \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-CreateSparseVariable.lo \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-GetMatlabVariable.lo \
-@MATIO_TRUE@	src/c/libscimatio_algo_la-GetDoubleVariable.lo \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-GetCharVariable.lo \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-GetIntegerVariable.lo \
 @MATIO_TRUE@	src/c/libscimatio_algo_la-GetMlistVariable.lo \
@@ -199,7 +198,8 @@ am__dirstamp = $(am__leading_dot)dirstamp
 @MATIO_TRUE@	src/cpp/libscimatio_algo_la-GetCellVariable.lo \
 @MATIO_TRUE@	src/cpp/libscimatio_algo_la-GetStructVariable.lo \
 @MATIO_TRUE@	src/cpp/libscimatio_algo_la-CreateStructVariable.lo \
-@MATIO_TRUE@	src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo
+@MATIO_TRUE@	src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo \
+@MATIO_TRUE@	src/cpp/libscimatio_algo_la-GetDoubleVariable.lo
 am_libscimatio_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2)
 libscimatio_algo_la_OBJECTS = $(am_libscimatio_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -689,7 +689,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@    src/c/CreateIntegerVariable.c \
 @MATIO_TRUE@    src/c/CreateSparseVariable.c \
 @MATIO_TRUE@    src/c/GetMatlabVariable.c \
-@MATIO_TRUE@    src/c/GetDoubleVariable.c \
 @MATIO_TRUE@    src/c/GetCharVariable.c \
 @MATIO_TRUE@    src/c/GetIntegerVariable.c \
 @MATIO_TRUE@    src/c/GetMlistVariable.c \
@@ -704,7 +703,8 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@    src/cpp/GetCellVariable.cpp \
 @MATIO_TRUE@    src/cpp/GetStructVariable.cpp \
 @MATIO_TRUE@    src/cpp/CreateStructVariable.cpp \
-@MATIO_TRUE@	src/cpp/ConvertSciVarToMatVar.cpp 
+@MATIO_TRUE@	src/cpp/ConvertSciVarToMatVar.cpp \
+@MATIO_TRUE@	src/cpp/GetDoubleVariable.cpp
 
 @MATIO_TRUE@libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 @MATIO_FALSE@GATEWAY_CPP_SOURCES = 
@@ -858,8 +858,6 @@ src/c/libscimatio_algo_la-CreateSparseVariable.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscimatio_algo_la-GetMatlabVariable.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscimatio_algo_la-GetDoubleVariable.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscimatio_algo_la-GetCharVariable.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscimatio_algo_la-GetIntegerVariable.lo:  \
@@ -887,6 +885,8 @@ src/cpp/libscimatio_algo_la-GetStructVariable.lo:  \
 src/cpp/libscimatio_algo_la-CreateStructVariable.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscimatio_algo_la-GetDoubleVariable.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscimatio-algo.la: $(libscimatio_algo_la_OBJECTS) $(libscimatio_algo_la_DEPENDENCIES) $(EXTRA_libscimatio_algo_la_DEPENDENCIES) 
@@ -944,7 +944,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-CreateMatlabVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-CreateSparseVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-GetCharVariable.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-GetIntegerVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-GetMatlabVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscimatio_algo_la-GetMlistVariable.Plo@am__quote@
@@ -956,6 +955,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscimatio_algo_la-CreateMatlabTreeVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscimatio_algo_la-CreateStructVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscimatio_algo_la-GetCellVariable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscimatio_algo_la-GetStructVariable.Plo@am__quote@
 
 .c.o:
@@ -1037,13 +1037,6 @@ src/c/libscimatio_algo_la-GetMatlabVariable.lo: src/c/GetMatlabVariable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetMatlabVariable.c' object='src/c/libscimatio_algo_la-GetMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscimatio_algo_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
-
-src/c/libscimatio_algo_la-GetDoubleVariable.lo: src/c/GetDoubleVariable.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscimatio_algo_la-GetDoubleVariable.lo -MD -MP -MF src/c/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Tpo -c -o src/c/libscimatio_algo_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Tpo src/c/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetDoubleVariable.c' object='src/c/libscimatio_algo_la-GetDoubleVariable.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscimatio_algo_la-GetDoubleVariable.lo `test -f 'src/c/GetDoubleVariable.c' || echo '$(srcdir)/'`src/c/GetDoubleVariable.c
 
 src/c/libscimatio_algo_la-GetCharVariable.lo: src/c/GetCharVariable.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscimatio_algo_la-GetCharVariable.lo -MD -MP -MF src/c/$(DEPDIR)/libscimatio_algo_la-GetCharVariable.Tpo -c -o src/c/libscimatio_algo_la-GetCharVariable.lo `test -f 'src/c/GetCharVariable.c' || echo '$(srcdir)/'`src/c/GetCharVariable.c
@@ -1187,6 +1180,13 @@ src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo: src/cpp/ConvertSciVarToMat
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ConvertSciVarToMatVar.cpp' object='src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscimatio_algo_la-ConvertSciVarToMatVar.lo `test -f 'src/cpp/ConvertSciVarToMatVar.cpp' || echo '$(srcdir)/'`src/cpp/ConvertSciVarToMatVar.cpp
+
+src/cpp/libscimatio_algo_la-GetDoubleVariable.lo: src/cpp/GetDoubleVariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscimatio_algo_la-GetDoubleVariable.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Tpo -c -o src/cpp/libscimatio_algo_la-GetDoubleVariable.lo `test -f 'src/cpp/GetDoubleVariable.cpp' || echo '$(srcdir)/'`src/cpp/GetDoubleVariable.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Tpo src/cpp/$(DEPDIR)/libscimatio_algo_la-GetDoubleVariable.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/GetDoubleVariable.cpp' object='src/cpp/libscimatio_algo_la-GetDoubleVariable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscimatio_algo_la-GetDoubleVariable.lo `test -f 'src/cpp/GetDoubleVariable.cpp' || echo '$(srcdir)/'`src/cpp/GetDoubleVariable.cpp
 
 mostlyclean-libtool:
 	-rm -f *.lo

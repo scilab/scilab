@@ -31,6 +31,6 @@ extern "C"
 
 using namespace types;
 
-matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name);
+matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name, int matfile_version);
 
 #endif /* !__CREATEMATLABTREEVARIABLE_HXX__ */

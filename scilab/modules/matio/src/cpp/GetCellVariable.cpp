@@ -75,7 +75,7 @@ matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfil
     types::InternalType** ppIT = pCell->get();
     for (K = 0; K < prodDims; K++)
     {
-        cellEntries[K] = ConvertSciVarToMatVar(ppIT[K], name);
+        cellEntries[K] = ConvertSciVarToMatVar(ppIT[K], name, matfile_version);
         if (cellEntries[K] == NULL)
         {
             FREE(cellEntries);
