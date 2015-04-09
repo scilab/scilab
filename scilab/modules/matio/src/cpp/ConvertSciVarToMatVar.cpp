@@ -62,31 +62,7 @@ matvar_t *ConvertSciVarToMatVar(InternalType* pIT, const char *name, int matfile
         break;
         case GenericType::ScilabSparse:
         {
-            Sparse* pSparse = pIT->getAs<Sparse>();
-            if (pSparse->isComplex())
-            {
-                double* pdReal = new double[isize];
-                double* pdImg = new double[isize];
-                std::complex<double> dbl;
-                for (int i = 0; i < isize; i++)
-                {
-                    dbl = pSparse->getImg(i);
-                    pdReal[i] = dbl.real();
-                    pdImg[i] = dbl.imag();
-                }
-                mat5ComplexData.Re = pdReal;
-                mat5ComplexData.Im = pdImg;
-                return Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, Dims, psize_t, &mat5ComplexData, MAT_F_COMPLEX);
-            }
-            else
-            {
-                double* pdReal = new double[isize];
-                for (int i = 0; i < isize; i++)
-                {
-                    pdReal[i] = pSparse->get(i);
-                }
-                return Mat_VarCreate(name, MAT_C_DOUBLE, MAT_T_DOUBLE, Dims, psize_t, pdReal, 0);
-            }
+            return GetSparseMatVar(pIT->getAs<Sparse>(), name);
         }
         break;
         case GenericType::ScilabCell:
