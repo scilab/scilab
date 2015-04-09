@@ -205,6 +205,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\cpp\GetCharVariable.cpp" />
     <ClCompile Include="src\cpp\GetDoubleVariable.cpp" />
     <ClCompile Include="src\cpp\GetIntegerVariable.cpp" />
+    <ClCompile Include="src\cpp\GetMlistVariable.cpp" />
     <ClCompile Include="src\cpp\GetSparseVariable.cpp" />
     <ClCompile Include="src\cpp\GetStructVariable.cpp" />
     <ClCompile Include="src\c\CreateBooleanVariable.c" />
@@ -215,7 +216,6 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\CreateSparseVariable.c" />
     <ClCompile Include="src\c\DllmainMatio.c" />
     <ClCompile Include="src\c\GetMatlabVariable.c" />
-    <ClCompile Include="src\c\GetMlistVariable.c" />
     <ClCompile Include="sci_gateway\c\gw_matio.c" />
     <ClCompile Include="src\c\matfile_manager.c" />
   </ItemGroup>

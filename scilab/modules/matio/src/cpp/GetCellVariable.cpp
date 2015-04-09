@@ -12,14 +12,13 @@
  *
  */
 
+#include "GetMatlabVariable.hxx"
 #include "gatewaystruct.hxx"
-#include "cell.hxx"
 #include "context.hxx"
 #include "ConvertSciVarToMatVar.hxx"
 
 extern "C"
 {
-#include "GetMatlabVariable.h"
 #include "sci_types.h"
 #include "api_scilab.h"
 #include "freeArrayOfString.h"
@@ -30,50 +29,55 @@ using namespace types;
 
 matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position)
 {
-    GatewayStruct* pStr = (GatewayStruct*)pvApiCtx;
-    typed_list in = *pStr->m_pIn;
-    InternalType** out = pStr->m_pOut;
-    int  Dims = 1;
-    int* pDims = NULL;
-    int prodDims = 1;
+    types::GatewayStruct* pGS = (types::GatewayStruct*)pvApiCtx;
+    types::typed_list in = *pGS->m_pIn;
 
-    int nbFields = 0;
-    int K = 0;
-    size_t *pszDims = NULL;
+    if (in[iVar - 1]->isCell() == false)
+    {
+        Scierror(999, _("%s: Wrong type for first input argument: String matrix expected.\n"), "GetCellVariable");
+        return NULL;
+    }
 
+    types::Cell* pCell = in[iVar - 1]->getAs<types::Cell>();
+
+    return GetCellMatVar(pCell, name, matfile_version);
+}
+
+matvar_t* GetCellMatVar(types::Cell* pCell, const char* name, int matfile_version)
+{
     matvar_t **cellEntries = NULL;
-    int * var_addr = NULL;
-    Cell* pCell = in[iVar - 1]->getAs<Cell>();
 
-    Dims = pCell->getDims();
-    pDims = pCell->getDimsArray();
-    prodDims = pCell->getSize();
+    int Dims = pCell->getDims();
+    int* pDims = pCell->getDimsArray();
+    int prodDims = pCell->getSize();
+
+    matvar_t* pMatVarOut = NULL;
 
     /* OTHERS LIST ENTRIES: ALL CELL VALUES */
 
-    pszDims = (size_t*)MALLOC(Dims * sizeof(size_t));
+    size_t* pszDims = (size_t*)MALLOC(Dims * sizeof(size_t));
     if (pszDims == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"), "GetCellVariable");
+        Scierror(999, _("%s: No more memory.\n"), "GetCellMatVar");
         return NULL;
     }
 
     /* Total number of entries */
-    for (K = 0; K < Dims; K++)
+    for (int K = 0; K < Dims; ++K)
     {
         pszDims[K] = ((int*)pDims)[K];
     }
 
-    cellEntries = (matvar_t **) MALLOC(sizeof(matvar_t*) * prodDims);
+    cellEntries = (matvar_t **)MALLOC(sizeof(matvar_t*) * prodDims);
     if (cellEntries == NULL)
     {
-        Scierror(999, _("%s: No more memory.\n"), "GetCellVariable");
+        Scierror(999, _("%s: No more memory.\n"), "GetCellMatVar");
         return NULL;
     }
 
 
     types::InternalType** ppIT = pCell->get();
-    for (K = 0; K < prodDims; K++)
+    for (int K = 0; K < prodDims; ++K)
     {
         cellEntries[K] = ConvertSciVarToMatVar(ppIT[K], name, matfile_version);
         if (cellEntries[K] == NULL)
@@ -84,5 +88,9 @@ matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfil
         }
     }
 
-    return Mat_VarCreate(name, MAT_C_CELL, MAT_T_CELL, Dims, pszDims, cellEntries, 0);
+    pMatVarOut = Mat_VarCreate(name, MAT_C_CELL, MAT_T_CELL, Dims, pszDims, cellEntries, 0);
+
+    FREE(pszDims);
+
+    return pMatVarOut;
 }

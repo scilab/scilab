@@ -48,9 +48,6 @@
     <ClCompile Include="src\c\GetMatlabVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\GetMlistVariable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\gw_matio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -88,6 +85,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\GetSparseVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GetMlistVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

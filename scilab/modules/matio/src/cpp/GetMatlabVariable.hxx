@@ -20,6 +20,9 @@
 #include "context.hxx"
 #include "string.hxx"
 #include "sparse.hxx"
+#include "cell.hxx"
+#include "mlist.hxx"
+
 
 extern "C"
 {
@@ -35,5 +38,11 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char* name);
 matvar_t* GetCharMatVar(types::String* pStr, const char* name);
 
 matvar_t* GetSparseMatVar(types::Sparse* pSparse, const char* name);
+
+matvar_t* GetStructMatVar(types::Struct* pStruct, const char* name, int matfile_version);
+
+matvar_t* GetCellMatVar(types::Cell* pCell, const char* name, int matfile_version);
+
+matvar_t* GetMListMatVar(types::MList* pMist, const char* name, int matfile_version);
 
 #endif /* !__GETMATLABVARIABLE_HXX__ */
