@@ -18,6 +18,7 @@
 #include "int.hxx"
 #include "struct.hxx"
 #include "context.hxx"
+#include "string.hxx"
 
 extern "C"
 {
@@ -29,5 +30,7 @@ extern "C"
 matvar_t* GetDoubleMatVar(types::Double* pDblIn, const char* name, int matfile_version);
 
 matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char* name);
+
+matvar_t* GetCharMatVar(types::String* pStr, const char* name);
 
 #endif /* !__GETMATLABVARIABLE_HXX__ */

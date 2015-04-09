@@ -202,6 +202,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\cpp\CreateMatlabTreeVariable.cpp" />
     <ClCompile Include="src\cpp\CreateStructVariable.cpp" />
     <ClCompile Include="src\cpp\GetCellVariable.cpp" />
+    <ClCompile Include="src\cpp\GetCharVariable.cpp" />
     <ClCompile Include="src\cpp\GetDoubleVariable.cpp" />
     <ClCompile Include="src\cpp\GetIntegerVariable.cpp" />
     <ClCompile Include="src\cpp\GetStructVariable.cpp" />
@@ -212,7 +213,6 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\c\CreateMatlabVariable.c" />
     <ClCompile Include="src\c\CreateSparseVariable.c" />
     <ClCompile Include="src\c\DllmainMatio.c" />
-    <ClCompile Include="src\c\GetCharVariable.c" />
     <ClCompile Include="src\c\GetMatlabVariable.c" />
     <ClCompile Include="src\c\GetMlistVariable.c" />
     <ClCompile Include="src\c\GetSparseVariable.c" />

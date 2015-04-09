@@ -45,9 +45,6 @@
     <ClCompile Include="src\c\DllmainMatio.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\GetCharVariable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\GetMatlabVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -88,6 +85,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\GetIntegerVariable.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\GetCharVariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
