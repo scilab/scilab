@@ -47,30 +47,64 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble())
     {
+
+        //check values domain
+        // double acosh(double) is only define [1, +inf[
+
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
+        bool useComplexCase = pDblIn->isComplex();
         double* pInR = pDblIn->get();
-        double* pOutR = pDblOut->get();
         int size = pDblIn->getSize();
-        if (pDblIn->isComplex())
-        {
-            double* pInI = pDblIn->getImg();
-            double* pOutI = pDblOut->getImg();
 
-            for (int i = 0; i < size; i++)
+        if (useComplexCase == false)
+        {
+            for (int i = 0; i < size; ++i)
             {
-                std::complex<double> c(pInR[i], pInI[i]);
-                std::complex<double> d = std::acosh(c);
-                pOutR[i] = d.real();
-                pOutI[i] = d.imag();
+                if (pInR[i] < 1)
+                {
+                    useComplexCase = true;
+                    break;
+                }
+            }
+        }
+
+
+        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), useComplexCase);
+
+        double* pOutR = pDblOut->get();
+        if (useComplexCase)
+        {
+            if (pDblIn->isComplex())
+            {
+                double* pInI = pDblIn->getImg();
+                double* pOutI = pDblOut->getImg();
+
+                for (int i = 0; i < size; i++)
+                {
+                    std::complex<double> c(pInR[i], pInI[i]);
+                    std::complex<double> d = std::acosh(c);
+                    pOutR[i] = d.real();
+                    pOutI[i] = d.imag();
+                }
+            }
+            else
+            {
+                double* pOutI = pDblOut->getImg();
+
+                for (int i = 0; i < size; i++)
+                {
+                    std::complex<double> c(pInR[i], 0);
+                    std::complex<double> d = std::acosh(c);
+                    pOutR[i] = d.real();
+                    pOutI[i] = d.imag();
+                }
             }
         }
         else
         {
             for (int i = 0; i < size; i++)
             {
-                pOutR[i] = acosh(pInR[i]);
+                pOutR[i] = std::acosh(pInR[i]);
             }
         }
 
@@ -85,3 +119,4 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
+

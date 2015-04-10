@@ -425,11 +425,6 @@ types::Function::ReturnValue sci_prod(types::typed_list &in, int _iRetCount, typ
 
         if (pDblOut)
         {
-            delete pDblOut;
-        }
-
-        if (pDblOut)
-        {
             pDblOut->killMe();
         }
     }
