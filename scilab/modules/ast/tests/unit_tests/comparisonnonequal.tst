@@ -1097,9 +1097,9 @@ assert_checkequal([test_st, test_st4;test_st4,test_st8] <> [test_st, test_st; te
 assert_checkequal(test_st <> [], %t);
 
 //function
-assert_checkequal(acosh <> acosh, %f);
-assert_checkequal(acosh <> [], %t);
-assert_checkequal(acosh <> 2, %t);
+assert_checkequal(acosd <> acosd, %f);
+assert_checkequal(acosd <> [], %t);
+assert_checkequal(acosd <> 2, %t);
 
 
 //handle

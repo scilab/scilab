@@ -1047,9 +1047,9 @@ assert_checkequal([test_st4 test_st8] == [test_st test_st], [%f %f]);
 assert_checkequal([test_st, test_st4;test_st4,test_st8] == [test_st, test_st; test_st,test_st], [%t, %f; %f , %f]);
 assert_checkequal(test_st == [], %f);
 //function
-assert_checkequal(acosh == acosh, %t);
-assert_checkequal(acosh == [], %f);
-assert_checkequal(acosh == 2, %f);
+assert_checkequal(acosd == acosd, %t);
+assert_checkequal(acosd == [], %f);
+assert_checkequal(acosd == 2, %f);
 //handle
 handle1 = gcf();
 handle2 = gca();
