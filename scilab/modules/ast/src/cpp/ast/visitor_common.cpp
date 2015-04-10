@@ -2376,6 +2376,16 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
             }
         }
+        else if (_pVar->isCell())
+        {
+            if (_pInsert->isCell() == false)
+            {
+                //manage error
+                std::wostringstream os;
+                os << _W("Wrong insertion: A Cell expected: use {...} instead of (...).\n");
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
+            }
+        }
         else
         {
             // overload
