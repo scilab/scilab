@@ -1546,7 +1546,7 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     bool ret = false;
     if (ctx->isprotected(sym) == false)
     {
-        ret = ctx->remove(symbol::Symbol(pwstName));
+        ret = ctx->remove(sym);
     }
     else
     {
