@@ -415,6 +415,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int iID = (int)in[1]->getAs<types::Double>()->get(0);
             int iFigureUID = getFigureFromIndex(iID);
             int iAxesUID = 0;
+            int* piAxesUID = &iAxesUID;
 
             if (iFigureUID == 0)
             {
@@ -423,7 +424,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             setCurrentFigure(iFigureUID);
-            getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&iAxesUID);
+            getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_int, (void**)&piAxesUID);
             setCurrentSubWin(iAxesUID);
         }
         break;
