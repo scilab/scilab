@@ -394,7 +394,7 @@ struct MultivariatePolynomial
             }
             else
             {
-                MultivariatePolynomial res((polynomial.size() + 1) * (R.polynomial.size() + 1) - 1, constant * R.constant);
+                MultivariatePolynomial res(static_cast<unsigned int>((polynomial.size() + 1) * (R.polynomial.size() + 1) - 1), constant * R.constant);
                 for (const auto & mR : R.polynomial)
                 {
                     res.add(mR, constant);
@@ -500,7 +500,7 @@ struct MultivariatePolynomial
     {
         if (isValid())
         {
-            MultivariatePolynomial res(polynomial.size() + 1, 0.);
+            MultivariatePolynomial res(static_cast<unsigned int>(polynomial.size() + 1), 0.);
             res.add(constant * R);
             for (const auto & mL : polynomial)
             {

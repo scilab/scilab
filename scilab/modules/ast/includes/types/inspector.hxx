@@ -29,7 +29,7 @@ namespace types
 class EXTERN_AST Inspector
 {
 protected :
-    static std::vector<InternalType*> m_vIT;
+    static std::list<InternalType*> m_vIT;
 
 public :
     static size_t getItemCount();

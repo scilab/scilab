@@ -178,12 +178,12 @@ inline static unsigned char popcount(const T x)
 
 inline static unsigned char log2(const unsigned int x)
 {
-    return (sizeof(unsigned int) << 3) - clz(x) - 1;
+    return (unsigned char)((sizeof(unsigned int) << 3) - clz(x) - 1);
 }
 
 inline static unsigned char log2(const unsigned long long x)
 {
-    return (sizeof(unsigned long long) << 3) - clzll(x) - 1;
+    return (unsigned char)((sizeof(unsigned long long) << 3) - clzll(x) - 1);
 }
 
 template<typename T>

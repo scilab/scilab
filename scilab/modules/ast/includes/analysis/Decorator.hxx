@@ -43,6 +43,7 @@ struct Decorator
 
     inline Call & setCall(Call && call)
     {
+        delete this->call;
         this->call = new Call(std::move(call));
         return *this->call;
     }

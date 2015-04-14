@@ -20,7 +20,7 @@
 namespace types
 {
 #ifndef NDEBUG
-std::vector<InternalType*> Inspector::m_vIT;
+std::list<InternalType*> Inspector::m_vIT;
 
 size_t Inspector::getItemCount()
 {
@@ -30,9 +30,9 @@ size_t Inspector::getItemCount()
 size_t Inspector::getUnreferencedItemCount()
 {
     int iCount = 0;
-    for (size_t i = 0 ; i < m_vIT.size() ; i++)
+    for (auto it : m_vIT)
     {
-        if (m_vIT[i]->getRef() == 0)
+        if (it->getRef() == 0)
         {
             iCount++;
         }
@@ -49,38 +49,30 @@ void Inspector::addItem(InternalType* _pIT)
 
 void Inspector::removeItem(InternalType* _pIT)
 {
-    std::vector<InternalType*>::iterator it;
-    for (it = m_vIT.begin() ; it != m_vIT.end() ; it++)
-    {
-        if ((*it) == _pIT)
-        {
-            types::GenericType* pGT = _pIT->getAs<types::GenericType>();
-            m_vIT.erase(it);
-            break;
-        }
-    }
+    m_vIT.remove(_pIT);
 }
 
 InternalType* Inspector::getItem(size_t _iPos)
 {
-    if (_iPos >= m_vIT.size())
+    if (m_vIT.size() > _iPos)
     {
-        return NULL;
+        return *std::next(m_vIT.begin(), _iPos);
     }
-    return m_vIT[_iPos];
+
+    return NULL;
 }
 
 InternalType* Inspector::getUnreferencedItem(size_t _iPos)
 {
     size_t iCount = 0;
-    for (size_t i = 0 ; i < m_vIT.size() ; i++)
+    for (auto it : m_vIT)
     {
-        if (m_vIT[i]->getRef() == 0)
+        if (it->getRef() == 0)
         {
             if (iCount == _iPos)
             {
-                std::wcout << L"getUnreferencedItem : " << m_vIT[i] << std::endl;
-                return m_vIT[i];
+                std::wcout << L"getUnreferencedItem : " << it << std::endl;
+                return it;
             }
             iCount++;
         }
@@ -121,25 +113,12 @@ std::wstring Inspector::showUnreferencedItem(size_t _iPos)
 
 void Inspector::deleteItems()
 {
-    InternalType** pIT = new InternalType*[m_vIT.size()];
-
-    //copy item values
-    for (size_t i = 0 ; i < m_vIT.size() ; i++)
+    for (auto it : m_vIT)
     {
-        pIT[i] = m_vIT[i];
+        delete it;
     }
 
-    //delete each item
-    for (size_t i = 0 ; i < m_vIT.size() ; i++)
-    {
-        delete pIT[i];
-    }
-
-    //check vector update
-    if (m_vIT.size() != 0)
-    {
-        printf("Oo\n");
-    }
+    m_vIT.clear();
 }
 
 void Inspector::displayMemleak()
@@ -149,23 +128,23 @@ void Inspector::displayMemleak()
     if (m_vIT.size() != 0)
     {
         // construct the statistic map
-        for (size_t i = 0; i < m_vIT.size(); ++i)
+        for (auto it : m_vIT)
         {
-            statistics[m_vIT[i]->getTypeStr()]++;
+            statistics[it->getTypeStr()]++;
         }
 
         // display the result
         std::wcerr << L"Memory leaked, please file a bug on http://bugzilla.scilab.org" << std::endl;
-        for (auto it = statistics.begin(), itEnd = statistics.end(); it != itEnd;  ++it)
+        for (auto it = statistics.begin(), itEnd = statistics.end(); it != itEnd; ++it)
         {
             std::wcerr << L"    " << it->second << L" " << it->first;
 
             // list the not free-ed pointers
             std::wcerr << L" : ";
             bool isFirst = true;
-            for (size_t i = 0; i < m_vIT.size(); ++i)
+            for (auto pi : m_vIT)
             {
-                if (it->first == m_vIT[i]->getTypeStr())
+                if (it->first == pi->getTypeStr())
                 {
                     if (isFirst)
                     {
@@ -175,13 +154,13 @@ void Inspector::displayMemleak()
                     {
                         std::wcerr << " , ";
                     }
-                    std::wcerr << m_vIT[i];
+
+                    std::wcerr << pi;
                 }
             }
 
             std::wcerr << std::endl;
         }
-
     }
 }
 

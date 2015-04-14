@@ -1021,6 +1021,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
 
                         if (pList->getSize() > 1)
                         {
+                            pList->killMe();
                             std::wostringstream os;
                             os << _W("Unable to insert multiple item in a List.");
                             throw ast::ScilabError(os.str(), 999, _pExp->getLocation());

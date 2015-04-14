@@ -525,13 +525,14 @@ int DotPowerPolyByDouble(Polynom* _pPoly, Double* _pDouble, InternalType** _pOut
     }
 
     int iSize = _pPoly->getSize();
-    Double** pDblPower  = new Double*[iSize];
-    double* pdblPower   = _pDouble->get();
     if (_pPoly->isScalar())
     {
         return PowerPolyByDouble(_pPoly, _pDouble, _pOut);
     }
-    else if (_pDouble->isScalar())
+
+    Double** pDblPower = new Double*[iSize];
+    double* pdblPower = _pDouble->get();
+    if (_pDouble->isScalar())
     {
         if (pdblPower[0] < 0)
         {

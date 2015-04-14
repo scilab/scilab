@@ -412,6 +412,7 @@ template <class T>
 void RunVisitorT<T>::visitprivate(const ForExp  &e)
 {
     symbol::Context* ctx = symbol::Context::getInstance();
+    //vardec visit increase its result reference
     e.getVardec().accept(*this);
     InternalType* pIT = getResult();
     //allow break and continue operations
@@ -483,7 +484,23 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
             pVar->extractValue(i, pIL);
 
-            e.getBody().accept(*this);
+            bool clearAndExit = false;
+            try
+            {
+                e.getBody().accept(*this);
+            }
+            catch (ScilabMessage& sm)
+            {
+                //unlock loop index and implicit list
+                pIL->DecreaseRef();
+                pIL->killMe();
+                pIT->DecreaseRef();
+                pIT->killMe();
+
+                setResult(NULL);
+                throw sm;
+            }
+
             if (e.getBody().isBreak())
             {
                 const_cast<Exp&>(e.getBody()).resetBreak();
@@ -525,7 +542,19 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
             ctx->put(var, pNew);
 
-            e.getBody().accept(*this);
+            try
+            {
+                e.getBody().accept(*this);
+            }
+            catch (ScilabMessage& sm)
+            {
+                //implicit list
+                pIT->DecreaseRef();
+                pIT->killMe();
+                setResult(NULL);
+                throw sm;
+            }
+
             if (e.getBody().isBreak())
             {
                 const_cast<Exp*>(&(e.getBody()))->resetBreak();
@@ -576,7 +605,19 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
             }
             ctx->put(var, pNew);
 
-            e.getBody().accept(*this);
+            try
+            {
+                e.getBody().accept(*this);
+            }
+            catch (ScilabMessage& sm)
+            {
+                //implicit list
+                pIT->DecreaseRef();
+                pIT->killMe();
+                setResult(NULL);
+                throw sm;
+            }
+
             if (e.getBody().isBreak())
             {
                 const_cast<Exp*>(&(e.getBody()))->resetBreak();

@@ -524,7 +524,7 @@ private:
             if (e.getRightExp().isCallExp())
             {
                 const ast::exps_t & exps = ale.getExps();
-                visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ exps.size());
+                visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ static_cast<unsigned int>(exps.size()));
                 std::vector<Result>::iterator j = multipleLHS.begin();
                 for (const auto exp : exps)
                 {

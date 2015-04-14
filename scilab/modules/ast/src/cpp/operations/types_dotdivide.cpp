@@ -810,24 +810,25 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
         ConfigVariable::setDivideByZero(false);
         pResult = dotdiv(_pLeftOperand, _pRightOperand);
 
-        bool iszero = ConfigVariable::isDivideByZero();
-        ConfigVariable::setDivideByZero(false);
-
-        if (iszero)
-        {
-            if (ConfigVariable::getIeee() == 0)
-            {
-                throw ast::ScilabError(_("Division by zero...\n"));
-            }
-
-            if (ConfigVariable::getIeee() == 1)
-            {
-                sciprint(_("Warning : division by zero...\n"));
-            }
-        }
-
         if (pResult)
         {
+            bool iszero = ConfigVariable::isDivideByZero();
+            ConfigVariable::setDivideByZero(false);
+
+            if (iszero)
+            {
+                if (ConfigVariable::getIeee() == 0)
+                {
+                    pResult->killMe();
+                    throw ast::ScilabError(_("Division by zero...\n"));
+                }
+
+                if (ConfigVariable::getIeee() == 1)
+                {
+                    sciprint(_("Warning : division by zero...\n"));
+                }
+            }
+
             return pResult;
         }
     }

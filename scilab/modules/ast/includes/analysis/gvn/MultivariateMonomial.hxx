@@ -308,8 +308,8 @@ struct MultivariateMonomial
             }
             else if (le == re)
             {
-                const unsigned int ls = L.monomial.size();
-                const unsigned int rs = R.monomial.size();
+                const unsigned int ls = static_cast<unsigned int>(L.monomial.size());
+                const unsigned int rs = static_cast<unsigned int>(R.monomial.size());
                 if (ls > rs)
                 {
                     return true;
