@@ -380,42 +380,42 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
             }
             case InternalType::ScilabInt8:
             {
-                out.push_back(toInt<types::Int8, char>(pDblOut));
+                out.push_back(toInt<types::Int8>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt16:
             {
-                out.push_back(toInt<types::Int16, short>(pDblOut));
+                out.push_back(toInt<types::Int16>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt32:
             {
-                out.push_back(toInt<types::Int32, int>(pDblOut));
+                out.push_back(toInt<types::Int32>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt64:
             {
-                out.push_back(toInt<types::Int64, long long>(pDblOut));
+                out.push_back(toInt<types::Int64>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt8:
             {
-                out.push_back(toInt<types::UInt8, unsigned char>(pDblOut));
+                out.push_back(toInt<types::UInt8>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt16:
             {
-                out.push_back(toInt<types::UInt16, unsigned short>(pDblOut));
+                out.push_back(toInt<types::UInt16>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt32:
             {
-                out.push_back(toInt<types::UInt32, unsigned int>(pDblOut));
+                out.push_back(toInt<types::UInt32>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt64:
             {
-                out.push_back(toInt<types::UInt64, unsigned long long>(pDblOut));
+                out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
         }

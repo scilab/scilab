@@ -76,6 +76,7 @@ types::Function::ReturnValue sci_conj(types::typed_list &in, int _iRetCount, typ
     {
         pPolyOut->setCoef(pDblOut);
         out.push_back(pPolyOut);
+        pDblOut->killMe();
     }
 
     return types::Function::OK;

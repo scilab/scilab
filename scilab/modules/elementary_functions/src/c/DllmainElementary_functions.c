@@ -12,6 +12,12 @@
  */
 
 #include <windows.h>
+
+//for Visual Leak Detector
+#ifdef DEBUG_VLD
+#include <vld.h>
+#endif
+
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/

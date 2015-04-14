@@ -112,8 +112,9 @@ types::Function::ReturnValue sci_acosh(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_acosh";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

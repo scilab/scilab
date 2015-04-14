@@ -196,7 +196,7 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
             int iIndex = pDblRanksOut->getIndex(piIndex);
             pdblOut[iIndex] = std::max(pdblOut[iIndex], pdblIn[i]);
         }
-        
+
         pDblRanks->killMe();
 
         // move output ranks from types::Double to int*
@@ -257,6 +257,10 @@ types::Polynom* sum(types::Polynom* pIn, int iOrientation)
                 }
             }
         }
+
+        delete[] piRanks;
+        delete[] piIndex;
+        delete[] piDims;
     }
 
     return pOut;

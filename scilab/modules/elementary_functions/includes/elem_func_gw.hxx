@@ -93,7 +93,7 @@ types::Double* getAsDouble(T* _val)
 {
     types::Double* dbl = new types::Double(_val->getDims(), _val->getDimsArray());
     double* pOut = dbl->get();
-    auto* pIn = _val->get();
+    typename T::type* pIn = _val->get();
     int size = dbl->getSize();
     for (int i = 0; i < size; i++)
     {
@@ -103,16 +103,16 @@ types::Double* getAsDouble(T* _val)
     return dbl;
 }
 
-template <class T, typename U>
+template <class T>
 T* toInt(types::Double* _dbl)
 {
     T* pI = new T(_dbl->getDims(), _dbl->getDimsArray());
-    U* p = pI->get();
+    typename T::type* p = pI->get();
     double* pdbl = _dbl->get();
     int size = _dbl->getSize();
     for (int i = 0; i < size; i++)
     {
-        p[i] = static_cast<U>(pdbl[i]);
+        p[i] = static_cast<typename T::type>(pdbl[i]);
     }
 
     return pI;

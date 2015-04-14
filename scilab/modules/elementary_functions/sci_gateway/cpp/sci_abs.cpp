@@ -104,6 +104,8 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
             }
 
             out.push_back(api_scilab::getReturnVariable(pDblOut));
+            delete pDblOut;
+            delete pDblIn;
             break;
         }
         case InternalType::ScilabPolynom:

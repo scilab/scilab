@@ -10,6 +10,10 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+//for Visual Leak Detector
+#ifdef DEBUG_VLD
+#include <vld.h>
+#endif
 
 #include "elem_func_gw.hxx"
 #include "context.hxx"

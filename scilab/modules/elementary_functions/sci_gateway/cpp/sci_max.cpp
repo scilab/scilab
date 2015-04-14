@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     if (inputs[0]->isDouble() == false && inputs[0]->isInt() == false)
     {
         wchar_t* wcsMinMax = to_wide_string(fname);
-        std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
+        std::wstring wstFuncName = L"%" + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
         FREE(wcsMinMax);
         ast::ExecVisitor exec;
         return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
@@ -346,11 +346,11 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         {
             if (iSigned)
             {
-                out.push_back(toInt<types::Int8, char>(pDblOut));
+                out.push_back(toInt<types::Int8>(pDblOut));
             }
             else
             {
-                out.push_back(toInt<types::UInt8, unsigned char>(pDblOut));
+                out.push_back(toInt<types::UInt8>(pDblOut));
             }
             break;
         }
@@ -358,11 +358,11 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         {
             if (iSigned)
             {
-                out.push_back(toInt<types::Int16, short>(pDblOut));
+                out.push_back(toInt<types::Int16>(pDblOut));
             }
             else
             {
-                out.push_back(toInt<types::UInt16, unsigned short>(pDblOut));
+                out.push_back(toInt<types::UInt16>(pDblOut));
             }
             break;
         }
@@ -370,11 +370,11 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         {
             if (iSigned)
             {
-                out.push_back(toInt<types::Int32, int>(pDblOut));
+                out.push_back(toInt<types::Int32>(pDblOut));
             }
             else
             {
-                out.push_back(toInt<types::UInt32, unsigned int>(pDblOut));
+                out.push_back(toInt<types::UInt32>(pDblOut));
             }
             break;
         }
@@ -382,11 +382,11 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         {
             if (iSigned)
             {
-                out.push_back(toInt<types::Int64, long long>(pDblOut));
+                out.push_back(toInt<types::Int64>(pDblOut));
             }
             else
             {
-                out.push_back(toInt<types::UInt64, unsigned long long>(pDblOut));
+                out.push_back(toInt<types::UInt64>(pDblOut));
             }
             break;
         }

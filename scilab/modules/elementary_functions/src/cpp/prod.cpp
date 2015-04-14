@@ -214,6 +214,8 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
 
             delete pdblTempReal;
         }
+
+        delete[]piRanks;
     }
     else // sum following a dimension
     {
@@ -325,7 +327,6 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         {
             // alloc temporary workspace
             double* pdblTempReal = new double[iMaxOutputRank + 1];
-            double* pdblTempImg  = new double[iMaxOutputRank + 1];
 
             // init output to a matrix of 1 + 0s + 0s²...
             for (int i = 0; i < pOut->getSize(); i++)
@@ -359,6 +360,11 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
 
             delete pdblTempReal;
         }
+
+        delete[] piRankMax;
+        delete[] piRanks;
+        delete[] piIndex;
+        delete[] piDims;
     }
 
     pOut->updateRank();

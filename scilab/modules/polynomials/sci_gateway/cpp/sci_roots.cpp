@@ -247,13 +247,24 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
             C2F(dcopy)(&iSize, pdblTempImg, &iOne, pdblOutImg, &iOne);
         }
 
-        ast::ExecVisitor exec;
         //call spec
-        types::typed_list tlInput;
-        types::optional_list tlOpt;
-        tlInput.push_back(pDblOut);
-        types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-        ret = funcSpec->call(tlInput, tlOpt, 1, out, &exec);
+        types::InternalType* pSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"));
+        if (pSpec && pSpec->isFunction())
+        {
+            types::Function *funcSpec = pSpec->getAs<types::Function>();
+            ast::ExecVisitor exec;
+            types::typed_list tlInput;
+            types::optional_list tlOpt;
+            tlInput.push_back(pDblOut);
+
+            ret = funcSpec->call(tlInput, tlOpt, 1, out, &exec);
+            pDblOut->killMe();
+        }
+        else
+        {
+            Scierror(999, _("%s: unable to find spec function\n"), "roots");
+            return types::Function::Error;
+        }
     }
 
     if (pDblIn)

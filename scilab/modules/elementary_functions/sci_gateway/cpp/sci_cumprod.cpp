@@ -53,11 +53,13 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
         return types::Function::Error;
     }
 
+    bool isCloned = true;
     /***** get data *****/
     switch (in[0]->getType())
     {
         case InternalType::ScilabDouble :
             pDblIn = in[0]->getAs<types::Double>();
+            isCloned = false;
             break;
         case InternalType::ScilabBool:
             pDblIn = getAsDouble(in[0]->getAs<types::Bool>());
@@ -65,6 +67,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
             break;
         case InternalType::ScilabPolynom :
             pPolyIn = in[0]->getAs<types::Polynom>();
+            isCloned = false;
             break;
         case InternalType::ScilabInt8:
             pDblIn = getAsDouble(in[0]->getAs<types::Int8>());
@@ -104,6 +107,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
 
             if (pDbl->isScalar() == false)
             {
+                if (isCloned)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "cumprod", 2);
                 return types::Function::Error;
             }
@@ -112,6 +120,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
 
             if (iOrientation <= 0)
             {
+                if (isCloned)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: A positive scalar expected.\n"), "cumprod", 2);
                 return types::Function::Error;
             }
@@ -122,6 +135,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
 
             if (pStr->isScalar() == false)
             {
+                if (isCloned)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "cumprod", 2);
                 return types::Function::Error;
             }
@@ -186,12 +204,22 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                     pstrExpected = "\"*\",\"r\",\"c\",\"m\"";
                 }
 
+                if (isCloned)
+                {
+                    pDblIn->killMe();
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "cumprod", 2, pstrExpected);
                 return types::Function::Error;
             }
         }
         else
         {
+            if (isCloned)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A real matrix or a string expected.\n"), "cumprod", 2);
             return types::Function::Error;
         }
@@ -201,6 +229,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
     {
         if (in[2]->isString() == false)
         {
+            if (isCloned)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "cumprod", 3);
             return types::Function::Error;
         }
@@ -209,6 +242,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
 
         if (pStr->isScalar() == false)
         {
+            if (isCloned)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong size for input argument #%d: A scalar string expected.\n"), "cumprod", 3);
             return types::Function::Error;
         }
@@ -225,6 +263,11 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
         }
         else
         {
+            if (isCloned)
+            {
+                pDblIn->killMe();
+            }
+
             Scierror(999, _("%s: Wrong value for input argument #%d: %s or %s expected.\n"), "cumprod", 3, "\"native\"", "\"double\"");
             return types::Function::Error;
         }
@@ -253,7 +296,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
         {
             pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
             cumprod(pDblIn, iOrientation, pDblOut);
-            if (in[0]->isDouble() == false)
+            if (isCloned)
             {
                 delete pDblIn;
                 pDblIn = NULL;
@@ -300,42 +343,42 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
             }
             case InternalType::ScilabInt8:
             {
-                out.push_back(toInt<types::Int8, char>(pDblOut));
+                out.push_back(toInt<types::Int8>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt16:
             {
-                out.push_back(toInt<types::Int16, short>(pDblOut));
+                out.push_back(toInt<types::Int16>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt32:
             {
-                out.push_back(toInt<types::Int32, int>(pDblOut));
+                out.push_back(toInt<types::Int32>(pDblOut));
                 break;
             }
             case InternalType::ScilabInt64:
             {
-                out.push_back(toInt<types::Int64, long long>(pDblOut));
+                out.push_back(toInt<types::Int64>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt8:
             {
-                out.push_back(toInt<types::UInt8, unsigned char>(pDblOut));
+                out.push_back(toInt<types::UInt8>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt16:
             {
-                out.push_back(toInt<types::UInt16, unsigned short>(pDblOut));
+                out.push_back(toInt<types::UInt16>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt32:
             {
-                out.push_back(toInt<types::UInt32, unsigned int>(pDblOut));
+                out.push_back(toInt<types::UInt32>(pDblOut));
                 break;
             }
             case InternalType::ScilabUInt64:
             {
-                out.push_back(toInt<types::UInt64, unsigned long long>(pDblOut));
+                out.push_back(toInt<types::UInt64>(pDblOut));
                 break;
             }
         }

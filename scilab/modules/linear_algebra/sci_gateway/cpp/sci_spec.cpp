@@ -33,14 +33,12 @@ bool isNoZeroImag(types::Double* _pDbl);
 
 types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::Double* pDblA    = NULL;
-    types::Double* pDblB    = NULL;
     double* pDataA          = NULL;
     double* pDataB          = NULL;
     bool symmetric          = FALSE;
     int iRet                = 0;
 
-    if ((in.size() != 1) && (in.size() != 2))
+    if (in.size() != 1 && in.size() != 2)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "spec", 1, 2);
         return types::Function::Error;
@@ -52,27 +50,28 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         return types::Function::Error;
     }
 
-    if ((in[0]->isDouble() == false))
+    if (in[0]->isDouble() == false)
     {
         ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_spec";
         return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
-    pDblA = in[0]->clone()->getAs<types::Double>();
 
-    if (pDblA->getCols() != pDblA->getRows())
+    types::Double* in0 = in[0]->getAs<types::Double>();
+
+    if (in0->getCols() != in0->getRows())
     {
         Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "spec", 1);
         return types::Function::Error;
     }
 
-    if ((pDblA->getRows() == -1) || (pDblA->getCols() == -1)) // manage eye case
+    if (in0->getRows() == -1 || in0->getCols() == -1) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "spec", 1);
         return types::Function::Error;
     }
 
-    if ((pDblA->getCols() == 0) || (pDblA->getRows() == 0)) // size null
+    if (in0->getCols() == 0 || in0->getRows() == 0) // size null
     {
         out.push_back(types::Double::Empty());
         for (int i = 1; i < _iRetCount; i++)
@@ -81,6 +80,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         }
         return types::Function::OK;
     }
+
+    types::Double* pDblA = in0->clone()->getAs<types::Double>();
 
     if (in.size() == 1)
     {
@@ -92,6 +93,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             pDataA = (double*)oGetDoubleComplexFromPointer(pDblA->getReal(), pDblA->getImg(), pDblA->getSize());
             if (!pDataA)
             {
+                pDblA->killMe();
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }
@@ -104,6 +106,11 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         int totalSize = pDblA->getSize();
         if ((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
+            if (pDblA->isComplex())
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
+            }
+            pDblA->killMe();
             Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;
         }
@@ -136,12 +143,16 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if (iRet < 0)
                 {
+                    vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
+                    pDblA->killMe();
                     Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if (iRet > 0)
                 {
+                    vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
+                    pDblA->killMe();
                     Scierror(24, _("%s: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
@@ -149,6 +160,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 if (_iRetCount == 2)
                 {
                     vGetPointerFromDoubleComplex((doublecomplex*)pDataA, pDblA->getSize() , pDblEigenVectors->getReal(), pDblEigenVectors->getImg());
+                    vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                     expandToDiagonalOfMatrix(pDblEigenValues->getReal(), pDblA->getCols());
                     out.push_back(pDblEigenVectors);
                 }
@@ -159,14 +171,17 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 doublecomplex* pEigenValues = (doublecomplex*)MALLOC(pDblA->getCols() * sizeof(doublecomplex));
                 doublecomplex* pEigenVectors = pDblEigenVectors ? (doublecomplex*)MALLOC(sizeof(doublecomplex) * pDblA->getSize()) : NULL;
                 iRet = iEigen1ComplexM((doublecomplex*)pDataA, pDblA->getCols(), pEigenValues, pEigenVectors);
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
                 if (iRet < 0)
                 {
+                    pDblA->killMe();
                     Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if (iRet > 0)
                 {
+                    pDblA->killMe();
                     Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
@@ -185,6 +200,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 }
                 out.push_back(pDblEigenValues);
                 FREE(pEigenValues);
+                pDblA->killMe();
             }
         }
         else // real
@@ -192,15 +208,16 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             if (symmetric)
             {
                 iRet = iEigen1RealSymmetricM(pDataA, pDblA->getCols(), (_iRetCount == 2), pDblEigenValues->getReal());
-
                 if (iRet < 0)
                 {
+                    pDblA->killMe();
                     Scierror(998, _("%s: On entry to ZGEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if (iRet > 0)
                 {
+                    pDblA->killMe();
                     Scierror(24, _("%s: Convergence problem, %d off-diagonal elements of an intermediate tridiagonal form did not converge to zero.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
@@ -210,6 +227,11 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                     expandToDiagonalOfMatrix(pDblEigenValues->getReal(), pDblA->getCols());
                     out.push_back(pDblA);
                 }
+                else
+                {
+                    pDblA->killMe();
+                }
+
                 out.push_back(pDblEigenValues);
             }
             else // not symmetric
@@ -218,12 +240,14 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
                 if (iRet < 0)
                 {
+                    pDblA->killMe();
                     Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
                     return types::Function::Error;
                 }
 
                 if (iRet > 0)
                 {
+                    pDblA->killMe();
                     Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of WR and WI contain eigenvalues which have converged.\n"), "spec", iRet);
                     return types::Function::Error;
                 }
@@ -234,9 +258,13 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                     expandToDiagonalOfMatrix(pDblEigenValues->getImg(), pDblA->getCols());
                     out.push_back(pDblEigenVectors);
                 }
+
                 out.push_back(pDblEigenValues);
+                pDblA->killMe();
             }
         }
+
+        return types::Function::OK;
     }
 
     if (in.size() == 2)
@@ -251,37 +279,40 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         doublecomplex* pAlpha           = NULL;
         bool bIsComplex                 = false;
 
-        if ((in[1]->isDouble() == false))
+        if (in[1]->isDouble() == false)
         {
             ast::ExecVisitor exec;
             std::wstring wstFuncName = L"%" + in[1]->getShortTypeStr() + L"_spec";
             return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
-        pDblB = in[1]->getAs<types::Double>()->clone()->getAs<types::Double>();
 
-        if (pDblB->getCols() != pDblB->getRows())
+        types::Double* in1 = in[1]->getAs<types::Double>();
+
+        if (in1->getCols() != in1->getRows())
         {
             Scierror(20, _("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "spec", 2);
             return types::Function::Error;
         }
 
-        if ((pDblA->getRows() != pDblB->getRows()) && (pDblA->getCols() != pDblB->getCols()))
+        if (pDblA->getRows() != in1->getRows() && pDblA->getCols() != in1->getCols())
         {
+            pDblA->killMe();
             Scierror(999, _("%s: Arguments %d and %d must have equal dimensions.\n"), "spec", 1, 2);
             return types::Function::Error;
         }
 
         //chekc if A and B are real complex or with imag part at 0
-        if (isNoZeroImag(pDblA) == false && isNoZeroImag(pDblB) == false)
+        if (isNoZeroImag(pDblA) == false && isNoZeroImag(in1) == false)
         {
             //view A and B as real matrix
             bIsComplex = false;
         }
         else
         {
-            bIsComplex = pDblA->isComplex() || pDblB->isComplex();
+            bIsComplex = pDblA->isComplex() || in1->isComplex();
         }
 
+        types::Double* pDblB = in1->clone()->getAs<types::Double>();
         if (bIsComplex)
         {
             if (pDblA->isComplex() == false)
@@ -297,8 +328,10 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             pDataA = (double*)oGetDoubleComplexFromPointer(pDblA->getReal(), pDblA->getImg(), pDblA->getSize());
             pDataB = (double*)oGetDoubleComplexFromPointer(pDblB->getReal(), pDblB->getImg(), pDblB->getSize());
 
-            if (!pDblA || !pDblB)
+            if (!pDataA || !pDataB)
             {
+                delete pDataA;
+                delete pDataB;
                 Scierror(999, _("%s: Cannot allocate more memory.\n"), "spec");
                 return types::Function::Error;
             }
@@ -313,12 +346,16 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if ((pDblA->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataA) : C2F(vfinite)(&totalSize, pDataA)) == false)
         {
+            pDblA->killMe();
+            pDblB->killMe();
             Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 1);
             return types::Function::Error;
         }
 
         if ((pDblB->isComplex() ? C2F(vfiniteComplex)(&totalSize, (doublecomplex*)pDataB) : C2F(vfinite)(&totalSize, pDataB)) == false)
         {
+            pDblA->killMe();
+            pDblB->killMe();
             Scierror(264, _("%s: Wrong value for input argument %d: Must not contain NaN or Inf.\n"), "spec", 2);
             return types::Function::Error;
         }
@@ -383,6 +420,8 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
 
         if (iRet < 0)
         {
+            pDblA->killMe();
+            pDblB->killMe();
             Scierror(998, _("%s: On entry to ZHEEV parameter number  3 had an illegal value (lapack library problem).\n"), "spec", iRet);
             return types::Function::Error;
         }
@@ -397,11 +436,11 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
                 }
                 else
                 {
-                    if (iRet ==  pDblA->getCols() + 1)
+                    if (iRet == pDblA->getCols() + 1)
                     {
                         Scierror(999, _("%s: Other than QZ iteration failed in DHGEQZ.\n"), "spec");
                     }
-                    if (iRet ==  pDblA->getCols() + 2)
+                    if (iRet == pDblA->getCols() + 2)
                     {
                         Scierror(999, _("%s: Error return from DTGEVC.\n"), "spec");
                     }
@@ -410,6 +449,18 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
             else
             {
                 Scierror(24, _("%s: The QR algorithm failed to compute all the eigenvalues, and no eigenvectors have been computed. Elements and %d+1:N of W contain eigenvalues which have converged.\n"), "spec", iRet);
+            }
+
+            pDblA->killMe();
+            pDblB->killMe();
+            if (pDataA)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataA);
+            }
+
+            if (pDataB)
+            {
+                vFreeDoubleComplexFromPointer((doublecomplex*)pDataB);
             }
             return types::Function::Error;
         }
@@ -478,6 +529,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         {
             vFreeDoubleComplexFromPointer((doublecomplex*)pDataB);
         }
+        pDblB->killMe();
 
     } // if(in.size() == 2)
 
