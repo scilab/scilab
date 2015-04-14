@@ -548,7 +548,7 @@ case "$CXX" in
         else
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
-        COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
+        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     ;;
 
 esac
@@ -588,7 +588,7 @@ case "$CC" in
       DEBUG_CFLAGS="-DNDEBUG"
    fi
 
-   COMPILER_CFLAGS="-fno-stack-protector " # bug 3131
+   COMPILER_CFLAGS="$COMPILER_CFLAGS -fno-stack-protector " # bug 3131
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.
