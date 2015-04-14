@@ -85,18 +85,20 @@ void encode(T* input, std::vector<double> &ret)
     totalSize += nDoubleNeeded;
 
     // Allocation for type + number of dimensions + each dimension + each element
-    ret.resize(totalSize);
+    ret.reserve(ret.size() + totalSize);
 
-    ret[0] = ((types::InternalType*) input)->getType();
-    ret[1] = iDims;
+    ret.push_back(((types::InternalType*) input)->getType());
+    ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
-        ret[2 + i] = pDims[i];
+        ret.push_back(pDims[i]);
     }
 
     // Using contiguity of the memory, we save the input into 'ret'
     // Use a buffer to fill the entirety of 'ret'
-    memcpy(&ret[2 + iDims], input->get(), iElements * sizeof(typename T::type));
+    double* data = &(*ret.end());
+    ret.resize(ret.size() + nDoubleNeeded);
+    memcpy(data, input->get(), iElements * sizeof(typename T::type));
 }
 
 static void encode(types::Double* input, std::vector<double> &ret)
@@ -110,21 +112,26 @@ static void encode(types::Double* input, std::vector<double> &ret)
     totalSize += (isComplex + 1) * iElements; // Size of the required data buffer
 
     // Allocation for type + number of dimensions + each dimension + complex boolean + each element (doubled if complex)
-    ret.resize(totalSize);
+    ret.reserve(ret.size() + totalSize);
 
-    ret[0] = types::InternalType::ScilabDouble;
-    ret[1] = iDims;
+    ret.push_back(types::InternalType::ScilabDouble);
+    ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
-        ret[2 + i] = pDims[i];
+        ret.push_back(pDims[i]);
     }
-    ret[2 + iDims] = isComplex;
+    ret.push_back(isComplex);
 
-    memcpy(&ret[2 + iDims + 1], input->getReal(), iElements * sizeof(double));
+    double* data = &(*ret.end());
+    ret.resize(ret.size() + iElements);
+    memcpy(data, input->getReal(), iElements * sizeof(double));
     if (isComplex == 1)
     {
-        memcpy(&ret[ + 2 + iDims + 1 + iElements], input->getImg(), iElements * sizeof(double));
+        data = &(*ret.end());
+        ret.resize(ret.size() + iElements);
+        memcpy(data, input->getImg(), iElements * sizeof(double));
     }
+
     // An empty matrix input will return [12; 2; 0; 0; 0]
 }
 
@@ -156,23 +163,30 @@ static void encode(types::String* input, std::vector<double> &ret)
     }
 
     // Allocation for type + number of dimensions + each dimension + each element length + each element
-    ret.resize(totalSize);
+    ret.reserve(ret.size() + totalSize);
 
-    ret[0] = types::InternalType::ScilabString;
-    ret[1] = iDims;
+    ret.push_back(types::InternalType::ScilabString);
+    ret.push_back(iDims);
     for (int i = 0; i < iDims; ++i)
     {
-        ret[2 + i] = pDims[i];
+        ret.push_back(pDims[i]);
+    }
+    for (int i = 0; i < iElements; ++i)
+    {
+        ret.push_back(offsets[i]);
     }
 
+    double* data = &(*ret.end());
+    ret.resize(ret.size() + offsets[iElements - 1]);
+
     size_t len = pLengths[0];
-    ret[2 + iDims] = offsets[0];
-    memcpy(&ret[2 + iDims + iElements], *utf8, len * sizeof(char));
+    memcpy(data, utf8[0], len * sizeof(char));
+    data += offsets[0];
     for (int i = 1; i < iElements; ++i)
     {
-        len = pLengths[i];
-        ret[2 + iDims + i] = offsets[i];
-        memcpy(&ret[2 + iDims + iElements + offsets[i - 1]], *(utf8 + i), len * sizeof(char));
+        size_t len = pLengths[i];
+        memcpy(data, utf8[i], len * sizeof(char));
+        data += offsets[i] - offsets[i - 1];
     }
 
     // Free all the strings, after being copied
@@ -188,65 +202,48 @@ static void encode(types::String* input, std::vector<double> &ret)
 static void encode(types::List* input, std::vector<double> &ret)
 {
     const int iElements = input->getSize();
-    int totalSize = 2;
 
-    std::vector<std::vector<double>> listElements (iElements);
+    ret.push_back(input->getType());
+    ret.push_back(iElements);
     for (int i = 0; i < iElements; ++i)
     {
         // Recursively call var2vec on each element and extract the obtained results
-        var2vec(input->get(i), listElements[i]);
-        totalSize += static_cast<int>(listElements[i].size());
+        var2vec(input->get(i), ret);
     }
-    // Allocation for type + list length + each list element
-    ret.resize(totalSize);
 
-    ret[0] = input->getType();
-    ret[1] = iElements;
-    int offset = 0;
-    for (int i = 0; i < iElements; ++i)
-    {
-        memcpy(&ret[2 + offset], &listElements[i][0], listElements[i].size() * sizeof(double));
-        offset += static_cast<int>(listElements[i].size());
-    }
     // An empty list input will return [22; 0], a tlist [23; 0] and an mlist [24; 0]
 }
 
 static void encode(types::Struct* input, std::vector<double> &ret)
 {
+    const bool isEmpty = input->getSize() == 0;
+
+    types::String* fields = nullptr;
     int iElements = 0;
-    types::String* fields;
-    if (input->getSize() > 0)
+    if (!isEmpty)
     {
-        fields = input->get(0)->getFieldNames();
+        fields = input->getFieldNames();
         iElements = fields->getSize();
     }
-    int totalSize = 2;
 
-    std::vector<std::vector<double>> fieldsContent (1 + iElements);
-    if (input->getSize() > 0)
+    ret.push_back(input->getType());
+    ret.push_back(iElements);
+    if (!isEmpty)
     {
         // Call var2vec on the struct's fields to extract a header
-        var2vec(fields, fieldsContent[0]);
-        totalSize += static_cast<int>(fieldsContent[0].size());
-        // Now extract the fields' content
-        for (int i = 1; i < iElements + 1; ++i)
-        {
-            // Recursively call var2vec on each element and extract the obtained results
-            var2vec(input->get(0)->get(fields->get(i - 1)), fieldsContent[i]);
-            totalSize += static_cast<int>(fieldsContent[i].size());
-        }
-    }
-    // Allocation for type + fields names + fields content
-    ret.resize(totalSize);
+        var2vec(fields, ret);
 
-    ret[0] = input->getType();
-    ret[1] = iElements;
-    int offset = 0;
-    for (int i = 0; i < iElements + 1; ++i)
-    {
-        memcpy(&ret[2 + offset], &fieldsContent[i][0], fieldsContent[i].size() * sizeof(double));
-        offset += static_cast<int>(fieldsContent[i].size());
+        // Now extract the fields' content, assuming this is not a multidimensional struct
+        types::SingleStruct* content = input->get(0);
+        for (int i = 0; i < iElements; ++i)
+        {
+            var2vec(content->get(fields->get(i)), ret);
+        }
+
+
+        fields->killMe();
     }
+
     // An empty struct input will return [26; 0]
 }
 
@@ -254,7 +251,7 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
 {
     switch (in->getType())
     {
-            // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
+        // Reuse scicos model encoding for 'model.opar' and 'model.odstate' fields
         case types::InternalType::ScilabDouble :
             encode(in->getAs<types::Double>(), out);
             break;
@@ -300,7 +297,6 @@ bool var2vec(types::InternalType* in, std::vector<double> &out)
         case types::InternalType::ScilabMList  :
             encode(in->getAs<types::List>(), out);
             break;
-
         case types::InternalType::ScilabStruct :
             encode(in->getAs<types::Struct>(), out);
             break;
