@@ -27,7 +27,6 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 int Initialize(void)
 {
-    org_modules_hdf5::H5Type::initMap();
     org_modules_hdf5::H5VariableScope::initScope();
     org_modules_hdf5::H5Object::initRoot();
     return 0;
