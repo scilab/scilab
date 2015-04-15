@@ -43,7 +43,40 @@ function [] = %_save(%__filename__, varargin)
     endfunction
 
     function result = inspectList(l)
-        if typeof(l)=="list" then
+        if or(typeof(l)==["cell","st"]) then
+            if typeof(l)=="st" then
+                fieldNames = fieldnames(l);
+            else
+                fieldNames = l;
+            end
+
+            for kField = 1:size(fieldNames,"*")
+
+                if typeof(l)=="st" then
+                    fieldValue = l(fieldNames(kField));
+                else
+                    fieldValue = l{kField};
+                end
+
+                if typeof(fieldValue) == "handle" then
+                    fieldValue = extractMatrixHandle(fieldValue);
+                elseif isMacro(fieldValue) | isCompiledMacro(fieldValue) then
+                    //build an arbitrary name to the macro
+                    fieldValue = extractMacro(fieldValue, "function");
+                elseif isList(fieldValue) then
+                    fieldValue = inspectList(fieldValue);
+                end
+
+                if typeof(l)=="st" then
+                    l(fieldNames(kField)) = fieldValue;
+                else
+                    l{kField} = fieldValue;
+                end
+
+            end
+            result = l;
+
+        elseif typeof(l)=="list" then
             result = list();
             for %__i__ = definedfields(l)
                 if typeof(l(%__i__)) == "handle" then
