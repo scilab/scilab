@@ -10,6 +10,12 @@
  *
  */
 
+//for Visual Leak Detector
+#ifdef DEBUG_VLD
+#include <vld.h>
+#endif
+
+
 #include "string_gw.hxx"
 #include "context.hxx"
 #include "function.hxx"

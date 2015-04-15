@@ -349,6 +349,11 @@ wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wch
         return NULL;
     }
 
+    if (_pwstInput[0] == L'\0')
+    {
+        return os_wcsdup(L"");
+    }
+
     if (_pwstSearch == NULL || _pwstReplace == NULL)
     {
         return os_wcsdup(_pwstInput);

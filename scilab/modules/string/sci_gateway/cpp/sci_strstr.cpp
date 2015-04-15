@@ -87,7 +87,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
 
         if (wcslen(pString->get(i)) < wcslen(pStrSample->get(j)))
         {
-            pOutString->set(i, os_wcsdup(L""));
+            pOutString->set(i, L"");
         }
         else
         {
@@ -95,7 +95,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
 
             if (ptrwstrstr)
             {
-                pOutString->set(i, os_wcsdup(ptrwstrstr));
+                pOutString->set(i, ptrwstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
@@ -106,7 +106,7 @@ types::Function::ReturnValue sci_strstr(types::typed_list &in, int _iRetCount, t
             }
             else
             {
-                pOutString->set(i, os_wcsdup(L""));
+                pOutString->set(i, L"");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;

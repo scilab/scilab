@@ -45,6 +45,7 @@ wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
 
             if (*sizeOutputs == 0)
             {
+                FREE(pwstWork);
                 return NULL;
             }
 

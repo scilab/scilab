@@ -67,7 +67,7 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
     }
     else
     {
-        pwstString  = os_wcsdup(in[0]->getAs<types::String>()->get(0));
+        pwstString  = in[0]->getAs<types::String>()->get(0);
         pwstSeps    = in[1]->getAs<types::String>()->get(0);
         pwstState   = NULL;
         if (wcslen(pwstString) == 0)
@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_strtok(types::typed_list &in, int _iRetCount, t
     wchar_t* pwstToken = NULL;
     if (pwstString == NULL && pwstState == NULL)
     {
-        pwstToken = os_wcsdup(L"");
+        pwstToken = L"";
     }
     else
     {

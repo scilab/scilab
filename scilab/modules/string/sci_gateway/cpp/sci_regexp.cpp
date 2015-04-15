@@ -170,6 +170,9 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         {
             out.push_back(new String(L""));
         }
+
+        delete[] piStart;
+        delete[] piEnd;
         return Function::OK;
     }
 

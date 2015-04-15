@@ -1199,6 +1199,11 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
     {
         *_piStart   = iStart;
         *_piEnd     = iEnd;
+        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
+        {
+            /*free unused captured field*/
+            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+        }
     }
     return iPcreStatus;
 }

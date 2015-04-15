@@ -17,8 +17,10 @@
 #include <cstring>
 #include <limits.h>
 
+#include "internal.hxx"
 #include "ScilabView.hxx"
 #include "CallGraphicController.hxx"
+#include "returnProperty.h"
 
 extern "C"
 {
@@ -196,6 +198,19 @@ void ScilabView::deleteObject(int iUID)
     int *piType = &iType;
     int iParentUID = 0;
 
+    /* get USEr_DATA property and free it*/
+    int iUserDataSize = 0;
+    int *piUserDataSize = &iUserDataSize;
+    int *piUserData = NULL;
+    getGraphicObjectProperty(iUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
+    getGraphicObjectProperty(iUID, __GO_USER_DATA__, jni_int_vector, (void **)&piUserData);
+
+    if (piUserData && piUserDataSize)
+    {
+        types::InternalType* pUD = (types::InternalType*)sciReturnUserData(piUserData, iUserDataSize);
+        pUD->DecreaseRef();
+        pUD->killMe();
+    }
     /*
     ** If deleting a figure, remove from figure list.
     */
