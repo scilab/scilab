@@ -8,7 +8,7 @@
 // <-- Non-regression test for bug 9571 -->
 //
 // <-- CLI SHELL MODE -->
-// 
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=9571
 //
@@ -19,18 +19,18 @@ msgerror = msprintf(gettext("Undefined variable: %s\n"), "%p");
 assert_checkerror ( "%p" , msgerror );
 
 if with_module("umfpack") then
-  // assert_checkerror does not manage multiline error, see bug 9572 
-  
-  msgerror = gettext("Undefined operation for the given operands.\n");
-  msgerror = strsubst(msgerror, "\n", "");
-  msgerror = [msgerror; msprintf(gettext("check or define function %s for overloading.\n"), "%ptr_f_ptr")];
+    // assert_checkerror does not manage multiline error, see bug 9572
 
-  A = sparse( [ 2  3  0  0  0]);
-  Lup = umf_lufact(A);
-  if execstr("B = [Lup; Lup];", "errcatch") <> 144 then pause, end
-  msg = lasterror();
-  
-  if ~and(msg == msgerror) then pause, end
+    msgerror = gettext("Undefined operation for the given operands.\n");
+    msgerror = strsubst(msgerror, "\n", "");
+    msgerror = [msgerror; msprintf(gettext("check or define function %s for overloading.\n"), "%ptr_f_ptr")];
+
+    A = sparse( [ 2  3  0  0  0]);
+    Lup = umf_lufact(A);
+    if execstr("B = [Lup; Lup];", "errcatch") <> 999 then pause, end
+    msg = lasterror();
+
+    if ~and(msg == msgerror) then pause, end
 end
 
 
