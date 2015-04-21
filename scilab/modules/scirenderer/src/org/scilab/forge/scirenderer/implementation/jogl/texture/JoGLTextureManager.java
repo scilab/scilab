@@ -18,6 +18,7 @@ import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLCanvas;
 import org.scilab.forge.scirenderer.implementation.jogl.JoGLDrawingTools;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.texture.AbstractTexture;
 import org.scilab.forge.scirenderer.texture.AnchorPosition;
 import org.scilab.forge.scirenderer.texture.Texture;
@@ -75,14 +76,14 @@ public class JoGLTextureManager implements TextureManager {
     public void draw(JoGLDrawingTools drawingTools, Texture texture) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             final JoGLTexture jt = (JoGLTexture) texture;
-            if (jt.preDraw(drawingTools)) {
+            if (jt.preDraw(drawingTools, null)) {
                 jt.draw(drawingTools);
                 jt.postDraw(drawingTools);
             }
         }
     }
 
-    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, ElementsBuffer colors) throws SciRendererException {
+    public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, Color auxColor, ElementsBuffer colors) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             if (positions != null) {
                 FloatBuffer data = positions.getData();
@@ -93,7 +94,7 @@ public class JoGLTextureManager implements TextureManager {
                     // Initializing dataColors Buffer
                     if (colors != null) {
                         dataColors = colors.getData();
-                        if (dataColors != null){
+                        if (dataColors != null) {
                             dataColors.rewind();
                             // There should be as many colors as there are positions
                             if (dataColors.limit() != data.limit()) {
@@ -103,10 +104,16 @@ public class JoGLTextureManager implements TextureManager {
                     }
                     float[] position = {0, 0, 0, 1};
                     float[] color = {0, 0, 0, 0};
+                    float[] auxcolor = null;
+                    if (auxColor != null) {
+                        auxcolor = new float[4];
+                        auxColor.getComponents(auxcolor);
+                    }
+
                     int mark = 0;
 
                     final JoGLTexture jt = (JoGLTexture) texture;
-                    if (jt.preDraw(drawingTools)) {
+                    if (jt.preDraw(drawingTools, auxcolor)) {
                         stride = stride < 1 ? 1 : stride;
                         offset = offset < 0 ? 0 : offset;
                         if (stride == 1) {
@@ -119,10 +126,9 @@ public class JoGLTextureManager implements TextureManager {
                             }
                             while (data.remaining() >= 4) {
                                 data.get(position);
-                                if (dataColors == null){
+                                if (dataColors == null) {
                                     jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle, null);
-                                }
-                                else {
+                                } else {
                                     dataColors.get(color);
                                     jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle, color);
                                 }
@@ -133,10 +139,9 @@ public class JoGLTextureManager implements TextureManager {
                                 data.position(mark);
                                 while (data.remaining() >= 4) {
                                     data.get(position);
-                                    if (dataColors == null){
+                                    if (dataColors == null) {
                                         jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle, null);
-                                    }
-                                    else {
+                                    } else {
                                         dataColors.position(mark);
                                         dataColors.get(color);
                                         jt.draw(drawingTools, anchor, new Vector3d(position), rotationAngle, color);
@@ -164,7 +169,7 @@ public class JoGLTextureManager implements TextureManager {
     public void draw(JoGLDrawingTools drawingTools, Texture texture, AnchorPosition anchor, Vector3d position, double rotationAngle) throws SciRendererException {
         if ((texture instanceof JoGLTexture) && (allTextures.contains((JoGLTexture) texture))) {
             final JoGLTexture jt = (JoGLTexture) texture;
-            jt.preDraw(drawingTools);
+            jt.preDraw(drawingTools, null);
             jt.draw(drawingTools, anchor, position, rotationAngle, null);
             jt.postDraw(drawingTools);
         }
@@ -373,7 +378,7 @@ public class JoGLTextureManager implements TextureManager {
             }
         }
 
-        public boolean preDraw(JoGLDrawingTools drawingTools) throws SciRendererException {
+        public boolean preDraw(JoGLDrawingTools drawingTools, float[] auxcolor) throws SciRendererException {
             checkData(drawingTools);
 
             if (textures == null) {
@@ -402,7 +407,12 @@ public class JoGLTextureManager implements TextureManager {
             gl.glPushAttrib(GL2.GL_ALL_ATTRIB_BITS);
 
             gl.glColor4f(1f, 1f, 1f, 1f);
-            gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_MODULATE);
+            if (auxcolor != null) {
+                gl.glTexEnvfv(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_COLOR, auxcolor, 0);
+                gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_BLEND);
+            } else {
+                gl.glTexEnvi(GL2.GL_TEXTURE_ENV, GL2.GL_TEXTURE_ENV_MODE, GL2.GL_MODULATE);
+            }
 
             for (int k = 0; k < wCuts * hCuts; k++) {
                 textures[k].enable(gl);

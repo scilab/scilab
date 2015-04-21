@@ -42,6 +42,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     private int width;
     private int height;
     private java.awt.Color fillColor;
+    private java.awt.Color borderColor;
 
     /**
      * Default constructor.
@@ -58,16 +59,16 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     }
 
     public void accept(Texture texture) {
-        accept(texture, null);
+        accept(texture, null, null);
     }
 
-    public void accept(Texture texture, java.awt.Color fillColor) {
+    public void accept(Texture texture, java.awt.Color borderColor, java.awt.Color fillColor) {
         G2DTextureManager.G2DTexture t = (G2DTextureManager.G2DTexture) texture;
         TextureDrawer drawer = t.getDrawer();
         Dimension d = drawer.getTextureSize();
         this.width = (int) d.getWidth();
         this.height = (int) d.getHeight();
-        accept(drawer, this.width, this.height, fillColor);
+        accept(drawer, this.width, this.height, borderColor, fillColor);
     }
 
     /**
@@ -75,7 +76,7 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
      * This image will contain the drawing of the given drawer.
      * @param spriteDrawer the given sprite drawer.
      */
-    public void accept(TextureDrawer textureDrawer, int width, int height, java.awt.Color fillColor) {
+    public void accept(TextureDrawer textureDrawer, int width, int height, java.awt.Color borderColor, java.awt.Color fillColor) {
         // Change center coordinate to (0, 0).
         if (textureDrawer.getOriginPosition() == TextureDrawer.OriginPosition.CENTER) {
             g2d.translate(width / 2.0, height / 2.0);
@@ -86,7 +87,9 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         }
         this.fillColor = fillColor;
+        this.borderColor = borderColor;
         textureDrawer.draw(this);
+        this.borderColor = null;
         this.fillColor = null;
 
         if (!aa) {
@@ -213,14 +216,17 @@ public class G2DTextureDrawingTools implements TextureDrawingTools {
     }
 
     public java.awt.Color getColor(Color color) {
-        if (fillColor == null) {
-            return color;
-        } else {
-            if (color.equals(Color.WHITE)) {
-                return fillColor;
-            } else {
+        if (color.equals(Color.BLACK)) {
+            if (fillColor == null) {
                 return color;
             }
+            return fillColor;
+        } else if (color.equals(Color.WHITE)) {
+            if (borderColor == null) {
+                return color;
+            }
+            return borderColor;
         }
+        return color;
     }
 }

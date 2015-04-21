@@ -159,32 +159,32 @@ public class JoGLDrawingTools implements DrawingTools {
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, 0, null);
+        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, 0, null, null);
     }
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, rotationAngle, null);
+        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, rotationAngle, null, null);
     }
 
     @Override
-    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, ElementsBuffer colors) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, 0, colors);
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, Color auxColor, ElementsBuffer colors) throws SciRendererException {
+        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, 0, auxColor, colors);
     }
 
     @Override
-    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, ElementsBuffer colors) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, rotationAngle, colors);
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, Color auxColor, ElementsBuffer colors) throws SciRendererException {
+        canvas.getTextureManager().draw(this, texture, anchor, positions, 0, 1, rotationAngle, auxColor, colors);
     }
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, offset, stride, rotationAngle, null);
+        canvas.getTextureManager().draw(this, texture, anchor, positions, offset, stride, rotationAngle, null, null);
     }
 
     @Override
-    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, ElementsBuffer colors) throws SciRendererException {
-        canvas.getTextureManager().draw(this, texture, anchor, positions, offset, stride, rotationAngle, colors);
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, Color auxColor, ElementsBuffer colors) throws SciRendererException {
+        canvas.getTextureManager().draw(this, texture, anchor, positions, offset, stride, rotationAngle, auxColor, colors);
     }
 
     @Override

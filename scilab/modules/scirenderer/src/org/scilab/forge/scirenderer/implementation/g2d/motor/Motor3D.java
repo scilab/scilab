@@ -209,7 +209,7 @@ public class Motor3D {
         }
     }
 
-    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, ElementsBuffer colors) {
+    public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, org.scilab.forge.scirenderer.shapes.appearance.Color auxColor, ElementsBuffer colors) {
         FloatBuffer positionsBuffer = positions.getData();
         float[] buffer;
         offset = offset < 0 ? 0 : offset;
@@ -242,9 +242,9 @@ public class Motor3D {
                 Vector3d v = verticesArray[i];
                 SpritedRectangle o;
                 if (colorsArray == null) {
-                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, null);
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, null, null);
                 } else {
-                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, colorsArray[i]);
+                    o = new SpritedRectangle(v, texture, anchor, textureDrawingTools, rotationAngle, (Color) auxColor, colorsArray[i]);
                 }
                 add(o);
             } catch (InvalidPolygonException e) { }
@@ -253,7 +253,7 @@ public class Motor3D {
 
     public void draw(DrawingTools drawingTools, Texture texture, AnchorPosition anchor, Vector3d position, double rotationAngle) {
         try {
-            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle, null));
+            add(new SpritedRectangle(transf.project(position), texture, anchor, textureDrawingTools, rotationAngle, null, null));
         } catch (InvalidPolygonException e) { }
     }
 

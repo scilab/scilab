@@ -43,14 +43,16 @@ public class SpritedRectangle extends ConvexObject {
     private Texture.Filter filter;
     private Vector3d position;
     private Color fillColor;
+    private Color borderColor;
 
-    public SpritedRectangle(Vector3d vertex, Texture sprite, AnchorPosition anchor, G2DTextureDrawingTools drawingTools, double rotationAngle, Color fillColor) throws InvalidPolygonException {
+    public SpritedRectangle(Vector3d vertex, Texture sprite, AnchorPosition anchor, G2DTextureDrawingTools drawingTools, double rotationAngle, Color borderColor, Color fillColor) throws InvalidPolygonException {
         super(getSpriteVertices(vertex, sprite, anchor, rotationAngle), null);
         this.sprite = sprite;
         this.drawingTools = drawingTools;
         this.rotationAngle = rotationAngle;
         this.position = vertex;
         this.fillColor = fillColor;
+        this.borderColor = borderColor;
     }
 
     public SpritedRectangle(Vector3d vertex, Transformation transf, BufferedImage image, Texture.Filter filter) throws InvalidPolygonException {
@@ -297,7 +299,7 @@ public class SpritedRectangle extends ConvexObject {
                 g2d.translate(vertices[0].getX(), vertices[0].getY());
             }
 
-            drawingTools.accept(sprite, fillColor);
+            drawingTools.accept(sprite, borderColor, fillColor);
             g2d.setTransform(oldTransf);
             g2d.setStroke(oldStroke);
         } else {

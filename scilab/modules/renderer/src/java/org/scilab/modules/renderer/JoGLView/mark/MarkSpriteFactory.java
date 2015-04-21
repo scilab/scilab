@@ -78,6 +78,12 @@ public class MarkSpriteFactory {
         if (colorMap != null) {
             backgroundColor = ColorFactory.createColor(colorMap, mark.getBackground());
             foregroundColor = ColorFactory.createColor(colorMap, markColor);
+        } else if (mark.getBackground() == -3 && mark.getForeground() == -3) {
+            backgroundColor = new Color(0f, 0f, 0f, 1f);
+            foregroundColor = new Color(0f, 0f, 0f, 1f);
+        } else if (mark.getBackground() == -3) {
+            backgroundColor = new Color(0f, 0f, 0f, 1f);
+            foregroundColor = new Color(1f, 1f, 1f, 1f);
         } else {
             backgroundColor = new Color(1f, 1f, 1f, 1f);
             foregroundColor = new Color(0f, 0f, 0f, 1f);
