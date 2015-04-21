@@ -282,10 +282,6 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
                 if (iDims == 2 && (DataType)datatype != MATPLOT_Double)
                 {
                     plottype = buildMatplotType(MATPLOT_Double, (DataOrder)dataorder, (ImageType)imagetype);
-                    iRows = nbRow;
-                    iCols = nbCol;
-                    pvData = _pvData;
-                    break;
                 }
                 else if ((DataType)datatype != MATPLOT_HM1_Double)
                 {
@@ -356,13 +352,13 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
     }
     else  /* F.Leray 02.05.05 : "data" case for others (using sciGetPoint routine inside GetProperty.c) */
     {
-        if (valueType != sci_matrix)
+        if (((types::InternalType*)_pvData)->isDouble() == false)
         {
             Scierror(999, _("Incompatible type for property ''%s''.\n"), "data");
             return SET_PROPERTY_ERROR;
         }
 
-        return sciSetPoint(iObjUID, (double*)_pvData, &nbRow, &nbCol);
+        return sciSetPoint(iObjUID, ((types::Double*)_pvData)->get(), &nbRow, &nbCol);
     }
     return SET_PROPERTY_ERROR;
 }

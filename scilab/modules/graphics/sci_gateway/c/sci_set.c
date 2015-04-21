@@ -340,7 +340,8 @@ int sci_set(char *fname, void *pvApiCtx)
 
         if (stricmp(pstProperty, "user_data") == 0 ||
                 stricmp(pstProperty, "userdata") == 0 ||
-                stricmp(pstProperty, "display_function_data") == 0)
+                stricmp(pstProperty, "display_function_data") == 0 ||
+                stricmp(pstProperty, "data") == 0)
         {
             /* in this case set_user_data_property
             * directly uses the  third position in the stack
