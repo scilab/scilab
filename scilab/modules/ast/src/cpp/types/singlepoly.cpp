@@ -366,7 +366,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
     int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        //if (isRealZero(_pdblVal[i]) == false)
+        if (_pdblVal[i] != 0)
         {
             DoubleFormat df;
             getDoubleFormat(_pdblVal[i], &df);
