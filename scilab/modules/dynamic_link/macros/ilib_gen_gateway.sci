@@ -105,10 +105,10 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             for kGw = 1:size(names, "*")
                 if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then
                     t = [t;
-                    "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "addMexFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME); }"];
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addMexFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 else
                     t = [t;
-                    "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "addCFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME); }"];
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
                 end
             end
 
