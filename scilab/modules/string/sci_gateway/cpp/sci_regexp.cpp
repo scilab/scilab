@@ -267,11 +267,11 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
         out.push_back(pS);
 
-    }
+        for (int i = 0; i < iOccurs; i++)
+        {
+            freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+        }
 
-    for (int i = 0; i < iOccurs; i++)
-    {
-        freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
     }
 
     FREE(pwstCapturedString);
