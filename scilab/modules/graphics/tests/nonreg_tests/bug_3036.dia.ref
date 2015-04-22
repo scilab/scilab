@@ -15,7 +15,7 @@
 xdel(winsid());
 x=linspace(-%pi,%pi,1000)';
 ierr = execstr('surf(x,x,sin(x)*cos(x)'');','errcatch');
-if ierr <> 17 then bugmes();quit;end
+if ierr <> 0 then bugmes();quit;end
 x=linspace(-%pi,%pi,100)';
 plot(x,x);
 curfig = gcf();
