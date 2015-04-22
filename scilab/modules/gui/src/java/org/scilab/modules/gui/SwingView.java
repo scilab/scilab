@@ -130,6 +130,7 @@ import org.scilab.modules.gui.bridge.uitable.SwingScilabUiTable;
 import org.scilab.modules.gui.bridge.waitbar.SwingScilabWaitBar;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
+import org.scilab.modules.gui.frame.SimpleFrame;
 import org.scilab.modules.gui.ged.Inspector;
 import org.scilab.modules.gui.menubar.MenuBar;
 import org.scilab.modules.gui.menubar.ScilabMenuBar;
@@ -724,7 +725,7 @@ public final class SwingView implements GraphicView {
                     bar.close();
                     break;
                 case Frame:
-                    SwingScilabFrame frame = (SwingScilabFrame) requestedObject.getValue();
+                    SimpleFrame frame = (SimpleFrame) requestedObject.getValue();
                     frame.destroy();
                     break;
                 default:
@@ -1083,7 +1084,7 @@ public final class SwingView implements GraphicView {
         boolean needRevalidate = false;
         boolean hasOpenGLAxes = false;
         int oldComponentCount = updatedComponent.getComponentCount();
-        
+
         // Add new children
         for (Integer childId : newChildren) {
             int childType = (Integer) GraphicController.getController().getProperty(childId, __GO_TYPE__);
@@ -1133,7 +1134,7 @@ public final class SwingView implements GraphicView {
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.revalidate();
         }
-        
+
         // Force repaint if we removed components
         if (oldComponentCount > updatedComponent.getComponentCount()) {
             updatedComponent.repaint();
@@ -1184,7 +1185,7 @@ public final class SwingView implements GraphicView {
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.getPanel().revalidate();
         }
-        
+
         // Force repaint if we removed components
         if (oldComponentCount > updatedComponent.getPanel().getComponentCount()) {
             updatedComponent.repaint();

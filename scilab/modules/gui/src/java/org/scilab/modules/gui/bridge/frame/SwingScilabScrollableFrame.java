@@ -364,7 +364,6 @@ public class SwingScilabScrollableFrame extends JScrollPane implements SwingView
      * Destroy the Frame
      */
     public void destroy() {
-        getParent().remove(this);
         this.setVisible(false);
     }
 
