@@ -57,7 +57,13 @@ public :
     // and toString method is useless
     // if user overload hasToString for return true, he must overload toString method
     // bool toString(std::wostringstream& ostr)
-    virtual bool    hasToString()
+    virtual bool hasToString()
+    {
+        return false;
+    }
+
+    // overload this methode if hasToString methode return true
+    virtual bool toString(std::wostringstream& /*ostr*/)
     {
         return false;
     }
