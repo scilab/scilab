@@ -15,6 +15,11 @@
 #include "common_structure.h"
 #include "dynlib_differential_equations.h"
 /*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
 

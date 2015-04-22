@@ -181,6 +181,7 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
                     break;
             }
 
+            pList->killMe();
             Scierror(999, _("List element number %d is Undefined.\n"), iIndex);
             return types::Function::Error;
         }
@@ -190,6 +191,8 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     {
         out.push_back(pList->get(i));
     }
+
+    pList->killMe();
 
     return types::Function::OK;
 }

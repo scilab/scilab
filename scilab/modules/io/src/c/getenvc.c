@@ -62,6 +62,7 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
                 sciprint(_("Undefined environment variable %s.\n"), var);
             }
 
+            FREE(wbuf);
             FREE(wvar);
             *ierr = 1;
             return;

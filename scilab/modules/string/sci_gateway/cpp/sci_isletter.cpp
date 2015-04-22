@@ -78,6 +78,10 @@ types::Function::ReturnValue sci_isletter(types::typed_list &in, int _iRetCount,
         out.push_back(types::Double::Empty());
     }
 
+    if (values)
+    {
+        FREE(values);
+    }
     return types::Function::OK;
 }
 

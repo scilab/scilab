@@ -230,7 +230,6 @@ void TreeVisitor::visit(const OpExp &e)
     sub->append(getList());
     ope->append(sub);
 
-    types::String* s = new types::String(1, 1);
     switch (e.getOper())
     {
         // Arithmetics.

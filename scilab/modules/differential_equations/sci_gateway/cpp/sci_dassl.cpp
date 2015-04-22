@@ -148,8 +148,8 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"dassl");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"dassl");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblX0->getRows();
@@ -167,7 +167,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
         memset(pdYdotData, 0x00, *YSize);
     }
 
-    deFunctionsManager->setOdeYRows(pDblX0->getRows());
+    deFunctionsManager.setOdeYRows(pDblX0->getRows());
 
     for (iPos++; iPos < in.size(); iPos++)
     {
@@ -227,12 +227,12 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
             if (bFuncF == false)
             {
-                deFunctionsManager->setFFunction(pCall);
+                deFunctionsManager.setFFunction(pCall);
                 bFuncF = true;
             }
             else if (bFuncJac == false)
             {
-                deFunctionsManager->setJacFunction(pCall);
+                deFunctionsManager.setJacFunction(pCall);
                 bFuncJac = true;
             }
             else
@@ -252,12 +252,12 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
             if (bFuncF == false)
             {
-                bOK = deFunctionsManager->setFFunction(pStr);
+                bOK = deFunctionsManager.setFFunction(pStr);
                 bFuncF = true;
             }
             else if (bFuncJac == false)
             {
-                bOK = deFunctionsManager->setJacFunction(pStr);
+                bOK = deFunctionsManager.setJacFunction(pStr);
                 bFuncJac = true;
             }
             else
@@ -314,13 +314,13 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    bOK = deFunctionsManager->setFFunction(pStr);
+                    bOK = deFunctionsManager.setFFunction(pStr);
                     sizeOfpdYData = *YSize;
                 }
                 else if (bFuncJac == false)
                 {
                     bFuncJac = true;
-                    bOK = deFunctionsManager->setJacFunction(pStr);
+                    bOK = deFunctionsManager.setJacFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -384,19 +384,19 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncJac == false)
                 {
                     bFuncJac = true;
-                    deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
@@ -447,8 +447,8 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                     info[5] = 1;
                     ml = (int)pDblTemp->get(0);
                     mu = (int)pDblTemp->get(1);
-                    deFunctionsManager->setMl(ml);
-                    deFunctionsManager->setMu(mu);
+                    deFunctionsManager.setMl(ml);
+                    deFunctionsManager.setMu(mu);
                 }
                 else if (pDblTemp->getSize() != 0)
                 {

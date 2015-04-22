@@ -60,7 +60,7 @@ DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunc
 
 
 /*--------------------------------------------------------------------------*/
-DifferentialEquationFunctions::DifferentialEquationFunctions(std::wstring callerName)
+DifferentialEquationFunctions::DifferentialEquationFunctions(const std::wstring& callerName)
 {
     m_odeYRows      = 0;
     m_odeYCols      = 0;

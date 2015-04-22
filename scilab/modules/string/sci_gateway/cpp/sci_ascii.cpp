@@ -168,6 +168,14 @@ Double* StringToDouble(String* _pst)
 
     if (iTotalLen == 0)
     {
+        for (int i = 0; i < iSize; ++i)
+        {
+            if (pst[i])
+            {
+                FREE(pst[i]);
+            }
+        }
+
         delete[] pst;
         delete[] pstLen;
         return Double::Empty();
@@ -186,6 +194,7 @@ Double* StringToDouble(String* _pst)
             //transform character value as double.
             pdbl[index] = (unsigned char)pst[i][j];
         }
+        FREE(pst[i]);
     }
 
     delete[] pstLen;

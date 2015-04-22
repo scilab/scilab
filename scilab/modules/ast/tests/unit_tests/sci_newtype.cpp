@@ -29,14 +29,15 @@ api_scilab::Status sci_newtype(api_scilab::input &in, int _iRetCount, api_scilab
 
     if (in.size() == 1)
     {
-        if (api_scilab::isBool(in[0]) == false || api_scilab::getAsBool(in[0])->isScalar() == false)
+        api_scilab::Bool* pIn = api_scilab::getAsBool(in[0]);
+        if (pIn == NULL || pIn->isScalar() == false)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A scalar boolean expected.\n"), "cppfoo", 1);
             return api_scilab::Error;
         }
 
-        api_scilab::Bool* pIn = api_scilab::getAsBool(in[0]);
         out.push_back(new NewType(pIn->get(0)));
+        delete pIn;
     }
     else
     {

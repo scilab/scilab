@@ -96,6 +96,7 @@ Function::ReturnValue sci_getrelativefilename(types::typed_list &in, int _iRetCo
         FREE(wcsAbsFile);
 
         pStrOut->set(i, wcsResult);
+        FREE(wcsResult);
     }
 
     out.push_back(pStrOut);

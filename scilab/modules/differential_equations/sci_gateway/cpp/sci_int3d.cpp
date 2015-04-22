@@ -138,19 +138,19 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
     }
 
     // function
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"int3d");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"int3d");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[3]->isCallable())
     {
         types::Callable* pCall = in[3]->getAs<types::Callable>();
-        deFunctionsManager->setFFunction(pCall);
+        deFunctionsManager.setFFunction(pCall);
     }
     else if (in[3]->isString())
     {
         bool bOK = false;
         types::String* pStr = in[3]->getAs<types::String>();
-        bOK = deFunctionsManager->setFFunction(pStr);
+        bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
         {
@@ -174,10 +174,10 @@ types::Function::ReturnValue sci_int3d(types::typed_list &in, int _iRetCount, ty
 
         if (pList->get(0)->isCallable())
         {
-            deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else

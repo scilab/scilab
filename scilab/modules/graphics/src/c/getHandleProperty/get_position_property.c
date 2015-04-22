@@ -38,6 +38,7 @@ void* get_position_property(void* _pvCtx, int iObjUID)
     int iType = -1;
     int* piType = &iType;
     double* position = NULL;
+    void* ret = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void **) &piType);
     if (piType == NULL)
@@ -112,6 +113,8 @@ void* get_position_property(void* _pvCtx, int iObjUID)
         return NULL;
     }
 
-    return sciReturnRowVector(position, 4);
+    ret = sciReturnRowVector(position, 4);
+    releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 4);
+    return ret;
 }
 /*------------------------------------------------------------------------*/

@@ -115,6 +115,7 @@ assert_checkequal(a(2).b.num, [%s**2 %s**2 %s**2]);
 err = execstr("a.b(1,3).num = 5;", "errcatch");
 assert_checktrue(err <> 0);
 
+
 a(3).b.num = 12;
 assert_checkequal(a(3).b.num, 12);
 
@@ -515,4 +516,3 @@ assert_checktrue(err <> 0);
 st=initst();
 err=execstr("st(1:2).f(1:4).e = 5;", "errcatch");
 assert_checktrue(err <> 0);
-

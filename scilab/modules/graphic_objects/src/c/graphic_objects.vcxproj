@@ -244,6 +244,7 @@
     <ClCompile Include="..\cpp\CurrentFigure.cpp" />
     <ClCompile Include="..\cpp\CurrentObject.cpp" />
     <ClCompile Include="..\cpp\CurrentSubwin.cpp" />
+    <ClCompile Include="..\cpp\DllmainGraphic_objects.cpp" />
     <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
@@ -272,7 +273,6 @@
     <ClCompile Include="..\jni\ObjectData_wrap.c" />
     <ClCompile Include="..\jni\PolylineData_wrap.c" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
-    <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\getGraphicObjectProperty.cpp" />
     <ClCompile Include="..\cpp\NgonData.cpp" />

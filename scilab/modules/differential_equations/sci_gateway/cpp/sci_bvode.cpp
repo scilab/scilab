@@ -405,10 +405,10 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
     iPos++;
 
     // functions: fsub,dfsub,gsub,dgsub,guess
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"bvode");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
-    deFunctionsManager->setBvodeM(sumM);
-    deFunctionsManager->setBvodeN(ncomp);
+    DifferentialEquationFunctions deFunctionsManager(L"bvode");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
+    deFunctionsManager.setBvodeM(sumM);
+    deFunctionsManager.setBvodeN(ncomp);
 
     for (int i = iPos; i < 15; i++)
     {
@@ -417,23 +417,23 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
             types::Callable* pCall = in[i]->getAs<types::Callable>();
             if (i == 10) // fsub
             {
-                deFunctionsManager->setFsubFunction(pCall);
+                deFunctionsManager.setFsubFunction(pCall);
             }
             else if (i == 11) // dfsub
             {
-                deFunctionsManager->setDfsubFunction(pCall);
+                deFunctionsManager.setDfsubFunction(pCall);
             }
             else if (i == 12) // gsub
             {
-                deFunctionsManager->setGsubFunction(pCall);
+                deFunctionsManager.setGsubFunction(pCall);
             }
             else if (i == 13) // dgsub
             {
-                deFunctionsManager->setDgsubFunction(pCall);
+                deFunctionsManager.setDgsubFunction(pCall);
             }
             else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
             {
-                deFunctionsManager->setGuessFunction(pCall);
+                deFunctionsManager.setGuessFunction(pCall);
             }
         }
         else if (in[i]->isString())
@@ -442,23 +442,23 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
             types::String* pStr = in[i]->getAs<types::String>();
             if (i == 10) // fsub
             {
-                bOK = deFunctionsManager->setFsubFunction(pStr);
+                bOK = deFunctionsManager.setFsubFunction(pStr);
             }
             else if (i == 11) // dfsub
             {
-                bOK = deFunctionsManager->setDfsubFunction(pStr);
+                bOK = deFunctionsManager.setDfsubFunction(pStr);
             }
             else if (i == 12) // gsub
             {
-                bOK = deFunctionsManager->setGsubFunction(pStr);
+                bOK = deFunctionsManager.setGsubFunction(pStr);
             }
             else if (i == 13) // dgsub
             {
-                bOK = deFunctionsManager->setDgsubFunction(pStr);
+                bOK = deFunctionsManager.setDgsubFunction(pStr);
             }
             else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
             {
-                bOK = deFunctionsManager->setGuessFunction(pStr);
+                bOK = deFunctionsManager.setGuessFunction(pStr);
             }
 
             if (bOK == false)
@@ -487,42 +487,42 @@ types::Function::ReturnValue sci_bvode(types::typed_list &in, int _iRetCount, ty
             {
                 if (i == 10) // fsub
                 {
-                    deFunctionsManager->setFsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFsubFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFsubArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (i == 11) // dfsub
                 {
-                    deFunctionsManager->setDfsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setDfsubFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setDfsubArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setDfsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (i == 12) // gsub
                 {
-                    deFunctionsManager->setGsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGsubFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setGsubArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setGsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (i == 13) // dgsub
                 {
-                    deFunctionsManager->setDgsubFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setDgsubFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setDgsubArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setDgsubArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (i == 14 && ipar[8] == 1) // guess is needed only if ipar(9) == 1
                 {
-                    deFunctionsManager->setGuessFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGuessFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setGuessArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setGuessArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }

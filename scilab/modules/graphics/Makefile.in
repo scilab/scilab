@@ -541,7 +541,8 @@ am__objects_1 = src/c/libscigraphics_algo_la-GetCommandArg.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-set_auto_margins_property.lo \
 	src/c/getHandleProperty/libscigraphics_algo_la-get_auto_margins_property.lo \
 	src/c/libscigraphics_algo_la-name2rgb.lo \
-	src/c/libscigraphics_algo_la-addColor.lo
+	src/c/libscigraphics_algo_la-addColor.lo \
+	src/c/libscigraphics_algo_la-DllmainGraphics.lo
 am__objects_2 =  \
 	src/cpp/libscigraphics_algo_la-configgraphicvariable.lo \
 	src/cpp/libscigraphics_algo_la-set_data_property.lo \
@@ -1384,7 +1385,8 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_auto_margins_property.c \
     src/c/getHandleProperty/get_auto_margins_property.c \
     src/c/name2rgb.c \
-    src/c/addColor.c
+    src/c/addColor.c \
+    src/c/DllmainGraphics.c
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
@@ -2815,6 +2817,8 @@ src/c/libscigraphics_algo_la-name2rgb.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscigraphics_algo_la-addColor.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscigraphics_algo_la-DllmainGraphics.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
 	@: > src/cpp/$(am__dirstamp)
@@ -3147,6 +3151,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-Contour.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DefaultCommandArg.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DestroyObjects.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DllmainGraphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-DrawObjects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-FeC.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscigraphics_algo_la-Format.Plo@am__quote@
@@ -6113,6 +6118,13 @@ src/c/libscigraphics_algo_la-addColor.lo: src/c/addColor.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/addColor.c' object='src/c/libscigraphics_algo_la-addColor.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-addColor.lo `test -f 'src/c/addColor.c' || echo '$(srcdir)/'`src/c/addColor.c
+
+src/c/libscigraphics_algo_la-DllmainGraphics.lo: src/c/DllmainGraphics.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscigraphics_algo_la-DllmainGraphics.lo -MD -MP -MF src/c/$(DEPDIR)/libscigraphics_algo_la-DllmainGraphics.Tpo -c -o src/c/libscigraphics_algo_la-DllmainGraphics.lo `test -f 'src/c/DllmainGraphics.c' || echo '$(srcdir)/'`src/c/DllmainGraphics.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscigraphics_algo_la-DllmainGraphics.Tpo src/c/$(DEPDIR)/libscigraphics_algo_la-DllmainGraphics.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/DllmainGraphics.c' object='src/c/libscigraphics_algo_la-DllmainGraphics.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscigraphics_algo_la-DllmainGraphics.lo `test -f 'src/c/DllmainGraphics.c' || echo '$(srcdir)/'`src/c/DllmainGraphics.c
 
 src/nographics/libscigraphics_disable_la-nographics.lo: src/nographics/nographics.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nographics/libscigraphics_disable_la-nographics.lo -MD -MP -MF src/nographics/$(DEPDIR)/libscigraphics_disable_la-nographics.Tpo -c -o src/nographics/libscigraphics_disable_la-nographics.lo `test -f 'src/nographics/nographics.c' || echo '$(srcdir)/'`src/nographics/nographics.c

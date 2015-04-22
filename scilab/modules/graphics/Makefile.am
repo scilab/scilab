@@ -396,7 +396,8 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_auto_margins_property.c \
     src/c/getHandleProperty/get_auto_margins_property.c \
     src/c/name2rgb.c \
-    src/c/addColor.c
+    src/c/addColor.c \
+    src/c/DllmainGraphics.c
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \

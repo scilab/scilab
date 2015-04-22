@@ -280,6 +280,7 @@ int iEigen1RealM(double* pData, int iCols, double* pEigenValuesReal, double* pEi
         pWork = allocWorkspace(ws, 0, &worksize);
         pRightVectors =  (lhs == 2 ? (double*)MALLOC(iCols * iCols * sizeof(double)) : NULL );
         iEigen1R(pData, iCols, pEigenValuesReal, pEigenValuesImg, pRightVectors, pWork, worksize);
+        FREE(pWork);
         if (lhs == 2)
         {
             assembleEigenvectorsSourceToTarget(iCols, pEigenValuesImg,

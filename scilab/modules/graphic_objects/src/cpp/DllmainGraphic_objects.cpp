@@ -10,44 +10,21 @@
  *
  */
 
+#include "DataModel.hxx"
+#ifdef _MSC_VER
 #include <windows.h>
-#include "machine.h"
 /*--------------------------------------------------------------------------*/
 //for Visual Leak Detector in debug compilation mode
 #if defined(DEBUG_VLD) && defined(_DEBUG)
 #include <vld.h>
 #endif
+
+extern "C"
+{
+    int WINAPI DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved);
+}
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
-#pragma comment(lib,"../../../../bin/blasplus.lib")
-#pragma comment(lib,"../../../../bin/lapack.lib")
-/*--------------------------------------------------------------------------*/
-/* We force fortran COMMON definitions */
-
-__declspec(dllexport) struct
-{
-    int io, info, ll;
-} C2F(sortie);
-
-__declspec(dllexport) struct
-{
-    int nall1;
-} C2F(comall);
-
-__declspec(dllexport) struct
-{
-    double t;
-} C2F(temps);
-
-__declspec(dllexport) struct
-{
-    double gnrm;
-} C2F(no2f);
-
-__declspec(dllexport) struct
-{
-    int info, i1;
-} C2F(arl2c);
 /*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
@@ -56,6 +33,7 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
         case DLL_PROCESS_ATTACH:
             break;
         case DLL_PROCESS_DETACH:
+            DataModel::destroy();
             break;
         case DLL_THREAD_ATTACH:
             break;
@@ -64,5 +42,18 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
     }
     return 1;
 }
+#else
+__attribute__((constructor)) static void load(void);
+__attribute__((destructor)) static void unload(void);
+
+void load(void)
+{
+}
+
+void unload(void)
+{
+    DataModel::destroy();
+}
+#endif
 /*--------------------------------------------------------------------------*/
 

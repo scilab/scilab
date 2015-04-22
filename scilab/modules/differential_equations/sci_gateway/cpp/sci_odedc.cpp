@@ -269,11 +269,11 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"odedc");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
-    deFunctionsManager->setOdedcYDSize((int)pDblNd->get(0));
-    deFunctionsManager->setOdeYRows(pDblY0->getRows());
-    deFunctionsManager->setOdeYCols(pDblY0->getCols());
+    DifferentialEquationFunctions deFunctionsManager(L"odedc");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
+    deFunctionsManager.setOdedcYDSize((int)pDblNd->get(0));
+    deFunctionsManager.setOdeYRows(pDblY0->getRows());
+    deFunctionsManager.setOdeYCols(pDblY0->getCols());
 
     YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblY0->getSize();
@@ -373,17 +373,17 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
             if (bFuncF == false)
             {
-                deFunctionsManager->setFFunction(pCall);
+                deFunctionsManager.setFFunction(pCall);
                 bFuncF = true;
             }
             else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
-                deFunctionsManager->setJacFunction(pCall);
+                deFunctionsManager.setJacFunction(pCall);
                 bFuncJac = true;
             }
             else if (bFuncG == false && meth == 3)
             {
-                deFunctionsManager->setGFunction(pCall);
+                deFunctionsManager.setGFunction(pCall);
                 bFuncG = true;
             }
             else
@@ -402,17 +402,17 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (bFuncF == false)
             {
-                bOK = deFunctionsManager->setFFunction(pStr);
+                bOK = deFunctionsManager.setFFunction(pStr);
                 bFuncF = true;
             }
             else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
-                bOK = deFunctionsManager->setJacFunction(pStr);
+                bOK = deFunctionsManager.setJacFunction(pStr);
                 bFuncJac = true;
             }
             else if (bFuncG == false && meth == 3)
             {
-                bOK = deFunctionsManager->setGFunction(pStr);
+                bOK = deFunctionsManager.setGFunction(pStr);
                 bFuncG = true;
             }
             else
@@ -465,13 +465,13 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    bOK = deFunctionsManager->setFFunction(pStr);
+                    bOK = deFunctionsManager.setFFunction(pStr);
                     sizeOfpdYData = *YSize;
                 }
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    bOK = deFunctionsManager->setJacFunction(pStr);
+                    bOK = deFunctionsManager.setJacFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -480,7 +480,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    bOK = deFunctionsManager->setGFunction(pStr);
+                    bOK = deFunctionsManager.setGFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -543,28 +543,28 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    deFunctionsManager->setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setGArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
@@ -1090,7 +1090,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
             if (fabs(tleft - hf) < 1.0e-12) // update discrete part
             {
                 bIntegrateContPart = false;
-                deFunctionsManager->setOdedcFlag();
+                deFunctionsManager.setOdedcFlag();
 
                 if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
@@ -1144,7 +1144,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     throw ast::ScilabMessage(os.str());
                 }
 
-                deFunctionsManager->resetOdedcFlag();
+                deFunctionsManager.resetOdedcFlag();
                 nhpass++;
 
                 double* copy = (double*)MALLOC(*YSize * sizeof(double));
@@ -1473,7 +1473,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
 
             if (bUpdate)
             {
-                deFunctionsManager->setOdedcFlag();
+                deFunctionsManager.setOdedcFlag();
 
                 if (pDblOdeOptions && pDblOdeOptions->get(9) == 1)
                 {
@@ -1527,7 +1527,7 @@ types::Function::ReturnValue sci_odedc(types::typed_list &in, int _iRetCount, ty
                     throw ast::ScilabMessage(os.str());
                 }
 
-                deFunctionsManager->resetOdedcFlag();
+                deFunctionsManager.resetOdedcFlag();
                 nhpass++;
             }
 

@@ -46,6 +46,8 @@ static void freeJavaVMOption(void)
             }
         }
         nOptions = 0;
+        FREE(jvm_options);
+        jvm_options = NULL;
     }
 }
 
@@ -246,6 +248,8 @@ BOOL startJVM(char *SCI_PATH)
                         {
                             fprintf(stderr, "%d: %s\n", j, vm_args.options[j].optionString);
                         }
+
+                        freeJavaVMOption();
                     }
                     return FALSE;
                 }
@@ -267,10 +271,9 @@ BOOL startJVM(char *SCI_PATH)
         freeJavaVMOption();
         return FALSE;
     }
-    else
-    {
-        return TRUE;
-    }
+
+    freeJavaVMOption();
+    return TRUE;
 }
 /*--------------------------------------------------------------------------*/
 BOOL finishJVM(void)

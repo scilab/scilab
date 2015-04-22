@@ -148,6 +148,13 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
             pcre_error("regexp", iPcreStatus);
             delete[] piStart;
             delete[] piEnd;
+            for (int i = 0; i < iOccurs; i++)
+            {
+                freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+            }
+
+            FREE(pwstCapturedString);
+            FREE(piCapturedStringCount);
             return Function::Error;
         }
     }
@@ -171,6 +178,8 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
             out.push_back(new String(L""));
         }
 
+        FREE(pwstCapturedString);
+        FREE(piCapturedStringCount);
         delete[] piStart;
         delete[] piEnd;
         return Function::OK;
@@ -258,15 +267,15 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
         out.push_back(pS);
 
-        for (int i = 0 ; i < iOccurs ; i++)
-        {
-            freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
-        }
-
-        FREE(pwstCapturedString);
-        FREE(piCapturedStringCount);
     }
 
+    for (int i = 0; i < iOccurs; i++)
+    {
+        freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+    }
+
+    FREE(pwstCapturedString);
+    FREE(piCapturedStringCount);
     delete[] piStart;
     delete[] piEnd;
     return Function::OK;

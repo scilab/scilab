@@ -239,6 +239,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         memset(pdblOutReal, 0x00, pDblOut->getSize() * sizeof(double));
         C2F(dset)(&iSizeM1, &dblOne, &pdblOutReal[iSize], &iSizeP1);
         C2F(dcopy)(&iSize, pdblTempReal, &iOne, pdblOutReal, &iOne);
+        delete[] pdblTempReal;
 
         if (bComplex)
         {

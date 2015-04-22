@@ -115,13 +115,13 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
 
     // function
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"int2d");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"int2d");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[2]->isCallable())
     {
         types::Callable* pCall = in[2]->getAs<types::Callable>();
-        deFunctionsManager->setFFunction(pCall);
+        deFunctionsManager.setFFunction(pCall);
 
         // check function
         double x = 1;
@@ -138,7 +138,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         bool bOK = false;
         types::String* pStr = in[2]->getAs<types::String>();
-        bOK = deFunctionsManager->setFFunction(pStr);
+        bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
         {
@@ -162,10 +162,10 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (pList->get(0)->isCallable())
         {
-            deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else

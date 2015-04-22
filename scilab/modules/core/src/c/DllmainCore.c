@@ -9,7 +9,12 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include "machine.h"
 #include "stack-def.h"

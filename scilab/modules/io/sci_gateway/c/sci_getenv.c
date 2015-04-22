@@ -20,7 +20,6 @@
 #include "getenvc.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
-#include "getenvc.h"
 /*--------------------------------------------------------------------------*/
 int sci_getenv(char *fname, void* pvApiCtx)
 {
@@ -37,12 +36,12 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
     int iflag = 0;
 
-    Rhs = Max(Rhs, 0);
+    int iRhs = nbInputArgument(pvApiCtx);
 
     CheckRhs(1, 2);
     CheckLhs(1, 1);
 
-    if (Rhs == 2)
+    if (iRhs == 2)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if (sciErr.iErr)
@@ -105,7 +104,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     {
         if (pStVarTwo)
         {
-            if (createSingleString(pvApiCtx, Rhs + 1, pStVarTwo))
+            if (createSingleString(pvApiCtx, iRhs + 1, pStVarTwo))
             {
                 freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
@@ -116,8 +115,8 @@ int sci_getenv(char *fname, void* pvApiCtx)
             {
                 freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
-                LhsVar(1) = Rhs + 1;
-                PutLhsVar();
+                LhsVar(1) = iRhs + 1;
+                ReturnArguments(pvApiCtx);
                 return 0;
             }
         }
@@ -144,7 +143,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
     freeAllocatedSingleString(pStVarOne);
 
     //create variable on stack and return it.
-    if (createSingleString(pvApiCtx, Rhs + 1, env_value))
+    if (createSingleString(pvApiCtx, iRhs + 1, env_value))
     {
         FREE(env_value);
         printError(&sciErr, 0);
@@ -153,8 +152,8 @@ int sci_getenv(char *fname, void* pvApiCtx)
     }
 
     FREE(env_value);
-    LhsVar(1) = Rhs + 1;
-    PutLhsVar();
+    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
+    ReturnArguments(pvApiCtx);
 
 
     return 0;

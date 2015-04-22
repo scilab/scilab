@@ -166,6 +166,7 @@ void InitFigureModel(int iFiguremdlUID)
     }
     // ColorMap
     setGraphicObjectProperty(iFiguremdlUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
+    FREE(pdblColorMap);
 
     // Parent
     {

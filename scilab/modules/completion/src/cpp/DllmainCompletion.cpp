@@ -18,6 +18,11 @@ extern "C"
     int WINAPI DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved);
 }
 /*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
 int WINAPI DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
@@ -37,8 +42,8 @@ int WINAPI DllMain(HINSTANCE hInstance, DWORD reason, PVOID pvReserved)
     return 1;
 }
 #else
-void __attribute__ ((constructor)) load(void);
-void __attribute__ ((destructor)) unload(void);
+__attribute__ ((constructor)) static void load(void);
+__attribute__ ((destructor)) static void unload(void);
 
 void load(void)
 {

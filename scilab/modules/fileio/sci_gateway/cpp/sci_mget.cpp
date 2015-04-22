@@ -69,6 +69,8 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
             Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "mget", 2);
             return Function::Error;
         }
+
+        FREE(pstType);
         pstType = wide_string_to_UTF8(in[1]->getAs<types::String>()->get(0));
     }
 
@@ -90,6 +92,7 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     {
         case 0: // stderr
         case 6: // stdout
+            FREE(pstType);
             Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
             return types::Function::Error;
     }
@@ -98,13 +101,14 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     // file opened with fortran open function
     if (pFile == NULL || pFile->getFileType() == 1)
     {
+        FREE(pstType);
         Scierror(999, _("%s: Wrong file descriptor: %d.\n"), "mget", iFile);
         return types::Function::Error;
     }
 
 
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
-
+    FREE(pstType);
     if (iErr > 0)
     {
         return Function::Error;

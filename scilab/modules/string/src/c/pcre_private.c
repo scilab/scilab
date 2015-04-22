@@ -1205,6 +1205,9 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
             freeArrayOfString(pstCaptured, *_piCapturedStringCount);
         }
     }
+
+    FREE(pstInput);
+    FREE(pstPattern);
     return iPcreStatus;
 }
 /*-------------------------------------------------------------------------------*/

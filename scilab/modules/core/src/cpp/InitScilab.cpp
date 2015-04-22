@@ -298,7 +298,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
             sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
             StoreConsoleCommand(pstCommand);
-
+            FREE(pstCommand);
             iMainRet = ConfigVariable::getExitStatus();
             _pSEI->pstExec = NULL;
             _pSEI->pstFile = NULL;

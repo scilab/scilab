@@ -21,13 +21,16 @@ void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID)
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
+    void* ret = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING_SIZE__, jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_TOOLTIPSTRING__, jni_string_vector, (void **) &pstString);
 
     if (pstString != NULL)
     {
-        return sciReturnStringMatrix(pstString, 1, iNbStrings);
+        ret = sciReturnStringMatrix(pstString, 1, iNbStrings);
+        releaseGraphicObjectProperty(__GO_UI_TOOLTIPSTRING__, pstString, jni_string_vector, iNbStrings);
+        return ret;
     }
     else
     {

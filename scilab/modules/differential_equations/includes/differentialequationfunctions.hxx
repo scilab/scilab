@@ -96,7 +96,7 @@ class DIFFERENTIAL_EQUATIONS_IMPEXP DifferentialEquationFunctions
 
 public :
 
-    DifferentialEquationFunctions(std::wstring callerName);
+    DifferentialEquationFunctions(const std::wstring& callerName);
     ~DifferentialEquationFunctions();
 
     void setOdeYRows(int);

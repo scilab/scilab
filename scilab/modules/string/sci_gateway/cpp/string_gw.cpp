@@ -10,8 +10,8 @@
  *
  */
 
-//for Visual Leak Detector
-#ifdef DEBUG_VLD
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
 #include <vld.h>
 #endif
 

@@ -466,6 +466,7 @@ int sci_figure(char * fname, void* pvApiCtx)
         {
             // Already set creating new figure
             // but let the set_ function fail if figure already exists
+            freeAllocatedSingleString(pstProName);
             continue;
         }
 
@@ -473,6 +474,7 @@ int sci_figure(char * fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstProName);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
             return 1;
         }
@@ -511,6 +513,7 @@ int sci_figure(char * fname, void* pvApiCtx)
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))
                         {
+                            freeAllocatedSingleString(pstProName);
                             Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
                             return 1;
                         }
@@ -549,6 +552,7 @@ int sci_figure(char * fname, void* pvApiCtx)
             setGraphicObjectProperty(iAxes, __GO_BACKGROUND__, piBackground, jni_int, 1);
         }
 
+        freeAllocatedSingleString(pstProName);
         if (iType == sci_strings)
         {
             //free allacted data
@@ -584,6 +588,7 @@ int sci_figure(char * fname, void* pvApiCtx)
         int* piAxesSize = NULL;
         getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
         setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
+        releaseGraphicObjectProperty(__GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
     }
 
     initBar(iFig, bMenuBar, bToolBar, bInfoBar);

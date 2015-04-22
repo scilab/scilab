@@ -48,7 +48,6 @@ int sci_set(char *fname, void *pvApiCtx)
 
     int isMatrixOfString = 0;
 
-    char* pstProperty = NULL;
     char* pstNewProperty = NULL;
 
     unsigned long hdl;
@@ -111,6 +110,7 @@ int sci_set(char *fname, void *pvApiCtx)
         int iRows2 = 0;
         int iCols2 = 0;
         void* pvData = NULL;
+        char* pstProperty = NULL;
 
         if (isStringType(pvApiCtx, piAddr1) == 0)
         {
@@ -127,6 +127,7 @@ int sci_set(char *fname, void *pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddr2);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstProperty);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 1;
         }
@@ -134,6 +135,7 @@ int sci_set(char *fname, void *pvApiCtx)
         sciErr = getVarType(pvApiCtx, piAddr2, &iType2);
         if (sciErr.iErr)
         {
+            freeAllocatedSingleString(pstProperty);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
             return 1;
         }
@@ -144,6 +146,7 @@ int sci_set(char *fname, void *pvApiCtx)
                 sciErr = getMatrixOfDouble(pvApiCtx, piAddr2, &iRows2, &iCols2, (double**)&pvData);
                 if (sciErr.iErr)
                 {
+                    freeAllocatedSingleString(pstProperty);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Wrong type for input argument #%d: Matrix expected.\n"), fname, 2);
                     return sciErr.iErr;
@@ -153,6 +156,7 @@ int sci_set(char *fname, void *pvApiCtx)
                 sciErr = getMatrixOfHandle(pvApiCtx, piAddr2, &iRows2, &iCols2, (long long**)&pvData);
                 if (sciErr.iErr)
                 {
+                    freeAllocatedSingleString(pstProperty);
                     printError(&sciErr, 0);
                     Scierror(999, _("%s: Wrong type for input argument #%d: Matrix of handle expected.\n"), fname, 3);
                     return 1;
@@ -166,6 +170,7 @@ int sci_set(char *fname, void *pvApiCtx)
                     isMatrixOfString = 1;
                     if (getAllocatedMatrixOfString(pvApiCtx, piAddr2, &iRows2, &iCols2, (char***)&pvData))
                     {
+                        freeAllocatedSingleString(pstProperty);
                         Scierror(999, _("%s: Wrong size for input argument #%d: A matrix of string expected.\n"), fname, 2);
                         return 1;
                     }
@@ -174,6 +179,7 @@ int sci_set(char *fname, void *pvApiCtx)
                 {
                     if (getAllocatedSingleString(pvApiCtx, piAddr2, (char**)&pvData))
                     {
+                        freeAllocatedSingleString(pstProperty);
                         Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 2);
                         return 1;
                     }
@@ -213,6 +219,7 @@ int sci_set(char *fname, void *pvApiCtx)
         }
         else
         {
+            freeAllocatedSingleString(pstProperty);
             Scierror(999, _("%s: Wrong value for input argument #%d: a valid property expected.\n"), fname, 1);
             if (iType2 == sci_strings)
             {
@@ -228,6 +235,7 @@ int sci_set(char *fname, void *pvApiCtx)
             return 0;
         }
 
+        freeAllocatedSingleString(pstProperty);
         AssignOutputVariable(pvApiCtx, 1) = 0;
         ReturnArguments(pvApiCtx);
         return 0;
@@ -305,6 +313,7 @@ int sci_set(char *fname, void *pvApiCtx)
         int iCols3 = 0;
         int iType3 = 0;
         void* pvData = NULL;
+        char* pstProperty = NULL;
 
         sciErr = getVarAddressFromPosition(pvApiCtx, iPos, &piAddr2);
         if (sciErr.iErr)
@@ -357,6 +366,7 @@ int sci_set(char *fname, void *pvApiCtx)
             sciErr = getVarType(pvApiCtx, piAddr3, &iType3);
             if (sciErr.iErr)
             {
+                freeAllocatedSingleString(pstProperty);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
                 return 1;
             }
@@ -380,12 +390,14 @@ int sci_set(char *fname, void *pvApiCtx)
                     {
                         if (isScalar(pvApiCtx, piAddr3) == 0)
                         {
+                            freeAllocatedSingleString(pstProperty);
                             Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, iPos + 1);
                             return 1;
                         }
 
                         if (getAllocatedSingleString(pvApiCtx, piAddr3, (char**)&pvData))
                         {
+                            freeAllocatedSingleString(pstProperty);
                             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
                             return 1;
                         }
@@ -411,6 +423,7 @@ int sci_set(char *fname, void *pvApiCtx)
 
             if (sciErr.iErr)
             {
+                freeAllocatedSingleString(pstProperty);
                 Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, iPos + 1);
                 return 1;
             }
@@ -429,9 +442,9 @@ int sci_set(char *fname, void *pvApiCtx)
                 freeAllocatedSingleString((char*)pvData);
             }
         }
-    }
 
-    freeAllocatedSingleString(pstProperty);
+        freeAllocatedSingleString(pstProperty);
+    }
 
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
