@@ -301,4 +301,3 @@ int NgonGeneralData::getNumColors(void)
 {
     return numColors;
 }
-

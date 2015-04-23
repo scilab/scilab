@@ -61,8 +61,11 @@ private :
 
     /** The colors array */
     int* colors;
+	int numColors;
 
-    int numColors;
+    /** The sizes array */
+    int* sizes;
+	int numSizes;
 
 public :
     /**
@@ -218,11 +221,45 @@ public :
      */
     void copyShiftCoordinatesArray(double * newShift, double const* oldShift, int numElementsNew);
 
+    /**
+     * Sets the colors array
+     * @param[in] newColors a pointer to the array with the colors
+     * @param[in] numElements the colors array number of elements
+     * @return 1 if it succeeded, 0 if the allocation failed
+     */
     int setColors(int const* newColors, int numElements);
 
+    /**
+     * Gets the colors array
+     * @return pointer to the array with the colors
+     */
     int * getColors();
 
+    /**
+     * Gets the number of colors in the array
+     * @return number of colors in the array
+     */
     int getNumColors();
+
+    /**
+     * Sets the sizes array
+     * @param[in] newSizes a pointer to the array with the sizes
+     * @param[in] numElements the sizes array number of elements
+     * @return 1 if it succeeded, 0 if the allocation failed
+     */
+    int setSizes(int const* newSizes, int numElements);
+
+    /**
+     * Gets the sizes array
+     * @return pointer to the array with the sizes
+     */
+    int * getSizes();
+
+    /**
+     * Gets the number of sizes in the array
+     * @return number of sizes in the array
+     */
+    int getNumSizes();
 
     /**
      * Deletes the coordinates and shift arrays

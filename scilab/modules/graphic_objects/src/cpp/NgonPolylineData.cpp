@@ -41,6 +41,8 @@ NgonPolylineData::NgonPolylineData(void)
     display_function_data_size = 0;
 
     colors = NULL;
+
+	sizes = NULL;
 }
 
 NgonPolylineData::~NgonPolylineData(void)
@@ -68,6 +70,11 @@ NgonPolylineData::~NgonPolylineData(void)
     if (colors)
     {
         delete [] colors;
+    }
+ 
+	if (sizes)
+    {
+        delete [] sizes;
     }
 }
 
@@ -101,6 +108,10 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
             return COLORS;
         case __GO_DATA_MODEL_NUM_COLORS__ :
             return NUM_COLORS;
+        case __GO_DATA_MODEL_SIZES__ :
+            return SIZES;
+        case __GO_DATA_MODEL_NUM_SIZES__ :
+            return NUM_SIZES;
         default :
             return NgonGeneralData::getPropertyFromName(propertyName);
     }
@@ -137,6 +148,9 @@ int NgonPolylineData::setDataProperty(int property, void const* value, int numEl
             break;
         case COLORS :
             setColors((int const*) value, numElements);
+            break;
+        case SIZES :
+            setSizes((int const*) value, numElements);
             break;
         default :
             return NgonGeneralData::setDataProperty(property, value, numElements);
@@ -182,6 +196,12 @@ void NgonPolylineData::getDataProperty(int property, void **_pvData)
             break;
         case NUM_COLORS :
             ((int *) *_pvData)[0] = getNumColors();
+            break;
+        case SIZES :
+            *_pvData = getSizes();
+            break;
+        case NUM_SIZES :
+            ((int *) *_pvData)[0] = getNumSizes();
             break;
         default :
             NgonGeneralData::getDataProperty(property, _pvData);
@@ -541,6 +561,54 @@ int NgonPolylineData::setColors(int const* newColors, int numElements)
 
     colors = _newColors;
     numColors = numElements;
+
+    return 1;
+}
+
+int NgonPolylineData::getNumSizes(void)
+{
+    return numSizes;
+}
+
+int* NgonPolylineData::getSizes(void)
+{
+    return sizes;
+}
+
+int NgonPolylineData::setSizes(int const* newSizes, int numElements)
+{
+    int * _newSizes = 0;
+
+    if (numElements == 0)
+    {
+        if (sizes)
+        {
+            delete[] sizes;
+        }
+        sizes = NULL;
+        numSizes = 0;
+
+        return 1;
+    }
+
+    try
+    {
+        _newSizes = new int[numElements];
+    }
+    catch (const std::exception& e)
+    {
+        e.what();
+        return 0;
+    }
+
+    memcpy(_newSizes, newSizes, numElements * sizeof(int));
+    if (sizes)
+    {
+        delete[] sizes;
+    }
+
+    sizes = _newSizes;
+    numSizes = numElements;
 
     return 1;
 }

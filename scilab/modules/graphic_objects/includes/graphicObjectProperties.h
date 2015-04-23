@@ -415,5 +415,8 @@
 #define __GO_UI_FRAME_BORDER_TYPE__ 392
 #define __GO_UI_SCROLLABLE__ 393
 #define __GO_COLOR_SET__ 394
+#define __GO_SIZE_SET__ 395
+#define __GO_DATA_MODEL_SIZES__ 396
+#define __GO_DATA_MODEL_NUM_SIZES__ 397
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */
