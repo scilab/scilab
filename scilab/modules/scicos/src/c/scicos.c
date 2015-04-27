@@ -1618,7 +1618,8 @@ static void cossim(double *told)
             return;
         }
 
-        if (solver != LSodar_Dynamic) /* Call CVDense to specify the CVDENSE dense linear solver */
+        /* Call CVDense to specify the CVDENSE dense linear solver, only for solvers needing CVode's Newton method */
+        if (solver == CVode_BDF_Newton || solver == CVode_Adams_Newton)
         {
             flag = CVDense(ode_mem, *neq);
         }
@@ -3623,9 +3624,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-        /*******************/
-        /* function type 0 */
-        /*******************/
+            /*******************/
+            /* function type 0 */
+            /*******************/
         case 0 :
         {
             /* This is for compatibility */
