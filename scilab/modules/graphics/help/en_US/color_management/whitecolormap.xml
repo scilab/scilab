@@ -88,7 +88,10 @@ f.color_map = whitecolormap(32);
             <member>
                 <link linkend="oceancolormap">oceancolormap</link>
             </member>
-            <member>
+             <member>
+                <link linkend="parulacolormap">parulacolormap</link>
+            </member>
+           <member>
                 <link linkend="pinkcolormap">pinkcolormap</link>
             </member>
             <member>

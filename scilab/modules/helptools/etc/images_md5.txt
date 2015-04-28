@@ -1042,6 +1042,7 @@ ordmmd_ru_RU_1.png=65695a27c9eaf674ba4eac782ec20eba
 orthProj_1.png=dd3a07c86d54c910fc4f253c576f1532
 param3d1_1.png=8f23378bea1aa88c53ebe32990958db7
 param3d_1.png=9160991c6c607c8531dff4fe9096a3e2
+parulacolormap_1.png=6d19dadbcf270d0bd89aeda86573f45e
 percentasn_1.png=2c864619bcf4876ed395f49798f0f283
 percentsn_1.png=64ebf9395ff1337fe97136c4b989e264
 percentsn_2.png=4eb98a9c280acc1f705fed25faa64162

@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) INRIA
- * 
+ * Copyright (C) Scilab Enterprises - 2015 - Juergen Koch
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="jetcolormap">
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org"  xml:lang="en" xml:id="parulacolormap">
     <refnamediv>
-        <refname>jetcolormap</refname>
-        <refpurpose>blue to red colormap</refpurpose>
+        <refname>parulacolormap</refname>
+        <refpurpose>blue to yellow colormap</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Calling Sequence</title>
-        <synopsis>cmap=jetcolormap(n)</synopsis>
+        <synopsis>cmap=parulacolormap(n)</synopsis>
     </refsynopsisdiv>
     <refsection>
         <title>Arguments</title>
@@ -41,23 +41,23 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>jetcolormap</literal> computes a colormap with <literal>n</literal> colors
-            varying from blue, lightblue, green, yellow, orange then red
+            <literal>parulacolormap</literal> computes a colormap with <literal>n</literal> colors
+            varying from blue to yellow.
         </para>
     </refsection>
-    
     <refsection>
         <title>Examples</title>
         <programlisting role="example"><![CDATA[ 
 f = scf();
 plot3d1();
-f.color_map = jetcolormap(32);
+f.color_map = parulacolormap(32);
  ]]></programlisting>
         <scilab:image> 
             f = scf();
             plot3d1();
-            f.color_map = jetcolormap(32);
+            f.color_map = parulacolormap(32);
         </scilab:image>
+        
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
@@ -72,10 +72,10 @@ f.color_map = jetcolormap(32);
                 <link linkend="bonecolormap">bonecolormap</link>
             </member>
             <member>
-                <link linkend="coolcolormap">coolcolormap</link>
+                <link linkend="coppercolormap">coppercolormap</link>
             </member>
             <member>
-                <link linkend="coppercolormap">coppercolormap</link>
+                <link linkend="coolcolormap">coolcolormap</link>
             </member>
             <member>
                 <link linkend="graycolormap">graycolormap</link>
@@ -85,6 +85,9 @@ f.color_map = jetcolormap(32);
             </member>
             <member>
                 <link linkend="hsvcolormap">hsvcolormap</link>
+            </member>
+            <member>
+                <link linkend="jetcolormap">jetcolormap</link>
             </member>
             <member>
                 <link linkend="oceancolormap">oceancolormap</link>
@@ -111,5 +114,16 @@ f.color_map = jetcolormap(32);
                 <link linkend="wintercolormap">wintercolormap</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.6.0</revnumber>
+                <revremark>
+                    Function <function>parulacolormap</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

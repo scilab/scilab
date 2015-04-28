@@ -6,6 +6,10 @@ New Features
 
 * scatter/scatter3 plot with different mark colors is now available.
 
+* parulacolormap is now available.
+
+* name2rgb can now handle a single string and a matrix of strings.
+
 
 Compilation
 ============

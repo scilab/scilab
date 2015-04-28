@@ -92,6 +92,9 @@ f.color_map = hotcolormap(32);
                 <link linkend="oceancolormap">oceancolormap</link>
             </member>
             <member>
+                <link linkend="parulacolormap">parulacolormap</link>
+            </member>
+            <member>
                 <link linkend="pinkcolormap">pinkcolormap</link>
             </member>
             <member>
