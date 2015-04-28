@@ -2356,6 +2356,20 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         }
         else if (_pVar->isUserType())
         {
+            for (int i = 0; i < _pArgs->size(); i++)
+            {
+                if ((*_pArgs)[i]->isImplicitList())
+                {
+                    types::ImplicitList* pIL = (*_pArgs)[i]->getAs<types::ImplicitList>();
+                    if (pIL->isComputable())
+                    {
+                        InternalType* pIT = pIL->extractFullMatrix();
+                        (*_pArgs)[i]->killMe();
+                        (*_pArgs)[i] = pIT;
+                    }
+                }
+            }
+
             pRet = _pVar->getAs<UserType>()->insert(_pArgs, _pInsert);
             if (pRet == NULL)
             {

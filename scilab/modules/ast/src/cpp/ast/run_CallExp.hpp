@@ -17,11 +17,11 @@ template<class T>
 void RunVisitorT<T>::visitprivate(const CallExp &e)
 {
     e.getName().accept(*this);
+    types::InternalType* pIT = getResult();
 
-    if (getResult() != NULL && getResult()->isInvokable())
+    if (pIT != NULL)
     {
         //function call
-        types::InternalType* pIT = getResult();
         types::typed_list out;
         types::typed_list in;
         types::optional_list opt;
@@ -179,7 +179,23 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     }
                 }
 
-                if (pIT->invoke(in, opt, iRetCount, out, *this, e))
+                bool ret = false;
+                if(pIT->isInvokable() == false)
+                {
+                    // call overload
+                    ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, this);
+                }
+                else
+                {
+                    ret = pIT->invoke(in, opt, iRetCount, out, *this, e);
+                    if(ret == false && pIT->isUserType())
+                    {
+                        // call overload
+                        ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, this);
+                    }
+                }
+
+                if (ret)
                 {
                     if (iSaveExpectedSize != -1 && iSaveExpectedSize > out.size())
                     {
@@ -292,13 +308,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             throw se;
         }
-    }
-    else
-    {
-        //result == NULL ,variable doesn't exist :(
-        // Sould never be in this case
-        // In worst case variable pointing to function does not exists
-        // visitprivate(SimpleVar) will throw the right exception.
     }
 }
 

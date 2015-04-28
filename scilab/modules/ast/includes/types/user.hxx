@@ -76,15 +76,15 @@ public :
         return NULL;
     }
 
-    // extraction by field
+    // this methode is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool            extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual bool          extract(const std::wstring & /*name*/, InternalType *& /*out*/)
     {
         return false;
     }
 
-    // extraction by value
+    // extraction by value, this methode can be only called by "invoke" methode below.
     // _pArs is a list of scilab types:: of where we want to extract
     // return all element extracted, in case when multiple elements returned
     // these elements must be stored in a types::List
@@ -93,10 +93,40 @@ public :
         return NULL;
     }
 
+    // if return false , Scilab will never call "invoke" method
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    // invoke method is called when a UserType is called with "(...)" ie : a = myUserType(...)
+    // This implementation allow the use of extract method above, but it can be overloaded.
+    // Inputs :
+    //  in          : contain input arguments myUserType(arg1,arg2,...)
+    //  opt         : contain optional input arguments myUserType(arg1=..., arg2=..., ...)
+    //  _iRetCount  : is the number of output arguments (ie : [a,b] = myUserType(...), _iRetCount = 2)
+    //  out         : after "invoke" execution, will contain results
+    //  execFunc    : is used in case of macro call : Overload::call(L"A_Macro", in, _iRetCount, out, execFunc);
+    //  e           : Generally used to return the Location when thowing an error. ie : throw ast::ScilabError(L"error message", 999, e.getLocation());
+    // Outputs :
+    // if false, Scilab will call the macro %UserType_e,where UserType is the string return by the methode getShortTypeStr()
+    // if true, Scilab will set each elements of out in Scilab variables
+    virtual bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
+    {
+        InternalType* pIT = extract(&in);
+        if (pIT)
+        {
+            out.push_back(pIT);
+            return true;
+        }
+
+        return false;
+    }
+
     // used to compute the iterator in scilab loop "for"
     // when type is a two dimensions array
     // _iPos is the column position
-    virtual GenericType*    getColumnValues(int /*_iPos*/)
+    virtual GenericType*  getColumnValues(int /*_iPos*/)
     {
         return NULL;
     }
