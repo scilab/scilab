@@ -1,19 +1,19 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /**
- ** \file symbol/context.hh
- ** \brief Define class Context.
- */
+** \file symbol/context.hh
+** \brief Define class Context.
+*/
 
 #ifndef __CONTEXT_HXX__
 #define __CONTEXT_HXX__
@@ -34,7 +34,7 @@ namespace symbol
 */
 class EXTERN_AST Context
 {
-public :
+public:
     typedef std::map<Symbol, Variable*> VarList;
     typedef std::stack<VarList*> VarStack;
 
@@ -61,6 +61,7 @@ public :
     /** If key was associated to some Entry_T in the last opened scope, return it.
     ** Otherwise return the empty pointer. */
     types::InternalType* getCurrentLevel(const Symbol& key);
+    types::InternalType* getCurrentLevel(Variable* _var);
 
     /** If key was associated to some Entry_T in the open scopes, return the
     ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */

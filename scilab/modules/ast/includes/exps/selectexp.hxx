@@ -38,10 +38,10 @@ public :
         select.setParent(this);
         _exps.push_back(&select);
 
-        for (exps_t::const_iterator it = cases.begin(), itEnd = cases.end(); it != itEnd ; ++it)
+        for (auto it : cases)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            it->setParent(this);
+            _exps.push_back(it);
         }
 
         delete &cases;
@@ -113,12 +113,12 @@ public :
 
     inline exps_t getCases() const
     {
-	return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
+        return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
     }
 
     inline exps_t getCases()
     {
-	return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
+        return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
     }
 
     Exp* getDefaultCase() const

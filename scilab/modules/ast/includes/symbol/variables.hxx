@@ -36,7 +36,7 @@ struct Variable
 {
     typedef std::stack<ScopedVariable*> StackVar;
 
-    Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
+    Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL), last(nullptr) {};
     ~Variable()
     {
         while (!empty())
@@ -58,7 +58,8 @@ struct Variable
 
     void put(ScopedVariable* pSV)
     {
-        stack.push(pSV);
+        last = pSV;
+        stack.push(last);
     }
 
     void put(types::InternalType* _pIT, int _iLevel)
@@ -72,7 +73,8 @@ struct Variable
         if (empty() || top()->m_iLevel < _iLevel)
         {
             //create a new level
-            stack.push(new ScopedVariable(_iLevel, _pIT));
+            last = new ScopedVariable(_iLevel, _pIT);
+            stack.push(last);
             _pIT->IncreaseRef();
         }
         else
@@ -115,12 +117,20 @@ struct Variable
 
     inline ScopedVariable* top() const
     {
-        return stack.top();
+        return last;
     }
 
     inline void pop()
     {
         stack.pop();
+        if (stack.empty())
+        {
+            last = nullptr;
+        }
+        else
+        {
+            last = stack.top();
+        }
     }
 
     inline Symbol getSymbol() const
@@ -157,7 +167,8 @@ struct Variable
     {
         if (empty() || top()->m_iLevel != _iLevel)
         {
-            stack.push(new ScopedVariable(_iLevel, types::Double::Empty()));
+            last = new ScopedVariable(_iLevel, types::Double::Empty());
+            stack.push(last);
         }
 
         top()->m_globalVisible = _bVisible;
@@ -191,6 +202,7 @@ private :
     bool m_Global;
     types::InternalType* m_GlobalValue;
     StackVar stack;
+    ScopedVariable* last;
 };
 
 struct Variables

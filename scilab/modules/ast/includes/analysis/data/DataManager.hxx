@@ -22,6 +22,7 @@
 
 #include "allexp.hxx"
 #include "allvar.hxx"
+#include "alldec.hxx"
 #include "tools.hxx"
 #include "Block.hxx"
 #include "FunctionBlock.hxx"

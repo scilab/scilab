@@ -117,6 +117,7 @@ public:
         return _verbose;
     }
 
+    //manage break instruction
     inline void setBreak(void)
     {
         _bBreak = true;
@@ -132,7 +133,7 @@ public:
         return _bBreak;
     }
 
-    inline void setBreakable(void)
+    virtual inline void setBreakable(void)
     {
         _bBreakable = true;
     }
@@ -147,6 +148,7 @@ public:
         return _bBreakable;
     }
 
+    //manage return instruction
     inline void setReturn(void)
     {
         _bReturn = true;
@@ -162,7 +164,7 @@ public:
         return _bReturn;
     }
 
-    inline void setReturnable(void)
+    virtual inline void setReturnable(void)
     {
         _bReturnable = true;
     }
@@ -177,6 +179,7 @@ public:
         return _bReturnable;
     }
 
+    //manage continue instruction
     inline void setContinue(void)
     {
         _bContinue = true;
@@ -192,7 +195,7 @@ public:
         return _bContinue;
     }
 
-    inline void setContinuable(void)
+    virtual inline void setContinuable(void)
     {
         _bContinuable = true;
     }

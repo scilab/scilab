@@ -193,6 +193,11 @@ types::InternalType* Context::getCurrentLevel(const Symbol& _key)
     return variables.get(_key, m_iLevel);
 }
 
+types::InternalType* Context::getCurrentLevel(Variable* _var)
+{
+    return variables.get(_var, m_iLevel);
+}
+
 types::InternalType* Context::getAllButCurrentLevel(const Symbol& _key)
 {
     return variables.getAllButCurrentLevel(_key, m_iLevel);
@@ -399,13 +404,13 @@ void Context::print(std::wostream& ostr, bool sorted) const
     wchar_t wcsGlobalVariable[strSize];
 
     int iMemTotal = 0;
-    int iMemUsed  = 0;
-    int nbMaxVar  = 0;
+    int iMemUsed = 0;
+    int nbMaxVar = 0;
 
 #ifdef _MSC_VER
     MEMORYSTATUSEX statex;
     statex.dwLength = sizeof(statex);
-    GlobalMemoryStatusEx (&statex);
+    GlobalMemoryStatusEx(&statex);
     iMemTotal = (int)(statex.ullTotalPhys / (1024 * 1024));
 #else
     iMemTotal = getmemorysize();

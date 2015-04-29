@@ -34,7 +34,7 @@ public:
     ** \param else instruction if test is false
     */
     IfExp(const Location& location,
-          Exp& test, Exp& t, Exp& e)
+          Exp& test, SeqExp& t, SeqExp& e)
         : ControlExp (location),
           _hasElse (true)
     {
@@ -42,8 +42,13 @@ public:
         t.setParent(this);
         e.setParent(this);
         _exps.push_back(&test);
-        _exps.push_back(&t);
-        _exps.push_back(&e);
+        _exps.push_back(t.getAs<Exp>());
+        _exps.push_back(e.getAs<Exp>());
+
+        t.setContinuable();
+        t.setBreakable();
+        e.setContinuable();
+        e.setBreakable();
     }
 
     IfExp(const Location& location,
@@ -55,9 +60,12 @@ public:
         t.setParent(this);
 
         _exps.push_back(&test);
-        _exps.push_back(&t);
+        _exps.push_back(t.getAs<Exp>());
         _exps.push_back(new ast::CommentExp(location, new std::wstring(L"No else !!")));
         _exps[2]->setParent(this);
+
+        t.setContinuable();
+        t.setBreakable();
     }
 
     virtual ~IfExp()
@@ -66,7 +74,7 @@ public:
 
     virtual IfExp* clone()
     {
-        IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone(), *getElse().clone());
+        IfExp* cloned = new IfExp(getLocation(), *getTest().clone(), *getThen().clone()->getAs<SeqExp>(), *getElse().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }

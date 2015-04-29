@@ -19,7 +19,6 @@
 #define __AST_SEQEXP_HXX__
 
 #include "exp.hxx"
-#include "functiondec.hxx"
 
 namespace ast
 {
@@ -40,10 +39,10 @@ public:
             exps_t& body)
         : Exp (location)
     {
-        for (exps_t::const_iterator it = body.begin(), itEnd = body.end(); it != itEnd ; ++it)
+        for (auto it : body)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            it->setParent(this);
+            _exps.push_back(it);
         }
 
         delete &body;
@@ -56,9 +55,9 @@ public:
     virtual SeqExp* clone()
     {
         exps_t* exp = new exps_t;
-        for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
+        for (auto it : _exps)
         {
-            exp->push_back((*it)->clone());
+            exp->push_back(it->clone());
         }
 
         SeqExp* cloned = new SeqExp(getLocation(), *exp);
@@ -100,6 +99,36 @@ public:
     inline bool isSeqExp() const
     {
         return true;
+    }
+
+    //forward continuable information to children
+    virtual inline void setContinuable(void)
+    {
+        Exp::setContinuable();
+        for (auto exp : _exps)
+        {
+            exp->setContinuable();
+        }
+    }
+
+    //forward returnable information to children
+    virtual inline void setReturnable(void)
+    {
+        Exp::setReturnable();
+        for (auto exp : _exps)
+        {
+            exp->setReturnable();
+        }
+    }
+
+    //forward breakable information to children
+    virtual inline void setBreakable(void)
+    {
+        Exp::setBreakable();
+        for (auto exp : _exps)
+        {
+            exp->setBreakable();
+        }
     }
 };
 

@@ -6,5 +6,5 @@
 // =============================================================================
 function ret = isRelease()
     [a,b] = getversion();
-    ret = b(5) == "release";
+    ret = b(4) == "release";
 endfunction

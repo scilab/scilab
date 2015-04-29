@@ -50,6 +50,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
     m_pDblArgOut = new Double(1);
     m_pDblArgOut->IncreaseRef(); //never delete
 
+    m_body->setReturnable();
 }
 
 Macro::~Macro()
@@ -306,14 +307,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //m_body->accept(mute);
 
         ConfigVariable::setPromptMode(-1);
-        m_body->setReturnable();
         m_body->accept(*execFunc);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
-        if (m_body->isReturn())
-        {
-            m_body->setReturnable();
-        }
     }
     catch (ast::ScilabMessage & sm)
     {

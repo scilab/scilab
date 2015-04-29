@@ -20,10 +20,10 @@
 
 #include <list>
 
+#include "context.hxx"
 #include "dec.hxx"
-#include "symbol.hxx"
-#include "exp.hxx"
 #include "arraylistvar.hxx"
+#include "seqexp.hxx"
 
 using namespace std;
 
@@ -50,7 +50,7 @@ public:
                  symbol::Symbol name,
                  Exp& args,
                  Exp& returns,
-                 Exp& body)
+                 SeqExp& body)
         : Dec (location),
           _name (name),
           _stack(NULL)
@@ -60,7 +60,9 @@ public:
         body.setParent(this);
         _exps.push_back(&args);
         _exps.push_back(&returns);
-        _exps.push_back(&body);
+        _exps.push_back(body.getAs<Exp>());
+
+        body.setReturnable();
     }
 
     virtual ~FunctionDec ()
@@ -72,7 +74,7 @@ public:
 
     virtual FunctionDec* clone()
     {
-        FunctionDec* cloned = new FunctionDec(getLocation(), getSymbol(), *getArgs().clone(), *getReturns().clone(), *getBody().clone());
+        FunctionDec* cloned = new FunctionDec(getLocation(), getSymbol(), *getArgs().clone(), *getReturns().clone(), *getBody().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }

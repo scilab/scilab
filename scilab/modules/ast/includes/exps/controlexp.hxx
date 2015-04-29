@@ -14,6 +14,7 @@
 #define AST_CONTROLEXP_HXX
 
 #include "exp.hxx"
+#include "seqexp.hxx"
 
 namespace ast
 {
@@ -31,6 +32,37 @@ public:
     virtual ~ControlExp ()
     {
     }
+
+    //forward continuable information to children
+    virtual inline void setContinuable(void)
+    {
+        Exp::setContinuable();
+        for (auto exp : _exps)
+        {
+            exp->setContinuable();
+        }
+    }
+
+    //forward returnable information to children
+    virtual inline void setReturnable(void)
+    {
+        Exp::setReturnable();
+        for (auto exp : _exps)
+        {
+            exp->setReturnable();
+        }
+    }
+
+    //forward breakable information to children
+    virtual inline void setBreakable(void)
+    {
+        Exp::setBreakable();
+        for (auto exp : _exps)
+        {
+            exp->setBreakable();
+        }
+    }
+
 };
 } // namespace ast
 #endif /* !AST_CONTROLEXP_HXX */

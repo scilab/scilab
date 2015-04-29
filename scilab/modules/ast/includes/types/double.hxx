@@ -260,7 +260,52 @@ public :
 
     virtual ast::Exp*           getExp(const Location& loc);
 
-private :
+    virtual bool set(int _iPos, double _data)
+    {
+        if (_iPos >= m_iSize)
+        {
+            return false;
+        }
+
+        m_pRealData[_iPos] = _data;
+        return true;
+    }
+
+    virtual bool set(int _iRows, int _iCols, double _data)
+    {
+        return set(_iCols * getRows() + _iRows, _data);
+    }
+
+    virtual bool set(double* _pdata)
+    {
+        if (m_pRealData == NULL)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < m_iSize; i++)
+        {
+            m_pRealData[i] = _pdata[i];
+        }
+        return true;
+    }
+
+    virtual bool set(const double* _pdata)
+    {
+        if (m_pRealData == NULL)
+        {
+            return false;
+        }
+
+        for (int i = 0; i < m_iSize; i++)
+        {
+            m_pRealData[i] = _pdata[i];
+        }
+        return true;
+    }
+
+
+private:
     virtual bool                subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);
 
     virtual double              getNullValue();
@@ -269,6 +314,7 @@ private :
     virtual void                deleteAll();
     virtual void                deleteImg();
     virtual double*             allocData(int _iSize);
+    virtual void                deleteData(double /*data*/) { }
 
     bool                        m_bViewAsInteger;
     bool                        m_bViewAsZComplex;

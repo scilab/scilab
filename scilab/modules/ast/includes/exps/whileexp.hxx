@@ -40,13 +40,17 @@ public:
     ** \li "print("WipeOut")" body of the loop
     */
     WhileExp (const Location& location,
-              Exp& test, Exp& body)
+              Exp& test, SeqExp& body)
         : ControlExp (location)
     {
         test.setParent(this);
         body.setParent(this);
         _exps.push_back(&test);
-        _exps.push_back(&body);
+        _exps.push_back(body.getAs<Exp>());
+
+        //set capabilities flags @init instead of each calls.
+        body.setBreakable();
+        body.setContinuable();
     }
 
     /** \brief Destroy a While Expression node.
@@ -59,7 +63,7 @@ public:
 
     virtual WhileExp* clone()
     {
-        WhileExp* cloned = new WhileExp(getLocation(), *getTest().clone(), *getBody().clone());
+        WhileExp* cloned = new WhileExp(getLocation(), *getTest().clone(), *getBody().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }

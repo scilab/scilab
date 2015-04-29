@@ -388,8 +388,8 @@ InternalType::ScilabType ImplicitList::getOutputType()
 
 void ImplicitList::extractValueAsDouble(int _iOccur, Double* d)
 {
-    double dblStart		= m_pDblStart->get(0);
-    double dblStep		= m_pDblStep->get(0);
+    double dblStart = m_pDblStart->get(0);
+    double dblStep = m_pDblStep->get(0);
     d->get()[0] = dblStart + _iOccur * dblStep;
 }
 

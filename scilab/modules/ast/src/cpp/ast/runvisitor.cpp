@@ -277,51 +277,11 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
     clearResult();
     if (bTestStatus == true)
     {
-        //condition == true
-        if (e.isBreakable())
-        {
-            const_cast<IfExp*>(&e)->resetBreak();
-            const_cast<Exp*>(&e.getThen())->setBreakable();
-        }
-
-        if (e.isContinuable())
-        {
-            const_cast<IfExp*>(&e)->resetContinue();
-            const_cast<Exp*>(&e.getThen())->setContinuable();
-        }
-
-        if (e.isReturnable())
-        {
-            const_cast<IfExp*>(&e)->resetReturn();
-            const_cast<Exp*>(&e.getThen())->setReturnable();
-        }
-
         e.getThen().accept(*this);
     }
-    else
+    else if (e.hasElse())
     {
-        //condition == false
-
-        if (e.hasElse())
-        {
-            if (e.isBreakable())
-            {
-                const_cast<Exp*>(&e.getElse())->setBreakable();
-            }
-
-            if (e.isContinuable())
-            {
-                const_cast<IfExp*>(&e)->resetContinue();
-                const_cast<Exp*>(&e.getElse())->setContinuable();
-            }
-
-            if (e.isReturnable())
-            {
-                const_cast<Exp*>(&e.getElse())->setReturnable();
-            }
-
-            e.getElse().accept(*this);
-        }
+        e.getElse().accept(*this);
     }
 
     if (e.isBreakable()
@@ -355,15 +315,6 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 {
-    //allow break and continue operations
-    const_cast<Exp*>(&e.getBody())->setBreakable();
-    const_cast<Exp*>(&e.getBody())->setContinuable();
-    //allow return operation
-    if (e.isReturnable())
-    {
-        const_cast<Exp*>(&(e.getBody()))->setReturnable();
-    }
-
     //condition
     e.getTest().accept(*this);
     InternalType* pIT = getResult();
@@ -371,6 +322,13 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
     {
         pIT->killMe();
         e.getBody().accept(*this);
+
+        //clear old result value before evaluate new one
+        if (getResult() != NULL)
+        {
+            getResult()->killMe();
+        }
+
         if (e.getBody().isBreak())
         {
             const_cast<Exp*>(&(e.getBody()))->resetBreak();
@@ -386,16 +344,7 @@ void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 
         if (e.getBody().isContinue())
         {
-            const_cast<WhileExp*>(&e)->setContinue();
             const_cast<Exp*>(&(e.getBody()))->resetContinue();
-            e.getTest().accept(*this);
-            continue;
-        }
-
-        //clear old result value before evaluate new one
-        if (getResult() != NULL)
-        {
-            getResult()->killMe();
         }
 
         e.getTest().accept(*this);
@@ -414,16 +363,6 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
     //vardec visit increase its result reference
     e.getVardec().accept(*this);
     InternalType* pIT = getResult();
-    //allow break and continue operations
-    const_cast<Exp&>(e.getBody()).setBreakable();
-    const_cast<Exp&>(e.getBody()).setContinuable();
-
-    //allow return operation
-    if (e.isReturnable())
-    {
-        const_cast<Exp&>(e.getBody()).resetReturn();
-        const_cast<Exp&>(e.getBody()).setReturnable();
-    }
 
     if (pIT->isImplicitList())
     {
@@ -431,6 +370,8 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         ImplicitList* pVar = pIT->getAs<ImplicitList>();
         //get IL initial Type
         InternalType * pIL = pVar->getInitalType();
+        //std::cout << "for IL: " << pIL << std::endl;
+        //std::cout << "  for IV: " << pIT << std::endl;
         //get index stack
         symbol::Variable* var = e.getVardec().getAs<VarDec>()->getStack();
 
@@ -445,40 +386,39 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         //use ref count to lock var against clear and detect any changes
         pIL->IncreaseRef();
 
-
         int size = pVar->getSize();
         for (int i = 0; i < size; ++i)
         {
             //check if loop index has changed, deleted, copy ...
-            switch (pIL->getRef())
+            if (pIL->getRef() != 2)
             {
-                case 2:
-                    //normal case
-                    break;
-                case 1:
-                    //someone clear me
-                    ctx->put(var, pIL);
-                    break;
-                default:
-                    //someone assign me to another var
-                    //a = i;
-                    //unlock me
-                    pIL->DecreaseRef();
+                switch (pIL->getRef())
+                {
+                    case 1:
+                        //someone clear me
+                        ctx->put(var, pIL);
+                        break;
+                    default:
+                        //someone assign me to another var
+                        //a = i;
+                        //unlock me
+                        pIL->DecreaseRef();
 
-                    //create a new me
-                    pIL = pVar->getInitalType();
-                    //lock loop index
-                    pIL->IncreaseRef();
-                    //update me ( must decrease ref of a )
-                    if (ctx->isprotected(var))
-                    {
-                        std::wostringstream os;
-                        os << _W("Redefining permanent variable.\n");
-                        throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
-                    }
+                        //create a new me
+                        pIL = pVar->getInitalType();
+                        //lock loop index
+                        pIL->IncreaseRef();
+                        //update me ( must decrease ref of a )
+                        if (ctx->isprotected(var))
+                        {
+                            std::wostringstream os;
+                            os << _W("Redefining permanent variable.\n");
+                            throw ast::ScilabError(os.str(), 999, e.getVardec().getLocation());
+                        }
 
-                    ctx->put(var, pIL);
-                    break;
+                        ctx->put(var, pIL);
+                        break;
+                }
             }
 
             pVar->extractValue(i, pIL);
@@ -719,24 +659,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                 }
                 else if (*pITCase == *pIT)
                 {
-                    if (e.isBreakable())
-                    {
-                        const_cast<SelectExp*>(&e)->resetBreak();
-                        pCase->getBody()->setBreakable();
-                    }
-
-                    if (e.isContinuable())
-                    {
-                        const_cast<SelectExp*>(&e)->resetContinue();
-                        pCase->getBody()->setContinuable();
-                    }
-
-                    if (e.isReturnable())
-                    {
-                        const_cast<SelectExp*>(&e)->resetReturn();
-                        pCase->getBody()->setReturnable();
-                    }
-
                     try
                     {
                         //the good one
@@ -778,24 +700,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
 
     if (bCase == false && e.getDefaultCase() != NULL)
     {
-        if (e.isBreakable())
-        {
-            const_cast<SelectExp*>(&e)->resetBreak();
-            e.getDefaultCase()->setBreakable();
-        }
-
-        if (e.isContinuable())
-        {
-            const_cast<SelectExp*>(&e)->resetContinue();
-            e.getDefaultCase()->setContinuable();
-        }
-
-        if (e.isReturnable())
-        {
-            const_cast<SelectExp*>(&e)->resetReturn();
-            e.getDefaultCase()->setReturnable();
-        }
-
         try
         {
             //default case
@@ -834,35 +738,19 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
-    //T execMe;
-    exps_t::const_iterator itExp;
-    exps_t exps = e.getExps();
-
     types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
 
-    for (itExp = exps.begin (); itExp != exps.end (); ++itExp)
+    for (auto exp : e.getExps())
     {
+        if (exp->isCommentExp())
+        {
+            continue;
+        }
+
         if (pThreadMe && pThreadMe->getInterrupt())
         {
             ThreadManagement::SendAstPendingSignal();
             pThreadMe->suspend();
-        }
-
-        if (e.isBreakable())
-        {
-            (*itExp)->resetBreak();
-            (*itExp)->setBreakable();
-        }
-
-        if (e.isContinuable())
-        {
-            (*itExp)->resetContinue();
-            (*itExp)->setContinuable();
-        }
-
-        if (e.isReturnable())
-        {
-            (*itExp)->setReturnable();
         }
 
         try
@@ -871,7 +759,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             setResult(NULL);
             int iExpectedSize = getExpectedSize();
             setExpectedSize(-1);
-            (*itExp)->accept(*this);
+            exp->accept(*this);
             setExpectedSize(iExpectedSize);
             InternalType * pIT = getResult();
 
@@ -909,7 +797,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     {
                         wostringstream os;
                         PrintVisitor printMe(os);
-                        (*itExp)->accept(printMe);
+                        exp->accept(printMe);
                         //os << std::endl << std::endl;
                         if (ConfigVariable::getLastErrorFunction() == L"")
                         {
@@ -940,7 +828,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         if (pCall->isMacro() || pCall->isMacroFile())
                         {
                             wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*itExp)->getLocation().first_line, pCall->getName().c_str());
+                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), exp->getLocation().first_line, pCall->getName().c_str());
                             throw ScilabMessage(szError);
                         }
                         else
@@ -951,12 +839,12 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 }
 
                 //don't output Simplevar and empty result
-                if (getResult() != NULL && (!(*itExp)->isSimpleVar() || bImplicitCall))
+                if (getResult() != NULL && (!exp->isSimpleVar() || bImplicitCall))
                 {
                     //symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), *execMe.getResult());
                     InternalType* pITAns = getResult();
                     symbol::Context::getInstance()->put(m_pAns, pITAns);
-                    if ((*itExp)->isVerbose() && ConfigVariable::isPromptShow())
+                    if (exp->isVerbose() && ConfigVariable::isPromptShow())
                     {
                         //TODO manage multiple returns
                         scilabWriteW(L" ans  =\n\n");
@@ -969,22 +857,24 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 pIT->killMe();
             }
 
-            if ((&e)->isBreakable() && (*itExp)->isBreak())
+            if ((&e)->isBreakable() && exp->isBreak())
             {
                 const_cast<SeqExp *>(&e)->setBreak();
+                exp->resetBreak();
                 break;
             }
 
-            if ((&e)->isContinuable() && (*itExp)->isContinue())
+            if ((&e)->isContinuable() && exp->isContinue())
             {
                 const_cast<SeqExp *>(&e)->setContinue();
+                exp->resetContinue();
                 break;
             }
 
-            if ((&e)->isReturnable() && (*itExp)->isReturn())
+            if ((&e)->isReturnable() && exp->isReturn())
             {
                 const_cast<SeqExp *>(&e)->setReturn();
-                (*itExp)->resetReturn();
+                exp->resetReturn();
                 break;
             }
         }
@@ -992,7 +882,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
         {
             scilabErrorW(sm.GetErrorMessage().c_str());
 
-            CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
+            CallExp* pCall = dynamic_cast<CallExp*>(exp);
             if (pCall != NULL)
             {
                 //to print call expression only of it is a macro
@@ -1008,11 +898,10 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     {
                         ConfigVariable::setLastErrorFunction(((InternalType*)getResult())->getAs<Callable>()->getName());
                     }
-                    throw ScilabMessage(os.str(), 0, (*itExp)->getLocation());
+                    throw ScilabMessage(os.str(), 0, exp->getLocation());
                 }
             }
-
-            throw ScilabMessage((*itExp)->getLocation());
+            throw ScilabMessage(exp->getLocation());
         }
         catch (const ScilabError& se)
         {
@@ -1025,7 +914,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 ConfigVariable::setLastErrorFunction(wstring(L""));
             }
 
-            CallExp* pCall = dynamic_cast<CallExp*>(*itExp);
+            CallExp* pCall = dynamic_cast<CallExp*>(exp);
             if (pCall != NULL)
             {
                 //to print call expression only of it is a macro
@@ -1040,7 +929,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         //os << std::endl << std::endl;
                         ConfigVariable::setLastErrorFunction(((InternalType*)getResult())->getAs<Callable>()->getName());
                         scilabErrorW(se.GetErrorMessage().c_str());
-                        throw ScilabMessage(os.str(), 999, (*itExp)->getLocation());
+                        throw ScilabMessage(os.str(), 999, exp->getLocation());
                     }
                 }
                 catch (ScilabError& se2)
@@ -1051,7 +940,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 
             scilabErrorW(se.GetErrorMessage().c_str());
             scilabErrorW(L"\n");
-            throw ScilabMessage((*itExp)->getLocation());
+            throw ScilabMessage(exp->getLocation());
         }
 
         // If something other than NULL is given to setResult, then that would imply
@@ -1292,6 +1181,20 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
         throw ScilabError(szError, 999, e.getLocation());
     }
     InternalType* piEnd = pITEnd;
+
+    //check if implicitlist is 1:$ to replace by ':'
+    if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
+    {
+        if (piStart->getAs<Double>()->get()[0] == 1 && piStep->getAs<Double>()->get()[0] == 1)
+        {
+            SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
+            if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
+            {
+                setResult(new Colon());
+                return;
+            }
+        }
+    }
 
     //check compatibility
     // double : double : double or poly : poly : poly and mix like double : double : poly
