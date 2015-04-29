@@ -108,10 +108,22 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     try
     {
         types::optional_list opt;
-        return pCall->call(in, opt, _iRetCount, out, _execMe);
+
+        // add line and function name in where
+        ConfigVariable::where_begin(0, 0, _stOverloadingFunctionName);
+
+        types::Function::ReturnValue ret = pCall->call(in, opt, _iRetCount, out, _execMe);
+
+        // remove function name in where
+        ConfigVariable::where_end();
+
+        return ret;
     }
     catch (ast::ScilabMessage sm)
     {
+        // remove function name in where
+        ConfigVariable::where_end();
+
         if (pCall->isMacro() || pCall->isMacroFile())
         {
             wchar_t szError[bsiz];
@@ -129,7 +141,7 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
 {
     switch (_oper)
     {
-            /* standard operators */
+        /* standard operators */
         case ast::OpExp::plus :
             return std::wstring(L"a");
         case ast::OpExp::unaryMinus :
@@ -143,7 +155,7 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
             return std::wstring(L"l");
         case ast::OpExp::power :
             return std::wstring(L"p");
-            /* dot operators */
+        /* dot operators */
         case ast::OpExp::dottimes :
             return std::wstring(L"x");
         case ast::OpExp::dotrdivide :
@@ -152,14 +164,14 @@ std::wstring Overload::getNameFromOper(ast::OpExp::Oper _oper)
             return std::wstring(L"q");
         case ast::OpExp::dotpower :
             return std::wstring(L"j");
-            /* Kron operators */
+        /* Kron operators */
         case ast::OpExp::krontimes :
             return std::wstring(L"k");
         case ast::OpExp::kronrdivide :
             return std::wstring(L"y");
         case ast::OpExp::kronldivide :
             return std::wstring(L"z");
-            /* Control Operators ??? */
+        /* Control Operators ??? */
         case ast::OpExp::controltimes :
             return std::wstring(L"u");
         case ast::OpExp::controlrdivide :
