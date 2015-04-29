@@ -513,7 +513,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             getOrCreateDefaultSubwin();
 
             figurePosition[0] = (int)in[1]->getAs<types::Double>()->get(0);
-            figurePosition[1] = (int)in[2]->getAs<types::Double>()->get(0);
+            figurePosition[1] = (int)in[1]->getAs<types::Double>()->get(1);
             setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
         }
         break;
