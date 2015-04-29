@@ -293,9 +293,9 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("wpos",x,y)</term>
+                <term>xset("wpos",[x,y])</term>
                 <listitem>
-                    <para>Choisit la position (en pixels) du point en haut à   gauche de
+                    <para>Choisit la position (en pixels) du point en haut à gauche de
                         la fenêtre graphique.
                     </para>
                 </listitem>
