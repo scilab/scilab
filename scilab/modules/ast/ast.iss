@@ -25,7 +25,7 @@ Source: bin\{#AST}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\analysis\*.*; DestDir: {app}\modules\{#AST}\includes\analysis; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\ast\*.*; DestDir: {app}\modules\{#AST}\includes\ast; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\exps\*.*; DestDir: {app}\modules\{#AST}\includes\exps; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\operations\*.*; DestDir: {app}\modules\{#AST}\includes\operation; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\includes\operations\*.*; DestDir: {app}\modules\{#AST}\includes\operations; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\parse\*.*; DestDir: {app}\modules\{#AST}\includes\parse; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\symbol\*.*; DestDir: {app}\modules\{#AST}\includes\symbol; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\includes\system_env\*.*; DestDir: {app}\modules\{#AST}\includes\system_env; Components: {#COMPN_SCILAB}
