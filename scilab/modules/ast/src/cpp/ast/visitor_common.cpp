@@ -1679,7 +1679,6 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             delete *i;
         }
 
-        _pAssignValue->killMe();
         throw error;
     }
 }
