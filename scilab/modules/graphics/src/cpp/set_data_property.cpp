@@ -358,6 +358,9 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
             return SET_PROPERTY_ERROR;
         }
 
+        nbRow = ((types::GenericType*)_pvData)->getRows();
+        nbCol = ((types::GenericType*)_pvData)->getCols();
+
         return sciSetPoint(iObjUID, ((types::Double*)_pvData)->get(), &nbRow, &nbCol);
     }
     return SET_PROPERTY_ERROR;
