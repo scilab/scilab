@@ -114,12 +114,12 @@ inline static IntType getIntType(const double x)
     {
         if (x >= 0)
         {
-            if (x <= (double)std::numeric_limits<uint64_t>::max())
+            if (x <= static_cast<double>((std::numeric_limits<uint64_t>::max)()))
             {
                 return UNSIGNED;
             }
         }
-        else if (x >= (double)std::numeric_limits<int64_t>::min())
+        else if (x >= static_cast<double>((std::numeric_limits<int64_t>::min)()))
         {
             return SIGNED;
         }
@@ -136,20 +136,20 @@ inline static bool isAnInt(const double x)
 template<typename T>
 inline static T cast(const double x)
 {
-    if (x < static_cast<double>(std::numeric_limits<T>::max()))
+    if (x < static_cast<double>((std::numeric_limits<T>::max)()))
     {
-        if (x > static_cast<double>(std::numeric_limits<T>::min()))
+        if (x > static_cast<double>((std::numeric_limits<T>::min)()))
         {
             return static_cast<T>(x);
         }
         else
         {
-            return std::numeric_limits<T>::min();
+            return (std::numeric_limits<T>::min)();
         }
     }
     else
     {
-        return std::numeric_limits<T>::max();
+        return (std::numeric_limits<T>::max)();
     }
 }
 
