@@ -33,11 +33,21 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
     int iRank = matVariable->rank;
     if (iRank != 0)
     {
-        piDims = (int *)MALLOC(iRank * sizeof(int));
-
-        for (int i = 0; i < iRank; ++i)
+        if (iRank == 1)
         {
-            piDims[i] = (int)matVariable->dims[i];
+            iRank = 2;
+            piDims = (int *)MALLOC(iRank * sizeof(int));
+            piDims[0] = (int)matVariable->dims[0];
+            piDims[1] = 1;
+        }
+        else
+        {
+            piDims = (int *)MALLOC(iRank * sizeof(int));
+
+            for (int i = 0; i < iRank; ++i)
+            {
+                piDims[i] = (int)matVariable->dims[i];
+            }
         }
     }
 

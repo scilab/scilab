@@ -52,7 +52,6 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     matvar_t* pMatVarOut = NULL;
 
     /* OTHERS LIST ENTRIES: ALL CELL VALUES */
-
     size_t* pszDims = (size_t*)MALLOC(Dims * sizeof(size_t));
     if (pszDims == NULL)
     {
@@ -69,7 +68,6 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
     {
         pszDims[K] = ((int*)pDims)[K];
     }
-    pszDims[1] = pszDims[1] * isizeFieldNames;
 
     structEntries = (matvar_t **)MALLOC(sizeof(matvar_t*) * prodDims * isizeFieldNames + 1);
     if (structEntries == NULL)
@@ -99,7 +97,7 @@ matvar_t* GetStructMatVar(types::Struct* pStruct, const char *name, int matfile_
         }
     }
 
-    pMatVarOut = Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, prodDims , pszDims, structEntries, 0);
+    pMatVarOut = Mat_VarCreate(name, MAT_C_STRUCT, MAT_T_STRUCT, prodDims * isizeFieldNames, pszDims, structEntries, 0);
 
     FREE(pszDims);
     return pMatVarOut;
