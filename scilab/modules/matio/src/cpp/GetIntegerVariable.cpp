@@ -65,7 +65,7 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char *name)
         case types::GenericType::ScilabUInt8:
         {
             types::UInt8* pUInt8 = pITIn->getAs<types::UInt8>();
-            pMatVarOut = Mat_VarCreate(name, MAT_C_INT8, MAT_T_INT8, Dims, psize_t, pUInt8->get(), 0);
+            pMatVarOut = Mat_VarCreate(name, MAT_C_UINT8, MAT_T_UINT8, Dims, psize_t, pUInt8->get(), 0);
         }
         break;
         case types::GenericType::ScilabInt16:
@@ -77,7 +77,7 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char *name)
         case types::GenericType::ScilabUInt16:
         {
             types::UInt16* pUInt16 = pITIn->getAs<types::UInt16>();
-            pMatVarOut = Mat_VarCreate(name, MAT_C_INT16, MAT_T_INT16, Dims, psize_t, pUInt16->get(), 0);
+            pMatVarOut = Mat_VarCreate(name, MAT_C_UINT16, MAT_T_UINT16, Dims, psize_t, pUInt16->get(), 0);
         }
         break;
         case types::GenericType::ScilabInt32:
@@ -89,7 +89,7 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char *name)
         case types::GenericType::ScilabUInt32:
         {
             types::UInt32* pUInt32 = pITIn->getAs<types::UInt32>();
-            pMatVarOut = Mat_VarCreate(name, MAT_C_INT32, MAT_T_INT32, Dims, psize_t, pUInt32->get(), 0);
+            pMatVarOut = Mat_VarCreate(name, MAT_C_UINT32, MAT_T_UINT32, Dims, psize_t, pUInt32->get(), 0);
         }
         break;
 #ifdef __SCILAB_INT64__
@@ -102,8 +102,9 @@ matvar_t* GetIntegerMatVar(types::InternalType* pITIn, const char *name)
         case types::GenericType::ScilabUInt64:
         {
             types::UInt64* pUInt64 = pITIn->getAs<types::UInt64>();
-            pMatVarOut = Mat_VarCreate(name, MAT_C_INT64, MAT_T_INT64, Dims, psize_t, pUInt64->get(), 0);
+            pMatVarOut = Mat_VarCreate(name, MAT_C_UINT64, MAT_T_UINT64, Dims, psize_t, pUInt64->get(), 0);
         }
+        break;
 #endif
         default:
             Scierror(999, _("%s: Wrong type for input argument #%d: Integer matrix expected.\n"), "GetIntegerMatVar", 1);
