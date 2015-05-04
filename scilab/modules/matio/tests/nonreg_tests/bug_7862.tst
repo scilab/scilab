@@ -36,7 +36,7 @@ clear a1x1 a1x1_saved
 a1x3 = ["aaaa", "bbbb", "cccc"];
 ierr = execstr("savematfile(TMPDIR + filesep() + ""a1x3.mat"", ""a1x3"");", "errcatch");
 msg = lasterror();
-if ierr<>999 | msg<>msprintf(_("%s: Row array of strings saving is not implemented.\n"), "GetCharVariable") then pause;end
+if ierr<>999 | msg<>msprintf(_("%s: Row array of strings saving is not implemented.\n"), "GetCharMatVar") then pause;end
 
 a3x1 = ["aaaa"; "bbbb"; "cccc"];
 savematfile(TMPDIR + filesep() + "a3x1.mat", "a3x1");
@@ -49,9 +49,9 @@ clear a3x1 a3x1_saved
 a3x1 = ["aa"; "bbb"; "cccc"];
 ierr = execstr("savematfile(TMPDIR + filesep() + ""a3x1.mat"", ""a3x1"");", "errcatch");
 msg = lasterror();
-if ierr<>999 | msg<>msprintf(_("%s: Column array of strings with different lengths saving is not implemented.\n"), "GetCharVariable") then pause;end
+if ierr<>999 | msg<>msprintf(_("%s: Column array of strings with different lengths saving is not implemented.\n"), "GetCharMatVar") then pause;end
 
 a2x3 = ["aaaa", "bbbb", "cccc"; "dddd", "eeee", "ffff"];
 ierr = execstr("savematfile(TMPDIR + filesep() + ""a2x3.mat"", ""a2x3"");", "errcatch");
 msg = lasterror();
-if ierr<>999 | msg<>msprintf(_("%s: 2D array of strings saving is not implemented.\n"), "GetCharVariable") then pause;end
+if ierr<>999 | msg<>msprintf(_("%s: 2D array of strings saving is not implemented.\n"), "GetCharMatVar") then pause;end

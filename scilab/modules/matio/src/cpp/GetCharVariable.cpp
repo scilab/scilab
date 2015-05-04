@@ -47,23 +47,30 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
     int Dims = pStr->getDims();
     int* pDims = pStr->getDimsArray();
     matvar_t * pMatVarOut = NULL;
-    int* piLen = NULL;
+    int iLen = 0;
 
     if (Dims > 2)
     {
-        Scierror(999, _("%s: Row array of strings saving is not implemented.\n"), "GetCharMatVar");
+        Scierror(999, _("%s: 2D array of strings saving is not implemented.\n"), "GetCharMatVar");
         return NULL;
     }
 
     if (pDims[1] != 1)
     {
-        Scierror(999, _("%s: Row array of strings saving is not implemented.\n"), "GetCharMatVar");
+        if (pDims[0] != 1)
+        {
+            Scierror(999, _("%s: 2D array of strings saving is not implemented.\n"), "GetCharMatVar");
+        }
+        else
+        {
+            Scierror(999, _("%s: Row array of strings saving is not implemented.\n"), "GetCharMatVar");
+        }
         return NULL;
     }
 
-    char* pcName = wide_string_to_UTF8(pStr->get(0));
-    int iLen = strlen(pcName);
-    FREE(pcName);
+
+    char* pcName = NULL;
+    iLen = wcslen(pStr->get(0));
 
     for (int i = 1; i < pStr->getSize(); ++i)
     {
@@ -85,17 +92,57 @@ matvar_t* GetCharMatVar(types::String* pStr, const char* name)
     }
 
     /* Reorder characters */
-    char* pstMatData = (char*)MALLOC(sizeof(char) * pDims[0] * iLen);
-    for (int i = 0; i < pDims[0]; ++i)
+    char* pstMatData = NULL;
+    if (iLen != 0)
     {
-        pcName = wide_string_to_UTF8(pStr->get(i));
-        for (int j = 0; j < iLen; ++j)
-        {
-            pstMatData[i + j * pDims[0]] = pcName[j];
-        }
-        FREE(pcName);
-    }
 
+        char** ppcName = (char**)MALLOC(sizeof(char*) * pDims[0] * pDims[1]);
+        if (ppcName == NULL)
+        {
+            Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
+            return NULL;
+        }
+
+        pstMatData = (char*)MALLOC(sizeof(char) * pDims[0] * iLen);
+        if (pstMatData == NULL)
+        {
+            FREE(ppcName);
+            Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
+            return NULL;
+        }
+
+        for (int i = 0; i < pDims[0]; ++i)
+        {
+            ppcName[i] = wide_string_to_UTF8(pStr->get(i));
+            if (pstMatData == NULL)
+            {
+                for (int idelete = 0; idelete < i; ++idelete)
+                {
+                    FREE(ppcName[idelete]);
+                }
+                FREE(ppcName);
+                FREE(pstMatData);
+                Scierror(999, _("%s: No more memory.\n"), "GetCharMatVar");
+                return NULL;
+            }
+        }
+
+
+        for (int i = 0; i < pDims[0]; ++i)
+        {
+            for (int j = 0; j < iLen; ++j)
+            {
+                pstMatData[i + j * pDims[0]] = ppcName[i][j];
+            }
+        }
+
+        for (int i = 0; i < pDims[0]; ++i)
+        {
+            FREE(ppcName[i]);
+        }
+
+        FREE(ppcName);
+    }
 
     /* Save the variable */
     psize_t[0] = pDims[0];
