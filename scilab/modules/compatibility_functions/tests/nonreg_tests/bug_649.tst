@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 649 -->
-//
+// <-- ENGLISH IMPOSED -->
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=649
 //
