@@ -525,7 +525,7 @@ types::Function::ReturnValue sci_spec(types::typed_list &in, int _iRetCount, typ
         {
             vFreeDoubleComplexFromPointer(pR);
         }
-        if (pDblB->isComplex())
+        if (bIsComplex && pDblB->isComplex())
         {
             vFreeDoubleComplexFromPointer((doublecomplex*)pDataB);
         }
