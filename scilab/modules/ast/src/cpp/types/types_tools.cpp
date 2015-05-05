@@ -120,19 +120,23 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
         }
     }
 
-    int idx = ind[0];
-    if (dimsIn > 1 && idx >= pdims[0])
-    {
-        return false;
-    }
+    //int idx = ind[0];
+    //if (dimsIn > 1 && idx >= pdims[0])
+    //{
+    //    return false;
+    //}
 
-    for (int i = 1; i < dimsIn; ++i)
+    int idx = 0;
+    int previousDims = 1;
+    for (int i = 0; i < dimsIn; ++i)
     {
-        if (ind[i] >= pdims[i])
+        if (dimsIn != 1 && ind[i] >= pdims[i])
         {
             return false;
         }
-        idx += ind[i] * pdims[i - 1];
+
+        idx += ind[i] * previousDims;
+        previousDims *= pdims[i];
     }
 
     *index = idx;
@@ -195,25 +199,54 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
         else if (in->isImplicitList())
         {
             ImplicitList* pIL = in->getAs<ImplicitList>();
-            int sizeRef = viewAsVector ? _pRef->getSize() : pdims[i];
-            double start = evalute(pIL->getStart(), sizeRef);
-            double step = evalute(pIL->getStep(), sizeRef);
-            double end = evalute(pIL->getEnd(), sizeRef);
+            InternalType* piStart = pIL->getStart();
+            InternalType* piStep = pIL->getStep();
+            InternalType* piEnd = pIL->getEnd();
 
-            //printf("%.2f : %.2f : %.2f\n", start, step, end);
-
-            int size = (end - start) / step + 1;
-            vector<int> idx(size);
-
-            int* pi = idx.data();
-            pi[0] = start - 1; //0-indexed
-            for (int j = 1; j < size; ++j)
+            if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
             {
-                pi[j] = pi[j - 1] + step;
+                if (piStart->getAs<Double>()->get()[0] == 1 && piStep->getAs<Double>()->get()[0] == 1)
+                {
+                    SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
+                    if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
+                    {
+                        vector<int> idx(2);
+                        idx[0] = -1;
+                        idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
+                        lstIdx.push_back(idx);
+                        finalSize *= idx[1];
+                    }
+                }
             }
+            else
+            {
+                int sizeRef = viewAsVector ? _pRef->getSize() : pdims[i];
+                double start = evalute(pIL->getStart(), sizeRef);
+                double step = evalute(pIL->getStep(), sizeRef);
+                double end = evalute(pIL->getEnd(), sizeRef);
 
-            lstIdx.push_back(idx);
-            finalSize *= size;
+                //printf("%.2f : %.2f : %.2f\n", start, step, end);
+
+                int size = (end - start) / step + 1;
+                vector<int> idx(size);
+
+                if (size == 0)
+                {
+                    //manage implicit that return []
+                    index.clear();
+                    return true;
+                }
+
+                int* pi = idx.data();
+                pi[0] = start - 1; //0-indexed
+                for (int j = 1; j < size; ++j)
+                {
+                    pi[j] = pi[j - 1] + step;
+                }
+
+                lstIdx.push_back(idx);
+                finalSize *= size;
+            }
         }
         else
         {

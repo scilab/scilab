@@ -154,6 +154,11 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     std::vector<int> indexes;
     if (getImplicitIndex(this, _pArgs, indexes))
     {
+        if (indexes.size() == 0)
+        {
+            return this;
+        }
+
         ArrayOf* pIns = _pSource->getAs<ArrayOf>();
         int sizeIn = pIns->getSize();
         int count = static_cast<int>(indexes.size());

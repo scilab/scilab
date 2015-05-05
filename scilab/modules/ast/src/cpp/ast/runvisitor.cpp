@@ -1182,19 +1182,19 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     }
     InternalType* piEnd = pITEnd;
 
-    //check if implicitlist is 1:$ to replace by ':'
-    if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
-    {
-        if (piStart->getAs<Double>()->get()[0] == 1 && piStep->getAs<Double>()->get()[0] == 1)
-        {
-            SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
-            if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
-            {
-                setResult(new Colon());
-                return;
-            }
-        }
-    }
+    ////check if implicitlist is 1:$ to replace by ':'
+    //if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
+    //{
+    //    if (piStart->getAs<Double>()->get()[0] == 1 && piStep->getAs<Double>()->get()[0] == 1)
+    //    {
+    //        SinglePoly* end = piEnd->getAs<Polynom>()->get()[0];
+    //        if (end->getRank() == 1 && end->get()[0] == 0 && end->get()[1] == 1)
+    //        {
+    //            setResult(new Colon());
+    //            return;
+    //        }
+    //    }
+    //}
 
     //check compatibility
     // double : double : double or poly : poly : poly and mix like double : double : poly
