@@ -20,16 +20,16 @@
 ilib_verbose(0)
 cd TMPDIR;
 //creating the interface file
-c_code = ["#define __USE_DEPRECATED_STACK_FUNCTIONS__"
-"#include <stack-c.h>"
-"#include <api_scilab.h>"
-"int sci_funxxx(char *fname)"
+c_code = ["#include <api_scilab.h>"
+"int sci_funxxx(char *fname, void * pvApiCtx)"
 "{"
-"  double dOut = Fin;"
+"  static double dOut = 0;"
+"  dOut ++;"
 "  int m_out = 1;"
 "  int n_out = 1;"
 "  createMatrixOfDouble(pvApiCtx, Rhs + 1, m_out, n_out, &dOut);"
 "  LhsVar(1) = 1;"
+"  PutLhsVar();"
 "  return 0;"
 "}"];
 mputl(c_code,"bug_4675.c");
