@@ -25,11 +25,11 @@ import java.util.Collection;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * ScilabList data = new ScilabList();<br />
- * data.add(new ScilabString("hello"));<br />
- * data.add(new ScilabDouble(2));<br />
+ * ScilabList data = new ScilabList();<BR>
+ * data.add(new ScilabString("hello"));<BR>
+ * data.add(new ScilabDouble(2));<BR>
  * </code>
  *
  * @see org.scilab.modules.javasci.Scilab
@@ -188,7 +188,7 @@ public class ScilabList extends ArrayList<ScilabType> implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty-printed data

@@ -24,9 +24,9 @@ import java.util.Arrays;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<br />
+ * String [][]a={{"This","is","my","string"},{"and","I want to", "compare"," them"}};<BR>
  * ScilabString aMatrix = new ScilabString(a);
  * </code>
  *
@@ -229,7 +229,7 @@ public class ScilabString implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return a Scilab-like String representation of the data.
