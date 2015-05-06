@@ -203,6 +203,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
             InternalType* piStep = pIL->getStep();
             InternalType* piEnd = pIL->getEnd();
 
+            bool isColon = false;
             if (piStart->isDouble() && piStep->isDouble() && piEnd->isPoly())
             {
                 if (piStart->getAs<Double>()->get()[0] == 1 && piStep->getAs<Double>()->get()[0] == 1)
@@ -215,10 +216,12 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                         idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
                         lstIdx.push_back(idx);
                         finalSize *= idx[1];
+                        isColon = true;
                     }
                 }
             }
-            else
+
+            if (isColon == false)
             {
                 int sizeRef = viewAsVector ? _pRef->getSize() : pdims[i];
                 double start = evalute(pIL->getStart(), sizeRef);
