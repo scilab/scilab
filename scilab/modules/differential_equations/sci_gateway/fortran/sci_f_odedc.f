@@ -795,7 +795,7 @@ c     --------------
          tf=tmax
  50      continue
          hf=min(t0+nhpass*hstep+delta*hstep,tmax)
-c     set continuuous integration time
+c     set continuous integration time
  51      continue
          if(abs(tleft-hf).le.1.d-12) goto 52
          istore=1
@@ -951,7 +951,7 @@ c     set continuous integration time
             endif
             tcrit=hf
             stk(lc)=tcrit
-c     integrate continuuous part
+c     integrate continuous part
             if(meth.eq.0) then
                call lsoda(bydot2,ny,stk(ly),tleft,tright,itol
      $              ,stk(lr),stk(la),itask,istate,iopt,stk(lc),lrw

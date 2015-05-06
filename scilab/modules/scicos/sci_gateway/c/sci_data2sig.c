@@ -33,11 +33,11 @@ extern int C2F(mkmlist)();
 /* B=data2sig(A[,step])
 *
 * Put data in a 'scicos' signal structure.
-* If A is a vector, then it will be understand
+* If A is a vector, then it will be understood
 * as a scalar that evolves along time.
-* If A is a matrix, then it will be understand
+* If A is a matrix, then it will be understood
 * as a vector that evolves along time.
-* If A is an hypermatrix, then it will be understand
+* If A is an hypermatrix, then it will be understood
 * as a matrix that evolves along time.
 *
 * Usage :
