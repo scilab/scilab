@@ -417,12 +417,12 @@ public :
 
             //check if var is recalled in current scope like
             //function f()
-            //  a;
+            //  a; //<=> a=a;
             //  a(2) = 18;
             //endfunction
             if (e.getParent()->isSeqExp())
             {
-                if (var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
+                if (ctx->getScopeLevel() > 1 && var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
                 {
                     //put var in current scope
                     ctx->put(var, pI);
