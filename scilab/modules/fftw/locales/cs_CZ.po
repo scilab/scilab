@@ -167,10 +167,10 @@ msgstr ""
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Scilab modul FFTW není nainstalován.\n"
 
-msgid "You choose to install scilab with fftw module."
-msgstr "Zvolili jste instalovat scilab s modulem fftw."
+msgid "You chose to install Scilab with the fftw module."
+msgstr "Zvolili jste instalovat Scilab s modulem fftw."
 
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "Tento modul vyžaduje : "
 
 msgid ""
