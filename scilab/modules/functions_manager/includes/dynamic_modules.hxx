@@ -196,6 +196,8 @@ public :
 
 class ExternalObjectsJavaModule : public GenericModule
 {
+    static bool loadedDep;
+    static void LoadDeps(std::wstring _functionName);
 public :
     static int Load();
 };

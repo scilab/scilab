@@ -611,6 +611,16 @@ int ExternalObjectsModule::Load()
     return 1;
 }
 
+bool ExternalObjectsJavaModule::loadedDep = false;
+void ExternalObjectsJavaModule::LoadDeps(std::wstring _functionName)
+{
+    if (loadedDep == false)
+    {
+        loadOnUseClassPath("external_objects_java");
+        loadedDep = true;
+    }
+};
+
 int ExternalObjectsJavaModule::Load()
 {
     wstring wstModuleName = L"external_objects_java";
@@ -623,7 +633,7 @@ int ExternalObjectsJavaModule::Load()
 
     for (int i = 0 ; i < (int)vect.size() ; i++)
     {
-        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, NULL, wstModuleName));
+        symbol::Context::getInstance()->addFunction(types::Function::createFunction(vect[i].wstFunction, vect[i].wstName, pwstLibName, vect[i].iType, &ExternalObjectsJavaModule::LoadDeps, wstModuleName));
     }
 
     FREE(pwstLibName);
