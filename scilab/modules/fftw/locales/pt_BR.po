@@ -157,10 +157,10 @@ msgstr ""
 msgid "Scilab FFTW module not installed.\n"
 msgstr "O módulo FFTW do Scilab não está instalado.\n"
 
-msgid "You choose to install scilab with fftw module."
+msgid "You chose to install Scilab with the fftw module."
 msgstr "Você escolheu instalar o Scilab com o módulo fftw."
 
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "Este módulo exige: "
 
 msgid ""

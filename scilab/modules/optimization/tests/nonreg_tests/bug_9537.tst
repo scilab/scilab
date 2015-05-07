@@ -23,6 +23,8 @@ exec("SCI/modules/optimization/demos/neldermead/polygon.sce", -1);
 
 // Now redefine largesmallpolygon() without transposing x0 in neldermead_configure(nm,"-x0",x0');
 // and check that we get the same result as before.
+prot = funcprot();
+funcprot(0);
 function [A,r,t] = findlargestpolygon (nv)
     // Finds the largest smallest polygon with nv vertices
     // A : a 1-by-1 matrix of doubles, the area
@@ -68,7 +70,7 @@ function [A,r,t] = findlargestpolygon (nv)
     t = xopt(nv+1:$)
     nm = neldermead_destroy(nm)
 endfunction
-
+funcprot(prot);
 
 nv = 6;
 rand("seed" , 0);

@@ -591,7 +591,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
 
         /* 2 : Dimension properties */
         Blocks[kf].ztyp = ztyp[kf + 1];
-        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuuous state dimension*/
+        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuous state dimension*/
         Blocks[kf].ng = zcptr[kf + 2] - zcptr[kf + 1]; /* number of zero crossing surface*/
         Blocks[kf].nz = zptr[kf + 2] - zptr[kf + 1]; /* number of double discrete state*/
         Blocks[kf].noz = ozptr[kf + 2] - ozptr[kf + 1]; /* number of other discrete state*/
@@ -1618,7 +1618,8 @@ static void cossim(double *told)
             return;
         }
 
-        if (solver != LSodar_Dynamic) /* Call CVDense to specify the CVDENSE dense linear solver */
+        /* Call CVDense to specify the CVDENSE dense linear solver, only for solvers needing CVode's Newton method */
+        if (solver == CVode_BDF_Newton || solver == CVode_Adams_Newton)
         {
             flag = CVDense(ode_mem, *neq);
         }
@@ -3623,9 +3624,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-        /*******************/
-        /* function type 0 */
-        /*******************/
+            /*******************/
+            /* function type 0 */
+            /*******************/
         case 0 :
         {
             /* This is for compatibility */

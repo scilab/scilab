@@ -161,10 +161,10 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 浮動小数点数�
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Scilab FFTW モジュールはインストールされていません。\n"
 
-msgid "You choose to install scilab with fftw module."
-msgstr "fftwモジュール付きのscilabインストールが選択されました."
+msgid "You chose to install Scilab with the fftw module."
+msgstr "fftwモジュール付きのScilabインストールが選択されました."
 
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "このモジュールは以下を必要とします : "
 
 msgid ""

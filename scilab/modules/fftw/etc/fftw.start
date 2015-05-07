@@ -31,8 +31,8 @@ function startModule()
         show = grep(mgetl(SCIHOME+"/.scilab_settings"),"displayWarningFFTW=no")==[]
       end
       if show then
-        MSG_FTTW = [_("You choose to install scilab with fftw module.");
-                  _("This module requires : "+librarynamefftw+" (GPL licence).");
+        MSG_FTTW = [_("You chose to install Scilab with the fftw module.");
+                  _("This module requires: "+librarynamefftw+" (GPL licence).");
                   _("Scilab will use standard fft by default until you install this library.");
                   _("See help fftw for more information.")];
 

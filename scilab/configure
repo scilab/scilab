@@ -9619,13 +9619,6 @@ SCIVERSION=`cat $SCI_SRCDIR/Version.incl | sed -e "s/SCIVERSION=//" `
 
 if test "$with_intelcompilers" = yes; then
 
-
-		CFLAGS=" $CFLAGS -mp"
-		# -cm remove comments displays, -w90  -w95 remove warnings abort f90 f95 non standard
-
-		FFLAGS=" $FFLAGS -cm  -w90 -w95 -mp"
-
-
 		case "$host" in
 		  i*86-*-linux-gnu | *-pc-linux-gnu )
 			# -pc64 : double precision
@@ -9633,16 +9626,22 @@ if test "$with_intelcompilers" = yes; then
 			;;
 		esac
 
-		if test "$enable_debug_C" = yes; then
-			CFLAGS="-g $CFLAGS $EXTRA_OPTIONS"
+		if test "$enable_debug_CXX" = yes; then
+			COMPILER_CXXFLAGS="-g $COMPILER_CXXFLAGS $EXTRA_OPTIONS"
 		else
-			CFLAGS="-O -DNDEBUG $CFLAGS "
+			COMPILER_CXXFLAGS="-O -DNDEBUG $COMPILER_CXXFLAGS "
+		fi
+
+		if test "$enable_debug_C" = yes; then
+			COMPILER_CFLAGS="-g $COMPILER_CFLAGS $EXTRA_OPTIONS"
+		else
+			COMPILER_CFLAGS="-O -DNDEBUG $COMPILER_CFLAGS "
 		fi
 
 		if test "$enable_debug_fortran" = yes; then
-			FFLAGS="-g $FFLAGS $EXTRA_OPTIONS"
+			COMPILER_FFLAGS="-g $COMPILER_FFLAGS $EXTRA_OPTIONS"
 		else
-			FFLAGS="-O $FFLAGS "
+			COMPILER_FFLAGS="-O -DNDEBUG $COMPILER_FFLAGS "
 		fi
 
 		# TODO : voir si obligatoire vu que c'est en partie le boulot de AC_PROG_C
@@ -9850,7 +9849,7 @@ case "$CXX" in
         else
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
-        COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
+        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     ;;
 
 esac
@@ -9890,7 +9889,7 @@ case "$CC" in
       DEBUG_CFLAGS="-DNDEBUG"
    fi
 
-   COMPILER_CFLAGS="-fno-stack-protector " # bug 3131
+   COMPILER_CFLAGS="$COMPILER_CFLAGS -fno-stack-protector " # bug 3131
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.

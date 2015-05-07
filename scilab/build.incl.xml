@@ -104,7 +104,7 @@
     </target>
     <!-- Compile sources -->
     <target name="compile" description="Build sources" depends="init">
-        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}" classpathref="compile.classpath" deprecation="on" debug="${build.debug}" debuglevel="lines,vars,source" verbose="off" listfiles="on" includeAntRuntime="no" source="6" target="6" encoding="utf-8">
             <compilerarg value="-Xlint" />
             <!--  Silent some warnings -->
             <compilerarg value="-Xlint:-unchecked" />

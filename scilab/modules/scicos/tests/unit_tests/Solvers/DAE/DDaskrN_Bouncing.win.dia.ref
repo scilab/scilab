@@ -27,14 +27,10 @@ Info = scicos_simulate(scs_m, list());
 // Modify solver + run DDaskr + save results
 scs_m.props.tol(6) = 101;      // Solver
 scicos_simulate(scs_m, Info);  // DDaskr
-Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
-
 ddaskrval = res.values;         // Results
 // Modify solver + run IDA + save results
 scs_m.props.tol(6) = 100;     // Solver
 scicos_simulate(scs_m, Info); // IDA
-Warning : redefining function: dst                     . Use funcprot(0) to avoid this message
-
 idaval = res.values;          // Results
 // Compare results
 compa = abs(ddaskrval-idaval);

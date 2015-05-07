@@ -43,14 +43,14 @@ function a = %hm_sum(varargin)
     // Check second argument : d
     select type(d)
     case 1
-        if size(d,'*') <> 1 then
+        if size(d,"*") <> 1 then
             error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"sum", 2))
         end
         if int(d) <> d | d < 0 then
             error(msprintf(_("%s: Wrong value for input argument #%d: Integer >= %d expected.\n"),"sum", 2, 1))
         end
-    case 10 
-        if size(d,'*') <> 1 then
+    case 10
+        if size(d,"*") <> 1 then
             error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"sum",2))
         end
         if and(d<>["r","c","*","m"]) then
@@ -77,27 +77,28 @@ function a = %hm_sum(varargin)
     end
 
     if d == 0 then // '*'
-        a=sum(a.entries, "*", typ), dims;
+        a = sum(a.entries, "*", typ), dims;
     elseif d > size(dims,"*") then
         //requested summation direction exceeds array dims, return the array, converted
         //to double if necessary.
         if typ == "double" & or(tm == [4 8]) then
-            a.entries=double(a.entries),
+            a.entries = double(a.entries),
         end
         a=a
     else
         //permute the array dimension to put the selected dimension first
-        p=1:size(dims,"*");
-        p([1,d])=p([d,1]);
-        a=matrix(permute(a,p),dims(d),-1)
-        a=sum(a,1,typ);
+        p = 1:size(dims,"*");
+        p([1,d]) = p([d,1]);
+        a = matrix(permute(a,p),dims(d),-1)
+        a = sum(a,1,typ);
         //permute back
         if d==size(dims, "*") then
-            dims=dims(1:$-1)
-            p(1) = []
+            dims = dims(1:$-1)
+            p(1) = p($)
+            p($) = []
         else
-            dims(d)=1
+            dims(d) = 1
         end
-        a=permute(matrix(a,dims(p)),p)
+        a = permute(matrix(a,dims(p)),p)
     end
 endfunction
