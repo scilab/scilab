@@ -106,8 +106,6 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
         case __GO_DATA_MODEL_MATPLOT_IMAGE_TYPE__ :
         case __GO_DATA_MODEL_MATPLOT_IMAGE_DATA__ :
         case __GO_DATA_MODEL_DISPLAY_FUNCTION__ :
-        case __GO_DATA_MODEL_SIZES__ :
-        case __GO_DATA_MODEL_NUM_SIZES__ :
         {
             BOOL bFalse = FALSE;
             BOOL bTrue = TRUE;

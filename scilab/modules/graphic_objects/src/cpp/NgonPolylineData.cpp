@@ -108,9 +108,9 @@ int NgonPolylineData::getPropertyFromName(int propertyName)
             return COLORS;
         case __GO_DATA_MODEL_NUM_COLORS__ :
             return NUM_COLORS;
-        case __GO_DATA_MODEL_SIZES__ :
+        case __GO_SIZES__ :
             return SIZES;
-        case __GO_DATA_MODEL_NUM_SIZES__ :
+        case __GO_NUM_SIZES__ :
             return NUM_SIZES;
         default :
             return NgonGeneralData::getPropertyFromName(propertyName);

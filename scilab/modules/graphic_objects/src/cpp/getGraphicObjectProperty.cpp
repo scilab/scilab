@@ -89,8 +89,8 @@ void getGraphicObjectProperty(int iUID, int _iName, _ReturnType_ _returnType, vo
         case __GO_DATA_MODEL_MATPLOT_IMAGE_DATASIZE__ :
         case __GO_DATA_MODEL_DISPLAY_FUNCTION__ :
         case __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__ :
-        case __GO_DATA_MODEL_SIZES__ :
-        case __GO_DATA_MODEL_NUM_SIZES__ :
+        case __GO_SIZES__ :
+        case __GO_NUM_SIZES__ :
         {
             DataController::getGraphicObjectProperty(iUID, _iName, _pvData);
             break;

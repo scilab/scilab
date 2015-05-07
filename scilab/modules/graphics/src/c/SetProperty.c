@@ -116,7 +116,7 @@ int sciSetLineStyle(int iObjUID, int linestyle)
 
 int sciSetMarkSize(int iObjUID, int marksize)
 {
-    if (marksize < 0)
+    if (marksize < 0 && marksize != -3)
     {
         Scierror(999, _("Wrong value for '%s' property: Must be greater or equal to %d.\n"), "mark_size", 0);
         return -1;

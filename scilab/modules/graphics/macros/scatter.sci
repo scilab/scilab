@@ -12,9 +12,12 @@ function scatter(varargin)
     [lhs,rhs] = argn(0);
 
     if ~rhs
-        //
-        // add example ???
-        //
+        clf;
+        t = linspace(0,25,200);
+        x = t.*cos(t);
+        y = t.*sin(t);
+        scatter(x,y,t,t,"fill","markerEdgeColor","darkblue")
+        return;
     end
 
    //detect and set the current axes now:
@@ -78,7 +81,7 @@ function scatter(varargin)
         return;
     end
 
-    scatterSetPoyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
+    scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
     
     drawnow();
 

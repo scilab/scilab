@@ -312,36 +312,39 @@ scatter(x,y)
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
 // specify different sizes
-a = linspace(1,100,length(x))
+s = linspace(1,30,length(x))
 // create 2D scatter plot
-scatter(x,y,a)
+scatter(x,y,s)
  ]]></programlisting>
         <scilab:image>
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
-a = linspace(1,100,length(x))
-scatter(x,y,a)
+s = linspace(1,30,length(x))
+scatter(x,y,s)
         </scilab:image>
         <para>
-           Vary marker color
+           Vary marker size and color
         </para>
         <programlisting role="example"><![CDATA[
 // x and y initialisation
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+// specify different sizes
+s = linspace(1,30,length(x))
 // set color map
 set(gcf(),"color_map",coolcolormap(64))
 // colors according to x values 
 c = x
 // create 2D scatter plot
-scatter(x,y,[],c)
+scatter(x,y,s,c)
  ]]></programlisting>
         <scilab:image>
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+s = linspace(1,30,length(x))
 set(gcf(),"color_map",coolcolormap(64))
 c = x
-scatter(x,y,[],c)
+scatter(x,y,s,c)
         </scilab:image>
         <para>
            Fill the markers
@@ -350,19 +353,22 @@ scatter(x,y,[],c)
 // x and y initialisation
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+// specify different sizes
+s = linspace(1,30,length(x))
 // set color map
 set(gcf(),"color_map",coolcolormap(64))
 // colors according to y values 
 c = y
 // create 2D scatter plot
-scatter(x,y,[],c,"fill")
+scatter(x,y,s,c,"fill")
  ]]></programlisting>
         <scilab:image>
 x = linspace(0,2,200)
 y = exp(-x).*cos(10*x) + 0.2*rand(1,length(x))
+s = linspace(1,30,length(x))
 set(gcf(),"color_map",coolcolormap(64))
 c = y
-scatter(x,y,[],c,"fill")
+scatter(x,y,s,c,"fill")
         </scilab:image>
         <para>
             Specify marker symbol
@@ -429,13 +435,13 @@ t = linspace(0,1,200)
 x = t.*cos(10*%pi*t)
 y = t.*sin(10*%pi*t)
 // create 2D scatter plot
-s = scatter(x,y)
+scatter(x,y)
  ]]></programlisting>
         <scilab:image>
-t = linspace(0,1,200)
-x = t.*cos(10*%pi*t)
-y = t.*sin(10*%pi*t)
-s = scatter(x,y)
+t = linspace(0,25,200)
+x = t.*cos(t)
+y = t.*sin(t)
+scatter(x,y,t)
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // get current entity
@@ -445,18 +451,18 @@ pl = ce.children
 // modify ployline 
 pl.thickness = 0.5
 pl.mark_foreground = addcolor(name2rgb("darkblue")/255)
-pl.mark_background = addcolor([0 0.4 0.4])
+pl.mark_background = addcolor(name2rgb("darkcyan")/255)
  ]]></programlisting>
         <scilab:image>
-t = linspace(0,1,200)
-x = t.*cos(10*%pi*t)
-y = t.*sin(10*%pi*t)
-s = scatter(x,y)
+t = linspace(0,25,200)
+x = t.*cos(t)
+y = t.*sin(t)
+scatter(x,y,t)
 ce = gce()
 pl = ce.children
 pl.thickness = 0.5
 pl.mark_foreground = addcolor(name2rgb("darkblue")/255)
-pl.mark_background = addcolor([0 0.4 0.4])
+pl.mark_background = addcolor(name2rgb("darkcyan")/255)
         </scilab:image>
     </refsection>
     <refsection role="see also">

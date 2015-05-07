@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2015 - Scilab Enterprises - Juergen KOCH
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,7 @@
 
 /*------------------------------------------------------------------------*/
 /* file: set_sizes_property.c                                             */
-/* desc : function to modify in Scilab he polylines sizes                 */
+/* desc : function to modify in Scilab the polylines sizes                 */
 /*------------------------------------------------------------------------*/
 
 #include "MALLOC.h"
@@ -42,11 +42,6 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     }
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
-
-    /*
-     * A way to display a more explicit message would be to first get the
-     * interpolation vector set flag and test it for NULL.
-     */
     if (piNumElements == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "sizes");
@@ -55,14 +50,14 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
 
     if (nbCol == 0)
     {
-        int sizeSet = 0;
-        status = setGraphicObjectProperty(pobjUID, __GO_SIZE_SET__, &sizeSet, jni_bool, 1);
+        int numSizes = 0;
+        status = setGraphicObjectProperty(pobjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
         if (status == FALSE)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sizes");
             return SET_PROPERTY_ERROR;
         }
-        setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_SIZES__, NULL, jni_int_vector, 0);
+        setGraphicObjectProperty(pobjUID, __GO_SIZES__, NULL, jni_int_vector, 0);
 
         return SET_PROPERTY_SUCCEED;
     }
@@ -74,11 +69,11 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
 
         copyDoubleVectorToIntFromStack(stackPointer, tmp, nbCol);
 
-        status = setGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_SIZES__, tmp, jni_int_vector, nbCol);
+        status = setGraphicObjectProperty(pobjUID, __GO_SIZES__, tmp, jni_int_vector, nbCol);
         if (status == TRUE)
         {
-            int sizeSet = 1;
-            setGraphicObjectProperty(pobjUID, __GO_SIZE_SET__, &sizeSet, jni_bool, 1);
+            int numSizes = nbCol;
+            setGraphicObjectProperty(pobjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
             FREE(tmp);
             return SET_PROPERTY_SUCCEED;
         }

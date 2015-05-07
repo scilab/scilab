@@ -12,9 +12,13 @@ function scatter3(varargin)
     [lhs,rhs] = argn(0);
 
     if ~rhs
-        //
-        // add example ???
-        //
+        clf;
+        z = linspace(0,25,200);
+        x = z.*cos(z);
+        y = z.*sin(z);
+        scatter3(x,y,z,z,z,"fill","markerEdgeColor","darkblue");
+        set(gca(),"rotation_angles",[60,45])
+        return;
     end
 
    //detect and set the current axes now:
@@ -80,7 +84,7 @@ function scatter3(varargin)
         return;
     end
 
-    scatterSetPoyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
+    scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
     
     set(gca(),"cube_scaling","on");
     set(gca(),"grid",[1 1 1]);

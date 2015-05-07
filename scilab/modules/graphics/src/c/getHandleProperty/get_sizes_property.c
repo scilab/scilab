@@ -15,10 +15,12 @@
 /* desc : function to get in Scilab the polyline sizes                    */
 /*------------------------------------------------------------------------*/
 
+#include "MALLOC.h"
 #include "SetPropertyStatus.h"
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
+#include "HandleManagement.h"
 #include "Scierror.h"
 #include "localization.h"
 
@@ -26,30 +28,32 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_sizes_property(void* _pvCtx, char* pobjUID)
+int get_sizes_property(void* _pvCtx, int iObjUID)
 {
-    int * sizes = NULL;
-    int numSizes = 0;
-    int * piNumSizes = &numSizes;
-    int sizeSet = 0;
-    int *piSizeSet = &sizeSet;
+	int i = 0;
+    int status = 0;
+    int iSizesCount = 0;
+    int* piSizesCount = &iSizesCount;
+    int* piSizes = NULL;
+    long* plSizes = NULL;
 
-    getGraphicObjectProperty(pobjUID, __GO_SIZE_SET__, jni_bool, (void **)&piSizeSet);
-    if (piSizeSet == NULL)
+    getGraphicObjectProperty(iObjUID, __GO_NUM_SIZES__, jni_int, (void **)&piSizesCount);
+    if (piSizesCount == NULL || iSizesCount == 0)
     {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "sizes");
-        return -1;
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_SIZES__, jni_int_vector, (void **)&sizes);
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_SIZES__, jni_int, &piNumSizes);
+    getGraphicObjectProperty(iObjUID, __GO_SIZES__, jni_int_vector, (void **)&piSizes);
+    plSizes = (long*)MALLOC(iSizesCount * sizeof(long));
 
-    if (sizes == NULL || numSizes == 0)
+    for (i = 0; i < iSizesCount; ++i)
     {
-        sciReturnEmptyMatrix(_pvCtx);
-        return SET_PROPERTY_SUCCEED;
+        plSizes[i] = getHandle(piSizes[i]);
     }
 
-    return sciReturnRowVectorFromInt(_pvCtx, sizes, numSizes);
+ 	status = sciReturnRowHandleVector(_pvCtx, plSizes, iSizesCount);
+    FREE(plSizes);
+
+    return status;
 }
 /*------------------------------------------------------------------------*/

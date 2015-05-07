@@ -331,7 +331,7 @@ x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
 // size according to radius
-s = t
+s = linspace(50,1,length(t))
 // create 3D scatter plot
 scatter3(x,y,z,s)
 // modify rotation angles
@@ -342,12 +342,12 @@ t = 1:200
 x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
-s = t
+s = linspace(50,1,length(t))
 scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
-           Vary marker color
+           Vary marker sie and color
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
@@ -355,12 +355,14 @@ t = 1:200
 x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
+// size according to radius
+s = linspace(50,1,length(t))
 // set color map
 set(gcf(),"color_map",coolcolormap(64))
 // color according to radius
 c = t
 // create 3D scatter plot
-scatter3(x,y,z,[],c)
+scatter3(x,y,z,s,c)
 // modify rotation angles
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
@@ -369,9 +371,10 @@ t = 1:200
 x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
+s = linspace(50,1,length(t))
 set(gcf(),"color_map",coolcolormap(64))
 c = t
-scatter3(x,y,z,[],c)
+scatter3(x,y,z,s,c)
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
@@ -379,18 +382,18 @@ set(gca(),"rotation_angles",[60,45])
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 // create 3D scatter plot
 scatter3(x,y,z,"fill")
 // modify rotation angles
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 scatter3(x,y,z,"fill")
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
@@ -399,18 +402,18 @@ set(gca(),"rotation_angles",[60,45])
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 // create 3D scatter plot
 scatter3(x,y,z,"*")
 // modify rotation angles
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 scatter3(x,y,z,"*")
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
@@ -419,9 +422,9 @@ set(gca(),"rotation_angles",[60,45])
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 // create 3D scatter plot
 scatter3(x,y,z,...
         "markerEdgeColor","black",...
@@ -430,9 +433,9 @@ scatter3(x,y,z,...
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,6*%pi,200)
-x = cos(z)
-y = sin(z)
+z = linspace(0,25,200)
+x = z.*cos(z)
+y = z.*sin(z)
 scatter3(x,y,z,...
         "markerEdgeColor","black",...
         "markerFaceColor",[0 .8 .8])
@@ -477,7 +480,7 @@ x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
 // size according to radius
-s = t
+s = linspace(50,1,length(t))
 // create 3D scatter plot
 scatter3(x,y,z,s)
 // modify rotation angles
@@ -488,7 +491,7 @@ t = 1:200
 x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
-s = t
+s = linspace(50,1,length(t))
 scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
@@ -504,7 +507,7 @@ t = 1:200
 x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
-s = t
+s = linspace(50,1,length(t))
 scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
 polyLine = gce()
