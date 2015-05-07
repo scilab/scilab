@@ -67,8 +67,7 @@ l=list(a,list(c,list(a0,c0,b0),b),h);
 l(2)(2)(3)=null();if l<>list(a,list(c,list(a0,c0),b),h); then pause,end
 
 l=list(a,list(c,list(a0,c0,b0),b),h);
-l(2)(2)(4)=g;if l<>list(a,list(c,list(a0,c0,b0,g),b),h); then
-pause,end
+l(2)(2)(4)=g;if l<>list(a,list(c,list(a0,c0,b0,g),b),h); then pause,end
 l=list();l(5)=33;
 ll=l;
 
@@ -403,20 +402,6 @@ clear S;
 S(1,2).a(1,2).b(1,2,3)=4;
 assert_checkequal(S(1).a, []);
 assert_checkequal(S(2).a.b, list([], hypermat([1 2 3], [0;0;0;0;0;4])));
-
-mtlb_mode(%t)
-clear S;S(1,2).a=3;S(3).a=44 ;
-assert_checkequal(S.a, list([],3,44));
-assert_checkequal(size(S), [1, 3]);
-
-clear S;S.a=3;S(3).a=44;
-assert_checkequal(S.a, list(3,[],44));
-assert_checkequal(size(S), [1, 3]);
-
-clear S;S(4).a=3;
-assert_checkequal(S.a, list([],[],[],3));
-assert_checkequal(size(S), [1, 4]);
-mtlb_mode(%f)
 
 tl=tlist(["ltype" "f1"], 12);
 assert_checkequal(typeof(tl), "ltype");
