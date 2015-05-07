@@ -31,6 +31,7 @@ import org.scilab.forge.scirenderer.DrawingTools;
 import org.scilab.forge.scirenderer.SciRendererException;
 import org.scilab.forge.scirenderer.buffers.ElementsBuffer;
 import org.scilab.forge.scirenderer.shapes.appearance.Appearance;
+import org.scilab.forge.scirenderer.shapes.appearance.Color;
 import org.scilab.forge.scirenderer.shapes.geometry.DefaultGeometry;
 import org.scilab.forge.scirenderer.shapes.geometry.Geometry;
 import org.scilab.forge.scirenderer.texture.AbstractTextureDataProvider;
@@ -159,7 +160,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
     public static int[] getSize() {
         return new int[] {visitorMap.size(), openGLChildren.size()};
     }
-    
+
     public DrawerVisitor(Component component, Canvas canvas, AxesContainer figure) {
         GraphicController.getController().register(this);
 
@@ -557,7 +558,14 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         geometry.setTextureCoordinates(dataManager.getTextureCoordinatesBuffer(polyline.getIdentifier()));
                         appearance.setTexture(getColorMapTexture());
                     } else {
-                        geometry.setColors(null);
+                        if (polyline.getColorSet()) {
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            geometry.setColors(colors);
+                            appearance.setLineColor(null);
+                        } else {
+                            geometry.setColors(null);
+                            appearance.setLineColor(ColorFactory.createColor(colorMap, polyline.getLineColor()));
+                        }
                     }
 
                     Integer lineColor = polyline.getSelected() ? polyline.getSelectedColor() : polyline.getLineColor();
@@ -589,11 +597,23 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     }
 
                     if (polyline.getMarkMode()) {
-                        Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         int offset = polyline.getMarkOffset();
                         int stride = polyline.getMarkStride();
-                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0);
+                        if (polyline.getColorSet() && (polyline.getMark().getBackground() == -3 || polyline.getMark().getForeground() == -3)) {
+                            Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
+                            ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
+                            Color auxColor;
+                            if (polyline.getMark().getBackground() == -3) {
+                                auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getForeground());
+                            } else {
+                                auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getBackground());
+                            }
+                            drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, auxColor, colors);
+                        } else {
+                            Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);
+                            drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, null, null);
+                        }
                     }
                 } catch (ObjectRemovedException e) {
                     invalidate(polyline, e);
@@ -776,9 +796,21 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         appearance.setLineWidth(plot3d.getLineThickness().floatValue());
                     }
 
-                    Texture texture = markManager.getMarkSprite(plot3d, colorMap, appearance);
                     ElementsBuffer positions = dataManager.getVertexBuffer(plot3d.getIdentifier());
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+                    if ((plot3d.getMark().getBackground() == -3 || plot3d.getMark().getForeground() == -3) && plot3d.getColorFlag() == 1) {
+                        Texture sprite = markManager.getMarkSprite(plot3d, null, appearance);
+                        ElementsBuffer colors = dataManager.getColorBuffer(plot3d.getIdentifier());
+                        Color auxColor;
+                        if (plot3d.getMark().getBackground() == -3) {
+                            auxColor = ColorFactory.createColor(colorMap, plot3d.getMark().getForeground());
+                        } else {
+                            auxColor = ColorFactory.createColor(colorMap, plot3d.getMark().getBackground());
+                        }
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, auxColor, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(plot3d, colorMap, appearance);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null, null);
+                    }
                 }
             } catch (ObjectRemovedException e) {
                 invalidate(plot3d, e);
@@ -789,7 +821,6 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
             }
             axesDrawer.disableClipping(plot3d.getClipProperty());
         }
-
     }
 
     @Override
@@ -906,11 +937,25 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                  * in order to obtain the latter's Mark (all arrows are supposed to have the same contour properties for now).
                  */
                 if (segs.getMarkMode()) {
-                    Texture texture = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
                     ElementsBuffer positions = dataManager.getVertexBuffer(segs.getIdentifier());
                     // Take only into account start-end of segs and not the arrow head.
                     positions.getData().limit(segs.getNumberArrows() * 2 * 4);
-                    drawingTools.draw(texture, AnchorPosition.CENTER, positions);
+
+                    if (segs.getArrows().get(0).getMark().getBackground() == -3 || segs.getArrows().get(0).getMark().getForeground() == -3) {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), null, null);
+                        ElementsBuffer colors = dataManager.getColorBuffer(segs.getIdentifier());
+                        Color auxColor;
+                        if (segs.getArrows().get(0).getMark().getBackground() == -3) {
+                            auxColor = ColorFactory.createColor(colorMap, segs.getArrows().get(0).getMark().getForeground());
+                        } else {
+                            auxColor = ColorFactory.createColor(colorMap, segs.getArrows().get(0).getMark().getBackground());
+                        }
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, auxColor, colors);
+                    } else {
+                        Texture sprite = markManager.getMarkSprite(segs.getIdentifier(), segs.getArrows().get(0).getMark(), colorMap, null);
+                        drawingTools.draw(sprite, AnchorPosition.CENTER, positions, null, null);
+                    }
+
                     positions.getData().limit(positions.getData().capacity());
                 }
 

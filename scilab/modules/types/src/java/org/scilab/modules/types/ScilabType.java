@@ -89,7 +89,7 @@ public interface ScilabType extends Externalizable, Cloneable {
     public Object getSerializedObject();
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty print

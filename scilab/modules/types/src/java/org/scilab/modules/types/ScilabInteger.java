@@ -23,9 +23,9 @@ import java.io.ObjectOutput;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * byte [][]a={{32,42,41}, {12,13,32}};<br />
+ * byte [][]a={{32,42,41}, {12,13,32}};<BR>
  * ScilabInteger aMatrix = new ScilabInteger(a, true); // true = unsigned
  * </code>
  *
@@ -832,7 +832,7 @@ public class ScilabInteger implements ScilabType {
     }
 
     /**
-     * Display the representation in the Scilab language of the type<br />
+     * Display the representation in the Scilab language of the type<BR>
      * Note that the representation can be copied/pasted straight into Scilab
      *
      * @return the pretty-printed values

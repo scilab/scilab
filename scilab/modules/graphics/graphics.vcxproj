@@ -298,6 +298,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_color_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_range_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_colored_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_cube_scaling_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_current_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_current_entity_property.c" />
@@ -566,6 +567,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_color_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_color_range_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_colored_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_cube_scaling_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_current_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_current_entity_property.c" />

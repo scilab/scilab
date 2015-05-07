@@ -199,5 +199,6 @@ GRAPHICS_IMPEXP void* get_marks_count_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_auto_margins_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_ticks_format_property(void* _pvCtx, int iObjUID);
 GRAPHICS_IMPEXP void* get_ticks_st_property(void* _pvCtx, int iObjUID);
+GRAPHICS_IMPEXP void* get_colors_property(void* _pvCtx, int pobjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

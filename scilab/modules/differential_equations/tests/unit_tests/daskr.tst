@@ -144,6 +144,8 @@ assert_checkalmostequal(nn(1),81.163512,0.009);
 // Same problem, with psol and pjac macros
 
 // Redefine pjac to use res2
+prot = funcprot();
+funcprot(0);
 function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
     ires = 0;
     SQuround = 1.490D-08;
@@ -172,6 +174,7 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ydot(i) = ypsave;
     end
 endfunction
+funcprot(prot);
 [yy,nn]=daskr([y0,y0d],t0,t,atol,rtol,res2,jac2,ng,"gr2",info,psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
 deff("s=gr2(t,y,yd)","s=y(1)")
@@ -179,7 +182,7 @@ deff("s=gr2(t,y,yd)","s=y(1)")
 assert_checkalmostequal(nn(1),81.163512,0.003);
 info=list([],0,[],[],[],0,[],0,[],0,0,[],[],1);
 
-//           Hot Restart
+// Hot Restart
 
 [yy,nn,hotd]=daskr([y0,y0d],t0,t,atol,rtol,"res2","jac2",ng,"gr2",info);
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(3:4,qq);y0d1=yy(4:5,qq);

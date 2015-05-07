@@ -1,6 +1,11 @@
                      Changes between version 5.5.2 and 5.5.3
                      =======================================
 
+Scilab Bug Fixes
+================
+
+* Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
+
 
 
                      Changes between version 5.5.1 and 5.5.2

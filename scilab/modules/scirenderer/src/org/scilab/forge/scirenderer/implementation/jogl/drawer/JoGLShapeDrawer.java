@@ -164,6 +164,9 @@ public final class JoGLShapeDrawer {
         gl.glDisable(GL2.GL_NORMALIZE);
 
         if (geometry.getLineDrawingMode() != Geometry.LineDrawingMode.NONE) {
+            // to avoid color smoothing between edge
+            // TODO: add an option in Appearance
+            gl.glShadeModel(GL2.GL_FLAT);
             if (appearance.getLineColor() != null || geometry.getColors() != null) {
                 GLShortCuts.useLineAppearance(gl, appearance);
                 if (appearance.getLineColor() == null) {
@@ -257,6 +260,7 @@ public final class JoGLShapeDrawer {
 
         if (geometry.getFillDrawingMode() != Geometry.FillDrawingMode.NONE) {
             GLShortCuts.useColor(gl, appearance.getFillColor());
+            gl.glShadeModel(GL2.GL_FLAT);
             gl.glBegin(getGlMode(geometry.getFillDrawingMode()));
             if (indices != null) {
                 IntBuffer indicesBuffer = indices.getData();

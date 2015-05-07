@@ -294,7 +294,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("wpos",x,y)</term>
+                <term>xset("wpos",[x,y])</term>
                 <listitem>
                     <para>ajusta a posição do ponto superior esquerdo da janela de
                         gráficos.

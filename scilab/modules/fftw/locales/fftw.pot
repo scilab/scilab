@@ -343,12 +343,12 @@ msgid "Scilab FFTW module not installed.\n"
 msgstr ""
 
 # File: etc/fftw.start, line: 34
-msgid "You choose to install scilab with fftw module."
+msgid "You chose to install Scilab with the fftw module."
 msgstr ""
 
 #
 # File: etc/fftw.start, line: 35
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr ""
 
 #
