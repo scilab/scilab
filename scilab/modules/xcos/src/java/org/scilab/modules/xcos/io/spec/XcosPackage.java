@@ -43,6 +43,7 @@ import javax.xml.xpath.XPathFactory;
 
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
 import org.scilab.modules.commons.xml.ScilabTransformerFactory;
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.types.ScilabList;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.w3c.dom.Document;
@@ -397,7 +398,7 @@ public class XcosPackage {
     public String getPackageVersion() {
         // cache the xpath expression
         if (XPATH_VERSION == null) {
-            final XPathFactory factory = XPathFactory.newInstance();
+            final XPathFactory factory = ScilabXPathFactory.newInstance();
             final XPath xpath = factory.newXPath();
 
             try {

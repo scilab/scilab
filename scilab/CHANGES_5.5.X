@@ -6,6 +6,8 @@ Scilab Bug Fixes
 
 * Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
 
+* Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
+
 
 
                      Changes between version 5.5.1 and 5.5.2
