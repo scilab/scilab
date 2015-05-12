@@ -18,9 +18,9 @@
 ;
 #define FFTW "fftw"
 ;
-Source: bin\{#FFTW}\lib{#FFTW}3-3.dll; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
-Source: bin\{#FFTW}\COPYRIGHT; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
-Source: bin\{#FFTW}\COPYING; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
+Source: bin\{#FFTW}\libfftw3-3.dll; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
+Source: bin\{#FFTW}\COPYRIGHT; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
+Source: bin\{#FFTW}\COPYING; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
 
 Source: bin\{#FFTW}.dll; DestDir: {app}\bin; DestName: {#FFTW}.dll; Components: {#COMPN_FFTW}
 Source: bin\no{#FFTW}.dll; DestDir: {app}\bin; DestName: {#FFTW}.dll; Components: not ({#COMPN_FFTW})

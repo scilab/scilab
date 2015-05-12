@@ -108,18 +108,6 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
         return;
     end;
 
-    if (scilab_version(3) == 0) then
-        HTTP_MKL = "http://fileexchange.scilab.org/toolboxes/MKL/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "/files";
-    else
-        HTTP_MKL = "http://fileexchange.scilab.org/toolboxes/MKL/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "." + string(scilab_version(3)) + "/files";
-    end
-
-    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_DOWNLOAD_HTTP ", "#define MKL_DOWNLOAD_HTTP """ + HTTP_MKL + """");
-    if err == %F then
-        ret = err;
-        return;
-    end;
-
     currentVersion = sprintf("%d.%d.%d",scilab_version(1),scilab_version(2),scilab_version(3));
 
     [SciFile,err] = FindAndReplace(SciFile,"#define ScilabVersion ","#define ScilabVersion """+ currentVersion +"""");
@@ -186,40 +174,6 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
             return;
         end;
     end
-
-    if (scilab_version(3) == 0) then
-        ver_str = string(scilab_version(1)) + "." + string(scilab_version(2));
-    else
-        ver_str = string(scilab_version(1)) + "." + string(scilab_version(2)) + "." + string(scilab_version(3));
-    end
-
-    if win64() then
-        arch_str = "win64";
-    else
-        arch_str = "win32";
-    end
-
-    MKL_BLASLAPACK_NAME = "blas-lapack-mkl-" + ver_str + "-" + arch_str + ".zip";
-    MKL_COMMONS_NAME = "commons-mkl-" + ver_str + "-" + arch_str + ".zip";
-    MKL_FFTW_NAME = "fftw-mkl-" + ver_str + "-" + arch_str + ".zip";
-
-    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_BLASLAPACK_PACKAGENAME","#define MKL_BLASLAPACK_PACKAGENAME ''" + MKL_BLASLAPACK_NAME + "''");
-    if err == %F then
-        ret = err;
-        return;
-    end;
-
-    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_COMMONS_PACKAGENAME","#define MKL_COMMONS_PACKAGENAME ''" + MKL_COMMONS_NAME + "''");
-    if err == %F then
-        ret = err;
-        return;
-    end;
-
-    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_FFTW_PACKAGENAME","#define MKL_FFTW_PACKAGENAME ''" + MKL_FFTW_NAME + "''");
-    if err == %F then
-        ret = err;
-        return;
-    end;
 
     if isdir(SCI + "/.atoms") <> %F then
         err = generateAdditionnalIss();

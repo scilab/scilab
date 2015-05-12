@@ -28,10 +28,6 @@ fr_FR.MsgBoxDevToolsRequired1 =Vous avez choisi d'installer le module toolbox_sk
 fr_FR.MsgBoxDevToolsRequired2 =Veuillez installer le module development_tools.
 fr_FR.MsgBoxDevToolsRequired3 =Vous avez choisi d'installer les tests mais vous n'avez pas sélectionné le module development_tools.
 fr_FR.MsgBoxTclsciRequired2 =Veuillez installer le module tclsci.
-fr_FR.MsgBoxFftw1 =Vous avez choisi d'installer le module FFTW pour Scilab.
-fr_FR.MsgBoxFftw2 =Il est nécessaire de télécharger la bibliothèque FFTW (GPL).
-fr_FR.MsgBoxFftw3 =Voulez-vous ouvrir une page web concernant cet add-on ?
-fr_FR.MsgBoxFftw4 =Impossible d'accéder à cette page web.
 fr_FR.MsgBoxWinVer =Nécessite Windows 2000 ou plus.
 fr_FR.MsgBoxScicosRequired1 =Vous avez choisi d'installer le module Xcos mais vous n'avez pas sélectionné le module Scicos.
 fr_FR.MsgBoxScicosRequired2 =Veuillez également installer le module Scicos.
@@ -44,7 +40,7 @@ fr_FR.DescriptionTclTK =TCL/TK pour Scilab
 fr_FR.DescriptionJVM =Java Runtime
 fr_FR.DescriptionAtlas =Bibliothèque Atlas 3.8.0 optimisée selon le CPU
 fr_FR.DescriptionFftwModule =Interface avec la bibliothèque FFTW3 pour Scilab
-fr_FR.DescriptionFftwMKLDownload =Télécharger la bibliothèque FFTW3 optimisée par Intel Math Kernel Library
+fr_FR.DescriptionMKLFftwLibrary =Bibliothèque FFTW3 optimisée par Intel Math Kernel Library
 fr_FR.DescriptionRefFftwLibrary =Bibliothèque FFTW3 de référence
 fr_FR.DescriptionDevTools =Outils pour le Développement
 fr_FR.DescriptionTests =Tests pour Scilab
@@ -95,17 +91,13 @@ fr_FR.DescriptionCLIInstall =Ligne de commandes uniquement (sans interface graph
 fr_FR.DescriptionCPUOptimization =Optimisation CPU pour Scilab
 fr_FR.DescriptionATLASLibrary =Bibliothèque Atlas pour Scilab
 fr_FR.DescriptionRefBlasLibrary =Bibliothèque Blas, Lapack de référence pour Scilab
-fr_FR.DescriptionMKLLibrary =Télécharger la bibliothèque Intel Math Kernel Library pour Scilab
+fr_FR.DescriptionMKLLibrary =Bibliothèque Intel Math Kernel Library pour Scilab
 ;
-fr_FR.DownloadMKLLabel =Téléchargement des fichiers Intel Math Kernel Library pour Scilab
-fr_FR.DownloadMKLDescription =Merci de patienter durant le téléchargement de fichiers.
 ;
-fr_FR.DownloadMKLFFTWLabel =Téléchargement de la bibliothèque FFTW3 optimisée par Intel Math Kernel Library.
+fr_FR.DownloadMKLFFTWLabel =Bibliothèque FFTW3 optimisée par Intel Math Kernel Library.
 ;
 fr_FR.DoTasksJustAfterInstallMsg2 =Les bibliothèques de référence BLAS, LAPACK seront installées et utilisées.
 fr_FR.DoTasksJustAfterInstallMsg3 =La bibliothèque de référence FFTW3 sera installée et utilisée.
 ;
-fr_FR.NextButtonClickwpReadyMsg1 =Impossible de télécharger la bibliothèque Intel Math Kernel pour Scilab (La bibliothèque par défaut sera utilisée).
-fr_FR.NextButtonClickwpReadyMsg2 =Impossible de télécharger la bibliothèque FFTW3 optimisée par Intel Math Kernel Library (La bibliothèque par défaut sera utilisée).
 ;-------------------------------------------------------------------------------
 ;
