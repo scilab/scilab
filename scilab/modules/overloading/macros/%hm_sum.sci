@@ -1,5 +1,6 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) INRIA
+// Copyright (C) Samuel GOUGEON - 2015 : http://bugzilla.scilab.org/13829
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -57,8 +58,8 @@ function a = %hm_sum(varargin)
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
             "sum",2,"""*"",""r"",""c"",""m"""))
         end
-        pos=[1,2,0,find(dims>1,1)];
-        d=pos(find(d==["r","c","*","m"]))
+        pos = [1,2,0,find(dims>1,1)];
+        d = pos(find(d==["r","c","*","m"]))
     else
         error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"sum",2))
     end
@@ -82,23 +83,25 @@ function a = %hm_sum(varargin)
         //requested summation direction exceeds array dims, return the array, converted
         //to double if necessary.
         if typ == "double" & or(tm == [4 8]) then
-            a.entries = double(a.entries),
+            a.entries=double(a.entries),
         end
         a=a
     else
         //permute the array dimension to put the selected dimension first
-        p = 1:size(dims,"*");
-        p([1,d]) = p([d,1]);
-        a = matrix(permute(a,p),dims(d),-1)
-        a = sum(a,1,typ);
-        //permute back
-        if d==size(dims, "*") then
-            dims = dims(1:$-1)
-            p(1) = p($)
-            p($) = []
+        p = 1:size(dims,"*")
+        p([1,d]) = p([d,1])
+        a = permute(a,p)
+        a = matrix(a,dims(d),-1)
+        // Summing up
+        a = sum(a,1,typ)
+        // Reshaping according to sizes of other dimensions
+        if d>1
+            dims([1,d]) = [1 dims(1)]
         else
-            dims(d) = 1
+            dims(1) = 1
         end
-        a = permute(matrix(a,dims(p)),p)
+        a = matrix(a,dims)
+        // back-permuting switched dimensions
+        a = permute(a,p)
     end
 endfunction
