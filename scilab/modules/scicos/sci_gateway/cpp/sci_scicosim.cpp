@@ -1338,52 +1338,63 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
 
             wchar_t* w_str = funStr->get(0);
             char* c_str = wide_string_to_UTF8(w_str);
-            void* f = funnum2(c_str); // Search associated function number of function name
-            // Block is defined by a C or Fortran function
-            if (f != nullptr)
+            if (strcmp(c_str, "ifthel") == 0)
             {
-                // C interface from "tabsim" defined in blocks.h
-                lfunpt[i] = f;
-                if (l_sim_funtyp[i] < 0)
-                {
-                    // Keep 'l_sim_funtyp' positive for Fortran functions
-                    l_sim_funtyp[i] *= -1;
-                }
+                l_sim_funtyp[i] = 11; // Magic value for "if-then-else" block
             }
-            // Block is defined by a predefined scilab function
+            else if (strcmp(c_str, "eselect") == 0)
+            {
+                l_sim_funtyp[i] = 12; // Magic value for "eselect" block
+            }
             else
             {
-                ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(w_str);
-                if (pEP)
+                void* f = funnum2(c_str); // Search associated function number of function name
+                // Block is defined by a C or Fortran function
+                if (f != nullptr)
                 {
-                    //linked functions
-                    lfunpt[i] = (void*)pEP->functionPtr;
+                    // C interface from "tabsim" defined in blocks.h
+                    lfunpt[i] = f;
+                    if (l_sim_funtyp[i] < 0)
+                    {
+                        // Keep 'l_sim_funtyp' positive for Fortran functions
+                        l_sim_funtyp[i] *= -1;
+                    }
                 }
+                // Block is defined by a predefined scilab function
                 else
                 {
-                    types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(w_str));
-                    if (pMacro && pMacro->isCallable())
+                    ConfigVariable::EntryPointStr* pEP = ConfigVariable::getEntryPoint(w_str);
+                    if (pEP)
                     {
-                        //macros
-                        lfunpt[i] = (void*)pMacro;
-                        l_sim_funtyp[i] *= -1;
+                        //linked functions
+                        lfunpt[i] = (void*)pEP->functionPtr;
                     }
                     else
                     {
-                        Scierror(888, _("%s : unknown block : %s\n"), funname.data(), c_str);
-                        il_state->DecreaseRef();
-                        il_state->killMe();
-                        il_tcur->DecreaseRef();
-                        il_tcur->killMe();
-                        il_sim->DecreaseRef();
-                        il_sim->killMe();
-                        delete[] il_sim_labptr;
-                        delete[] l_sim_lab;
-                        delete[] il_sim_uidptr;
-                        delete[] l_sim_uid;
-                        delete[] lfunpt;
-                        FREE(c_str);
-                        return types::Function::Error;
+                        types::InternalType* pMacro = symbol::Context::getInstance()->get(symbol::Symbol(w_str));
+                        if (pMacro && pMacro->isCallable())
+                        {
+                            //macros
+                            lfunpt[i] = (void*)pMacro;
+                            l_sim_funtyp[i] *= -1;
+                        }
+                        else
+                        {
+                            Scierror(888, _("%s : unknown block : %s\n"), funname.data(), c_str);
+                            il_state->DecreaseRef();
+                            il_state->killMe();
+                            il_tcur->DecreaseRef();
+                            il_tcur->killMe();
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
+                            delete[] il_sim_labptr;
+                            delete[] l_sim_lab;
+                            delete[] il_sim_uidptr;
+                            delete[] l_sim_uid;
+                            delete[] lfunpt;
+                            FREE(c_str);
+                            return types::Function::Error;
+                        }
                     }
                 }
             }
