@@ -109,8 +109,8 @@ indent() {
     FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.java$" |grep -v -F "$ASTYLE_IGNORED")
     [ -z "$FILES" ] || __indent_java;
 
-#    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.(sce|sci|tst)$")
-#    [ -z "$FILES" ] || __indent_scilab;
+    FILES=$(git diff --cached --name-only --diff-filter=ACM $against |grep -E "\.(sce|sci|tst)$")
+    [ -z "$FILES" ] || __indent_scilab;
 
     return 0;
 }
