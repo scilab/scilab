@@ -6,7 +6,7 @@
 // =============================================================================
 
 // Checks that Scilab:
-// - has been compiled using Intel C++ Compiler version 15
+// - has been compiled using Intel C++ Compiler version 14
 // - and uses MKL
 
 [a,b]=getdebuginfo();
