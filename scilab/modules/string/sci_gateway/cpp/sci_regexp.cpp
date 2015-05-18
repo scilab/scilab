@@ -124,7 +124,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     piEnd       = new int[wcslen(pwstInput)];
 
     pwstCapturedString = (wchar_t***)MALLOC(sizeof(wchar_t**) * wcslen(pwstInput));
-    piCapturedStringCount = (int*)MALLOC(sizeof(int) * wcslen(pwstInput));
+    piCapturedStringCount = (int*)CALLOC(sizeof(int), wcslen(pwstInput));
 
     do
     {
