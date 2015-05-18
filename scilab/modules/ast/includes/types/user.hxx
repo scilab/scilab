@@ -99,6 +99,15 @@ public :
         return true;
     }
 
+    // hasInvokeOption must return true to call the user type with optional argument.
+    // ie : myUserType(a,b, opt=value, opt2=value2,...)
+    // in this case, "types::optional_list& opt" will contain opt and opt2.
+    // by default this method return false, the optional list is empty and the input list contains all arguments.
+    virtual bool hasInvokeOption() const
+    {
+        return false;
+    }
+
     // invoke method is called when a UserType is called with "(...)" ie : a = myUserType(...)
     // This implementation allow the use of extract method above, but it can be overloaded.
     // Inputs :
