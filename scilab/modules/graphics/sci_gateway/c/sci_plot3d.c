@@ -147,7 +147,7 @@ int sci_plot3d(char * fname, void *pvApiCtx)
         l2 = (double *)MALLOC(sizeof(double) * n2);
         for (i = 0; i < n2; ++i)
         {
-            l1[i] = i + 1;
+            l2[i] = i + 1;
         }
 
         mustFree = 1;
