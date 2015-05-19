@@ -153,7 +153,8 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
     }
 
     std::vector<int> indexes;
-    if (getImplicitIndex(this, _pArgs, indexes))
+    std::vector<int> dims;
+    if (getImplicitIndex(this, _pArgs, indexes, dims))
     {
         if (indexes.size() == 0)
         {
@@ -177,7 +178,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (sizeIn == 1)
             {
-                for (int i : indexes)
+                for (int& i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -188,7 +189,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                for (int i : indexes)
+                for (int& i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -980,6 +981,118 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     int iDims = (int)_pArgs->size();
     typed_list pArg;
 
+    int index;
+    if (getScalarIndex(this, _pArgs, &index))
+    {
+        if (index < 0 || index >= getSize())
+        {
+            return NULL;
+        }
+
+        int dims[2] = {1, 1};
+        pOut = createEmpty(2, dims, isComplex());;
+        pOut->set(0, get(index));
+        if (isComplex())
+        {
+            pOut->setImg(0, getImg(index));
+        }
+
+        return pOut;
+    }
+
+    std::vector<double> il;
+    if (getScalarImplicitIndex(this, _pArgs, il))
+    {
+        double start = il[0];
+        double step = il[1];
+        double end = il[2];
+        //index are ":"
+        bool isForceColVector = il.size() == 4;
+
+        //std::cout << start << ":" << step << ":" << end << std::endl;
+        int size = static_cast<int>((end - start) / step + 1);
+        if (size <= 0)
+        {
+            return createEmptyDouble();
+        }
+
+        bool isRowVector = getRows() == 1;
+        isRowVector = isRowVector && !isForceColVector;
+        int dims[2] = {isRowVector ? 1 : size, isRowVector ? size : 1};
+        pOut = createEmpty(2, dims, isComplex());
+        double idx = start;
+
+        if (isComplex())
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                int index = static_cast<int>(idx) - 1;
+                pOut->set(i, get(index));
+                pOut->setImg(i, getImg(index));
+                idx += step;
+            }
+        }
+        else
+        {
+            for (int i = 0; i < size; ++i)
+            {
+                pOut->set(i, get(static_cast<int>(idx) - 1));
+                idx += step;
+            }
+        }
+        return pOut;
+    }
+
+    std::vector<int> indexes;
+    std::vector<int> dims;
+    if (getImplicitIndex(this, _pArgs, indexes, dims))
+    {
+        if (indexes.size() == 0)
+        {
+            return createEmptyDouble();
+        }
+
+        if (dims.size() == 1)
+        {
+            int d[2] = {1, dims[0]};
+            pOut = createEmpty(2, d, isComplex());
+        }
+        else
+        {
+            pOut = createEmpty(static_cast<int>(dims.size()), dims.data(), isComplex());
+        }
+
+        int size = getSize();
+        if (isComplex())
+        {
+            int idx = 0;
+            for (int& i : indexes)
+            {
+                if (i < 0 || i >= size)
+                {
+                    pOut->killMe();
+                    return NULL;
+                }
+
+                pOut->set(idx, get(i));
+                pOut->setImg(idx, getImg(i));
+                ++idx;
+            }
+        }
+        else
+        {
+            int idx = 0;
+            for (int& i : indexes)
+            {
+                pOut->set(idx, get(i));
+                ++idx;
+            }
+        }
+
+        return pOut;
+    }
+
+
     int* piMaxDim = new int[iDims];
     int* piCountDim = new int[iDims];
 
@@ -1490,17 +1603,17 @@ bool ArrayOf<T>::neg(InternalType *& out)
 
 
 // used to allow definition of ArrayOf methode in this cpp file.
-template class EXTERN_AST ArrayOf<char>;
-template class EXTERN_AST ArrayOf<unsigned char>;
-template class EXTERN_AST ArrayOf<short>;
-template class EXTERN_AST ArrayOf<unsigned short>;
-template class EXTERN_AST ArrayOf<int>;
-template class EXTERN_AST ArrayOf<unsigned int>;
-template class EXTERN_AST ArrayOf<long long>;
-template class EXTERN_AST ArrayOf<unsigned long long>;
-template class EXTERN_AST ArrayOf<double>;
-template class EXTERN_AST ArrayOf<wchar_t*>;
-template class EXTERN_AST ArrayOf<SinglePoly*>;
-template class EXTERN_AST ArrayOf<SingleStruct*>;
-template class EXTERN_AST ArrayOf<InternalType*>; // Cell
+template class EXTERN_AST ArrayOf < char >;
+template class EXTERN_AST ArrayOf < unsigned char >;
+template class EXTERN_AST ArrayOf < short >;
+template class EXTERN_AST ArrayOf < unsigned short >;
+template class EXTERN_AST ArrayOf < int >;
+template class EXTERN_AST ArrayOf < unsigned int >;
+template class EXTERN_AST ArrayOf < long long >;
+template class EXTERN_AST ArrayOf < unsigned long long >;
+template class EXTERN_AST ArrayOf < double >;
+template class EXTERN_AST ArrayOf < wchar_t* >;
+template class EXTERN_AST ArrayOf < SinglePoly* >;
+template class EXTERN_AST ArrayOf < SingleStruct* >;
+template class EXTERN_AST ArrayOf < InternalType* >; // Cell
 }

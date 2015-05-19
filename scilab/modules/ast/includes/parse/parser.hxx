@@ -81,8 +81,8 @@ public:
     void parseFile(const std::wstring& name, const std::wstring& progName);
 
     /** \brief parse the given file command */
-    void parse(char *command);
-    void parse(wchar_t *command);
+    void parse(const char *command);
+    void parse(const wchar_t *command);
 
     /** \brief enable Bison trace mode */
     void setParseTrace(bool parseTrace)

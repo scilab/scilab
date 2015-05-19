@@ -106,7 +106,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     fclose(yyin);
 }
 
-void Parser::parse(char *command)
+void Parser::parse(const char *command)
 {
     // Calling Parse state machine in C with global values
     // Must be locked to avoid concurrent access
@@ -141,7 +141,7 @@ void Parser::parse(char *command)
     // FIXME : UNLOCK
 }
 
-void Parser::parse(wchar_t *command)
+void Parser::parse(const wchar_t *command)
 {
     char* pstCommand = wide_string_to_UTF8(command);
     parse(pstCommand);
@@ -149,7 +149,7 @@ void Parser::parse(wchar_t *command)
 }
 
 /** \brief parse the given file command */
-void ParserSingleInstance::parse(char *command)
+void ParserSingleInstance::parse(const char *command)
 {
     size_t len = strlen(command);
 
@@ -202,7 +202,7 @@ void ParserSingleInstance::parse(char *command)
 
 #ifndef _MSC_VER
 #ifndef __APPLE__
-    yyin = fmemopen(command, len, "r");
+    yyin = fmemopen((void*)command, len, "r");
 #endif
 #endif
 

@@ -19,7 +19,9 @@
 namespace types
 {
 bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index);
-bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index);
+bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index, std::vector<int>& dims);
+bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<double>& index);
+
 EXTERN_AST int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list* _pArgsOut, int* _piMaxDim, int* _piCountDim);
 EXTERN_AST void cleanIndexesArguments(typed_list* _pArgsOrig, typed_list* _pArgsNew);
 EXTERN_AST void getIndexesWithDims(int _iIndex, int* _piIndexes, int* _piDims, int _iDims);

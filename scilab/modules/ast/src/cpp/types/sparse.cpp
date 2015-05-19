@@ -2272,9 +2272,6 @@ SparseBool* Sparse::newEqualTo(Sparse &o)
 
     //create a boolean sparse matrix with dims of sparses
     types::SparseBool* ret = new types::SparseBool(row, col);
-
-    std::cout << "row " << row << std::endl << "col " << col << std::endl;
-
     if (isScalar() && o.isScalar())
     {
         if (isComplex() || o.isComplex())

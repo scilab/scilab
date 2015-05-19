@@ -94,7 +94,7 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
     int dimsIn = static_cast<int>(_pArgsIn->size());
 
     //same dims and less than internal limit
-    if (dimsIn != 1 && dimsIn != dimsRef || dimsIn > MAX_DIMS)
+    if (dimsIn != 1 && (dimsIn != dimsRef || dimsIn > MAX_DIMS))
     {
         return false;
     }
@@ -119,12 +119,6 @@ bool getScalarIndex(GenericType* _pRef, typed_list* _pArgsIn, int* index)
             return false;
         }
     }
-
-    //int idx = ind[0];
-    //if (dimsIn > 1 && idx >= pdims[0])
-    //{
-    //    return false;
-    //}
 
     int idx = 0;
     int previousDims = 1;
@@ -159,14 +153,52 @@ static double evalute(InternalType* pIT, int sizeRef)
 
     return real;
 }
+
+bool getScalarImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<double>& index)
+{
+    int dimsIn = static_cast<int>(_pArgsIn->size());
+    if (dimsIn != 1)
+    {
+        return false;
+    }
+
+    InternalType* pIT = (*_pArgsIn)[0];
+
+    if (pIT->isImplicitList() == false)
+    {
+        return false;
+    }
+
+    index.reserve(4);
+    if (pIT->isColon())
+    {
+        index.push_back(1);
+        index.push_back(1);
+        index.push_back(_pRef->getSize());
+        //use to know we have a real ":" to shape return matrix in col vector
+        index.push_back(0);
+    }
+    else
+    {
+        ImplicitList* pIL = pIT->getAs<ImplicitList>();
+        int sizeRef = _pRef->getSize();
+        index.push_back(evalute(pIL->getStart(), sizeRef));
+        index.push_back(evalute(pIL->getStep(), sizeRef));
+        index.push_back(evalute(pIL->getEnd(), sizeRef));
+    }
+
+    return true;
+}
+
 //get index from implicit or colon index + scalar
-bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index)
+bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>& index, std::vector<int>& dims)
 {
     int dimsRef = _pRef->getDims();
     int dimsIn = static_cast<int>(_pArgsIn->size());
     bool viewAsVector = dimsIn == 1;
+    dims.reserve(dimsIn);
     //same dims and less than internal limit
-    if (dimsIn != 1 && dimsIn != dimsRef || dimsIn > MAX_DIMS)
+    if (dimsIn != 1 && (dimsIn != dimsRef || dimsIn > MAX_DIMS))
     {
         return false;
     }
@@ -187,6 +219,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
             }
 
             lstIdx.emplace_back(1, idx);
+            dims.push_back(1);
         }
         else if (in->isColon())
         {
@@ -195,6 +228,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
             idx[1] = viewAsVector ? _pRef->getSize() : pdims[i];
             lstIdx.push_back(idx);
             finalSize *= idx[1];
+            dims.push_back(idx[1]);
         }
         else if (in->isImplicitList())
         {
@@ -217,6 +251,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                         lstIdx.push_back(idx);
                         finalSize *= idx[1];
                         isColon = true;
+                        dims.push_back(idx[1]);
                     }
                 }
             }
@@ -231,15 +266,14 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                 //printf("%.2f : %.2f : %.2f\n", start, step, end);
 
                 int size = (end - start) / step + 1;
-                vector<int> idx(size);
-
-                if (size == 0)
+                if (size <= 0)
                 {
                     //manage implicit that return []
                     index.clear();
                     return true;
                 }
 
+                vector<int> idx(size);
                 int* pi = idx.data();
                 pi[0] = start - 1; //0-indexed
                 for (int j = 1; j < size; ++j)
@@ -249,6 +283,7 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
 
                 lstIdx.push_back(idx);
                 finalSize *= size;
+                dims.push_back(size);
             }
         }
         else
@@ -258,7 +293,12 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
     }
 
     index.resize(finalSize, 0);
-    //printf("finalSize : %d\n", finalSize);
+
+    if (finalSize == 0)
+    {
+        return true;
+    }
+
     //compute tuples
     int previousSize = 1;
     int currentDim = 0;
@@ -266,10 +306,9 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
     while (lstIdx.empty() == false)
     {
         std::vector<int>& v = lstIdx.front();
-        int currentSize = v.size();
+        int currentSize = static_cast<int>(v.size());
         const int* pv = v.data();
 
-        bool colon = false;
         if (pv[0] == -1 && currentSize == 2)
         {
             currentSize = pv[1];
@@ -288,16 +327,12 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     for (int j = 0; j < previousSize; ++j)
                     {
                         index[idx2 + j] += idx3;
-                        //printf("\tindex[%d] = %d\n", idx2 + i, previousSize * v[m]);
                     }
                 }
             }
         }
         else
         {
-            //printf("currentSize : %d\n", currentSize);
-            //printf("previousSize : %d\n", previousSize);
-            //printf("n : %d\n", finalSize / (currentSize * previousSize));
             int occ = finalSize / (currentSize * previousSize);
             for (int n = 0; n < occ; ++n)
             {
@@ -313,7 +348,6 @@ bool getImplicitIndex(GenericType* _pRef, typed_list* _pArgsIn, std::vector<int>
                     for (int j = 0; j < previousSize; ++j)
                     {
                         index[idx2 + j] += idx3;
-                        //printf("\tindex[%d] = %d\n", idx2 + i, previousSize * v[m]);
                     }
                 }
             }

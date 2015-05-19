@@ -415,6 +415,9 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
                         //unlock me
                         pIL->DecreaseRef();
 
+                        //no need to destroy, it already assign to another var
+                        //pIL->killMe();
+
                         //create a new me
                         pIL = pVar->getInitalType();
                         //lock loop index
@@ -434,7 +437,6 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
 
             pVar->extractValue(i, pIL);
 
-            bool clearAndExit = false;
             try
             {
                 e.getBody().accept(*this);

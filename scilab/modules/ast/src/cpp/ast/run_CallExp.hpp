@@ -96,14 +96,18 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 continue;
             }
 
-            InternalType * pITArg = getResult();
-            if (pITArg->isImplicitList())
+            //extract implicit list for call()
+            if (pIT->isCallable() || pIT->isUserType())
             {
-                types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
-                if (pIL->isComputable())
+                InternalType * pITArg = getResult();
+                if (pITArg->isImplicitList())
                 {
-                    setResult(pIL->extractFullMatrix());
-                    pITArg->killMe();
+                    types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
+                    if (pIL->isComputable())
+                    {
+                        setResult(pIL->extractFullMatrix());
+                        pITArg->killMe();
+                    }
                 }
             }
 
@@ -190,6 +194,8 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     ret = pIT->invoke(in, opt, iRetCount, out, *this, e);
                     if(ret == false && pIT->isUserType())
                     {
+
+
                         // call overload
                         ret = Overload::call(L"%" + pIT->getShortTypeStr() + L"_e", in, iRetCount, out, this);
                     }
