@@ -108,10 +108,17 @@ bool Context::clearCurrentScope(bool _bClose)
             ScopedVariable* pSV = var.second->top();
             if (pSV->m_iLevel == m_iLevel && (_bClose || pSV->protect == false))
             {
-                ScopedVariable * pSV = var.second->top();
                 types::InternalType * pIT = pSV->m_pIT;
-                pIT->DecreaseRef();
-                pIT->killMe();
+                if (pIT->isLibrary())
+                {
+                    libraries.remove(var.first, m_iLevel);
+                }
+                else
+                {
+                    pIT->DecreaseRef();
+                    pIT->killMe();
+                }
+
                 var.second->pop();
                 delete pSV;
                 toremove.push_back(var.first);
@@ -264,13 +271,11 @@ void Context::put(Variable* _var, types::InternalType* _pIT)
         Library* lib = libraries.getOrCreate(_var->getSymbol());
         lib->put((types::Library*)_pIT, m_iLevel);
     }
-    else
+
+    _var->put(_pIT, m_iLevel);
+    if (varStack.empty() == false)
     {
-        _var->put(_pIT, m_iLevel);
-        if (varStack.empty() == false)
-        {
-            (*varStack.top())[_var->getSymbol()] = _var;
-        }
+        (*varStack.top())[_var->getSymbol()] = _var;
     }
 }
 
