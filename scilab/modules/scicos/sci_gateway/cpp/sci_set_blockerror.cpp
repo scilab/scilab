@@ -84,7 +84,7 @@ types::Function::ReturnValue sci_set_blockerror(types::typed_list &in, int _iRet
         return types::Function::Error;
     }
 
-    set_block_error(pIn->get(0));
+    set_block_error(static_cast<int>(pIn->get(0)));
 
     return types::Function::OK;
 }

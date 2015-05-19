@@ -101,9 +101,6 @@
     <ClCompile Include="scilab5_needed_stubs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\copyvarfromtlist.cpp">
-      <Filter>Source Files\MVC</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\var2vec.cpp">
       <Filter>Source Files\MVC</Filter>
     </ClCompile>
@@ -264,9 +261,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_callblk.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_model2blk.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

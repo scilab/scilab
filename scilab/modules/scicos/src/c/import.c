@@ -958,14 +958,14 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int C2F(getscilabel)(int *kfun, char *label[], int *n)
+int getscilabel(int *kfun, char *label, int *n)
 {
     int k, i;
     int *u, *y;
 
     if (scicos_imp.x == (double *)NULL)
     {
-        return (2); /* undefined import table scicos is not running */
+        return 2; /* undefined import table scicos is not running */
     }
     k = *kfun;
 
@@ -973,13 +973,13 @@ int C2F(getscilabel)(int *kfun, char *label[], int *n)
     if (*n > 0 )
     {
         u = (char **) & (scicos_imp.iz[scicos_imp.izptr[k - 1] - 1]);
-        y = label;
+        y = &label;
         for (i = 0; i < *n; i++)
         {
             *(y++) = *(u++);
         }
     }
-    return (0);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getcurblock)()

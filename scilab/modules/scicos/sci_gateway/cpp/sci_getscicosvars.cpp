@@ -10,15 +10,10 @@
  *
  */
 
-#include <cstring>
 #include <string>
 #include <vector>
 
 #include "gw_scicos.hxx"
-#include "il_state.hxx"
-#include "il_sim.hxx"
-#include "createblklist.hxx"
-
 #include "internal.hxx"
 #include "types.hxx"
 #include "double.hxx"
@@ -29,14 +24,16 @@
 
 extern "C"
 {
-#include "import.h"
 #include "sciprint.h"
-#include "scicos_block4.h"
 #include "charEncoding.h"
-
 #include "Scierror.h"
 #include "localization.h"
+#include "import.h"
 }
+
+#include "il_state.hxx"
+#include "il_sim.hxx"
+#include "createblklist.hxx"
 
 /*--------------------------------------------------------------------------*/
 /* getscicosvars interface routine retrieves some information during simulation.
@@ -355,7 +352,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             /* Retrieve dims and 'prt' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
-            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
 
             if (ok)
             {
@@ -382,7 +379,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             /* Retrieve dims and 'prt' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
-            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
 
             if (ok)
             {
@@ -400,7 +397,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             /* Retrieve scicos_block 'prt' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
-            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
 
             if (ok)
             {
@@ -409,38 +406,38 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
 
                 /* Retrieve 'nblk' by import structure */
                 strcpy(field, "nblk");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 int nblk = ((int*)ptr)[0];
 
                 /* Retrieve 'ng' by import structure */
                 strcpy(field, "ng");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 //int ng = ((int*)ptr)[0];
 
                 /* Retrieve 'xptr' by import structure */
                 strcpy(field, "xptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 int* xptr = ((int*)ptr);
 
                 /* Retrieve 'zcptr' by import structure */
                 strcpy(field, "zcptr");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 int* zcptr = ((int*)ptr);
 
                 /* Retrieve 'x' and 'xd' by import structure */
                 strcpy(field, "x");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 double* x = ((double*)ptr);
                 //double* xd = &x[xptr[nblk] - 1];
 
                 /* Retrieve 'g' by import structure */
                 strcpy(field, "g");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 double* g = ((double*)ptr);
 
                 /* Retrieve 'funtyp' by import structure */
                 strcpy(field, "funtyp");
-                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+                ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
                 //int* funtyp = ((int*)ptr);
 
                 for (int k = 0; k < nblk; ++k)
@@ -485,7 +482,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
             /* Retrieve dims and prt of asked array with getscicosvarsfromimport */
             void* ptr = nullptr;
             int nv, mv;
-            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv);
+            ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
 
             /* Check 'ok' flag */
             if (ok == true)

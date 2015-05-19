@@ -131,19 +131,10 @@
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_blockerror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_set_xproperty.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\cpp\sci_sig2data.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_var2vec.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\sci_gateway\cpp\sci_vec2var.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\cpp\copyvarfromtlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\cpp\var2vec.cpp">

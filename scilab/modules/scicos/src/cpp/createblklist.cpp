@@ -20,8 +20,6 @@
 * See the file ./license.txt
 */
 /*--------------------------------------------------------------------------*/
-#include "createblklist.hxx"
-
 #include "internal.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
@@ -32,8 +30,9 @@
 extern "C"
 {
 #include "import.h"
-#include "scicos_block4.h"
 }
+
+#include "createblklist.hxx"
 /*--------------------------------------------------------------------------*/
 //extern void str2sci(char** x, int n, int m); /* core/src/c/str2sci.h */
 //extern void C2F(itosci)();

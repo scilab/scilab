@@ -38,9 +38,6 @@
     <ClCompile Include="..\cpp\affich2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\fromws.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\jni\AfficheBlock.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -975,6 +972,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\HelpersJNI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\fromws_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

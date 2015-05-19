@@ -120,6 +120,6 @@ SCICOS_IMPEXP void C2F(getouttb)(int *nsize, int *nvec, double *outtc);
 
 SCICOS_IMPEXP void C2F(getlabel)(int *kfun, char *label, int *n);
 
-SCICOS_IMPEXP int C2F(getscilabel)(int *kfun, char *label[], int *n);
+SCICOS_IMPEXP int getscilabel(int *kfun, char *label, int *n);
 
 #endif /* __IMPORT_H__ */

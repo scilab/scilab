@@ -77,12 +77,12 @@ types::Function::ReturnValue sci_getblocklabel(types::typed_list &in, int _iRetC
             Scierror(999, _("%s: Wrong size for input argument #%d : A scalar expected.\n"), funname.data(), 1);
             return types::Function::Error;
         }
-        blockNumber = BlockNumber->get(0);
+        blockNumber = static_cast<int>(BlockNumber->get(0));
     }
 
     int labelSize;
-    char* label = new char[100];
-    int ierr = C2F(getscilabel)(&blockNumber, &label, &labelSize);
+    char label[100];
+    int ierr = getscilabel(&blockNumber, label, &labelSize);
     if (ierr != 0)
     {
         Scierror(999, _("%s: scicosim is not running.\n"), funname.data());
@@ -92,7 +92,6 @@ types::Function::ReturnValue sci_getblocklabel(types::typed_list &in, int _iRetC
     label[labelSize] = '\0';
 
     types::String* Label = new types::String(label);
-    delete[] label;
 
     out.push_back(Label);
     return types::Function::OK;

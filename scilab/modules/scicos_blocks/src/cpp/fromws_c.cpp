@@ -23,7 +23,7 @@ extern "C"
 #include "scicos_block4.h"
 #include "scicos_evalhermite.h"
 #include "scicos.h"
-#include "sci_mem_alloc.h" /* FREE */
+#include "sci_malloc.h"
 #include "h5_fileManagement.h"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
@@ -109,7 +109,7 @@ SCICOS_BLOCKS_IMPEXP void fromws_c(scicos_block* block, int flag)
 
             /* Path to "TMPDIR/Workspace/" */
             const char* filePrefix = "TMPDIR/Workspace/";
-            const int prefixSize = strlen(filePrefix);
+            const int prefixSize = static_cast<int>(strlen(filePrefix));
 
             char FName[100];
             for (int i = 0; i < Fnlength; ++i)

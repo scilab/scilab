@@ -38,9 +38,6 @@
     <ClCompile Include="..\..\cpp\affich2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\cpp\fromws.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\andlog.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -972,6 +969,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\cpp\HelpersCLI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\cpp\fromws_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

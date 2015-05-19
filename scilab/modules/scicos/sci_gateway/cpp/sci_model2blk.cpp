@@ -25,7 +25,6 @@
 #include <cstring>
 
 #include "gw_scicos.hxx"
-#include "createblklist.hxx"
 
 #include "internal.hxx"
 #include "function.hxx"
@@ -40,7 +39,6 @@
 extern "C"
 {
 #include "machine.h" /* F2C */
-#include "scicos_block4.h"
 #include "sci_malloc.h"
 #include "sciblk4.h"
 #include "sciblk2.h"
@@ -52,6 +50,9 @@ extern "C"
 
     extern void F2C(sciblk)();
 }
+
+#include "createblklist.hxx"
+
 /*--------------------------------------------------------------------------*/
 //extern int *listentry(int *header, int i);
 //extern int C2F(funnum) (char *fname);
