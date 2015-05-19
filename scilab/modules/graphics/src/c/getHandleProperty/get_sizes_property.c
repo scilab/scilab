@@ -30,30 +30,19 @@
 /*------------------------------------------------------------------------*/
 int get_sizes_property(void* _pvCtx, int iObjUID)
 {
-	int i = 0;
-    int status = 0;
-    int iSizesCount = 0;
-    int* piSizesCount = &iSizesCount;
-    int* piSizes = NULL;
-    long* plSizes = NULL;
+    int * sizes = NULL;
+    int numSizes = 0;
+    int * piNumSizes = &numSizes;
 
-    getGraphicObjectProperty(iObjUID, __GO_NUM_SIZES__, jni_int, (void **)&piSizesCount);
-    if (piSizesCount == NULL || iSizesCount == 0)
+    getGraphicObjectProperty(iObjUID, __GO_SIZES__, jni_int_vector, (void **)&sizes);
+    getGraphicObjectProperty(iObjUID, __GO_NUM_SIZES__, jni_int, &piNumSizes);
+
+    if (sizes == NULL || numSizes == 0)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        sciReturnEmptyMatrix(_pvCtx);
+        return SET_PROPERTY_SUCCEED;
     }
 
-    getGraphicObjectProperty(iObjUID, __GO_SIZES__, jni_int_vector, (void **)&piSizes);
-    plSizes = (long*)MALLOC(iSizesCount * sizeof(long));
-
-    for (i = 0; i < iSizesCount; ++i)
-    {
-        plSizes[i] = getHandle(piSizes[i]);
-    }
-
- 	status = sciReturnRowHandleVector(_pvCtx, plSizes, iSizesCount);
-    FREE(plSizes);
-
-    return status;
+    return sciReturnRowVectorFromInt(_pvCtx, sizes, numSizes);
 }
 /*------------------------------------------------------------------------*/

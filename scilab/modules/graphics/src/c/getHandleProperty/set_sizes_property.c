@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int valueType, int nbRow, int nbCol )
+int set_sizes_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol )
 {
     BOOL status = FALSE;
     int iNumElements = 0;
@@ -41,7 +41,7 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
         return SET_PROPERTY_ERROR;
     }
 
-    getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
+    getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
     if (piNumElements == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "sizes");
@@ -51,13 +51,13 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     if (nbCol == 0)
     {
         int numSizes = 0;
-        status = setGraphicObjectProperty(pobjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
+        status = setGraphicObjectProperty(iObjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
         if (status == FALSE)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sizes");
             return SET_PROPERTY_ERROR;
         }
-        setGraphicObjectProperty(pobjUID, __GO_SIZES__, NULL, jni_int_vector, 0);
+        setGraphicObjectProperty(iObjUID, __GO_SIZES__, NULL, jni_int_vector, 0);
 
         return SET_PROPERTY_SUCCEED;
     }
@@ -65,15 +65,13 @@ int set_sizes_property(void* _pvCtx, char* pobjUID, size_t stackPointer, int val
     if (nbCol == iNumElements)
     {
         int * tmp = MALLOC(nbCol * sizeof(int));
-        stk(stackPointer);
+        copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
 
-        copyDoubleVectorToIntFromStack(stackPointer, tmp, nbCol);
-
-        status = setGraphicObjectProperty(pobjUID, __GO_SIZES__, tmp, jni_int_vector, nbCol);
+        status = setGraphicObjectProperty(iObjUID, __GO_SIZES__, tmp, jni_int_vector, nbCol);
         if (status == TRUE)
         {
             int numSizes = nbCol;
-            setGraphicObjectProperty(pobjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
+            setGraphicObjectProperty(iObjUID, __GO_NUM_SIZES__, &numSizes, jni_int, 1);
             FREE(tmp);
             return SET_PROPERTY_SUCCEED;
         }

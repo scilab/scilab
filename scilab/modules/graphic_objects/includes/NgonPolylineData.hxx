@@ -63,10 +63,6 @@ private :
     int* colors;
 	int numColors;
 
-    /** The sizes array */
-    int* sizes;
-	int numSizes;
-
 public :
     /**
      * Constructor
@@ -240,26 +236,6 @@ public :
      * @return number of colors in the array
      */
     int getNumColors();
-
-    /**
-     * Sets the sizes array
-     * @param[in] newSizes a pointer to the array with the sizes
-     * @param[in] numElements the sizes array number of elements
-     * @return 1 if it succeeded, 0 if the allocation failed
-     */
-    int setSizes(int const* newSizes, int numElements);
-
-    /**
-     * Gets the sizes array
-     * @return pointer to the array with the sizes
-     */
-    int * getSizes();
-
-    /**
-     * Gets the number of sizes in the array
-     * @return number of sizes in the array
-     */
-    int getNumSizes();
 
     /**
      * Deletes the coordinates and shift arrays
