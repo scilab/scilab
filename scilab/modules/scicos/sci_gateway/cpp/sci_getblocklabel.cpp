@@ -86,7 +86,6 @@ types::Function::ReturnValue sci_getblocklabel(types::typed_list &in, int _iRetC
     if (ierr != 0)
     {
         Scierror(999, _("%s: scicosim is not running.\n"), funname.data());
-        delete[] label;
         return types::Function::Error;
     }
     label[labelSize] = '\0';
