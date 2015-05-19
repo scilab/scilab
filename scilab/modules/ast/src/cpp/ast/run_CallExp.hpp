@@ -349,14 +349,18 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pList->getSize() == 1)
             {
-                setResult(pList->get(0));
+                InternalType* ret = pList->get(0);
+                setResult(ret);
+
+                ret->IncreaseRef();
+                pList->killMe();
+                ret->DecreaseRef();
             }
             else
             {
                 setResult(pList);
             }
 
-            pList->killMe();
 
             //clean pArgs return by GetArgumentList
             for (int iArg = 0 ; iArg < (int)pArgs->size() ; iArg++)
