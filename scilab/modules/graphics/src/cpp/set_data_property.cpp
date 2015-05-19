@@ -53,7 +53,7 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         AssignedList* tlist = NULL;
         int status = -1;
 
-        if (!(valueType  == sci_tlist))
+        if (((types::InternalType*)_pvData)->isTList() == false)
         {
             Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
@@ -75,7 +75,7 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         AssignedList * tlist = NULL;
         int status = -1;
 
-        if (!(valueType  == sci_tlist))
+        if (((types::InternalType*)_pvData)->isTList() == false)
         {
             Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
@@ -98,7 +98,7 @@ int set_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
         int status = -1;
         int listSize = 0;
 
-        if (!(valueType  == sci_tlist))
+        if (((types::InternalType*)_pvData)->isTList() == false)
         {
             Scierror(999, _("Wrong type for input argument: A tlist expected.\n"));
             return SET_PROPERTY_ERROR;
