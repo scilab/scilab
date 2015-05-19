@@ -444,6 +444,7 @@ libsciscicos_blocks_algo_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/renderer/includes/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS)
 
 libsciscicos_blocks_la_CPPFLAGS= \
