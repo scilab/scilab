@@ -1,10 +1,18 @@
             Changes between version 5.4.X and 6.0.0 of Scilab
             =================================================
 
+Installation
+============
+
+* Under Windows, MKL packages are now included in Scilab installer and no more
+  downloaded while installing Scilab.
+
+
 Compilation
 ===========
 
  * Scilab requires conforming C++11 compilers
+
 
 File input/output
 ==================
@@ -47,6 +55,7 @@ Deprecated behavior
 * write string or string matrix in file does not add black space before each value
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
     "-" + mgetl("TMPDIR/test") + "-"
+
 
 Removed functions
 ==================
