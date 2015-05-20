@@ -21,7 +21,6 @@ funcprot(prot);
 Info = scicos_simulate(scs_m, list());
 --------------------------------------------\
  Main Modelica : TMPDIR/Bouncing_im.mo
-
  Flat Modelica : TMPDIR/Bouncing_imf.mo
  Simulation C code :TMPDIR/Bouncing_im.c
 // Modify solver + run DDaskr + save results

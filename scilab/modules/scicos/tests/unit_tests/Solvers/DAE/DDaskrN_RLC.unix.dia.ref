@@ -41,21 +41,17 @@ for i=2:3
 end
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
-
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
-
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
-
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/RLC_im.mo
-
  Flat Modelica : TMPDIR/RLC_imf.mo
  Simulation C code :TMPDIR/RLC_im.c

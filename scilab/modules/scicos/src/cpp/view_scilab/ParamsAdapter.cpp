@@ -16,6 +16,7 @@
 
 #include "double.hxx"
 #include "string.hxx"
+#include "bool.hxx"
 #include "list.hxx"
 #include "tlist.hxx"
 
@@ -36,6 +37,11 @@ namespace
 {
 
 const std::wstring scsopt(L"scsopt");
+const std::wstring ThreeD(L"3D");
+const std::wstring Background(L"Background");
+const std::wstring Link(L"Link");
+const std::wstring ID(L"ID");
+const std::wstring Cmap(L"Cmap");
 
 struct dummy_property
 {
@@ -272,11 +278,56 @@ struct options
 
     static types::InternalType* get(const ParamsAdapter& /*adaptor*/, const Controller& /*controller*/)
     {
-        // Return a dummy 'scsopt'-typed tlist.
-        types::String* header = new types::String(scsopt.c_str());
+        // Return a default 'scsopt'-typed tlist.
+        types::String* header = new types::String(1, 6);
+        header->set(0, scsopt.c_str());
+        header->set(1, ThreeD.c_str());
+        header->set(2, Background.c_str());
+        header->set(3, Link.c_str());
+        header->set(4, ID.c_str());
+        header->set(5, Cmap.c_str());
 
         types::TList* Scsopt = new types::TList();
         Scsopt->append(header);
+
+        types::List* ThreeDField = new types::List();
+        types::Bool* ThreeD1 = new types::Bool(1);
+        ThreeDField->append(ThreeD1);
+        types::Double* ThreeD2 = new types::Double(33);
+        ThreeDField->append(ThreeD2);
+        Scsopt->append(ThreeDField);
+
+        types::Double* BackgroundField = new types::Double(1, 2);
+        BackgroundField->set(0, 8);
+        BackgroundField->set(1, 1);
+        Scsopt->append(BackgroundField);
+
+        types::Double* LinkField = new types::Double(1, 2);
+        LinkField->set(0, 1);
+        LinkField->set(1, 5);
+        Scsopt->append(LinkField);
+
+        types::List* IDField = new types::List();
+        types::Double* ID1 = new types::Double(1, 4);
+        ID1->set(0, 4);
+        ID1->set(1, 1);
+        ID1->set(2, 10);
+        ID1->set(3, 1);
+        IDField->append(ID1);
+        types::Double* ID2 = new types::Double(1, 4);
+        ID2->set(0, 4);
+        ID2->set(1, 1);
+        ID2->set(2, 2);
+        ID2->set(3, 1);
+        IDField->append(ID2);
+        Scsopt->append(IDField);
+
+        types::Double* CmapField = new types::Double(1, 3);
+        CmapField->set(0, 0.8);
+        CmapField->set(1, 0.8);
+        CmapField->set(2, 0.8);
+        Scsopt->append(CmapField);
+
         return Scsopt;
     }
 

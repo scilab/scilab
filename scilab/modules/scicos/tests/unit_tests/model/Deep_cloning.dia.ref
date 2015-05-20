@@ -355,7 +355,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -545,7 +545,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -696,6 +696,9 @@ objectDeleted( 17 , BLOCK )
 objectDeleted( 20 , LINK )
 objectDeleted( 15 , BLOCK )
 objectDeleted( 14 , DIAGRAM )
+// Relaunch Xcos librairy
+loadXcosLibs();
+scicos_log("TRACE");
 // Try with two "BIGSOM_f" blocks connected together
 // The SuperBlock, containing a Block and a Link
 sb = scicos_block();
@@ -1314,7 +1317,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -1615,7 +1618,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -1923,7 +1926,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
@@ -2288,6 +2291,9 @@ objectDeleted( 65 , BLOCK )
 objectDeleted( 69 , LINK )
 objectDeleted( 59 , BLOCK )
 objectDeleted( 58 , DIAGRAM )
+// Relaunch Xcos librairy
+loadXcosLibs();
+scicos_log("TRACE");
 // Try with a predefined SuperBlock
 sb = SUPER_f("define");
 objectCreated( 94 , DIAGRAM )
@@ -2965,7 +2971,7 @@ tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
 context = []
 void1 = []
-options = tlist("scsopt")
+options = tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8])
 void2 = []
 void3 = []
 doc = list()
