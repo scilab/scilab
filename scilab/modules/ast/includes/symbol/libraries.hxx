@@ -61,6 +61,11 @@ struct Library
         }
     }
 
+    void put(ScopedLibrary* pSL)
+    {
+        stack.push(pSL);
+    }
+
     types::MacroFile* get(const Symbol& _keyMacro) const
     {
         if (empty() == false)
@@ -131,6 +136,31 @@ struct Libraries
     {
         Library* lib = getOrCreate(_keyLib);
         lib->put(_pLib, _iLevel);
+    }
+
+    bool putInPreviousScope(const Symbol& _keyLib, types::Library* _pLib, int _iLevel)
+    {
+        Library* lib = getOrCreate(_keyLib);
+
+        if (lib->empty())
+        {
+            lib->put(_pLib, _iLevel);
+        }
+        else if (lib->top()->m_iLevel > _iLevel)
+        {
+            ScopedLibrary* pLib = lib->top();
+            lib->pop();
+            putInPreviousScope(_keyLib, _pLib, _iLevel);
+            //decresef ref before, increase it in put
+            //pVar->m_pIT->DecreaseRef();
+            lib->put(pLib->m_pLib, pLib->m_iLevel);
+        }
+        else
+        {
+            lib->put(_pLib, _iLevel);
+        }
+
+        return true;
     }
 
     types::InternalType* get(const Symbol& _key, int _iLevel)

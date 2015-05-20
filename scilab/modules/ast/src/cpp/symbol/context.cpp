@@ -319,6 +319,11 @@ bool Context::putInPreviousScope(Variable* _var, types::InternalType* _pIT)
         }
         varStack.push(list);
     }
+
+    if (_pIT->isLibrary())
+    {
+        libraries.putInPreviousScope(_var->getSymbol(), _pIT->getAs<types::Library>(), m_iLevel - 1);
+    }
     return true;
 }
 
