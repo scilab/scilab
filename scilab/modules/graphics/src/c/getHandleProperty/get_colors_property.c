@@ -38,7 +38,7 @@ void* get_colors_property(void* _pvCtx, int pobjUID)
     if (piColorSet == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "colors");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(pobjUID, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void **)&colors);
@@ -46,8 +46,7 @@ void* get_colors_property(void* _pvCtx, int pobjUID)
 
     if (colors == NULL || numColors == 0)
     {
-        sciReturnEmptyMatrix();
-        return SET_PROPERTY_SUCCEED;
+        return sciReturnEmptyMatrix();
     }
 
     return sciReturnRowVectorFromInt(colors, numColors);
