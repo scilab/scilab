@@ -315,9 +315,17 @@ void RunVisitorT<T>::visitprivate(const IfExp  &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const WhileExp  &e)
 {
+
+    //Create local exec visitor
+    ShortCutVisitor SCTest;
+
+    //manage & and | like && and ||
+    e.getTest().accept(SCTest);
     //condition
     e.getTest().accept(*this);
+
     InternalType* pIT = getResult();
+
     while (pIT->isTrue())
     {
         pIT->killMe();
