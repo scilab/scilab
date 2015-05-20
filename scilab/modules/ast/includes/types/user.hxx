@@ -41,6 +41,11 @@ public :
         return true;
     }
 
+    inline bool             isGenericType()
+    {
+        return false;
+    }
+
 public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
@@ -50,8 +55,8 @@ public :
     InternalType*   clone() = 0;
 
 public :
-    /*** User can overload these methode ***/
-    /*** all methode not overloaded will call scilab overload       ***/
+    /*** User can overload these methods                            ***/
+    /*** all methods not overloaded will call scilab overload       ***/
 
     // hasToString return false so scilab will call overload %..._p
     // and toString method is useless
@@ -62,7 +67,7 @@ public :
         return false;
     }
 
-    // overload this methode if hasToString methode return true
+    // overload this method if hasToString method return true
     virtual bool toString(std::wostringstream& /*ostr*/)
     {
         return false;
@@ -76,7 +81,7 @@ public :
         return NULL;
     }
 
-    // this methode is called to perform an extraction by field. ie : a = myUserType.myfield
+    // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
     virtual bool          extract(const std::wstring & /*name*/, InternalType *& /*out*/)
@@ -84,7 +89,7 @@ public :
         return false;
     }
 
-    // extraction by value, this methode can be only called by "invoke" methode below.
+    // extraction by value, this method can be only called by "invoke" method below.
     // _pArs is a list of scilab types:: of where we want to extract
     // return all element extracted, in case when multiple elements returned
     // these elements must be stored in a types::List
@@ -118,7 +123,7 @@ public :
     //  execFunc    : is used in case of macro call : Overload::call(L"A_Macro", in, _iRetCount, out, execFunc);
     //  e           : Generally used to return the Location when thowing an error. ie : throw ast::ScilabError(L"error message", 999, e.getLocation());
     // Outputs :
-    // if false, Scilab will call the macro %UserType_e,where UserType is the string return by the methode getShortTypeStr()
+    // if false, Scilab will call the macro %UserType_e,where UserType is the string return by the method getShortTypeStr()
     // if true, Scilab will set each elements of out in Scilab variables
     virtual bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
     {
