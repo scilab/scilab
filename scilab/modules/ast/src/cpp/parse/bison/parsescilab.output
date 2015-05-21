@@ -585,78 +585,79 @@ HIGHLEVEL (334)
 UPLEVEL (335)
 LISTABLE (336)
 CONTROLBREAK (337)
-FUNCTIONCALL (338)
+UMINUS (338)
+FUNCTIONCALL (339)
 
 
 Non-terminaux, suivis des règles où ils apparaissent
 
-$accept (84)
+$accept (85)
     à gauche: 0
-program (85)
+program (86)
     à gauche: 1 2 3 4, à droite: 0
-expressions (86)
+expressions (87)
     à gauche: 5 6 7 8 9, à droite: 1 2 105 280 282 330 356 359 381
     382 383 384
-recursiveExpression (87)
+recursiveExpression (88)
     à gauche: 10 11 12 13, à droite: 5 6 7 10 11
-expressionLineBreak (88)
+expressionLineBreak (89)
     à gauche: 14 15 16 17 18 19, à droite: 3 10 11 12 13 17 18 19
-expression (89)
+expression (90)
     à gauche: 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34, à droite:
     6 7 8 9 10 11 12 13
-implicitFunctionCall (90)
+implicitFunctionCall (91)
     à gauche: 35 36, à droite: 29 35
-implicitCallable (91)
+implicitCallable (92)
     à gauche: 37 38 39 40 41 42 43 44 45 46 47 48 49, à droite: 35
     36 45 46 48
-functionCall (92)
+functionCall (93)
     à gauche: 50 51, à droite: 21 46 51 57 62 67 107 110 112 115
     118 121 124 127 130 133 136 139 142 144 146 148 149 150 152 153
     154 157 158 160 162 164 166 168 170 172 174 176 178 180 182 184
     186 188 190 193 196 197 198 199 201 217 219 221 222 223 249 251
     254 259 260 261 263 265 268 269 270 271 275 318 325 327 329 346
     389
-simpleFunctionCall (93)
+simpleFunctionCall (94)
     à gauche: 52 53 54 55, à droite: 47 50
-functionArgs (94)
+functionArgs (95)
     à gauche: 56 57 58 59 60 61 62 63 64 65 66 67 68 69, à droite:
     52 53 65 66 67 68 69 216 217 274 275
-functionDeclaration (95)
+functionDeclaration (96)
     à gauche: 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87
     88 89 90 91 92 93, à droite: 20
-functionDeclarationReturns (96)
+functionDeclarationReturns (97)
     à gauche: 94, à droite: 71 75 79 83 87 91
-functionDeclarationArguments (97)
+functionDeclarationArguments (98)
     à gauche: 95 96 97, à droite: 70 71 72 73 74 75 76 77 78 79 80
     81 82 83 84 85 86 87 88 89 90 91 92 93
-idList (98)
+idList (99)
     à gauche: 98 99, à droite: 94 95 98
-functionDeclarationBreak (99)
+functionDeclarationBreak (100)
     à gauche: 100 101 102 103 104, à droite: 70 71 72 73 74 75 76
     77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93
-functionBody (100)
+functionBody (101)
     à gauche: 105 106, à droite: 70 71 72 73 74 75 76 77 78 79 80
     81 82 83 84 85 86 87 88 89 90 91 92 93
-condition (101)
+condition (102)
     à gauche: 107 108, à droite: 277 278 279 301 302 303 358
-comparison (102)
+comparison (103)
     à gauche: 109 110, à droite: 215
-rightComparable (103)
+rightComparable (104)
     à gauche: 111 112 113 114 115 116 117 118 119 120 121 122 123
     124 125 126 127 128 129 130 131 132 133 134 135 136 137 138 139
     140, à droite: 109 110
-operation (104)
+operation (105)
     à gauche: 141 142 143 144 145 146 147 148 149 150 151 152 153
     154 155 156 157 158, à droite: 204
-rightOperand (105)
+rightOperand (106)
     à gauche: 159 160 161 162 163 164 165 166 167 168 169 170 171
     172 173 174 175 176 177 178 179 180 181 182 183 184 185 186, à droite:
     48 141 142
-listableBegin (106)
+listableBegin (107)
     à gauche: 187 188, à droite: 189 190 191
-listableEnd (107)
+listableEnd (108)
     à gauche: 189 190 191, à droite: 200 201
-variable (108)
+variable (109)
     à gauche: 192 193 194 195 196 197 198 199 200 201 202 203 204
     205 206 207 208 209 210 211 212 213 214 215 216 217, à droite:
     28 56 61 66 108 109 111 114 117 120 123 126 129 132 135 138 141
@@ -664,91 +665,91 @@ variable (108)
     171 173 175 177 179 181 183 185 187 189 192 194 195 196 197 200
     213 216 218 220 222 223 248 250 253 258 260 266 267 268 269 274
     317 324 326 328 347 388
-variableFields (109)
+variableFields (110)
     à gauche: 218 219 220 221 222 223, à droite: 214 218 219
-cell (110)
+cell (111)
     à gauche: 224 225 226 227 228 229 230 231, à droite: 203
-matrix (111)
+matrix (112)
     à gauche: 232 233 234 235 236 237 238 239, à droite: 202
-matrixOrCellLines (112)
+matrixOrCellLines (113)
     à gauche: 240 241, à droite: 224 225 226 227 232 233 234 235
     240
-matrixOrCellLineBreak (113)
+matrixOrCellLineBreak (114)
     à gauche: 242 243 244 245, à droite: 244 245 246 247
-matrixOrCellLine (114)
+matrixOrCellLine (115)
     à gauche: 246 247, à droite: 240 241
-matrixOrCellColumns (115)
+matrixOrCellColumns (116)
     à gauche: 248 249 250 251 252 253 254 255, à droite: 226 227
     228 229 234 235 236 237 246 247 248 249 250 251 252 276
-matrixOrCellColumnsBreak (116)
+matrixOrCellColumnsBreak (117)
     à gauche: 256 257, à droite: 247 248 249 256
-variableDeclaration (117)
+variableDeclaration (118)
     à gauche: 258 259 260 261 262 263 264 265, à droite: 22 59 64
     69
-assignable (118)
+assignable (119)
     à gauche: 266 267 268 269 270 271 272 273 274 275, à droite:
     258 259 262 264
-multipleResults (119)
+multipleResults (120)
     à gauche: 276, à droite: 273
-ifControl (120)
+ifControl (121)
     à gauche: 277 278 279, à droite: 23
-thenBody (121)
+thenBody (122)
     à gauche: 280 281, à droite: 277 278 279 301 302 303
-elseBody (122)
+elseBody (123)
     à gauche: 282 283, à droite: 278 302 305 307
-ifConditionBreak (123)
+ifConditionBreak (124)
     à gauche: 284 285 286 287 288, à droite: 290 291 292 293
-then (124)
+then (125)
     à gauche: 289 290 291 292 293 294, à droite: 277 278 279 301
     302 303
-else (125)
+else (126)
     à gauche: 295 296 297 298 299 300, à droite: 278 302 310
-elseIfControl (126)
+elseIfControl (127)
     à gauche: 301 302 303, à droite: 279 303
-selectControl (127)
+selectControl (128)
     à gauche: 304 305 306 307, à droite: 24
-select (128)
+select (129)
     à gauche: 308 309, à droite: 304 305 306 307
-defaultCase (129)
+defaultCase (130)
     à gauche: 310 311 312 313 314 315 316, à droite: 305 307
-selectable (130)
+selectable (131)
     à gauche: 317 318, à droite: 304 305 306 307
-selectConditionBreak (131)
+selectConditionBreak (132)
     à gauche: 319 320 321 322 323, à droite: 304 305 306 307
-casesControl (132)
+casesControl (133)
     à gauche: 324 325 326 327 328 329, à droite: 304 305 306 307
     328 329
-caseBody (133)
+caseBody (134)
     à gauche: 330 331, à droite: 324 325 326 327 328 329
-caseControlBreak (134)
+caseControlBreak (135)
     à gauche: 332 333 334 335 336 337 338 339 340 341 342 343, à droite:
     324 325 326 327 328 329
-forControl (135)
+forControl (136)
     à gauche: 344 345, à droite: 25
-forIterator (136)
+forIterator (137)
     à gauche: 346 347, à droite: 344 345
-forConditionBreak (137)
+forConditionBreak (138)
     à gauche: 348 349 350 351 352 353 354 355, à droite: 344 345
-forBody (138)
+forBody (139)
     à gauche: 356 357, à droite: 344 345
-whileControl (139)
+whileControl (140)
     à gauche: 358, à droite: 26
-whileBody (140)
+whileBody (141)
     à gauche: 359 360, à droite: 358
-whileConditionBreak (141)
+whileConditionBreak (142)
     à gauche: 361 362 363 364 365 366 367 368 369 370 371 372 373
     374 375 376 377 378, à droite: 358
-tryControl (142)
+tryControl (143)
     à gauche: 379 380, à droite: 27
-catchBody (143)
+catchBody (144)
     à gauche: 381 382 383 384 385 386, à droite: 379 380
-returnControl (144)
+returnControl (145)
     à gauche: 387 388 389, à droite: 32 264 265
-comments (145)
+comments (146)
     à gauche: 390 391, à droite: 326 327 391
-lineEnd (146)
+lineEnd (147)
     à gauche: 392 393, à droite: 100
-keywords (147)
+keywords (148)
     à gauche: 394 395 396 397 398 399 400 401 402 403 404 405 406
     407 408 409 410 411 412 413, à droite: 195 198 267 270
 
@@ -5255,7 +5256,7 @@ keywords (147)
   139                | . "<=" functionCall
   140                | . "<=" ":"
   142 operation: functionCall . rightOperand
-  144          | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  144          | "-" functionCall .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   149          | functionCall . "** or ^" variable
   150          | functionCall . "** or ^" functionCall
   153          | functionCall . ".^" variable
@@ -5305,18 +5306,6 @@ keywords (147)
     "("        décalage et aller à l'état 170
     "."        décalage et aller à l'état 171
     ".'"       décalage et aller à l'état 124
-    "*"        décalage et aller à l'état 127
-    ".*"       décalage et aller à l'état 128
-    ".*."      décalage et aller à l'état 129
-    "*."       décalage et aller à l'état 130
-    "/"        décalage et aller à l'état 131
-    "./"       décalage et aller à l'état 132
-    "/."       décalage et aller à l'état 133
-    "./."      décalage et aller à l'état 134
-    "\\"       décalage et aller à l'état 135
-    ".\\"      décalage et aller à l'état 136
-    "\\."      décalage et aller à l'état 137
-    ".\\."     décalage et aller à l'état 138
     "** or ^"  décalage et aller à l'état 139
     ".^"       décalage et aller à l'état 140
 
@@ -5327,37 +5316,37 @@ keywords (147)
     listableBegin    aller à l'état 154
     listableEnd      aller à l'état 155
 
-    Conflit entre la règle 144 et le jeton "'" résolu par décalage (MINUS < "'").
-    Conflit entre la règle 144 et le jeton ":" résolu par réduction (":" < MINUS).
-    Conflit entre la règle 144 et le jeton "(" résolu par décalage (MINUS < "(").
-    Conflit entre la règle 144 et le jeton "." résolu par décalage (MINUS < ".").
-    Conflit entre la règle 144 et le jeton ".'" résolu par décalage (MINUS < ".'").
-    Conflit entre la règle 144 et le jeton "+" résolu par réduction (%left "+").
-    Conflit entre la règle 144 et le jeton "-" résolu par réduction (%left "-").
-    Conflit entre la règle 144 et le jeton "*" résolu par décalage (MINUS < "*").
-    Conflit entre la règle 144 et le jeton ".*" résolu par décalage (MINUS < ".*").
-    Conflit entre la règle 144 et le jeton ".*." résolu par décalage (MINUS < ".*.").
-    Conflit entre la règle 144 et le jeton "*." résolu par décalage (MINUS < "*.").
-    Conflit entre la règle 144 et le jeton "/" résolu par décalage (MINUS < "/").
-    Conflit entre la règle 144 et le jeton "./" résolu par décalage (MINUS < "./").
-    Conflit entre la règle 144 et le jeton "/." résolu par décalage (MINUS < "/.").
-    Conflit entre la règle 144 et le jeton "./." résolu par décalage (MINUS < "./.").
-    Conflit entre la règle 144 et le jeton "\\" résolu par décalage (MINUS < "\\").
-    Conflit entre la règle 144 et le jeton ".\\" résolu par décalage (MINUS < ".\\").
-    Conflit entre la règle 144 et le jeton "\\." résolu par décalage (MINUS < "\\.").
-    Conflit entre la règle 144 et le jeton ".\\." résolu par décalage (MINUS < ".\\.").
-    Conflit entre la règle 144 et le jeton "** or ^" résolu par décalage (MINUS < "** or ^").
-    Conflit entre la règle 144 et le jeton ".^" résolu par décalage (MINUS < ".^").
-    Conflit entre la règle 144 et le jeton "==" résolu par réduction ("==" < MINUS).
-    Conflit entre la règle 144 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < MINUS).
-    Conflit entre la règle 144 et le jeton "<" résolu par réduction ("<" < MINUS).
-    Conflit entre la règle 144 et le jeton "<=" résolu par réduction ("<=" < MINUS).
-    Conflit entre la règle 144 et le jeton ">" résolu par réduction (">" < MINUS).
-    Conflit entre la règle 144 et le jeton ">=" résolu par réduction (">=" < MINUS).
-    Conflit entre la règle 144 et le jeton "&" résolu par réduction ("&" < MINUS).
-    Conflit entre la règle 144 et le jeton "&&" résolu par réduction ("&&" < MINUS).
-    Conflit entre la règle 144 et le jeton "|" résolu par réduction ("|" < MINUS).
-    Conflit entre la règle 144 et le jeton "||" résolu par réduction ("||" < MINUS).
+    Conflit entre la règle 144 et le jeton "'" résolu par décalage (UMINUS < "'").
+    Conflit entre la règle 144 et le jeton ":" résolu par réduction (":" < UMINUS).
+    Conflit entre la règle 144 et le jeton "(" résolu par décalage (UMINUS < "(").
+    Conflit entre la règle 144 et le jeton "." résolu par décalage (UMINUS < ".").
+    Conflit entre la règle 144 et le jeton ".'" résolu par décalage (UMINUS < ".'").
+    Conflit entre la règle 144 et le jeton "+" résolu par réduction ("+" < UMINUS).
+    Conflit entre la règle 144 et le jeton "-" résolu par réduction ("-" < UMINUS).
+    Conflit entre la règle 144 et le jeton "*" résolu par réduction ("*" < UMINUS).
+    Conflit entre la règle 144 et le jeton ".*" résolu par réduction (".*" < UMINUS).
+    Conflit entre la règle 144 et le jeton ".*." résolu par réduction (".*." < UMINUS).
+    Conflit entre la règle 144 et le jeton "*." résolu par réduction ("*." < UMINUS).
+    Conflit entre la règle 144 et le jeton "/" résolu par réduction ("/" < UMINUS).
+    Conflit entre la règle 144 et le jeton "./" résolu par réduction ("./" < UMINUS).
+    Conflit entre la règle 144 et le jeton "/." résolu par réduction ("/." < UMINUS).
+    Conflit entre la règle 144 et le jeton "./." résolu par réduction ("./." < UMINUS).
+    Conflit entre la règle 144 et le jeton "\\" résolu par réduction ("\\" < UMINUS).
+    Conflit entre la règle 144 et le jeton ".\\" résolu par réduction (".\\" < UMINUS).
+    Conflit entre la règle 144 et le jeton "\\." résolu par réduction ("\\." < UMINUS).
+    Conflit entre la règle 144 et le jeton ".\\." résolu par réduction (".\\." < UMINUS).
+    Conflit entre la règle 144 et le jeton "** or ^" résolu par décalage (UMINUS < "** or ^").
+    Conflit entre la règle 144 et le jeton ".^" résolu par décalage (UMINUS < ".^").
+    Conflit entre la règle 144 et le jeton "==" résolu par réduction ("==" < UMINUS).
+    Conflit entre la règle 144 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < UMINUS).
+    Conflit entre la règle 144 et le jeton "<" résolu par réduction ("<" < UMINUS).
+    Conflit entre la règle 144 et le jeton "<=" résolu par réduction ("<=" < UMINUS).
+    Conflit entre la règle 144 et le jeton ">" résolu par réduction (">" < UMINUS).
+    Conflit entre la règle 144 et le jeton ">=" résolu par réduction (">=" < UMINUS).
+    Conflit entre la règle 144 et le jeton "&" résolu par réduction ("&" < UMINUS).
+    Conflit entre la règle 144 et le jeton "&&" résolu par réduction ("&&" < UMINUS).
+    Conflit entre la règle 144 et le jeton "|" résolu par réduction ("|" < UMINUS).
+    Conflit entre la règle 144 et le jeton "||" résolu par réduction ("||" < UMINUS).
 
 
 État 79
@@ -5394,7 +5383,7 @@ keywords (147)
   139                | . "<=" functionCall
   140                | . "<=" ":"
   141 operation: variable . rightOperand
-  143          | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
+  143          | "-" variable .  ["end of file", error, "end of line", "%t or %T", "%f or %F", "~ or @", "$", ",", ":", ";", ")", "[", "]", "{", "}", "+", "-", "*", ".*", ".*.", "*.", "/", "./", "/.", "./.", "\\", ".\\", "\\.", ".\\.", "==", "<> or ~=", "<", "<=", ">", ">=", "&", "&&", "|", "||", "=", "if", "then", "else", "elseif", "end", "select", "switch", "case", "otherwise", "function", "endfunction", "#function", "hidden", "for", "while", "do", "break", "continue", "try", "catch", "return", "string", "identifier", "integer", "float", "number", "path", "line comment"]
   147          | variable . "** or ^" variable
   148          | variable . "** or ^" functionCall
   151          | variable . ".^" variable
@@ -5444,18 +5433,6 @@ keywords (147)
     "("        décalage et aller à l'état 172
     "."        décalage et aller à l'état 173
     ".'"       décalage et aller à l'état 159
-    "*"        décalage et aller à l'état 127
-    ".*"       décalage et aller à l'état 128
-    ".*."      décalage et aller à l'état 129
-    "*."       décalage et aller à l'état 130
-    "/"        décalage et aller à l'état 131
-    "./"       décalage et aller à l'état 132
-    "/."       décalage et aller à l'état 133
-    "./."      décalage et aller à l'état 134
-    "\\"       décalage et aller à l'état 135
-    ".\\"      décalage et aller à l'état 136
-    "\\."      décalage et aller à l'état 137
-    ".\\."     décalage et aller à l'état 138
     "** or ^"  décalage et aller à l'état 160
     ".^"       décalage et aller à l'état 161
 
@@ -5466,37 +5443,37 @@ keywords (147)
     listableBegin    aller à l'état 154
     listableEnd      aller à l'état 164
 
-    Conflit entre la règle 143 et le jeton "'" résolu par décalage (MINUS < "'").
-    Conflit entre la règle 143 et le jeton ":" résolu par réduction (":" < MINUS).
-    Conflit entre la règle 143 et le jeton "(" résolu par décalage (MINUS < "(").
-    Conflit entre la règle 143 et le jeton "." résolu par décalage (MINUS < ".").
-    Conflit entre la règle 143 et le jeton ".'" résolu par décalage (MINUS < ".'").
-    Conflit entre la règle 143 et le jeton "+" résolu par réduction (%left "+").
-    Conflit entre la règle 143 et le jeton "-" résolu par réduction (%left "-").
-    Conflit entre la règle 143 et le jeton "*" résolu par décalage (MINUS < "*").
-    Conflit entre la règle 143 et le jeton ".*" résolu par décalage (MINUS < ".*").
-    Conflit entre la règle 143 et le jeton ".*." résolu par décalage (MINUS < ".*.").
-    Conflit entre la règle 143 et le jeton "*." résolu par décalage (MINUS < "*.").
-    Conflit entre la règle 143 et le jeton "/" résolu par décalage (MINUS < "/").
-    Conflit entre la règle 143 et le jeton "./" résolu par décalage (MINUS < "./").
-    Conflit entre la règle 143 et le jeton "/." résolu par décalage (MINUS < "/.").
-    Conflit entre la règle 143 et le jeton "./." résolu par décalage (MINUS < "./.").
-    Conflit entre la règle 143 et le jeton "\\" résolu par décalage (MINUS < "\\").
-    Conflit entre la règle 143 et le jeton ".\\" résolu par décalage (MINUS < ".\\").
-    Conflit entre la règle 143 et le jeton "\\." résolu par décalage (MINUS < "\\.").
-    Conflit entre la règle 143 et le jeton ".\\." résolu par décalage (MINUS < ".\\.").
-    Conflit entre la règle 143 et le jeton "** or ^" résolu par décalage (MINUS < "** or ^").
-    Conflit entre la règle 143 et le jeton ".^" résolu par décalage (MINUS < ".^").
-    Conflit entre la règle 143 et le jeton "==" résolu par réduction ("==" < MINUS).
-    Conflit entre la règle 143 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < MINUS).
-    Conflit entre la règle 143 et le jeton "<" résolu par réduction ("<" < MINUS).
-    Conflit entre la règle 143 et le jeton "<=" résolu par réduction ("<=" < MINUS).
-    Conflit entre la règle 143 et le jeton ">" résolu par réduction (">" < MINUS).
-    Conflit entre la règle 143 et le jeton ">=" résolu par réduction (">=" < MINUS).
-    Conflit entre la règle 143 et le jeton "&" résolu par réduction ("&" < MINUS).
-    Conflit entre la règle 143 et le jeton "&&" résolu par réduction ("&&" < MINUS).
-    Conflit entre la règle 143 et le jeton "|" résolu par réduction ("|" < MINUS).
-    Conflit entre la règle 143 et le jeton "||" résolu par réduction ("||" < MINUS).
+    Conflit entre la règle 143 et le jeton "'" résolu par décalage (UMINUS < "'").
+    Conflit entre la règle 143 et le jeton ":" résolu par réduction (":" < UMINUS).
+    Conflit entre la règle 143 et le jeton "(" résolu par décalage (UMINUS < "(").
+    Conflit entre la règle 143 et le jeton "." résolu par décalage (UMINUS < ".").
+    Conflit entre la règle 143 et le jeton ".'" résolu par décalage (UMINUS < ".'").
+    Conflit entre la règle 143 et le jeton "+" résolu par réduction ("+" < UMINUS).
+    Conflit entre la règle 143 et le jeton "-" résolu par réduction ("-" < UMINUS).
+    Conflit entre la règle 143 et le jeton "*" résolu par réduction ("*" < UMINUS).
+    Conflit entre la règle 143 et le jeton ".*" résolu par réduction (".*" < UMINUS).
+    Conflit entre la règle 143 et le jeton ".*." résolu par réduction (".*." < UMINUS).
+    Conflit entre la règle 143 et le jeton "*." résolu par réduction ("*." < UMINUS).
+    Conflit entre la règle 143 et le jeton "/" résolu par réduction ("/" < UMINUS).
+    Conflit entre la règle 143 et le jeton "./" résolu par réduction ("./" < UMINUS).
+    Conflit entre la règle 143 et le jeton "/." résolu par réduction ("/." < UMINUS).
+    Conflit entre la règle 143 et le jeton "./." résolu par réduction ("./." < UMINUS).
+    Conflit entre la règle 143 et le jeton "\\" résolu par réduction ("\\" < UMINUS).
+    Conflit entre la règle 143 et le jeton ".\\" résolu par réduction (".\\" < UMINUS).
+    Conflit entre la règle 143 et le jeton "\\." résolu par réduction ("\\." < UMINUS).
+    Conflit entre la règle 143 et le jeton ".\\." résolu par réduction (".\\." < UMINUS).
+    Conflit entre la règle 143 et le jeton "** or ^" résolu par décalage (UMINUS < "** or ^").
+    Conflit entre la règle 143 et le jeton ".^" résolu par décalage (UMINUS < ".^").
+    Conflit entre la règle 143 et le jeton "==" résolu par réduction ("==" < UMINUS).
+    Conflit entre la règle 143 et le jeton "<> or ~=" résolu par réduction ("<> or ~=" < UMINUS).
+    Conflit entre la règle 143 et le jeton "<" résolu par réduction ("<" < UMINUS).
+    Conflit entre la règle 143 et le jeton "<=" résolu par réduction ("<=" < UMINUS).
+    Conflit entre la règle 143 et le jeton ">" résolu par réduction (">" < UMINUS).
+    Conflit entre la règle 143 et le jeton ">=" résolu par réduction (">=" < UMINUS).
+    Conflit entre la règle 143 et le jeton "&" résolu par réduction ("&" < UMINUS).
+    Conflit entre la règle 143 et le jeton "&&" résolu par réduction ("&&" < UMINUS).
+    Conflit entre la règle 143 et le jeton "|" résolu par réduction ("|" < UMINUS).
+    Conflit entre la règle 143 et le jeton "||" résolu par réduction ("||" < UMINUS).
 
 
 État 80

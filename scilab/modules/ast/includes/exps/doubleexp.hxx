@@ -87,10 +87,21 @@ public:
     {
         return DOUBLEEXP;
     }
+
     inline bool isDoubleExp() const
     {
         return true;
     }
+    
+    inline DoubleExp* neg()
+    {
+        _value = -_value;
+        //constant will not be update but
+        //normally neg is only called by parser
+        //before constant was created
+        return this;
+    }
+
 
 protected:
     double _value;

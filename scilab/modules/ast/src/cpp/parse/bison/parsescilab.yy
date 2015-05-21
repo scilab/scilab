@@ -294,6 +294,7 @@
 %left EQ NE LT LE GT GE
 %left MINUS PLUS
 %left TIMES DOTTIMES KRONTIMES CONTROLTIMES RDIVIDE DOTRDIVIDE KRONRDIVIDE CONTROLRDIVIDE LDIVIDE DOTLDIVIDE KRONLDIVIDE CONTROLLDIVIDE
+%left UMINUS
 %right POWER DOTPOWER
 
 %left QUOTE DOTQUOTE
@@ -1007,22 +1008,22 @@ variable rightOperand			{
 					  $2->setLocation(@$);
 					  $$ = $2;
 					}
-| MINUS variable			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
-| MINUS functionCall			{ $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
-| PLUS variable				{ $$ = $2; }
-| PLUS functionCall			{ $$ = $2; }
-| variable POWER variable		{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
-| variable POWER functionCall		{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
-| functionCall POWER variable		{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
-| functionCall POWER functionCall	{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
-| variable DOTPOWER variable		{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
-| variable DOTPOWER functionCall	{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
-| functionCall DOTPOWER variable	{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
+| MINUS variable        %prec UMINUS    { if ($2->isDoubleExp()) { $$ = $2->getAs<ast::DoubleExp>()->neg(); } else { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); } }
+| MINUS functionCall    %prec UMINUS    { $$ = new ast::OpExp(@$, *new ast::DoubleExp(@$, 0.0), ast::OpExp::unaryMinus, *$2); }
+| PLUS variable				            { $$ = $2; }
+| PLUS functionCall			            { $$ = $2; }
+| variable POWER variable		        { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
+| variable POWER functionCall		    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
+| functionCall POWER variable		    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
+| functionCall POWER functionCall	    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::power, *$3); }
+| variable DOTPOWER variable		    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
+| variable DOTPOWER functionCall	    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
+| functionCall DOTPOWER variable	    { $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
 | functionCall DOTPOWER functionCall	{ $$ = new ast::OpExp(@$, *$1, ast::OpExp::dotpower, *$3); }
-| variable QUOTE			{ $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_Conjugate_); }
-| variable DOTQUOTE			{ $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_NonConjugate_); }
-| functionCall QUOTE			{ $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_Conjugate_); }
-| functionCall DOTQUOTE			{ $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_NonConjugate_); }
+| variable QUOTE			            { $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_Conjugate_); }
+| variable DOTQUOTE			            { $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_NonConjugate_); }
+| functionCall QUOTE			        { $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_Conjugate_); }
+| functionCall DOTQUOTE			        { $$ = new ast::TransposeExp(@$, *$1, ast::TransposeExp::_NonConjugate_); }
 ;
 
 /*
