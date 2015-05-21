@@ -75,8 +75,8 @@ Function::ReturnValue sci_macrovar(types::typed_list &in, int _iRetCount, types:
 
     MacrovarVisitor visit;
 
-    addIn(visit, pM->inputs_get());
-    addOut(visit, pM->outputs_get());
+    addIn(visit, pM->getInputs());
+    addOut(visit, pM->getOutputs());
 
     pM->getBody()->accept(visit);
 

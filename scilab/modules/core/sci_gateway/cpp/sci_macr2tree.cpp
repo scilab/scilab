@@ -58,8 +58,8 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
         macro = pIT->getAs<types::Macro>();
     }
 
-    std::list<symbol::Variable*>* outputs = macro->outputs_get();
-    std::list<symbol::Variable*>* inputs = macro->inputs_get();
+    std::list<symbol::Variable*>* outputs = macro->getOutputs();
+    std::list<symbol::Variable*>* inputs = macro->getInputs();
     ast::SeqExp* body = macro->getBody();
 
     //create a tlist "program"

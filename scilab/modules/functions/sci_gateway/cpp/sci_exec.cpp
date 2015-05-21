@@ -235,8 +235,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
 
         // unable for macro with varargin or varargout
-        auto inputs = pMacro->inputs_get();
-        auto outputs = pMacro->outputs_get();
+        auto inputs = pMacro->getInputs();
+        auto outputs = pMacro->getOutputs();
         if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
                 outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
         {

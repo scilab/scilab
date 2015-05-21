@@ -989,7 +989,7 @@ function %_sodload(%__filename__, varargin)
     end
 
     //multiple output variables to prevent listinfile prints
-    [%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(%__filename__);
+    [%__variableList__, %__varB__] = listvarinfile(%__filename__);
     //
     if size(varargin) <> 0 then
         for i = 1:size(varargin)

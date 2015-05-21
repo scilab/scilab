@@ -18,9 +18,9 @@
 HDF5_SCILAB_IMPEXP int Initialize(void);
 HDF5_SCILAB_IMPEXP int Finalize(void);
 /*--------------------------------------------------------------------------*/
-HDF5_SCILAB_IMPEXP int sci_export_to_hdf5(char *fname, int* pvApiCtx);
-HDF5_SCILAB_IMPEXP int sci_import_from_hdf5(char *fname, int* pvApiCtx);
-HDF5_SCILAB_IMPEXP int sci_listvar_in_hdf5(char *fname, int* pvApiCtx);
+HDF5_SCILAB_IMPEXP int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx);
+HDF5_SCILAB_IMPEXP int sci_import_from_hdf5_v2(char *fname, int* pvApiCtx);
+HDF5_SCILAB_IMPEXP int sci_listvar_in_hdf5_v2(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_is_hdf5_file(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_h5dump(char *fname, int* pvApiCtx);
 HDF5_SCILAB_IMPEXP int sci_h5open(char *fname, int* pvApiCtx);

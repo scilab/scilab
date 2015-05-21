@@ -382,6 +382,62 @@ Sparse::Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SP
 #endif
 }
 
+Sparse::Sparse(int rows, int cols, int nonzeros, int* inner, int* outer, double* real, double* img)
+{
+    int* out = nullptr;
+    int* in = nullptr;
+
+    if (img)
+    {
+        matrixCplx = new CplxSparse_t(rows, cols);
+        matrixCplx->reserve((int)nonzeros);
+        out = matrixCplx->outerIndexPtr();
+        in = matrixCplx->innerIndexPtr();
+        matrixReal = nullptr;
+    }
+    else
+    {
+        matrixReal = new RealSparse_t(rows, cols);
+        matrixReal->reserve((int)nonzeros);
+        out = matrixReal->outerIndexPtr();
+        in = matrixReal->innerIndexPtr();
+        matrixCplx = nullptr;
+    }
+
+    //update outerIndexPtr
+    memcpy(out, outer, sizeof(int) * (rows + 1));
+    //update innerIndexPtr
+    memcpy(in, inner, sizeof(int) * nonzeros);
+
+    if (img)
+    {
+        std::complex<double>* data = matrixCplx->valuePtr();
+        for (int i = 0; i < nonzeros; ++i)
+        {
+            data[i] = std::complex<double>(real[i], img[i]);
+        }
+    }
+    else
+    {
+        double* data = matrixReal->valuePtr();
+        for (int i = 0; i < nonzeros; ++i)
+        {
+            data[i] = real[i];
+        }
+
+    }
+
+    m_iCols = cols;
+    m_iRows = rows;
+    m_iSize = cols * rows;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+
+    matrixCplx ? matrixCplx->resizeNonZeros(nonzeros) : matrixReal->resizeNonZeros(nonzeros);
+    //finalize();
+}
+
 template<typename DestIter>
 void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n)
 {
@@ -557,6 +613,16 @@ bool Sparse::isComplex() const
 }
 
 // TODO: should have both a bounds checking and a non-checking interface to elt access
+double* Sparse::get()
+{
+    if (isComplex() == false)
+    {
+        return matrixReal->valuePtr();
+    }
+
+    return nullptr;
+}
+
 double  Sparse::get(int _iRows, int _iCols) const
 {
     return getReal(_iRows, _iCols);
@@ -574,6 +640,16 @@ double Sparse::getReal(int _iRows, int _iCols) const
         res = matrixCplx->coeff(_iRows, _iCols).real();
     }
     return res;
+}
+
+std::complex<double>* Sparse::getImg()
+{
+    if (isComplex())
+    {
+        return matrixCplx->valuePtr();
+    }
+
+    return nullptr;
 }
 
 std::complex<double> Sparse::getImg(int _iRows, int _iCols) const
@@ -2030,6 +2106,40 @@ int* Sparse::getColPos(int* _piColPos)
     return _piColPos;
 }
 
+int* Sparse::getInnerPtr(int* count)
+{
+    int* ret = nullptr;
+    if (isComplex())
+    {
+        ret = matrixCplx->innerIndexPtr();
+        *count = matrixCplx->innerSize();
+    }
+    else
+    {
+        ret = matrixReal->innerIndexPtr();
+        *count = matrixReal->innerSize();
+    }
+
+    return ret;
+}
+
+int* Sparse::getOuterPtr(int* count)
+{
+    int* ret = nullptr;
+    if (isComplex())
+    {
+        ret = matrixCplx->outerIndexPtr();
+        *count = matrixCplx->outerSize();
+    }
+    else
+    {
+        ret = matrixReal->outerIndexPtr();
+        *count = matrixReal->outerSize();
+    }
+
+    return ret;
+}
+
 namespace
 {
 template<typename S> struct GetReal: std::unary_function<typename S::InnerIterator, double>
@@ -2354,6 +2464,37 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
+}
+
+SparseBool::SparseBool(int rows, int cols, int trues, int* inner, int* outer)
+{
+    int* out = nullptr;
+    int* in = nullptr;
+
+    matrixBool = new BoolSparse_t(rows, cols);
+    matrixBool->reserve((int)trues);
+    out = matrixBool->outerIndexPtr();
+    in = matrixBool->innerIndexPtr();
+
+    //update outerIndexPtr
+    memcpy(out, outer, sizeof(int) * (rows + 1));
+    //update innerIndexPtr
+    memcpy(in, inner, sizeof(int) * trues);
+
+    bool* data = matrixBool->valuePtr();
+    for (int i = 0; i < trues; ++i)
+    {
+        data[i] = true;
+    }
+
+    m_iCols = cols;
+    m_iRows = rows;
+    m_iSize = cols * rows;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+
+    matrixBool->resizeNonZeros(trues);
 }
 
 void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
@@ -3259,6 +3400,55 @@ std::size_t SparseBool::nbTrue(std::size_t r) const
     return piIndex[r + 1] - piIndex[r];
 }
 
+
+void SparseBool::setTrue(bool finalize)
+{
+    int rows = getRows();
+    int cols = getCols();
+
+    typedef Eigen::Triplet<bool> triplet;
+    std::vector<triplet> tripletList;
+
+    for (int i = 0; i < rows; ++i)
+    {
+        for (int j = 0; j < cols; ++j)
+        {
+            tripletList.push_back(triplet(i, j, true));
+        }
+    }
+
+    matrixBool->setFromTriplets(tripletList.begin(), tripletList.end());
+
+    if (finalize)
+    {
+        matrixBool->finalize();
+    }
+}
+
+void SparseBool::setFalse(bool finalize)
+{
+    int rows = getRows();
+    int cols = getCols();
+
+    typedef Eigen::Triplet<bool> triplet;
+    std::vector<triplet> tripletList;
+
+    for (int i = 0; i < rows; ++i)
+    {
+        for (int j = 0; j < cols; ++j)
+        {
+            tripletList.push_back(triplet(i, j, false));
+        }
+    }
+
+    matrixBool->setFromTriplets(tripletList.begin(), tripletList.end());
+
+    if (finalize)
+    {
+        matrixBool->finalize();
+    }
+}
+
 int* SparseBool::getNbItemByRow(int* _piNbItemByRows)
 {
     int* piNbItemByRows = new int[getRows() + 1];
@@ -3288,6 +3478,19 @@ int* SparseBool::outputRowCol(int* out)const
 {
     return sparseTransform(*matrixBool, sparseTransform(*matrixBool, out, GetRow<BoolSparse_t>()), GetCol<BoolSparse_t>());
 }
+
+int* SparseBool::getInnerPtr(int* count)
+{
+    *count = matrixBool->innerSize();
+    return matrixBool->innerIndexPtr();
+}
+
+int* SparseBool::getOuterPtr(int* count)
+{
+    *count = matrixBool->outerSize();
+    return matrixBool->outerIndexPtr();
+}
+
 
 bool SparseBool::operator==(const InternalType& it) SPARSE_CONST
 {
@@ -3322,6 +3525,7 @@ bool SparseBool::set(int _iRows, int _iCols, bool _bVal, bool _bFinalize) SPARSE
     {
         finalize();
     }
+
     return true;
 }
 

@@ -22,7 +22,7 @@
 #include "charEncoding.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
-BOOL deleteafile(char *filename)
+BOOL deleteafile(const char *filename)
 {
 #ifndef _MSC_VER
     {
@@ -64,7 +64,7 @@ BOOL deleteafile(char *filename)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-BOOL deleteafileW(wchar_t *filenameW)
+BOOL deleteafileW(const wchar_t *filenameW)
 {
     BOOL bOK = FALSE;
 #ifndef _MSC_VER

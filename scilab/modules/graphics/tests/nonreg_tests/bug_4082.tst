@@ -13,16 +13,16 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4082
 //
 // <-- Short Description -->
-// 
+//
 // After save ( xsave ) a figure, the load command ( save/xsave ) modify the name of the figure.
 
 t=0:0.01:10;
 subplot(211),plot2d(t,sin(t))
 subplot(212),plot2d(t,sin(3*t))
 f = gcf();
-save(TMPDIR+'/foo.scg',"f") //or xsave
+save(TMPDIR+"/foo.scg","f"); //or xsave
 clf()
-load(TMPDIR+'/foo.scg') //or xload
+load(TMPDIR+"/foo.scg") //or xload
 
 f = gcf();
 

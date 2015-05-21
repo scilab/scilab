@@ -202,7 +202,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_getpid.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_read4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_save.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_setenv.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_write4b.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_writeb.c" />

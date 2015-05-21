@@ -85,7 +85,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     *_pBody = pBody;
 
     //get inputs
-    std::list<symbol::Variable*>* pIn = _pM->inputs_get();
+    std::list<symbol::Variable*>* pIn = _pM->getInputs();
 
     if (pIn->size() == 0)
     {
@@ -105,7 +105,7 @@ static void getMacroString(Macro* _pM, InternalType** _pOut, InternalType** _pIn
     }
 
     //get outputs
-    list<symbol::Variable*>* pOut = _pM->outputs_get();
+    list<symbol::Variable*>* pOut = _pM->getOutputs();
     if (pOut->size() == 0)
     {
         *_pOut = Double::Empty();

@@ -15,6 +15,6 @@
 
 #include "library.hxx"
 
-types::Library* loadlib(std::wstring _wstXML, bool _isFile = true, bool _bAddInContext = true);
+types::Library* loadlib(std::wstring _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
 
 #endif /* !__LOADLIB_H__ */

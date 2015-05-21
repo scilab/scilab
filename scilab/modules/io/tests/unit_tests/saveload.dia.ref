@@ -165,7 +165,7 @@ save(TMPDIR + "/savemacro.sod", "toto");
 clear toto;
 load(TMPDIR + "/savemacro.sod");
 assert_checkequal(toto(3*5, 9*3), ref);
-assert_checkequal(type(toto), 11);
+assert_checkequal(type(toto), 13);
 //create plot3d with light
 plot3d();
 l = light();

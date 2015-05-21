@@ -54,9 +54,6 @@
     <ClCompile Include="..\..\sci_gateway\c\sci_readb.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_save.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\c\sci_setenv.c">
       <Filter>Source Files</Filter>
     </ClCompile>

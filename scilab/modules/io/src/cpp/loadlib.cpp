@@ -29,7 +29,7 @@ extern "C"
 
 static char *GetXmlFileEncoding(std::string _filename);
 
-types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
+types::Library* loadlib(std::wstring _wstXML, int* err, bool _isFile, bool _bAddInContext)
 {
     types::Library* lib = NULL;
 
@@ -65,7 +65,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
     /* check if the XML file has been encoded with utf8 (unicode) or not */
     if (stricmp("utf-8", encoding))
     {
-        std::wcout << "Error: Not a valid module file " << pstFile << " (encoding not 'utf-8') Encoding '" << encoding << "' found." << std::endl;
+        *err = 1;
         FREE(pstFile);
         free(encoding);
         return NULL;
@@ -84,7 +84,8 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
     if (doc == NULL)
     {
-        std::cout << "Error: Could not parse file " << pstFile << std::endl;
+        *err = 1;
+        //std::cout << "Error: Could not parse file " << pstFile << std::endl;
         FREE(pstFile);
         return NULL;
     }
@@ -154,10 +155,6 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
                 stFilename += pstFileName;
                 lib->add(pstName, new types::MacroFile(pstName, stFilename, pstLibName));
             }
-            else
-            {
-                std::cout << pstName << " module not found." << std::endl;
-            }
 
             if (pstName)
             {
@@ -192,6 +189,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
         }
         else
         {
+            *err = 2;
             delete lib;
             lib = NULL;
         }

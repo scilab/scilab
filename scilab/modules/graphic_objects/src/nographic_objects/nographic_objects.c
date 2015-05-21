@@ -80,7 +80,37 @@ BOOL setGraphicObjectProperty(int iUID, const int _iPropertyName, void const* _p
     return FALSE;
 }
 /*--------------------------------------------------------------------------*/
+BOOL setGraphicObjectPropertyAndNoWarn(int iUID, const int _iPropertyName, void const* _pvValue, enum _ReturnType_ _valueTtype, int numElements)
+{
+    return FALSE;
+}
+/*--------------------------------------------------------------------------*/
 void setGraphicObjectRelationship(int iUID, int iUID2)
 {
+}
+/*--------------------------------------------------------------------------*/
+long getHandle(int UID)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createFigure(int iDockable, int iMenubarType, int iToolbarType, int iDefaultAxes, int iVisible)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createNewFigureWithAxes(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getObjectFromHandle(void)
+{
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int getValidDefaultFigureId(void)
+{
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

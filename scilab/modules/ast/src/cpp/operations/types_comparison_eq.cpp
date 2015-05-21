@@ -2690,6 +2690,55 @@ InternalType* compequal_M_M<Sparse, Sparse, SparseBool>(Sparse* _pL, Sparse* _pR
         return new Bool(false);
     }
 
+    //int nnzL = static_cast<int>(_pL->nonZeros());
+    //int rowL = _pL->getRows();
+    //int colL = _pL->getCols();
+    //std::vector<int> rowcolL(nnzL * 2, 0);
+    //_pL->outputRowCol(rowcolL.data());
+
+    //int nnzR = static_cast<int>(_pR->nonZeros());
+    //int rowR = _pR->getRows();
+    //int colR = _pR->getCols();
+    //std::vector<int> rowcolR(nnzR * 2, 0);
+    //_pR->outputRowCol(rowcolR.data());
+
+    //int row = std::max(rowL, rowR);
+    //int col = std::max(colL, colR);
+
+    ////create a boolean sparse matrix with dims of sparses
+    //types::SparseBool* ret = new types::SparseBool(row, col);
+    //ret->setTrue(false);
+
+    ////set %f in each pL values
+    //for (int i = 0; i < nnzL; ++i)
+    //{
+    //    ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, false, false);
+    //}
+
+    ////set _pR[i] == _pL[i] for each _pR values
+    //if(_pL->isComplex() || _pR->isComplex())
+    //{
+    //    for (int i = 0; i < nnzR; ++i)
+    //    {
+    //        std::complex<double> l = _pL->getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+    //        std::complex<double> r = _pR->getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+    //        ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l == r, false);
+    //    }
+    //}
+    //else
+    //{
+    //    for (int i = 0; i < nnzR; ++i)
+    //    {
+    //        double l = _pL->get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+    //        double r = _pR->get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+    //        ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l == r, false);
+    //    }
+    //}
+
+    //ret->finalize();
+    //return ret;
+
+
     return _pR->newEqualTo(*_pL);
 }
 

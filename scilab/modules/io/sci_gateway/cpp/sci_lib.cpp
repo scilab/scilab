@@ -54,15 +54,31 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     wchar_t* pstPath = pS->get(0);
     wchar_t* pwstPath = expandPathVariableW(pstPath);
-    Library* lib = loadlib(pwstPath, false, false);
+    int err = 0;
+    Library* lib = loadlib(pwstPath, &err, false, false);
     FREE(pwstPath);
 
-    if (lib == NULL)
+    switch (err)
     {
-        char* path = wide_string_to_UTF8(pstPath);
-        Scierror(999, "File %s does not exist or read access denied.", path);
-        FREE(path);
-        return Function::Error;
+        case 0 :
+            //no error
+            break;
+        case 1:
+        {
+            char* pstPath = wide_string_to_UTF8(pwstPath);
+            Scierror(999, _("%s: %s is not a valid module file.\n"), "lib", pstPath);
+            FREE(pstPath);
+            return Function::Error;
+        }
+        case 2:
+        {
+            Scierror(999, "%s: %s", "lib", _("Redefining permanent variable.\n"));
+            return Function::Error;
+        }
+        default:
+        {
+            //nothing
+        }
     }
 
     out.push_back(lib);

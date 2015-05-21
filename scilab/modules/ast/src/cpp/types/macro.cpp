@@ -406,12 +406,12 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     return RetVal;
 }
 
-std::list<symbol::Variable*>* Macro::inputs_get()
+std::list<symbol::Variable*>* Macro::getInputs()
 {
     return m_inputArgs;
 }
 
-std::list<symbol::Variable*>* Macro::outputs_get()
+std::list<symbol::Variable*>* Macro::getOutputs()
 {
     return m_outputArgs;
 }
@@ -443,7 +443,7 @@ bool Macro::operator==(const InternalType& it)
     types::Macro* pRight = const_cast<InternalType &>(it).getAs<types::Macro>();
 
     //check inputs
-    pInput = pRight->inputs_get();
+    pInput = pRight->getInputs();
     if (pInput->size() != m_inputArgs->size())
     {
         return false;
@@ -462,7 +462,7 @@ bool Macro::operator==(const InternalType& it)
     }
 
     //check outputs
-    pOutput = pRight->outputs_get();
+    pOutput = pRight->getOutputs();
     if (pOutput->size() != m_outputArgs->size())
     {
         return false;

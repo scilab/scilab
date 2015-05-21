@@ -53,7 +53,9 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
 static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
-int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx)
+static const std::string fname("import_from_hdf5");
+
+int sci_import_from_hdf5_v1(char *fn, int* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -83,7 +85,7 @@ int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx)
             FREE(pstFilename);
         }
 
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), 2);
         return 1;
     }
 
@@ -93,7 +95,7 @@ int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx)
     if (iFile < 0)
     {
         FREE(pstExpandedFilename);
-        Scierror(999, _("%s: Unable to open file: %s\n"), fname, pstFilename);
+        Scierror(999, _("%s: Unable to open file: %s\n"), fname.data(), pstFilename);
         FREE(pstFilename);
         return 1;
     }
@@ -121,7 +123,7 @@ int sci_import_from_hdf5_v1(char *fname, int* pvApiCtx)
                     FREE(pstVarName);
                 }
 
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, i + 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), i + 1);
                 return 1;
             }
 

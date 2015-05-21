@@ -31,27 +31,35 @@ namespace types
 Cell::Cell()
 {
     int piDims[2] = {0, 0};
-    createCell(2, piDims);
+    createCell(2, piDims, nullptr);
 }
 
-Cell::Cell(int _iRows, int _iCols)
+Cell::Cell(int _iRows, int _iCols, InternalType** data)
 {
     int piDims[2] = {_iRows, _iCols};
-    createCell(2, piDims);
+    createCell(2, piDims, data);
 }
 
-Cell::Cell(int _iDims, int* _piDims)
+Cell::Cell(int _iDims, int* _piDims, InternalType** data)
 {
-    createCell(_iDims, _piDims);
+    createCell(_iDims, _piDims, data);
 }
 
-void Cell::createCell(int _iDims, int* _piDims)
+void Cell::createCell(int _iDims, int* _piDims, InternalType** data)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
     for (int i = 0; i < m_iSizeMax; i++)
     {
-        m_pRealData[i] = Double::Empty();
+        if (data == nullptr)
+        {
+            m_pRealData[i] = Double::Empty();
+        }
+        else
+        {
+            m_pRealData[i] = data[i];
+        }
+
         m_pRealData[i]->IncreaseRef();
     }
 #ifndef NDEBUG
