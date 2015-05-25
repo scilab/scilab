@@ -78,8 +78,15 @@ int sci_save(char *fname, void *pvApiCtx)
                     //try to get variable by name
                     sciErr = getVarAddressFromName(pvApiCtx, pstVarI, &piAddrI2);
                     freeAllocatedSingleString(pstVarI);
+
+                    if (sciErr.iErr != 0)
+                    {
+                        Scierror(999, _("Wrong value for argument #%d: Valid variable name expected.\n"), 3);
+                        return 1;
+                    }
+
                     pstVarI = NULL;
-                    if (sciErr.iErr || piAddrI2 == NULL)
+                    if (piAddrI2 == NULL)
                     {
                         // Try old save because here the input variable can be of type "string" but not a variable name
                         // Ex: a=""; save(filename, a);
