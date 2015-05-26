@@ -14,6 +14,13 @@
 #include "threadmanagement.hxx"
 #include "configvariable.hxx"
 
+extern "C"
+{
+#include "BrowseVarManager.h"
+#include "FileBrowserChDir.h"
+#include "scicurdir.h"
+}
+
 using namespace ast;
 
 void *Runner::launch(void *args)
@@ -43,6 +50,20 @@ void *Runner::launch(void *args)
         ConfigVariable::whereErrorToString(ostr);
         scilabErrorW(ostr.str().c_str());
         ConfigVariable::resetWhereError();
+    }
+
+    if (getScilabMode() != SCILAB_NWNI)
+    {
+        char *cwd = NULL;
+        int err = 0;
+
+        UpdateBrowseVar();
+        cwd = scigetcwd(&err);
+        if (cwd)
+        {
+            FileBrowserChDir(cwd);
+            FREE(cwd);
+        }
     }
 
     // reset error state when new prompt occurs

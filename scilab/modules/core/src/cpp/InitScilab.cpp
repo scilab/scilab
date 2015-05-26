@@ -522,22 +522,6 @@ void* scilabReadAndExecCommand(void* param)
 
         processCommand(_pSEI);
         FREE(command);
-
-        if (getScilabMode() != SCILAB_NWNI)
-        {
-
-            char *cwd = NULL;
-
-            int err = 0;
-
-            UpdateBrowseVar();
-            cwd = scigetcwd(&err);
-            if (cwd)
-            {
-                FileBrowserChDir(cwd);
-                FREE(cwd);
-            }
-        }
     }
 
     return NULL;
