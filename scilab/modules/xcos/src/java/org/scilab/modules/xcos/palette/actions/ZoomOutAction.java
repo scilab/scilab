@@ -1,0 +1,69 @@
+/*
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Marcos CARDINOT
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
+
+package org.scilab.modules.xcos.palette.actions;
+
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
+
+import javax.swing.JButton;
+
+import org.scilab.modules.graph.ScilabGraph;
+import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.graph.utils.ScilabGraphMessages;
+
+/**
+ * Zoom Out Management
+ * Decreases the icon size
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
+ */
+@SuppressWarnings(value = { "serial" })
+public class ZoomOutAction extends DefaultAction {
+    /** Name of the action */
+    public static final String NAME = ScilabGraphMessages.ZOOM_OUT;
+    /** Icon name of the action */
+    public static final String SMALL_ICON = "zoom-out";
+    /** Mnemonic key of the action */
+    public static final int MNEMONIC_KEY = KeyEvent.VK_SUBTRACT;
+    /** Accelerator key for the action */
+    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+
+    /**
+     * Constructor
+     *
+     * @param scilabGraph corresponding Scilab Graph
+     */
+    public ZoomOutAction(ScilabGraph scilabGraph) {
+        super(scilabGraph);
+    }
+
+    /**
+     * Create a button for a graph toolbar
+     *
+     * @param scilabGraph corresponding Scilab Graph
+     * @return the button
+     */
+    public static JButton createButton(ScilabGraph scilabGraph) {
+        return createButton(scilabGraph, ZoomOutAction.class);
+    }
+
+    /**
+     * Action associated
+     *
+     * @param e the event
+     */
+    @Override
+    public void actionPerformed(ActionEvent e) {
+    	// TODO
+    }
+}
