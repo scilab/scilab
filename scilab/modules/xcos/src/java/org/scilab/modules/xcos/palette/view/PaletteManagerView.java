@@ -40,6 +40,8 @@ import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
+import org.scilab.modules.xcos.palette.actions.ZoomInAction;
+import org.scilab.modules.xcos.palette.actions.ZoomOutAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -166,6 +168,11 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         final ToolBar toolbar = ScilabToolBar.createToolBar();
         SwingScilabToolBar stb = (SwingScilabToolBar) toolbar.getAsSimpleToolBar();
         stb.add(LoadAsPalAction.createButton(null));
+
+        stb.addSeparator();
+
+        stb.add(ZoomInAction.createButton(null));
+        stb.add(ZoomOutAction.createButton(null));
 
         setToolBar(toolbar);
 

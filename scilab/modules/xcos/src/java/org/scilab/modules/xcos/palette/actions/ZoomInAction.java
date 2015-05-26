@@ -25,6 +25,7 @@ import org.scilab.modules.graph.utils.ScilabGraphMessages;
 /**
  * Zoom In Management
  * Increases the icon size
+ * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
 @SuppressWarnings(value = { "serial" })
 public class ZoomInAction extends DefaultAction {
