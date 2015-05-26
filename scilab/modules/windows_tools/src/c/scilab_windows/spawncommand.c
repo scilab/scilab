@@ -498,10 +498,6 @@ int CallWindowsShellW(wchar_t* _pstCommand)
         return 1;
     }
 
-    saAttr.nLength              = sizeof(SECURITY_ATTRIBUTES);
-    saAttr.bInheritHandle       = TRUE;
-    saAttr.lpSecurityDescriptor = NULL;
-
     ZeroMemory(&piProcInfo, sizeof(PROCESS_INFORMATION));
 
     ZeroMemory(&siStartInfo, sizeof(STARTUPINFO));
@@ -526,7 +522,7 @@ int CallWindowsShellW(wchar_t* _pstCommand)
     CmdLine     = (wchar_t*)MALLOC(iCmdSize * sizeof(wchar_t));
     os_swprintf(CmdLine, iCmdSize, L"%ls /a /c \"%ls\" && echo DOS>%ls", shellCmd, _pstCommand, FileTMPDir);
 
-    if (CreateProcessW(NULL, CmdLine, NULL, NULL, TRUE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
+    if (CreateProcessW(NULL, CmdLine, NULL, NULL, FALSE, 0, NULL, NULL, &siStartInfo, &piProcInfo))
     {
         WaitForSingleObject(piProcInfo.hProcess, INFINITE);
 

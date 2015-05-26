@@ -165,7 +165,20 @@ void ParserSingleInstance::parse(char *command)
         fclose(fileLocker);
     }
 
-    fopen_s(&yyin, szFile, "w");
+    errno_t err;
+    err = fopen_s(&yyin, szFile, "w");
+    if (err)
+    {
+        ParserSingleInstance::setExitStatus(Parser::Failed);
+        ParserSingleInstance::resetErrorMessage();
+        wchar_t szError[bsiz];
+        wchar_t* wszFile = to_wide_string(szFile);
+        os_swprintf(szError, bsiz, _W("%ls: Cannot open file %ls.\n").c_str(), L"parser", wszFile);
+        FREE(wszFile);
+        appendErrorMessage(szError);
+        return;
+    }
+
     fwrite(command, sizeof(char), len, yyin);
     fclose(yyin);
     fopen_s(&yyin, szFile, "r");
