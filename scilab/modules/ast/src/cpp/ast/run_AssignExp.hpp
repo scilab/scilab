@@ -252,15 +252,29 @@ namespace ast {
                             throw ast::ScilabError(os.str(), 999, pCall->getLocation());
                         }
 
+                        // prevent delete after extractFullMatrix
+                        // called in insertionCall when pITR is an ImplicitList
+                        pITR->IncreaseRef();
+
                         typed_list* currentArgs = GetArgumentList(pCall->getArgs());
                         pOut = insertionCall(e, currentArgs, pIT, pITR);
+
+                        pITR->DecreaseRef();
+
+                        // call killMe on all arguments
+                        cleanOut(*currentArgs);
+                        delete currentArgs;
+
+                        // insertion have done, call killMe on pITR
+                        pITR->killMe();
+
                         if (pOut == NULL)
                         {
                             std::wostringstream os;
                             os << _W("Submatrix incorrectly defined.\n");
                             throw ast::ScilabError(os.str(), 999, e.getLocation());
                         }
-                        delete currentArgs;
+
 
                         //update variable with new value
                         if (pOut != pIT)
