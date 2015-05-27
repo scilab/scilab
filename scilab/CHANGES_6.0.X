@@ -21,6 +21,8 @@ File input/output
 
 * mclearerr now returns a flag indicating the file identifier validity.
 
+* fileinfo can now take a row vector as input.
+
 
 Removed functions (previously declared as obsolete)
 ====================================================
