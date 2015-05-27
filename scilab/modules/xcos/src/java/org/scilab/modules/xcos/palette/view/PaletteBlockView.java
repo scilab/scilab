@@ -14,8 +14,10 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
+import java.awt.Image;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
@@ -43,6 +45,8 @@ public final class PaletteBlockView extends JLabel {
 
     private PaletteBlockCtrl controller;
 
+    private ImageIcon originalIcon;
+
     /**
      * Default constructor
      *
@@ -53,6 +57,7 @@ public final class PaletteBlockView extends JLabel {
         super(controller.getModel().getName(), controller.getModel()
               .getLoadedIcon(), SwingConstants.CENTER);
         this.controller = controller;
+        this.originalIcon = (ImageIcon) getIcon();
         initComponents();
     }
 
@@ -88,6 +93,17 @@ public final class PaletteBlockView extends JLabel {
         } else {
             setBorder(NON_SELECTED_BORDER);
         }
+    }
+
+    /**
+     * Set the icon size
+     * @param scale new scale
+     */
+    public void setIconSize(float scale) {
+        int width = (int) (this.originalIcon.getIconWidth() * scale);
+        int height = (int) (this.originalIcon.getIconHeight() * scale);
+        setIcon(new ImageIcon(this.originalIcon.getImage().getScaledInstance(
+        		width, height, Image.SCALE_SMOOTH)));
     }
 
     /**
