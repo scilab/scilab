@@ -111,13 +111,15 @@ bool Context::clearCurrentScope(bool _bClose)
                 types::InternalType * pIT = pSV->m_pIT;
                 if (pIT->isLibrary())
                 {
+                    // at scilab exit, pIT have a ref == 2 because
+                    // it is contains in libraries and variables.
+                    // call remove will set ref to 1 then the next
+                    // pIT->DecreaseRef(); pIT->killMe(); will delete it.
                     libraries.remove(var.first, m_iLevel);
                 }
-                else
-                {
-                    pIT->DecreaseRef();
-                    pIT->killMe();
-                }
+
+                pIT->DecreaseRef();
+                pIT->killMe();
 
                 var.second->pop();
                 delete pSV;

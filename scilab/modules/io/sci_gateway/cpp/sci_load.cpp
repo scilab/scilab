@@ -78,6 +78,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
                 return Function::Error;
             }
             FREE(pwstPathLib);
+            lib->killMe();
         }
     }
     else

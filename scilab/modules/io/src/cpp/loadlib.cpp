@@ -112,6 +112,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
                 xmlXPathFreeContext(xpathCtxt);
             }
             xmlXPathFreeObject(xpathObj);
+            delete lib;
             return NULL;
         }
     }
@@ -194,7 +195,6 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
             delete lib;
             lib = NULL;
         }
-
     }
 
     xmlFreeDoc(doc);
