@@ -11,7 +11,8 @@ if with_modelica_compiler() then
     _("Chaos Modelica")         , "ModelicaBlocks/modelica_chaos.dem.sce"          ; ..
     _("Hydraulics blocks")      , "ModelicaBlocks/modelica_hydraulics.dem.sce"     ; ..
     _("RLC circuit")            , "ModelicaBlocks/modelica_rlc_circuit.dem.sce"    ; ..
-    _("Heat conduction in a rod")              , "ModelicaBlocks/modelica_heat_conduction.dem.sce"
+    _("Heat conduction in a rod")              , "ModelicaBlocks/modelica_heat_conduction.dem.sce"; ..
+    _("Second order rotational system")        , "ModelicaBlocks/modelica_rotational_system.dem.sce"
     ];
 
     subdemolist(:,2) = SCI + "/modules/xcos/demos/" + subdemolist(:,2);
