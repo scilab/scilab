@@ -35,6 +35,102 @@ public final class XcosConstants extends ScilabGraphConstants {
     /** Define the maximum number of char that might be represented as style */
     public static final int MAX_CHAR_IN_STYLE = 24;
 
+    /** the size of the palette block **/
+    public enum PaletteBlockSize {
+        /** small size **/
+        SMALL,
+        /** normal size **/
+        NORMAL,
+        /** large size **/
+        LARGE;
+
+        /**
+         * @return font size
+         */
+        public int getFontSize() {
+            switch (this) {
+                case SMALL:
+                    return 11;
+                case NORMAL:
+                    return 12;
+                case LARGE:
+                	return 13;
+                default:
+                    return 12;
+            }
+        }
+
+        /**
+         * @return icon scale
+         */
+        public float getIconScale() {
+            switch (this) {
+                case SMALL:
+                    return 0.75f;
+                case NORMAL:
+                    return 1.0f;
+                case LARGE:
+                	return 1.25f;
+                default:
+                    return 1.0f;
+            }
+        }
+
+        /**
+         * @return block width
+         */
+        public float getBlockWidth() {
+            switch (this) {
+                case SMALL:
+                    return 70;
+                case NORMAL:
+                    return 100;
+                case LARGE:
+                	return 125;
+                default:
+                    return 100;
+            }
+        }
+
+        /**
+         * @return block height
+         */
+        public float getBlockHeight() {
+            switch (this) {
+                case SMALL:
+                    return 70;
+                case NORMAL:
+                    return 100;
+                case LARGE:
+                	return 125;
+                default:
+                    return 100;
+            }
+        }
+
+        /**
+         * Get the next size
+         * @return enum or null if there is no next
+         */
+        public PaletteBlockSize next() {
+            if (this.ordinal() < values().length - 1) {
+                return values()[ordinal() + 1];
+            }
+            return null;
+        }
+
+        /**
+         * Get the previous size
+         * @return enum or null if there is no previous
+         */
+        public PaletteBlockSize previous() {
+            if (this.ordinal() > 0) {
+                return values()[ordinal() - 1];
+            }
+            return null;
+        }
+	}
+
     /* Events */
     /**
      * When a block changed

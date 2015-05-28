@@ -13,6 +13,7 @@
 package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.DropMode;
 import javax.swing.JPanel;
@@ -27,7 +28,11 @@ import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
 import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
+import org.scilab.modules.xcos.palette.model.Custom;
+import org.scilab.modules.xcos.palette.model.PaletteNode;
+import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * The content pane for the block view
@@ -35,7 +40,9 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 @SuppressWarnings(value = { "serial" })
 public class PaletteManagerPanel extends JSplitPane {
 
+    private static XcosConstants.PaletteBlockSize currentSize;
     private PaletteManager controller;
+    private JTree tree;
 
     /**
      * Default constructor
@@ -57,11 +64,13 @@ public class PaletteManagerPanel extends JSplitPane {
         JScrollPane panel = new JScrollPane();
         initJScrollPane(panel);
 
+        currentSize = XcosConstants.PaletteBlockSize.NORMAL;
+
         // Set default left component
         JPanel rootPalette = new JPanel();
 
         TreeNode root = controller.getRoot();
-        JTree tree = new JTree(new PaletteTreeModel(root));
+        tree = new JTree(new PaletteTreeModel(root));
         JScrollPane treeScrollPane = new JScrollPane(tree);
 
         /** Setup tree */
@@ -80,6 +89,45 @@ public class PaletteManagerPanel extends JSplitPane {
         setLeftComponent(treeScrollPane);
         panel.setViewportView(rootPalette);
         setRightComponent(panel);
+    }
+
+    /**
+     * Zoom
+     * @param newSize new paletteblocksize enum
+     */
+    private void zoom(PaletteBlockSize newSize) {
+        if (newSize == null) {
+            return;
+        }
+
+        try {
+            // check what's being displayed on the right panel
+            JScrollPane jspR = (JScrollPane) this.getRightComponent();
+            PaletteNode node = (PaletteNode) tree.getLastSelectedPathComponent();
+
+            if (node instanceof PreLoaded) {
+                JPanel panel = (JPanel) jspR.getViewport().getComponent(0);
+                for (Component component : panel.getComponents()) {
+                    ((PaletteBlockView) component).setIconSize(newSize.getIconScale());
+                }
+            } else if (node instanceof Custom) {
+                // TODO
+            } else {
+                return;
+            }
+            currentSize = newSize;
+        } catch (NullPointerException e) {
+        }
+    }
+
+    /** zoom in **/
+    public void zoomIn() {
+        zoom(currentSize.next());
+    }
+
+    /** zoom out **/
+    public void zoomOut() {
+        zoom(currentSize.previous());
     }
 
     /**

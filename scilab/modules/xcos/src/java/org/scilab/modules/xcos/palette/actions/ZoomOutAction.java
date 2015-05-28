@@ -21,6 +21,7 @@ import javax.swing.JButton;
 import org.scilab.modules.graph.ScilabGraph;
 import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 /**
  * Zoom Out Management
@@ -37,6 +38,8 @@ public class ZoomOutAction extends DefaultAction {
     public static final int MNEMONIC_KEY = KeyEvent.VK_SUBTRACT;
     /** Accelerator key for the action */
     public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+    /** PaletteManagerView instance **/
+    private static PaletteManagerView paletteManagerView;
 
     /**
      * Constructor
@@ -51,9 +54,11 @@ public class ZoomOutAction extends DefaultAction {
      * Create a button for a graph toolbar
      *
      * @param scilabGraph corresponding Scilab Graph
+     * @param view PaletteManagerView instance
      * @return the button
      */
-    public static JButton createButton(ScilabGraph scilabGraph) {
+    public static JButton createButton(ScilabGraph scilabGraph, PaletteManagerView view) {
+        paletteManagerView = view;
         return createButton(scilabGraph, ZoomOutAction.class);
     }
 
@@ -64,6 +69,9 @@ public class ZoomOutAction extends DefaultAction {
      */
     @Override
     public void actionPerformed(ActionEvent e) {
-    	// TODO
+        try {
+            paletteManagerView.getPanel().zoomOut();
+        } catch (NullPointerException err) {
+        }
     }
 }

@@ -150,6 +150,10 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
     /** Instantiate and setup all the components */
     private void initComponents() {
+        /* Create the content pane */
+        panel = new PaletteManagerPanel(getController());
+        setContentPane(panel);
+
         /* Create the menu bar */
         final MenuBar menuBar = ScilabMenuBar.createMenuBar();
 
@@ -171,14 +175,10 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
         stb.addSeparator();
 
-        stb.add(ZoomInAction.createButton(null));
-        stb.add(ZoomOutAction.createButton(null));
+        stb.add(ZoomInAction.createButton(null, this));
+        stb.add(ZoomOutAction.createButton(null, this));
 
         setToolBar(toolbar);
-
-        /* Create the content pane */
-        panel = new PaletteManagerPanel(getController());
-        setContentPane(panel);
 
         /* Create the infobar */
         setInfoBar(ScilabTextBox.createTextBox());
