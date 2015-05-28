@@ -8,6 +8,8 @@ Scilab Bug Fixes
 
 * Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
 
+* Bug #13881 fixed - datatipRemoveAll did not work.
+
 
 
                      Changes between version 5.5.1 and 5.5.2
@@ -21,6 +23,7 @@ Graphics Evolutions
 * New datatips positions are now available: "left", "right", "upper", "lower".
 
 * New contour2dm function.
+
 
 Toolbox Skeleton
 =================
