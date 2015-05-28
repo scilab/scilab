@@ -155,7 +155,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
 
     try
     {
-        if (pValue->isGenericType())
+        if (pValue->isGenericType() || pValue->isUserType())
         {
             ok = pValue->getAs<GenericType>()->extract(wstField, pReturn);
         }
