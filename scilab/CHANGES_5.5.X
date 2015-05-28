@@ -8,6 +8,8 @@ Scilab Bug Fixes
 
 * Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
 
+* Bug #13866 fixed - There were some issues with FFTW3 library.
+
 * Bug #13881 fixed - datatipRemoveAll did not work.
 
 
