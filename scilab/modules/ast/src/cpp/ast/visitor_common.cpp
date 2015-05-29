@@ -2346,6 +2346,10 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     {
                         pRet = _pVar;
                     }
+                    else
+                    {
+                        throw ast::ScilabMessage();
+                    }
                 }
             }
             else
