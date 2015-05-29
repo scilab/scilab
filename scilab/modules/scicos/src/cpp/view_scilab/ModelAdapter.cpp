@@ -437,6 +437,11 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
+        if (*it == 0ll)
+        {
+            continue; // Rule out mlists (Deleted or Annotations)
+        }
+
         if (controller.getObject(*it)->kind() == BLOCK) // Rule out Annotations and Links
         {
             std::string name;
