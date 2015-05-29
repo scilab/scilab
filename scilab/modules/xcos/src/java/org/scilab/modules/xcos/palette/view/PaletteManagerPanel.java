@@ -78,7 +78,7 @@ public class PaletteManagerPanel extends JSplitPane {
             TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addMouseListener(new PaletteManagerMouseListener());
         tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(
-                                          panel));
+                                          this, panel));
 
         tree.setEditable(false);
         tree.setDragEnabled(true);
@@ -89,6 +89,14 @@ public class PaletteManagerPanel extends JSplitPane {
         setLeftComponent(treeScrollPane);
         panel.setViewportView(rootPalette);
         setRightComponent(panel);
+    }
+
+    /**
+     * Get the current PaletteBlockSize
+     * @return current PaletteBlockSize
+     */
+    public PaletteBlockSize getCurrentSize() {
+        return currentSize;
     }
 
     /**

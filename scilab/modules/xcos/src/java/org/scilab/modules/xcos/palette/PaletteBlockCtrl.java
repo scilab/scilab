@@ -45,6 +45,7 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
@@ -75,16 +76,17 @@ public final class PaletteBlockCtrl {
 
     private final PaletteBlock model;
     private final PaletteBlockView view;
+    private PaletteBlockSize palBlockSize;
 
     private transient WeakReference<Transferable> transferable = new WeakReference<Transferable>(null);
 
     /**
      * Default constructor
-     *
-     * @param model
-     *            the block data
+     * @param palBlockSize palette block size
+     * @param model the block data
      */
-    public PaletteBlockCtrl(PaletteBlock model) {
+    public PaletteBlockCtrl(PaletteBlockSize palBlockSize, PaletteBlock model) {
+        this.palBlockSize = palBlockSize;
         this.model = model;
         this.view = new PaletteBlockView(this);
         installListeners(this.view);
@@ -97,6 +99,13 @@ public final class PaletteBlockCtrl {
     private void installListeners(PaletteBlockView view) {
         view.addMouseListener(MOUSE_LISTENER);
         installDnd();
+    }
+
+    /**
+     * @return the paletteBlockSize
+     */
+    public PaletteBlockSize getPaletteBlockSize() {
+        return palBlockSize;
     }
 
     /**

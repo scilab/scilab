@@ -31,7 +31,9 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement the tree selection listener
@@ -39,22 +41,22 @@ import org.scilab.modules.xcos.palette.view.PaletteView;
 public class PaletteManagerTreeSelectionListener implements TreeSelectionListener {
 
     private final JScrollPane panel;
+    private PaletteManagerPanel paletteManagerPanel;
 
     /**
      * Default constructor
-     *
-     * @param panel
-     *            The default scrollpane to modify
+     * @param pmp The paletteManagerPanel instance
+     * @param panel The default scrollpane to modify
      */
-    public PaletteManagerTreeSelectionListener(JScrollPane panel) {
+    public PaletteManagerTreeSelectionListener(PaletteManagerPanel pmp,
+                                               JScrollPane panel) {
+        this.paletteManagerPanel = pmp;
         this.panel = panel;
     }
 
     /**
      * Selection handler
-     *
-     * @param tree
-     *            The source event
+     * @param tree The source event
      * @see javax.swing.event.TreeSelectionListener#valueChanged(javax.swing.event.TreeSelectionEvent)
      */
     @Override
@@ -69,6 +71,7 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
             return;
         }
 
+        PaletteBlockSize palBlockSize = paletteManagerPanel.getCurrentSize();
         JScrollPane nodeView = null;
         final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 
@@ -81,7 +84,7 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
 
             final PaletteView view = new PaletteView();
             for (PaletteBlock b : palette.getBlock()) {
-                view.add(new PaletteBlockCtrl(b).getView());
+                view.add(new PaletteBlockCtrl(palBlockSize, b).getView());
             }
 
             panel.setViewportView(view);

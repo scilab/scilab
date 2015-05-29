@@ -25,6 +25,7 @@ import javax.swing.border.Border;
 import org.flexdock.plaf.common.border.ShadowBorder;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * The palette block view
@@ -32,10 +33,6 @@ import org.scilab.modules.xcos.utils.XcosConstants;
 @SuppressWarnings(value = { "serial" })
 public final class PaletteBlockView extends JLabel {
 
-    private static final Dimension PREFERRED_SIZE = new Dimension(
-        XcosConstants.PALETTE_BLOCK_WIDTH,
-        XcosConstants.PALETTE_BLOCK_HEIGHT);
-    private static final int DEFAULT_FONT_SIZE = 12;
     private static final int DEFAULT_ICON_TEXT_GAP = 5;
 
     private static final Border SELECTED_BORDER = new ShadowBorder();
@@ -49,27 +46,30 @@ public final class PaletteBlockView extends JLabel {
 
     /**
      * Default constructor
-     *
-     * @param controller
-     *            the associated controller
+     * @param controller The associated controller
      */
     public PaletteBlockView(PaletteBlockCtrl controller) {
         super(controller.getModel().getName(), controller.getModel()
               .getLoadedIcon(), SwingConstants.CENTER);
         this.controller = controller;
         this.originalIcon = (ImageIcon) getIcon();
-        initComponents();
+        initComponents(controller.getPaletteBlockSize());
     }
 
-    /** Set up the graphical properties */
-    private void initComponents() {
-        setPreferredSize(PREFERRED_SIZE);
+    /**
+     * Set up the graphical properties
+     * @param palBlockSize The PaletteBlockSize
+     */
+    private void initComponents(PaletteBlockSize palBlockSize) {
         setSelectedUI(false);
-        setFont(new Font(getFont().getFamily(), 0, DEFAULT_FONT_SIZE));
+        setFont(new Font(getFont().getFamily(), 0, palBlockSize.getFontSize()));
+        setPreferredSize(new Dimension(palBlockSize.getBlockWidth(),
+                                       palBlockSize.getBlockHeight()));
 
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setIconTextGap(DEFAULT_ICON_TEXT_GAP);
+        setIconSize(palBlockSize.getIconScale());
 
         final String text = controller.getModel().getName();
         setToolTipText(text);

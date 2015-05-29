@@ -79,7 +79,7 @@ public final class XcosConstants extends ScilabGraphConstants {
         /**
          * @return block width
          */
-        public float getBlockWidth() {
+        public int getBlockWidth() {
             switch (this) {
                 case SMALL:
                     return 70;
@@ -95,7 +95,7 @@ public final class XcosConstants extends ScilabGraphConstants {
         /**
          * @return block height
          */
-        public float getBlockHeight() {
+        public int getBlockHeight() {
             switch (this) {
                 case SMALL:
                     return 70;
