@@ -66,8 +66,15 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         if ( nt <> 3 ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
         end
-        [gate,names,cppCompilation] = new_names(table);
+
         global cppCompilation;
+        if isempty(cppCompilation) then
+            cppCompilation = %f;
+        end
+
+        [gate,names,cpp] = new_names(table);
+        cppCompilation = cppCompilation | cpp;
+
         //generate cpp interface file
         if  cppCompilation then
             t = [
@@ -155,7 +162,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "";
         "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(wchar_t* _pwstFuncName);";
         "";
-        gate(:, 2);
+        unique(gate(:, 2));
         "";
         "#endif /* __" + TNAME + "_GW_HXX__ */"];
 
@@ -182,7 +189,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "";
         "#include ""c_gateway_prototype.h""";
         "";
-        gate(:, 1);
+        unique(gate(:, 1));
         "";
         "#endif /* __" + TNAME + "_GW_H__ */"];
 
