@@ -63,8 +63,7 @@ public final class PaletteBlockView extends JLabel {
     private void initComponents(PaletteBlockSize palBlockSize) {
         setSelectedUI(false);
         setFontSize(palBlockSize.getFontSize());
-        setPreferredSize(new Dimension(palBlockSize.getBlockWidth(),
-                                       palBlockSize.getBlockHeight()));
+        setPreferredSize(palBlockSize.getBlockDimension());
 
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);

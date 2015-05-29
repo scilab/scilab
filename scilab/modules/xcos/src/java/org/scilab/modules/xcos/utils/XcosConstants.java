@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.utils;
 
+import java.awt.Dimension;
+
 import org.scilab.modules.graph.utils.ScilabGraphConstants;
 
 /**
@@ -43,6 +45,10 @@ public final class XcosConstants extends ScilabGraphConstants {
         NORMAL,
         /** large size **/
         LARGE;
+
+        private static final Dimension DIM_SMALL = new Dimension(75, 75);
+        private static final Dimension DIM_NORMAL = new Dimension(100, 100);
+        private static final Dimension DIM_LARGE = new Dimension(120, 120);
 
         /**
          * @return font size
@@ -77,34 +83,18 @@ public final class XcosConstants extends ScilabGraphConstants {
         }
 
         /**
-         * @return block width
+         * @return block dimension (width and height)
          */
-        public int getBlockWidth() {
+        public Dimension getBlockDimension() {
             switch (this) {
                 case SMALL:
-                    return 70;
+                    return DIM_SMALL;
                 case NORMAL:
-                    return 100;
+                    return DIM_NORMAL;
                 case LARGE:
-                	return 125;
+                    return DIM_LARGE;
                 default:
-                    return 100;
-            }
-        }
-
-        /**
-         * @return block height
-         */
-        public int getBlockHeight() {
-            switch (this) {
-                case SMALL:
-                    return 70;
-                case NORMAL:
-                    return 100;
-                case LARGE:
-                	return 125;
-                default:
-                    return 100;
+                    return DIM_NORMAL;
             }
         }
 
