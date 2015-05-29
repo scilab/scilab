@@ -93,12 +93,8 @@ Struct::Struct(Struct *_oStructCopyMe)
     create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
     for (int i = 0 ; i < getSize() ; i++)
     {
-        m_pRealData[i] = NULL;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
-    {
         pIT[i] = _oStructCopyMe->get(i)->clone();
+        pIT[i]->IncreaseRef();
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
