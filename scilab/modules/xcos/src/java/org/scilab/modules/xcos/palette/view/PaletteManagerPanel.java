@@ -119,6 +119,7 @@ public class PaletteManagerPanel extends JSplitPane {
                     PaletteBlockView view = (PaletteBlockView) component; 
                     view.setIconSize(newSize.getIconScale());
                     view.setFontSize(newSize.getFontSize());
+                    view.setPreferredSize(newSize.getBlockDimension());
                 }
             } else if (node instanceof Custom) {
                 // TODO
