@@ -165,9 +165,6 @@ public class PaletteManagerPanel extends JSplitPane {
      * Setup the default layout
      */
     public void performStartUpLayout() {
-        JTree tree = (JTree) ((JScrollPane) getLeftComponent()).getViewport()
-                     .getView();
-
         /* Tree layout */
         final Object root = tree.getModel().getRoot();
         final Object firstChild = tree.getModel().getChild(root, 0);
