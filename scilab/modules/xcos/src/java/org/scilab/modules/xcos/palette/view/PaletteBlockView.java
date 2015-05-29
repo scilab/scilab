@@ -62,7 +62,7 @@ public final class PaletteBlockView extends JLabel {
      */
     private void initComponents(PaletteBlockSize palBlockSize) {
         setSelectedUI(false);
-        setFont(new Font(getFont().getFamily(), 0, palBlockSize.getFontSize()));
+        setFontSize(palBlockSize.getFontSize());
         setPreferredSize(new Dimension(palBlockSize.getBlockWidth(),
                                        palBlockSize.getBlockHeight()));
 
@@ -93,6 +93,14 @@ public final class PaletteBlockView extends JLabel {
         } else {
             setBorder(NON_SELECTED_BORDER);
         }
+    }
+
+    /**
+     * Set the font size
+     * @param fontSize font size
+     */
+    public void setFontSize(int fontSize) {
+        setFont(new Font(getFont().getFamily(), 0, fontSize));
     }
 
     /**
