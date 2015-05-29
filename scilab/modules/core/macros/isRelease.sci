@@ -6,9 +6,5 @@
 // =============================================================================
 function ret = isRelease()
     [a,b] = getversion();
-    if or(getscilabmode() == ["NWNI", "SCILAB_API"]) then
-        ret = b(4) == "release";
-    else
-        ret = b(5) == "release";
-    end
+    ret = b(4) == "release";
 endfunction
