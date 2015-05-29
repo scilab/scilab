@@ -256,6 +256,7 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="..\..\sci_gateway\cpp\sci_ctree3.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_ctree4.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_data2sig.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_diffobjs.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_duplicate.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_end_scicosim.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_coserror.cpp" />
@@ -309,7 +310,6 @@ lib /DEF:"$(ProjectDir)differential_equations_f_Import.def" /SUBSYSTEM:WINDOWS /
     <ClCompile Include="MlistGetFieldNumber.c" />
     <ClCompile Include="lsodar.c" />
     <ClCompile Include="ddaskr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_diffobjs.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree2.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree3.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_ftree4.c" />

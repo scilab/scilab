@@ -23,7 +23,6 @@
     <gateway type="0" name="sci_tree2" function="sci_tree2"/>
     <gateway type="0" name="sci_tree3" function="sci_tree3"/>
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
-    <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
@@ -34,6 +33,7 @@
     <gateway type="1" name="sci_coserror" function="coserror"/>
     <gateway type="1" name="sci_curblock" function="curblock"/>
     <gateway type="1" name="sci_data2sig" function="data2sig"/>
+    <gateway type="1" name="sci_diffobjs" function="diffobjs"/>
     <gateway type="1" name="sci_duplicate" function="duplicate"/>
     <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
     <gateway type="1" name="sci_getblocklabel" function="getblocklabel"/>
