@@ -12,66 +12,78 @@
 
 package org.scilab.modules.xcos.palette.actions;
 
-import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.KeyEvent;
+import java.lang.reflect.InvocationTargetException;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
-import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.DefaultAction;
+import org.scilab.modules.commons.gui.FindIconHelper;
+import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.graph.utils.ScilabGraphMessages;
+import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 
 /**
  * Zoom In Management
- * Increases the icon size
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-@SuppressWarnings(value = { "serial" })
-public class ZoomInAction extends DefaultAction {
-    /** Name of the action */
-    public static final String NAME = ScilabGraphMessages.ZOOM_IN;
-    /** Icon name of the action */
-    public static final String SMALL_ICON = "zoom-in";
-    /** Mnemonic key of the action */
-    public static final int MNEMONIC_KEY = KeyEvent.VK_ADD;
-    /** Accelerator key for the action */
-    public static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-    /** PaletteManagerView instance **/
-    private static PaletteManagerView paletteManagerView;
+public class ZoomInAction extends CommonCallBack {
+
+    private static final long serialVersionUID = 1L;
+    
+    private static final String LABEL = ScilabGraphMessages.ZOOM_IN;
+    private static final String ICON = FindIconHelper.findIcon("zoom-in");
 
     /**
      * Constructor
-     *
-     * @param scilabGraph corresponding Scilab Graph
      */
-    public ZoomInAction(ScilabGraph scilabGraph) {
-        super(scilabGraph);
+    public ZoomInAction() {
+        super("");
     }
 
     /**
-     * Create a button for a graph toolbar
-     *
-     * @param scilabGraph corresponding Scilab Graph
-     * @param view PaletteManagerView instance
+     * Create the associated button
      * @return the button
      */
-    public static JButton createButton(ScilabGraph scilabGraph, PaletteManagerView view) {
-        paletteManagerView = view;
-        return createButton(scilabGraph, ZoomInAction.class);
+    public static JButton createPushButton() {
+        JButton pushButton = new JButton();
+        ScilabLAF.setDefaultProperties(pushButton);
+        pushButton.setIcon(new ImageIcon(ICON));
+        pushButton.setToolTipText(LABEL);
+        pushButton.addActionListener(getCallBack());
+        return pushButton;
     }
 
     /**
-     * Action associated
-     *
-     * @param e the event
+     * Create a new class instance
+     * @return the instance
+     */
+    private static CommonCallBack getCallBack() {
+        CommonCallBack callback = null;
+        try {
+            callback = ZoomInAction.class.getConstructor().newInstance();
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (InstantiationException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+        return callback;
+    }
+
+    /**
+     * Action!
+     * @see org.scilab.modules.gui.events.callback.CallBack#callBack()
      */
     @Override
-    public void actionPerformed(ActionEvent e) {
-        try {
-            paletteManagerView.getPanel().zoomIn();
-        } catch (NullPointerException err) {
-        }
+    public void callBack() {
+        PaletteManagerView.get().getPanel().zoomIn();
     }
 }
