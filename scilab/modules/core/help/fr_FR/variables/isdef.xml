@@ -73,7 +73,7 @@
         <programlisting role="example"><![CDATA[
 A = 1; B = 2; C = 3; D = 4;
 isdef(['A', 'B'; 'C', 'D'] )
-clear A, B, C, D;
+clear A B C D;
 isdef(['A', 'B'; 'C', 'D')
 
 function level1()
