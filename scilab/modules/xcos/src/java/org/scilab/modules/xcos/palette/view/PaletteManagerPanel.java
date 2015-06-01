@@ -46,6 +46,7 @@ public class PaletteManagerPanel extends JSplitPane {
 
     private static XcosConstants.PaletteBlockSize currentSize;
     private PaletteManager controller;
+    private CustomMouseWheelListener mouseWheelListener;
     private JTree tree;
 
     /**
@@ -57,6 +58,8 @@ public class PaletteManagerPanel extends JSplitPane {
     public PaletteManagerPanel(PaletteManager controller) {
         super(JSplitPane.HORIZONTAL_SPLIT);
         this.controller = controller;
+        this.mouseWheelListener = new CustomMouseWheelListener();
+        currentSize = XcosConstants.PaletteBlockSize.NORMAL;
         fillUpContentPane();
     }
 
@@ -66,9 +69,8 @@ public class PaletteManagerPanel extends JSplitPane {
     private void fillUpContentPane() {
         /** Default instances */
         JScrollPane panel = new JScrollPane();
-        initJScrollPane(panel);
-
-        currentSize = XcosConstants.PaletteBlockSize.NORMAL;
+        panel.setBackground(Color.WHITE);
+        setUpScrollBar(panel, currentSize);
 
         // Set default left component
         JPanel rootPalette = new JPanel();
@@ -113,14 +115,14 @@ public class PaletteManagerPanel extends JSplitPane {
         }
 
         try {
-            // check what's being displayed on the right panel
             JScrollPane jspR = (JScrollPane) this.getRightComponent();
+            setUpScrollBar(jspR, newSize);
+            // check what's being displayed on the right panel
             PaletteNode node = (PaletteNode) tree.getLastSelectedPathComponent();
-
             if (node instanceof PreLoaded) {
                 JPanel panel = (JPanel) jspR.getViewport().getComponent(0);
                 for (Component component : panel.getComponents()) {
-                    PaletteBlockView view = (PaletteBlockView) component; 
+                    PaletteBlockView view = (PaletteBlockView) component;
                     view.setIconSize(newSize.getIconScale());
                     view.setFontSize(newSize.getFontSize());
                     view.setPreferredSize(newSize.getBlockDimension());
@@ -146,31 +148,32 @@ public class PaletteManagerPanel extends JSplitPane {
     }
 
     /**
-     * Init the ScrollPane component
-     *
-     * @param panel
-     *            the component
+     * Setup the ScrollPane component
+     * @param jsp The component
+     * @param pbs PaletteBlockSize
      */
-    private void initJScrollPane(JScrollPane panel) {
-        panel.setBackground(Color.WHITE);
-
-        panel.getVerticalScrollBar().setBlockIncrement(
-            XcosConstants.PALETTE_BLOCK_HEIGHT
+    private void setUpScrollBar(JScrollPane jsp, PaletteBlockSize pbs) {
+        // vertical
+        jsp.getVerticalScrollBar().setBlockIncrement(
+            pbs.getBlockDimension().height
             + XcosConstants.PALETTE_VMARGIN);
-        panel.getVerticalScrollBar().setUnitIncrement(
-            XcosConstants.PALETTE_BLOCK_HEIGHT
+        jsp.getVerticalScrollBar().setUnitIncrement(
+            pbs.getBlockDimension().height
             + XcosConstants.PALETTE_VMARGIN);
-
-        panel.getHorizontalScrollBar().setBlockIncrement(
-            XcosConstants.PALETTE_BLOCK_WIDTH
+        // horizontal
+        jsp.getHorizontalScrollBar().setBlockIncrement(
+            pbs.getBlockDimension().width
             + XcosConstants.PALETTE_HMARGIN);
-        panel.getHorizontalScrollBar().setUnitIncrement(
-            XcosConstants.PALETTE_BLOCK_WIDTH
+        jsp.getHorizontalScrollBar().setUnitIncrement(
+            pbs.getBlockDimension().width
             + XcosConstants.PALETTE_HMARGIN);
 
-        MouseWheelListener mouseListener = new CustomMouseWheelListener(
-                this, panel.getVerticalScrollBar());
-        panel.addMouseWheelListener(mouseListener);
+        mouseWheelListener.setVerticalScrollBar(jsp.getVerticalScrollBar());
+
+        // make sure that this JSP has a CustomMouseWheelListener
+        if (jsp.getMouseWheelListeners().length <= 1) {
+            jsp.addMouseWheelListener(mouseWheelListener);
+        }
     }
 
     /**
@@ -195,18 +198,21 @@ public class PaletteManagerPanel extends JSplitPane {
      */
     private static final class CustomMouseWheelListener implements MouseWheelListener {
         private static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
-        private PaletteManagerPanel panel;
         private JScrollBar verticalScrollBar;
         private int unitIncrement;
 
         /**
          * Default constructor
-         * @param pmp PaletteManagerPanel instance
-         * @param verticalScrollBar VerticalScrollBar
          */
-        public CustomMouseWheelListener(PaletteManagerPanel pmp,
-                                        JScrollBar verticalScrollBar) {
-            this.panel = pmp;
+        public CustomMouseWheelListener() {
+        }
+
+        /**
+         * Set the vertical scrollbar
+         * It's important to update the unit increment
+         * @param verticalScrollBar JScrollBar
+         */
+        public void setVerticalScrollBar(JScrollBar verticalScrollBar) {
             this.verticalScrollBar = verticalScrollBar;
             this.unitIncrement = verticalScrollBar.getUnitIncrement();
         }
@@ -218,12 +224,17 @@ public class PaletteManagerPanel extends JSplitPane {
          */
         @Override
         public void mouseWheelMoved(MouseWheelEvent e) {
+            if (verticalScrollBar == null) {
+                // nothing to do!
+                return;
+            }
+
             if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
                 verticalScrollBar.setUnitIncrement(0);
                 if (e.getWheelRotation() < 0) {
-                    panel.zoomIn();
+                    PaletteManagerView.get().getPanel().zoomIn();
                 } else if (e.getWheelRotation() > 0) {
-                    panel.zoomOut();
+                    PaletteManagerView.get().getPanel().zoomOut();
                 }
             } else {
                 verticalScrollBar.setUnitIncrement(unitIncrement);
