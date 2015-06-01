@@ -234,6 +234,7 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         }
         final JTree t = get().getTree();
         final TreePath p = t.getSelectionPath();
+        boolean isExpanded = t.isExpanded(p);
 
         if (p == null) {
             updateWholeTree();
@@ -241,6 +242,11 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
             ((DefaultTreeModel) t.getModel()).reload((TreeNode) p
                     .getLastPathComponent());
             t.setSelectionPath(p);
+        }
+
+        // if the tree was expanded, ensures that it will remain expanded
+        if (isExpanded) {
+            t.expandPath(p);
         }
     }
 
