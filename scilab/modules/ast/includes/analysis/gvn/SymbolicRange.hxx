@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -44,7 +44,15 @@ public:
      * \param _start the starting value
      * \param _end the ending value
      */
-    SymbolicRange(GVN & _gvn, GVN::Value * _start, GVN::Value * _end) : gvn(&_gvn), start(_start), end(_end) { }
+    SymbolicRange(GVN * _gvn, GVN::Value * _start, GVN::Value * _end) : gvn(_gvn), start(_start), end(_end) { }
+    
+    /**
+     * \brief constructor
+     * \param _gvn the GVN to use
+     * \param _start the starting value
+     * \param _end the ending value
+     */
+    SymbolicRange(GVN & _gvn, GVN::Value * _start, GVN::Value * _end) : SymbolicRange(&_gvn, _start, _end) { }
 
     /**
      * \brief constructor
@@ -52,8 +60,25 @@ public:
      * \param _start the starting value
      * \param _end the ending value
      */
-    SymbolicRange(GVN & _gvn, double _start, double _end) : gvn(&_gvn), start(_gvn.getValue(_start)), end(_gvn.getValue(_end)) { }
+    SymbolicRange(GVN & _gvn, double _start, double _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
 
+    inline void set(GVN & _gvn, GVN::Value * _start, GVN::Value * _end)
+	{
+	    gvn = &_gvn;
+	    start = _start;
+	    end = _end;
+	}
+
+    inline GVN::Value * getStart() const
+	{
+	    return start;
+	}
+
+    inline GVN::Value * getEnd() const
+	{
+	    return end;
+	}
+    
     /**
      * \brief Get the associated GVN
      * \return the GVN
@@ -64,20 +89,12 @@ public:
     }
 
     /**
-     * \brief Invalidate this range
-     */
-    inline void invalid()
-    {
-        start = end = gvn->getInvalid();
-    }
-
-    /**
      * \brief Check if this range is valid
      * \return true if valid
      */
     inline bool isValid() const
     {
-        return start->poly->isValid() && end->poly->isValid();
+        return gvn != nullptr;
     }
 
     /**
@@ -91,17 +108,6 @@ public:
     }
 
     /**
-     * \brief Overload of the + operator
-     */
-    inline SymbolicRange operator+(const double R) const
-    {
-        GVN::Value * const val = gvn->getValue(R);
-        return SymbolicRange(gvn,
-                             gvn->getValue(OpValue::Kind::PLUS, *start, *val),
-                             gvn->getValue(OpValue::Kind::PLUS, *end, *val));
-    }
-
-    /**
      * \brief Overload of the - operator
      */
     inline SymbolicRange operator-(const SymbolicRange & R) const
@@ -109,17 +115,6 @@ public:
         return SymbolicRange(gvn,
                              gvn->getValue(OpValue::Kind::MINUS, *start, *R.end),
                              gvn->getValue(OpValue::Kind::MINUS, *end, *R.start));
-    }
-
-    /**
-     * \brief Overload of the - operator
-     */
-    inline SymbolicRange operator-(const double R) const
-    {
-        GVN::Value * const val = gvn->getValue(R);
-        return SymbolicRange(gvn,
-                             gvn->getValue(OpValue::Kind::MINUS, *start, *val),
-                             gvn->getValue(OpValue::Kind::MINUS, *end, *val));
     }
 
     /**
@@ -134,26 +129,6 @@ public:
     }
 
     /**
-     * \brief Overload of the * operator
-     */
-    inline SymbolicRange operator*(const double R) const
-    {
-        GVN::Value * const val = gvn->getValue(R);
-        if (R >= 0)
-        {
-            return SymbolicRange(gvn,
-                                 gvn->getValue(OpValue::Kind::TIMES, *start, *val),
-                                 gvn->getValue(OpValue::Kind::TIMES, *end, *val));
-        }
-        else
-        {
-            return SymbolicRange(gvn,
-                                 gvn->getValue(OpValue::Kind::TIMES, *end, *val),
-                                 gvn->getValue(OpValue::Kind::TIMES, *start, *val));
-        }
-    }
-
-    /**
      * \brief Overload of the / operator
      */
     inline SymbolicRange operator/(const SymbolicRange & R) const
@@ -162,26 +137,6 @@ public:
         return SymbolicRange(gvn,
                              gvn->getValue(OpValue::Kind::RDIV, *start, *R.start),
                              gvn->getValue(OpValue::Kind::RDIV, *end, *R.end));
-    }
-
-    /**
-     * \brief Overload of the / operator
-     */
-    inline SymbolicRange operator/(const double R) const
-    {
-        GVN::Value * const val = gvn->getValue(R);
-        if (R >= 0)
-        {
-            return SymbolicRange(gvn,
-                                 gvn->getValue(OpValue::Kind::RDIV, *start, *val),
-                                 gvn->getValue(OpValue::Kind::RDIV, *end, *val));
-        }
-        else
-        {
-            return SymbolicRange(gvn,
-                                 gvn->getValue(OpValue::Kind::RDIV, *end, *val),
-                                 gvn->getValue(OpValue::Kind::RDIV, *start, *val));
-        }
     }
 
     /**
@@ -198,33 +153,6 @@ public:
     inline bool operator!=(const SymbolicRange & R) const
     {
         return start->value != R.start->value || end->value != R.end->value;
-    }
-
-    /**
-     * \brief Overload of the + operator
-     */
-    inline friend SymbolicRange operator+(const double L, const SymbolicRange & R)
-    {
-        return R + L;
-    }
-
-    /**
-     * \brief Overload of the - operator
-     */
-    inline friend SymbolicRange operator-(const double L, const SymbolicRange & R)
-    {
-        GVN::Value * const val = gvn->getValue(R);
-        return SymbolicRange(gvn,
-                             gvn->getValue(OpValue::Kind::MINUS, *val, *end),
-                             gvn->getValue(OpValue::Kind::MINUS, *val, *start));
-    }
-
-    /**
-     * \brief Overload of the * operator
-     */
-    inline friend SymbolicRange operator*(const double L, const SymbolicRange & R)
-    {
-        return R * L;
     }
 
     /**

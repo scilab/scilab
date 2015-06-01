@@ -28,8 +28,10 @@ struct Decorator
     bool cloneData;
     bool deleteData;
     bool hasRefCount;
+    bool safeIndex;
+    bool safeInsertion;
 
-    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false) { }
+    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safeIndex(false), safeInsertion(false) { }
 
     ~Decorator()
     {
@@ -41,22 +43,47 @@ struct Decorator
         return call;
     }
 
-    inline Call & setCall(Call && call)
+    inline Call & setCall(Call * _call)
     {
-        delete this->call;
-        this->call = new Call(std::move(call));
-        return *this->call;
+	delete call;
+        call = _call;
+        return *call;
     }
 
-    inline Call & setCall(Call * call)
+    inline Call & setCall(const std::wstring & name)
     {
-        this->call = call;
-        return *this->call;
+	delete call;
+        call = new Call(name);
+        return *call;
+    }
+
+    inline Call & setCall(const std::wstring & name, const std::vector<TIType> & args)
+    {
+	delete call;
+        call = new Call(name, args);
+        return *call;
+    }
+    
+    inline Call & setCall(const std::wstring & name, const TIType & arg)
+    {
+	delete call;
+        call = new Call(name, arg);
+        return *call;
     }
 
     inline Result & setResult(Result && _res)
     {
         res = _res;
+        return res;
+    }
+
+    inline const Result & getResult() const
+    {
+        return res;
+    }
+
+    inline Result & getResult()
+    {
         return res;
     }
 
@@ -69,7 +96,9 @@ struct Decorator
         }
         out << L", Cl:" << (deco.cloneData ? L"T" : L"F")
             << L", Del:" << (deco.deleteData ? L"T" : L"F")
-            << L", RefC:" << (deco.hasRefCount ? L"T" : L"F");
+            << L", RefC:" << (deco.hasRefCount ? L"T" : L"F")
+            << L", SafeIndex:" << (deco.safeIndex ? L"T" : L"F")
+            << L", SafeInsertion:" << (deco.safeInsertion ? L"T" : L"F");
 
         return out;
     }

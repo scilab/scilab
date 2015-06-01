@@ -16,92 +16,143 @@
 
 namespace analysis
 {
-const bool PolymorphicMacroCache::getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out)
-{
-    std::vector<TIType> completeIn = PolymorphicMacroCache::getCompleteIn(*macrodef, visitor.getDM(), in);
-    MacroSignature signature(*macrodef, out.size(), completeIn);
-    MacroSignMap::iterator i = signatures.find(signature);
-    if (i == signatures.end())
+    const bool PolymorphicMacroCache::getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out)
     {
-        i = signatures.emplace(signature, 0).first;
-    }
 
-    CompleteMacroSignature & cms = i->second;
-    std::vector<GVN::Value *> values;
-    std::vector<const MultivariatePolynomial *> polys;
-    for (auto & t : completeIn)
-    {
-        if (t.isscalar())
+        // TODO: handle varargin
+        if (in.size() > macrodef->getRhs())
         {
-            GVN::Value * v = t.rows.getValue();
-            values.emplace_back(v);
-            polys.emplace_back(v->poly);
+            return false;
+        }
+
+        std::vector<TIType> completeIn;
+        if (!PolymorphicMacroCache::getCompleteIn(*macrodef, visitor, in, completeIn))
+        {
+            return false;
+        }
+
+        MacroSignature signature(*macrodef, out.size(), completeIn);
+        MacroSignMap::iterator i = signatures.find(signature);
+        if (i == signatures.end())
+        {
+            i = signatures.emplace(signature, 0).first;
+        }
+
+        CompleteMacroSignature & cms = i->second;
+        std::vector<GVN::Value *> values;
+        std::vector<const MultivariatePolynomial *> polys;
+        for (auto & t : completeIn)
+        {
+            if (t.isscalar())
+            {
+                GVN::Value * v = t.rows.getValue();
+                values.emplace_back(v);
+                polys.emplace_back(v->poly);
+            }
+            else
+            {
+                GVN::Value * v = t.rows.getValue();
+                values.emplace_back(v);
+                polys.emplace_back(v->poly);
+                v = t.cols.getValue();
+                values.emplace_back(v);
+                polys.emplace_back(v->poly);
+            }
+        }
+
+        const MacroOut * mout = cms.getOutTypes(visitor, signature, macrodef, visitor.getDM(), in.size(), completeIn, values);
+        if (mout)
+        {
+            std::vector<TIType>::iterator i = out.begin();
+            for (const auto & t : mout->tuple.types)
+            {
+                *i = t;
+                GVN::Value * Rv = getValue(t.rows.getValue(), visitor, polys, mout->maxVarId);
+                GVN::Value * Cv = getValue(t.cols.getValue(), visitor, polys, mout->maxVarId);
+                i->rows.setValue(Rv);
+                i->cols.setValue(Cv);
+                i->invalidScalar();
+                ++i;
+            }
+
+            //out.assign(mout->tuple.types.begin(), mout->tuple.types.end());
+            return true;
         }
         else
         {
-            GVN::Value * v = t.rows.getValue();
-            values.emplace_back(v);
-            polys.emplace_back(v->poly);
-            v = t.cols.getValue();
-            values.emplace_back(v);
-            polys.emplace_back(v->poly);
+            return false;
         }
     }
 
-    const MacroOut * mout = cms.getOutTypes(visitor, signature, macrodef, visitor.getDM(), in.size(), completeIn, values);
-    if (mout)
+    bool PolymorphicMacroCache::getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn)
     {
-        std::vector<TIType>::iterator i = out.begin();
-        for (const auto & t : mout->tuple.types)
+        for (const auto & ty : in)
         {
-            *i = t;
-            MultivariatePolynomial Rmp = t.rows.getValue()->poly->eval(polys);
-            MultivariatePolynomial Cmp = t.cols.getValue()->poly->eval(polys);
-            i->rows.setValue(visitor.getGVN().getValue(Rmp));
-            i->cols.setValue(visitor.getGVN().getValue(Cmp));
-            i->invalidScalar();
+            if (ty.type == TIType::UNKNOWN)
+            {
+                return false;
+            }
         }
 
-        //out.assign(mout->tuple.types.begin(), mout->tuple.types.end());
+        const std::set<symbol::Symbol> & globals = macrodef.getGlobals();
+        completeIn.reserve(in.size() + globals.size());
+        for (const auto & ty : in)
+        {
+            completeIn.emplace_back(ty);
+        }
+
+        const std::vector<symbol::Symbol> & declaredIn = macrodef.getIn();
+        const unsigned int size = declaredIn.size();
+        DataManager & dm  = visitor.getDM();
+
+        if (in.size() < size)
+        {
+            // we have less rhs than declared rhs:
+            // function foo(x,y,z)...endfunction
+            // called with foo(x) so y and z are globals
+            for (unsigned int i = in.size(); i < size; ++i)
+            {
+                completeIn.emplace_back(dm.getType(declaredIn[i]));
+            }
+        }
+
+        for (const auto & sym : globals)
+        {
+            TIType ty = dm.getType(sym, /* global */ true);
+            completeIn.emplace_back(ty);
+            if (ty.type == TIType::UNKNOWN)
+            {
+                return false;
+            }
+        }
+
         return true;
     }
-    else
-    {
-        return false;
-    }
-}
 
-std::vector<TIType> PolymorphicMacroCache::getCompleteIn(MacroDef & macrodef, DataManager & dm, const std::vector<TIType> & in)
-{
-    std::vector<TIType> types;
-    const std::set<symbol::Symbol> & globals = macrodef.getGlobals();
-    types.reserve(in.size() + globals.size());
-    for (const auto & ty : in)
-    {
-        types.emplace_back(ty);
-    }
 
-    const std::vector<symbol::Symbol> & declaredIn = macrodef.getIn();
-    const unsigned int size = declaredIn.size();
-
-    if (in.size() < size)
+    GVN::Value * PolymorphicMacroCache::getValue(const GVN::Value * value, AnalysisVisitor & visitor, const std::vector<const MultivariatePolynomial *> & polys, const int maxVarId) const
     {
-        // we have less rhs than declared rhs:
-        // function foo(x,y,z)...endfunction
-        // called with foo(x) so y and z are globals
-        for (unsigned int i = in.size(); i < size; ++i)
+        if (value->poly->containsVarsGEq(maxVarId + 1))
         {
-            types.emplace_back(dm.getType(declaredIn[i]));
+            // we translate variables with an id which could conflict with ids in the poly
+            MultivariatePolynomial mp1 = value->poly->translateVariables(visitor.getGVN().getCurrentValue() + 1, maxVarId + 1);
+            MultivariatePolynomial mp2 = mp1.eval(polys);
+            if (mp2.containsVarsGEq(visitor.getGVN().getCurrentValue() + 1))
+            {
+                // after evaluation, we have always values coming from the function block GVN
+                return visitor.getGVN().getValue();
+            }
+            else
+            {
+                return visitor.getGVN().getValue(mp2);
+            }
+        }
+        else
+        {
+            // the out poly is only an expression of the in values
+            MultivariatePolynomial mp = value->poly->eval(polys);
+            return visitor.getGVN().getValue(mp);
         }
     }
-
-    for (const auto & sym : globals)
-    {
-        types.emplace_back(dm.getType(sym));
-    }
-
-    return types;
-}
-
 
 } // namespace analysis

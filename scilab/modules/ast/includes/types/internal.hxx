@@ -232,7 +232,7 @@ public :
     virtual InternalType*           clone(void) = 0;
     virtual ast::Exp*               getExp(const Location& /*loc*/)
     {
-        return NULL;
+        return nullptr;
     }
 
 #ifdef _SCILAB_DEBUGREF_

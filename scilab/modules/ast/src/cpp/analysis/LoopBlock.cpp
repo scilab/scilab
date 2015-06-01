@@ -21,7 +21,7 @@ bool LoopBlock::requiresAnotherTrip()
         for (auto & p : symMap)
         {
             std::map<symbol::Symbol, Info>::iterator it;
-            Block * block = getParent()->getDefBlock(p.first, it);
+            Block * block = getParent()->getDefBlock(p.first, it, false);
             if (block)
             {
                 Info & info = it->second;
@@ -36,11 +36,11 @@ bool LoopBlock::requiresAnotherTrip()
     return false;
 }
 
-Block * LoopBlock::getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it)
+    Block * LoopBlock::getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global)
 {
     if (first)
     {
-        return Block::getDefBlock(sym, it);
+        return Block::getDefBlock(sym, it, global);
     }
     else
     {
@@ -49,7 +49,7 @@ Block * LoopBlock::getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symb
         {
             return this;
         }
-        return getParent()->getFirstBlock()->getDefBlock(sym, it);
+        return getParent()->getFirstBlock()->getDefBlock(sym, it, global);
     }
 }
 

@@ -48,6 +48,7 @@ public:
     {
         GlobalsCollector gc(macrodef);
         gc.collect();
+	//gc.print_info();
     }
 
     inline const std::set<symbol::Symbol> & getGlobals() const
@@ -75,7 +76,8 @@ public:
 
     inline void print_info()
     {
-        std::wcout << L"Globals collection: " << *static_cast<Chrono *>(this) << std::endl;
+        std::wcout << L"Globals collection: " << *static_cast<Chrono *>(this) << std::endl
+		   << *this << std::endl;
     }
 
 private:
@@ -104,11 +106,14 @@ private:
 
     void visit(ast::SimpleVar & e)
     {
-        const symbol::Symbol & sym = e.getSymbol();
-        if (locals.find(sym) == locals.end())
-        {
-            globals.emplace(sym);
-        }
+	if (!e.getParent()->isFieldExp() || static_cast<ast::FieldExp *>(e.getParent())->getTail() != &e)
+	{
+	    const symbol::Symbol & sym = e.getSymbol();
+	    if (locals.find(sym) == locals.end())
+	    {
+		globals.emplace(sym);
+	    }
+	}
     }
 
     void visit(ast::DollarVar & e)
@@ -285,8 +290,8 @@ private:
 
     void visit(ast::FieldExp & e)
     {
-        //e.head_get()->accept(*this);
-        //e.tail_get()->accept(*this);
+        e.getHead()->accept(*this);
+        e.getTail()->accept(*this);
     }
 
     void visit(ast::NotExp & e)
@@ -375,9 +380,23 @@ private:
     {
     }
 
-    void visit(ast::DAXPYExp & e)
+    void visit(ast::MemfillExp & e)
     {
     }
+
+    void visit(ast::DAXPYExp & e)
+	{
+	}
+    
+    void visit(ast::IntSelectExp & e)
+	{
+	    visit(static_cast<ast::SelectExp &>(e));
+	}
+    
+    void visit(ast::StringSelectExp & e)
+	{
+	    visit(static_cast<ast::SelectExp &>(e));
+	}
 };
 
 } // namespace analysis

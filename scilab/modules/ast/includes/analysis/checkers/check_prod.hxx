@@ -29,47 +29,43 @@ namespace analysis
         }
         case TIType::COMPLEX :
         {
-            return TIType(gvn, TIType::COMPLEX,  1 ,  1 );
+            return TIType(gvn, TIType::COMPLEX, 1, 1);
         }
         case TIType::DOUBLE :
         {
-            return TIType(gvn, TIType::DOUBLE,  1 ,  1 );
-        }
-        case TIType::DOUBLEUINT :
-        {
-            return TIType(gvn, TIType::DOUBLEUINT,  1 ,  1 );
+            return TIType(gvn, TIType::DOUBLE, 1, 1);
         }
         case TIType::INT16 :
         {
-            return TIType(gvn, TIType::INT16,  1 ,  1 );
+            return TIType(gvn, TIType::INT16, 1, 1);
         }
         case TIType::INT32 :
         {
-            return TIType(gvn, TIType::INT32,  1 ,  1 );
+            return TIType(gvn, TIType::INT32, 1, 1);
         }
         case TIType::INT64 :
         {
-            return TIType(gvn, TIType::INT64,  1 ,  1 );
+            return TIType(gvn, TIType::INT64, 1, 1);
         }
         case TIType::INT8 :
         {
-            return TIType(gvn, TIType::INT8,  1 ,  1 );
+            return TIType(gvn, TIType::INT8, 1, 1);
         }
         case TIType::UINT16 :
         {
-            return TIType(gvn, TIType::UINT16,  1 ,  1 );
+            return TIType(gvn, TIType::UINT16, 1, 1);
         }
         case TIType::UINT32 :
         {
-            return TIType(gvn, TIType::UINT32,  1 ,  1 );
+            return TIType(gvn, TIType::UINT32, 1, 1);
         }
         case TIType::UINT64 :
         {
-            return TIType(gvn, TIType::UINT64,  1 ,  1 );
+            return TIType(gvn, TIType::UINT64, 1, 1);
         }
         case TIType::UINT8 :
         {
-            return TIType(gvn, TIType::UINT8,  1 ,  1 );
+            return TIType(gvn, TIType::UINT8, 1, 1);
         }
         default :
             return TIType(gvn);

@@ -74,20 +74,21 @@ public:
     }
 
     /**
-     * \brief Invalidate this dimension
+     * \brief Check if this dimension is empty
+     * \return true if empty
      */
-    inline void invalid()
-    {
-        value = gvn->getInvalid();
-    }
-
+    inline bool empty() const
+	{
+	    return gvn == nullptr || value == nullptr;
+	}
+    
     /**
      * \brief Check if this dimension is valid
      * \return true if valid
      */
     inline bool isValid() const
     {
-        return value->poly->isValid();
+        return gvn != nullptr;
     }
 
     /**
@@ -145,6 +146,15 @@ public:
     }
 
     /**
+     * \brief Set the associated Value
+     * \param _value a Value
+     */
+    inline void setValue(const double _value)
+    {
+        value = gvn->getValue(_value);
+    }
+
+    /**
      * \brief Set the associated GVN
      * \param _gvn a GVN
      */
@@ -152,6 +162,36 @@ public:
     {
         gvn = _gvn;
     }
+
+    /**
+     * \brief merge two dimensions considered as a max (cf Info::maxIndex)
+     * \param dim a dim
+     */
+    inline void mergeAsMax(const SymbolicDimension & dim)
+	{
+	    bool mustInvalidate = true;
+	    if (isValid() && dim.isValid())
+	    {
+		if (value->poly && dim.value->poly)
+		{
+		    MultivariatePolynomial mp = *value->poly - *dim.value->poly;
+		    if (mp.isCoeffPositive())
+		    {
+			value = dim.value;
+			mustInvalidate = false;
+		    }
+		    else if (mp.isCoeffNegative())
+		    {
+			mustInvalidate = false;
+		    }
+		}
+	    }
+	    if (mustInvalidate && gvn)
+	    {
+		gvn = nullptr;
+		value = nullptr;
+	    }
+	}
 
     /**
      * \brief Overload of the + operator
@@ -202,6 +242,22 @@ public:
     }
 
     /**
+     * \brief Overload of the *= operator
+     */
+    inline SymbolicDimension & operator*=(const SymbolicDimension & R)
+    {
+	if (R != 1)
+	{
+	    if (*this != 1)
+	    {
+		value = gvn->getValue(OpValue::Kind::TIMES, *value, *R.value);
+	    }
+	}
+
+	return *this;
+    }
+
+    /**
      * \brief Overload of the / operator
      */
     inline SymbolicDimension operator/(const SymbolicDimension & R) const
@@ -246,7 +302,7 @@ public:
      */
     inline bool operator==(const double R) const
     {
-        return value->value == gvn->getValue(R)->value;
+        return value->poly->isConstant(R);
     }
 
     /**
@@ -262,7 +318,7 @@ public:
      */
     inline bool operator!=(const double R) const
     {
-        return value->value != gvn->getValue(R)->value;
+        return !value->poly->isConstant(R);
     }
 
     /**

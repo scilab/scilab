@@ -199,7 +199,22 @@ class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
         visitprivate(e);
     }
 
+    void visit(const MemfillExp &e)
+    {
+        visitprivate(e);
+    }
+
     void visit(const DAXPYExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const IntSelectExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const StringSelectExp &e)
     {
         visitprivate(e);
     }

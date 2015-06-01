@@ -11,13 +11,13 @@
  */
 
 #include "AnalysisVisitor.hxx"
-#include "calls/MemInitAnalyzer.hxx"
+#include "analyzers/MemInitAnalyzer.hxx"
 #include "tools.hxx"
 
 namespace analysis
 {
 bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
-{
+{	
     const ast::exps_t args = e.getArgs();
     if (args.size() == 2)
     {
@@ -99,7 +99,7 @@ bool MemInitAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs,
                 return false;
             }
             TIType resT(visitor.getGVN(), TIType::DOUBLE, rows, cols);
-            e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+            e.getDecorator().setResult(Result(resT, -1));
         }
         visitor.setResult(e.getDecorator().res);
 

@@ -103,6 +103,24 @@ struct MultivariatePolynomial
     }
 
     /**
+     * \brief Check if a variable is contained in the polynomial
+     * \param var an id
+     * \return true if the polynomial contains the var
+     */
+    inline bool contains(const unsigned long long var) const
+	{
+	    for (const auto & m : polynomial)
+	    {
+		if (m.contains(var))
+		{
+		    return true;
+		}
+	    }
+
+	    return false;
+	}
+    
+    /**
      * \brief Check if the variables of the polynomial have an id lower or equal to max
      * \param max an id
      * \return true if all the variables have an id leq to max
@@ -117,6 +135,51 @@ struct MultivariatePolynomial
             }
         }
         return true;
+    }
+
+    /**
+     * \brief Check if the variables of the polynomial have an id greater or equal to min
+     * \param min an id
+     * \return true if the polynomial contains a var with an id geq than min
+     */
+    inline bool containsVarsGEq(const unsigned long long min) const
+    {
+        for (const auto & m : polynomial)
+        {
+	    if (m.monomial.lower_bound(min) != m.monomial.end())
+	    {
+		return true;
+	    }
+        }
+
+	return false;
+    }
+    
+    /**
+     * \brief Translate the variables of the polynomial which have an id greater or equal to min
+     * \param min an id
+     * \return a translated polynomial
+     */
+    inline MultivariatePolynomial translateVariables(const unsigned long long t, const unsigned long long min) const
+    {
+	MultivariatePolynomial mp;
+        for (const auto & m : polynomial)
+        {
+	    MultivariateMonomial mm(m);
+	    MultivariateMonomial::Monomial::iterator i = mm.monomial.lower_bound(min);
+	    if (i != mm.monomial.end())
+	    {
+		// We don't modify the order in the set, so we can const_cast
+		for (MultivariateMonomial::Monomial::iterator j = std::prev(mm.monomial.end()); j != i; --j)
+		{
+		    const_cast<VarExp &>(*j).var += t;
+		}
+		const_cast<VarExp &>(*i).var += t;
+	    }
+	    mp.add(mm);
+        }
+
+	return mp;
     }
 
     /**
@@ -732,7 +795,7 @@ struct MultivariatePolynomial
             {
                 const unsigned int expo = *p.second.begin();
                 auto & map = exps.emplace(p.first, std::unordered_map<unsigned int, MultivariatePolynomial>()).first->second;
-                map.emplace(expo, (*values[p.first]) ^ expo);
+                map.emplace(expo, (*__getSafe(values, p.first)) ^ expo);
             }
             else
             {
@@ -756,11 +819,11 @@ struct MultivariatePolynomial
                 //   ii) we compute p^3 and p^9 separatly in using fast exponentiation
                 if (estim > max)
                 {
-                    MultivariatePolynomial mp(*values[p.first]);
+                    MultivariatePolynomial mp(*__getSafe(values, p.first));
                     auto it = p.second.begin();
                     for (unsigned int i = 2; i <= max; ++i)
                     {
-                        mp *= *values[p.first];
+                        mp *= *__getSafe(values, p.first);
                         if (i == *it)
                         {
                             map.emplace(i, mp);
@@ -772,7 +835,7 @@ struct MultivariatePolynomial
                 {
                     for (const auto expo : p.second)
                     {
-                        map.emplace(expo, (*values[p.first]) ^ expo);
+                        map.emplace(expo, (*__getSafe(values, p.first)) ^ expo);
                     }
                 }
             }
@@ -1125,6 +1188,12 @@ private:
     }
 
     // Helper function to use with eval
+    inline static bool __isValid(const std::pair<unsigned long long, const MultivariatePolynomial *> & values)
+    {
+	return values.second->isValid();
+    }
+
+    // Helper function to use with eval
     inline static bool __contains(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
     {
         return values.find(val) != values.end();
@@ -1134,6 +1203,12 @@ private:
     inline static bool __contains(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
     {
         return val < values.size();
+    }
+
+    // Helper function to use with eval
+    inline static bool __contains(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    {
+        return values.first == val;
     }
 
     // Helper function to use with eval
@@ -1148,9 +1223,41 @@ private:
     }
 
     // Helper function to use with eval
+    inline static const MultivariatePolynomial * __getSafe(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    {
+	return values.find(val)->second;
+    }
+
+    // Helper function to use with eval
     inline static const MultivariatePolynomial * __get(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
     {
+	if (val < values.size())
+	{
+	    return values[val];
+	}
+	return nullptr;
+    }
+
+    // Helper function to use with eval
+    inline static const MultivariatePolynomial * __getSafe(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
+    {
         return values[val];
+    }
+
+    // Helper function to use with eval
+    inline static const MultivariatePolynomial * __get(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    {
+	if (values.first == val)
+	{
+	    return values.second;
+	}
+        return nullptr;
+    }
+
+    // Helper function to use with eval
+    inline static const MultivariatePolynomial * __getSafe(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    {
+	return values.second;
     }
 };
 

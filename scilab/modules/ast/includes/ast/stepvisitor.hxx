@@ -210,7 +210,22 @@ class EXTERN_AST StepVisitor : public RunVisitorT<StepVisitor>
         visitprivate(e);
     }
 
+    void visit(const MemfillExp &e)
+    {
+        visitprivate(e);
+    }
+
     void visit(const DAXPYExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const IntSelectExp &e)
+    {
+        visitprivate(e);
+    }
+
+    void visit(const StringSelectExp &e)
     {
         visitprivate(e);
     }

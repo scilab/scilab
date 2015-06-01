@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __MACROINFO_HXX__
-#define __MACROINFO_HXX__
+#ifndef __POLYMORPHIC_MACRO_CACHE_HXX__
+#define __POLYMORPHIC_MACRO_CACHE_HXX__
 
 #include <iostream>
 #include <map>
@@ -41,9 +41,13 @@ public:
 
     const bool getOutTypes(AnalysisVisitor & visitor, MacroDef * macrodef, std::vector<TIType> & in, std::vector<TIType> & out);
 
-    static std::vector<TIType> getCompleteIn(MacroDef & macrodef, DataManager & dm, const std::vector<TIType> & in);
+    static bool getCompleteIn(MacroDef & macrodef, AnalysisVisitor & visitor, const std::vector<TIType> & in, std::vector<TIType> & completeIn);
+
+private:
+
+    GVN::Value * getValue(const GVN::Value * value, AnalysisVisitor & visitor, const std::vector<const MultivariatePolynomial *> & polys, const int maxVarId) const;
 };
 
 } // namespace analysis
 
-#endif // __MACROINFO_HXX__
+#endif // __POLYMORPHIC_MACRO_CACHE_HXX__

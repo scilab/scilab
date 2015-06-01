@@ -159,69 +159,70 @@ public:
     }
 
     inline static uint64_t size(const double min, const double max, const double step)
-	{
-	    return (uint64_t)std::floor((max - min) / step) + 1;
-	}
+    {
+        return (uint64_t)std::floor((max - min) / step) + 1;
+    }
 
     inline static int checkList(const double min, const double max, const double step, double & out)
-	{
-	    if (step == 0)
-	    {
-		if (tools::isNaN(min) || tools::isNaN(max))
-		{
-		    out = tools::NaN();
-		    return 1; // one value
-		}
-		else
-		{
-		    return 0; // empty
-		}
-	    }
-	    else
-	    {
-		if (tools::isNaN(min) || tools::isNaN(step) || tools::isNaN(max))
-		{
-		    out = tools::NaN();
-		    return 1; // one value
-		}
-		else
-		{
-		    if (min < max)
-		    {
-			if (step < 0)
-			{
-			    return 0; //empty
-			}
-		    }
-		    else if (step > 0)
-		    {
-			return 0; // empty
-		    }
+    {
+        if (step == 0)
+        {
+            if (tools::isNaN(min) || tools::isNaN(max))
+            {
+                out = tools::NaN();
+                return 1; // one value
+            }
+            else
+            {
+                return 0; // empty
+            }
+        }
+        else
+        {
+            if (tools::isNaN(min) || tools::isNaN(step) || tools::isNaN(max))
+            {
+                out = tools::NaN();
+                return 1; // one value
+            }
+            else
+            {
+                if (min < max)
+                {
+                    if (step < 0)
+                    {
+                        return 0; //empty
+                    }
+                }
+                else if (step > 0)
+                {
+                    return 0; // empty
+                }
 
-		    if (!tools::isFinite(min) || !tools::isFinite(max))
-		    {
-			out = tools::NaN();
-			return 1; // one value
-		    }
-		    else
-		    {
-			return 2; //one or more...
-		    }
-		}
-	    }
-	}
+                if (!tools::isFinite(min) || !tools::isFinite(max))
+                {
+                    out = tools::NaN();
+                    return 1; // one value
+                }
+                else
+                {
+                    return 2; //one or more...
+                }
+            }
+        }
+    }
 
 private:
 
     inline bool isempty() const
     {
-	return isempty(min, max, step);
+        return isempty(min, max, step);
     }
 
     template<typename U>
     inline static bool is_int(const double x)
     {
-        return x == tools::trunc(x) && x <= std::numeric_limits<U>::max() && x >= std::numeric_limits<U>::min();
+        const U y = (U)tools::trunc(x);
+        return x == y && y <= std::numeric_limits<U>::max() && y >= std::numeric_limits<U>::min();
     }
 
     template<typename U>

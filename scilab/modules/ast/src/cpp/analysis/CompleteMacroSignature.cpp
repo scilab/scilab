@@ -22,7 +22,7 @@ const MacroOut * CompleteMacroSignature::getOutTypes(AnalysisVisitor & visitor, 
 {
     for (const auto & mpcmo : outMap)
     {
-        if (mpcmo.mpConstraints.check(values) == InferenceConstraint::Result::RESULT_TRUE)
+        if (mpcmo.mpConstraints.check(visitor.getGVN(), values) == InferenceConstraint::Result::RESULT_TRUE && ConstraintManager::checkGlobalConstants(mpcmo.globalConstants))
         {
             return &mpcmo.out;
         }
@@ -33,22 +33,25 @@ const MacroOut * CompleteMacroSignature::getOutTypes(AnalysisVisitor & visitor, 
 
 const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, const MacroSignature & signature, MacroDef * macrodef, DataManager & dm, const unsigned int rhs, std::vector<TIType> & in, const std::vector<GVN::Value *> values)
 {
-    //std::wcerr << signature << std::endl;
     if (signature.lhs <= macrodef->getLhs())
     {
+	visitor.getLogger().log(L"Visit macro ", macrodef->getName());
         dm.addBlock(Block::MACRO, &macrodef->getBody());
         FunctionBlock & fblock = *static_cast<FunctionBlock *>(dm.getCurrent());
         fblock.setName(macrodef->getName());
         fblock.setLhsRhs(signature.lhs, rhs);
         fblock.setInOut(macrodef);
+	fblock.setGlobals(macrodef->getGlobals());
         if (!fblock.addIn(signature.tuple, values))
         {
+	    dm.finalizeBlock();
             return nullptr;
         }
 
         macrodef->getBody().accept(visitor);
+	//macrodef->getBody().accept(visitor.getPV());
         dm.finalizeBlock();
-        outMap.emplace_back(fblock.getConstraints(), fblock.getOuts());
+        outMap.emplace_back(fblock.getConstraints(), fblock.getGlobalConstants(), fblock.getOuts());
 
         return &outMap.back().out;
     }

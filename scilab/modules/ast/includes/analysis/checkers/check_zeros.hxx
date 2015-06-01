@@ -21,7 +21,7 @@ namespace analysis
 {
     inline static TIType check_zeros(GVN & gvn)
     {
-        return TIType(gvn, TIType::DOUBLE,  1 ,  1 );
+        return TIType(gvn, TIType::DOUBLE, 1, 1);
     }
 
     inline static TIType check_zeros(GVN & gvn, const TIType & in0)
@@ -87,15 +87,13 @@ namespace analysis
 
     inline static TIType check_zeros(GVN & gvn, const TIType & in0, const TIType & in1)
     {
-        switch (in0.type)
-        {
-        case TIType::DOUBLE :
+        if (in0.type == TIType::DOUBLE)
         {
             if (in1.type == TIType::DOUBLE)
             {
                 if (in0.rows == 1 && in0.cols == 1 && in1.rows == 1 && in1.cols == 1)
                 {
-                    return TIType(gvn, TIType::DOUBLE, /*scalar*/ false, /*unknown*/ true);
+                    return TIType(gvn, TIType::DOUBLE, -2, -2);
                 }
             }
             else
@@ -104,24 +102,11 @@ namespace analysis
             }
             return TIType(gvn);
         }
-        case TIType::DOUBLEUINT :
+        else
         {
-            if (in1.type == TIType::DOUBLEUINT)
-            {
-                if (in0.rows == 1 && in0.cols == 1 && in1.rows == 1 && in1.cols == 1)
-                {
-                    return TIType(gvn, TIType::DOUBLE, /*scalar*/ false, /*unknown*/ true);
-                }
-            }
-            else
-            {
-                return TIType(gvn);
-            }
             return TIType(gvn);
         }
-        default :
-            return TIType(gvn);
-        }
+        return TIType(gvn);
     }
 
 } // namespace analysis

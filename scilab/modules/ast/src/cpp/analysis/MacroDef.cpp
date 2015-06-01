@@ -15,64 +15,69 @@
 
 namespace analysis
 {
-ExistingMacroDef::ExistingMacroDef(types::Macro & _macro) : MacroDef(_macro.outputs_get()->size(), _macro.inputs_get()->size()), macro(_macro)
-{
-    GlobalsCollector::collect(*this);
-}
+    ExistingMacroDef::ExistingMacroDef(types::Macro & _macro) : MacroDef(_macro.outputs_get()->size(), _macro.inputs_get()->size()), name(_macro.getName()), se(_macro.getBody()->clone()), inputs(MacroDef::asVector(_macro.inputs_get())), outputs(MacroDef::asVector(_macro.outputs_get()))
+    {
+        GlobalsCollector::collect(*this);
+    }
 
-ast::SeqExp & ExistingMacroDef::getBody()
-{
-    return *macro.getBody();
-}
+    ExistingMacroDef::ExistingMacroDef(const ExistingMacroDef & emd) : MacroDef(emd.inputs.size(), emd.outputs.size()), name(emd.name), se(emd.se->clone()), inputs(emd.inputs), outputs(emd.outputs)
+    {
+        GlobalsCollector::collect(*this);
+    }
 
-const std::wstring & ExistingMacroDef::getName()
-{
-    return macro.getName();
-}
+    ast::SeqExp & ExistingMacroDef::getBody()
+    {
+        return *se;
+    }
 
-std::vector<symbol::Symbol> ExistingMacroDef::getIn()
-{
-    return MacroDef::asVector(macro.inputs_get());
-}
+    const std::wstring & ExistingMacroDef::getName()
+    {
+        return name;
+    }
 
-std::vector<symbol::Symbol> ExistingMacroDef::getOut()
-{
-    return MacroDef::asVector(macro.outputs_get());
-}
+    std::vector<symbol::Symbol> ExistingMacroDef::getIn()
+    {
+        return inputs;
+    }
 
-MacroDef * ExistingMacroDef::clone()
-{
-    return new ExistingMacroDef(macro);
-}
+    std::vector<symbol::Symbol> ExistingMacroDef::getOut()
+    {
+        return outputs;
+    }
 
-DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size()), dec(_dec)
-{
-    GlobalsCollector::collect(*this);
-}
+    MacroDef * ExistingMacroDef::clone() const
+    {
+        return new ExistingMacroDef(*this);
+    }
 
-ast::SeqExp & DeclaredMacroDef::getBody()
-{
-    return static_cast<ast::SeqExp &>(dec->getBody());
-}
+    DeclaredMacroDef::DeclaredMacroDef(ast::FunctionDec * const _dec) : MacroDef(_dec->getReturns().getVars().size(), _dec->getArgs().getVars().size()), dec(_dec->clone())
+    {
+        GlobalsCollector::collect(*this);
+    }
 
-const std::wstring & DeclaredMacroDef::getName()
-{
-    return dec->getSymbol().getName();
-}
+    ast::SeqExp & DeclaredMacroDef::getBody()
+    {
+        return static_cast<ast::SeqExp &>(dec->getBody());
+    }
 
-std::vector<symbol::Symbol> DeclaredMacroDef::getIn()
-{
-    return MacroDef::asVector(&dec->getArgs().getVars());
-}
+    const std::wstring & DeclaredMacroDef::getName()
+    {
+        return dec->getSymbol().getName();
+    }
 
-std::vector<symbol::Symbol> DeclaredMacroDef::getOut()
-{
-    return MacroDef::asVector(&dec->getReturns().getVars());
-}
+    std::vector<symbol::Symbol> DeclaredMacroDef::getIn()
+    {
+        return MacroDef::asVector(&dec->getArgs().getVars());
+    }
 
-MacroDef * DeclaredMacroDef::clone()
-{
-    return new DeclaredMacroDef(dec);
-}
+    std::vector<symbol::Symbol> DeclaredMacroDef::getOut()
+    {
+        return MacroDef::asVector(&dec->getReturns().getVars());
+    }
+
+    MacroDef * DeclaredMacroDef::clone() const
+    {
+        return new DeclaredMacroDef(dec);
+    }
 
 } // namespace analysis

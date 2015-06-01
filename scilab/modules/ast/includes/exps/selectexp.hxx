@@ -73,6 +73,23 @@ public :
 
     virtual SelectExp* clone()
     {
+        exps_t * cases = cloneCases();
+        SelectExp* cloned = nullptr;
+        if (_hasDefault)
+        {
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
+        }
+        else
+        {
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
+        }
+
+        cloned->setVerbose(isVerbose());
+        return cloned;
+    }
+
+    exps_t * cloneCases()
+    {
         exps_t* cases = new exps_t;
         exps_t::const_iterator it = ++(_exps.begin());
         exps_t::const_iterator itEnd = _exps.end();
@@ -86,18 +103,7 @@ public :
             cases->push_back((*it)->clone());
         }
 
-        SelectExp* cloned = NULL;
-        if (_hasDefault)
-        {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
-        }
-        else
-        {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
-        }
-
-        cloned->setVerbose(isVerbose());
-        return cloned;
+        return cases;
     }
 
     virtual bool equal(const Exp & e) const

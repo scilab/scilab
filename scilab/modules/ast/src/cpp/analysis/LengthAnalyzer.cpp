@@ -11,7 +11,7 @@
  */
 
 #include "AnalysisVisitor.hxx"
-#include "calls/LengthAnalyzer.hxx"
+#include "analyzers/LengthAnalyzer.hxx"
 #include "tools.hxx"
 
 namespace analysis
@@ -42,15 +42,12 @@ bool LengthAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, 
         return false;
     }
 
-    TIType type(visitor.getGVN(), TIType::DOUBLEUINT);
-
-    SymbolicDimension & rows = res.getType().rows;
-    SymbolicDimension & cols = res.getType().cols;
-    SymbolicDimension prod = rows * cols;
+    TIType type(visitor.getGVN(), TIType::DOUBLE);
+    SymbolicDimension prod = resType.rows * resType.cols;
 
     Result & _res = e.getDecorator().setResult(type);
-    _res.getConstant().set(prod.getValue());
-    e.getDecorator().setCall(Call(Call::IDENTITY, type, L"length"));
+    _res.getConstant() = prod.getValue();
+    e.getDecorator().setCall(L"length", resType);
     visitor.setResult(_res);
     return true;
 }

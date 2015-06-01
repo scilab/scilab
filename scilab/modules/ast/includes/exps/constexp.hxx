@@ -62,7 +62,10 @@ public:
         }
 
         constant = _const;
-        constant->IncreaseRef();
+        if (_const)
+        {
+            constant->IncreaseRef();
+        }
     }
 
     virtual bool equal(const Exp & e) const

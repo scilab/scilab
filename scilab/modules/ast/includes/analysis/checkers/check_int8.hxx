@@ -31,10 +31,6 @@ namespace analysis
         {
             return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
         }
-        case TIType::DOUBLEUINT :
-        {
-            return TIType(gvn, TIType::INT8, in0.rows, in0.cols);
-        }
         case TIType::INT16 :
         {
             return TIType(gvn, TIType::INT8, in0.rows, in0.cols);

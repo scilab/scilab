@@ -581,7 +581,22 @@ private :
         e.getOriginal()->accept(*this);
     }
 
+    void visit(const MemfillExp& e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
     void visit(const DAXPYExp& e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    void visit(const IntSelectExp& e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    void visit(const StringSelectExp& e)
     {
         e.getOriginal()->accept(*this);
     }

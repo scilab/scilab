@@ -1511,7 +1511,8 @@ static std::string program_name;
 static std::string *pstBuffer;
 
 #define YY_USER_ACTION                          \
- yylloc.last_column += yyleng;
+ yylloc.first_column = yylloc.last_column;yylloc.last_column += yyleng;
+//yylloc.last_column += yyleng;
 
 /* -*- Verbose Special Debug -*- */
 //#define DEV

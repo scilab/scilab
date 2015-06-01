@@ -68,7 +68,7 @@ public:
     }
 
     bool requiresAnotherTrip() override;
-    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it) override;
+    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global) override;
     Info & getInfo(const symbol::Symbol & sym) override;
     void finalize() override;
 };

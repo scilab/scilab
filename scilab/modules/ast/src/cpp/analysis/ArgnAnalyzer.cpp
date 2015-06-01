@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -11,8 +11,9 @@
  */
 
 #include "AnalysisVisitor.hxx"
-#include "calls/ArgnAnalyzer.hxx"
+#include "analyzers/ArgnAnalyzer.hxx"
 #include "tools.hxx"
+#include "double.hxx"
 
 namespace analysis
 {
@@ -23,15 +24,15 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         return false;
     }
 
-    TIType type(visitor.getGVN(), TIType::DOUBLEUINT);
+    TIType type(visitor.getGVN(), TIType::DOUBLE);
     FunctionBlock * fblock = visitor.getDM().topFunction();
     if (!fblock)
     {
         if (lhs == 1)
         {
             Result & res = e.getDecorator().setResult(type);
-            res.getConstant().set(0.);
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
+            res.getConstant() = new types::Double(0);
+            e.getDecorator().setCall(L"argn");
             visitor.setResult(res);
             return true;
         }
@@ -105,8 +106,8 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         {
             const unsigned int val = kind == LHS ? fblock->getLHS() : fblock->getRHS();
             Result & res = e.getDecorator().setResult(type);
-            res.getConstant().set(val);
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
+            res.getConstant() = visitor.getGVN().getValue((double)val);
+            e.getDecorator().setCall(L"argn");
             visitor.setResult(res);
         }
         case LHSRHS:
@@ -118,11 +119,11 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             const unsigned int flhs = fblock->getLHS();
             const unsigned int frhs = fblock->getRHS();
             mlhs.emplace_back(type);
-            mlhs.back().getConstant().set((double)flhs);
+            mlhs.back().getConstant() = visitor.getGVN().getValue((double)flhs);
             mlhs.emplace_back(type);
-            mlhs.back().getConstant().set((double)frhs);
+            mlhs.back().getConstant() = visitor.getGVN().getValue((double)frhs);
 
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"argn"));
+            e.getDecorator().setCall(L"argn");
         }
     }
 

@@ -20,30 +20,30 @@
 
 #include "gvn/GVN.hxx"
 
+namespace types
+{
+class InternalType;
+}
+
 namespace analysis
 {
-class ConstantValue
+class EXTERN_AST ConstantValue
 {
 
 public:
 
-    enum Kind : unsigned char { DOUBLE, GVNVAL, STRING, BOOLEAN, COMPLEX, UNKNOWN };
+    enum Kind : unsigned char { GVNVAL, ITVAL, UNKNOWN };
 
 private:
+
     union Value
     {
-        double dbl;
         GVN::Value * gvnVal;
-        const std::wstring * str = NULL;
-        bool boolean;
-        //std::complex<double> cplx;
+        types::InternalType * pIT;
 
         Value() { }
-        Value(const double val) : dbl(val) { }
         Value(GVN::Value * val) : gvnVal(val) { }
-        Value(const std::wstring * val) : str(val) { }
-        Value(const bool val) : boolean(val) { }
-        //Value(const std::complex<double> & val) : cplx(val) { }
+        Value(types::InternalType * val) : pIT(val) { }
     };
 
     Value val;
@@ -52,11 +52,20 @@ private:
 public:
 
     ConstantValue() : kind(UNKNOWN) { }
-    ConstantValue(double _val) : val(_val), kind(DOUBLE) { }
     ConstantValue(GVN::Value * _val) : val(_val), kind(GVNVAL) { }
-    ConstantValue(const std::wstring * _val) : val(_val), kind(STRING) { }
-    ConstantValue(bool _val) : val(_val), kind(BOOLEAN) { }
-    //ConstantValue(const std::complex<double> & _val) : val(_val), kind(COMPLEX) { }
+    ConstantValue(types::InternalType * _val);
+    ConstantValue(const ConstantValue & cv);
+    ConstantValue(ConstantValue && cv) : val(cv.val), kind(cv.kind)
+    {
+        cv.kind = UNKNOWN;
+    }
+
+    ConstantValue & operator=(const ConstantValue & R);
+    ConstantValue & operator=(types::InternalType * const pIT);
+    ConstantValue & operator=(GVN::Value * const _val);
+    ConstantValue & operator=(ConstantValue && R);
+
+    ~ConstantValue();
 
     inline Kind getKind() const
     {
@@ -68,30 +77,19 @@ public:
         return kind != UNKNOWN;
     }
 
-    inline bool getDblValue(double & _val) const
+    inline types::InternalType * getIT() const
     {
-        if (kind == DOUBLE)
+        if (kind == ITVAL)
         {
-            _val = val.dbl;
-            return true;
+            return val.pIT;
         }
-        else if (kind == GVNVAL)
-        {
-            if (GVN::Value * gvnValue = val.gvnVal)
-            {
-                if (gvnValue->poly->isConstant())
-                {
-                    _val = gvnValue->poly->constant;
-                    return true;
-                }
-            }
-        }
-        return false;
+
+        return nullptr;
     }
 
     inline GVN::Value * getGVNValue() const
     {
-        if (kind == ConstantValue::GVNVAL)
+        if (kind == GVNVAL)
         {
             return val.gvnVal;
         }
@@ -99,135 +97,27 @@ public:
         return nullptr;
     }
 
-    template<typename T> inline void set(T _val);
+    bool getGVNValue(GVN & gvn, GVN::Value *& _val) const;
+    bool getDblValue(double & _val) const;
+    bool getBoolValue(bool & _val) const;
+    bool getCplxValue(std::complex<double> & _val) const;
+    bool getStrValue(std::wstring & val) const;
+
     template<typename T> inline T get() const;
 
     void merge(const ConstantValue & cv);
 
-    friend std::wostream & operator<<(std::wostream & out, const ConstantValue & cv)
-    {
-        switch (cv.kind)
-        {
-            case ConstantValue::DOUBLE:
-                out << cv.val.dbl;
-                break;
-            case ConstantValue::GVNVAL:
-                out << *cv.val.gvnVal;
-                break;
-            case ConstantValue::STRING:
-                out << L"\"" << *cv.val.str << L"\"";
-                break;
-            case ConstantValue::BOOLEAN:
-                out << (cv.val.boolean ? L"T" : L"F");
-                break;
-            //case ConstantValue::COMPLEX:
-            //    out << cv.val.cplx.real() << L"+i*" << cv.val.cplx.imag();
-            //    break;
-            default:
-                break;
-        }
-
-        return out;
-    }
-
-private:
-
-    template<typename T, bool Ptr>
-    struct __merge
-    {
-        inline void operator()(ConstantValue & cv1, const ConstantValue & cv2);
-    };
-
-    template<typename T>
-    struct __merge<T, true>
-    {
-        inline void operator()(ConstantValue & cv1, const ConstantValue & cv2)
-        {
-            T t1 = cv1.get<T>();
-            T t2 = cv2.get<T>();
-            if (t1 != t2 && *t1 != *t2)
-            {
-                cv1.kind = UNKNOWN;
-            }
-        }
-    };
-
-    template<typename T>
-    struct __merge<T, false>
-    {
-        inline void operator()(ConstantValue & cv1, const ConstantValue & cv2)
-        {
-            if (cv1.get<T>() != cv2.get<T>())
-            {
-                cv1.kind = UNKNOWN;
-            }
-        }
-    };
-
-    template<typename T>
-    inline void merge(const ConstantValue & cv)
-    {
-        __merge<T, std::is_pointer<T>::value>()(*this, cv);
-    }
-
+    friend std::wostream & operator<<(std::wostream & out, const ConstantValue & cv);
 };
 
-template<> inline void ConstantValue::set<>(int _val)
-{
-    val = (double)_val;
-    kind = DOUBLE;
-}
-template<> inline void ConstantValue::set<>(unsigned int _val)
-{
-    val = (double)_val;
-    kind = DOUBLE;
-}
-template<> inline void ConstantValue::set<>(double _val)
-{
-    val = _val;
-    kind = DOUBLE;
-}
-template<> inline void ConstantValue::set<>(GVN::Value * _val)
-{
-    val = _val;
-    kind = GVNVAL;
-}
-template<> inline void ConstantValue::set<>(const std::wstring * _val)
-{
-    val = _val;
-    kind = STRING;
-}
-template<> inline void ConstantValue::set<>(bool _val)
-{
-    val = _val;
-    kind = BOOLEAN;
-}
-//template<> inline void ConstantValue::set<>(std::complex<double> && _val)
-//{
-//    val = _val;
-//    kind = COMPLEX;
-//}
-
-template<> inline double ConstantValue::get<>() const
-{
-    return val.dbl;
-}
 template<> inline GVN::Value * ConstantValue::get<>() const
 {
     return val.gvnVal;
 }
-template<> inline const std::wstring * ConstantValue::get<>() const
+template<> inline types::InternalType * ConstantValue::get<>() const
 {
-    return val.str;
+    return val.pIT;
 }
-template<> inline bool ConstantValue::get<>() const
-{
-    return val.boolean;
-}
-//template<> inline const std::complex<double> & ConstantValue::get<>() const
-//{
-//    return val.cplx;
-//}
 
 } // namespace analysis
 

@@ -697,6 +697,11 @@ InternalType* ImplicitList::extract(typed_list* _pArgs)
     delete[] piCountDim;
     return pOut;
 }
+
+ast::Exp * ImplicitList::getExp(const Location & loc)
+{
+    return new ast::DoubleExp(loc, this);
+}
 }
 
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)

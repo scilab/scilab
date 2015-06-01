@@ -33,7 +33,7 @@ struct InferenceConstraint
         RESULT_TRUE, RESULT_FALSE, RESULT_DUNNO
     };
 
-    virtual Result check(const std::vector<GVN::Value *> & values) const = 0;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const = 0;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const = 0;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const { }
 
@@ -66,28 +66,56 @@ struct InferenceConstraint
 
 struct SameDimsConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct EqualConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct PositiveConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+};
+
+    struct StrictPositiveConstraint : public InferenceConstraint
+{
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
 
 struct GreaterConstraint : public InferenceConstraint
 {
-    virtual Result check(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+};
+
+    struct StrictGreaterConstraint : public InferenceConstraint
+{
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+};
+
+struct ValidIndexConstraint : public InferenceConstraint
+{
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+    virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
+};
+
+struct ValidRangeConstraint : public InferenceConstraint
+{
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const /*override*/;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const /*override*/;
 };
@@ -118,7 +146,7 @@ struct MPolyConstraint : public InferenceConstraint
         }
     }
 
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
 
@@ -169,7 +197,7 @@ struct MPolyConstraintSet : public InferenceConstraint
         constraints.insert(set.constraints.begin(), set.constraints.end());
     }
 
-    virtual Result check(const std::vector<GVN::Value *> & values) const override;
+    virtual Result check(GVN & gvn, const std::vector<GVN::Value *> & values) const override;
     virtual MPolyConstraintSet getMPConstraints(const std::vector<GVN::Value *> & values) const override;
     virtual void applyConstraints(const std::vector<GVN::Value *> & values) const override;
 };

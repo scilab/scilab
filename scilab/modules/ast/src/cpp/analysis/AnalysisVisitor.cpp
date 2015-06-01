@@ -10,20 +10,29 @@
  *
  */
 
-#include "AnalysisVisitor.hxx"
-#include "calls/ArgnAnalyzer.hxx"
-#include "calls/CeilAnalyzer.hxx"
-#include "calls/DiagAnalyzer.hxx"
-#include "calls/LengthAnalyzer.hxx"
-#include "calls/MatrixAnalyzer.hxx"
-#include "calls/MemInitAnalyzer.hxx"
-#include "calls/SizeAnalyzer.hxx"
 #include "symbol.hxx"
-//#include "calls/SqrtAnalyzer.hxx"
+
+#include "AnalysisVisitor.hxx"
+#include "analyzers/ArgnAnalyzer.hxx"
+#include "analyzers/CeilAnalyzer.hxx"
+#include "analyzers/DiagAnalyzer.hxx"
+#include "analyzers/LengthAnalyzer.hxx"
+#include "analyzers/MatrixAnalyzer.hxx"
+#include "analyzers/MemInitAnalyzer.hxx"
+#include "analyzers/SizeAnalyzer.hxx"
+#include "analyzers/TypeAnalyzer.hxx"
+#include "analyzers/TypeofAnalyzer.hxx"
+#include "analyzers/InttypeAnalyzer.hxx"
+#include "analyzers/IconvertAnalyzer.hxx"
+#include "analyzers/IsrealAnalyzer.hxx"
+#include "analyzers/IsscalarAnalyzer.hxx"
+#include "analyzers/FindAnalyzer.hxx"
+
+//#include "analyzers/SqrtAnalyzer.hxx"
 
 namespace analysis
 {
-AnalysisVisitor::MapSymCall AnalysisVisitor::symscall = AnalysisVisitor::initCalls();
+    AnalysisVisitor::MapSymCall AnalysisVisitor::symscall = AnalysisVisitor::initCalls();//a=1:3;b=2;c=3;testAnalysis("repmat","a","b","c")
 
 AnalysisVisitor::MapSymCall AnalysisVisitor::initCalls()
 {
@@ -47,10 +56,32 @@ AnalysisVisitor::MapSymCall AnalysisVisitor::initCalls()
     msc.emplace(L"size", std::shared_ptr<CallAnalyzer>(new SizeAnalyzer()));
     msc.emplace(L"length", std::shared_ptr<CallAnalyzer>(new LengthAnalyzer()));
     msc.emplace(L"diag", std::shared_ptr<CallAnalyzer>(new DiagAnalyzer()));
+    msc.emplace(L"type", std::shared_ptr<CallAnalyzer>(new TypeAnalyzer()));
+    msc.emplace(L"typeof", std::shared_ptr<CallAnalyzer>(new TypeofAnalyzer()));
+    msc.emplace(L"inttype", std::shared_ptr<CallAnalyzer>(new InttypeAnalyzer()));
+    msc.emplace(L"iconvert", std::shared_ptr<CallAnalyzer>(new IconvertAnalyzer()));
+    msc.emplace(L"isreal", std::shared_ptr<CallAnalyzer>(new IsrealAnalyzer()));
+    msc.emplace(L"isscalar", std::shared_ptr<CallAnalyzer>(new IsscalarAnalyzer()));
+    msc.emplace(L"find", std::shared_ptr<CallAnalyzer>(new FindAnalyzer()));
 
     return msc;
 }
 
+    bool AnalysisVisitor::asDouble(types::InternalType * pIT, double & out)
+    {
+	if (pIT && pIT->isDouble())
+	{
+	    types::Double * pDbl = static_cast<types::Double *>(pIT);
+	    if (!pDbl->isComplex() && pDbl->getSize() == 1)
+	    {
+		out = pDbl->get()[0];
+		return true;
+	    }
+	}
+
+	return false;
+    }
+    
 bool AnalysisVisitor::asDouble(ast::Exp & e, double & out)
 {
     if (e.isDoubleExp())

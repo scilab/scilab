@@ -308,9 +308,21 @@ private:
     {
     }
 
+    void visit(ast::MemfillExp & e)
+    {
+    }
+
     void visit(ast::DAXPYExp & e)
     {
     }
+
+    void visit(ast::IntSelectExp & e)
+	{
+	}
+    
+    void visit(ast::StringSelectExp & e)
+	{
+	}
 };
 
 } // namespace analysis

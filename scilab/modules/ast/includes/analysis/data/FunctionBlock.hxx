@@ -14,6 +14,7 @@
 #define __FUNCTIONBLOCK_HXX__
 
 #include <list>
+#include <map>
 #include <set>
 #include <vector>
 
@@ -30,13 +31,35 @@ struct MacroOut;
 
 class FunctionBlock : public Block
 {
+
+    struct __TypeLocal
+    {
+	TIType::Type type;
+	int rows;
+	int cols;
+
+	__TypeLocal(const TIType::Type _type, const int _rows, const int _cols) : type(_type), rows(_rows), cols(_cols) { }
+
+	inline bool operator<(const __TypeLocal & R) const
+	    {
+		return type < R.type || (type == R.type && (rows < R.rows || (rows == R.rows && cols < R.cols)));
+	    }
+
+	inline bool isScalar() const
+	    {
+		return rows == 1 && cols == 1;
+	    }
+    };
+    
     std::wstring name;
     std::vector<symbol::Symbol> in;
     std::vector<symbol::Symbol> out;
     std::set<symbol::Symbol> globals;
+    std::map<symbol::Symbol, std::set<__TypeLocal>> locals;
     std::vector<GVN::Value *> inValues;
     unsigned int lhs;
     unsigned int rhs;
+    int maxVarId;
     GVN fgvn;
     ConstraintManager constraintManager;
 
@@ -70,10 +93,19 @@ public:
         return rhs;
     }
 
+    inline int getMaxVarId() const
+    {
+        return maxVarId;
+    }
+
     void finalize() override;
     void addGlobal(const symbol::Symbol & sym) override;
+    Info & addDefine(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp) override;
+    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global) override;
+
     bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
-    TITypeSignatureTuple getGlobals(std::vector<symbol::Symbol> & v);
+    void setGlobals(const std::set<symbol::Symbol> & v);
+    //TITypeSignatureTuple getGlobals(std::vector<symbol::Symbol> & v);
     MacroOut getOuts();
 
     inline void setLhsRhs(const unsigned int _lhs, const unsigned int _rhs)
@@ -91,6 +123,11 @@ public:
     inline const MPolyConstraintSet & getConstraints() const
     {
         return constraintManager.getSet();
+    }
+
+    inline const std::set<symbol::Symbol> & getGlobalConstants() const
+    {
+        return constraintManager.getGlobalConstants();
     }
 };
 

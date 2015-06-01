@@ -73,7 +73,7 @@ struct Library
             return top()->getMacroFile(_keyMacro);
         }
 
-        return NULL;
+        return nullptr;
     }
 
     int getMacrosName(std::list<std::wstring>& lst)
@@ -130,6 +130,35 @@ struct Libraries
         }
 
         return it->second;
+    }
+
+    int getLevel(const Symbol& _key) const
+    {
+        MapLibs::const_iterator it = libs.find(_key);
+        if (it != libs.end())
+        {
+            if (!it->second->empty())
+            {
+                return it->second->top()->m_iLevel;
+            }
+        }
+        else
+        {
+            for (auto i = libs.rbegin(), end = libs.rend(); i != end; ++i)
+            {
+                Library * lib = i->second;
+                if (!lib->empty())
+                {
+                    types::MacroFile * pMF = lib->get(_key);
+                    if (pMF)
+                    {
+                        return lib->top()->m_iLevel;
+                    }
+                }
+            }
+        }
+
+        return -1;
     }
 
     void put(const Symbol& _keyLib, types::Library* _pLib, int _iLevel)

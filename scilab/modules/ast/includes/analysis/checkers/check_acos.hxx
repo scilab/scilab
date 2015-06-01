@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    inline static TIType check_acos(GVN & gvn, const TIType & in0)
+inline static TIType check_acos(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             return in0;
@@ -35,14 +35,10 @@ namespace analysis
         {
             return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
         }
-        case TIType::DOUBLEUINT :
-        {
-            return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
-        }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis
 

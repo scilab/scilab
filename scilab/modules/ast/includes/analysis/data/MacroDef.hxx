@@ -18,6 +18,8 @@
 #include <string>
 #include <vector>
 
+#include "alldec.hxx"
+#include "allexp.hxx"
 #include "allvar.hxx"
 #include "alltypes.hxx"
 #include "symbol.hxx"
@@ -36,12 +38,13 @@ class MacroDef
 public:
 
     MacroDef(const unsigned int _lhs, const unsigned int _rhs) : lhs(_lhs), rhs(_rhs) { }
-
+    virtual ~MacroDef() { }
+    
     virtual ast::SeqExp & getBody() = 0;
     virtual const std::wstring & getName() = 0;
     virtual std::vector<symbol::Symbol> getIn() = 0;
     virtual std::vector<symbol::Symbol> getOut() = 0;
-    virtual MacroDef * clone() = 0;
+    virtual MacroDef * clone() const = 0;
 
     inline unsigned int getLhs() const
     {
@@ -85,17 +88,26 @@ public:
 
 class ExistingMacroDef : public MacroDef
 {
-    types::Macro & macro;
-
+    const std::wstring name;
+    ast::SeqExp * se;
+    std::vector<symbol::Symbol> inputs;
+    std::vector<symbol::Symbol> outputs;
+    
 public:
 
     ExistingMacroDef(types::Macro & _macro);
+    ExistingMacroDef(const ExistingMacroDef & emd);
+
+    ~ExistingMacroDef()
+	{
+	    delete se;
+	}
 
     ast::SeqExp & getBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
-    MacroDef * clone();
+    MacroDef * clone() const;
 };
 
 class DeclaredMacroDef : public MacroDef
@@ -106,11 +118,16 @@ public:
 
     DeclaredMacroDef(ast::FunctionDec * const _dec);
 
+    ~DeclaredMacroDef()
+	{
+	    delete dec;
+	}
+
     ast::SeqExp & getBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
     std::vector<symbol::Symbol> getOut();
-    MacroDef * clone();
+    MacroDef * clone() const;
 };
 
 } // namespace analysis

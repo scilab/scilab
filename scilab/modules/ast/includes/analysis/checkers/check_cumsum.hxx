@@ -35,10 +35,6 @@ namespace analysis
         {
             return in0;
         }
-        case TIType::DOUBLEUINT :
-        {
-            return in0;
-        }
         case TIType::INT16 :
         {
             return in0;

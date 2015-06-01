@@ -15,16 +15,40 @@
 
 namespace analysis
 {
-void AnalysisVisitor::visit(ast::ListExp & e)
-{
-    double start, step, end;
-    if (AnalysisVisitor::asDouble(e.getStart(), start) && AnalysisVisitor::asDouble(e.getStep(), step) && AnalysisVisitor::asDouble(e.getEnd(), end))
-    {
-        double out;
-        int type = ForList64::checkList(start, end, step, out);
 
-        switch (type)
+    void AnalysisVisitor::visit(ast::ListExp & e)
+    {
+        logger.log(L"ListExp", e.getLocation());
+        e.getStart().accept(*this);
+        Result Rstart = getResult();
+        e.getEnd().accept(*this);
+        Result Rend = getResult();
+        e.getStep().accept(*this);
+        Result & Rstep = getResult();
+
+	if (e.getParent()->isVarDec())
+	{
+	    GVN::Value * startRange;
+	    GVN::Value * endRange;
+	    if (Rstart.getConstant().getGVNValue(getGVN(), startRange) && Rend.getConstant().getGVNValue(getGVN(), endRange))
+	    {
+		const symbol::Symbol & sym = static_cast<ast::VarDec *>(e.getParent())->getSymbol();
+		TIType typ(dm.getGVN(), TIType::DOUBLE);
+		Result & res = e.getDecorator().setResult(Result(typ, -1));
+		res.setRange(SymbolicRange(getGVN(), startRange, endRange));
+		setResult(res);
+		return;
+	    }
+	}
+	
+        double start, step, end;
+        if (Rstart.getConstant().getDblValue(start) && Rstep.getConstant().getDblValue(step) && Rend.getConstant().getDblValue(end))
         {
+            double out;
+            int type = ForList64::checkList(start, end, step, out);
+
+            switch (type)
+            {
             case 0:
                 e.getDecorator().setResult(Result(TIType(dm.getGVN(), TIType::EMPTY), -1));
                 break;
@@ -44,113 +68,116 @@ void AnalysisVisitor::visit(ast::ListExp & e)
             }
             default:
                 break;
+            }
+            e.setValues(start, step, end, out);
+            setResult(e.getDecorator().res);
+
+            return;
         }
-        e.setValues(start, step, end, out);
+
+        if (!Rstep.getConstant().getDblValue(step) || (step != -1 && step != 1))
+        {
+            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false), -1));
+            setResult(res);
+	    return;
+        }
+
+        if (!Rstart.getType().isscalar() || !Rend.getType().isscalar())
+        {
+            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false), -1));
+            setResult(res);
+	    return;
+        }
+
+        GVN::Value * gvnStart;
+        if (Rstart.getConstant().getDblValue(start))
+        {
+            if (tools::getIntType(start) == tools::NOTANINT)
+            {
+                gvnStart = getGVN().getValue((double)tools::cast<int>(start + step));
+            }
+            else
+            {
+                gvnStart = getGVN().getValue((double)tools::cast<int>(start));
+            }
+        }
+        else
+        {
+            gvnStart = Rstart.getConstant().getGVNValue();
+            if (!gvnStart)
+            {
+                Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false), -1));
+                setResult(res);
+		return;
+            }
+        }
+
+        GVN::Value * gvnEnd;
+
+        if (Rend.getConstant().getDblValue(end))
+        {
+            if (tools::getIntType(end) == tools::NOTANINT)
+            {
+                gvnEnd = getGVN().getValue((double)tools::cast<int>(end - step));
+            }
+            else
+            {
+                gvnEnd = getGVN().getValue((double)tools::cast<int>(end));
+            }
+        }
+        else
+        {
+            gvnEnd = Rend.getConstant().getGVNValue();
+            if (!gvnEnd)
+            {
+                Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false), -1));
+                setResult(res);
+		return;
+            }
+        }
+
+        GVN::Value * ONEValue = getGVN().getValue(1.);
+        SymbolicDimension ONE(getGVN(), ONEValue);
+        GVN::Value * v;
+
+        if (gvnStart->value == gvnEnd->value)
+        {
+            Result & res = e.getDecorator().setResult(Result(TIType(getGVN(), TIType::DOUBLE, ONE, ONE)));
+            setResult(res);
+	    return;
+        }
+
+        if (step == 1)
+        {
+            v = getGVN().getValue(OpValue::Kind::MINUS, *gvnEnd, *gvnStart);
+        }
+        else
+        {
+            v = getGVN().getValue(OpValue::Kind::MINUS, *gvnStart, *gvnEnd);
+        }
+        v = getGVN().getValue(OpValue::Kind::PLUS, *v, *ONEValue);
+
+        if (v->poly->constant < 0 && v->poly->isCoeffNegative(false))
+        {
+            TIType type(getGVN(), TIType::EMPTY);
+            e.getDecorator().res = Result(type);
+        }
+        else
+        {
+            bool res = getCM().check(ConstraintManager::POSITIVE, v);
+            if (res)
+            {
+                TIType type(getGVN(), TIType::DOUBLE, ONE, SymbolicDimension(getGVN(), v));
+                e.getDecorator().setResult(type);
+            }
+            else
+            {
+                Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false), -1));
+                setResult(res);
+		return;
+            }
+        }
+
         setResult(e.getDecorator().res);
-
-        return;
     }
-
-    e.getStart().accept(*this);
-    Result Rstart = getResult();
-
-    if (!AnalysisVisitor::asDouble(e.getStep(), step) || (step != -1 && step != 1))
-    {
-        Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
-        setResult(res);
-        return;
-    }
-
-    GVN::Value * gvnStart;
-
-    if (!Rstart.getType().isscalar())
-    {
-        Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
-        setResult(res);
-        return;
-    }
-
-    if (Rstart.getConstant().getDblValue(start))
-    {
-        if (tools::getIntType(start) == tools::NOTANINT)
-        {
-            gvnStart = getGVN().getValue((double)tools::cast<int>(start + step));
-        }
-        else
-        {
-            gvnStart = getGVN().getValue((double)tools::cast<int>(start));
-        }
-    }
-    else
-    {
-        gvnStart = Rstart.getConstant().getGVNValue();
-        if (!gvnStart)
-        {
-            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
-            setResult(res);
-            return;
-        }
-    }
-
-    e.getEnd().accept(*this);
-    Result & Rend = getResult();
-    GVN::Value * gvnEnd;
-
-    if (Rend.getConstant().getDblValue(end))
-    {
-        if (tools::getIntType(end) == tools::NOTANINT)
-        {
-            gvnEnd = getGVN().getValue((double)tools::cast<int>(end - step));
-        }
-        else
-        {
-            gvnEnd = getGVN().getValue((double)tools::cast<int>(end));
-        }
-    }
-    else
-    {
-        gvnEnd = Rend.getConstant().getGVNValue();
-        if (!gvnEnd)
-        {
-            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
-            setResult(res);
-            return;
-        }
-    }
-
-    GVN::Value * ONEValue = getGVN().getValue(1.);
-    SymbolicDimension ONE(getGVN(), ONEValue);
-    GVN::Value * v;
-    if (step == 1)
-    {
-        v = getGVN().getValue(OpValue::Kind::MINUS, *gvnEnd, *gvnStart);
-    }
-    else
-    {
-        v = getGVN().getValue(OpValue::Kind::MINUS, *gvnStart, *gvnEnd);
-    }
-    v = getGVN().getValue(OpValue::Kind::PLUS, *v, *ONEValue);
-
-    if (v->poly->isConstant() && v->poly->constant <= 0)
-    {
-        TIType type(getGVN(), TIType::EMPTY);
-        e.getDecorator().res = Result(type);
-    }
-    else
-    {
-        bool res = getCM().check(ConstraintManager::POSITIVE, v);
-        if (res)
-        {
-            TIType type(getGVN(), TIType::DOUBLE, ONE, SymbolicDimension(getGVN(), v));
-            e.getDecorator().setResult(type);
-        }
-        else
-        {
-            Result & res = e.getDecorator().setResult(Result(TIType(dm.getGVN(), Rstart.getType().type, false, true), -1));
-            setResult(res);
-            return;
-        }
-    }
-    setResult(e.getDecorator().res);
-}
 }

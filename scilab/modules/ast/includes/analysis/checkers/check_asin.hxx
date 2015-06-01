@@ -35,10 +35,6 @@ namespace analysis
         {
             return TIType(gvn, TIType::COMPLEX, in0.rows, in0.cols);
         }
-        case TIType::DOUBLEUINT :
-        {
-            return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
-        }
         default :
             return TIType(gvn);
         }

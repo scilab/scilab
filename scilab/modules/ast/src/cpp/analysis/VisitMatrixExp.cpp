@@ -17,6 +17,7 @@ namespace analysis
 {
 void AnalysisVisitor::visit(ast::MatrixExp & e)
 {
+    logger.log(L"MatrixExp", e.getLocation());
     const ast::exps_t & lines = e.getLines();
     if (lines.empty())
     {
@@ -163,7 +164,7 @@ void AnalysisVisitor::visit(ast::MatrixExp & e)
     }
     else
     {
-        TIType type(getGVN(), baseType, false, true);
+        TIType type(getGVN(), baseType, false);
         e.getDecorator().res = Result(type);
     }
 

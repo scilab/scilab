@@ -1,6 +1,6 @@
 /*
  *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2014 - Scilab Enterprises - Calixte DENIZET
+ *  Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
  *
  *  This file must be used under the terms of the CeCILL.
  *  This source file is licensed as described in the file COPYING, which
@@ -85,15 +85,10 @@ private:
     {
     }
 
-    void visit(ast::IntExp & e)
-    {
-        // nothing to do
-    }
-
-    void visit(ast::FloatExp & e)
-    {
-        // nothing to do
-    }
+    void visit(ast::DoubleExp & e)
+	{
+	    setResult(e.value_get() >= 0);
+	}
 
     void visit(ast::DoubleExp & e)
     {
@@ -330,6 +325,18 @@ private:
     void visit(ast::ListExp & e)
     {
     }
+
+    void visit(ast::OptimizedExp & e)
+	{
+	}
+    
+    void visit(ast::MemfillExp & e)
+	{
+	}
+    
+    void visit(ast::DAXPYExp & e)
+	{
+	}
 };
 
 } // namespace analysis

@@ -148,6 +148,32 @@ Variable* Context::getOrCreate(const Symbol& _key)
     return variables.getOrCreate(_key);
 }
 
+int Context::getLevel(const Symbol & _key) const
+{
+    VarList::iterator it = varStack.top()->find(_key);
+    if (it != varStack.top()->end())
+    {
+        if (!it->second->empty())
+        {
+            return it->second->top()->m_iLevel;
+        }
+    }
+    else
+    {
+        const int ret = variables.getLevel(_key);
+        if (ret == -1)
+        {
+            return libraries.getLevel(_key);
+        }
+        else
+        {
+            return ret;
+        }
+    }
+
+    return -1;
+}
+
 types::InternalType* Context::get(const Symbol& _key)
 {
     return get(_key, -1);

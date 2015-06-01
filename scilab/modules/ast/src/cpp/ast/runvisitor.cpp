@@ -24,6 +24,7 @@
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
 #include "mutevisitor.hxx"
+#include "AnalysisVisitor.hxx"
 
 #include "visitor_common.hxx"
 
@@ -637,6 +638,160 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         e.getExp().accept(*this);
         setExpectedSize(iSaveExpectedSize);
         const_cast<ReturnExp*>(&e)->setReturn();
+    }
+}
+
+template <class T>
+void RunVisitorT<T>::visitprivate(const IntSelectExp &e)
+{
+    e.getSelect()->accept(*this);
+    InternalType* pIT = getResult();
+    setResult(nullptr);
+    bool found = false;
+    if (pIT && pIT->isDouble())
+    {
+        Double * pDbl = static_cast<Double *>(pIT);
+        if (!pDbl->isComplex() && pDbl->getSize() == 1)
+        {
+            int64_t val;
+            if (analysis::tools::asInteger<int64_t>(pDbl->get(0), val))
+            {
+                Exp * exp = e.getExp(val);
+                found = true;
+                if (exp)
+                {
+                    Exp * body = exp->isCaseExp() ? exp->getAs<CaseExp>()->getBody() : exp;
+                    if (e.isBreakable())
+                    {
+                        const_cast<IntSelectExp*>(&e)->resetBreak();
+                        body->setBreakable();
+                    }
+
+                    if (e.isContinuable())
+                    {
+                        const_cast<IntSelectExp*>(&e)->resetContinue();
+                        body->setContinuable();
+                    }
+
+                    if (e.isReturnable())
+                    {
+                        const_cast<IntSelectExp*>(&e)->resetReturn();
+                        body->setReturnable();
+                    }
+
+                    try
+                    {
+                        //the good one
+                        body->accept(*this);
+                    }
+                    catch (ScilabMessage& sm)
+                    {
+                        pIT->killMe();
+                        throw sm;
+                    }
+
+                    if (e.isBreakable() && body->isBreak())
+                    {
+                        const_cast<IntSelectExp*>(&e)->setBreak();
+                        body->resetBreak();
+                    }
+
+                    if (e.isContinuable() && body->isContinue())
+                    {
+                        const_cast<IntSelectExp*>(&e)->setContinue();
+                        body->resetContinue();
+                    }
+
+                    if (e.isReturnable() && body->isReturn())
+                    {
+                        const_cast<IntSelectExp*>(&e)->setReturn();
+                        body->resetReturn();
+                    }
+                }
+            }
+        }
+    }
+
+    if (!found)
+    {
+        e.getOriginal()->accept(*this);
+    }
+}
+
+template <class T>
+void RunVisitorT<T>::visitprivate(const StringSelectExp &e)
+{
+    e.getSelect()->accept(*this);
+    InternalType* pIT = getResult();
+    setResult(nullptr);
+    bool found = false;
+    if (pIT && pIT->isString())
+    {
+        String * pStr = static_cast<String *>(pIT);
+        if (pStr->getSize() == 1)
+        {
+            if (wchar_t * s = pStr->get(0))
+            {
+                const std::wstring ws(s);
+                Exp * exp = e.getExp(ws);
+                found = true;
+                if (exp)
+                {
+                    Exp * body = exp->isCaseExp() ? exp->getAs<CaseExp>()->getBody() : exp;
+                    if (e.isBreakable())
+                    {
+                        const_cast<StringSelectExp*>(&e)->resetBreak();
+                        body->setBreakable();
+                    }
+
+                    if (e.isContinuable())
+                    {
+                        const_cast<StringSelectExp*>(&e)->resetContinue();
+                        body->setContinuable();
+                    }
+
+                    if (e.isReturnable())
+                    {
+                        const_cast<StringSelectExp*>(&e)->resetReturn();
+                        body->setReturnable();
+                    }
+
+                    try
+                    {
+                        //the good one
+                        body->accept(*this);
+                    }
+                    catch (ScilabMessage& sm)
+                    {
+                        pIT->killMe();
+                        throw sm;
+                    }
+
+                    if (e.isBreakable() && body->isBreak())
+                    {
+                        const_cast<StringSelectExp*>(&e)->setBreak();
+                        body->resetBreak();
+                    }
+
+                    if (e.isContinuable() && body->isContinue())
+                    {
+                        const_cast<StringSelectExp*>(&e)->setContinue();
+                        body->resetContinue();
+                    }
+
+                    if (e.isReturnable() && body->isReturn())
+                    {
+                        const_cast<StringSelectExp*>(&e)->setReturn();
+                        body->resetReturn();
+                    }
+                }
+            }
+        }
+    }
+
+    if (!found)
+    {
+        e.getOriginal()->accept(*this);
     }
 }
 
@@ -1287,6 +1442,12 @@ void RunVisitorT<T>::visitprivate(const OptimizedExp &e)
 {
 }
 
+template <class T>
+void RunVisitorT<T>::visitprivate(const MemfillExp &e)
+{
+    e.getOriginal()->accept(*this);
+}
+    
 template <class T>
 void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
 {

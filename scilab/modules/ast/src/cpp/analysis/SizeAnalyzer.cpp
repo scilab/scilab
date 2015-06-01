@@ -11,47 +11,48 @@
  */
 
 #include "AnalysisVisitor.hxx"
-#include "calls/SizeAnalyzer.hxx"
+#include "analyzers/SizeAnalyzer.hxx"
 #include "tools.hxx"
+#include "double.hxx"
 
 namespace analysis
 {
-bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
-{
-    if (lhs > 2)
+    bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, ast::CallExp & e)
     {
-        return false;
-    }
+        if (lhs > 2)
+        {
+            return false;
+        }
 
-    const ast::exps_t args = e.getArgs();
-    enum Kind
-    {
-        ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE
-    } kind;
-    const std::size_t size = args.size();
-    if (size == 0 || size >= 3)
-    {
-        return false;
-    }
+        const ast::exps_t args = e.getArgs();
+        enum Kind
+        {
+            ROWS, COLS, ROWSTIMESCOLS, ROWSCOLS, ONE, BOTH
+        } kind;
+        const std::size_t size = args.size();
+        if (size == 0 || size >= 3)
+        {
+            return false;
+        }
 
-    ast::Exp * first = *args.begin();
-    if (!first)
-    {
-        return false;
-    }
-    first->accept(visitor);
-    Result & res = visitor.getResult();
-    if (!res.getType().ismatrix())
-    {
-        return false;
-    }
+        ast::Exp * first = *args.begin();
+        if (!first)
+        {
+            return false;
+        }
+        first->accept(visitor);
+        Result & res = visitor.getResult();
+        if (!res.getType().ismatrix())
+        {
+            return false;
+        }
 
-    switch (size)
-    {
+        switch (size)
+        {
         case 1:
             if (lhs == 1)
             {
-                kind = ROWS;
+                kind = BOTH;
             }
             else if (lhs == 2)
             {
@@ -96,6 +97,7 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     }
                     else if (arg2 >= 3)
                     {
+                        // TODO: we should handle hypermatrix
                         kind = ONE;
                     }
                     else
@@ -112,18 +114,18 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         }
         default:
             return false;
-    }
+        }
 
-    TIType type(visitor.getGVN(), TIType::DOUBLEUINT);
+        TIType type(visitor.getGVN(), TIType::DOUBLE);
 
-    switch (kind)
-    {
+        switch (kind)
+        {
         case ROWS:
         {
             SymbolicDimension & rows = res.getType().rows;
             Result & _res = e.getDecorator().setResult(type);
-            _res.getConstant().set(rows.getValue());
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
+            _res.getConstant() = rows.getValue();
+            e.getDecorator().setCall(L"size");
             visitor.setResult(_res);
             break;
         }
@@ -131,8 +133,8 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         {
             SymbolicDimension & cols = res.getType().cols;
             Result & _res = e.getDecorator().setResult(type);
-            _res.getConstant().set(cols.getValue());
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
+            _res.getConstant() = cols.getValue();
+            e.getDecorator().setCall(L"size");
             visitor.setResult(_res);
             break;
         }
@@ -142,8 +144,8 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             SymbolicDimension & cols = res.getType().cols;
             SymbolicDimension prod = rows * cols;
             Result & _res = e.getDecorator().setResult(type);
-            _res.getConstant().set(prod.getValue());
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
+            _res.getConstant() = prod.getValue();
+            e.getDecorator().setCall(L"size");
             visitor.setResult(_res);
             break;
         }
@@ -155,15 +157,31 @@ bool SizeAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.clear();
             mlhs.reserve(2);
             mlhs.emplace_back(type);
-            mlhs.back().getConstant().set(rows.getValue());
+            mlhs.back().getConstant() = rows.getValue();
             mlhs.emplace_back(type);
-            mlhs.back().getConstant().set(cols.getValue());
+            mlhs.back().getConstant() = cols.getValue();
 
-            e.getDecorator().setCall(Call(Call::IDENTITY, type, L"size"));
+            e.getDecorator().setCall(L"size");
             break;
         }
-    }
+        case ONE:
+        {
+            Result & _res = e.getDecorator().setResult(type);
+            _res.getConstant() = new types::Double(1);
+            e.getDecorator().setCall(L"size");
+            visitor.setResult(_res);
+            break;
+        }
+	case BOTH:
+        {
+	    TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
+            Result & _res = e.getDecorator().setResult(_type);
+            e.getDecorator().setCall(L"size");
+            visitor.setResult(_res);
+            break;
+        }
+        }
 
-    return true;
-}
+        return true;
+    }
 }

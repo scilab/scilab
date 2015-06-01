@@ -16,9 +16,10 @@
 
 namespace analysis
 {
-TIType(*Checkers::ARGS0[3])(GVN &);
-TIType(*Checkers::ARGS1[40])(GVN &, const TIType &);
-TIType(*Checkers::ARGS2[5])(GVN &, const TIType &, const TIType &);
+        TIType (*Checkers::ARGS0[6])(GVN &);
+        TIType (*Checkers::ARGS1[53])(GVN &, const TIType &);
+        TIType (*Checkers::ARGS2[10])(GVN &, const TIType &, const TIType &);
+        TIType (*Checkers::ARGS3[1])(GVN &, const TIType &, const TIType &, const TIType &);
 
-Checkers::CheckersMap Checkers::map = Checkers::initMap();
+        Checkers::CheckersMap Checkers::map = Checkers::initMap();
 }

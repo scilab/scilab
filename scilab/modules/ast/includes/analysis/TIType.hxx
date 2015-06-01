@@ -27,32 +27,34 @@ namespace analysis
 {
 struct TIType
 {
-    enum Type { EMPTY = 0, BOOLEAN, COMPLEX, CELL, DOUBLE, DOUBLEUINT, FUNCTION, INT16, INT32, INT64, INT8, LIST, LIBRARY, MACRO, MACROFILE, MLIST, POLYNOMIAL, STRING, SPARSE, STRUCT, TLIST, UINT16, UINT32, UINT64, UINT8, UNKNOWN, COUNT };
+    static const std::wstring _boolean_, _ce_, _constant_, _fptr_, _function_, _int16_, _int32_, _int64_, _int8_, _library_, _list_, _mlist_, _polynomial_, _sparse_, _st_, _string_, _tlist_, _uint16_, _uint32_, _uint64_, _uint8_, _unknown_;
+
+    enum Type { EMPTY = 0, BOOLEAN, COMPLEX, CELL, DOUBLE, FUNCTION, INT16, INT32, INT64, INT8, LIST, LIBRARY, MACRO, MACROFILE, MLIST, POLYNOMIAL, STRING, SPARSE, STRUCT, TLIST, UNKNOWN, UINT16, UINT32, UINT64, UINT8, COUNT };
     Type type;
     SymbolicDimension rows;
     SymbolicDimension cols;
     bool scalar;
 
     TIType(const Type _type = UNKNOWN) : type(_type), scalar(true) { }
-    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, tools::NaN()), cols(gvn, tools::NaN()), scalar(false) { }
+    TIType(GVN & gvn) : type(UNKNOWN), rows(gvn, 0.), cols(gvn, 0.), scalar(false) { }
     TIType(GVN & gvn, const Type _type) : type(_type), rows(gvn, _type == EMPTY ? 0 : 1), cols(gvn, _type == EMPTY ? 0 : 1), scalar(_type != EMPTY) { }
     TIType(GVN & gvn, const Type _type, const int _rows, const int _cols) : type(_type), rows(gvn, _rows), cols(gvn, _cols), scalar(_rows == 1 && _cols == 1) { }
     TIType(GVN & gvn, Type _type, const SymbolicDimension & _rows, const SymbolicDimension & _cols) : type(_type), rows(_rows), cols(_cols), scalar(_rows == 1 && _cols == 1) { }
-    TIType(GVN & gvn, const Type _type, const bool _scalar, const bool _unknown) : type(_type), rows(gvn, getDimValue(_scalar, _unknown)), cols(gvn, getDimValue(_scalar, _unknown)), scalar(_scalar) { }
+    TIType(GVN & gvn, const Type _type, const bool _scalar) : type(_type), rows(gvn, _scalar ? 1. : -1.), cols(gvn, _scalar ? 1. : -1.), scalar(_scalar) { }
 
-    inline static double getDimValue(const bool scalar, const bool unknown)
+    inline bool hasValidDims() const
     {
-        return scalar ? 1. : (unknown ? tools::NaN() : -1.);
+        return rows != -2 && cols != -2;
     }
 
-    inline TIType asMatrix()
+    inline bool hasInvalidDims() const
     {
-        return TIType(*rows.getGVN(), type, 0, 0);
+        return rows == -2;
     }
 
     inline TIType asUnknownMatrix()
     {
-        return TIType(*rows.getGVN(), type, false, true);
+        return TIType(*rows.getGVN(), type, false);
     }
 
     inline bool isscalar() const
@@ -110,9 +112,21 @@ struct TIType
         return type != UNKNOWN;
     }
 
+    inline bool isunknown() const
+    {
+        return type == UNKNOWN;
+    }
+
     inline bool isConstantDims() const
     {
         return rows.isConstant() && cols.isConstant();
+    }
+
+    inline void swapDims()
+    {
+        GVN::Value * r = rows.getValue();
+        rows.setValue(cols.getValue());
+        cols.setValue(r);
     }
 
     inline std::size_t hashPureType() const
@@ -139,13 +153,27 @@ struct TIType
         else if ((this->type != COMPLEX || type.type != DOUBLE) && this->type != type.type)
         {
             this->type = UNKNOWN;
+            rows.setValue(0.);
+            cols.setValue(0.);
         }
         else if ((!scalar || !type.scalar) && (rows != type.rows || cols != type.cols))
         {
-            rows.invalid();
-            cols.invalid();
+            if (rows != type.rows)
+            {
+                rows.setValue(rows.getGVN()->getValue());
+            }
+            if (cols != type.cols)
+            {
+                cols.setValue(cols.getGVN()->getValue());
+            }
             scalar = false;
         }
+        /*else if ((!scalar || !type.scalar) && (rows != type.rows || cols != type.cols))
+        {
+        rows.invalid();
+        cols.invalid();
+        scalar = false;
+        }*/
     }
 
     template<typename> static Type getTI();
@@ -165,8 +193,6 @@ struct TIType
                 return kd ? (scalar ? "S_ce" : "M_ce") : "U_ce";
             case DOUBLE :
                 return kd ? (scalar ? "S_d" : "M_d") : "U_d";
-            case DOUBLEUINT :
-                return kd ? (scalar ? "S_dui" : "M_dui") : "U_dui";
             case FUNCTION :
                 return kd ? (scalar ? "S_fn" : "M_fn") : "U_fn";
             case INT16 :
@@ -197,6 +223,8 @@ struct TIType
                 return kd ? (scalar ? "S_st" : "M_st") : "U_st";
             case TLIST :
                 return kd ? (scalar ? "S_tl" : "M_tl") : "U_tl";
+            case UNKNOWN :
+                return kd ? (scalar ? "S_u" : "M_u") : "U_u";
             case UINT16 :
                 return kd ? (scalar ? "S_ui16" : "M_ui16") : "U_ui16";
             case UINT32 :
@@ -275,8 +303,6 @@ struct TIType
                 return L"cell";
             case DOUBLE :
                 return L"double";
-            case DOUBLEUINT :
-                return L"doubleuint";
             case FUNCTION :
                 return L"function";
             case INT16 :
@@ -307,6 +333,8 @@ struct TIType
                 return L"struct";
             case TLIST :
                 return L"tlist";
+            case UNKNOWN :
+                return L"unknown";
             case UINT16 :
                 return L"uint16";
             case UINT32 :
@@ -315,11 +343,137 @@ struct TIType
                 return L"uint64";
             case UINT8 :
                 return L"uint8";
-            default:
-                break;
+            default :
+                return L"unknown";
         }
+    }
 
-        return L"unknown";
+    inline const std::wstring & getScilabString() const
+    {
+        return getScilabString(type);
+    }
+
+    inline static const std::wstring & getScilabString(Type t)
+    {
+        switch (t)
+        {
+            case EMPTY :
+                return _constant_;
+            case BOOLEAN :
+                return _boolean_;
+            case COMPLEX :
+                return _constant_;
+            case CELL :
+                return _ce_;
+            case DOUBLE :
+                return _constant_;
+            case FUNCTION :
+                return _fptr_;
+            case INT16 :
+                return _int16_;
+            case INT32 :
+                return _int32_;
+            case INT64 :
+                return _int64_;
+            case INT8 :
+                return _int8_;
+            case LIST :
+                return _list_;
+            case LIBRARY :
+                return _library_;
+            case MACRO :
+                return _function_;
+            case MACROFILE :
+                return _function_;
+            case MLIST :
+                return _mlist_;
+            case POLYNOMIAL :
+                return _polynomial_;
+            case STRING :
+                return _string_;
+            case SPARSE :
+                return _sparse_;
+            case STRUCT :
+                return _st_;
+            case TLIST :
+                return _tlist_;
+            case UNKNOWN :
+                return _unknown_;
+            case UINT16 :
+                return _uint16_;
+            case UINT32 :
+                return _uint32_;
+            case UINT64 :
+                return _uint64_;
+            case UINT8 :
+                return _uint8_;
+            default :
+                return _unknown_;
+        }
+    }
+
+    inline int getScilabCode() const
+    {
+        return getScilabCode(type);
+    }
+
+    inline static int getScilabCode(Type t)
+    {
+        switch (t)
+        {
+            case EMPTY :
+                return 1;
+            case BOOLEAN :
+                return 4;
+            case COMPLEX :
+                return 1;
+            case CELL :
+                return 17;
+            case DOUBLE :
+                return 1;
+            case FUNCTION :
+                return 130;
+            case INT16 :
+                return 8;
+            case INT32 :
+                return 8;
+            case INT64 :
+                return 8;
+            case INT8 :
+                return 8;
+            case LIST :
+                return 15;
+            case LIBRARY :
+                return 14;
+            case MACRO :
+                return 11;
+            case MACROFILE :
+                return 13;
+            case MLIST :
+                return 17;
+            case POLYNOMIAL :
+                return 2;
+            case STRING :
+                return 10;
+            case SPARSE :
+                return 5;
+            case STRUCT :
+                return 17;
+            case TLIST :
+                return 16;
+            case UNKNOWN :
+                return -1;
+            case UINT16 :
+                return 8;
+            case UINT32 :
+                return 8;
+            case UINT64 :
+                return 8;
+            case UINT8 :
+                return 8;
+            default :
+                return -1;
+        }
     }
 
     friend std::wostream & operator<<(std::wostream & out, const TIType & type)
@@ -340,9 +494,6 @@ struct TIType
                 break;
             case DOUBLE :
                 out << L"double";
-                break;
-            case DOUBLEUINT :
-                out << L"doubleuint";
                 break;
             case FUNCTION :
                 out << L"function";
@@ -389,6 +540,9 @@ struct TIType
             case TLIST :
                 out << L"tlist";
                 break;
+            case UNKNOWN :
+                out << L"unknown";
+                break;
             case UINT16 :
                 out << L"uint16";
                 break;
@@ -401,8 +555,8 @@ struct TIType
             case UINT8 :
                 out << L"uint8";
                 break;
-            default:
-                out << L"unknown";
+            default :
+                break;
         }
 
         if (type.type != EMPTY && type.type != UNKNOWN)

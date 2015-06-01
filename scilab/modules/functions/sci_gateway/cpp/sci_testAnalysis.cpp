@@ -84,11 +84,24 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     pOut->get(0)->set(L"type", new String(analysis::TIType::toString(t.type).c_str()));
 
     pOut->addField(L"rows");
-    pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
+    if (t.rows.isConstant())
+    {
+	pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
+    }
+    else
+    {
+	pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
+    }
 
     pOut->addField(L"cols");
-    pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
-
+    if (t.cols.isConstant())
+    {
+	pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
+    }
+    else
+    {
+	pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
+    }
     out.push_back(pOut);
 
     //ast::DebugVisitor debugMe;

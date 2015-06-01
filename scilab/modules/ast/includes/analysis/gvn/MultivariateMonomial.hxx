@@ -62,20 +62,23 @@ struct MultivariateMonomial
     MultivariateMonomial(const MultivariateMonomial & mm) : coeff(mm.coeff), monomial(mm.monomial) { }
 
     /**
+     * \brief Check if a variable is contained in the monomial
+     * \param var an id
+     * \return true if the monomial contains the var
+     */
+    inline bool contains(const unsigned long long var) const
+	{
+	    return monomial.find(var) != monomial.end();
+	}
+    
+    /**
      * Check if the variables of the monomial have an id lower or equal to max
      * \param max an id
      * \return true if all the variables have an id leq to max
      */
     inline bool checkVariable(const unsigned long long max) const
     {
-        for (const auto & ve : monomial)
-        {
-            if (ve.var > max)
-            {
-                return false;
-            }
-        }
-        return true;
+	return std::prev(monomial.end())->var <= max;
     }
 
     /**

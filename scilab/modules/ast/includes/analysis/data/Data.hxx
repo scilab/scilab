@@ -32,12 +32,14 @@ struct Data
     {
         sharedSyms.emplace(sym);
     }
+    
     Data(const Data & d) : known(d.known), valid(true), sharedSyms(d.sharedSyms) {  }
 
     inline void clear()
     {
         sharedSyms.clear();
     }
+    
     inline void add(const symbol::Symbol & sym)
     {
         if (valid)
@@ -54,11 +56,12 @@ struct Data
         }
     }
 
-    inline bool hasOneOwner()
+    inline bool hasOneOwner() const
     {
         return valid && known && (sharedSyms.size() == 1);
     }
-    inline bool isDeletable()
+
+    inline bool isDeletable() const
     {
         return valid && known && sharedSyms.empty();
     }

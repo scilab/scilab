@@ -294,6 +294,22 @@ protected:
     {
         e.getOriginal()->accept(*this);
     }
+
+    virtual void visit(const IntSelectExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    virtual void visit(const StringSelectExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    virtual void visit(const MemfillExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
 };
 }
 

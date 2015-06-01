@@ -20,6 +20,7 @@
 #include "allexp.hxx"
 #include "allvar.hxx"
 #include "alldec.hxx"
+#include "alltypes.hxx"
 
 namespace ast
 {
@@ -101,8 +102,47 @@ public:
 
     /* optimized */
     virtual void visit(const OptimizedExp &e);
+    virtual void visit(const MemfillExp &e);
     virtual void visit(const DAXPYExp &e);
+    virtual void visit(const IntSelectExp &e);
+    virtual void visit(const StringSelectExp &e);
     /** \} */
+
+    template<typename T>
+    inline void printInternalType(wostringstream & stream, types::InternalType * pIT)
+    {
+        T * pT = static_cast<T *>(pIT);
+        if (pT)
+        {
+            const int size = pT->getSize();
+            if (size == 0)
+            {
+                stream << L"[]";
+            }
+            else if (size == 1)
+            {
+                stream << pT->get(0);
+            }
+            else
+            {
+                stream << L"[";
+                const int _size = std::min(4, size);
+                for (unsigned int i = 0; i < _size - 1; ++i)
+                {
+                    stream << pT->get(i) << L",";
+                }
+                stream << pT->get(_size - 1);
+                if (size <= _size)
+                {
+                    stream << L"]";
+                }
+                else
+                {
+                    stream << L"...";
+                }
+            }
+        }
+    }
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

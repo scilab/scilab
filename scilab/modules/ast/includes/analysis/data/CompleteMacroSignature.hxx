@@ -13,6 +13,7 @@
 #ifndef __COMPLETE_MACRO_SIGNATURE_HXX__
 #define __COMPLETE_MACRO_SIGNATURE_HXX__
 
+#include <set>
 #include <vector>
 
 #include "alltypes.hxx"
@@ -28,6 +29,7 @@ namespace analysis
 struct MacroOut
 {
     TITypeTuple tuple;
+    int maxVarId;
 };
 
 class AnalysisVisitor;
@@ -44,9 +46,10 @@ class CompleteMacroSignature
     struct __MPCMO
     {
         MPolyConstraintSet mpConstraints;
+	std::set<symbol::Symbol> globalConstants;
         MacroOut out;
 
-        __MPCMO(const MPolyConstraintSet & _mpConstraints, MacroOut _out) : mpConstraints(_mpConstraints), out(_out) { }
+        __MPCMO(const MPolyConstraintSet & _mpConstraints, const std::set<symbol::Symbol> & _globalConstants, MacroOut && _out) : mpConstraints(_mpConstraints), globalConstants(_globalConstants), out(_out) { }
     };
 
     // This map contains the signatures corresponding to the global symbols mapped to out types

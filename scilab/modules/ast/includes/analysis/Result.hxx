@@ -16,6 +16,8 @@
 #include <iostream>
 
 #include "gvn/GVN.hxx"
+#include "gvn/SymbolicDimension.hxx"
+#include "gvn/SymbolicRange.hxx"
 #include "TIType.hxx"
 #include "tools.hxx"
 #include "ConstantValue.hxx"
@@ -31,17 +33,18 @@ public:
 
 private:
 
-    bool visited;
     TIType type;
     int tempId;
     FnName fnname;
     ConstantValue constant;
+    SymbolicRange range;
+    SymbolicDimension maxIndex;
 
 public:
 
-    Result() : visited(false), type(), tempId(-1) { }
-    Result(const TIType & _type, const int _tempId = -1) : visited(true), type(_type), tempId(_tempId) { }
-    Result(TIType && _type, const int _tempId = -1) : visited(true), type(_type), tempId(_tempId) { }
+    Result() : type(), tempId(-1) { }
+    Result(const TIType & _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
+    Result(TIType && _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
 
     inline bool istemp() const
     {
@@ -50,7 +53,6 @@ public:
 
     inline void setFnName(FnName _fnname)
     {
-        visited = true;
         fnname = _fnname;
     }
 
@@ -90,11 +92,50 @@ public:
         return constant;
     }
 
-    inline bool hasBeenVisited() const
+    inline SymbolicRange & getRange()
     {
-        return visited;
+        return range;
     }
 
+    inline const SymbolicRange & getRange() const
+    {
+        return range;
+    }
+
+    inline SymbolicRange & setRange(SymbolicRange & _range)
+    {
+        range = _range;
+        return range;
+    }
+
+    inline SymbolicRange & setRange(SymbolicRange && _range)
+    {
+        range = _range;
+        return range;
+    }
+
+    inline SymbolicDimension & getMaxIndex()
+	{
+	    return maxIndex;
+	}
+    
+    inline const SymbolicDimension & getMaxIndex() const
+	{
+	    return maxIndex;
+	}
+
+    inline SymbolicDimension & setMaxIndex(SymbolicDimension & _maxIndex)
+    {
+        maxIndex = _maxIndex;
+        return maxIndex;
+    }
+
+    inline SymbolicDimension & setMaxIndex(SymbolicDimension && _maxIndex)
+    {
+        maxIndex = _maxIndex;
+        return maxIndex;
+    }
+    
     friend std::wostream & operator<<(std::wostream & out, const Result & res)
     {
         out << L"Result {" << res.type << L", temp id:" << res.tempId << L", constant:" << res.constant << L"}";

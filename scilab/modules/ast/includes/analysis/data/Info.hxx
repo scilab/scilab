@@ -18,6 +18,7 @@
 #include "TIType.hxx"
 #include "Data.hxx"
 #include "gvn/GVN.hxx"
+#include "gvn/SymbolicRange.hxx"
 #include "ConstantValue.hxx"
 
 namespace analysis
@@ -41,9 +42,11 @@ struct Info
     Data * data;
     ast::Exp * exp;
     ConstantValue constant;
+    SymbolicRange range;
+    SymbolicDimension maxIndex;
 
     Info(Data * _data = nullptr) : R(false), W(false), O(false), isint(false), local(Local::INFO_TRUE), cleared(false), exists(true), data(_data), exp(nullptr) { }
-    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
+    Info(const Info & i) : R(i.R), W(i.W), O(i.O), isint(i.isint), local(i.local), cleared(i.cleared), exists(i.exists), constant(i.constant), range(i.range), maxIndex(i.maxIndex), type(i.type), data(i.data ? new Data(*i.data) : nullptr), exp(i.exp) { }
 
     inline void merge(Info & info)
     {
@@ -58,9 +61,10 @@ struct Info
         cleared = cleared && info.cleared;
         exists = exists || info.exists;
         constant.merge(info.constant);
-        //knownValue = knownValue && info.knownValue && value == info.value;
+	maxIndex.mergeAsMax(info.maxIndex);
         type.merge(info.type);
         data->valid = data->same(info.data);
+	// No need to merge range since this info is just used in for loop
     }
 
     inline void addData(const bool known, const symbol::Symbol & sym)
@@ -73,6 +77,32 @@ struct Info
         data->add(sym);
     }
 
+    inline SymbolicRange & getRange()
+    {
+        return range;
+    }
+
+    inline const SymbolicRange & getRange() const
+    {
+        return range;
+    }
+
+    inline SymbolicDimension & getMaxIndex()
+    {
+        return maxIndex;
+    }
+
+    inline const SymbolicDimension & getMaxIndex() const
+    {
+        return maxIndex;
+    }
+
+    inline SymbolicRange & setRange(SymbolicRange & _range)
+    {
+        range = _range;
+        return range;
+    }
+    
     inline ConstantValue & getConstant()
     {
         return constant;

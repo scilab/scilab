@@ -225,6 +225,17 @@ struct Variables
         return it->second;
     }
 
+    int getLevel(const Symbol& _key) const
+    {
+        MapVars::const_iterator it = vars.find(_key);
+        if (it != vars.end() && !it->second->empty())
+        {
+            return it->second->top()->m_iLevel;
+        }
+
+        return -1;
+    }
+
     void put(const Symbol& _key, types::InternalType* _pIT, int _iLevel)
     {
         Variable* var = getOrCreate(_key);

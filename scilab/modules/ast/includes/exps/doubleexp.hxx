@@ -49,6 +49,7 @@ public:
     {
         DoubleExp* cloned = new DoubleExp(getLocation(), getValue());
         cloned->setVerbose(isVerbose());
+        cloned->setConstant(getConstant());
         return cloned;
     }
 

@@ -48,6 +48,7 @@ public:
     {
         StringExp* cloned = new StringExp(getLocation(), getValue());
         cloned->setVerbose(isVerbose());
+        cloned->setConstant(getConstant());
         return cloned;
     }
 

@@ -11,6 +11,7 @@
  */
 
 #include "data/XBlock.hxx"
+#include "data/FunctionBlock.hxx"
 
 namespace analysis
 {
@@ -18,6 +19,14 @@ void XBlock::finalize() { }
 
 Block * XBlockHead::addBlock(const unsigned int id, BlockKind kind, ast::Exp * exp)
 {
+    if (kind == MACRO)
+    {
+	Block * b = new FunctionBlock(id, this, exp);
+	testBlocks.push_back(b);
+
+	return b;
+    }
+
     Block * b = new XBlock(id, this, exp);
     blocks.push_back(b);
 
@@ -27,11 +36,26 @@ Block * XBlockHead::addBlock(const unsigned int id, BlockKind kind, ast::Exp * e
 void XBlockHead::finalize()
 {
     pullup(symMap);
-    std::vector<Block *>::iterator begin = blocks.begin();
-    for (std::vector<Block *>::iterator i = ++blocks.begin(), end = blocks.end(); i != end; ++i)
+    std::vector<Block *>::iterator first;
+    std::vector<Block *>::iterator end = blocks.end();
+    for (first = blocks.begin(); first != end; ++first)
     {
-        merge((*begin)->getMap(), (*i)->getMap());
+	if (!(*first)->getReturn())
+	{
+	    break;
+	}
     }
-    pullup((*begin)->getMap());
+
+    if (first != end)
+    {
+	for (std::vector<Block *>::iterator i = std::next(first); i != end; ++i)
+	{
+	    if (!(*i)->getReturn())
+	    {
+		merge((*first)->getMap(), (*i)->getMap());
+	    }
+	}
+	pullup((*first)->getMap());
+    }
 }
-}//jit("if a==1;then a=2; else b=2; end")
+}

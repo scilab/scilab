@@ -250,7 +250,12 @@ public:
         FUNCTIONDEC,
         LISTEXP,
         OPTIMIZEDEXP,
-        DAXPYEXP
+	MEMFILLEXP,
+        DAXPYEXP,
+        STRINGSELECTEXP,
+        TABLEINTSELECTEXP,
+        MAPINTSELECTEXP,
+        SMALLINTSELECTEXP,
     };
 
     virtual ExpType getType() const = 0;
@@ -452,37 +457,72 @@ public:
         return false;
     }
 
-    Exp* getParent() const
+    inline virtual bool isMemfillExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isFastSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isStringSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isTableIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isMapIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isSmallIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline Exp* getParent() const
     {
         return parent;
     }
 
-    Exp* getParent()
+    inline Exp* getParent()
     {
         return parent;
     }
 
-    void setParent(Exp* _ast)
+    inline void setParent(Exp* _ast)
     {
         parent = _ast;
     }
 
-    Exp* getOriginal() const
+    inline Exp* getOriginal() const
     {
         return original;
     }
 
-    Exp* getOriginal()
+    inline Exp* getOriginal()
     {
         return original;
     }
 
-    void setOriginal(Exp* _ast)
+    inline void setOriginal(Exp* _ast)
     {
         original = _ast;
     }
 
-    void replace(Exp* _new)
+    inline void replace(Exp* _new)
     {
         if (parent && _new)
         {
@@ -490,19 +530,18 @@ public:
         }
     }
 
-    void replace(Exp* _old, Exp* _new)
+    inline void replace(Exp* _old, Exp* _new)
     {
         if (_old && _new)
         {
-            exps_t::iterator it = _exps.begin();
-            exps_t::iterator itEnd = _exps.end();
-            for (; it != itEnd; ++it)
+            for (exps_t::iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
             {
                 if (*it == _old)
                 {
-                    _new->setOriginal(*it);
+                    _new->setOriginal(_old);
                     *it = _new;
                     _new->setParent(this);
+                    return;
                 }
             }
         }

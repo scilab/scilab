@@ -13,7 +13,7 @@
 #include <cmath>
 
 #include "AnalysisVisitor.hxx"
-#include "calls/DiagAnalyzer.hxx"
+#include "analyzers/DiagAnalyzer.hxx"
 #include "tools.hxx"
 
 namespace analysis
@@ -93,7 +93,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         }
         else
         {
-            res = visitor.getCM().check(ConstraintManager::GREATER, type.rows.getValue(), type.cols.getValue());
+            res = visitor.getCM().check(ConstraintManager::STRICT_GREATER, type.rows.getValue(), type.cols.getValue());
             if (res)
             {
                 if (index == 0)
@@ -109,7 +109,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             }
             else
             {
-                res = visitor.getCM().check(ConstraintManager::GREATER, type.cols.getValue(), type.rows.getValue());
+                res = visitor.getCM().check(ConstraintManager::STRICT_GREATER, type.cols.getValue(), type.rows.getValue());
                 if (res)
                 {
                     if (index == 0)

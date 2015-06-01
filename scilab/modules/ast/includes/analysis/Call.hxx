@@ -21,77 +21,42 @@
 
 namespace analysis
 {
-class Call
-{
-
-public:
-
-    enum Kind {UNDEFINED, IDENTITY, HYPOT, DOTHYPOT, __COUNT__};
-
-private:
-
-    Kind kind;
-    TIType type;
-    std::wstring name;
-    std::vector<TIType> args;
-
-public:
-
-    Call(Kind _kind, const TIType & _type, const std::wstring & _name, const std::vector<TIType> & _args) : kind(_kind),
-        type(_type),
-        name(_name),
-        args(_args) { }
-
-    Call(const TIType & _type, const std::wstring & _name, const std::vector<TIType> & _args) : Call(UNDEFINED, _type, _name, _args) { }
-    Call(Kind _kind, const TIType & _type, const std::wstring & _name) : kind(_kind),
-        type(_type),
-        name(_name) { }
-    Call(const TIType & _type, const std::wstring & _name) : Call(UNDEFINED, _type, _name) { }
-
-    Call(const std::wstring & _name) : kind(UNDEFINED), type(), name(_name) { }
-    Call(Call && call) : kind(call.kind), type(call.type), name(call.name), args(call.args) { }
-
-    inline void setName(const std::wstring & _name)
+    class Call
     {
-        name = _name;
-    }
 
-    inline const std::wstring & getName() const
-    {
-        return name;
-    }
+    private:
 
-    inline const TIType & getType() const
-    {
-        return type;
-    }
+        const std::wstring name;
+        std::vector<TIType> args;
 
-    inline void setKind(Kind _kind)
-    {
-        kind = _kind;
-    }
+    public:
 
-    inline Kind getKind() const
-    {
-        return kind;
-    }
+        Call(const std::wstring & _name, const std::vector<TIType> & _args) : name(_name), args(_args) { }
+	Call(const std::wstring & _name, const TIType & _arg) : name(_name), args(1, _arg) { }
+        Call(const std::wstring & _name) : name(_name) { }
+        Call(Call && call) : name(call.name), args(call.args) { }
 
-    inline void setArgs(const std::vector<TIType> & _args)
-    {
-        args = _args;
-    }
+        inline const std::wstring & getName() const
+            {
+                return name;
+            }
 
-    inline std::vector<TIType> & getArgs()
-    {
-        return args;
-    }
+        inline void setArgs(const std::vector<TIType> & _args)
+            {
+                args = _args;
+            }
 
-    friend std::wostream & operator<<(std::wostream & out, const Call & res)
-    {
-        out << L"Call " << res.name << L"{" << res.type << L"}, Identity:" << (res.kind == IDENTITY ? L"T" : L"F");
-        return out;
-    }
-};
+        inline const std::vector<TIType> & getArgs() const
+            {
+                return args;
+            }
+
+        friend std::wostream & operator<<(std::wostream & out, const Call & res)
+            {
+                out << L"Call " << res.name;
+                return out;
+            }
+    };
 
 } // namespace analysis
 

@@ -57,6 +57,7 @@ public:
     types::InternalType* get(const Symbol& key);
     types::InternalType* get(const Variable* _var);
     Variable* getOrCreate(const Symbol& _key);
+    int getLevel(const Symbol & _key) const;
 
     /** If key was associated to some Entry_T in the last opened scope, return it.
     ** Otherwise return the empty pointer. */
@@ -132,6 +133,12 @@ public:
     int getScopeLevel();
     bool isValidVariableName(const wchar_t*);
     bool isValidVariableName(const char*);
+
+    inline bool isOriginalSymbol(const symbol::Symbol & sym) const
+    {
+        return getLevel(sym) == 0;
+    }
+
 private:
 
     types::InternalType* get(const Symbol& key, int _iLevel);

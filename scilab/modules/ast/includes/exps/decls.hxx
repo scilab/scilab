@@ -82,7 +82,14 @@ class FunctionDec;
 class ListExp;
 
 class OptimizedExp;
+class MemfillExp;
 class DAXPYExp;
+class FastSelectExp;
+class IntSelectExp;
+class MapIntSelectExp;
+class SmallIntSelectExp;
+class StringSelectExp;
+class TableIntSelectExp;
 
 } // namespace ast
 

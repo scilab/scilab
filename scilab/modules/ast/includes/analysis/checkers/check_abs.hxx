@@ -19,10 +19,10 @@
 
 namespace analysis
 {
-    inline static TIType check_abs(GVN & gvn, const TIType & in0)
+inline static TIType check_abs(GVN & gvn, const TIType & in0)
+{
+    switch (in0.type)
     {
-        switch (in0.type)
-        {
         case TIType::EMPTY :
         {
             return in0;
@@ -32,10 +32,6 @@ namespace analysis
             return TIType(gvn, TIType::DOUBLE, in0.rows, in0.cols);
         }
         case TIType::DOUBLE :
-        {
-            return in0;
-        }
-        case TIType::DOUBLEUINT :
         {
             return in0;
         }
@@ -73,8 +69,8 @@ namespace analysis
         }
         default :
             return TIType(gvn);
-        }
     }
+}
 
 } // namespace analysis
 

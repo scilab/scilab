@@ -101,4 +101,16 @@ std::wostream& operator<< (std::wostream &ostr, const Symbol &the);
 typedef std::list<const Symbol*> symbols_t;
 }
 
+namespace std
+{
+template<>
+struct hash<symbol::Symbol>
+{
+    inline size_t operator()(const symbol::Symbol & sym) const
+    {
+        return std::hash<std::wstring>()(sym.getName());
+    }
+};
+} // namespace std
+
 #endif // !SYMBOL_HH

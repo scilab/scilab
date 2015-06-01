@@ -120,7 +120,12 @@ public:
         current = 0;
     }
 
-    /**
+    inline unsigned long long getCurrentValue() const
+	{
+	    return current;
+	}
+
+     /**
      * \brief Inserts a value associated with a polynomial
      * \param mp a polynomial
      * \param value a value
@@ -173,15 +178,6 @@ public:
     }
 
     /**
-     * \brief Get an invalid value (i.e. a polynomial == NaN)
-     * \return an invalid Value
-     */
-    inline Value * getInvalid()
-    {
-        return getValue(tools::NaN());
-    }
-
-    /**
      * \brief Get a value
      * \return a Value
      */
@@ -229,6 +225,24 @@ public:
             insertValue(current++, value);
 
             return &value;
+        }
+        else
+        {
+            return &std::prev(i.second)->second;
+        }
+    }
+
+    /**
+     * \brief Get a value associated with a symbol
+     * \param sym a symbol
+     * \return a Value
+     */
+    inline Value * getExistingValue(const symbol::Symbol & sym)
+    {
+        const auto i = maps.equal_range(sym);
+        if (i.first == i.second)
+        {
+            return nullptr;
         }
         else
         {
