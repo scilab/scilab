@@ -72,5 +72,8 @@ Scilab Bug Fixes
 
 * Bug #9621 fixed - A tlist with undefined fields can now be saved.
 
+* Bug #12202 fixed - Mixing int8 and doubles with colon operator lead to wrong results.
+
 * Bug #13517 fixed - isdef crashed Scilab when called with a vector of strings
                      as input in a function and after a declaration of variable.
+
