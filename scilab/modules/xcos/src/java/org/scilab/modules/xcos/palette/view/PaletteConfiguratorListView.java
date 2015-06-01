@@ -13,9 +13,12 @@
 package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
+import java.awt.Component;
 
 import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
@@ -26,9 +29,10 @@ import org.scilab.modules.xcos.utils.XcosMessages;
  */
 @SuppressWarnings(value = { "serial" })
 public class PaletteConfiguratorListView extends JTable {
-    private static final String[] COLUMN_TITLE = { XcosMessages.ENABLE,
-                                                   XcosMessages.PAL_NAME
-                                                 };
+    private static final String[] COLUMN_TITLE = {
+        XcosMessages.ENABLE,
+        XcosMessages.PAL_NAME
+    };
 
     /**
      * Construct a new view with model
@@ -38,8 +42,28 @@ public class PaletteConfiguratorListView extends JTable {
      */
     public PaletteConfiguratorListView(final PaletteListModel model) {
         super(model);
-        setBackground(Color.white);
+        setBackground(Color.WHITE);
+        setAutoResizeMode(AUTO_RESIZE_LAST_COLUMN);
     }
+
+    /**
+     * @param renderer
+     * @param row
+     * @param column
+     * @return component
+     */
+    @Override
+    public Component prepareRenderer(TableCellRenderer renderer, int row, int column) {
+        Component component = super.prepareRenderer(renderer, row, column);
+        if (getColumnModel().getColumnCount() != column + 1) {
+            int rendererWidth = component.getPreferredSize().width;
+            TableColumn tableColumn = getColumnModel().getColumn(column);
+            int width = Math.max(rendererWidth + getIntercellSpacing().width,
+                                 tableColumn.getPreferredWidth());
+            tableColumn.setMaxWidth(width);
+        }
+        return component;
+     }
 
     /**
      * The default model
