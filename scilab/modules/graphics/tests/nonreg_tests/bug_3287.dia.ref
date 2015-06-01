@@ -15,4 +15,3 @@
 // used to crash scilab
 f = gcf();
 exit();
-exec('SCI/etc/scilab.quit',-1);quit;
