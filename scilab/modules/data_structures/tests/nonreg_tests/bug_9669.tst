@@ -18,6 +18,7 @@
 // Without copy
 st.a = 1;
 st.b = st;
+assert_checkequal(st.b.a, 1);
 
 // With copy
 clear st
