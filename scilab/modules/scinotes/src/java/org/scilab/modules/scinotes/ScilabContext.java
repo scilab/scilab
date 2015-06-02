@@ -16,10 +16,7 @@ package org.scilab.modules.scinotes;
 import java.awt.Color;
 import java.awt.Font;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import javax.swing.text.ViewFactory;
 import javax.swing.text.View;
@@ -34,6 +31,7 @@ import org.w3c.dom.NodeList;
 
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
 
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.gui.utils.ScilabFontUtils;
 
@@ -92,7 +90,7 @@ public class ScilabContext implements ViewFactory {
 
 
     public static void saveFont(Font font) {
-        XPathFactory xpathFactory = XPathFactory.newInstance();
+        XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
         XPath xp = xpathFactory.newXPath();
         NodeList nodes;
         Document doc = XConfiguration.getXConfigurationDocument();

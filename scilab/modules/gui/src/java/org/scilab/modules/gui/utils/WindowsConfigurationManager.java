@@ -18,7 +18,6 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.io.File;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,7 +31,6 @@ import java.util.UUID;
 import javax.swing.SwingUtilities;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathFactory;
 
 import org.flexdock.docking.Dockable;
 import org.flexdock.docking.DockingManager;
@@ -42,11 +40,14 @@ import org.flexdock.perspective.persist.xml.LayoutNodeSerializer;
 import org.flexdock.perspective.persist.xml.PersistenceConstants;
 import org.scilab.modules.commons.ScilabCommonsUtils;
 import org.scilab.modules.commons.ScilabConstants;
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 import org.scilab.modules.commons.xml.XConfiguration;
 import org.scilab.modules.commons.xml.XConfigurationEvent;
 import org.scilab.modules.commons.xml.XConfigurationListener;
+
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+
 import org.scilab.modules.gui.bridge.tab.SwingScilabDockablePanel;
 import org.scilab.modules.gui.bridge.window.SwingScilabWindow;
 import org.scilab.modules.gui.console.ScilabConsole;
@@ -167,7 +168,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
         try {
             Document doc = XConfiguration.getXConfigurationDocument();
             if (doc != null) {
-                XPath xp = XPathFactory.newInstance().newXPath();
+                XPath xp = ScilabXPathFactory.newInstance().newXPath();
                 NodeList nodes = (NodeList) xp.compile(LAYOUT_PATH + "/layout[@id=../@id]/@path").evaluate(doc, XPathConstants.NODESET);
                 if (nodes != null && nodes.getLength() > 0) {
                     return nodes.item(0).getNodeValue().replace("$SCI", System.getenv(SCI));
@@ -869,7 +870,7 @@ public class WindowsConfigurationManager implements XConfigurationListener {
     private static final void validateWindows() {
         // We remove all the blanks and carriage return
         try {
-            XPath xp = XPathFactory.newInstance().newXPath();
+            XPath xp = ScilabXPathFactory.newInstance().newXPath();
             NodeList nodes = (NodeList) xp.compile("//text()").evaluate(doc, XPathConstants.NODESET);
             for (int i = 0; i < nodes.getLength(); i++) {
                 nodes.item(i).getParentNode().removeChild(nodes.item(i));

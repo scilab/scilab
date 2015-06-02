@@ -22,3 +22,10 @@ a = ones(1,2,3,4);
 m = mean(a,4);
 ref = ones(1,2,3,1);
 assert_checkequal(m, ref);
+
+// Bug #10059 (duplicate)
+a = matrix(1:12, [4, 1, 3]);
+assert_checkequal(sum(a, 3), [15;18;21;24]);
+
+a = matrix(1:24, [4, 2, 3]);
+assert_checkequal(sum(a, 3), [27 39;30 42;33 45;36 48]);

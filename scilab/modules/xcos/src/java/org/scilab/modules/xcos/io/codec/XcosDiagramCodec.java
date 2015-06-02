@@ -196,9 +196,15 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
 
     /**
      * {@inheritDoc}
+     * <BR>
+     * <BR>
+     * <B>UPDATED TO COVER</B>
      *
-     * Strip out any node with an invalid parent id. (5.3.1 diagrams may
-     * contains invalid default parents, remove them.)
+     * <UL>
+     * <LI>Strip out any node with an invalid parent id. (5.3.1 diagrams may
+     * contains invalid default parents, remove them.)</LI>
+     * <LI>Remove cell where id end with "#identifier#identifier"</LI>
+     * </UL>
      */
     @Override
     public Node beforeDecode(mxCodec dec, Node node, Object obj) {
@@ -239,13 +245,19 @@ public class XcosDiagramCodec extends ScilabGraphCodec {
      */
     private void cleanUpNode(final Set<String> ids, final Collection<Node> trash, Node cell) {
         final Node id = cell.getAttributes().getNamedItem("id");
+        final String idValue = id.getNodeValue();
         final Node parent = cell.getAttributes().getNamedItem("parent");
 
         if (id instanceof Element) {
-            ids.add(id.getNodeValue());
+            ids.add(idValue);
         }
         if (parent instanceof Element && !ids.contains(parent.getNodeValue())) {
             trash.add(parent);
+        }
+
+        // remove dual identifier cells
+        if (idValue.endsWith(XcosDiagram.HASH_IDENTIFIER + XcosDiagram.HASH_IDENTIFIER)) {
+            trash.add(cell);
         }
     }
 

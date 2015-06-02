@@ -1717,6 +1717,10 @@ public class XcosDiagram extends ScilabGraph {
      * @return the identifier cell
      */
     public mxCell getOrCreateCellIdentifier(final mxCell cell) {
+        if (cell.getId().endsWith(HASH_IDENTIFIER)) {
+            return cell;
+        }
+
         final mxGraphModel graphModel = (mxGraphModel) getModel();
 
         final mxCell identifier;

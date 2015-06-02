@@ -79,7 +79,7 @@ public class XConfiguration {
     private static final String SEVERE_ERROR = Messages.gettext("A severe error occurred: cannot load the preferences file.");
     private static final String PARSING_ERROR = Messages.gettext("An error occurred when loading the preferences file, try to reload the default one.");
 
-    private static final XPathFactory xpathFactory = XPathFactory.newInstance();
+    private static final XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
     private static final Map < Class<?>, StringParser > conv = new HashMap < Class<?>, StringParser > ();
 
     private static final EventListenerList listenerList = new EventListenerList();
