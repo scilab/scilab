@@ -34,7 +34,7 @@
 extern "C" {
 #endif
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 #define EZXML_BUFSIZE 1024 // size of internal memory buffers
 #define EZXML_NAMEM   0x80 // name is malloced

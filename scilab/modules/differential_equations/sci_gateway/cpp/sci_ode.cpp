@@ -20,6 +20,7 @@
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
 #include "context.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -30,7 +31,6 @@ extern "C"
 #include "configvariable_interface.h"
 #include "sciprint.h"
 #include "common_structure.h"
-#include "checkodeerror.h"
 #include "sci_malloc.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -84,6 +84,10 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
     // For root methode
     int* jroot = NULL;
+
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
 
     // *** check the minimal number of input args. ***
     if (in.size() < 4)
@@ -233,10 +237,10 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
     pDblT = in[iPos]->getAs<types::Double>();
 
     // get next inputs
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"ode");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
-    deFunctionsManager->setOdeYRows(pDblY0->getRows());
-    deFunctionsManager->setOdeYCols(pDblY0->getCols());
+    DifferentialEquationFunctions deFunctionsManager(L"ode");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
+    deFunctionsManager.setOdeYRows(pDblY0->getRows());
+    deFunctionsManager.setOdeYCols(pDblY0->getCols());
 
     YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblY0->getSize();
@@ -336,17 +340,17 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
             if (bFuncF == false)
             {
-                deFunctionsManager->setFFunction(pCall);
+                deFunctionsManager.setFFunction(pCall);
                 bFuncF = true;
             }
             else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
-                deFunctionsManager->setJacFunction(pCall);
+                deFunctionsManager.setJacFunction(pCall);
                 bFuncJac = true;
             }
             else if (bFuncG == false && meth == 3)
             {
-                deFunctionsManager->setGFunction(pCall);
+                deFunctionsManager.setGFunction(pCall);
                 bFuncG = true;
             }
             else
@@ -365,17 +369,17 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
 
             if (bFuncF == false)
             {
-                bOK = deFunctionsManager->setFFunction(pStr);
+                bOK = deFunctionsManager.setFFunction(pStr);
                 bFuncF = true;
             }
             else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
             {
-                bOK = deFunctionsManager->setJacFunction(pStr);
+                bOK = deFunctionsManager.setJacFunction(pStr);
                 bFuncJac = true;
             }
             else if (bFuncG == false && meth == 3)
             {
-                bOK = deFunctionsManager->setGFunction(pStr);
+                bOK = deFunctionsManager.setGFunction(pStr);
                 bFuncG = true;
             }
             else
@@ -428,13 +432,13 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    bOK = deFunctionsManager->setFFunction(pStr);
+                    bOK = deFunctionsManager.setFFunction(pStr);
                     sizeOfpdYData = *YSize;
                 }
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    bOK = deFunctionsManager->setJacFunction(pStr);
+                    bOK = deFunctionsManager.setJacFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -443,7 +447,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    bOK = deFunctionsManager->setGFunction(pStr);
+                    bOK = deFunctionsManager.setGFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -505,28 +509,28 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncJac == false && (pDblNg == NULL || meth != 3))
                 {
                     bFuncJac = true;
-                    deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncG == false && meth == 3)
                 {
                     bFuncG = true;
-                    deFunctionsManager->setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setGArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
@@ -1095,13 +1099,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "ode", strMeth.c_str());
-                Scierror(999, pstrMsg);
-                FREE(pstrMsg);
-                err = 1;
+                os << e.GetErrorMessage();
+                bCatch = true;
             }
 
             // FREE allocated data
@@ -1132,6 +1138,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 {
                     FREE(rtol);
                 }
+
+                if (bCatch)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
+                }
+
                 return types::Function::Error;
             }
 
@@ -1309,12 +1324,16 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
+                err = 1;
+            }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "ode", strMeth.c_str());
-                Scierror(999, pstrMsg);
-                FREE(pstrMsg);
+                os << e.GetErrorMessage();
+                bCatch = true;
                 err = 1;
             }
 
@@ -1346,6 +1365,15 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 {
                     FREE(rtol);
                 }
+
+                if (bCatch)
+                {
+                    wchar_t szError[bsiz];
+                    os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
+                    os << szError;
+                    throw ast::ScilabMessage(os.str());
+                }
+
                 return types::Function::Error;
             }
 

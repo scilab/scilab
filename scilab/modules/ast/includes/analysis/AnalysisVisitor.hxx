@@ -14,253 +14,142 @@
 #define __ANALYSIS_VISITOR_HXX__
 
 #include <algorithm>
-#include <chrono>
 #include <limits>
 #include <map>
 #include <memory>
+#include <vector>
 
 #include "visitor.hxx"
+#include "debugvisitor.hxx"
+#include "execvisitor.hxx"
+#include "printvisitor.hxx"
 #include "allexp.hxx"
 #include "allvar.hxx"
-#include "Checkers.hxx"
+#include "analyzers/CallAnalyzer.hxx"
+#include "checkers/Checkers.hxx"
+#include "Chrono.hxx"
 #include "ForList.hxx"
 #include "Result.hxx"
 #include "SymInfo.hxx"
-#include "execvisitor.hxx"
+#include "Temporary.hxx"
+#include "TIType.hxx"
+#include "ConstantVisitor.hxx"
+#include "gvn/SymbolicList.hxx"
+
+#include "data/DataManager.hxx"
+#include "data/PolymorphicMacroCache.hxx"
+#include "gvn/ConstraintManager.hxx"
+#include "logging/Logger.hxx"
+#include "dynlib_ast.h"
 
 namespace analysis
 {
 
-class AnalysisVisitor : public ast::Visitor
+class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 {
 
 public:
 
     typedef std::map<symbol::Symbol, SymInfo> MapSymInfo;
+    typedef unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
+    typedef std::vector<Call *> Calls;
 
 private:
 
     MapSymInfo symsinfo;
     Result _result;
-    unsigned int scalars_tmp[TIType::COUNT][2];
-    unsigned int arrays_tmp[TIType::COUNT][2];
+    Temporary temp;
+    Calls allCalls;
+    DataManager dm;
+    PolymorphicMacroCache pmc;
+    ConstraintManager cm;
+    ConstantVisitor cv;
+    ast::DebugVisitor dv;
+    ast::PrintVisitor pv;
+    std::vector<Result> multipleLHS;
+    logging::Logger logger;
 
-    std::chrono::steady_clock::time_point start;
-    std::chrono::steady_clock::time_point end;
+    static MapSymCall symscall;
+    static MapSymCall initCalls();
 
 public:
 
-    AnalysisVisitor()
+    static bool asDouble(ast::Exp & e, double & out);
+    static bool asDouble(types::InternalType * pIT, double & out);
+    static bool isDoubleConstant(const ast::Exp & e);
+    static bool asDoubleMatrix(ast::Exp & e, types::Double *& data);
+    static void analyze(ast::SelectExp & e);
+
+    AnalysisVisitor() : cv(*this), pv(std::wcerr, true, false), logger("/tmp/analysis.log")
     {
         start_chrono();
-        std::fill(&scalars_tmp[0][0], &scalars_tmp[0][0] + TIType::COUNT * 2, 0);
-        std::fill(&arrays_tmp[0][0], &arrays_tmp[0][0] + TIType::COUNT * 2, 0);
     }
 
-    const MapSymInfo & get_infos() const
+    virtual ~AnalysisVisitor()
     {
-        return symsinfo;
+        //std::cerr << "delete AnalysisVisitor" << std::endl;
+    }
+
+    inline CallAnalyzer * getAnalyzer(const symbol::Symbol & sym)
+    {
+        MapSymCall::iterator it = symscall.find(sym.getName());
+        if (it == symscall.end())
+        {
+            return nullptr;
+        }
+        else
+        {
+            return it->second.get();
+        }
+    }
+
+    inline DataManager & getDM()
+    {
+        return dm;
+    }
+
+    inline GVN & getGVN()
+    {
+        return dm.getGVN();
+    }
+
+    inline PolymorphicMacroCache & getPMC()
+    {
+        return pmc;
+    }
+
+    inline ConstantVisitor & getCV()
+    {
+        return cv;
+    }
+
+    inline ast::PrintVisitor & getPV()
+    {
+        return pv;
+    }
+
+    inline ast::ExecVisitor & getExec()
+    {
+        return cv.getExec();
     }
 
     // Only for debug use
     inline void print_info()
     {
         stop_chrono();
-        std::wcout << L"Analysis duration: " << get_duration() << L" s" << std::endl;
 
-        std::wcout << L"Temporary scalars:" << std::endl;
-        for (unsigned int i = 0; i < TIType::COUNT; ++i)
-        {
-            if (scalars_tmp[i][0] || scalars_tmp[i][1])
-            {
-                std::wcout << TIType((TIType::Type)i) << ": " << scalars_tmp[i][0] << L" and " << scalars_tmp[i][1] << std::endl;
-            }
-        }
+        //std::wcout << getGVN() << std::endl << std::endl; function z=foo(x,y);z=argn(2);endfunction;jit("x=123;y=456;t=foo(x,y)")
+        std::wcerr << L"Analysis: " << *static_cast<Chrono *>(this) << std::endl;
+        //std::wcout << temp << std::endl;
 
-        std::wcout << std::endl;
+        std::wcerr << dm << std::endl;
 
-        std::wcout << L"Temporary arrays:" << std::endl;
-        for (unsigned int i = 0; i < TIType::COUNT; ++i)
-        {
-            if (arrays_tmp[i][0] || arrays_tmp[i][1])
-            {
-                std::wcout << TIType((TIType::Type)i) << ": " << arrays_tmp[i][0] << L" and " << arrays_tmp[i][1] << std::endl;
-            }
-        }
-
-        std::wcout << std::endl;
-
-        for (MapSymInfo::const_iterator i = symsinfo.begin(), end = symsinfo.end(); i != end; ++i)
-        {
-            std::wcout << i->first.getName() << L" -> " << i->second << std::endl;
-        }
-
-        std::wcout << std::endl;
+        std::wcerr << std::endl;
     }
 
-    void start_chrono()
+    inline void finalize()
     {
-        start = std::chrono::steady_clock::now();
-    }
-
-    void stop_chrono()
-    {
-        end = std::chrono::steady_clock::now();
-    }
-
-    double get_duration() const
-    {
-        return (double)std::chrono::duration_cast<std::chrono::nanoseconds>(end - start).count() * 1e-9;
-    }
-
-private:
-
-    inline void add_tmp(const TIType & t, const int n = 1, const bool scalar = false)
-    {
-        if (scalar)
-        {
-            scalars_tmp[t.type][0] += n;
-            if (n > 0 && scalars_tmp[t.type][0] > scalars_tmp[t.type][1])
-            {
-                scalars_tmp[t.type][1] = scalars_tmp[t.type][0];
-            }
-        }
-        else
-        {
-            arrays_tmp[t.type][0] += n;
-            if (n > 0 && arrays_tmp[t.type][0] > arrays_tmp[t.type][1])
-            {
-                arrays_tmp[t.type][1] = arrays_tmp[t.type][0];
-            }
-        }
-    }
-
-    inline TIType get_ti(const symbol::Symbol & sym)
-    {
-        MapSymInfo::const_iterator i = symsinfo.find(sym);
-        if (i != symsinfo.end())
-        {
-            return i->second.current_type;
-        }
-
-        types::InternalType * pIT = symbol::Context::getInstance()->get(sym);
-        TIType t;
-        if (pIT && pIT->isGenericType())
-        {
-            TIType::Type type;
-            types::GenericType * pGT = static_cast<types::GenericType *>(pIT);
-            switch (pIT->getType())
-            {
-                case types::InternalType::ScilabInt8 :
-                    type = TIType::Type::INT8;
-                    break;
-                case types::InternalType::ScilabUInt8 :
-                    type = TIType::Type::UINT8;
-                    break;
-                case types::InternalType::ScilabInt16 :
-                    type = TIType::Type::INT16;
-                    break;
-                case types::InternalType::ScilabUInt16 :
-                    type = TIType::Type::UINT16;
-                    break;
-                case types::InternalType::ScilabInt32 :
-                    type = TIType::Type::INT32;
-                    break;
-                case types::InternalType::ScilabUInt32 :
-                    type = TIType::Type::UINT32;
-                    break;
-                case types::InternalType::ScilabInt64 :
-                    type = TIType::Type::INT64;
-                    break;
-                case types::InternalType::ScilabUInt64 :
-                    type = TIType::Type::UINT64;
-                    break;
-                case types::InternalType::ScilabString :
-                    type = TIType::Type::STRING;
-                    break;
-                case types::InternalType::ScilabDouble :
-                {
-                    types::Double * pDbl = static_cast<types::Double *>(pGT);
-                    if (pDbl->isEmpty())
-                    {
-                        type = TIType::Type::EMPTY;
-                    }
-                    else if (pDbl->isComplex())
-                    {
-                        type = TIType::Type::COMPLEX;
-                    }
-                    else
-                    {
-                        type = TIType::Type::DOUBLE;
-                    }
-                    break;
-                }
-                case types::InternalType::ScilabBool :
-                    type = TIType::Type::BOOLEAN;
-                    break;
-                case types::InternalType::ScilabPolynom :
-                    type = TIType::Type::POLYNOMIAL;
-                    break;
-                case types::InternalType::ScilabSparse :
-                    type = TIType::Type::SPARSE;
-                    break;
-                default :
-                    type = TIType::Type::UNKNOWN;
-            }
-
-            t = TIType(type, pGT->getRows(), pGT->getCols());
-        }
-        else
-        {
-            t = TIType();
-        }
-
-        SymInfo si;
-        si.current_type = t;
-        symsinfo.emplace(sym, si);
-
-        return t;
-    }
-
-    inline void set_sym_use(const symbol::Symbol & sym, SymInfo::Kind k)
-    {
-        MapSymInfo::iterator i = symsinfo.find(sym);
-        if (i != symsinfo.end())
-        {
-            i->second.set(k);
-        }
-        else
-        {
-            symsinfo.emplace(sym, k);
-        }
-    }
-
-    inline void set_sym_use(const symbol::Symbol & sym, SymInfo::Kind k1, SymInfo::Kind k2)
-    {
-        MapSymInfo::iterator i = symsinfo.find(sym);
-        if (i != symsinfo.end())
-        {
-            i->second.set(k1, k2);
-        }
-        else
-        {
-            symsinfo.emplace(sym, SymInfo(k1, k2));
-        }
-    }
-
-    inline void set_sym_type(const symbol::Symbol & sym, const TIType & t)
-    {
-        MapSymInfo::iterator i = symsinfo.find(sym);
-        if (i != symsinfo.end())
-        {
-            i->second.current_type = t;
-        }
-        else
-        {
-            SymInfo si;
-            si.current_type = t;
-            symsinfo.emplace(sym, si);
-        }
+        //dm.finalize(nullptr);
     }
 
     inline void setResult(Result & val)
@@ -278,453 +167,410 @@ private:
         return _result;
     }
 
+    inline const Temporary & getTemp() const
+    {
+        return temp;
+    }
+
+    inline Temporary & getTemp()
+    {
+        return temp;
+    }
+
+    inline const Calls & getCalls() const
+    {
+        return allCalls;
+    }
+
+    inline std::vector<Result> & getLHSContainer()
+    {
+        return multipleLHS;
+    }
+
+    inline ConstraintManager & getCM()
+    {
+        if (FunctionBlock * fblock = getDM().topFunction())
+        {
+            return fblock->getConstraintManager();
+        }
+        else
+        {
+            return cm;
+        }
+    }
+
+    template<typename T>
+    inline void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, T && args)
+    {
+        std::vector<Result> resargs;
+        std::vector<TIType> vargs;
+        vargs.reserve(args.size());
+        resargs.reserve(args.size());
+
+        for (typename T::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
+        {
+            (*i)->accept(*this);
+            resargs.push_back(getResult());
+            vargs.push_back(getResult().getType());
+        }
+
+        const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
+        int tempId = -1;
+        if (lhs > 1)
+        {
+            std::vector<TIType> types = dm.call(*this, lhs, sym, vargs, &e);
+            multipleLHS.clear();
+            multipleLHS.reserve(types.size());
+            for (const auto & type : types)
+            {
+                multipleLHS.emplace_back(type);
+            }
+        }
+        else
+        {
+            std::vector<TIType> out = dm.call(*this, lhs, sym, vargs, &e);
+            if (lhs == 1)
+            {
+                e.getDecorator().res = Result(out[0], tempId);
+                e.getDecorator().setCall(name, vargs);
+                setResult(e.getDecorator().res);
+            }
+        }
+    }
+
+    inline Info & getSymInfo(const symbol::Symbol & sym)
+    {
+        return dm.getInfo(sym);
+    }
+
+    inline logging::Logger & getLogger()
+    {
+        return logger;
+    }
+
+    bool analyzeIndices(TIType & type, ast::CallExp & ce);
+
+private:
+
+    bool getDimension(SymbolicDimension & dim, ast::Exp & arg, bool & safe, SymbolicDimension & out);
+
+    inline void pushCall(Call * c)
+    {
+        if (c)
+        {
+            allCalls.push_back(c);
+        }
+    }
+
+    bool operGVNValues(ast::OpExp & oe);
+    bool operSymbolicRange(ast::OpExp & oe);
+
+    void visit(ast::SelectExp & e);
+    void visit(ast::ListExp & e);
+    void visit(ast::MatrixExp & e);
+    void visit(ast::OpExp & e);
+    void visit(ast::NotExp & e);
+    void visit(ast::TransposeExp & e);
+    void visit(ast::AssignExp & e);
+    void visit(ast::IfExp & e);
+
+    void visit(ast::MatrixLineExp & e)
+    {
+        /* treated in MatrixExp */
+    }
+    void visit(ast::OptimizedExp & e) { }
+    void visit(ast::MemfillExp & e) { }
+    void visit(ast::DAXPYExp & e) { }
+    void visit(ast::IntSelectExp & e) { }
+    void visit(ast::StringSelectExp & e) { }
+    void visit(ast::CommentExp & e) { }
+    void visit(ast::NilExp & e) { }
+    void visit(ast::ColonVar & e) { }
+
     void visit(ast::SimpleVar & e)
     {
+        logger.log(L"SimpleVar", e.getSymbol().getName(), e.getLocation());
         symbol::Symbol & sym = e.getSymbol();
-        TIType typ = get_ti(sym);
-        e.getDecorator().res = Result(typ, false, false);
-        setResult(e.getDecorator().res);
-        set_sym_use(e.getSymbol(), SymInfo::READ);
+        Info & info = dm.read(sym, &e);
+        Result & res = e.getDecorator().setResult(info.type);
+        res.setConstant(info.getConstant());
+        res.setRange(info.getRange());
+	res.setMaxIndex(info.getMaxIndex());
+        setResult(res);
     }
 
     void visit(ast::DollarVar & e)
     {
-        // nothing to do
-    }
-
-    void visit(ast::ColonVar & e)
-    {
-        // nothing to do
+        logger.log(L"DollarVar", e.getLocation());
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::POLYNOMIAL, 1, 1));
+        res.getConstant() = getGVN().getValue(symbol::Symbol(L"$"));
+        setResult(res);
     }
 
     void visit(ast::ArrayListVar & e)
     {
-        const ast::exps_t vars = e.getVars();
-        for (ast::exps_t::const_iterator i = vars.begin(), end = vars.end(); i != end ; ++i)
+        logger.log(L"ArrayListVar", e.getLocation());
+        const ast::exps_t & vars = e.getVars();
+        for (auto var : vars)
         {
-            (*i)->accept(*this);
+            var->accept(*this);
         }
     }
 
     void visit(ast::DoubleExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::DOUBLE, 1, 1), false, true);
-        setResult(e.getDecorator().res);
+        logger.log(L"DoubleExp", e.getLocation());
+        if (!e.getConstant())
+        {
+            e.accept(cv.getExec());
+            cv.getExec().setResult(nullptr);
+        }
+        types::Double * pDbl = static_cast<types::Double *>(e.getConstant());
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::DOUBLE, pDbl->getRows(), pDbl->getCols()));
+        res.getConstant() = e.getConstant();
+        setResult(res);
     }
 
     void visit(ast::BoolExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::BOOLEAN, 1, 1), false, true);
-        setResult(e.getDecorator().res);
+        logger.log(L"BoolExp", e.getLocation());
+        if (!e.getConstant())
+        {
+            e.accept(cv.getExec());
+            cv.getExec().setResult(nullptr);
+        }
+        types::Bool * pBool = static_cast<types::Bool *>(e.getConstant());
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::BOOLEAN, pBool->getRows(), pBool->getCols()));
+        res.getConstant() = e.getConstant();
+        setResult(res);
     }
 
     void visit(ast::StringExp & e)
     {
-        e.getDecorator().res = Result(TIType(TIType::STRING, 1, 1), false, true);
-        setResult(e.getDecorator().res);
+        logger.log(L"StringExp", e.getLocation());
+        if (!e.getConstant())
+        {
+            e.accept(cv.getExec());
+            cv.getExec().setResult(nullptr);
+        }
+        types::String * pStr = static_cast<types::String *>(e.getConstant());
+        Result & res = e.getDecorator().setResult(TIType(dm.getGVN(), TIType::STRING, pStr->getRows(), pStr->getCols()));
+        res.getConstant() = e.getConstant();
+        setResult(res);
     }
 
-    void visit(ast::CommentExp & e)
+    void visit(ast::CallExp & e, const unsigned int lhs)
     {
-        // ignored
-    }
+        // TODO: e.getName() is not always a simple var: foo(a)(b)
+        if (e.getName().isSimpleVar())
+        {
+            ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
+            symbol::Symbol & sym = var.getSymbol();
+            const std::wstring & name = sym.getName();
+            Info & info = getSymInfo(sym); // that put the sym in the current block !
+	    Result & res = e.getName().getDecorator().setResult(info.type);
+	    res.setConstant(info.getConstant());
+	    res.setRange(info.getRange());
+	    res.setMaxIndex(info.getMaxIndex());
 
-    void visit(ast::NilExp & e)
-    {
-        // nothing to do
+            logger.log(L"CallExp", e.getLocation(), name);
+
+            if (info.type.type == TIType::MACRO || info.type.type == TIType::MACROFILE || info.type.type == TIType::FUNCTION)
+            {
+                if (name == L"error")
+                {
+                    getDM().getCurrent()->setReturn(true);
+                }
+
+                // Special analysis cases: size, zeros, ones, ...
+                MapSymCall::iterator it = symscall.find(sym.getName());
+                if (it != symscall.end())
+                {
+                    if (getCM().checkGlobalConstant(sym) && it->second.get()->analyze(*this, lhs, e))
+                    {
+                        pushCall(e.getDecorator().getCall());
+                        return;
+                    }
+                }
+
+                visitArguments(name, lhs, info.type, e, e.getArgs());
+                pushCall(e.getDecorator().getCall());
+            }
+            else
+            {
+                analyzeIndices(info.type, e);
+            }
+        }
     }
 
     void visit(ast::CallExp & e)
     {
-        e.getName().accept(*this);
-        const ast::exps_t args = e.getArgs();
-        for (ast::exps_t::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
-        {
-            (*i)->accept(*this);
-        }
+        visit(e, 1);
     }
 
     void visit(ast::CellCallExp & e)
     {
+        logger.log(L"CellCallExp", e.getLocation());
         visit(static_cast<ast::CallExp &>(e));
-    }
-
-    void visit(ast::OpExp & e)
-    {
-        e.getLeft().accept(*this);
-        Result LR = getResult();
-        e.getRight().accept(*this);
-        Result & RR = getResult();
-        const TIType & LType = LR.getType();
-        const TIType & RType = RR.getType();
-        TIType resT;
-        bool allocTmp = false;
-
-        // We can released the temp vars
-        if (LR.isTemp())
-        {
-            add_tmp(LType, -1);
-        }
-        if (RR.isTemp())
-        {
-            add_tmp(RType, -1);
-        }
-
-        //if left and right are constant, result is constant too
-        if (e.getLeft().getDecorator().res.isConstant() && e.getRight().getDecorator().res.isConstant())
-        {
-            if (execAndReplace(e))
-            {
-                return;
-            }
-        }
-
-        switch (e.getOper())
-        {
-            case ast::OpExp::plus :
-            {
-                if (replaceDAXPY(e))
-                {
-                    return;
-                }
-                //continue in generic case
-            }
-            case ast::OpExp::minus :
-            case ast::OpExp::dottimes :
-            {
-                // TODO: check if the rules for addition and subtraction are the same
-                resT = check_add(LType, RType);
-                break;
-            }
-            case ast::OpExp::times :
-            {
-                // multiplication is not commutative for matrice pxq
-                resT = check_times(LType, RType);
-                break;
-            }
-        }
-
-        if (resT.isknown() && !resT.isscalar())
-        {
-            // result is a matrix so we need a tmp
-            add_tmp(resT.type, 1);
-            allocTmp = true;
-        }
-
-        e.getDecorator().res = Result(resT, allocTmp, false);
-        setResult(e.getDecorator().res);
     }
 
     void visit(ast::LogicalOpExp & e)
     {
-        e.getLeft().accept(*this);
-        e.getRight().accept(*this);
-    }
-
-    void visit(ast::AssignExp & e)
-    {
-        if (e.getLeftExp().isSimpleVar())
-        {
-            ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
-            symbol::Symbol & sym = var.getSymbol();
-
-            e.getRightExp().accept(*this);
-            var.getDecorator().res = getResult();
-
-            set_sym_use(sym, SymInfo::REPLACE);
-            set_sym_type(sym, getResult().getType());
-        }
-        else
-        {
-            // TODO: handle this case
-        }
-    }
-
-    void visit(ast::IfExp & e)
-    {
-        e.getTest().accept(*this);
-        e.getThen().accept(*this);
-        if (e.hasElse())
-        {
-            e.getElse().accept(*this);
-        }
+        logger.log(L"LogicalOpExp", e.getLocation());
+        visit(static_cast<ast::OpExp &>(e));
     }
 
     void visit(ast::WhileExp & e)
     {
+        logger.log(L"WhileExp", e.getLocation());
         e.getTest().accept(*this);
         e.getBody().accept(*this);
     }
 
     void visit(ast::ForExp & e)
     {
+        // TODO: pb de propagation de constante ds le corps du loop
+        // b = 0; for....; b=b+..; end => le 2nd "b" est replaced by 0
+
+        logger.log(L"ForExp", e.getLocation());
+        dm.addBlock(Block::LOOP, &e);
         e.getVardec().accept(*this);
+        dm.addBlock(Block::NORMAL, &e.getBody());
         e.getBody().accept(*this);
 
-        MapSymInfo::const_iterator it = symsinfo.find(e.getVardec().getAs<ast::VarDec>()->getSymbol());
-        if (it->second.read)
+        if (false && dm.requiresAnotherTrip())
         {
-            e.getVardec().getAs<ast::VarDec>()->getListInfo().setReadInLoop(true);
+            std::wcerr << "Invalid forexp: types or refcount are not the same before and after the loop" << std::endl;
+
+            dm.finalizeBlock();
+            dm.addBlock(Block::NORMAL, &e.getBody());
+            e.getBody().accept(*this);
         }
+
+        dm.finalizeBlock();
+        dm.finalizeBlock();
     }
 
     void visit(ast::BreakExp & e)
     {
+        logger.log(L"BreakExp", e.getLocation());
         // nothing to do
     }
 
     void visit(ast::ContinueExp & e)
     {
+        logger.log(L"ContinueExp", e.getLocation());
         // nothing to do
     }
 
     void visit(ast::TryCatchExp & e)
     {
+        logger.log(L"TryCatchExp", e.getLocation());
         e.getTry().accept(*this);
         e.getCatch().accept(*this);
     }
 
-    void visit(ast::SelectExp & e)
-    {
-        e.getSelect()->accept(*this);
-        ast::exps_t* cases = e.getCases();
-        for (ast::exps_t::const_iterator i = cases->begin(), end = cases->end(); i != end; ++i)
-        {
-            (*i)->accept(*this);
-        }
-        delete cases;
-
-        e.getDefaultCase()->accept(*this);
-    }
-
     void visit(ast::CaseExp & e)
     {
+        logger.log(L"CaseExp", e.getLocation());
         e.getTest()->accept(*this);
         e.getBody()->accept(*this);
     }
 
     void visit(ast::ReturnExp & e)
     {
-        e.getExp().accept(*this);
+        logger.log(L"ReturnExp", e.getLocation());
+        getDM().getCurrent()->setReturn(true);
+        // Bug with return;
+        //e.exp_get().accept(*this);
+
     }
 
     void visit(ast::FieldExp & e)
     {
+        logger.log(L"FieldExp", e.getLocation());
         // a.b.c <=> (a.b).c where a.b is the head and c is the tail
 
-        //e.getHead()->accept(*this);
-        //e.getTail()->accept(*this);
-    }
-
-    void visit(ast::NotExp & e)
-    {
-        e.getExp().accept(*this);
-    }
-
-    void visit(ast::TransposeExp & e)
-    {
-        e.getExp().accept(*this);
-    }
-
-    void visit(ast::MatrixExp & e)
-    {
-        const ast::exps_t lines = e.getLines();
-        bool constant = true;
-        for (ast::exps_t::const_iterator i = lines.begin(), itEnd = lines.end(); i != itEnd; ++i)
-        {
-            (*i)->accept(*this);
-            if ((*i)->getDecorator().res.isConstant() == false)
-            {
-                constant = false;
-            }
-        }
-
-        if (constant)
-        {
-            execAndReplace(e);
-        }
-    }
-
-    void visit(ast::MatrixLineExp & e)
-    {
-        const ast::exps_t columns = e.getColumns();
-        bool constant = true;
-        for (ast::exps_t::const_iterator i = columns.begin(), itEnd = columns.end(); i != itEnd; ++i)
-        {
-            (*i)->accept(*this);
-            if ((*i)->getDecorator().res.isConstant() == false)
-            {
-                constant = false;
-            }
-        }
-
-        e.getDecorator().res = Result(e.getDecorator().res.getType(), e.getDecorator().res.isTemp(), constant);
-
+        //e.head_get()->accept(*this);
+        //e.tail_get()->accept(*this);
     }
 
     void visit(ast::CellExp & e)
     {
+        logger.log(L"CellExp", e.getLocation());
         visit(static_cast<ast::MatrixExp &>(e));
     }
 
     void visit(ast::SeqExp & e)
     {
-        const ast::exps_t exps = e.getExps();
-        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
+        logger.log(L"SeqExp", e.getLocation());
+        for (const auto exp : e.getExps())
         {
-            (*i)->accept(*this);
+            if (exp->isCallExp())
+            {
+                visit(*static_cast<ast::CallExp *>(exp), /* LHS */ 0);
+            }
+            else
+            {
+                exp->accept(*this);
+            }
         }
+	if (!e.getParent())
+	{
+	    //e.accept(dv);
+	}
     }
 
     void visit(ast::ArrayListExp & e)
     {
-        const ast::exps_t exps = e.getExps();
-        for (ast::exps_t::const_iterator i = exps.begin(), itEnd = exps.end(); i != itEnd; ++i)
+        logger.log(L"ArrayListExp", e.getLocation());
+        const ast::exps_t & exps = e.getExps();
+        for (const auto exp : e.getExps())
         {
-            (*i)->accept(*this);
+            exp->accept(*this);
         }
     }
 
     void visit(ast::AssignListExp & e)
     {
+        logger.log(L"AssignListExp", e.getLocation());
         visit(static_cast<ast::ArrayListExp &>(e));
     }
 
     void visit(ast::VarDec & e)
     {
         // VarDec is only used in For loop for iterator declaration
-        symbol::Symbol & sym = e.getSymbol();
+        logger.log(L"VarDec", e.getLocation());
+        const symbol::Symbol & sym = e.getSymbol();
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-            if (le.getStart().isDoubleExp() && le.getStep().isDoubleExp() && le.getEnd().isDoubleExp())
+            double start, step, end;
+            if (asDouble(le.getStart(), start) && asDouble(le.getStep(), step) && asDouble(le.getEnd(), end))
             {
-                ForList64 fl(static_cast<const ast::DoubleExp &>(le.getStart()).getValue(),
-                             static_cast<const ast::DoubleExp &>(le.getStep()).getValue(),
-                             static_cast<const ast::DoubleExp &>(le.getEnd()).getValue());
+                ForList64 fl(start, step, end);
                 e.setListInfo(fl);
-                set_sym_use(sym, SymInfo::REPLACE, SymInfo::FOR_IT);
-                set_sym_type(sym, fl.getType());
+                dm.define(sym, fl.getType(), &e).isint = true;
                 // No need to visit the list (it has been visited just before)
             }
             else
             {
                 e.setListInfo(ForList64());
                 le.accept(*this);
+                Result & res = getResult();
+                Info & info = dm.define(sym, res.getType(), &e);
+                info.setRange(res.getRange());
             }
         }
     }
 
     void visit(ast::FunctionDec & e)
     {
-        e.getArgs().accept(*this);
-        e.getReturns().accept(*this);
-        e.getBody().accept(*this);
-    }
-
-    void visit(ast::ListExp & e)
-    {
-        double start = std::numeric_limits<double>::quiet_NaN();
-        double step = std::numeric_limits<double>::quiet_NaN();
-        double end = std::numeric_limits<double>::quiet_NaN();
-
-        if (e.getStart().isDoubleExp())
-        {
-            start = static_cast<const ast::DoubleExp &>(e.getStart()).getValue();
-        }
-
-        if (e.getStep().isDoubleExp())
-        {
-            step = static_cast<ast::DoubleExp &>(e.getStep()).getValue();
-        }
-
-        if (e.getEnd().isDoubleExp())
-        {
-            end = static_cast<ast::DoubleExp &>(e.getEnd()).getValue();
-        }
-
-        const_cast<ast::ListExp &>(e).setValues(start, step, end);
-    }
-
-    /* optimized */
-    void visit(ast::OptimizedExp & e)
-    {
-        //gné ??? Oo
-    }
-
-    void visit(ast::DAXPYExp & e)
-    {
-        //gné ??? Oo
-    }
-
-    bool replaceDAXPY(ast::OpExp& e)
-    {
-        bool ret = false;
-
-        if (e.getOper() == ast::OpExp::plus)
-        {
-            ast::Exp& le = e.getLeft();
-            ast::Exp& re = e.getRight();
-            ast::Exp* a = NULL;
-            ast::Exp* x = NULL;
-            ast::Exp* y = NULL;
-
-            // a * x(i,j) + y(i,j) or y(i,j) + a * x(i,j)
-
-            if (le.isOpExp() && le.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
-            {
-                ast::OpExp* dt = le.getAs<ast::OpExp>();
-                y = &le;
-                a = &dt->getLeft();
-                x = &dt->getRight();
-            }
-            else if (re.isOpExp() && re.getAs<ast::OpExp>()->getOper() == ast::OpExp::dottimes)
-            {
-                ast::OpExp* rt = re.getAs<ast::OpExp>();
-                y = &re;
-                a = &rt->getLeft();
-                x = &rt->getRight();
-            }
-
-            if (a && x && y)
-            {
-                //checks dimensions of x and y
-                ast::Exp* exp = new ast::DAXPYExp(e.getLocation(), *a, *x, *y);
-                exp->setVerbose(e.isVerbose());
-                exp->getDecorator().res = e.getDecorator().res;
-                e.replace(exp);
-                ret = true;
-            }
-        }
-        return ret;
-    }
-
-    bool execAndReplace(ast::Exp& e)
-    {
-        //exec operation and substitute exp by result
-        ast::ExecVisitor exec;
-
-        try
-        {
-            e.accept(exec);
-            InternalType* result = exec.getResult();
-            ast::Exp* exp = result->getExp(e.getLocation());
-            if (exp)
-            {
-                exp->setVerbose(e.isVerbose());
-                e.replace(exp);
-                exp->getDecorator().res = Result(e.getDecorator().res.getType(), e.getDecorator().res.isTemp(), true);
-                setResult(exp->getDecorator().res);
-                return true;
-            }
-        }
-        catch (const ast::ScilabException& /*se*/)
-        {
-            //nothing to do, stop optimization phase and continue.
-            std::cout << "optimization failed !" << std::endl;
-        }
-
-        return false;
+        /*e.args_get().accept(*this);
+          e.returns_get().accept(*this);
+          e.body_get().accept(*this);*/
+        logger.log(L"FunctionDec", e.getLocation());
+        dm.macrodef(&e);
     }
 };
 

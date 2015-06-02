@@ -26,6 +26,9 @@ extern "C"
 
     extern void C2F(rat)(double*, double*, int*, int*, int*);
 }
+/*
+clear a; nb = 2500; a = rand(nb, nb); tic(); rat(a); toc
+*/
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -51,21 +54,24 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     /***** get data *****/
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
 
     if (pDblIn->getDims() > 2)
     {
-        return Overload::call(L"%hm_rat", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%hm_rat", in, _iRetCount, out, &exec);
     }
 
     if (pDblIn->isComplex())
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_rat";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_rat";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() == 2)
@@ -80,16 +86,17 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     }
 
     /***** perform operation and set result *****/
-    double dblIn    = 0;
     int dblN        = 0;
     int dblD        = 0;
     int iFail       = 0;
     double dblRTol  = 0;
+    int size = pDblIn->getSize();
+    double* pR = pDblIn->get();
 
     // Make tolerance relative to the element with maximum absolute value
-    for (int i = 0; i < pDblIn->getSize(); i++)
+    for (int i = 0; i < size; i++)
     {
-        dblRTol = max(dblRTol, std::abs(pDblIn->get(i)));
+        dblRTol = max(dblRTol, std::abs(pR[i]));
     }
 
     if (dblRTol > 0)
@@ -100,16 +107,16 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     if (_iRetCount == 1)
     {
         pDblOut = new types::Double(pDblIn->getRows(), pDblIn->getCols());
-        for (int i = 0; i < pDblIn->getSize(); i++)
+        double* pOutR = pDblOut->get();
+        for (int i = 0; i < size; i++)
         {
-            dblIn = pDblIn->get(i);
-            C2F(rat)(&dblIn, &dblTol, &dblN, &dblD, &iFail);
+            C2F(rat)(pR + i, &dblTol, &dblN, &dblD, &iFail);
             if (iFail)
             {
                 Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), "rat", i);
                 return types::Function::Error;
             }
-            pDblOut->set(i, (double)dblN / (double)dblD);
+            pOutR[i] = (double)dblN / (double)dblD;
         }
 
         out.push_back(pDblOut);
@@ -118,18 +125,19 @@ Function::ReturnValue sci_rat(types::typed_list &in, int _iRetCount, types::type
     {
         pDblN = new types::Double(pDblIn->getRows(), pDblIn->getCols());
         pDblD = new types::Double(pDblIn->getRows(), pDblIn->getCols());
+        double* pNR = pDblN->get();
+        double* pDR = pDblD->get();
 
-        for (int i = 0; i < pDblIn->getSize(); i++)
+        for (int i = 0; i < size; i++)
         {
-            dblIn = pDblIn->get(i);
-            C2F(rat)(&dblIn, &dblTol, &dblN, &dblD, &iFail);
+            C2F(rat)(pR + i, &dblTol, &dblN, &dblD, &iFail);
             if (iFail)
             {
                 Scierror(999, _("%s: The tolerance is too large for the value %d.\n"), "rat", i);
                 return types::Function::Error;
             }
-            pDblN->set(i, dblN);
-            pDblD->set(i, dblD);
+            pNR[i] = (double)dblN;
+            pDR[i] = (double)dblD;
         }
 
         out.push_back(pDblN);

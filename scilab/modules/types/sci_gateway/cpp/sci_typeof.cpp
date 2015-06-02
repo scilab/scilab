@@ -42,8 +42,8 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
             types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
             if (pIT)
             {
-                return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
-
+                ast::ExecVisitor exec;
+                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
             }
         }
 

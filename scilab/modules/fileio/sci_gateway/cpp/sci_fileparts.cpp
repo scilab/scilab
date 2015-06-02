@@ -84,7 +84,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
 
         if (in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), "fileparts", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "fileparts", 2);
             return Function::Error;
         }
 
@@ -179,8 +179,24 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
         }
 
         out.push_back(pStrOut);
-        out.push_back(pStrOut2);
-        out.push_back(pStrOut3);
+        if (_iRetCount > 1)
+        {
+            out.push_back(pStrOut2);
+            if (_iRetCount == 3)
+            {
+                out.push_back(pStrOut3);
+            }
+            else
+            {
+                delete(pStrOut3);
+
+            }
+        }
+        else
+        {
+            delete(pStrOut2);
+            delete(pStrOut3);
+        }
     }
 
     return Function::OK;

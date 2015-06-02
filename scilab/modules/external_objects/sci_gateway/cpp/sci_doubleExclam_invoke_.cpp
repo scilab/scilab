@@ -13,6 +13,7 @@
 #include "ScilabGateway.hxx"
 
 extern "C" {
+#include "api_scilab.h"
 #include "Scierror.h"
 #include "gw_external_objects.h"
 }
@@ -23,7 +24,20 @@ int sci_doubleExclam_invoke_(char * fname, void* pvApiCtx)
 {
     try
     {
-        return ScilabGateway::doubleExclam_invoke(fname, 0, pvApiCtx);
+        int* addr = NULL;
+        double dbl = 0;
+        SciErr sciErr = getVarAddressFromPosition(pvApiCtx, Rhs, &addr);
+        if (sciErr.iErr)
+        {
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+        }
+
+        if (getScalarDouble(pvApiCtx, addr, &dbl))
+        {
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot retrieve the data"));
+        }
+
+        return ScilabGateway::doubleExclam_invoke(fname, static_cast<int>(dbl), pvApiCtx);
     }
     catch (std::exception & e)
     {

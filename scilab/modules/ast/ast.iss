@@ -22,21 +22,15 @@
 Source: bin\{#AST}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#AST}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#AST}\includes\ast\*.*; DestDir: {app}\modules\{#AST}\includes\ast; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\exps\*.*; DestDir: {app}\modules\{#AST}\includes\exps; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\operations\*.*; DestDir: {app}\modules\{#AST}\includes\operation; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\parse\*.*; DestDir: {app}\modules\{#AST}\includes\parse; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\symbol\*.*; DestDir: {app}\modules\{#AST}\includes\symbol; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\system_env\*.*; DestDir: {app}\modules\{#AST}\includes\system_env; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\includes\types\*.*; DestDir: {app}\modules\{#AST}\includes\types; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\includes\*.*; DestDir: {app}\modules\{#AST}\includes; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#AST}\etc\{#AST}.quit; DestDir: {app}\modules\{#AST}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\etc\{#AST}.start; DestDir: {app}\modules\{#AST}\etc; Components: {#COMPN_SCILAB}
 ;
-Source: modules\{#AST}\macros\buildmacros.sce; DestDir: {app}\modules\{#AST}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\macros\buildmacros.bat; DestDir: {app}\modules\{#AST}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\macros\cleanmacros.bat; DestDir: {app}\modules\{#AST}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
-Source: modules\{#AST}\macros\lib; DestDir: {app}\modules\{#AST}\macros; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\macros\buildmacros.sce; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\macros\buildmacros.bat; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\macros\cleanmacros.bat; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#AST}\macros\lib; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\macros\*.sci; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#AST}\macros\*.bin; DestDir: {app}\modules\{#AST}\macros; Components: {#COMPN_SCILAB}
 ;

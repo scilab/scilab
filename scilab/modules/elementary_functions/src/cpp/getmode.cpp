@@ -69,7 +69,7 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
             iMode = -2;
         }
 
-        if (iMode == 0)
+        if (iMode <= 0)
         {
             Scierror(999, _("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"), "size", 2);
             iMode = -2;

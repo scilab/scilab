@@ -24,8 +24,7 @@ extern "C"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
 #include "getlongpathname.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 

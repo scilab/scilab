@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function X = sylv(A,B,C,flag)
-    //  solve  A*X+X*B=C if flag=='c' or  A*X*B-X=C if flag=='d'
+    //  solve  A*X+X*B=C if flag=='c' or  A*X*B+X=C if flag=='d'
     if argn(2)<>4 then
         error(msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"),"sylv",4))
     end

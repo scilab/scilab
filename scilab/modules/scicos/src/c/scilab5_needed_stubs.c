@@ -102,13 +102,23 @@ SCICOS_IMPEXP void F2C(createvar)()
 {
     abort();
 }
-
-#ifndef _MSC_VER
-SCICOS_IMPEXP void F2C(vstk)()
+SCICOS_IMPEXP void F2C(mklist)()
 {
     abort();
 }
+
+SCICOS_IMPEXP void F2C(mktlist)()
+{
+    abort();
+}
+
 SCICOS_IMPEXP void F2C(cha1)()
+{
+    abort();
+}
+
+#ifndef _MSC_VER
+SCICOS_IMPEXP void F2C(vstk)()
 {
     abort();
 }

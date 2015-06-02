@@ -165,7 +165,9 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscidifferential_equations_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libscidifferential_equations_algo_la-dassl.lo \
+am__objects_1 =  \
+	src/c/libscidifferential_equations_algo_la-colnewmsgs.lo \
+	src/c/libscidifferential_equations_algo_la-dassl.lo \
 	src/c/libscidifferential_equations_algo_la-feval.lo \
 	src/c/libscidifferential_equations_algo_la-arnol.lo \
 	src/c/libscidifferential_equations_algo_la-rk4.lo \
@@ -636,6 +638,7 @@ DIFFERENTIAL_EQUATIONS_CPP_SOURCES = \
     src/cpp/differentialequationfunctions.cpp
 
 DIFFERENTIAL_EQUATIONS_C_SOURCES = \
+    src/c/colnewmsgs.c \
     src/c/dassl.c \
     src/c/feval.c \
     src/c/arnol.c \
@@ -748,7 +751,6 @@ libscidifferential_equations_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscidifferential_equations.la
@@ -937,6 +939,8 @@ src/c/$(am__dirstamp):
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscidifferential_equations_algo_la-colnewmsgs.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidifferential_equations_algo_la-dassl.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscidifferential_equations_algo_la-feval.lo:  \
@@ -1186,6 +1190,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-Ex-ode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-Ex-odedc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-arnol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-colnewmsgs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-dassl.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-feval.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscidifferential_equations_algo_la-rk4.Plo@am__quote@
@@ -1216,6 +1221,13 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
+
+src/c/libscidifferential_equations_algo_la-colnewmsgs.lo: src/c/colnewmsgs.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidifferential_equations_algo_la-colnewmsgs.lo -MD -MP -MF src/c/$(DEPDIR)/libscidifferential_equations_algo_la-colnewmsgs.Tpo -c -o src/c/libscidifferential_equations_algo_la-colnewmsgs.lo `test -f 'src/c/colnewmsgs.c' || echo '$(srcdir)/'`src/c/colnewmsgs.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscidifferential_equations_algo_la-colnewmsgs.Tpo src/c/$(DEPDIR)/libscidifferential_equations_algo_la-colnewmsgs.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/colnewmsgs.c' object='src/c/libscidifferential_equations_algo_la-colnewmsgs.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscidifferential_equations_algo_la-colnewmsgs.lo `test -f 'src/c/colnewmsgs.c' || echo '$(srcdir)/'`src/c/colnewmsgs.c
 
 src/c/libscidifferential_equations_algo_la-dassl.lo: src/c/dassl.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscidifferential_equations_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscidifferential_equations_algo_la-dassl.lo -MD -MP -MF src/c/$(DEPDIR)/libscidifferential_equations_algo_la-dassl.Tpo -c -o src/c/libscidifferential_equations_algo_la-dassl.lo `test -f 'src/c/dassl.c' || echo '$(srcdir)/'`src/c/dassl.c

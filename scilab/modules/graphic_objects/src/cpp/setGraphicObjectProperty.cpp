@@ -90,7 +90,8 @@ BOOL setGraphicObjectPropertyAndWarn(int _iID, int _iName, void const* _pvValue,
         case __GO_DATA_MODEL_NUM_INDICES__ :
         case __GO_DATA_MODEL_INDICES__ :
         case __GO_DATA_MODEL_VALUES__ :
-        case __GO_DATA_MODEL_FEC_TRIANGLES__ :
+        case __GO_DATA_MODEL_FEC_ELEMENTS__ :
+        case __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__ :
         case __GO_DATA_MODEL_NUM_X__ :
         case __GO_DATA_MODEL_NUM_Y__ :
         case __GO_DATA_MODEL_NUM_Z__ :

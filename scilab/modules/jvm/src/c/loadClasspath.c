@@ -24,8 +24,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "configvariable_interface.h"
-#include "stricmp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
@@ -63,7 +62,7 @@ BOOL LoadClasspath(char *xmlfilename)
             char *classpath = NULL;
             char *load = "";
             typeOfLoad eLoad = STARTUP;
-            char *currentMode = getScilabModeString();
+            const char *currentMode = getScilabModeString();
             /* Xpath Query :
              * Retrieve all the path which are not disabled in our mode
              */

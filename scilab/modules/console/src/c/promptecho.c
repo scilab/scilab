@@ -16,7 +16,7 @@
 #include "basout.h"
 #include "sci_malloc.h"
 #include "prompt.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int C2F(promptecho)(int *lunit, char *string, int *strl, int string_len)
 {

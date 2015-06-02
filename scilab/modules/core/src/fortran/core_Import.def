@@ -5,13 +5,10 @@ EXPORTS
 ; ---------------------------------------
 ; core
 ; ---------------------------------------
-recu_
 iop_
-vstk_
 com_
 errgst_
 adre_
-cha1_
 dbg_
 intersci_
 ippty_
@@ -22,7 +19,6 @@ mprot_
 typnams_
 csimp_
 ptkeep_
-namstr_
 checkval_
 eqid_
 texmacsin_

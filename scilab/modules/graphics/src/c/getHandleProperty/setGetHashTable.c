@@ -18,11 +18,10 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include <ctype.h>
-#include "stricmp.h"
 
 #include "setGetHashTable.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* see http://www.cse.yorku.ca/~oz/hash.html */
 /* like in hashtable_localization by Allan Cornet */

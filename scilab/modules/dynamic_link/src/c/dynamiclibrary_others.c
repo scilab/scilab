@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "machine.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "localization.h"
 /*---------------------------------------------------------------------------*/

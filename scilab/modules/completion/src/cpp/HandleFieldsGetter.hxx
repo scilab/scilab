@@ -21,7 +21,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "completion.h"
 }
 

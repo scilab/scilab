@@ -15,7 +15,7 @@
 #include <string.h>
 #include "stringsCompare.h"
 #include "sci_malloc.h"
-#include "stricmp.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int sign(int x)
 {

@@ -88,11 +88,10 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)symbolic_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;symbolic_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -116,11 +115,10 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)symbolic_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;symbolic_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -144,11 +142,10 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)symbolic_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;symbolic_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -177,11 +174,10 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)symbolic_f.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;symbolic_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -196,10 +192,6 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
   <ItemGroup>
     <ClCompile Include="DllmainSymbolic.c" />
     <ClCompile Include="..\..\sci_gateway\c\gw_symbolic.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_addsubf.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ldivf.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_mulf.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_rdivf.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_symbolic.h" />
@@ -211,7 +203,6 @@ lib /DEF:"$(ProjectDir)symbolic_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Plat
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\symbolic.iss" />
     <None Include="..\..\sci_gateway\symbolic_gateway.xml" />
-    <None Include="symbolic_f_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="symbolic.rc" />

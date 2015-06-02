@@ -15,7 +15,7 @@
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"

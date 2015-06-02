@@ -37,14 +37,14 @@ public:
     ** \param body EXP LIST intruction
     */
     TryCatchExp (const Location& location,
-                 Exp& tryme,
-                 Exp& catchme)
+                 SeqExp& tryme,
+                 SeqExp& catchme)
         : ControlExp (location)
     {
         tryme.setParent(this);
         catchme.setParent(this);
-        _exps.push_back(&tryme);
-        _exps.push_back(&catchme);
+        _exps.push_back(tryme.getAs<Exp>());
+        _exps.push_back(catchme.getAs<Exp>());
     }
 
     virtual ~TryCatchExp ()
@@ -53,7 +53,7 @@ public:
 
     virtual TryCatchExp* clone()
     {
-        TryCatchExp* cloned = new TryCatchExp(getLocation(), *getTry().clone(), *getCatch().clone());
+        TryCatchExp* cloned = new TryCatchExp(getLocation(), *getTry().clone()->getAs<SeqExp>(), *getCatch().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -97,7 +97,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return TRYCATCHEXP;
     }

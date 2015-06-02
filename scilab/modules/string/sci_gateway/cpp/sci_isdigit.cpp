@@ -67,6 +67,7 @@ types::Function::ReturnValue sci_isdigit(types::typed_list &in, int _iRetCount, 
 
     pBOut = new types::Bool(1, iResultSize);
     pBOut->set(pbResult);
+    FREE(pbResult);
     out.push_back(pBOut);
 
     return types::Function::OK;

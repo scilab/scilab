@@ -20,10 +20,10 @@
 
 #include <list>
 
+#include "context.hxx"
 #include "dec.hxx"
-#include "symbol.hxx"
-#include "exp.hxx"
 #include "arraylistvar.hxx"
+#include "seqexp.hxx"
 
 using namespace std;
 
@@ -47,10 +47,10 @@ public:
     ** \param body
     */
     FunctionDec (const Location& location,
-                 symbol::Symbol& name,
+                 symbol::Symbol name,
                  Exp& args,
                  Exp& returns,
-                 Exp& body)
+                 SeqExp& body)
         : Dec (location),
           _name (name),
           _stack(NULL)
@@ -60,21 +60,28 @@ public:
         body.setParent(this);
         _exps.push_back(&args);
         _exps.push_back(&returns);
-        _exps.push_back(&body);
+        _exps.push_back(body.getAs<Exp>());
+
+        body.setReturnable();
     }
 
     virtual ~FunctionDec ()
     {
         //body will be deleted by types::Macro
         //so replace by NULL to avoir delete in ~Exp()
-        _exps[2] = NULL;
+        //_exps[2] = NULL;
     }
 
     virtual FunctionDec* clone()
     {
-        FunctionDec* cloned = new FunctionDec(getLocation(), *new symbol::Symbol(getSymbol().getName()), *getArgs().clone(), *getReturns().clone(), *getBody().clone());
+        FunctionDec* cloned = new FunctionDec(getLocation(), getSymbol(), *getArgs().clone(), *getReturns().clone(), *getBody().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
+    }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return Exp::equal(e) && _name == static_cast<const FunctionDec &>(e)._name;
     }
 
     // \name Visitors entry point.
@@ -93,7 +100,7 @@ public:
 
     // \name Accessors.
 public:
-    symbol::Symbol& getSymbol(void) const
+    const symbol::Symbol & getSymbol(void) const
     {
         return _name;
     }
@@ -108,24 +115,24 @@ public:
         return *_exps[2];
     }
 
-    const Exp& getArgs() const
+    inline const ArrayListVar & getArgs() const
     {
-        return *_exps[0];
+        return *static_cast<const ArrayListVar *>(_exps[0]);
     }
 
-    Exp& getArgs()
+    inline ArrayListVar & getArgs()
     {
-        return *_exps[0];
+        return *static_cast<ArrayListVar *>(_exps[0]);
     }
 
-    const Exp& getReturns() const
+    const ArrayListVar & getReturns() const
     {
-        return *_exps[1];
+        return *static_cast<const ArrayListVar *>(_exps[1]);
     }
 
-    Exp& getReturns()
+    ArrayListVar & getReturns()
     {
-        return *_exps[1];
+        return *static_cast<ArrayListVar *>(_exps[1]);
     }
 
     void setBody(Exp *body)
@@ -143,7 +150,7 @@ public:
         return _stack;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return FUNCTIONDEC;
     }
@@ -152,7 +159,7 @@ public:
         return true;
     }
 protected:
-    symbol::Symbol& _name;
+    symbol::Symbol _name;
     symbol::Variable* _stack;
 };
 

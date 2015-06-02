@@ -53,6 +53,7 @@
 #include "scilabDefaults.h"
 #include "charEncoding.h"
 #include "../../../io/includes/setenvc.h"
+#include "os_string.h"
 
 /*--------------------------------------------------------------------------*/
 //static wchar_t CURRENTLANGUAGESTRING[LengthAlphacode] = SCILABDEFAULTLANGUAGE;
@@ -405,7 +406,7 @@ BOOL exportLocaleToSystem(const wchar_t *locale)
         /* We need to set a external environment variable to scilab env. */
         char* pstr = NULL;
         wchar_t env[MAX_PATH];
-        swprintf(env, MAX_PATH, L"%ls=%ls", EXPORTENVLOCALESTR, locale);
+        os_swprintf(env, MAX_PATH, L"%ls=%ls", EXPORTENVLOCALESTR, locale);
         pstr = wide_string_to_UTF8(env);
         gettext_putenv(pstr);
         FREE(pstr);

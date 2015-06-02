@@ -12,8 +12,10 @@
 
 /*--------------------------------------------------------------------------*/
 #include "data_structures_gw.hxx"
+#include "internal.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "int.hxx"
 #include "string.hxx"
 #include "list.hxx"
 #include "mlist.hxx"
@@ -56,13 +58,12 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
     types::InternalType* pIndex = in[0];
     if (in[1]->isList() == false && in[1]->isMList() == false && in[1]->isTList() == false)
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: List expected.\n"), "getfield", 2);
         return types::Function::Error;
     }
 
     types::List* pL = in[1]->getAs<types::List>();
     types::InternalType* pITOut = NULL;
-
 
     if (pIndex->isString())
     {
@@ -101,6 +102,12 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
         pITOut = pL->extract(&Args);
     }
 
+    if (pITOut == NULL)
+    {
+        Scierror(999, _("Invalid index.\n"));
+        return types::Function::Error;
+    }
+
     types::List* pList = pITOut->getAs<types::List>();
     int iListSize = pList->getSize();
 
@@ -110,13 +117,86 @@ types::Function::ReturnValue sci_getfield(types::typed_list &in, int _iRetCount,
         return types::Function::Error;
     }
 
+    int iIndex = 0;
+    for (int i = 0; i < iListSize; i++)
+    {
+        if (pList->get(i)->isListUndefined())
+        {
+            switch (pIndex->getType())
+            {
+                case types::InternalType::ScilabType::ScilabDouble:
+                {
+                    iIndex = (int)pIndex->getAs<types::Double>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabInt8:
+                {
+                    iIndex = (int)pIndex->getAs<types::Int8>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabUInt8:
+                {
+                    iIndex = (int)pIndex->getAs<types::UInt8>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabInt16:
+                {
+                    iIndex = (int)pIndex->getAs<types::Int16>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabUInt16:
+                {
+                    iIndex = (int)pIndex->getAs<types::UInt16>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabInt32:
+                {
+                    iIndex = pIndex->getAs<types::Int32>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabUInt32:
+                {
+                    iIndex = (int)pIndex->getAs<types::UInt32>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabInt64:
+                {
+                    iIndex = (int)pIndex->getAs<types::Int64>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabUInt64:
+                {
+                    iIndex = (int)pIndex->getAs<types::UInt64>()->get(i);
+                }
+                break;
+                case types::InternalType::ScilabType::ScilabString:
+                {
+                    std::wstring wField(pIndex->getAs<types::String>()->get(i));
+                    iIndex = pL->getAs<types::TList>()->getIndexFromString(wField);
+                    // The type (the first field) is not counted
+                    iIndex++;
+                }
+                break;
+                default:
+                    break;
+            }
+
+            pList->killMe();
+            Scierror(999, _("List element number %d is Undefined.\n"), iIndex);
+            return types::Function::Error;
+        }
+    }
+
     for (int i = 0 ; i < iListSize ; i++)
     {
         out.push_back(pList->get(i));
     }
 
+    pList->killMe();
+
     return types::Function::OK;
 }
+/*-----------------------------------------------------------------------------------*/
 
 static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -151,7 +231,7 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
         return types::Function::Error;
     }
 
-    if (_iRetCount != vectResult.size())
+    if (_iRetCount != static_cast<int>(vectResult.size()))
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), "getfield", vectResult.size());
         return types::Function::Error;
@@ -166,7 +246,7 @@ static types::Function::ReturnValue sci_getfieldStruct(types::typed_list &in, in
 }
 /*-----------------------------------------------------------------------------------*/
 
-static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int _iRetCount, types::typed_list &out)
+static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, int /*_iRetCount*/, types::typed_list &out)
 {
     types::UserType* pUT = in[1]->getAs<types::UserType>();
 
@@ -174,38 +254,56 @@ static types::Function::ReturnValue sci_getfieldUserType(types::typed_list &in, 
     {
         types::Double* pIndex = in[0]->getAs<types::Double>();
 
-        if (pIndex->get(0) == 1)
+        // Extract the properties
+        types::typed_list one (1, new types::Double(1));
+        types::InternalType* properties = pUT->extract(&one);
+        if (!properties->isString())
         {
-            types::InternalType* properties = pUT->extract(&in);
-            if (!properties->isString())
-            {
-                Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
-                return types::Function::Error;
-            }
-            types::String* propertiesStr = properties->getAs<types::String>();
+            Scierror(999, _("%s: Could not read the argument #%d properties.\n"), "getfield", 2);
+            return types::Function::Error;
+        }
+        types::String* propertiesStr = properties->getAs<types::String>();
 
+        // Checking the index validity
+        int index = pIndex->get(0);
+        if (floor(index) != index)
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "getfield", 1);
+            return types::Function::Error;
+        }
+        if (index < 1 || index > 1 + propertiesStr->getSize())
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: At most %d expected.\n"), "getfield", 1, 1 + propertiesStr->getSize());
+            return types::Function::Error;
+        }
+
+        if (index == 1)
+        {
+            // Return the properties
             types::String* ret = new types::String(1, 1 + propertiesStr->getSize());
             ret->set(0, pUT->getTypeStr().c_str());
             for (int i = 0; i < propertiesStr->getSize(); ++i)
             {
                 ret->set(i + 1, propertiesStr->get(i));
             }
-
-            properties->DecreaseRef();
-            properties->killMe();
-
             out.push_back(ret);
-            return types::Function::OK;
         }
         else
         {
-            Scierror(999, _("%s:  Wrong value for input argument #%d: %d expected.\n"), "getfield", 1, 1);
-            return types::Function::Error;
+            // Return property number 'index-2'
+            types::InternalType* field;
+            pUT->extract(propertiesStr->get(index - 2), field);
+            out.push_back(field);
         }
+
+        properties->DecreaseRef();
+        properties->killMe();
+
+        return types::Function::OK;
     }
     else
     {
-        Scierror(999, _("%s:  Wrong type for input argument #%d: Integer expected.\n"), "getfield", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), "getfield", 1);
         return types::Function::Error;
     }
 }

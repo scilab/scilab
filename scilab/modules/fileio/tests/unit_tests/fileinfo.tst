@@ -16,7 +16,7 @@ if err == 0 then pause,end
 if x <> [] then pause,end
 
 ierr = execstr("fileinfo([SCI,SCIHOME])","errcatch");
-if ierr <> 999 then pause,end
+if ierr <> 0 then pause,end
 
 FILES = [SCI;"My_file_not_exist";SCIHOME;TMPDIR];
 [X,ERRS] = fileinfo(FILES);

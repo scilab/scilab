@@ -22,7 +22,7 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "mclose.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 }
 #include "stdio.h"
 

@@ -51,6 +51,6 @@ GRAPHICS_IMPEXP void Objdrawaxis(char dir, char tics, double* x, int* nx, double
 
 GRAPHICS_IMPEXP void Objnumb(char* fname, unsigned long fname_len, int n, int flag, double x, double y, double* angle, double* box);
 
-GRAPHICS_IMPEXP void Objfec(double x[], double y[], double noeud[], double* fun, int* n, int* m, char strflag[], char legend[], double brect[], int aaint[], double Zminmax[], int Colminmax[], int ColOut[], BOOL WithMesh, BOOL flagNax);
+GRAPHICS_IMPEXP void Objfec(double x[], double y[], double noeud[], double* fun, int* n, int* m, int* p, char strflag[], char legend[], double brect[], int aaint[], double Zminmax[], int Colminmax[], int ColOut[], BOOL WithMesh, BOOL flagNax);
 
 #endif /* _SCI_CALL_H_ */

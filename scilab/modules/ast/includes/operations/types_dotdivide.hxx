@@ -19,6 +19,11 @@
 #include "polynom.hxx"
 #include "sparse.hxx"
 
+extern"C"
+{
+#include "abs.h"
+}
+
 void fillDotDivFunction();
 
 //define arrays on operation functions
@@ -104,6 +109,32 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, size
     //*oc = ((O)l * -(O)rc) / ((O)rc * (O)rc + (O)r * (O)r) ;
 }
 
+template<> inline void dotdiv<double, double, double>(double l, size_t size, double r, double rc, double* o, double* oc)
+{
+    if (rc == 0)
+    {
+        dotdiv<double, double, double>(l, r, o);
+        *oc = 0;
+    }
+    else if (r == 0)
+    {
+        *o = 0;
+        dotdiv<double, double, double>(-l, rc, oc);
+    }
+    else
+    {
+        double dblAbsSum    = dabss(r) + dabss(rc);
+        double dblReal1Sum  = l  / dblAbsSum;
+        double dblReal2Sum  = r  / dblAbsSum;
+        double dblImg2Sum   = rc / dblAbsSum;
+        double dblSum       = pow(dblReal2Sum, 2) + pow(dblImg2Sum, 2);
+        *o                  = (dblReal1Sum * dblReal2Sum) / dblSum;
+        *oc                 = (-dblReal1Sum * dblImg2Sum) / dblSum;
+    }
+}
+
+
+
 //x1c ./ x1
 template<typename T, typename U, typename O> inline static void dotdiv(T l, T lc, size_t size, U r, O* o, O* oc)
 {
@@ -120,6 +151,46 @@ template<typename T, typename U, typename O> inline static void dotdiv(T l, T lc
     dotdiv((O)r * (O)lc - (O)rc * (O)l, (O)rc * (O)rc + (O)r * (O)r, oc);
     //*o = ((O)l * (O)r + (O)lc * (O)rc) / ((O)rc * (O)rc + (O)r * (O)r);
     //*oc = ((O)r * (O)lc - (O)rc * (O)l) / ((O)rc * (O)rc + (O)r * (O)r) ;
+}
+
+template<> inline void dotdiv<double, double, double>(double l, double lc, size_t size, double r, double rc, double* o, double* oc)
+{
+    if (rc == 0)
+    {
+        if (r == 0)
+        {
+            //got NaN + i NaN
+            dotdiv<double, double, double>(rc, r, o);
+            *oc = *o;
+        }
+        else
+        {
+            *o  = l  / r;
+            *oc = lc / r;
+        }
+    }
+    else if (r == 0)
+    {
+        *o  = lc / rc;
+        *oc = -l / rc;
+    }
+    else
+    {
+        if (dabss(r) >= dabss(rc))
+        {
+            double oRatio = rc / r;
+            double oSum = r + oRatio * rc;
+            *o = (l + lc * oRatio) / oSum;
+            *oc = (lc - l * oRatio) / oSum;
+        }
+        else
+        {
+            double oRatio = r / rc;
+            double oSum = rc + oRatio * r;
+            *o = (l * oRatio + lc) / oSum;
+            *oc = (lc * oRatio - l) / oSum;
+        }
+    }
 }
 
 

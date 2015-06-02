@@ -1,6 +1,7 @@
 dnl
 dnl Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 dnl Copyright (C) DIGITEO - 2010 - Sylvestre Ledru
+dnl Copyright (C) Scilab Enterprises - 2015 - Clement David
 dnl 
 dnl This file must be used under the terms of the CeCILL.
 dnl This source file is licensed as described in the file COPYING, which
@@ -53,3 +54,55 @@ AC_DEFUN([AC_JAVA_CHECK_VERSION_PACKAGE], [
     fi
    ac_java_classpath=$saved_ac_java_classpath
 ])
+
+#------------------------------------------------------------------------
+# AC_JAVA_CHECK_VERSION_MANIFEST(NAME, JAR, MIN_VERSION, [PRE_PROCESSING], [GREATER_OR_EQUALS])
+#
+# Check if the minimal version of a software/package is available or not.
+# Note that since java does not provide an universal mechanism to detect
+# the version of a package, we assume that the "Specification-Version" of
+# the MANIFEST.MF is correct.
+#
+# Arguments:
+#    1. The name of the package (only used in the display of feedbacks)
+#    2. The name of the jar files used to build against
+#    3. What is the minimal version expected
+#    4. Manifest attribute name
+#    5. Specify if we want the exact version or greater. (equals or greater by
+#      default).
+#
+#------------------------------------------------------------------------
+
+AC_DEFUN([AC_JAVA_CHECK_VERSION_MANIFEST], [
+    AC_MSG_CHECKING([minimal version ($4 $3) of $1])
+    export JARFILE=$2;
+    if test "x$5" == "x"; then
+    AC_JAVA_TRY_COMPILE([import java.io.IOException;
+import java.util.jar.JarFile;], [String minVersion="$3";
+        try {
+            String version = new JarFile(System.getenv("JARFILE")).getManifest().getMainAttributes().getValue("$4");
+            System.out.println(version);
+            if (compare(minVersion, version) > 0) {
+                System.exit(-1);
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        } ], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected at least $3. Found $STDOUT]))
+    else
+    AC_JAVA_TRY_COMPILE([import java.io.IOException;
+import java.util.jar.JarFile;], [String minVersion="$3";
+        try {
+            String version = new JarFile(System.getenv("JARFILE")).getManifest().getMainAttributes().getValue("$4");
+            System.out.println("$4" + ": " + version);
+            if (compare(minVersion, version) != 0) {
+                System.exit(-1);
+            }
+        } catch (IOException e) {
+            System.err.println(e.getMessage());
+            System.exit(1);
+        } ], "yes", echo "yes" , AC_MSG_ERROR([Wrong version of $1. Expected exact version $4. Found $STDOUT]))
+    fi
+    unset JARFILE
+])
+

@@ -6,31 +6,26 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxIsFinite mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    double value = mxGetScalar(prhs[0]);';
-       '    bool isFinite = mxIsFinite(value);';
-       '    mxArray* pOut = mxCreateLogicalScalar(isFinite);';
-       '    plhs[0] = pOut;';
-       '}'],'mexisFinite.c');
-ilib_mex_build('libmextest',['isFinite','mexisFinite','cmex'], 'mexisFinite.c',[],'Makelib','','','');
-exec('loader.sce');
+ieee(2);
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    double value = mxGetScalar(prhs[0]);";
+"    bool isFinite = mxIsFinite(value);";
+"    mxArray* pOut = mxCreateLogicalScalar(isFinite);";
+"    plhs[0] = pOut;";
+"}"],"mexisFinite.c");
+ilib_mex_build("libmextest",["isFinite","mexisFinite","cmex"], "mexisFinite.c",[]);
+exec("loader.sce");
 
-a = isFinite(%inf);
-if a <> %f then pause end
-a = isFinite(1/0);
-if a <> %f then pause end
-a = isFinite(100);
-if a <> %t then pause end
-a = isFinite(0);
-if a <> %t then pause end
-a = isFinite(%nan);
-if a <> %f then pause end
+assert_checkfalse(isFinite(%inf));
+assert_checkfalse(isFinite(1/0));
+assert_checktrue(isFinite(100));
+assert_checktrue(isFinite(0));
+assert_checkfalse(isFinite(%nan));

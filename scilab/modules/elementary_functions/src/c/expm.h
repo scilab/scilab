@@ -32,16 +32,6 @@
 /* bsiz size of internal chain buf */
 #define bsiz 4096
 
-typedef struct
-{
-    /* see SCI/modules/string/src/c/setScilabCharactersCodes.h */
-    char alfa[csiz]; /* Scilab Characters Codes 0 to 62 */
-    char alfb[csiz]; /* Scilab Characters Codes 63 to 124 */
-    char buf[bsiz]; /* buffer to exchange strings (fortran)*/
-} CHA1_struct;
-
-IMPORT_STRUCT CHA1_struct C2F(cha1);
-
 #ifdef _MSC_VER
 /* BUG 3863 */
 /* forces to define C2F(dcoeff) only once */

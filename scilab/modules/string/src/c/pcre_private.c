@@ -23,7 +23,7 @@
 #include "sci_malloc.h"
 #include "BOOL.h"
 #include "pcre_private.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "strsubst.h"
 #include "configvariable_interface.h"
 #include "sciprint.h"
@@ -1199,7 +1199,15 @@ pcre_error_code wide_pcre_private(wchar_t* _pwstInput, wchar_t* _pwstPattern, in
     {
         *_piStart   = iStart;
         *_piEnd     = iEnd;
+        if (_piCapturedStringCount && *_piCapturedStringCount > 0)
+        {
+            /*free unused captured field*/
+            freeArrayOfString(pstCaptured, *_piCapturedStringCount);
+        }
     }
+
+    FREE(pstInput);
+    FREE(pstPattern);
     return iPcreStatus;
 }
 /*-------------------------------------------------------------------------------*/

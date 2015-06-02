@@ -15,7 +15,7 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "sparse.hxx"
 
 extern "C"
 {
@@ -23,7 +23,10 @@ extern "C"
 #include "localization.h"
 #include "core_math.h"
 }
-
+/*
+clear a;nb = 2500;a = rand(nb, nb) * 500;tic();int(a);toc
+clear a;nb = 2500;a = rand(nb, nb) * 500; a = a + a *%i;tic();int(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -44,30 +47,36 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
 
+        double* pInR = pDblIn->get();
+        double* pOutR = pDblOut->get();
+        int size = pDblIn->getSize();
+
         if (pDblIn->isComplex())
         {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            double* pInI = pDblIn->getImg();
+            double* pOutI = pDblOut->getImg();
+            for (int i = 0; i < size; i++)
             {
-                if (finite(pDblIn->getImg(i)))
+                if (finite(pInI[i]))
                 {
-                    pDblOut->setImg(i, (double)(long long int)pDblIn->getImg(i));
+                    pOutI[i] = (double)(long long int)pInI[i];
                 }
                 else
                 {
-                    pDblOut->setImg(i, pDblIn->getImg(i));
+                    pOutI[i] = pInI[i];
                 }
             }
         }
 
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
+        for (int i = 0; i < size; i++)
         {
-            if (finite(pDblIn->get(i)))
+            if (finite(pInR[i]))
             {
-                pDblOut->set(i, (double)(long long int)pDblIn->get(i));
+                pOutR[i] = (double)(long long int)pInR[i];
             }
             else
             {
-                pDblOut->set(i, pDblIn->get(i));
+                pOutR[i] = pInR[i];
             }
         }
 
@@ -202,8 +211,9 @@ types::Function::ReturnValue sci_int(types::typed_list &in, int _iRetCount, type
 
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_int";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_int";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

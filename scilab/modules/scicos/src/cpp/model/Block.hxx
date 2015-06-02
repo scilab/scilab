@@ -16,6 +16,7 @@
 #include <string>
 #include <vector>
 
+#include "utilities.hxx"
 #include "Model.hxx"
 #include "model/BaseObject.hxx"
 
@@ -28,14 +29,28 @@ struct Parameter
 {
     std::vector<double> rpar;
     std::vector<int> ipar;
-    std::vector<int> opar;
+    std::vector<double> opar;
+
+    // opar default value is an empty list encoded by var2vec()
+    Parameter() : rpar(), ipar(), opar(2)
+    {
+        opar[0] = 22;
+        opar[1] = 0;
+    }
 };
 
 struct State
 {
     std::vector<double> state;
     std::vector<double> dstate;
-    std::vector<int> odstate;
+    std::vector<double> odstate;
+
+    // odstate default value is an empty list encoded by var2vec()
+    State() : state(), dstate(), odstate(2)
+    {
+        odstate[0] = 22;
+        odstate[1] = 0;
+    }
 };
 
 /**
@@ -71,6 +86,8 @@ struct Descriptor
 
     char dep_ut;            //!< dep_ut_t masked value
     char blocktype;         //!< one of blocktype_t value
+
+    Descriptor() : functionName(), functionApi(0), dep_ut(0), blocktype(BLOCKTYPE_C) {}
 };
 
 /*
@@ -101,13 +118,8 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(), m_label(), m_style(), m_nzcross(0), m_nmode(0), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
-        m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0)
-    {
-        m_sim.blocktype  = BLOCKTYPE_C;
-        m_parameter.opar = std::vector<int> (1, 0);
-        m_state.odstate  = std::vector<int> (1, 0);
-    };
+        m_exprs(std::vector<std::string> (1, "String")), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0) {};
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
         m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
         m_sim(o.m_sim), m_in(o.m_in), m_out(o.m_out), m_ein(o.m_ein), m_eout(o.m_eout), m_parameter(o.m_parameter), m_state(o.m_state), m_parentBlock(o.m_parentBlock),
@@ -373,12 +385,12 @@ private:
         return SUCCESS;
     }
 
-    void getNZcross(int& data) const
+    void getNZcross(std::vector<int>& data) const
     {
         data = m_nzcross;
     }
 
-    update_status_t setNZcross(const int data)
+    update_status_t setNZcross(const std::vector<int>& data)
     {
         if (data == m_nzcross)
         {
@@ -389,12 +401,12 @@ private:
         return SUCCESS;
     }
 
-    void getNMode(int& data) const
+    void getNMode(std::vector<int>& data) const
     {
         data = m_nmode;
     }
 
-    update_status_t setNMode(const int data)
+    update_status_t setNMode(const std::vector<int>& data)
     {
         if (data == m_nmode)
         {
@@ -469,12 +481,12 @@ private:
         return SUCCESS;
     }
 
-    void getOpar(std::vector<int>& data) const
+    void getOpar(std::vector<double>& data) const
     {
         data = m_parameter.opar;
     }
 
-    update_status_t setOpar(const std::vector<int>& data)
+    update_status_t setOpar(const std::vector<double>& data)
     {
         if (data == m_parameter.opar)
         {
@@ -640,12 +652,12 @@ private:
         return SUCCESS;
     }
 
-    void getODState(std::vector<int>& data) const
+    void getODState(std::vector<double>& data) const
     {
         data = m_state.odstate;
     }
 
-    update_status_t setODState(const std::vector<int>& data)
+    update_status_t setODState(const std::vector<double>& data)
     {
         if (data == m_state.odstate)
         {
@@ -664,8 +676,8 @@ private:
     std::vector<std::string> m_exprs;
     std::string m_label;
     std::string m_style;
-    int m_nzcross;
-    int m_nmode;
+    std::vector<int> m_nzcross;
+    std::vector<int> m_nmode;
     std::vector<std::string> m_equations;
     std::string m_uid;
 

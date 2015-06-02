@@ -20,7 +20,7 @@ extern "C"
 {
 #include <stdio.h>
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 }
 
@@ -181,7 +181,7 @@ long long* GraphicHandle::allocData(int _iSize)
     return new long long[_iSize];
 }
 
-bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     if (in.size() == 0)
     {

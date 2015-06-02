@@ -23,21 +23,6 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 }
-
-
-int mint(int *tab, int length)
-{
-    int ret  = *tab;
-    for (int i = 1; i < length ; i++)
-    {
-        if (ret > tab[i])
-        {
-            ret = tab[i];
-        }
-    }
-    return ret;
-}
-
 /*--------------------------------------------------------------------------*/
 Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -62,8 +47,11 @@ Function::ReturnValue sci_eye(types::typed_list &in, int _iRetCount, types::type
                 Scierror(21, _("Invalid index.\n"));
                 break;
             case 1:
+            {
                 //call overload
-                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out, new ast::ExecVisitor());
+                ast::ExecVisitor exec;
+                return Overload::generateNameAndCall(L"eye", in, _iRetCount, out, &exec);
+            }
         }
 
         return types::Function::Error;

@@ -102,7 +102,8 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
         FREE(Sci_Plan->gdim.howmany_dims);
         Sci_Plan->gdim.howmany_dims = NULL;
     }
-    return(1);
+
+    return (1);
 }
 /*--------------------------------------------------------------------------*/
 /* Return a valid plan ptr.
@@ -143,102 +144,98 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
         Sci_Plan = &Sci_Forward_Plan;
     }
 
-    if ( (!(CheckGuruDims(&(Sci_Plan->gdim), gdim))) ||
-            (!CheckKindArray(Sci_Plan->kind, kind, gdim->rank)) ||
-            (Sci_Plan->flags != cur_fftw_flags) ||
-            (Sci_Plan->plan_type != type))
-    {
-        /* plan must be changed */
-        FreeFFTWPlan(Sci_Plan);
+    /* plan must be changed */
+    FreeFFTWPlan(Sci_Plan);
 
-        Sci_Plan->plan_type = type;
-        if (gdim->rank != 0)
+    Sci_Plan->plan_type = type;
+    if (gdim->rank != 0)
+    {
+        Sci_Plan->gdim.rank = gdim->rank;
+        if ((Sci_Plan->gdim.dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->rank))) == NULL)
         {
-            Sci_Plan->gdim.rank = gdim->rank;
-            if ((Sci_Plan->gdim.dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->rank))) == NULL)
+            *errflag = 1;
+            return (NULL);
+        }
+        for (i = 0; i < gdim->rank; i++)
+        {
+            Sci_Plan->gdim.dims[i].n  = gdim->dims[i].n;
+            Sci_Plan->gdim.dims[i].is = gdim->dims[i].is;
+            Sci_Plan->gdim.dims[i].os = gdim->dims[i].os;
+        }
+
+        if (kind != NULL)
+        {
+            if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
             {
                 *errflag = 1;
-                return(NULL);
+                return (NULL);
             }
             for (i = 0; i < gdim->rank; i++)
             {
-                Sci_Plan->gdim.dims[i].n  = gdim->dims[i].n;
-                Sci_Plan->gdim.dims[i].is = gdim->dims[i].is;
-                Sci_Plan->gdim.dims[i].os = gdim->dims[i].os;
-            }
-
-            if (kind != NULL)
-            {
-                if ((Sci_Plan->kind = (fftw_r2r_kind *) MALLOC(sizeof(fftw_r2r_kind) * (gdim->rank))) == NULL)
-                {
-                    *errflag = 1;
-                    return(NULL);
-                }
-                for (i = 0; i < gdim->rank; i++)
-                {
-                    Sci_Plan->kind[i]  = kind[i];
-                }
+                Sci_Plan->kind[i]  = kind[i];
             }
         }
-        if (gdim->howmany_rank != 0)
-        {
-            Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
-            if ((Sci_Plan->gdim.howmany_dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->howmany_rank))) == NULL)
-            {
-                FREE(Sci_Plan->gdim.dims);
-                *errflag = 1;
-                return(NULL);
-            }
-            for (i = 0; i < gdim->howmany_rank; i++)
-            {
-                Sci_Plan->gdim.howmany_dims[i].n  = gdim->howmany_dims[i].n;
-                Sci_Plan->gdim.howmany_dims[i].is = gdim->howmany_dims[i].is;
-                Sci_Plan->gdim.howmany_dims[i].os = gdim->howmany_dims[i].os;
-            }
-        }
-
-        Sci_Plan->flags = cur_fftw_flags;
-
-        switch (type)
-        {
-            case C2C_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ii, ro, io,
-                              Sci_Plan->flags);
-                break;
-            case C2R_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_c2r(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ii, ro, flags);
-                break;
-            case R2C_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_r2c(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ro, io, flags);
-
-                break;
-            case R2R_PLAN:
-                Sci_Plan->p = call_fftw_plan_guru_split_dft_r2r(Sci_Plan->gdim.rank,
-                              Sci_Plan->gdim.dims,
-                              Sci_Plan->gdim.howmany_rank,
-                              Sci_Plan->gdim.howmany_dims,
-                              ri, ro, kind, flags);
-                break;
-        }
-
     }
+
+    if (gdim->howmany_rank != 0)
+    {
+        Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
+        if ((Sci_Plan->gdim.howmany_dims = (fftw_iodim *) MALLOC(sizeof(fftw_iodim) * (gdim->howmany_rank))) == NULL)
+        {
+            FREE(Sci_Plan->gdim.dims);
+            *errflag = 1;
+            return (NULL);
+        }
+        for (i = 0; i < gdim->howmany_rank; i++)
+        {
+            Sci_Plan->gdim.howmany_dims[i].n  = gdim->howmany_dims[i].n;
+            Sci_Plan->gdim.howmany_dims[i].is = gdim->howmany_dims[i].is;
+            Sci_Plan->gdim.howmany_dims[i].os = gdim->howmany_dims[i].os;
+        }
+    }
+
+    Sci_Plan->flags = cur_fftw_flags;
+
+    switch (type)
+    {
+        case C2C_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ii, ro, io,
+                          Sci_Plan->flags);
+            break;
+        case C2R_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_c2r(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ii, ro, flags);
+            break;
+        case R2C_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_r2c(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ro, io, flags);
+
+            break;
+        case R2R_PLAN:
+            Sci_Plan->p = call_fftw_plan_guru_split_dft_r2r(Sci_Plan->gdim.rank,
+                          Sci_Plan->gdim.dims,
+                          Sci_Plan->gdim.howmany_rank,
+                          Sci_Plan->gdim.howmany_dims,
+                          ri, ro, kind, flags);
+            break;
+    }
+
     if (Sci_Plan->p == NULL)
     {
         *errflag = 2;
     }
-    return(Sci_Plan->p);
+
+    return (Sci_Plan->p);
 }
 /*--------------------------------------------------------------------------*/
 /* Check if two guru_dim structures are equal
@@ -260,37 +257,37 @@ int CheckGuruDims(guru_dim_struct *gdim1, guru_dim_struct *gdim2)
         {
             if (gdim1->dims[i].n  != gdim2->dims[i].n)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->dims[i].is != gdim2->dims[i].is)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->dims[i].os != gdim2->dims[i].os)
             {
-                return(0);
+                return (0);
             }
         }
         for (i = 0; i < gdim1->howmany_rank; i++)
         {
             if (gdim1->howmany_dims[i].n  != gdim2->howmany_dims[i].n)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->howmany_dims[i].is != gdim2->howmany_dims[i].is)
             {
-                return(0);
+                return (0);
             }
             if (gdim1->howmany_dims[i].os != gdim2->howmany_dims[i].os)
             {
-                return(0);
+                return (0);
             }
         }
-        return(1);
+        return (1);
     }
     else
     {
-        return(0);
+        return (0);
     }
 }
 /*--------------------------------------------------------------------------*/
@@ -308,17 +305,17 @@ int CheckKindArray(fftw_r2r_kind *kind1, fftw_r2r_kind *kind2, int rank)
     int i;
     if ((kind1 == NULL) && (kind2 == NULL))
     {
-        return(1);
+        return (1);
     }
 
     for (i = 0; i < rank; i++)
     {
         if (kind1[i]  != kind2[i])
         {
-            return(0);
+            return (0);
         }
     }
-    return(1);
+    return (1);
 }
 /*--------------------------------------------------------------------------*/
 /* call different fftw_execute_split_dft_xxx procedures according to type input
@@ -335,7 +332,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-            call_fftw_execute_split_dft(p, ri, ii, ro, io);
+                call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);

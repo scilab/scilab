@@ -14,7 +14,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include <stdio.h>
 }
 
@@ -52,6 +52,11 @@ bool FileManager::isOpened(wstring _stFilename)
 
 types::File* FileManager::getFile(int _iID)
 {
+    if (_iID == -1 && m_iCurrentFile == -1)
+    {
+        return NULL;
+    }
+
     if (_iID == -1 && m_iCurrentFile != -1)
     {
         return m_fileList[m_iCurrentFile];
@@ -188,7 +193,7 @@ wchar_t** FileManager::getFilenames()
     int iFileIndex          = 0;
     wchar_t** pstFilenames  = NULL;
 
-    pstFilenames = new wchar_t*[getOpenedCount()];
+    pstFilenames = (wchar_t**) MALLOC(getOpenedCount() * sizeof(wchar_t*));
     for (int i = 0 ; i < static_cast<int>(m_fileList.size()); i++)
     {
         if (m_fileList[i] != NULL)

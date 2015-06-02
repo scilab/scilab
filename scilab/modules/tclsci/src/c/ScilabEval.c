@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "syncexec.h"
 #include "storeCommand.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 /* what's the max number of commands in the queue ??*/
 #define arbitrary_max_queued_callbacks 20
@@ -91,7 +91,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
             So far as Tcl has it's own thread now mixing global values
             and threads within parse makes Scilab crash often.
             */
-            StorePrioritaryCommandWithFlag(pwstCommand, seq);
+            //            StorePrioritaryCommandWithFlag(pwstCommand, seq);
             ierr = 0;
 
             if (C2F(iop).ddt == -1)
@@ -125,7 +125,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
                     FREE(pstCommand);
                     return TCL_ERROR;
                 }
-                seqf[ncomm] = GetCommand (comm[ncomm]);
+                //                seqf[ncomm] = GetCommand (comm[ncomm]);
             }
             if (ismenu())
             {
@@ -156,7 +156,7 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
                 and threads within parse makes Scilab crash often.
                 */
                 pwstComm = to_wide_string(comm[nc]);
-                StorePrioritaryCommandWithFlag(pwstComm, seqf[nc]);
+                //                StorePrioritaryCommandWithFlag(pwstComm, seqf[nc]);
                 FREE(pwstComm);
                 if (C2F(iop).ddt == -1)
                 {
@@ -182,12 +182,12 @@ int TCL_EvalScilabCmd(ClientData clientData, Tcl_Interp * theinterp, int objc, C
             if ( (argv[2] != (char *)0) && (strncmp(argv[2], "seq", 3) == 0) )
             {
                 /* seq */
-                StoreCommandWithFlag(pwstCommand, 1);
+                //                StoreCommandWithFlag(pwstCommand, 1);
             }
             else
             {
                 /* no option or unknown option (TODO: no error for this latter case?) */
-                StoreCommand(pwstCommand);
+                //                StoreCommand(pwstCommand);
                 Tcl_SetResult(theinterp, NULL, NULL);
             }
         }

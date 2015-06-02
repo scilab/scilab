@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: zh_CN\n"
 
 #, c-format
@@ -187,8 +187,9 @@ msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: %s “%c” 的值错误： 应该是“%s”，“%s”和“%s”。\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
-msgstr "%s：输入参数 #%d 的列数错误：应该为 %d。\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
+msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -289,6 +290,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s：在 x 或 y 矩形数据中不可能的状态：最小值大于最大值。\n"
 
@@ -319,6 +328,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr "%s：输入参数 #%d 的大小错误：应该为 %d 或 %d。\n"
 
@@ -335,27 +348,6 @@ msgstr "%s：输入参数 #%d 和 #%d 的值错误：长度不一致。\n"
 #, c-format
 msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr "%s：输入参数 #%d 和 #%d 的大小错误：应该为 %s。\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr "警告"
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr "%s：重新申请句柄时只能有一个父节点。\n"
 
 #, c-format
 msgid ""
@@ -586,6 +578,10 @@ msgstr "%s：输入参数的类型错误：应该为句柄或 double 类型的�
 #, c-format
 msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr "%s：输入参数 #%d 错误：指定的范围不正确。\n"
+
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "父对象必须为 SUBWIN。\n"
@@ -1051,8 +1047,8 @@ msgid "Can not set directly a label object.\n"
 msgstr "不能直接设置一个标签对象。\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
-msgstr "属性“%s”大小错误：必须有 %d 列。\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"

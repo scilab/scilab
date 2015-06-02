@@ -13,32 +13,52 @@
 #ifndef __RESULT_HXX__
 #define __RESULT_HXX__
 
-#include "TIType.hxx"
-
 #include <iostream>
+
+#include "gvn/GVN.hxx"
+#include "gvn/SymbolicDimension.hxx"
+#include "gvn/SymbolicRange.hxx"
+#include "TIType.hxx"
+#include "tools.hxx"
+#include "ConstantValue.hxx"
 
 namespace analysis
 {
 class Result
 {
-    TIType type;
-    bool temp;
-    bool constant;
 
 public:
 
-    Result() : type(), temp(false), constant(false) { }
-    Result(const TIType & _type, const bool _temp, const bool _constant) : type(_type), temp(_temp), constant(_constant) { }
-    Result(TIType && _type, const bool _temp, const bool _constant) : type(_type), temp(_temp), constant(_constant) { }
+    enum FnName { ZEROS, ONES, RAND, DUNNO };
 
-    inline bool isTemp() const
+private:
+
+    TIType type;
+    int tempId;
+    FnName fnname;
+    ConstantValue constant;
+    SymbolicRange range;
+    SymbolicDimension maxIndex;
+
+public:
+
+    Result() : type(), tempId(-1) { }
+    Result(const TIType & _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
+    Result(TIType && _type, const int _tempId = -1) : type(_type), tempId(_tempId) { }
+
+    inline bool istemp() const
     {
-        return temp;
+        return tempId >= 0;
     }
 
-    inline bool isConstant() const
+    inline void setFnName(FnName _fnname)
     {
-        return constant;
+        fnname = _fnname;
+    }
+
+    inline FnName getFnName() const
+    {
+        return fnname;
     }
 
     inline const TIType & getType() const
@@ -46,9 +66,79 @@ public:
         return type;
     }
 
+    inline TIType & getType()
+    {
+        return type;
+    }
+
+    inline int getTempId() const
+    {
+        return tempId;
+    }
+
+    inline ConstantValue & getConstant()
+    {
+        return constant;
+    }
+
+    inline const ConstantValue & getConstant() const
+    {
+        return constant;
+    }
+
+    inline ConstantValue & setConstant(ConstantValue & val)
+    {
+        constant = val;
+        return constant;
+    }
+
+    inline SymbolicRange & getRange()
+    {
+        return range;
+    }
+
+    inline const SymbolicRange & getRange() const
+    {
+        return range;
+    }
+
+    inline SymbolicRange & setRange(SymbolicRange & _range)
+    {
+        range = _range;
+        return range;
+    }
+
+    inline SymbolicRange & setRange(SymbolicRange && _range)
+    {
+        range = _range;
+        return range;
+    }
+
+    inline SymbolicDimension & getMaxIndex()
+	{
+	    return maxIndex;
+	}
+    
+    inline const SymbolicDimension & getMaxIndex() const
+	{
+	    return maxIndex;
+	}
+
+    inline SymbolicDimension & setMaxIndex(SymbolicDimension & _maxIndex)
+    {
+        maxIndex = _maxIndex;
+        return maxIndex;
+    }
+
+    inline SymbolicDimension & setMaxIndex(SymbolicDimension && _maxIndex)
+    {
+        maxIndex = _maxIndex;
+        return maxIndex;
+    }
+    
     friend std::wostream & operator<<(std::wostream & out, const Result & res)
     {
-        out << L"Result {" << res.type << L", temporary: " << (res.temp ? L"true" : L"false") << L"}";
+        out << L"Result {" << res.type << L", temp id:" << res.tempId << L", constant:" << res.constant << L"}";
         return out;
     }
 };

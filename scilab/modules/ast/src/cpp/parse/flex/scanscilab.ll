@@ -23,6 +23,7 @@ extern "C"
 }
 
 static int comment_level = 0;
+static int paren_level = 0;
 static int last_token = 0;
 static int exit_status = PARSE_ERROR;
 static std::string current_file;
@@ -31,7 +32,8 @@ static std::string program_name;
 static std::string *pstBuffer;
 
 #define YY_USER_ACTION                          \
- yylloc.last_column += yyleng;
+ yylloc.first_column = yylloc.last_column;yylloc.last_column += yyleng;
+//yylloc.last_column += yyleng;
 
 /* -*- Verbose Special Debug -*- */
 //#define DEV
@@ -64,7 +66,8 @@ integer			[0-9]+
 number			[0-9]+[\.][0-9]*
 little			\.[0-9]+
 
-floating		({little}|{number}|{integer})[deDE][+-]?{integer}
+floating_D		({little}|{number}|{integer})[dD][+-]?{integer}
+floating_E		({little}|{number}|{integer})[eE][+-]?{integer}
 
 hex             [0]x[0-9a-fA-F]+
 oct             [0]o[0-7]+
@@ -90,6 +93,8 @@ newline			("\r"|"\n"|"\r\n")
 blankline		{spaces}+{newline}
 emptyline       {newline}({spaces}|[,;])+{newline}
 next			\.\.+
+char_in_line_comment    [^\r\n]*
+char_in_comment         [^\r\n\/*]*
 
 boolnot			("@"|"~")
 booltrue		("%t"|"%T")
@@ -120,6 +125,7 @@ endblockcomment		"*/"
 
 dquote			"\""
 quote			"'"
+in_string               [^\"\'\r\n\.]*
 
 dot             "."
 dotquote		".'"
@@ -397,10 +403,10 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{lparen}		{
+<INITIAL>{lparen}		        {
   return scan_throw(LPAREN);
 }
-<INITIAL,MATRIX>{rparen}		{
+<INITIAL>{rparen}		        {
   return scan_throw(RPAREN);
 }
 
@@ -548,8 +554,17 @@ assign			"="
 }
 
 
-<INITIAL,MATRIX>{floating}		{
+<INITIAL,MATRIX>{floating_D}		{
   scan_exponent_convert(yytext);
+  yylval.number = atof(yytext);
+#ifdef TOKENDEV
+  std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
+#endif
+  scan_step();
+  return scan_throw(VARFLOAT);
+}
+
+<INITIAL,MATRIX>{floating_E}		{
   yylval.number = atof(yytext);
 #ifdef TOKENDEV
   std::cout << "--> [DEBUG] FLOATING : " << yytext << std::endl;
@@ -693,6 +708,16 @@ assign			"="
 
 <MATRIX>
 {
+  {lparen} {
+    paren_level++;
+    return scan_throw(LPAREN);
+  }
+
+  {rparen} {
+    paren_level--;
+    return scan_throw(RPAREN);
+  }
+
   {spaces}*{lparen} {
       unput(yytext[yyleng -1]);
       if (last_token == ID
@@ -749,21 +774,27 @@ assign			"="
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
-       && last_token != COMMA)
+       && last_token != COMMA
+       && paren_level == 0)
    {
        return scan_throw(COMMA);
-   }  
+   }
+   else
+   {
+       unput('+');
+   }
   }
- 
+
   {spaces}{minus}                       {
     unput('-');
     if (last_token != LBRACK
        && last_token != EOL
        && last_token != SEMI
-       && last_token != COMMA)
+       && last_token != COMMA
+       && paren_level == 0)
    {
        return scan_throw(COMMA);
-   }  
+   }
   }
 
   .					{
@@ -868,6 +899,10 @@ assign			"="
         FREE (pwstBuffer);
         return scan_throw(COMMENT);
     }
+    else
+    {
+        delete pstBuffer;
+    }
   }
 
   <<EOF>>	{
@@ -887,12 +922,11 @@ assign			"="
     return scan_throw(COMMENT);
   }
 
-  .         {
-     // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
-     // only translate to WCHAR_T when popping state.
-     *pstBuffer += yytext;
+  {char_in_line_comment}         {
+      // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
+      // only translate to WCHAR_T when popping state.
+      *pstBuffer += yytext;
   }
-
 }
 
 
@@ -919,7 +953,8 @@ assign			"="
     *yylval.comment += L"\n//";
   }
 
-  .						{
+  {char_in_comment}				|
+  .                                             {
       wchar_t *pwText = to_wide_string(yytext);
       *yylval.comment += std::wstring(pwText);
       FREE(pwText);
@@ -994,7 +1029,8 @@ assign			"="
     scan_error(str);
   }
 
-  .						{
+  {in_string}						|
+  .                                                     {
     scan_step();
     *pstBuffer += yytext;
   }
@@ -1061,7 +1097,8 @@ assign			"="
     scan_error(str);
   }
 
-  .         {
+  {in_string}         |
+  .                   {
    scan_step();
    *pstBuffer += yytext;
   }
@@ -1226,15 +1263,8 @@ void scan_error(std::string msg)
 */
 void scan_exponent_convert(char *in)
 {
-  char *pString;
-  while((pString=strpbrk(in,"d"))!=NULL)
-    {
-      *pString='e';
-    }
-  while((pString=strpbrk(in,"D"))!=NULL)
-    {
-      *pString='e';
-    }
+  for (; *in != 'd' && *in != 'D'; ++in);
+  *in = 'e';
 }
 
 #ifdef _MSC_VER

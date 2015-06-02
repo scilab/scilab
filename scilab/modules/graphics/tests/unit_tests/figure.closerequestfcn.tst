@@ -33,14 +33,6 @@ refMsg = msprintf(_("''%s'' property does not exist for this handle.\n"), "close
 assert_checkerror("a = gca();a.closerequestfcn = ""closeRequestFcn()""", refMsg); // set
 assert_checkerror("a = gca();v = a.closerequestfcn;", refMsg); // get
 
-// Save/Load (V5)
-warning("off");
-save(TMPDIR + "/figure.closerequestfcn.bin", f);
-warning("on");
-delete(f);
-clear f
-load(TMPDIR + "/figure.closerequestfcn.bin");
-assert_checkequal(f.closerequestfcn, "closeRequestFcn()");
 
 // Save/Load (SOD)
 save(TMPDIR + "/figure.closerequestfcn.bin", "f");

@@ -9,6 +9,8 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+
+#include <vector>
 #include <list>
 #include "configvariable.hxx"
 #include "context.hxx"
@@ -16,10 +18,11 @@
 extern "C"
 {
 #include "strsubst.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "elem_common.h"
 }
+
 /*
 ** Module List
 ** \{
@@ -46,12 +49,12 @@ std::list<std::wstring> ConfigVariable::getModuleList()
 */
 std::wstring ConfigVariable::m_SCIPath;
 
-void ConfigVariable::setSCIPath(std::wstring& _SCIPath)
+void ConfigVariable::setSCIPath(const std::wstring& _SCIPath)
 {
     m_SCIPath = _SCIPath;
 }
 
-std::wstring ConfigVariable::getSCIPath()
+std::wstring& ConfigVariable::getSCIPath()
 {
     return m_SCIPath;
 }
@@ -67,12 +70,12 @@ std::wstring ConfigVariable::getSCIPath()
 
 std::wstring ConfigVariable::m_SCIHOME;
 
-void ConfigVariable::setSCIHOME(std::wstring& _SCIHOME)
+void ConfigVariable::setSCIHOME(const std::wstring& _SCIHOME)
 {
     m_SCIHOME = _SCIHOME;
 }
 
-std::wstring ConfigVariable::getSCIHOME()
+std::wstring& ConfigVariable::getSCIHOME()
 {
     return m_SCIHOME;
 }
@@ -87,12 +90,12 @@ std::wstring ConfigVariable::getSCIHOME()
 
 std::wstring ConfigVariable::m_TMPDIR;
 
-void ConfigVariable::setTMPDIR(std::wstring& _TMPDIR)
+void ConfigVariable::setTMPDIR(const std::wstring& _TMPDIR)
 {
     m_TMPDIR = _TMPDIR;
 }
 
-std::wstring ConfigVariable::getTMPDIR()
+std::wstring& ConfigVariable::getTMPDIR()
 {
     return m_TMPDIR;
 }
@@ -257,12 +260,12 @@ bool ConfigVariable::getWarningMode(void)
 
 std::wstring ConfigVariable::m_HOME;
 
-void ConfigVariable::setHOME(std::wstring& _HOME)
+void ConfigVariable::setHOME(const std::wstring& _HOME)
 {
     m_HOME = _HOME;
 }
 
-std::wstring ConfigVariable::getHOME()
+std::wstring& ConfigVariable::getHOME()
 {
     return m_HOME;
 }
@@ -303,13 +306,12 @@ void ConfigVariable::clearLastError(void)
 
 std::wstring ConfigVariable::m_wstError;
 
-void ConfigVariable::setLastErrorMessage(std::wstring _wstError)
+void ConfigVariable::setLastErrorMessage(const std::wstring& _wstError)
 {
-    wchar_t* pwstTemp1 = os_wcsdup(_wstError.c_str());
-    m_wstError = pwstTemp1;
+    m_wstError = _wstError;
 }
 
-std::wstring ConfigVariable::getLastErrorMessage()
+std::wstring& ConfigVariable::getLastErrorMessage()
 {
     return m_wstError;
 }
@@ -378,12 +380,12 @@ int ConfigVariable::getLastErrorLine(void)
 
 std::wstring ConfigVariable::m_wstErrorFunction;
 
-void ConfigVariable::setLastErrorFunction(std::wstring _wstErrorFunction)
+void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
 {
     m_wstErrorFunction = _wstErrorFunction;
 }
 
-std::wstring ConfigVariable::getLastErrorFunction()
+std::wstring& ConfigVariable::getLastErrorFunction()
 {
     return m_wstErrorFunction;
 }
@@ -520,9 +522,9 @@ types::Cell* ConfigVariable::getAllThreads(void)
     types::Cell *pcResult = new types::Cell(iSize, 1);
     std::list<types::ThreadId *>::iterator it;
 
-    for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it, ++i)
+    for (auto thread : ConfigVariable::m_threadList)
     {
-        pcResult->set(i, *it);
+        pcResult->set(i++, *it);
     }
 
     return pcResult;
@@ -553,19 +555,6 @@ types::ThreadId* ConfigVariable::getThread(__threadKey _key)
 
 void ConfigVariable::deleteThread(__threadKey _key)
 {
-    //for(int i = 0 ; i < m_threadList.size() ; i++)
-    //{
-    //    types::ThreadId* pThread = m_threadList[i];
-    //    if(pThread->getKey() == _key)
-    //    {
-    //        pThread->DecreaseRef();
-    //        if(pThread->isDeletable())
-    //        {
-    //            delete pThread;
-    //            m_threadList.erase(.begin() + i - 1);
-    //        }
-    //    }
-    //}
     std::list<types::ThreadId *>::iterator it;
     for (it = ConfigVariable::m_threadList.begin() ; it != ConfigVariable::m_threadList.end() ; ++it)
     {
@@ -698,7 +687,10 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             //clear all entry points linked to removed dynamic library
             if ((*it)->iLibIndex == _iDynamicLibraryIndex)
             {
+                EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
+                FREE(pEP->pwstEntryPointName);
+                delete pEP;
                 if (m_EntryPointList.size() == 0)
                 {
                     break;
@@ -707,6 +699,8 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
             }
         }
         //remove dynamic library
+        FREE(m_DynLibList[_iDynamicLibraryIndex]->pwstLibraryName);
+        delete m_DynLibList[_iDynamicLibraryIndex];
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
 
@@ -761,6 +755,38 @@ ConfigVariable::EntryPointStr* ConfigVariable::getEntryPoint(wchar_t* _pwstEntry
         }
     }
     return NULL;
+}
+
+dynlib_ptr ConfigVariable::getEntryPointFromPosition(int position)
+{
+    std::list<EntryPointStr*>::const_iterator it;
+    int pos = 0;
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    {
+        if (pos == position)
+        {
+            return (*it)->functionPtr;
+        }
+    }
+    return NULL;
+}
+
+int ConfigVariable::getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex)
+{
+    int pos = 0;
+    std::list<EntryPointStr*>::const_iterator it;
+    for (it = m_EntryPointList.begin(); it != m_EntryPointList.end(); it++, ++pos)
+    {
+        //by pass iLibIndex check if _iDynamicLibraryIndex == -1
+        if (_iDynamicLibraryIndex == -1 || (*it)->iLibIndex == _iDynamicLibraryIndex)
+        {
+            if (wcscmp((*it)->pwstEntryPointName, _pwstEntryPointName) == 0)
+            {
+                return pos;
+            }
+        }
+    }
+    return -1;
 }
 
 std::vector<std::wstring> ConfigVariable::getEntryPointNameList()
@@ -1070,22 +1096,19 @@ int ConfigVariable::getFuncprot()
 ** \{
 */
 
-std::list< std::pair<int, std::wstring> > ConfigVariable::m_Where;
-std::list<int> ConfigVariable::m_FirstMacroLine;
-void ConfigVariable::where_begin(int _iLineNum, std::wstring _wstName)
+std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
+std::vector<int> ConfigVariable::m_FirstMacroLine;
+void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, const std::wstring& _wstName)
 {
-    m_Where.push_front(std::pair<int, std::wstring>(_iLineNum, _wstName));
+    m_Where.emplace_back(_iLineNum, _iLineLocation, _wstName);
 }
 
 void ConfigVariable::where_end()
 {
-    if (m_Where.empty() == false)
-    {
-        m_Where.pop_front();
-    }
+    m_Where.pop_back();
 }
 
-std::list< std::pair<int, std::wstring> >& ConfigVariable::getWhere()
+const std::vector<ConfigVariable::WhereEntry>& ConfigVariable::getWhere()
 {
     return m_Where;
 }
@@ -1121,12 +1144,11 @@ int ConfigVariable::getMacroFirstLines()
 
 std::list<std::wstring> ConfigVariable::m_ReferenceModules;
 
-bool ConfigVariable::checkReferenceModule(std::wstring _module)
+bool ConfigVariable::checkReferenceModule(const std::wstring& _module)
 {
-    std::list<std::wstring>::iterator it = m_ReferenceModules.begin();
-    for ( ; it != m_ReferenceModules.end() ; ++it)
+    for (auto ref : m_ReferenceModules)
     {
-        if (*it == _module)
+        if (ref == _module)
         {
             return true;
         }
@@ -1135,7 +1157,7 @@ bool ConfigVariable::checkReferenceModule(std::wstring _module)
     return false;
 }
 
-void ConfigVariable::addReferenceModule(std::wstring _module)
+void ConfigVariable::addReferenceModule(const std::wstring& _module)
 {
     if (checkReferenceModule(_module) == false)
     {
@@ -1143,7 +1165,7 @@ void ConfigVariable::addReferenceModule(std::wstring _module)
     }
 }
 
-void ConfigVariable::removeReferenceModule(std::wstring _module)
+void ConfigVariable::removeReferenceModule(const std::wstring& _module)
 {
     if (checkReferenceModule(_module))
     {
@@ -1199,3 +1221,15 @@ bool ConfigVariable::isDivideByZero(void)
 /*
 ** \}
 */
+
+//mex info
+std::string ConfigVariable::mexFunctionName;
+void ConfigVariable::setMexFunctionName(const std::string& name)
+{
+    mexFunctionName = name;
+}
+
+std::string& ConfigVariable::getMexFunctionName()
+{
+    return mexFunctionName;
+}

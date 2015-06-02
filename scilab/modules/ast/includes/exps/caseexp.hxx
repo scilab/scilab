@@ -23,13 +23,13 @@ class CaseExp : public ControlExp
 public :
     CaseExp(const Location& location,
             Exp& test,
-            Exp& body) :
+            SeqExp& body) :
         ControlExp (location)
     {
         test.setParent(this);
         body.setParent(this);
         _exps.push_back(&test);
-        _exps.push_back(&body);
+        _exps.push_back(body.getAs<Exp>());
     }
 
     ~CaseExp()
@@ -38,7 +38,7 @@ public :
 
     virtual CaseExp* clone()
     {
-        CaseExp* cloned = new CaseExp(getLocation(), *getTest()->clone(), *getBody()->clone());
+        CaseExp* cloned = new CaseExp(getLocation(), *getTest()->clone(), *getBody()->clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -68,7 +68,7 @@ public :
         return _exps[1];
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return CASEEXP;
     }

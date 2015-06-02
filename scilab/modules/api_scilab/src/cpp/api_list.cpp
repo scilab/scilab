@@ -149,13 +149,6 @@ SciErr checkListItemPosition(void* _pvCtx, int* _piParent, int _iItemPos, int _a
     SciErr sciErr = sciErrInit();
     int iItem = 0;
 
-    // check a valid pointer
-    if (_pvCtx == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _functionName);
-        return sciErr;
-    }
-
     // get a number of items
     sciErr = getListItemNumber(_pvCtx, _piParent, &iItem);
     if (sciErr.iErr)
@@ -268,8 +261,18 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
     pL->set(_iNbItem - 1, new ListUndefined());
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pL);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pL);
+    }
+    else
+    {
+        delete pL;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 
@@ -479,7 +482,7 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
     const char* funcName = NULL;
     int apiError         = API_ERROR_CREATE_LIST_IN_LIST;
 
-    if (_pstName == NULL)
+    if (_piParent != NULL)
     {
         funcName = "createListInList";
     }
@@ -1259,7 +1262,8 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
     }
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
-    Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
+    std::wstring wstTemp(pstTemp);
+    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -1281,6 +1285,7 @@ SciErr createCommonMatrixOfPolyInList(void* _pvCtx, const char* _pstName, int* _
             pD->setImg(_pdblImg[i]);
         }
         pP->setCoef(i, pD);
+        delete pD;
     }
 
     pParent->set(_iItemPos - 1, pP);

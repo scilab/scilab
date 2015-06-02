@@ -114,9 +114,6 @@
     <ClCompile Include="dsqrtc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\fortran\Ex-corr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="fft842.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -193,6 +190,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="tscccf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ex-corr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -290,9 +290,6 @@
     <f2c_rule Include="dsqrtc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="..\..\sci_gateway\fortran\Ex-corr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="fft842.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -369,6 +366,9 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="tscccf.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="Ex-corr.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

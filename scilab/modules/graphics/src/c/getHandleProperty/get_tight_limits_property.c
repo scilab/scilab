@@ -27,7 +27,8 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -42,7 +43,7 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -67,7 +68,7 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
         {
             for (j = 0 ; j < i ; j++)
             {
-                free(tightLimits[j]);
+                FREE(tightLimits[j]);
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_tight_limits_property");
@@ -80,7 +81,7 @@ void* get_tight_limits_property(void* _pvCtx, int iObjUID)
 
     for (i = 0 ; i < 3 ; i++)
     {
-        free(tightLimits[i]);
+        FREE(tightLimits[i]);
     }
 
     return status;

@@ -23,5 +23,4 @@
 #else
 #define EXTERN_AST
 #endif
-
 #endif /* !__DYNLIB_AST_H__ */

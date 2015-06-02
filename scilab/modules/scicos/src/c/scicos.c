@@ -36,6 +36,7 @@
 /*--------------------------------------------------------------------------*/
 #include <stdlib.h>
 #include <string.h>
+#include <wchar.h>
 #include <math.h>
 
 /* Sundials includes */
@@ -69,13 +70,13 @@
 #include "syncexec.h"
 #include "realtime.h"
 #include "sci_malloc.h"
-#include "cvstr.h"
 #include "ezxml.h"
-#include "xscion.h"
 
 #include "sciblk2.h"
 #include "sciblk4.h"
 #include "dynlib_scicos.h"
+
+#include "configvariable_interface.h" /* getEntryPointPosition() and getEntryPointFromPosition() */
 
 #include "lsodar.h"           /* prototypes for lsodar fcts. and consts. */
 #include "ddaskr.h"           /* prototypes for ddaskr fcts. and consts. */
@@ -158,6 +159,17 @@ enum Solver
 #define ONE   RCONST(1.0)
 #define ZERO  RCONST(0.0)
 #define T0    RCONST(0.0)
+
+// Special values for elements of 'funtyp'
+#define FORTRAN_GATEWAY   0
+#define UNUSED1           1
+#define UNUSED2           2
+#define SCIFUNC_BLOCK     3
+#define EXPRESSION_BLOCK  5
+#define IFTHEL_BLOCK      11
+#define ESELECT_BLOCK     12
+#define DEBUG_BLOCK       99
+#define OLD_SCI_BLOCK     10005
 /*--------------------------------------------------------------------------*/
 /* Table of constant values */
 static int c__90 = 90;
@@ -284,12 +296,12 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata);
 int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                 void **work, int *zptr, int *modptr_in,
                 void **oz, int *ozsz, int *oztyp, int *ozptr,
-                int *iz, int *izptr, int* uid, int* uidptr, double *t0_in,
+                char **iz, int *izptr, char **uid, int *uidptr, double *t0_in,
                 double *tf_in, double *tevts_in, int *evtspt_in,
                 int *nevts, int *pointi_in, void **outtbptr_in,
                 int *outtbsz_in, int *outtbtyp_in,
                 outtb_el *outtb_elem_in, int *nelem1, int *nlnk1,
-                int *funptr, int *funtyp_in, int *inpptr_in,
+                void** funptr, int *funtyp_in, int *inpptr_in,
                 int *outptr_in, int *inplnk_in, int *outlnk_in,
                 double *rpar, int *rpptr, int *ipar, int *ipptr,
                 void **opar, int *oparsz, int *opartyp, int *opptr,
@@ -328,7 +340,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     xptr = xptr_in - 1;
     modptr = modptr_in - 1;
     --zptr;
-    --izptr;
+    //--izptr;
     --ozptr;
     evtspt = evtspt_in - 1;
     tevts = tevts_in - 1;
@@ -519,79 +531,74 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
     /* 1 : type and pointer on simulation function */
     for (kf = 0; kf < nblk; ++kf)   /*for each block */
     {
+        void* p = funptr[kf];
         C2F(curblk).kfun = kf + 1;
-        i = funptr[kf];
         Blocks[kf].type = funtyp[kf + 1];
-        if (i < 0)
+        if (Blocks[kf].type == IFTHEL_BLOCK)
         {
-            switch (funtyp[kf + 1])
+            funtyp[kf + 1] = -1;
+        }
+        else if (Blocks[kf].type == ESELECT_BLOCK)
+        {
+            funtyp[kf + 1] = -2;
+        }
+        else if (Blocks[kf].type < 0)
+        {
+            //macros
+            funtyp[kf + 1] *= -1; // Restore a positive 'funtyp' for later use
+            switch (-Blocks[kf].type)
             {
-                case 0:
-                    Blocks[kf].funpt = (voidg) F2C(sciblk);
+                case FORTRAN_GATEWAY:
+                    Blocks[kf].funpt = (voidg)F2C(sciblk);
                     break;
-                case 1:
+                case UNUSED1:
                     sciprint(_("type 1 function not allowed for scilab blocks\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
-                case 2:
+                case UNUSED2:
                     sciprint(_("type 2 function not allowed for scilab blocks\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
-                case 3:
-                    Blocks[kf].funpt = (voidg) sciblk2;
+                case SCIFUNC_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk2;
                     Blocks[kf].type = 2;
                     break;
-                case 5:
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                case EXPRESSION_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 4;
                     break;
-                case 99: /* debugging block */
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                case DEBUG_BLOCK: /* debugging block */
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     /*Blocks[kf].type=4;*/
                     debug_block = kf;
                     break;
 
-                case 10005:
-                    Blocks[kf].funpt = (voidg) sciblk4;
+                case OLD_SCI_BLOCK:
+                    Blocks[kf].funpt = (voidg)sciblk4;
                     Blocks[kf].type = 10004;
                     break;
-                default :
+                default:
                     sciprint(_("Undefined Function type\n"));
                     *ierr = 1000 + kf + 1;
                     FREE_blocks();
                     return 0;
             }
-            Blocks[kf].scsptr = -i; /* set scilab function adress for sciblk */
-        }
-        else if (i <= ntabsim)
-        {
-            Blocks[kf].funpt = (voidg) * (tabsim[i - 1].fonc);
-            Blocks[kf].scsptr = 0;     /* this is done for being able to test if a block
-									 is a scilab block in the debugging phase when
-									 sciblk4 is called */
+            Blocks[kf].scsptr = p; /* set scilab function adress for sciblk */
         }
         else
         {
-            i -= (ntabsim + 1);
-            //TODO: see in dynamic_lin how to get funcptr from index
-            //GetDynFunc(i, &Blocks[kf].funpt);
-            if ( Blocks[kf].funpt == (voidf) 0)
-            {
-                sciprint(_("Function not found\n"));
-                *ierr = 1000 + kf + 1;
-                FREE_blocks();
-                return 0;
-            }
-            Blocks[kf].scsptr = 0;   /* this is done for being able to test if a block
-								   is a scilab block in the debugging phase when
-								   sciblk4 is called */
+            //linked functions (internal or external)
+            Blocks[kf].funpt = (voidf)p;
+            Blocks[kf].scsptr = NULL;   /* this is done for being able to test if a block
+                                        is a scilab block in the debugging phase when
+                                        sciblk4 is called */
         }
 
         /* 2 : Dimension properties */
         Blocks[kf].ztyp = ztyp[kf + 1];
-        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuuous state dimension*/
+        Blocks[kf].nx = xptr[kf + 2] - xptr[kf + 1]; /* continuous state dimension*/
         Blocks[kf].ng = zcptr[kf + 2] - zcptr[kf + 1]; /* number of zero crossing surface*/
         Blocks[kf].nz = zptr[kf + 2] - zptr[kf + 1]; /* number of double discrete state*/
         Blocks[kf].noz = ozptr[kf + 2] - ozptr[kf + 1]; /* number of other discrete state*/
@@ -750,7 +757,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
         }
 
         /* 11 : block label (label) */
-        i1 = izptr[kf + 2] - izptr[kf + 1];
+        i1 = izptr[kf];
         if ((Blocks[kf].label = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
         {
             FREE_blocks();
@@ -758,10 +765,10 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             return 0;
         }
         Blocks[kf].label[i1] = '\0';
-        C2F(cvstr)(&i1, &(iz[izptr[kf + 1] - 1]), Blocks[kf].label, &job, i1);
+        strcpy(Blocks[kf].label, iz[kf]);
 
         /* block uid (uid) */
-        i1 = uidptr[kf + 1] - uidptr[kf];
+        i1 = uidptr[kf];
         if ((Blocks[kf].uid = MALLOC(sizeof(char) * (i1 + 1))) == NULL)
         {
             FREE_blocks();
@@ -769,7 +776,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
             return 0;
         }
         Blocks[kf].uid[i1] = '\0';
-        C2F(cvstr)(&i1, &(uid[uidptr[kf] - 1]), Blocks[kf].uid, &job, i1);
+        strcpy(Blocks[kf].uid, uid[kf]);
 
         /* 12 : block array of crossed surfaces (jroot) */
         Blocks[kf].jroot = NULL;
@@ -1024,41 +1031,49 @@ static void cosini(double *told)
             case SCSREAL_N    :
                 szouttbd += outtbsz[ii] * outtbsz[ii + nlnk]; /*double real matrix*/
                 outtbd = (SCSREAL_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSREAL_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSREAL_COP));
                 break;
 
             case SCSCOMPLEX_N :
                 szouttbd += 2 * outtbsz[ii] * outtbsz[ii + nlnk]; /*double complex matrix*/
                 outtbd = (SCSCOMPLEX_COP *) REALLOC (outtbd, szouttbd * sizeof(SCSCOMPLEX_COP));
+                memset(outtbd, 0, szouttbd * sizeof(SCSCOMPLEX_COP));
                 break;
 
             case SCSINT8_N    :
                 szouttbc += outtbsz[ii] * outtbsz[ii + nlnk]; /*int8*/
                 outtbc = (SCSINT8_COP *) REALLOC (outtbc, szouttbc * sizeof(SCSINT8_COP));
+                memset(outtbc, 0, szouttbc * sizeof(SCSINT8_COP));
                 break;
 
             case SCSINT16_N   :
                 szouttbs += outtbsz[ii] * outtbsz[ii + nlnk]; /*int16*/
                 outtbs = (SCSINT16_COP *) REALLOC (outtbs, szouttbs * sizeof(SCSINT16_COP));
+                memset(outtbs, 0, szouttbs * sizeof(SCSINT16_COP));
                 break;
 
             case SCSINT32_N   :
                 szouttbl += outtbsz[ii] * outtbsz[ii + nlnk]; /*int32*/
                 outtbl = (SCSINT32_COP *) REALLOC (outtbl, szouttbl * sizeof(SCSINT32_COP));
+                memset(outtbl, 0, szouttbl * sizeof(SCSINT32_COP));
                 break;
 
             case SCSUINT8_N   :
                 szouttbuc += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint8*/
                 outtbuc = (SCSUINT8_COP *) REALLOC (outtbuc, szouttbuc * sizeof(SCSUINT8_COP));
+                memset(outtbuc, 0, szouttbuc * sizeof(SCSUINT8_COP));
                 break;
 
             case SCSUINT16_N  :
                 szouttbus += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint16*/
                 outtbus = (SCSUINT16_COP *) REALLOC (outtbus, szouttbus * sizeof(SCSUINT16_COP));
+                memset(outtbus, 0, szouttbus * sizeof(SCSUINT16_COP));
                 break;
 
             case SCSUINT32_N  :
                 szouttbul += outtbsz[ii] * outtbsz[ii + nlnk]; /*uint32*/
                 outtbul = (SCSUINT32_COP *) REALLOC (outtbul, szouttbul * sizeof(SCSUINT32_COP));
+                memset(outtbul, 0, szouttbul * sizeof(SCSUINT32_COP));
                 break;
 
             default  : /* Add a message here */
@@ -1405,7 +1420,7 @@ static void cossim(double *told)
     int i3 = 0;
 
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -1417,7 +1432,6 @@ static void cossim(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
     int Discrete_Jump = 0;
     int *jroot = NULL, *zcros = NULL;
@@ -1618,7 +1632,8 @@ static void cossim(double *told)
             return;
         }
 
-        if (solver != LSodar_Dynamic) /* Call CVDense to specify the CVDENSE dense linear solver */
+        /* Call CVDense to specify the CVDENSE dense linear solver, only for solvers needing CVode's Newton method */
+        if (solver == CVode_BDF_Newton || solver == CVode_Adams_Newton)
         {
             flag = CVDense(ode_mem, *neq);
         }
@@ -1649,7 +1664,6 @@ static void cossim(double *told)
     C2F(coshlt).halt = 0;
     *ierr = 0;
 
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
 
@@ -1705,9 +1719,11 @@ static void cossim(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -2096,7 +2112,7 @@ static void cossimdaskr(double *told)
     /* System generated locals */
     int i3;
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -2108,7 +2124,6 @@ static void cossimdaskr(double *told)
     static double t = 0.;
     static int jj = 0;
     static double rhotmp = 0., tstop = 0.;
-    static int inxsci = 0;
     static int kpo = 0, kev = 0;
 
     int *jroot = NULL, *zcros = NULL;
@@ -2835,8 +2850,6 @@ static void cossimdaskr(double *told)
     phase = 1;
     hot = 0;
 
-    /*      stuck=.false. */
-    C2F(xscion)(&inxsci);
     /*     initialization */
     C2F(realtimeinit)(told, &C2F(rtfactor).scale);
     /*     ATOL and RTOL are scalars */
@@ -2888,9 +2901,11 @@ static void cossimdaskr(double *told)
         while (ismenu()) //** if the user has done something, do the actions
         {
             int ierr2 = 0;
-            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+            int iUnused;
+            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
             CommandLength = (int)strlen(CommandToUnstack);
             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+            FREE(CommandToUnstack);
         }
         if (C2F(coshlt).halt != 0)
         {
@@ -3074,9 +3089,11 @@ L30:
                         while (ismenu()) //** if the user has done something, do the actions
                         {
                             int ierr2 = 0;
-                            SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                            int iUnused;
+                            GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
                             CommandLength = (int)strlen(CommandToUnstack);
                             //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                            FREE(CommandToUnstack);
                         }
                         if (C2F(coshlt).halt != 0)
                         {
@@ -3424,9 +3441,11 @@ L30:
                 while (ismenu()) //** if the user has done something, do the actions
                 {
                     int ierr2 = 0;
-                    SeqSync = GetCommand(CommandToUnstack); //** get to the action
+                    int iUnused;
+                    GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
                     CommandLength = (int)strlen(CommandToUnstack);
                     //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                    FREE(CommandToUnstack);
                 }
 
                 if (C2F(coshlt).halt != 0)
@@ -3623,9 +3642,9 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
     //sciprint("callf type=%d flag=%d\n",block->type,flagi);
     switch (block->type)
     {
-            /*******************/
-            /* function type 0 */
-            /*******************/
+        /*******************/
+        /* function type 0 */
+        /*******************/
         case 0 :
         {
             /* This is for compatibility */
@@ -3811,7 +3830,8 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
                         block->evout, &block->nevout, block->rpar, &block->nrpar,
                         block->ipar, &block->nipar, (double **)block->inptr,
                         block->insz, &block->nin,
-                        (double **)block->outptr, block->outsz, &block->nout);
+                        (double **)block->outptr, block->outsz, &block->nout,
+                        block->scsptr);
             }
             /* with zero crossing */
             else
@@ -3823,6 +3843,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
                          block->ipar, &block->nipar, (double **)block->inptr,
                          block->insz, &block->nin,
                          (double **)block->outptr, block->outsz, &block->nout,
+                         block->scsptr,
                          block->g, &block->ng);
             }
 
@@ -6115,17 +6136,15 @@ int C2F(funnum)(char * fname)
 {
     int i = 0, ln = 0;
     int loc = -1;
-    while ( tabsim[i].name != (char *) NULL)
+    while (tabsim[i].name != (char *)NULL)
     {
-        if ( strcmp(fname, tabsim[i].name) == 0 )
+        if (strcmp(fname, tabsim[i].name) == 0)
         {
             return (i + 1);
         }
         i++;
     }
     ln = (int)strlen(fname);
-
-    //TODO: see in dynamic_lin how to check if a function os already link to Scilab
     //C2F(iislink)(fname, &loc);
     //C2F(iislink)(fname, &loc);
     if (loc >= 0)
@@ -6134,6 +6153,21 @@ int C2F(funnum)(char * fname)
     }
     return (0);
 }/* funnum */
+/*--------------------------------------------------------------------------*/
+/* Subroutine funnum2 */
+void* funnum2(char * fname)
+{
+    int i = 0;
+    while (tabsim[i].name != (char *)NULL)
+    {
+        if (strcmp(fname, tabsim[i].name) == 0)
+        {
+            return (void*)tabsim[i].fonc;
+        }
+        i++;
+    }
+    return NULL;
+}/* funnum2 */
 /*--------------------------------------------------------------------------*/
 int get_phase_simulation(void)
 {
@@ -6923,7 +6957,7 @@ int simblkKinsol(N_Vector yy, N_Vector resval, void *rdata)
 static int CallKinsol(double *told)
 {
     //** used for the [stop] button
-    static char CommandToUnstack[1024];
+    char* CommandToUnstack;
     static int CommandLength = 0;
     static int SeqSync = 0;
     static int one = 1;
@@ -7078,9 +7112,11 @@ static int CallKinsol(double *told)
             while (ismenu()) //** if the user has done something, do the actions
             {
                 int ierr2 = 0;
-                SeqSync = GetCommand(CommandToUnstack); //** get at the action
+                int iUnused;
+                GetCommand(&CommandToUnstack, &SeqSync, &iUnused, &iUnused); //** get to the action
                 CommandLength = (int)strlen(CommandToUnstack);
                 //syncexec(CommandToUnstack, &CommandLength, &ierr2, &one, CommandLength); //** execute it
+                FREE(CommandToUnstack);
             }
 
             if (C2F(coshlt).halt != 0)

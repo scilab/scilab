@@ -128,7 +128,6 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/exttriu.c \
     src/c/exttriuz.c \
     src/c/foriterator.c \
-    src/c/fromws_c.c \
     src/c/gainblk.c \
     src/c/gainblk_i16e.c \
     src/c/gainblk_i16n.c \
@@ -329,7 +328,8 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/zcross2.c
 
 SCICOS_BLOCKS_CXX_SOURCES = \
-    src/cpp/affich2.cpp
+    src/cpp/affich2.cpp \
+    src/cpp/fromws_c.cpp
 
 NON_BLOCK_C_SOURCES = \
     src/c/scicos_evalhermite.c \
@@ -438,11 +438,13 @@ libsciscicos_blocks_algo_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/graphic_objects/includes/ \
+    -I$(top_srcdir)/modules/hdf5/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/renderer/includes/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS)
 
 libsciscicos_blocks_la_CPPFLAGS= \
@@ -499,27 +501,25 @@ endif
 
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CXX_SOURCES)
 	@echo "-- Generates build/CPPblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_CXX_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 	@echo "-- Generates build/Fblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
 
 includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 	@echo "-- Building includes/blocks.h --"
-	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
-		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
-	fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/includes;
 	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
 
 CLEANFILES= \
@@ -566,8 +566,6 @@ MACROSSPECIALEXT=*.mo \
 *.moc
 
 TESTS_DIREXT= tests/unit_tests/Linear
-
-.NOTPARALLEL: build/Fblocknames build/Cblocknames
 
 include $(top_srcdir)/Makefile.incl.am
 

@@ -24,18 +24,19 @@ namespace symbol
 struct ScopedVariable
 {
     ScopedVariable(int _iLevel, types::InternalType* _pIT)
-        : m_iLevel(_iLevel), m_pIT(_pIT), m_globalVisible(false) {}
+        : m_iLevel(_iLevel), m_pIT(_pIT), m_globalVisible(false), protect(false) {}
 
     int m_iLevel;
     types::InternalType* m_pIT;
     bool m_globalVisible;
+    bool protect;
 };
 
 struct Variable
 {
     typedef std::stack<ScopedVariable*> StackVar;
 
-    Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL) {};
+    Variable(const Symbol& _name) : name(_name), m_Global(false), m_GlobalValue(NULL), last(nullptr) {};
     ~Variable()
     {
         while (!empty())
@@ -55,6 +56,12 @@ struct Variable
         }
     }
 
+    void put(ScopedVariable* pSV)
+    {
+        last = pSV;
+        stack.push(last);
+    }
+
     void put(types::InternalType* _pIT, int _iLevel)
     {
         if (isGlobal() && isGlobalVisible(_iLevel))
@@ -66,7 +73,8 @@ struct Variable
         if (empty() || top()->m_iLevel < _iLevel)
         {
             //create a new level
-            stack.push(new ScopedVariable(_iLevel, _pIT));
+            last = new ScopedVariable(_iLevel, _pIT);
+            stack.push(last);
             _pIT->IncreaseRef();
         }
         else
@@ -109,12 +117,20 @@ struct Variable
 
     inline ScopedVariable* top() const
     {
-        return stack.top();
+        return last;
     }
 
     inline void pop()
     {
         stack.pop();
+        if (stack.empty())
+        {
+            last = nullptr;
+        }
+        else
+        {
+            last = stack.top();
+        }
     }
 
     inline Symbol getSymbol() const
@@ -151,9 +167,9 @@ struct Variable
     {
         if (empty() || top()->m_iLevel != _iLevel)
         {
-            stack.push(new ScopedVariable(_iLevel, types::Double::Empty()));
+            last = new ScopedVariable(_iLevel, types::Double::Empty());
+            stack.push(last);
         }
-
 
         top()->m_globalVisible = _bVisible;
     }
@@ -186,6 +202,7 @@ private :
     bool m_Global;
     types::InternalType* m_GlobalValue;
     StackVar stack;
+    ScopedVariable* last;
 };
 
 struct Variables
@@ -206,6 +223,17 @@ struct Variables
         }
 
         return it->second;
+    }
+
+    int getLevel(const Symbol& _key) const
+    {
+        MapVars::const_iterator it = vars.find(_key);
+        if (it != vars.end() && !it->second->empty())
+        {
+            return it->second->top()->m_iLevel;
+        }
+
+        return -1;
     }
 
     void put(const Symbol& _key, types::InternalType* _pIT, int _iLevel)
@@ -255,8 +283,7 @@ struct Variables
                 ScopedVariable* pSave = it->second->top();
                 it->second->pop();
                 types::InternalType* pIT = getAllButCurrentLevel(_key, _iLevel);
-                it->second->put(pSave->m_pIT, pSave->m_iLevel);
-                delete pSave;
+                it->second->put(pSave);
                 return pIT;
             }
         }
@@ -295,127 +322,161 @@ struct Variables
         return false;
     }
 
-    std::list<std::wstring>* getMacrosName()
+    int getMacrosName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* plOut = new std::list<std::wstring>();
-        MapVars::const_iterator it = vars.begin();
-        for (; it != vars.end(); ++it)
+        for (auto it : vars)
         {
-            if (it->second->empty() == false)
+            if (it.second->empty() == false)
             {
-                types::InternalType* pIT = it->second->top()->m_pIT;
+                types::InternalType* pIT = it.second->top()->m_pIT;
                 if (pIT && (pIT->isMacro() || pIT->isMacroFile()))
                 {
-                    plOut->push_back(it->first.getName().c_str());
+                    lst.push_back(it.first.getName().c_str());
                 }
             }
         }
 
-        return plOut;
+        return static_cast<int>(lst.size());
     }
 
-    std::list<std::wstring>* getVarsName()
+    int getVarsName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* plOut = new std::list<std::wstring>();
-        MapVars::const_iterator it = vars.begin();
-        for (; it != vars.end(); ++it)
+        for (auto it : vars)
         {
-            if (it->second->empty() == false)
+            if (it.second->empty() == false)
             {
-                types::InternalType* pIT = it->second->top()->m_pIT;
+                types::InternalType* pIT = it.second->top()->m_pIT;
                 if (pIT &&
                         pIT->isMacro() == false &&
                         pIT->isMacroFile() == false &&
                         pIT->isFunction() == false)
                 {
-                    plOut->push_back(it->first.getName().c_str());
+                    lst.push_back(it.first.getName().c_str());
                 }
             }
         }
 
-        return plOut;
+        return static_cast<int>(lst.size());
     }
 
-    bool getVarsNameForWho(std::list<std::wstring>* lstVarName, int* iVarLenMax, std::list<std::wstring>* lstGlobalVarName, int* iGlobalLenMax, bool bSorted = false) const
+    bool getVarsNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const
     {
-        for (auto it = vars.begin(), itEnd = vars.end(); it != itEnd; ++it)
+        for (auto it : vars)
         {
-            std::wstring wstrVarName(it->first.getName().c_str());
-            if (lstVarName && it->second->empty() == false)
+            std::wstring wstrVarName(it.first.getName().c_str());
+            if (it.second->empty() == false)
             {
-                types::InternalType* pIT = it->second->top()->m_pIT;
+                types::InternalType* pIT = it.second->top()->m_pIT;
                 if (pIT && pIT->isFunction() == false)
                 {
-                    lstVarName->push_back(wstrVarName);
+                    lstVarName.push_back(wstrVarName);
                     *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
                 }
-            }
-
-            if (lstGlobalVarName && it->second->isGlobal())
-            {
-                lstGlobalVarName->push_back(wstrVarName);
-                *iGlobalLenMax = std::max(*iGlobalLenMax, (int)wstrVarName.size());
             }
         }
 
         if (bSorted)
         {
-            if (lstVarName)
-            {
-                lstVarName->sort();
-            }
-
-            if (lstGlobalVarName)
-            {
-                lstGlobalVarName->sort();
-            }
+            lstVarName.sort();
         }
 
         return true;
     }
 
-    std::list<std::wstring>* getFunctionsName()
+    bool getGlobalNameForWho(std::list<std::wstring>& lstVarName, int* iVarLenMax, bool bSorted = false) const
     {
-        std::list<std::wstring>* plOut = new std::list<std::wstring>();
-        MapVars::const_iterator it = vars.begin();
-        for (; it != vars.end(); ++it)
+        for (auto it : vars)
         {
-            if (it->second->empty() == false)
+            if (it.second->empty() == false && it.second->isGlobal())
             {
-                types::InternalType* pIT = it->second->top()->m_pIT;
-                if (pIT && pIT->isFunction())
+                std::wstring wstrVarName(it.first.getName().c_str());
+                lstVarName.push_back(wstrVarName);
+                *iVarLenMax = std::max(*iVarLenMax, (int)wstrVarName.size());
+            }
+        }
+
+        if (bSorted)
+        {
+            lstVarName.sort();
+        }
+
+        return true;
+    }
+
+    int getProtectedVarsName(std::list<std::wstring>& lstVarName) const
+    {
+        for (auto it : vars)
+        {
+            if (it.second->empty() == false)
+            {
+                ScopedVariable* pSV = it.second->top();
+                if (pSV->protect && it.first.getName() != L"ans")
                 {
-                    plOut->push_back(it->first.getName().c_str());
+                    lstVarName.push_back(it.first.getName());
                 }
             }
         }
 
-        return plOut;
+        return static_cast<int>(lstVarName.size());
     }
 
-    std::list<Symbol>* getFunctionList(std::wstring _stModuleName, int _iLevel)
+    int getFunctionsName(std::list<std::wstring>& lst)
     {
-        std::list<Symbol>* symb = new std::list<Symbol>();
-
-        MapVars::iterator it = vars.begin();
-        for (; it != vars.end() ; ++it)
+        for (auto it : vars)
         {
-            if (it->second->empty())
+            if (it.second->empty() == false)
+            {
+                types::InternalType* pIT = it.second->top()->m_pIT;
+                if (pIT && pIT->isFunction())
+                {
+                    lst.push_back(it.first.getName().c_str());
+                }
+            }
+        }
+
+        return static_cast<int>(lst.size());
+    }
+
+    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName, int _iLevel)
+    {
+        for (auto var : vars)
+        {
+            if (var.second->empty())
             {
                 continue;
             }
 
-            if ((it->second->top()->m_iLevel == _iLevel || _iLevel == 1) && it->second->top()->m_pIT->isCallable())
+            if ((var.second->top()->m_iLevel == _iLevel || _iLevel == 1) && var.second->top()->m_pIT->isCallable())
             {
-                types::Callable* pCall = it->second->top()->m_pIT->getAs<types::Callable>();
+                types::Callable* pCall = var.second->top()->m_pIT->getAs<types::Callable>();
                 if (_stModuleName == L"" || _stModuleName == pCall->getModule())
                 {
-                    symb->push_back(it->first);
+                    lst.push_back(var.first);
                 }
             }
         }
 
-        return symb;
+        return static_cast<int>(lst.size());
+    }
+
+    int getVarsToVariableBrowser(std::list<Variable*>& lst)
+    {
+        for (auto var : vars)
+        {
+            if (var.second->empty() == false)
+            {
+                types::InternalType* pIT = var.second->top()->m_pIT;
+                if (pIT &&
+                        pIT->isMacro() == false &&
+                        pIT->isMacroFile() == false &&
+                        pIT->isFunction() == false)
+                {
+                    lst.push_back(var.second);
+                }
+            }
+        }
+
+        return static_cast<int>(lst.size());
     }
 
     bool putInPreviousScope(Variable* _var, types::InternalType* _pIT, int _iLevel)
@@ -429,8 +490,9 @@ struct Variables
             ScopedVariable* pVar = _var->top();
             _var->pop();
             putInPreviousScope(_var, _pIT, _iLevel);
-            _var->put(pVar->m_pIT, pVar->m_iLevel);
-            delete pVar;
+            //decresef ref before, increase it in put
+            //pVar->m_pIT->DecreaseRef();
+            _var->put(pVar);
         }
         else
         {
@@ -486,9 +548,9 @@ struct Variables
 
     void clearAll()
     {
-        for (MapVars::iterator it = vars.begin(); it != vars.end() ; ++it)
+        for (auto var : vars)
         {
-            delete it->second;
+            delete var.second;
         }
     }
 

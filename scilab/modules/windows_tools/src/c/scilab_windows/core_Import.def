@@ -4,7 +4,6 @@ LIBRARY    core.dll
 EXPORTS
 ;core
 with_module
-InitializeLaunchScilabSignal
 StoreCommand
 MyHeapAlloc
 MyHeapFree

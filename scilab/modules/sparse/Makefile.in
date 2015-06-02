@@ -198,7 +198,8 @@ am__objects_3 = sci_gateway/cpp/libscisparse_la-sparse_gw.lo \
 	sci_gateway/cpp/libscisparse_la-sci_lusolve.lo \
 	sci_gateway/cpp/libscisparse_la-sci_luget.lo \
 	sci_gateway/cpp/libscisparse_la-sci_ludel.lo \
-	sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo
+	sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo \
+	sci_gateway/cpp/libscisparse_la-sci_spchol.lo
 am_libscisparse_la_OBJECTS = $(am__objects_3)
 libscisparse_la_OBJECTS = $(am_libscisparse_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscisparse_la_rpath =
@@ -622,7 +623,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_lusolve.cpp \
     sci_gateway/cpp/sci_luget.cpp \
     sci_gateway/cpp/sci_ludel.cpp \
-    sci_gateway/cpp/sci_ordmmd.cpp
+    sci_gateway/cpp/sci_ordmmd.cpp \
+    sci_gateway/cpp/sci_spchol.cpp
 
 libscisparse_la_CPPFLAGS = \
     -I$(srcdir)/src/c/ \
@@ -920,6 +922,9 @@ sci_gateway/cpp/libscisparse_la-sci_ludel.lo:  \
 sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscisparse_la-sci_spchol.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscisparse.la: $(libscisparse_la_OBJECTS) $(libscisparse_la_DEPENDENCIES) $(EXTRA_libscisparse_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK) $(am_libscisparse_la_rpath) $(libscisparse_la_OBJECTS) $(libscisparse_la_LIBADD) $(LIBS)
@@ -946,6 +951,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_ordmmd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_sp2adj.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_sparse.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spchol.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spcompack.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spget.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spones.Plo@am__quote@
@@ -1160,6 +1166,13 @@ sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo: sci_gateway/cpp/sci_ordmmd.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_ordmmd.cpp' object='sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscisparse_la-sci_ordmmd.lo `test -f 'sci_gateway/cpp/sci_ordmmd.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_ordmmd.cpp
+
+sci_gateway/cpp/libscisparse_la-sci_spchol.lo: sci_gateway/cpp/sci_spchol.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscisparse_la-sci_spchol.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spchol.Tpo -c -o sci_gateway/cpp/libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/cpp/sci_spchol.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spchol.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spchol.Tpo sci_gateway/cpp/$(DEPDIR)/libscisparse_la-sci_spchol.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_spchol.cpp' object='sci_gateway/cpp/libscisparse_la-sci_spchol.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisparse_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscisparse_la-sci_spchol.lo `test -f 'sci_gateway/cpp/sci_spchol.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_spchol.cpp
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<

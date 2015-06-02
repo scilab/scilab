@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 int sci_matfile_listvar(char *fname, void* pvApiCtx)
 {

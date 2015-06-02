@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -102,7 +102,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;$(SCILAB_JDK32)/include/win32;$(SCILAB_JDK32)/include;../../../../libs/intl;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -128,7 +128,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -153,7 +153,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>../../includes;../../src/c;../../../../java/jdk/include/win32;../../../../java/jdk/include;../../../../libs/intl;../../../../libs/Eigen/includes;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../src/c;$(SCILAB_JDK64)/include/win32;$(SCILAB_JDK64)/include;../../../../libs/intl;../../../functions_manager/includes;../../../core/includes;../../../localization/includes;../../../string/includes;../../../output_stream/includes;../../../api_scilab/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -176,9 +176,9 @@
   <ItemGroup>
     <ClCompile Include="..\c\sci_javaclasspath.c" />
     <ClCompile Include="..\c\sci_javalibrarypath.c" />
-    <ClCompile Include="..\c\sci_system_setproperty.c" />
     <ClCompile Include="jvm_gw.cpp" />
     <ClCompile Include="sci_system_getproperty.cpp" />
+    <ClCompile Include="sci_system_setproperty.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_jvm_gw.h" />

@@ -36,7 +36,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 #include "SetProperty.h"
 #include "GetProperty.h"

@@ -15,8 +15,7 @@
 #include <Windows.h>
 #include <wchar.h>
 #include "LanguagePreferences_Windows.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "setgetlanguage.h"
 #include "version.h"

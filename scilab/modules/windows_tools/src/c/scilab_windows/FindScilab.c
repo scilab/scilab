@@ -16,7 +16,7 @@
 #include "version.h"
 #include "sci_malloc.h"
 #include "WndThread.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define LineMax 255
 #define NumberScilabMax 10

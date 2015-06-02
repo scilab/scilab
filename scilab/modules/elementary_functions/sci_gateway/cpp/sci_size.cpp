@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - DIGITEO - Antoine ELIAS
+ * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,7 +24,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 using namespace types;
@@ -38,11 +39,12 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
 
     switch (in[0]->getType())
     {
-            // Dedicated case for lists.
+        // Dedicated case for lists.
         case InternalType::ScilabMList:
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_size";
-            Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
+            Overload::call(wstFuncName, in, _iRetCount, out, &exec);
             break;
         }
         case InternalType::ScilabTList:
@@ -52,7 +54,8 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
             types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
             if (pIT)
             {
-                return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+                ast::ExecVisitor exec;
+                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
             }
         }
         case InternalType::ScilabList:
@@ -70,6 +73,12 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
         default :
             // All types inherits of GenericType, so have this algorithm as default.
         {
+            if (in[0]->isGenericType() == false)
+            {
+                ast::ExecVisitor exec;
+                std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_size";
+                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+            }
             int iMode = -1;
 
             if (in.size() > 2)
@@ -85,6 +94,7 @@ Function::ReturnValue sci_size(types::typed_list &in, int _iRetCount, types::typ
                 {
                     return Function::Error;
                 }
+
             }
 
             int iDims   = in[0]->getAs<GenericType>()->getDims();

@@ -49,8 +49,15 @@ public:
     {
         DoubleExp* cloned = new DoubleExp(getLocation(), getValue());
         cloned->setVerbose(isVerbose());
+        cloned->setConstant(getConstant());
         return cloned;
     }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == DOUBLEEXP && _value == static_cast<const DoubleExp &>(e)._value;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -77,7 +84,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return DOUBLEEXP;
     }
@@ -86,6 +93,16 @@ public:
     {
         return true;
     }
+    
+    inline DoubleExp* neg()
+    {
+        _value = -_value;
+        //constant will not be update but
+        //normally neg is only called by parser
+        //before constant was created
+        return this;
+    }
+
 
 protected:
     double _value;

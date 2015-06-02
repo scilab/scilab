@@ -168,7 +168,7 @@ function [txtdo]=lmitool(PROBNAME,XNAME,DNAME)
     end
     if fname<>[] then
         deletefile(fname)
-        write(fname,txt)
+        mputl(txt,fname)
     else
         return
     end

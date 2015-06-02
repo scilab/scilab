@@ -97,6 +97,7 @@ types::Function::ReturnValue sci_strcmp(types::typed_list &in, int _iRetCount, t
     {
         pOutDouble  = new types::Double(pString1->getDims(), pString1->getDimsArray());
         pOutDouble->setInt(values);
+        FREE(values);
     }
     else
     {

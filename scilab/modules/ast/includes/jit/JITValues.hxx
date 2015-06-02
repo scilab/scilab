@@ -133,7 +133,8 @@ public:
 
     inline types::InternalType::ScilabId get_scilab_id() const
     {
-        return types::InternalType::getScilabId<T>();
+        //return types::InternalType::getScilabId<T>();
+        return types::InternalType::IdScalarDouble;
     }
 
     inline void store(llvm::Value * x, JITVisitor & visitor) const
@@ -187,14 +188,14 @@ class JITMatrixVal : public JITVal
 
 public:
 
-    JITMatrixVal(JITVisitor & visitor, const int _r, const int _c, T * _val, const bool alloc = false, const std::string & name = "") : JITVal(alloc ? visitor.getAllocaPtr(_val, name) : visitor.getConstantPtr(_val), getLLVMTy<T *>(visitor.getContext())),
+    JITMatrixVal(JITVisitor & visitor, const int _r, const int _c, T * _val, const bool alloc = false, const std::string & name = "") : JITVal(alloc ? visitor.getAllocaPtr(_val, name) : visitor.getConstantPtr(_val), getLLVMTy<T * >(visitor.getContext())),
         r(alloc ? visitor.getAlloca(_r, name + "_row") : visitor.getConstant(_r)),
         c(alloc ? visitor.getAlloca(_c, name + "_col") : visitor.getConstant(_c)),
         must_be_freed(alloc ? visitor.getAlloca<bool>(false, name + "_MBF") : visitor.getConstant(false))
     {
     }
 
-    JITMatrixVal(JITVisitor & visitor, llvm::Value * _r, llvm::Value * _c, llvm::Value * _val) : JITVal(/*visitor.getAllocaPtr<T>(_val)*/_val, getLLVMTy<T *>(visitor.getContext())), r(_r), c(_c), must_be_freed(visitor.getConstant(true/*visitor.getAlloca<bool>(true, "must_be_freed_t")*/))
+    JITMatrixVal(JITVisitor & visitor, llvm::Value * _r, llvm::Value * _c, llvm::Value * _val) : JITVal(/*visitor.getAllocaPtr<T>(_val)*/_val, getLLVMTy<T * >(visitor.getContext())), r(_r), c(_c), must_be_freed(visitor.getConstant(true/*visitor.getAlloca<bool>(true, "must_be_freed_t")*/))
     {
     }
 
@@ -217,7 +218,8 @@ public:
 
     inline types::InternalType::ScilabId get_scilab_id() const
     {
-        return types::InternalType::getScilabId<T*>();
+        //return types::InternalType::getScilabId<T*>();
+        return types::InternalType::IdDouble;
     }
 
     static void debug(double * p)

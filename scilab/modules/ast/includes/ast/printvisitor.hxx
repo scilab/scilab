@@ -26,19 +26,12 @@ namespace ast
 class EXTERN_AST PrintVisitor : public GenVisitor<const_kind>
 {
 public:
-    PrintVisitor(std::wostream& my_ostr) :
-        ostr (&my_ostr)
-    {
-        indent = 0;
-        force_parenthesis = true;
-    }
 
-    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display) :
+    PrintVisitor(std::wostream& my_ostr, bool parenthesis_display = true, bool _displayOriginal = true) :
         ostr (&my_ostr),
-        force_parenthesis (parenthesis_display)
-    {
-        indent = 0;
-    }
+        force_parenthesis (parenthesis_display),
+        displayOriginal(_displayOriginal),
+        indent(0) { }
 
     /** \name Visit Matrix Expressions nodes.
     ** \{ */
@@ -113,7 +106,10 @@ public:
 
     /* optimized */
     virtual void visit(const OptimizedExp &e);
+    virtual void visit(const MemfillExp &e);
     virtual void visit(const DAXPYExp &e);
+    virtual void visit(const IntSelectExp &e);
+    virtual void visit(const StringSelectExp &e);
     /** \} */
 
 
@@ -124,11 +120,31 @@ protected:
     std::wostream   *ostr;
     int             indent;
     bool            force_parenthesis;
+    const bool      displayOriginal;
     bool            is_last_matrix_line;
+    bool            is_last_column_comment;
 
     void            apply_indent(void);
     void            enable_force_parenthesis(void);
     void            set_force_parenthesis(bool new_state);
+
+private:
+
+    void printString(const std::wstring & value)
+    {
+        std::wstring::const_iterator it;
+        *ostr << SCI_OPEN_STRING;
+        for (it = value.begin() ; it != value.end() ; ++it)
+        {
+            if ( *it == '\'' || *it == '"')
+            {
+                // ' -> '' and " -> "" in scilab strings
+                *ostr << *it;
+            }
+            *ostr << *it;
+        }
+        *ostr << SCI_CLOSE_STRING;
+    }
 };
 }
 #endif // !AST_PRINTVISITOR_HXX

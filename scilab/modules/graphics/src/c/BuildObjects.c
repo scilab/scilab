@@ -625,7 +625,7 @@ int ConstructImplot(int iParentsubwinUID, double *pvecx, unsigned char *pvecz, i
  * @see sciSetCurrentObj
  */
 int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pnoeud,
-                 double *pfun, int Nnode, int Ntr, double *zminmax, int *colminmax, int *colout, BOOL with_mesh)
+                 double *pfun, int Nnode, int Ntr, int Nvertex, double *zminmax, int *colminmax, int *colout, BOOL with_mesh)
 {
     int iObj = 0;
     int iFecId = 0;
@@ -671,6 +671,14 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
         return 0;
     }
 
+    result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, &Nvertex, jni_int, 1);
+    if (result == 0)
+    {
+        deleteGraphicObject(iObj);
+        deleteDataObject(iObj);
+        return 0;
+    }
+
     /* Allocates the triangle indices and values array */
     result = setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_NUM_INDICES__, &Ntr, jni_int, 1);
 
@@ -683,9 +691,9 @@ int ConstructFec(int iParentsubwinUID, double *pvecx, double *pvecy, double *pno
 
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_X__, pvecx, jni_double_vector, Nnode);
     setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_Y__, pvecy, jni_double_vector, Nnode);
-
+    
     /* Fec-specific property: triangle indices plus special values (triangle number and flag) */
-    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_FEC_TRIANGLES__, pnoeud, jni_double_vector, Ntr);
+    setGraphicObjectPropertyAndNoWarn(iObj, __GO_DATA_MODEL_FEC_ELEMENTS__, pnoeud, jni_double_vector, Ntr);
 
     /* Function values */
     setGraphicObjectProperty(iObj, __GO_DATA_MODEL_VALUES__, pfun, jni_double_vector, Nnode);

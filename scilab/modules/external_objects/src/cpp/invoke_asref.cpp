@@ -51,7 +51,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
     {
         idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         delete[] tmpvar;
         throw;
@@ -80,7 +80,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
 
             args[i] = ScilabObjects::getArgumentId(addr, tmpvar, true, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & e)
+        catch (ScilabAbstractEnvironmentException & /*e*/)
         {
             if (varName)
             {
@@ -108,7 +108,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
     {
         methName = ScilabObjects::getSingleString(2, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -120,7 +120,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.invoke(idObj, methName, args, nbArgs);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -156,7 +156,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
                 {
                     ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, ret[i], envId, pvApiCtx);
                 }
-                catch (ScilabAbstractEnvironmentException & e)
+                catch (ScilabAbstractEnvironmentException & /*e*/)
                 {
                     for (int j = 1; j <= *ret; j++)
                     {
@@ -182,7 +182,7 @@ int ScilabGateway::invoke_asref(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, ret[i], envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & e)
+            catch (ScilabAbstractEnvironmentException & /*e*/)
             {
                 for (int j = 1; j <= *ret; j++)
                 {

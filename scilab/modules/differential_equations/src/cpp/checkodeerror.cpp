@@ -11,8 +11,10 @@
 */
 /*--------------------------------------------------------------------------*/
 
-extern "C" {
-#include "checkodeerror.h"
+#include "checkodeerror.hxx"
+
+extern "C"
+{
 #include "sciprint.h"
 #include "localization.h"
 #include "configvariable_interface.h"
@@ -155,7 +157,7 @@ int checkOdeError(int meth, int istate)
     return 0;
 }
 
-int checkDasslError(int idid)
+int checkError(int idid, std::string strName)
 {
     switch (idid)
     {
@@ -281,7 +283,7 @@ int checkDasslError(int idid)
             //when invalid input is detected.
             if (getWarningMode())
             {
-                sciprint(_("encountered trouble.\n"));
+                sciprint(_("%s encountered trouble.\n"), strName.c_str());
             }
             return 2;
         }

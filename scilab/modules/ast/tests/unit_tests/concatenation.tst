@@ -8,7 +8,7 @@
 // <-- JVM NOT MANDATORY -->
 
 function checkCallOverload(mat)
-    assert_checkerror(mat, [], 144);
+    assert_checkerror(mat, [], 999);
 endfunction
 
 ldouble = [1 2 3];

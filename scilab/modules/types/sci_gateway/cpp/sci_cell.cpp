@@ -23,7 +23,7 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
     if (in.size() == 0)
     {
         //cell or cell()
-        out.push_back(types::Double::Empty());
+        out.push_back(new types::Cell());
         return types::Function::OK;
     }
 
@@ -31,8 +31,8 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
     {
         if (in[i]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%_cell";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            return Overload::call(L"%_cell", in, _iRetCount, out, &exec);
         }
     }
 
@@ -43,11 +43,11 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
         if (pD->getSize() == 1)
         {
             //one value
-            pRetVal = new types::Cell(pD->getReal()[0], pD->getReal()[0]);
+            pRetVal = new types::Cell((int)pD->getReal()[0], (int)pD->getReal()[0]);
         }
         else if (pD->getSize() == 2)
         {
-            pRetVal = new types::Cell(pD->getReal()[0], pD->getReal()[1]);
+            pRetVal = new types::Cell((int)pD->getReal()[0], (int)pD->getReal()[1]);
         }
         else if (pD->getSize() == 0)
         {

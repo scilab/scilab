@@ -194,12 +194,12 @@ am__objects_2 = src/cpp/libscioutput_stream_algo_la-Diary.lo \
 	src/cpp/libscioutput_stream_algo_la-scilab_sprintf.lo \
 	src/cpp/libscioutput_stream_algo_la-basout.lo
 am__objects_3 = src/fortran/wspdsp.lo src/fortran/wmdsp.lo \
-	src/fortran/strdsp.lo src/fortran/prntid.lo \
-	src/fortran/lspdsp.lo src/fortran/fmttyp.lo src/fortran/fmt.lo \
-	src/fortran/dspdsp.lo src/fortran/dmrdsp.lo \
-	src/fortran/dmpdsp.lo src/fortran/dmdspf.lo \
-	src/fortran/dmdsp.lo src/fortran/dldsp.lo \
-	src/fortran/basouttofile.lo src/fortran/formatnumber.lo
+	src/fortran/strdsp.lo src/fortran/lspdsp.lo \
+	src/fortran/fmttyp.lo src/fortran/fmt.lo src/fortran/dspdsp.lo \
+	src/fortran/dmrdsp.lo src/fortran/dmpdsp.lo \
+	src/fortran/dmdspf.lo src/fortran/dmdsp.lo \
+	src/fortran/dldsp.lo src/fortran/basouttofile.lo \
+	src/fortran/formatnumber.lo
 am_libscioutput_stream_algo_la_OBJECTS = $(am__objects_1) \
 	$(am__objects_2) $(am__objects_3)
 libscioutput_stream_algo_la_OBJECTS =  \
@@ -651,7 +651,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wspdsp.f \
 	src/fortran/wmdsp.f \
 	src/fortran/strdsp.f \
-	src/fortran/prntid.f \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
@@ -689,7 +688,6 @@ libscioutput_stream_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscioutput_stream.la
@@ -946,8 +944,6 @@ src/fortran/wspdsp.lo: src/fortran/$(am__dirstamp) \
 src/fortran/wmdsp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/strdsp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/prntid.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/lspdsp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

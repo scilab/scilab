@@ -47,7 +47,40 @@ function %_sodload(%__filename__, varargin)
     endfunction
 
     function varValue = parseList(varValue)
-        if typeof(varValue)=="list" then
+
+        if or(typeof(varValue)==["cell","st"]) then
+            if typeof(varValue)=="st" then
+                fieldNames = fieldnames(varValue);
+            else
+                fieldNames = varValue;
+            end
+
+            for kField = 1:size(fieldNames,"*")
+
+                if typeof(varValue)=="st" then
+                    fieldValue = varValue(fieldNames(kField));
+                else
+                    fieldValue = varValue{kField};
+                end
+
+                if typeof(fieldValue) == "ScilabMatrixHandle" then
+                    fieldValue = createMatrixHandle(fieldValue);
+                elseif typeof(fieldValue) == "ScilabMacro" then
+                    //convert tlist to macro
+                    fieldValue = createMacro(fieldValue, "function");
+                elseif isList(fieldValue) then
+                    fieldValue = parseList(fieldValue);
+                end
+
+                if typeof(varValue)=="st" then
+                    varValue(fieldNames(kField)) = fieldValue;
+                else
+                    varValue{kField} = fieldValue;
+                end
+
+            end
+
+        elseif typeof(varValue)=="list" then
             for i = definedfields(varValue)
                 if typeof(varValue(i)) == "ScilabMatrixHandle" then
                     varValue(i) = createMatrixHandle(varValue(i));

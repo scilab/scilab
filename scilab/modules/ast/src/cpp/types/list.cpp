@@ -28,7 +28,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 namespace types
@@ -48,11 +48,10 @@ List::~List()
 {
     if (isDeletable() == true)
     {
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues)
+        for (auto data : *m_plData)
         {
-            (*itValues)->DecreaseRef();
-            (*itValues)->killMe();
+            data->DecreaseRef();
+            data->killMe();
         }
         delete m_plData;
     }
@@ -66,7 +65,6 @@ List::~List()
 */
 List::List(List *_oListCopyMe)
 {
-    std::vector<InternalType *>::iterator itValues;
     m_plData = new std::vector<InternalType *>;
 
     for (int i = 0 ; i < (int)_oListCopyMe->getData()->size() ; i++)
@@ -100,7 +98,14 @@ int List::getSize()
 */
 void List::append(InternalType *_typedValue)
 {
-    m_plData->push_back(_typedValue);
+    if (_typedValue->isList())
+    {
+        m_plData->push_back(_typedValue->clone());
+    }
+    else
+    {
+        m_plData->push_back(_typedValue);
+    }
     m_plData->back()->IncreaseRef();
     m_iSize = static_cast<int>(m_plData->size());
 }
@@ -128,15 +133,14 @@ bool List::toString(std::wostringstream& ostr)
     {
         wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        for (auto val : *m_plData)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
-            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition << L")";
+            nextVarName << " " << SPACES_LIST << wcsVarName << L"(" << iPosition++ << L")";
             ostr << std::endl << nextVarName.str() << std::endl << std::endl;
-            scilabWriteW(ostr.str().c_str());
-            if (VariableToString(*itValues, nextVarName.str().c_str()) == types::Function::Error)
+            scilabForcedWriteW(ostr.str().c_str());
+            if (VariableToString(val, nextVarName.str().c_str()) == types::Function::Error)
             {
                 free(wcsVarName);
                 ostr.str(L"");
@@ -168,6 +172,8 @@ InternalType* List::extract(typed_list* _pArgs)
 
     //evaluate each argument and replace by appropriate value and compute the count of combinations
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
 
     for (int i = 0 ; i < iSeqCount ; i++)
     {
@@ -203,6 +209,8 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
     int* piCountDim     = new int[iDims];
 
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
     if (iSeqCount == 0)
     {
         //free pArg content
@@ -241,6 +249,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
             InternalType* pIT = (*m_plData)[idx - 1];
             if (pIT)
             {
+                pIT->DecreaseRef();
                 pIT->killMe();
             }
             m_plData->erase(m_plData->begin() + idx - 1);
@@ -295,10 +304,7 @@ InternalType* List::insert(typed_list* _pArgs, InternalType* _pSource)
 
         InternalType* pIT = (*m_plData)[idx - 1];
         pIT->DecreaseRef();
-        if (pIT)
-        {
-            pIT->killMe();
-        }
+        pIT->killMe();
 
         (*m_plData)[idx - 1] = _pSource->clone();
         (*m_plData)[idx - 1]->IncreaseRef();
@@ -332,6 +338,7 @@ bool List::set(const int _iIndex, InternalType* _pIT)
     {
         //incease list size and fill with "Undefined"
         m_plData->push_back(new ListUndefined());
+        m_plData->back()->IncreaseRef();
         m_iSize = getSize();
     }
 

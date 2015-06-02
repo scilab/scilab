@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "elem_common.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define BLANK_SIZE 1
@@ -108,7 +108,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
         {
             //exponant
             _pDF->bExp = true;
-            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max((int)log10((double)iNbDigit), 2);
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max(((int)log10((double)iNbDigit)) + 1, 2);
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;
@@ -131,7 +131,7 @@ void getDoubleFormat(double _dblVal, DoubleFormat * _pDF)
             }
 
             _pDF->bExp = true;
-            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max((int)log10(dblTemp), 2);
+            iTotalLen = iBlankSize + 1 /*integer before dot */  + POINT_SIZE + EXPOSANT_SIZE + std::max(((int)log10(dblTemp)) + 1, 2);
             _pDF->iWidth = iPrecNeeded;
             _pDF->iPrec = iPrecNeeded - iTotalLen;
             return;

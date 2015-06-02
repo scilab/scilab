@@ -19,7 +19,7 @@
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;
@@ -138,9 +138,7 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd, HWND hWndSend, PCOPYDATASTRUCT 
 
     if ( GetCommandFromAnotherScilab(TitleWndSend, Command) )
     {
-        wchar_t* pwstCommand = to_wide_string(Command);
-        StoreCommand (pwstCommand);
-        FREE(pwstCommand);
+        StoreCommand(Command);
     }
 
     return TRUE;

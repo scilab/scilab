@@ -106,7 +106,7 @@ median(A,'m')
                 <link linkend="mean">mean</link>
             </member>
             <member>
-                <link linkend="st_deviation">st_deviation</link>
+                <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
     </refsection>

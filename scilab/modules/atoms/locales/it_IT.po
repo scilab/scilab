@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-12-09 16:10+0000\n"
+"PO-Revision-Date: 2015-02-15 20:15+0000\n"
 "Last-Translator: Carml <mighty.carml@gmail.com>\n"
 "Language-Team: Italian <it@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: it\n"
 
 #, c-format
@@ -594,7 +594,7 @@ msgid "Atoms Help..."
 msgstr "Aiuto di Atoms..."
 
 msgid "Back"
-msgstr ""
+msgstr "Indietro"
 
 msgid "Remove"
 msgstr "Elimina"
@@ -603,7 +603,7 @@ msgid "Install"
 msgstr "Installa"
 
 msgid "Autoload"
-msgstr ""
+msgstr "Autocaricamento"
 
 msgid "List of installed modules"
 msgstr "Elenco dei moduli installati"
@@ -641,12 +641,14 @@ msgstr ""
 "nell'account. "
 
 msgid "The module will be automatically loaded at next startup."
-msgstr ""
+msgstr "Il modulo sarà caricato al prossimo avvio."
 
 msgid ""
 "Autoload at startup is canceled. The Toolboxes menu or atomsLoad() can be "
 "used to load the module when needed."
 msgstr ""
+"L'autocaricamento è annullato. Il menu Strumenti o atomsLoad() può essere "
+"usato per caricare il modulo quando necessario."
 
 msgid "Download size"
 msgstr "Dimensione del download"
@@ -762,6 +764,15 @@ msgstr "%s: gzip non è stato trovato.\n"
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
 msgstr "%s: L'estrazione del file DESCRIPTION ('%s') è fallita.\n"
+
+msgid "Done"
+msgstr "Fatto"
+
+msgid "Scanning repository"
+msgstr "Scansione del repository in corso"
+
+msgid "Skipped"
+msgstr "Saltato"
 
 #, c-format
 msgid "%s: save ('%s') has failed.\n"
@@ -982,73 +993,73 @@ msgid "Main categories"
 msgstr "Categorie principali"
 
 msgid "Aerospace"
-msgstr ""
+msgstr "Aerospaziale"
 
 msgid "Contributed Scilab Binaries"
-msgstr ""
+msgstr "File binari offerti da Scilab"
 
 msgid "Data Analysis And Statistics"
-msgstr ""
+msgstr "Analisi dati e statistica"
 
 msgid "Data Handling"
-msgstr ""
+msgstr "Gestione dati"
 
 msgid "Editor Styles"
-msgstr ""
+msgstr "Stili di modifica"
 
 msgid "Education"
-msgstr ""
+msgstr "Istruzione"
 
 msgid "GUI"
-msgstr ""
+msgstr "Interfaccia grafica"
 
 msgid "Graphics"
-msgstr ""
+msgstr "Grafica"
 
 msgid "Graphs"
-msgstr ""
+msgstr "Grafici"
 
 msgid "Image Processing"
-msgstr ""
+msgstr "Elaborazione immagini"
 
 msgid "Instruments Control"
-msgstr ""
+msgstr "Controllo degli strumenti"
 
 msgid "Linear algebra"
-msgstr ""
+msgstr "Algebra lineare"
 
 msgid "Modeling and Control Tools"
-msgstr ""
+msgstr "Modellazione e strumenti di controllo"
 
 msgid "Number theory"
-msgstr ""
+msgstr "Teoria dei numeri"
 
 msgid "Numerical Maths"
-msgstr ""
+msgstr "Analisi numerica"
 
 msgid "Optimization"
-msgstr ""
+msgstr "Ottimizzazione"
 
 msgid "Physics"
-msgstr ""
+msgstr "Fisica"
 
 msgid "Real-Time"
 msgstr ""
 
 msgid "Scilab development"
-msgstr ""
+msgstr "Sviluppo di Scilab"
 
 msgid "Signal Processing"
-msgstr ""
+msgstr "Elaborazione dei segnali"
 
 msgid "Technical"
-msgstr ""
+msgstr "Tecnico"
 
 msgid "Tests"
 msgstr ""
 
 msgid "Xcos"
-msgstr ""
+msgstr "Xcos"
 
 #, c-format
 msgid ""
@@ -1124,7 +1135,7 @@ msgstr ""
 "valido.\n"
 
 msgid "Loaded<br>at startup"
-msgstr ""
+msgstr "Caricato<br> all'avvio"
 
 #, c-format
 msgid "%s: the package '%s' does not exist.\n"

@@ -20,8 +20,6 @@
 ;
 Source: bin\{#BOOLEAN}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#BOOLEAN}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#BOOLEAN}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#BOOLEAN}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#BOOLEAN}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#BOOLEAN}\license.txt; DestDir: {app}\modules\{#BOOLEAN}; Components: {#COMPN_SCILAB}

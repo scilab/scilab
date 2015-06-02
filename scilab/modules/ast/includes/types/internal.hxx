@@ -233,11 +233,11 @@ public :
     virtual InternalType*           clone(void) = 0;
     virtual ast::Exp*               getExp(const Location& /*loc*/)
     {
-        return NULL;
+        return nullptr;
     }
 
     /** this template is specialized in internal.cpp */
-    template<typename T> static InternalType::ScilabId getScilabId();
+    //template<typename T> static InternalType::ScilabId getScilabId();
 
 #ifdef _SCILAB_DEBUGREF_
     inline void _killme(const char * f, int l)
@@ -345,7 +345,7 @@ public :
         return false;
     }
 
-    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & /*e*/)
+    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
     {
         return false;
     }

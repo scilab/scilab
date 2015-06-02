@@ -17,6 +17,7 @@
 #include <complex>
 #include "double.hxx"
 #include "bool.hxx"
+#include "keepForSparse.hxx"
 
 #define SPARSE_CONST
 
@@ -194,7 +195,7 @@ struct EXTERN_AST Sparse : GenericType
      */
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -207,7 +208,7 @@ struct EXTERN_AST Sparse : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }
@@ -345,6 +346,8 @@ struct EXTERN_AST Sparse : GenericType
         out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
         return true;
     }
+
+    int newCholLLT(Sparse** permut, Sparse** factor) const;
 
     /** create a new sparse matrix containing the non zero values set to 1.
        equivalent but faster than calling one_set() on a new copy of the
@@ -520,6 +523,7 @@ private :
      */
     template<typename DestIter>
     void create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, std::size_t n);
+    void create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE_CONST& idx);
 
     /** utility function used by insert functions conceptually : sp[destTrav]= src[srcTrav]
         @param src : data source
@@ -531,12 +535,29 @@ private :
     template<typename Src, typename SrcTraversal, typename Sz, typename DestTraversal>
     static bool copyToSparse(Src SPARSE_CONST& src, SrcTraversal srcTrav, Sz n, Sparse& sp, DestTraversal destTrav);
 };
+
+template<typename T>
+inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            out->coeffRef(i, j) = !in->coeff(i, j);
+        }
+    }
+
+    out->prune(&keepForSparse<bool>);
+    out->finalize();
+}
+
+
 /*
   Implement sparse boolean matrix
  */
 struct EXTERN_AST SparseBool : GenericType
 {
-
+    virtual ~SparseBool();
     /* @param src: Bool matrix to copy into a new sparse matrix
     **/
     SparseBool(Bool SPARSE_CONST& src);
@@ -590,7 +611,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* extract(int _iSeqCount, int* _piSeqCoord, int* _piMaxDim, int* _piDimSize, bool _bAsVector) SPARSE_CONST;
     InternalType* extract(typed_list* _pArgs);
 
-    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::CallExp & e)
+    virtual bool invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -603,7 +624,7 @@ struct EXTERN_AST SparseBool : GenericType
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, (*e.getArgs().begin())->getLocation());
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }
@@ -690,7 +711,7 @@ struct EXTERN_AST SparseBool : GenericType
     bool neg(InternalType *& out)
     {
         SparseBool * _out = new SparseBool(getRows(), getCols());
-        type_traits::neg(getRows(), getCols(), matrixBool, _out->matrixBool);
+        types::neg(getRows(), getCols(), matrixBool, _out->matrixBool);
         _out->finalize();
         out = _out;
         return true;
@@ -724,10 +745,9 @@ struct EXTERN_AST SparseBool : GenericType
     BoolSparse_t* matrixBool;
 
 private:
-    template<typename DestIter>
-    void create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, std::size_t n);
-
+    void create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx);
 };
+
 template<typename T>
 struct SparseTraits
 {

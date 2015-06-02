@@ -35,21 +35,7 @@ function y=Atimesx(x,mymatrix)
     y=mymatrix*x
 endfunction
 // With the default 10 iterations, the algorithm performs well
-Alist = list(Atimesx,mymatrix)
-Alist  = 
-       Alist(1)
-[y]=Atimesx(x,mymatrix)
-       Alist(2)
-    94.    0.     0.     0.      0.     28.    0.     0.     32.    0.  
-    0.     59.    13.    5.      0.     0.     0.     10.    0.     0.  
-    0.     13.    72.    34.     2.     0.     0.     0.     0.     65. 
-    0.     5.     34.    114.    0.     0.     0.     0.     0.     55. 
-    0.     0.     2.     0.      70.    0.     28.    32.    12.    0.  
-    28.    0.     0.     0.      0.     87.    20.    0.     33.    0.  
-    0.     0.     0.     0.      28.    20.    71.    39.    0.     0.  
-    0.     10.    0.     0.      32.    0.     39.    46.    8.     0.  
-    32.    0.     0.     0.      12.    33.    0.     8.     82.    11. 
-    0.     0.     65.    55.     0.     0.     0.     0.     11.    100.
+Alist = list(Atimesx,mymatrix);
 [xcomputed, fail, err, iter, res]=conjgrad(Alist,b,"pcg");
 xexpected=ones(10,1);
 if norm(xcomputed-xexpected)>10**3*%eps then bugmes();quit;end

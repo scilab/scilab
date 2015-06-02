@@ -7,8 +7,6 @@ freeArrayOfString
 getLocalVariablesName
 callFunctionFromGateway
 com_
-getRecursionFunctionToCall
-isRecursionCallToFunction
 funtab_
 stack_
 vstk_

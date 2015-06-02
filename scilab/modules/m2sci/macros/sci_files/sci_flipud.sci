@@ -19,7 +19,7 @@ function [tree]=sci_flipud(tree)
 
     if typeof(tree.rhs(1))<>"variable" then
         tmp=gettempvar()
-        insert(Equal(list(tmp),tree.rhs(1)))
+        m2sci_insert(Equal(list(tmp),tree.rhs(1)))
     else
         tmp=tree.rhs(1)
     end

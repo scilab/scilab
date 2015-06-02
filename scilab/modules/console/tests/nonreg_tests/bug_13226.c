@@ -14,12 +14,12 @@
 
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 extern void autoCompletionInConsoleMode(wchar_t ** commandLine, unsigned int *cursorLocation);
 
 /*--------------------------------------------------------------------------*/
-int sci_completecommandline(char *fname, unsigned long fname_len)
+int sci_completecommandline(char *fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = NULL;

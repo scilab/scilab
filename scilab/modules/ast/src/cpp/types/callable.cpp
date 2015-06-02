@@ -20,14 +20,14 @@
 namespace types
 {
 
-bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     //reset previous error before call function
     ConfigVariable::resetError();
     //update verbose";" flag
     ConfigVariable::setVerbose(e.isVerbose());
     // add line and function name in where
-    ConfigVariable::where_begin(((int)e.getLocation().first_line - ConfigVariable::getMacroFirstLines()) + 1, getName());
+    ConfigVariable::where_begin(e.getLocation().first_line + 1 - ConfigVariable::getMacroFirstLines(), e.getLocation().first_line, getName());
     Callable::ReturnValue Ret;
 
     try

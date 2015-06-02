@@ -24,6 +24,10 @@
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "types_tools.hxx"
+#include "runner.hxx"
+#include "threadmanagement.hxx"
+#include "macro.hxx"
+#include "macrofile.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -31,12 +35,12 @@
 
 extern "C"
 {
-#include "os_wcsicmp.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
 #include "prompt.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "mopen.h"
 #include "mclose.h"
 #include "fullpath.h"
@@ -161,10 +165,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             pMacro = in[0]->getAs<Macro>();
         }
 
-        // We dont care about the input and output argument
-        if (pMacro->outputs_get()->empty() == false || pMacro->inputs_get()->empty() == false)
+        // unable for macro with varargin or varargout
+        auto inputs = pMacro->inputs_get();
+        auto outputs = pMacro->outputs_get();
+        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
+                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without input and output argument expected.\n"), "exec", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
             return Function::Error;
         }
 
@@ -191,14 +198,35 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
+                if (file)
+                {
+                    delete pExp;
+                    mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
+                }
+
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
                 return Function::Error;
             }
 
             if (in.size() > 2)
             {
+
                 if (in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
                 {
+                    if (file)
+                    {
+                        delete pExp;
+                        mclose(iID);
+                        file->close();
+                        delete file;
+                        FREE(pstFile);
+                        FREE(pwstFile);
+                    }
+
                     //mode
                     Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
                     return Function::Error;
@@ -210,19 +238,44 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         else if (in[1]->isDouble() && in[1]->getAs<Double>()->isScalar())
         {
+            if (in.size() > 2)
+            {
+                if (file)
+                {
+                    delete pExp;
+                    mclose(iID);
+                    file->close();
+                    delete file;
+                    FREE(pstFile);
+                    FREE(pwstFile);
+                }
+
+                Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
+                return Function::Error;
+            }
             //mode
             promptMode = (int)in[1]->getAs<Double>()->getReal()[0];
             bPromptMode = true;
         }
         else
         {
+            if (file)
+            {
+                delete pExp;
+                mclose(iID);
+                file->close();
+                delete file;
+                FREE(pstFile);
+                FREE(pwstFile);
+            }
+
             //not managed
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
         }
     }
 
-    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
+    ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
 
     char pstPrompt[64];
     //get prompt
@@ -238,10 +291,18 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
     ConfigVariable::setPromptMode(promptMode);
 
+    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+
     for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
     {
         try
         {
+            if (pThreadMe && pThreadMe->getInterrupt())
+            {
+                ThreadManagement::SendAstPendingSignal();
+                pThreadMe->suspend();
+            }
+
             ast::exps_t::iterator k = j;
             //mode == 0, print new variable but not command
             if (file && ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)

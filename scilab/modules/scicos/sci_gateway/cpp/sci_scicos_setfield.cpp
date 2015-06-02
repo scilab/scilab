@@ -118,10 +118,6 @@ types::Function::ReturnValue sci_scicos_setfield(types::typed_list &in, int _iRe
             }
             out.push_back(returnType);
             break;
-        case view_scilab::Adapters::DELETED_ADAPTER:
-            returnType = new types::List();
-            out.push_back(returnType);
-            break;
         case view_scilab::Adapters::DIAGRAM_ADAPTER:
             returnType = set<view_scilab::DiagramAdapter, model::Diagram>(adaptor, field, value);
             if (returnType == 0)

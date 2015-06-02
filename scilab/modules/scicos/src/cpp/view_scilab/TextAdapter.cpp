@@ -12,13 +12,13 @@
 
 #include <string>
 #include <vector>
-#include <memory>
 
 #include "double.hxx"
 #include "string.hxx"
 #include "mlist.hxx"
 #include "internal.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "TextAdapter.hxx"
 
@@ -207,8 +207,8 @@ struct dummy_property
 
 template<> property<TextAdapter>::props_t property<TextAdapter>::fields = property<TextAdapter>::props_t();
 
-TextAdapter::TextAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Annotation> adaptee) :
-    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(adaptee)
+TextAdapter::TextAdapter(const Controller& c, org_scilab_modules_scicos::model::Annotation* adaptee) :
+    BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>(c, adaptee)
 {
     if (property<TextAdapter>::properties_have_not_been_set())
     {

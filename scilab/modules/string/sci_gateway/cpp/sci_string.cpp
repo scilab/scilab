@@ -26,10 +26,12 @@
 #include "tlist.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "sparse.hxx"
+#include "int.hxx"
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
@@ -480,8 +482,9 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         case GenericType::ScilabMList :
         case GenericType::ScilabPolynom :
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_string";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_string";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
         case GenericType::ScilabBool:
         {
@@ -491,13 +494,14 @@ Function::ReturnValue sci_string(typed_list &in, int _iRetCount, typed_list &out
         {
             Library* pL = in[0]->getAs<Library>();
             std::wstring path = pL->getPath();
-            std::list<std::wstring>* macros = pL->getMacrosName();
-            String* pS = new String((int)macros->size() + 1, 1);
+            std::list<std::wstring> macros;
+            int size = pL->getMacrosName(macros);
+            String* pS = new String(size + 1, 1);
             pS->set(0, path.c_str());
             int i = 1;
-            for (auto it = macros->begin(), itEnd = macros->end(); it != itEnd; ++it, ++i)
+            for (auto it : macros)
             {
-                pS->set(i, (*it).c_str());
+                pS->set(i++, it.c_str());
             }
 
             out.push_back(pS);

@@ -57,9 +57,6 @@
     <ClCompile Include="lspdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="prntid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="strdsp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,9 +99,6 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="lspdsp.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="prntid.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="strdsp.f">

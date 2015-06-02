@@ -22,8 +22,14 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "sin.h"
+    int C2F(wasin)(double*, double*, double*, double*);
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();asin(a);toc
+clear a;nb = 2500;a = rand(nb, nb) + 0.5;tic();asin(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();asin(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -44,8 +50,9 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_asin";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_asin";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -53,18 +60,27 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
     if (pDblIn->isComplex())
     {
         pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
+        int size = pDblIn->getSize();
+
+        double* pInR = pDblIn->get();
+        double* pInI = pDblIn->getImg();
+        double* pOutR = pDblOut->get();
+        double* pOutI = pDblOut->getImg();
+
+        for (int i = 0; i < size; i++)
         {
-            wasin(pDblIn->get(i), pDblIn->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
+            C2F(wasin)(pInR + i, pInI + i, pOutR + i, pOutI + i);
         }
     }
     else
     {
         bool bOutSide = 0;
         //check if all variables are between [-1,1]
-        for (int i = 0 ; i < pDblIn->getSize() ; i++)
+        double* pInR = pDblIn->get();
+        int size = pDblIn->getSize();
+        for (int i = 0; i < size; i++)
         {
-            if (fabs(pDblIn->get(i)) > 1)
+            if (std::abs(pInR[i]) > 1)
             {
                 bOutSide = 1;
                 break;
@@ -74,17 +90,21 @@ types::Function::ReturnValue sci_asin(types::typed_list &in, int _iRetCount, typ
         if (bOutSide) // Values outside [-1,1]
         {
             pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), true);
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            double* pOutR = pDblOut->get();
+            double* pOutI = pDblOut->getImg();
+            double zero = 0;
+            for (int i = 0; i < size; i++)
             {
-                wasin(pDblIn->get(i), 0, pDblOut->get() + i, pDblOut->getImg() + i);
+                C2F(wasin)(pInR + i, &zero, pOutR + i, pOutI + i);
             }
         }
         else //all values are in [-1,1]
         {
             pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), false);
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            double* pOutR = pDblOut->get();
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->set(i, dasins(pDblIn->get(i)));
+                pOutR[i] = std::asin(pInR[i]);
             }
         }
     }

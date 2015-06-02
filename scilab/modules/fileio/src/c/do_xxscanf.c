@@ -24,6 +24,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "core_math.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 typedef int (*XXSCANF) (FILE *, wchar_t *, ...);
 typedef int (*FLUSH) (FILE *);
@@ -372,7 +373,7 @@ int do_xxscanf (const wchar_t *fname, FILE *fp, const wchar_t *format, int *narg
                )
             {
                 f2--;
-                n = swprintf(f2, MAX_STR - 1, L"%d%c", MAX_STR - 1, L'l');
+                n = os_swprintf(f2, MAX_STR - 1, L"%d%c", MAX_STR - 1, L'l');
                 f2 += n;
                 *f2++ = *f1++;
             }

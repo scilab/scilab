@@ -23,6 +23,7 @@ extern "C"
 #include "core_math.h"
 }
 
+#define MAX_DIMS 32
 namespace types
 {
 /*
@@ -36,7 +37,7 @@ protected :
     int                         m_iCols;
     int                         m_iSize;
     int                         m_iSizeMax;
-    int                         m_piDims[50];
+    int                         m_piDims[MAX_DIMS];
     int                         m_iDims;
 
 

@@ -132,10 +132,37 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         else if (in[1]->isPoly())
         {
             types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
+
+            double dblEps = getRelativeMachinePrecision();
+
             if (pPolyDen->isComplex())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 2);
-                return types::Function::Error;
+                bool cplx = false;
+
+                int iSize = pPolyDen->getSize();
+                for (int i = 0; i < iSize; i++)
+                {
+                    types::SinglePoly *sp = pPolyDen->get(i);
+                    double *df = sp->getImg();
+
+                    for (int j = 0 ; j <  sp->getSize(); j++)
+                    {
+                        if (abs(df[j]) > dblEps)
+                        {
+                            cplx = true;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (cplx)
+                {
+
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 2);
+                    return types::Function::Error;
+                }
+
             }
 
             iRowDen = pPolyDen->getRows();
@@ -182,12 +209,36 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         else if (in[0]->isPoly())
         {
             types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
+
+            double dblEps = getRelativeMachinePrecision();
             if (pPolyNum->isComplex())
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 1);
-                throw 1;
-            }
+                bool cplx = false;
 
+                int iSize = pPolyNum->getSize();
+                for (int i = 0; i < iSize; i++)
+                {
+                    types::SinglePoly *sp = pPolyNum->get(i);
+                    double *df = sp->getImg();
+
+                    for (int j = 0 ; j <  sp->getSize(); j++)
+                    {
+                        if (abs(df[j]) > dblEps)
+                        {
+                            cplx = true;
+
+                            break;
+                        }
+                    }
+                }
+
+                if (cplx)
+                {
+
+                    Scierror(999, _("%s: Wrong type for input argument #%d: A real polynom expected.\n"), "freq", 1);
+                    return types::Function::Error;
+                }
+            }
             iRowNum = pPolyNum->getRows();
             iColNum = pPolyNum->getCols();
 
@@ -449,10 +500,8 @@ types::Function::ReturnValue freqState(types::typed_list &in, int _iRetCount, ty
 
         if (bFirst && dRcond + 1 == 1)
         {
-            char strValue[256];
-            sprintf(strValue, "%lf", dRcond);
             sciprint(_("Warning :\n"));
-            sciprint(_("matrix is close to singular or badly scaled. rcond = %s\n"), strValue);
+            sciprint(_("matrix is close to singular or badly scaled. rcond = %g\n"), dRcond);
             bFirst = false;
         }
 

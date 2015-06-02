@@ -14,6 +14,6 @@
 // help command can generate a "critical exception".
 
 for i = 1:100
-  ierr = execstr('help derivative','errcatch');
-  if ierr <> 0 then pause, end
+    ierr = execstr("help numderivative","errcatch");
+    if ierr <> 0 then pause, end
 end

@@ -1,25 +1,24 @@
 /*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+*  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+*  Copyright (C) 2007-2008 - INRIA - Bruno JOFRET
+*
+*  This file must be used under the terms of the CeCILL.
+*  This source file is licensed as described in the file COPYING, which
+*  you should have received as part of this distribution.  The terms
+*  are also available at
+*  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+*
+*/
 
 /**
- ** \file symbol/context.hh
- ** \brief Define class Context.
- */
+** \file symbol/context.hh
+** \brief Define class Context.
+*/
 
 #ifndef __CONTEXT_HXX__
 #define __CONTEXT_HXX__
 
 #include "function.hxx"
-#include "typesdecl.hxx"
 #include "variables.hxx"
 #include "libraries.hxx"
 
@@ -35,7 +34,7 @@ namespace symbol
 */
 class EXTERN_AST Context
 {
-public :
+public:
     typedef std::map<Symbol, Variable*> VarList;
     typedef std::stack<VarList*> VarStack;
 
@@ -58,10 +57,12 @@ public :
     types::InternalType* get(const Symbol& key);
     types::InternalType* get(const Variable* _var);
     Variable* getOrCreate(const Symbol& _key);
+    int getLevel(const Symbol & _key) const;
 
     /** If key was associated to some Entry_T in the last opened scope, return it.
     ** Otherwise return the empty pointer. */
     types::InternalType* getCurrentLevel(const Symbol& key);
+    types::InternalType* getCurrentLevel(Variable* _var);
 
     /** If key was associated to some Entry_T in the open scopes, return the
     ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
@@ -72,14 +73,17 @@ public :
     types::InternalType* getFunction(const Symbol& key);
 
     /*return function list in the module _stModuleName*/
-    std::list<Symbol>* getFunctionList(std::wstring _stModuleName);
+    int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName);
 
-    std::list<std::wstring>* getVarsName();
-    std::list<std::wstring>* getMacrosName();
-    std::list<std::wstring>* getFunctionsName();
-    std::list<std::wstring>* getVarsNameForWho(bool sorted);
-    std::list<std::wstring>* getGlobalNameForWho(bool sorted);
-
+    int getVarsName(std::list<std::wstring>& lst);
+    int getMacrosName(std::list<std::wstring>& lst);
+    int getFunctionsName(std::list<std::wstring>& lst);
+    int getVarsNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getGlobalNameForWho(std::list<std::wstring>& lst, bool sorted);
+    int getWhereIs(std::list<std::wstring>& lst, const std::wstring& _str);
+    int getLibrariesList(std::list<std::wstring>& lst);
+    int getVarsToVariableBrowser(std::list<Variable*>& lst);
+    int getLibsToVariableBrowser(std::list<Library*>& lst);
     /* global functions */
 
     /*return global variable visibility status*/
@@ -95,8 +99,14 @@ public :
     /*remove all global variables and references */
     //clearglobal
     void removeGlobalAll();
-
     void clearAll();
+
+    //predef
+    void protect();
+    void unprotect();
+    bool isprotected(const Symbol& key);
+    bool isprotected(Variable* _var);
+    int protectedVars(std::list<std::wstring>& lst);
 
     /*set variable visible/hidden in current global scope*/
     void setGlobalVisible(const Symbol& key, bool bVisible);
@@ -123,10 +133,17 @@ public :
     int getScopeLevel();
     bool isValidVariableName(const wchar_t*);
     bool isValidVariableName(const char*);
+
+    inline bool isOriginalSymbol(const symbol::Symbol & sym) const
+    {
+        return getLevel(sym) == 0;
+    }
+
 private:
 
     types::InternalType* get(const Symbol& key, int _iLevel);
     bool clearCurrentScope(bool _bClose);
+    void updateProtection(bool protect);
 
     std::list<Symbol>* globals;
     VarStack varStack;

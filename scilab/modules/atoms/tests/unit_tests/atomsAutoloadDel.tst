@@ -5,13 +5,14 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
+// <-- ENGLISH IMPOSED -->
 // <-- CLI SHELL MODE -->
 
 load("SCI/modules/atoms/macros/atoms_internals/lib");
 
 // We need a clean version
 // =============================================================================
-if ~isempty( atomsGetInstalled() ) then pause, end 
+if ~isempty( atomsGetInstalled() ) then pause, end
 
 // If previous test did not end properly, restore, else backup config file
 atomsRestoreConfig(%T);
@@ -31,7 +32,7 @@ atomsRepositorySetOfl("http://scene10.test.atoms.scilab.org");
 // Install toolbox_5 in both user and allusers sections
 atomsInstall("toolbox_5","user");
 
-// atomsAutoloadAdd just after install is disable, 
+// atomsAutoloadAdd just after install is disable,
 // → atomsAutoloadList should return an empty matrix
 if ~ isempty(atomsAutoloadList()) then pause, end
 
@@ -54,13 +55,13 @@ if atomsAutoloadDel("toolbox_2"                   ,"user") <> 0 then pause, end
 
 if atomsAutoloadDel("toolbox_1")                           <> 1 then pause, end
 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 atomsRemove("toolbox_5");
 
 // no module should be installed
-if ~isempty( atomsGetInstalled() ) then pause, end 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsGetInstalled() ) then pause, end
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 // 2nd test case
 // =============================================================================
@@ -68,14 +69,14 @@ if ~isempty( atomsAutoloadList() ) then pause, end
 // Install toolbox_5 in both user and allusers sections
 atomsInstall("toolbox_5","allusers");
 
-// atomsAutoloadAdd just after install is disable, 
+// atomsAutoloadAdd just after install is disable,
 // → atomsAutoloadList should return an empty matrix
 if ~ isempty(atomsAutoloadList()) then pause, end
 
 if atomsAutoloadAdd(["toolbox_5" "1.0" "allusers" ; ..
-                     "toolbox_4" "1.0" "allusers" ; ..
-                     "toolbox_2" "1.0" "allusers" ; ..
-                     "toolbox_1" "1.0" "allusers" ] ,"allusers") <> 4 then pause, end
+    "toolbox_4" "1.0" "allusers" ; ..
+    "toolbox_2" "1.0" "allusers" ; ..
+"toolbox_1" "1.0" "allusers" ] ,"allusers") <> 4 then pause, end
 
 if atomsAutoloadDel("toolbox_5"                       ,"allusers") <> 1 then pause, end
 if atomsAutoloadDel(["toolbox_5" "1.0-1"]             ,"allusers") <> 0 then pause, end
@@ -91,13 +92,13 @@ if atomsAutoloadDel("toolbox_2"                       ,"allusers") <> 0 then pau
 
 if atomsAutoloadDel("toolbox_1")                                   <> 1 then pause, end
 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 atomsRemove("toolbox_5");
 
 // no module should be installed
-if ~isempty( atomsGetInstalled() ) then pause, end 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsGetInstalled() ) then pause, end
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 
 // 3rd test case
@@ -107,7 +108,7 @@ if ~isempty( atomsAutoloadList() ) then pause, end
 atomsInstall("toolbox_5","user");
 atomsInstall("toolbox_5","allusers");
 
-// atomsAutoloadAdd just after install is disable, 
+// atomsAutoloadAdd just after install is disable,
 // → atomsAutoloadList should return an empty matrix
 if ~ isempty(atomsAutoloadList()) then pause, end
 
@@ -122,14 +123,14 @@ if atomsAutoloadAdd(["toolbox_5" "1.0" "user"]        ,"user")     <> 1 then pau
 if atomsAutoloadDel("toolbox_5","user")                            <> 1 then pause, end
 if atomsAutoloadDel("toolbox_5","allusers")                        <> 1 then pause, end
 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 atomsRemove("toolbox_5","user");
 atomsRemove("toolbox_5","allusers");
 
 // no module should be installed
-if ~isempty( atomsGetInstalled() ) then pause, end 
-if ~isempty( atomsAutoloadList() ) then pause, end 
+if ~isempty( atomsGetInstalled() ) then pause, end
+if ~isempty( atomsAutoloadList() ) then pause, end
 
 // Restore original values
 // =============================================================================

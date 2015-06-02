@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 namespace types
@@ -36,6 +36,9 @@ ThreadId::ThreadId(__threadId _id, __threadKey _key)
     m_threadKey = _key;
     __InitLock(&m_threadLock);
     m_threadStatus = Running;
+    m_isInterruptible = true;
+    m_doInterrupt = false;
+    m_isConsoleCommand = false;
 }
 
 __threadId ThreadId::getThreadId()
@@ -143,5 +146,35 @@ bool ThreadId::toString(std::wostringstream& ostr)
     ostr << L"Status : " << StatusToString(this->getStatus());
     return true;
 }
+
+void ThreadId::setInterrupt(bool _doInterrupt)
+{
+    m_doInterrupt = _doInterrupt;
 }
 
+bool ThreadId::getInterrupt()
+{
+    return m_doInterrupt;
+}
+
+void ThreadId::setInterruptible(bool _isInterruptible)
+{
+    m_isInterruptible = _isInterruptible;
+}
+
+bool ThreadId::isInterruptible()
+{
+    return m_isInterruptible;
+}
+
+void ThreadId::setConsoleCommandFlag(bool _isConsoleCommand)
+{
+    m_isConsoleCommand = _isConsoleCommand;
+}
+
+bool ThreadId::isConsoleCommand()
+{
+    return m_isConsoleCommand;
+}
+
+}

@@ -11,6 +11,8 @@
  *
  */
 
+// swig -java -package org.scilab.modules.graphic_objects -outdir ../java/org/scilab/modules/graphic_objects/ ObjectData.i
+
 %module ObjectData
  
 
@@ -164,26 +166,41 @@ int _getSegsSize(int uid) {
 %}
 
 %typemap(out) double * FEC {
-	$result = (*jenv)->NewDoubleArray(jenv, _getFecTrianglesSize(arg1));
-	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecTrianglesSize(arg1), $1);
+	$result = (*jenv)->NewDoubleArray(jenv, _getFecElementsSize(arg1));
+	(*jenv)->SetDoubleArrayRegion(jenv, $result, 0, _getFecElementsSize(arg1), $1);
 }
 
-%apply double * FEC { double * getFecTriangles(int uid) }
+%apply double * FEC { double * getFecElements(int uid) }
 %{
 
-double * getFecTriangles(int uid) {
+double * getFecElements(int uid) {
 
-    double * triangles;
-    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_TRIANGLES__, jni_double_vector, (void**)&triangles);
-    return triangles;
+    double * elements;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_FEC_ELEMENTS__, jni_double_vector, (void**)&elements);
+    return elements;
 }
 
-int _getFecTrianglesSize(int uid) {
+int _getFecElementsSize(int uid) {
     
     int indices;
     int * pIndices = &indices;
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
     getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_INDICES__, jni_int, (void**)&pIndices);
-    return indices * 5;
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return indices * (nVertex + 2);
+}
+
+int getFecNumVerticesByElement(int uid) {
+    
+    int nVertex = 0;
+    int* piNVertex = &nVertex;
+
+    getGraphicObjectProperty(uid, __GO_DATA_MODEL_NUM_VERTICES_BY_ELEM__, jni_int, (void**) &piNVertex);
+    
+    return nVertex;
 }
 
 %}
@@ -262,7 +279,8 @@ double * getChampX(int uid);
 double * getChampY(int uid);
 double * getArrows(int uid);
 double * getSegsData(int uid);
-double * getFecTriangles(int uid);
+double * getFecElements(int uid);
 double * getFecData(int uid);
 double * getArcUpperLeftPoint(int uid);
 double * getArcData(int uid);
+int getFecNumVerticesByElement(int uid);

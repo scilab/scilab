@@ -66,8 +66,15 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         if ( nt <> 3 ) then
             error(msprintf(gettext("%s: Wrong size for input argument #%d: %d expected.\n"),"ilib_gen_gateway",2,3));
         end
-        [gate,names,cppCompilation] = new_names(table);
+
         global cppCompilation;
+        if isempty(cppCompilation) then
+            cppCompilation = %f;
+        end
+
+        [gate,names,cpp] = new_names(table);
+        cppCompilation = cppCompilation | cpp;
+
         //generate cpp interface file
         if  cppCompilation then
             t = [
@@ -100,8 +107,19 @@ function gateway_filename = ilib_gen_gateway(name,tables)
             "#define MODULE_NAME L""" + tname + """";
             "";
             "int " + tname + "(wchar_t* _pwstFuncName)";
-            "{";
-            "    if(wcscmp(_pwstFuncName, L""" + table(:,1) + """) == 0){ " + "addCFunction(L""" + table(:,1) + """, &" + names(:) + ", MODULE_NAME); }";
+            "{";];
+
+            for kGw = 1:size(names, "*")
+                if or(table(kGw, 3) == ["cmex" "fmex" "Fmex"]) then
+                    t = [t;
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addMexFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                else
+                    t = [t;
+                    "    if(wcscmp(_pwstFuncName, L""" + table(kGw,1) + """) == 0){ " + "addCFunction(L""" + table(kGw,1) + """, &" + names(kGw) + ", MODULE_NAME); }"];
+                end
+            end
+
+            t = [t;
             "";
             "    return 1;";
             "}"];
@@ -144,7 +162,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "";
         "extern ""C"" " + TNAME + "_GW_IMPEXP int " + tname + "(wchar_t* _pwstFuncName);";
         "";
-        gate(:, 2);
+        unique(gate(:, 2));
         "";
         "#endif /* __" + TNAME + "_GW_HXX__ */"];
 
@@ -171,7 +189,7 @@ function gateway_filename = ilib_gen_gateway(name,tables)
         "";
         "#include ""c_gateway_prototype.h""";
         "";
-        gate(:, 1);
+        unique(gate(:, 1));
         "";
         "#endif /* __" + TNAME + "_GW_H__ */"];
 
@@ -210,13 +228,13 @@ function [gate,names,cppCompilation] = new_names(table)
         select table(i,3)
         case "cmex" then
             names(i) = "mex_" + table(i,2);
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "MEX_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "fmex" then
             names(i) = "C2F(mex" + table(i,2) + ")";
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "MEX_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "Fmex" then
             names(i) = "C2F(mex" + table(i,2) + ")";
-            gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";
+            gate(i, 1) = "MEX_GATEWAY_PROTOTYPE(" + names(i) + ");";
         case "csci"  then
             names(i) = table(i,2);
             gate(i, 1) = "C_GATEWAY_PROTOTYPE(" + names(i) + ");";

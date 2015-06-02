@@ -21,7 +21,7 @@ using regular express .                                         */
 
 extern "C"
 {
-#include "os_strdup.h"
+#include "os_string.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "pcre.h"
@@ -145,6 +145,18 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         code_error_grep = GREP_OLD(&grepresults, pStr1, pS1->getSize(), pStr2, pS2->getSize());
     }
 
+    for (int i = 0; i < pS1->getSize(); i++)
+    {
+        FREE(pStr1[i]);
+    }
+    FREE(pStr1);
+
+    for (int i = 0; i < pS2->getSize(); i++)
+    {
+        FREE(pStr2[i]);
+    }
+    FREE(pStr2);
+
     switch (code_error_grep)
     {
         case GREP_OK :
@@ -201,7 +213,7 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
 
         case MEMORY_ALLOC_ERROR :
             Scierror(999, _("%s: No more memory.\n"), "grep");
-            //no break, to free reserved memory.
+        //no break, to free reserved memory.
         case GREP_ERROR :
         {
             if (grepresults.values)
@@ -218,18 +230,6 @@ Function::ReturnValue sci_grep(typed_list &in, int _iRetCount, typed_list &out)
         }
         break;
     }
-
-    for (int i = 0 ; i < pS1->getSize() ; i++)
-    {
-        FREE(pStr1[i]);
-    }
-    FREE(pStr1);
-
-    for (int i = 0 ; i < pS2->getSize() ; i++)
-    {
-        FREE(pStr2[i]);
-    }
-    FREE(pStr2);
 
     return Function::OK;
 }

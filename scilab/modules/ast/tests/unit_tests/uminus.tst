@@ -14,3 +14,8 @@ assert_checkequal([1, -a], [1 -a]);
 assert_checkequal([(1 - a)], [1 - a]);
 assert_checkequal([1, - a + 2], [1 -(a - 2)]);
 assert_checkequal([(1 - a + 2)], [1 - a + 2]);
+
+M = matrix(1:4, 2, 2); B = [2; 4];
+C = M^-1*B;
+assert_checkequal(C, [2;0]);
+

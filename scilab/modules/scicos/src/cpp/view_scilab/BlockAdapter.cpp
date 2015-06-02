@@ -10,16 +10,16 @@
  *
  */
 
+#include <cwchar>
+
 #include <string>
 #include <vector>
-#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
 #include "mlist.hxx"
 #include "string.hxx"
 #include "types.hxx"
-#include "user.hxx"
 
 #include "utilities.hxx"
 #include "adapters_utilities.hxx"
@@ -31,11 +31,8 @@
 #include "LinkAdapter.hxx"
 #include "ModelAdapter.hxx"
 #include "TextAdapter.hxx"
-#include "recursive_cloning.hxx"
 
 extern "C" {
-#include "wchar.h"
-
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }
@@ -47,19 +44,18 @@ namespace view_scilab
 namespace
 {
 
-const std::wstring Deleted (L"Deleted");
-
 struct graphics
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
-        return localAdaptor.getAsTList(new types::MList(), controller);
+        GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
+        types::InternalType* v = localAdaptor.getAsTList(new types::MList(), controller);
+        return v;
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        GraphicsAdapter localAdaptor = GraphicsAdapter(adaptor.getAdaptee());
+        GraphicsAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()));
         return localAdaptor.setAsTList(v, controller);
     }
 };
@@ -68,22 +64,22 @@ struct model
 {
     static types::InternalType* get(const BlockAdapter& adaptor, const Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
-        localAdaptor.setDiagram(adaptor.getDiagram());
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
+        types::InternalType* mlist = localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
 
-        return localAdaptor.getAsTList(new types::MList(), controller)->getAs<types::MList>();
+        const_cast<BlockAdapter&>(adaptor).setDiagram(localAdaptor.getDiagram());
+        return mlist;
     }
 
     static bool set(BlockAdapter& adaptor, types::InternalType* v, Controller& controller)
     {
-        ModelAdapter localAdaptor = ModelAdapter(adaptor.getAdaptee());
+        ModelAdapter localAdaptor(controller, controller.referenceObject(adaptor.getAdaptee()), adaptor.getDiagram());
         if (!localAdaptor.setAsTList(v, controller))
         {
             return false;
         }
 
         adaptor.setDiagram(localAdaptor.getDiagram());
-
         return true;
     }
 };
@@ -107,7 +103,7 @@ struct gui
         }
 
         types::String* current = v->getAs<types::String>();
-        if (current->getRows() != 1 || current->getCols() != 1)
+        if (!current->isScalar())
         {
             return false;
         }
@@ -141,10 +137,10 @@ struct doc
 
 template<> property<BlockAdapter>::props_t property<BlockAdapter>::fields = property<BlockAdapter>::props_t();
 
-BlockAdapter::BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adaptee),
+BlockAdapter::BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee) :
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(c, adaptee),
     diagramAdapter(nullptr),
-    doc_content(new types::List())
+    doc_content(nullptr)
 {
     if (property<BlockAdapter>::properties_have_not_been_set())
     {
@@ -154,52 +150,33 @@ BlockAdapter::BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Blo
         property<BlockAdapter>::add_property(L"gui", &gui::get, &gui::set);
         property<BlockAdapter>::add_property(L"doc", &doc::get, &doc::set);
     }
+
+    setDocContent(new types::List());
 }
 
 BlockAdapter::BlockAdapter(const BlockAdapter& adapter) :
-    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter),
-    diagramAdapter(),
-    doc_content(adapter.getDocContent())
+    BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>(adapter, false),
+    diagramAdapter(nullptr),
+    doc_content(nullptr)
 {
     Controller controller;
-    std::vector<ScicosID> childDiagram;
-    controller.getObjectProperty(getAdaptee()->id(), BLOCK, CHILDREN, childDiagram);
 
-    if (!childDiagram.empty())
+    if (adapter.getDiagram() != nullptr)
     {
-        std::shared_ptr<org_scilab_modules_scicos::model::Diagram> diagram = std::static_pointer_cast<org_scilab_modules_scicos::model::Diagram>(controller.getObject(childDiagram[0]));
-        diagramAdapter = new DiagramAdapter(diagram);
-
-        // Extract the information of the old cloned diagram
-        DiagramAdapter* oldDiagram = adapter.getDiagram();
-
-        std::vector<ScicosID> diagramChildren;
-        controller.getObjectProperty(diagram->id(), DIAGRAM, CHILDREN, diagramChildren);
-
-        types::List* oldList_objects = oldDiagram->getListObjects()->getAs<types::List>();
-
-        std::vector<link_t> from_vec = oldDiagram->getFrom();
-        std::vector<link_t> to_vec = oldDiagram->getTo();
-
-        types::List* list_objects = deepCreateAdapters(diagramChildren, oldList_objects, from_vec, to_vec, controller);
-
-        diagramAdapter->setListObjects(list_objects);
-        diagramAdapter->setFrom(from_vec);
-        diagramAdapter->setTo(to_vec);
+        types::InternalType* model = model::get(adapter, controller);
+        model::set(*this, model, controller);
+        model->killMe();
     }
+
+    setDocContent(adapter.getDocContent());
 }
 
 BlockAdapter::~BlockAdapter()
 {
+    // CHILDREN will be unreferenced on Controller::deleteObject
+
     if (diagramAdapter != nullptr)
     {
-        // Update the model if the adaptee is being deleted
-        if (getAdaptee().use_count() == 3)
-        {
-            Controller controller;
-            controller.setObjectProperty(getAdaptee()->id(), BLOCK, CHILDREN, std::vector<ScicosID>());
-        }
-
         diagramAdapter->DecreaseRef();
         diagramAdapter->killMe();
     }
@@ -220,43 +197,44 @@ std::wstring BlockAdapter::getShortTypeStr()
 
 DiagramAdapter* BlockAdapter::getDiagram() const
 {
-    if (diagramAdapter != nullptr)
-    {
-        diagramAdapter->IncreaseRef();
-    }
     return diagramAdapter;
 }
 
 void BlockAdapter::setDiagram(DiagramAdapter* v)
 {
+    // The old 'diagramAdapter' needs to be freed after setting it to 'v'
+    DiagramAdapter* temp = diagramAdapter;
+
     if (v != nullptr)
     {
-        // The old 'diagramAdapter' needs to be freed after setting it to 'v'
-        DiagramAdapter* temp = diagramAdapter;
-
+        v->IncreaseRef();
         diagramAdapter = v;
+    }
 
-        if (temp != nullptr)
-        {
-            temp->DecreaseRef();
-            temp->killMe();
-        }
+    if (temp != nullptr)
+    {
+        temp->DecreaseRef();
+        temp->killMe();
     }
 }
 
 types::InternalType* BlockAdapter::getDocContent() const
 {
-    doc_content->IncreaseRef();
     return doc_content;
 }
 
 void BlockAdapter::setDocContent(types::InternalType* v)
 {
-    doc_content->DecreaseRef();
-    doc_content->killMe();
+    types::InternalType* temp = doc_content;
 
     v->IncreaseRef();
     doc_content = v;
+
+    if (temp != nullptr)
+    {
+        temp->DecreaseRef();
+        temp->killMe();
+    }
 }
 
 } /* namespace view_scilab */

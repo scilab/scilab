@@ -723,6 +723,16 @@ public final class SwingView implements GraphicView {
                     SwingScilabWaitBar bar = (SwingScilabWaitBar) requestedObject.getValue();
                     bar.close();
                     break;
+                case Frame:
+                    Boolean scrollable = (Boolean) GraphicController.getController().getProperty(id, __GO_UI_SCROLLABLE__);
+                    if (scrollable) {
+                        SwingScilabScrollableFrame frame = (SwingScilabScrollableFrame) requestedObject.getValue();
+                        frame.destroy();
+                    } else {
+                        SwingScilabFrame frame = (SwingScilabFrame) requestedObject.getValue();
+                        frame.destroy();
+                    }
+                    break;
                 default:
                     // Nothing to do
                     // uicontrol case: the object is destroyed when its parent updates its children
@@ -1078,6 +1088,7 @@ public final class SwingView implements GraphicView {
         SwingScilabFrame updatedComponent = (SwingScilabFrame) updatedObject.getValue();
         boolean needRevalidate = false;
         boolean hasOpenGLAxes = false;
+        int oldComponentCount = updatedComponent.getComponentCount();
 
         // Add new children
         for (Integer childId : newChildren) {
@@ -1128,11 +1139,17 @@ public final class SwingView implements GraphicView {
         if (needRevalidate && updatedComponent != null) {
             updatedComponent.revalidate();
         }
+
+        // Force repaint if we removed components
+        if (oldComponentCount > updatedComponent.getComponentCount()) {
+            updatedComponent.repaint();
+        }
     }
 
     private void updateScrollableFrameChildren(TypedObject updatedObject, Integer[] newChildren) {
         SwingScilabScrollableFrame updatedComponent = (SwingScilabScrollableFrame) updatedObject.getValue();
         boolean needRevalidate = false;
+        int oldComponentCount = updatedComponent.getPanel().getComponentCount();
 
         // Add new children
         for (Integer childId : newChildren) {
@@ -1171,8 +1188,14 @@ public final class SwingView implements GraphicView {
             }
         }
         if (needRevalidate && updatedComponent != null) {
-            updatedComponent.revalidate();
+            updatedComponent.getPanel().revalidate();
         }
+
+        // Force repaint if we removed components
+        if (oldComponentCount > updatedComponent.getPanel().getComponentCount()) {
+            updatedComponent.repaint();
+        }
+
     }
 
     /**

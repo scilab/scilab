@@ -73,6 +73,7 @@ Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types:
             pSV->m_pIT->killMe();
             stack.pop();
             bDeleted = true;
+            delete pSV;
         }
 
         //move all elements at orginal place and order
@@ -80,9 +81,8 @@ Function::ReturnValue sci_clearfun(types::typed_list &in, int _iRetCount, types:
         {
             pSV = stack.top();
             stack.pop();
-            pSV->m_pIT->DecreaseRef();
-            pVar->put(pSV->m_pIT, pSV->m_iLevel);
-            delete pSV;
+            //pSV->m_pIT->DecreaseRef();
+            pVar->put(pSV);
         }
     }
 

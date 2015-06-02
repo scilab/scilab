@@ -21,7 +21,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_intppty(types::typed_list &in, int _iRetCount, types::typed_list &out)

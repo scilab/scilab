@@ -14,9 +14,7 @@
 #define __TYPE_TRAITS_HXX__
 
 #include <cmath>
-#include <Eigen/Sparse>
 #include "types_transposition.hxx"
-#include "keepForSparse.hxx"
 
 namespace types
 {
@@ -76,20 +74,20 @@ struct type_traits
         }
     }
 
-    template<typename T>
-    inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
-    {
-        for (int i = 0; i < r; i++)
-        {
-            for (int j = 0; j < c; j++)
-            {
-                out->coeffRef(i, j) = !in->coeff(i, j);
-            }
-        }
+    //template<typename T>
+    //inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
+    //{
+    //    for (int i = 0; i < r; i++)
+    //    {
+    //        for (int j = 0; j < c; j++)
+    //        {
+    //            out->coeffRef(i, j) = !in->coeff(i, j);
+    //        }
+    //    }
 
-        out->prune(&keepForSparse<bool>);
-        out->finalize();
-    }
+    //    out->prune(&keepForSparse<bool>);
+    //    out->finalize();
+    //}
 
     template<typename T, typename U>
     inline static void bin_neg(const int size, const T * const in, U * const out)

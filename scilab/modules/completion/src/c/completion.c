@@ -23,7 +23,7 @@
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "stdio.h"
 /*--------------------------------------------------------------------------*/
 char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned);

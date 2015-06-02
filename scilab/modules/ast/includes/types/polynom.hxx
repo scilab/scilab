@@ -37,10 +37,10 @@ class EXTERN_AST Polynom : public ArrayOf<SinglePoly*>
 {
 public :
     Polynom();
-    Polynom(std::wstring _szVarName, int _iRows, int _iCols);
-    Polynom(std::wstring _szVarName, int _iRows, int _iCols, const int *_piRank);
-    Polynom(std::wstring _szVarName, int _iDims, int* _piDims);
-    Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    Polynom(std::wstring& _szVarName, int _iRows, int _iCols);
+    Polynom(std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
+    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims);
+    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
     virtual                 ~Polynom();
 
@@ -61,7 +61,7 @@ public :
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
-       : isComplex() ? IdPolynomComplex
+               : isComplex() ? IdPolynomComplex
                : IdPolynom;
     }
 
@@ -73,7 +73,7 @@ public :
     }
 
     void                    whoAmI(void);
-    std::wstring            getVariableName();
+    std::wstring&           getVariableName();
     void                    setVariableName(std::wstring);
     bool                    getSizes(int *_piSizes);
     bool                    getRank(int *_piRank);
@@ -85,6 +85,7 @@ public :
     Double*                 extractCoef(int _iRank);
     bool                    insertCoef(int _iRank, Double* _pCoef);
     void                    setZeros();
+    InternalType*           insert(typed_list* _pArgs, InternalType* _pSource);
 
     bool                    set(int _iPos, SinglePoly* _pS);
     bool                    set(int _iRows, int _iCols, SinglePoly* _pS);
@@ -119,7 +120,7 @@ public :
 
 protected :
     std::wstring            m_szVarName;
-    void                    createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    void                    createPoly(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

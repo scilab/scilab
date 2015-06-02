@@ -2,6 +2,7 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Antoine ELIAS
  * Copyright (C) 2009-2011 - DIGITEO - Allan CORNET
+ * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,7 +34,7 @@ extern "C"
 #include "localization.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 using namespace types;
@@ -104,7 +105,9 @@ SciErr getMatrixOfString(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
                 return sciErr;
             }
 
-            strcpy(_pstStrings[i], wide_string_to_UTF8(pS->get(i)));
+            char* c = wide_string_to_UTF8(pS->get(i));
+            strcpy(_pstStrings[i], c);
+            FREE(c);
         }
     }
 
@@ -192,9 +195,18 @@ SciErr createNamedMatrixOfString(void* _pvCtx, const char* _pstName, int _iRows,
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
-
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pS);
+    }
+    else
+    {
+        delete pS;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -278,7 +290,7 @@ SciErr getMatrixOfWideString(void* _pvCtx, int* _piAddress, int* _piRows, int* _
                 return sciErr;
             }
 
-            _pwstStrings[i] = os_wcsdup(pS->get(i));
+            wcscpy(_pwstStrings[i], pS->get(i));
         }
     }
 
@@ -356,9 +368,18 @@ SciErr createNamedMatrixOfWideString(void* _pvCtx, const char* _pstName, int _iR
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pS);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
-
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pS);
+    }
+    else
+    {
+        delete pS;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -751,34 +772,36 @@ int createSingleString(void* _pvCtx, int _iVar, const char* _pstStrings)
 int allocSingleString(void* _pvCtx, int _iVar, int _iLen, const char** _pstStrings)
 {
     SciErr sciErr = sciErrInit();
-#if 0
-    int iNewPos     = Top - Rhs + _iVar;
-    int iAddr       = *Lstk(iNewPos);
-    int* piAddr     = NULL;
-    int* piOffset   = NULL;
-    char* pstString = NULL;
 
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
+    GatewayStruct* pGstr = (GatewayStruct*)_pvCtx;
+    typed_list in = *pGstr->m_pIn;
+    InternalType** out = pGstr->m_pOut;
+    String *pStr = NULL;
 
-    if (_iLen + 2 > iFreeSpace)
+
+    char* pstStrings = new char[_iLen];
+
+    memset(pstStrings, ' ', _iLen);
+    _pstStrings[0] = pstStrings;
+    if (_pstStrings == NULL)
     {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, _iLen + 2);
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
         return sciErr.iErr;
     }
 
-    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+    pStr = new String(pstStrings);
 
-    piAddr[0]   = sci_strings;
-    piAddr[1]   = 1;
-    piAddr[2]   = 1;
-    piAddr[3]   = 0;
+    if (pStr == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "allocSingleString");
+        return sciErr.iErr;
+    }
 
-    piOffset    = piAddr + 4;
-    piOffset[0] = 1; //Always 1
-    piOffset[1] = _iLen + 1;
-    pstString   = (char*)(piOffset + 2); //2 offsets
-#endif
-    return 0;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+    out[rhs - 1] = pStr;
+
+
+    return sciErr.iErr;
 }
 
 /*--------------------------------------------------------------------------*/

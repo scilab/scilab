@@ -14,7 +14,7 @@
 #include "getVideoAdapters.h"
 #include "sci_malloc.h"
 #include "BOOL.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int getNumberOfAdapters(BOOL *multiDriver);
 static void RemoveDuplicateStrings(char **Strings, int *SizeStrings);

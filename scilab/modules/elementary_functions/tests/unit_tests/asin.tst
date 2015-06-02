@@ -40,7 +40,7 @@ assert_checktrue(isnan(asin(-%nan)));
 // 4. Limit values
 // ===============
 
-assert_checkequal(imag(asin(%inf)),%inf);
+assert_checkequal(imag(asin(%inf)),-%inf);
 assert_checkequal(imag(asin(-%inf)),%inf);
 
 

@@ -17,7 +17,7 @@ function [tree]=sci_setstr(tree)
     X = getrhs(tree)
 
     if X.vtype==String then
-        set_infos(msprintf(gettext("In %s %s is a String,\nSo result is set to %s."),expression2code(tree),expression2code(X),expression2code(X)),0)
+        set_infos(msprintf(gettext("In %s %s is a String,\nSo result is set to %s."), strcat(expression2code(tree), ""), strcat(expression2code(X), ""), strcat(expression2code(X), "")),0)
         // Because of String concatenation
         if typeof(X)=="operation" then
             X.out(1)=tree.lhs(1)

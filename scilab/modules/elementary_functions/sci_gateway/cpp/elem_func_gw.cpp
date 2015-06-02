@@ -10,6 +10,10 @@
 *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 *
 */
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
 
 #include "elem_func_gw.hxx"
 #include "context.hxx"
@@ -18,6 +22,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"
+#include "sparse.hxx"
+#include "int.hxx"
 
 #define MODULE_NAME L"elementary_functions"
 extern "C"
@@ -77,6 +83,12 @@ int ElemFuncModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"base2dec", &sci_base2dec, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"dec2base", &sci_dec2base, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"log10", &sci_log10, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"cosh", &sci_cosh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"sinh", &sci_sinh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"tanh", &sci_tanh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"acosh", &sci_acosh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"asinh", &sci_asinh, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"atanh", &sci_atanh, MODULE_NAME));
     return 1;
 }
 
@@ -194,7 +206,7 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
                     {
                         delete[] * _piDims;
                         Scierror(999, _("%s: variable size exceeded : less than %d expected.\n"), _pstName, INT_MAX);
-                        return types::Function::Error;
+                        return false;
                     }
                     (*_piDims)[i] = static_cast<int>(llValue);
                     break;
@@ -221,4 +233,38 @@ bool getDimsFromArguments(types::typed_list& in, char* _pstName, int* _iDims, in
     }
 
     return false;
+}
+
+types::Double* trigo(types::Double* in, func_real func_r, func_complex func_c, bool forceComplex)
+{
+    bool isComplex = in->isComplex() || forceComplex;
+    types::Double* out = new types::Double(in->getDims(), in->getDimsArray(), isComplex);
+
+    int size = in->getSize();
+    double* pInR = in->get();
+    double* pOutR = out->get();
+
+    if (isComplex)
+    {
+        double* pInI = in->getImg();
+        double* pOutI = out->getImg();
+        std::complex<double> d;
+        for (int i = 0; i < size; ++i)
+        {
+            d.real(pInR[i]);
+            d.imag(pInI[i]);
+            std::complex<double> res = func_c(d);
+            pOutR[i] = res.real();
+            pOutI[i] = res.imag();
+        }
+    }
+    else
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            pOutR[i] = func_r(pInR[i]);
+        }
+    }
+
+    return out;
 }

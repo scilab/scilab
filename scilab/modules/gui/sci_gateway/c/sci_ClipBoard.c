@@ -24,7 +24,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "FigureList.h"
 
 /*--------------------------------------------------------------------------*/

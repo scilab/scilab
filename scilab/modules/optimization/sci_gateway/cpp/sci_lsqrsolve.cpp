@@ -278,9 +278,15 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
             dFtol   = pDblStop->get(0);
             dXtol   = pDblStop->get(1);
             dGtol   = pDblStop->get(2);
-            iMaxfev = pDblStop->get(3);
+            iMaxfev = static_cast<int>(pDblStop->get(3));
             dEpsfcn = pDblStop->get(4);
             dFactor = pDblStop->get(5);
+
+            if (dFtol < 0 || dXtol < 0 || dGtol < 0 || iMaxfev <= 0 || dFactor <= 0)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d.\n"), "lsqrsolve", iPos + 1, 1, 6);
+                return types::Function::Error;
+            }
         }
         else
         {
@@ -332,7 +338,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     double* pdblWork3   = new double[iSizeX];
     double* pdblWork4   = new double[iM];
 
-    if (pdblDiag == NULL) // iMode == 2
+    if (pdblDiag == NULL) // iMode != 2
     {
         pdblDiag = new double[iSizeX];
     }
@@ -371,7 +377,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
         delete pdblWork3;
         delete pdblWork4;
         delete pdblJac;
-        if (iMode == 2)
+        if (iMode != 2)
         {
             delete pdblDiag;
         }
@@ -386,7 +392,7 @@ types::Function::ReturnValue sci_lsqrsolve(types::typed_list &in, int _iRetCount
     delete pdblWork3;
     delete pdblWork4;
     delete pdblJac;
-    if (iMode == 2)
+    if (iMode != 2)
     {
         delete pdblDiag;
     }

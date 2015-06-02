@@ -49,7 +49,7 @@ LoggerView* get_or_allocate_logger()
 
 types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    if (!(0 <= in.size() && in.size() <= 2))
+    if (in.size() > 2)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), funame.data(), 0, 2);
         return types::Function::Error;

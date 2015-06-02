@@ -34,10 +34,7 @@ extern "C"
 {
 #include "findfiles.h"
 #include "configvariable_interface.h"
-#ifndef _MSC_VER
-#include "stricmp.h"
-#endif
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 
@@ -350,10 +347,14 @@ bool FuncManager::CreateModuleList(void)
     m_ModuleMap[L"scicos"] = pair<GW_MOD, GW_MOD>(&ScicosModule::Load, &ScicosModule::Unload);
     m_ModuleMap[L"xcos"] = pair<GW_MOD, GW_MOD>(&XcosModule::Load, &XcosModule::Unload);
     m_ModuleMap[L"fftw"] = pair<GW_MOD, GW_MOD>(&FFTWModule::Load, &FFTWModule::Unload);
+    m_ModuleMap[L"mpi"] = pair<GW_MOD, GW_MOD>(&MPIModule::Load, &MPIModule::Unload);
+    m_ModuleMap[L"external_objects"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsModule::Load, &ExternalObjectsModule::Unload);
+    m_ModuleMap[L"external_objects_java"] = pair<GW_MOD, GW_MOD>(&ExternalObjectsJavaModule::Load, &ExternalObjectsJavaModule::Unload);
 
     if (ConfigVariable::getScilabMode() != SCILAB_NWNI)
     {
         m_ModuleMap[L"jvm"] = pair<GW_MOD, GW_MOD>(&JvmModule::Load, &JvmModule::Unload);
+        m_ModuleMap[L"ui_data"] = pair<GW_MOD, GW_MOD>(&UiDataModule::Load, &UiDataModule::Unload);
     }
 #ifdef _MSC_VER
     m_ModuleMap[L"windows_tools"] = pair<GW_MOD, GW_MOD>(&WindowsToolsModule::Load, &WindowsToolsModule::Unload);
@@ -427,7 +428,7 @@ bool FuncManager::StartModules()
     //excute .start file
     for (; it != itEnd; ++it)
     {
-        ExecuteStartFile(*it);
+        //ExecuteStartFile(*it);
     }
 
     return true;

@@ -49,6 +49,11 @@ public:
         return cloned;
     }
 
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == DOLLARVAR;
+    }
+
     /** \brief Accept a const visitor \a v. */
     virtual void accept (Visitor& v)
     {
@@ -60,7 +65,7 @@ public:
         v.visit (*this);
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return DOLLARVAR;
     }

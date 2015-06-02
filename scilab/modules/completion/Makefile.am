@@ -42,7 +42,8 @@ COMPLETION_CPP_SOURCES = \
     src/cpp/EOFieldsGetter.cpp \
     src/cpp/UnknownMlistFieldsGetter.cpp \
     src/cpp/StructFieldsGetter.cpp \
-    src/cpp/HandleFieldsGetter.cpp
+    src/cpp/HandleFieldsGetter.cpp \
+    src/cpp/DllmainCompletion.cpp
 
 # List of the gateway c files
 GATEWAY_CPP_SOURCES = \
@@ -73,7 +74,6 @@ libscicompletion_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/external_objects/includes \
     $(JAVA_JNI_INCLUDE) \
-    $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

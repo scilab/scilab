@@ -35,7 +35,7 @@
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "isdir.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"
 #endif

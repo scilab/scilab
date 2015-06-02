@@ -44,7 +44,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 	src/fortran/wspdsp.f \
 	src/fortran/wmdsp.f \
 	src/fortran/strdsp.f \
-	src/fortran/prntid.f \
 	src/fortran/lspdsp.f \
 	src/fortran/fmttyp.f \
 	src/fortran/fmt.f \
@@ -85,7 +84,6 @@ libscioutput_stream_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

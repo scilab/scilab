@@ -19,12 +19,14 @@
 #include <dirent.h>
 #else
 #include <Windows.h>
+#include <stdio.h>
 #endif
 #include "charEncoding.h"
 #include "sci_malloc.h"
 #include "createdirectory.h"
 #include "isdir.h"
 #include "splitpath.h"
+#include "scicurdir.h"
 /*--------------------------------------------------------------------------*/
 #define DIRMODE 0777
 /*--------------------------------------------------------------------------*/
@@ -78,6 +80,21 @@ BOOL createdirectoryW(const wchar_t *pathW)
 
             wcscpy(path_out, drv);
             wcscat(path_out, dir);
+
+            //if there is no path_out, get current dir as reference.
+            if (wcslen(path_out) == 0)
+            {
+                int err = 0;
+                wchar_t * cur = NULL;
+                if (wcslen(pathW)  == 0)
+                {
+                    return FALSE;
+                }
+
+                cur = scigetcwdW(&err);
+                wcscpy(path_out, cur);
+                FREE(cur);
+            }
 
             if (CreateDirectoryExW(path_out, pathW, NULL))
             {

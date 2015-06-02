@@ -38,6 +38,12 @@ public:
         cloned->setVerbose(isVerbose());
         return cloned;
     }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == NILEXP;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -53,7 +59,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return NILEXP;
     }

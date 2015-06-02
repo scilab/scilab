@@ -216,6 +216,7 @@ private :
         symbol::Symbol *name = get_Symbol();
         Exp *init = get_exp();
         VarDec* vardec = new VarDec(vardec_location, *name, *init);
+        delete name;
         return vardec;
     }
 
@@ -269,7 +270,9 @@ private :
             }
             case 9:
             {
-                exp = new SimpleVar(loc, *get_Symbol());
+                symbol::Symbol* sym = get_Symbol();
+                exp = new SimpleVar(loc, *sym);
+                delete sym;
                 break;
             }
             case 10:
@@ -303,7 +306,7 @@ private :
                 if ( hasElse )
                 {
                     Exp* _else = get_exp();
-                    ifexp = new IfExp(loc, *test, *_then, *_else);
+                    ifexp = new IfExp(loc, *test, *_then->getAs<SeqExp>(), *_else->getAs<SeqExp>());
                 }
                 else
                 {
@@ -327,7 +330,7 @@ private :
             {
                 Exp* test = get_exp();
                 Exp* body = get_exp();
-                exp = new WhileExp(loc, *test, *body);
+                exp = new WhileExp(loc, *test, *body->getAs<SeqExp>());
                 break;
             }
             case 17:
@@ -335,7 +338,7 @@ private :
                 Location vardec_location = get_location();
                 VarDec* vardec = get_VarDec(vardec_location);
                 Exp* body = get_exp();
-                exp = new ForExp(loc, *vardec, *body);
+                exp = new ForExp(loc, *vardec, *body->getAs<SeqExp>());
                 break;
             }
             case 18:
@@ -453,7 +456,8 @@ private :
                 exps_t* returns_list = get_vars();
                 ArrayListVar *args = new ArrayListVar(args_loc, *args_list);
                 ArrayListVar *returns = new ArrayListVar(returns_loc, *returns_list);
-                exp = new FunctionDec(loc, *name, *args, *returns, *body);
+                exp = new FunctionDec(loc, *name, *args, *returns, *body->getAs<SeqExp>());
+                delete name;
                 break;
             }
             case 30:

@@ -315,7 +315,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>xset("wpos", x, y)</term>
+                <term>xset("wpos", [x, y])</term>
                 <listitem>
                     <para>
                         Set the position of the upper left point of the graphics

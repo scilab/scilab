@@ -19,7 +19,7 @@
 
 editor()
 // Select several lines
-// <ctlr+T>
+// <ctlr+I>
 // <ctlr+Z>
 
 

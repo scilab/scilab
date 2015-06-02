@@ -14,23 +14,24 @@
 #include "sci_malloc.h"
 #include "callFunctionFromGateway.h"
 /*-----------------------------------------------------------------------------------*/
-static gw_generic_table Tab[] =
-{
-    {sci_mpi_init, "MPI_Init"},
-    {sci_mpi_finalize, "MPI_Finalize"},
-    {sci_mpi_comm_size, "MPI_Comm_size"},
-    {sci_mpi_comm_rank, "MPI_Comm_rank"},
-    {sci_mpi_recv, "MPI_Recv"},
-    {sci_mpi_send, "MPI_Send"},
-    {sci_mpi_get_processor_name, "MPI_Get_processor_name"},
-    {sci_mpi_bcast, "MPI_Bcast"},
-    {sci_mpi_irecv, "MPI_Irecv"},
-    {sci_mpi_isend, "MPI_Isend"},
-    {sci_mpi_wait, "MPI_Wait"}
-};
+//static gw_generic_table Tab[] =
+//{
+//    {sci_mpi_init, "MPI_Init"},
+//    {sci_mpi_finalize, "MPI_Finalize"},
+//    {sci_mpi_comm_size, "MPI_Comm_size"},
+//    {sci_mpi_comm_rank, "MPI_Comm_rank"},
+//    {sci_mpi_recv, "MPI_Recv"},
+//    {sci_mpi_send, "MPI_Send"},
+//    {sci_mpi_get_processor_name, "MPI_Get_processor_name"},
+//    {sci_mpi_bcast, "MPI_Bcast"},
+//    {sci_mpi_irecv, "MPI_Irecv"},
+//    {sci_mpi_isend, "MPI_Isend"},
+//    {sci_mpi_wait, "MPI_Wait"}
+//};
 /*-----------------------------------------------------------------------------------*/
 int gw_mpi(void)
 {
+    return 0;
 }
 
 /*-----------------------------------------------------------------------------------*/

@@ -105,7 +105,7 @@ double* SinglePoly::allocData(int _iSize)
             m_pRealData = NULL;
             m_pImgData = NULL;
             char message[bsiz];
-            sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
+            os_sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
             ast::ScilabError se(message);
             se.SetErrorNumber(999);
             throw (se);
@@ -118,7 +118,7 @@ double* SinglePoly::allocData(int _iSize)
     catch (std::bad_alloc &/*e*/)
     {
         char message[bsiz];
-        sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
+        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
         ast::ScilabError se(message);
         se.SetErrorNumber(999);
         throw (se);
@@ -288,13 +288,12 @@ bool SinglePoly::evaluate(double _dblInR, double _dblInI, double *_pdblOutR, dou
 
 void SinglePoly::updateRank(void)
 {
-    double dblEps = getRelativeMachinePrecision();
     int iNewRank = getRank();
     if (m_pImgData)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) <= dblEps && abs(m_pImgData[i]) <= dblEps)
+            if (fabs(m_pRealData[i]) == 0.0 && abs(m_pImgData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -308,7 +307,7 @@ void SinglePoly::updateRank(void)
     {
         for (int i = getRank(); i > 0 ; i--)
         {
-            if (fabs(m_pRealData[i]) <= dblEps)
+            if (fabs(m_pRealData[i]) == 0.0)
             {
                 iNewRank--;
             }
@@ -367,7 +366,7 @@ void SinglePoly::toStringInternal(double *_pdblVal, wstring _szVar, list<wstring
     int iLastFlush = 2;
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        if (isRealZero(_pdblVal[i]) == false)
+        if (_pdblVal[i] != 0)
         {
             DoubleFormat df;
             getDoubleFormat(_pdblVal[i], &df);

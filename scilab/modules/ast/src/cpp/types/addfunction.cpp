@@ -23,3 +23,8 @@ void addCFunction(wchar_t* _wstName, OLDGW_FUNC _pFunc, wchar_t* _wstModule)
 {
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
 }
+
+void addMexFunction(wchar_t* _wstName, MEXGW_FUNC _pFunc, wchar_t* _wstModule)
+{
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(_wstName, _pFunc, _wstModule));
+}

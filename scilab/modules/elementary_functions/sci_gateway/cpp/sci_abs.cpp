@@ -25,6 +25,25 @@ extern "C"
 #include "abs.h"
 }
 
+template <class T>
+T* absInt(T* _pIn)
+{
+    T* pIntOut = new T(_pIn->getDims(), _pIn->getDimsArray());
+    int size = _pIn->getSize();
+
+    auto* pI = _pIn->get();
+    auto* pO = pIntOut->get();
+    for (int i = 0; i < size; i++)
+    {
+        pO[i] = std::abs(pI[i]);
+    }
+
+    return pIntOut;
+}
+/*
+clear a; nb = 2500; a = rand(nb, nb) - 0.5; tic(); abs(a); toc
+clear a; nb = 2500; a = rand(nb, nb) - 0.5; a = a + a *%i; tic(); abs(a); toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -40,158 +59,133 @@ types::Function::ReturnValue sci_abs(types::typed_list &in, int _iRetCount, type
         return types::Function::Error;
     }
 
-    if (in[0]->isDouble())
+    switch (in[0]->getType())
     {
-        api_scilab::Double* pDblIn  = api_scilab::getAsDouble(in[0]);
-        api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
-
-        double* pdblInR = pDblIn->get();
-        double* pdblInI = pDblIn->getImg();
-        double* pdblOut = pDblOut->get();
-
-        if (pDblIn->isComplex())
+        case InternalType::ScilabDouble:
         {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            api_scilab::Double* pDblIn = api_scilab::getAsDouble(in[0]);
+            api_scilab::Double* pDblOut = new api_scilab::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+
+            double* pdblInR = pDblIn->get();
+            double* pdblInI = pDblIn->getImg();
+            double* pdblOut = pDblOut->get();
+            int size = pDblIn->getSize();
+            if (pDblIn->isComplex())
             {
-                if (ISNAN(pdblInR[i]))
+                for (int i = 0; i < size; i++)
                 {
-                    pdblOut[i] = pdblInR[i];
-                }
-                else if (ISNAN(pdblInI[i]))
-                {
-                    pdblOut[i] = pdblInI[i];
-                }
-                else
-                {
-                    pdblOut[i] = dabsz(pdblInR[i], pdblInI[i]);
+                    if (ISNAN(pdblInR[i]))
+                    {
+                        pdblOut[i] = pdblInR[i];
+                    }
+                    else if (ISNAN(pdblInI[i]))
+                    {
+                        pdblOut[i] = pdblInI[i];
+                    }
+                    else
+                    {
+                        pdblOut[i] = dabsz(pdblInR[i], pdblInI[i]);
+                    }
                 }
             }
-        }
-        else
-        {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
+            else
             {
-                if (ISNAN(pdblInR[i]))
+                for (int i = 0; i < size; i++)
                 {
-                    pdblOut[i] = pdblInR[i];
-                }
-                else
-                {
-                    pdblOut[i] = dabss(pdblInR[i]);
+                    if (ISNAN(pdblInR[i]))
+                    {
+                        pdblOut[i] = pdblInR[i];
+                    }
+                    else
+                    {
+                        pdblOut[i] = std::abs(pdblInR[i]);
+                    }
                 }
             }
+
+            out.push_back(api_scilab::getReturnVariable(pDblOut));
+            delete pDblOut;
+            delete pDblIn;
+            break;
         }
-
-        out.push_back(api_scilab::getReturnVariable(pDblOut));
-    }
-    else if (in[0]->isPoly())
-    {
-        types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
-        types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
-        double* data = NULL;
-
-        if (pPolyIn->isComplex())
+        case InternalType::ScilabPolynom:
         {
-            for (int i = 0; i < pPolyIn->getSize(); i++)
+            types::Polynom* pPolyIn = in[0]->getAs<types::Polynom>();
+            types::Polynom* pPolyOut = new types::Polynom(pPolyIn->getVariableName(), pPolyIn->getDims(), pPolyIn->getDimsArray());
+            double* data = NULL;
+
+            if (pPolyIn->isComplex())
             {
-                int rank = pPolyIn->get(i)->getRank();
-                types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
-
-                for (int j = 0; j < rank + 1; j++)
+                for (int i = 0; i < pPolyIn->getSize(); i++)
                 {
-                    data[j] = dabsz(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
-                }
+                    int rank = pPolyIn->get(i)->getRank();
+                    types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
 
-                pPolyOut->set(i, pSP);
-                delete pSP;
-                pSP = NULL;
+                    for (int j = 0; j < rank + 1; j++)
+                    {
+                        data[j] = dabsz(pPolyIn->get(i)->get()[j], pPolyIn->get(i)->getImg()[j]);
+                    }
+
+                    pPolyOut->set(i, pSP);
+                    delete pSP;
+                    pSP = NULL;
+                }
             }
-        }
-        else
-        {
-            for (int i = 0; i < pPolyIn->getSize(); i++)
+            else
             {
-                int rank = pPolyIn->get(i)->getRank();
-                types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
-
-                for (int j = 0; j < rank + 1; j++)
+                for (int i = 0; i < pPolyIn->getSize(); i++)
                 {
-                    data[j] = dabss(pPolyIn->get(i)->get()[j]);
+                    int rank = pPolyIn->get(i)->getRank();
+                    types::SinglePoly* pSP = new types::SinglePoly(&data, rank);
+
+                    for (int j = 0; j < rank + 1; j++)
+                    {
+                        data[j] = dabss(pPolyIn->get(i)->get()[j]);
+                    }
+
+                    pPolyOut->set(i, pSP);
+                    delete pSP;
+                    pSP = NULL;
                 }
-
-                pPolyOut->set(i, pSP);
-                delete pSP;
-                pSP = NULL;
             }
+
+            out.push_back(pPolyOut);
+            break;
         }
-
-        out.push_back(pPolyOut);
-    }
-    else if (in[0]->isInt8())
-    {
-        types::Int8* pIntIn = in[0]->getAs<types::Int8>();
-        types::Int8* pIntOut = new types::Int8(pIntIn->getDims(), pIntIn->getDimsArray());
-
-        for (int i = 0 ; i < pIntIn->getSize() ; i++)
+        case InternalType::ScilabInt8:
         {
-            char cInput = pIntIn->get(i);
-            pIntOut->set(i, cInput < 0 ? -cInput : cInput);
+            out.push_back(absInt(in[0]->getAs<types::Int8>()));
+            break;
         }
-        out.push_back(pIntOut);
-    }
-    else if (in[0]->isInt16())
-    {
-        types::Int16* pIntIn = in[0]->getAs<types::Int16>();
-        types::Int16* pIntOut = new types::Int16(pIntIn->getDims(), pIntIn->getDimsArray());
-
-        for (int i = 0 ; i < pIntIn->getSize() ; i++)
+        case InternalType::ScilabInt16:
         {
-            pIntOut->set(i, abs(pIntIn->get(i)));
+            out.push_back(absInt(in[0]->getAs<types::Int16>()));
+            break;
         }
-        out.push_back(pIntOut);
-    }
-    else if (in[0]->isInt32())
-    {
-        types::Int32* pIntIn = in[0]->getAs<types::Int32>();
-        types::Int32* pIntOut = new types::Int32(pIntIn->getDims(), pIntIn->getDimsArray());
-
-        for (int i = 0 ; i < pIntIn->getSize() ; i++)
+        case InternalType::ScilabInt32:
         {
-            pIntOut->set(i, abs(pIntIn->get(i)));
+            out.push_back(absInt(in[0]->getAs<types::Int32>()));
+            break;
         }
-        out.push_back(pIntOut);
-    }
-    else if (in[0]->isInt64())
-    {
-        types::Int64* pIntIn = in[0]->getAs<types::Int64>();
-        types::Int64* pIntOut = new types::Int64(pIntIn->getDims(), pIntIn->getDimsArray());
-
-        for (int i = 0 ; i < pIntIn->getSize() ; i++)
+        case InternalType::ScilabInt64:
         {
-            pIntOut->set(i, llabs(pIntIn->get(i)));
+            out.push_back(absInt(in[0]->getAs<types::Int64>()));
+            break;
         }
-        out.push_back(pIntOut);
-    }
-    else if (in[0]->isUInt8())
-    {
-        out.push_back(in[0]->getAs<types::UInt8>()->clone());
-    }
-    else if (in[0]->isUInt16())
-    {
-        out.push_back(in[0]->getAs<types::UInt16>()->clone());
-    }
-    else if (in[0]->isUInt32())
-    {
-        out.push_back(in[0]->getAs<types::UInt32>()->clone());
-    }
-    else if (in[0]->isUInt64())
-    {
-        out.push_back(in[0]->getAs<types::UInt64>()->clone());
-    }
-    else
-    {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_abs";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        case InternalType::ScilabUInt8:
+        case InternalType::ScilabUInt16:
+        case InternalType::ScilabUInt32:
+        case InternalType::ScilabUInt64:
+        {
+            out.push_back(in[0]);
+            break;
+        }
+        default:
+        {
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_abs";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+        }
     }
 
     return types::Function::OK;

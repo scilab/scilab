@@ -14,14 +14,11 @@
 #define __SIN_H__
 
 #include <math.h>
-
 #include "dynlib_elementary_functions.h"
 
 ELEMENTARY_FUNCTIONS_IMPEXP double dsins(double _dblVal);
 ELEMENTARY_FUNCTIONS_IMPEXP void zsins(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-ELEMENTARY_FUNCTIONS_IMPEXP double dasins(double _dblVal);
-ELEMENTARY_FUNCTIONS_IMPEXP void wasin(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
 ELEMENTARY_FUNCTIONS_IMPEXP double dsinhs(double _dblVal);
 
 #endif /* __SIN_H__ */

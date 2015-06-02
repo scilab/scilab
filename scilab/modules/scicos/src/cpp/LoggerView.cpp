@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <sstream>
+#include <string>
 #include <cwchar>
 
 #include "scilabWrite.hxx"
@@ -25,7 +26,7 @@ namespace org_scilab_modules_scicos
 static const bool USE_SCILAB_WRITE = true;
 
 LoggerView::LoggerView() :
-    View(), level(LOG_WARNING)
+    View(), m_level(LOG_WARNING)
 {
 }
 
@@ -66,7 +67,7 @@ const wchar_t* LoggerView::toString(enum LogLevel level)
 
 void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
 {
-    if (level >= this->level)
+    if (level >= this->m_level)
     {
         std::string str = msg.str();
         if (USE_SCILAB_WRITE)
@@ -82,7 +83,7 @@ void LoggerView::log(enum LogLevel level, const std::stringstream& msg)
 
 void LoggerView::log(enum LogLevel level, const char* msg)
 {
-    if (level >= this->level)
+    if (level >= this->m_level)
     {
         if (USE_SCILAB_WRITE)
         {
@@ -97,7 +98,7 @@ void LoggerView::log(enum LogLevel level, const char* msg)
 
 void LoggerView::log(enum LogLevel level, const wchar_t* msg)
 {
-    if (level >= this->level)
+    if (level >= this->m_level)
     {
         if (USE_SCILAB_WRITE)
         {

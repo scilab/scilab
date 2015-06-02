@@ -22,7 +22,7 @@
 #include "localization.h"
 #include "getDictionarySetProperties.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "BOOL.h"
 
 /**
@@ -253,6 +253,7 @@ static setHashTableCouple propertySetTable[] =
     {"marks_count", set_marks_count_property},
     {"ticks_format", set_ticks_format_property},
     {"ticks_st", set_ticks_st_property},
+    {"colors", set_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/

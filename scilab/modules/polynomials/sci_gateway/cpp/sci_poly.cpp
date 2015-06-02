@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Cedric DELAMARRE
+ * Copyright (C) 2015 - Scilab Enterprises - Anais AUBERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -23,10 +24,13 @@ extern "C"
 #include <math.h>
 #include "Scierror.h"
 #include "localization.h"
+#include "elem_common.h"
 
     extern int C2F(dprxc)(int*, double*, double*);
     extern int C2F(wprxc)(int*, double*, double*, double*, double*);
     extern double C2F(dasum)(int*, double*, int*);
+    extern double C2F(dlamch) (const char*, unsigned long int);
+
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -51,8 +55,9 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_poly";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_poly";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblIn = in[0]->getAs<types::Double>();
@@ -110,13 +115,14 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         bool bDeleteInput = false;
         if (pDblIn->getSize() != 1 && pDblIn->getCols() == pDblIn->getRows())
         {
+            ast::ExecVisitor exec;
             //call spec
             types::typed_list tlInput;
             types::typed_list tlOutput;
             types::optional_list tlOpt;
             tlInput.push_back(pDblIn);
             types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-            funcSpec->call(tlInput, tlOpt, 1, tlOutput, new ast::ExecVisitor());
+            funcSpec->call(tlInput, tlOpt, 1, tlOutput, &exec);
             pDblIn = tlOutput[0]->getAs<types::Double>();
             bDeleteInput = true;
         }
@@ -128,15 +134,16 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         int iRanks = iSize;
         pPolyOut = new types::Polynom(wstrName, 2, piDimsArray, &iRanks);
         double* pdblCoefReal = pPolyOut->get(0)->get();
+
         if (pDblIn->isComplex())
         {
+            double dblEps = (double)C2F(dlamch)("p", 1L);
             pPolyOut->setComplex(true);
             double* pdblInImg   = pDblIn->getImg();
             double* pdblCoefImg = pPolyOut->get(0)->getImg();
             C2F(wprxc)(&iRanks, pdblInReal, pdblInImg, pdblCoefReal, pdblCoefImg);
-
             // if imaginary part is null, set polynom real
-            if (C2F(dasum)(&iSize, pdblCoefImg, &iOne) == 0)
+            if (C2F(dasum)(&iSize, pdblCoefImg, &iOne) <= dblEps)
             {
                 pPolyOut->setComplex(false);
             }

@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef ADAPTERS_H_
-#define ADAPTERS_H_
+#ifndef ADAPTERS_HXX_
+#define ADAPTERS_HXX_
 
 #include <vector>
 #include <string>
@@ -31,7 +31,6 @@ public:
     {
         BLOCK_ADAPTER = 0,  //!< \see view_scilab::BlockAdapter
         CPR_ADAPTER,        //!< \see view_scilab::CprAdapter
-        DELETED_ADAPTER,    //!< \see view_scilab::DeletedAdapter
         DIAGRAM_ADAPTER,    //!< \see view_scilab::DiagramAdapter
         GRAPHIC_ADAPTER,    //!< \see view_scilab::GraphicAdapter
         LINK_ADAPTER,       //!< \see view_scilab::LinkAdapter
@@ -79,4 +78,4 @@ private:
 } /* namespace view_scilab */
 } /* namespace org_scilab_modules_scicos */
 
-#endif /* ADAPTERS_H_ */
+#endif /* ADAPTERS_HXX_ */

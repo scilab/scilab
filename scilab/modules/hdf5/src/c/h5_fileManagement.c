@@ -21,7 +21,7 @@
 #include "splitpath.h"
 #include "scicurdir.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static char *getPathFilename(char *fullfilename);
 static char *getFilenameWithExtension(char *fullfilename);

@@ -13,7 +13,7 @@
 #include "stdlib.h"
 #include "fftwlibname.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static char *fftwlibname = NULL;
 /*--------------------------------------------------------------------------*/

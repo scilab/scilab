@@ -50,6 +50,10 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     int nu          = 0;
     int nd          = 0;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 4)
     {
@@ -111,13 +115,13 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
 
     // function
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"int2d");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"int2d");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[2]->isCallable())
     {
         types::Callable* pCall = in[2]->getAs<types::Callable>();
-        deFunctionsManager->setFFunction(pCall);
+        deFunctionsManager.setFFunction(pCall);
 
         // check function
         double x = 1;
@@ -134,7 +138,7 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         bool bOK = false;
         types::String* pStr = in[2]->getAs<types::String>();
-        bOK = deFunctionsManager->setFFunction(pStr);
+        bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
         {
@@ -158,10 +162,10 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
 
         if (pList->get(0)->isCallable())
         {
-            deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else
@@ -238,20 +242,28 @@ types::Function::ReturnValue sci_int2d(types::typed_list &in, int _iRetCount, ty
     {
         C2F(twodq)(int2d_f, &size, pDblX->get(), pDblY->get(), &tol, &iclose, &maxtri, &mevals, &result, &err, &nu, &nd, &nevals, &iflag, dwork, iwork);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = false;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "int2d", "twodq");
-        Scierror(999, pstrMsg);
-        FREE(dwork);
-        FREE(iwork);
-        DifferentialEquation::removeDifferentialEquationFunctions();
-        return types::Function::Error;
+        os << e.GetErrorMessage();
+        bCatch = false;
     }
 
     FREE(dwork);
     FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
+
+    if (bCatch)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "int2d", "twodq");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
+    }
 
     if (iflag)
     {

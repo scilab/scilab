@@ -19,7 +19,7 @@ extern "C"
 #include "SetConsolePrompt.h"
 #include "prompt.h"
 #include "TermReadAndProcess.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "configvariable_interface.h"
 #include "localization.h"
 #include "diary.h"
@@ -30,6 +30,15 @@ static SCILAB_INPUT_METHOD _reader;
 void setScilabInputMethod(SCILAB_INPUT_METHOD reader)
 {
     _reader = reader;
+}
+
+void C2F(scilabread)(char* strRead, int len)
+{
+    char* str = scilabRead();
+    int size = Min(strlen(str), len - 1);
+    strncpy(strRead, str, size);
+    strRead[size] = '\0';
+    FREE(str);
 }
 
 char *scilabRead()

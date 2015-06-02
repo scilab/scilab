@@ -26,7 +26,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 }
 
 namespace types
@@ -77,7 +77,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & /*e*/)
+bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
 {
     if (in.size() == 0)
     {
@@ -142,13 +142,31 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     this->IncreaseRef();
     in.push_back(this);
 
+    std::wstring stType = getShortTypeStr();
     try
     {
-        ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, _iRetCount, out, &execFunc);
+        ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out, &execFunc);
     }
-    catch (ast::ScilabError & /*se*/)
+    catch (ast::ScilabError &se)
     {
-        ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        try
+        {
+            //to compatibility with scilab 5 code.
+            //tlist/mlist name are truncated to 8 first character
+            if (stType.size() > 8)
+            {
+                std::wcout << (L"%" + stType.substr(0, 8) + L"_e") << std::endl;
+                ret = Overload::call(L"%" + stType.substr(0, 8) + L"_e", in, 1, out, &execFunc);
+            }
+            else
+            {
+                throw se;
+            }
+        }
+        catch (ast::ScilabError & /*se*/)
+        {
+            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        }
     }
 
     // Remove this from "in" for keep "in" unchanged.
@@ -264,21 +282,20 @@ bool TList::toString(std::wostringstream& ostr)
     //call overload %type_p if exists
     types::typed_list in;
     types::typed_list out;
-    ast::ExecVisitor* exec = new ast::ExecVisitor();
+    ast::ExecVisitor exec;
 
     IncreaseRef();
     in.push_back(this);
 
     try
     {
-        if (Overload::generateNameAndCall(L"p", in, 1, out, exec) == Function::Error)
+        if (Overload::generateNameAndCall(L"p", in, 1, out, &exec) == Function::Error)
         {
             ConfigVariable::setError();
         }
 
         ostr.str(L"");
         DecreaseRef();
-        delete exec;
         return true;
     }
     catch (ast::ScilabError /* &e */)
@@ -288,7 +305,6 @@ bool TList::toString(std::wostringstream& ostr)
     }
 
     DecreaseRef();
-    delete exec;
 
     // special case for lss
     if (getSize() != 0 &&
@@ -299,17 +315,17 @@ bool TList::toString(std::wostringstream& ostr)
         wchar_t* wcsVarName = os_wcsdup(ostr.str().c_str());
         int iPosition = 1;
         const wchar_t * wcsDesc[7] = {L"  (state-space system:)", L"= A matrix =", L"= B matrix =", L"= C matrix =", L"= D matrix =", L"= X0 (initial state) =", L"= Time domain ="};
-        std::vector<InternalType *>::iterator itValues;
-        for (itValues = m_plData->begin() ; itValues != m_plData->end() ; ++itValues, ++iPosition)
+        for (auto val : *m_plData)
         {
             std::wostringstream nextVarName;
             ostr.str(L"");
             nextVarName << " " << wcsVarName << L"(" << iPosition << L")";
             ostr << std::endl << nextVarName.str() << wcsDesc[iPosition - 1] << std::endl << std::endl;
             scilabWriteW(ostr.str().c_str());
-            VariableToString(*itValues, nextVarName.str().c_str());
+            VariableToString(val, nextVarName.str().c_str());
+            iPosition++;
         }
-
+        ostr.str(L"");
         free(wcsVarName);
         return true;
     }

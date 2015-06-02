@@ -19,6 +19,7 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -28,9 +29,7 @@ extern "C"
 #include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "checkodeerror.h"
 #include "xerhlt.h"
-
 }
 
 /*--------------------------------------------------------------------------*/
@@ -70,6 +69,10 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
     // Indicate if info list is given.
     bool bListInfo  = false;
+
+    // error message catched
+    std::wostringstream os;
+    bool bCatched = false;
 
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 9)
@@ -145,8 +148,8 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"dassl");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"dassl");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     YSize = (int*)MALLOC(sizeOfYSize * sizeof(int));
     *YSize = pDblX0->getRows();
@@ -164,7 +167,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
         memset(pdYdotData, 0x00, *YSize);
     }
 
-    deFunctionsManager->setOdeYRows(pDblX0->getRows());
+    deFunctionsManager.setOdeYRows(pDblX0->getRows());
 
     for (iPos++; iPos < in.size(); iPos++)
     {
@@ -224,12 +227,12 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
             if (bFuncF == false)
             {
-                deFunctionsManager->setFFunction(pCall);
+                deFunctionsManager.setFFunction(pCall);
                 bFuncF = true;
             }
             else if (bFuncJac == false)
             {
-                deFunctionsManager->setJacFunction(pCall);
+                deFunctionsManager.setJacFunction(pCall);
                 bFuncJac = true;
             }
             else
@@ -249,12 +252,12 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
             if (bFuncF == false)
             {
-                bOK = deFunctionsManager->setFFunction(pStr);
+                bOK = deFunctionsManager.setFFunction(pStr);
                 bFuncF = true;
             }
             else if (bFuncJac == false)
             {
-                bOK = deFunctionsManager->setJacFunction(pStr);
+                bOK = deFunctionsManager.setJacFunction(pStr);
                 bFuncJac = true;
             }
             else
@@ -311,13 +314,13 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    bOK = deFunctionsManager->setFFunction(pStr);
+                    bOK = deFunctionsManager.setFFunction(pStr);
                     sizeOfpdYData = *YSize;
                 }
                 else if (bFuncJac == false)
                 {
                     bFuncJac = true;
-                    bOK = deFunctionsManager->setJacFunction(pStr);
+                    bOK = deFunctionsManager.setJacFunction(pStr);
                     if (sizeOfpdYData == 0)
                     {
                         sizeOfpdYData = *YSize;
@@ -381,19 +384,19 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncJac == false)
                 {
                     bFuncJac = true;
-                    deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
@@ -444,8 +447,8 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                     info[5] = 1;
                     ml = (int)pDblTemp->get(0);
                     mu = (int)pDblTemp->get(1);
-                    deFunctionsManager->setMl(ml);
-                    deFunctionsManager->setMu(mu);
+                    deFunctionsManager.setMl(ml);
+                    deFunctionsManager.setMu(mu);
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
@@ -681,18 +684,22 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
         {
             C2F(dassl)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t, info, rtol, atol, &idid, rwork, &rworksize, iwork, &iworksize, &rpar, &ipar, dassl_jac);
 
-            iret = checkDasslError(idid);
+            iret = checkError(idid, "dassl");
             if (iret == 1) // error
             {
-                Scierror(999, _("%s: dassl return with state %d.\n"), "dassl", idid);
+                Scierror(999, _("%s: %s return with state %d.\n"), "dassl", "dassl",  idid);
             }
+        }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatched = true;
+            iret = 1;
         }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "dassl", "dassl");
-            Scierror(999, pstrMsg);
-            // set iret to 1 for FREE allocated memory
+            os << e.GetErrorMessage();
+            bCatched = true;
             iret = 1;
         }
 
@@ -713,6 +720,15 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
             {
                 FREE(rtol);
             }
+
+            if (bCatched)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dassl", "dassl");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 

@@ -16,19 +16,9 @@
 #include <iostream>
 #include <type_traits>
 
+#include "tools.hxx"
 #include "TIType.hxx"
 #include "core_math.h"
-
-#ifdef _MSC_VER
-#include "stdint.h"
-#define TRUNC(x) ((x) > 0 ? floor(x) : ceil(x))
-#else
-#ifdef __APPLE__
-#define TRUNC(x) ((x) > 0 ? floor(x) : ceil(x))
-#else
-#define TRUNC(x) (std::trunc(x))
-#endif
-#endif
 
 namespace analysis
 {
@@ -51,14 +41,14 @@ public:
 
     ForList(const double m, const double s, const double M) : constant(true), read_in_loop(false), min(m), step(s), max(M)
     {
-        if (!isEmpty())
+        if (!isempty())
         {
-            if (min >= 0 && step > 0 && isInt<typename std::make_unsigned<T>::type>(min) && isInt<typename std::make_unsigned<T>::type>(step) && !overflow<typename std::make_unsigned<T>::type>(min, step, max))
+            if (min >= 0 && step > 0 && is_int<typename std::make_unsigned<T>::type>(min) && is_int<typename std::make_unsigned<T>::type>(step) && !overflow<typename std::make_unsigned<T>::type>(min, step, max))
             {
                 _int = true;
                 _unsigned = true;
             }
-            else if (isInt<typename std::make_signed<T>::type>(min) && isInt<typename std::make_signed<T>::type>(step) && !overflow<typename std::make_signed<T>::type>(min, step, max))
+            else if (is_int<typename std::make_signed<T>::type>(min) && is_int<typename std::make_signed<T>::type>(step) && !overflow<typename std::make_signed<T>::type>(min, step, max))
             {
                 _int = true;
                 _unsigned = false;
@@ -76,47 +66,47 @@ public:
         }
     }
 
-    inline bool isReadInLoop() const
+    inline bool is_read_in_loop() const
     {
         return read_in_loop;
     }
 
-    inline void setReadInLoop(const bool read)
+    inline void set_read_in_loop(const bool read)
     {
         read_in_loop = read;
     }
 
-    inline bool isConstant() const
+    inline bool is_constant() const
     {
         return constant;
     }
 
-    inline bool isInt() const
+    inline bool is_int() const
     {
         return _int;
     }
 
-    inline bool isUInt() const
+    inline bool is_uint() const
     {
         return _unsigned;
     }
 
     template<typename U>
-    inline U getMin() const
+    inline U get_min() const
     {
-        return std::is_integral<U>::value ? TRUNC(min) : min;
+        return std::is_integral<U>::value ? tools::trunc(min) : min;
     }
 
     template<typename U>
-    inline U getStep() const
+    inline U get_step() const
     {
-        return std::is_integral<U>::value ? TRUNC(step) : step;
+        return std::is_integral<U>::value ? tools::trunc(step) : step;
     }
 
     template<typename U>
-    inline U getMax() const
+    inline U get_max() const
     {
-        return std::is_integral<U>::value ? TRUNC(max) : max;
+        return std::is_integral<U>::value ? tools::trunc(max) : max;
     }
 
     inline TIType getType() const
@@ -163,23 +153,82 @@ public:
         return out;
     }
 
+    inline static bool isempty(const double min, const double max, const double step)
+    {
+        return step == 0 || tools::isNaN(min) || tools::isNaN(step) || tools::isNaN(max) || !tools::isFinite(min) || !tools::isFinite(step) || !tools::isFinite(max) || (min < max && step < 0) || (min > max && step > 0);
+    }
+
+    inline static uint64_t size(const double min, const double max, const double step)
+    {
+        return (uint64_t)std::floor((max - min) / step) + 1;
+    }
+
+    inline static int checkList(const double min, const double max, const double step, double & out)
+    {
+        if (step == 0)
+        {
+            if (tools::isNaN(min) || tools::isNaN(max))
+            {
+                out = tools::NaN();
+                return 1; // one value
+            }
+            else
+            {
+                return 0; // empty
+            }
+        }
+        else
+        {
+            if (tools::isNaN(min) || tools::isNaN(step) || tools::isNaN(max))
+            {
+                out = tools::NaN();
+                return 1; // one value
+            }
+            else
+            {
+                if (min < max)
+                {
+                    if (step < 0)
+                    {
+                        return 0; //empty
+                    }
+                }
+                else if (step > 0)
+                {
+                    return 0; // empty
+                }
+
+                if (!tools::isFinite(min) || !tools::isFinite(max))
+                {
+                    out = tools::NaN();
+                    return 1; // one value
+                }
+                else
+                {
+                    return 2; //one or more...
+                }
+            }
+        }
+    }
+
 private:
 
-    inline bool isEmpty() const
+    inline bool isempty() const
     {
-        return step == 0 || ISNAN(min) || ISNAN(step) || ISNAN(max) || !finite(min) || !finite(step) || !finite(max) || (min < max && step < 0) || (min > max && step > 0);
+        return isempty(min, max, step);
     }
 
     template<typename U>
-    inline static bool isInt(const double x)
+    inline static bool is_int(const double x)
     {
-        return x == TRUNC(x) && x <= std::numeric_limits<U>::max() && x >= std::numeric_limits<U>::min();
+        const U y = (U)tools::trunc(x);
+        return x == y && y <= std::numeric_limits<U>::max() && y >= std::numeric_limits<U>::min();
     }
 
     template<typename U>
-    inline static U toInt(const double x)
+    inline static U to_int(const double x)
     {
-        return TRUNC(x);
+        return tools::trunc(x);
     }
 
     template<typename U>

@@ -19,6 +19,7 @@ int cumsum(types::Double* pIn, int iOrientation, types::Double* pOut)
     double* pdblOutR = pOut->get();
     double* pdblInI = pIn->getImg();
     double* pdblOutI = pOut->getImg();
+    int size = pIn->getSize();
 
     if (iOrientation == 0) // all
     {
@@ -27,7 +28,7 @@ int cumsum(types::Double* pIn, int iOrientation, types::Double* pOut)
         if (pIn->isComplex())
         {
             pdblOutI[0] = pdblInI[0];
-            for (int i = 1; i < pIn->getSize(); i++)
+            for (int i = 1; i < size; i++)
             {
                 pdblOutR[i] = pdblOutR[i - 1] + pdblInR[i];
                 pdblOutI[i] = pdblOutI[i - 1] + pdblInI[i];
@@ -35,7 +36,7 @@ int cumsum(types::Double* pIn, int iOrientation, types::Double* pOut)
         }
         else
         {
-            for (int i = 1; i < pIn->getSize(); i++)
+            for (int i = 1; i < size; i++)
             {
                 pdblOutR[i] = pdblOutR[i - 1] + pdblInR[i];
             }
@@ -53,7 +54,7 @@ int cumsum(types::Double* pIn, int iOrientation, types::Double* pOut)
 
         if (pIn->isComplex())
         {
-            for (int j = 0; j < pIn->getSize(); j += (iIncrement * iSizeOfDimN))
+            for (int j = 0; j < size; j += (iIncrement * iSizeOfDimN))
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
@@ -73,7 +74,7 @@ int cumsum(types::Double* pIn, int iOrientation, types::Double* pOut)
         }
         else
         {
-            for (int j = 0; j < pIn->getSize(); j += (iIncrement * iSizeOfDimN))
+            for (int j = 0; j < size; j += (iIncrement * iSizeOfDimN))
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {

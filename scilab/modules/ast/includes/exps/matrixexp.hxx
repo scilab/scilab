@@ -44,6 +44,8 @@ public:
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &lines;
     }
 
     virtual ~MatrixExp ()
@@ -52,13 +54,15 @@ public:
 
     virtual MatrixExp* clone()
     {
-        exps_t lines;
-        for (exps_t::const_iterator it = getLines().begin(), itEnd = getLines().end(); it != itEnd; ++it)
+        exps_t* newlines = new exps_t;
+        exps_t& lines = getLines();
+
+        for (auto line : lines)
         {
-            lines.push_back((*it)->clone());
+            newlines->push_back(line->clone());
         }
 
-        MatrixExp* cloned = new MatrixExp(getLocation(), lines);
+        MatrixExp* cloned = new MatrixExp(getLocation(), *newlines);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -93,7 +97,7 @@ public:
     /** \} */
 
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return MATRIXEXP;
     }

@@ -40,37 +40,37 @@ JITVisitor::JITVisitor(const analysis::AnalysisVisitor & _analysis) : ast::Const
     llvm::BasicBlock * BB = llvm::BasicBlock::Create(context, "EntryBlock", function);
     builder.SetInsertPoint(BB);
 
-    symbol::Context * ctxt = symbol::Context::getInstance();
-    const analysis::AnalysisVisitor::MapSymInfo & info = analysis.get_infos();
+    /*    symbol::Context * ctxt = symbol::Context::getInstance();
+        const analysis::AnalysisVisitor::MapSymInfo & info = analysis.get_infos();
 
-    for (analysis::AnalysisVisitor::MapSymInfo::const_iterator it = info.begin(), end = info.end(); it != end; ++it)
-    {
-        if (it->second.read || it->second.write || it->second.replace)
+        for (analysis::AnalysisVisitor::MapSymInfo::const_iterator it = info.begin(), end = info.end(); it != end; ++it)
         {
-            const std::wstring & name = it->first.getName();
-            const std::string _name(name.begin(), name.end());
-            symbol::Variable * var = ctxt->getOrCreate(it->first);
-            types::InternalType * pIT = symbol::Context::getInstance()->get(var);
+            if (it->second.read || it->second.write || it->second.replace)
+            {
+                const std::wstring & name = it->first.getName();
+                const std::string _name(name.begin(), name.end());
+                symbol::Variable * var = ctxt->getOrCreate(it->first);
+                types::InternalType * pIT = symbol::Context::getInstance()->get(var);
 
-            if (pIT)
-            {
-                symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, pIT, it->second.write || it->second.replace, _name)));
-            }
-            else
-            {
-                symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, it->second.current_type, it->second.write || it->second.replace, _name)));
+                if (pIT)
+                {
+                    symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, pIT, it->second.write || it->second.replace, _name)));
+                }
+                else
+                {
+                    symMap3.emplace(it->first, std::shared_ptr<JITVal>(JITVal::get(*this, it->second.current_type, it->second.write || it->second.replace, _name)));
+                }
             }
         }
-    }
 
-
+    */
 
 }
 
 void JITVisitor::run()
 {
     // on reinjecte les resultats ds l'environnement a=1;jit("a=2");
-    symbol::Context * ctxt = symbol::Context::getInstance();
+    /*symbol::Context * ctxt = symbol::Context::getInstance();
     llvm::Value * llvmCtxt = getPointer(ctxt);
     llvm::Value * toCall_M = module.getOrInsertFunction("putInContext_M_D_ds", getLLVMFuncTy<void, char *, char *, double *, int , int>(context));
     llvm::Value * toCall_S = module.getOrInsertFunction("putInContext_S_D_d", getLLVMFuncTy<void, char *, char *, double>(context));
@@ -109,6 +109,7 @@ void JITVisitor::run()
     engine->finalizeObject();
 
     reinterpret_cast<void (*)()>(engine->getFunctionAddress("jit_main"))();
+    */
 }
 
 void JITVisitor::dump() const
@@ -165,7 +166,7 @@ void JITVisitor::visit(const ast::SimpleVar &e)
                     //std::wcout << L"que faire...=" << sym.getName() << std::endl;
                     }
     */
-    symbol::Symbol & sym = e.getSymbol();
+    const symbol::Symbol & sym = e.getSymbol();
     JITSymbolMap::iterator i = symMap3.find(sym);
     if (i != symMap3.end())
     {
@@ -346,48 +347,48 @@ void JITVisitor::visit(const ast::ForExp &e)
 {
     //e.vardec_get().accept(*this);
     const ast::VarDec & vardec = *e.getVardec().getAs<ast::VarDec>();
-    symbol::Symbol & varName = vardec.getSymbol();
+    symbol::Symbol varName = vardec.getSymbol();
     const ast::Exp & init = vardec.getInit();
 
     if (init.isListExp())
     {
         const ast::ListExp & list = static_cast<const ast::ListExp &>(init);
         const analysis::ForList64 & list_info = vardec.getListInfo();
-        const double * list_values = list.get_values();
+        const double * list_values = list.getValues();
         llvm::Value * start = nullptr, * step, * end;
         bool use_int = false;
         bool use_uint = false;
         bool inc = true;
         bool known_step = false;
-        bool it_read_in_loop = list_info.isReadInLoop();
+        bool it_read_in_loop = list_info.is_read_in_loop();
 
-        if (list_info.isConstant())
+        if (list_info.is_constant())
         {
-            if (list_info.isInt())
+            if (list_info.is_int())
             {
                 use_int = true;
-                if (list_info.isUInt())
+                if (list_info.is_uint())
                 {
                     use_uint = true;
-                    start = getConstant(list_info.getMin<uint64_t>());
-                    step = getConstant(list_info.getStep<uint64_t>());
-                    end = getConstant(list_info.getMax<uint64_t>());
+                    start = getConstant(list_info.get_min<uint64_t>());
+                    step = getConstant(list_info.get_step<uint64_t>());
+                    end = getConstant(list_info.get_max<uint64_t>());
                 }
                 else
                 {
-                    start = getConstant(list_info.getMin<int64_t>());
-                    step = getConstant(list_info.getStep<int64_t>());
-                    end = getConstant(list_info.getMax<int64_t>());
+                    start = getConstant(list_info.get_min<int64_t>());
+                    step = getConstant(list_info.get_step<int64_t>());
+                    end = getConstant(list_info.get_max<int64_t>());
                 }
             }
             else
             {
-                start = getConstant(list_info.getMin<double>());
-                step = getConstant(list_info.getStep<double>());
-                end = getConstant(list_info.getMax<double>());
+                start = getConstant(list_info.get_min<double>());
+                step = getConstant(list_info.get_step<double>());
+                end = getConstant(list_info.get_max<double>());
             }
 
-            inc = list_info.getStep<double>() > 0;
+            inc = list_info.get_step<double>() > 0;
             known_step = true;
         }
 

@@ -23,6 +23,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -47,14 +48,16 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_msprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_msprintf";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
     }
 
     wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
     int iNumberPercent = 0;
-    for (int i = 0 ; i < wcslen(pwstInput) ; i++)
+    int iNumberPercentPercent = 0;
+    for (int i = 0; i < wcslen(pwstInput); i++)
     {
         if (pwstInput[i] == L'%')
         {
@@ -62,7 +65,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
             if (pwstInput[i + 1] == L'%')
             {
                 //it is a %%, not a %_
-                iNumberPercent--;
+                iNumberPercentPercent++;
                 //force incremantation to bypass the second % of %%
                 i++;
             }
@@ -70,7 +73,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     }
 
     //Input values must be less or equal than excepted
-    if ((in.size() - 1) > iNumberPercent)
+    if ((in.size() - 1) > iNumberPercent - iNumberPercentPercent)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "msprintf", iNumberPercent);
         return types::Function::Error;
@@ -94,7 +97,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
         }
     }
 
-    if (iNumberCols != iNumberPercent)
+    if (iNumberCols != iNumberPercent - iNumberPercentPercent)
     {
         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "msprintf");
         return types::Function::Error;
@@ -102,7 +105,7 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
 
 
     //fill ArgumentPosition structure
-    pArgs = new ArgumentPosition[iNumberPercent];
+    pArgs = new ArgumentPosition[iNumberPercent - iNumberPercentPercent];
     int idx = 0;
     for (int i = 1 ; i < in.size() ; i++)
     {
@@ -119,21 +122,16 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
     int iNewLine = 0;
     wchar_t** pwstOutput = scilab_sprintf("msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
 
+    delete[] pArgs;
     if (pwstOutput == NULL)
     {
-        delete[] pArgs;
         return types::Function::Error;
     }
 
     types::String* pOut = new types::String(iOutputRows, 1);
     pOut->set(pwstOutput);
+    freeArrayOfWideString(pwstOutput, iOutputRows);
     out.push_back(pOut);
-
-    for (int i = 0 ; i < iOutputRows ; i++)
-    {
-        FREE(pwstOutput[i]);
-    }
-    FREE(pwstOutput);
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/

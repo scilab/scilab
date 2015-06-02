@@ -51,15 +51,22 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         //number of lines
         if (in[1]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: Integer expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: An integer value expected.\n"), "mgetl", 2);
             return Function::Error;
         }
 
         if (in[1]->getAs<Double>()->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: Integer expected.\n"), "mgetl", 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: An integer value expected.\n"), "mgetl", 2);
             return Function::Error;
         }
+
+        if (in[1]->getAs<Double>()->get(0) != (int)in[1]->getAs<Double>()->get(0))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%d: An integer value expected.\n"), "mgetl", 2);
+            return Function::Error;
+        }
+
         iLinesExcepted = static_cast<int>(in[1]->getAs<Double>()->get(0));
     }
 
@@ -144,6 +151,16 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
     else
     {
         out.push_back(types::Double::Empty());
+    }
+
+    if (wcReadedStrings)
+    {
+        for (int i = 0; i < iLinesRead; i++)
+        {
+            FREE(wcReadedStrings[i]);
+        }
+
+        FREE(wcReadedStrings);
     }
 
     if (bCloseFile)

@@ -54,20 +54,21 @@ SciErr getPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int
         return sciErr;
     }
 
-    if (_pstVarName == NULL)
-    {
-        return sciErr;
-    }
-
     if (*_piVarNameLen == 0)
     {
         *_piVarNameLen = (int)((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().size();
         //No error
     }
 
+    if (_pstVarName == NULL)
+    {
+        return sciErr;
+    }
+
     char* pstTemp = wide_string_to_UTF8(((InternalType*)_piAddress)->getAs<types::Polynom>()->getVariableName().c_str());
     strcpy(_pstVarName, pstTemp);
     FREE(pstTemp);
+    *_piVarNameLen = static_cast<int>(strlen(_pstVarName));
     return sciErr;
 }
 
@@ -195,7 +196,8 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
     }
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
-    Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
+    std::wstring wstTemp(pstTemp);
+    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -219,6 +221,7 @@ SciErr createCommonMatrixOfPoly(void* _pvCtx, int _iVar, int _iComplex, char* _p
             pD->setImg(_pdblImg[i]);
         }
         pP->setCoef(i, pD);
+        delete pD;
     }
 
     return sciErr;
@@ -258,7 +261,8 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
     }
 
     wchar_t* pstTemp = to_wide_string(_pstVarName);
-    Polynom* pP = new Polynom(pstTemp, _iRows, _iCols, _piNbCoef);
+    std::wstring wstTemp(pstTemp);
+    Polynom* pP = new Polynom(wstTemp, _iRows, _iCols, _piNbCoef);
     FREE(pstTemp);
     if (pP == NULL)
     {
@@ -283,8 +287,18 @@ SciErr createCommonNamedMatrixOfPoly(void* _pvCtx, const char* _pstName, char* _
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pP);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pP);
+    }
+    else
+    {
+        delete pP;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 

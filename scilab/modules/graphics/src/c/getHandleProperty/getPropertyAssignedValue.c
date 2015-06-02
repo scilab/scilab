@@ -23,8 +23,7 @@
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#include "stricmp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 void copyDoubleVectorToIntFromStack(void* _pvData, int* _piDest, int _iNbItem)
 {

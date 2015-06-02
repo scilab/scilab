@@ -20,6 +20,7 @@
 #include "callable.hxx"
 #include "differentialequationfunctions.hxx"
 #include "runvisitor.hxx"
+#include "checkodeerror.hxx"
 
 extern "C"
 {
@@ -29,7 +30,6 @@ extern "C"
 #include "sciprint.h"
 #include "scifunctions.h"
 #include "elem_common.h"
-#include "checkodeerror.h"
 }
 
 /*--------------------------------------------------------------------------*/
@@ -96,6 +96,10 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
     // Indicate if info list is given.
     bool bListInfo  = false;
+
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
 
     // *** check the minimal number of input args. ***
     if ((int)in.size() < 6 || (int)in.size() > 13)
@@ -187,10 +191,10 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     }
 
     // get next inputs
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"daskr");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"daskr");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
-    deFunctionsManager->setOdeYRows(pDblX0->getRows());
+    deFunctionsManager.setOdeYRows(pDblX0->getRows());
 
     for (iPos++; iPos < in.size(); iPos++)
     {
@@ -264,27 +268,27 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             types::Callable* pCall = in[iPos]->getAs<types::Callable>();
             if (bFuncF == false)
             {
-                deFunctionsManager->setFFunction(pCall);
+                deFunctionsManager.setFFunction(pCall);
                 bFuncF = true;
             }
             else if (bFuncJac == false && pDblNg == NULL)
             {
-                deFunctionsManager->setJacFunction(pCall);
+                deFunctionsManager.setJacFunction(pCall);
                 bFuncJac = true;
             }
             else if (bFuncG == false && pDblNg)
             {
-                deFunctionsManager->setGFunction(pCall);
+                deFunctionsManager.setGFunction(pCall);
                 bFuncG = true;
             }
             else if (bFuncG && bFuncPsol == false)
             {
-                deFunctionsManager->setPsolFunction(pCall);
+                deFunctionsManager.setPsolFunction(pCall);
                 bFuncPsol = true;
             }
             else if (bFuncPsol && bFuncPjac == false)
             {
-                deFunctionsManager->setPjacFunction(pCall);
+                deFunctionsManager.setPjacFunction(pCall);
                 bFuncPjac = true;
             }
             else
@@ -304,27 +308,27 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
             if (bFuncF == false)
             {
-                bOK = deFunctionsManager->setFFunction(pStr);
+                bOK = deFunctionsManager.setFFunction(pStr);
                 bFuncF = true;
             }
             else if (bFuncJac == false && pDblNg == NULL)
             {
-                bOK = deFunctionsManager->setJacFunction(pStr);
+                bOK = deFunctionsManager.setJacFunction(pStr);
                 bFuncJac = true;
             }
             else if (bFuncG == false && pDblNg)
             {
-                bOK = deFunctionsManager->setGFunction(pStr);
+                bOK = deFunctionsManager.setGFunction(pStr);
                 bFuncG = true;
             }
             else if (bFuncG && bFuncPsol == false)
             {
-                bOK = deFunctionsManager->setPsolFunction(pStr);
+                bOK = deFunctionsManager.setPsolFunction(pStr);
                 bFuncPsol = true;
             }
             else if (bFuncPsol && bFuncPjac == false)
             {
-                bOK = deFunctionsManager->setPjacFunction(pStr);
+                bOK = deFunctionsManager.setPjacFunction(pStr);
                 bFuncPjac = true;
             }
             else
@@ -384,26 +388,26 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    bOK = deFunctionsManager->setFFunction(pStr);
+                    bOK = deFunctionsManager.setFFunction(pStr);
                 }
                 else if (bFuncJac == false && pDblNg == NULL)
                 {
                     bFuncJac = true;
-                    bOK = deFunctionsManager->setJacFunction(pStr);
+                    bOK = deFunctionsManager.setJacFunction(pStr);
                 }
                 else if (bFuncG == false && pDblNg)
                 {
                     bFuncG = true;
-                    bOK = deFunctionsManager->setGFunction(pStr);
+                    bOK = deFunctionsManager.setGFunction(pStr);
                 }
                 else if (bFuncG && bFuncPsol == false)
                 {
-                    bOK = deFunctionsManager->setPsolFunction(pStr);
+                    bOK = deFunctionsManager.setPsolFunction(pStr);
                     bFuncPsol = true;
                 }
                 else if (bFuncPsol && bFuncPjac == false)
                 {
-                    bOK = deFunctionsManager->setPjacFunction(pStr);
+                    bOK = deFunctionsManager.setPjacFunction(pStr);
                     bFuncPjac = true;
                 }
 
@@ -465,46 +469,46 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (bFuncF == false)
                 {
                     bFuncF = true;
-                    deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncJac == false && pDblNg == NULL)
                 {
                     bFuncJac = true;
-                    deFunctionsManager->setJacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setJacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setJacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setJacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncG == false && pDblNg)
                 {
                     bFuncG = true;
-                    deFunctionsManager->setGFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setGFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setGArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setGArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncG && bFuncPsol == false)
                 {
                     bFuncPsol = true;
-                    deFunctionsManager->setPsolFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setPsolFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setPsolArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setPsolArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
                 else if (bFuncPsol && bFuncPjac == false)
                 {
                     bFuncPjac = true;
-                    deFunctionsManager->setPjacFunction(pList->get(0)->getAs<types::Callable>());
+                    deFunctionsManager.setPjacFunction(pList->get(0)->getAs<types::Callable>());
                     for (int iter = 1; iter < pList->getSize(); iter++)
                     {
-                        deFunctionsManager->setPjacArgs(pList->get(iter)->getAs<types::InternalType>());
+                        deFunctionsManager.setPjacArgs(pList->get(iter)->getAs<types::InternalType>());
                     }
                 }
             }
@@ -559,8 +563,8 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                     info[5] = 1;
                     ml = (int)pDblTemp->get(0);
                     mu = (int)pDblTemp->get(1);
-                    deFunctionsManager->setMl(ml);
-                    deFunctionsManager->setMu(mu);
+                    deFunctionsManager.setMl(ml);
+                    deFunctionsManager.setMu(mu);
                 }
                 else if (pDblTemp->getSize() != 0)
                 {
@@ -593,8 +597,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
 
                 //  --   subvariable consistent(info) --
                 pDblTemp = pList->get(6)->getAs<types::Double>();
-                if (pDblTemp->getSize() != 0)
+                if (pDblTemp->isEmpty() || (pDblTemp->isScalar() && pDblTemp->get(0) == 0))
                 {
+                    // info(11) is then [] or [0]
+                    info[10] = 0;
+                }
+                else
+                {
+                    //info then looks like list(..., [+-1 +-1 ... +-1 +-1],...)
                     info[10] = 1;
                     if (info[9] == 0 || info[9] == 2)
                     {
@@ -618,7 +628,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
                 if (pDblTemp->getSize() == 0)
                 {
                     // maxl and kmp need default values
-                    maxl = min(5, pDblX0->getSize());
+                    maxl = min(5, pDblX0->getRows());
                     kmp = maxl;
                 }
                 else
@@ -753,7 +763,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     //compute itol and set the tolerances rtol and atol.
     double* rtol    = NULL;
     double* atol    = NULL;
-    double rpar[2]  = {0, 0};
+    double rpar[2] = {0, 0 };
     int ipar[30];
     memset(ipar, 0x00, 30 * sizeof(int));
 
@@ -839,7 +849,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         // LENWP is the length ot the rwork segment containing
         // the matrix elements of the preconditioner P
 
-        LENWP = 7 * pDblX0->getRows();
+        LENWP = pDblX0->getRows() * pDblX0->getRows();
         rworksize += (maxord + 5) * pDblX0->getRows() + 3 * ng
                      + (maxl + 3 + min(1, maxl - kmp)) * pDblX0->getRows()
                      + (maxl + 3) * maxl + 1 + LENWP;
@@ -862,7 +872,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         // LENIWP is the length ot the iwork segment containing
         // the matrix indexes of the preconditioner P
         // (compressed sparse row format)
-        LENIWP = 25 * pDblX0->getRows() + 1;
+        LENIWP = 2 * pDblX0->getRows() * pDblX0->getRows();
         iworksize += LENIWP;
     }
 
@@ -937,7 +947,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
     {
         for (int i = 0; i < pDblX0->getRows(); i++)
         {
-            iwork[LID + i] = pDblE7->get(i);
+            iwork[LID + i] = static_cast<int>(pDblE7->get(i));
         }
     }
 
@@ -964,14 +974,14 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
         ipar[3] = 2;
         ipar[4] = 1;
         rpar[0] = 0.005;
-        rpar[1] = 0.005;
+        rpar[1] = 0.05;
     }
 
     if (info[15] == 1)
     {
         for (int i = 0; i < pDblX0->getRows(); i++)
         {
-            iwork[LID + i] = pDblE12->get(i);
+            iwork[LID + i] = static_cast<int>(pDblE12->get(i));
         }
     }
 
@@ -1019,6 +1029,7 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             // SUBROUTINE DDASKR(RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
             //                  IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC, PSOL,
             //                  RT, NRT, JROOT)
+
             C2F(ddaskr)(dassl_f, YSize, &t0, pdYData, pdYdotData, &t,
                         info, rtol, atol, &idid, rwork, &rworksize,
                         iwork, &iworksize, rpar, ipar,
@@ -1046,18 +1057,22 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             }
 
             // use the same error function that dasrt
-            iret = checkDasslError(idid);
+            iret = checkError(idid, "daskr");
             if (iret == 1) // error
             {
-                Scierror(999, _("%s: ddaskr return with state %d.\n"), "daskr", ididtmp);
+                Scierror(999, _("%s: %s return with state %d.\n"), "daskr", "ddaskr", ididtmp);
             }
+        }
+        catch (ast::ScilabMessage &sm)
+        {
+            os << sm.GetErrorMessage();
+            bCatch = true;
+            iret = 1;
         }
         catch (ast::ScilabError &e)
         {
-            char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-            sciprint(_("%s: exception caught in '%s' subroutine.\n"), "daskr", "ddaskr");
-            Scierror(999, pstrMsg);
-            // set iret to 1 for free allocated memory
+            os << e.GetErrorMessage();
+            bCatch = true;
             iret = 1;
         }
 
@@ -1080,6 +1095,15 @@ types::Function::ReturnValue sci_daskr(types::typed_list &in, int _iRetCount, ty
             {
                 FREE(rtol);
             }
+
+            if (bCatch)
+            {
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "daskr", "ddaskr");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
+            }
+
             return types::Function::Error;
         }
 

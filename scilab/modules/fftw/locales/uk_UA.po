@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: uk\n"
 
 #, c-format
@@ -191,10 +191,10 @@ msgstr ""
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Модуль FFTW Scilab не встановлено.\n"
 
-msgid "You choose to install scilab with fftw module."
-msgstr "Вами вибрано встановлення scilab з модулем fftw."
+msgid "You chose to install Scilab with the fftw module."
+msgstr "Вами вибрано встановлення Scilab з модулем fftw."
 
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "Для роботи цього модуля потрібні: "
 
 msgid ""

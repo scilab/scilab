@@ -11,10 +11,6 @@
  *
  */
 
-//#define DEBUG_VLD
-#if defined(DEBUG_VLD)
-#include <vld.h>
-#endif
 
 #pragma comment(lib,"../../../../../bin/libintl.lib")
 
@@ -42,6 +38,13 @@ extern "C"
 #include "scilabWrite.hxx"
 
 #define INTERACTIVE     -1
+
+extern "C"
+{
+#ifdef ENABLE_MPI
+#include "initMPI.h"
+#endif
+}
 
 /*
 ** Usage
@@ -224,6 +227,11 @@ int main(int argc, char *argv[])
 //#endif
 {
     int iRet = 0;
+
+#ifdef ENABLE_MPI
+    initScilabMPI();
+#endif
+
     ScilabEngineInfo* pSEI = InitScilabEngineInfo();
 #ifdef WITHOUT_GUI
     /* Building Scilab-cli-bin. We won't ever had the gui nor the jvm */

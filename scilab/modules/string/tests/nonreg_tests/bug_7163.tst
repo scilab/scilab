@@ -7,8 +7,6 @@
 //
 // <-- CLI SHELL MODE -->
 //
-// <-- NOT FIXED -->
-//
 // <-- Non-regression test for bug 7163 -->
 //
 // <-- Bugzilla URL -->
@@ -23,4 +21,4 @@ endfunction
 
 txt = tree2code(macr2tree(foo));
 
-if or(txt<>["function [] = foo(r)";"r(:) = 1";"";"endfunction";""]) then pause; end
+if or(txt<>["function [] = foo(r)";"r(:) = 1";"endfunction";""]) then pause; end

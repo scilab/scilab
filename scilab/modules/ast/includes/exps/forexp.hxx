@@ -42,13 +42,16 @@ public:
     ** \li "print("WipeOut")" is the body
     */
     ForExp (const Location& location,
-            Exp& vardec, Exp& body)
+            Exp& vardec, SeqExp& body)
         : ControlExp (location)
     {
         vardec.setParent(this);
         body.setParent(this);
         _exps.push_back(&vardec);
-        _exps.push_back(&body);
+        _exps.push_back(body.getAs<Exp>());
+
+        body.setBreakable();
+        body.setContinuable();
     }
 
     /** \brief Destroy a For Expression node.
@@ -61,7 +64,7 @@ public:
 
     virtual ForExp* clone()
     {
-        ForExp* cloned = new ForExp(getLocation(), *getVardec().clone(), *getBody().clone());
+        ForExp* cloned = new ForExp(getLocation(), *getVardec().clone(), *getBody().clone()->getAs<SeqExp>());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -108,7 +111,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return FOREXP;
     }

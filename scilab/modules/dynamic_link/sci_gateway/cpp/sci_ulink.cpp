@@ -78,7 +78,7 @@ void unLink(int _iLib)
     ConfigVariable::DynamicLibraryStr* pStr = ConfigVariable::getDynamicLibrary(_iLib);
     if (pStr)
     {
-        DynLibHandle iLib = ConfigVariable::getDynamicLibrary(_iLib)->hLib;
+        DynLibHandle iLib = pStr->hLib;
         ConfigVariable::removeDynamicLibrary(_iLib);
         Sci_dlclose(iLib);
     }

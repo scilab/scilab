@@ -52,6 +52,11 @@ function xcos_skeletonlib = startModule()
   exec(pathconvert(root_tlbx+"/sci_gateway/loader_gateway.sce", %f));
   ilib_verbose(verboseMode);
 
+// Append Modelica functionnals
+// =============================================================================
+  global %MODELICA_USER_LIBS;
+  %MODELICA_USER_LIBS = [%MODELICA_USER_LIBS ; root_tlbx+"/macros"];
+
 // Load and add help chapter
 // =============================================================================
   if or(getscilabmode() == ["NW";"STD"]) then

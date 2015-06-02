@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -76,7 +76,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -103,7 +103,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
@@ -128,7 +128,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -155,7 +155,7 @@
     <ClCompile>
       <Optimization>MaxSpeed</Optimization>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <AdditionalIncludeDirectories>includes;../../libs/Eigen/includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;../../libs/libxml2;../../libs/intl;../core/includes;../fileio/includes;../localization/includes;../output_stream/includes;../string/includes;../api_scilab/includes;../threads/includes;../jvm/includes;../console/includes;../dynamic_link/includes;../xcos/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../ast/includes/parse;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;FUNC_MAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -339,6 +339,9 @@
     </ProjectReference>
     <ProjectReference Include="..\types\sci_gateway\cpp\types_gw.vcxproj">
       <Project>{c2e5f4f6-5ee7-4b36-bfac-4ac36bb41420}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\ui_data\src\c\ui_data.vcxproj">
+      <Project>{142d643b-a9ec-49db-9d48-a925a20f63b1}</Project>
     </ProjectReference>
     <ProjectReference Include="..\windows_tools\src\c\windows_tools.vcxproj">
       <Project>{9594ac02-20ee-4fbf-95b4-bfa5865ed7ca}</Project>

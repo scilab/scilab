@@ -14,7 +14,6 @@
 #include <vector>
 #include <iterator>
 #include <algorithm>
-#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
@@ -193,9 +192,8 @@ struct id
 
         ScicosID adaptee = adaptor.getAdaptee()->id();
 
-        std::string id;
         char* c_str = wide_string_to_UTF8(current->get(0));
-        id = std::string(c_str);
+        std::string id(c_str);
         FREE(c_str);
 
         controller.setObjectProperty(adaptee, LINK, LABEL, id);
@@ -315,7 +313,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
             return ret;
         }
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
-        ret.block = std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1;
+        ret.block = static_cast<int>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
 
         // To find the port index from its 'endID' ID, search through all the block's ports lists
         std::vector<ScicosID> sourceBlockPorts;
@@ -344,7 +342,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
                 }
             }
         }
-        ret.port = std::distance(sourceBlockPorts.begin(), found) + 1;
+        ret.port = static_cast<int>(std::distance(sourceBlockPorts.begin(), found) + 1);
 
         bool isImplicit;
         controller.getObjectProperty(endID, PORT, IMPLICIT, isImplicit);
@@ -732,8 +730,8 @@ struct from
         link_t from_content {0, 0, Start};
         if (current->getSize() >= 2)
         {
-            from_content.block = current->get(0);
-            from_content.port = current->get(1);
+            from_content.block = static_cast<int>(current->get(0));
+            from_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an output (set to 0)
 
             if (current->getSize() == 3)
@@ -785,8 +783,8 @@ struct to
         link_t to_content {0, 0, End};
         if (current->getSize() >= 2)
         {
-            to_content.block = current->get(0);
-            to_content.port = current->get(1);
+            to_content.block = static_cast<int>(current->get(0));
+            to_content.port = static_cast<int>(current->get(1));
             // By default, 'kind' designates an input (set to 1)
 
             if (current->getSize() == 3)
@@ -804,8 +802,8 @@ struct to
 
 template<> property<LinkAdapter>::props_t property<LinkAdapter>::fields = property<LinkAdapter>::props_t();
 
-LinkAdapter::LinkAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Link> adaptee) :
-    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(adaptee),
+LinkAdapter::LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee) :
+    BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>(c, adaptee),
     m_from(),
     m_to()
 {

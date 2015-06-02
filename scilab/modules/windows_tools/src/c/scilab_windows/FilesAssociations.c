@@ -25,7 +25,7 @@
 #include "sci_malloc.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "MutexClosingScilab.h"
 #include "with_module.h"
 #include "FileExist.h"

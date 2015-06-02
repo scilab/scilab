@@ -61,6 +61,11 @@ struct Library
         }
     }
 
+    void put(ScopedLibrary* pSL)
+    {
+        stack.push(pSL);
+    }
+
     types::MacroFile* get(const Symbol& _keyMacro) const
     {
         if (empty() == false)
@@ -68,17 +73,17 @@ struct Library
             return top()->getMacroFile(_keyMacro);
         }
 
-        return NULL;
+        return nullptr;
     }
 
-    std::list<std::wstring>* getMacrosName()
+    int getMacrosName(std::list<std::wstring>& lst)
     {
         if (empty() == false)
         {
-            return top()->m_pLib->getMacrosName();
+            top()->m_pLib->getMacrosName(lst);
         }
 
-        return new std::list<std::wstring>();
+        return static_cast<int>(lst.size());
     }
 
     bool empty() const
@@ -94,6 +99,11 @@ struct Library
     void pop()
     {
         stack.pop();
+    }
+
+    inline Symbol getSymbol() const
+    {
+        return name;
     }
 
 private :
@@ -122,10 +132,64 @@ struct Libraries
         return it->second;
     }
 
+    int getLevel(const Symbol& _key) const
+    {
+        MapLibs::const_iterator it = libs.find(_key);
+        if (it != libs.end())
+        {
+            if (!it->second->empty())
+            {
+                return it->second->top()->m_iLevel;
+            }
+        }
+        else
+        {
+            for (auto i = libs.rbegin(), end = libs.rend(); i != end; ++i)
+            {
+                Library * lib = i->second;
+                if (!lib->empty())
+                {
+                    types::MacroFile * pMF = lib->get(_key);
+                    if (pMF)
+                    {
+                        return lib->top()->m_iLevel;
+                    }
+                }
+            }
+        }
+
+        return -1;
+    }
+
     void put(const Symbol& _keyLib, types::Library* _pLib, int _iLevel)
     {
         Library* lib = getOrCreate(_keyLib);
         lib->put(_pLib, _iLevel);
+    }
+
+    bool putInPreviousScope(const Symbol& _keyLib, types::Library* _pLib, int _iLevel)
+    {
+        Library* lib = getOrCreate(_keyLib);
+
+        if (lib->empty())
+        {
+            lib->put(_pLib, _iLevel);
+        }
+        else if (lib->top()->m_iLevel > _iLevel)
+        {
+            ScopedLibrary* pLib = lib->top();
+            lib->pop();
+            putInPreviousScope(_keyLib, _pLib, _iLevel);
+            //decresef ref before, increase it in put
+            //pVar->m_pIT->DecreaseRef();
+            lib->put(pLib->m_pLib, pLib->m_iLevel);
+        }
+        else
+        {
+            lib->put(_pLib, _iLevel);
+        }
+
+        return true;
     }
 
     types::InternalType* get(const Symbol& _key, int _iLevel)
@@ -187,50 +251,59 @@ struct Libraries
         return false;
     }
 
-    std::list<std::wstring>* getMacrosName()
+    int getMacrosName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* names = new std::list<std::wstring>();
         MapLibs::iterator it = libs.begin();
         MapLibs::iterator itEnd = libs.end();
-        for (; it != itEnd ; ++it)
+        for (auto it : libs)
         {
-            std::list<std::wstring>* temp = it->second->getMacrosName();
-            names->insert(names->end(), temp->begin(), temp->end());
-            delete temp;
+            it.second->getMacrosName(lst);
         }
 
-        return names;
+        return static_cast<int>(lst.size());
     }
 
-    std::list<std::wstring>* getVarsName()
+    int getVarsName(std::list<std::wstring>& lst)
     {
-        std::list<std::wstring>* plOut = new std::list<std::wstring>();
-        for (auto it = libs.begin(), itEnd = libs.end(); it != itEnd; ++it)
+        for (auto it : libs)
         {
-            if (it->second->empty() == false)
+            if (it.second->empty() == false)
             {
-                plOut->push_back(it->first.getName().c_str());
+                lst.push_back(it.first.getName().c_str());
             }
         }
 
-        return plOut;
+        return static_cast<int>(lst.size());
+    }
+
+    int getVarsToVariableBrowser(std::list<Library*>& lst)
+    {
+        for (auto lib : libs)
+        {
+            if (lib.second->empty() == false)
+            {
+                lst.push_back(lib.second);
+            }
+        }
+
+        return static_cast<int>(lst.size());
     }
 
     void clearAll()
     {
-        for (MapLibs::iterator it = libs.begin(); it != libs.end() ; ++it)
+        for (auto lib : libs)
         {
-            while (!it->second->empty())
+            while (!lib.second->empty())
             {
-                ScopedLibrary * pSL = it->second->top();
+                ScopedLibrary * pSL = lib.second->top();
                 types::InternalType * pIT = pSL->m_pLib;
                 pIT->DecreaseRef();
                 pIT->killMe();
-                it->second->pop();
+                lib.second->pop();
                 delete pSL;
             }
 
-            delete it->second;
+            delete lib.second;
         }
     }
 
@@ -257,6 +330,27 @@ struct Libraries
         return true;
     }
 
+    int whereis(std::list<std::wstring>& lst, const Symbol& _key)
+    {
+        for (auto lib : libs)
+        {
+            if (lib.second->get(_key) != NULL)
+            {
+                lst.push_back(lib.first.getName());
+            }
+        }
+        return static_cast<int>(lst.size());
+    }
+
+    int librarieslist(std::list<std::wstring>& lst)
+    {
+        for (auto lib : libs)
+        {
+            lst.push_back(lib.first.getName());
+        }
+
+        return static_cast<int>(lst.size());
+    }
 
 private:
     MapLibs libs;

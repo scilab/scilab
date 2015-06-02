@@ -24,7 +24,7 @@ extern "C"
 #include "localization.h"
 #include "charEncoding.h"
 #include "setgetlanguage.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "configvariable_interface.h"
 #ifdef _MSC_VER
 #include "LanguagePreferences_Windows.h"

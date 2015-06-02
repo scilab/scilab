@@ -51,7 +51,8 @@ types::Function::ReturnValue sci_xget(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xget", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%_xget", in, _iRetCount, out, &exec);
     }
 
     if (in.size() > 2)

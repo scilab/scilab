@@ -30,7 +30,7 @@ class EXTERN_AST DummyVisitor : public ConstVisitor
 protected:
     DummyVisitor() {}
 
-    virtual void visit (const MatrixExp &e)
+    virtual void visit(const MatrixExp &e)
     {
         exps_t lines = e.getLines();
         for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
@@ -135,9 +135,9 @@ protected:
         e.getName().accept (*this);
 
         exps_t args = e.getArgs();
-        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+        for (auto arg : args)
         {
-            (*it)->accept(*this);
+            arg->accept(*this);
         }
     }
 
@@ -146,9 +146,9 @@ protected:
         e.getName().accept (*this);
 
         exps_t args = e.getArgs();
-        for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+        for (auto arg : args)
         {
-            (*it)->accept (*this);
+            arg->accept(*this);
         }
     }
 
@@ -202,12 +202,11 @@ protected:
     {
         e.getSelect()->accept(*this);
 
-        exps_t* cases = e.getCases();
-        for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
+        exps_t cases = e.getCases();
+        for (auto exp : cases)
         {
-            (*it)->accept(*this);
+            exp->accept(*this);
         }
-        delete cases;
 
         if (e.getDefaultCase() != NULL)
         {
@@ -295,6 +294,22 @@ protected:
     {
         e.getOriginal()->accept(*this);
     }
+
+    virtual void visit(const IntSelectExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    virtual void visit(const StringSelectExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
+    virtual void visit(const MemfillExp &e)
+    {
+        e.getOriginal()->accept(*this);
+    }
+
 };
 }
 

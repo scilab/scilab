@@ -13,6 +13,8 @@
 #include <hdf5.h>
 #include "internal.hxx"
 #include "types.hxx"
+#include "struct.hxx"
+#include "cell.hxx"
 
 extern "C"
 {
@@ -31,7 +33,7 @@ extern "C"
 #include "h5_readDataFromFile.h"
 #include "h5_attributeConstants.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "configvariable_interface.h"
 #include "splitpath.h"
 #include "scicurdir.h"
@@ -43,6 +45,8 @@ static bool isVarExist(int* pvCtx, int _iFile, char* _pstVarName);
 
 static bool export_data(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType);
+static bool export_struct(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType);
+static bool export_cell(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType);
 static bool export_hypermat(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_double(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
 static bool export_poly(int* pvCtx, int _iH5File, int *_piVar, char* _pstName);
@@ -351,6 +355,14 @@ static bool export_data(int* pvCtx, int _iH5File, int* _piVar, char* _pstName)
             case sci_tlist :
             case sci_mlist :
             {
+                if (pIT->isStruct())
+                {
+                    return export_struct(pvCtx, _iH5File, _piVar, _pstName, iType);
+                }
+                if (pIT->isCell())
+                {
+                    return export_cell(pvCtx, _iH5File, _piVar, _pstName, iType);
+                }
                 bReturn = export_list(pvCtx, _iH5File, _piVar, _pstName, iType);
                 break;
             }
@@ -453,6 +465,247 @@ static bool export_list(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, i
     //close list
     return true;
 }
+
+static bool export_struct(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType)
+{
+    char STR[] = "st";
+    char DIMS[] = "dims";
+
+    int iItemNumber = 0;
+
+    types::Struct* pStruct = (types::Struct*)_piVar;
+    types::SingleStruct** ppSStruct = pStruct->get();
+
+    types::String* pStr = pStruct->getFieldNames();
+    // for empty struct, getFieldNames return NULL
+    if (pStr)
+    {
+        iItemNumber = pStr->getSize();
+    }
+
+    char** strStruct = new char*[iItemNumber + 2];
+    strStruct[0] = STR;
+    strStruct[1] = DIMS;
+
+    for (int i = 0; i < iItemNumber; ++i)
+    {
+        strStruct[i + 2] = wide_string_to_UTF8(pStr->get(i));
+    }
+
+    //int iVarType = sci_mlist;
+    int iRet = 0;
+    bool bReturn = false;
+
+    //create groupe name
+    char* pstGroupName = createGroupName(_pstName);
+    iLevel++;
+
+    //open list
+    void *pvList = openList(_iH5File, pstGroupName, 2 + iItemNumber);
+
+    //export string ["st" "dims" "field name"]
+
+    int piStrDims[2] = { 1, iItemNumber + 2 };
+
+    char* pstPathName = createPathName(pstGroupName, 0);
+    iRet = writeStringMatrix(_iH5File, pstPathName, 2, piStrDims, strStruct);
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 0, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // export size
+    int piSizeDims[2] = { 1, 0 };
+    piSizeDims[1] = pStruct->getDims();
+    pstPathName = createPathName(pstGroupName, 1);
+    iRet = writeInteger32Matrix(_iH5File, pstPathName, 2, piSizeDims, pStruct->getDimsArray());
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 1, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    int *piNewVar = NULL;
+    if (pStruct->getSize() == 1)
+    {
+        for (int i = 0; i < iItemNumber; ++i)
+        {
+
+            char* pstPathName = createPathName(pstGroupName, i + 2);
+
+            piNewVar = (int*)ppSStruct[0]->get(pStr->get(i));
+
+
+            if (piNewVar == NULL)
+            {
+                //undefined item
+                bReturn = export_undefined(pvCtx, _iH5File, piNewVar, pstPathName);
+            }
+            else
+            {
+                bReturn = export_data(pvCtx, _iH5File, piNewVar, pstPathName);
+            }
+
+            iRet = addItemInList(_iH5File, pvList, i + 2, pstPathName);
+            FREE(pstPathName);
+            if (bReturn == false || iRet)
+            {
+                return false;
+            }
+        }
+    }
+    else if (pStruct->getSize() > 1) //
+    {
+        types::List* pListe = new types::List();
+
+        for (int i = 0; i < iItemNumber; ++i)
+        {
+
+            char* pstPathName = createPathName(pstGroupName, i + 2);
+
+            for (int iReadData = 0; iReadData < pStruct->getSize(); ++iReadData)
+            {
+                pListe->set(iReadData, ppSStruct[iReadData]->get(pStr->get(i)));
+            }
+            piNewVar = (int*)pListe;
+
+
+            if (piNewVar == NULL)
+            {
+                //undefined item
+                bReturn = export_undefined(pvCtx, _iH5File, piNewVar, pstPathName);
+            }
+            else
+            {
+                bReturn = export_data(pvCtx, _iH5File, piNewVar, pstPathName);
+            }
+
+            iRet = addItemInList(_iH5File, pvList, i + 2, pstPathName);
+            FREE(pstPathName);
+            if (bReturn == false || iRet)
+            {
+                return false;
+            }
+        }
+
+        delete pListe;
+    }
+
+    iLevel--;
+    closeList(_iH5File, pvList, _pstName, 2 + iItemNumber, _iVarType);
+    FREE(pstGroupName);
+    //close list
+    return true;
+}
+
+static bool export_cell(int* pvCtx, int _iH5File, int *_piVar, char* _pstName, int _iVarType)
+{
+    char CELL[] = "ce";
+    char DIMS[] = "dims";
+    char ENTRIES[] = "entries";
+
+    char* strCell[] = { CELL, DIMS, ENTRIES };
+
+    types::Cell* pCell = (types::Cell*)_piVar;
+
+    //int iVarType = sci_mlist;
+    int iRet = 0;
+    bool bReturn = false;
+
+    //create groupe name
+    char* pstGroupName = createGroupName(_pstName);
+    iLevel++;
+
+    //open list
+    void *pvList = openList(_iH5File, pstGroupName, 3);
+
+    //export string ["cell" "dims" "entries"]
+
+    int piStrDims[2] = { 1, 3 };
+
+    char* pstPathName = createPathName(pstGroupName, 0);
+    iRet = writeStringMatrix(_iH5File, pstPathName, 2, piStrDims, strCell);
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 0, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    // export size
+    int piSizeDims[2] = { 1, 0 };
+    piSizeDims[1] = pCell->getDims();
+    pstPathName = createPathName(pstGroupName, 1);
+    iRet = writeInteger32Matrix(_iH5File, pstPathName, 2, piSizeDims, pCell->getDimsArray());
+    if (iRet)
+    {
+        return false;
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 1, pstPathName);
+    FREE(pstPathName);
+    if (iRet)
+    {
+        return false;
+    }
+
+    int *piNewVar = NULL;
+
+    types::List* pListe = new types::List();
+
+    pstPathName = createPathName(pstGroupName, 2);
+
+    for (int iReadData = 0; iReadData < pCell->getSize(); ++iReadData)
+    {
+        pListe->set(iReadData, pCell->get(iReadData));
+    }
+
+    piNewVar = (int*)pListe;
+
+    if (piNewVar == NULL)
+    {
+        //undefined item
+        bReturn = export_undefined(pvCtx, _iH5File, piNewVar, pstPathName);
+    }
+    else
+    {
+        bReturn = export_data(pvCtx, _iH5File, piNewVar, pstPathName);
+    }
+
+    iRet = addItemInList(_iH5File, pvList, 2, pstPathName);
+    FREE(pstPathName);
+    if (bReturn == false || iRet)
+    {
+        return false;
+    }
+
+    delete pListe;
+
+    iLevel--;
+    closeList(_iH5File, pvList, _pstName, 3, _iVarType);
+    FREE(pstGroupName);
+    //close list
+    return true;
+}
+
 
 static bool export_hypermat(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
 {
@@ -818,23 +1071,23 @@ static bool export_ints(int* pvCtx, int _iH5File, int *_piVar, char* _pstName)
             iRet = writeUnsignedInteger32Matrix(_iH5File, _pstName, 2, piDims, (unsigned int*)piData);
             break;
         case SCI_INT64 :
-        //sciErr = getMatrixOfInteger64(_piVar, &piDims[0], &piDims[1], (long long**)&piData);
-        //if(sciErr.iErr)
-        //{
-        //	printError(&sciErr, 0);
-        //	return false;
-        //}
-        //iRet = writeInteger64Matrix(_iH5File, _pstName, 2, piDims, (long long*)piData);
-        //break;
+            //sciErr = getMatrixOfInteger64(_piVar, &piDims[0], &piDims[1], (long long**)&piData);
+            //if(sciErr.iErr)
+            //{
+            //	printError(&sciErr, 0);
+            //	return false;
+            //}
+            //iRet = writeInteger64Matrix(_iH5File, _pstName, 2, piDims, (long long*)piData);
+            //break;
         case SCI_UINT64 :
-        //sciErr = getMatrixOfUnsignedInteger64(_piVar, &piDims[0], &piDims[1], (unsigned long long**)&piData);
-        //if(sciErr.iErr)
-        //{
-        //	printError(&sciErr, 0);
-        //	return false;
-        //}
-        //iRet = writeUnsignedInteger64Matrix(_iH5File, _pstName, 2, piDims, (unsigned long long*)piData);
-        //break;
+            //sciErr = getMatrixOfUnsignedInteger64(_piVar, &piDims[0], &piDims[1], (unsigned long long**)&piData);
+            //if(sciErr.iErr)
+            //{
+            //	printError(&sciErr, 0);
+            //	return false;
+            //}
+            //iRet = writeUnsignedInteger64Matrix(_iH5File, _pstName, 2, piDims, (unsigned long long*)piData);
+            //break;
         default :
             return 1;
             break;

@@ -13,11 +13,12 @@
 #ifndef BASEADAPTER_HXX_
 #define BASEADAPTER_HXX_
 
+#include <cstring>
+
 #include <algorithm>
 #include <string>
 #include <vector>
 #include <sstream>
-#include <memory>
 
 #include "double.hxx"
 #include "user.hxx"
@@ -25,7 +26,11 @@
 #include "tlist.hxx"
 #include "mlist.hxx"
 #include "string.hxx"
+#include "callable.hxx"
+#include "overload.hxx"
+#include "scilabexception.hxx"
 
+#include "utilities.hxx"
 #include "Controller.hxx"
 #include "Adapters.hxx"
 #include "model/BaseObject.hxx"
@@ -90,7 +95,6 @@ public:
     }
 };
 
-
 /**
  * Base definition of the adapter pattern, implement the get / set dispatch.
  *
@@ -101,17 +105,18 @@ class BaseAdapter : public types::UserType
 {
 
 public:
-    BaseAdapter(std::shared_ptr<Adaptee> adaptee) : m_adaptee(adaptee) {};
-    BaseAdapter(const BaseAdapter& adapter) : m_adaptee(0)
+    BaseAdapter() : m_adaptee(nullptr) {};
+    BaseAdapter(const Controller& /*c*/, Adaptee* adaptee) : m_adaptee(adaptee) {}
+    BaseAdapter(const BaseAdapter& adapter) : BaseAdapter(adapter, true) {}
+    BaseAdapter(const BaseAdapter& adapter, bool cloneChildren) : m_adaptee(nullptr)
     {
         Controller controller;
-        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id());
-        m_adaptee = std::static_pointer_cast<Adaptee>(controller.getObject(id));
+        ScicosID id = controller.cloneObject(adapter.getAdaptee()->id(), cloneChildren);
+        m_adaptee = controller.getObject< Adaptee >(id);
     };
     ~BaseAdapter()
     {
-        // do not use adaptee.unique() as adaptee has not been destroyed yet
-        if (m_adaptee.use_count() == 2)
+        if (m_adaptee != nullptr)
         {
             Controller controller;
             controller.deleteObject(m_adaptee->id());
@@ -173,7 +178,6 @@ public:
             tlist->append(it->get(*static_cast<Adaptor*>(this), controller));
         }
 
-        tlist->IncreaseRef();
         return tlist;
     }
 
@@ -228,7 +232,7 @@ public:
     /**
      * @return the Adaptee
      */
-    std::shared_ptr<Adaptee> getAdaptee() const
+    Adaptee* getAdaptee() const
     {
         return m_adaptee;
     }
@@ -303,7 +307,7 @@ private:
                     std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
 
                     // Allocate the return
-                    types::String* pOut = new types::String(1, properties.size());
+                    types::String* pOut = new types::String(1, static_cast<int>(properties.size()));
 
                     int i = 0;
                     for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++i)
@@ -375,8 +379,69 @@ private:
         return true;
     }
 
+    bool isInvokable() const
+    {
+        return true;
+    }
+
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
+    {
+        if (in.size() == 0)
+        {
+            out.push_back(this);
+            return true;
+        }
+        else if (in.size() == 1)
+        {
+            types::InternalType* _out = nullptr;
+            types::InternalType*  arg = in[0];
+            if (arg->isString())
+            {
+                types::String* pString = arg->getAs<types::String>();
+                for (int i = 0; i < pString->getSize(); ++i)
+                {
+                    if (!extract(pString->get(i), _out))
+                    {
+                        return false;
+                    }
+                    out.push_back(_out);
+                }
+            }
+
+            if (!out.empty())
+            {
+                return true;
+            }
+        }
+
+        types::Callable::ReturnValue ret;
+        // Overload of extraction needs the BaseAdapter from where we extract
+        this->IncreaseRef();
+        in.push_back(this);
+
+        try
+        {
+            ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
+        }
+        catch (ast::ScilabError & /*se*/)
+        {
+            ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
+        }
+
+        // Remove this from "in" to keep "in" unchanged.
+        this->DecreaseRef();
+        in.pop_back();
+
+        if (ret == types::Callable::Error)
+        {
+            throw ast::ScilabError();
+        }
+
+        return true;
+    }
+
 private:
-    std::shared_ptr<Adaptee> m_adaptee;
+    Adaptee* m_adaptee;
 };
 
 

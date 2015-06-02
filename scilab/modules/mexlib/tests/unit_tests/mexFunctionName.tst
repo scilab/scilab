@@ -4,23 +4,22 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
+//
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
-// <-- NOT FIXED -->
+//
 // ============================================================================
 // Unitary tests for mexFunctionName mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    mexPrintf(""%s"", mexFunctionName());';
-       '}'],'mexfunctionName.c');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mexPrintf(""%s\n"", mexFunctionName());";
+"}"],"mexfunctionName.c");
 
-ilib_mex_build('libmex',['func','mexfunctionName','cmex'], 'mexfunctionName.c',[],'Makelib','','','');
-exec('loader.sce');
+ilib_mex_build("libmextest",["func","mexfunctionName","cmex"], "mexfunctionName.c",[]);
+exec("loader.sce");
 
 func();

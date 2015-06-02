@@ -28,24 +28,24 @@ Polynom::Polynom()
 #endif
 }
 
-Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols)
+Polynom::Polynom(wstring& _szVarName, int _iRows, int _iCols)
 {
     int piDims[2]   = {_iRows, _iCols};
     createPoly(_szVarName, 2, piDims, NULL);
 }
 
-Polynom::Polynom(wstring _szVarName, int _iRows, int _iCols, const int *_piRank)
+Polynom::Polynom(wstring& _szVarName, int _iRows, int _iCols, const int *_piRank)
 {
     int piDims[2]   = {_iRows, _iCols};
     createPoly(_szVarName, 2, piDims, _piRank);
 }
 
-Polynom::Polynom(std::wstring _szVarName, int _iDims, int* _piDims)
+Polynom::Polynom(wstring& _szVarName, int _iDims, int* _piDims)
 {
     createPoly(_szVarName, _iDims, _piDims, NULL);
 }
 
-Polynom::Polynom(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank)
+Polynom::Polynom(wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
 {
     createPoly(_szVarName, _iDims, _piDims, _piRank);
 }
@@ -61,7 +61,7 @@ Polynom::~Polynom()
 #endif
 }
 
-void Polynom::createPoly(std::wstring _szVarName, int _iDims, int* _piDims, const int *_piRank)
+void Polynom::createPoly(wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
 {
     m_szVarName = _szVarName;
     SinglePoly** pPoly = NULL;
@@ -187,7 +187,7 @@ void Polynom::whoAmI(void)
     std::cout << "types::SinglePoly";
 }
 
-wstring Polynom::getVariableName()
+wstring& Polynom::getVariableName()
 {
     return m_szVarName;
 }
@@ -429,6 +429,7 @@ bool Polynom::subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iD
     list<wstring>::const_iterator it_Coef;
     list<wstring> listExpR, listCoefR, listExpI, listCoefI;
 
+
     if (isScalar())
     {
         if (isComplex())
@@ -521,13 +522,14 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
 
     wstring szExp, szCoef;
 
-    int *piMaxLen = new int[getCols()];
-    memset(piMaxLen, 0x00, sizeof(int) * getCols());
+
+    int *piMaxLen = new int[abs(getCols())];
+    memset(piMaxLen, 0x00, sizeof(int) * abs(getCols()));
 
     //find the largest row for each col
-    for (int iCols1 = 0 ; iCols1 < getCols() ; iCols1++)
+    for (int iCols1 = 0 ; iCols1 < abs(getCols()) ; iCols1++)
     {
-        for (int iRows1 = 0 ; iRows1 < getRows() ; iRows1++)
+        for (int iRows1 = 0 ; iRows1 < abs(getRows()) ; iRows1++)
         {
             int iLength = 0;
             _piDims[0] = iRows1;
@@ -571,7 +573,7 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
             //if the max length exceeded
             wostringstream ostemp;
             bWordWarp = true;
-            for (int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+            for (int iRows2 = 0 ; iRows2 < abs(getRows()) ; iRows2++)
             {
                 bool bMultiLine = false;
                 for (int iCols2 = iLastCol ; iCols2 < iCols1; iCols2++)
@@ -596,7 +598,6 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
                             osExp << *it_Exp;
                             addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Exp).size()));
                             osExp << endl;
-
                             osExp << *it_Coef;
                             addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>((*it_Coef).size()));
                             osExp << endl;
@@ -605,6 +606,7 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
                     }
                     else
                     {
+
                         osExp << listExpR.front();
                         addSpaces(&osExp, piMaxLen[iCols2] - static_cast<int>(listExpR.front().size()));
                         osCoef << listCoefR.front();
@@ -646,9 +648,9 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
     }
 
     //print the end
-    for (int iRows2 = 0 ; iRows2 < getRows() ; iRows2++)
+    for (int iRows2 = 0 ; iRows2 < abs(getRows()) ; iRows2++)
     {
-        for (int iCols2 = iLastCol ; iCols2 < getCols() ; iCols2++)
+        for (int iCols2 = iLastCol ; iCols2 < abs(getCols()) ; iCols2++)
         {
             _piDims[0] = iRows2;
             _piDims[1] = iCols2;
@@ -697,6 +699,10 @@ wstring Polynom::getMatrixString(int* _piDims, int /*_iDims*/, bool _bComplex)
             osExp << endl;
         }
         osCoef << endl;
+        if (isIdentity())
+        {
+            ostr << L"eye *" << endl << endl;
+        }
         ostr << osExp.str();
         ostr << osCoef.str() << endl;
         osExp.str(L"");
@@ -854,6 +860,7 @@ Double* Polynom::extractCoef(int _iRank)
 
     return pdbl;
 }
+
 bool Polynom::insertCoef(int _iRank, Double* _pCoef)
 {
     double *pReal = _pCoef->getReal();
@@ -903,11 +910,6 @@ bool Polynom::operator==(const InternalType& it)
         return false;
     }
 
-    if (pM->isComplex() != isComplex())
-    {
-        return false;
-    }
-
     for (int i = 0 ; i < getSize() ; i++)
     {
         SinglePoly* p1 = get(i);
@@ -947,9 +949,9 @@ SinglePoly* Polynom::copyValue(SinglePoly* _pData)
 
 void Polynom::deleteAll()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0 ; i < m_iSizeMax ; i++)
     {
-        m_pRealData[i]->killMe();
+        delete m_pRealData[i];
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
@@ -975,5 +977,22 @@ void Polynom::deleteData(SinglePoly* data)
         data->killMe();
     }
 }
+
+//overload to check variable name and call arrayof<>::insert after
+InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
+{
+    Polynom* p = _pSource->getAs<Polynom>();
+    if (p->getVariableName() != getVariableName())
+    {
+        char szError[512];
+        os_sprintf(szError, _("Input arguments should have the same formal variable name.\n"));
+        wchar_t* pwstError = to_wide_string(szError);
+        std::wstring wstError(pwstError);
+        FREE(pwstError);
+        throw ast::ScilabError(wstError, 999, *new Location());
+    }
+    return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource);
+}
+
 }
 

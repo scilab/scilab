@@ -22,7 +22,7 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "stricmp.h"
+#include "os_string.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
@@ -126,10 +126,50 @@ int sci_datatip_set_orient(char *fname, void* pvApiCtx)
                             return 0;
                         }
 
-                        compVar = stricmp(pstData, "automatic");
+                        compVar = stricmp(pstData, "left");
                         if (compVar == 0)
                         {
                             DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 4);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "right");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 5);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "upper");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 6);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "lower");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 7);
+                            freeAllocatedSingleString(pstData);
+                            AssignOutputVariable(pvApiCtx, 1) = 0;
+                            ReturnArguments(pvApiCtx);
+                            return 0;
+                        }
+
+                        compVar = stricmp(pstData, "automatic");
+                        if (compVar == 0)
+                        {
+                            DatatipOrientation::datatipSetOrientation(getScilabJavaVM(), iDatatipUID, (char*)pstData, 8);
                             freeAllocatedSingleString(pstData);
                             AssignOutputVariable(pvApiCtx, 1) = 0;
                             ReturnArguments(pvApiCtx);

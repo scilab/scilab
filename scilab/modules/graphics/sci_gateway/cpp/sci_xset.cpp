@@ -57,7 +57,8 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 0)
     {
-        return Overload::call(L"%_xset", in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%_xset", in, _iRetCount, out, &exec);
     }
 
     if (in.size() > 6)
@@ -414,6 +415,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             int iID = (int)in[1]->getAs<types::Double>()->get(0);
             int iFigureUID = getFigureFromIndex(iID);
             int iAxesUID = 0;
+            int* piAxesUID = &iAxesUID;
 
             if (iFigureUID == 0)
             {
@@ -422,7 +424,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             }
 
             setCurrentFigure(iFigureUID);
-            getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_string,  (void**)&iAxesUID);
+            getGraphicObjectProperty(iFigureUID, __GO_SELECTED_CHILD__, jni_int, (void**)&piAxesUID);
             setCurrentSubWin(iAxesUID);
         }
         break;
@@ -511,7 +513,7 @@ types::Function::ReturnValue sci_xset(types::typed_list &in, int _iRetCount, typ
             getOrCreateDefaultSubwin();
 
             figurePosition[0] = (int)in[1]->getAs<types::Double>()->get(0);
-            figurePosition[1] = (int)in[2]->getAs<types::Double>()->get(0);
+            figurePosition[1] = (int)in[1]->getAs<types::Double>()->get(1);
             setGraphicObjectProperty(getCurrentFigure(), __GO_POSITION__, figurePosition, jni_int_vector, 2);
         }
         break;

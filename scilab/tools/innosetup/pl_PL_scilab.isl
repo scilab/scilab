@@ -17,9 +17,9 @@ pl_PL.LANGUAGE =pl_PL
 
 pl_PL.MsgBoxJRENotFound =Java Runtime Environment not detected.
 pl_PL.MsgBoxJREURL =Please download & Install JRE at http://www.java.com/en/download/
-pl_PL.MsgBoxJREReinstall = Reinstall Scilab after your JRE update.
-pl_PL.MsgBoxSSERequired = CPU SSE2 instructions are required for Scilab to run correctly.
-pl_PL.MsgBoxX64Ready = For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
+pl_PL.MsgBoxJREReinstall =Reinstall Scilab after your JRE update.
+pl_PL.MsgBoxSSERequired =CPU SSE2 instructions are required for Scilab to run correctly.
+pl_PL.MsgBoxX64Ready =For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
 
 pl_PL.MsgBoxJavaDetection1 =Java is not installed on this computer and this program needs it.
 pl_PL.MsgBoxJavaDetection2 =Please choose to install Java Runtime:
@@ -28,10 +28,6 @@ pl_PL.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but
 pl_PL.MsgBoxDevToolsRequired2 =Please install development_tools module.
 pl_PL.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
 pl_PL.MsgBoxTclsciRequired2 =Please install tclsci module.
-pl_PL.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
-pl_PL.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
-pl_PL.MsgBoxFftw3 =Do you want to open a web page about this add-on ?
-pl_PL.MsgBoxFftw4 =Can not open web page.
 pl_PL.MsgBoxWinVer =Windows 2000 is required.
 pl_PL.MsgBoxScicosRequired1 =You choose to install Xcos module but Scicos module is not selected.
 pl_PL.MsgBoxScicosRequired2 =Please also install Scicos module.
@@ -66,21 +62,21 @@ pl_PL.DescriptionTclTK =TCL/TK in Scilab
 pl_PL.DescriptionSpreadsheet =Spreadsheet Toolbox
 pl_PL.DescriptionJVM =Java Runtime
 pl_PL.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
-pl_PL.DescriptionFftwModule = FFTW interface for Scilab
-pl_PL.DescriptionFftwMKLDownload = Download FFTW library optimized by Intel Math Kernel Library
-pl_PL.DescriptionRefFftwLibrary = Reference FFTW library
+pl_PL.DescriptionFftwModule =FFTW interface for Scilab
+pl_PL.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
+pl_PL.DescriptionRefFftwLibrary =Reference FFTW library
 pl_PL.DescriptionParametersTlbx =Parameters Toolbox
 pl_PL.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
 pl_PL.DescriptionSimulAnnealingTlbx =Simulated Annealing Toolbox
 pl_PL.DescriptionDevTools =Development Tools
 pl_PL.DescriptionTests =Tests for Scilab
-pl_PL.DescriptionTlbxSkeleton =A toolbox skeleton (to extend scilab)
-pl_PL.DescriptionComConnector = COM connector
-pl_PL.DescriptionSciNotes = SciNotes: Editor for Scilab
-pl_PL.DescriptionXcos = XCos 1.1
-pl_PL.DescriptionParallel = Parallel Computing with Scilab
-pl_PL.DescriptionModulesManager = Tools for management of extern modules 
-pl_PL.DescriptionModuleJVM = JVM Module
+pl_PL.DescriptionTlbxSkeleton =A toolbox skeleton (to extend Scilab)
+pl_PL.DescriptionComConnector =COM connector
+pl_PL.DescriptionSciNotes =SciNotes: Editor for Scilab
+pl_PL.DescriptionXcos =Xcos
+pl_PL.DescriptionParallel =Parallel Computing with Scilab
+pl_PL.DescriptionModulesManager =Tools for management of extern modules
+pl_PL.DescriptionModuleJVM =JVM Module
 ;
 pl_PL.ConsoleIconName =Scilab Console
 ;
@@ -102,15 +98,15 @@ pl_PL.DescriptionCreateDesktopIcon =Create a &desktop icon
 ;
 pl_PL.DescriptionQuickLaunch =Create a shortcut in Quick Launch Bar
 ;
-pl_PL.DescriptionAssociateSceSci =Associate *.sce,*.sci files with scilab
+pl_PL.DescriptionAssociateSceSci =Associate *.sce,*.sci files with Scilab
 ;
-pl_PL.DescriptionAssociateTstDem =Associate *.tst files with scilab
+pl_PL.DescriptionAssociateTstDem =Associate *.tst files with Scilab
 ;
-pl_PL.DescriptionAssociateBinSav =Associate *.bin, *.sav files with scilab
+pl_PL.DescriptionAssociateBinSav =Associate *.bin, *.sav files with Scilab
 ;
-pl_PL.DescriptionAssociateGraph =Associate *.graph *.graphb files with scilab
+pl_PL.DescriptionAssociateGraph =Associate *.graph *.graphb files with Scilab
 ;
-pl_PL.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scilab
+pl_PL.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with Scilab
 ;
 pl_PL.DescriptionDefaultInstall =Installation (Default)
 pl_PL.DescriptionFullInstall =Full installation
@@ -120,18 +116,10 @@ pl_PL.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 pl_PL.DescriptionCPUOptimization =CPU Optimization for Scilab
 pl_PL.DescriptionATLASLibrary =Atlas Library for Scilab
 pl_PL.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-pl_PL.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
-;
-pl_PL.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
-pl_PL.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
-;
-pl_PL.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
+pl_PL.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
 ;
 pl_PL.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 pl_PL.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
-;
-pl_PL.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
-pl_PL.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
 ;
 pl_PL.DescriptionAtoms =ATOMS
 ;-------------------------------------------------------------------------------

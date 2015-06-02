@@ -29,9 +29,9 @@ void MacrovarVisitor::visit(const CallExp &e)
     add();
 
     exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    for (auto arg : args)
     {
-        (*it)->getOriginal()->accept (*this);
+        arg->getOriginal()->accept(*this);
         add();
     }
 }
@@ -114,10 +114,9 @@ void MacrovarVisitor::add()
 
 bool MacrovarVisitor::isAlreadyIn(std::list<std::wstring>& lst)
 {
-    std::list<std::wstring>::iterator it;
-    for (it = lst.begin(); it != lst.end() ; it++)
+    for (auto l : lst)
     {
-        if (*it == m_current)
+        if (l == m_current)
         {
             return true;
         }

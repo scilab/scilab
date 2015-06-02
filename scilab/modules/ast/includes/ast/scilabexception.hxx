@@ -37,20 +37,20 @@ class ScilabException : public std::exception
 public :
     ScilabException()
     {
-        createScilabException();
+        createScilabException(L"", 0, Location());
     }
 
     ScilabException(std::wstring _wstErrorMesssage)
     {
         setLastError(999, _wstErrorMesssage.c_str(), 0, NULL);
-        createScilabException(_wstErrorMesssage);
+        createScilabException(_wstErrorMesssage, 0, Location());
     }
 
     ScilabException(std::string _stErrorMesssage)
     {
         wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
         setLastError(999, pwst, 0, NULL);
-        createScilabException(pwst);
+        createScilabException(pwst, 0, Location());
         FREE(pwst);
     }
     ScilabException(const Location& _ErrorLocation)
@@ -102,7 +102,7 @@ protected :
     Location m_ErrorLocation;
 
 protected :
-    void createScilabException(std::wstring _wstErrorMessage = L"", int _iErrorNumber = 0, const Location& _ErrorLocation = *new Location())
+    void createScilabException(std::wstring _wstErrorMessage, int _iErrorNumber, const Location& _ErrorLocation)
     {
         m_wstErrorMessage = _wstErrorMessage;
         m_iErrorNumber = _iErrorNumber;
@@ -132,22 +132,20 @@ public :
     ScilabMessage() : ScilabException() {}
     ScilabMessage(std::wstring _wstErrorMesssage)
     {
-        createScilabException(_wstErrorMesssage);
+        createScilabException(_wstErrorMesssage, 0, Location());
     }
 
     ScilabMessage(std::string _stErrorMesssage)
     {
 
         wchar_t* pwst = to_wide_string(_stErrorMesssage.c_str());
-        //setLastError(999, pwst, 0, NULL);
-        createScilabException(pwst);
+        createScilabException(pwst, 0, Location());
         FREE(pwst);
     }
 
     ScilabMessage(const Location& _ErrorLocation) : ScilabException(_ErrorLocation) {}
     ScilabMessage(std::wstring _wstErrorMesssage, int _iErrorNumber, const Location& _ErrorLocation)
     {
-        //setLastError(_iErrorNumber, _wstErrorMesssage.c_str(), 0, NULL);
         createScilabException(_wstErrorMesssage, _iErrorNumber, _ErrorLocation);
     }
 };

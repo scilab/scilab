@@ -65,27 +65,28 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
         crp=lhsstr+" = "+scitree.name+rhsstr;
     end
 
+
     // Convert Matlab instruction tree to Scilab
     while ninstr<=size(mtlbtree.statements)-3
         //Case : sup_equal instruction
         // Add converted tree to scitree and also inserted instructions
         if typeof(mtlbtree.statements(ninstr))=="sup_equal"
 
-            sci_stat=list()
+            sci_stat=list();
             for i=1:size(mtlbtree.statements(ninstr).sup_instr)
-                [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines)
+                [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr).sup_instr(i),nblines);
 
-                sci_stat=update_instr_list(sci_stat,converted_tree)
+                sci_stat=update_instr_list(sci_stat,converted_tree);
             end
 
-            scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr)
+            scitree.statements($+1)=tlist(["sup_equal","sup_instr","nb_opr"],sci_stat,mtlbtree.statements(ninstr).nb_opr);
         else
 
-            [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines)
+            [converted_tree,nblines]=instruction2sci(mtlbtree.statements(ninstr),nblines);
 
             // Add converted tree to scitree and also inserted instructions
 
-            scitree.statements=update_instr_list(scitree.statements,converted_tree)
+            scitree.statements=update_instr_list(scitree.statements,converted_tree);
 
             // Generate code corresponding to scitree.statements
         end
@@ -96,12 +97,12 @@ function [scitree,crp]=mtlbtree2sci(mtlbtree,prettyprintoutput)
             end
         end
 
-        scitree.statements=list(scitree.statements($))
+        scitree.statements=list(scitree.statements($));
 
         // Disp percentage of conversion done
-        msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines))
-        ninstr=ninstr+1
-        tmpvarnb=0
+        msprintf(gettext("%s line %s out of %s..."),margin, string(nblines), string(mtlbtree.nblines));
+        ninstr=ninstr+1;
+        tmpvarnb=0;
     end
 
     if scitree.statements(1)<>list("EOL") then

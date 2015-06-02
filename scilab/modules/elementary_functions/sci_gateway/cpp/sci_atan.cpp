@@ -24,7 +24,14 @@ extern "C"
 #include "localization.h"
 #include "tan.h"
 #include "abs.h"
+    int C2F(watan)(double*, double*, double*, double*);
 }
+
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();atan(a);toc
+clear a;nb = 2500;a = rand(nb, nb) + 0.5;tic();atan(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();atan(a);toc
+*/
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -47,8 +54,9 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_atan";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_atan";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     pDblX = in[0]->getAs<types::Double>();
@@ -58,33 +66,46 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
         if (pDblX->isComplex())
         {
             pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), true);
-            for (int i = 0 ; i < pDblX->getSize() ; i++)
+            double* pXR = pDblX->get();
+            double* pXI = pDblX->getImg();
+            double* pOR = pDblOut->get();
+            double* pOI = pDblOut->getImg();
+
+            int size = pDblX->getSize();
+            bool msg = true;
+            for (int i = 0; i < size; i++)
             {
-                if (pDblX->get(i) == 0 && dabss(pDblX->getImg(i)) == 1)
+                if (msg && pXR[i] == 0 && std::abs(pXI[i]) == 1)
                 {
                     if (ConfigVariable::getIeee() == 0)
                     {
                         Scierror(999, _("%s: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
                         return types::Function::Error;
                     }
-                    else if (ConfigVariable::getIeee() == 1)
+                    else if (msg && ConfigVariable::getIeee() == 1)
                     {
                         if (ConfigVariable::getWarningMode())
                         {
                             sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "atan", 1);
                         }
+
+                        msg = false;
                     }
                 }
 
-                watan(pDblX->get(i), pDblX->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
+                C2F(watan)(pXR + i, pXI + i, pOR + i, pOI + i);
             }
         }
         else
         {
             pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), false);
-            for (int i = 0 ; i < pDblX->getSize() ; i++)
+            double* pXR = pDblX->get();
+            double* pOR = pDblOut->get();
+            int size = pDblX->getSize();
+
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->set(i, datans(pDblX->get(i)));
+                pOR[i] = std::atan(pXR[i]);
             }
         }
     }
@@ -105,9 +126,14 @@ types::Function::ReturnValue sci_atan(types::typed_list &in, int _iRetCount, typ
         }
 
         pDblOut = new types::Double(pDblX->getDims(), pDblX->getDimsArray(), false);
-        for (int i = 0 ; i < pDblX->getSize() ; i++)
+        double* pXR = pDblX->get();
+        double* pYR = pDblY->get();
+        double* pOR = pDblOut->get();
+        int size = pDblX->getSize();
+
+        for (int i = 0; i < size; i++)
         {
-            pDblOut->set(i, datan2s(pDblX->get(i), pDblY->get(i)));
+            pOR[i] =  std::atan2(pXR[i], pYR[i]);
         }
     }
 

@@ -9,7 +9,12 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
-/*-----------------------------------------------------------------------------------*/
+/*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include "machine.h"
 #include "stack-def.h"
@@ -53,15 +58,12 @@ CSIMP_struct C2F(csimp);
 */
 
 ADRE_struct C2F(adre);
-CHA1_struct C2F(cha1);
 COM_struct C2F(com);
 ERRGST_struct C2F(errgst);
 INTERSCI_struct C2F(intersci);
 IOP_struct C2F(iop);
 MTLBC_struct C2F(mtlbc);
-RECU_struct C2F(recu);
 STACK_struct C2F(stack);
-VSTK_struct C2F(vstk);
 DBG_struct C2F(dbg);
 MPROT_struct C2F(mprot);
 

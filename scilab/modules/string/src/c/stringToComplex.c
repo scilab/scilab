@@ -18,9 +18,7 @@
 #include "stringToComplex.h"
 #include "stringToDouble.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "BOOL.h"
 #include "strsubst.h"
 /* ========================================================================== */

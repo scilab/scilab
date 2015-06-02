@@ -174,13 +174,18 @@ public:
         return *_exps[1];
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return OPEXP;
     }
     inline bool isOpExp() const
     {
         return true;
+    }
+
+    inline bool isBooleanOp() const
+    {
+	return _oper == eq || _oper == ne || _oper == lt || _oper == le || _oper == gt || _oper == ge || _oper == logicalAnd || _oper == logicalOr || _oper == logicalShortCutAnd || _oper == logicalShortCutOr; 
     }
 
 protected:

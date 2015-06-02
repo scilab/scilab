@@ -12,9 +12,7 @@
 /*--------------------------------------------------------------------------*/
 extern "C"
 {
-#define NOMINMAX
 #include "storeCommand.h"
-#include "Thread_Wrapper.h"
 }
 
 #include "parser.hxx"
@@ -23,6 +21,8 @@ extern "C"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "localization.hxx"
+#include "runner.hxx"
+#include "threadmanagement.hxx"
 
 using namespace ast;
 /*--------------------------------------------------------------------------*/
@@ -31,124 +31,119 @@ using namespace ast;
  *  This function is used to store Scilab command in a queue
  *
  *  PUBLIC : int StoreCommand( char *command)
+ *           int StoreConsoleCommand(char *command)
+ *           int StorePrioritaryCommand(char *command)
  *           int C2F(ismenu)()
  *           int C2F(getmen)(char * btn_cmd,int * lb, int * entry)
  */
 /*--------------------------------------------------------------------------*/
-#define IMPORT_SIGNAL extern
-/*--------------------------------------------------------------------------*/
-typedef struct commandRec
+struct CommandRec
 {
-    char              *command;		/* command info one string two integers */
-    int               flag; /* 1 if the command execution cannot be interrupted */
-    struct commandRec *next;
-} CommandRec;
+    char*   m_command;              /* command info one string two integers */
+    int     m_isInterruptible;      /* 1 if the command execution can be interrupted */
+    int     m_isPrioritary;         /* 1 if the command is prioritary */
+    int     m_isConsole;            /* 1 if the command come from console */
+    CommandRec(char* command, int isInterruptible, int isPrioritary, int isConsole) : m_command(command), m_isInterruptible(isInterruptible), m_isPrioritary(isPrioritary), m_isConsole(isConsole) {}
+};
 /*--------------------------------------------------------------------------*/
-/* Extern Signal to say we git a StoreCommand. */
-IMPORT_SIGNAL __threadSignal LaunchScilab;
+static std::list<CommandRec> commandQueue;
+static std::list<CommandRec> commandQueuePrioritary;
 /*--------------------------------------------------------------------------*/
-static CommandRec *commandQueue = NULL;
-static __threadLock commandQueueSingleAccess = __StaticInitLock;
-/*--------------------------------------------------------------------------*/
-int StoreCommand (wchar_t *command)
+int StoreCommand(char *command)
 {
-    return StoreCommandWithFlag (command, 0);
-}
-/*--------------------------------------------------------------------------*/
-/*
- * try to execute a command or add it to the end of command queue
- * flag = 0 : the command is not shown in scilab window
- * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
- */
-int StoreCommandWithFlag (wchar_t *command, int flag)
-{
-    Parser parser;
-    try
-    {
-        parser.parse(command);
-        if (parser.getExitStatus() == Parser::Succeded)
-        {
-            ast::ExecVisitor exec;
-            parser.getTree()->accept(exec);
-        }
-        else
-        {
-            throw ast::ScilabException(parser.getErrorMessage());
-        }
-    }
-    catch (const ast::ScilabException& se)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(se.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback").c_str());
-    }
+    ThreadManagement::LockStoreCommand();
+    commandQueue.emplace_back(os_strdup(command),
+                              /*is prioritary*/ 0,
+                              /* is interruptible*/ 1,
+                              /* from console */ 0);
 
-    delete parser.getTree();
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+
     return 0;
 }
-/*--------------------------------------------------------------------------*/
-/*
- * try to execute a command or add it to the _BEGINNING_ of command queue
- * flag = 0 : the command is not shown in scilab window
- * flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
- */
-int StorePrioritaryCommandWithFlag (wchar_t *command, int flag)
+
+int StoreConsoleCommand(char *command)
 {
-    Parser parser;
+    ThreadManagement::LockStoreCommand();
+    commandQueuePrioritary.emplace_back(os_strdup(command),
+                                        /*is prioritary*/ 1,
+                                        /* is interruptible*/ 1,
+                                        /* from console */ 1);
 
-    try
-    {
-        parser.parse(command);
-        if (parser.getExitStatus() == Parser::Succeded)
-        {
-            ast::ExecVisitor exec;
-            parser.getTree()->accept(exec);
-        }
-        else
-        {
-            throw ast::ScilabException(parser.getErrorMessage());
-        }
-    }
-    catch (const ast::ScilabException& se)
-    {
-        scilabErrorW(L"\n");
-        scilabErrorW(L"\n");
-        scilabErrorW(command);
-        scilabErrorW(L"\n");
-        scilabErrorW(se.GetErrorMessage().c_str());
-        scilabErrorW(L"\n");
-        scilabErrorW(_W("while executing a callback").c_str());
-    }
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+    // Awake Runner to execute this prioritary command
+    ThreadManagement::SendAwakeRunnerSignal();
 
-    delete parser.getTree();
-    return (0);
+    return 0;
 }
-/*--------------------------------------------------------------------------*/
+
+int StorePrioritaryCommand(char *command)
+{
+    ThreadManagement::LockStoreCommand();
+    commandQueuePrioritary.emplace_back(os_strdup(command),
+                                        /*is prioritary*/ 1,
+                                        /* is interruptible*/ 0,
+                                        /* from console */ 0);
+
+    ThreadManagement::UnlockStoreCommand();
+    // Awake Scilab to execute a new command
+    ThreadManagement::SendCommandStoredSignal();
+    // Awake Runner to execute this prioritary command
+    ThreadManagement::SendAwakeRunnerSignal();
+
+    return 0;
+}
+
 int isEmptyCommandQueue(void)
 {
-#pragma message("WARNING : isEmptyCommandQueue is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-    // FIXME : Do not forget to remove me.
-    return 0;
+    return (commandQueuePrioritary.empty() && commandQueue.empty());
 }
-/*--------------------------------------------------------------------------*/
+
 /*
- * Gets info on the first queue element
+ * Gets the next command to execute
  * and remove it from the queue
  */
-int GetCommand ( char *str)
+int GetCommand (char** cmd, int* piInterruptible, int* piPrioritary, int* piConsole)
 {
-#pragma message("WARNING : GetCommand is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
-    // FIXME : Do not forget to remove me.
-    return 0;
+    int iCommandReturned = 0;
+
+    ThreadManagement::LockStoreCommand();
+    if (commandQueuePrioritary.empty() == false)
+    {
+        *cmd = os_strdup(commandQueuePrioritary.front().m_command);
+        *piInterruptible = commandQueuePrioritary.front().m_isInterruptible;
+        *piPrioritary = commandQueuePrioritary.front().m_isPrioritary;
+        *piConsole = commandQueuePrioritary.front().m_isConsole;
+
+        FREE (commandQueuePrioritary.front().m_command);
+        commandQueuePrioritary.pop_front();
+
+        iCommandReturned = 1;
+    }
+    else if (commandQueue.empty() == false)
+    {
+        *cmd = os_strdup(commandQueue.front().m_command);
+        *piInterruptible = commandQueue.front().m_isInterruptible;
+        *piPrioritary = commandQueue.front().m_isPrioritary;
+        *piConsole = commandQueue.front().m_isConsole;
+
+        FREE (commandQueue.front().m_command);
+        commandQueue.pop_front();
+
+        iCommandReturned = 1;
+    }
+    ThreadManagement::UnlockStoreCommand();
+
+    return iCommandReturned;
 }
 /*--------------------------------------------------------------------------*/
 int ismenu(void)
 {
-#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+    //#pragma message("WARNING : ismenu is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
     // FIXME : Do not forget to remove me.
     return 0;
 }
@@ -156,7 +151,7 @@ int ismenu(void)
 /* menu/button info for Scilab */
 int C2F(getmen)(char * btn_cmd, int * lb, int * entry)
 {
-#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
+    //#pragma message("WARNING : C2F(getmen) is deprecated. It will be removed _BEFORE_ Scilab 6.0.")
     // FIXME : Do not forget to remove me.
     return 0;
 }

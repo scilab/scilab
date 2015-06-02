@@ -15,45 +15,45 @@
             Scilab
             Interface description. In this file, we define the list of the function which
             will be available into Scilab and the link to the "native" function.
-            
+
             Don't touch if you do not know what you are doing !
         -->
 <module name="scicos">
-    <gateway type="0" name="sci_var2vec" function="var2vec"/>
-    <gateway type="0" name="sci_vec2var" function="vec2var"/>
-    <gateway type="0" name="sci_getblocklabel" function="getblocklabel"/>
-    <gateway type="0" name="sci_scicos_debug" function="scicos_debug"/>
-    <gateway type="0" name="sci_scicos_debug_count" function="scicos_debug_count"/>
     <gateway type="0" name="sci_sctree" function="sctree"/>
     <gateway type="0" name="sci_tree2" function="sci_tree2"/>
     <gateway type="0" name="sci_tree3" function="sci_tree3"/>
     <gateway type="0" name="sci_tree4" function="sci_tree4"/>
-    <gateway type="0" name="sci_curblock" function="curblock"/>
-    <gateway type="0" name="sci_scicos_time" function="scicos_time"/>
-    <gateway type="0" name="sci_duplicate" function="duplicate"/>
-    <gateway type="0" name="sci_diffobjs" function="diffobjs"/>
-    <gateway type="0" name="sci_pointer_xproperty" function="pointer_xproperty"/>
-    <gateway type="0" name="sci_phase_simulation" function="phase_simulation"/>
-    <gateway type="0" name="sci_set_xproperty" function="set_xproperty"/>
-    <gateway type="0" name="sci_set_blockerror" function="set_blockerror"/>
-    <gateway type="0" name="sci_ctree2" function="ctree2"/>
-    <gateway type="0" name="sci_ctree3" function="ctree3"/>
-    <gateway type="0" name="sci_ctree4" function="ctree4"/>
-    <gateway type="0" name="sci_scicosim" function="scicosim"/>
-    <gateway type="0" name="sci_getscicosvars" function="getscicosvars"/>
-    <gateway type="0" name="sci_curblockc" function="curblockc"/>
-    <gateway type="0" name="sci_buildouttb" function="buildouttb"/>
-    <gateway type="0" name="sci_end_scicosim" function="end_scicosim"/>
-    <gateway type="0" name="sci_coserror" function="coserror"/>
-    <gateway type="0" name="sci_haltscicos" function="sci_haltscicos"/>
-    <gateway type="0" name="sci_data2sig" function="data2sig"/>
-    <gateway type="0" name="sci_sig2data" function="sig2data"/>
     <gateway type="0" name="sci_model2blk" function="model2blk"/>
-    <gateway type="0" name="sci_callblk" function="callblk"/>
     <gateway type="0" name="sci_loadScicos" function="loadScicos"/>
     <!-- C++ Gateways -->
+    <gateway type="1" name="sci_buildouttb" function="buildouttb"/>
+    <gateway type="1" name="sci_ctree2" function="ctree2"/>
+    <gateway type="1" name="sci_ctree3" function="ctree3"/>
+    <gateway type="1" name="sci_ctree4" function="ctree4"/>
+    <gateway type="1" name="sci_coserror" function="coserror"/>
+    <gateway type="1" name="sci_curblock" function="curblock"/>
+    <gateway type="1" name="sci_data2sig" function="data2sig"/>
+    <gateway type="1" name="sci_diffobjs" function="diffobjs"/>
+    <gateway type="1" name="sci_duplicate" function="duplicate"/>
+    <gateway type="1" name="sci_end_scicosim" function="end_scicosim"/>
+    <gateway type="1" name="sci_getblocklabel" function="getblocklabel"/>
+    <gateway type="1" name="sci_getscicosvars" function="getscicosvars"/>
+    <gateway type="1" name="sci_haltscicos" function="sci_haltscicos"/>
+    <gateway type="1" name="sci_phase_simulation" function="phase_simulation"/>
+    <gateway type="1" name="sci_pointer_xproperty" function="pointer_xproperty"/>
+    <gateway type="1" name="sci_scicos_debug" function="scicos_debug"/>
+    <gateway type="1" name="sci_scicos_debug_count" function="scicos_debug_count"/>
     <gateway type="1" name="sci_scicos_log" function="scicos_log"/>
     <gateway type="1" name="sci_scicos_new" function="scicos_new"/>
     <gateway type="1" name="sci_scicos_setfield" function="scicos_setfield"/>
+    <gateway type="1" name="sci_scicos_time" function="scicos_time"/>
+    <gateway type="1" name="sci_scicosim" function="scicosim"/>
+    <gateway type="1" name="sci_set_blockerror" function="set_blockerror"/>
+    <gateway type="1" name="sci_set_xproperty" function="set_xproperty"/>
+    <gateway type="1" name="sci_sig2data" function="sig2data"/>
     <gateway type="1" name="sci_validvar" function="validvar"/>
+    <gateway type="1" name="sci_var2vec" function="var2vec"/>
+    <gateway type="1" name="sci_vec2var" function="vec2var"/>
+    <gateway type="1" name="sci_model2blk" function="model2blk"/>
+    <gateway type="1" name="sci_callblk" function="callblk"/>
 </module>

@@ -1495,18 +1495,3 @@ function [ f , this ] = costf_transposex ( x , this )
     xt = x.'
     [ f , this ] = neldermead_costf ( xt , this )
 endfunction
-
-function argin = argindefault ( rhs , vararglist , ivar , default )
-    // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the
-    // empty matrix, returns the default value.
-    if ( rhs < ivar ) then
-        argin = default
-    else
-        if ( vararglist(ivar) <> [] ) then
-            argin = vararglist(ivar)
-        else
-            argin = default
-        end
-    end
-endfunction

@@ -69,7 +69,7 @@ Struct::~Struct()
 {
     if (isDeletable() == true)
     {
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0 ; i < m_iSizeMax ; i++)
         {
             SingleStruct *pStr = m_pRealData[i];
             if (pStr)
@@ -78,6 +78,8 @@ Struct::~Struct()
                 pStr->killMe();
             }
         }
+
+        delete[] m_pRealData;
     }
 #ifndef NDEBUG
     Inspector::removeItem(this);
@@ -91,12 +93,8 @@ Struct::Struct(Struct *_oStructCopyMe)
     create(_oStructCopyMe->getDimsArray(), _oStructCopyMe->getDims(), &pIT, NULL);
     for (int i = 0 ; i < getSize() ; i++)
     {
-        m_pRealData[i] = NULL;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
-    {
         pIT[i] = _oStructCopyMe->get(i)->clone();
+        pIT[i]->IncreaseRef();
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -118,11 +116,14 @@ bool Struct::transpose(InternalType *& out)
 
     if (m_iDims == 2)
     {
-        Struct * pSt = new Struct();
-        out = pSt;
-        SingleStruct** pSSt = NULL;
         int piDims[2] = {getCols(), getRows()};
-        pSt->create(piDims, 2, &pSSt, NULL);
+        Struct * pSt = new Struct(2, piDims);
+        out = pSt;
+        for (int i = 0; i < m_iSize; ++i)
+        {
+            pSt->m_pRealData[i]->DecreaseRef();
+            pSt->m_pRealData[i]->killMe();
+        }
 
         Transposition::transpose_clone(getRows(), getCols(), m_pRealData, pSt->m_pRealData);
 
@@ -148,7 +149,7 @@ bool Struct::extract(const std::wstring & name, InternalType *& out)
     return true;
 }
 
-bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::CallExp & e)
+bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -174,7 +175,7 @@ bool Struct::invoke(typed_list & in, optional_list & opt, int _iRetCount, typed_
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("Field \"%ls\" does not exists\n").c_str(), wstField.c_str());
-                    throw ast::ScilabError(szError, 999, (*e.getArgs().begin())->getLocation());
+                    throw ast::ScilabError(szError, 999, e.getLocation());
                 }
             }
 
@@ -556,6 +557,9 @@ std::vector<InternalType*> Struct::extractFields(typed_list* _pArgs)
     int* piCountDim     = new int[iDims];
 
     int iSeqCount = checkIndexesArguments(this, _pArgs, &pArg, piMaxDim, piCountDim);
+    delete[] piMaxDim;
+    delete[] piCountDim;
+
     if (iSeqCount == 0)
     {
         //free pArg content

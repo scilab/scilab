@@ -24,7 +24,13 @@ extern "C"
 #include "localization.h"
 #include "elem_common.h"
 #include "log.h"
+    int C2F(wlog)(double*, double*, double*, double*);
 }
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();log(a);toc
+clear a;nb = 2500;a = -rand(nb, nb);tic();log(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();log(a);toc
+*/
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -45,19 +51,25 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_log";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_log";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();
     types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
 
+    double* pInR = pDblIn->get();
+    double* pOutR = pDblOut->get();
+    int size = pDblIn->getSize();
     if (pDblIn->isComplex())
     {
-        for (int i = 0; i < pDblIn->getSize(); i++)
+        double* pInI = pDblIn->getImg();
+        double* pOutI = pDblOut->getImg();
+        for (int i = 0; i < size; i++)
         {
             //If the value is less than precision (eps).
-            if (iAlert && pDblIn->get(i) == 0 && pDblIn->getImg(i) == 0)
+            if (iAlert && pInR[i] == 0 && pInI[i] == 0)
             {
                 if (ConfigVariable::getIeee() == 0)
                 {
@@ -75,15 +87,15 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
                 iAlert = 0;
             }
 
-            wlog(pDblIn->get(i), pDblIn->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
+            C2F(wlog)(pInR + i, pInI + i, pOutR + i, pOutI + i);
         }
     }
     else
     {
         bool bIsLessZero = false;
-        for (int i = 0; i < pDblIn->getSize(); i++)
+        for (int i = 0; i < size; i++)
         {
-            if (iAlert && pDblIn->get(i) == 0)
+            if (iAlert && pInR[i] == 0)
             {
                 if (ConfigVariable::getIeee() == 0)
                 {
@@ -99,7 +111,7 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
                 }
                 iAlert = 0;
             }
-            else if (pDblIn->get(i) < 0)
+            else if (pInR[i] < 0)
             {
                 bIsLessZero = true;
             }
@@ -108,16 +120,19 @@ types::Function::ReturnValue sci_log(types::typed_list &in, int _iRetCount, type
         if (bIsLessZero)
         {
             pDblOut->setComplex(true);
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            double zero = 0;
+            double* pOutI = pDblOut->getImg();
+
+            for (int i = 0; i < size; i++)
             {
-                wlog(pDblIn->get(i), 0, pDblOut->get() + i, pDblOut->getImg() + i);
+                C2F(wlog)(pInR + i, &zero, pOutR + i, pOutI + i);
             }
         }
         else
         {
-            for (int i = 0; i < pDblIn->getSize(); i++)
+            for (int i = 0; i < size; i++)
             {
-                pDblOut->set(i, dlogs(pDblIn->get(i)));
+                pOutR[i] = std::log(pInR[i]);
             }
         }
     }

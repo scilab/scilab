@@ -19,10 +19,7 @@
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
-    wchar_t* pstCommand = to_wide_string(command);
-    int iRet = StoreCommand(pstCommand);
-    FREE(pstCommand);
-    return iRet;
+    return StoreCommand(command);
 }
 /*--------------------------------------------------------------------------*/
 /*
@@ -33,10 +30,7 @@ int putCommandInScilabQueue(char *command)
 */
 int requestScilabExec(char *command)
 {
-    wchar_t* pstCommand = to_wide_string(command);
-    int iRet = StoreCommandWithFlag(pstCommand, 1);
-    FREE(pstCommand);
-    return iRet;
+    return StorePrioritaryCommand(command);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)

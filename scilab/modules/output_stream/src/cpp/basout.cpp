@@ -16,16 +16,17 @@
 extern "C"
 {
 #include "basout.h"
+}
+
 int C2F(basout)(int *io, int *lunit, char *string, long int nbcharacters)
 {
-    char* strMsg = new char[nbcharacters+1];
+    char* strMsg = new char[nbcharacters + 1];
     *io = 0;
     memcpy(strMsg, string, nbcharacters);
     strMsg[nbcharacters] = '\0';
     scilabForcedWrite(strMsg);
     scilabForcedWrite("\n");
-    delete strMsg;
+    delete[] strMsg;
     return 0;
-}
 }
 

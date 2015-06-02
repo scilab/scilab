@@ -59,7 +59,8 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** POLY / DOUBLE
     */
-    else if (TypeL == GenericType::ScilabPolynom && TypeR == GenericType::ScilabDouble)
+    else if ((TypeL == GenericType::ScilabDollar || TypeL == GenericType::ScilabPolynom )
+             && TypeR == GenericType::ScilabDouble)
     {
         Polynom *pL = _pLeftOperand->getAs<types::Polynom>();
         Double *pR  = _pRightOperand->getAs<Double>();
@@ -70,7 +71,8 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
     /*
     ** DOUBLE / POLY
     */
-    else if (TypeL == GenericType::ScilabDouble && TypeR == GenericType::ScilabPolynom)
+    else if (TypeL == GenericType::ScilabDouble
+             && (TypeR == GenericType::ScilabDollar || TypeR == GenericType::ScilabPolynom))
     {
         Double *pL  = _pLeftOperand->getAs<Double>();
         Polynom *pR = _pRightOperand->getAs<types::Polynom>();
@@ -106,7 +108,7 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
                     sciprint(_("Warning : Division by zero...\n"));
                 }
                 break;
-                //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
+            //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
                 sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
@@ -186,12 +188,21 @@ int RDivideDoubleByDouble(Double *_pDouble1, Double *_pDouble2, Double **_pDoubl
             return 0;
         }
 
+        // x / eye() = x
+        if (_pDouble2->isIdentity() )
+        {
+            *_pDoubleOut    = new Double(*_pDouble1);
+            return 0;
+        }
         double dblSavedR = 0;
         double dblSavedI = 0;
         Double *pdblTemp = NULL;
 
         int iRowResult = _pDouble2->getCols();
         int iColResult = _pDouble2->getRows();
+
+
+
 
         //in this case, we have to create a temporary square matrix
         pdblTemp = new Double(iRowResult, iRowResult, _pDouble1->isComplex());
@@ -457,20 +468,26 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
         return 0;
     }
 
+    if (_pDouble->isIdentity())
+    {
+        *_pSpOut    = new Sparse(*_pSp);
+        return 0;
+    }
+
     size_t iSize = _pSp->nonZeros();
     int* Col = new int[iSize];
-    int* Row = new int[iSize];
+    int* Row = new int[_pSp->getRows()];
     _pSp->getColPos(Col);
     _pSp->getNbItemByRow(Row);
     int* iPositVal = new int[iSize];
 
-    int j = 0;
-    for (int i = 0; i < iSize; j++)
+    int idx = 0;
+    for (int i = 0; i < _pSp->getRows(); i++)
     {
-        for (int k = 0; k < Row[j]; k++)
+        for (int j = 0; j < Row[i]; j++)
         {
-            iPositVal[i] = (Col[i] - 1) * _pSp->getRows() + j;
-            i++;
+            iPositVal[idx] = (Col[idx] - 1) * _pSp->getRows() + i;
+            ++idx;
         }
     }
 
@@ -520,6 +537,13 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
     }
     else
     {
+        for (int i = 0; i < iSize; ++i)
+        {
+            delete pDbl[i];
+            delete pDblSp[i];
+        }
+
+        delete[] pDbl;
         delete[] pDblSp;
         throw ast::ScilabError(_W("Invalid exponent.\n"));
         return 1;
@@ -537,14 +561,27 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
             iResultat = RDivideDoubleByDouble(pDblSp[i], pDbl[i], &ppDblGet);
             if (iResultat != 0)
             {
+                delete ppDblGet;
                 return iResultat;
             }
             std::complex<double> cplx(ppDblGet->get(0), ppDblGet->getImg(0));
             pSpTemp->set(iPositVal[i], cplx, true);
+            delete ppDblGet;
         }
     }
+
     delete Col;
+    delete Row;
     delete iPositVal;
+
+    for (int i = 0; i < iSize; ++i)
+    {
+        delete pDbl[i];
+        delete pDblSp[i];
+    }
+
+    delete[] pDbl;
+    delete[] pDblSp;
 
     *_pSpOut = pSpTemp;
     return 0;

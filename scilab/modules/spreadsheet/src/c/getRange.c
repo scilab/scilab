@@ -12,7 +12,7 @@
 #include <string.h>
 #include "sci_malloc.h"
 #include "getRange.h"
-#include "os_strdup.h"
+#include "os_string.h"
 // =============================================================================
 #define SIZE_ARRAY_RANGE 4
 // =============================================================================

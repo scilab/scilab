@@ -26,7 +26,6 @@ extern int C2F(ogettype)(int *lw);
 
 /** used in stack1.c : defined elsewhere */
 
-extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
 extern int C2F(icopy)(int *, int *, int *, int *, int *);
 extern int C2F(dset)(int *array_length, double *init_value, double *array, int *array_stride);
 extern int C2F(dcopy)(int *array_length, double *array_in, int *array_in_stride, double *array_out, int *array_out_stride);
@@ -40,12 +39,6 @@ extern int C2F(stackg)(int *);
 extern int C2F(entier)(int *n, double *d__, int *s);
 extern int C2F(simple)(int *n, double *d__, float *s);
 extern int C2F(iset)(int *n, int *dx, int *dy, int *incy);
-
-/* stack0.c */
-
-extern int C2F(stacki2d)(int *n, int *il1, int *dl1);
-extern int C2F(stackr2d)(int *n, int *sl1, int *dl1);
-extern int C2F(stackc2i)(int *n, int *sl1, int *il1);
 
 /* stack1.c */
 

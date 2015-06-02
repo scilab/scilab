@@ -59,7 +59,7 @@ public:
         v.visit (*this);
     }
     /** \} */
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return CONTINUEEXP;
     }

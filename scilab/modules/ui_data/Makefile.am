@@ -58,15 +58,13 @@ BUILT_SOURCES+=swig
 endif
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_ui_data.c
-
-
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_editvar.cpp \
     sci_gateway/cpp/sci_browsevar.cpp \
     sci_gateway/cpp/sci_filebrowser.cpp \
     sci_gateway/cpp/sci_updatebrowsevar.cpp \
-    sci_gateway/cpp/sci_closeEditvar.cpp
+    sci_gateway/cpp/sci_closeEditvar.cpp \
+    sci_gateway/cpp/ui_data_gw.cpp
 
 
 libsciui_data_la_CPPFLAGS = \
@@ -90,6 +88,9 @@ libsciui_data_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
     $(AM_CPPFLAGS)
 
 # Without the ui_data module
@@ -102,12 +103,14 @@ libsciui_data_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/symbol/ \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
     $(AM_CPPFLAGS)
 
 UI_DATA_DISABLE_C_SOURCES = src/noui_data/noui_data.c
-libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES)
+UI_DATA_DISABLE_CXX_SOURCES = src/noui_data/noui_data_gw.cpp
+libsciui_data_disable_la_SOURCES = $(UI_DATA_DISABLE_C_SOURCES) $(UI_DATA_DISABLE_CXX_SOURCES)
 
 pkglib_LTLIBRARIES = libsciui_data-disable.la
 
@@ -119,11 +122,11 @@ endif
 libsciui_data_la_LDFLAGS = $(AM_LDFLAGS)
 
 libsciui_data_algo_la_SOURCES = $(UI_DATA_C_SOURCES) $(UI_DATA_JNI_SOURCES) $(UI_DATA_CXX_SOURCES)
-libsciui_data_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
+libsciui_data_la_SOURCES = $(GATEWAY_CXX_SOURCES)
 libsciui_data_algo_la_CPPFLAGS = $(libsciui_data_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(UI_DATA_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(UI_DATA_C_SOURCES)
 INCLUDE_FLAGS = $(libsciui_data_la_CPPFLAGS)
 
 libsciui_data_la_LIBADD = libsciui_data-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
@@ -131,7 +134,6 @@ libsciui_data_la_LIBADD = libsciui_data-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
 
 #### ui_data : gateway declaration ####
 libsciui_data_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libsciui_data_la_sci_gateway_DATA = sci_gateway/ui_data_gateway.xml
 
 #### ui_data : icons files ####
 #

@@ -810,24 +810,25 @@ InternalType *GenericDotRDivide(InternalType *_pLeftOperand, InternalType *_pRig
         ConfigVariable::setDivideByZero(false);
         pResult = dotdiv(_pLeftOperand, _pRightOperand);
 
-        bool iszero = ConfigVariable::isDivideByZero();
-        ConfigVariable::setDivideByZero(false);
-
-        if (iszero)
-        {
-            if (ConfigVariable::getIeee() == 0)
-            {
-                throw ast::ScilabError(_("Division by zero...\n"));
-            }
-
-            if (ConfigVariable::getIeee() == 1)
-            {
-                sciprint(_("Warning : division by zero...\n"));
-            }
-        }
-
         if (pResult)
         {
+            bool iszero = ConfigVariable::isDivideByZero();
+            ConfigVariable::setDivideByZero(false);
+
+            if (iszero)
+            {
+                if (ConfigVariable::getIeee() == 0)
+                {
+                    pResult->killMe();
+                    throw ast::ScilabError(_("Division by zero...\n"));
+                }
+
+                if (ConfigVariable::getIeee() == 1)
+                {
+                    sciprint(_("Warning : division by zero...\n"));
+                }
+            }
+
             return pResult;
         }
     }
@@ -1289,32 +1290,35 @@ InternalType* dotdiv_M_M<Double, Sparse, Sparse>(Double* _pL, Sparse* _pR)
     //D -> SP / SP
     if (_pL->isScalar())
     {
-        Sparse* pOut = NULL;
+        Sparse* pTemp = NULL;
         int iSizeOut = _pR->getSize();
         if (_pL->isComplex())
         {
-            pOut = new Sparse(_pR->getRows(), _pR->getCols(), true);
+            pTemp = new Sparse(_pR->getRows(), _pR->getCols(), true);
             std::complex<double> stComplex(_pL->get(0), _pL->getImg(0));
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pR->get(i) != 0)
                 {
-                    pOut->set(i, stComplex);
+                    pTemp->set(i, stComplex);
                 }
             }
         }
         else
         {
-            pOut = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
+            pTemp = new Sparse(_pR->getRows(), _pR->getCols(), _pR->isComplex());
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pR->get(i) != 0)
                 {
-                    pOut->set(i, _pL->get(0));
+                    pTemp->set(i, _pL->get(0));
                 }
             }
         }
-        return pOut->dotDivide(*_pR);
+
+        Sparse* pOut = pTemp->dotDivide(*_pR);
+        delete pTemp;
+        return pOut;
     }
 
     if (_pR->isScalar())
@@ -1436,33 +1440,36 @@ InternalType* dotdiv_M_M<Sparse, Double, Sparse>(Sparse* _pL, Double* _pR)
     if (_pR->isScalar())
     {
         // SP / d-> SP
-        Sparse* pOut = NULL;
+        Sparse* pTemp = NULL;
         int iSizeOut = _pL->getSize();
         if (_pR->isComplex())
         {
-            pOut = new Sparse(_pL->getRows(), _pL->getCols(), true);
+            pTemp = new Sparse(_pL->getRows(), _pL->getCols(), true);
             std::complex<double> stComplex(_pR->get(0), _pR->getImg(0));
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pL->get(i) != 0)
                 {
-                    pOut->set(i, stComplex);
+                    pTemp->set(i, stComplex);
                 }
             }
         }
         else
         {
-            pOut = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
+            pTemp = new Sparse(_pL->getRows(), _pL->getCols(), _pL->isComplex());
             std::complex<double> stComplex(_pR->get(0), _pR->getImg(0));
             for (int i = 0 ; i < iSizeOut ; i++)
             {
                 if (_pL->get(i) != 0)
                 {
-                    pOut->set(i, _pR->get(0));
+                    pTemp->set(i, _pR->get(0));
                 }
             }
         }
-        return _pL->dotDivide(*pOut);
+
+        Sparse* pOut = _pL->dotDivide(*pTemp);
+        delete pTemp;
+        return pOut;
     }
 
     if (_pL->isScalar())

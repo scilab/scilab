@@ -20,7 +20,7 @@
 #include "BOOL.h"
 #include "ScilabKeywords.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 
 /*

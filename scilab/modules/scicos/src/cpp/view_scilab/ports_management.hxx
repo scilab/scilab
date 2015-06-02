@@ -14,9 +14,13 @@
 #ifndef PORTS_MANAGEMENT_HXX_
 #define PORTS_MANAGEMENT_HXX_
 
+#include <cmath>
+
+#include <deque>
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <iterator>
 
 #include "internal.hxx"
 #include "bool.hxx"
@@ -58,6 +62,10 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
         case STYLE:
         case LABEL:
         {
+            if (ids.empty())
+            {
+                return new types::String(L"");
+            }
             types::String* o = new types::String((int)ids.size(), 1);
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
             {
@@ -332,9 +340,9 @@ bool set_ports_property(const Adaptor& adaptor, const object_properties_t port_k
  * \return true on success, false otherwise
  */
 template<typename Adaptor, object_properties_t p>
-inline bool fillNewPorts(std::vector<int>& newPorts, const std::vector<ScicosID>& children, const double* d)
+inline bool fillNewPorts(std::deque<int>& newPorts, const std::vector<ScicosID>& children, const double* d)
 {
-    for (std::vector<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
+    for (std::deque<int>::iterator it = newPorts.begin(); it != newPorts.end(); ++it, ++d)
     {
 
         if (p == CONNECTED_SIGNALS)   // the associated link must exist
@@ -508,21 +516,27 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     }
     types::Double* value = v->getAs<types::Double>();
 
+    ScicosID parentBlock;
+    controller.getObjectProperty(adaptee, BLOCK, PARENT_BLOCK, parentBlock);
     ScicosID parentDiagram;
     controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
 
     std::vector<ScicosID> children;
-    if (parentDiagram != 0)
+    if (parentBlock != 0)
+    {
+        controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
+    }
+    if (parentDiagram != 0 && children.empty())
     {
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
 
-    std::vector<int> newPorts (value->getSize());
+    std::deque<int> newPorts (value->getSize());
 
     // retrieve old data
-    std::vector<ScicosID> oldPorts;
-    controller.getObjectProperty(adaptee, BLOCK, port_kind, oldPorts);
-    std::vector<ScicosID> previousPorts = oldPorts;
+    std::vector<ScicosID> previousPorts;
+    controller.getObjectProperty(adaptee, BLOCK, port_kind, previousPorts);
+    std::deque<ScicosID> oldPorts(previousPorts.begin(), previousPorts.end());
 
     double* d = value->getReal();
     if (!fillNewPorts<Adaptor, p>(newPorts, children, d))
@@ -535,10 +549,10 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     // updated ports
     while (!oldPorts.empty() && !newPorts.empty())
     {
-        ScicosID oldPort = oldPorts.back();
-        oldPorts.pop_back();
-        int newPort = newPorts.back();
-        newPorts.pop_back();
+        ScicosID oldPort = oldPorts.front();
+        oldPorts.pop_front();
+        int newPort = newPorts.front();
+        newPorts.pop_front();
 
         if (!updateNewPort<Adaptor, p>(oldPort, newPort, controller, children, deletedObjects))
         {
@@ -549,12 +563,12 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     // removed ports
     if (!oldPorts.empty())
     {
-        previousPorts.erase(previousPorts.begin() + oldPorts.size(), previousPorts.end());
+        previousPorts.erase(previousPorts.end() - oldPorts.size(), previousPorts.end());
 
         while (!oldPorts.empty())
         {
-            ScicosID oldPort = oldPorts.back();
-            oldPorts.pop_back();
+            ScicosID oldPort = oldPorts.front();
+            oldPorts.pop_front();
 
             ScicosID signal;
             controller.getObjectProperty(oldPort, PORT, CONNECTED_SIGNALS, signal);
@@ -591,8 +605,8 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     {
         while (!newPorts.empty())
         {
-            int newPort = newPorts.back();
-            newPorts.pop_back();
+            int newPort = newPorts.front();
+            newPorts.pop_front();
 
             ScicosID id = controller.createObject(PORT);
             controller.setObjectProperty(id, PORT, SOURCE_BLOCK, adaptee);
@@ -623,6 +637,10 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     // remove objects from the model after de-association
     if (parentDiagram != 0)
     {
+        for (const ScicosID & id : children)
+        {
+            controller.referenceObject(id);
+        }
         controller.setObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
     for (std::vector<ScicosID>::iterator it = deletedObjects.begin(); it != deletedObjects.end(); ++it)

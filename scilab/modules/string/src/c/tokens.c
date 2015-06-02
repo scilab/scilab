@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include "sci_malloc.h"
 #include "tokens.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "os_wcstok.h"
 
 
@@ -45,6 +45,7 @@ wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs)
 
             if (*sizeOutputs == 0)
             {
+                FREE(pwstWork);
                 return NULL;
             }
 

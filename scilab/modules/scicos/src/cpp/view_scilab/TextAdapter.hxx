@@ -14,11 +14,7 @@
 #define TEXTADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
-#include "internal.hxx"
-
-#include "utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Annotation.hxx"
 
@@ -30,7 +26,7 @@ namespace view_scilab
 class TextAdapter : public BaseAdapter<TextAdapter, org_scilab_modules_scicos::model::Annotation>
 {
 public:
-    TextAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Annotation> adaptee);
+    TextAdapter(const Controller& c, org_scilab_modules_scicos::model::Annotation* adaptee);
     TextAdapter(const TextAdapter& adapter);
     ~TextAdapter();
 

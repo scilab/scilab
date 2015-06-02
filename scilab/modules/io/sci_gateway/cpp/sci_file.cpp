@@ -22,7 +22,7 @@
 
 extern "C"
 {
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
@@ -299,7 +299,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(67, _("%s: Unknown file format.\n"), "file");
+                Scierror(999, _("%s: Unknown file format.\n"), "file");
                 return types::Function::Error;
             }
         }

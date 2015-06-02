@@ -6,23 +6,22 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxAddField mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl([ '#include ""mex.h""';
-        'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-        '{';
-        '    mxArray *ptr = prhs[0];'
-        '    int fieldnumber = mxAddField(ptr, ""another"");';
-        '    mxSetFieldByNumber(ptr, 0, fieldnumber, mxCreateDoubleScalar(3));';
-        '}'],'mexaddField.c');
-ilib_mex_build('libmextest', ['addField', 'mexaddField', 'cmex'], 'mexaddField.c', [], 'Makelib', '', '', '');
-exec('loader.sce');
+mputl([ "#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    mxArray *ptr = prhs[0];"
+"    int fieldnumber = mxAddField(ptr, ""another"");";
+"    mxSetFieldByNumber(ptr, 0, fieldnumber, mxCreateDoubleScalar(3));";
+"}"],"mexaddField.c");
+ilib_mex_build("libmextest", ["addField", "mexaddField", "cmex"], "mexaddField.c", []);
+exec("loader.sce");
 
 s = struct();
 addField(s);
-if s("another") <> 3 then pause end
+assert_checkequal(s("another"), 3);

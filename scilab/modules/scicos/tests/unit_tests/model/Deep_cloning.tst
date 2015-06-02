@@ -46,6 +46,10 @@ assert_checkequal(l(1).objs(1).model.rpar.objs(2).to,   [1 1 1]);
 clear
 
 
+// Relaunch Xcos librairy
+loadXcosLibs();
+scicos_log("TRACE");
+
 // Try with two "BIGSOM_f" blocks connected together
 
 // The SuperBlock, containing a Block and a Link
@@ -96,6 +100,10 @@ assert_checkequal(l2(1).objs(1).model.rpar.objs(3).to,   [2 1 1]);
 // Check that all the model items are freed
 clear
 
+
+// Relaunch Xcos librairy
+loadXcosLibs();
+scicos_log("TRACE");
 
 // Try with a predefined SuperBlock
 sb = SUPER_f("define");

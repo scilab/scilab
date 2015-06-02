@@ -10,46 +10,46 @@
 
 //=============================================================================
 function bOK = dlwConfigureVcx64()
-  bOK = %F;
-  msvc = findmsvccompiler();
+    bOK = %F;
+    msvc = findmsvccompiler();
 
-  select msvc
-     // Microsoft Visual 2013 Studio Professional
-     case  'msvc120pro' then
-         bOK = dlwSetEnvVc12(msvc, %t);
+    select msvc
+        // Microsoft Visual 2013 Studio Professional
+    case  "msvc120pro" then
+        bOK = dlwSetEnvVc12(msvc, %t);
 
-     // Microsoft Visual 2013 Express
-     case  'msvc120express' then
-         bOK = dlwSetEnvVc12(msvc, %t);
+        // Microsoft Visual 2013 Express
+    case  "msvc120express" then
+        bOK = dlwSetEnvVc12(msvc, %t);
 
-     // Microsoft Visual 2012 Studio Professional
-     case  'msvc110pro' then
-         bOK = dlwSetEnvVc11(msvc, %t);
+        // Microsoft Visual 2012 Studio Professional
+    case  "msvc110pro" then
+        bOK = dlwSetEnvVc11(msvc, %t);
 
-     // Microsoft Visual 2012 Express
-     case  'msvc110express' then
-         bOK = dlwSetEnvVc11(msvc, %t);
-     
-     // Microsoft Visual 2010 Studio Professional
-        case  'msvc100pro' then
-         bOK = dlwSetEnvVc10(msvc, %t);
+        // Microsoft Visual 2012 Express
+    case  "msvc110express" then
+        bOK = dlwSetEnvVc11(msvc, %t);
 
-     // Microsoft Visual 2010 Express
-     case  'msvc100express' then
-         bOK = dlwSetEnvVc10(msvc, %t);
+        // Microsoft Visual 2010 Studio Professional
+    case  "msvc100pro" then
+        bOK = dlwSetEnvVc10(msvc, %t);
 
-     // Microsoft Visual 2008 Studio Professional
-     case  'msvc90pro' then
-         bOK = dlwSetEnvVc90(msvc, %t);
+        // Microsoft Visual 2010 Express
+    case  "msvc100express" then
+        bOK = dlwSetEnvVc10(msvc, %t);
 
-     // Microsoft Visual 2008 Studio Standard
-     case  'msvc90std' then
-         bOK = dlwSetEnvVc90(msvc, %t);
-
-    // Microsoft Visual 2008 Express
-    case  'msvc90express' then
+        // Microsoft Visual 2008 Studio Professional
+    case  "msvc90pro" then
         bOK = dlwSetEnvVc90(msvc, %t);
-  else
-  end  
+
+        // Microsoft Visual 2008 Studio Standard
+    case  "msvc90std" then
+        bOK = dlwSetEnvVc90(msvc, %t);
+
+        // Microsoft Visual 2008 Express
+    case  "msvc90express" then
+        bOK = dlwSetEnvVc90(msvc, %t);
+    else
+    end
 endfunction
 //=============================================================================

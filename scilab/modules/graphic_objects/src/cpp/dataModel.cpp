@@ -26,7 +26,7 @@ BOOL DataModel::setGraphicObjectProperty(int iUID, int _iName, void const* _dblV
     int property = 0;
     int returnValue = 0;
 
-    dataObject = (*m_dataMap)[iUID];
+    dataObject = m_dataMap[iUID];
     if (dataObject == NULL)
     {
         return FALSE;
@@ -49,7 +49,7 @@ void DataModel::getGraphicObjectProperty(int iUID, int _iName, void **_pvData)
     Data3D* dataObject = NULL;
     int property = 0;
 
-    dataObject = (*m_dataMap)[iUID];
+    dataObject = m_dataMap[iUID];
 
     if (dataObject == NULL)
     {
@@ -94,32 +94,32 @@ int DataModel::createDataObject(int iUID, int _iType)
             newObject = new NgonPolylineData();
             break;
         case __GO_FEC__ :
-            newObject = new TriangleMeshFecData();
+            newObject = new MeshFecData();
             break;
         default :
             return 0;
     }
 
-    (*m_dataMap)[iUID] = newObject;
+    m_dataMap[iUID] = newObject;
 
     return iUID;
 }
 
 void DataModel::deleteDataObject(int iUID)
 {
-    std::map<int, Data3D*>::iterator it = m_dataMap->find(iUID);
-    if (it != m_dataMap->end() && it->second != NULL)
+    std::map<int, Data3D*>::iterator it = m_dataMap.find(iUID);
+    if (it != m_dataMap.end() && it->second != NULL)
     {
         delete it->second;
-        m_dataMap->erase(it);
+        m_dataMap.erase(it);
     }
 
-    /*Data3D* newObject = (*m_dataMap)[std::string(_pstID)];
+    /*Data3D* newObject = m_dataMap[std::string(_pstID)];
       if (newObject != NULL)
       {
       delete newObject;
       }
 
-      m_dataMap->erase(std::string(_pstID));*/
+      m_dataMap.erase(std::string(_pstID));*/
 }
 

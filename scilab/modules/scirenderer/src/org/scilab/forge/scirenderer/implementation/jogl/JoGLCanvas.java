@@ -11,20 +11,11 @@
 
 package org.scilab.forge.scirenderer.implementation.jogl;
 
-import org.scilab.forge.scirenderer.Canvas;
-import org.scilab.forge.scirenderer.Drawer;
-import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
-import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
-import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
-import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
-import org.scilab.forge.scirenderer.picking.PickingManager;
-
-import com.jogamp.opengl.util.awt.ImageUtil;
-import com.jogamp.opengl.util.awt.Screenshot;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
 import java.lang.reflect.InvocationTargetException;
 import java.util.concurrent.Semaphore;
+
 import javax.media.opengl.DebugGL2;
 import javax.media.opengl.GL2;
 import javax.media.opengl.GLAutoDrawable;
@@ -33,9 +24,19 @@ import javax.media.opengl.GLContext;
 import javax.media.opengl.GLDrawableFactory;
 import javax.media.opengl.GLEventListener;
 import javax.media.opengl.GLException;
-import javax.media.opengl.GLPbuffer;
+import javax.media.opengl.GLOffscreenAutoDrawable;
 import javax.media.opengl.GLProfile;
 import javax.swing.SwingUtilities;
+
+import org.scilab.forge.scirenderer.Canvas;
+import org.scilab.forge.scirenderer.Drawer;
+import org.scilab.forge.scirenderer.implementation.jogl.buffers.JoGLBuffersManager;
+import org.scilab.forge.scirenderer.implementation.jogl.picking.JoGLPickingManager;
+import org.scilab.forge.scirenderer.implementation.jogl.renderer.JoGLRendererManager;
+import org.scilab.forge.scirenderer.implementation.jogl.texture.JoGLTextureManager;
+import org.scilab.forge.scirenderer.picking.PickingManager;
+
+import com.jogamp.opengl.util.awt.AWTGLReadBufferUtil;
 
 /**
  * JoGL implementation of a Canvas.
@@ -154,17 +155,17 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
     @Override
     public int getWidth() {
-        return autoDrawable.getWidth();
+        return autoDrawable.getSurfaceWidth();
     }
 
     @Override
     public int getHeight() {
-        return autoDrawable.getHeight();
+        return autoDrawable.getSurfaceHeight();
     }
 
     @Override
     public Dimension getDimension() {
-        return new Dimension(autoDrawable.getWidth(), autoDrawable.getHeight());
+        return new Dimension(autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight());
     }
 
     @Override
@@ -231,6 +232,14 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      * @return an image
      */
     public BufferedImage getImage() {
+        return getImage(true);
+    }
+
+    /**
+     * Get an image from the autoDrawable
+     * @return an image
+     */
+    public BufferedImage getImage(final boolean alpha) {
         while (!canvasAnimator.isDrawFinished() || !displayFinished) {
             try {
                 Thread.sleep(10);
@@ -244,14 +253,16 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
 
         if (SwingUtilities.isEventDispatchThread()) {
             context.makeCurrent();
-            image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+            AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
+            image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
             context.release();
         } else {
             try {
                 SwingUtilities.invokeAndWait(new Runnable() {
                     public void run() {
                         context.makeCurrent();
-                        image[0] = Screenshot.readToBufferedImage(autoDrawable.getWidth(), autoDrawable.getHeight());
+                        AWTGLReadBufferUtil buffer = new AWTGLReadBufferUtil(GLProfile.getDefault(), alpha);
+                        image[0] = buffer.readPixelsToBufferedImage(getGl(), 0, 0, autoDrawable.getSurfaceWidth(), autoDrawable.getSurfaceHeight(), true);
                         context.release();
                     }
                 });
@@ -271,7 +282,7 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      */
     public void destroy() {
         if (isOffscreen) {
-            ((GLPbuffer) autoDrawable).destroy();
+            ((GLOffscreenAutoDrawable) autoDrawable).destroy();
         }
         try {
             isValid = false;
@@ -289,9 +300,11 @@ public final class JoGLCanvas implements Canvas, GLEventListener {
      */
     private static GLAutoDrawable getOffscreenDrawable(int width, int height) {
         GLDrawableFactory factory = GLDrawableFactory.getDesktopFactory();
-        GLCapabilities capabilities = new GLCapabilities(GLProfile.getDefault());
 
-        return factory.createGLPbuffer(null, capabilities, null, width, height, null);
+        GLCapabilities capabilities = new GLCapabilities(GLProfile.getDefault());
+        capabilities.setPBuffer(true);
+
+        return factory.createOffscreenAutoDrawable(null, capabilities, null, width, height);
     }
 
     // Implementation of function from GLEventListener.

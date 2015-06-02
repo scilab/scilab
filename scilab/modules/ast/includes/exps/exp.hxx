@@ -20,7 +20,7 @@
 
 #include <list>
 #include <vector>
-
+#include <algorithm>
 #include "ast.hxx"
 
 namespace ast
@@ -72,6 +72,32 @@ public:
 
     virtual Exp* clone() = 0;
 
+    virtual bool equal(const Exp & e) const
+    {
+        if (getType() == e.getType() && _exps.size() == e._exps.size())
+        {
+            for (exps_t::const_iterator i = _exps.begin(), j = e._exps.begin(), _e = _exps.end(); i != _e; ++i, ++j)
+            {
+                if (!(*i)->equal(**j))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    inline bool operator==(const Exp & R) const
+    {
+        return equal(R);
+    }
+
+    inline bool operator!=(const Exp & R) const
+    {
+        return !equal(R);
+    }
+
 public:
     /** \brief Return if an expression should be displayed or not. */
     inline void mute(void)
@@ -91,6 +117,7 @@ public:
         return _verbose;
     }
 
+    //manage break instruction
     inline void setBreak(void)
     {
         _bBreak = true;
@@ -106,7 +133,7 @@ public:
         return _bBreak;
     }
 
-    inline void setBreakable(void)
+    virtual inline void setBreakable(void)
     {
         _bBreakable = true;
     }
@@ -121,6 +148,7 @@ public:
         return _bBreakable;
     }
 
+    //manage return instruction
     inline void setReturn(void)
     {
         _bReturn = true;
@@ -136,7 +164,7 @@ public:
         return _bReturn;
     }
 
-    inline void setReturnable(void)
+    virtual inline void setReturnable(void)
     {
         _bReturnable = true;
     }
@@ -151,6 +179,7 @@ public:
         return _bReturnable;
     }
 
+    //manage continue instruction
     inline void setContinue(void)
     {
         _bContinue = true;
@@ -166,7 +195,7 @@ public:
         return _bContinue;
     }
 
-    inline void setContinuable(void)
+    virtual inline void setContinuable(void)
     {
         _bContinuable = true;
     }
@@ -220,10 +249,16 @@ public:
         VARDEC,
         FUNCTIONDEC,
         LISTEXP,
-        OPTIMIZEDEXP
+        OPTIMIZEDEXP,
+	MEMFILLEXP,
+        DAXPYEXP,
+        STRINGSELECTEXP,
+        TABLEINTSELECTEXP,
+        MAPINTSELECTEXP,
+        SMALLINTSELECTEXP,
     };
 
-    virtual ExpType getType() = 0;
+    virtual ExpType getType() const = 0;
 
     template <class T>
     inline T* getAs(void)
@@ -422,37 +457,72 @@ public:
         return false;
     }
 
-    Exp* getParent() const
+    inline virtual bool isMemfillExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isFastSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isStringSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isTableIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isMapIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline virtual bool isSmallIntSelectExp() const
+    {
+        return false;
+    }
+
+    inline Exp* getParent() const
     {
         return parent;
     }
 
-    Exp* getParent()
+    inline Exp* getParent()
     {
         return parent;
     }
 
-    void setParent(Exp* _ast)
+    inline void setParent(Exp* _ast)
     {
         parent = _ast;
     }
 
-    Exp* getOriginal() const
+    inline Exp* getOriginal() const
     {
         return original;
     }
 
-    Exp* getOriginal()
+    inline Exp* getOriginal()
     {
         return original;
     }
 
-    void setOriginal(Exp* _ast)
+    inline void setOriginal(Exp* _ast)
     {
         original = _ast;
     }
 
-    void replace(Exp* _new)
+    inline void replace(Exp* _new)
     {
         if (parent && _new)
         {
@@ -460,20 +530,31 @@ public:
         }
     }
 
-    void replace(Exp* _old, Exp* _new)
+    inline void replace(Exp* _old, Exp* _new)
     {
         if (_old && _new)
         {
-            for (exps_t::iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
+            for (exps_t::iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
             {
                 if (*it == _old)
                 {
-                    _new->setOriginal(*it);
+                    _new->setOriginal(_old);
                     *it = _new;
                     _new->setParent(this);
+                    return;
                 }
             }
         }
+    }
+
+    inline const exps_t & getExps() const
+    {
+        return _exps;
+    }
+
+    inline exps_t & getExps()
+    {
+        return _exps;
     }
 
 private:

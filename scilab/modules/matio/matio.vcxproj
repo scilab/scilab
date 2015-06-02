@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../output_stream/includes;../string/includes;../localization/includes;../../libs/intl;../../libs/matio;../../libs/zlib;../api_scilab/includes;../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libsmatio;../../libs/matio;../../libs/zlib;../../libs/Eigen/includes;../core/includes;../output_stream/includes;../dynamic_link/includes;../string/includes;../localization/includes;../api_scilab/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../console/includes;../threads/includes;../sparse/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MATIO_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -108,7 +108,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../output_stream/includes;../string/includes;../localization/includes;../../libs/intl;../../libs/matio;../../libs/zlib;../api_scilab/includes;../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libsmatio;../../libs/matio;../../libs/zlib;../../libs/Eigen/includes;../core/includes;../output_stream/includes;../dynamic_link/includes;../string/includes;../localization/includes;../api_scilab/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../console/includes;../threads/includes;../sparse/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MATIO_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -134,7 +134,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../output_stream/includes;../string/includes;../localization/includes;../../libs/intl;../../libs/matio;../../libs/zlib;../api_scilab/includes;../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libsmatio;../../libs/matio;../../libs/zlib;../../libs/Eigen/includes;../core/includes;../output_stream/includes;../dynamic_link/includes;../string/includes;../localization/includes;../api_scilab/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../console/includes;../threads/includes;../sparse/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MATIO_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -168,7 +168,7 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../core/includes;../output_stream/includes;../string/includes;../localization/includes;../../libs/intl;../../libs/matio;../../libs/zlib;../api_scilab/includes;../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;src/cpp;../../libs/intl;../../libsmatio;../../libs/matio;../../libs/zlib;../../libs/Eigen/includes;../core/includes;../output_stream/includes;../dynamic_link/includes;../string/includes;../localization/includes;../api_scilab/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env;../console/includes;../threads/includes;../sparse/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MATIO_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -196,28 +196,33 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\ConvertSciVarToMatVar.cpp" />
+    <ClCompile Include="src\cpp\CreateCellVariable.cpp" />
+    <ClCompile Include="src\cpp\CreateHyperMatrixVariable.cpp" />
+    <ClCompile Include="src\cpp\CreateMatlabTreeVariable.cpp" />
+    <ClCompile Include="src\cpp\CreateStructVariable.cpp" />
+    <ClCompile Include="src\cpp\GetCellVariable.cpp" />
+    <ClCompile Include="src\cpp\GetCharVariable.cpp" />
+    <ClCompile Include="src\cpp\GetDoubleVariable.cpp" />
+    <ClCompile Include="src\cpp\GetIntegerVariable.cpp" />
+    <ClCompile Include="src\cpp\GetMlistVariable.cpp" />
+    <ClCompile Include="src\cpp\GetSparseVariable.cpp" />
+    <ClCompile Include="src\cpp\GetStructVariable.cpp" />
     <ClCompile Include="src\c\CreateBooleanVariable.c" />
-    <ClCompile Include="src\c\CreateCellVariable.c" />
     <ClCompile Include="src\c\CreateCharVariable.c" />
     <ClCompile Include="src\c\CreateDoubleVariable.c" />
-    <ClCompile Include="src\c\CreateHyperMatrixVariable.c" />
     <ClCompile Include="src\c\CreateIntegerVariable.c" />
     <ClCompile Include="src\c\CreateMatlabVariable.c" />
     <ClCompile Include="src\c\CreateSparseVariable.c" />
-    <ClCompile Include="src\c\CreateStructVariable.c" />
     <ClCompile Include="src\c\DllmainMatio.c" />
-    <ClCompile Include="src\c\GetCellVariable.c" />
-    <ClCompile Include="src\c\GetCharVariable.c" />
-    <ClCompile Include="src\c\GetDoubleVariable.c" />
-    <ClCompile Include="src\c\GetIntegerVariable.c" />
     <ClCompile Include="src\c\GetMatlabVariable.c" />
-    <ClCompile Include="src\c\GetMlistVariable.c" />
-    <ClCompile Include="src\c\GetSparseVariable.c" />
-    <ClCompile Include="src\c\GetStructVariable.c" />
     <ClCompile Include="sci_gateway\c\gw_matio.c" />
     <ClCompile Include="src\c\matfile_manager.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\cpp\ConvertSciVarToMatVar.hxx" />
+    <ClInclude Include="src\cpp\CreateMatlabTreeVariable.hxx" />
+    <ClInclude Include="src\cpp\GetMatlabVariable.hxx" />
     <ClInclude Include="src\c\CreateMatlabVariable.h" />
     <ClInclude Include="includes\dynlib_matio.h" />
     <ClInclude Include="src\c\GetMatlabVariable.h" />
@@ -243,6 +248,9 @@ lib /DEF:"$(ProjectDir)Sparse_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\localization\src\localization.vcxproj">
       <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>

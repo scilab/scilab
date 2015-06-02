@@ -11,13 +11,10 @@
 CORE_C_SOURCES = \
     src/c/csignal.c \
     src/c/cs2st.c \
-    src/c/getval.c \
     src/c/md5.c \
     src/c/texmacs.c \
-    src/c/str2sci.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
-    src/c/scimem.c \
     src/c/isanan.c \
     src/c/xscion.c \
     src/c/returnanan.c \
@@ -27,7 +24,6 @@ CORE_C_SOURCES = \
     src/c/coretable.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
-    src/c/ifexpr.c \
     src/c/getcommandlineargs.c \
     src/c/callFunctionFromGateway.c \
     src/c/commandwords.c \
@@ -38,11 +34,9 @@ CORE_C_SOURCES = \
     src/c/dynamic_gateways.c \
     src/c/comparehandles.c \
     src/c/setPrecisionFPU.c \
-    src/c/LaunchScilabSignal.c \
     src/c/getos.c \
     src/c/mode_exec.c \
     src/c/transposeMatrix.c \
-    src/c/recursionFunction.c \
     src/c/eqid.c \
     src/c/exitCodeValue.c \
     src/c/getversion.c \
@@ -59,8 +53,7 @@ CORE_C_SOURCES = \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
-    src/c/hashtable/hashtable_utility.c \
-    src/c/scimem64.c
+    src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
     src/cpp/namstr.cpp \
@@ -78,53 +71,17 @@ CORE_CPP_SOURCES = \
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
-    src/fortran/getlin.f \
-    src/fortran/allowptr.f \
-    src/fortran/isany.f \
-    src/fortran/setgetmode.f \
-    src/fortran/showstack.f \
-    src/fortran/setippty.f \
-    src/fortran/cmplxt.f \
     src/fortran/folhp.f \
-    src/fortran/cvname.f \
-    src/fortran/prompt.f \
     src/fortran/intstr.f \
-    src/fortran/createref.f \
-    src/fortran/btof.f \
-    src/fortran/btofm.f \
-    src/fortran/find.f \
-    src/fortran/ref2val.f \
-    src/fortran/isbrk.f \
     src/fortran/xerbla.f \
-    src/fortran/dtosci.f \
-    src/fortran/bexec.f \
-    src/fortran/savlod.f \
-    src/fortran/error.f \
-    src/fortran/cvdm.f \
-    src/fortran/mkindx.f \
     src/fortran/whatln.f \
-    src/fortran/errmgr.f \
-    src/fortran/mklist.f \
-    src/fortran/indxg.f \
-    src/fortran/istrue.f \
-    src/fortran/extlarg.f \
-    src/fortran/lst2vars.f \
-    src/fortran/basnms.f \
-    src/fortran/ptrback.f \
-    src/fortran/getch.f \
-    src/fortran/ftob.f \
     src/fortran/expsum.f \
-    src/fortran/copyvar.f \
     src/fortran/putid.f \
-    src/fortran/itosci.f \
-    src/fortran/stackr2d.f \
-    src/fortran/stacki2d.f \
-    src/fortran/stackc2i.f \
-    src/fortran/isinstring.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
-    src/fortran/relocstack.f
+	src/fortran/write_inter.f \
+	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
 	sci_gateway/c/gw_core.c \
@@ -170,7 +127,9 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_getmemory.cpp \
 	sci_gateway/cpp/sci_errclear.cpp \
 	sci_gateway/cpp/sci_intppty.cpp \
-	sci_gateway/cpp/sci_analyzeroptions.cpp
+	sci_gateway/cpp/sci_analyzeroptions.cpp \
+	sci_gateway/cpp/sci_macr2tree.cpp \
+	sci_gateway/cpp/sci_predef.cpp
 
 libscicore_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -208,6 +167,7 @@ libscicore_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/hdf5/includes/ \
     -I$(top_srcdir)/modules/fftw/includes/ \
+    -I$(top_srcdir)/modules/ui_data/includes/ \
     $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)

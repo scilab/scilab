@@ -24,7 +24,7 @@ extern "C"
 #include "localization.h"
 #include "Scierror.h"
 #include "sci_malloc.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 /*--------------------------------------------------------------------------*/
 

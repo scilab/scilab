@@ -22,8 +22,8 @@
 #include "NgonGridData.hxx"
 #include "NgonGridMatplotData.hxx"
 #include "NgonPolylineData.hxx"
-#include "TriangleMeshData.hxx"
-#include "TriangleMeshFecData.hxx"
+#include "MeshData.hxx"
+#include "MeshFecData.hxx"
 
 #include "graphicObjectProperties.h"
 
@@ -36,10 +36,7 @@ extern "C" {
 class DataModel
 {
 private :
-    DataModel()
-    {
-        m_dataMap = new std::map<int, Data3D*>();
-    }
+    DataModel() {}
 
 public :
     static DataModel *get()
@@ -52,6 +49,14 @@ public :
         return m_me;
     }
 
+    static void destroy()
+    {
+        if (m_me)
+        {
+            delete m_me;
+            m_me = NULL;
+        }
+    }
 public :
     /**
      * Sets a graphic object property
@@ -76,7 +81,7 @@ public :
 private :
     static DataModel *m_me;
 
-    std::map<int, Data3D*> *m_dataMap;
+    std::map<int, Data3D*> m_dataMap;
 };
 
 #endif

@@ -29,13 +29,13 @@
 #include "runner.hxx"
 #include "visitor_common.hxx"
 #include "operations.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
 #include "machine.h"
 #include "InitializeLocalization.h"
 #include "elem_common.h"
-#include "LaunchScilabSignal.h"
 #include "InitializeJVM.h"
 #include "TerminateJVM.h"
 #include "InitializeGUI.h"
@@ -57,6 +57,9 @@ extern "C"
 #include "saveCWDInPreferences.h"
 #include "h5_fileManagement.h"
 #include "with_fftw.h"
+#include "BrowseVarManager.h"
+#include "scicurdir.h"
+#include "FileBrowserChDir.h"
 
 
 #ifdef _MSC_VER
@@ -76,6 +79,8 @@ extern "C"
 #include "setPrecisionFPU.h"
 #endif
 
+#include "storeCommand.h"
+
     /* Defined without include to avoid useless header dependency */
     extern BOOL isItTheDisabledLib(void);
 }
@@ -90,6 +95,7 @@ static void Add_gui(void);
 static void Add_fftw(void);
 static void Add_Nan(void);
 static void Add_Inf(void);
+static void Add_io(void);
 static void Add_All_Variables(void);
 static void Add_Double_Constant(std::wstring _szName, double _dblReal, double _dblImg, bool _bComplex);
 static void Add_Poly_Constant(std::wstring _szName, std::wstring _szPolyVar, int _iRank, types::Double * _pdblReal);
@@ -100,7 +106,7 @@ static void checkForLinkerErrors(void);
 static int batchMain(ScilabEngineInfo* _pSEI);
 static int InitializeEnvironnement(void);
 static int interactiveMain(ScilabEngineInfo* _pSEI);
-static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI);
+static void processCommand(ScilabEngineInfo* _pSEI);
 static void stateShow(Parser::ControlStatus status);
 
 using namespace ast;
@@ -113,6 +119,10 @@ ScilabEngineInfo* InitScilabEngineInfo()
     //Active default flags
     pSEI->iExecAst = 1;
     pSEI->iNoBanner = 1;
+
+    pSEI->iMultiLine = 0;
+    pSEI->isInterruptible = 1;  // by default all thread are interruptible
+    pSEI->isPrioritary = 0;     // by default all thread are non-prioritary
 
     return pSEI;
 }
@@ -142,7 +152,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     fpsetmask(0);
 #endif
 
-    Runner::init();
+    ThreadManagement::initialize();
 
     checkForLinkerErrors();
 
@@ -184,8 +194,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     //create a thread for innosetup to allow reinstall during scilab running
     createInnosetupMutex();
 #endif
-
-    InitializeLaunchScilabSignal();
 
     /* Scilab Startup */
     xmlInitParser();
@@ -259,18 +267,37 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         if (_pSEI->pstExec)
         {
             //-e option
+            Parser parser;
+            parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
 
-            processCommand(_pSEI);
+            if (parser.getExitStatus() == Parser::Failed)
+            {
+                scilabWriteW(parser.getErrorMessage());
+            }
+            else if (parser.getControlStatus() !=  Parser::AllControlClosed)
+            {
+                _pSEI->iMultiLine = 1;
+            }
+            else
+            {
+                StoreConsoleCommand(_pSEI->pstExec);
+            }
+
+            if (parser.getTree())
+            {
+                delete parser.getTree();
+                parser.setTree(NULL);
+            }
             iMainRet = ConfigVariable::getExitStatus();
         }
         else if (_pSEI->pstFile)
         {
             //-f option execute exec('%s',-1)
+            Parser parser;
             char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
             sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
-            _pSEI->pstExec = pstCommand;
-            processCommand(_pSEI);
+            StoreConsoleCommand(pstCommand);
             FREE(pstCommand);
             iMainRet = ConfigVariable::getExitStatus();
             _pSEI->pstExec = NULL;
@@ -304,7 +331,8 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
     if (_pSEI->pstExec)
     {
-        processCommand(_pSEI);
+        StoreConsoleCommand(_pSEI->pstExec);
+        ThreadManagement::WaitForConsoleExecDoneSignal();
         return ConfigVariable::getExitStatus();
     }
 
@@ -349,7 +377,6 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->clearAll();
     //destroy context
     symbol::Context::destroyInstance();
-
 #ifndef NDEBUG
     //uncomment to print mem leak log
     //types::Inspector::displayMemleak();
@@ -411,81 +438,235 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
     ConfigVariable::setEndProcessing(false);
 }
 
-static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
+static void processCommand(ScilabEngineInfo* _pSEI)
 {
-    Parser *parser = new Parser();
-
-    parser->setParseTrace(_pSEI->iParseTrace != 0);
-    if (strcmp(_pSEI->pstExec, "") != 0)
+    /*
+     ** -*- DUMPING TREE -*-
+     */
+    if (_pSEI->iDumpAst)
     {
-        wchar_t *pwstCommand = to_wide_string(_pSEI->pstExec);
-
-        /*
-         ** -*- PARSING -*-
-         */
-        parseCommandTask(parser, _pSEI->iTimed != 0, pwstCommand);
-
-        /*
-         ** -*- DUMPING TREE -*-
-         */
-        if (_pSEI->iDumpAst)
-        {
-            dumpAstTask(parser->getTree(), _pSEI->iTimed != 0);
-        }
-
-        if (parser->getExitStatus() == Parser::Succeded)
-        {
-            /*
-             ** -*- PRETTY PRINT TREE -*-
-             */
-            if (_pSEI->iPrintAst)
-            {
-                printAstTask(parser->getTree(), _pSEI->iTimed != 0);
-            }
-
-            /*
-             ** -*- EXECUTING TREE -*-
-             */
-            if (_pSEI->iExecAst)
-            {
-                //before calling YaspReader, try to call %onprompt function
-                callOnPrompt();
-                execAstTask(parser->getTree(), _pSEI->iSerialize != 0, _pSEI->iTimed != 0, _pSEI->iAstTimed != 0, _pSEI->iExecVerbose != 0);
-            }
-
-            /*
-             ** -*- DUMPING STACK AFTER EXECUTION -*-
-             */
-            if (_pSEI->iDumpStack)
-            {
-                dumpStackTask(_pSEI->iTimed != 0);
-            }
-        }
-        else if (parser->getExitStatus() == Parser::Failed && parser->getControlStatus() == Parser::AllControlClosed)
-        {
-            if (_pSEI->iExecAst)
-            {
-                //before calling YaspReader, try to call %onprompt function
-                callOnPrompt();
-            }
-
-            scilabWriteW(parser->getErrorMessage());
-        }
-
-        FREE(pwstCommand);
-    }
-    else
-    {
-        if (_pSEI->iExecAst)
-        {
-            //before calling YaspReader, try to call %onprompt function
-            callOnPrompt();
-        }
+        dumpAstTask((ast::Exp*)_pSEI->pExpTree, _pSEI->iTimed != 0);
     }
 
-    Parser::ControlStatus ret = parser->getControlStatus();
-    delete parser;
-    return ret;
+    /*
+     ** -*- PRETTY PRINT TREE -*-
+     */
+    if (_pSEI->iPrintAst)
+    {
+        printAstTask((ast::Exp*)_pSEI->pExpTree, _pSEI->iTimed != 0);
+    }
+
+    /*
+     ** -*- EXECUTING TREE -*-
+     */
+    if (_pSEI->iExecAst)
+    {
+        execAstTask((ast::Exp*)_pSEI->pExpTree, _pSEI->iSerialize != 0,
+                    _pSEI->iTimed != 0, _pSEI->iAstTimed != 0,
+                    _pSEI->iExecVerbose != 0, _pSEI->isInterruptible != 0,
+                    _pSEI->isPrioritary != 0, _pSEI->isConsoleCommand != 0);
+    }
+
+    /*
+     ** -*- DUMPING STACK AFTER EXECUTION -*-
+     */
+    if (_pSEI->iDumpStack)
+    {
+        dumpStackTask(_pSEI->iTimed != 0);
+    }
+}
+
+// Thread used to parse and execute Scilab command setted in storeCommand
+void* scilabReadAndExecCommand(void* param)
+{
+    int iInterruptibleCmd   = 0;
+    int iPrioritaryCmd      = 0;
+    int iConsoleCmd         = 0;
+    char* command           = NULL;
+
+    ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
+
+    while (ConfigVariable::getForceQuit() == false)
+    {
+        if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
+        {
+            // command queue is empty
+            ThreadManagement::WaitForCommandStoredSignal();
+            continue;
+        }
+
+        // empty command
+        if (command == NULL || strlen(command) == 0)
+        {
+            continue;
+        }
+
+        _pSEI->isInterruptible = iInterruptibleCmd;
+        _pSEI->isPrioritary = iPrioritaryCmd;
+        _pSEI->isConsoleCommand = iConsoleCmd;
+
+        ThreadManagement::LockParser();
+        Parser parser;
+        parser.setParseTrace(_pSEI->iParseTrace != 0);
+        parseCommandTask(&parser, _pSEI->iTimed != 0, command);
+
+        if (parser.getExitStatus() == Parser::Failed)
+        {
+            scilabWriteW(parser.getErrorMessage());
+            ThreadManagement::UnlockParser();
+            continue;
+        }
+
+        _pSEI->pExpTree = parser.getTree();
+        ThreadManagement::UnlockParser();
+
+        processCommand(_pSEI);
+        FREE(command);
+
+        if (getScilabMode() != SCILAB_NWNI)
+        {
+
+            char *cwd = NULL;
+
+            int err = 0;
+
+            UpdateBrowseVar();
+            cwd = scigetcwd(&err);
+            if (cwd)
+            {
+                FileBrowserChDir(cwd);
+                FREE(cwd);
+            }
+        }
+    }
+
+    return NULL;
+}
+
+//Thread used to parse and set console commands in storeCommand
+void* scilabReadAndStore(void* param)
+{
+    ThreadManagement::LockStart();
+    ThreadManagement::UnlockStart();
+
+    Parser::ControlStatus controlStatus = Parser::AllControlClosed;
+
+    char *command = NULL;
+    wchar_t* parserErrorMsg = NULL;
+
+    ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
+
+    if (_pSEI->iMultiLine)
+    {
+        command = _pSEI->pstExec;
+    }
+
+    if (isEmptyCommandQueue() == false)
+    {
+        // unlock main thread
+        ThreadManagement::SendStartPendingSignal();
+
+        // Command stored as console command by -f
+        // We have to wait this execution before
+        // callOnPrompt (ie: onPrompt perform a quit in test_run)
+        ThreadManagement::WaitForConsoleExecDoneSignal();
+    }
+
+    // unlock main thread
+    ThreadManagement::SendStartPendingSignal();
+
+    callOnPrompt();
+
+    while (ConfigVariable::getForceQuit() == false)
+    {
+        Parser parser;
+        parser.setParseTrace(_pSEI->iParseTrace != 0);
+
+        Parser::ParserStatus exitStatus = Parser::Failed;
+
+        if (ConfigVariable::isEmptyLineShow())
+        {
+            scilabWriteW(L"\n");
+        }
+
+        do
+        {
+            // Show Parser Sate before prompt
+            stateShow(controlStatus);
+
+            int pause = ConfigVariable::getPauseLevel();
+
+            //set prompt value
+            C2F(setprlev) (&pause);
+
+            char *pstRead = scilabRead();
+
+            if (command == NULL)
+            {
+                command = pstRead;
+                if (strcmp(command, "") == 0)
+                {
+                    FREE(command);
+                    command = NULL;
+                    break;
+                }
+            }
+            else
+            {
+                //+1 for null termination and +1 for '\n'
+                size_t iLen = strlen(command) + strlen(pstRead) + 2;
+                char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
+
+#ifdef _MSC_VER
+                sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
+#else
+                sprintf(pstNewCommand, "%s\n%s", command, pstRead);
+#endif
+                FREE(pstRead);
+                FREE(command);
+                command = pstNewCommand;
+            }
+
+            ThreadManagement::LockParser();
+            parseCommandTask(&parser, _pSEI->iTimed != 0, command);
+            controlStatus = parser.getControlStatus();
+            exitStatus = parser.getExitStatus();
+            parserErrorMsg = parser.getErrorMessage();
+            if (parser.getTree())
+            {
+                delete parser.getTree();
+                parser.setTree(NULL);
+            }
+            ThreadManagement::UnlockParser();
+        }
+        while (controlStatus != Parser::AllControlClosed);
+
+        if (command == NULL)
+        {
+            continue;
+        }
+
+        if (exitStatus == Parser::Failed)
+        {
+            FREE(command);
+            command = NULL;
+            scilabForcedWriteW(parserErrorMsg);
+            continue;
+        }
+
+        StoreConsoleCommand(command);
+
+        FREE(command);
+        command = NULL;
+
+        ThreadManagement::WaitForConsoleExecDoneSignal();
+
+        callOnPrompt();
+    }
+
+    // Awake scilabReadAndExecCommand thread in case of scilab exit
+    ThreadManagement::SendCommandStoredSignal();
+    return NULL;
 }
 
 /*
@@ -493,16 +674,11 @@ static Parser::ControlStatus processCommand(ScilabEngineInfo* _pSEI)
 */
 static int interactiveMain(ScilabEngineInfo* _pSEI)
 {
-    int pause = 0;
-    char *command = NULL;
-
-    Parser::ControlStatus controlStatus = Parser::AllControlClosed;
-
 #ifndef WITH_GUI
 #ifndef _MSC_VER
     if (getScilabMode() != SCILAB_NWNI)
     {
-        fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or us the -nwni option.\n");
+        fprintf(stderr, "Scilab was compiled without its GUI and advanced features. Run scilab-cli or use the -nwni option.\n");
         initConsoleMode(ATTR_RESET);
         exit(1);
     }
@@ -511,61 +687,45 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 
     InitializeHistoryManager();
 
-    //before calling reader, try to call %onprompt function
-    callOnPrompt();
-
-    while (!ConfigVariable::getForceQuit())
+    if (getScilabMode() != SCILAB_NWNI)
     {
-        // Show Parser Sate before prompt
-        stateShow(controlStatus);
 
-        pause = ConfigVariable::getPauseLevel();
+        char *cwd = NULL;
 
-        //set prompt value
-        C2F(setprlev) (&pause);
+        int err = 0;
 
-        if (controlStatus == Parser::AllControlClosed)
+        UpdateBrowseVar();
+        cwd = scigetcwd(&err);
+        if (cwd)
         {
-            if (command)
-            {
-                FREE(command);
-                command = NULL;
-            }
-
-            if (ConfigVariable::isEmptyLineShow())
-            {
-                scilabWriteW(L"\n");
-            }
-
-            command = scilabRead();
+            FileBrowserChDir(cwd);
+            FREE(cwd);
         }
-        else
-        {
-            char *pstRead = scilabRead();
-
-            //+1 for null termination and +1 for '\n'
-            size_t iLen = strlen(command) + strlen(pstRead) + 2;
-            char *pstNewCommand = (char *)MALLOC(iLen * sizeof(char));
-
-#ifdef _MSC_VER
-            sprintf_s(pstNewCommand, iLen, "%s\n%s", command, pstRead);
-#else
-            sprintf(pstNewCommand, "%s\n%s", command, pstRead);
-#endif
-            FREE(pstRead);
-            FREE(command);
-            command = pstNewCommand;
-        }
-
-        _pSEI->pstExec = command;
-        controlStatus = processCommand(_pSEI);
-        _pSEI->pstExec = NULL;
     }
+
+    __threadId threadIdConsole;
+    __threadKey threadKeyConsole;
+    __threadId threadIdCommand;
+    __threadKey threadKeyCommand;
+
+    ThreadManagement::LockStart();
+    // thread to manage console command
+    __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
+
+    // scilabReadAndStore thread must be execute before scilabReadAndExecCommand
+    // to be such that the -f command stored is not removed
+    // from queue before scilabReadAndStore is waiting for.
+    ThreadManagement::WaitForStartPendingSignal();
+
+    // thread to manage command stored
+    __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
+
+    __WaitThreadDie(threadIdCommand);
+
 #ifdef DEBUG
     std::cerr << "To end program press [ENTER]" << std::endl;
 #endif
 
-    FREE(command);
     return ConfigVariable::getExitStatus();
 }
 
@@ -749,6 +909,7 @@ static void Add_All_Variables(void)
     Add_fftw();
     Add_Nan();
     Add_Inf();
+    Add_io();
 }
 
 static void Add_Nan(void)
@@ -779,7 +940,7 @@ static void Add_fftw(void)
 
 static void Add_pi(void)
 {
-    Add_Double_Constant(L"%pi", 3.1415926535897931159980, 0, false);
+    Add_Double_Constant(L"%pi", M_PI, 0, false);
 }
 
 static void Add_eps(void)
@@ -815,6 +976,14 @@ static void Add_z(void)
     dblCoef.set(0, 1, 1);
 
     Add_Poly_Constant(L"%z", L"z", 1, &dblCoef);
+}
+
+static void Add_io(void)
+{
+    types::Double * pVal = new types::Double(1, 2);
+    pVal->set(0, 5);
+    pVal->set(1, 6);
+    symbol::Context::getInstance()->put(symbol::Symbol(L"%io"), pVal);
 }
 
 static void Add_Poly_Constant(wstring _szName, wstring _szPolyVar, int _iRank, Double * _pdbl)

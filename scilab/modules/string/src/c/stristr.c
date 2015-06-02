@@ -14,7 +14,7 @@
 #include <ctype.h>
 #include <string.h>
 #include "stristr.h"
-#include "stricmp.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char *stristr(const char *psz, const char *tofind)
 {

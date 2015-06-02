@@ -15,7 +15,7 @@
     <refnamediv>
         <refname>clf</refname>
         <refpurpose>
-            Clear or reset or reset a figure or a frame uicontrol.
+            Clear or reset a figure or a frame uicontrol.
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>

@@ -24,6 +24,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
+#include "freeArrayOfString.h"
 }
 
 using namespace types;
@@ -67,6 +68,7 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
                 pStringOut->set(0, wcsPath);
                 FREE(wcsPath);
                 out.push_back(pStringOut);
+                freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
                 return types::Function::OK;
             }
             else
@@ -75,6 +77,8 @@ Function::ReturnValue sci_get_absolute_file_path(types::typed_list &in, int _iRe
             }
         }
     }
+
+    freeArrayOfWideString(wcsFilesOpened, FileManager::getOpenedCount());
 
     if (wcsTemp == NULL)
     {

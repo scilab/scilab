@@ -16,7 +16,7 @@
 #include "filesmanagement.h"
 #include "core_math.h" /* Min Max */
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "fullpath.h"
 /*--------------------------------------------------------------------------*/
 typedef struct

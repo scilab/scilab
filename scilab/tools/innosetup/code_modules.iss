@@ -47,7 +47,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="core" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="api_scilab" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="ast" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="operations" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="differential_equations" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="elementary_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="functions" activate="yes"/>'; i := i + 1;
@@ -81,7 +80,7 @@ begin
     ModulesXmlFileLines[i] := '<module name="m2sci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="mexlib" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="sound" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="external_objects" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="randlib" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="demo_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="spreadsheet" activate="yes"/>'; i := i + 1;
@@ -116,7 +115,7 @@ begin
         ModulesXmlFileLines[i] := '<module name="graph" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="javasci" activate="yes"/>'; i := i + 1;
         ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
-        //ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
+        ModulesXmlFileLines[i] := '<module name="external_objects_java" activate="yes"/>'; i := i + 1;
     end;
 
     ModulesXmlFileLines[i] := '<!-- Scinotes dependencies -->'; i := i + 1;

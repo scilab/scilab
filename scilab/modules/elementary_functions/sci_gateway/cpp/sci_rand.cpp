@@ -25,9 +25,6 @@ extern "C"
 #include "basic_functions.h"
 }
 
-#define Ran1 siRandSave //old C2F(com).ran[0]
-#define Ran2 siRandType //old C2F(com).ran[1]
-
 const wchar_t g_pwstConfigInfo[] = {L"info"};
 const wchar_t g_pwstConfigSeed[] = {L"seed"};
 
@@ -37,6 +34,10 @@ const wchar_t g_pwstTypeNormal[] = {L"normal"};
 int setRandType(wchar_t _wcType);
 double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit);
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();rand(a);toc
+clear a;nb = 2500;a = rand(nb, nb);a = a + a * %i;tic();rand(a);toc
+*/
 
 types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -54,7 +55,6 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         return types::Function::OK;
     }
 
-    GenericType* pGT0 = in[0]->getAs<GenericType>();
     if (in[0]->isString())
     {
         //rand("xxx")
@@ -150,8 +150,11 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
                     Scierror(21, _("Invalid index.\n"));
                     break;
                 case 1:
+                {
                     //call overload
-                    return Overload::generateNameAndCall(L"ones", in, _iRetCount, out, new ast::ExecVisitor());
+                    ast::ExecVisitor exec;
+                    return Overload::generateNameAndCall(L"rand", in, _iRetCount, out, &exec);
+                }
             }
 
             return types::Function::Error;
@@ -171,7 +174,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         }
 
         double* pd = pOut->get();
-        for (int i = 0 ; i < pOut->getSize() ; i++)
+        for (int i = 0; i < pOut->getSize(); i++)
         {
             pd[i] = getNextRandValue(siRandType, &siRandSave, iForceInit);
             iForceInit = 0;
@@ -195,12 +198,12 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
 /*--------------------------------------------------------------------------*/
 double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
 {
-    static int siInit       = TRUE;
-    static double sdblImg   = 0;
-    static double sdblR     = 0;
-    double dblReal          = 0;
-    double dblVal           = 0;
-    double dblTemp          = 2;
+    static int siInit = TRUE;
+    static double sdblImg = 0;
+    static double sdblR = 0;
+    double dblReal = 0;
+    double dblVal = 0;
+    double dblTemp = 2;
 
     if (_iForceInit)
     {
@@ -217,12 +220,12 @@ double getNextRandValue(int _iRandType, int* _piRandSave, int _iForceInit)
         {
             while (dblTemp > 1)
             {
-                dblReal	= 2 * durands(_piRandSave) - 1;
-                sdblImg	= 2 * durands(_piRandSave) - 1;
+                dblReal = 2 * durands(_piRandSave) - 1;
+                sdblImg = 2 * durands(_piRandSave) - 1;
                 dblTemp = dblReal * dblReal + sdblImg * sdblImg;
             }
-            sdblR   = dsqrts(-2 * dlogs(dblTemp) / dblTemp);
-            dblVal  = dblReal * sdblR;
+            sdblR = dsqrts(-2 * dlogs(dblTemp) / dblTemp);
+            dblVal = dblReal * sdblR;
         }
         else
         {

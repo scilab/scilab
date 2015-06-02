@@ -144,9 +144,11 @@
 
   
 
-    function str=myfmt(pt)
+    function str=myfmt(h)
 
-      str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+      pt = h.data;
+	  
+	  str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
 
     endfunction
 
@@ -188,7 +190,9 @@
             
             
             
-            function str=myfmt(pt)
+            function str=myfmt(h)
+			
+			pt = h.data;
             
             str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
             

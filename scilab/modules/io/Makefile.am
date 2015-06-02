@@ -15,17 +15,14 @@ IO_CPP_SOURCES = \
     src/cpp/io_gw.cpp \
     src/cpp/loadlib.cpp
 
-
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_read4b.c \
     sci_gateway/c/sci_getio.c \
     sci_gateway/c/sci_readb.c \
     sci_gateway/c/sci_getenv.c \
-    sci_gateway/c/sci_write.c \
     sci_gateway/c/sci_writeb.c \
     sci_gateway/c/sci_setenv.c \
     sci_gateway/c/gw_io.c \
-    sci_gateway/c/sci_read.c \
     sci_gateway/c/sci_getpid.c \
     sci_gateway/c/sci_write4b.c \
     sci_gateway/c/sci_save.c
@@ -36,6 +33,8 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_file.cpp \
     sci_gateway/cpp/sci_host.cpp \
     sci_gateway/cpp/sci_unix.cpp \
+    sci_gateway/cpp/sci_read.cpp \
+    sci_gateway/cpp/sci_write.cpp \
     sci_gateway/cpp/sci_lib.cpp
 
 
@@ -63,7 +62,6 @@ libsciio_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/console/includes \
     -I$(top_srcdir)/modules/hdf5/includes \
-    $(EIGEN_CPPFLAGS) \
     $(XML_FLAGS) \
     $(AM_CPPFLAGS)
 

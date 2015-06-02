@@ -18,6 +18,7 @@
 #include "execvisitor.hxx"
 #include "max.hxx"
 #include "min.hxx"
+#include "int.hxx"
 
 extern "C"
 {
@@ -25,10 +26,15 @@ extern "C"
 #include "localization.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();max(a);toc
+clear a;nb = 2500;a = rand(nb, nb);b = rand(nb, nb);tic();max(a,b);toc
+*/
+
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, types::typed_list &out, const char* fname)
 {
-    int iCountElem   = in.size();
+    int iCountElem   = static_cast<int>(in.size());
     int iDims        = 0;
     int* piDimsArray = NULL;
     int iOrientation = 0;
@@ -89,9 +95,10 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
     if (inputs[0]->isDouble() == false && inputs[0]->isInt() == false)
     {
         wchar_t* wcsMinMax = to_wide_string(fname);
-        std::wstring wstFuncName = L"%"  + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
+        std::wstring wstFuncName = L"%" + inputs[0]->getShortTypeStr() + L"_" + wcsMinMax;
         FREE(wcsMinMax);
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::GenericType* pGT = NULL;
@@ -184,10 +191,10 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
 
     for (int i = 0; i < iCountElem; i++)
     {
-        if (inputs[i]->isDouble() || inputs[i]->isInt())
+        types::Double* pDbl = NULL;
+        switch (inputs[i]->getType())
         {
-            types::Double* pDbl = NULL;
-            if (inputs[i]->isDouble())
+            case InternalType::ScilabDouble:
             {
                 pDbl = inputs[i]->getAs<types::Double>();
                 if (pDbl->isComplex())
@@ -197,128 +204,89 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
                 }
 
                 iLargerInput = 1000;
+                break;
             }
-            else if (inputs[i]->isUInt8())
+            case InternalType::ScilabInt8:
             {
-                types::UInt8* pIIn = inputs[i]->getAs<types::UInt8>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
+                pDbl = getAsDouble(inputs[i]->getAs<types::Int8>());
                 iLargerInput = max(iLargerInput, 8);
-            }
-            else if (inputs[i]->isInt8())
-            {
-                types::Int8* pIIn = inputs[i]->getAs<types::Int8>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
                 iSigned = 1;
+                break;
+            }
+            case InternalType::ScilabInt16:
+            {
+                pDbl = getAsDouble(inputs[i]->getAs<types::Int16>());
+                iLargerInput = max(iLargerInput, 16);
+                iSigned = 1;
+                break;
+            }
+            case InternalType::ScilabInt32:
+            {
+                pDbl = getAsDouble(inputs[i]->getAs<types::Int32>());
+                iLargerInput = max(iLargerInput, 32);
+                iSigned = 1;
+                break;
+            }
+            case InternalType::ScilabInt64:
+            {
+                pDbl = getAsDouble(inputs[i]->getAs<types::Int64>());
+                iLargerInput = max(iLargerInput, 64);
+                iSigned = 1;
+                break;
+            }
+            case InternalType::ScilabUInt8:
+            {
+                pDbl = getAsDouble(inputs[i]->getAs<types::UInt8>());
                 iLargerInput = max(iLargerInput, 8);
+                break;
             }
-            else if (inputs[i]->isUInt16())
+            case InternalType::ScilabUInt16:
             {
-                types::UInt16* pIIn = inputs[i]->getAs<types::UInt16>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
+                pDbl = getAsDouble(inputs[i]->getAs<types::UInt16>());
                 iLargerInput = max(iLargerInput, 16);
+                break;
             }
-            else if (inputs[i]->isInt16())
+            case InternalType::ScilabUInt32:
             {
-                types::Int16* pIIn = inputs[i]->getAs<types::Int16>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
-                iSigned = 1;
-                iLargerInput = max(iLargerInput, 16);
-            }
-            else if (inputs[i]->isUInt32())
-            {
-                types::UInt32* pIIn = inputs[i]->getAs<types::UInt32>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
+                pDbl = getAsDouble(inputs[i]->getAs<types::UInt32>());
                 iLargerInput = max(iLargerInput, 32);
+                break;
             }
-            else if (inputs[i]->isInt32())
+            case InternalType::ScilabUInt64:
             {
-                types::Int32* pIIn = inputs[i]->getAs<types::Int32>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
-                iSigned = 1;
-                iLargerInput = max(iLargerInput, 32);
-            }
-            else if (inputs[i]->isUInt64())
-            {
-                types::UInt64* pIIn = inputs[i]->getAs<types::UInt64>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
+                pDbl = getAsDouble(inputs[i]->getAs<types::UInt64>());
                 iLargerInput = max(iLargerInput, 64);
+                break;
             }
-            else if (inputs[i]->isInt64())
+            default:
             {
-                types::Int64* pIIn = inputs[i]->getAs<types::Int64>();
-                pDbl = new types::Double(pIIn->getDims(), pIIn->getDimsArray());
-                for (int i = 0; i < pIIn->getSize(); i++)
-                {
-                    pDbl->set(i, static_cast<double>(pIIn->get(i)));
-                }
-
-                iSigned = 1;
-                iLargerInput = max(iLargerInput, 64);
-            }
-
-            if (pDbl->isScalar())
-            {
-                vectDouble.push_back(pDbl);
-            }
-            else if (iDims != pDbl->getDims())
-            {
-                Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, i + 1);
                 return types::Function::Error;
             }
-            else
-            {
-                int* iCurrentDimsArray = pDbl->getDimsArray();
-                for (int iterDims = 0; iterDims < iDims; iterDims++)
-                {
-                    if (iCurrentDimsArray[iterDims] != piDimsArray[iterDims])
-                    {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
-                        return types::Function::Error;
-                    }
-                }
+        }
 
-                vectDouble.push_back(pDbl);
-            }
+        if (pDbl->isScalar())
+        {
+            vectDouble.push_back(pDbl);
+        }
+        else if (iDims != pDbl->getDims())
+        {
+            Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
+            return types::Function::Error;
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A matrix expected.\n"), fname, i + 1);
-            return types::Function::Error;
+            int* iCurrentDimsArray = pDbl->getDimsArray();
+            for (int iterDims = 0; iterDims < iDims; iterDims++)
+            {
+                if (iCurrentDimsArray[iterDims] != piDimsArray[iterDims])
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%d: All arguments must have the same size.\n"), fname, i + 1);
+                    return types::Function::Error;
+                }
+            }
+
+            vectDouble.push_back(pDbl);
         }
     }
 
@@ -378,100 +346,59 @@ types::Function::ReturnValue sci_MinMax(types::typed_list &in, int _iRetCount, t
         {
             if (iSigned)
             {
-                types::Int8* pIIn = new types::Int8(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<char>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::Int8>(pDblOut));
             }
             else
             {
-                types::UInt8* pIIn = new types::UInt8(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<unsigned char>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::UInt8>(pDblOut));
             }
-            delete pDblOut;
-            pDblOut = NULL;
             break;
         }
         case 16 :
         {
             if (iSigned)
             {
-                types::Int16* pIIn = new types::Int16(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<short>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::Int16>(pDblOut));
             }
             else
             {
-                types::UInt16* pIIn = new types::UInt16(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<unsigned short>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::UInt16>(pDblOut));
             }
-            delete pDblOut;
-            pDblOut = NULL;
             break;
         }
         case 32 :
         {
             if (iSigned)
             {
-                types::Int32* pIIn = new types::Int32(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<int>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::Int32>(pDblOut));
             }
             else
             {
-                types::UInt32* pIIn = new types::UInt32(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<unsigned int>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::UInt32>(pDblOut));
             }
-            delete pDblOut;
-            pDblOut = NULL;
             break;
         }
         case 64 :
         {
             if (iSigned)
             {
-                types::Int64* pIIn = new types::Int64(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<long long>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::Int64>(pDblOut));
             }
             else
             {
-                types::UInt64* pIIn = new types::UInt64(pDblOut->getDims(), pDblOut->getDimsArray());
-                for (int i = 0; i < pDblOut->getSize(); i++)
-                {
-                    pIIn->set(i, static_cast<unsigned long long>(pDblOut->get(i)));
-                }
-                out.push_back(pIIn);
+                out.push_back(toInt<types::UInt64>(pDblOut));
             }
-            delete pDblOut;
-            pDblOut = NULL;
             break;
         }
         default :
             out.push_back(pDblOut);
+    }
+
+    if (iLargerInput != 1000)
+    {
+        //do not delete for double output
+        delete pDblOut;
+        pDblOut = NULL;
     }
 
     if (_iRetCount == 2)

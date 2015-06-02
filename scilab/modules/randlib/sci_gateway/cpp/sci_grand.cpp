@@ -90,8 +90,9 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
 
     if ((iStrPos == 0) && (in[0]->isString() == false))
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_grand";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     int iDims = iStrPos > 1 ? iStrPos : 2;
@@ -1630,15 +1631,15 @@ void sci_grand_prm(int iNumIter, U *pIn, types::InternalType** pOut)
     {
         for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
         {
-            pOut[0]->getAs<U>()->set(i , pIn->get(pDblOut->get(i)));
-            pOut[0]->getAs<U>()->setImg(i , pIn->getImg(pDblOut->get(i)));
+            pOut[0]->getAs<U>()->set(i , pIn->get(static_cast<int>(pDblOut->get(i))));
+            pOut[0]->getAs<U>()->setImg(i, pIn->getImg(static_cast<int>(pDblOut->get(i))));
         }
     }
     else
     {
         for (int i = 0; i < pOut[0]->getAs<U>()->getSize(); i++)
         {
-            pOut[0]->getAs<U>()->set(i, pIn->get(pDblOut->get(i)));
+            pOut[0]->getAs<U>()->set(i, pIn->get(static_cast<int>(pDblOut->get(i))));
         }
     }
 

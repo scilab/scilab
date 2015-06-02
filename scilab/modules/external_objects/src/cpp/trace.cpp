@@ -65,7 +65,7 @@ int ScilabGateway::trace(char * fname, const int envId, void * pvApiCtx)
             {
                 env.enabletrace(expandedPath);
             }
-            catch (std::exception & e)
+            catch (std::exception & /*e*/)
             {
                 FREE(expandedPath);
                 throw;

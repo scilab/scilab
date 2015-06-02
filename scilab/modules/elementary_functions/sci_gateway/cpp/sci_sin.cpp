@@ -15,15 +15,20 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "sparse.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
 #include "sin.h"
+#include "dynlib_elementary_functions_gw.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();sin(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();sin(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -45,23 +50,7 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
     if (in[0]->isDouble())
     {
         pDblIn = in[0]->getAs<types::Double>();
-        pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray(), pDblIn->isComplex());
-
-        if (pDblIn->isComplex())
-        {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
-            {
-                zsins(pDblIn->get(i), pDblIn->getImg(i), pDblOut->get() + i, pDblOut->getImg() + i);
-            }
-        }
-        else
-        {
-            for (int i = 0 ; i < pDblIn->getSize() ; i++)
-            {
-                pDblOut->set(i, dsins(pDblIn->get(i)));
-            }
-        }
-
+        pDblOut = trigo(pDblIn, sin, sin);
         out.push_back(pDblOut);
     }
     else if (in[0]->isSparse())
@@ -107,8 +96,9 @@ types::Function::ReturnValue sci_sin(types::typed_list &in, int _iRetCount, type
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_sin";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sin";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

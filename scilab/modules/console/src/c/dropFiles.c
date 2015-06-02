@@ -20,9 +20,8 @@
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"
-#include "stricmp.h"
 #include "with_module.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"

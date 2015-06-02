@@ -23,9 +23,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #ifndef _MSC_VER
@@ -33,7 +31,7 @@ static BOOL find_spec( char *filename , char *filespec);
 #endif
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BOOL warning)
+wchar_t** findfilesW(const wchar_t *path, const wchar_t *filespec, int *sizeListReturned, BOOL warning)
 {
     wchar_t **ListFiles = NULL;
     wchar_t *wcstrPattern = NULL;
@@ -89,7 +87,7 @@ wchar_t** findfilesW(wchar_t *path, wchar_t *filespec, int *sizeListReturned, BO
     return ListFiles;
 }
 
-char** findfiles(char *path, char *filespec, int *sizeListReturned, BOOL warning)
+char** findfiles(const char *path, const char *filespec, int *sizeListReturned, BOOL warning)
 {
     int i = 0;
     wchar_t** wListFiles = NULL;

@@ -59,7 +59,7 @@ public class Datatip extends Text {
 
 
     enum DatatipObjectProperty { TIP_DATA, TIP_BOX_MODE, TIP_LABEL_MODE, TIP_ORIENTATION, TIP_AUTOORIENTATION, TIP_3COMPONENT, TIP_INTERP_MODE, TIP_DISPLAY_FNC, TIP_INDEXES};
-    enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT;
+    enum TipOrientation { TOP_LEFT, TOP_RIGHT, BOTTOM_LEFT, BOTTOM_RIGHT, LEFT, RIGHT, TOP, BOTTOM;
 
                           /**
                            * Transform a integer to a TipOrientation enum.
@@ -74,6 +74,14 @@ public class Datatip extends Text {
                 return TipOrientation.BOTTOM_LEFT;
             case 3:
                 return TipOrientation.BOTTOM_RIGHT;
+            case 4:
+                return TipOrientation.LEFT;
+            case 5:
+                return TipOrientation.RIGHT;
+            case 6:
+                return TipOrientation.TOP;
+            case 7:
+                return TipOrientation.BOTTOM;
             default:
                 return TipOrientation.TOP_RIGHT;
         }

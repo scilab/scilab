@@ -1431,6 +1431,7 @@ C
 C
       SAVE LID, LENID, NONNEG, NCPHI
 C
+cDEC$ ATTRIBUTES DLLIMPORT:: /ierode/
       COMMON /ierode/ierror
 C
 C

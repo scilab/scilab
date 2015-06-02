@@ -59,9 +59,10 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
     if (in.size() == 1)
     {
+        ast::ExecVisitor exec;
         // rational case
         std::wstring wstFuncName = L"%r_simp";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
     else // simp(num, den)
     {
@@ -94,14 +95,14 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
         if (bComplex)
         {
-            std::wstring wstFuncName = L"%p_simp";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            return Overload::call(L"%p_simp", in, _iRetCount, out, &exec);
         }
 
         if (iDouble == 3) // simp(double, double)
         {
-            std::wstring wstFuncName = L"%s_simp";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            return Overload::call(L"%s_simp", in, _iRetCount, out, &exec);
         }
 
         switch (iDouble)
@@ -155,8 +156,8 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
 
                     if (iErr)
                     {
-                        delete pdblNumTmp;
-                        delete pdblDenTmp;
+                        delete[] pdblNumTmp;
+                        delete[] pdblDenTmp;
                         break;
                     }
 
@@ -169,13 +170,13 @@ types::Function::ReturnValue sci_simp(types::typed_list &in, int _iRetCount, typ
                     pPolyNumOut->set(i, pSPNum);
                     pPolyDenOut->set(i, pSPDen);
 
-                    delete pdblNumTmp;
-                    delete pdblDenTmp;
+                    delete[] pdblNumTmp;
+                    delete[] pdblDenTmp;
                     delete pSPNum;
                     delete pSPDen;
                 }
 
-                delete pdblWork;
+                delete[] pdblWork;
                 delete pNum;
                 delete pDen;
 

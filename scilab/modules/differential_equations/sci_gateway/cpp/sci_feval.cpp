@@ -34,6 +34,7 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 {
     int iPos = 0;
     int nn   = 1;
+    int iErr = 0;
 
     //input
     types::Double* pDblX = NULL;
@@ -41,6 +42,10 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
     // output
     types::Double* pDblOut = NULL;
+
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
 
     // *** check the minimal number of input args. ***
     if (in.size() < 2 || in.size() > 3)
@@ -90,19 +95,19 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
     }
 
     // function
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"feval");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"feval");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[iPos]->isCallable())
     {
         types::Callable* pCall = in[iPos]->getAs<types::Callable>();
-        deFunctionsManager->setFFunction(pCall);
+        deFunctionsManager.setFFunction(pCall);
     }
     else if (in[iPos]->isString())
     {
         bool bOK = false;
         types::String* pStr = in[iPos]->getAs<types::String>();
-        bOK = deFunctionsManager->setFFunction(pStr);
+        bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
         {
@@ -126,10 +131,10 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
         if (pList->get(0)->isCallable())
         {
-            deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else
@@ -170,17 +175,29 @@ types::Function::ReturnValue sci_feval(types::typed_list &in, int _iRetCount, ty
 
             try
             {
-                deFunctionsManager->execFevalF(&nn, &valX, &valY, res, &itype);
+                deFunctionsManager.execFevalF(&nn, &valX, &valY, res, &itype);
+            }
+            catch (ast::ScilabMessage &sm)
+            {
+                os << sm.GetErrorMessage();
+                bCatch = true;
             }
             catch (ast::ScilabError &e)
             {
-                char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-                sciprint(_("%s: exception caught in '%s' subroutine.\n"), "feval", "execFevalF");
-                Scierror(999, pstrMsg);
+                os << e.GetErrorMessage();
+                bCatch = true;
+            }
+
+            if (bCatch)
+            {
                 DifferentialEquation::removeDifferentialEquationFunctions();
                 FREE(res);
                 delete pDblOut;
-                return types::Function::Error;
+
+                wchar_t szError[bsiz];
+                os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "feval", "execFevalF");
+                os << szError;
+                throw ast::ScilabMessage(os.str());
             }
 
             if (itype) // is complex

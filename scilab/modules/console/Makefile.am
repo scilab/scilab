@@ -79,7 +79,6 @@ libsciconsole_minimal_la_SOURCES = \
     src/c/tohome.c \
     src/c/more.c \
     src/c/scilines.c \
-    src/c/GetCommandLine.c \
     src/c/others/gotoxy_nw.c \
     src/c/others/clrscr_nw.c \
     src/c/prompt.c \
@@ -133,7 +132,6 @@ libsciconsole_minimal_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 # Includes need for the compilation
@@ -163,7 +161,6 @@ libsciconsole_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/commons/src/jni \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     $(JAVA_JNI_INCLUDE) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 
@@ -216,7 +213,6 @@ includes/ConsolePrintf.h \
 includes/ConsoleRead.h \
 includes/dynlib_console_gw.h \
 includes/dynlib_console.h \
-includes/GetCommandLine.h \
 includes/getKey.h \
 includes/getNbrLine.h \
 includes/gotoFunctions.h \

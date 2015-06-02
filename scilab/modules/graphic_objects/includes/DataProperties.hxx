@@ -44,17 +44,18 @@
 #define INDICES                     18
 #define VALUES                      19
 
-#define FEC_TRIANGLES               20
+#define FEC_ELEMENTS                20
+#define NUM_VERTICES_BY_ELEM        21
 
-#define NUM_X                       21
-#define NUM_Y                       22
-#define NUM_Z                       23
-#define GRID_SIZE                   24
-#define X_DIMENSIONS                25
-#define Y_DIMENSIONS                26
+#define NUM_X                       22
+#define NUM_Y                       23
+#define NUM_Z                       24
+#define GRID_SIZE                   25
+#define X_DIMENSIONS                26
+#define Y_DIMENSIONS                27
 
-#define COLORS                      27
-#define NUM_COLORS                  28
+#define COLORS                      28
+#define NUM_COLORS                  29
 
 #define MATPLOT_BOUNDS              30
 #define MATPLOT_TYPE                31

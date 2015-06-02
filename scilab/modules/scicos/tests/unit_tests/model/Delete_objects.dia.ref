@@ -47,8 +47,8 @@ propertyUpdated( 5 , PORT , LABEL ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 2 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 5 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 2 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 2 , BLOCK , DSTATE ) : NO_CHANGES
@@ -94,8 +94,8 @@ propertyUpdated( 9 , PORT , LABEL ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 6 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 7 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 8 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 9 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
@@ -130,8 +130,6 @@ propertyUpdated( 11 , LINK , KIND ) : NO_CHANGES
 scs_m.objs(1) = Sum1;
 objectCreated( 12 , BLOCK )
 propertyUpdated( 12 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 12 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 12 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -142,11 +140,13 @@ propertyUpdated( 12 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 12 , BLOCK , ANGLE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 12 , BLOCK , ODSTATE ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 12 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 12 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 12 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 12 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
@@ -182,14 +182,11 @@ propertyUpdated( 12 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , CHILDREN ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 scs_m.objs(2) = Sum2;
 objectCreated( 16 , BLOCK )
 propertyUpdated( 16 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 16 , BLOCK , NZCROSS ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 propertyUpdated( 16 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 16 , BLOCK , SIM_BLOCKTYPE ) : NO_CHANGES
@@ -200,11 +197,13 @@ propertyUpdated( 16 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 16 , BLOCK , ANGLE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , DSTATE ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , RPAR ) : SUCCESS
-propertyUpdated( 16 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 16 , BLOCK , ODSTATE ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , IPAR ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , RPAR ) : SUCCESS
 propertyUpdated( 16 , BLOCK , OPAR ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , SIM_DEP_UT ) : SUCCESS
+propertyUpdated( 16 , BLOCK , NZCROSS ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , NMODE ) : NO_CHANGES
+propertyUpdated( 16 , BLOCK , IPAR ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 16 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
@@ -240,11 +239,8 @@ propertyUpdated( 16 , BLOCK , OUTPUTS ) : SUCCESS
 propertyUpdated( 16 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , PARENT_BLOCK ) : NO_CHANGES
-propertyUpdated( 16 , BLOCK , CHILDREN ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 scs_m.objs(3) = lnk1;
 objectCreated( 20 , LINK )
 propertyUpdated( 20 , LINK , COLOR ) : NO_CHANGES
@@ -253,14 +249,11 @@ propertyUpdated( 20 , LINK , LABEL ) : NO_CHANGES
 propertyUpdated( 20 , LINK , CONTROL_POINTS ) : NO_CHANGES
 propertyUpdated( 20 , LINK , THICK ) : NO_CHANGES
 propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 20 , LINK , PARENT_BLOCK ) : NO_CHANGES
 propertyUpdated( 20 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 20 , LINK , DESTINATION_PORT ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 20 , LINK , SOURCE_PORT ) : SUCCESS
 propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
@@ -273,16 +266,11 @@ propertyUpdated( 21 , LINK , LABEL ) : NO_CHANGES
 propertyUpdated( 21 , LINK , CONTROL_POINTS ) : NO_CHANGES
 propertyUpdated( 21 , LINK , THICK ) : NO_CHANGES
 propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : NO_CHANGES
+propertyUpdated( 21 , LINK , PARENT_BLOCK ) : NO_CHANGES
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 15 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 20 , LINK , SOURCE_PORT ) : NO_CHANGES
@@ -293,15 +281,10 @@ propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
 // Consecutively delete the diagram objects,
 // check that they were replaced with "Deleted" mlists.
-scs_m.objs(1)=scicos_new("Deleted");
-propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
+DeletedBlock = mlist("Deleted");
+scs_m.objs(1) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 12 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 12 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 12 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 12 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -324,14 +307,10 @@ propertyUpdated( 17 , PORT , CONNECTED_SIGNALS ) : SUCCESS
 propertyUpdated( 20 , LINK , DESTINATION_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(1), mlist("Deleted"));
-scs_m.objs(2)=scicos_new("Deleted");
-propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
+assert_checkequal(scs_m.objs(1), DeletedBlock);
+scs_m.objs(2) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 16 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 propertyUpdated( 16 , BLOCK , INPUTS ) : SUCCESS
 propertyUpdated( 16 , BLOCK , OUTPUTS ) : NO_CHANGES
 propertyUpdated( 16 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
@@ -351,21 +330,24 @@ objectDeleted( 19 , PORT )
 objectDeleted( 16 , BLOCK )
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(2), mlist("Deleted"));
-scs_m.objs(3)=scicos_new("Deleted");
-propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
+assert_checkequal(scs_m.objs(2), DeletedBlock);
+scs_m.objs(3) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 20 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 20 , LINK )
 propertyUpdated( 21 , LINK , SOURCE_PORT ) : NO_CHANGES
 propertyUpdated( 21 , LINK , DESTINATION_PORT ) : NO_CHANGES
-assert_checkequal(scs_m.objs(3), mlist("Deleted"));
-scs_m.objs(4)=scicos_new("Deleted");
-propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+scs_m.objs(4) = DeletedBlock;
 propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
+propertyUpdated( 21 , LINK , PARENT_DIAGRAM ) : SUCCESS
 objectDeleted( 21 , LINK )
-assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+assert_checkequal(scs_m.objs(4), DeletedBlock);
+// Test that all objects are simultaneously "deleted"
+assert_checkequal(scs_m.objs(1), DeletedBlock);
+assert_checkequal(scs_m.objs(2), DeletedBlock);
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+assert_checkequal(scs_m.objs(4), DeletedBlock);
 // Check that all the model items are freed
 clear
 propertyUpdated( 2 , BLOCK , INPUTS ) : SUCCESS
@@ -402,5 +384,4 @@ objectDeleted( 9 , PORT )
 objectDeleted( 6 , BLOCK )
 objectDeleted( 10 , LINK )
 objectDeleted( 11 , LINK )
-propertyUpdated( 1 , DIAGRAM , CHILDREN ) : SUCCESS
 objectDeleted( 1 , DIAGRAM )

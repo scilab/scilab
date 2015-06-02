@@ -225,7 +225,8 @@ extern int yydebug;
     UPLEVEL = 335,
     LISTABLE = 336,
     CONTROLBREAK = 337,
-    FUNCTIONCALL = 338
+    UMINUS = 338,
+    FUNCTIONCALL = 339
   };
 #endif
 /* Tokens.  */
@@ -310,7 +311,8 @@ extern int yydebug;
 #define UPLEVEL 335
 #define LISTABLE 336
 #define CONTROLBREAK 337
-#define FUNCTIONCALL 338
+#define UMINUS 338
+#define FUNCTIONCALL 339
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
@@ -648,7 +650,7 @@ union yyalloc
 #define YYLAST   3736
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  84
+#define YYNTOKENS  85
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  64
 /* YYNRULES -- Number of rules.  */
@@ -659,7 +661,7 @@ union yyalloc
 /* YYTRANSLATE[YYX] -- Symbol number corresponding to YYX as returned
    by yylex, with out-of-bounds checking.  */
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   338
+#define YYMAXUTOK   339
 
 #define YYTRANSLATE(YYX)                                                \
   ((unsigned int) (YYX) <= YYMAXUTOK ? yytranslate[YYX] : YYUNDEFTOK)
@@ -701,55 +703,55 @@ static const yytype_uint8 yytranslate[] =
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
       55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
       65,    66,    67,    68,    69,    70,    71,    72,    73,    74,
-      75,    76,    77,    78,    79,    80,    81,    82,    83
+      75,    76,    77,    78,    79,    80,    81,    82,    83,    84
 };
 
 #if YYDEBUG
   /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-       0,   318,   318,   319,   320,   328,   342,   345,   350,   356,
-     362,   376,   386,   394,   403,   421,   422,   423,   424,   425,
-     426,   434,   435,   436,   437,   438,   439,   440,   441,   442,
-     443,   444,   445,   446,   447,   448,   461,   466,   482,   483,
-     488,   493,   498,   499,   500,   501,   502,   508,   509,   510,
-     511,   519,   521,   532,   533,   534,   535,   558,   562,   566,
-     570,   574,   579,   584,   589,   594,   599,   603,   607,   611,
-     615,   634,   645,   653,   662,   671,   682,   690,   699,   708,
-     719,   727,   736,   745,   756,   764,   773,   782,   793,   801,
-     810,   819,   830,   838,   847,   863,   871,   872,   873,   881,
-     886,   898,   899,   900,   901,   902,   910,   911,   925,   926,
-     934,   939,   952,   953,   954,   956,   957,   958,   960,   961,
-     962,   964,   965,   966,   968,   969,   970,   972,   973,   974,
-     976,   977,   978,   980,   981,   982,   984,   985,   986,   988,
-     989,   990,   998,  1004,  1010,  1011,  1012,  1013,  1014,  1015,
-    1016,  1017,  1018,  1019,  1020,  1021,  1022,  1023,  1024,  1025,
-    1034,  1035,  1037,  1038,  1040,  1041,  1042,  1043,  1044,  1045,
-    1046,  1047,  1049,  1050,  1051,  1052,  1053,  1054,  1055,  1056,
-    1058,  1059,  1060,  1061,  1062,  1063,  1064,  1065,  1073,  1074,
-    1082,  1083,  1084,  1092,  1093,  1094,  1095,  1096,  1101,  1102,
-    1103,  1108,  1112,  1116,  1117,  1118,  1119,  1120,  1121,  1122,
-    1123,  1124,  1125,  1126,  1127,  1128,  1129,  1130,  1131,  1139,
-    1143,  1147,  1153,  1159,  1165,  1177,  1178,  1179,  1183,  1187,
-    1192,  1197,  1198,  1207,  1208,  1209,  1213,  1217,  1222,  1227,
-    1228,  1236,  1240,  1253,  1254,  1255,  1256,  1264,  1265,  1273,
-    1277,  1281,  1285,  1289,  1293,  1297,  1301,  1312,  1313,  1321,
-    1322,  1323,  1324,  1326,  1327,  1329,  1330,  1339,  1340,  1341,
-    1346,  1347,  1348,  1353,  1354,  1355,  1356,  1363,  1372,  1373,
-    1383,  1391,  1392,  1406,  1407,  1423,  1424,  1425,  1426,  1427,
-    1435,  1436,  1437,  1438,  1439,  1440,  1448,  1449,  1450,  1451,
-    1452,  1453,  1461,  1466,  1479,  1494,  1495,  1496,  1497,  1505,
-    1506,  1514,  1515,  1516,  1517,  1518,  1519,  1520,  1528,  1529,
-    1537,  1538,  1539,  1540,  1541,  1549,  1553,  1557,  1561,  1565,
-    1569,  1576,  1577,  1591,  1592,  1593,  1594,  1595,  1596,  1597,
-    1598,  1599,  1600,  1601,  1602,  1610,  1611,  1619,  1620,  1629,
-    1630,  1631,  1632,  1633,  1634,  1635,  1636,  1640,  1641,  1655,
-    1663,  1664,  1678,  1679,  1680,  1681,  1682,  1683,  1684,  1685,
-    1686,  1687,  1688,  1689,  1690,  1691,  1692,  1693,  1694,  1695,
-    1703,  1704,  1718,  1719,  1720,  1721,  1722,  1729,  1743,  1744,
-    1745,  1752,  1753,  1761,  1762,  1770,  1771,  1772,  1773,  1774,
-    1775,  1776,  1777,  1778,  1779,  1780,  1781,  1782,  1783,  1784,
-    1785,  1786,  1787,  1788,  1789
+       0,   319,   319,   320,   321,   329,   343,   346,   351,   357,
+     363,   377,   387,   395,   404,   422,   423,   424,   425,   426,
+     427,   435,   436,   437,   438,   439,   440,   441,   442,   443,
+     444,   445,   446,   447,   448,   449,   462,   467,   483,   484,
+     489,   494,   499,   500,   501,   502,   503,   509,   510,   511,
+     512,   520,   522,   533,   534,   535,   536,   559,   563,   567,
+     571,   575,   580,   585,   590,   595,   600,   604,   608,   612,
+     616,   635,   646,   654,   663,   672,   683,   691,   700,   709,
+     720,   728,   737,   746,   757,   765,   774,   783,   794,   802,
+     811,   820,   831,   839,   848,   864,   872,   873,   874,   882,
+     887,   899,   900,   901,   902,   903,   911,   912,   926,   927,
+     935,   940,   953,   954,   955,   957,   958,   959,   961,   962,
+     963,   965,   966,   967,   969,   970,   971,   973,   974,   975,
+     977,   978,   979,   981,   982,   983,   985,   986,   987,   989,
+     990,   991,   999,  1005,  1011,  1012,  1013,  1014,  1015,  1016,
+    1017,  1018,  1019,  1020,  1021,  1022,  1023,  1024,  1025,  1026,
+    1035,  1036,  1038,  1039,  1041,  1042,  1043,  1044,  1045,  1046,
+    1047,  1048,  1050,  1051,  1052,  1053,  1054,  1055,  1056,  1057,
+    1059,  1060,  1061,  1062,  1063,  1064,  1065,  1066,  1074,  1075,
+    1083,  1084,  1085,  1093,  1094,  1095,  1096,  1097,  1102,  1103,
+    1104,  1109,  1113,  1117,  1118,  1119,  1120,  1121,  1122,  1123,
+    1124,  1125,  1126,  1127,  1128,  1129,  1130,  1131,  1132,  1140,
+    1144,  1148,  1153,  1158,  1163,  1174,  1175,  1176,  1180,  1184,
+    1189,  1194,  1195,  1204,  1205,  1206,  1210,  1214,  1219,  1224,
+    1225,  1233,  1237,  1250,  1251,  1252,  1253,  1261,  1262,  1270,
+    1274,  1278,  1282,  1286,  1290,  1294,  1298,  1309,  1310,  1318,
+    1319,  1320,  1321,  1323,  1324,  1326,  1327,  1336,  1337,  1338,
+    1343,  1344,  1345,  1350,  1351,  1352,  1353,  1360,  1369,  1370,
+    1380,  1388,  1389,  1403,  1404,  1420,  1421,  1422,  1423,  1424,
+    1432,  1433,  1434,  1435,  1436,  1437,  1445,  1446,  1447,  1448,
+    1449,  1450,  1458,  1463,  1476,  1491,  1492,  1502,  1503,  1521,
+    1522,  1530,  1531,  1532,  1533,  1534,  1535,  1536,  1544,  1545,
+    1553,  1554,  1555,  1556,  1557,  1565,  1569,  1573,  1577,  1581,
+    1585,  1592,  1593,  1607,  1608,  1609,  1610,  1611,  1612,  1613,
+    1614,  1615,  1616,  1617,  1618,  1626,  1627,  1635,  1636,  1645,
+    1646,  1647,  1648,  1649,  1650,  1651,  1652,  1656,  1657,  1671,
+    1679,  1680,  1694,  1695,  1696,  1697,  1698,  1699,  1700,  1701,
+    1702,  1703,  1704,  1705,  1706,  1707,  1708,  1709,  1710,  1711,
+    1719,  1720,  1734,  1735,  1736,  1737,  1738,  1745,  1759,  1760,
+    1761,  1768,  1769,  1777,  1778,  1786,  1787,  1788,  1789,  1790,
+    1791,  1792,  1793,  1794,  1795,  1796,  1797,  1798,  1799,  1800,
+    1801,  1802,  1803,  1804,  1805
 };
 #endif
 
@@ -772,7 +774,7 @@ static const char *const yytname[] =
   "\"do\"", "\"break\"", "\"continue\"", "\"try\"", "\"catch\"",
   "\"return\"", "\"string\"", "\"identifier\"", "\"integer\"", "\"float\"",
   "\"number\"", "\"path\"", "\"line comment\"", "\"block comment\"",
-  "TOPLEVEL", "HIGHLEVEL", "UPLEVEL", "LISTABLE", "CONTROLBREAK",
+  "TOPLEVEL", "HIGHLEVEL", "UPLEVEL", "LISTABLE", "CONTROLBREAK", "UMINUS",
   "FUNCTIONCALL", "$accept", "program", "expressions",
   "recursiveExpression", "expressionLineBreak", "expression",
   "implicitFunctionCall", "implicitCallable", "functionCall",
@@ -806,7 +808,7 @@ static const yytype_uint16 yytoknum[] =
      305,   306,   307,   308,   309,   310,   311,   312,   313,   314,
      315,   316,   317,   318,   319,   320,   321,   322,   323,   324,
      325,   326,   327,   328,   329,   330,   331,   332,   333,   334,
-     335,   336,   337,   338
+     335,   336,   337,   338,   339
 };
 # endif
 
@@ -831,7 +833,7 @@ static const yytype_int16 yypact[] =
     -494,  -494,  -494,  3319,  -494,  -494,  -494,    96,  -494,  -494,
     -494,  3059,  -494,  -494,  -494,  -494,  -494,  2144,   296,   129,
      206,  3239,  3279,   199,  2233,  -494,  -494,  3359,  3399,  2251,
-    -494,  1303,   581,  -494,  2322,  1882,  3653,  3683,  3653,  3683,
+    -494,  1303,   581,  -494,  2322,  1882,  3653,  3683,   180,   266,
     3359,   111,  3399,    33,     9,    39,    73,    43,    76,   108,
        8,  1579,  1811,  1811,  -494,    67,  3359,  3399,  -494,  -494,
     -494,  2447,  2516,  -494,   296,  -494,  -494,  -494,  -494,  3701,
@@ -1749,113 +1751,113 @@ static const yytype_uint8 yystos[] =
        0,     1,     4,     6,     7,     9,    10,    11,    13,    14,
       16,    18,    22,    23,    49,    54,    55,    58,    60,    61,
       62,    63,    65,    66,    67,    69,    70,    71,    72,    73,
-      74,    76,    85,    86,    87,    88,    89,    90,    92,    93,
-      95,   102,   104,   108,   110,   111,   117,   118,   119,   120,
-     127,   128,   135,   139,   142,   144,    86,    16,    71,    92,
-     108,    92,   108,   109,     4,    17,    76,    92,   108,   112,
-     114,   115,     4,    19,   112,   115,    92,   108,    92,   108,
-      92,   101,   108,    16,    71,    16,    71,    58,    14,    71,
-     101,     4,    11,    13,    86,   143,    92,   108,     6,     7,
-      10,    14,    18,    70,    71,    72,    73,    74,    75,    91,
-      93,     0,    89,     4,    11,    13,     4,    76,    88,    91,
+      74,    76,    86,    87,    88,    89,    90,    91,    93,    94,
+      96,   103,   105,   109,   111,   112,   118,   119,   120,   121,
+     128,   129,   136,   140,   143,   145,    87,    16,    71,    93,
+     109,    93,   109,   110,     4,    17,    76,    93,   109,   113,
+     115,   116,     4,    19,   113,   116,    93,   109,    93,   109,
+      93,   102,   109,    16,    71,    16,    71,    58,    14,    71,
+     102,     4,    11,    13,    87,   144,    93,   109,     6,     7,
+      10,    14,    18,    70,    71,    72,    73,    74,    75,    92,
+      94,     0,    90,     4,    11,    13,     4,    76,    89,    92,
        8,    12,    14,    20,    21,    22,    23,    24,    25,    26,
       27,    28,    29,    30,    31,    32,    33,    34,    35,    36,
       37,    38,    39,    40,    41,    42,    43,    44,    45,    46,
-      47,    48,   103,   105,   106,   107,     8,    14,    20,    21,
-      36,    37,   103,   105,   107,    48,    92,   108,   130,   115,
+      47,    48,   104,   106,   107,   108,     8,    14,    20,    21,
+      36,    37,   104,   106,   108,    48,    93,   109,   131,   116,
       14,    20,    14,    20,    11,    15,    11,    15,    11,    15,
-      17,   112,   115,    17,   114,   115,     4,    11,    13,    17,
-      76,    92,   108,   113,   116,    19,   112,   115,    19,   115,
-      19,     4,    11,    13,    50,   123,   124,    17,    71,    96,
-      98,    14,    48,    97,    17,    96,    48,    97,    16,    71,
-      71,    48,     4,    11,    13,    50,    64,    76,   141,    86,
-      86,    86,    53,    68,    11,    12,    15,    71,    92,    94,
-     108,   117,    19,    94,    20,   105,    76,    88,    88,    92,
-     108,    94,    49,    50,    51,    52,    53,    54,    55,    56,
+      17,   113,   116,    17,   115,   116,     4,    11,    13,    17,
+      76,    93,   109,   114,   117,    19,   113,   116,    19,   116,
+      19,     4,    11,    13,    50,   124,   125,    17,    71,    97,
+      99,    14,    48,    98,    17,    97,    48,    98,    16,    71,
+      71,    48,     4,    11,    13,    50,    64,    76,   142,    87,
+      87,    87,    53,    68,    11,    12,    15,    71,    93,    95,
+     109,   118,    19,    95,    20,   106,    76,    89,    89,    93,
+     109,    95,    49,    50,    51,    52,    53,    54,    55,    56,
       57,    58,    59,    60,    61,    62,    63,    64,    65,    67,
-      68,    69,    92,   108,   147,    92,   108,    92,   108,    92,
-     108,    92,   108,    92,   108,    92,   108,    92,   108,    92,
-     108,    92,   108,    92,   108,    92,   108,    92,   108,    92,
-     108,    92,   108,    92,   108,    92,   108,    12,    92,   108,
-      12,    92,   108,    12,    92,   108,    12,    92,   108,    12,
-      92,   108,    12,    92,   108,    12,    92,   108,    12,    92,
-     108,    12,    92,   108,    12,    92,   108,    12,    92,   108,
-     144,    12,    94,    14,    71,    92,   147,    92,   108,    92,
-     108,    12,    92,   108,   144,     4,    11,    13,    76,   131,
-      17,    94,    92,   108,   147,    94,    71,    92,   147,    92,
-     108,    92,   108,    92,   108,    17,   115,    17,    17,     4,
-      13,    11,    92,   108,   113,    19,   115,    19,    19,     4,
-       4,   123,    50,    86,   121,    48,    17,    11,    15,    98,
-      71,     4,    11,    13,    76,    99,   146,    48,    17,    71,
-      99,    17,    96,    48,    97,    48,    92,   108,   136,     4,
-       4,     4,    11,    13,     4,    11,    13,     4,    86,   140,
-     143,    12,    92,   108,   117,    11,    15,    19,    71,    92,
-      88,    15,    92,   108,    15,    71,    92,     4,     4,   131,
-      56,    76,   132,   145,    15,    15,    17,    19,     4,    51,
-      52,    53,   125,   126,    71,    48,    71,    15,    97,     4,
-       4,     4,    86,   100,    71,    48,    97,   100,    48,    17,
-      71,    99,   136,     4,    11,    13,    64,   137,     4,     4,
-       4,     4,    53,    53,    12,    92,   108,   117,   132,    92,
-     108,     4,    53,    56,    57,   125,   129,    56,    76,     4,
-      11,    13,   101,    86,   122,    53,    97,    71,    99,    53,
-      59,    97,    71,    99,    53,    59,    71,    48,    97,   100,
-      15,     4,     4,     4,    86,   138,    53,   129,     4,    11,
-      13,    50,   134,   134,    92,   108,     4,    11,    13,   122,
-      92,   108,     4,     4,     4,   124,    53,    99,    97,   100,
-      99,    97,   100,    97,    71,    99,    53,    59,   137,    53,
-     122,     4,     4,     4,    11,    13,    86,   133,   133,   134,
-     134,     4,     4,    53,   134,   134,   121,   100,    99,    53,
-      59,   100,    99,    53,    59,    99,    97,   100,   138,    53,
-       4,     4,   133,   133,   133,   133,   125,   126,    53,    59,
-     100,    53,    59,   100,   100,    99,    53,    59,    53,   122,
-      53,    59,    53,    59,    53,    59,   100,    53,    59
+      68,    69,    93,   109,   148,    93,   109,    93,   109,    93,
+     109,    93,   109,    93,   109,    93,   109,    93,   109,    93,
+     109,    93,   109,    93,   109,    93,   109,    93,   109,    93,
+     109,    93,   109,    93,   109,    93,   109,    12,    93,   109,
+      12,    93,   109,    12,    93,   109,    12,    93,   109,    12,
+      93,   109,    12,    93,   109,    12,    93,   109,    12,    93,
+     109,    12,    93,   109,    12,    93,   109,    12,    93,   109,
+     145,    12,    95,    14,    71,    93,   148,    93,   109,    93,
+     109,    12,    93,   109,   145,     4,    11,    13,    76,   132,
+      17,    95,    93,   109,   148,    95,    71,    93,   148,    93,
+     109,    93,   109,    93,   109,    17,   116,    17,    17,     4,
+      13,    11,    93,   109,   114,    19,   116,    19,    19,     4,
+       4,   124,    50,    87,   122,    48,    17,    11,    15,    99,
+      71,     4,    11,    13,    76,   100,   147,    48,    17,    71,
+     100,    17,    97,    48,    98,    48,    93,   109,   137,     4,
+       4,     4,    11,    13,     4,    11,    13,     4,    87,   141,
+     144,    12,    93,   109,   118,    11,    15,    19,    71,    93,
+      89,    15,    93,   109,    15,    71,    93,     4,     4,   132,
+      56,    76,   133,   146,    15,    15,    17,    19,     4,    51,
+      52,    53,   126,   127,    71,    48,    71,    15,    98,     4,
+       4,     4,    87,   101,    71,    48,    98,   101,    48,    17,
+      71,   100,   137,     4,    11,    13,    64,   138,     4,     4,
+       4,     4,    53,    53,    12,    93,   109,   118,   133,    93,
+     109,     4,    53,    56,    57,   126,   130,    56,    76,     4,
+      11,    13,   102,    87,   123,    53,    98,    71,   100,    53,
+      59,    98,    71,   100,    53,    59,    71,    48,    98,   101,
+      15,     4,     4,     4,    87,   139,    53,   130,     4,    11,
+      13,    50,   135,   135,    93,   109,     4,    11,    13,   123,
+      93,   109,     4,     4,     4,   125,    53,   100,    98,   101,
+     100,    98,   101,    98,    71,   100,    53,    59,   138,    53,
+     123,     4,     4,     4,    11,    13,    87,   134,   134,   135,
+     135,     4,     4,    53,   135,   135,   122,   101,   100,    53,
+      59,   101,   100,    53,    59,   100,    98,   101,   139,    53,
+       4,     4,   134,   134,   134,   134,   126,   127,    53,    59,
+     101,    53,    59,   101,   101,   100,    53,    59,    53,   123,
+      53,    59,    53,    59,    53,    59,   101,    53,    59
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_uint8 yyr1[] =
 {
-       0,    84,    85,    85,    85,    85,    86,    86,    86,    86,
-      86,    87,    87,    87,    87,    88,    88,    88,    88,    88,
-      88,    89,    89,    89,    89,    89,    89,    89,    89,    89,
-      89,    89,    89,    89,    89,    89,    90,    90,    91,    91,
-      91,    91,    91,    91,    91,    91,    91,    91,    91,    91,
-      91,    92,    92,    93,    93,    93,    93,    94,    94,    94,
-      94,    94,    94,    94,    94,    94,    94,    94,    94,    94,
-      94,    95,    95,    95,    95,    95,    95,    95,    95,    95,
+       0,    85,    86,    86,    86,    86,    87,    87,    87,    87,
+      87,    88,    88,    88,    88,    89,    89,    89,    89,    89,
+      89,    90,    90,    90,    90,    90,    90,    90,    90,    90,
+      90,    90,    90,    90,    90,    90,    91,    91,    92,    92,
+      92,    92,    92,    92,    92,    92,    92,    92,    92,    92,
+      92,    93,    93,    94,    94,    94,    94,    95,    95,    95,
       95,    95,    95,    95,    95,    95,    95,    95,    95,    95,
-      95,    95,    95,    95,    95,    96,    97,    97,    97,    98,
-      98,    99,    99,    99,    99,    99,   100,   100,   101,   101,
-     102,   102,   103,   103,   103,   103,   103,   103,   103,   103,
-     103,   103,   103,   103,   103,   103,   103,   103,   103,   103,
-     103,   103,   103,   103,   103,   103,   103,   103,   103,   103,
+      95,    96,    96,    96,    96,    96,    96,    96,    96,    96,
+      96,    96,    96,    96,    96,    96,    96,    96,    96,    96,
+      96,    96,    96,    96,    96,    97,    98,    98,    98,    99,
+      99,   100,   100,   100,   100,   100,   101,   101,   102,   102,
      103,   103,   104,   104,   104,   104,   104,   104,   104,   104,
      104,   104,   104,   104,   104,   104,   104,   104,   104,   104,
+     104,   104,   104,   104,   104,   104,   104,   104,   104,   104,
+     104,   104,   105,   105,   105,   105,   105,   105,   105,   105,
      105,   105,   105,   105,   105,   105,   105,   105,   105,   105,
-     105,   105,   105,   105,   105,   105,   105,   105,   105,   105,
-     105,   105,   105,   105,   105,   105,   105,   105,   106,   106,
-     107,   107,   107,   108,   108,   108,   108,   108,   108,   108,
-     108,   108,   108,   108,   108,   108,   108,   108,   108,   108,
-     108,   108,   108,   108,   108,   108,   108,   108,   108,   109,
-     109,   109,   109,   109,   109,   110,   110,   110,   110,   110,
-     110,   110,   110,   111,   111,   111,   111,   111,   111,   111,
-     111,   112,   112,   113,   113,   113,   113,   114,   114,   115,
-     115,   115,   115,   115,   115,   115,   115,   116,   116,   117,
-     117,   117,   117,   117,   117,   117,   117,   118,   118,   118,
-     118,   118,   118,   118,   118,   118,   118,   119,   120,   120,
-     120,   121,   121,   122,   122,   123,   123,   123,   123,   123,
-     124,   124,   124,   124,   124,   124,   125,   125,   125,   125,
-     125,   125,   126,   126,   126,   127,   127,   127,   127,   128,
-     128,   129,   129,   129,   129,   129,   129,   129,   130,   130,
-     131,   131,   131,   131,   131,   132,   132,   132,   132,   132,
-     132,   133,   133,   134,   134,   134,   134,   134,   134,   134,
-     134,   134,   134,   134,   134,   135,   135,   136,   136,   137,
-     137,   137,   137,   137,   137,   137,   137,   138,   138,   139,
-     140,   140,   141,   141,   141,   141,   141,   141,   141,   141,
-     141,   141,   141,   141,   141,   141,   141,   141,   141,   141,
-     142,   142,   143,   143,   143,   143,   143,   143,   144,   144,
-     144,   145,   145,   146,   146,   147,   147,   147,   147,   147,
-     147,   147,   147,   147,   147,   147,   147,   147,   147,   147,
-     147,   147,   147,   147,   147
+     106,   106,   106,   106,   106,   106,   106,   106,   106,   106,
+     106,   106,   106,   106,   106,   106,   106,   106,   106,   106,
+     106,   106,   106,   106,   106,   106,   106,   106,   107,   107,
+     108,   108,   108,   109,   109,   109,   109,   109,   109,   109,
+     109,   109,   109,   109,   109,   109,   109,   109,   109,   109,
+     109,   109,   109,   109,   109,   109,   109,   109,   109,   110,
+     110,   110,   110,   110,   110,   111,   111,   111,   111,   111,
+     111,   111,   111,   112,   112,   112,   112,   112,   112,   112,
+     112,   113,   113,   114,   114,   114,   114,   115,   115,   116,
+     116,   116,   116,   116,   116,   116,   116,   117,   117,   118,
+     118,   118,   118,   118,   118,   118,   118,   119,   119,   119,
+     119,   119,   119,   119,   119,   119,   119,   120,   121,   121,
+     121,   122,   122,   123,   123,   124,   124,   124,   124,   124,
+     125,   125,   125,   125,   125,   125,   126,   126,   126,   126,
+     126,   126,   127,   127,   127,   128,   128,   128,   128,   129,
+     129,   130,   130,   130,   130,   130,   130,   130,   131,   131,
+     132,   132,   132,   132,   132,   133,   133,   133,   133,   133,
+     133,   134,   134,   135,   135,   135,   135,   135,   135,   135,
+     135,   135,   135,   135,   135,   136,   136,   137,   137,   138,
+     138,   138,   138,   138,   138,   138,   138,   139,   139,   140,
+     141,   141,   142,   142,   142,   142,   142,   142,   142,   142,
+     142,   142,   142,   142,   142,   142,   142,   142,   142,   142,
+     143,   143,   144,   144,   144,   144,   144,   144,   145,   145,
+     145,   146,   146,   147,   147,   148,   148,   148,   148,   148,
+     148,   148,   148,   148,   148,   148,   148,   148,   148,   148,
+     148,   148,   148,   148,   148
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -2686,11 +2688,11 @@ yyreduce:
   case 4:
 
     {
-                                  ast::exps_t tmp;
+                                  ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body");
+                                      tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body");
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp((yyloc), tmp));
+                                  ParserSingleInstance::setTree(new ast::SeqExp((yyloc), *tmp));
 				  delete (yyvsp[0].mute);
                                 }
 
@@ -2699,11 +2701,11 @@ yyreduce:
   case 5:
 
     {
-                                  ast::exps_t tmp;
+                                  ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
-                                      tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body")));
+                                      tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body")));
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp((yyloc), tmp));
+                                  ParserSingleInstance::setTree(new ast::SeqExp((yyloc), *tmp));
                                 }
 
     break;
@@ -2740,10 +2742,10 @@ yyreduce:
   case 9:
 
     {
-                                                  ast::exps_t tmp;
+                                                  ast::exps_t* tmp = new ast::exps_t;
                                                   (yyvsp[0].t_exp)->setVerbose(true);
-                                                  tmp.push_back((yyvsp[0].t_exp));
-                                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                                                  tmp->push_back((yyvsp[0].t_exp));
+                                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                                 }
 
     break;
@@ -2751,11 +2753,11 @@ yyreduce:
   case 10:
 
     {
-                                                  ast::exps_t tmp;
+                                                  ast::exps_t* tmp = new ast::exps_t;
                                                   (yyvsp[-1].t_exp)->setVerbose(true);
-                                                  tmp.push_back((yyvsp[-1].t_exp));
-                                                  tmp.push_back(new ast::CommentExp((yylsp[0]), (yyvsp[0].comment)));
-                                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                                                  tmp->push_back((yyvsp[-1].t_exp));
+                                                  tmp->push_back(new ast::CommentExp((yylsp[0]), (yyvsp[0].comment)));
+                                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                                 }
 
     break;
@@ -2791,7 +2793,7 @@ yyreduce:
   case 13:
 
     {
-							  ast::exps_t* tmp = new ast::exps_t();
+							  ast::exps_t* tmp = new ast::exps_t;
                               (yylsp[-1]).columns((yyvsp[0].mute)->iNbBreaker);
 							  (yyvsp[-2].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  tmp->push_back((yyvsp[-2].t_exp));
@@ -2805,7 +2807,7 @@ yyreduce:
   case 14:
 
     {
-							  ast::exps_t* tmp = new ast::exps_t();
+							  ast::exps_t* tmp = new ast::exps_t;
 							  (yyvsp[-1].t_exp)->setVerbose((yyvsp[0].mute)->bVerbose);
 							  tmp->push_back((yyvsp[-1].t_exp));
 							  (yyval.t_list_exp) = tmp;
@@ -2960,9 +2962,9 @@ yyreduce:
   case 37:
 
     {
-						  ast::exps_t tmp;
-						  tmp.push_back((yyvsp[0].t_string_exp));
-						  (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-1]), *new symbol::Symbol(*(yyvsp[-1].str))), tmp);
+						  ast::exps_t* tmp = new ast::exps_t;
+						  tmp->push_back((yyvsp[0].t_string_exp));
+						  (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-1]), symbol::Symbol(*(yyvsp[-1].str))), *tmp);
 						  delete (yyvsp[-1].str);
 						}
 
@@ -3077,25 +3079,25 @@ yyreduce:
 
   case 53:
 
-    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-3]), *new symbol::Symbol(*(yyvsp[-3].str))), *(yyvsp[-1].t_list_exp)); delete (yyvsp[-3].str);}
+    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-3]), symbol::Symbol(*(yyvsp[-3].str))), *(yyvsp[-1].t_list_exp)); delete (yyvsp[-3].str);}
 
     break;
 
   case 54:
 
-    { (yyval.t_call_exp) = new ast::CellCallExp((yyloc), *new ast::SimpleVar((yylsp[-3]), *new symbol::Symbol(*(yyvsp[-3].str))), *(yyvsp[-1].t_list_exp)); delete (yyvsp[-3].str);}
+    { (yyval.t_call_exp) = new ast::CellCallExp((yyloc), *new ast::SimpleVar((yylsp[-3]), symbol::Symbol(*(yyvsp[-3].str))), *(yyvsp[-1].t_list_exp)); delete (yyvsp[-3].str);}
 
     break;
 
   case 55:
 
-    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-2]), *new symbol::Symbol(*(yyvsp[-2].str))), *new ast::exps_t); delete (yyvsp[-2].str);}
+    { (yyval.t_call_exp) = new ast::CallExp((yyloc), *new ast::SimpleVar((yylsp[-2]), symbol::Symbol(*(yyvsp[-2].str))), *new ast::exps_t); delete (yyvsp[-2].str);}
 
     break;
 
   case 56:
 
-    { (yyval.t_call_exp) = new ast::CellCallExp((yyloc), *new ast::SimpleVar((yylsp[-2]), *new symbol::Symbol(*(yyvsp[-2].str))), *new ast::exps_t); delete (yyvsp[-2].str);}
+    { (yyval.t_call_exp) = new ast::CellCallExp((yyloc), *new ast::SimpleVar((yylsp[-2]), symbol::Symbol(*(yyvsp[-2].str))), *new ast::exps_t); delete (yyvsp[-2].str);}
 
     break;
 
@@ -3233,12 +3235,12 @@ yyreduce:
   case 71:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-6]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-6]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-6]), tmp),
+							    *new ast::ArrayListVar((yylsp[-6]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3250,7 +3252,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3262,11 +3264,11 @@ yyreduce:
   case 73:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3276,11 +3278,11 @@ yyreduce:
   case 74:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3290,12 +3292,12 @@ yyreduce:
   case 75:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-6]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-6]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-6]), tmp),
+							    *new ast::ArrayListVar((yylsp[-6]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3307,7 +3309,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3319,11 +3321,11 @@ yyreduce:
   case 77:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3333,11 +3335,11 @@ yyreduce:
   case 78:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3347,12 +3349,12 @@ yyreduce:
   case 79:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-6]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-6]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-6]), tmp),
+							    *new ast::ArrayListVar((yylsp[-6]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3364,7 +3366,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3376,11 +3378,11 @@ yyreduce:
   case 81:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3390,11 +3392,11 @@ yyreduce:
   case 82:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3404,12 +3406,12 @@ yyreduce:
   case 83:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-6]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-6]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-6]), tmp),
+							    *new ast::ArrayListVar((yylsp[-6]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3421,7 +3423,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3433,11 +3435,11 @@ yyreduce:
   case 85:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3447,11 +3449,11 @@ yyreduce:
   case 86:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3461,12 +3463,12 @@ yyreduce:
   case 87:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-7]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-7]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-6]), tmp),
+							    *new ast::ArrayListVar((yylsp[-6]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3478,7 +3480,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3490,11 +3492,11 @@ yyreduce:
   case 89:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3504,11 +3506,11 @@ yyreduce:
   case 90:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3518,12 +3520,12 @@ yyreduce:
   case 91:
 
     {
-				  ast::exps_t tmp;
-				  tmp.push_back(new ast::SimpleVar((yylsp[-6]), *new symbol::Symbol(*(yyvsp[-6].str))));
+				  ast::exps_t* tmp = new ast::exps_t;
+				  tmp->push_back(new ast::SimpleVar((yylsp[-6]), symbol::Symbol(*(yyvsp[-6].str))));
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-6].str);
 				  delete (yyvsp[-4].str);
@@ -3535,7 +3537,7 @@ yyreduce:
 
     {
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
 							    *new ast::ArrayListVar((yylsp[-7]) ,*(yyvsp[-7].t_list_var)),
 							    *(yyvsp[-1].t_seq_exp));
@@ -3547,11 +3549,11 @@ yyreduce:
   case 93:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yylsp[-7]), tmp),
+							    *new ast::ArrayListVar((yylsp[-7]), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3561,11 +3563,11 @@ yyreduce:
   case 94:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  (yyval.t_function_dec) = new ast::FunctionDec((yyloc),
-							    *new symbol::Symbol(*(yyvsp[-4].str)),
+							    symbol::Symbol(*(yyvsp[-4].str)),
 							    *new ast::ArrayListVar((yylsp[-3]), *(yyvsp[-3].t_list_var)),
-							    *new ast::ArrayListVar((yyloc), tmp),
+							    *new ast::ArrayListVar((yyloc), *tmp),
 							    *(yyvsp[-1].t_seq_exp));
 				  delete (yyvsp[-4].str);
 				}
@@ -3586,20 +3588,20 @@ yyreduce:
 
   case 97:
 
-    { (yyval.t_list_var) = new ast::exps_t();	}
+    { (yyval.t_list_var) = new ast::exps_t;	}
 
     break;
 
   case 98:
 
-    { (yyval.t_list_var) = new ast::exps_t();	}
+    { (yyval.t_list_var) = new ast::exps_t;	}
 
     break;
 
   case 99:
 
     {
-				  (yyvsp[-2].t_list_var)->push_back(new ast::SimpleVar((yylsp[0]), *new symbol::Symbol(*(yyvsp[0].str))));
+				  (yyvsp[-2].t_list_var)->push_back(new ast::SimpleVar((yylsp[0]), symbol::Symbol(*(yyvsp[0].str))));
 				  delete (yyvsp[0].str);
 				  (yyval.t_list_var) = (yyvsp[-2].t_list_var);
 				}
@@ -3610,7 +3612,7 @@ yyreduce:
 
     {
 				  (yyval.t_list_var) = new ast::exps_t;
-				  (yyval.t_list_var)->push_back(new ast::SimpleVar((yyloc), *new symbol::Symbol(*(yyvsp[0].str))));
+				  (yyval.t_list_var)->push_back(new ast::SimpleVar((yyloc), symbol::Symbol(*(yyvsp[0].str))));
 				  delete (yyvsp[0].str);
 				}
 
@@ -3655,11 +3657,11 @@ yyreduce:
   case 107:
 
     {
-				  ast::exps_t tmp;
+				  ast::exps_t* tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
-				    tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty function body")));
+				    tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty function body")));
 				  #endif
-				  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+				  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 				}
 
     break;
@@ -3900,7 +3902,7 @@ yyreduce:
 
   case 144:
 
-    { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::unaryMinus, *(yyvsp[0].t_exp)); }
+    { if ((yyvsp[0].t_exp)->isDoubleExp()) { (yyval.t_exp) = (yyvsp[0].t_exp)->getAs<ast::DoubleExp>()->neg(); } else { (yyval.t_exp) = new ast::OpExp((yyloc), *new ast::DoubleExp((yyloc), 0.0), ast::OpExp::unaryMinus, *(yyvsp[0].t_exp)); } }
 
     break;
 
@@ -4206,7 +4208,7 @@ yyreduce:
 
   case 195:
 
-    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), *new ast::SimpleVar((yyloc), *new symbol::Symbol(*(yyvsp[0].str)))); delete (yyvsp[0].str);}
+    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), *new ast::SimpleVar((yyloc), symbol::Symbol(*(yyvsp[0].str)))); delete (yyvsp[0].str);}
 
     break;
 
@@ -4286,7 +4288,7 @@ yyreduce:
 
   case 206:
 
-    { (yyval.t_exp) = new ast::SimpleVar((yyloc), *new symbol::Symbol(*(yyvsp[0].str))); delete (yyvsp[0].str);}
+    { (yyval.t_exp) = new ast::SimpleVar((yyloc), symbol::Symbol(*(yyvsp[0].str))); delete (yyvsp[0].str);}
 
     break;
 
@@ -4340,7 +4342,7 @@ yyreduce:
 
   case 215:
 
-    { (yyval.t_exp) = (yyvsp[-1].t_arraylist_exp); }
+    { (yyval.t_exp) = new ast::ArrayListExp((yyloc), *(yyvsp[-1].t_list_exp)); }
 
     break;
 
@@ -4365,8 +4367,8 @@ yyreduce:
   case 219:
 
     {
-					  (yyvsp[-2].t_arraylist_exp)->getExps().push_back((yyvsp[0].t_exp));
-					  (yyval.t_arraylist_exp) = (yyvsp[-2].t_arraylist_exp);
+					  (yyvsp[-2].t_list_exp)->push_back((yyvsp[0].t_exp));
+					  (yyval.t_list_exp) = (yyvsp[-2].t_list_exp);
 					}
 
     break;
@@ -4374,8 +4376,8 @@ yyreduce:
   case 220:
 
     {
-					  (yyvsp[-2].t_arraylist_exp)->getExps().push_back((yyvsp[0].t_call_exp));
-					  (yyval.t_arraylist_exp) = (yyvsp[-2].t_arraylist_exp);
+					  (yyvsp[-2].t_list_exp)->push_back((yyvsp[0].t_call_exp));
+					  (yyval.t_list_exp) = (yyvsp[-2].t_list_exp);
 					}
 
     break;
@@ -4383,10 +4385,9 @@ yyreduce:
   case 221:
 
     {
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back((yyvsp[-2].t_exp));
-					  tmp->push_back((yyvsp[0].t_exp));
-					  (yyval.t_arraylist_exp) = new ast::ArrayListExp((yyloc), *tmp);
+					  (yyval.t_list_exp) = new ast::exps_t;
+					  (yyval.t_list_exp)->push_back((yyvsp[-2].t_exp));
+					  (yyval.t_list_exp)->push_back((yyvsp[0].t_exp));
 					}
 
     break;
@@ -4394,10 +4395,9 @@ yyreduce:
   case 222:
 
     {
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back((yyvsp[-2].t_call_exp));
-					  tmp->push_back((yyvsp[0].t_call_exp));
-					  (yyval.t_arraylist_exp) = new ast::ArrayListExp((yyloc), *tmp);
+					  (yyval.t_list_exp) = new ast::exps_t;
+					  (yyval.t_list_exp)->push_back((yyvsp[-2].t_call_exp));
+					  (yyval.t_list_exp)->push_back((yyvsp[0].t_call_exp));
 					}
 
     break;
@@ -4405,10 +4405,9 @@ yyreduce:
   case 223:
 
     {
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back((yyvsp[-2].t_call_exp));
-					  tmp->push_back((yyvsp[0].t_exp));
-					  (yyval.t_arraylist_exp) = new ast::ArrayListExp((yyloc), *tmp);
+					  (yyval.t_list_exp) = new ast::exps_t;
+					  (yyval.t_list_exp)->push_back((yyvsp[-2].t_call_exp));
+					  (yyval.t_list_exp)->push_back((yyvsp[0].t_exp));
 					}
 
     break;
@@ -4416,10 +4415,9 @@ yyreduce:
   case 224:
 
     {
-					  ast::exps_t *tmp = new ast::exps_t;
-					  tmp->push_back((yyvsp[-2].t_exp));
-					  tmp->push_back((yyvsp[0].t_call_exp));
-					  (yyval.t_arraylist_exp) = new ast::ArrayListExp((yyloc), *tmp);
+					  (yyval.t_list_exp) = new ast::exps_t;
+					  (yyval.t_list_exp)->push_back((yyvsp[-2].t_exp));
+					  (yyval.t_list_exp)->push_back((yyvsp[0].t_call_exp));
 }
 
     break;
@@ -4457,9 +4455,9 @@ yyreduce:
   case 229:
 
     {
-								  ast::exps_t tmp;
-								  tmp.push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
-								  (yyval.t_cell_exp) = new ast::CellExp((yyloc), tmp);
+								  ast::exps_t* tmp = new ast::exps_t;
+								  tmp->push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
+								  (yyval.t_cell_exp) = new ast::CellExp((yyloc), *tmp);
 								}
 
     break;
@@ -4467,22 +4465,22 @@ yyreduce:
   case 230:
 
     {
-								  ast::exps_t tmp;
-								  tmp.push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
-								  (yyval.t_cell_exp) = new ast::CellExp((yyloc), tmp);
+								  ast::exps_t* tmp = new ast::exps_t;
+								  tmp->push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
+								  (yyval.t_cell_exp) = new ast::CellExp((yyloc), *tmp);
                                 }
 
     break;
 
   case 231:
 
-    { ast::exps_t tmp;(yyval.t_cell_exp) = new ast::CellExp((yyloc), tmp); }
+    { ast::exps_t* tmp = new ast::exps_t;(yyval.t_cell_exp) = new ast::CellExp((yyloc), *tmp); }
 
     break;
 
   case 232:
 
-    { ast::exps_t tmp;(yyval.t_cell_exp) = new ast::CellExp((yyloc), tmp); }
+    { ast::exps_t* tmp = new ast::exps_t;(yyval.t_cell_exp) = new ast::CellExp((yyloc), *tmp); }
 
     break;
 
@@ -4519,9 +4517,9 @@ yyreduce:
   case 237:
 
     {
-								  ast::exps_t tmp;
-								  tmp.push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
-								  (yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), tmp);
+								  ast::exps_t* tmp = new ast::exps_t;
+								  tmp->push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
+								  (yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), *tmp);
 								}
 
     break;
@@ -4529,22 +4527,22 @@ yyreduce:
   case 238:
 
     {
-								  ast::exps_t tmp;
-								  tmp.push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
-								  (yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), tmp);
+								  ast::exps_t* tmp = new ast::exps_t;
+								  tmp->push_back(new ast::MatrixLineExp((yylsp[-1]), *(yyvsp[-1].t_list_exp)));
+								  (yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), *tmp);
 								}
 
     break;
 
   case 239:
 
-    { ast::exps_t tmp;(yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), tmp); }
+    { ast::exps_t* tmp = new ast::exps_t;(yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), *tmp); }
 
     break;
 
   case 240:
 
-    { ast::exps_t tmp;(yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), tmp); }
+    { ast::exps_t* tmp = new ast::exps_t;(yyval.t_matrix_exp) = new ast::MatrixExp((yyloc), *tmp); }
 
     break;
 
@@ -4736,7 +4734,7 @@ yyreduce:
 
   case 267:
 
-    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), *new ast::SimpleVar((yyloc), *new symbol::Symbol(*(yyvsp[0].str)))); delete (yyvsp[0].str);}
+    { (yyval.t_exp) = new ast::FieldExp((yyloc), *(yyvsp[-2].t_exp), *new ast::SimpleVar((yyloc), symbol::Symbol(*(yyvsp[0].str)))); delete (yyvsp[0].str);}
 
     break;
 
@@ -4780,7 +4778,7 @@ yyreduce:
 
   case 273:
 
-    { (yyval.t_exp) = new ast::SimpleVar((yyloc), *new symbol::Symbol(*(yyvsp[0].str))); delete (yyvsp[0].str);}
+    { (yyval.t_exp) = new ast::SimpleVar((yyloc), symbol::Symbol(*(yyvsp[0].str))); delete (yyvsp[0].str);}
 
     break;
 
@@ -4844,11 +4842,11 @@ yyreduce:
   case 282:
 
     {
-    ast::exps_t tmp;
+    ast::exps_t* tmp = new ast::exps_t;
     #ifdef BUILD_DEBUG_AST
-    tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty then body")));
+    tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty then body")));
     #endif
-    (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+    (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                         }
 
     break;
@@ -4862,13 +4860,13 @@ yyreduce:
   case 284:
 
     {
-                                         #ifdef BUILD_DEBUG_AST
-                                           ast::exps_t tmp;
-                                           tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty else body")));
-                                           (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
-                                         #else
-                                           (yyval.t_seq_exp) = NULL;
-                                         #endif
+                                        #ifdef BUILD_DEBUG_AST
+                                            ast::exps_t* tmp = new ast::exps_t;
+                                            tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty else body")));
+                                            (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
+                                        #else
+                                            (yyval.t_seq_exp) = NULL;
+                                        #endif
                                         }
 
     break;
@@ -4978,9 +4976,9 @@ yyreduce:
   case 302:
 
     {
-										ast::exps_t tmp;
-										tmp.push_back(new ast::IfExp((yyloc), *(yyvsp[-2].t_exp), *(yyvsp[0].t_seq_exp)));
-										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+										ast::exps_t* tmp = new ast::exps_t;
+										tmp->push_back(new ast::IfExp((yyloc), *(yyvsp[-2].t_exp), *(yyvsp[0].t_seq_exp)));
+										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 									}
 
     break;
@@ -4988,16 +4986,16 @@ yyreduce:
   case 303:
 
     {
-										ast::exps_t tmp;
+										ast::exps_t* tmp = new ast::exps_t;
 										if( (yyvsp[0].t_seq_exp) == NULL)
                                         {
-                                            tmp.push_back(new ast::IfExp((yyloc), *(yyvsp[-4].t_exp), *(yyvsp[-2].t_seq_exp)));
+                                            tmp->push_back(new ast::IfExp((yyloc), *(yyvsp[-4].t_exp), *(yyvsp[-2].t_seq_exp)));
                                         }
                                         else
                                         {
-                                            tmp.push_back(new ast::IfExp((yyloc), *(yyvsp[-4].t_exp), *(yyvsp[-2].t_seq_exp), *(yyvsp[0].t_seq_exp)));
+                                            tmp->push_back(new ast::IfExp((yyloc), *(yyvsp[-4].t_exp), *(yyvsp[-2].t_seq_exp), *(yyvsp[0].t_seq_exp)));
                                         }
-										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 
 									}
 
@@ -5006,9 +5004,9 @@ yyreduce:
   case 304:
 
     {
-										ast::exps_t tmp;
-										tmp.push_back(new ast::IfExp((yyloc), *(yyvsp[-3].t_exp), *(yyvsp[-1].t_seq_exp), *(yyvsp[0].t_seq_exp)));
-										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+										ast::exps_t* tmp = new ast::exps_t;
+										tmp->push_back(new ast::IfExp((yyloc), *(yyvsp[-3].t_exp), *(yyvsp[-1].t_seq_exp), *(yyvsp[0].t_seq_exp)));
+										(yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 									}
 
     break;
@@ -5021,7 +5019,16 @@ yyreduce:
 
   case 306:
 
-    { (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-5].t_exp), *(yyvsp[-3].t_list_case), *(yyvsp[-1].t_seq_exp)); }
+    {
+                                        if((yyvsp[-1].t_seq_exp) == NULL)
+                                        {
+                                            (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-5].t_exp), *(yyvsp[-3].t_list_case));
+                                        }
+                                        else
+                                        {
+                                            (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-5].t_exp), *(yyvsp[-3].t_list_case), *(yyvsp[-1].t_seq_exp));
+                                        }
+                                    }
 
     break;
 
@@ -5033,7 +5040,17 @@ yyreduce:
 
   case 308:
 
-    { (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-6].t_exp), *(yyvsp[-3].t_list_case), *(yyvsp[-1].t_seq_exp)); delete (yyvsp[-5].comment);}
+    {
+                                        if((yyvsp[-1].t_seq_exp) == NULL)
+                                        {
+                                            (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-6].t_exp), *(yyvsp[-3].t_list_case));
+                                        }
+                                        else
+                                        {
+                                            (yyval.t_select_exp) = new ast::SelectExp((yyloc), *(yyvsp[-6].t_exp), *(yyvsp[-3].t_list_case), *(yyvsp[-1].t_seq_exp));
+                                        }
+                                        delete (yyvsp[-5].comment);
+                                    }
 
     break;
 
@@ -5196,11 +5213,11 @@ yyreduce:
   case 332:
 
     {
-						  ast::exps_t tmp;
-						#ifdef BUILD_DEBUG_AST
-						  tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty case body")));
-						#endif
-						  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                            ast::exps_t* tmp = new ast::exps_t;
+                            #ifdef BUILD_DEBUG_AST
+                                tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty case body")));
+                            #endif
+                            (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 						}
 
     break;
@@ -5279,13 +5296,13 @@ yyreduce:
 
   case 345:
 
-    { (yyval.t_for_exp) = new ast::ForExp((yyloc), *new ast::VarDec((yylsp[-4]), *new symbol::Symbol(*(yyvsp[-5].str)), *(yyvsp[-3].t_exp)), *(yyvsp[-1].t_seq_exp)); delete (yyvsp[-5].str);}
+    { (yyval.t_for_exp) = new ast::ForExp((yyloc), *new ast::VarDec((yylsp[-4]), symbol::Symbol(*(yyvsp[-5].str)), *(yyvsp[-3].t_exp)), *(yyvsp[-1].t_seq_exp)); delete (yyvsp[-5].str);}
 
     break;
 
   case 346:
 
-    { (yyval.t_for_exp) = new ast::ForExp((yyloc), *new ast::VarDec((yylsp[-5]), *new symbol::Symbol(*(yyvsp[-6].str)), *(yyvsp[-4].t_exp)), *(yyvsp[-1].t_seq_exp)); delete (yyvsp[-6].str);}
+    { (yyval.t_for_exp) = new ast::ForExp((yyloc), *new ast::VarDec((yylsp[-5]), symbol::Symbol(*(yyvsp[-6].str)), *(yyvsp[-4].t_exp)), *(yyvsp[-1].t_seq_exp)); delete (yyvsp[-6].str);}
 
     break;
 
@@ -5358,11 +5375,11 @@ yyreduce:
   case 358:
 
     {
-				  ast::exps_t tmp;
-				  #ifdef BUILD_DEBUG_AST
-				    tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty for body")));
-				  #endif
-				  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                    ast::exps_t* tmp = new ast::exps_t;
+                    #ifdef BUILD_DEBUG_AST
+                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty for body")));
+                    #endif
+                    (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
 				}
 
     break;
@@ -5382,11 +5399,11 @@ yyreduce:
   case 361:
 
     {
-                          ast::exps_t tmp;
-                          #ifdef BUILD_DEBUG_AST
-                            tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty while body")));
-                          #endif
-                          (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                            ast::exps_t* tmp = new ast::exps_t;
+                            #ifdef BUILD_DEBUG_AST
+                                tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty while body")));
+                            #endif
+                            (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                         }
 
     break;
@@ -5508,12 +5525,12 @@ yyreduce:
   case 381:
 
     {
-                                                    ast::exps_t tmp;
+                                                    ast::exps_t* tmp = new ast::exps_t;
                                                     #ifdef BUILD_DEBUG_AST
-                                                      tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
                                                     #endif
-                                                    (yyval.t_try_exp) =new ast::TryCatchExp((yyloc), *(yyvsp[-1].t_seq_exp), *new ast::SeqExp((yyloc), tmp));
-                                                  }
+                                                    (yyval.t_try_exp) = new ast::TryCatchExp((yyloc), *(yyvsp[-1].t_seq_exp), *new ast::SeqExp((yyloc), *tmp));
+                                                }
 
     break;
 
@@ -5544,11 +5561,11 @@ yyreduce:
   case 386:
 
     {
-                                  ast::exps_t tmp;
-                                  #ifdef BUILD_DEBUG_AST
-                                    tmp = new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body"));
-                                  #endif
-                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                                    ast::exps_t* tmp = new ast::exps_t;
+                                    #ifdef BUILD_DEBUG_AST
+                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                    #endif
+                                    (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                 }
 
     break;
@@ -5556,11 +5573,11 @@ yyreduce:
   case 387:
 
     {
-                                  ast::exps_t tmp;
-                                  #ifdef BUILD_DEBUG_AST
-                                    tmp.push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
-                                  #endif
-                                  (yyval.t_seq_exp) = new ast::SeqExp((yyloc), tmp);
+                                    ast::exps_t* tmp = new ast::exps_t;
+                                    #ifdef BUILD_DEBUG_AST
+                                        tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty catch body")));
+                                    #endif
+                                    (yyval.t_seq_exp) = new ast::SeqExp((yyloc), *tmp);
                                 }
 
     break;
@@ -5583,6 +5600,12 @@ yyreduce:
 
     break;
 
+  case 391:
+
+    { delete (yyvsp[-1].comment); }
+
+    break;
+
   case 392:
 
     { delete (yyvsp[-1].comment); }
@@ -5597,121 +5620,121 @@ yyreduce:
 
   case 395:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"if")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"if")); }
 
     break;
 
   case 396:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"then")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"then")); }
 
     break;
 
   case 397:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"else")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"else")); }
 
     break;
 
   case 398:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"elseif")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"elseif")); }
 
     break;
 
   case 399:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"end")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"end")); }
 
     break;
 
   case 400:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"select")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"select")); }
 
     break;
 
   case 401:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"switch")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"switch")); }
 
     break;
 
   case 402:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"otherwise")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"otherwise")); }
 
     break;
 
   case 403:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"case")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"case")); }
 
     break;
 
   case 404:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"function")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"function")); }
 
     break;
 
   case 405:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"endfunction")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"endfunction")); }
 
     break;
 
   case 406:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"#function")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"#function")); }
 
     break;
 
   case 407:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"hidden")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"hidden")); }
 
     break;
 
   case 408:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"for")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"for")); }
 
     break;
 
   case 409:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"while")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"while")); }
 
     break;
 
   case 410:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"do")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"do")); }
 
     break;
 
   case 411:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"break")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"break")); }
 
     break;
 
   case 412:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"try")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"try")); }
 
     break;
 
   case 413:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"catch")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"catch")); }
 
     break;
 
   case 414:
 
-    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), *new symbol::Symbol(L"return")); }
+    { (yyval.t_simple_var) = new ast::SimpleVar((yyloc), symbol::Symbol(L"return")); }
 
     break;
 

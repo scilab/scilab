@@ -253,6 +253,9 @@ private:
     void visit(const ast::ListExp & e);
     void visit(const ast::OptimizedExp & e);
     void visit(const ast::DAXPYExp & e);
+    void visit(const ast::MemfillExp & e) {}
+    void visit(const ast::IntSelectExp & e) {}
+    void visit(const ast::StringSelectExp & e) {}
 };
 
 template<> llvm::Value * JITVisitor::getConstant<double>(const double val);

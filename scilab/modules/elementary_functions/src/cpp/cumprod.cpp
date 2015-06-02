@@ -24,13 +24,14 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
     double* pdblInImg   = pIn->getImg();
     double* pdblOutImg  = pOut->getImg();
 
+    int size = pIn->getSize();
     if (iOrientation == 0) // all
     {
         pdblOutReal[0] = pdblInReal[0];
         if (pIn->isComplex())
         {
             pdblOutImg[0] = pdblInImg[0];
-            for (int i = 1; i < pIn->getSize(); i++)
+            for (int i = 1; i < size; i++)
             {
                 pdblOutReal[i] = pdblInReal[i] * pdblOutReal[i - 1];
                 pdblOutReal[i] -= pdblInImg[i] * pdblOutImg[i - 1];
@@ -39,7 +40,7 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
         }
         else
         {
-            for (int i = 1; i < pIn->getSize(); i++)
+            for (int i = 1; i < size; i++)
             {
                 pdblOutReal[i] = pdblInReal[i] * pdblOutReal[i - 1];
             }
@@ -57,7 +58,7 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
 
         if (pIn->isComplex())
         {
-            for (int j = 0; j < pIn->getSize(); j += (iIncrement * iSizeOfDimN))
+            for (int j = 0; j < size; j += (iIncrement * iSizeOfDimN))
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {
@@ -78,7 +79,7 @@ int cumprod(types::Double* pIn, int iOrientation, types::Double* pOut)
         }
         else
         {
-            for (int j = 0; j < pIn->getSize(); j += (iIncrement * iSizeOfDimN))
+            for (int j = 0; j < size; j += (iIncrement * iSizeOfDimN))
             {
                 for (int i = j; i < iIncrement + j; i++) // set the first values in out
                 {

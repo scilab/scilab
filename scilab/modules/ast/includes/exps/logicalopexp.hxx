@@ -81,7 +81,7 @@ public:
         _oper = oper;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return LOGICALOPEXP;
     }

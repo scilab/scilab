@@ -16,7 +16,7 @@
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 using namespace  org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/

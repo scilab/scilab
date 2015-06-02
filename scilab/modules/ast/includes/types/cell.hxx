@@ -115,7 +115,7 @@ private :
     virtual void            deleteAll();
     virtual void            deleteImg();
     virtual InternalType**  allocData(int _iSize);
-
+    virtual void            deleteData(InternalType* _pData);
 };
 }
 

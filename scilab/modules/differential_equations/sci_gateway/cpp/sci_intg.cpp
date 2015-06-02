@@ -45,6 +45,10 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
     int iOne = 1;
 
+    // error message catched
+    std::wostringstream os;
+    bool bCatch = false;
+
     // *** check the minimal number of input args. ***
     if (in.size() < 3 || in.size() > 5)
     {
@@ -107,29 +111,29 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
     }
 
     // function
-    DifferentialEquationFunctions* deFunctionsManager = new DifferentialEquationFunctions(L"intg");
-    DifferentialEquation::addDifferentialEquationFunctions(deFunctionsManager);
+    DifferentialEquationFunctions deFunctionsManager(L"intg");
+    DifferentialEquation::addDifferentialEquationFunctions(&deFunctionsManager);
 
     if (in[2]->isCallable())
     {
         types::Callable* pCall = in[2]->getAs<types::Callable>();
-        deFunctionsManager->setFFunction(pCall);
+        deFunctionsManager.setFFunction(pCall);
 
         // check function
         double t = 1;
         double ret = intg_f(&t);
-        if (ret == 0)
+        /* if (ret == 0)
         {
             Scierror(50, _("%s: Argument #%d: Variable returned by scilab argument function is incorrect.\n"), "intg", 3);
             DifferentialEquation::removeDifferentialEquationFunctions();
             return types::Function::Error;
-        }
+        }*/
     }
     else if (in[2]->isString())
     {
         bool bOK = false;
         types::String* pStr = in[2]->getAs<types::String>();
-        bOK = deFunctionsManager->setFFunction(pStr);
+        bOK = deFunctionsManager.setFFunction(pStr);
 
         if (bOK == false)
         {
@@ -153,10 +157,10 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
 
         if (pList->get(0)->isCallable())
         {
-            deFunctionsManager->setFFunction(pList->get(0)->getAs<types::Callable>());
+            deFunctionsManager.setFFunction(pList->get(0)->getAs<types::Callable>());
             for (int iter = 1; iter < pList->getSize(); iter++)
             {
-                deFunctionsManager->setFArgs(pList->get(iter)->getAs<types::InternalType>());
+                deFunctionsManager.setFArgs(pList->get(iter)->getAs<types::InternalType>());
             }
         }
         else
@@ -234,20 +238,28 @@ types::Function::ReturnValue sci_intg(types::typed_list &in, int _iRetCount, typ
                    &result, &abserr, &neval, &ier,
                    &limit, &lenw, &last, iwork, dwork);
     }
+    catch (ast::ScilabMessage &sm)
+    {
+        os << sm.GetErrorMessage();
+        bCatch = true;
+    }
     catch (ast::ScilabError &e)
     {
-        char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "intg", "dqags");
-        Scierror(999, pstrMsg);
-        FREE(dwork);
-        FREE(iwork);
-        DifferentialEquation::removeDifferentialEquationFunctions();
-        return types::Function::Error;
+        os << e.GetErrorMessage();
+        bCatch = true;
     }
 
     FREE(dwork);
     FREE(iwork);
     DifferentialEquation::removeDifferentialEquationFunctions();
+
+    if (bCatch)
+    {
+        wchar_t szError[bsiz];
+        os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "intg", "dqags");
+        os << szError;
+        throw ast::ScilabMessage(os.str());
+    }
 
     if (ier)
     {

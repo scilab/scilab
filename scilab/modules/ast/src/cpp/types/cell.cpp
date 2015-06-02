@@ -49,9 +49,8 @@ void Cell::createCell(int _iDims, int* _piDims)
 {
     InternalType** pIT = NULL;
     create(_piDims, _iDims, &pIT, NULL);
-    for (int i = 0; i < getSize(); i++)
+    for (int i = 0; i < m_iSizeMax; i++)
     {
-        double* pReal = NULL;
         m_pRealData[i] = Double::Empty();
         m_pRealData[i]->IncreaseRef();
     }
@@ -64,12 +63,14 @@ Cell::~Cell()
 {
     if (isDeletable() == true)
     {
-        for (int i = 0 ; i < getSize() ; i++)
+        for (int i = 0; i < m_iSizeMax; i++)
         {
             m_pRealData[i]->DecreaseRef();
             m_pRealData[i]->killMe();
         }
     }
+
+    delete[] m_pRealData;
 #ifndef NDEBUG
     Inspector::removeItem(this);
 #endif
@@ -140,13 +141,14 @@ bool Cell::set(int _iRows, int _iCols, const InternalType* _pIT)
 
 bool Cell::set(int _iIndex, InternalType* _pIT)
 {
-    if (m_pRealData[_iIndex] == _pIT)
-    {
-        return true;
-    }
-
     if (_iIndex < getSize())
     {
+        // corner case when inserting twice
+        if (m_pRealData[_iIndex] == _pIT)
+        {
+            return true;
+        }
+
         if (m_pRealData[_iIndex] != NULL)
         {
             m_pRealData[_iIndex]->DecreaseRef();
@@ -403,7 +405,7 @@ bool Cell::operator!=(const InternalType& it)
 List* Cell::extractCell(typed_list* _pArgs)
 {
     InternalType* pIT = extract(_pArgs);
-    if (pIT->isCell() == false)
+    if (pIT == NULL || pIT->isCell() == false)
     {
         return NULL;
     }
@@ -444,5 +446,14 @@ InternalType** Cell::allocData(int _iSize)
         pData[i] = NULL;
     }
     return pData;
+}
+
+void Cell::deleteData(InternalType* _pData)
+{
+    if (_pData)
+    {
+        _pData->DecreaseRef();
+        _pData->killMe();
+    }
 }
 }

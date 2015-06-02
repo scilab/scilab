@@ -17,6 +17,10 @@
 #include <iterator>
 #include <algorithm>
 
+#include <Eigen/Core>
+#include <Eigen/IterativeLinearSolvers>
+#include <Eigen/SparseCholesky>
+
 #include "sparse.hxx"
 #include "types.hxx"
 #include "tostring_common.hxx"
@@ -273,16 +277,25 @@ Sparse::~Sparse()
 {
     delete matrixReal;
     delete matrixCplx;
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
-Sparse::Sparse( Sparse const& src) : GenericType(src)
-    , matrixReal(src.matrixReal ? new RealSparse_t(*src.matrixReal) : 0)
+Sparse::Sparse(Sparse const& src)
+    : matrixReal(src.matrixReal ? new RealSparse_t(*src.matrixReal) : 0)
     , matrixCplx(src.matrixCplx ? new CplxSparse_t(*src.matrixCplx) : 0)
 
 {
+    m_iRows = const_cast<Sparse*>(&src)->getRows();
+    m_iCols = const_cast<Sparse*>(&src)->getCols();
+    m_iSize = m_iRows * m_iCols;
     m_iDims = 2;
-    m_piDims[0] = const_cast<Sparse*>(&src)->getRows();
-    m_piDims[1] = const_cast<Sparse*>(&src)->getCols();
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(int _iRows, int _iCols, bool cplx)
@@ -295,26 +308,48 @@ Sparse::Sparse(int _iRows, int _iCols, bool cplx)
     m_iDims = 2;
     m_piDims[0] = _iRows;
     m_piDims[1] = _iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src)
 {
-    create(src.getRows(), src.getCols(), src, RowWiseFullIterator(src.getRows(), src.getCols()), src.getSize());
+    //compute idx
+    int size = src.getSize();
+    int row = src.getRows();
+    Double* idx = new Double(src.getSize(), 2);
+    double* p = idx->get();
+    for (int i = 0; i < size; ++i)
+    {
+        p[i]        = (double)(i % row) + 1;
+        p[i + size] = (double)(i / row) + 1;
+    }
+    create2(src.getRows(), src.getCols(), src, *idx);
+    idx->killMe();
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
 {
-    double SPARSE_CONST* const endOfRow(idx.getReal() + idx.getRows());
-    create( static_cast<int>(*std::max_element(idx.getReal(), endOfRow))
-            , static_cast<int>(*std::max_element(endOfRow, endOfRow + idx.getRows()))
-            , src, makeIteratorFromVar(idx), idx.getSize() / 2 );
+    int idxrow = idx.getRows();
+    int rows = static_cast<int>(*std::max_element(idx.get(), idx.get() + idxrow));
+    int cols = static_cast<int>(*std::max_element(idx.get() + idxrow, idx.get() + idxrow * 2));
+
+    create2(rows, cols, src, idx);
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
-    create(static_cast<int>(dims.getReal(0, 0))
-           , static_cast<int>(dims.getReal(0, 1))
-           , src, makeIteratorFromVar(idx), idx.getSize() / 2);
+    create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp), matrixCplx(cplxSp)
@@ -333,12 +368,18 @@ Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp),
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Sparse::Sparse(Double SPARSE_CONST& xadj, Double SPARSE_CONST& adjncy, Double SPARSE_CONST& src, std::size_t r, std::size_t c)
 {
-    Adjacency a(xadj.getReal(), adjncy.getReal());
+    Adjacency a(xadj.get(), adjncy.get());
     create(static_cast<int>(r), static_cast<int>(c), src, makeIteratorFromVar(a), src.getSize());
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 template<typename DestIter>
@@ -354,7 +395,7 @@ void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, st
     if (src.isComplex())
     {
         matrixReal = 0;
-        matrixCplx =  new CplxSparse_t( rows, cols);
+        matrixCplx = new CplxSparse_t(rows, cols);
         matrixCplx->reserve((int)n);
         mycopy_n(makeMatrixIterator<std::complex<double> >(src, RowWiseFullIterator(src.getRows(), src.getCols())), n, makeMatrixIterator<std::complex<double> >(*matrixCplx, o));
     }
@@ -362,10 +403,64 @@ void Sparse::create(int rows, int cols, Double SPARSE_CONST& src, DestIter o, st
     {
         matrixReal = new RealSparse_t(rows, cols);
         matrixReal->reserve((int)n);
-        matrixCplx =  0;
-        mycopy_n(makeMatrixIterator<double >(src,  RowWiseFullIterator(src.getRows(), src.getCols())), n
+        matrixCplx = 0;
+        mycopy_n(makeMatrixIterator<double >(src, RowWiseFullIterator(src.getRows(), src.getCols())), n
                  , makeMatrixIterator<double>(*matrixReal, o));
     }
+    finalize();
+}
+
+void Sparse::create2(int rows, int cols, Double SPARSE_CONST& src, Double SPARSE_CONST& idx)
+{
+    int nnz = src.getSize();
+    double* i = idx.get();
+    double* j = i + idx.getRows();
+    double* valR = src.get();
+
+    if (src.isComplex())
+    {
+        matrixReal = 0;
+
+        typedef Eigen::Triplet<std::complex<double> > T;
+        std::vector<T> tripletList;
+        tripletList.reserve((int)nnz);
+
+        double* valI = src.getImg();
+
+        for (int k = 0; k < nnz; ++k)
+        {
+            tripletList.push_back(T(static_cast<int>(i[k]) - 1, static_cast<int>(j[k]) - 1, std::complex<double>(valR[k], valI[k])));
+        }
+
+        matrixCplx = new CplxSparse_t(rows, cols);
+        matrixCplx->setFromTriplets(tripletList.begin(), tripletList.end());
+        m_iRows = matrixCplx->rows();
+        m_iCols = matrixCplx->cols();
+    }
+    else
+    {
+        matrixCplx = 0;
+
+        typedef Eigen::Triplet<double> T;
+        std::vector<T> tripletList;
+        tripletList.reserve((int)nnz);
+
+        for (int k = 0; k < nnz; ++k)
+        {
+            tripletList.push_back(T(static_cast<int>(i[k]) - 1, static_cast<int>(j[k]) - 1, valR[k]));
+        }
+
+        matrixReal = new RealSparse_t(rows, cols);
+        matrixReal->setFromTriplets(tripletList.begin(), tripletList.end());
+
+        m_iRows = matrixReal->rows();
+        m_iCols = matrixReal->cols();
+    }
+
+    m_iSize = m_iCols * m_iRows;
+    m_iDims = 2;
+    m_piDims[0] = m_iRows;
+    m_piDims[1] = m_iCols;
     finalize();
 }
 
@@ -449,7 +544,7 @@ void Sparse::finalize()
 bool Sparse::neg(InternalType *& out)
 {
     SparseBool * _out = new SparseBool(getRows(), getCols());
-    type_traits::neg(getRows(), getCols(), matrixReal, _out->matrixBool);
+    types::neg(getRows(), getCols(), matrixReal, _out->matrixBool);
     out = _out;
 
     return true;
@@ -1308,6 +1403,9 @@ Sparse* Sparse::remove(typed_list* _pArgs)
     {
         if (iNewDimSize == 0)
         {
+            delete[] piNewDims;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return new Sparse(0, 0);
         }
         else
@@ -1439,11 +1537,19 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         if (_pArgs->size() == 0)
         {
             //a()
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return this;
         }
         else
         {
             //a([])
+            delete[] piMaxDim;
+            delete[] piCountDim;
+            //free pArg content
+            cleanIndexesArguments(_pArgs, &pArg);
             return Double::Empty();
         }
     }
@@ -1504,6 +1610,8 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -1556,14 +1664,18 @@ InternalType* Sparse::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
         }
     }
 
-    finalize();
+    pOut->finalize();
 
+    delete[] piMaxDim;
+    delete[] piCountDim;
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 
@@ -1761,6 +1873,38 @@ Sparse* Sparse::dotDivide(Sparse SPARSE_CONST& o) const
     }
 
     return new Sparse(realSp, cplxSp);
+}
+
+int Sparse::newCholLLT(Sparse** _SpPermut, Sparse** _SpFactor) const
+{
+    typedef Eigen::SparseMatrix<double, Eigen::ColMajor> RealSparseCol_t;
+    RealSparseCol_t spColMajor = RealSparseCol_t((const RealSparse_t&) * matrixReal);
+
+    // Constructs and performs the LLT factorization of sparse
+    Eigen::SimplicialLLT<RealSparseCol_t> pLLT(spColMajor);
+    int iInfo = pLLT.info();
+    if (iInfo != Eigen::Success)
+    {
+        *_SpFactor = NULL;
+        *_SpPermut = NULL;
+        return iInfo;
+    }
+
+    // Get the lower matrix of factorization.
+    // The new RealSparse_t will be setted in Sparse without copy.
+    *_SpFactor = new Sparse(new RealSparse_t(pLLT.matrixL()), NULL);
+
+    // Get the permutation matrix.
+    Eigen::PermutationMatrix<Eigen::Dynamic, Eigen::Dynamic, int> p = pLLT.permutationP();
+    *_SpPermut = new Sparse(p.rows(), p.cols());
+    for (int i = 0; i < p.rows(); i++)
+    {
+        (*_SpPermut)->set(i, p.indices()[i], 1, false);
+    }
+
+    (*_SpPermut)->finalize();
+
+    return iInfo;
 }
 
 struct BoolCast
@@ -2119,17 +2263,34 @@ bool Sparse::reshape(int _iNewRows, int _iNewCols)
 
 SparseBool::SparseBool(Bool SPARSE_CONST& src)
 {
-    create(src.getRows(), src.getCols(), src, RowWiseFullIterator(src.getRows(), src.getCols()), src.getSize());
+    //compute idx
+    int size = src.getSize();
+    int row = src.getRows();
+    Double* idx = new Double(src.getSize(), 2);
+    double* p = idx->get();
+    for (int i = 0; i < size; ++i)
+    {
+        p[i] = (double)(i % row) + 1;
+        p[i + size] = (double)(i / row) + 1;
+    }
+    create2(src.getRows(), src.getCols(), src, *idx);
+    idx->killMe();
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 /* @param src : Bool matrix to copy into a new sparse matrix
 @param idx : Double matrix to use as indexes to get values from the src
 **/
 SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 {
-    double SPARSE_CONST* const endOfRow(idx.getReal() + idx.getRows());
-    create( static_cast<int>(*std::max_element(idx.getReal(), endOfRow))
-            , static_cast<int>(*std::max_element(endOfRow, endOfRow + idx.getRows()))
-            , src, makeIteratorFromVar(idx), idx.getSize() / 2 );
+    int idxrow = idx.getRows();
+    int rows = static_cast<int>(*std::max_element(idx.get(), idx.get() + idxrow));
+    int cols = static_cast<int>(*std::max_element(idx.get() + idxrow, idx.get() + idxrow * 2));
+    create2(rows, cols, src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 /* @param src : Bool matrix to copy into a new sparse matrix
@@ -2138,7 +2299,10 @@ SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 **/
 SparseBool::SparseBool(Bool SPARSE_CONST& src, Double SPARSE_CONST& idx, Double SPARSE_CONST& dims)
 {
-    create((int)dims.getReal(0, 0) , (int)dims.getReal(0, 1) , src, makeIteratorFromVar(idx), (int)idx.getSize() / 2);
+    create2(static_cast<int>(dims.get(0)), static_cast<int>(dims.get(1)), src, idx);
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SparseBool::SparseBool(int _iRows, int _iCols) : matrixBool(new BoolSparse_t(_iRows, _iCols))
@@ -2149,9 +2313,12 @@ SparseBool::SparseBool(int _iRows, int _iCols) : matrixBool(new BoolSparse_t(_iR
     m_iDims = 2;
     m_piDims[0] = _iRows;
     m_piDims[1] = _iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
-SparseBool::SparseBool(SparseBool const& src) : GenericType(src),  matrixBool(new BoolSparse_t(*src.matrixBool))
+SparseBool::SparseBool(SparseBool const& src) : matrixBool(new BoolSparse_t(*src.matrixBool))
 {
     m_iDims = 2;
     m_iRows = const_cast<SparseBool*>(&src)->getRows();
@@ -2159,6 +2326,9 @@ SparseBool::SparseBool(SparseBool const& src) : GenericType(src),  matrixBool(ne
     m_iSize = m_iRows * m_iCols;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
@@ -2169,26 +2339,46 @@ SparseBool::SparseBool(BoolSparse_t* src) : matrixBool(src)
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
-template<typename DestIter>
-void SparseBool::create(int rows, int cols, Bool SPARSE_CONST& src, DestIter o, std::size_t n)
+void SparseBool::create2(int rows, int cols, Bool SPARSE_CONST& src, Double SPARSE_CONST& idx)
 {
-    m_iCols = cols;
-    m_iRows = rows;
+    int nnz = src.getSize();
+    double* i = idx.get();
+    double* j = i + idx.getRows();
+    int* val = src.get();
+
+    typedef Eigen::Triplet<bool> T;
+    std::vector<T> tripletList;
+    tripletList.reserve((int)nnz);
+
+    for (int k = 0; k < nnz; ++k)
+    {
+        tripletList.push_back(T(static_cast<int>(i[k]) - 1, static_cast<int>(j[k]) - 1, val[k] == 1));
+    }
+
+    matrixBool = new BoolSparse_t(rows, cols);
+    matrixBool->setFromTriplets(tripletList.begin(), tripletList.end());
+
+    m_iRows = matrixBool->rows();
+    m_iCols = matrixBool->cols();
     m_iSize = cols * rows;
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
-
-    matrixBool = new BoolSparse_t(rows, cols);
-
-    matrixBool->reserve((int)n);
-    mycopy_n(makeMatrixIterator<int>(src,  RowWiseFullIterator(src.getRows(), src.getCols())), n
-             , makeMatrixIterator<bool>(*matrixBool, o));
     finalize();
 }
 
+SparseBool::~SparseBool()
+{
+    delete matrixBool;
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
+}
 
 bool SparseBool::toString(std::wostringstream& ostr) const
 {
@@ -2924,11 +3114,15 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         cleanIndexesArguments(_pArgs, &pArg);
         if (_pArgs->size() == 0)
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //a()
             return this;
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //a([])
             return Double::Empty();
         }
@@ -2981,6 +3175,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -3023,6 +3219,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
         }
         else
         {
+            delete[] piMaxDim;
+            delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
             return NULL;
@@ -3031,6 +3229,8 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
 
     finalize();
 
+    delete[] piMaxDim;
+    delete[] piCountDim;
     //free pArg content
     cleanIndexesArguments(_pArgs, &pArg);
 

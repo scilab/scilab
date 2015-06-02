@@ -21,7 +21,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 namespace org_modules_completion
@@ -45,9 +45,8 @@ public :
      */
     static void initializeEO()
     {
-        EOFieldsGetter * getter = new EOFieldsGetter();
-        FieldsManager::addFieldsGetter(std::string("_EClass"), getter);
-        FieldsManager::addFieldsGetter(std::string("_EObj"), getter);
+        FieldsManager::addFieldsGetter(std::string("_EClass"), new EOFieldsGetter());
+        FieldsManager::addFieldsGetter(std::string("_EObj"), new EOFieldsGetter());
     }
 
 private :

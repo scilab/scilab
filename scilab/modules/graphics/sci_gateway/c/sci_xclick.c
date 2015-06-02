@@ -162,16 +162,15 @@ int sci_xclick(char *fname, void *pvApiCtx)
 
     if (nbOutputArgument(pvApiCtx) >= 5)
     {
-        char* strRep = NULL;
+        char *strRep  = NULL;
         AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
         istr = (int)strlen(menuCallback);
 
-        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, (const char**)&strRep))
+        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, &strRep))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
         strncpy(strRep, menuCallback, istr);
     }
 

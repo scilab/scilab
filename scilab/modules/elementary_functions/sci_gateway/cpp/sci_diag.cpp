@@ -17,12 +17,17 @@
 #include "overload.hxx"
 #include "execvisitor.hxx"
 #include "diag.hxx"
+#include "int.hxx"
 
 extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
 }
+/*
+clear a; nb = 2500; a = rand(nb, nb); tic(); diag(a); toc
+clear a; nb = 2500; a = rand(nb, nb); a = a + a *%i; tic(); diag(a); toc
+*/
 
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -43,14 +48,16 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
 
     if (in[0]->isGenericType() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in[0]->getAs<types::GenericType>()->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in.size() == 2)
@@ -112,8 +119,9 @@ types::Function::ReturnValue sci_diag(types::typed_list &in, int _iRetCount, typ
             break;
         default :
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_diag";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_diag";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
     }
 

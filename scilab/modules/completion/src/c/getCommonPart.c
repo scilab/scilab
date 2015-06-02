@@ -16,7 +16,7 @@
 #include "getCommonPart.h"
 #include "core_math.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int cmp( const void *a , const void *b)
 {

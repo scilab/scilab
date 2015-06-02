@@ -32,54 +32,54 @@ size_t ast::Ast::globalNodeNumber = 0;
 /*
  * Generate destination variable from _poSource type and size parameters
  */
-types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _iCols)
+InternalType* allocDest(InternalType* _poSource, int _iRows, int _iCols)
 {
-    types::InternalType* poResult = NULL;
+    InternalType* poResult = NULL;
     switch (_poSource->getType())
     {
-        case types::GenericType::ScilabDouble :
-            poResult = new types::Double(_iRows, _iCols, false);
+        case GenericType::ScilabDouble :
+            poResult = new Double(_iRows, _iCols, false);
             break;
-        case types::GenericType::ScilabBool :
-            poResult = new types::Bool(_iRows, _iCols);
+        case GenericType::ScilabBool :
+            poResult = new Bool(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabInt8 :
-            poResult = new types::Int8(_iRows, _iCols);
+        case GenericType::ScilabInt8 :
+            poResult = new Int8(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabUInt8 :
-            poResult = new types::UInt8(_iRows, _iCols);
+        case GenericType::ScilabUInt8 :
+            poResult = new UInt8(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabInt16 :
-            poResult = new types::Int16(_iRows, _iCols);
+        case GenericType::ScilabInt16 :
+            poResult = new Int16(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabUInt16 :
-            poResult = new types::UInt16(_iRows, _iCols);
+        case GenericType::ScilabUInt16 :
+            poResult = new UInt16(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabInt32 :
-            poResult = new types::Int32(_iRows, _iCols);
+        case GenericType::ScilabInt32 :
+            poResult = new Int32(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabUInt32 :
-            poResult = new types::UInt32(_iRows, _iCols);
+        case GenericType::ScilabUInt32 :
+            poResult = new UInt32(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabInt64 :
-            poResult = new types::Int64(_iRows, _iCols);
+        case GenericType::ScilabInt64 :
+            poResult = new Int64(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabUInt64 :
-            poResult = new types::UInt64(_iRows, _iCols);
+        case GenericType::ScilabUInt64 :
+            poResult = new UInt64(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabString :
-            poResult = new types::String(_iRows, _iCols);
+        case GenericType::ScilabString :
+            poResult = new String(_iRows, _iCols);
             break;
-        case types::GenericType::ScilabPolynom :
+        case GenericType::ScilabPolynom :
         {
             int* piRank = new int[_iRows * _iCols];
             memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
-            poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+            poResult = new Polynom(_poSource->getAs<Polynom>()->getVariableName(), _iRows, _iCols, piRank);
             delete[] piRank;
             break;
         }
-        case types::InternalType::ScilabImplicitList :
-            poResult = new types::ImplicitList();
+        case InternalType::ScilabImplicitList :
+            poResult = new ImplicitList();
             break;
         default :
             // FIXME : What should we do here ??
@@ -88,11 +88,11 @@ types::InternalType* allocDest(types::InternalType* _poSource, int _iRows, int _
     return poResult;
 }
 
-types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
+InternalType* AddElementToVariableFromCol(InternalType* _poDest, InternalType* _poSource, int _iRows, int _iCols, int *_piCols)
 {
-    types::InternalType *poResult               = NULL;
-    types::InternalType::ScilabType TypeSource  = _poSource->getType();
-    types::InternalType::ScilabType TypeDest    = types::InternalType::ScilabInternal;
+    InternalType *poResult = NULL;
+    InternalType::ScilabType TypeSource = _poSource->getType();
+    InternalType::ScilabType TypeDest = InternalType::ScilabInternal;
 
     if (_poDest == NULL)
     {
@@ -114,14 +114,14 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::GenericType::ScilabDouble :
-                if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
+            case GenericType::ScilabDouble :
+                if (poResult->getAs<Double>()->isComplex() == false && _poSource->getAs<Double>()->isComplex() == true)
                 {
-                    poResult->getAs<types::Double>()->setComplex(true);
+                    poResult->getAs<Double>()->setComplex(true);
                 }
 
-                poResult->getAs<types::Double>()->fillFromCol(*_piCols, _poSource->getAs<types::Double>());
-                *_piCols += _poSource->getAs<types::Double>()->getCols();
+                poResult->getAs<Double>()->fillFromCol(*_piCols, _poSource->getAs<Double>());
+                *_piCols += _poSource->getAs<Double>()->getCols();
 
                 break;
             default:
@@ -132,11 +132,11 @@ types::InternalType* AddElementToVariableFromCol(types::InternalType* _poDest, t
     return NULL;
 }
 
-types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
+InternalType* AddElementToVariableFromRow(InternalType* _poDest, InternalType* _poSource, int _iRows, int _iCols, int *_piRows)
 {
-    types::InternalType *poResult               = NULL;
-    types::InternalType::ScilabType TypeSource  = _poSource->getType();
-    types::InternalType::ScilabType TypeDest    = types::InternalType::ScilabInternal;
+    InternalType *poResult = NULL;
+    InternalType::ScilabType TypeSource = _poSource->getType();
+    InternalType::ScilabType TypeDest = InternalType::ScilabInternal;
 
     if (_poDest == NULL)
     {
@@ -159,14 +159,14 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
     {
         switch (TypeDest)
         {
-            case types::GenericType::ScilabDouble :
-                if (poResult->getAs<types::Double>()->isComplex() == false && _poSource->getAs<types::Double>()->isComplex() == true)
+            case GenericType::ScilabDouble :
+                if (poResult->getAs<Double>()->isComplex() == false && _poSource->getAs<Double>()->isComplex() == true)
                 {
-                    poResult->getAs<types::Double>()->setComplex(true);
+                    poResult->getAs<Double>()->setComplex(true);
                 }
 
-                poResult->getAs<types::Double>()->fillFromRow(*_piRows, _poSource->getAs<types::Double>());
-                *_piRows += _poSource->getAs<types::Double>()->getRows();
+                poResult->getAs<Double>()->fillFromRow(*_piRows, _poSource->getAs<Double>());
+                *_piRows += _poSource->getAs<Double>()->getRows();
 
                 break;
             default:
@@ -182,11 +182,12 @@ types::InternalType* AddElementToVariableFromRow(types::InternalType* _poDest, t
 _iRows : Position if _poDest allready initialized else size of the matrix
 _iCols : Position if _poDest allready initialized else size of the matrix
 */
-types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::InternalType* _poSource, int _iRows, int _iCols)
+InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSource, int _iRows, int _iCols)
 {
-    types::InternalType *poResult = NULL;
-    types::InternalType::ScilabType TypeSource = _poSource->getType();
-    types::InternalType::ScilabType TypeDest = types::InternalType::ScilabInternal;
+    InternalType *poResult = NULL;
+    bool isNew = true;
+    InternalType::ScilabType TypeSource = _poSource->getType();
+    InternalType::ScilabType TypeDest = InternalType::ScilabInternal;
     int iCurRow = _iRows;
     int iCurCol = _iCols;
 
@@ -194,64 +195,64 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
     {
         switch (TypeSource)
         {
-            case types::GenericType::ScilabDouble :
-                poResult = new types::Double(_iRows, _iCols, false);
+            case GenericType::ScilabDouble :
+                poResult = new Double(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabBool :
-                poResult = new types::Bool(_iRows, _iCols);
+            case GenericType::ScilabBool :
+                poResult = new Bool(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabInt8 :
-                poResult = new types::Int8(_iRows, _iCols);
+            case GenericType::ScilabInt8 :
+                poResult = new Int8(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabUInt8 :
-                poResult = new types::UInt8(_iRows, _iCols);
+            case GenericType::ScilabUInt8 :
+                poResult = new UInt8(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabInt16 :
-                poResult = new types::Int16(_iRows, _iCols);
+            case GenericType::ScilabInt16 :
+                poResult = new Int16(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabUInt16 :
-                poResult = new types::UInt16(_iRows, _iCols);
+            case GenericType::ScilabUInt16 :
+                poResult = new UInt16(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabInt32 :
-                poResult = new types::Int32(_iRows, _iCols);
+            case GenericType::ScilabInt32 :
+                poResult = new Int32(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabUInt32 :
-                poResult = new types::UInt32(_iRows, _iCols);
+            case GenericType::ScilabUInt32 :
+                poResult = new UInt32(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabInt64 :
-                poResult = new types::Int64(_iRows, _iCols);
+            case GenericType::ScilabInt64 :
+                poResult = new Int64(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabUInt64 :
-                poResult = new types::UInt64(_iRows, _iCols);
+            case GenericType::ScilabUInt64 :
+                poResult = new UInt64(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabString :
-                poResult = new types::String(_iRows, _iCols);
+            case GenericType::ScilabString :
+                poResult = new String(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabSparse :
-                poResult = new types::Sparse(_iRows, _iCols);
+            case GenericType::ScilabSparse :
+                poResult = new Sparse(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabSparseBool :
-                poResult = new types::SparseBool(_iRows, _iCols);
+            case GenericType::ScilabSparseBool :
+                poResult = new SparseBool(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabPolynom :
+            case GenericType::ScilabPolynom :
             {
                 int* piRank = new int[_iRows * _iCols];
                 memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
-                poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+                poResult = new Polynom(_poSource->getAs<Polynom>()->getVariableName(), _iRows, _iCols, piRank);
                 delete[] piRank;
                 break;
             }
-            case types::InternalType::ScilabImplicitList :
-                poResult = new types::ImplicitList();
+            case InternalType::ScilabImplicitList :
+                poResult = new ImplicitList();
                 break;
-            case types::GenericType::ScilabHandle :
-                poResult = new types::GraphicHandle(_iRows, _iCols);
+            case GenericType::ScilabHandle :
+                poResult = new GraphicHandle(_iRows, _iCols);
                 break;
-            case types::GenericType::ScilabDollar :
+            case GenericType::ScilabDollar :
             {
                 int* piRank = new int[_iRows * _iCols];
                 memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
-                poResult = new types::Polynom(_poSource->getAs<types::Polynom>()->getVariableName(), _iRows, _iCols, piRank);
+                poResult = new Polynom(_poSource->getAs<Polynom>()->getVariableName(), _iRows, _iCols, piRank);
                 delete[] piRank;
                 break;
             }
@@ -267,6 +268,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
     {
         TypeDest = _poDest->getType();
         poResult = _poDest;
+        isNew = false;
     }
 
 
@@ -275,20 +277,24 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //check if source type is compatible with dest type
         switch (TypeDest)
         {
-            case types::GenericType::ScilabDouble :
-                if (TypeSource == types::GenericType::ScilabPolynom)
+            case GenericType::ScilabDouble :
+                if (TypeSource == GenericType::ScilabPolynom)
                 {
-                    types::Double *poDest = _poDest->getAs<types::Double>();
-                    Polynom* pPSource = _poSource->getAs<types::Polynom>();
+                    Double *poDest = _poDest->getAs<Double>();
+                    Polynom* pPSource = _poSource->getAs<Polynom>();
 
                     //Convert Dest to ScilabPolynom
                     int iSize = poDest->getSize();
                     int *piRank = new int[iSize];
                     memset(piRank, 0x00, iSize * sizeof(int));
-                    poResult = new types::Polynom(pPSource->getVariableName(), poDest->getRows(), poDest->getCols(), piRank);
+                    if (isNew && poResult)
+                    {
+                        poResult->killMe();
+                    }
+                    poResult = new Polynom(pPSource->getVariableName(), poDest->getRows(), poDest->getCols(), piRank);
                     delete[] piRank;
 
-                    Polynom* pPResult = poResult->getAs<types::Polynom>();
+                    Polynom* pPResult = poResult->getAs<Polynom>();
                     pPResult->setComplex(poDest->isComplex());
 
                     double *pR = poDest->getReal();
@@ -322,12 +328,12 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     return poResult;
                 }
                 break;
-            case types::GenericType::ScilabPolynom :
-                if (TypeSource == types::GenericType::ScilabDouble)
+            case GenericType::ScilabPolynom :
+                if (TypeSource == GenericType::ScilabDouble)
                 {
                     //Add Source like coef of the new element
                     Double* pD = _poSource->getAs<Double>();
-                    types::Polynom* pPolyOut = poResult->getAs<types::Polynom>();
+                    Polynom* pPolyOut = poResult->getAs<Polynom>();
 
                     if (pD->isComplex())
                     {
@@ -336,7 +342,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         {
                             for (int j = 0 ; j < pD->getCols() ; j++)
                             {
-                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
+                                SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
                                 pSPOut->setRank(0);
                                 double pDblR = pD->get(i, j);
@@ -351,7 +357,7 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                         {
                             for (int j = 0 ; j < pD->getCols() ; j++)
                             {
-                                types::SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
+                                SinglePoly* pSPOut = pPolyOut->get(iCurRow + i, iCurCol + j);
 
                                 pSPOut->setRank(0);
                                 double pDbl = pD->get(i, j);
@@ -362,17 +368,17 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
 
                     return poResult;
                 }
-                else if (TypeSource == types::GenericType::ScilabDollar)
+                else if (TypeSource == GenericType::ScilabDollar)
                 {
-                    poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Dollar>());
+                    poResult->getAs<Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<Dollar>());
                     return poResult;
                 }
                 break;
-            case types::GenericType::ScilabSparse :
-                if (TypeSource == types::GenericType::ScilabDouble)
+            case GenericType::ScilabSparse :
+                if (TypeSource == GenericType::ScilabDouble)
                 {
-                    types::Double* poSource = _poSource->getAs<types::Double>();
-                    types::Sparse* spResult = poResult->getAs<types::Sparse>();
+                    Double* poSource = _poSource->getAs<Double>();
+                    Sparse* spResult = poResult->getAs<Sparse>();
 
                     // Set complex the result if one of inputs is complex
                     if (poSource->isComplex())
@@ -434,11 +440,11 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
                     return poResult;
                 }
                 break;
-            case types::GenericType::ScilabSparseBool :
-                if (TypeSource == types::GenericType::ScilabBool)
+            case GenericType::ScilabSparseBool :
+                if (TypeSource == GenericType::ScilabBool)
                 {
-                    types::Bool* poSource = _poSource->getAs<types::Bool>();
-                    types::SparseBool* spResult = poResult->getAs<types::SparseBool>();
+                    Bool* poSource = _poSource->getAs<Bool>();
+                    SparseBool* spResult = poResult->getAs<SparseBool>();
 
                     // Add poSource at the end of spResult
                     for (int i = 0; i < poSource->getRows(); i++)
@@ -467,87 +473,65 @@ types::InternalType* AddElementToVariable(types::InternalType* _poDest, types::I
         //Just add the new value in the current item
         switch (TypeDest)
         {
-            case types::GenericType::ScilabDouble :
-                ((Double*)poResult)->append(iCurRow, iCurCol, (Double*)_poSource);
+            case GenericType::ScilabDouble :
+                poResult->getAs<Double>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabPolynom :
-                poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Polynom>());
+            case GenericType::ScilabPolynom :
+                poResult->getAs<Polynom>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabBool:
-                poResult->getAs<types::Bool>()->append(iCurRow, iCurCol, _poSource->getAs<types::Bool>());
+            case GenericType::ScilabBool:
+                poResult->getAs<Bool>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabInt8 :
-                poResult->getAs<types::Int8>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int8>());
+            case GenericType::ScilabInt8 :
+                poResult->getAs<Int8>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabUInt8 :
-                poResult->getAs<types::UInt8>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt8>());
+            case GenericType::ScilabUInt8 :
+                poResult->getAs<UInt8>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabInt16 :
-                poResult->getAs<types::Int16>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int16>());
+            case GenericType::ScilabInt16 :
+                poResult->getAs<Int16>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabUInt16 :
-                poResult->getAs<types::UInt16>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt16>());
+            case GenericType::ScilabUInt16 :
+                poResult->getAs<UInt16>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabInt32 :
-                poResult->getAs<types::Int32>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int32>());
+            case GenericType::ScilabInt32 :
+                poResult->getAs<Int32>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabUInt32 :
-                poResult->getAs<types::UInt32>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt32>());
+            case GenericType::ScilabUInt32 :
+                poResult->getAs<UInt32>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabInt64 :
-                poResult->getAs<types::Int64>()->append(iCurRow, iCurCol, _poSource->getAs<types::Int64>());
+            case GenericType::ScilabInt64 :
+                poResult->getAs<Int64>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabUInt64 :
-                poResult->getAs<types::UInt64>()->append(iCurRow, iCurCol, _poSource->getAs<types::UInt64>());
+            case GenericType::ScilabUInt64 :
+                poResult->getAs<UInt64>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabSparse :
-                poResult->getAs<types::Sparse>()->append(iCurRow, iCurCol, _poSource->getAs<types::Sparse>());
+            case GenericType::ScilabSparse :
+                poResult->getAs<Sparse>()->append(iCurRow, iCurCol, _poSource->getAs<Sparse>());
                 break;
-            case types::GenericType::ScilabSparseBool :
-                poResult->getAs<types::SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<types::SparseBool>());
+            case GenericType::ScilabSparseBool :
+                poResult->getAs<SparseBool>()->append(iCurRow, iCurCol, _poSource->getAs<SparseBool>());
                 break;
-            case types::GenericType::ScilabString :
+            case GenericType::ScilabString :
             {
-                types::String* pSource = _poSource->getAs<types::String>();
-                poResult->getAs<types::String>()->append(iCurRow, iCurCol, pSource);
+                poResult->getAs<String>()->append(iCurRow, iCurCol, _poSource);
             }
             break;
-            case types::GenericType::ScilabImplicitList :
+            case GenericType::ScilabImplicitList :
             {
-                if (_poSource->getAs<ImplicitList>()->getStartType() == types::InternalType::ScilabPolynom)
-                {
-                    poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
-                }
-                else
-                {
-                    poResult->getAs<ImplicitList>()->setStart(_poSource->getAs<ImplicitList>()->getStart());
-                }
-
-                if (_poSource->getAs<ImplicitList>()->getStepType() == types::InternalType::ScilabPolynom)
-                {
-                    poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
-                }
-                else
-                {
-                    poResult->getAs<ImplicitList>()->setStep(_poSource->getAs<ImplicitList>()->getStep());
-                }
-
-                if (_poSource->getAs<ImplicitList>()->getEndType() == types::InternalType::ScilabPolynom)
-                {
-                    poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
-                }
-                else
-                {
-                    poResult->getAs<ImplicitList>()->setEnd(_poSource->getAs<ImplicitList>()->getEnd());
-                }
+                ImplicitList* pIL = _poSource->getAs<ImplicitList>();
+                ImplicitList* pOL = poResult->getAs<ImplicitList>();
+                pOL->setStart(pIL->getStart());
+                pOL->setStep(pIL->getStep());
+                pOL->setEnd(pIL->getEnd());
                 break;
             }
-            case types::GenericType::ScilabHandle :
-                poResult->getAs<types::GraphicHandle>()->append(iCurRow, iCurCol, _poSource->getAs<types::GraphicHandle>());
+            case GenericType::ScilabHandle :
+                poResult->getAs<GraphicHandle>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case types::GenericType::ScilabDollar:
+            case GenericType::ScilabDollar:
             {
-                poResult->getAs<types::Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<types::Dollar>());
+                poResult->getAs<Polynom>()->append(iCurRow, iCurCol, _poSource);
                 break;
             }
             default:
@@ -591,12 +575,12 @@ const std::wstring* getStructNameFromExp(const ast::Exp* _pExp)
 //i1, ..., in : indexes
 //dest : variable where insert data     || NULL
 //source : data to insert               || extract indexes from source
-types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, types::typed_list* _pArgs, types::InternalType* _source, types::InternalType* _dest)
+InternalType* callOverload(const ast::Exp& e, std::wstring _strType, typed_list* _pArgs, InternalType* _source, InternalType* _dest)
 {
-    types::Function::ReturnValue ret = types::Function::Error;
-    types::InternalType* pITOut = NULL;
-    types::typed_list in;
-    types::typed_list out;
+    Function::ReturnValue ret = Function::Error;
+    InternalType* pITOut = NULL;
+    typed_list in;
+    typed_list out;
 
     std::wstring function_name;
     function_name = L"%" + _source->getShortTypeStr() + L"_" + _strType;
@@ -642,22 +626,20 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
             se = error;
         }
 
-        if (ret == types::Function::Error)
+        // unprotect variables
+        for (int i = 0; i < (int)_pArgs->size(); i++)
         {
-            for (int i = 0; i < (int)_pArgs->size(); i++)
-            {
-                (*_pArgs)[i]->DecreaseRef();
-                (*_pArgs)[i]->killMe();
-            }
+            (*_pArgs)[i]->DecreaseRef();
+        }
 
-            _source->DecreaseRef();
-            _source->killMe();
-            if (_dest)
-            {
-                _dest->DecreaseRef();
-                _dest->killMe();
-            }
+        _source->DecreaseRef();
+        if (_dest)
+        {
+            _dest->DecreaseRef();
+        }
 
+        if (ret == Function::Error)
+        {
             if (bThrow)
             {
                 throw se;
@@ -668,17 +650,6 @@ types::InternalType* callOverload(const ast::Exp& e, std::wstring _strType, type
             os << _W("Error in overload function: ") << function_name << std::endl;
             throw ast::ScilabError(os.str(), 999, e.getLocation());
         }
-    }
-
-    for (int i = 0; i < (int)_pArgs->size(); i++)
-    {
-        (*_pArgs)[i]->DecreaseRef();
-    }
-
-    _source->DecreaseRef();
-    if (_dest)
-    {
-        _dest->DecreaseRef();
     }
 
     if (out.size() == 1)
@@ -735,12 +706,13 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
     else if (pCall)
     {
         bool bArgList = false;
-        types::List* pList = NULL;
+        List* pList = NULL;
         int iListIncr = 0;
         int iListSize = 0;
 
         ast::ExecVisitor execMe;
-        typed_list* pCurrentArgs = execMe.GetArgumentList(pCall->getArgs());
+        ast::exps_t args = pCall->getArgs();
+        typed_list* pCurrentArgs = execMe.GetArgumentList(args);
 
         if (getFieldsFromExp(&pCall->getName(), fields) == false)
         {
@@ -749,16 +721,18 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
 
         // used to manage insertion with list in argument
         // a(list("field", 2)) = 2 as a.field(2)
-        if ((*pCurrentArgs)[0]->isList() &&
+        if (pCurrentArgs &&  pCurrentArgs->size() > 0 &&
+                (*pCurrentArgs)[0]->isList() &&
                 (*pCurrentArgs)[0]->isTList() == false &&
                 (*pCurrentArgs)[0]->isMList() == false)
         {
             bArgList = true;
-            pList = (*pCurrentArgs)[0]->getAs<types::List>();
+            pList = (*pCurrentArgs)[0]->getAs<List>();
             //pList->IncreaseRef();
             pCurrentArgs->clear();
             pCurrentArgs->push_back(pList->get(iListIncr));
             iListSize = pList->getSize();
+
         }
 
         do
@@ -770,7 +744,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
             {
                 // a("b") => a.b or a(x)("b") => a(x).b
                 ExpHistory * pEHParent = fields.back();
-                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), *new symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
+                ast::SimpleVar* pFieldVar = new ast::SimpleVar(pCall->getLocation(), symbol::Symbol((*pCurrentArgs)[0]->getAs<String>()->get(0)));
                 ExpHistory * pEH = new ExpHistory(pEHParent, pFieldVar);
                 pEH->setLevel(pEHParent->getLevel() + 1);
                 pEH->setExpOwner(true);
@@ -803,12 +777,17 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
                 if (iListIncr < iListSize)
                 {
                     // create new args for next loop.
-                    pCurrentArgs = new types::typed_list();
-                    pCurrentArgs->push_back(pList->get(iListIncr));
+                    pCurrentArgs = new typed_list();
+                    pCurrentArgs->push_back(pList->get(iListIncr)->clone());
                 }
             }
         }
         while (iListIncr < iListSize);
+
+        if (bArgList)
+        {
+            pList->killMe();
+        }
 
         if (pCell)
         {
@@ -824,7 +803,7 @@ bool getFieldsFromExp(ast::Exp* _pExp, std::list<ExpHistory*>& fields)
     }
 }
 
-types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, InternalType* _pAssignValue)
+InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fields, InternalType* _pAssignValue)
 {
     std::list<ExpHistory*> evalFields;
     std::list<ExpHistory*> workFields;
@@ -834,12 +813,21 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         //*** get main variable ***//
         std::list<ExpHistory*>::iterator iterFields = fields.begin();
         ExpHistory* pFirstField = *iterFields;
-        InternalType* pIT = symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
+        symbol::Context* ctx = symbol::Context::getInstance();
+
+        if (ctx->isprotected(pFirstField->getExp()->getSymbol()))
+        {
+            std::wostringstream os;
+            os << _W("Redefining permanent variable.\n");
+            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+        }
+
+        InternalType* pIT = ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
 
         if (pIT == NULL)
         {
             // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
-            symbol::Variable* var = symbol::Context::getInstance()->getOrCreate(pFirstField->getExp()->getSymbol());
+            symbol::Variable* var = ctx->getOrCreate(pFirstField->getExp()->getSymbol());
             if (var->empty() == false && var->top()->m_iLevel == 0)
             {
                 std::wostringstream os;
@@ -851,7 +839,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             {
                 // a{x}, where "a" doesn't exists
                 pIT = new Cell(1, 1);
-                symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+                ctx->put(pFirstField->getExp()->getStack(), pIT);
             }
             else if (fields.size() > 1)
             {
@@ -859,7 +847,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 //"a" does not exist or it is another type, create it with size 1,1 and return it
                 //create new structure variable
                 pIT = new Struct(1, 1);
-                symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+                ctx->put(pFirstField->getExp()->getStack(), pIT);
             }
             // else
             // is a call exp
@@ -869,7 +857,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
         else if (pIT->getRef() > 1 && pIT->isHandle() == false)
         {
             pIT = pIT->clone();
-            symbol::Context::getInstance()->put(pFirstField->getExp()->getStack(), pIT);
+            ctx->put(pFirstField->getExp()->getStack(), pIT);
         }
         else if (pIT == _pAssignValue)
         {
@@ -894,7 +882,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             evalFields.push_back(pEH);
             workFields.pop_front();
 
-            types::InternalType* pITCurrent = pEH->getCurrent();
+            InternalType* pITCurrent = pEH->getCurrent();
 
             if (pEH->isCellExp() && pITCurrent->isCell() == false)
             {
@@ -934,17 +922,47 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 }
                 else
                 {
-                    // extract field x and append it to elements for next recursion.
-                    List* pLOut = pStruct->extractFieldWithoutClone(pwcsFieldname);
-                    for (int iList = 0; iList < pLOut->getSize(); iList++)
+                    // check if the field x is the last field
+                    std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                    ++iterFieldsNext;
+                    if (iterFieldsNext == fields.end() && (*iterFields)->getArgs() == NULL)
                     {
-                        InternalType* pIT = pLOut->get(iList);
+                        // create pArg with "x" and set it as argument of "a"
+                        typed_list* args = new typed_list();
+                        args->push_back(new String(pwcsFieldname.c_str()));
+                        pEH->setArgs(args);
+
+                        // a.x where x is the last field
+                        // insert directly in x instead of extract then insert
+                        ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
+                        pEHNext->setReinsertion();
+                        evalFields.push_back(pEHNext);
+                        if (workFields.empty())
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        // Avoid insertion in most of one element.
+                        if (pStruct->isScalar() == false)
+                        {
+                            std::wostringstream os;
+                            os << _W("Unable to insert multiple item in a Struct.");
+                            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+                        }
+
+                        // extract field x and append it to elements for next recursion.
+                        List* pLOut = pStruct->extractFieldWithoutClone(pwcsFieldname);
+
+                        // pStruct must be scalar because we cant insert most of one element in the same insertion
+                        InternalType* pIT = pLOut->get(0);
                         if (pIT->getRef() > 2) //One for my own ref + 1 for "extractFieldWithoutClone" artificial ref
                         {
                             // clone element before modify it.
                             //pIT->DecreaseRef();
                             pIT = pIT->clone();
-                            pStruct->get(iList)->set(pwcsFieldname, pIT);
+                            pStruct->get(0)->set(pwcsFieldname, pIT);
                         }
 
                         ExpHistory* pEHChield = new ExpHistory(pEH,
@@ -953,11 +971,12 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                                                                (*iterFields)->getLevel(),
                                                                (*iterFields)->isCellExp(),
                                                                pIT);
-                        pEHChield->setWhereReinsert(iList);
-                        workFields.push_back(pEHChield);
-                    }
 
-                    pLOut->killMe();
+                        pEHChield->setWhereReinsert(0);
+                        workFields.push_back(pEHChield);
+
+                        pLOut->killMe();
+                    }
                 }
             }
             else if (pITCurrent->isTList() || pITCurrent->isMList())
@@ -999,30 +1018,35 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                         InternalType* pIT = pTL->extract(pArgs);
                         List* pList = pIT->getAs<List>();
-                        double* pdblArgs = (*pArgs)[0]->getAs<Double>()->get();
 
+                        if (pList->getSize() > 1)
+                        {
+                            pList->killMe();
+                            std::wostringstream os;
+                            os << _W("Unable to insert multiple item in a List.");
+                            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+                        }
+
+                        double* pdblArgs = (*pArgs)[0]->getAs<Double>()->get();
                         if ((*iterFields)->getExp() == NULL)
                         {
                             // a(x)(y)
                             // extract a(x) and push_BACK to extract y
-                            for (int i = 0; i < pList->getSize(); i++)
-                            {
-                                ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(i));
-                                pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
-                                workFields.push_back(pEHExtract);
-                            }
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, NULL, (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pList->get(0));
+                            pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
+                            workFields.push_back(pEHExtract);
                         }
                         else
                         {
                             // a(x).b
                             // extract a(x) and push_FRONT to extract b
-                            for (int i = 0; i < pList->getSize(); i++)
-                            {
-                                ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(i));
-                                pEHExtract->setWhereReinsert((int)(pdblArgs[i] - 1));
-                                workFields.push_front(pEHExtract);
-                            }
+                            ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pList->get(0));
+                            pEHExtract->setWhereReinsert((int)(pdblArgs[0] - 1));
+                            workFields.push_front(pEHExtract);
                         }
+
+                        //extract create a list to store items
+                        pList->killMe();
                     }
                 }
                 else
@@ -1035,38 +1059,61 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                     pwcsFieldname = (*iterFields)->getExpAsString();
 
-                    // check if field exists
-                    if (pTL->exists(pwcsFieldname) == false)
+                    // check if the field x is the last field
+                    std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                    ++iterFieldsNext;
+                    if (iterFieldsNext == fields.end() && (*iterFields)->getArgs() == NULL)
                     {
-                        std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
-                        ++iterFieldsNext;
+                        // create pArg with "x" and set it as argument of "a"
+                        typed_list* args = new typed_list();
+                        args->push_back(new String(pwcsFieldname.c_str()));
+                        pEH->setArgs(args);
 
-                        if (iterFieldsNext != fields.end() || (*iterFields)->getArgs() != NULL)
+                        // a.x where x is the last field
+                        // insert directly in x instead of extract then insert
+                        ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
+                        pEHNext->setReinsertion();
+                        evalFields.push_back(pEHNext);
+                        if (workFields.empty())
                         {
-                            // M=mlist(['MType','x','y'], ...
-                            // M.rows1 = "somthing"
-                            pArgs = new typed_list();
-                            pArgs->push_back(new String(pwcsFieldname.c_str()));
-
-                            // call overload
-                            pExtract = callOverload(*pEH->getExp(), L"6", pArgs, pTL, NULL);
-                            bReinsert = true;
-
-                            delete pArgs;
+                            break;
                         }
                     }
                     else
                     {
-                        // extract field x and append it to elements for next recursion.
-                        pExtract = pTL->getField(pwcsFieldname);
-                    }
+                        // check if field exists
+                        if (pTL->exists(pwcsFieldname) == false)
+                        {
+                            std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                            ++iterFieldsNext;
 
-                    pEHChield = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract);
-                    workFields.push_back(pEHChield);
+                            if (iterFieldsNext != fields.end() || (*iterFields)->getArgs() != NULL)
+                            {
+                                // M=mlist(['MType','x','y'], ...
+                                // M.rows1 = "somthing"
+                                pArgs = new typed_list();
+                                pArgs->push_back(new String(pwcsFieldname.c_str()));
 
-                    if (bReinsert)
-                    {
-                        pEHChield->setReinsertion();
+                                // call overload
+                                pExtract = callOverload(*pEH->getExp(), L"6", pArgs, pTL, NULL);
+                                bReinsert = true;
+
+                                delete pArgs;
+                            }
+                        }
+                        else
+                        {
+                            // extract field x and append it to elements for next recursion.
+                            pExtract = pTL->getField(pwcsFieldname);
+                        }
+
+                        pEHChield = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract);
+                        workFields.push_back(pEHChield);
+
+                        if (bReinsert)
+                        {
+                            pEHChield->setReinsertion();
+                        }
                     }
                 }
             }
@@ -1075,13 +1122,17 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 List* pL = pITCurrent->getAs<List>();
                 if (pEH->getParent() && pEH->getParent()->getLevel() == pEH->getLevel())
                 {
-                    // pITCurrent is an extraction of other Type
-                    for (int iLoop = 0; iLoop < pL->getSize(); iLoop++)
-                    {
-                        ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pL->get(iLoop));
-                        pEHExtract->setWhereReinsert(iLoop);
-                        workFields.push_front(pEHExtract);
-                    }
+                    std::wostringstream os;
+                    os << _W("Wrong insertion.");
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+
+                    //                    // pITCurrent is an extraction of other Type
+                    //                    for (int iLoop = 0; iLoop < pL->getSize(); iLoop++)
+                    //                    {
+                    //                        ExpHistory* pEHExtract = new ExpHistory(pEH, pEH->getExp(), NULL, pEH->getLevel(), pEH->isCellExp(), pL->get(iLoop));
+                    //                        pEHExtract->setWhereReinsert(iLoop);
+                    //                        workFields.push_front(pEHExtract);
+                    //                    }
                 }
                 else
                 {
@@ -1149,26 +1200,60 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                         // a.x, get string "x"
                         std::wstring pwcsFieldname = (*iterFields)->getExpAsString();
 
-                        // call overload
+                        // create pArg with "x"
                         typed_list* args = new typed_list();
                         args->push_back(new String(pwcsFieldname.c_str()));
                         pEH->setArgs(args);
 
-                        InternalType* pExtract = callOverload(*pEH->getExp(), L"6", args, pL, NULL);
+                        // check if the field x is the last field
+                        std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                        ++iterFieldsNext;
+                        if (iterFieldsNext == fields.end() && (*iterFields)->getArgs() == NULL)
+                        {
+                            // a.x where x is the last field
+                            // insert directly in x instead of extract then insert
+                            ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
+                            pEHNext->setReinsertion();
+                            evalFields.push_back(pEHNext);
+                            if (workFields.empty())
+                            {
+                                break;
+                            }
+                        }
+                        else
+                        {
+                            // call overload
+                            InternalType* pExtract = callOverload(*pEH->getExp(), L"6", args, pL, NULL);
 
-                        // append extraction of a.x for next level.
-                        workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
-                        workFields.back()->setReinsertion();
+                            // append extraction of a.x for next level.
+                            workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
+                            workFields.back()->setReinsertion();
+                        }
                     }
                 }
             }
             else if (pITCurrent->isHandle())
             {
-                // call overload
-                if (pEH->getArgs())
+                typed_list* pArgs = pEH->getArgs();
+                GraphicHandle* pGH = pITCurrent->getAs<GraphicHandle>();
+                if (pArgs)
                 {
-                    // call overload
-                    InternalType* pExtract = callOverload(*pEH->getExp(), L"e", pEH->getArgs(), pITCurrent, NULL);
+                    InternalType* pExtract = NULL;
+
+                    for (int i = 0; i < pArgs->size(); i++)
+                    {
+                        if ((*pArgs)[i]->isImplicitList())
+                        {
+                            pExtract = pGH->extract(pArgs);
+                            break;
+                        }
+                    }
+
+                    if (pExtract == NULL)
+                    {
+                        // call overload
+                        pExtract = callOverload(*pEH->getExp(), L"e", pArgs, pITCurrent, NULL);
+                    }
 
                     if ((*iterFields)->getExp() == NULL)
                     {
@@ -1195,12 +1280,30 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     args->push_back(new String(pwcsFieldname.c_str()));
                     pEH->setArgs(args);
 
-                    // call overload
-                    InternalType* pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
+                    // check if the field x is the last field
+                    std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                    ++iterFieldsNext;
+                    if (iterFieldsNext == fields.end() && (*iterFields)->getArgs() == NULL)
+                    {
+                        // a.x where x is the last field
+                        // insert directly in x instead of extract then insert
+                        ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
+                        pEHNext->setReinsertion();
+                        evalFields.push_back(pEHNext);
+                        if (workFields.empty())
+                        {
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        // call overload
+                        InternalType* pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
 
-                    // append extraction of a.x for next level.
-                    workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
-                    workFields.front()->setReinsertion();
+                        // append extraction of a.x for next level.
+                        workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
+                        workFields.front()->setReinsertion();
+                    }
                 }
             }
             else if (pITCurrent->isCell())
@@ -1297,7 +1400,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 if (pEH->getArgs())
                 {
                     // a(x)
-                    InternalType* pExtract = pITCurrent->getAs<types::UserType>()->extract(pEH->getArgs());
+                    InternalType* pExtract = pITCurrent->getAs<UserType>()->extract(pEH->getArgs());
                     if (pExtract == NULL)
                     {
                         // call overload
@@ -1329,17 +1432,41 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                     args->push_back(new String(pwcsFieldname.c_str()));
                     pEH->setArgs(args);
 
-                    InternalType* pExtract = pITCurrent->getAs<types::UserType>()->extract(args);
-                    if (pExtract == NULL)
+                    // check if the field x is the last field
+                    std::list<ExpHistory*>::iterator iterFieldsNext(iterFields);
+                    ++iterFieldsNext;
+                    if (iterFieldsNext == fields.end() && (*iterFields)->getArgs() == NULL)
                     {
-                        // call overload
-                        pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
+                        // a.x where x is the last field
+                        // insert directly in x instead of extract then insert
+                        ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
+                        pEHNext->setReinsertion();
+                        evalFields.push_back(pEHNext);
+                        if (workFields.empty())
+                        {
+                            break;
+                        }
                     }
+                    else
+                    {
+                        InternalType* pExtract = pITCurrent->getAs<UserType>()->extract(args);
+                        if (pExtract == NULL)
+                        {
+                            // call overload
+                            pExtract = callOverload(*pEH->getExp(), L"e", args, pITCurrent, NULL);
+                        }
 
-                    // append extraction of a.x for next level.
-                    workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
-                    workFields.front()->setReinsertion();
+                        // append extraction of a.x for next level.
+                        workFields.push_back(new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), pExtract));
+                        workFields.back()->setReinsertion();
+                    }
                 }
+            }
+            else if (pITCurrent->isCallable())
+            {
+                std::wostringstream os;
+                os << _W("Wrong insertion : function or macro are not expected.");
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
             }
             else
             {
@@ -1358,108 +1485,50 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
         }
 
-        //*** insert what we have to assign ***//
+        //*** insert what we have to assign             ***//
+        //*** in case where the last field is a CallExp ***//
         while (workFields.empty() == false)
         {
             ExpHistory* pEH = workFields.front();
             evalFields.push_back(pEH);
             workFields.pop_front();
 
-            if (pEH->getArgs())
+            typed_list* pArgs = pEH->getArgs();
+
+            // should never occured
+            if (pArgs == NULL)
             {
-                typed_list* pArgs = pEH->getArgs();
-                if (pEH->isCellExp())
-                {
-                    Cell* pCell = pEH->getCurrent()->getAs<Cell>();
-                    // insert "something" in b{x}
-                    if ((*pArgs)[0]->isString())
-                    {
-                        std::wostringstream os;
-                        os << _W("Wrong insertion in a Cell.");
-                        throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
-                    }
+                std::wostringstream os;
+                os << _W("evaluateFields : Cannot insert without arguments.");
+                throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
+            }
 
-                    pCell->insertCell(pArgs, _pAssignValue);
-                }
-                else
+            if (pEH->isCellExp())
+            {
+                Cell* pCell = pEH->getCurrent()->getAs<Cell>();
+                // insert "something" in b{x}
+                if ((*pArgs)[0]->isString())
                 {
-                    // insert "something" in b(x,y)
-                    InternalType* pIT = insertionCall(*_pExp, pArgs, pEH->getCurrent(), _pAssignValue);
-                    if (pIT == NULL)
-                    {
-                        std::wostringstream os;
-                        os << _W("Submatrix incorrectly defined.");
-                        throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
-                    }
-
-                    if (pEH->setCurrent(pIT))
-                    {
-                        pEH->setReinsertion();
-                    }
+                    std::wostringstream os;
+                    os << _W("Wrong insertion in a Cell.");
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
+
+                pCell->insertCell(pArgs, _pAssignValue);
             }
             else
             {
-                InternalType* pParent = pEH->getParent()->getCurrent();
-                if (pParent->isStruct())
+                // insert "something" in b(x,y)
+                InternalType* pIT = insertionCall(*_pExp, pArgs, pEH->getCurrent(), _pAssignValue);
+                if (pIT == NULL)
                 {
-                    Struct* pStruct = pParent->getAs<Struct>();
-                    if (_pAssignValue->isListDelete())
-                    {
-                        pStruct->removeField(pEH->getExpAsString());
-                    }
-                    else
-                    {
-                        pStruct->get(pEH->getWhereReinsert())->set(pEH->getExpAsString(), _pAssignValue);
-                    }
-
-                    // insert _pAssignValue in parent, delete PEh and removes it from list<ExpHistory*>
-                    delete pEH;
-                    evalFields.pop_back();
+                    std::wostringstream os;
+                    os << _W("Submatrix incorrectly defined.\n");
+                    throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
-                else if (pParent->isTList() || pParent->isMList())
+
+                if (pEH->setCurrent(pIT))
                 {
-                    InternalType* pITResult = NULL;
-                    TList* pTL = pParent->getAs<TList>();
-                    if (_pAssignValue->isListDelete() || (pTL->exists(pEH->getExpAsString()) == false))
-                    {
-                        typed_list args;
-                        args.push_back(new String(pEH->getExpAsString().c_str()));
-                        pITResult = insertionCall(*_pExp, &args, pEH->getParent()->getCurrent(), _pAssignValue);
-                        if (pITResult == NULL)
-                        {
-                            std::wostringstream os;
-                            os << _W("Error in insertion of TList.");
-                            throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
-                        }
-                    }
-                    else
-                    {
-                        // In case where pTL is in several scilab variable,
-                        // we have to clone it for keep the other variables unchanged.
-                        if (pTL->getRef() > 1)
-                        {
-                            pTL = pTL->clone()->getAs<TList>();
-                        }
-
-                        pTL->set(pEH->getExpAsString(), _pAssignValue);
-                        pITResult = pTL;
-                    }
-
-                    if (pEH->getParent()->setCurrent(pITResult))
-                    {
-                        pEH->getParent()->setReinsertion();
-                        pEH->resetReinsertion();
-                    }
-
-                    // set _pAssignValue in parent, so kill the current if needed
-                    // insert _pAssignValue in parent, delete PEh and removes it from list<ExpHistory*>
-                    delete pEH;
-                    evalFields.pop_back();
-                }
-                else
-                {
-                    pEH->setCurrent(_pAssignValue);
                     pEH->setReinsertion();
                 }
             }
@@ -1475,7 +1544,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
 
                 if (pEHParent == NULL)
                 {
-                    symbol::Context::getInstance()->put(pEH->getExp()->getStack(), pEH->getCurrent());
+                    ctx->put(pEH->getExp()->getStack(), pEH->getCurrent());
                     break;
                 }
 
@@ -1562,7 +1631,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
                 if (pIT == NULL)
                 {
                     std::wostringstream os;
-                    os << _W("Submatrix incorrectly defined.");
+                    os << _W("Submatrix incorrectly defined.\n");
                     throw ast::ScilabError(os.str(), 999, _pExp->getLocation());
                 }
 
@@ -1594,7 +1663,7 @@ types::InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*
             }
         }
 
-        return symbol::Context::getInstance()->getCurrentLevel(pFirstField->getExp()->getSymbol());
+        return ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
     }
     catch (ast::ScilabError error)
     {
@@ -1737,24 +1806,32 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
             case InternalType::ScilabHandle :
             {
-                types::GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
-                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
-
-                typed_list in;
-                typed_list out;
-                optional_list opt;
-                ast::ExecVisitor exec;
-
-                in.push_back(pH);
-                in.push_back(pS);
-                in.push_back(_pInsert);
-
-                Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
-                Callable::ReturnValue ret =  pCall->call(in, opt, 1, out, &exec);
-                if (ret == Callable::OK)
+                GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
+                if ((*_pArgs)[0]->isString())
                 {
-                    pOut = _pVar;
+                    String *pS = (*_pArgs)[0]->getAs<String>();
+
+                    typed_list in;
+                    typed_list out;
+                    optional_list opt;
+                    ast::ExecVisitor exec;
+
+                    in.push_back(pH);
+                    in.push_back(pS);
+                    in.push_back(_pInsert);
+
+                    Function* pCall = (Function*)symbol::Context::getInstance()->get(symbol::Symbol(L"set"));
+                    Callable::ReturnValue ret = pCall->call(in, opt, 1, out, &exec);
+                    if (ret == Callable::OK)
+                    {
+                        pOut = _pVar;
+                    }
                 }
+                else
+                {
+                    pOut = pH->insert(_pArgs, _pInsert);
+                }
+
                 break;
             }
             default :
@@ -1772,7 +1849,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         //if _pVar == NULL and pArg is single string, it's a struct creation
         if ((*_pArgs)[0]->isString())
         {
-            String *pS = (*_pArgs)[0]->getAs<types::String>();
+            String *pS = (*_pArgs)[0]->getAs<String>();
             Struct* pStr = new Struct(1, 1);
 
             if (_pArgs->size() != 1 || pS->isScalar() == false)
@@ -1846,7 +1923,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 default :
                 {
                     // overload
-                    types::Double* pEmpty = types::Double::Empty();
+                    Double* pEmpty = Double::Empty();
                     pOut = callOverload(e, L"i", _pArgs, _pInsert, pEmpty);
                     pEmpty->killMe();
                     break;
@@ -1870,7 +1947,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             Double* pD = new Double(pSp->getRows(), pSp->getCols(), pSp->isComplex());
             pSp->fill(*pD);
             pRet = _pVar->getAs<Double>()->insert(_pArgs, pD);
-            free(pD);
+            delete pD;
         }
         else if (_pVar->isString() && _pInsert->isString())
         {
@@ -2014,7 +2091,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             if (_pArgs->size() == 1 && (*_pArgs)[0]->isString())
             {
                 //s("x") = y
-                String *pS = (*_pArgs)[0]->getAs<types::String>();
+                String *pS = (*_pArgs)[0]->getAs<String>();
                 if (pS->isScalar() == false)
                 {
                     if (pIL)
@@ -2027,12 +2104,20 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     throw ast::ScilabError(os.str(), 999, e.getLocation());
                 }
 
-                pStruct->addField(pS->get(0));
-                for (int i = 0; i < pStruct->getSize(); i++)
+                if (_pInsert->isListDelete())
                 {
-                    pStruct->get(i)->set(pS->get(0), _pInsert);
+                    /* Remove a field */
+                    pStruct->removeField(pS->get(0));
                 }
-
+                else
+                {
+                    /* Add a field */
+                    pStruct->addField(pS->get(0));
+                    for (int i = 0; i < pStruct->getSize(); i++)
+                    {
+                        pStruct->get(i)->set(pS->get(0), _pInsert);
+                    }
+                }
                 pRet = pStruct;
             }
             else // insert something in a struct
@@ -2072,6 +2157,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                                 {
                                     // set elements in the new position
                                     pStructInsert->get(i)->set(pwcsField, pLExtract->get(i));
+                                    pLExtract->get(i)->DecreaseRef();
                                 }
 
                                 pLExtract->killMe();
@@ -2112,7 +2198,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                 if ((*_pArgs)[0]->isString())
                 {
                     //s("x") = y
-                    String *pS = (*_pArgs)[0]->getAs<types::String>();
+                    String *pS = (*_pArgs)[0]->getAs<String>();
                     if (pS->isScalar() == false)
                     {
                         if (pIL)
@@ -2141,8 +2227,8 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                         return callOverload(e, L"i", _pArgs, _pInsert, _pVar);
 
                         //ExecVisitor exec;
-                        //types::typed_list in;
-                        //types::typed_list out;
+                        //typed_list in;
+                        //typed_list out;
                         //std::wstring function_name = L"%l_e";
 
                         //_pInsert->IncreaseRef();
@@ -2174,6 +2260,20 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                         }
 
                         pRet = pTL->insert(_pArgs, _pInsert);
+
+                        // If we have inserted something else than a String
+                        // in the first element, the TList have to be a List.
+                        if (pTL->get(0)->isString() == false)
+                        {
+                            List* pL = new List();
+                            for (int i = 0; i < pTL->getSize(); i++)
+                            {
+                                pL->append(pTL->get(i));
+                            }
+
+                            pTL->killMe();
+                            pRet = pL;
+                        }
                     }
                 }
             }
@@ -2197,11 +2297,29 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         }
         else if (_pVar->isList())
         {
-            pRet = _pVar->getAs<List>()->insert(_pArgs, _pInsert);
-            if (pRet == NULL)
+            List* pL = NULL;
+            // In case where pL is in several scilab variable,
+            // we have to clone it for keep the other variables unchanged.
+            if (_pVar->getRef() > 1)
             {
-                // call overload
-                pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                pL = _pVar->clone()->getAs<List>();
+                pRet = pL->insert(_pArgs, _pInsert);
+                if (pRet == NULL)
+                {
+                    pL->killMe();
+                    // call overload
+                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                }
+            }
+            else
+            {
+                pL = _pVar->getAs<List>();
+                pRet = pL->insert(_pArgs, _pInsert);
+                if (pRet == NULL)
+                {
+                    // call overload
+                    pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+                }
             }
         }
         else if (_pVar->isHandle())
@@ -2209,8 +2327,8 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             if (_pArgs->size() == 1 && (*_pArgs)[0]->isString())
             {
                 //s(["x"])
-                types::GraphicHandle* pH = _pVar->getAs<types::GraphicHandle>();
-                types::String *pS = (*_pArgs)[0]->getAs<types::String>();
+                GraphicHandle* pH = _pVar->getAs<GraphicHandle>();
+                String *pS = (*_pArgs)[0]->getAs<String>();
                 typed_list in;
                 typed_list out;
                 optional_list opt;
@@ -2228,19 +2346,47 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
                     {
                         pRet = _pVar;
                     }
+                    else
+                    {
+                        throw ast::ScilabMessage();
+                    }
                 }
             }
             else
             {
-                pRet = _pVar->getAs<types::GraphicHandle>()->insert(_pArgs, _pInsert);
+                pRet = _pVar->getAs<GraphicHandle>()->insert(_pArgs, _pInsert);
             }
         }
         else if (_pVar->isUserType())
         {
-            pRet = _pVar->getAs<types::UserType>()->insert(_pArgs, _pInsert);
+            for (int i = 0; i < _pArgs->size(); i++)
+            {
+                if ((*_pArgs)[i]->isImplicitList())
+                {
+                    types::ImplicitList* pIL = (*_pArgs)[i]->getAs<types::ImplicitList>();
+                    if (pIL->isComputable())
+                    {
+                        InternalType* pIT = pIL->extractFullMatrix();
+                        (*_pArgs)[i]->killMe();
+                        (*_pArgs)[i] = pIT;
+                    }
+                }
+            }
+
+            pRet = _pVar->getAs<UserType>()->insert(_pArgs, _pInsert);
             if (pRet == NULL)
             {
                 pRet = callOverload(e, L"i", _pArgs, _pInsert, _pVar);
+            }
+        }
+        else if (_pVar->isCell())
+        {
+            if (_pInsert->isCell() == false)
+            {
+                //manage error
+                std::wostringstream os;
+                os << _W("Wrong insertion: A Cell expected: use {...} instead of (...).\n");
+                throw ast::ScilabError(os.str(), 999, e.getLocation());
             }
         }
         else
@@ -2269,15 +2415,15 @@ void callOnPrompt(void)
         onPrompt = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"%onprompt"));
     }
 
-    types::InternalType* pOnPrompt = NULL;
+    InternalType* pOnPrompt = NULL;
     pOnPrompt = onPrompt->get();
     if (pOnPrompt != NULL && pOnPrompt->isCallable())
     {
-        types::typed_list in;
-        types::typed_list out;
-        types::optional_list opt;
+        typed_list in;
+        typed_list out;
+        optional_list opt;
         ast::ExecVisitor execCall;
-        pOnPrompt->getAs<types::Callable>()->call(in, opt, 1, out, &execCall);
+        pOnPrompt->getAs<Callable>()->call(in, opt, 1, out, &execCall);
     }
 }
 
@@ -2298,13 +2444,12 @@ List* getPropertyTree(ast::Exp* e, List* pList)
     {
         pList = getPropertyTree(&pCall->getName(), pList);
         ast::ExecVisitor exec;
-        ast::exps_t l = pCall->getArgs();
-        ast::exps_t::const_iterator it;
-        for (ast::exps_t::const_iterator it = l.begin(), itEnd = l.end() ; it != itEnd ; ++it)
+        ast::exps_t exps = pCall->getArgs();
+        for (auto exp : exps)
         {
             try
             {
-                (*it)->accept(exec);
+                exp->accept(exec);
                 pList->append(exec.getResult());
                 exec.clearResult();
             }
@@ -2313,7 +2458,6 @@ List* getPropertyTree(ast::Exp* e, List* pList)
                 throw e;
             }
         }
-
         return pList;
     }
 

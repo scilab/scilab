@@ -217,6 +217,9 @@ xtitle("Some level curves of the function cos(x)cos(y)")
                 <link linkend="contour2di">contour2di</link>
             </member>
             <member>
+                <link linkend="contour2dm">contour2dm</link>
+            </member>
+            <member>
                 <link linkend="plot2d">plot2d</link>
             </member>
         </simplelist>

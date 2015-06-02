@@ -20,22 +20,21 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getFunctionsName(int *sizearray)
 {
-    std::list<std::wstring>* plMacrosList = symbol::Context::getInstance()->getFunctionsName();
-    *sizearray = (int)plMacrosList->size();
+    std::list<std::wstring> macrosList;
+    *sizearray = symbol::Context::getInstance()->getFunctionsName(macrosList);
+
     char** functions = NULL;
     if (*sizearray != 0)
     {
         functions = (char**)MALLOC(*sizearray * sizeof(char*));
 
-        plMacrosList->sort();
+        macrosList.sort();
 
-        std::list<std::wstring>::iterator it = plMacrosList->begin();
-        for (int i = 0; it != plMacrosList->end(); ++it, i++)
+        int i = 0;
+        for (auto it : macrosList)
         {
-            functions[i] = wide_string_to_UTF8((*it).c_str());
+            functions[i++] = wide_string_to_UTF8(it.c_str());
         }
-
-        delete plMacrosList;
     }
 
     return functions;

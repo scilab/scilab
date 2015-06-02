@@ -17,7 +17,7 @@ function checkValue(value)
     assert_checkequal(export_to_hdf5(fileName, "varName"), %t);
     // check that the "varName" has not been modified by export
     assert_checkequal(oldVarName, varName);
-     // reset ref value
+    // reset ref value
     clear "varName" "oldVarName";
     assert_checkequal(exists("varName"), 0);
     // import from hdf5
@@ -34,7 +34,7 @@ checkValue(77);
 // vector
 checkValue([1, 2, 3, 4, 5]);
 checkValue([1; 2; 3; 4; 5]);
-// matrix 
+// matrix
 checkValue([1, 2, 3; 4, 5, 6]);
 
 //// Double complex
@@ -78,24 +78,24 @@ checkValue([%t, %t; %f, %f]);
 clear "createIntValues";
 function intValues = createIntValues(value, flag)
     select flag
-        case 8 // int8
-            intValues = int8(value);
-            break;
-        case -8 // uint8
-            intValues = uint8(value);
-            break;
-        case 16
-            intValues = int16(value);
-            break;
-        case -16
-            intValues = uint16(value);
-            break;
-        case 32
-            intValues = int32(value);
-            break;
-        case -32
-            intValues = uint32(value);
-            break;
+    case 8 // int8
+        intValues = int8(value);
+        break;
+    case -8 // uint8
+        intValues = uint8(value);
+        break;
+    case 16
+        intValues = int16(value);
+        break;
+    case -16
+        intValues = uint16(value);
+        break;
+    case 32
+        intValues = int32(value);
+        break;
+    case -32
+        intValues = uint32(value);
+        break;
     end
 endfunction
 
@@ -122,9 +122,9 @@ checkValue(sparse([1, 2; 4, 5; 3, 10], [1 + %i, 2 + 2*%i, 3 + 3*%i]));
 
 //// Boolean sparse
 valueRef = [%F, %F, %T, %F, %F
-       %T, %F, %F, %F, %F
-       %F, %F, %F, %F, %F
-       %F, %F, %F, %F, %T];
+%T, %F, %F, %F, %F
+%F, %F, %F, %F, %F
+%F, %F, %F, %F, %T];
 checkValue(sparse(valueRef));
 checkValue(sparse([1, 1; 2, 2; 3, 3; 4, 4], [%t, %t, %t, %t]));
 
@@ -142,7 +142,7 @@ listNew(4) = ["a", "b"; "c", "d"];
 listNew(5) = [complex(1, 2), complex(1, 3); complex(1, 4), complex(1, 5)];
 // boolean in list
 listNew(6) = [%t, %t, %t; %f, %f, %f];
-// integer in list 
+// integer in list
 valueRef = ones(4, 3);
 for i = 7:12
     listNew(i) = createIntValues(valueRef, flag(i - 6));
@@ -177,50 +177,50 @@ listNew = list(["mlist", "and", "tlist"], mlstRef, tlstRef);
 checkValue(listNew);
 // sparse in the list
 listNew = list(sparse([1, 2; 4, 5; 3, 10], [1, 2, 3]), ...
-               sparse([1, 1; 2, 2; 3, 3; 4, 4], [%t, %t, %t, %t]), ...
-               sparse([1, 2; 4, 5; 3, 10], [1 + %i, 2 + 2*%i, 3 + 3*%i]));
+sparse([1, 1; 2, 2; 3, 3; 4, 4], [%t, %t, %t, %t]), ...
+sparse([1, 2; 4, 5; 3, 10], [1 + %i, 2 + 2*%i, 3 + 3*%i]));
 //// Tlist
 valueRef = ones(2, 2);
 lstRef = tlist(["TLIST";
-                "String";
-                "Double";
-                "DoubleCplx";
-                "Int";
-                "Bool"], ["A", "B"; "C", "D"], valueRef, ...
-                          complex(valueRef, 2), createIntValues(valueRef, 16), ...
-                          [%f, %t; %f, %t]);
+"String";
+"Double";
+"DoubleCplx";
+"Int";
+"Bool"], ["A", "B"; "C", "D"], valueRef, ...
+complex(valueRef, 2), createIntValues(valueRef, 16), ...
+[%f, %t; %f, %t]);
 checkValue(lstRef);
 // hypermatrix in tlist
 lstRef = tlist(["hmInTlist";
-                "Name";
-                "Example_1"
-                "Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Name";
+"Example_1"
+"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
 checkValue(lstRef);
 // tlist in tlist
 lstRef = tlist(["tlistInTlist";
-                "Name";
-                "Tlist";
-                "Poly";
-                "List"], "List", lstRef, poly([1, 2], "s", "c"), list(1, %t));
+"Name";
+"Tlist";
+"Poly";
+"List"], "List", lstRef, poly([1, 2], "s", "c"), list(1, %t));
 checkValue(lstRef);
 
 //// Mlist
 lstRef = mlist(["MLIST", "Name", "Value"], ["a", "b"; "c", "d"], [1, 2; 3, 4]);
 checkValue(lstRef);
 lstRef = mlist(["MLIST";
-                "String";
-                "Double";
-                "DoubleCplx";
-                "Int";
-                "Bool"], ["A", "B"; "C", "D"], valueRef, ...
-                          complex(valueRef, 2), createIntValues(valueRef, 8), ...
-                          [%f, %t; %f, %t]);
+"String";
+"Double";
+"DoubleCplx";
+"Int";
+"Bool"], ["A", "B"; "C", "D"], valueRef, ...
+complex(valueRef, 2), createIntValues(valueRef, 8), ...
+[%f, %t; %f, %t]);
 checkValue(lstRef);
 // hypermatrix in mlist
 lstRef = mlist(["hmInMlist";
-                "Name";
-                "Example_1"
-                "Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
+"Name";
+"Example_1"
+"Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
 checkValue(lstRef);
 
 //// Hypermatrix
@@ -242,4 +242,51 @@ valueRef(7) = 7;
 checkValue(valueRef);
 
 //// Void
-checkValue(list(1, , 3));
+l = list(1, , 3);
+
+// l == l return [%t %f %t],
+// we can't use assertcheck_equal(computed, expected)
+fileName = TMPDIR + "/exportImportHdf5.sod";
+// export to hdf5
+old_l = l;
+assert_checktrue(export_to_hdf5(fileName, "l"));
+// check that the "l" has not been modified by export
+assert_checkequal(old_l == l, [%t %f %t]);
+// reset ref value
+clear l old_l
+assert_checktrue(exists("l")==0);
+// import from hdf5
+assert_checktrue(import_from_hdf5(fileName));
+assert_checkequal(l == list(1, , 3), [%t %f %t]);
+
+// Struct
+data.data.data = 0;
+data.data.string = "Scilab";
+data.list = list(1,["S" "E"]);
+checkValue(data);
+
+data2.data.data = 42;
+data2.data.string = "Test";
+data2.list = list(1,["a" "b"]);
+checkValue(data2);
+
+struct_ = [data, data, data2; data2, data2, data];
+checkValue(struct_);
+
+emptyStruct = struct();
+checkValue(emptyStruct);
+
+// Cell
+Cell_ = cell(2,2,2);
+Cell_{1} = "scilab";
+Cell_{2} = 42;
+Cell_{3} = list(1,["a" "b"]);
+Cell_{4} = int8(2);
+Cell_{5} = 5;
+Cell_{6} = 6;
+Cell_{7} = poly(1:3,"s");
+Cell_{8} = "Yasp";
+checkValue(Cell_);
+
+emptyCell = cell();
+checkValue(emptyCell);

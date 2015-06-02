@@ -14,6 +14,8 @@
 #define __LIBRARY_HXX__
 
 #include <list>
+#include <unordered_map>
+
 #include "typesdecl.hxx"
 
 namespace types
@@ -60,11 +62,11 @@ public :
 
     void add(const std::wstring& _wstName, MacroFile* _macro);
     MacroFile* get(const std::wstring& _wstName);
-    std::list<std::wstring>* getMacrosName();
+    int getMacrosName(std::list<std::wstring>& lst);
     std::wstring getPath();
 private:
     std::wstring m_wstPath;
-    typedef std::map<std::wstring, MacroFile*> MacroMap;
+    typedef std::unordered_map<std::wstring, MacroFile*> MacroMap;
     MacroMap m_macros;
 };
 }

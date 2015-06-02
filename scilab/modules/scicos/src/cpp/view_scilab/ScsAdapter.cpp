@@ -11,7 +11,6 @@
  */
 
 #include <string>
-#include <memory>
 
 #include "internal.hxx"
 #include "list.hxx"
@@ -32,8 +31,8 @@ namespace
 
 template<> property<ScsAdapter>::props_t property<ScsAdapter>::fields = property<ScsAdapter>::props_t();
 
-ScsAdapter::ScsAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee) :
-    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(adaptee)
+ScsAdapter::ScsAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee) :
+    BaseAdapter<ScsAdapter, org_scilab_modules_scicos::model::Diagram>(c, adaptee)
 {
     if (property<ScsAdapter>::properties_have_not_been_set())
     {

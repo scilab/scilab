@@ -81,7 +81,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -120,7 +120,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -157,7 +157,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -201,7 +201,7 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -237,6 +237,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp" />
+    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp" />
     <ClCompile Include="buildMainWindowTitle_Windows.c" />
     <ClCompile Include="console.c" />
     <ClCompile Include="ConvertSlash.c" />
@@ -246,14 +248,12 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="FocusOnConsole.c" />
     <ClCompile Include="forbiddenToUseScilab.c" />
     <ClCompile Include="getBlasType.c" />
-    <ClCompile Include="getScilabDirectory.c" />
     <ClCompile Include="getVideoAdapters.c" />
     <ClCompile Include="InnosetupMutex.c" />
     <ClCompile Include="killScilabProcess.c" />
     <ClCompile Include="mmapWindows.c" />
     <ClCompile Include="MutexClosingScilab.c" />
     <ClCompile Include="scilab_main.c" />
-    <ClCompile Include="SetScilabEnvironmentVariables.c" />
     <ClCompile Include="spawncommand.c" />
     <ClCompile Include="splashScreen.cpp" />
     <ClCompile Include="TextToPrint.c" />
@@ -262,6 +262,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="WndThread.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h" />
+    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h" />
     <ClInclude Include="buildMainWindowTitle_Windows.h" />
     <ClInclude Include="console.h" />
     <ClInclude Include="..\..\..\includes\ConvertSlash.h" />
@@ -271,7 +273,6 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="..\..\..\includes\FocusOnConsole.h" />
     <ClInclude Include="forbiddenToUseScilab.h" />
     <ClInclude Include="getBlasType.h" />
-    <ClInclude Include="getScilabDirectory.h" />
     <ClInclude Include="getVideoAdapters.h" />
     <ClInclude Include="InnosetupMutex.h" />
     <ClInclude Include="killScilabProcess.h" />
@@ -280,7 +281,6 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="resource.h" />
     <ClInclude Include="scilab_main.h" />
     <ClInclude Include="SetHeapOptions.h" />
-    <ClInclude Include="SetScilabEnvironmentVariables.h" />
     <ClInclude Include="spawncommand.h" />
     <ClInclude Include="splashScreen.h" />
     <ClInclude Include="TextToPrint.h" />

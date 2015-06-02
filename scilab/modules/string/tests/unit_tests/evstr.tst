@@ -12,35 +12,40 @@
 // =============================================================================
 a = 1;
 b = 2;
-Z = ['a','b'];
+Z = ["a","b"];
 res = evstr(Z);
-if res(1) <> a then pause, end
-if res(2) <> b then pause, end
+assert_checkequal(res(1), a);
+assert_checkequal(res(2), b);
 // =============================================================================
 a = 1;
 b = 2;
-Z = list(['%(1)','%(1)-%(2)'], ['a+1','b+1']);
+Z = list(["%(1)","%(1)-%(2)"], ["a+1","b+1"]);
 res = evstr(Z);
-if or(res <> [2 -1]) then pause, end
+assert_checkequal(res, [2 -1]);
 // =============================================================================
-if isnan(evstr(%nan)) <> %t then pause, end
-if isinf(evstr(%inf)) <> %t then pause, end
-if isnan(evstr('%nan')) <> %t then pause, end
-if isinf(evstr('%inf')) <> %t then pause, end
-if isnan(evstr('Nan')) <> %t then pause, end
-if isinf(evstr('Inf')) <> %t then pause, end
-if isnan(evstr('NaN')) <> %t then pause, end
-if isinf(evstr(-%inf)) <> %t then pause, end
-if isinf(evstr('-%inf')) <> %t then pause, end
-if isinf(evstr('-Inf')) <> %t then pause, end
+assert_checktrue(isnan(evstr(%nan)));
+assert_checktrue(isinf(evstr(%inf)));
+assert_checktrue(isnan(evstr("%nan")));
+assert_checktrue(isinf(evstr("%inf")));
+assert_checktrue(isnan(evstr("Nan")));
+assert_checktrue(isinf(evstr("Inf")));
+assert_checktrue(isnan(evstr("NaN")));
+assert_checktrue(isinf(evstr(-%inf)));
+assert_checktrue(isinf(evstr("-%inf")));
+assert_checktrue(isinf(evstr("-Inf")));
 // =============================================================================
 Scilab_value = 3;
-if Scilab_value <> evstr('Scilab_value') then pause, end
+assert_checkequal(Scilab_value, evstr("Scilab_value"));
 // =============================================================================
 clear toto;
-if execstr("evstr(''toto'')", "errcatch") == 0 then pause, end
-if execstr("evstr(toto)", "errcatch") == 0 then pause, end
+assert_checkfalse(execstr("evstr(''toto'')", "errcatch") == 0);
+assert_checkfalse(execstr("evstr(toto)", "errcatch") == 0);
 // =============================================================================
 s = rand(3,3,3);
-if execstr("evstr(s)", "errcatch") <> 0 then pause, end
+assert_checkequal(execstr("evstr(s)", "errcatch"), 0);
+// =============================================================================
+function foo(), endfunction
+assert_checkequal(execstr("evstr(''foo'')", "errcatch"), 0);
+// =============================================================================
+assert_checkequal(evstr(""), []);
 // =============================================================================

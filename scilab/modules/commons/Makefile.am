@@ -36,8 +36,6 @@ if NEED_JAVA
 COMMONS_CPP_SOURCES +=  src/jni/GiwsException.cpp
 endif
 
-COMMONS_FORTRAN_SOURCES = src/fortran/empty.f
-
 libscicommons_la_CPPFLAGS= \
     $(JAVA_JNI_INCLUDE) \
     -I$(srcdir)/includes/ \
@@ -52,6 +50,7 @@ libscicommons_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
     $(AM_CPPFLAGS)
 
 
@@ -64,7 +63,7 @@ pkglib_LTLIBRARIES += libscicommons.la
 endif
 
 
-libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_FORTRAN_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
+libscicommons_la_SOURCES = $(COMMONS_C_SOURCES) $(COMMONS_JNI_SOURCES) $(COMMONS_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(COMMONS_C_SOURCES)

@@ -25,17 +25,25 @@ scs_m.objs(4) = lnk2;
 
 // Consecutively delete the diagram objects,
 // check that they were replaced with "Deleted" mlists.
-scs_m.objs(1)=scicos_new("Deleted");
-assert_checkequal(scs_m.objs(1), mlist("Deleted"));
+DeletedBlock = mlist("Deleted");
 
-scs_m.objs(2)=scicos_new("Deleted");
-assert_checkequal(scs_m.objs(2), mlist("Deleted"));
+scs_m.objs(1) = DeletedBlock;
+assert_checkequal(scs_m.objs(1), DeletedBlock);
 
-scs_m.objs(3)=scicos_new("Deleted");
-assert_checkequal(scs_m.objs(3), mlist("Deleted"));
+scs_m.objs(2) = DeletedBlock;
+assert_checkequal(scs_m.objs(2), DeletedBlock);
 
-scs_m.objs(4)=scicos_new("Deleted");
-assert_checkequal(scs_m.objs(4), mlist("Deleted"));
+scs_m.objs(3) = DeletedBlock;
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+
+scs_m.objs(4) = DeletedBlock;
+assert_checkequal(scs_m.objs(4), DeletedBlock);
+
+// Test that all objects are simultaneously "deleted"
+assert_checkequal(scs_m.objs(1), DeletedBlock);
+assert_checkequal(scs_m.objs(2), DeletedBlock);
+assert_checkequal(scs_m.objs(3), DeletedBlock);
+assert_checkequal(scs_m.objs(4), DeletedBlock);
 
 
 // Check that all the model items are freed

@@ -92,7 +92,7 @@ int ScilabGateway::evalString(char * fname, const int envId, void * pvApiCtx)
     {
         env.evalString(const_cast<const char **>(code), row * col, allocator);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         freeAllocatedMatrixOfString(row, col, code);
         throw;

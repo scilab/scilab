@@ -15,7 +15,6 @@
 #include "sci_malloc.h"
 #include "api_scilab.h"
 #include "callFunctionFromGateway.h"
-#include "recursionFunction.h"
 /*--------------------------------------------------------------------------*/
 int gw_output_stream(void)
 {

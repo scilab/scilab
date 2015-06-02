@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -29,23 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -86,9 +86,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -127,7 +125,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -142,9 +140,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -186,7 +182,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -201,9 +197,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -243,7 +237,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -260,9 +254,7 @@ cd ..
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <PreBuildEvent>
       <Message>Build Dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)data_structures_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures_f.lib" 1&gt;NUL 2&gt;NUL
+      <Command>lib /DEF:"$(ProjectDir)console_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)data_structures_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)data_structures.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)double_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)double.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)elementary_functions_f.lib" 1&gt;NUL 2&gt;NUL
@@ -305,7 +297,7 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;boolean_f.lib;sciconsole.lib;data_structures_f.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>../../../../bin/libf2c.lib;../../../../bin/blasplus.lib;../../../../bin/lapack.lib;sciconsole.lib;data_structures.lib;double.lib;elementary_functions_f.lib;elementary_functions.lib;fftw.lib;fileio.lib;integer.lib;io_f.lib;core.lib;linpack_f.lib;output_stream_f.lib;output_stream.lib;polynomials_f.lib;sparse_f.lib;string.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ModuleDefinitionFile>core_f.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -321,71 +313,40 @@ cd ..
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\c\withf2c.c" />
-    <ClCompile Include="allowptr.c" />
     <ClCompile Include="backspaceinter.c" />
-    <ClCompile Include="basnms.c" />
     <ClCompile Include="clunit.c" />
-    <ClCompile Include="cmplxt.c" />
-    <ClCompile Include="cvdm.c" />
-    <ClCompile Include="cvname.c" />
     <ClCompile Include="expsum.c" />
-    <ClCompile Include="find.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="getch.c" />
-    <ClCompile Include="indxg.c" />
     <ClCompile Include="intstr.c" />
-    <ClCompile Include="isbrk.c" />
-    <ClCompile Include="isinstring.c" />
-    <ClCompile Include="mkindx.c" />
-    <ClCompile Include="prompt.c" />
-    <ClCompile Include="ptrback.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
+    <ClCompile Include="read_inter.c" />
     <ClCompile Include="rewindinter.c" />
-    <ClCompile Include="setgetmode.c" />
-    <ClCompile Include="setippty.c" />
-    <ClCompile Include="showstack.c" />
     <ClCompile Include="whatln.c" />
+    <ClCompile Include="write_inter.c" />
     <ClCompile Include="xerbla.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h.f" />
     <ClInclude Include="..\..\includes\stack.h" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="allowptr.f" />
     <f2c_rule Include="backspaceinter.f" />
-    <f2c_rule Include="basnms.f" />
     <f2c_rule Include="clunit.f" />
-    <f2c_rule Include="cmplxt.f" />
-    <f2c_rule Include="cvdm.f" />
-    <f2c_rule Include="cvname.f" />
     <f2c_rule Include="expsum.f" />
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="getch.f" />
-    <f2c_rule Include="indxg.f" />
     <f2c_rule Include="intstr.f" />
-    <f2c_rule Include="isbrk.f" />
-    <f2c_rule Include="isinstring.f" />
-    <f2c_rule Include="mkindx.f" />
-    <f2c_rule Include="prompt.f" />
-    <f2c_rule Include="ptrback.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />
+    <f2c_rule Include="read_inter.f" />
     <f2c_rule Include="rewindinter.f" />
-    <f2c_rule Include="setgetmode.f" />
-    <f2c_rule Include="setippty.f" />
-    <f2c_rule Include="showstack.f" />
     <f2c_rule Include="whatln.f" />
+    <f2c_rule Include="write_inter.f" />
     <f2c_rule Include="xerbla.f" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="boolean_f_Import.def" />
     <None Include="console_Import.def" />
-    <None Include="data_structures_f_Import.def" />
     <None Include="data_structures_Import.def" />
     <None Include="double_Import.def" />
     <None Include="elementary_functions_f_Import.def" />

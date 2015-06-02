@@ -22,7 +22,6 @@ function eq=Equal(lhslist,expression,endsymbol)
         error(msprintf(gettext("lhslist should be a list and not a: %s."),typeof(lhslist)));
     end
     if and(typeof(expression)<>["funcall","cste","operation","variable"]) then
-        disp(expression)
         error(msprintf(gettext("expression can not be a: %s."),typeof(expression)))
     end
     if type(endsymbol)<>10 then

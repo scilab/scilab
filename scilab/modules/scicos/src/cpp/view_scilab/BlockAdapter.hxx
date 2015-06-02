@@ -14,9 +14,9 @@
 #define BLOCKADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
-#include "utilities.hxx"
+#include "internal.hxx"
+
 #include "BaseAdapter.hxx"
 #include "DiagramAdapter.hxx"
 #include "model/Block.hxx"
@@ -29,7 +29,7 @@ namespace view_scilab
 class BlockAdapter : public BaseAdapter<BlockAdapter, org_scilab_modules_scicos::model::Block>
 {
 public:
-    BlockAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Block> adaptee);
+    BlockAdapter(const Controller& c, org_scilab_modules_scicos::model::Block* adaptee);
     BlockAdapter(const BlockAdapter& adapter);
     ~BlockAdapter();
 

@@ -48,20 +48,6 @@ extern "C"
 
 using namespace types;
 /*--------------------------------------------------------------------------*/
-/* Defined in SCI/modules/core/src/fortran/cvname.f */
-extern "C"
-{
-    extern int C2F(cvnamel) (int *id, char *str, int *jobptr, int *str_len);
-    extern  int C2F(cvname)(int *, char *, int *, unsigned long int);
-    /* *jobptr==0: Get Scilab codes from C-string */
-    /* *jobptr==1: Get C-string from Scilab codes */
-
-    extern int C2F(stackp) (int *, int *);
-};
-/*--------------------------------------------------------------------------*/
-#define idstk(x,y) (C2F(vstk).idstk+(x-1)+(y-1)*nsiz)
-#define CvNameL(id,str,jobptr,str_len) C2F(cvnamel)(id,str,jobptr,str_len);
-
 static SciErr getinternalVarAddress(void* _pvCtx, int _iVar, int** _piAddress);
 
 /*--------------------------------------------------------------------------*/
@@ -114,7 +100,7 @@ int* assignOutputVariable(void* _pvCtx, int _iVal)
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
 
     //do nothing but don't crash
-    if (_iVal > *pStr->m_piRetCount)
+    if (_iVal > *pStr->m_piRetCount || (_iVal - 1) < 0)
     {
         return &api_fake_int;
     }
@@ -420,7 +406,7 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
     typed_list in = *pStr->m_pIn;
     optional_list opt = *pStr->m_pOpt;
     int* piRetCount = pStr->m_piRetCount;
-    int iInputSize = in.size() + opt.size();
+    int iInputSize = static_cast<int>(in.size()) + static_cast<int>(opt.size());
 
     /* we accept a call to getVarAddressFromPosition after a create... call */
     if (_iVar > *piRetCount + iInputSize)
@@ -521,9 +507,9 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabSparseBool :
             *_piType = sci_boolean_sparse;
             break;
-            //case GenericType::RealMatlabSparse :
-            //    *_piType = sci_matlab_sparse;
-            //    break;
+        //case GenericType::RealMatlabSparse :
+        //    *_piType = sci_matlab_sparse;
+        //    break;
         case GenericType::ScilabInt8 :
         case GenericType::ScilabUInt8 :
         case GenericType::ScilabInt16 :
@@ -569,10 +555,13 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabImplicitList :
             *_piType = sci_implicit_poly;
             break;
-        case GenericType::ScilabFunction :
+        case GenericType::ScilabFunction:
             *_piType = sci_intrinsic_function;
             break;
-        default :
+        case GenericType::ScilabLibrary:
+            *_piType = sci_lib;
+            break;
+        default:
             *_piType = 0;
     }
 
@@ -1186,6 +1175,24 @@ int isNamedVector(void *_pvCtx, const char *_pstName)
 }
 
 /*--------------------------------------------------------------------------*/
+int isStruct(void *_pvCtx, int *_piAddress)
+{
+    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabStruct)
+    {
+        return 1;
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int isCell(void *_pvCtx, int *_piAddress)
+{
+    if (((InternalType*)_piAddress)->getType() == GenericType::ScilabCell)
+    {
+        return 1;
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
 int isScalar(void *_pvCtx, int *_piAddress)
 {
     int iRows = 0;
@@ -1533,9 +1540,18 @@ int deleteNamedVariable(void* _pvCtx, const char* _pstName)
     }
 
     wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context* pCtx = symbol::Context::getInstance();
-    bool ret = pCtx->remove(symbol::Symbol(pwstName));
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
     FREE(pwstName);
+    bool ret = false;
+    if (ctx->isprotected(sym) == false)
+    {
+        ret = ctx->remove(sym);
+    }
+    else
+    {
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
 
     return ret ? 1 : 0;
 }

@@ -45,6 +45,19 @@ if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
    clear v opts;
 end
 
+// loads modules ======================================================
+modules    = getmodules();
+for i=1:size(modules,"*")
+  startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
+  ierr=exec(startFile, 'errcatch', -1);
+  if ierr <> 0 then
+     disp(msprintf(gettext("Failed to execute %s:"),startFile));
+     disp(lasterror());
+     exit(2);
+   end
+end
+clear modules i load ierr startFile;
+
 // Create some configuration variables ================================
 home = getenv("HOME", SCI);
 if getos() <> "Windows" then
@@ -63,6 +76,10 @@ if with_module("atoms") then
   end
   clear atomsSystemInit;
 end
+
+
+// Protect variable previously defined  ================================
+predef("all");
 
 // At startup, no interactive vertical paging by default. ==============
 lines(0);
@@ -105,8 +122,7 @@ if sciargs()<>"-nouserstartup" then
       end
   end
 
-  clear i;
-  clear startupfiles;
+  clear i startupfiles workingfiles workingDirectory;
 end
 
 // Menus/toolbar can now be enabled ====================================

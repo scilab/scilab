@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -89,10 +89,11 @@
     </None>
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
-    <None Include="locales\renderer.pot" />
+    <None Include="locales\renderer.pot">
+      <Filter>localization</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="..\..\bin\doublylinkedlist.lib" />
     <Library Include="..\..\bin\libjvm.lib" />
   </ItemGroup>
 </Project>

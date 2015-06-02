@@ -13,9 +13,38 @@
 #include <string>
 #include <vector>
 #include <map>
-#include <memory>
 #include <utility>
 #include <algorithm>
+#include <iterator>
+
+#include "utilities.hxx"
+
+#define REF_DEBUG 0
+#if REF_DEBUG
+#include "scilabWrite.hxx"
+#define REF_PRINT(uid, refCount) \
+	do { \
+	std::stringstream print; \
+	print << "referenceObject( " << uid << " ) : " << refCount << std::endl; \
+	scilabForcedWrite(print.str().data()); \
+	} while(0)
+#define UNREF_PRINT(uid, count) \
+	do { \
+	std::stringstream print; \
+	print << "unreferenceObject( " << uid << " ) : " << refCount << std::endl; \
+	scilabForcedWrite(print.str().data()); \
+	} while(0)
+#define CLONE_PRINT(uid, clone) \
+	do { \
+	std::stringstream print; \
+	print << "cloneObject( " << uid << " ) : " << clone << std::endl; \
+	scilabForcedWrite(print.str().data()); \
+	} while(0)
+#else
+#define REF_PRINT(uid, refCount)
+#define UNREF_PRINT(uid, refCount)
+#define CLONE_PRINT(uid, clone)
+#endif
 
 #include "Controller.hxx"
 
@@ -54,8 +83,7 @@ void Controller::unregister_view(View* v)
     view_set_t::iterator it = std::find(m_instance.allViews.begin(), m_instance.allViews.end(), v);
     if (it != m_instance.allViews.end())
     {
-        int d = std::distance(m_instance.allViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allViews.begin(), it);
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
     }
@@ -68,8 +96,7 @@ View* Controller::unregister_view(const std::string& name)
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
     {
-        int d = std::distance(m_instance.allNamedViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allNamedViews.begin(), it);
         view = *(m_instance.allViews.begin() + d);
         m_instance.allNamedViews.erase(m_instance.allNamedViews.begin() + d);
         m_instance.allViews.erase(m_instance.allViews.begin() + d);
@@ -85,8 +112,7 @@ View* Controller::look_for_view(const std::string& name)
     view_name_set_t::iterator it = std::find(m_instance.allNamedViews.begin(), m_instance.allNamedViews.end(), name);
     if (it != m_instance.allNamedViews.end())
     {
-        int d = std::distance(m_instance.allNamedViews.begin(), it);
-
+        size_t d = std::distance(m_instance.allNamedViews.begin(), it);
         view = *(m_instance.allViews.begin() + d);
     }
 
@@ -103,18 +129,41 @@ Controller::~Controller()
 
 ScicosID Controller::createObject(kind_t k)
 {
-    ScicosID id = m_instance.model.createObject(k);
+    ScicosID uid = m_instance.model.createObject(k);
 
     for (view_set_t::iterator iter = m_instance.allViews.begin(); iter != m_instance.allViews.end(); ++iter)
     {
-        (*iter)->objectCreated(id, k);
+        (*iter)->objectCreated(uid, k);
     }
 
-    return id;
+    return uid;
+}
+
+unsigned Controller::referenceObject(const ScicosID uid) const
+{
+    unsigned refCount = m_instance.model.referenceObject(uid);
+    REF_PRINT(uid, refCount);
+    return refCount;
 }
 
 void Controller::deleteObject(ScicosID uid)
 {
+    // if this object is the empty uid, ignore it : is is not stored in the model
+    if (uid == 0)
+    {
+        return;
+    }
+
+    // if this object has been referenced somewhere else do not delete it but decrement the reference counter
+    unsigned& refCount = m_instance.model.referenceCount(uid);
+    if (refCount > 0)
+    {
+        --refCount;
+        UNREF_PRINT(uid, refCount);
+        return;
+    }
+
+    // We need to delete this object and cleanup all the referenced model object
     auto initial = getObject(uid);
     const kind_t k = initial->kind();
 
@@ -122,26 +171,33 @@ void Controller::deleteObject(ScicosID uid)
     if (k == ANNOTATION)
     {
         unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
         // RELATED_TO is not referenced back
     }
     else if (k == BLOCK)
     {
         unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
+
         deleteVector(uid, k, INPUTS);
         deleteVector(uid, k, OUTPUTS);
         deleteVector(uid, k, EVENT_INPUTS);
         deleteVector(uid, k, EVENT_OUTPUTS);
-        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
+
+        unlink(uid, k, CHILDREN, PARENT_BLOCK);
         deleteVector(uid, k, CHILDREN);
         // FIXME what about REFERENCED_PORT ?
     }
     else if (k == DIAGRAM)
     {
+        unlink(uid, k, CHILDREN, PARENT_DIAGRAM);
         deleteVector(uid, k, CHILDREN);
     }
     else if (k == LINK)
     {
         unlinkVector(uid, k, PARENT_DIAGRAM, CHILDREN);
+        unlinkVector(uid, k, PARENT_BLOCK, CHILDREN);
+
         unlinkVector(uid, k, SOURCE_PORT, CONNECTED_SIGNALS);
         unlinkVector(uid, k, DESTINATION_PORT, CONNECTED_SIGNALS);
     }
@@ -188,17 +244,20 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
 
 void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, object_properties_t ref_prop)
 {
-    ScicosID v;
+    std::vector<ScicosID> v;
     getObjectProperty(uid, k, uid_prop, v);
-    if (v != 0)
+    for (const ScicosID id : v)
     {
-        auto o = getObject(v);
-        // Find which end of the link is connected to the port
-        ScicosID connected_port;
-        getObjectProperty(o->id(), o->kind(), ref_prop, connected_port);
-        if (connected_port == uid)
+        if (id != 0)
         {
-            setObjectProperty(o->id(), o->kind(), ref_prop, 0ll);
+            auto o = getObject(id);
+            // Find which end of the link is connected to the port
+            ScicosID oppositeRef;
+            getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
+            if (oppositeRef == uid)
+            {
+                setObjectProperty(o->id(), o->kind(), ref_prop, ScicosID());
+            }
         }
     }
 }
@@ -214,7 +273,7 @@ void Controller::deleteVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     }
 }
 
-ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid)
+ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, bool cloneChildren)
 {
     auto initial = getObject(uid);
     const kind_t k = initial->kind();
@@ -234,6 +293,7 @@ ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     if (k == ANNOTATION)
     {
         deepClone(mapped, uid, o, k, PARENT_DIAGRAM, false);
+        deepClone(mapped, uid, o, k, PARENT_BLOCK, false);
         deepClone(mapped, uid, o, k, RELATED_TO, true);
     }
     else if (k == BLOCK)
@@ -243,24 +303,32 @@ ScicosID Controller::cloneObject(std::map<ScicosID, ScicosID>& mapped, ScicosID 
         deepCloneVector(mapped, uid, o, k, OUTPUTS, true);
         deepCloneVector(mapped, uid, o, k, EVENT_INPUTS, true);
         deepCloneVector(mapped, uid, o, k, EVENT_OUTPUTS, true);
+
         deepClone(mapped, uid, o, k, PARENT_BLOCK, false);
-        deepCloneVector(mapped, uid, o, k, CHILDREN, true);
+        if (cloneChildren)
+        {
+            deepCloneVector(mapped, uid, o, k, CHILDREN, true);
+        }
         // FIXME what about REFERENCED_PORT ?
     }
     else if (k == DIAGRAM)
     {
-        deepCloneVector(mapped, uid, o, k, CHILDREN, true);
+        if (cloneChildren)
+        {
+            deepCloneVector(mapped, uid, o, k, CHILDREN, true);
+        }
     }
     else if (k == LINK)
     {
         deepClone(mapped, uid, o, k, PARENT_DIAGRAM, false);
-        deepClone(mapped, uid, o, k, SOURCE_PORT, true);
-        deepClone(mapped, uid, o, k, DESTINATION_PORT, true);
+        deepClone(mapped, uid, o, k, PARENT_BLOCK, false);
+        deepClone(mapped, uid, o, k, SOURCE_PORT, false);
+        deepClone(mapped, uid, o, k, DESTINATION_PORT, false);
     }
     else if (k == PORT)
     {
-        deepClone(mapped, uid, o, k, SOURCE_BLOCK, true);
-        deepCloneVector(mapped, uid, o, k, CONNECTED_SIGNALS, true);
+        deepClone(mapped, uid, o, k, SOURCE_BLOCK, false);
+        deepCloneVector(mapped, uid, o, k, CONNECTED_SIGNALS, false);
     }
 
     return o;
@@ -284,7 +352,7 @@ void Controller::deepClone(std::map<ScicosID, ScicosID>& mapped, ScicosID uid, S
         {
             if (v != 0)
             {
-                cloned = cloneObject(mapped, v);
+                cloned = cloneObject(mapped, v, true);
             }
             else
             {
@@ -328,7 +396,7 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
             {
                 if (id != 0)
                 {
-                    cloned.push_back(cloneObject(mapped, id));
+                    cloned.push_back(cloneObject(mapped, id, true));
                 }
                 else
                 {
@@ -345,13 +413,15 @@ void Controller::deepCloneVector(std::map<ScicosID, ScicosID>& mapped, ScicosID 
     setObjectProperty(clone, k, p, cloned);
 }
 
-ScicosID Controller::cloneObject(ScicosID uid)
+ScicosID Controller::cloneObject(ScicosID uid, bool cloneChildren)
 {
     std::map<ScicosID, ScicosID> mapped;
-    return cloneObject(mapped, uid);
+    ScicosID clone = cloneObject(mapped, uid, cloneChildren);
+    CLONE_PRINT(uid, clone);
+    return clone;
 }
 
-std::shared_ptr<model::BaseObject> Controller::getObject(ScicosID uid) const
+model::BaseObject* Controller::getObject(ScicosID uid) const
 {
     return m_instance.model.getObject(uid);
 }

@@ -24,9 +24,9 @@ int sci_getenv(char *fname, void* pvApiCtx);
 int sci_setenv(char *fname, void* pvApiCtx);
 //IO_IMPEXP int sci_load(char *fname, void* pvApiCtx); Now in C++ in io_gw/sci_gateway/cpp/sci_load.cpp
 
-int sci_read(char *fname, unsigned long fname_len);
+//int sci_read(char *fname, unsigned long fname_len);
 int sci_oldsave(char *fname, unsigned long fname_len);
-int sci_write(char *fname, unsigned long fname_len);
+//int sci_write(char *fname, unsigned long fname_len);
 int sci_readb(char *fname, unsigned long fname_len);
 int sci_writb(char *fname, unsigned long fname_len);
 int sci_getpid(char *fname, unsigned long fname_len);

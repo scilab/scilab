@@ -22,7 +22,7 @@ function varargout = listvarinfile(filename)
     if isfile(filename) & is_hdf5_file(filename) then
         listvarFunction = listvar_in_hdf5;
     else
-        listvarFunction = %_listvarinfile;
+        error(999, msprintf(gettext("%s: Cannot open file %s.\n"), "listvarinfile", filename));
     end
 
     //check output argument count

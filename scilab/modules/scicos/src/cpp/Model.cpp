@@ -11,9 +11,9 @@
  */
 
 #include <string>
+#include <vector>
 #include <utility>
 #include <algorithm>
-#include <memory>
 
 #include "Model.hxx"
 #include "utilities.hxx"
@@ -29,7 +29,7 @@ namespace org_scilab_modules_scicos
 {
 
 Model::Model() :
-    lastId(0), allObjects()
+    lastId(0), has_looped(false), allObjects()
 {
     std::vector<int> datatypeDefault (3, 1);
     datatypeDefault[0] = -1;
@@ -50,23 +50,23 @@ ScicosID Model::createObject(kind_t k)
     /*
      * Allocate the object per kind
      */
-    std::shared_ptr<model::BaseObject> o;
+    model::BaseObject* o;
     switch (k)
     {
         case ANNOTATION:
-            o = std::make_shared<model::Annotation>(model::Annotation());
+            o = new model::Annotation();
             break;
         case DIAGRAM:
-            o = std::make_shared<model::Diagram>(model::Diagram());
+            o = new model::Diagram();
             break;
         case BLOCK:
-            o = std::make_shared<model::Block>(model::Block());
+            o = new model::Block();
             break;
         case LINK:
-            o = std::make_shared<model::Link>(model::Link());
+            o = new model::Link();
             break;
         case PORT:
-            o = std::make_shared<model::Port>(model::Port());
+            o = new model::Port();
             break;
     }
 
@@ -77,60 +77,100 @@ ScicosID Model::createObject(kind_t k)
     if (lastId == 0)
     {
         lastId++;
+        has_looped = true;
     }
 
-    // full map, detection
-    bool has_looped = false;
-
-    objects_map_t::iterator iter = allObjects.lower_bound(lastId);
-    while (iter != allObjects.end() && !(lastId < iter->first)) // while key is found
+    if (has_looped)
     {
-        // try a valid ID
-        lastId++;
-        if (lastId == 0)
+        bool has_looped_twice = false;
+
+        // while key is found
+        for (objects_map_t::iterator iter = allObjects.find(lastId);
+                iter != allObjects.end();
+                iter = allObjects.find(lastId))
         {
+            // try a valid ID
             lastId++;
-
-            // if the map is full, return 0;
-            if (has_looped)
+            if (lastId == 0)
             {
-                return 0;
-            }
-            has_looped = true;
-        }
+                lastId++;
 
-        // look for it
-        iter = allObjects.lower_bound(lastId);
+                // return the invalid value if the loop counter encounter 2 zeros.
+                if (has_looped_twice)
+                {
+                    return ScicosID();
+                }
+                else
+                {
+                    has_looped_twice = true;
+                }
+            }
+        }
     }
 
     /*
      * Insert then return
      */
-    allObjects.insert(iter, std::make_pair(lastId, o));
+    allObjects.emplace(lastId, o);
     o->id(lastId);
     return lastId;
 }
 
-void Model::deleteObject(ScicosID uid)
+unsigned Model::referenceObject(const ScicosID uid)
 {
-    objects_map_t::iterator iter = allObjects.lower_bound(uid);
-    if (iter == allObjects.end() || uid < iter->first)
+    objects_map_t::iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
     {
-        throw std::string("key has not been found");
+        return 0;
     }
 
-    allObjects.erase(iter);
+    ModelObject& modelObject = iter->second;
+    return ++(modelObject.m_refCounter);
 }
 
-std::shared_ptr<model::BaseObject> Model::getObject(ScicosID uid) const
+unsigned& Model::referenceCount(ScicosID uid)
 {
-    objects_map_t::const_iterator iter = allObjects.lower_bound(uid);
-    if (iter == allObjects.end() || uid < iter->first)
+    objects_map_t::iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
     {
         throw std::string("key has not been found");
     }
 
-    return iter->second;
+    ModelObject& modelObject = iter->second;
+    return modelObject.m_refCounter;
+
+}
+
+void Model::deleteObject(ScicosID uid)
+{
+    objects_map_t::iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
+    {
+        throw std::string("key has not been found");
+    }
+
+    ModelObject& modelObject = iter->second;
+    if (modelObject.m_refCounter == 0)
+    {
+        model::BaseObject* o = modelObject.m_o;
+        allObjects.erase(iter);
+        delete o;
+    }
+    else
+    {
+        --(modelObject.m_refCounter);
+    }
+}
+
+model::BaseObject* Model::getObject(ScicosID uid) const
+{
+    objects_map_t::const_iterator iter = allObjects.find(uid);
+    if (iter == allObjects.end())
+    {
+        throw std::string("key has not been found");
+    }
+
+    return iter->second.m_o;
 }
 
 // datatypes being a vector of Datatype pointers, we need a dereferencing comparison operator to use std::lower_bound()

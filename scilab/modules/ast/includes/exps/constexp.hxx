@@ -62,7 +62,21 @@ public:
         }
 
         constant = _const;
-        constant->IncreaseRef();
+        if (_const)
+        {
+            constant->IncreaseRef();
+        }
+    }
+
+    virtual bool equal(const Exp & e) const
+    {
+        // TODO : check for the equality of the contents of constant
+        return e.getType() == CONSTEXP && *constant == *static_cast<const ConstExp &>(e).constant;
+    }
+
+    virtual ExpType getType() const
+    {
+        return CONSTEXP;
     }
 
 protected :

@@ -23,7 +23,7 @@ namespace ast
 class StringExp : public ConstExp
 {
 public:
-    StringExp (const Location& location, std::wstring value)
+    StringExp (const Location& location, const std::wstring & value)
         : ConstExp (location),
           _value (value)
     {
@@ -48,8 +48,15 @@ public:
     {
         StringExp* cloned = new StringExp(getLocation(), getValue());
         cloned->setVerbose(isVerbose());
+        cloned->setConstant(getConstant());
         return cloned;
     }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return e.getType() == STRINGEXP && _value == static_cast<const StringExp &>(e)._value;
+    }
+
     /** \name Visitors entry point.
     ** \{ */
 public:
@@ -67,13 +74,13 @@ public:
 
 public:
     /** \brief Return the name of the type name (read only). */
-    const std::wstring getValue() const
+    const std::wstring & getValue() const
     {
         return _value;
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return STRINGEXP;
     }

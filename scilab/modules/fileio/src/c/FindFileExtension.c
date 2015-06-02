@@ -19,7 +19,7 @@
 #include <string.h>
 #include <stdio.h>
 #endif
-#include "os_strdup.h"
+#include "os_string.h"
 #include "FindFileExtension.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"

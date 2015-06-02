@@ -44,6 +44,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     int imOne = -1;
     int iSize = 0;
     bool bComplex = false;
+    types::Function::ReturnValue ret = types::Function::OK;
 
     if (in.size() < 1 || in.size() > 2)
     {
@@ -125,8 +126,9 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_roots";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_roots";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     // If "fast" algo was chosen and polynomial is complex,
@@ -237,6 +239,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         memset(pdblOutReal, 0x00, pDblOut->getSize() * sizeof(double));
         C2F(dset)(&iSizeM1, &dblOne, &pdblOutReal[iSize], &iSizeP1);
         C2F(dcopy)(&iSize, pdblTempReal, &iOne, pdblOutReal, &iOne);
+        delete[] pdblTempReal;
 
         if (bComplex)
         {
@@ -246,11 +249,23 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         }
 
         //call spec
-        types::typed_list tlInput;
-        types::optional_list tlOpt;
-        tlInput.push_back(pDblOut);
-        types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-        funcSpec->call(tlInput, tlOpt, 1, out, new ast::ExecVisitor());
+        types::InternalType* pSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"));
+        if (pSpec && pSpec->isFunction())
+        {
+            types::Function *funcSpec = pSpec->getAs<types::Function>();
+            ast::ExecVisitor exec;
+            types::typed_list tlInput;
+            types::optional_list tlOpt;
+            tlInput.push_back(pDblOut);
+
+            ret = funcSpec->call(tlInput, tlOpt, 1, out, &exec);
+            pDblOut->killMe();
+        }
+        else
+        {
+            Scierror(999, _("%s: unable to find spec function\n"), "roots");
+            return types::Function::Error;
+        }
     }
 
     if (pDblIn)
@@ -262,7 +277,7 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         }
     }
 
-    return types::Function::OK;
+    return ret;
 }
 /*--------------------------------------------------------------------------*/
 

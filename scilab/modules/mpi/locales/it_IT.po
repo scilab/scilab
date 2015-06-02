@@ -1,0 +1,98 @@
+# Italian translation for scilab
+# Copyright (c) 2015 Rosetta Contributors and Canonical Ltd 2015
+# This file is distributed under the same license as the scilab package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: scilab\n"
+"Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2013-04-16 17:44+0100\n"
+"PO-Revision-Date: 2015-02-15 21:10+0000\n"
+"Last-Translator: Carml <mighty.carml@gmail.com>\n"
+"Language-Team: Italian <it@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Launchpad (build 17413)\n"
+
+#, c-format
+msgid "%s: Can not read input argument #%d.\n"
+msgstr "%s: Impossibile leggere l'argomento in ingresso #%d.\n"
+
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: A scalar integer value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso un valore "
+"scalare intero.\n"
+
+#, c-format
+msgid "%s: Could not get communicator rank of the node %d: %s\n"
+msgstr ""
+"%s: Impossibile ottenere il rango del comunicatore del nodo %d: %s.\n"
+
+msgid "Unable to serialize data\n"
+msgstr "Impossibile serializzare i dati.\n"
+
+#, c-format
+msgid "%s: Could not broadcast the variable to the node %d: %s\n"
+msgstr "%s: Impossibile trasmettere la variabile al nodo %d: %s.\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data.\n"
+msgstr "%s: Impossibile deserializzare i dati.\n"
+
+#, c-format
+msgid "%s: Unable to create variable.\n"
+msgstr "%s: Impossibile creare la variabile.\n"
+
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr "%s: Errore di allocazione della memoria.\n"
+
+#, c-format
+msgid "%s: Could not finalize the MPI instance: %s\n"
+msgstr "%s: Impossibile finalizzare la seg. istanza di MPI: %s.\n"
+
+#, c-format
+msgid "%s: Could not get processor name: %s\n"
+msgstr "%s: Impossibile ottenere il nome del processore: %s.\n"
+
+#, c-format
+msgid "%s: Wrong values for input argument #%d: Positive value expected.\n"
+msgstr ""
+"%s: L'argomento in ingresso #%d ha dei valori sbagliati: era atteso un "
+"valore positivo.\n"
+
+#, c-format
+msgid "%s: MPI_Probe failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: Fallito MPI_Probe. Rango %d / Etichetta %d: %s\n"
+
+#, c-format
+msgid "%s: MPI_Get_count failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: Fallito MPI_Get_count. Rango %d / Etichetta %d: %s\n"
+
+#, c-format
+msgid "%s: MPI_Irecv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: Fallito MPI_Irecv. Rango %d / Etichetta %d: %s\n"
+
+#, c-format
+msgid "%s: Could not send the variable to the node %d: %s\n"
+msgstr "%s: Impossibile inviare la variabile al nodo %d: %s.\n"
+
+#, c-format
+msgid "%s: Could not create the received variable.\n"
+msgstr "%s: Impossibile creare la variabile ricevuta.\n"
+
+#, c-format
+msgid "%s: MPI_Recv failed. Rank %d / Tag %d: %s\n"
+msgstr "%s: Fallito MPI_Recv. Rango %d / Etichetta %d: %s\n"
+
+#, c-format
+msgid "%s: Unable to deserialize data !\n"
+msgstr "%s: Impossibile deserializzare i dati !\n"
+
+#, c-format
+msgid "%s: MPI_Wait failed while waiting %d: %s\n"
+msgstr "%s: Fallito MPI_Wait attendendo %d: %s\n"

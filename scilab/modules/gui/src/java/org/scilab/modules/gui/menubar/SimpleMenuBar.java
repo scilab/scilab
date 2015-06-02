@@ -27,18 +27,6 @@ public interface SimpleMenuBar {
     void add(Menu newMenu);
 
     /**
-     * Set the element id for this menubar
-     * @param id the id of the corresponding menubar object
-     */
-    void setElementId(int id);
-
-    /**
-     * Get the element id for this menubar
-     * @return id the id of the corresponding menubar object
-     */
-    int getElementId();
-
-    /**
      * Enable/Disable a menu giving its name
      * @param menuName the name of the menu
      * @param status true to enable the menu

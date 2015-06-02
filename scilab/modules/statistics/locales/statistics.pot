@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2014-12-02 16:09+0100\n"
+"Revision-Date: 2015-03-27 13:54+0100\n"
 
 # File: sci_gateway/c/sci_cdfbet.c, line: 45
 msgid "X,Y,A and B"
@@ -506,7 +506,6 @@ msgstr ""
 # File: macros/ftest.sci, line: 27
 # File: macros/pca.sci, line: 63
 # File: macros/perctl.sci, line: 31
-# File: macros/regress.sci, line: 27
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr ""
@@ -699,7 +698,6 @@ msgstr ""
 # File: macros/nanmeanf.sci, line: 48
 # File: macros/sample.sci, line: 51
 # File: macros/samplef.sci, line: 100
-# File: macros/st_deviation.sci, line: 40
 # File: macros/variancef.sci, line: 132
 #, c-format
 msgid ""
@@ -750,24 +748,6 @@ msgstr ""
 # File: macros/reglin.sci, line: 29
 #, c-format
 msgid "%s: NaNs detected, please use %s() instead.\n"
-msgstr ""
-
-#
-# File: macros/regress.sci, line: 31
-#, c-format
-msgid "%s: Wrong type for input arguments: Numerical expected.\n"
-msgstr ""
-
-#
-# File: macros/regress.sci, line: 33
-#, c-format
-msgid "%s: Wrong size for both input arguments: same size expected.\n"
-msgstr ""
-
-#
-# File: macros/regress.sci, line: 34
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Must be > %d.\n"
 msgstr ""
 
 #

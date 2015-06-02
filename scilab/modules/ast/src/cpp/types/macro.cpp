@@ -29,14 +29,14 @@ extern "C"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "sci_malloc.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 namespace types
 {
 Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputArgs, std::list<symbol::Variable*>& _outputArgs, ast::SeqExp &_body, const std::wstring& _stModule):
     Callable(),
-    m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(&_body),
+    m_inputArgs(&_inputArgs), m_outputArgs(&_outputArgs), m_body(_body.clone()),
     m_Nargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargin"))),
     m_Nargout(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"nargout"))),
     m_Varargin(symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"varargin"))),
@@ -50,6 +50,7 @@ Macro::Macro(const std::wstring& _stName, std::list<symbol::Variable*>& _inputAr
     m_pDblArgOut = new Double(1);
     m_pDblArgOut->IncreaseRef(); //never delete
 
+    m_body->setReturnable();
 }
 
 Macro::~Macro()
@@ -69,6 +70,14 @@ Macro::~Macro()
     {
         delete m_outputArgs;
     }
+
+    for (const auto & sub : m_submacro)
+    {
+        sub.second->DecreaseRef();
+        sub.second->killMe();
+    }
+
+    m_submacro.clear();
 }
 
 void Macro::cleanCall(symbol::Context * pContext, int oldPromptMode)
@@ -224,18 +233,11 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     }
     else
     {
-        //add optional paramter in current scope
-        optional_list::const_iterator it;
-        for (it = opt.begin() ; it != opt.end() ; it++)
-        {
-            pContext->put(symbol::Symbol(it->first), it->second);
-        }
-
         //assign value to variable in the new context
         std::list<symbol::Variable*>::iterator i;
         typed_list::const_iterator j;
 
-        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end (); ++j, ++i)
+        for (i = m_inputArgs->begin(), j = in.begin(); j != in.end(); ++j, ++i)
         {
             if (*j)
             {
@@ -243,6 +245,15 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
                 pContext->put(*i, *j);
             }
         }
+
+        //add optional paramter in current scope
+        optional_list::const_iterator it;
+        for (it = opt.begin() ; it != opt.end() ; it++)
+        {
+            pContext->put(symbol::Symbol(it->first), it->second);
+        }
+
+
     }
 
     // varargout management
@@ -280,6 +291,13 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
     pContext->put(m_Nargin, m_pDblArgIn);
     pContext->put(m_Nargout, m_pDblArgOut);
 
+
+    //add sub macro in current context
+    for (const auto & sub : m_submacro)
+    {
+        pContext->put(sub.first, sub.second);
+    }
+
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
     try
@@ -289,14 +307,9 @@ Callable::ReturnValue Macro::call(typed_list &in, optional_list &opt, int _iRetC
         //m_body->accept(mute);
 
         ConfigVariable::setPromptMode(-1);
-        m_body->setReturnable();
         m_body->accept(*execFunc);
         //restore previous prompt mode
         ConfigVariable::setPromptMode(oldVal);
-        if (m_body->isReturn())
-        {
-            m_body->setReturnable();
-        }
     }
     catch (ast::ScilabMessage & sm)
     {
@@ -488,5 +501,13 @@ bool Macro::operator==(const InternalType& it)
     free(macroSerial);
 
     return ret;
+}
+
+void Macro::add_submacro(const symbol::Symbol& s, Macro* macro)
+{
+    macro->IncreaseRef();
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Variable* var = ctx->getOrCreate(s);
+    m_submacro[var] = macro;
 }
 }

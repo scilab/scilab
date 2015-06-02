@@ -47,8 +47,7 @@ libsciinterpolation_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/string/includes \
-    -I$(top_srcdir)/modules/elementary_functions/includes \
-    $(EIGEN_CPPFLAGS)
+    -I$(top_srcdir)/modules/elementary_functions/includes
 
 pkglib_LTLIBRARIES = libsciinterpolation.la
 noinst_LTLIBRARIES = libsciinterpolation-algo.la

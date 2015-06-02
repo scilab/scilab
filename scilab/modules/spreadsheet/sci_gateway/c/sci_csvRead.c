@@ -27,7 +27,7 @@
 #include "complex_array.h"
 #include "gw_csv_helpers.h"
 #include "getRange.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 static void freeVar(char** filename, char** separator, char** decimal, char** conversion, int** iRange, char*** toreplace, int sizeReplace, char** regexp);
 /* ==================================================================== */

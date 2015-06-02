@@ -167,9 +167,13 @@ public:
 
 public:
     virtual void visit (typename select_const<K, OptimizedExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, MemfillExp>::t & e) = 0;
 
     /*optimized*/
     virtual void visit (typename select_const<K, DAXPYExp>::t & e) = 0;
+
+    virtual void visit (typename select_const<K, IntSelectExp>::t & e) = 0;
+    virtual void visit (typename select_const<K, StringSelectExp>::t & e) = 0;
 };
 
 /** \brief Define shortand type for a const visitor */

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- NOT FIXED -->
 prot=funcprot();funcprot(0);
 //a primitive as an argument of a primitive
 //-----------------------------------------

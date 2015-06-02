@@ -26,7 +26,7 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #ifdef _MSC_VER
-#include "os_strdup.h"
+#include "os_string.h"
 #endif
 }
 

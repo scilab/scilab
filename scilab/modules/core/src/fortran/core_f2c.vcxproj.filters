@@ -21,61 +21,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="allowptr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="basnms.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clunit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cmplxt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cvdm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cvname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="expsum.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="find.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="folhp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getch.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="intstr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="isbrk.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="isinstring.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="mkindx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="prompt.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ptrback.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="putid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setgetmode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="setippty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="whatln.c">
@@ -87,12 +45,6 @@
     <ClCompile Include="..\c\withf2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="showstack.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="indxg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="backspaceinter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -102,83 +54,38 @@
     <ClCompile Include="rewindinter.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="read_inter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="write_inter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\callinter.h.f">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\stack.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="allowptr.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="basnms.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="clunit.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cmplxt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cvdm.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="cvname.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="expsum.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="find.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="folhp.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="getch.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="intstr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
-    <f2c_rule Include="isbrk.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="isinstring.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="mkindx.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="prompt.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="ptrback.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
     <f2c_rule Include="putid.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="setgetmode.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="setippty.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="whatln.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="xerbla.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="showstack.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="indxg.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="backspaceinter.f">
@@ -190,17 +97,17 @@
     <f2c_rule Include="rewindinter.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
+    <f2c_rule Include="read_inter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="write_inter.f">
+      <Filter>Fortran Files</Filter>
+    </f2c_rule>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\sci_gateway\core_gateway.xml" />
     <None Include="..\..\Makefile.am" />
-    <None Include="boolean_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
     <None Include="console_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="data_structures_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="data_structures_Import.def">

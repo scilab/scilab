@@ -16,7 +16,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
 #include "InitScilab.h"
@@ -61,7 +61,7 @@ int SendScilabJob(char *job)
         SetLastJob(command);
 
         /* Creation of a temp variable in Scilab which contains the command */
-        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, (char const* const*) &command);
+        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, (char const * const*) &command);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);

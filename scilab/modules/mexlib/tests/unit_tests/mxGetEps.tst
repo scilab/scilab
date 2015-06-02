@@ -6,22 +6,20 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetEps mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    double dblEps = mxGetEps();';
-       '    mxArray* pOut = mxCreateDoubleScalar(dblEps);';
-       '    plhs[0] = pOut;';
-       '}'],'mexgetEps.c');
-ilib_mex_build('libmextest',['getEps','mexgetEps','cmex'], 'mexgetEps.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    double dblEps = mxGetEps();";
+"    mxArray* pOut = mxCreateDoubleScalar(dblEps);";
+"    plhs[0] = pOut;";
+"}"],"mexgetEps.c");
+ilib_mex_build("libmextest",["getEps","mexgetEps","cmex"], "mexgetEps.c",[]);
+exec("loader.sce");
 
-a = getEps();
-if a <> %eps then pause end
+assert_checkequal(getEps(), %eps);

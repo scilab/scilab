@@ -105,7 +105,18 @@ SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
     wchar_t* pwstName = to_wide_string(_pstName);
 
     Pointer* pP = new Pointer(_pvPtr);
-    symbol::Context::getInstance()->put(symbol::Symbol(pwstName), pP);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
+    FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pP);
+    }
+    else
+    {
+        delete pP;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     FREE(pwstName);
 
     return sciErr;

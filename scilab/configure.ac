@@ -24,6 +24,18 @@ SCI_BUILDDIR="`pwd`"
 SCI_SRCDIR="$srcdir"
 SCI_SRCDIR_FULL="`cd $SCI_SRCDIR && pwd`"
 
+if test -d "$SCI_SRCDIR_FULL/usr"; then
+    WITH_DEVTOOLS=true
+    DEVTOOLS_BINDIR="$SCI_SRCDIR_FULL/usr/bin"
+    DEVTOOLS_INCDIR="$SCI_SRCDIR_FULL/usr/include"
+    DEVTOOLS_LIBDIR="$SCI_SRCDIR_FULL/usr/lib"
+else
+    WITH_DEVTOOLS=false
+    DEVTOOLS_BINDIR=
+    DEVTOOLS_INCDIR=
+    DEVTOOLS_LIBDIR=
+fi
+
 SCILAB_VERSION_MAJOR=6
 SCILAB_VERSION_MINOR=0
 SCILAB_VERSION_MAINTENANCE=0
@@ -536,7 +548,7 @@ case "$CXX" in
         else
             DEBUG_CXXFLAGS="-DNDEBUG"
         fi
-        COMPILER_CXXFLAGS="-fno-stack-protector " # bug 3131
+        COMPILER_CXXFLAGS="$COMPILER_CXXFLAGS -fno-stack-protector " # bug 3131
     ;;
 
 esac
@@ -576,7 +588,7 @@ case "$CC" in
       DEBUG_CFLAGS="-DNDEBUG"
    fi
 
-   COMPILER_CFLAGS="-fno-stack-protector " # bug 3131
+   COMPILER_CFLAGS="$COMPILER_CFLAGS -fno-stack-protector " # bug 3131
    # Explictly disable the as needed. It was disable by default but Ubuntu
    # activated it by default since release 11.04. See bug #8961.
    # Once all cyclic dependencies have been dropped, this line could be removed.
@@ -946,6 +958,8 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
                 AC_JAVA_CHECK_PACKAGE([jogl2],[javax.media.opengl.glu.GLUnurbs],[Scilab 3D rendering - Version 2.0])
                 JOGL2=$PACKAGE_JAR_FILE
                 AC_SUBST(JOGL2)
+
+                AC_JAVA_CHECK_VERSION_MANIFEST([jogl2],$JOGL2,[2.2],[Specification-Version])
 
                 if test "$MACOSX" = 1; then
                    echo "Check of the presence of libjogl.jnilib and libjogl_awt.jnilib disabled under Mac OS X"
@@ -1681,7 +1695,12 @@ if test "$with_matio" != no; then
       MATIO_CFLAGS="$with_matio_include"
       MATIO_LIBS="$with_matio_library -lm -lz -lmatio -lhdf5"
    else
-      PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
+      if $WITH_DEVTOOLS; then # Scilab thirdparties
+         MATIO_CFLAGS="-I$DEVTOOLS_INCDIR"
+         MATIO_LIBS="-L$DEVTOOLS_LIBDIR -lm -lz -lmatio -lhdf5"
+      else
+         PKG_CHECK_MODULES(MATIO, [matio >= 1.5.0])
+      fi
    fi
 
    save_CFLAGS="$CFLAGS"
@@ -2127,6 +2146,8 @@ echo "  Compilation tests (--enable-compilation-tests) ... = $COMPILATION_TESTS"
 echo "  Make the package relocatable (--enable-relocatable)= $RELOCATABLE"
 echo "  Use FFTW (--without-fftw) ........................ = $with_fftw"
 echo "  Use MATIO (--without-matio) ...................... = $with_matio"
+echo ""
+echo "  Compile with Scilab thirdparties ................. = $WITH_DEVTOOLS"
 
 echo ""
 if test "$with_gui" = no; then
@@ -2424,5 +2445,6 @@ echo "  F77 ............ = $F77"
 echo "  FFLAGS ......... = $FFLAGS"
 echo "  SCI_FFLAGS ..... = $SCI_FFLAGS"
 echo "  F77_LDFLAGS .... = $F77_LDFLAGS"
+echo "  FLIBS...... .... = $FLIBS"
 echo "  TERMCAP_LIB .... = $TERMCAP_LIB"
 echo ""

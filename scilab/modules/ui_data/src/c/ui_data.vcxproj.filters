@@ -35,9 +35,6 @@
     <ClCompile Include="..\jni\EditVar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_ui_data.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_browsevar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -68,6 +65,12 @@
     <ClCompile Include="..\cpp\BrowseVarManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\ui_data_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\jni\ui_data_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\jni\BrowseVar.hxx">
@@ -79,16 +82,16 @@
     <ClInclude Include="..\jni\EditVar.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_ui_data.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\FileBrowserChDir.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\ui_data.h">
+    <ClInclude Include="..\..\includes\BrowseVarManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\BrowseVarManager.h">
+    <ClInclude Include="..\..\includes\ui_data_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\ui_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

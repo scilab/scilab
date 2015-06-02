@@ -30,9 +30,6 @@
     <ClCompile Include="..\c\sci_getdebuginfo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_type.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_abort.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -130,6 +127,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_analyzeroptions.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_macr2tree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\c\sci_type.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_predef.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

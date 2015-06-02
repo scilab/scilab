@@ -70,4 +70,10 @@ EXTERN_AST int checkReferenceModule(const wchar_t* _module);
 EXTERN_AST void addReferenceModule(const wchar_t* _module);
 EXTERN_AST void removeReferenceModule(const wchar_t* _module);
 
+
+
+EXTERN_AST int getEntryPointPosition(wchar_t* _pwstEntryPointName);
+typedef void(*dynlib_ptr)();
+EXTERN_AST dynlib_ptr getEntryPointFromPosition(int position);
+
 #endif /* !__CONFIGVARIABLE_INTERFACE_H__ */

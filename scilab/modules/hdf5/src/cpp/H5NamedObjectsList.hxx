@@ -18,7 +18,7 @@
 #include "H5Link.hxx"
 #include "H5ListObject.hxx"
 
-#include "os_strdup.h"
+#include "os_string.h"
 
 namespace org_modules_hdf5
 {

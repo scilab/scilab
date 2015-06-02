@@ -80,9 +80,6 @@
     <ClCompile Include="getstaticDebugInfo_Windows.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getversion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -101,9 +98,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ifexpr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InitializeCore.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -111,9 +105,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="islittleendian.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LaunchScilabSignal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="loadversion.c">
@@ -131,16 +122,7 @@
     <ClCompile Include="readGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="recursionFunction.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="returnanan.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scimem.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="str2sci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="texmacs.c">
@@ -153,9 +135,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="xscion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="scirun.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainCore.c">
@@ -195,9 +174,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="setPrecisionFPU.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="withf2c.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="hashtable\hashtable.c">
@@ -268,9 +244,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\callFunctionFromGateway.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\callinterf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\commandwords.h">
@@ -345,9 +318,6 @@
     <ClInclude Include="..\..\includes\islittleendian.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\LaunchScilabSignal.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\loadversion.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -366,9 +336,6 @@
     <ClInclude Include="..\..\includes\realmain.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\recursionFunction.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\returnanan.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -382,9 +349,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scimem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\scirun.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\scisparse.h">
@@ -495,13 +459,7 @@
     <ClInclude Include="getstaticDebugInfo_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getval.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="gw_dynamic_generic.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ifexpr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="inittypenames.h">
@@ -526,9 +484,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="run.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="str2sci.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="terme.h">

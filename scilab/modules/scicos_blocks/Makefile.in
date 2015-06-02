@@ -291,7 +291,6 @@ am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-exttriu.lo \
 	src/c/libsciscicos_blocks_algo_la-exttriuz.lo \
 	src/c/libsciscicos_blocks_algo_la-foriterator.lo \
-	src/c/libsciscicos_blocks_algo_la-fromws_c.lo \
 	src/c/libsciscicos_blocks_algo_la-gainblk.lo \
 	src/c/libsciscicos_blocks_algo_la-gainblk_i16e.lo \
 	src/c/libsciscicos_blocks_algo_la-gainblk_i16n.lo \
@@ -490,7 +489,8 @@ am__objects_1 = src/c/libsciscicos_blocks_algo_la-absblk.lo \
 	src/c/libsciscicos_blocks_algo_la-writeau.lo \
 	src/c/libsciscicos_blocks_algo_la-writec.lo \
 	src/c/libsciscicos_blocks_algo_la-zcross2.lo
-am__objects_2 = src/cpp/libsciscicos_blocks_algo_la-affich2.lo
+am__objects_2 = src/cpp/libsciscicos_blocks_algo_la-affich2.lo \
+	src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo
 am__objects_3 = src/fortran/csslti.lo src/fortran/cstblk.lo \
 	src/fortran/delay.lo src/fortran/delayv.lo \
 	src/fortran/demux.lo src/fortran/diffblk.lo \
@@ -1076,7 +1076,6 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/exttriu.c \
     src/c/exttriuz.c \
     src/c/foriterator.c \
-    src/c/fromws_c.c \
     src/c/gainblk.c \
     src/c/gainblk_i16e.c \
     src/c/gainblk_i16n.c \
@@ -1277,7 +1276,8 @@ SCICOS_BLOCKS_C_SOURCES = \
     src/c/zcross2.c
 
 SCICOS_BLOCKS_CXX_SOURCES = \
-    src/cpp/affich2.cpp
+    src/cpp/affich2.cpp \
+    src/cpp/fromws_c.cpp
 
 NON_BLOCK_C_SOURCES = \
     src/c/scicos_evalhermite.c \
@@ -1379,11 +1379,13 @@ libsciscicos_blocks_algo_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/graphics/includes/ \
     -I$(top_srcdir)/modules/graphic_objects/includes/ \
+    -I$(top_srcdir)/modules/hdf5/includes \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/renderer/includes/ \
     -I$(top_srcdir)/modules/scicos/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    $(HDF5_CFLAGS) \
     $(AM_CPPFLAGS)
 
 libsciscicos_blocks_la_CPPFLAGS = \
@@ -1843,8 +1845,6 @@ src/c/libsciscicos_blocks_algo_la-exttriuz.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-foriterator.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_blocks_algo_la-fromws_c.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-gainblk.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_blocks_algo_la-gainblk_i16e.lo:  \
@@ -2249,6 +2249,8 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libsciscicos_blocks_algo_la-affich2.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/fortran/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran
 	@: > src/fortran/$(am__dirstamp)
@@ -2523,7 +2525,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-exttriu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-exttriuz.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-foriterator.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-gain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-gainblk.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-gainblk_i16e.Plo@am__quote@
@@ -2725,6 +2726,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-writec.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-zcross2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-affich2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-scoUtils.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_blocks_cli_la-HelpersCLI.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciscicos_blocks_la-HelpersJNI.Plo@am__quote@
@@ -3537,13 +3539,6 @@ src/c/libsciscicos_blocks_algo_la-foriterator.lo: src/c/foriterator.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/foriterator.c' object='src/c/libsciscicos_blocks_algo_la-foriterator.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-foriterator.lo `test -f 'src/c/foriterator.c' || echo '$(srcdir)/'`src/c/foriterator.c
-
-src/c/libsciscicos_blocks_algo_la-fromws_c.lo: src/c/fromws_c.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-fromws_c.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Tpo -c -o src/c/libsciscicos_blocks_algo_la-fromws_c.lo `test -f 'src/c/fromws_c.c' || echo '$(srcdir)/'`src/c/fromws_c.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Tpo src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fromws_c.c' object='src/c/libsciscicos_blocks_algo_la-fromws_c.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_blocks_algo_la-fromws_c.lo `test -f 'src/c/fromws_c.c' || echo '$(srcdir)/'`src/c/fromws_c.c
 
 src/c/libsciscicos_blocks_algo_la-gainblk.lo: src/c/gainblk.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_blocks_algo_la-gainblk.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_blocks_algo_la-gainblk.Tpo -c -o src/c/libsciscicos_blocks_algo_la-gainblk.lo `test -f 'src/c/gainblk.c' || echo '$(srcdir)/'`src/c/gainblk.c
@@ -4976,6 +4971,13 @@ src/cpp/libsciscicos_blocks_algo_la-affich2.lo: src/cpp/affich2.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciscicos_blocks_algo_la-affich2.lo `test -f 'src/cpp/affich2.cpp' || echo '$(srcdir)/'`src/cpp/affich2.cpp
 
+src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo: src/cpp/fromws_c.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Tpo -c -o src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo `test -f 'src/cpp/fromws_c.cpp' || echo '$(srcdir)/'`src/cpp/fromws_c.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Tpo src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-fromws_c.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/fromws_c.cpp' object='src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libsciscicos_blocks_algo_la-fromws_c.lo `test -f 'src/cpp/fromws_c.cpp' || echo '$(srcdir)/'`src/cpp/fromws_c.cpp
+
 src/cpp/libsciscicos_blocks_algo_la-scoUtils.lo: src/cpp/scoUtils.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_blocks_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libsciscicos_blocks_algo_la-scoUtils.lo -MD -MP -MF src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-scoUtils.Tpo -c -o src/cpp/libsciscicos_blocks_algo_la-scoUtils.lo `test -f 'src/cpp/scoUtils.cpp' || echo '$(srcdir)/'`src/cpp/scoUtils.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-scoUtils.Tpo src/cpp/$(DEPDIR)/libsciscicos_blocks_algo_la-scoUtils.Plo
@@ -5323,30 +5325,26 @@ uninstall-am: uninstall-libsciscicos_blocks_la_etcDATA \
 
 $(top_builddir)/modules/scicos_blocks/build/Cblocknames:Makefile.am $(SCICOS_BLOCKS_C_SOURCES)
 	@echo "-- Generates build/Cblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_C_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.c|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/Cblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/CPPblocknames:Makefile.am $(SCICOS_BLOCKS_CXX_SOURCES)
 	@echo "-- Generates build/CPPblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_CXX_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.cpp|\1|' ;done > $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 
 $(top_builddir)/modules/scicos_blocks/build/Fblocknames: Makefile.am $(SCICOS_BLOCKS_FORTRAN_SOURCES)
 	@echo "-- Generates build/Fblocknames --"
-	@if test ! -d build; then mkdir $(top_builddir)/modules/scicos_blocks/build; fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/build;
 # Get the filename, strip the extension and put into a file
 	@for file in $(SCICOS_BLOCKS_FORTRAN_SOURCES); do echo $$file |sed  's|.*/\([0-9A-Za-z_-]*\)\.f|\1|';done > $(top_builddir)/modules/scicos_blocks/build/Fblocknames
 
 includes/blocks.h: $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames
 	@echo "-- Building includes/blocks.h --"
-	@if test ! -d $(top_builddir)/modules/scicos_blocks/includes/; then \
-		mkdir $(top_builddir)/modules/scicos_blocks/includes/; \
-	fi
+	mkdir -p $(top_builddir)/modules/scicos_blocks/includes;
 	@$(top_srcdir)/modules/scicos_blocks/src/scripts/GenBlocks.sh $(top_builddir)/modules/scicos_blocks/build/Fblocknames $(top_builddir)/modules/scicos_blocks/build/Cblocknames $(top_builddir)/modules/scicos_blocks/build/CPPblocknames $(top_builddir)/modules/scicos_blocks/includes/blocks.h
-
-.NOTPARALLEL: build/Fblocknames build/Cblocknames
 
 # This target enables tests for Scilab
 check-local: $(top_builddir)/scilab-bin test

@@ -39,7 +39,6 @@ libscitime_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

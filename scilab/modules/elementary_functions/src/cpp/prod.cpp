@@ -25,25 +25,27 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
     if (iOrientation == 0) // all
     {
+        int size = pIn->getSize();
         double dblR = pdblInReal[0];
         if (pIn->isComplex())
         {
             double dblI = pdblInImg[0];
             double dblRTmp = 0;
             double dblITmp = 0;
-            for (int i = 1 ; i < pIn->getSize() ; i++)
+            for (int i = 1; i < size; i++)
             {
-                dblRTmp = dblR;
-                dblITmp = dblI;
-                iMultiComplexMatrixByComplexMatrix( &pdblInReal[i], &pdblInImg[i], 1, 1,
-                                                    &dblRTmp, &dblITmp, 1, 1, &dblR, &dblI);
+                dblRTmp = dblR * pdblInReal[i] - dblI * pdblInImg[i];
+                dblITmp = dblR * pdblInImg[i] + dblI * pdblInReal[i];
+
+                dblR = dblRTmp;
+                dblI = dblITmp;
             }
 
             pOut = new types::Double(dblR, dblI);
         }
         else
         {
-            for (int i = 1 ; i < pIn->getSize() ; i++)
+            for (int i = 1; i < size; i++)
             {
                 dblR *= pdblInReal[i];
             }
@@ -72,10 +74,11 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         // init output
         double* pdblOut = pOut->get();
         double* pdblOutImg = pOut->getImg();
+        int size = pOut->getSize();
 
         if (pOut->isComplex())
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 pdblOut[i] = 1;
                 pdblOutImg[i] = 0;
@@ -83,7 +86,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         }
         else
         {
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 pdblOut[i] = 1;
             }
@@ -91,9 +94,10 @@ types::Double* prod(types::Double* pIn, int iOrientation)
 
         // perform operations
         int* piIndex = new int[iDims];
+        size = pIn->getSize();
         if (pIn->isComplex())
         {
-            for (int i = 0 ; i < pIn->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 //get array of dim
                 pIn->getIndexes(i, piIndex);
@@ -112,7 +116,7 @@ types::Double* prod(types::Double* pIn, int iOrientation)
         }
         else
         {
-            for (int i = 0 ; i < pIn->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 //get array of dim
                 pIn->getIndexes(i, piIndex);
@@ -210,6 +214,8 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
 
             delete pdblTempReal;
         }
+
+        delete[]piRanks;
     }
     else // sum following a dimension
     {
@@ -256,6 +262,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             int iIndex = pDblRanksOut->getIndex(piIndex);
             pdblOut[iIndex] += pdblIn[i];
         }
+        pDblRanks->killMe();
 
         // move output ranks from types::Double to int*
         int* piRankMax = new int[pDblRanksOut->getSize()];
@@ -266,6 +273,7 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
             iMaxOutputRank = std::max(iMaxOutputRank, piRankMax[i]);
         }
 
+        pDblRanksOut->killMe();
         // create the outpout polynom
         pOut = new types::Polynom(pIn->getVariableName(), iDims, piDims, piRankMax);
         pOut->setComplex(pIn->isComplex());
@@ -319,7 +327,6 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
         {
             // alloc temporary workspace
             double* pdblTempReal = new double[iMaxOutputRank + 1];
-            double* pdblTempImg  = new double[iMaxOutputRank + 1];
 
             // init output to a matrix of 1 + 0s + 0s²...
             for (int i = 0; i < pOut->getSize(); i++)
@@ -353,6 +360,11 @@ types::Polynom* prod(types::Polynom* pIn, int iOrientation)
 
             delete pdblTempReal;
         }
+
+        delete[] piRankMax;
+        delete[] piRanks;
+        delete[] piIndex;
+        delete[] piDims;
     }
 
     pOut->updateRank();

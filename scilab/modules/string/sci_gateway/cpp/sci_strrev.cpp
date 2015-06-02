@@ -19,6 +19,7 @@
 
 extern "C"
 {
+#include "freeArrayOfString.h"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -54,7 +55,7 @@ types::Function::ReturnValue sci_strrev(types::typed_list &in, int _iRetCount, t
 
     pOutString = new types::String(pString->getDims(), pString->getDimsArray());
     pOutString->set(OutputStrings);
-
+    freeArrayOfWideString(OutputStrings, pString->getSize());
     out.push_back(pOutString);
     return types::Function::OK;
 }

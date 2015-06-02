@@ -53,7 +53,7 @@ const char ** FieldsManager::getFieldsForType(const std::string & typeName, int 
 
 const char ** FieldsManager::getFields(int * addr, char ** fieldPath, const int fieldPathLen, int * fieldsSize)
 {
-    int type;
+    int type = 0;
     const char ** fields = 0;
 #if 0
     SciErr sciErr = getVarType(NULL, addr, &type);
@@ -139,5 +139,13 @@ finish :
     }
 
     return ret;
+}
+
+void FieldsManager::clearFieldsGetter()
+{
+    for (auto field : typeToFieldsGetter)
+    {
+        delete field.second;
+    }
 }
 }

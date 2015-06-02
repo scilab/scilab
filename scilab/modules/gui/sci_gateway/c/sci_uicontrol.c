@@ -20,7 +20,6 @@
 #include "HandleManagement.h"
 #include "sci_malloc.h"             /* MALLOC */
 #include "localization.h"
-#include "stricmp.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "Scierror.h"
@@ -35,7 +34,7 @@
 #include "api_scilab.h"
 #include "createGraphicObject.h"
 #include "expandPathVariable.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 static const char* propertiesNames[] =
 {
@@ -437,6 +436,8 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                     }
                 }
 
+                freeAllocatedSingleString(propertyName);
+
                 if (found == 0)
                 {
                     Scierror(999, _("%s: Unknown property: %s for '%s' handles.\n"), fname, propertyName, "Uicontrol");
@@ -510,7 +511,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
                         if (iScroll)
                         {
                             freeAllocatedSingleString(styleProperty);
-                            styleProperty = strdup("framescrollable");
+                            styleProperty = os_strdup("framescrollable");
                         }
 
                         propertiesValuesIndices[scrollable_property] = NOT_FOUND;
@@ -680,6 +681,7 @@ int sci_uicontrol(char *fname, void* pvApiCtx)
 
         getGraphicObjectProperty(iUicontrol, __GO_POSITION__, jni_double_vector, (void**) &pdblPosition);
         setGraphicObjectProperty(iUicontrol, __GO_POSITION__, pdblPosition, jni_double_vector, 4);
+        releaseGraphicObjectProperty(__GO_POSITION__, pdblPosition, jni_double_vector, 4);
     }
 
     if ((nbInputArgument(pvApiCtx) < 2) || (propertiesValuesIndices[visible_property] == NOT_FOUND))    /* Visible property not set */

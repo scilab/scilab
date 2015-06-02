@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "core_math.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
 
         if (wcslen(pString->get(i)) < wcslen(pCharSample->get(j)))
         {
-            pOutString->set(i, os_wcsdup(L""));
+            pOutString->set(i, L"");
         }
         else
         {
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
 
             if (ptrwstrstr)
             {
-                pOutString->set(i, os_wcsdup(ptrwstrstr));
+                pOutString->set(i, ptrwstrstr);
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
@@ -113,11 +113,10 @@ types::Function::ReturnValue sci_strrchr(types::typed_list &in, int _iRetCount, 
             }
             else
             {
-                pOutString->set(i, os_wcsdup(L""));
+                pOutString->set(i, L"");
                 if (pOutString->get(i) == NULL)
                 {
                     delete pOutString;
-                    FREE(ptrwstrstr);
                     Scierror(999, _("%s: No more memory.\n"), "strrchr");
                     return types::Function::Error;
                 }

@@ -20,7 +20,6 @@ int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     /* To be sure isComplex is 0 or 1 */
     matVariable->isComplex =  matVariable->isComplex != 0;
-
     switch (matVariable->class_type)
     {
         case MAT_C_CELL: /* 1 */
@@ -64,9 +63,18 @@ int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
         case MAT_C_UINT32: /* 13 */
             CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT32, matVariable, parent, item_position);
             break;
-        case MAT_C_OBJECT: /* 3 to be written */
+#ifdef __SCILAB_INT64__
+        case MAT_C_INT64: /* 14 */
+            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT64, matVariable, parent, item_position);
+            break;
+        case MAT_C_UINT64: /* 15 */
+            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT64, matVariable, parent, item_position);
+            break;
+#else
         case MAT_C_INT64: /* 14: no Scilab equivalent */
         case MAT_C_UINT64: /* 15: no Scilab equivalent */
+#endif
+        case MAT_C_OBJECT: /* 3 to be written */
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
             /* Empty matrix returned */

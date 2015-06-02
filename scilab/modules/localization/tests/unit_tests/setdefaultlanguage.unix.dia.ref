@@ -8,7 +8,7 @@
 // returns false in others case
 if getos() == 'Windows' then
  ierr = execstr('setdefaultlanguage()','errcatch');
- if ierr <> 77 then bugmes();quit;end
+ if ierr <> 999 then bugmes();quit;end
  ierr = execstr('setdefaultlanguage(1)','errcatch');
  if ierr <> 999 then bugmes();quit;end
  warning('off');

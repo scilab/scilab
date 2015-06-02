@@ -16,7 +16,7 @@
 #include "localization.h"
 #include "HandleManagement.h"
 #include "BuildObjects.h"
-#include "stricmp.h"
+#include "os_string.h"
 
 int sci_light(char *fname, void* pvApiCtx)
 {

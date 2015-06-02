@@ -4,18 +4,7 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-DATA_STRUCTURES_FORTRAN_SOURCES = \
-    src/fortran/extractfields.f \
-    src/fortran/forcerhs.f \
-    src/fortran/lsstyp.f \
-    src/fortran/udptr.f \
-    src/fortran/rattyp.f \
-    src/fortran/gratyp.f \
-    src/fortran/mlist.f \
-    src/fortran/insertfield.f
-
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_glist.c \
     sci_gateway/c/gw_data_structures1.c \
     sci_gateway/c/gw_data_structures2.c
 
@@ -41,27 +30,20 @@ libscidata_structures_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
-    $(EIGEN_CPPFLAGS) \
+    -I$(top_srcdir)/modules/threads/includes/ \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidata_structures.la
-noinst_LTLIBRARIES = libscidata_structures-algo.la
 else
-noinst_LTLIBRARIES = libscidata_structures-algo.la libscidata_structures.la
+noinst_LTLIBRARIES = libscidata_structures.la
 endif
 
-
-libscidata_structures_algo_la_SOURCES = $(DATA_STRUCTURES_FORTRAN_SOURCES)
 libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
-libscidata_structures_algo_la_CPPFLAGS = $(libscidata_structures_la_CPPFLAGS)
 
 # For the code check (splint)
 CHECK_SRC= $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
-
-libscidata_structures_la_LIBADD = libscidata_structures-algo.la
-
 
 #### Target ######
 modulename=data_structures

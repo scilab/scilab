@@ -25,6 +25,7 @@ extern "C"
 
 #include "threadId.hxx"
 
+
 class CORE_IMPEXP Runner
 {
 private :
@@ -33,6 +34,7 @@ private :
         m_theProgram = _theProgram;
         m_visitor = _visitor;
     }
+
     ~Runner()
     {
         delete m_theProgram;
@@ -41,9 +43,8 @@ private :
 
 public :
 
-    static void init();
-
-    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
+    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
+                            bool _isInterruptible, bool _isPrioritary, bool _isConsoleCommand);
 
     void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
 
@@ -77,10 +78,6 @@ public :
         m_threadKey = _threadId;
     }
 
-    static void UnlockPrompt();
-
-    static void LockPrompt();
-
 private :
     static void *launch(void *args);
 
@@ -89,10 +86,5 @@ private :
     __threadId m_threadId;
     ast::Exp*           m_theProgram;
     ast::ExecVisitor*   m_visitor;
-
-private :
-    static __threadSignal m_awakeScilab;
-    static __threadSignalLock m_awakeScilabLock;
-    static __threadLock m_lock;
 };
 #endif /* !__RUNNER_HXX__ */

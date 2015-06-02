@@ -23,7 +23,7 @@
 #include "core_math.h"
 #include "strsubst.h"
 #include "BOOL.h"
-#include "os_strdup.h"
+#include "os_string.h"
 
 /*--------------------------------------------------------------------------*/
 #define EOL "\n"

@@ -13,15 +13,18 @@
 #ifndef AST_RUNVISITOR_HXX
 #define AST_RUNVISITOR_HXX
 
-#include <set>
-
+#include "context.hxx"
 #include "all.hxx"
 #include "types.hxx"
-#include "alltypes.hxx"
+#include "double.hxx"
+#include "bool.hxx"
+#include "dollar.hxx"
+#include "colon.hxx"
+#include "string.hxx"
+#include "void.hxx"
 #include "configvariable.hxx"
 #include "overload.hxx"
 #include "scilabWrite.hxx"
-#include "context.hxx"
 #include "variables.hxx"
 
 extern "C" {
@@ -39,8 +42,8 @@ public:
     RunVisitor()
     {
         _excepted_result = -1;
-        _resultVect.push_back(NULL);
-        _result = NULL;
+        _resultVect.push_back(nullptr);
+        _result = nullptr;
         m_bSingleResult = true;
         m_pAns = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"ans"));
     }
@@ -56,10 +59,10 @@ public:
         {
             for (vector<types::InternalType*>::iterator rv = _resultVect.begin() + 1, end = _resultVect.end(); rv != end; ++rv)
             {
-                if (*rv != NULL)
+                if (*rv != nullptr)
                 {
                     (*rv)->killMe();
-                    *rv = NULL;
+                    *rv = nullptr;
                 }
             }
         }
@@ -69,7 +72,7 @@ public:
     {
         if (isSingleResult())
         {
-            if (_result != NULL)
+            if (_result != nullptr)
             {
                 //                    std::cout << "before single delete : " << _result << std::endl;
                 _result->killMe();
@@ -80,7 +83,7 @@ public:
         {
             for (vector<types::InternalType*>::iterator rv = _resultVect.begin(), end = _resultVect.end(); rv != end; rv++)
             {
-                if (*rv != NULL)
+                if (*rv != nullptr)
                 {
                     (*rv)->killMe();
                 }
@@ -88,7 +91,7 @@ public:
         }
         _resultVect.clear();
         m_bSingleResult = true;
-        _result = NULL;
+        _result = nullptr;
     }
 
 public:
@@ -106,7 +109,7 @@ public:
     {
         if (isSingleResult())
         {
-            if (_result == NULL)
+            if (_result == nullptr)
             {
                 return 0;
             }
@@ -142,7 +145,7 @@ public:
 
         if (_iPos >= static_cast<int>(_resultVect.size()))
         {
-            return NULL;
+            return nullptr;
         }
         return _resultVect[_iPos];
     }
@@ -168,7 +171,7 @@ public:
         m_bSingleResult = false;
         if (_iPos >= static_cast<int>(_resultVect.size()))
         {
-            _resultVect.resize(_iPos + 1, NULL);
+            _resultVect.resize(_iPos + 1, nullptr);
         }
 
         _resultVect[_iPos] = const_cast<types::InternalType *>(gtVal);
@@ -184,7 +187,7 @@ public:
     {
         if (out.size() == 0)
         {
-            setResult(NULL);
+            setResult(nullptr);
         }
         else if (out.size() == 1)
         {
@@ -314,7 +317,7 @@ public :
             }
         }
         //to be sure, delete operation does not delete result
-        setResult(NULL);
+        setResult(nullptr);
         return pArgs;
     }
 
@@ -345,11 +348,14 @@ public :
     void visitprivate(const CallExp &e);
     void visitprivate(const CellCallExp &e);
     void visitprivate(const OptimizedExp &e);
+    void visitprivate(const MemfillExp &e);
     void visitprivate(const DAXPYExp &e);
+    void visitprivate(const IntSelectExp &e);
+    void visitprivate(const StringSelectExp &e);
 
     void visitprivate(const StringExp &e)
     {
-        if (e.getConstant() == NULL)
+        if (e.getConstant() == nullptr)
         {
             types::String *psz = new types::String(e.getValue().c_str());
             (const_cast<StringExp *>(&e))->setConstant(psz);
@@ -361,7 +367,7 @@ public :
 
     void visitprivate(const DoubleExp  &e)
     {
-        if (e.getConstant() == NULL)
+        if (e.getConstant() == nullptr)
         {
             Double *pdbl = new Double(e.getValue());
             (const_cast<DoubleExp *>(&e))->setConstant(pdbl);
@@ -373,7 +379,7 @@ public :
 
     void visitprivate(const BoolExp  &e)
     {
-        if (e.getConstant() == NULL)
+        if (e.getConstant() == nullptr)
         {
             Bool *pB = new Bool(e.getValue());
             (const_cast<BoolExp *>(&e))->setConstant(pB);
@@ -391,9 +397,11 @@ public :
 
     void visitprivate(const SimpleVar &e)
     {
-        InternalType *pI = symbol::Context::getInstance()->get(((SimpleVar&)e).getStack());
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Variable* var = ((SimpleVar&)e).getStack();
+        InternalType *pI = ctx->get(var);
         setResult(pI);
-        if (pI != NULL)
+        if (pI != nullptr)
         {
             if (e.isVerbose() && pI->isCallable() == false && ConfigVariable::isPromptShow())
             {
@@ -409,6 +417,20 @@ public :
                 ostrName  << e.getSymbol().getName();
                 VariableToString(pI, ostrName.str().c_str());
             }
+
+            //check if var is recalled in current scope like
+            //function f()
+            //  a; //<=> a=a;
+            //  a(2) = 18;
+            //endfunction
+            if (e.getParent()->isSeqExp())
+            {
+                if (ctx->getScopeLevel() > 1 && var->empty() == false && var->top()->m_iLevel != ctx->getScopeLevel())
+                {
+                    //put var in current scope
+                    ctx->put(var, pI);
+                }
+            }
         }
         else
         {
@@ -417,7 +439,7 @@ public :
 
             char* strErr =  wide_string_to_UTF8(e.getSymbol().getName().c_str());
 
-            sprintf(pstError, _("Undefined variable: %s\n"), strErr);
+            os_sprintf(pstError, _("Undefined variable: %s\n"), strErr);
             pwstError = to_wide_string(pstError);
             FREE(strErr);
             std::wstring wstError(pwstError);

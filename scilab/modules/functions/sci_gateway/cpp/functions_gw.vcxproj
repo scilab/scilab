@@ -199,7 +199,11 @@
     <ClCompile Include="sci_getCurrentThreadId.cpp" />
     <ClCompile Include="sci_getThreads.cpp" />
     <ClCompile Include="sci_jit.cpp" />
+    <ClCompile Include="sci_libraryinfo.cpp" />
+    <ClCompile Include="sci_librarieslist.cpp" />
     <ClCompile Include="sci_macrovar.cpp" />
+    <ClCompile Include="sci_testAnalysis.cpp" />
+    <ClCompile Include="sci_testGVN.cpp" />
     <ClCompile Include="sci_whereis.cpp" />
   </ItemGroup>
   <ItemGroup>

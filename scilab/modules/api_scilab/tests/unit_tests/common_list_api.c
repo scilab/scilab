@@ -20,7 +20,7 @@ void insert_indent(void);
 
 static int iLocalTab = 1;
 
-int common_list(char *fname, unsigned long fname_len)
+int common_list(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr = NULL;

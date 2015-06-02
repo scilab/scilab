@@ -75,5 +75,12 @@
 #include "listexp.hxx"
 #include "optimizedexp.hxx"
 #include "daxpyexp.hxx"
+#include "fastselectexp.hxx"
+#include "intselectexp.hxx"
+#include "mapintselectexp.hxx"
+#include "smallintselectexp.hxx"
+#include "stringselectexp.hxx"
+#include "tableintselectexp.hxx"
+#include "memfillexp.hxx"
 
 #endif /* !AST_ALLEXP_HXX */

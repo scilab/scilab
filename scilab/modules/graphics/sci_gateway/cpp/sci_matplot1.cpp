@@ -25,6 +25,7 @@
 #include "graphichandle.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
+#include "int.hxx"
 
 extern "C"
 {
@@ -57,8 +58,8 @@ types::Function::ReturnValue sci_matplot1(types::typed_list &in, int _iRetCount,
 
     if (in.size() < 1)
     {
-        return Overload::call(L"%_Matplot1", in, _iRetCount, out, new ast::ExecVisitor());
-
+        ast::ExecVisitor exec;
+        return Overload::call(L"%_Matplot1", in, _iRetCount, out, &exec);
     }
     else if (in.size() != 2)
     {

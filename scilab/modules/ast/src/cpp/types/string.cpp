@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "charEncoding.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 }
 
@@ -92,7 +92,7 @@ String::String(int _iRows, int _iCols, wchar_t const* const* _pstData)
     create(piDims, 2, &pwsData, NULL);
     for (int i = 0 ; i < m_iSize ; i++)
     {
-        set(i, os_wcsdup(_pstData[i]));
+        set(i, _pstData[i]);
     }
 #ifndef NDEBUG
     Inspector::addItem(this);
@@ -125,7 +125,7 @@ void String::deleteString(int _iPos)
 
 void String::deleteAll()
 {
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0 ; i < m_iSizeMax ; i++)
     {
         deleteString(i);
     }
@@ -157,7 +157,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
 
         int iPos = getIndex(_piDims);
         wchar_t* wcsStr = get(iPos);
-        int iCurLen = wcslen(wcsStr);
+        int iCurLen = static_cast<int>(wcslen(wcsStr));
         iMaxLen = std::max(iMaxLen, iCurLen);
         iMaxLen = std::min(iMaxLen, iStrMaxSize);
 
@@ -219,7 +219,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
             _piDims[0] = i;
             int iPos = getIndex(_piDims);
             wchar_t* wcsStr = get(iPos);
-            int iCurLen = wcslen(wcsStr);
+            int iCurLen = static_cast<int>(wcslen(wcsStr));
 
             ostr << L"!";
             if (iCurLen > iMaxLen)
@@ -373,7 +373,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                         _piDims[1] = iCols2;
                         int iPos = getIndex(_piDims);
                         wchar_t* wcsStr = get(iPos);
-                        int iLenStr = wcslen(wcsStr);
+                        int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                         // Manage case where string length is greater than max line size.
                         if (iLenStr > iStrMaxSize)
@@ -461,7 +461,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 _piDims[1] = iCols2;
                 int iPos = getIndex(_piDims);
                 wchar_t* wcsStr = get(iPos);
-                int iLenStr = wcslen(wcsStr);
+                int iLenStr = static_cast<int>(wcslen(wcsStr));
 
                 // Manage case where string length is greater than max line size.
                 if (iStrMaxSize < iLenStr)
@@ -483,7 +483,7 @@ bool String::subMatrixToString(wostringstream& ostr, int* _piDims, int /*_iDims*
                 {
                     configureStream(&ostemp, piSize[iCols2], iPrecision, ' ');
                     ostemp << left << get(iPos) << spaces;
-                    iLen += piSize[iCols2] + spaces.size();
+                    iLen += piSize[iCols2] + static_cast<int>(spaces.size());
                 }
             }
             ostemp << L"!" << endl;
@@ -551,12 +551,34 @@ String* String::createEmpty(int _iDims, int* _piDims, bool /*_bComplex*/)
 
 wchar_t* String::copyValue(wchar_t* _pwstData)
 {
-    return os_wcsdup(_pwstData);
+    try
+    {
+        return os_wcsdup(_pwstData);
+    }
+    catch (std::bad_alloc & /*e*/)
+    {
+        char message[bsiz];
+        os_sprintf(message, _("Can not allocate data.\n"));
+        ast::ScilabError se(message);
+        se.SetErrorNumber(999);
+        throw (se);
+    }
+    return NULL;
+
 }
 
 wchar_t* String::copyValue(const wchar_t* _pwstData)
 {
     return os_wcsdup(_pwstData);
+}
+
+void String::deleteData(wchar_t* data)
+{
+    if (data)
+    {
+        // data are always allocated using C-like malloc API
+        FREE(data);
+    }
 }
 
 bool String::set(int _iPos, const wchar_t* _pwstData)
@@ -565,6 +587,8 @@ bool String::set(int _iPos, const wchar_t* _pwstData)
     {
         return false;
     }
+
+    deleteString(_iPos);
     m_pRealData[_iPos] = copyValue(_pwstData);
     return true;
 }
@@ -577,12 +601,7 @@ bool String::set(int _iRows, int _iCols, const wchar_t* _pwstData)
 
 bool String::set(const wchar_t* const* _pwstData)
 {
-    if (m_pRealData == NULL)
-    {
-        return false;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < getSize(); i++)
     {
         if (set(i, _pwstData[i]) == false)
         {
@@ -594,12 +613,10 @@ bool String::set(const wchar_t* const* _pwstData)
 
 bool String::set(int _iPos, const char* _pcData)
 {
-    if (m_pRealData == NULL || _iPos >= m_iSize)
-    {
-        return false;
-    }
-    m_pRealData[_iPos] = to_wide_string(_pcData);
-    return true;
+    wchar_t* w = to_wide_string(_pcData);
+    bool ret = set(_iPos, w);
+    FREE(w);
+    return ret;
 }
 
 bool String::set(int _iRows, int _iCols, const char* _pcData)
@@ -610,12 +627,7 @@ bool String::set(int _iRows, int _iCols, const char* _pcData)
 
 bool String::set(const char* const* _pstrData)
 {
-    if (m_pRealData == NULL)
-    {
-        return false;
-    }
-
-    for (int i = 0 ; i < getSize() ; i++)
+    for (int i = 0; i < getSize(); i++)
     {
         if (set(i, _pstrData[i]) == false)
         {
@@ -627,8 +639,20 @@ bool String::set(const char* const* _pstrData)
 
 wchar_t** String::allocData(int _iSize)
 {
-    wchar_t** pStr = new wchar_t*[_iSize];
-    memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+    wchar_t** pStr = nullptr;
+    try
+    {
+        pStr = new wchar_t*[_iSize];
+        memset(pStr, 0x00, _iSize * sizeof(wchar_t*));
+    }
+    catch (std::bad_alloc & /*e*/)
+    {
+        char message[bsiz];
+        os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
+        ast::ScilabError se(message);
+        se.SetErrorNumber(999);
+        throw (se);
+    }
     return pStr;
 }
 

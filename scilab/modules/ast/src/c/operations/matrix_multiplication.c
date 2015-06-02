@@ -156,13 +156,25 @@ int iMultiScilabPolynomByScilabPolynom(
 {
     int i1		= 0;
     int i2		= 0;
+    double dblMult = 0.0;
+    double dblAdd = 0.0;
 
     memset(_pdblRealOut, 0x00, _iRankOut * sizeof(double));
+
     for (i1 = 0 ; i1 < _iRank1 ; i1++)
     {
         for (i2 = 0 ; i2 < _iRank2 ; i2++)
         {
-            _pdblRealOut[i1 + i2] += _pdblReal1[i1] * _pdblReal2[i2];
+            dblMult = _pdblReal1[i1] * _pdblReal2[i2];
+            dblAdd = _pdblRealOut[i1 + i2] + dblMult;
+            if (fabs(dblAdd) > 2 * getRelativeMachinePrecision() * Max(fabs(_pdblRealOut[i1 + i2]), fabs(dblMult)))
+            {
+                _pdblRealOut[i1 + i2] = dblAdd;
+            }
+            else
+            {
+                _pdblRealOut[i1 + i2] = 0.0;
+            }
         }
     }
     return 0;

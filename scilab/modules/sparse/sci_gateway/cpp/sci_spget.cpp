@@ -183,6 +183,18 @@ types::Function::ReturnValue sci_spget(types::typed_list &in, int _iRetCount, ty
             out.push_back(pValues);
         }
     }
+    else
+    {
+        if (pBools)
+        {
+            pBools->killMe();
+        }
+
+        if (pValues)
+        {
+            pValues->killMe();
+        }
+    }
 
     if (_iRetCount > 2)
     {

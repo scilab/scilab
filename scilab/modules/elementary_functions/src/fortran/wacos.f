@@ -44,6 +44,8 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *     EXTERNAL FUNCTIONS
       double precision dlamch, logp1
       external         dlamch, logp1
+      integer          isanan
+      external         isanan
 
 *     CONSTANTS
       double precision LN2, PI, HALFPI, Across, Bcross
@@ -77,7 +79,7 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
       y = abs(zi)
       szr = sign(1.d0,zr)
       szi = sign(1.d0,zi)
-
+            
 
       if (LINF .le. min(x,y) .and. max(x,y) .le. LSUP ) then
 *        we are in the safe region
@@ -124,8 +126,13 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
                endif
             endif
          elseif (y .lt. LINF) then
-            ar = sqrt(y)
-            ai = ar
+             if (isanan(x).eq.1) then
+                 ar = x
+                 ai = y
+             else
+                 ar = sqrt(y)
+                 ai = ar
+             endif
          elseif (EPSM*y - 1.d0 .ge. x) then
             ar = HALFPI
             ai = LN2 + log(y)
@@ -133,7 +140,11 @@ c http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
             ar = atan(y/x)
             ai = LN2 + log(y) + 0.5d0*logp1((x/y)**2)
          else
-            ar = HALFPI
+             if (isanan(x).eq.1) then
+                 ar = x
+             else
+                 ar = HALFPI
+             endif
             A = sqrt(1.d0 + y**2)
             ai = 0.5d0*logp1(2.d0*y*(y+A))
          endif

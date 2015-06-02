@@ -23,9 +23,9 @@ import java.nio.IntBuffer;
  * This class is {@link java.io.Serializable} and any modification could impact
  * load and store of data (Xcos files, Javasci saved data, etc...).<br>
  * <br>
- * Example:<br />
+ * Example:<BR>
  * <code>
- * boolean [][]a={{true,false,true}, {true,true,true}};<br />
+ * boolean [][]a={{true,false,true}, {true,true,true}};<BR>
  * ScilabBoolean aMatrix = new ScilabBoolean(a);
  * </code>
  *

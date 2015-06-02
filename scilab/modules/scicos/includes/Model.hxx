@@ -14,9 +14,8 @@
 #define MODEL_HXX_
 
 #include <vector>
-#include <map>
+#include <unordered_map>
 #include <string>
-#include <memory>
 
 #include "utilities.hxx"
 #include "model/BaseObject.hxx"
@@ -37,6 +36,8 @@ public:
      */
 
     ScicosID createObject(kind_t k);
+    unsigned referenceObject(const ScicosID uid);
+    unsigned& referenceCount(ScicosID uid);
     void deleteObject(ScicosID uid);
 
     bool getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, double& v) const;
@@ -60,17 +61,32 @@ public:
     update_status_t setObjectProperty(ScicosID uid, kind_t k, object_properties_t p, const std::vector<ScicosID>& v);
 
     /*
-     * Model internal methods
+     * Model custom methods
      */
 
-    std::shared_ptr<model::BaseObject> getObject(ScicosID uid) const;
+    model::BaseObject* getObject(ScicosID uid) const;
+    template<typename T>
+    T* getObject(ScicosID uid) const
+    {
+        return static_cast<T*>(getObject(uid));
+    };
 
     model::Datatype* flyweight(const model::Datatype& d);
     void erase(model::Datatype* d);
 
 private:
     ScicosID lastId;
-    typedef std::map<ScicosID, std::shared_ptr<model::BaseObject> > objects_map_t;
+    bool has_looped;
+
+    struct ModelObject
+    {
+        ModelObject(model::BaseObject* o) : m_o(o), m_refCounter(0) {}
+
+        model::BaseObject* m_o;
+        unsigned m_refCounter;
+    };
+
+    typedef std::unordered_map<ScicosID, ModelObject > objects_map_t;
     objects_map_t allObjects;
 
     typedef std::vector<model::Datatype*> datatypes_set_t;

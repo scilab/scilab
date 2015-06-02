@@ -158,15 +158,10 @@ includes/dynlib_string_gw.h \
 includes/dynlib_string.h \
 includes/getfastcode.h \
 includes/men_Sutils.h \
-includes/os_strdup.h \
-includes/os_stricmp.h \
-includes/os_swprintf.h \
-includes/os_wcsdup.h \
-includes/os_wcsicmp.h \
+includes/os_string.h \
 includes/os_wcstok.h \
 includes/pcre_private.h \
 includes/scistrtostr.h \
-includes/stricmp.h \
 includes/StringConvert.h \
 includes/string_gw.hxx \
 includes/stringToComplex.h \

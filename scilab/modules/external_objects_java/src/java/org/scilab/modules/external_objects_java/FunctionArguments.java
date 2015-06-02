@@ -153,6 +153,19 @@ public final class FunctionArguments {
                 return to.isArray() && from == to.getComponentType();
             }
         });
+
+        // Converter to convert Double to double[]
+        registerConverter(new Converter() {
+            @Override
+            public Object convert(Object original, Class<?> to) {
+                return ScilabJavaArray.singleToOneDim(to.getComponentType(), original);
+            }
+
+            @Override
+            public boolean canConvert(Class<?> from, Class<?> to) {
+                return to.isArray() && ScilabJavaArray.mappings.get(from) == to.getComponentType();
+            }
+        });
     }
 
     /**

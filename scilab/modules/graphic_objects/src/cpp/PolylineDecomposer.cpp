@@ -667,6 +667,8 @@ void PolylineDecomposer::fillColors(int id, float* buffer, int bufferLength, int
 
     int interpColorMode = 0;
     int* piInterpColorMode = &interpColorMode;
+    int colorSet = 0;
+    int* piColorSet = &colorSet;
     int polylineStyle = 0;
     int* piPolylineStyle = &polylineStyle;
     int nPoints = 0;
@@ -679,15 +681,16 @@ void PolylineDecomposer::fillColors(int id, float* buffer, int bufferLength, int
     double* colormap = NULL;
 
     getGraphicObjectProperty(id, __GO_INTERP_COLOR_MODE__, jni_bool, (void**) &piInterpColorMode);
+    getGraphicObjectProperty(id, __GO_COLOR_SET__, jni_bool, (void**) &piColorSet);
 
-    if (interpColorMode == 0)
+    if (interpColorMode == 0 && colorSet == 0)
     {
         return;
     }
 
     getGraphicObjectProperty(id, __GO_POLYLINE_STYLE__, jni_int, (void**) &piPolylineStyle);
 
-    if (polylineStyle  != 1)
+    if (polylineStyle != 1 && colorSet == 0)
     {
         return;
     }
@@ -718,39 +721,76 @@ void PolylineDecomposer::fillColors(int id, float* buffer, int bufferLength, int
         return;
     }
 
-    /*
-     * The interpolated color vector is a 3- or 4-element vector.
-     * However, if nPoints is greater than 4, we choose to output
-     * 4 colors (this behaviour is kept for compatibility, see fillTriangleIndices).
-     */
-    if (nPoints < 3)
+    if (interpColorMode == 1)
     {
-        return;
+        /*
+         * The interpolated color vector is a 3- or 4-element vector.
+         * However, if nPoints is greater than 4, we choose to output
+         * 4 colors (this behaviour is kept for compatibility, see fillTriangleIndices).
+         */
+        if (nPoints < 3)
+        {
+            return;
+        }
+
+        getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
+
+        if (nPoints > 4)
+        {
+            nPoints = 4;
+        }
+
+        for (int i = 0; i < nPoints; i++)
+        {
+            ColorComputer::getDirectColor((double) interpColorVector[i] - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
+
+            if (elementsSize == 4)
+            {
+                buffer[bufferOffset + 3] = 1.0;
+            }
+
+            bufferOffset += elementsSize;
+        }
+
+        releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+        releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
     }
-
-    getGraphicObjectProperty(id, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void**) &interpColorVector);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
-    getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
-
-    if (nPoints > 4)
+    else
     {
-        nPoints = 4;
-    }
+        int* colors = NULL;
+        int numColors = 0;
+        int * piNumColors = &numColors;
+        int min;
 
-    for (int i = 0; i < nPoints; i++)
-    {
-        ColorComputer::getDirectColor((double) interpColorVector[i] - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
-
-        if (elementsSize == 4)
+        getGraphicObjectProperty(id, __GO_DATA_MODEL_NUM_COLORS__, jni_int, (void**) &piNumColors);
+        getGraphicObjectProperty(id, __GO_DATA_MODEL_COLORS__, jni_int_vector, (void**) &colors);
+        if (!colors)
         {
             buffer[bufferOffset + 3] = 1.0;
         }
 
-        bufferOffset += elementsSize;
-    }
+        min = nPoints < numColors ? nPoints : numColors;
 
-    releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
-    releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP__, jni_double_vector, (void**) &colormap);
+        getGraphicObjectProperty(parentFigure, __GO_COLORMAP_SIZE__, jni_int, (void**) &piColormapSize);
+
+        for (int i = 0; i < min; i++)
+        {
+            ColorComputer::getDirectColor(colors[i] - 1.0, colormap, colormapSize, &buffer[bufferOffset]);
+
+            if (elementsSize == 4)
+            {
+                buffer[bufferOffset + 3] = 1.0;
+            }
+
+            bufferOffset += elementsSize;
+        }
+
+        releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);
+        releaseGraphicObjectProperty(__GO_INTERP_COLOR_VECTOR__, interpColorVector, jni_int_vector, 0);
+    }
 }
 
 void PolylineDecomposer::fillTextureCoordinates(int id, float* buffer, int bufferLength)

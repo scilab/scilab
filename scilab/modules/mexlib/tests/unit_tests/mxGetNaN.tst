@@ -6,22 +6,20 @@
 // ============================================================================
 
 // <-- JVM NOT MANDATORY -->
-// <-- ENGLISH IMPOSED -->
 // ============================================================================
 // Unitary tests for mxGetNaN mex function
 // ============================================================================
 
 cd(TMPDIR);
 ilib_verbose(0);
-mputl(['#include ""mex.h""';
-       'void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])';
-       '{';
-       '    double dblNaN = mxGetNaN();';
-       '    mxArray* pOut = mxCreateDoubleScalar(dblNaN);';
-       '    plhs[0] = pOut;';
-       '}'],'mexgetNaN.c');
-ilib_mex_build('libmextest',['getNaN','mexgetNaN','cmex'], 'mexgetNaN.c',[],'Makelib','','','');
-exec('loader.sce');
+mputl(["#include ""mex.h""";
+"void mexFunction(int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[])";
+"{";
+"    double dblNaN = mxGetNaN();";
+"    mxArray* pOut = mxCreateDoubleScalar(dblNaN);";
+"    plhs[0] = pOut;";
+"}"],"mexgetNaN.c");
+ilib_mex_build("libmextest",["getNaN","mexgetNaN","cmex"], "mexgetNaN.c",[]);
+exec("loader.sce");
 
-a = getNaN();
-if isnan(a) <> %t then pause end
+assert_checktrue(isnan(getNaN()));

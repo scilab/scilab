@@ -41,6 +41,11 @@ public :
         return true;
     }
 
+    inline bool             isGenericType()
+    {
+        return false;
+    }
+
 public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
@@ -50,14 +55,20 @@ public :
     InternalType*   clone() = 0;
 
 public :
-    /*** User can overload these methode ***/
-    /*** all methode not overloaded will call scilab overload       ***/
+    /*** User can overload these methods                            ***/
+    /*** all methods not overloaded will call scilab overload       ***/
 
     // hasToString return false so scilab will call overload %..._p
     // and toString method is useless
     // if user overload hasToString for return true, he must overload toString method
     // bool toString(std::wostringstream& ostr)
-    virtual bool    hasToString()
+    virtual bool hasToString()
+    {
+        return false;
+    }
+
+    // overload this method if hasToString method return true
+    virtual bool toString(std::wostringstream& /*ostr*/)
     {
         return false;
     }
@@ -70,15 +81,15 @@ public :
         return NULL;
     }
 
-    // extraction by field
+    // this method is called to perform an extraction by field. ie : a = myUserType.myfield
     // name is the field name
     // out contain extraction of field
-    virtual bool            extract(const std::wstring & /*name*/, InternalType *& /*out*/)
+    virtual bool          extract(const std::wstring & /*name*/, InternalType *& /*out*/)
     {
         return false;
     }
 
-    // extraction by value
+    // extraction by value, this method can be only called by "invoke" method below.
     // _pArs is a list of scilab types:: of where we want to extract
     // return all element extracted, in case when multiple elements returned
     // these elements must be stored in a types::List
@@ -87,10 +98,49 @@ public :
         return NULL;
     }
 
+    // if return false , Scilab will never call "invoke" method
+    virtual bool isInvokable() const
+    {
+        return true;
+    }
+
+    // hasInvokeOption must return true to call the user type with optional argument.
+    // ie : myUserType(a,b, opt=value, opt2=value2,...)
+    // in this case, "types::optional_list& opt" will contain opt and opt2.
+    // by default this method return false, the optional list is empty and the input list contains all arguments.
+    virtual bool hasInvokeOption() const
+    {
+        return false;
+    }
+
+    // invoke method is called when a UserType is called with "(...)" ie : a = myUserType(...)
+    // This implementation allow the use of extract method above, but it can be overloaded.
+    // Inputs :
+    //  in          : contain input arguments myUserType(arg1,arg2,...)
+    //  opt         : contain optional input arguments myUserType(arg1=..., arg2=..., ...)
+    //  _iRetCount  : is the number of output arguments (ie : [a,b] = myUserType(...), _iRetCount = 2)
+    //  out         : after "invoke" execution, will contain results
+    //  execFunc    : is used in case of macro call : Overload::call(L"A_Macro", in, _iRetCount, out, execFunc);
+    //  e           : Generally used to return the Location when thowing an error. ie : throw ast::ScilabError(L"error message", 999, e.getLocation());
+    // Outputs :
+    // if false, Scilab will call the macro %UserType_e,where UserType is the string return by the method getShortTypeStr()
+    // if true, Scilab will set each elements of out in Scilab variables
+    virtual bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
+    {
+        InternalType* pIT = extract(&in);
+        if (pIT)
+        {
+            out.push_back(pIT);
+            return true;
+        }
+
+        return false;
+    }
+
     // used to compute the iterator in scilab loop "for"
     // when type is a two dimensions array
     // _iPos is the column position
-    virtual GenericType*    getColumnValues(int /*_iPos*/)
+    virtual GenericType*  getColumnValues(int /*_iPos*/)
     {
         return NULL;
     }

@@ -22,7 +22,7 @@
 #include "string.hxx"
 extern "C"
 {
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 void fillAddFunction();

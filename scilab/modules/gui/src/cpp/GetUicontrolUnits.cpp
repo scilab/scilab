@@ -22,6 +22,7 @@ void* GetUicontrolUnits(void* _pvCtx, int iObjUID)
     char* units = NULL;
     int type = -1;
     int *piType = &type;
+    void* ret = NULL;
 
     /* Handle must be a uicontrol */
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
@@ -32,5 +33,7 @@ void* GetUicontrolUnits(void* _pvCtx, int iObjUID)
     }
 
     getGraphicObjectProperty(iObjUID, __GO_UI_UNITS__, jni_string, (void**) &units);
-    return sciReturnString(units);
+    ret = sciReturnString(units);
+    releaseGraphicObjectProperty(__GO_UI_UNITS__, units, jni_string, 1);
+    return ret;
 }

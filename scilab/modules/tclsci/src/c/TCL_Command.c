@@ -19,7 +19,7 @@
 #include <unistd.h>
 #endif
 
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"

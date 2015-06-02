@@ -24,7 +24,7 @@
 #include "getos.h"
 #include "api_scilab.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "getVideoAdapters.h"
 #include "freeArrayOfString.h"
 #include "GetWindowsVersion.h"

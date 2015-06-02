@@ -25,7 +25,7 @@
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "CreateUimenu.h"
 #include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"

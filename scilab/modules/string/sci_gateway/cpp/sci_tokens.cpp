@@ -21,7 +21,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "tokens.h"
 #include "core_math.h"
 #include "localization.h"

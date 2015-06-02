@@ -11,17 +11,20 @@
 */
 
 #include <string.h>
+#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
+//#include "debugvisitor.hxx"
 #include "execvisitor.hxx"
 #include "mutevisitor.hxx"
 #include "printvisitor.hxx"
-#include "AnalysisVisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "context.hxx"
+#include "runner.hxx"
+#include "threadmanagement.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -30,11 +33,11 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "os_wcsicmp.h"
+#include "os_string.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define MUTE_FLAG       L"n"
@@ -197,14 +200,24 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     {
         analysis::AnalysisVisitor analysis;
         pExp->accept(analysis);
+        //ast::DebugVisitor debugMe;
+        //pExp->accept(debugMe);
     }
 
     ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
 
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd ; ++j)
+    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+
+    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
     {
         try
         {
+            if (pThreadMe && pThreadMe->getInterrupt())
+            {
+                ThreadManagement::SendAstPendingSignal();
+                pThreadMe->suspend();
+            }
+
             //excecute script
             ExecVisitor execMe;
             (*j)->accept(execMe);
@@ -235,7 +248,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                         }
                         else
                         {
-                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
+                            for (int i = 0; i < static_cast<int>(out.size()); i++)
                             {
                                 out[i]->DecreaseRef();
                                 execMe.setResult(i, out[i]);
@@ -297,7 +310,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             {
                 InternalType* pITAns = execMe.getResult();
                 symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                if ( (*j)->isVerbose() && bErrCatch == false)
+                if ((*j)->isVerbose() && bErrCatch == false)
                 {
                     std::wostringstream ostr;
                     ostr << L" ans  =" << std::endl;
@@ -317,7 +330,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         catch (ScilabMessage sm)
         {
             ConfigVariable::setSilentError(iOldSilentError);
-            if (bErrCatch  == false && bMute == false)
+            if (bErrCatch == false && bMute == false)
             {
                 scilabErrorW(sm.GetErrorMessage().c_str());
 

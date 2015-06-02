@@ -38,9 +38,9 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
         return Function::Error;
     }
 
-    if (in[0]->isString() == false || in[0]->getAs<types::String>()->getCols() != 1)
+    if (in[0]->isString() == false )
     {
-        Scierror(999, _("%s: Wrong type for input argument: Column vector expected.\n"), "fileinfo");
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "fileinfo", 1);
         return Function::Error;
     }
 
@@ -51,7 +51,14 @@ Function::ReturnValue sci_fileinfo(typed_list &in, int _iRetCount, typed_list &o
     }
 
     String* pS = in[0]->getAs<types::String>();
+    InternalType* iT = NULL;
+    String* pS1 = NULL;
 
+    if (pS->getCols() != 1)
+    {
+        pS->transpose(iT);
+        pS = iT->getAs<types::String>();
+    }
     int *piErr = new int[pS->getRows()];
     double* pData = filesinfoW(pS->get(), pS->getRows(), piErr);
 

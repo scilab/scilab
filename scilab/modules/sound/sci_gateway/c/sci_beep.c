@@ -17,7 +17,7 @@
 #include <windows.h>
 #endif
 #include "gw_sound.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -138,7 +138,7 @@ int sci_beep(char *fname, void* pvApiCtx)
         output = os_strdup(BEEP_OFF);
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, (const char* const*) &output);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, (const char * const*) &output);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

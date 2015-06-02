@@ -19,8 +19,7 @@ extern "C"
 {
 #include "home.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "machine.h"
@@ -64,11 +63,7 @@ wchar_t* computeHOMEW(void)
 {
     char* pstTemp = computeHOME();
     wchar_t* pstReturn = to_wide_string(pstTemp);
-    if (pstTemp)
-    {
-        delete[] pstTemp;
-    }
-
+    delete[] pstTemp;
     return pstReturn;
 }
 /*--------------------------------------------------------------------------*/
@@ -114,6 +109,7 @@ char* getenvHOME(void)
 
         if (ierr == 1)
         {
+            delete[] Home;
             return NULL;
         }
     }

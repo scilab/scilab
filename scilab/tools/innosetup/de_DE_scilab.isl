@@ -16,9 +16,9 @@ de_DE.LANGUAGE =de_DE
 
 de_DE.MsgBoxJRENotFound =Java Runtime Environment not detected.
 de_DE.MsgBoxJREURL =Please download & Install JRE at http://www.java.com/en/download/
-de_DE.MsgBoxJREReinstall = Reinstall Scilab after your JRE update.
-de_DE.MsgBoxSSERequired = CPU SSE2 instructions are required for Scilab to run correctly.
-de_DE.MsgBoxX64Ready = For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
+de_DE.MsgBoxJREReinstall =Reinstall Scilab after your JRE update.
+de_DE.MsgBoxSSERequired =CPU SSE2 instructions are required for Scilab to run correctly.
+de_DE.MsgBoxX64Ready =For increase performance, it will be better to use Scilab x64 bits version on this Operating system.
 
 de_DE.MsgBoxJavaDetection1 =Java is not installed on this computer and this program needs it.
 de_DE.MsgBoxJavaDetection2 =Please choose to install Java Runtime:
@@ -27,10 +27,6 @@ de_DE.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but
 de_DE.MsgBoxDevToolsRequired2 =Please install development_tools module.
 de_DE.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
 de_DE.MsgBoxTclsciRequired2 =Please install tclsci module.
-de_DE.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
-de_DE.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
-de_DE.MsgBoxFftw3 =Do you want to open a web page about this add-on ?
-de_DE.MsgBoxFftw4 =Can not open web page.
 de_DE.MsgBoxWinVer =Windows 2000 is required.
 de_DE.MsgBoxScicosRequired1 =You choose to install Xcos module but Scicos module is not selected.
 de_DE.MsgBoxScicosRequired2 =Please also install Scicos module.
@@ -65,21 +61,21 @@ de_DE.DescriptionTclTK =TCL/TK in Scilab
 de_DE.DescriptionSpreadsheet =Spreadsheet Toolbox
 de_DE.DescriptionJVM =Java Runtime
 de_DE.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
-de_DE.DescriptionFftwModule = FFTW interface for Scilab
-de_DE.DescriptionFftwMKLDownload = Download FFTW library optimized by Intel Math Kernel Library
-de_DE.DescriptionRefFftwLibrary = Reference FFTW library
+de_DE.DescriptionFftwModule =FFTW interface for Scilab
+de_DE.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
+de_DE.DescriptionRefFftwLibrary =Reference FFTW library
 de_DE.DescriptionParametersTlbx =Parameters Toolbox
 de_DE.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
 de_DE.DescriptionSimulAnnealingTlbx =Simulated Annealing Toolbox
 de_DE.DescriptionDevTools =Development Tools
 de_DE.DescriptionTests =Tests for Scilab
-de_DE.DescriptionTlbxSkeleton =A toolbox skeleton (to extend scilab)
-de_DE.DescriptionComConnector = COM connector
-de_DE.DescriptionSciNotes = SciNotes: Editor for Scilab
-de_DE.DescriptionXcos = XCos 1.1
-de_DE.DescriptionParallel = Parallel Computing with Scilab
-de_DE.DescriptionModulesManager = Tools for management of extern modules 
-de_DE.DescriptionModuleJVM = JVM Module
+de_DE.DescriptionTlbxSkeleton =A toolbox skeleton (to extend Scilab)
+de_DE.DescriptionComConnector =COM connector
+de_DE.DescriptionSciNotes =SciNotes: Editor for Scilab
+de_DE.DescriptionXcos =Xcos
+de_DE.DescriptionParallel =Parallel Computing with Scilab
+de_DE.DescriptionModulesManager =Tools for management of extern modules
+de_DE.DescriptionModuleJVM =JVM Module
 ;
 de_DE.ConsoleIconName =Scilab Console
 ;
@@ -101,15 +97,15 @@ de_DE.DescriptionCreateDesktopIcon =Create a &desktop icon
 ;
 de_DE.DescriptionQuickLaunch =Create a shortcut in Quick Launch Bar
 ;
-de_DE.DescriptionAssociateSceSci =Associate *.sce,*.sci files with scilab
+de_DE.DescriptionAssociateSceSci =Associate *.sce,*.sci files with Scilab
 ;
-de_DE.DescriptionAssociateTstDem =Associate *.tst files with scilab
+de_DE.DescriptionAssociateTstDem =Associate *.tst files with Scilab
 ;
-de_DE.DescriptionAssociateBinSav =Associate *.bin, *.sav files with scilab
+de_DE.DescriptionAssociateBinSav =Associate *.bin, *.sav files with Scilab
 ;
-de_DE.DescriptionAssociateGraph =Associate *.graph *.graphb files with scilab
+de_DE.DescriptionAssociateGraph =Associate *.graph *.graphb files with Scilab
 ;
-de_DE.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with scilab
+de_DE.DescriptionAssociateScicos =Associate *.xcos *.cos *.cosf files with Scilab
 ;
 de_DE.DescriptionDefaultInstall =Installation (Default)
 de_DE.DescriptionFullInstall =Full installation
@@ -119,18 +115,10 @@ de_DE.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 de_DE.DescriptionCPUOptimization =CPU Optimization for Scilab
 de_DE.DescriptionATLASLibrary =Atlas Library for Scilab
 de_DE.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-de_DE.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
-;
-de_DE.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
-de_DE.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
-;
-de_DE.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
+de_DE.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
 ;
 de_DE.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 de_DE.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
-;
-de_DE.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
-de_DE.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
 ;
 de_DE.DescriptionAtoms =ATOMS
 ;-------------------------------------------------------------------------------

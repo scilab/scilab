@@ -43,13 +43,13 @@ function [tree]=sci_fgets(tree)
         // If the result is not assigned to a variable then a temporary variable is returned
         if tempvar then
             // Assign result to tmp
-            insert(Equal(list(outputvar), tree));
+            m2sci_insert(Equal(list(outputvar), tree));
             // Just add the test for EOF
-            insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()));
+            m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()));
             tree = outputvar;
             tree.type = Type(Unknown,Real);
         else // Just add the test for EOF
-            insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()), 1);
+            m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],isemptyfuncall, list(newvalue),list(),list()), 1);
             tree.lhs(1).type=Type(Unknown,Real)
         end
     end

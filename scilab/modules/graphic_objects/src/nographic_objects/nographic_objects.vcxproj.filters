@@ -23,7 +23,7 @@
     <ClCompile Include="nographic_objects.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\DllmainGraphic_objects.c">
+    <ClCompile Include="Dllmainnographic_objects.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

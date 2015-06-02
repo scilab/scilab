@@ -39,22 +39,24 @@ public:
                   exps_t& vars)
         : Var (location)
     {
-        for (exps_t::iterator it = vars.begin(), itEnd = vars.end(); it != itEnd ; ++it)
+        for (auto var : vars)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            var->setParent(this);
+            _exps.push_back(var);
         }
+
+        delete &vars;
     }
 
     virtual ArrayListVar* clone()
     {
-        exps_t exps;
+        exps_t* exps = new exps_t;
         for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            exps.push_back((*it)->clone());
+            exps->push_back((*it)->clone());
         }
 
-        ArrayListVar* cloned = new ArrayListVar(getLocation(), exps);
+        ArrayListVar* cloned = new ArrayListVar(getLocation(), *exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -78,18 +80,19 @@ public:
     /** \name Accessors.
     ** \{ */
 public:
-    const exps_t& getVars() const
+    
+    inline const exps_t& getVars() const
     {
         return _exps;
     }
 
-    exps_t& getVars()
+    inline exps_t& getVars()
     {
         return _exps;
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return ARRAYLISTVAR;
     }

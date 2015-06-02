@@ -89,8 +89,9 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     {
         if (in[i]->isDouble() == false && in[i]->isString() == false)
         {
-            std::wstring wstFuncName = L"%"  + in[i]->getShortTypeStr() + L"_mfprintf";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[i]->getShortTypeStr() + L"_mfprintf";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
     }
 
@@ -137,7 +138,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     /* checks file mode */
     /* bug 3898 */
     /* read only attrib 1xx*/
-    if ((ifileMode >= 100) && (ifileMode < 200) && !isSTD)
+    if ((ifileMode >= 100) && (ifileMode < 200) && ((ifileMode % 100) < 10) /* check that it is not r+ */ && !isSTD)
     {
         Scierror(999, _("%s: Wrong file mode: READ only.\n"), "mfprintf");
         return types::Function::Error;
@@ -238,7 +239,7 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     FREE(wcsStringToWrite);
-    FREE(pArgs);
+    delete[] pArgs;
 
     return types::Function::OK;
 }

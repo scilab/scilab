@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;src/cpp;;../core/includes;../string/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -123,7 +123,7 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;src/cpp;;../core/includes;../string/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -162,7 +162,7 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;src/cpp;;../core/includes;../string/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -208,7 +208,7 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;src/cpp;;../core/includes;../string/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

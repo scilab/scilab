@@ -39,8 +39,8 @@ propertyUpdated( 4 , PORT , LABEL ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , SIM_FUNCTION_NAME ) : SUCCESS
 propertyUpdated( 1 , BLOCK , SIM_FUNCTION_API ) : SUCCESS
-propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 2 , PORT , DATATYPE ) : SUCCESS
+propertyUpdated( 3 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 4 , PORT , DATATYPE ) : SUCCESS
 propertyUpdated( 1 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 1 , BLOCK , DSTATE ) : NO_CHANGES

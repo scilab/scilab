@@ -153,35 +153,36 @@ JITVal * JITVal::get(JITVisitor & visitor, const analysis::TIType & t, const boo
         }
         else
         {
-            switch (t.type)
-            {
-                case analysis::TIType::EMPTY:
-                    return new JITMatrixVal<double>(visitor, 0, 0, nullptr, alloc, name);
-                case analysis::TIType::BOOLEAN:
-                    return new JITMatrixVal<bool>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::DOUBLE:
-                    return new JITMatrixVal<double>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::INT16:
-                    return new JITMatrixVal<short>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::INT32:
-                    return new JITMatrixVal<int>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::INT64:
-                    return new JITMatrixVal<long long>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::INT8:
-                    return new JITMatrixVal<char>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::UINT16:
-                    return new JITMatrixVal<unsigned short>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::UINT32:
-                    return new JITMatrixVal<unsigned int>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::UINT64:
-                    return new JITMatrixVal<unsigned long long>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                case analysis::TIType::UINT8:
-                    return new JITMatrixVal<unsigned char>(visitor, t.rows, t.cols, nullptr, alloc, name);
-                default :
-                    std::wostringstream ostr;
-                    ostr << t;
-                    throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
-            }
+            /*            switch (t.type)
+                        {
+                            case analysis::TIType::EMPTY:
+                                return new JITMatrixVal<double>(visitor, 0, 0, nullptr, alloc, name);
+                            case analysis::TIType::BOOLEAN:
+                                return new JITMatrixVal<bool>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::DOUBLE:
+                                return new JITMatrixVal<double>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::INT16:
+                                return new JITMatrixVal<short>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::INT32:
+                                return new JITMatrixVal<int>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::INT64:
+                                return new JITMatrixVal<long long>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::INT8:
+                                return new JITMatrixVal<char>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::UINT16:
+                                return new JITMatrixVal<unsigned short>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::UINT32:
+                                return new JITMatrixVal<unsigned int>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::UINT64:
+                                return new JITMatrixVal<unsigned long long>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            case analysis::TIType::UINT8:
+                                return new JITMatrixVal<unsigned char>(visitor, t.rows, t.cols, nullptr, alloc, name);
+                            default :
+                                std::wostringstream ostr;
+                                ostr << t;
+                                throw ast::ScilabError(std::wstring(L"Type not handled by JIT compiler: ") + ostr.str());
+                        }
+            */
         }
     }
 

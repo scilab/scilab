@@ -101,7 +101,7 @@ rep = x_mdialog('Enter a matrix',...
  ]]></programlisting>
         <programlisting role="example"><![CDATA[
 sz = [10,10];
-default_input_matrix = string(rand(sz(1), sz(2)) > 0.5);
+default_input_matrix = "%"+string(rand(sz(1), sz(2)) > 0.5);
 labelsv = string(1:sz(1));
 labelsh = string(1:sz(2));
 rep = x_mdialog('Enter a boolean matrix', labelsv, labelsh, default_input_matrix)

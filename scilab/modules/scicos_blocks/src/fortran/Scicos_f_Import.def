@@ -1,7 +1,0 @@
-	LIBRARY    scicos_f.dll
-
-
-EXPORTS
-;
-;scicos fortran
-scitod_

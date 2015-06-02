@@ -14,10 +14,8 @@
 #define CPRADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
 #include "BaseAdapter.hxx"
-
 #include "model/Diagram.hxx"
 
 namespace org_scilab_modules_scicos
@@ -28,8 +26,8 @@ namespace view_scilab
 class CprAdapter : public BaseAdapter<CprAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    CprAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
-    CprAdapter(const CprAdapter& adapter);
+    CprAdapter();
+    CprAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     ~CprAdapter();
 
     static const std::wstring getSharedTypeStr()

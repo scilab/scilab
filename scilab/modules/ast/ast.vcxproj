@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -78,20 +78,20 @@
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>$(LLVM_64_DEBUG)/lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(LLVM_64_DEBUG)/include;$(IncludePath)</IncludePath>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LibraryPath>$(LLVM_64_RELEASE)/lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(LLVM_64_RELEASE)/include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(LLVM_64_DEBUG)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win64;$(LLVM_64_DEBUG)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <LibraryPath>$(LLVM_32_DEBUG)/lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(LLVM_32_DEBUG)/include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(LLVM_32_DEBUG)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LLVM_32_DEBUG)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <LibraryPath>$(LLVM_32_RELEASE)/lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(LLVM_32_RELEASE)/include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(LLVM_32_RELEASE)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win32;$(LLVM_32_RELEASE)/lib;$(LibraryPath)</LibraryPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <IncludePath>C:\Program Files %28x86%29\Visual Leak Detector\include;$(LLVM_64_RELEASE)/include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Program Files %28x86%29\Visual Leak Detector\lib\Win64;$(LLVM_64_RELEASE)/lib;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -110,7 +110,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -121,7 +121,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -148,7 +147,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -159,7 +158,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -183,7 +181,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -194,7 +192,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -221,7 +218,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <Link>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <ImportLibrary>../../bin/$(ProjectName).lib</ImportLibrary>
-      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;threads.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>fileio.lib;dynamic_link.lib;sciconsole.lib;output_stream.lib;core.lib;io.lib;elementary_functions_f.lib;elementary_functions.lib;polynomials_f.lib;linear_algebra_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
     <PreLinkEvent>
@@ -232,7 +229,6 @@ lib /DEF:"$(ProjectDir)linear_algebra_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:
 lib /DEF:"$(ProjectDir)polynomials_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)io_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)io.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)output_stream_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)output_stream.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)threads_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)threads.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)console_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)sciconsole.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)dynamic_link_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)dynamic_link.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)fileio.lib" 1&gt;NUL 2&gt;NUL
@@ -255,22 +251,157 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <None Include="linear_algebra_f_Import.def" />
     <None Include="output_stream_Import.def" />
     <None Include="polynomials_f_Import.def" />
-    <None Include="threads_Import.def" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\analysis\AnalysisVisitor.hxx" />
-    <ClInclude Include="includes\analysis\Checkers.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\AddAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\Analyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\ArgnAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\CallAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\CeilAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\DiagAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\FindAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\IconvertAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\InttypeAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\IsrealAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\IsscalarAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\LengthAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\MatrixAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\MemInitAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\OperAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\SizeAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\SqrtAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\TypeAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\analyzers\TypeofAnalyzer.hxx" />
+    <ClInclude Include="includes\analysis\Call.hxx" />
+    <ClInclude Include="includes\analysis\checkers\Checkers.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_abs.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_acos.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_and.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_argn.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_asin.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_atan.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_ceil.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_cos.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_cosh.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_cumprod.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_cumsum.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_erf.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_erfc.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_exp.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_fix.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_floor.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_gettext.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_iconvert.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_imag.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_imult.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_int.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_int16.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_int32.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_int64.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_int8.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_inttype.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_isinf.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_isnan.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_isreal.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_isscalar.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_log.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_ls.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_matrix.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_max.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_min.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_ones.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_or.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_prod.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_rand.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_round.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_sin.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_sinh.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_sinm.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_size.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_sqrt.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_sum.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_tan.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_tanh.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_toc.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_type.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_typeof.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_uint16.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_uint32.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_uint64.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_uint8.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_zeros.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____add____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____andand____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____and____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____dotpower____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____dotrdiv____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____dottimes____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____dottransp____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____eq____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____ge____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____gt____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____krontimes____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____ldivide____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____le____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____lt____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____neq____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____not____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____oror____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____or____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____power____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____rdivide____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____sub____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____times____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____transp____.hxx" />
+    <ClInclude Include="includes\analysis\checkers\check_____unaryminus____.hxx" />
+    <ClInclude Include="includes\analysis\Chrono.hxx" />
+    <ClInclude Include="includes\analysis\ConstantValue.hxx" />
+    <ClInclude Include="includes\analysis\ConstantVisitor.hxx" />
+    <ClInclude Include="includes\analysis\data\Block.hxx" />
+    <ClInclude Include="includes\analysis\data\CompleteMacroSignature.hxx" />
+    <ClInclude Include="includes\analysis\data\Data.hxx" />
+    <ClInclude Include="includes\analysis\data\DataManager.hxx" />
+    <ClInclude Include="includes\analysis\data\FunctionBlock.hxx" />
+    <ClInclude Include="includes\analysis\data\GlobalsCollector.hxx" />
+    <ClInclude Include="includes\analysis\data\Info.hxx" />
+    <ClInclude Include="includes\analysis\data\LoopBlock.hxx" />
+    <ClInclude Include="includes\analysis\data\MacroCache.hxx" />
+    <ClInclude Include="includes\analysis\data\MacroDef.hxx" />
+    <ClInclude Include="includes\analysis\data\MacroInfo.hxx" />
+    <ClInclude Include="includes\analysis\data\MacroSignature.hxx" />
+    <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx" />
+    <ClInclude Include="includes\analysis\data\TITypeSignatureTuple.hxx" />
+    <ClInclude Include="includes\analysis\data\TITypeTuple.hxx" />
+    <ClInclude Include="includes\analysis\data\XBlock.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
     <ClInclude Include="includes\analysis\ForList.hxx" />
+    <ClInclude Include="includes\analysis\gvn\ConstraintManager.hxx" />
+    <ClInclude Include="includes\analysis\gvn\GVN.hxx" />
+    <ClInclude Include="includes\analysis\gvn\InferenceConstraint.hxx" />
+    <ClInclude Include="includes\analysis\gvn\MultivariateMonomial.hxx" />
+    <ClInclude Include="includes\analysis\gvn\MultivariatePolynomial.hxx" />
+    <ClInclude Include="includes\analysis\gvn\OpValue.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicDimension.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicImplicitList.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicList.hxx" />
+    <ClInclude Include="includes\analysis\gvn\SymbolicRange.hxx" />
+    <ClInclude Include="includes\analysis\gvn\TestGVNVisitor.hxx" />
+    <ClInclude Include="includes\analysis\gvn\VarExp.hxx" />
+    <ClInclude Include="includes\analysis\logging\Logger.hxx" />
+    <ClInclude Include="includes\analysis\positivity\PositivityVisitor.hxx" />
     <ClInclude Include="includes\analysis\Result.hxx" />
     <ClInclude Include="includes\analysis\SymInfo.hxx" />
+    <ClInclude Include="includes\analysis\Temporary.hxx" />
     <ClInclude Include="includes\analysis\TIType.hxx" />
+    <ClInclude Include="includes\analysis\tools.hxx" />
     <ClInclude Include="includes\ast\debugvisitor.hxx" />
     <ClInclude Include="includes\ast\deserializervisitor.hxx" />
     <ClInclude Include="includes\ast\dummyvisitor.hxx" />
     <ClInclude Include="includes\ast\dynlib_ast.h" />
     <ClInclude Include="includes\ast\execvisitor.hxx" />
     <ClInclude Include="includes\ast\expHistory.hxx" />
+    <ClInclude Include="includes\ast\treevisitor.hxx" />
     <ClInclude Include="includes\ast\macrovarvisitor.hxx" />
     <ClInclude Include="includes\ast\mutevisitor.hxx" />
     <ClInclude Include="includes\ast\printvisitor.hxx" />
@@ -389,6 +520,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\system_env\sci_path.h" />
     <ClInclude Include="includes\system_env\sci_tmpdir.h" />
     <ClInclude Include="includes\system_env\setenvvar.h" />
+    <ClInclude Include="includes\system_env\threadmanagement.hxx" />
     <ClInclude Include="includes\types\alltypes.hxx" />
     <ClInclude Include="includes\types\arrayof.hxx" />
     <ClInclude Include="includes\types\bool.hxx" />
@@ -431,15 +563,58 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\types\tlist.hxx" />
     <ClInclude Include="includes\types\tostring_common.hxx" />
     <ClInclude Include="includes\types\types.hxx" />
-    <ClInclude Include="includes\types\typesdecl.hxx" />
     <ClInclude Include="includes\types\types_tools.hxx" />
     <ClInclude Include="includes\types\type_traits.hxx" />
     <ClInclude Include="includes\types\user.hxx" />
     <ClInclude Include="includes\types\void.hxx" />
+    <ClInclude Include="src\cpp\ast\run_AssignExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_CallExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_MatrixExp.hpp" />
+    <ClInclude Include="src\cpp\ast\run_OpExp.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\cpp\analysis\AnalysisVisitor.cpp" />
+    <ClCompile Include="src\cpp\analysis\ArgnAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\Block.cpp" />
+    <ClCompile Include="src\cpp\analysis\CeilAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\Checkers.cpp" />
+    <ClCompile Include="src\cpp\analysis\CompleteMacroSignature.cpp" />
+    <ClCompile Include="src\cpp\analysis\ConstantValue.cpp" />
+    <ClCompile Include="src\cpp\analysis\ConstantVisitor.cpp" />
+    <ClCompile Include="src\cpp\analysis\ConstraintManager.cpp" />
+    <ClCompile Include="src\cpp\analysis\DiagAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\FindAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\FunctionBlock.cpp" />
+    <ClCompile Include="src\cpp\analysis\IconvertAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\IndexAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\InferenceConstraints.cpp" />
+    <ClCompile Include="src\cpp\analysis\InttypeAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\IsrealAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\IsscalarAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\LengthAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\LoopBlock.cpp" />
+    <ClCompile Include="src\cpp\analysis\MacroDef.cpp" />
+    <ClCompile Include="src\cpp\analysis\MatrixAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\MemInitAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\OperAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\OperGVNValues.cpp" />
+    <ClCompile Include="src\cpp\analysis\OperSymbolicRange.cpp" />
+    <ClCompile Include="src\cpp\analysis\PolymorphicMacroCache.cpp" />
+    <ClCompile Include="src\cpp\analysis\SizeAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\SymbolicList.cpp" />
+    <ClCompile Include="src\cpp\analysis\TIType.cpp" />
+    <ClCompile Include="src\cpp\analysis\TypeAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\TypeofAnalyzer.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitAssignExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitIfExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitListExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitMatrixExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitOpExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\VisitSelectExp.cpp" />
+    <ClCompile Include="src\cpp\analysis\XBlock.cpp" />
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\expHistory.cpp" />
+    <ClCompile Include="src\cpp\ast\treevisitor.cpp" />
     <ClCompile Include="src\cpp\ast\macrovarvisitor.cpp" />
     <ClCompile Include="src\cpp\ast\mutevisitor.cpp" />
     <ClCompile Include="src\cpp\ast\printvisitor.cpp" />
@@ -485,6 +660,7 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\system_env\sci_path.cpp" />
     <ClCompile Include="src\cpp\system_env\sci_tmpdir.cpp" />
     <ClCompile Include="src\cpp\system_env\setenvvar.cpp" />
+    <ClCompile Include="src\cpp\system_env\threadmanagement.cpp" />
     <ClCompile Include="src\cpp\types\addfunction.cpp" />
     <ClCompile Include="src\cpp\types\arrayof.cpp" />
     <ClCompile Include="src\cpp\types\bool.cpp" />
@@ -497,7 +673,6 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\types\implicitlist.cpp" />
     <ClCompile Include="src\cpp\types\inspector.cpp" />
     <ClCompile Include="src\cpp\types\int.cpp" />
-    <ClCompile Include="src\cpp\types\internal.cpp" />
     <ClCompile Include="src\cpp\types\library.cpp" />
     <ClCompile Include="src\cpp\types\list.cpp" />
     <ClCompile Include="src\cpp\types\listdelete.cpp" />
@@ -537,6 +712,9 @@ lib /DEF:"$(ProjectDir)fileio_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     </ProjectReference>
     <ProjectReference Include="..\output_stream\src\c\output_stream.vcxproj">
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\threads\threads.vcxproj">
+      <Project>{50a1ffc8-adc2-4d9e-a2d0-5dcd63188ae9}</Project>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

@@ -28,30 +28,53 @@ using namespace types;
 
 Function::ReturnValue sci_clear(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    types::typed_list::iterator inIterator;
+    symbol::Context* ctx = symbol::Context::getInstance();
     int iWrongType = 1;
 
     if (in.size() == 0)
     {
         //clear();
-        symbol::Context::getInstance()->removeAll();
+        ctx->removeAll();
         return Function::OK;
     }
 
     // First check if all arguments are Single Strings.
-    for (inIterator = in.begin() ; inIterator != in.end() ; iWrongType++, inIterator++)
+    int var = 0;
+    for (auto pIT : in)
     {
-        if ((*inIterator)->isString() == false)
+        ++var;
+        if (pIT->isString() == false)
         {
-            Scierror(207, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", iWrongType);
+            Scierror(207, _("%s: Wrong type for input argument #%d: Matrix of strings expected.\n"), "clear", var);
             return Function::Error;
         }
+    }
 
-        types::String* pStr = (*inIterator)->getAs<types::String>();
+    bool bShow = false;
+    for (auto pIT : in)
+    {
+        types::String* pStr = pIT->getAs<types::String>();
         for (int i = 0; i < pStr->getSize(); i++)
         {
-            symbol::Context::getInstance()->remove(symbol::Symbol(pStr->get(i)));
+            symbol::Symbol sym = symbol::Symbol(pStr->get(i));
+            if (ctx->isprotected(sym) == false)
+            {
+                ctx->remove(sym);
+            }
+            else
+            {
+                if (bShow == false)
+                {
+                    Scierror(999, _("Redefining permanent variable.\n"));
+                    bShow = true;
+                }
+            }
         }
+    }
+
+    if (bShow)
+    {
+        return Function::Error;
     }
 
     return Function::OK;

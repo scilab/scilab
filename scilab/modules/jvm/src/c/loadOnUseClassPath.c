@@ -20,13 +20,12 @@
 #include "getScilabJNIEnv.h"
 #include "localization.h"
 #include "sci_path.h"
-#include "stricmp.h"
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
 #include "loadClasspath.h"
 #include "FileExist.h"
 #include "GetXmlFileEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char const* tag)
 {

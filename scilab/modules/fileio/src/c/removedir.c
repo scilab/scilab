@@ -31,7 +31,7 @@
 #include "isdir.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);

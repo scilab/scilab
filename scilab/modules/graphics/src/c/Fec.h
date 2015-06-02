@@ -42,7 +42,7 @@
  *  possibilities to set zmin, zmax by the user and also to set the
  *  first and last color of the colormap (Bruno.Pincon@iecn.u-nancy.fr)
  */
-int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr,
+int C2F(fec)(double *x, double *y, double *triangles, double *func, int *Nnode, int *Ntr, int *Nvertex,
              char *strflag, char *legend, double *brect, int *aaint, double *zminmax,
              int *colminmax, int *colout, BOOL with_mesh, BOOL flagNax, int lstr1, int lstr2);
 

@@ -18,8 +18,7 @@
 extern "C"
 {
 #include "sci_malloc.h"
-#include "stricmp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
 #include <libxml/xpath.h>
@@ -113,6 +112,7 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
                 xmlXPathFreeContext(xpathCtxt);
             }
             xmlXPathFreeObject(xpathObj);
+            delete lib;
             return NULL;
         }
     }
@@ -184,7 +184,17 @@ types::Library* loadlib(std::wstring _wstXML, bool _isFile, bool _bAddInContext)
 
     if (_bAddInContext)
     {
-        symbol::Context::getInstance()->put(symbol::Symbol(pstLibName), lib);
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Symbol sym = symbol::Symbol(pstLibName);
+        if (ctx->isprotected(sym) == false)
+        {
+            ctx->put(symbol::Symbol(pstLibName), lib);
+        }
+        else
+        {
+            delete lib;
+            lib = NULL;
+        }
     }
 
     xmlFreeDoc(doc);

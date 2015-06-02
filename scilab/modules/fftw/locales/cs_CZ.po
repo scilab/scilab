@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #, c-format
 msgid "FFTW Library %s not found.\n"
@@ -167,10 +167,10 @@ msgstr ""
 msgid "Scilab FFTW module not installed.\n"
 msgstr "Scilab modul FFTW není nainstalován.\n"
 
-msgid "You choose to install scilab with fftw module."
-msgstr "Zvolili jste instalovat scilab s modulem fftw."
+msgid "You chose to install Scilab with the fftw module."
+msgstr "Zvolili jste instalovat Scilab s modulem fftw."
 
-msgid "This module requires : "
+msgid "This module requires: "
 msgstr "Tento modul vyžaduje : "
 
 msgid ""

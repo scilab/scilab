@@ -55,10 +55,12 @@ public:
         values[0] = std::numeric_limits<double>::quiet_NaN();
         values[1] = std::numeric_limits<double>::quiet_NaN();
         values[2] = std::numeric_limits<double>::quiet_NaN();
+        values[3] = std::numeric_limits<double>::quiet_NaN();
 
         is_values_int[0] = false;
         is_values_int[1] = false;
         is_values_int[2] = false;
+        is_values_int[3] = false;
     }
 
     /** \brief Destroy a Operation Expression node.
@@ -71,7 +73,7 @@ public:
 
     virtual ListExp* clone()
     {
-        ListExp* cloned = new ListExp(getLocation(), *getStart().clone(), *getStep().clone(), *getEnd().clone());
+        ListExp* cloned = new ListExp(getLocation(), *getStart().clone(), *getStep().clone(), *getEnd().clone(), hasExplicitStep());
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -128,31 +130,15 @@ public:
         return *_exps[2];
     }
 
-    inline void setValues(double start, double step, double end)
+    inline void setValues(double start, double step, double end, double single)
     {
         values[0] = start;
         values[1] = step;
         values[2] = end;
+        values[3] = single;
     }
 
     inline const double * getValues() const
-    {
-        return values;
-    }
-
-    inline virtual bool is_list_exp() const
-    {
-        return true;
-    }
-
-    inline void set_values(double start, double step, double end)
-    {
-        values[0] = start;
-        values[1] = step;
-        values[2] = end;
-    }
-
-    inline const double * get_values() const
     {
         return values;
     }
@@ -164,7 +150,7 @@ public:
     }
 
     /** \} */
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return LISTEXP;
     }
@@ -174,8 +160,8 @@ public:
     }
 
 protected:
-    double values[3];
-    bool is_values_int[3];
+    double values[4];
+    bool is_values_int[4];
     /** \brief has list explicit step. */
     bool _explicitStep;
 };

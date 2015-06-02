@@ -29,6 +29,8 @@ extern "C"
 {
     extern void C2F(tscccf)(double *x, double *y, int *length, double *cxy, double *xymean, int *lag, int *error);
     extern void C2F(cmpse2)(int *iSect, int *iTotalSize, int *iMode, void *pXFunction, void *pYFunction, double *xa, double *xr, double *xi, double *zr, double *zi, int *error);
+
+    extern void C2F(cmpse3)(int *mfft, int *mnx, int *iMode, double *x, double *yi, double *xu, double *xui, double * w, double *wi, int *iErr, int *ichaud, int *nbx);
 }
 
 typedef void(*dgetx_f_t)(double*, int*, int*);

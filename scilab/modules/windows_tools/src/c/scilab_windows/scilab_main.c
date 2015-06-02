@@ -20,7 +20,6 @@
 #include "configvariable_interface.h"
 #include "realmain.h"
 #include "sciprint.h"
-#include "LaunchScilabSignal.h"
 /*--------------------------------------------------------------------------*/
 static void interrupt_setup (void);
 static void interrupt (int an_int);
@@ -29,7 +28,6 @@ jmp_buf env;
 /*--------------------------------------------------------------------------*/
 int sci_windows_main ( int *nos, char *path, InitScriptType pathtype, int *lpath, int memory)
 {
-    InitializeLaunchScilabSignal();
     setbuf (stderr, (char *) NULL);
     if (!setjmp (env))
     {

@@ -56,7 +56,7 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
         if and(ht <> [1 2 15 16]) then
             error(sprintf(_("%s: Wrong type for input argument #%d: A real or polynomial matrix or a rational expected.\n"), "group", 2));
         end
-        if or(ht == 16) & h.dt <> "d" then
+        if ht == 16 & or(h.dt == "c" | h.dt == []) then
             error(sprintf(_("%s: Wrong type for input argument #%d: A discrete system expected.\n"), "group", 2));
         end
 
@@ -66,60 +66,47 @@ function [tg,fr]=group(npts,a1i,a2i,b1i,b2i)
 
             //make h a rational polynomial
 
-            hs=max(size(h));
+            hcs=max(size(h));
             z=poly(0,"z");
             h=poly(h,"z","c");
-            h=gtild(h,"d")*(1/z^(hs-1));
-            ht=16;
-        end,
-
-        //if ht==16 then h is a rational polynomial
-        //(perhaps in cascade form)
-
-        //-compat ht==15 retained for list/tlist compatibility
-        if ht==15|ht==16 then
-            z=varn(h(3));
+            h=gtild(h,"d")*(1/z^(hcs-1));
+        elseif ht == 2 then
+            z = poly(0, varn(h));
+        else  //ht==15|ht==16
+            z=poly(0, varn(h(3)));
             hcs=max(size(h(2)));
         end,
 
         //if the rational polynomial is not in cascade form then
 
         if hcs==1 then
-
-            //if ht==2 then h is a regular polynomial
-
-            if ht==2 then
-                z=varn(h);
-            end,
-
             //get the derivative of h(z)
 
             hzd=derivat(h);
 
             //get the group delay of h(z)
-
-            z=poly(0,z);
             tgz=-z*hzd/h;
 
             //evaluate tg
 
             rfr=exp(2*%pi*%i*fr);
+
+
             tg=real(freq(tgz(2),tgz(3),rfr));
 
             //done with non-cascade calculation of group delay
 
         end,
-    end,
+        //re-organize if h is in cascade form
 
-    //re-organize if h is in cascade form
-
-    if hcs>1 then
-        xc=[coeff(h(2)),coeff(h(3))];
-        a2i=xc(1:hcs);
-        a1i=xc(hcs+1:2*hcs);
-        b2i=xc(3*hcs+1:4*hcs);
-        b1i=xc(4*hcs+1:5*hcs);
-        ne=5;
+        if hcs>1 then
+            xc=[coeff(h(2)),coeff(h(3))];
+            a2i=xc(1:hcs);
+            a1i=xc(hcs+1:2*hcs);
+            b2i=xc(3*hcs+1:4*hcs);
+            b1i=xc(4*hcs+1:5*hcs);
+            ne=5;
+        end,
     end,
 
     //if implementation is in cascade form

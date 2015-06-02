@@ -419,18 +419,15 @@ nanmin
 nanreglin
 nanstdev
 nansum
-nfreq
 pca
 perctl
 princomp
 quart
 reglin
-regress
 sample
 samplef
 samwr
 show_pca
-st_deviation
 stdev
 stdevf
 strange
@@ -1358,7 +1355,6 @@ NDcost
 aplat
 bvodeS
 datafit
-derivative
 karmarkar
 leastsq
 list2vec
@@ -1560,7 +1556,6 @@ calfrq
 canon
 ccontrg
 cfspec
-chart
 cls2dls
 colinout
 colregul
@@ -1892,7 +1887,6 @@ xnumb
 xrpoly
 xsave
 xsetech
-xsetm
 xstringl
 ylabel
 zlabel
@@ -1923,7 +1917,6 @@ datatipsGUI
 orthProj
 pixDist
 setStringPosition
-%_listvarinfile
 %dir_p
 dir
 dirname

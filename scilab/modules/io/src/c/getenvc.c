@@ -16,8 +16,7 @@
 #ifdef _MSC_VER
 #include <Windows.h> /* GetEnvironmentVariable */
 #endif
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "sci_malloc.h"
 #include "getenvc.h"
 #include "localization.h"
@@ -63,6 +62,7 @@ void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag)
                 sciprint(_("Undefined environment variable %s.\n"), var);
             }
 
+            FREE(wbuf);
             FREE(wvar);
             *ierr = 1;
             return;

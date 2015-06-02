@@ -26,18 +26,6 @@ public interface SimpleToolBar {
     void addSeparator();
 
     /**
-     * Set the element id for this toolbar
-     * @param id the id of the corresponding toolbar object
-     */
-    void setElementId(int id);
-
-    /**
-     * Get the element id for this toolbar
-     * @return id the id of the corresponding toolbar object
-     */
-    int getElementId();
-
-    /**
      * Get the visibility of the TooBar
      * @return true if the ToolBar is Visible
      */

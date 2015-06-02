@@ -14,7 +14,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: es\n"
 
 #, c-format
@@ -208,10 +208,9 @@ msgid "%: Wrong value for %s '%c': '%s', '%s' and '%s' expected.\n"
 msgstr "%: Valor incorrecto de %s '%c': Se esperaba '%s', '%s' y '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong number of columns for input argument #%d: %d expected.\n"
+msgid ""
+"%s: Wrong number of columns for input argument #%d: at least %d expected.\n"
 msgstr ""
-"%s: Número incorrecto de columnas en el argumento de entrada #%d: Se "
-"esperaban %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Single string expected.\n"
@@ -321,6 +320,14 @@ msgid "%s: Wrong value for strf option: %s.\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong value for frameflag option.\n"
+msgstr ""
+
+#, c-format
+msgid "%s: Wrong value for axesflag option.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Impossible status min > max in x or y rect data.\n"
 msgstr "%s: Estado imposible mín > máx en x o y.\n"
 
@@ -359,6 +366,10 @@ msgid "%s: Wrong number of input argument(s).\n"
 msgstr ""
 
 #, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#, c-format
 msgid "%s: Wrong size for input argument #%d: %d or %d expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto de argumento de entrada #%d: Se esperaba %d o %d.\n"
@@ -382,27 +393,6 @@ msgid "%s: Wrong size for input arguments #%d and #%d: %s expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto de los argumentos de entrada #%d y #%d: Se esperaba "
 "%s.\n"
-
-#, c-format
-msgid "%s: Function %s is obsolete.\n"
-msgstr ""
-
-msgid "Warning"
-msgstr ""
-
-#, c-format
-msgid "%s: Please see documentation for more details.\n"
-msgstr ""
-
-#, c-format
-msgid ""
-"%s: This function will be permanently removed in Scilab %s\n"
-"\n"
-msgstr ""
-
-#, c-format
-msgid "%s: Handles must be relocated under a single parent.\n"
-msgstr "%s: Los manejadores deben ser reubicados bajo un mismo padre.\n"
 
 #, c-format
 msgid ""
@@ -687,6 +677,10 @@ msgid "%s: Error on input argument #%d: Specified bounds are not correct.\n"
 msgstr ""
 "%s: Error para el argumento de entrada #%d: Los límites especificados son "
 "incorrectos.\n"
+
+#, c-format
+msgid "%s: Invalid vertex index.\n"
+msgstr ""
 
 msgid "The parent has to be a SUBWIN\n"
 msgstr "El padre debe ser una SUBVENTANA\n"
@@ -1195,8 +1189,8 @@ msgid "Can not set directly a label object.\n"
 msgstr "No se puede asignar una etiqueta directamente.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: Must have %d columns.\n"
-msgstr "Tamaño incorrecto para la propiedad '%s': Debe tener %d columnas.\n"
+msgid "Wrong size for '%s' property: Must have at least %d columns.\n"
+msgstr ""
 
 #, c-format
 msgid "Wrong type for '%s' property: Typed list expected.\n"

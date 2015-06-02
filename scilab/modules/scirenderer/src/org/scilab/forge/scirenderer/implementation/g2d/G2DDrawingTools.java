@@ -127,12 +127,32 @@ public class G2DDrawingTools implements DrawingTools {
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions) {
-        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, 0);
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, 0, null, null);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, rotationAngle, null, null);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, 0, auxColor, colors);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, double rotationAngle, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, 0, 1, rotationAngle, auxColor, colors);
     }
 
     @Override
     public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle) {
-        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, offset, stride, rotationAngle);
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, offset, stride, rotationAngle, null, null);
+    }
+
+    @Override
+    public void draw(Texture texture, AnchorPosition anchor, ElementsBuffer positions, int offset, int stride, double rotationAngle, Color auxColor, ElementsBuffer colors) {
+        g2dCanvas.getMotor3D().draw(this, texture, anchor, positions, offset, stride, rotationAngle, auxColor, colors);
     }
 
     @Override

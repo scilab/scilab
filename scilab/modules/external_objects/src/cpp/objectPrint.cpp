@@ -46,7 +46,7 @@ int ScilabGateway::objectPrint(char * fname, const int envId, void * pvApiCtx)
     {
         rep = env.getrepresentation(idObj);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         ScilabObjects::removeTemporaryVars(eId, tmpvar);
         throw;

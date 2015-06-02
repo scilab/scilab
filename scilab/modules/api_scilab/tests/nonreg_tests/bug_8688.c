@@ -10,6 +10,7 @@
 #include <Scierror.h>
 #include <sci_malloc.h>
 #include <localization.h>
+#include <os_string.h>
 
 int sci_bug_8688(char *fname, void* pvApiCtx)
 {
@@ -25,7 +26,7 @@ int sci_bug_8688(char *fname, void* pvApiCtx)
 
     for (i = 0; i < N; i++)
     {
-        ptrStrs[i] = strdup("TEST BUG 8688.");
+        ptrStrs[i] = os_strdup("TEST BUG 8688.");
     }
 
     sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, N, ptrStrs);

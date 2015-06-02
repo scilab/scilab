@@ -21,7 +21,7 @@ extern "C"
 {
 #include "Scierror.h"
 #include "localization.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 using namespace types;

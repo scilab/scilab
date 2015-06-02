@@ -8,13 +8,13 @@ msgstr ""
 "Project-Id-Version: scilab\n"
 "Report-Msgid-Bugs-To: FULL NAME <EMAIL@ADDRESS>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2013-09-05 15:04+0000\n"
+"PO-Revision-Date: 2015-02-23 03:56+0000\n"
 "Last-Translator: RodolfoRG <rodolforg@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <pt_BR@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -60,7 +60,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: XML Document does not exist.\n"
-msgstr ""
+msgstr "%s: O documento XML não existe.\n"
 
 #, c-format
 msgid ""
@@ -254,10 +254,12 @@ msgid ""
 "%s: Wrong dimensions for input argument #%d: A single boolean or string "
 "expected.\n"
 msgstr ""
+"%s: Dimensões incorretas para o argumento de entrada #%d: esperava-se um "
+"único booleano ou um texto.\n"
 
 #, c-format
 msgid "%s: Invalid number of input arguments.\n"
-msgstr ""
+msgstr "%s: Quantidade inválida de argumentos de entrada.\n"
 
 #, c-format
 msgid ""

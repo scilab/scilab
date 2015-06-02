@@ -21,6 +21,7 @@ genlib: Processing file: TBX_NOOP.sci
 genlib: Processing file: TBX_NOOP_sci.sci
 genlib: Processing file: TBX_NOOP_sim.sci
 genlib: Processing file: TBX_SUM_c.sci
+genlib: Processing file: TBX_SUM_modelica.sci
 genlib: Processing file: TBX_SUM_sci.sci
 genlib: Processing file: TBX_SUM_sim.sci
 genlib: Regenerate names and lib

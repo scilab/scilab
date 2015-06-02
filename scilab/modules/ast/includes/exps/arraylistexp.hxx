@@ -44,17 +44,19 @@ public:
             _exps.push_back(*it);
             (*it)->setParent(this);
         }
+
+        delete &exps;
     }
 
     virtual ArrayListExp* clone()
     {
-        exps_t exps;
+        exps_t* exps = new exps_t;
         for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd ; ++it)
         {
-            exps.push_back((*it)->clone());
+            exps->push_back((*it)->clone());
         }
 
-        ArrayListExp* cloned = new ArrayListExp(getLocation(), exps);
+        ArrayListExp* cloned = new ArrayListExp(getLocation(), *exps);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -89,7 +91,7 @@ public:
     /** \} */
 
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return ARRAYLISTEXP;
     }

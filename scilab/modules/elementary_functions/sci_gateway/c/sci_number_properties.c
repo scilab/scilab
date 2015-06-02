@@ -23,17 +23,17 @@ int sci_number_properties(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i;
-    int iRet				= 0;
+    int iRet = 0;
 
-    int iRows				= 0;
-    int iCols				= 0;
-    char **pstData	= NULL;
-    int* piAddr			= NULL;
+    int iRows = 0;
+    int iCols = 0;
+    char **pstData = NULL;
+    int* piAddr = NULL;
 
-    double dblRet		= 0;
-    int bRet				= 0;
+    double dblRet = 0;
+    int bRet = 0;
 
-    int bBoolFlag		= 0;
+    int bBoolFlag = 0;
 
     CheckRhs(1, 1);
     CheckLhs(1, 1);
@@ -109,10 +109,13 @@ int sci_number_properties(char *fname, void* pvApiCtx)
     }
     else
     {
+        freeAllocatedMatrixOfString(iRows, iCols, pstData);
         sciprint(_("%s: unknown property kind.\n"), fname);
         SciError(999);
         return 0;
     }
+
+    freeAllocatedMatrixOfString(iRows, iCols, pstData);
 
     if (bBoolFlag)
     {

@@ -19,9 +19,6 @@
 ELEMENTARY_FUNCTIONS_IMPEXP double dcoss(double _dblVal);
 ELEMENTARY_FUNCTIONS_IMPEXP void zcoss(double _dblRealIn, double _dblImgIn, double* _dblRealOut, double* _dblImgOut);
 
-ELEMENTARY_FUNCTIONS_IMPEXP double dacoss(double _dblVal);
-ELEMENTARY_FUNCTIONS_IMPEXP void wacos(double _dblReal, double _dblImg, double *_pdblReal, double *_pdblImg);
-
 ELEMENTARY_FUNCTIONS_IMPEXP double dcoshs(double _dblVal);
 
 #endif /* __COS_H__ */

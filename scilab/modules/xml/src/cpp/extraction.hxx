@@ -29,7 +29,7 @@ extern "C"
 #include "xml_mlist.h"
 #include "xml_constants.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 }
 
 using namespace org_modules_xml;

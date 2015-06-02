@@ -195,7 +195,8 @@ am_libscixcos_disable_la_OBJECTS = $(am__objects_2)
 libscixcos_disable_la_OBJECTS = $(am_libscixcos_disable_la_OBJECTS)
 libscixcos_la_DEPENDENCIES = libscixcos-algo.la \
 	$(top_builddir)/modules/scicos/libsciscicos.la \
-	$(top_builddir)/modules/commons/libscicommons.la
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__objects_3 =
 am__objects_4 = sci_gateway/cpp/libscixcos_la-sci_Xcos.lo \
 	sci_gateway/cpp/libscixcos_la-sci_warnBlockByUID.lo \
@@ -709,7 +710,8 @@ CHECK_SRC = $(XCOS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscixcos_la_CPPFLAGS)
 libscixcos_la_LIBADD = libscixcos-algo.la \
 		$(top_builddir)/modules/scicos/libsciscicos.la \
-		$(top_builddir)/modules/commons/libscicommons.la
+		$(top_builddir)/modules/commons/libscicommons.la \
+		$(top_builddir)/modules/jvm/libscijvm.la
 
 
 #### xcos : gateway declaration ####

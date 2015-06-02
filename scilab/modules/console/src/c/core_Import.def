@@ -2,8 +2,6 @@ LIBRARY    core.dll
 
 
 EXPORTS
-LaunchScilab
-pLaunchScilabLock
 callFunctionFromGateway
 com_
 stack_
@@ -12,7 +10,6 @@ gettype_
 vstk_
 createvar_
 vartype_
-recu_
 with_module
 StoreCommand
 ismenu

@@ -25,7 +25,7 @@ refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex, spa
 assert_checkerror("tanhm(""x"")", refMsg);
 
 assert_checkfalse(execstr("tanh(""x"")"   ,"errcatch") == 0);
-refMsg = msprintf(_("%s: Wrong type for input argument #%d: Real or complex matrix expected.\n"), "tanh", 1);
+refMsg = [msprintf(_("Function not defined for given argument type(s),\n"));msprintf(_("  check arguments or define function %s for overloading.\n"), "%c_tanh")];
 assert_checkerror("tanh(""x"")", refMsg);
 
 assert_checkfalse(execstr("tand(""x"")"   ,"errcatch") == 0);

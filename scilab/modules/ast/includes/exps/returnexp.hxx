@@ -106,7 +106,7 @@ public:
         return _is_global;
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return RETURNEXP;
     }

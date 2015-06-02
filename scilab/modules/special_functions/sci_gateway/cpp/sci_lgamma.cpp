@@ -34,8 +34,9 @@ types::Function::ReturnValue sci_lgamma(types::typed_list &in, int _iRetCount, t
 
     if (in[0]->isList() || in[0]->isTList() || in[0]->isMList())
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gammaln";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     if (in[0]->isDouble() == false)
@@ -55,8 +56,8 @@ types::Function::ReturnValue sci_lgamma(types::typed_list &in, int _iRetCount, t
 
     if (pDblIn->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%hm_gammaln";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%hm_gammaln", in, _iRetCount, out, &exec);
     }
 
     types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());

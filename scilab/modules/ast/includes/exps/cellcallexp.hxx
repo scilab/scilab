@@ -46,13 +46,13 @@ public:
 
     virtual CellCallExp* clone()
     {
-        exps_t args;
+        exps_t* args = new ast::exps_t;
         for (exps_t::const_iterator it = ++(_exps.begin()); it != _exps.end() ; ++it)
         {
-            args.push_back((*it)->clone());
+            args->push_back((*it)->clone());
         }
 
-        CellCallExp* cloned = new CellCallExp(getLocation(), *getName().clone(), args);
+        CellCallExp* cloned = new CellCallExp(getLocation(), *getName().clone(), *args);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -73,7 +73,7 @@ public:
 
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return CELLCALLEXP;
     }

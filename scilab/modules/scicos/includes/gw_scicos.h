@@ -32,41 +32,14 @@
 SCICOS_IMPEXP int gw_scicos(void);
 
 /*--------------------------------------------------------------------------*/
-SCICOS_IMPEXP int sci_var2vec(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_vec2var(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_getblocklabel(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_scicos_debug(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_scicos_debug_count(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_sctree(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_ftree2(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_ftree3(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_ftree4(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_curblock(char *fname, void* pvApiCtx);
-
-SCICOS_IMPEXP int sci_scicos_time(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_duplicate(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_diffobjs(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_pointer_xproperty(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_phase_simulation(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_set_xproperty(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_set_blockerror(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ctree2(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ctree3(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_ctree4(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_scicosim(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_getscicosvars(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_curblockc(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_buildouttb(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_end_scicosim(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_haltscicos(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_coserror(char *fname, void* pvApiCtx);
 
 /* it was in a separate gateway */
-SCICOS_IMPEXP int sci_data2sig(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_sig2data(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_model2blk(char *fname, void* pvApiCtx);
-SCICOS_IMPEXP int sci_callblk(char *fname, void* pvApiCtx);
-
+//SCICOS_IMPEXP int sci_model2blk(char *fname, void* pvApiCtx);
+//SCICOS_IMPEXP int sci_callblk(char *fname, void* pvApiCtx);
 SCICOS_IMPEXP int sci_loadScicos(char *fname, void* pvApiCtx);
 
 /*--------------------------------------------------------------------------*/

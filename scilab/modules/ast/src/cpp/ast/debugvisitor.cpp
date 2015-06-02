@@ -67,7 +67,7 @@ void DebugVisitor::visit (const MatrixExp &e)
     exps_t lines = e.getLines();
     for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -79,7 +79,7 @@ void DebugVisitor::visit (const MatrixLineExp &e)
     exps_t columns = e.getColumns();
     for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -91,7 +91,7 @@ void DebugVisitor::visit (const CellExp &e)
     exps_t lines = e.getLines();
     for (exps_t::const_iterator it = lines.begin(), itEnd = lines.end(); it != itEnd ; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -99,7 +99,16 @@ void DebugVisitor::visit (const CellExp &e)
 void DebugVisitor::visit (const StringExp &e)
 {
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec StringExp : " + e.getValue(), e);
+    wostringstream stream;
+    if (e.getConstant())
+    {
+        printInternalType<types::String>(stream, e.getConstant());
+    }
+    else
+    {
+        stream << e.getValue();
+    }
+    DEBUG(L"Exec StringExp : " + stream.str(), e);
     DEBUG_END_NODE();
 }
 
@@ -114,7 +123,25 @@ void DebugVisitor::visit (const DoubleExp  &e)
 {
     DEBUG_START_NODE(e);
     wostringstream stream;
-    stream << e.getValue();
+    types::InternalType * pIT = e.getConstant();
+    if (pIT)
+    {
+        if (pIT->isImplicitList())
+        {
+            types::ImplicitList * pIL = static_cast<types::ImplicitList *>(pIT);
+            stream << static_cast<types::Double *>(pIL->getStart())->get(0) << L":"
+                   << static_cast<types::Double *>(pIL->getStep())->get(0) << L":"
+                   << static_cast<types::Double *>(pIL->getEnd())->get(0);
+        }
+        else
+        {
+            printInternalType<types::Double>(stream, pIT);
+        }
+    }
+    else
+    {
+        stream << e.getValue();
+    }
     DEBUG(L"Exec DoubleExp : " + stream.str(), e);
     DEBUG_END_NODE();
 }
@@ -123,8 +150,15 @@ void DebugVisitor::visit (const BoolExp  &e)
 {
     DEBUG_START_NODE(e);
     wostringstream stream;
-    stream << e.getValue();
-    DEBUG(L"Exec getv    : " + stream.str(), e);
+    if (e.getConstant())
+    {
+        printInternalType<types::Bool>(stream, e.getConstant());
+    }
+    else
+    {
+        stream << e.getValue();
+    }
+    DEBUG(L"Exec BoolExp : " + stream.str(), e);
     DEBUG_END_NODE();
 }
 
@@ -137,8 +171,22 @@ void DebugVisitor::visit (const NilExp &e)
 
 void DebugVisitor::visit (const SimpleVar &e)
 {
+    analysis::TIType type = e.getDecorator().getResult().getType();
+    std::wstring ty;
+    if (type.type != analysis::TIType::UNKNOWN)
+    {
+	if (type.isscalar())
+	{
+	    ty = L" (" + analysis::TIType::toString(type.type) + L")";
+	}
+	else
+	{
+	    ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+	}
+    }
+
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec SimpleVar : " + e.getSymbol().getName(), e);
+    DEBUG(L"Exec SimpleVar : " + e.getSymbol().getName() + ty, e);
     DEBUG_END_NODE();
 }
 
@@ -199,8 +247,8 @@ void DebugVisitor::visit (const AssignExp  &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec AssignExp", e);
-    e.getLeftExp().accept (*this);
-    e.getRightExp().accept (*this);
+    e.getLeftExp().accept(*this);
+    e.getRightExp().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -208,27 +256,35 @@ void DebugVisitor::visit(const CellCallExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CellCallExp", e);
-    e.getName().accept (*this);
+    e.getName().accept(*this);
 
     exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    for (auto arg : args)
     {
-        (*it)->accept(*this);
+        arg->accept(*this);
     }
+
     DEBUG_END_NODE();
 }
 
 void DebugVisitor::visit(const CallExp &e)
 {
+    std::wstring str;
+    if (e.getDecorator().safeIndex)
+    {
+	str = L" (Ins/Ext is safe)";
+    }
+
     DEBUG_START_NODE(e);
-    DEBUG(L"Exec CallExp", e);
-    e.getName().accept (*this);
+    DEBUG(L"Exec CallExp" + str, e);
+    e.getName().accept(*this);
 
     exps_t args = e.getArgs();
-    for (exps_t::const_iterator it = args.begin (), itEnd = args.end(); it != itEnd; ++it)
+    for (auto arg : args)
     {
-        (*it)->accept (*this);
+        arg->accept(*this);
     }
+
     DEBUG_END_NODE();
 }
 
@@ -258,8 +314,8 @@ void DebugVisitor::visit (const WhileExp  &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec WhileExp", e);
-    e.getTest().accept (*this);
-    e.getBody().accept (*this);
+    e.getTest().accept(*this);
+    e.getBody().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -268,7 +324,7 @@ void DebugVisitor::visit (const ForExp  &e)
     DEBUG_START_NODE(e);
     DEBUG(L"Exec ForExp", e);
     e.getVardec().accept(*this);
-    e.getBody().accept (*this);
+    e.getBody().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -303,12 +359,11 @@ void DebugVisitor::visit (const SelectExp &e)
     DEBUG(L"Exec SelectExp", e);
     e.getSelect()->accept(*this);
 
-    exps_t* cases = e.getCases();
-    for (exps_t::iterator it = cases->begin(), itEnd = cases->end(); it !=  itEnd ; ++it)
+    exps_t cases = e.getCases();
+    for (auto exp : cases)
     {
-        (*it)->accept(*this);
+        exp->accept(*this);
     }
-    delete cases;
 
     if (e.getDefaultCase() != NULL)
     {
@@ -343,7 +398,7 @@ void DebugVisitor::visit (const ArrayListExp  &e)
     DEBUG(L"Exec ArrayListExp", e);
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -354,7 +409,7 @@ void DebugVisitor::visit (const AssignListExp  &e)
     DEBUG(L"Exec AssignListExp", e);
     for (exps_t::const_iterator it = e.getExps().begin (), itEnd = e.getExps().end(); it != itEnd; ++it)
     {
-        (*it)->accept (*this);
+        (*it)->accept(*this);
     }
     DEBUG_END_NODE();
 }
@@ -363,7 +418,7 @@ void DebugVisitor::visit (const NotExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec NotExp", e);
-    e.getExp().accept (*this);
+    e.getExp().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -371,7 +426,7 @@ void DebugVisitor::visit (const TransposeExp &e)
 {
     DEBUG_START_NODE(e);
     DEBUG(L"Exec TransposeExp", e);
-    e.getExp().accept (*this);
+    e.getExp().accept(*this);
     DEBUG_END_NODE();
 }
 
@@ -422,7 +477,39 @@ void DebugVisitor::visit(const OptimizedExp &e)
     e.getOriginal()->accept(*this);
 }
 
+void DebugVisitor::visit(const MemfillExp &e)
+{
+    DEBUG_START_NODE(e);
+    DEBUG(L"Exec MemfillExp", e);
+    e.getValue().accept(*this);
+
+    exps_t args = e.getArgs();
+    for (auto arg : args)
+    {
+        arg->accept(*this);
+    }
+
+    DEBUG_END_NODE();
+}
+
 void DebugVisitor::visit(const DAXPYExp &e)
+{
+    DEBUG_START_NODE(e);
+    DEBUG(L"Exec DAXPYExp", e);
+    e.getA().accept(*this);
+    e.getX().accept(*this);
+    e.getY().accept(*this);
+    DEBUG_END_NODE();
+
+    //e.getOriginal()->accept(*this);
+}
+
+void DebugVisitor::visit(const IntSelectExp & e)
+{
+    e.getOriginal()->accept(*this);
+}
+
+void DebugVisitor::visit(const StringSelectExp & e)
 {
     e.getOriginal()->accept(*this);
 }

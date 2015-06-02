@@ -21,6 +21,8 @@ extern "C"
 #include "addinter.h"
 }
 
+typedef void(*function)(wchar_t*);
+
 int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleName, wchar_t** _pwstEntryPointName, int _iEntryPointSize)
 {
     int iLibID = -1; /* Id of library */
@@ -56,7 +58,7 @@ int AddInterfaceToScilab(wchar_t* _pwstDynamicLibraryName, wchar_t* _pwstModuleN
 
     for (int i = 0 ; i < _iEntryPointSize ; i++)
     {
-        pEP->functionPtr(_pwstEntryPointName[i]);
+        ((function)pEP->functionPtr)(_pwstEntryPointName[i]);
     }
     return 0;
 }

@@ -19,7 +19,7 @@
 #include "sci_malloc.h"
 #include "BOOL.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 /*------------------------------------------------------------------------*/
 #define STRING_BEGIN_SESSION _("Begin Session : ")

@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "URIFileToFilename.h"
 #include "sci_malloc.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #if _MSC_VER
 #define strnicmp _strnicmp

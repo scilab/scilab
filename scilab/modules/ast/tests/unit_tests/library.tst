@@ -51,3 +51,17 @@ lib1lib = lib("lib1");
 assert_checkequal(lib1lib.lib_test(), "lib1");
 lib2lib = lib("lib2");
 assert_checkequal(lib2lib.lib_test(), "lib2");
+
+
+m = mgetl("SCI/modules/ast/tests/unit_tests/test_macro.sci");
+mkdir("test");
+mputl(m, "test/test_macro.sci");
+genlib("testlib","test",%f,%t);
+assert_checkequal(test_macro(4), 16);
+assert_checkequal(exists("internal_macro"), 0);
+assert_checkequal(exists("x"), 0);
+
+internal_macro = 1;x = 18;
+assert_checkequal(test_macro(5), 20);
+assert_checkequal(internal_macro, 1);
+assert_checkequal(x, 18);

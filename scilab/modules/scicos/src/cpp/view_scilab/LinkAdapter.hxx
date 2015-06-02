@@ -14,12 +14,9 @@
 #define LINKADAPTER_HXX_
 
 #include <string>
-#include <memory>
 
-#include "utilities.hxx"
 #include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
-
 #include "model/Link.hxx"
 
 namespace org_scilab_modules_scicos
@@ -30,7 +27,7 @@ namespace view_scilab
 class LinkAdapter : public BaseAdapter<LinkAdapter, org_scilab_modules_scicos::model::Link>
 {
 public:
-    LinkAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Link> adaptee);
+    LinkAdapter(const Controller& c, org_scilab_modules_scicos::model::Link* adaptee);
     LinkAdapter(const LinkAdapter& adapter);
     ~LinkAdapter();
 

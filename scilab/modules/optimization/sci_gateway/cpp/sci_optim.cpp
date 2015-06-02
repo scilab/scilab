@@ -17,6 +17,7 @@
 #include "polynom.hxx"
 #include "list.hxx"
 #include "optimizationfunctions.hxx"
+#include <limits>
 
 extern "C"
 {
@@ -107,36 +108,126 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             throw ast::ScilabMessage();
         }
 
-        if (_iRetCount > 6)
+        if (_iRetCount > 7)
         {
-            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 6);
+            Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 7);
             throw ast::ScilabMessage();
         }
 
         /*** get inputs arguments ***/
-        // get imp
-        if (opt.size() == 1 && opt[0].first == L"imp")
+
+        /*** get optionals ***/
+        for (int iOpt = 0 ; iOpt < opt.size() ; iOpt++)
         {
-            if (opt[0].second->isDouble() == false)
+            // "imp"
+            if (opt[iOpt].first == L"imp")
             {
-                Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "impl");
-                throw ast::ScilabMessage();
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
+                    throw ast::ScilabMessage();
+                }
+
+                types::Double* pDblImp = opt[iOpt].second->getAs<types::Double>();
+
+                if (pDblImp->isScalar() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
+                    throw ast::ScilabMessage();
+                }
+
+                iImp = (int)pDblImp->get(0);
             }
-
-            types::Double* pDblImpl = opt[0].second->getAs<types::Double>();
-
-            if (pDblImpl->isScalar() == false)
+            // "nap"
+            else if (opt[iOpt].first == L"nap")
             {
-                Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "impl");
-                throw ast::ScilabMessage();
-            }
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "nap");
+                    throw ast::ScilabMessage();
+                }
 
-            iImp = (int)pDblImpl->get(0);
+                pDblNap = opt[iOpt].second->getAs<types::Double>();
+                if (pDblNap->isScalar() == false || pDblNap->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "nap");
+                    throw ast::ScilabMessage();
+                }
+
+                iNap = (int)pDblNap->get(0);
+            }
+            // "iter"
+            else if (opt[iOpt].first == L"iter")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "iter");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblIter = opt[iOpt].second->getAs<types::Double>();
+                if (pDblIter->isScalar() == false || pDblIter->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "iter");
+                    throw ast::ScilabMessage();
+                }
+
+                iItMax = (int)pDblIter->get(0);
+            }
+            // "epsg"
+            else if (opt[iOpt].first == L"epsg")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsg = opt[iOpt].second->getAs<types::Double>();
+                if (pDblEpsg->isScalar() == false || pDblEpsg->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
+                    throw ast::ScilabMessage();
+                }
+
+                dEpsg = pDblEpsg->get(0);
+            }
+            // "epsf"
+            else if (opt[iOpt].first == L"epsf")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsf = opt[iOpt].second->getAs<types::Double>();
+                if (pDblEpsf->isScalar() == false || pDblEpsf->isComplex())
+                {
+                    Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
+                    throw ast::ScilabMessage();
+                }
+
+                dEpsf = pDblEpsf->get(0);
+            }
+            // "epsx"
+            else if (opt[iOpt].first == L"epsx")
+            {
+                if (opt[iOpt].second->isDouble() == false)
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsx");
+                    throw ast::ScilabMessage();
+                }
+
+                pDblEpsx = opt[iOpt].second->getAs<types::Double>();
+                iEpsx = 0;
+                pdblEpsx = pDblEpsx->get();
+            }
         }
-
         // get costf
         opFunctionsManager = new OptimizationFunctions(L"optim");
         Optimization::addOptimizationFunctions(opFunctionsManager);
+
 
         if (in[iPos]->isCallable())
         {
@@ -270,6 +361,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         }
 
         // get x0
+
         if (in[iPos]->isDouble())
         {
             pDblX0 = in[iPos]->getAs<types::Double>();
@@ -303,6 +395,12 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (iContr == 2 && (iSizeX0 != iSizeBinf || iSizeX0 != iSizeBsub))
         {
             Scierror(999, _("%s: Bounds and initial guess are incompatible.\n"), "optim");
+            throw ast::ScilabMessage();
+        }
+
+        if (pDblEpsx != NULL && (pDblEpsx->getSize() != iSizeX0))
+        {
+            Scierror(999, _("%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"), "optim", "epsx");
             throw ast::ScilabMessage();
         }
 
@@ -369,23 +467,39 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (iAlgo == 1)
         {
             // compute size
+
             if (iContr == 1)
             {
-                iWorkSize   = iSizeX0 * (iSizeX0 + 13) / 2;
-                iWorkSizeI  = 0;
+                iWorkSize = (int)(iSizeX0 * ((iSizeX0 + 13) / 2.0));
+                iWorkSizeI = 0;
             }
             else // iContr == 2
             {
-                iWorkSize   = iSizeX0 * (iSizeX0 + 1) / 2 + 4 * iSizeX0 + 1;
-                iWorkSizeI  = 2 * iSizeX0;
+
+                iWorkSize = (int)(iSizeX0 * (iSizeX0 + 1) / 2.0 + 4 * iSizeX0 + 1);
+                iWorkSizeI = 2 * iSizeX0;
             }
-
-            // alloc data
-            pdblWork = new double[iWorkSize];
-
-            if (iContr == 2)
+            /* See bug #9701 for this hard-coded value */
+            /* Fortran underlying algorithm does not support values higher than 46333 */
+            if (iSizeX0 > 46333)
             {
-                piWork = new int[iWorkSizeI];
+                Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
+                return types::Function::Error;
+            }
+            try
+            {
+                // alloc data
+                pdblWork = new double[iWorkSize];
+
+                if (iContr == 2)
+                {
+                    piWork = new int[iWorkSizeI];
+                }
+            }
+            catch (std::bad_alloc& /*ba*/)
+            {
+                Scierror(999, _("Can not allocate %.2f MB memory.\n"), (double)(iWorkSize * sizeof(double)) / 1.e6);
+                return types::Function::Error;
             }
         }
 
@@ -675,13 +789,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         // algorithme n1qn3 : Gradient Conjugate without constraints
         else if (iContr == 1 && iAlgo == 2) // bounds not setted && algo gc
         {
+            double dxmin = dEpsg;
+            double dZng = 0;
+
             if (bMem == false)
             {
                 iMem = 10;
             }
 
             // compute epsrel
-            double dZng = 0;
             for (int i = 0; i < iSizeX0; i++)
             {
                 dZng += (pdblG[i] * pdblG[i]);
@@ -695,7 +811,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             }
 
             // compute dxmin
-            double dxmin = dEpsg;
             if (iEpsx == 0)
             {
                 dxmin = pdblEpsx[0];
@@ -1010,7 +1125,6 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     catch (ast::ScilabError &e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
-        sciprint(_("%s: exception caught in '%s' subroutine.\n"), "optim", "costf");
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
     }
@@ -1026,52 +1140,52 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
     if (piIzs && iIzs)
     {
-        delete piIzs;
+        delete[] piIzs;
     }
 
     if (pfRzs)
     {
-        delete pfRzs;
+        delete[] pfRzs;
     }
 
     if (pdblG)
     {
-        delete pdblG;
+        delete[] pdblG;
     }
 
     if (pdblDzs && iDzs)
     {
-        delete pdblDzs;
+        delete[] pdblDzs;
     }
 
     if (pdblWork)
     {
-        delete pdblWork;
+        delete[] pdblWork;
     }
 
     if (pdblWork2)
     {
-        delete pdblWork2;
+        delete[] pdblWork2;
     }
 
     if (piWork)
     {
-        delete piWork;
+        delete[] piWork;
     }
 
     if (pdblX0)
     {
-        delete pdblX0;
+        delete[] pdblX0;
     }
 
     if (pdblVar)
     {
-        delete pdblVar;
+        delete[] pdblVar;
     }
 
     if (pdblEpsx && iEpsx)
     {
-        delete pdblEpsx;
+        delete[] pdblEpsx;
     }
 
     return ret;

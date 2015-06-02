@@ -4,7 +4,6 @@ LIBRARY    core.dll
 EXPORTS
 scirun_
 settmpdir_
-InitializeLaunchScilabSignal
 ReleaseLaunchScilabSignal
 TerminateCorePart2
 ExitScilab

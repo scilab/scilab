@@ -29,7 +29,7 @@ extern "C"
 #include "pcre_error.h"
 #include "Scierror.h"
 #include "charEncoding.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 }
 /*------------------------------------------------------------------------*/
@@ -124,7 +124,7 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
     piEnd       = new int[wcslen(pwstInput)];
 
     pwstCapturedString = (wchar_t***)MALLOC(sizeof(wchar_t**) * wcslen(pwstInput));
-    piCapturedStringCount = (int*)MALLOC(sizeof(int) * wcslen(pwstInput));
+    piCapturedStringCount = (int*)CALLOC(sizeof(int), wcslen(pwstInput));
 
     do
     {
@@ -148,6 +148,13 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
             pcre_error("regexp", iPcreStatus);
             delete[] piStart;
             delete[] piEnd;
+            for (int i = 0; i < iOccurs; i++)
+            {
+                freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
+            }
+
+            FREE(pwstCapturedString);
+            FREE(piCapturedStringCount);
             return Function::Error;
         }
     }
@@ -170,6 +177,11 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         {
             out.push_back(new String(L""));
         }
+
+        FREE(pwstCapturedString);
+        FREE(piCapturedStringCount);
+        delete[] piStart;
+        delete[] piEnd;
         return Function::OK;
     }
 
@@ -255,15 +267,15 @@ Function::ReturnValue sci_regexp(typed_list &in, int _iRetCount, typed_list &out
         }
         out.push_back(pS);
 
-        for (int i = 0 ; i < iOccurs ; i++)
+        for (int i = 0; i < iOccurs; i++)
         {
             freeArrayOfWideString(pwstCapturedString[i], piCapturedStringCount[i]);
         }
 
-        FREE(pwstCapturedString);
-        FREE(piCapturedStringCount);
     }
 
+    FREE(pwstCapturedString);
+    FREE(piCapturedStringCount);
     delete[] piStart;
     delete[] piEnd;
     return Function::OK;

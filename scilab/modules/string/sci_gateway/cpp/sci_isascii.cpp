@@ -66,6 +66,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
 
         pBOut = new types::Bool(1, iResultSize);
         pBOut->set(pbResult);
+        FREE(pbResult);
         out.push_back(pBOut);
     }
     else if (in[0]->isDouble())
@@ -80,6 +81,7 @@ types::Function::ReturnValue sci_isascii(types::typed_list &in, int _iRetCount, 
 
         pBOut = new types::Bool(1, pIn->getSize());
         pBOut->set(pbResult);
+        FREE(pbResult);
         out.push_back(pBOut);
     }
     else

@@ -10,13 +10,13 @@ msgstr ""
 "Project-Id-Version: gui-ru\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"PO-Revision-Date: 2014-06-16 13:51+0000\n"
+"PO-Revision-Date: 2015-03-28 15:04+0000\n"
 "Last-Translator: Stanislav V. Kroter <krotersv@gmail.com>\n"
 "Language-Team: Russian <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Launchpad (build 17196)\n"
+"X-Generator: Launchpad (build 17413)\n"
 "Language: ru\n"
 
 #, c-format
@@ -1985,7 +1985,7 @@ msgid "Units"
 msgstr "Единицы измерения"
 
 msgid "Upper Left Point"
-msgstr ""
+msgstr "верхняя левая точка"
 
 msgid "User Data"
 msgstr "Данные пользователя"
@@ -2074,7 +2074,13 @@ msgstr "Y вверх"
 msgid "Log Flags"
 msgstr ""
 
-msgid "Tight Limits"
+msgid "X Tight Limits"
+msgstr ""
+
+msgid "Y Tight Limits"
+msgstr ""
+
+msgid "Z Tight Limits"
 msgstr ""
 
 msgid "Enter a x position."
@@ -2132,7 +2138,7 @@ msgid "Axis Title"
 msgstr ""
 
 msgid "Font Angle"
-msgstr ""
+msgstr "Наклон шрифта"
 
 msgid "Font Color"
 msgstr "Цвет шрифта"
@@ -2340,50 +2346,51 @@ msgid "x_mdialog"
 msgstr ""
 
 msgid "Simple example of message"
-msgstr ""
+msgstr "Простой пример сообщения"
 
 msgid "Button 1Button 2"
-msgstr ""
+msgstr "Кнопка 1Кнопка 2"
 
 msgid "Button 1 clicked."
-msgstr ""
+msgstr "Нажата Кнопка 1."
 
 msgid "Button 2 clicked"
-msgstr ""
+msgstr "Нажата Кнопка 2"
 
 msgid ""
 "Message: Selection (double-click on an item --> returns the item number)"
 msgstr ""
+"Сообщение: Выбор (двойной щелчок на объекте --> возвращает номер объекта)"
 
 msgid "Item selected: "
-msgstr ""
+msgstr "Выбранный объект: "
 
 msgid "Message: enter a value"
-msgstr ""
+msgstr "Сообщение: введите значение"
 
 msgid "Value entered: "
-msgstr ""
+msgstr "Введённое значение: "
 
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 msgid "first row"
-msgstr ""
+msgstr "первая строка"
 
 msgid "Values entered: "
-msgstr ""
+msgstr "Введённые значения: "
 
 msgid "row"
-msgstr ""
+msgstr "строка"
 
 msgid "col"
-msgstr ""
+msgstr "стлб"
 
 msgid "Matrix to edit"
-msgstr ""
+msgstr "Матрица для редактирования"
 
 msgid "Matrix entered: "
-msgstr ""
+msgstr "Введённая матрица: "
 
 msgid "GUI"
 msgstr "Графический интерфейс"
@@ -2419,13 +2426,13 @@ msgid "Please enter a color name first."
 msgstr "Введите сначала название цвета."
 
 msgid "Unknown color."
-msgstr ""
+msgstr "Неизвестный цвет."
 
 msgid "No color selected."
 msgstr "Нет выбранного цвета."
 
 msgid "Color selection"
-msgstr ""
+msgstr "Выбор цвета"
 
 #, c-format
 msgid "Selected colors are: %s."
@@ -2433,7 +2440,7 @@ msgstr "Выбранные цвета: %s."
 
 #, c-format
 msgid "Deleted colors are: %s."
-msgstr ""
+msgstr "Удалённые цвета: %s."
 
 #, c-format
 msgid "You clicked on menu '%s'."
@@ -2478,7 +2485,7 @@ msgid "Application"
 msgstr "Приложение"
 
 msgid "Close figure"
-msgstr ""
+msgstr "Закрыть окно"
 
 msgid "Scilab Graphics"
 msgstr "Графика"
@@ -2508,7 +2515,7 @@ msgid "item1|item2|item3|item4"
 msgstr "элемент1|элемент2|элемент3|элемент4"
 
 msgid "Pop-up menu"
-msgstr ""
+msgstr "Выпадающее меню"
 
 msgid "Slider demo"
 msgstr "Пример ползунка"
@@ -2541,7 +2548,7 @@ msgid "Delete selection"
 msgstr ""
 
 msgid "Default"
-msgstr ""
+msgstr "По умолчанию"
 
 msgid "Quit demonstration"
 msgstr "Выход"

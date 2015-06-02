@@ -17,6 +17,9 @@
 #ifndef SCILAB_X64
 #include BinariesSourcePath + "\tools\innosetup\atlas.iss"
 #endif
+#include BinariesSourcePath + "\tools\innosetup\MKL.iss"
+#include BinariesSourcePath + "\tools\innosetup\FFTW_MKL.iss"
+#include BinariesSourcePath + "\tools\innosetup\MKL_commons.iss"
 #include BinariesSourcePath + "\tools\tools.iss"
 #include BinariesSourcePath + "\contrib\toolbox_skeleton.iss"
 #include BinariesSourcePath + "\modules\core\core.iss"

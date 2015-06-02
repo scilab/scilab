@@ -55,8 +55,9 @@ types::Function::ReturnValue sci_fstair(types::typed_list &in, int _iRetCount, t
     {
         if (in[i]->isDouble() == false)
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_fstair";
-            return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_fstair";
+            return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
         }
 
         pDblOut[i] = in[i]->clone()->getAs<types::Double>();

@@ -20,7 +20,6 @@ vartype_
 vstk_
 GetDataSize
 GetData
-cha1_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

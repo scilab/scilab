@@ -23,6 +23,11 @@ extern "C"
 }
 
 /*--------------------------------------------------------------------------*/
+static double* allocDgeesWorkspace(int iCols, int iDim, int* allocated);
+static doublecomplex* allocZgeesWorkspace(int iCols, int iDim, int* allocated);
+static double* allocDggesWorkspace(int iCols, int iDim, int* allocated);
+static doublecomplex* allocZggesWorkspace(int iCols, int iDim, int* allocated);
+/*--------------------------------------------------------------------------*/
 int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComplex, bool _bIsDiscrete, bool _bIsContinu, ConfigVariable::EntryPointStr* pStrFunction)
 {
     int info                    = 0;
@@ -52,7 +57,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         //dgees
         double* pWR = (double*)MALLOC(iCols * sizeof(double));
         double* pWI = (double*)MALLOC(iCols * sizeof(double));
-        pRwork = allocDgeesWorkspace(iCols, &iWorksize);
+        pRwork = allocDgeesWorkspace(iCols, iDim, &iWorksize);
 
         if (pWR == NULL || pWI == NULL || pRwork == NULL)
         {
@@ -112,7 +117,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         doublecomplex* pW = NULL;
         pRwork      = (double*)MALLOC(iCols * sizeof(double));
         pW          = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
-        pCplxWork   = allocZgeesWorkspace(iCols, &iWorksize);
+        pCplxWork   = allocZgeesWorkspace(iCols, iDim, &iWorksize);
 
         if (pRwork == NULL || pW == NULL || pCplxWork == NULL)
         {
@@ -180,7 +185,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         double* pAlphaR = (double*)MALLOC(iCols * sizeof(double));
         double* pAlphaI = (double*)MALLOC(iCols * sizeof(double));
         double* pBeta   = (double*)MALLOC(iCols * sizeof(double));
-        pRwork = allocDggesWorkspace(iCols, &iWorksize);
+        pRwork = allocDggesWorkspace(iCols, iDim, &iWorksize);
 
         if (pAlphaR == NULL || pAlphaI == NULL || pBeta == NULL || pRwork == NULL)
         {
@@ -245,7 +250,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         doublecomplex* pAlpha   = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
         doublecomplex* pBeta    = (doublecomplex*)MALLOC(iCols * sizeof(doublecomplex));
         pRwork                  = (double*) MALLOC(8 * iCols * sizeof(double));
-        pCplxWork               = allocZggesWorkspace(iCols, &iWorksize);
+        pCplxWork = allocZggesWorkspace(iCols, iDim, &iWorksize);
 
         if (pRwork == NULL || pAlpha == NULL || pBeta == NULL || pCplxWork == NULL)
         {
@@ -302,6 +307,7 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         else if (info > 0 && info < iCols)
         {
             sciprint(_("The QZ iteration failed. (A,E) are not in Schur form.\n"));
+            info = 0;
         }
         else if (info == iCols + 1)
         {
@@ -310,10 +316,12 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
         else if (info == iCols + 2)
         {
             sciprint(_("After reordering, roundoff changed values of some complex eigenvalues so that leading eigenvalues in the Schur form no longer satisfy SELECT=.TRUE. This could also be caused by underflow due to scaling.\n"));
+            info = 0;
         }
         else if (info == iCols + 3)
         {
             sciprint(_("Reordering failed in ZTGSEN.\n"));
+            info = 0;
         }
     }
 
@@ -321,14 +329,14 @@ int schurSelect(types::Double** _pDblIn, types::Double** _pDblOut, bool _bIsComp
     return info;
 }
 /*--------------------------------------------------------------------------*/
-double* allocDgeesWorkspace(int iCols, int* allocated)
+static double* allocDgeesWorkspace(int iCols, int iDim, int* allocated)
 {
     int info;
     int query = -1;
     double optim;
     double* ret = NULL;
 
-    C2F(dgees)("V", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, &optim, &query, NULL, &info);
+    C2F(dgees)("V", "N", NULL, &iCols, NULL, &iCols, &iDim, NULL, NULL, NULL, &iCols, &optim, &query, NULL, &info);
 
     *allocated = (int)optim;
     ret = (double*) MALLOC(*allocated * sizeof(double));
@@ -346,14 +354,14 @@ double* allocDgeesWorkspace(int iCols, int* allocated)
     return ret;
 }
 
-doublecomplex* allocZgeesWorkspace(int iCols, int* allocated)
+doublecomplex* allocZgeesWorkspace(int iCols, int iDim, int* allocated)
 {
     int info;
     int query = -1;
     doublecomplex optim;
     doublecomplex* ret = NULL;
 
-    C2F(zgees)("V", "N", NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, &iCols, &optim, &query, NULL, NULL, &info);
+    C2F(zgees)("V", "N", NULL, &iCols, NULL, &iCols, &iDim, NULL, NULL, &iCols, &optim, &query, NULL, NULL, &info);
 
     *allocated = (int)optim.r;
     ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));
@@ -370,14 +378,14 @@ doublecomplex* allocZgeesWorkspace(int iCols, int* allocated)
     return ret;
 }
 
-double* allocDggesWorkspace(int iCols, int* allocated)
+static double* allocDggesWorkspace(int iCols, int iDim, int* allocated)
 {
     int info;
     int query = -1;
     double optim;
     double* ret = NULL;
 
-    C2F(dgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, &info);
+    C2F(dgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, &iDim, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, &info);
 
     *allocated = (int)optim;
     ret = (double*)MALLOC(*allocated * sizeof(double));
@@ -395,14 +403,14 @@ double* allocDggesWorkspace(int iCols, int* allocated)
     return ret;
 }
 
-doublecomplex* allocZggesWorkspace(int iCols, int* allocated)
+static doublecomplex* allocZggesWorkspace(int iCols, int iDim, int* allocated)
 {
     int info;
     int query = -1;
     doublecomplex optim;
     doublecomplex* ret = NULL;
 
-    C2F(zgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, NULL, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, NULL, &info);
+    C2F(zgges)("V", "V", "N", NULL, &iCols, NULL, &iCols, NULL, &iCols, &iDim, NULL, NULL, NULL, &iCols, NULL, &iCols, &optim, &query, NULL, NULL, &info);
 
     *allocated = (int)optim.r;
     ret = (doublecomplex*) MALLOC(*allocated * sizeof(doublecomplex));

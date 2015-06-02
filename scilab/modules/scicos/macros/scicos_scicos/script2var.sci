@@ -56,13 +56,14 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
 
     %nww="";%ierr=0;  // to make sure %nww and %ierr does not enter the difference
     if isempty(%txt) then return,end
-    %nww=size(who("get"),"*")
+    %nww=who("get")
 
     %ierr=execstr(%txt,"errcatch")
     if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
     %mm=who("get")
-    %mm=%mm(1:size(%mm,"*")-%nww)
+    // Compare the new list of variables with the old one to find new variables
+    %mm=%mm(members(%mm,%nww)==0)
     //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
     for %mi=%mm(:)'
         if %mi=="scs_m" then

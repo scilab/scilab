@@ -170,10 +170,51 @@ H5Data & H5DataFactory::getObjectData(H5Object & parent, const hsize_t totalSize
             {
                 char * mname = H5Tget_member_name(type, i);
                 names[i] = std::string(mname);
+                //HDF5 version > 1.8.13
+                //H5free_memory(mnale);
+
+                //freed memory allocated by H5Tget_member_name trigger a segfault on Windows.
+                //http://lists.hdfgroup.org/pipermail/hdf-forum_lists.hdfgroup.org/2014-September/008061.html
+                //little memory leaks are better then crashs :x
+#ifndef _MSC_VER
                 free(mname);
+#endif
             }
 
-            return *new H5EnumData(parent, totalSize, dataSize, ndims, dims, (unsigned int *)data, nmembers, names, stride, offset, dataOwner);
+            if (H5Tget_sign(type) == H5T_SGN_NONE)
+            {
+                switch (dataSize)
+                {
+                    case 1:
+                        return *new H5EnumData<unsigned char>(parent, totalSize, dataSize, ndims, dims, (unsigned char *)data, type, H5T_NATIVE_UCHAR, nmembers, names, stride, offset, dataOwner);
+                    case 2:
+                        return *new H5EnumData<unsigned short>(parent, totalSize, dataSize, ndims, dims, (unsigned short *)data, type, H5T_NATIVE_USHORT, nmembers, names, stride, offset, dataOwner);
+                    case 4:
+                        return *new H5EnumData<unsigned int>(parent, totalSize, dataSize, ndims, dims, (unsigned int *)data, type, H5T_NATIVE_UINT, nmembers, names, stride, offset, dataOwner);
+#ifdef __SCILAB_INT64__
+                    case 8:
+                        return *new H5EnumData<unsigned long long>(parent, totalSize, dataSize, ndims, dims, (unsigned long long *)data, type, H5T_NATIVE_ULLONG, nmembers, names, stride, offset, dataOwner);
+#endif
+                }
+            }
+            else
+            {
+                switch (dataSize)
+                {
+                    case 1:
+                        return *new H5EnumData<char>(parent, totalSize, dataSize, ndims, dims, (char *)data, type, H5T_NATIVE_CHAR, nmembers, names, stride, offset, dataOwner);
+                    case 2:
+                        return *new H5EnumData<short>(parent, totalSize, dataSize, ndims, dims, (short *)data, type, H5T_NATIVE_SHORT, nmembers, names, stride, offset, dataOwner);
+                    case 4:
+                        return *new H5EnumData<int>(parent, totalSize, dataSize, ndims, dims, (int *)data, type, H5T_NATIVE_INT, nmembers, names, stride, offset, dataOwner);
+#ifdef __SCILAB_INT64__
+                    case 8:
+                        return *new H5EnumData<long long>(parent, totalSize, dataSize, ndims, dims, (long long *)data, type, H5T_NATIVE_LLONG, nmembers, names, stride, offset, dataOwner);
+#endif
+                }
+            }
+
+            return *new H5EnumData<char>(parent, totalSize, dataSize, ndims, dims, (char *)data, type, H5T_NATIVE_CHAR, nmembers, names, stride, offset, dataOwner);
         }
         case H5T_VLEN:
             return *new H5VlenData(parent, totalSize, dataSize, ndims, dims, static_cast<char *>(data), type, stride, offset, dataOwner);

@@ -350,6 +350,8 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_marks_count_property.c \
     src/c/getHandleProperty/get_line_width_property.c \
     src/c/getHandleProperty/set_line_width_property.c \
+    src/c/getHandleProperty/get_colors_property.c \
+    src/c/getHandleProperty/set_colors_property.c \
     src/c/DefaultCommandArg.c \
     src/c/Axes.c \
     src/c/sciMatrix.c \
@@ -396,11 +398,13 @@ GRAPHICS_C_SOURCES = \
     src/c/getHandleProperty/set_auto_margins_property.c \
     src/c/getHandleProperty/get_auto_margins_property.c \
     src/c/name2rgb.c \
-    src/c/addColor.c
+    src/c/addColor.c \
+    src/c/DllmainGraphics.c
 
 GRAPHICS_CXX_SOURCES = \
     src/cpp/configgraphicvariable.cpp \
-    src/cpp/set_data_property.cpp
+    src/cpp/set_data_property.cpp \
+    src/cpp/ContourOnMesh.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_swap_handles.c \
@@ -432,7 +436,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_plot3d.c \
     sci_gateway/c/sci_move.c \
     sci_gateway/c/sci_copy.c \
-    sci_gateway/c/sci_relocate_handle.c \
     sci_gateway/c/sci_xarcs.c \
     sci_gateway/c/sci_xfpoly.c \
     sci_gateway/c/sci_drawlater.c \
@@ -469,8 +472,8 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_xset.cpp \
     sci_gateway/cpp/sci_matplot.cpp \
     sci_gateway/cpp/sci_matplot1.cpp \
-    sci_gateway/cpp/sci_winsid.cpp
-
+    sci_gateway/cpp/sci_winsid.cpp \
+    sci_gateway/cpp/sci_contour2dm.cpp
 
 libscigraphics_la_CPPFLAGS = \
     -I$(srcdir)/includes/ \
@@ -501,7 +504,6 @@ libscigraphics_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes/ \
     -I$(top_srcdir)/modules/console/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    $(EIGEN_CPPFLAGS) \
     $(TCL_INC_PATH) \
     $(TK_INC_PATH) \
     $(AM_CPPFLAGS)
@@ -585,7 +587,6 @@ libscigraphics_disable_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/core/includes/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 # endif

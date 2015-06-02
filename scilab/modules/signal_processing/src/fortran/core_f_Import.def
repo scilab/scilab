@@ -4,11 +4,6 @@
 EXPORTS
 ;core_f
 ;
-allowptr_
-btof_
-extlarg_
-ftob_
 funnam_
 funs_
-ref2val_
 isbyref_

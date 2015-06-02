@@ -15,7 +15,7 @@
 #include "double.hxx"
 #include "overload.hxx"
 #include "execvisitor.hxx"
-
+#include "sparse.hxx"
 
 extern "C"
 {
@@ -24,6 +24,10 @@ extern "C"
 #include "elem_common.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();imult(a);toc
+clear a;nb = 2500;a = rand(nb, nb); a = a + a *%i;tic();imult(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -49,9 +53,11 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
 
         if (pDblIn->isComplex())
         {
+            double* pOutR = pDblOut->get();
+            double* pInI = pDblIn->getImg();
             for (int i = 0; i < iSize; i++)
             {
-                pDblOut->set(i, pDblIn->getImg(i) * -1);
+                pOutR[i] = pInI[i] * -1;
             }
         }
         else
@@ -136,8 +142,9 @@ types::Function::ReturnValue sci_imult(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_imult";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_imult";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

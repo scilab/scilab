@@ -26,6 +26,9 @@ extern "C"
 #include "log.h"
 }
 
+/*
+clear a;nb = 2500;a = rand(nb, nb);tic();log1p(a);toc
+*/
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -45,12 +48,12 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
 
     if (in[0]->isDouble() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_log1p";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_log1p";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::Double* pDblIn = in[0]->getAs<types::Double>();
-    types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
 
     if (pDblIn->isComplex())
     {
@@ -58,9 +61,11 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
         return types::Function::Error;
     }
 
-    for (int i = 0; i < pDblIn->getSize(); i++)
+    double* pInR = pDblIn->get();
+    int size = pDblIn->getSize();
+    for (int i = 0; i < size; i++)
     {
-        if (pDblIn->get(i) < 0)
+        if (pInR[i] < 0)
         {
             if (ConfigVariable::getIeee() == 0)
             {
@@ -71,15 +76,19 @@ types::Function::ReturnValue sci_log1p(types::typed_list &in, int _iRetCount, ty
             {
                 if (ConfigVariable::getWarningMode())
                 {
-                    sciprint(_("%ls: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log1p", 1);
+                    sciprint(_("%s: Warning: Wrong value for input argument #%d : Singularity of the function.\n"), "log1p", 1);
+                    break;
                 }
             }
         }
     }
 
-    for (int i = 0; i < pDblIn->getSize(); i++)
+    types::Double* pDblOut = new types::Double(pDblIn->getDims(), pDblIn->getDimsArray());
+    double* pOutR = pDblOut->get();
+
+    for (int i = 0; i < size; i++)
     {
-        pDblOut->set(i, dlog1ps(pDblIn->get(i)));
+        pOutR[i] = dlog1ps(pInR[i]);
     }
 
     out.push_back(pDblOut);

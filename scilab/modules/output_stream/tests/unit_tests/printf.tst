@@ -46,6 +46,5 @@ printf("printf test 17:%X\n", 170);
 //==================================
 printf("printf test 18:%.5s\n", "abcdefghij");
 //==================================
-printf("printf test 195:%-2s\n", "gazonk");
+printf("printf test 19:%-2s\n", "gazonk");
 //==================================
- 

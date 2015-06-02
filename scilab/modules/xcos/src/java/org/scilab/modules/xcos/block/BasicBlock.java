@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.block;
 
+import java.awt.Cursor;
 import java.awt.MouseInfo;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -1163,10 +1164,10 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
         setBlockType(modifiedBlock.getBlockType());
         setSimulationFunctionName(modifiedBlock.getSimulationFunctionName());
         setSimulationFunctionType(modifiedBlock.getSimulationFunctionType());
-        
+
         setNbZerosCrossing(modifiedBlock.getNbZerosCrossing());
         setNmode(modifiedBlock.getNmode());
-        
+
         setEquations(modifiedBlock.getEquations());
         setStyle(modifiedBlock.getStyle());
     }
@@ -1327,6 +1328,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             return;
         }
 
+        graph.setCellsLocked(true);
+        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+
         // sort children according to the ordering parameter (useful on
         // scilab-5.2.x diagrams)
         sortChildren();
@@ -1363,6 +1367,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
                         setLocked(false);
 
                         handler.release();
+
+                        graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+                        graph.setCellsLocked(false);
                     }
                 }
             };
@@ -1375,6 +1382,9 @@ public class BasicBlock extends ScilabGraphUniqueObject implements Serializable 
             setLocked(false);
 
             handler.release();
+
+            graph.getAsComponent().getGraphControl().setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
+            graph.setCellsLocked(false);
         }
     }
 

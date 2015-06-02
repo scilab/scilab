@@ -23,6 +23,10 @@
 #include "deserializervisitor.hxx"
 #include "scilabWrite.hxx"
 
+extern "C"
+{
+#include "Scierror.h"
+}
 namespace types
 {
 MacroFile::MacroFile(std::wstring _stName, std::wstring _stPath, std::wstring _stModule) :
@@ -77,6 +81,12 @@ bool MacroFile::parse(void)
         //load file, only for the first call
         char* pstPath = wide_string_to_UTF8(m_stPath.c_str());
         std::ifstream f(pstPath, ios::in | ios::binary | ios::ate);
+        if (f.is_open() == false)
+        {
+            Scierror(999, _("Unable to open : %s.\n"), pstPath);
+            FREE(pstPath);
+            return false;
+        }
         FREE(pstPath);
 
         int size = (int)f.tellg();
@@ -91,54 +101,77 @@ bool MacroFile::parse(void)
         //find FunctionDec
         ast::FunctionDec* pFD = NULL;
 
-        ast::exps_t::iterator j;
         ast::exps_t LExp = tree->getAs<ast::SeqExp>()->getExps();
+        std::map<symbol::Symbol, Macro*> sub;
 
-        for (j = LExp.begin() ; j != LExp.end() ; j++)
+        for (auto exp : LExp)
         {
-            if ((*j)->isFunctionDec() == false)
+            if (exp->isFunctionDec() == false)
             {
                 continue;
             }
 
-            pFD = (*j)->getAs<ast::FunctionDec>();
-            if (pFD) // &&	pFD->getName() == m_stName
+            pFD = exp->getAs<ast::FunctionDec>();
+
+            //get input parameters list
+            std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
+            ast::ArrayListVar *pListVar = pFD->getArgs().getAs<ast::ArrayListVar>();
+            ast::exps_t & vars = pListVar->getVars();
+            for (auto var : vars)
             {
-                symbol::Context* pContext = symbol::Context::getInstance();
-                InternalType* pFunc = pContext->getFunction(pFD->getSymbol());
-                if (pFunc && pFunc->isMacroFile())
+                pVarList->push_back(var->getAs<ast::SimpleVar>()->getStack());
+            }
+
+            //get output parameters list
+            std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
+            ast::ArrayListVar *pListRet = pFD->getReturns().getAs<ast::ArrayListVar>();
+            ast::exps_t & recs = pListRet->getVars();
+            for (auto rec : recs)
+            {
+                pRetList->push_back(rec->getAs<ast::SimpleVar>()->getStack());
+            }
+
+            const symbol::Symbol & sym = pFD->getSymbol();
+            Macro* macro = new Macro(sym.getName(), *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);
+            macro->setFirstLine(pFD->getLocation().first_line);
+
+            if (m_pMacro == nullptr && sym.getName() == getName())
+            {
+                //we found the main macro
+                m_pMacro = macro;
+            }
+            else
+            {
+                //we found a sub macro
+                if (sub.find(sym) == sub.end())
                 {
-                    MacroFile* pMacro = pContext->getFunction(pFD->getSymbol())->getAs<MacroFile>();
-                    if (pMacro->m_pMacro == NULL)
-                    {
-
-                        //get input parameters list
-                        std::list<symbol::Variable*> *pVarList = new std::list<symbol::Variable*>();
-                        ast::ArrayListVar *pListVar = pFD->getArgs().getAs<ast::ArrayListVar>();
-                        ast::exps_t vars = pListVar->getVars();
-                        for (ast::exps_t::const_iterator it = vars.begin(), itEnd = vars.end() ; it != itEnd ; ++it)
-                        {
-                            pVarList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
-                        }
-
-                        //get output parameters list
-                        std::list<symbol::Variable*> *pRetList = new std::list<symbol::Variable*>();
-                        ast::ArrayListVar *pListRet = pFD->getReturns().getAs<ast::ArrayListVar>();
-                        ast::exps_t recs = pListRet->getVars();
-                        for (ast::exps_t::const_iterator it = recs.begin(), itEnd = recs.end(); it != itEnd ; ++it)
-                        {
-                            pRetList->push_back((*it)->getAs<ast::SimpleVar>()->getStack());
-                        }
-
-                        pMacro->m_pMacro = new Macro(m_wstName, *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);
-                        pMacro->setFirstLine(pFD->getLocation().first_line);
-                    }
+                    sub[sym] = macro;
+                }
+                else
+                {
+                    // This macro is a doublon !!
+                    delete macro;
                 }
             }
-            delete *j;
         }
 
-        ((ast::SeqExp*)tree)->clearExps();
+        if (m_pMacro)
+        {
+            for (const auto & macro : sub)
+            {
+                m_pMacro->add_submacro(macro.first, macro.second);
+            }
+        }
+        else
+        {
+            // This is an incorrect library => we should not be here !
+            for (const auto & macro : sub)
+            {
+                delete macro.second;
+            }
+        }
+        sub.clear();
+
         delete tree;
 
     }

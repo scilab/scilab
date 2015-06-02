@@ -368,9 +368,6 @@
     <ClCompile Include="foriterator.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fromws_c.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="gain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -975,6 +972,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\HelpersJNI.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\fromws_c.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

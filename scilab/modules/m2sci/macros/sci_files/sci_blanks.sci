@@ -18,7 +18,7 @@ function [tree]=sci_blanks(tree)
 
     if ~is_a_scalar(A) & typeof(A)<>"variable" then
         n=gettempvar()
-        insert(Equal(list(n),A))
+        m2sci_insert(Equal(list(n),A))
         B=Operation("ext",list(n,Cste(1)),list())
         repl_poss(B,..
         A,A,gettext("is a scalar."))

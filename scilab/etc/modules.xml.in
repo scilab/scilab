@@ -63,7 +63,7 @@
 <module name="scicos" activate="@XCOS_ENABLE@"/>
 <module name="scicos_blocks" activate="@XCOS_ENABLE@"/>
 <!-- comments -->
-<module name="fftw" activate="no"/><!-- @FFTW_ENABLE@ -->
+<module name="fftw" activate="@FFTW_ENABLE@"/>
 <module name="umfpack" activate="@UMFPACK_ENABLE@"/>
 <module name="module_skeleton" activate="no"/>
 <!-- comments -->
@@ -87,7 +87,7 @@
 <module name="history_browser" activate="@JAVA_ENABLE@"/>
 <module name="preferences" activate="@GUI_ENABLE@"/>
 <module name="xml" activate="yes"/>
-<module name="external_objects" activate="no"/>
+<module name="external_objects" activate="yes"/>
 <module name="ast" activate="yes"/>
-<module name="external_objects_java" activate="no"/>
+<module name="external_objects_java" activate="@JAVA_ENABLE@"/>
 </modules>

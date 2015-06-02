@@ -17,6 +17,49 @@
 #include <wchar.h>
 #include "machine.h"
 
+/**
+ * Store a non-prioritary and interruptible command
+ *
+ * @param command : the command
+ * @return <ReturnValue>
+ */
+int StoreCommand(char *command);
+
+/**
+ * Store a prioritary and interruptible command
+ *
+ * @param command : the command
+ * @return <ReturnValue>
+ */
+
+int StoreConsoleCommand(char *command);
+/**
+ * Store a prioritary and non-interruptible command
+ *
+ * @param command : the command
+ * @return <ReturnValue>
+ */
+int StorePrioritaryCommand(char *command);
+
+/**
+ * Get the next command to execute
+ *
+ * @param command           : command wich will be executed
+ * @param piInterruptible   : 1 if it is a interruptible command
+ * @param piPrioritary      : 1 if it is a prioritary command
+ * @param piConsole         : 1 if it is a console command
+ * @return <ReturnValue>    : 0 if command queue is empty
+ */
+int GetCommand (char** command, int* piInterruptible, int* piPrioritary, int* piConsole);
+
+/**
+* check if command queue is empty
+* @return 1 if empty , 0 is not empty
+*/
+int isEmptyCommandQueue(void);
+
+
+
 /*
  * Checks if there's something on the
  * commandQueue
@@ -24,47 +67,11 @@
  */
 int ismenu(void);
 
-/**
- * try to execute a command or add it to the end of command queue
- *
- * @param command the command
- * @return <ReturnValue>
- */
-int StoreCommand (wchar_t *command);
-
-/**
- * try to execute a command or add it to the end of command queue
- *
- * @param command the command
- * @param flag a internal execution flag for sequential execution
- * @return <ReturnValue>
- */
-int StoreCommandWithFlag (wchar_t *command, int flag);
-
-/**
- * @TODO add comment
- *
- * @param str
- * @return <ReturnValue>
- */
-int GetCommand (char *str);
-
-/**
-* try to execute a command or add it to the _BEGINNING_ of command queue
-* flag = 0 : the command is not shown in scilab window
-* flag = 1 : the command is shown in scilab window (if at prompt) and executed sequentially
-*/
-int StorePrioritaryCommandWithFlag (wchar_t *command, int flag);
 
 /**
 *
 */
 int C2F(getmen)(char * btn_cmd, int * lb, int * entry);
 
-/**
-* check if command queue is empty
-* @return 1 if empty , 0 is not empty
-*/
-int isEmptyCommandQueue(void);
 
 #endif /* __STORECOMMAND_H__ */

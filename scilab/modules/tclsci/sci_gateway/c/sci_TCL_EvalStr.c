@@ -20,7 +20,7 @@
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "GlobalTclInterp.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int sci_TCL_EvalStr(char *fname, unsigned long l)
 {

@@ -50,7 +50,7 @@ if test -n "$SCI"; then
     if test ! -d "$SCI/modules"; then
         echo "Cannot find directory $SCI/modules/ !"
         echo "SCI should point to the root data directory of Scilab"
-        exit -1
+        exit 255
     fi
 fi
 
@@ -624,7 +624,7 @@ if test $IS_SCILAB_BINARY -eq 1; then
         TCL_LIBRARY="$SCIBINARYBASE/thirdparty/tcl8.5"
         TK_LIBRARY="$SCIBINARYBASE/thirdparty/tk8.5"
     fi
-    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+    LD_LIBRARY_PATH=$SCIBINARYBASE/lib/scilab:$SCIBINARYBASE/lib/thirdparty${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}:$SCIBINARYBASE/lib/thirdparty/redist
     DOCBOOK_ROOT="$SCI/../../thirdparty/docbook"
     PATH="$PATH:$SCI/modules/scicos/"
 
@@ -644,6 +644,13 @@ if test $IS_SCILAB_BINARY -eq 1; then
     esac
 
 else
+    # Scilab compiled using prerequirements
+    if test -d $curdir/../usr; then
+        TCL_LIBRARY="$SCI/usr/lib/tcl8.5"
+        TK_LIBRARY="$SCI/usr/lib/tk8.5"
+        export TCL_LIBRARY
+        export TK_LIBRARY
+    fi
     PATH="$SCI:$SCI/bin:$PATH"
 fi
 
@@ -704,14 +711,20 @@ detect_macosx_version()
 set_macox_specific_path()
 {
 
+    PATH_TO_SPECIFIC_10_10=$SCIBINARYBASE/lib/thirdparty/10.10/
     PATH_TO_SPECIFIC_10_6=$SCIBINARYBASE/lib/thirdparty/10.6/
     PATH_TO_SPECIFIC_10_5=$SCIBINARYBASE/lib/thirdparty/10.5/
 
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
+                10)
+                    # Specific libBLAS.dylib & libLAPACK.dylib version for 10.10
+                    LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
+                    DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_10${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
+                    ;;
                 6)
-		    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
+                    # the iconv lib fails under 10.7, just declare it for 10.5 & 10.6
                     LD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${LD_LIBRARY_PATH+:$LD_LIBRARY_PATH}
                     DYLD_LIBRARY_PATH=$PATH_TO_SPECIFIC_10_6${DYLD_LIBRARY_PATH+:$DYLD_LIBRARY_PATH}
                     ;;
@@ -814,7 +827,7 @@ case $OS in
         # When started as an Application, the default path was "/"
         # It is not really useful. Changing to HOME.
         # See bugs 8339 and 10575 for rational
-        if test "$(pwd)" == "/"; then
+        if test "$(pwd)" = "/"; then
             cd $HOME
         fi
 

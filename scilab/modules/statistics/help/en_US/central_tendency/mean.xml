@@ -88,7 +88,7 @@ y=mean(A,'m')
                 <link linkend="median">median</link>
             </member>
             <member>
-                <link linkend="st_deviation">st_deviation</link>
+                <link linkend="stdev">stdev</link>
             </member>
         </simplelist>
     </refsection>

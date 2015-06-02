@@ -138,8 +138,10 @@ public:
         return (hid_t) - 1;
     }
 
-    static void initMap()
+    static std::map<std::string, hid_t> initMap()
     {
+        std::map<std::string, hid_t> nameToType;
+
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I8BE", H5T_STD_I8BE));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I8LE", H5T_STD_I8LE));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_STD_I16BE", H5T_STD_I16BE));
@@ -273,6 +275,8 @@ public:
         nameToType.insert(std::pair<std::string, hid_t>("H5T_VLEN", H5T_VLEN));
         nameToType.insert(std::pair<std::string, hid_t>("H5T_ARRAY", H5T_ARRAY));
         */
+
+        return nameToType;
     }
 
     static void cleanMap()

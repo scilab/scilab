@@ -84,6 +84,12 @@ public:
         return os.str();
     }
 
+    friend std::wostream & operator<<(std::wostream & out, const Location & loc)
+    {
+        out << L"(" << loc.first_line << L"," << loc.first_column << L") to (" << loc.last_line << L"," << loc.last_column << L")";
+        return out;
+    }
+
 public:
     /** \brief Beginning of the located region. */
     int first_line;

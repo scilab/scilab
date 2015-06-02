@@ -13,5 +13,5 @@
 // Causes scilab to hang, using 95% of CPU.
 // and display a incorrect error
 A(3,3)=%s;
-ierr = execstr('A(:)=%z;','errcatch');
-if ierr <> 278 then bugmes();quit;end
+ierr = execstr("A(:)=%z;","errcatch");
+assert_checktrue(ierr <> 0);

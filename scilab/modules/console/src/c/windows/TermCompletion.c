@@ -23,7 +23,7 @@
 #include "getCommonPart.h"
 #include "completion.h"
 #include "scilines.h"
-#include "os_strdup.h"
+#include "os_string.h"
 #include "completeLine.h"
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
@@ -82,6 +82,7 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 {
                     clearCurrentLine();
                     copyLine(newline);
+                    FREE(common);
                     FREE(newline);
                     return;
                 }

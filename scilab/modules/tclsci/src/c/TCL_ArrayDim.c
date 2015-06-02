@@ -20,7 +20,7 @@
 #include "TCL_ArrayDim.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define TCL_ALL_INDEXES "TclScilabTmpVar1"
 #define TCL_NUMERICAL_INDEXES "TclScilabTmpVar2"

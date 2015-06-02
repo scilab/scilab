@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -44,9 +44,6 @@
     <ClCompile Include="forbiddenToUseScilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getScilabDirectory.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InnosetupMutex.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,9 +57,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="scilab_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SetScilabEnvironmentVariables.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="spawncommand.c">
@@ -92,6 +86,12 @@
     <ClCompile Include="splashScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle_Windows.h">
@@ -118,9 +118,6 @@
     <ClInclude Include="forbiddenToUseScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getScilabDirectory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InnosetupMutex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -137,9 +134,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SetHeapOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SetScilabEnvironmentVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spawncommand.h">
@@ -167,6 +161,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

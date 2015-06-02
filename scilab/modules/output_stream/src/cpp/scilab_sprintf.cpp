@@ -27,9 +27,9 @@ extern "C"
 #include "sci_malloc.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "os_wtoi.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 #define NanString L"Nan"
@@ -117,6 +117,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             pToken[iToken].pwstToken = new wchar_t[iEnd - iStart + 1];
             wcsncpy(pToken[iToken].pwstToken, pwstFirstOutput + iStart, iEnd - iStart);
             pToken[iToken].pwstToken[iEnd - iStart] = L'\0';
+            pToken[iToken].outputType = InternalType::ScilabNull;
 
             //identify destination type
             //format : %[flags][width][.precision][length]specifier
@@ -190,6 +191,18 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                 {
                     case L'i' : //integer
                     case L'd' : //integer
+                        if (_pArgs[iPosArg].type != InternalType::ScilabDouble)
+                        {
+                            Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), _pstName);
+                            *_piOutputRows = 0;
+                            return NULL;
+                        }
+
+                        pToken[iToken].outputType = InternalType::ScilabInt32;
+
+                        iPosArg++;
+                        break;
+
                     case L'o' : //octal
                     case L'u' : //unsigned
                     case L'x' : //hex
@@ -201,7 +214,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                             return NULL;
                         }
 
-                        pToken[iToken].outputType = InternalType::ScilabInt32;
+                        pToken[iToken].outputType = InternalType::ScilabUInt32;
 
                         iPosArg++;
                         break;
@@ -280,7 +293,6 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
             //start at 1, the 0th is always without %
             for (int i = 1 ; i < _iArgsCount + 1 ; i++)
             {
-                void* pvVal = NULL;
                 if (pToken[i].outputType == InternalType::ScilabDouble)
                 {
                     wchar_t pwstTemp[bsiz];
@@ -293,6 +305,7 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                     else
                     {
                         wchar_t* newToken = addl(&pToken[i]);
+
                         if (ISNAN(dblVal))
                         {
                             os_swprintf(pwstTemp, bsiz, newToken, NanString);
@@ -313,9 +326,71 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                 }
                 else if (pToken[i].outputType == InternalType::ScilabInt32)
                 {
+
                     wchar_t pwstTemp[bsiz];
                     double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
-                    os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+
+                    if (finite(dblVal))
+                    {
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (int)dblVal);
+                    }
+                    else
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+
+                        if (ISNAN(dblVal))
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        }
+                        else
+                        {
+                            if (std::signbit(dblVal))
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                            }
+                            else
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                            }
+                        }
+
+                        delete[] newToken;
+                    }
+                    iPosArg++;
+                    oFirstOutput << pwstTemp;
+                }
+                else if (pToken[i].outputType == InternalType::ScilabUInt32)
+                {
+
+                    wchar_t pwstTemp[bsiz];
+                    double dblVal = in[_pArgs[iPosArg].iArg]->getAs<Double>()->get(j, _pArgs[iPosArg].iPos);
+
+                    if (finite(dblVal))
+                    {
+                        os_swprintf(pwstTemp, bsiz, pToken[i].pwstToken, (unsigned int)dblVal);
+                    }
+                    else
+                    {
+                        wchar_t* newToken = addl(&pToken[i]);
+
+                        if (ISNAN(dblVal))
+                        {
+                            os_swprintf(pwstTemp, bsiz, newToken, NanString);
+                        }
+                        else
+                        {
+                            if (std::signbit(dblVal))
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, NegInfString);
+                            }
+                            else
+                            {
+                                os_swprintf(pwstTemp, bsiz, newToken, InfString);
+                            }
+                        }
+
+                        delete[] newToken;
+                    }
                     iPosArg++;
                     oFirstOutput << pwstTemp;
                 }
@@ -369,8 +444,11 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
                         }
                     }
 
-                    len += (int)wcslen(pToken[i].pwstToken);
+                    int tokenLen = (int)wcslen(pToken[i].pwstToken);
+                    len += tokenLen;
                     len = std::max(len, pToken[i].width);
+                    //add len of string after token like "%20s>>>" add space for ">>>"
+                    len += (tokenLen - (bC ? posC : posS));
                     wchar_t* pwstTemp = (wchar_t*)MALLOC((len + 1) * sizeof(wchar_t));
 
                     if (bC)
@@ -395,6 +473,13 @@ wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, typed_
         }
 
         pwstFirstOutput = os_wcsdup((wchar_t*)oFirstOutput.str().c_str());
+
+        for (int j = 0; j < _iArgsCount + 1; ++j)
+        {
+            delete[] pToken[j].pwstToken;
+        }
+        delete[] pToken;
+
     }
 
     pwstOutput = (wchar_t**)MALLOC((*_piOutputRows) * sizeof(wchar_t*));

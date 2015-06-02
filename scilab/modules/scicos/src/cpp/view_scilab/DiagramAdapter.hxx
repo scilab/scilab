@@ -15,9 +15,10 @@
 
 #include <string>
 #include <vector>
-#include <memory>
 
-#include "utilities.hxx"
+#include "internal.hxx"
+#include "list.hxx"
+
 #include "adapters_utilities.hxx"
 #include "BaseAdapter.hxx"
 #include "model/Diagram.hxx"
@@ -30,7 +31,7 @@ namespace view_scilab
 class DiagramAdapter : public BaseAdapter<DiagramAdapter, org_scilab_modules_scicos::model::Diagram>
 {
 public:
-    DiagramAdapter(std::shared_ptr<org_scilab_modules_scicos::model::Diagram> adaptee);
+    DiagramAdapter(const Controller& c, org_scilab_modules_scicos::model::Diagram* adaptee);
     DiagramAdapter(const DiagramAdapter& adapter);
     ~DiagramAdapter();
 
@@ -42,8 +43,8 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    types::InternalType* getListObjects() const;
-    void setListObjects(types::InternalType* v);
+    types::List* getListObjects() const;
+    void setListObjects(types::List* v);
 
     std::vector<link_t> getFrom() const;
     void setFrom(const std::vector<link_t>& from);
@@ -54,7 +55,7 @@ public:
     void setContribContent(types::InternalType* v);
 
 private:
-    types::InternalType* list_objects;
+    types::List* list_objects;
 
     std::vector<link_t> from_vec;
     std::vector<link_t> to_vec;

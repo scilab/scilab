@@ -45,7 +45,7 @@
 #include "sciprint.h"
 #include "createGraphicObject.h"
 
-#include "os_strdup.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int sci_delete(char *fname, void* pvApiCtx)
 {

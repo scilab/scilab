@@ -48,9 +48,8 @@ assert_checktrue(abs(ze-ze_ref)<1e-5);
 assert_checktrue(abs(po-po_ref)<1e-5);
 assert_checktrue(abs(gain-gain_ref)<1e-5);
 // Check example in ell1mag help page
-deff('[alpha,BeTa]=alpha_beta(n,m,m1)',...
-'if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;...
-alpha=%k(1-m1)/%k(1-m);')
+deff("[alpha,BeTa]=alpha_beta(n,m,m1)",...
+"if 2*int(n/2)==n then, BeTa=K1; else, BeTa=0;end;alpha=%k(1-m1)/%k(1-m);")
 epsilon=0.1;A=10;
 m1=(epsilon*epsilon)/(A*A-1);n=5;omegac=6;
 m=find_freq(epsilon,A,n);omegar = omegac/sqrt(m);

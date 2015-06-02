@@ -86,16 +86,17 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     // get data and perform operation for each types::
     if (in[0]->isGenericType() == false)
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     types::GenericType* pGTOut = in[0]->getAs<types::GenericType>();
 
     if (pGTOut->getDims() > 2)
     {
-        std::wstring wstFuncName = L"%hm_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        return Overload::call(L"%hm_gsort", in, _iRetCount, out, &exec);
     }
 
     if (_iRetCount == 2)
@@ -117,7 +118,8 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
                 delete pDblInd;
             }
 
-            return Overload::call(L"%_gsort", in, _iRetCount, out, new ast::ExecVisitor());
+            ast::ExecVisitor exec;
+            return Overload::call(L"%_gsort", in, _iRetCount, out, &exec);
         }
 
         types::Double* pDblOut = gsort(pDblIn, pDblInd, wstrWay, wstrProcess);
@@ -130,8 +132,9 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
             delete pDblInd;
         }
 
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
     else if (in[0]->isString()) // string
     {
@@ -189,8 +192,9 @@ types::Function::ReturnValue sci_gsort(types::typed_list &in, int _iRetCount, ty
     }
     else
     {
-        std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_gsort";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        ast::ExecVisitor exec;
+        std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_gsort";
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     /***** set result *****/

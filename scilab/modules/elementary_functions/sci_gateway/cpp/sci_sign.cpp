@@ -55,6 +55,7 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
         types::Double* pDblIn = in[0]->getAs<types::Double>();
         int dims = pDblIn->getDims();
         int *dimsArray = pDblIn->getDimsArray();
+        int size = pDblIn->getSize();
 
         if (pDblIn->isComplex())
         {
@@ -64,7 +65,7 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
             double *dInR    = pDblIn->getReal();
             double *dInImg  = pDblIn->getImg() ;
 
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 double dblTemp = dpythags(dInR[i], dInImg[i]);
                 if (dblTemp == 0)
@@ -87,7 +88,7 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
             double * dOutR  = pOut->getReal();
             double * dInR   = pDblIn->getReal();
 
-            for (int i = 0 ; i < pOut->getSize() ; i++)
+            for (int i = 0; i < size; i++)
             {
                 dOutR[i] = dsignsEx(dInR[i]);
             }
@@ -97,8 +98,9 @@ types::Function::ReturnValue sci_sign(types::typed_list &in, int _iRetCount, typ
     }
     else
     {
+        ast::ExecVisitor exec;
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_sign";
-        return Overload::call(wstFuncName, in, _iRetCount, out, new ast::ExecVisitor());
+        return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
 
     return types::Function::OK;

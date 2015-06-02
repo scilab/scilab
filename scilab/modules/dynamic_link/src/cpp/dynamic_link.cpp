@@ -61,7 +61,7 @@ extern "C"
 
 static void Underscores(BOOL _bFortran, wchar_t* _pwstEntryPointName, wchar_t* _pwstTrailingName);
 
-typedef void (*function) (wchar_t*);
+typedef void (*function) ();
 
 
 int scilabLink(int _iLibID, wchar_t* _pwstLibraryName, wchar_t** _pwstEntryPointName, int _iEntryPointSize, BOOL _bFortran , int *_piErr)

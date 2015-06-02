@@ -85,7 +85,7 @@
     <ClCompile>
       <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../ast/includes/operations;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -122,7 +122,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../ast/includes/operations;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <MinimalRebuild>true</MinimalRebuild>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
@@ -160,7 +160,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../ast/includes/operations;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -203,7 +203,7 @@
       <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../jni;../../../../java/jdk/include;../../../../java/jdk/include/win32;../../../../libs/intl;../../includes;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../cpp;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../ast/includes/operations;../../../commons/includes;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../jni;../cpp;../../includes;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../../libs/intl;../../../api_scilab/includes;../../../core/includes;../../../localization/includes;../../../jvm/includes;../../../output_stream/includes;../../../functions/includes;../../../fileio/includes;../../../commons/src/jni;../../../commons/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;GRAPHIC_OBJECTS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -244,12 +244,16 @@
     <ClCompile Include="..\cpp\CurrentFigure.cpp" />
     <ClCompile Include="..\cpp\CurrentObject.cpp" />
     <ClCompile Include="..\cpp\CurrentSubwin.cpp" />
+    <ClCompile Include="..\cpp\DllmainGraphic_objects.cpp" />
     <ClCompile Include="..\cpp\Fac3DColorComputer.cpp" />
     <ClCompile Include="..\cpp\FigureList.cpp" />
     <ClCompile Include="..\cpp\FigureModel.cpp" />
     <ClCompile Include="..\cpp\getConsoleIdentifier.cpp" />
     <ClCompile Include="..\cpp\HandleManagement.cpp" />
     <ClCompile Include="..\cpp\MatPlotDecomposer.cpp" />
+    <ClCompile Include="..\cpp\MeshData.cpp" />
+    <ClCompile Include="..\cpp\MeshFecData.cpp" />
+    <ClCompile Include="..\cpp\MeshFecDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\NgonGridMatplotDataDecomposer.cpp" />
     <ClCompile Include="..\cpp\NormalGenerator.cpp" />
     <ClCompile Include="..\cpp\ScilabView.cpp" />
@@ -269,7 +273,6 @@
     <ClCompile Include="..\jni\ObjectData_wrap.c" />
     <ClCompile Include="..\jni\PolylineData_wrap.c" />
     <ClCompile Include="..\jni\ScilabNativeView_wrap.c" />
-    <ClCompile Include="DllmainGraphic_objects.c" />
     <ClCompile Include="..\cpp\Fac3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\getGraphicObjectProperty.cpp" />
     <ClCompile Include="..\cpp\NgonData.cpp" />
@@ -282,9 +285,6 @@
     <ClCompile Include="..\cpp\Plot3DDecomposer.cpp" />
     <ClCompile Include="..\cpp\PolylineDecomposer.cpp" />
     <ClCompile Include="..\cpp\setGraphicObjectProperty.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshData.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshFecData.cpp" />
-    <ClCompile Include="..\cpp\TriangleMeshFecDataDecomposer.cpp" />
     <ClCompile Include="..\jni\SurfaceData_wrap.c" />
     <ClCompile Include="..\cpp\createObjectData.cpp" />
     <ClCompile Include="..\cpp\pickSurface.cpp" />
@@ -310,7 +310,6 @@
     <ClInclude Include="..\..\includes\returnType.h" />
     <ClInclude Include="..\..\includes\ScilabView.hxx" />
     <ClInclude Include="..\..\includes\setGraphicObjectProperty.h" />
-    <ClInclude Include="..\..\includes\TriangleMeshFecData.hxx" />
     <ClInclude Include="..\..\includes\Texture.hxx" />
     <ClInclude Include="..\..\includes\Triangulator.hxx" />
     <ClInclude Include="..\jni\Builder.hxx" />
@@ -333,8 +332,6 @@
     <ClInclude Include="..\..\includes\NormalGenerator.hxx" />
     <ClInclude Include="..\..\includes\Plot3DDecomposer.hxx" />
     <ClInclude Include="..\..\includes\PolylineDecomposer.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshData.hxx" />
-    <ClInclude Include="..\..\includes\TriangleMeshFecDataDecomposer.hxx" />
     <ClInclude Include="..\jni\CallXmlLoader.hxx" />
   </ItemGroup>
   <ItemGroup>
@@ -351,6 +348,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
       <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>

@@ -22,7 +22,7 @@
 #define sci_void        0
 
 char* getScilabVersionAttribute(int _iFile);
-int getSODFormatAttribute(int _iFile);
+HDF5_SCILAB_IMPEXP int getSODFormatAttribute(int _iFile);
 
 HDF5_SCILAB_IMPEXP int isComplexData(int _iDatasetId);
 

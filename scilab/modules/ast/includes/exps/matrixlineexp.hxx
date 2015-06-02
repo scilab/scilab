@@ -39,11 +39,13 @@ public:
                    exps_t& columns)
         : MathExp (location)
     {
-        for (exps_t::const_iterator it = columns.begin(), itEnd = columns.end(); it != itEnd ; ++it)
+        for (auto exp : columns)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            exp->setParent(this);
+            _exps.push_back(exp);
         }
+
+        delete &columns;
     }
 
     virtual ~MatrixLineExp ()
@@ -52,13 +54,13 @@ public:
 
     virtual MatrixLineExp* clone()
     {
-        exps_t columns;
+        exps_t* columns = new exps_t;
         for (exps_t::const_iterator it = _exps.begin(), itEnd = _exps.end(); it != itEnd; ++it)
         {
-            columns.push_back((*it)->clone());
+            columns->push_back((*it)->clone());
         }
 
-        MatrixLineExp* cloned = new MatrixLineExp(getLocation(), columns);
+        MatrixLineExp* cloned = new MatrixLineExp(getLocation(), *columns);
         cloned->setVerbose(isVerbose());
         return cloned;
     }
@@ -94,7 +96,7 @@ public:
     /** \} */
 
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return MATRIXLINEEXP;
     }

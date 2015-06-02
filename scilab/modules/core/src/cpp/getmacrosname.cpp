@@ -20,26 +20,25 @@ extern "C" {
 /*----------------------------------------------------------------------------------*/
 char **getMacrosName(int *sizearray)
 {
-    std::list<std::wstring>* plMacrosList = symbol::Context::getInstance()->getMacrosName();
+    std::list<std::wstring> macrosList;
+    int size = symbol::Context::getInstance()->getMacrosName(macrosList);
 
     //sort list
-    plMacrosList->sort();
+    macrosList.sort();
     //same names could come from libraries AND context
-    plMacrosList->unique();
+    macrosList.unique();
 
-    *sizearray = (int)plMacrosList->size();
+    *sizearray = static_cast<int>(macrosList.size());
     char** macros = NULL;
     if (*sizearray != 0)
     {
         macros = (char**)MALLOC(*sizearray * sizeof(char*));
 
-        std::list<std::wstring>::iterator it = plMacrosList->begin();
-        for (int i = 0; it != plMacrosList->end(); ++it, i++)
+        int i = 0;
+        for (auto it : macrosList)
         {
-            macros[i] = wide_string_to_UTF8((*it).c_str());
+            macros[i++] = wide_string_to_UTF8(it.c_str());
         }
-
-        delete plMacrosList;
     }
 
     return macros;

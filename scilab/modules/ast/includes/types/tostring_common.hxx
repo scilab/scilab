@@ -14,7 +14,7 @@
 #define __TOSTRING_COMMON_HXX__
 
 #include <sstream>
-#include "os_swprintf.h"
+#include "os_string.h"
 #include "dynlib_ast.h"
 
 #define SIZE_BETWEEN_TWO_VALUES         1

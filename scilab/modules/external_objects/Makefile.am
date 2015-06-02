@@ -77,7 +77,8 @@ EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/ScilabOptionsSetter.cpp \
     src/cpp/ScilabAutoCleaner.cpp \
     src/cpp/ExternalObjectsFunction.cpp \
-    src/cpp/wrapInFloat.cpp
+    src/cpp/wrapInFloat.cpp \
+    src/cpp/EOType.cpp
 
 GATEWAY_C_SOURCES = sci_gateway/c/gw_external_objects.c
 
@@ -139,8 +140,10 @@ libsciexternal_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/output_stream/includes \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/fileio/includes \
-    -I$(top_srcdir)/modules/core/src/c
-
+    -I$(top_srcdir)/modules/core/src/c \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/console/includes
 
 pkglib_LTLIBRARIES = libsciexternal_objects.la 
 noinst_LTLIBRARIES = libsciexternal_objects-algo.la 

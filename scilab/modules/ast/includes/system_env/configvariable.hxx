@@ -18,6 +18,7 @@
 #pragma warning (disable : 4251)
 #endif
 
+#include <vector>
 #include <list>
 #include <map>
 #include <string>
@@ -48,24 +49,24 @@ private :
     static std::wstring m_SCIPath;
 
 public :
-    static void setSCIPath(std::wstring& _SCIPath);
-    static std::wstring getSCIPath();
+    static void setSCIPath(const std::wstring& _SCIPath);
+    static std::wstring& getSCIPath();
 
     //SCIHOME
 private :
     static std::wstring m_SCIHOME;
 
 public :
-    static void setSCIHOME(std::wstring& _m_SCIHOME);
-    static std::wstring getSCIHOME();
+    static void setSCIHOME(const std::wstring& _m_SCIHOME);
+    static std::wstring& getSCIHOME();
 
     //TMPDIR
 private :
     static std::wstring m_TMPDIR;
 
 public :
-    static void setTMPDIR(std::wstring& _TMPDIR);
-    static std::wstring getTMPDIR();
+    static void setTMPDIR(const std::wstring& _TMPDIR);
+    static std::wstring& getTMPDIR();
 
     // Force Quit
 private :
@@ -137,8 +138,8 @@ private :
     static std::wstring m_HOME;
 
 public :
-    static void setHOME(std::wstring& _m_HOME);
-    static std::wstring getHOME();
+    static void setHOME(const std::wstring& _m_HOME);
+    static std::wstring& getHOME();
 
     //Clear last error information
 public :
@@ -156,8 +157,8 @@ private :
     static std::wstring m_wstError;
 
 public :
-    static void setLastErrorMessage(std::wstring _wstError);
-    static std::wstring getLastErrorMessage();
+    static void setLastErrorMessage(const std::wstring& _wstError);
+    static std::wstring& getLastErrorMessage();
 
     //Last Error ID
 private :
@@ -184,8 +185,8 @@ private :
     static std::wstring m_wstErrorFunction;
 
 public :
-    static void setLastErrorFunction(std::wstring _wstFunction);
-    static std::wstring getLastErrorFunction();
+    static void setLastErrorFunction(const std::wstring& _wstFunction);
+    static std::wstring& getLastErrorFunction();
 
     //Prompt Mode and Silent error
 public :
@@ -251,15 +252,17 @@ public :
 
     typedef struct
     {
-        wchar_t* pwstLibraryName;   /** name of dynamic library **/
-        DynLibHandle hLib;        /** handle of the library **/
+        wchar_t* pwstLibraryName;      /** name of dynamic library **/
+        DynLibHandle hLib;              /** handle of the library **/
     } DynamicLibraryStr;
+
+    typedef void(*dynlib_ptr)();
 
     typedef struct
     {
         wchar_t* pwstEntryPointName;    /** name of interface **/
         int iLibIndex;                  /** name of interface **/
-        void (*functionPtr)(wchar_t*);          /** entrypoint for the interface **/
+        dynlib_ptr functionPtr;         /** entrypoint for the interface **/
         bool bOK;                       /** flag set to TRUE if entrypoint can be used **/
     } EntryPointStr;
 
@@ -288,6 +291,8 @@ public :
     static void addEntryPoint(EntryPointStr* _pEP);
     static void removeEntryPoint(int _iEntryPointIndex);
     static EntryPointStr* getEntryPoint(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static int getEntryPointPosition(wchar_t* _pwstEntryPointName, int _iDynamicLibraryIndex = -1);
+    static dynlib_ptr getEntryPointFromPosition(int position);
     static std::vector<std::wstring> getEntryPointNameList();
 
     //dynamic modules
@@ -370,25 +375,32 @@ public :
     static int getFuncprot();
 
     // where
-private :
-    static std::list< std::pair<int, std::wstring> > m_Where;
-    static std::list<int> m_FirstMacroLine;
 public :
-    static void where_begin(int _iLineNum, std::wstring _wstName);
+    struct WhereEntry
+    {
+        int m_line;
+        int m_absolute_line;
+        std::wstring m_name;
+        WhereEntry(int line, int absolute_line, const std::wstring& name) : m_line(line), m_absolute_line(absolute_line), m_name(name) {}
+    };
+    static void where_begin(int _iLineNum, int _iLineLocation, const std::wstring& _wstName);
     static void where_end();
-    static std::list< std::pair<int, std::wstring> >& getWhere();
+    static const std::vector<WhereEntry>& getWhere();
 
     static void macroFirstLine_begin(int _iLine);
     static void macroFirstLine_end();
     static int getMacroFirstLines();
+private :
+    static std::vector<WhereEntry> m_Where;
+    static std::vector<int> m_FirstMacroLine;
 
     //module called with variable by reference
 private :
     static std::list<std::wstring> m_ReferenceModules;
 public :
-    static bool checkReferenceModule(std::wstring _module);
-    static void addReferenceModule(std::wstring _module);
-    static void removeReferenceModule(std::wstring _module);
+    static bool checkReferenceModule(const std::wstring& _module);
+    static void addReferenceModule(const std::wstring& _module);
+    static void removeReferenceModule(const std::wstring& _module);
     static std::list<std::wstring> getReferenceModules();
 
     //analyzer options
@@ -405,6 +417,13 @@ private:
 public:
     static void setDivideByZero(bool _dividebyzero);
     static bool isDivideByZero(void);
+
+    //mex info
+private:
+    static std::string mexFunctionName;
+public:
+    static void setMexFunctionName(const std::string& name);
+    static std::string& getMexFunctionName();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

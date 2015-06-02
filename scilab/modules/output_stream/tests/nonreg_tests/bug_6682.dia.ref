@@ -14,9 +14,12 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6682
 //
 printf('%o',8);
-10mprintf('%o',8);
-10mfprintf(6,'%o',8);
-10r = msprintf('%o',8);
+10
+mprintf('%o',8);
+10
+mfprintf(6,'%o',8);
+10
+r = msprintf('%o',8);
 if r <> dec2oct(8) then bugmes();quit;end
 r = msprintf('%10o',80);
 if r <> '       120' then bugmes();quit;end

@@ -8,6 +8,56 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function d = assert_computedigits ( varargin )
+    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
+        // Returns the value of the input argument #ivar.
+        // If this argument was not provided, or was equal to the
+        // empty matrix, returns the default value.
+        if ( rhs < ivar ) then
+            argin = default
+        else
+            if ( vararglist(ivar) <> [] ) then
+                argin = vararglist(ivar)
+            else
+                argin = default
+            end
+        end
+    endfunction
+
+    function d = computedigits_data ( expected , computed , basis )
+        //
+        dmin = 0
+        dmax = -log(2^(-53))/log(basis)
+        d = ones(expected)*%inf;
+        d( isnan(expected) & isnan(computed) ) = dmax;
+        d( isnan(expected) & ~isnan(computed) ) = dmin;
+        d( ~isnan(expected) & isnan(computed) ) = dmin;
+        // From now, both expected and computed are non-nan
+        k = ~isnan(expected) & ~isnan(computed);
+        d( k & expected == 0 & computed == 0 ) = dmax;
+        d( k & expected == 0 & computed <> 0 ) = dmin;
+        // From now, expected is non-zero
+        k = k & expected <> 0;
+        d( k & expected == computed ) = dmax;
+        // From now, expected and computed are different
+        k = k & expected <> computed;
+        d( k & expected == %inf & computed <> %inf ) = dmin;
+        d( k & expected == -%inf & computed <> -%inf ) = dmin;
+        // From now, neither of computed, nor expected is infinity
+        kdinf=find(d==%inf);
+        if ( kdinf <> [] ) then
+            relerr = ones(expected)*%nan;
+            relerr(kdinf) = abs(computed(kdinf)-expected(kdinf)) ./ abs(expected(kdinf));
+            k = find( relerr >= 1 );
+            if ( k<> [] ) then
+                d(k) = dmin;
+            end
+            k = find( d==%inf & relerr < 1 );
+            if ( k<> [] ) then
+                sigdig(k) = -log ( 2*relerr(k) ) ./ log(basis);
+                d(k) = max ( sigdig(k) , dmin );
+            end
+        end
+    endfunction
     // Returns the number of significant digits in computed result.
 
     [lhs,rhs]=argn()
@@ -17,7 +67,7 @@ function d = assert_computedigits ( varargin )
     end
     computed = varargin ( 1 )
     expected = varargin ( 2 )
-    basis = argindefault ( rhs , varargin , 3 , 10 )
+    basis = assert_argindefault ( rhs , varargin , 3 , 10 )
     //
     // Check types of variables
     if ( typeof(computed) <> "constant" ) then
@@ -54,55 +104,3 @@ function d = assert_computedigits ( varargin )
     // Reshape
     d = matrix(d,nre,nce)
 endfunction
-
-function argin = argindefault ( rhs , vararglist , ivar , default )
-    // Returns the value of the input argument #ivar.
-    // If this argument was not provided, or was equal to the
-    // empty matrix, returns the default value.
-    if ( rhs < ivar ) then
-        argin = default
-    else
-        if ( vararglist(ivar) <> [] ) then
-            argin = vararglist(ivar)
-        else
-            argin = default
-        end
-    end
-endfunction
-
-function d = computedigits_data ( expected , computed , basis )
-    //
-    dmin = 0
-    dmax = -log(2^(-53))/log(basis)
-    d = ones(expected)*%inf;
-    d( isnan(expected) & isnan(computed) ) = dmax;
-    d( isnan(expected) & ~isnan(computed) ) = dmin;
-    d( ~isnan(expected) & isnan(computed) ) = dmin;
-    // From now, both expected and computed are non-nan
-    k = ~isnan(expected) & ~isnan(computed);
-    d( k & expected == 0 & computed == 0 ) = dmax;
-    d( k & expected == 0 & computed <> 0 ) = dmin;
-    // From now, expected is non-zero
-    k = k & expected <> 0;
-    d( k & expected == computed ) = dmax;
-    // From now, expected and computed are different
-    k = k & expected <> computed;
-    d( k & expected == %inf & computed <> %inf ) = dmin;
-    d( k & expected == -%inf & computed <> -%inf ) = dmin;
-    // From now, neither of computed, nor expected is infinity
-    kdinf=find(d==%inf);
-    if ( kdinf <> [] ) then
-        relerr = ones(expected)*%nan;
-        relerr(kdinf) = abs(computed(kdinf)-expected(kdinf)) ./ abs(expected(kdinf));
-        k = find( relerr >= 1 );
-        if ( k<> [] ) then
-            d(k) = dmin;
-        end
-        k = find( d==%inf & relerr < 1 );
-        if ( k<> [] ) then
-            sigdig(k) = -log ( 2*relerr(k) ) ./ log(basis);
-            d(k) = max ( sigdig(k) , dmin );
-        end
-    end
-endfunction
-

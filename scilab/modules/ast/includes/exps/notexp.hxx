@@ -85,7 +85,7 @@ public:
         return *_exps[0];
     }
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return NOTEXP;
     }

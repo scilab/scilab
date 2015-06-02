@@ -20,8 +20,7 @@ extern "C"
 {
 #include "sci_malloc.h"
 #include "sci_home.h"
-#include "os_strdup.h"
-#include "os_wcsdup.h"
+#include "os_string.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
 #include "machine.h"
@@ -136,15 +135,15 @@ char* computeSCIHOME(void)
     }
 
     /* checks that directory exists */
-    strcpy(USERHOMESYSTEM, SHORTUSERHOMESYSTEM);
+    os_strcpy(USERHOMESYSTEM, SHORTUSERHOMESYSTEM);
     if (SHORTUSERHOMESYSTEM)
     {
         delete []SHORTUSERHOMESYSTEM;
     }
 
     /* Set SCIHOME environment variable */
-    sprintf(USERPATHSCILAB, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
-    sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
+    os_sprintf(USERPATHSCILAB, "%s%s%s", USERHOMESYSTEM, DIR_SEPARATOR, BASEDIR);
+    os_sprintf(SCIHOMEPATH, "%s%s%s", USERPATHSCILAB, DIR_SEPARATOR, SCI_VERSION_STRING);
 
     /* creates directory if it does not exists */
     if (!isdir(SCIHOMEPATH))

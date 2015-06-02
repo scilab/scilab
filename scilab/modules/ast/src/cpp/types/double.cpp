@@ -24,7 +24,7 @@ extern "C"
 #include "elem_common.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "os_swprintf.h"
+#include "os_string.h"
 }
 
 using namespace std;
@@ -66,9 +66,9 @@ Double* Double::Identity(int _iDims, int* _piDims)
         }
     }
 
-    for (int i = 0 ; i < iMinDim ; i++)
+    int* piIndex = new int[_iDims];
+    for (int i = 0; i < iMinDim; i++)
     {
-        int* piIndex = new int[_iDims];
         for (int j = 0 ; j < _iDims ; j++)
         {
             piIndex[j] = i;
@@ -76,6 +76,66 @@ Double* Double::Identity(int _iDims, int* _piDims)
 
         int index = getIndexWithDims(piIndex, _piDims, _iDims);
         pI->set(index, 1);
+    }
+
+    delete[] piIndex;
+    return pI;
+}
+
+Double* Double::Identity(int _iDims, int* _piDims, double _dblReal)
+{
+    Double* pI = new Double(_iDims, _piDims);
+    pI->setZeros();
+    int iMinDim = _piDims[0];
+    for (int i = 1; i < _iDims; i++)
+    {
+        if (_piDims[i] < iMinDim)
+        {
+            iMinDim = _piDims[i];
+        }
+    }
+
+    int* piIndex = new int[_iDims];
+    for (int i = 0; i < iMinDim; i++)
+    {
+        for (int j = 0; j < _iDims; j++)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = getIndexWithDims(piIndex, _piDims, _iDims);
+        pI->set(index, _dblReal);
+    }
+
+    delete[] piIndex;
+    return pI;
+}
+
+Double* Double::Identity(int _iDims, int* _piDims, double _dblReal, double _dblImg)
+{
+    Double* pI = new Double(_iDims, _piDims, true);
+    pI->setZeros();
+    int iMinDim = _piDims[0];
+    for (int i = 1; i < _iDims; i++)
+    {
+        if (_piDims[i] < iMinDim)
+        {
+            iMinDim = _piDims[i];
+        }
+    }
+
+    for (int i = 0; i < iMinDim; i++)
+    {
+        int* piIndex = new int[_iDims];
+        for (int j = 0; j < _iDims; j++)
+        {
+            piIndex[j] = i;
+        }
+
+        int index = getIndexWithDims(piIndex, _piDims, _iDims);
+        pI->set(index, _dblReal);
+        pI->setImg(index, _dblImg);
+        delete[] piIndex;
     }
     return pI;
 }
@@ -913,40 +973,14 @@ void Double::deleteImg()
 
 double* Double::allocData(int _iSize)
 {
-    double* pDbl = NULL;
-    try
+    if (isViewAsZComplex())
     {
-        if (_iSize < 0)
-        {
-            m_pRealData = NULL;
-            m_pImgData = NULL;
-            char message[bsiz];
-            sprintf(message, _("Can not allocate negative size (%d).\n"),  _iSize);
-            ast::ScilabError se(message);
-            se.SetErrorNumber(999);
-            throw (se);
-        }
-        else
-        {
-            if (isViewAsZComplex())
-            {
-                pDbl = (double*)new doublecomplex[_iSize];
-            }
-            else
-            {
-                pDbl = new double[_iSize];
-            }
-        }
+        return (double*)new doublecomplex[_iSize];
     }
-    catch (std::bad_alloc & /*e*/)
+    else
     {
-        char message[bsiz];
-        sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) (_iSize * sizeof(double)) / 1.e6);
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        return new double[_iSize];
     }
-    return pDbl;
 }
 
 bool Double::append(int _iRows, int _iCols, InternalType* _poSource)

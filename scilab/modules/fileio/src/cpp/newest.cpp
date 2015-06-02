@@ -18,17 +18,9 @@
 
 extern "C"
 {
-    //#include "PATH_MAX.h"
-    //#include "gw_io.h"
 #include "sci_malloc.h"
-    //#include "sciprint.h"
-    //#include "stack-c.h"
 #include "expandPathVariable.h"
-    //#include "Scierror.h"
-    //#include "localization.h"
-    //#include "freeArrayOfString.h"
 #include "charEncoding.h"
-    //#include "os_strdup.h"
 #include "newest.h"
 }
 

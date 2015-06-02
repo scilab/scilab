@@ -62,8 +62,9 @@
     t=datatipCreate(p2,[0.8 0.4]);
     datatipSetOrientation(t,"upper left")
   
-    function str=myfmt(pt)
-      str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+    function str=myfmt(h)
+		pt = h.data;
+		str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
     endfunction
     datatipSetDisplay(t,"myfmt")
     
@@ -84,8 +85,9 @@
             t=datatipCreate(p2,[0.8 0.4]);
             datatipSetOrientation(t,"upper left")
             
-            function str=myfmt(pt)
-            str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
+            function str=myfmt(h)
+            pt = h.data;
+			str = msprintf('sinc\n%s', sci2exp(round(pt*10)/10))
             endfunction
             datatipSetDisplay(t,"myfmt")
         </scilab:image>

@@ -38,21 +38,15 @@ public :
         select.setParent(this);
         _exps.push_back(&select);
 
-        for (exps_t::const_iterator it = cases.begin(), itEnd = cases.end(); it != itEnd ; ++it)
+        for (auto it : cases)
         {
-            (*it)->setParent(this);
-            _exps.push_back(*it);
+            it->setParent(this);
+            _exps.push_back(it);
         }
 
-        if (&defaultCase != NULL)
-        {
-            defaultCase.setParent(this);
-            _exps.push_back(&defaultCase);
-        }
-        else
-        {
-            _hasDefault = false;
-        }
+        delete &cases;
+        defaultCase.setParent(this);
+        _exps.push_back(&defaultCase);
     }
 
     SelectExp(const Location& location,
@@ -69,6 +63,8 @@ public :
             (*it)->setParent(this);
             _exps.push_back(*it);
         }
+
+        delete &cases;
     }
 
     ~SelectExp()
@@ -77,40 +73,22 @@ public :
 
     virtual SelectExp* clone()
     {
-        exps_t cases;
-        exps_t::const_iterator it = ++(_exps.begin());
-        exps_t::const_iterator itEnd = _exps.end();
+        exps_t * cases = cloneCases();
+        SelectExp* cloned = nullptr;
         if (_hasDefault)
         {
-            --itEnd;
-        }
-
-        for (; it != itEnd ; ++it)
-        {
-            cases.push_back((*it)->clone());
-        }
-
-        SelectExp* cloned = NULL;
-        if (_hasDefault)
-        {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases, *getDefaultCase()->clone());
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone());
         }
         else
         {
-            cloned = new SelectExp(getLocation(), *getSelect()->clone(), cases);
+            cloned = new SelectExp(getLocation(), *getSelect()->clone(), *cases);
         }
 
         cloned->setVerbose(isVerbose());
         return cloned;
     }
 
-public :
-    Exp* getSelect() const
-    {
-        return _exps[0];
-    }
-
-    exps_t* getCases() const
+    exps_t * cloneCases()
     {
         exps_t* cases = new exps_t;
         exps_t::const_iterator it = ++(_exps.begin());
@@ -122,10 +100,31 @@ public :
 
         for (; it != itEnd ; ++it)
         {
-            cases->push_back(*it);
+            cases->push_back((*it)->clone());
         }
 
         return cases;
+    }
+
+    virtual bool equal(const Exp & e) const
+    {
+        return Exp::equal(e) && hasDefault() == static_cast<const SelectExp &>(e).hasDefault();
+    }
+
+public :
+    Exp* getSelect() const
+    {
+        return _exps[0];
+    }
+
+    inline exps_t getCases() const
+    {
+        return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
+    }
+
+    inline exps_t getCases()
+    {
+        return ast::exps_t(std::next(_exps.begin()), _hasDefault ? std::prev(_exps.end()) : _exps.end());
     }
 
     Exp* getDefaultCase() const
@@ -155,7 +154,7 @@ public:
     }
     /** \} */
 
-    virtual ExpType getType()
+    virtual ExpType getType() const
     {
         return SELECTEXP;
     }
