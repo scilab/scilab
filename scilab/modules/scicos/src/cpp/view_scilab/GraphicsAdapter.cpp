@@ -39,6 +39,7 @@ namespace
 {
 
 const std::wstring MBLOCK (L"MBLOCK");
+const std::wstring MPBLOCK (L"MPBLOCK");
 const std::wstring in (L"in");
 const std::wstring intype (L"intype");
 const std::wstring out (L"out");
@@ -419,14 +420,21 @@ struct exprs
 
             return o;
         }
-        else if (exprs[0] == "List_MBLOCK")
+        else if (exprs[0] == "List_MBLOCK" || exprs[0] == "List_MPBLOCK")
         {
             // Get and return a Modelica tlist
             types::TList* o = new types::TList();
 
             // Header, starting with "List_MBLOCK"
             types::String* header = new types::String(1, 10);
-            header->set(0, MBLOCK.c_str());
+            if (exprs[0] == "List_MBLOCK")
+            {
+                header->set(0, MBLOCK.c_str());
+            }
+            else
+            {
+                header->set(0, MPBLOCK.c_str());
+            }
             header->set(1, in.c_str());
             header->set(2, intype.c_str());
             header->set(3, out.c_str());
@@ -561,6 +569,32 @@ struct exprs
 
             return o;
         }
+        else if (exprs[0] == "List_CONSTRAINT")
+        {
+            // Get and return a CONSTRAINT2_c list
+            types::List* o = new types::List();
+
+            // A "CONSTRAINT2_c" block has 3 strings in 'exprs'
+            for (int i = 1; i < 4; ++i)
+            {
+                types::String* ithElement = new types::String(exprs[i].c_str());
+                o->append(ithElement);
+            }
+            return o;
+        }
+        else if (exprs[0] == "List_LOOKUP2D")
+        {
+            // Get and return a LOOKUP2D list
+            types::List* o = new types::List();
+
+            // A "LOOKUP2D" block has 5 strings in 'exprs'
+            for (int i = 1; i < 6; ++i)
+            {
+                types::String* ithElement = new types::String(exprs[i].c_str());
+                o->append(ithElement);
+            }
+            return o;
+        }
         else if (exprs[0] == "String")
         {
             // Simple case, 'exprs' is a string matrix (can be empty)
@@ -617,7 +651,7 @@ struct exprs
             // Leave 'exprs[0]' empty for the moment, because we don't know yet what we are going to deal with
             char* c_str; // Buffer
 
-            // All these blocks have two elements in 'exprs', except for block "PDE"
+            // All these blocks have two elements in 'exprs', except for blocks "PDE", "CONSTRAINT2_c" and "LOOKUP2D"
             if (initial_list->getSize() == 2)
             {
                 size_t nParams = 0;
@@ -889,128 +923,242 @@ struct exprs
             }
             else if (initial_list->getSize() == 3)
             {
-                exprs[0] = "List_PDE"; // List coming from a PDE block
-
-                if (initial_list->get(0)->getType() != types::InternalType::ScilabTList)
+                if (initial_list->get(0)->getType() == types::InternalType::ScilabTList)
                 {
-                    return false;
-                }
-                types::TList* ParamsPDE = initial_list->get(0)->getAs<types::TList>();
+                    exprs[0] = "List_PDE"; // List coming from a PDE block
+                    types::TList* ParamsPDE = initial_list->get(0)->getAs<types::TList>();
 
-                types::String* header = ParamsPDE->getFieldNames();
-                int nParams = header->getSize() - 1; // The first element is the TList type
-                exprs.resize(3 + 2 * nParams); // Allocation for the header size, the TList type and the header
-                // Save the header size
-                std::ostringstream strNParams;
-                strNParams << nParams;
-                std::string nParamsStr = strNParams.str();
-                exprs[1] = nParamsStr; // Saving the header size
-                // Save the TList type
-                c_str = wide_string_to_UTF8(header->get(0));
-                std::string tlistType(c_str);
-                FREE(c_str);
-                exprs[2] = tlistType;
-
-                // Save the header
-                for (int i = 1; i < nParams; ++i) // Stop at 'nParams-1' to treat the last element differently (string matrix)
-                {
-                    // Header element
-                    c_str = wide_string_to_UTF8(header->get(i));
-                    std::string headerElement(c_str);
+                    types::String* header = ParamsPDE->getFieldNames();
+                    int nParams = header->getSize() - 1; // The first element is the TList type
+                    exprs.resize(3 + 2 * nParams); // Allocation for the header size, the TList type and the header
+                    // Save the header size
+                    std::ostringstream strNParams;
+                    strNParams << nParams;
+                    std::string nParamsStr = strNParams.str();
+                    exprs[1] = nParamsStr; // Saving the header size
+                    // Save the TList type
+                    c_str = wide_string_to_UTF8(header->get(0));
+                    std::string tlistType(c_str);
                     FREE(c_str);
-                    exprs[2 + i] = headerElement;
+                    exprs[2] = tlistType;
 
-                    // Its corresponding element in the TList
-                    if (ParamsPDE->get(i)->getType() != types::InternalType::ScilabString)
+                    // Save the header
+                    for (int i = 1; i < nParams; ++i) // Stop at 'nParams-1' to treat the last element differently (string matrix)
                     {
-                        return false;
-                    }
-                    types::String* ith_string = ParamsPDE->get(i)->getAs<types::String>();
-                    if (!ith_string->isScalar())
-                    {
-                        return false;
-                    }
-                    c_str = wide_string_to_UTF8(ith_string->get(0));
-                    std::string stringElement(c_str);
-                    FREE(c_str);
-                    exprs[2 + nParams + i] = stringElement;
-                }
-                // Header element for the last element of ParamsPDE
-                c_str = wide_string_to_UTF8(header->get(nParams));
-                std::string lastHeaderElement(c_str);
-                FREE(c_str);
-                exprs[2 + nParams] = lastHeaderElement;
-                if (ParamsPDE->get(nParams)->getType() != types::InternalType::ScilabString)
-                {
-                    return false;
-                }
-                types::String* last_string = ParamsPDE->get(nParams)->getAs<types::String>();
-
-                int nCols = last_string->getSize();
-                int exprsSize = exprs.size(); // Saving last index before resizing
-                exprs.resize(exprs.size() + 1 + nCols); // Store the size of the last string because it can be a matrix
-                std::ostringstream strSize;
-                strSize << nCols;
-                std::string sizeStr = strSize.str();
-                exprs[exprsSize] = sizeStr;
-
-                for (int i = 0; i < nCols; ++i)
-                {
-                    c_str = wide_string_to_UTF8(last_string->get(i));
-                    std::string lastStringElement(c_str);
-                    FREE(c_str);
-                    exprs[exprsSize + 1 + i] = lastStringElement;
-                }
-
-                // Next comes some code
-                if (initial_list->get(1)->getType() == types::InternalType::ScilabDouble)
-                {
-                    types::Double* empty_matrix_expected = initial_list->get(1)->getAs<types::Double>();
-                    if (!empty_matrix_expected->isEmpty())
-                    {
-                        return false;
-                    }
-                    exprs.push_back("0"); // Indicating empty matrix
-                }
-                else if (initial_list->get(1)->getType() == types::InternalType::ScilabString)
-                {
-                    types::String* code = initial_list->get(1)->getAs<types::String>();
-
-                    int nLines = code->getSize();
-                    exprsSize = exprs.size(); // Saving last index before resizing
-                    exprs.resize(exprs.size() + 1 + nLines); // Store the size of the last string because it can be a matrix
-                    std::ostringstream strLines;
-                    strLines << nLines;
-                    std::string linesStr = strLines.str();
-                    exprs[exprsSize] = linesStr;
-
-                    for (int i = 0; i < nLines; ++i)
-                    {
-                        c_str = wide_string_to_UTF8(code->get(i));
-                        std::string codeElement(c_str);
+                        // Header element
+                        c_str = wide_string_to_UTF8(header->get(i));
+                        std::string headerElement(c_str);
                         FREE(c_str);
-                        exprs[exprsSize + 1 + i] = codeElement;
+                        exprs[2 + i] = headerElement;
+
+                        // Its corresponding element in the TList
+                        if (ParamsPDE->get(i)->getType() != types::InternalType::ScilabString)
+                        {
+                            return false;
+                        }
+                        types::String* ith_string = ParamsPDE->get(i)->getAs<types::String>();
+                        if (!ith_string->isScalar())
+                        {
+                            return false;
+                        }
+                        c_str = wide_string_to_UTF8(ith_string->get(0));
+                        std::string stringElement(c_str);
+                        FREE(c_str);
+                        exprs[2 + nParams + i] = stringElement;
                     }
+                    // Header element for the last element of ParamsPDE
+                    c_str = wide_string_to_UTF8(header->get(nParams));
+                    std::string lastHeaderElement(c_str);
+                    FREE(c_str);
+                    exprs[2 + nParams] = lastHeaderElement;
+                    if (ParamsPDE->get(nParams)->getType() != types::InternalType::ScilabString)
+                    {
+                        return false;
+                    }
+                    types::String* last_string = ParamsPDE->get(nParams)->getAs<types::String>();
+
+                    int nCols = last_string->getSize();
+                    int exprsSize = exprs.size(); // Saving last index before resizing
+                    exprs.resize(exprs.size() + 1 + nCols); // Store the size of the last string because it can be a matrix
+                    std::ostringstream strSize;
+                    strSize << nCols;
+                    std::string sizeStr = strSize.str();
+                    exprs[exprsSize] = sizeStr;
+
+                    for (int i = 0; i < nCols; ++i)
+                    {
+                        c_str = wide_string_to_UTF8(last_string->get(i));
+                        std::string lastStringElement(c_str);
+                        FREE(c_str);
+                        exprs[exprsSize + 1 + i] = lastStringElement;
+                    }
+
+                    // Next comes some code
+                    if (initial_list->get(1)->getType() == types::InternalType::ScilabDouble)
+                    {
+                        types::Double* empty_matrix_expected = initial_list->get(1)->getAs<types::Double>();
+                        if (!empty_matrix_expected->isEmpty())
+                        {
+                            return false;
+                        }
+                        exprs.push_back("0"); // Indicating empty matrix
+                    }
+                    else if (initial_list->get(1)->getType() == types::InternalType::ScilabString)
+                    {
+                        types::String* code = initial_list->get(1)->getAs<types::String>();
+
+                        int nLines = code->getSize();
+                        exprsSize = exprs.size(); // Saving last index before resizing
+                        exprs.resize(exprs.size() + 1 + nLines); // Store the size of the last string because it can be a matrix
+                        std::ostringstream strLines;
+                        strLines << nLines;
+                        std::string linesStr = strLines.str();
+                        exprs[exprsSize] = linesStr;
+
+                        for (int i = 0; i < nLines; ++i)
+                        {
+                            c_str = wide_string_to_UTF8(code->get(i));
+                            std::string codeElement(c_str);
+                            FREE(c_str);
+                            exprs[exprsSize + 1 + i] = codeElement;
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+
+                    // Finally, the block name
+                    if (initial_list->get(2)->getType() != types::InternalType::ScilabString)
+                    {
+                        return false;
+                    }
+                    types::String* name = initial_list->get(2)->getAs<types::String>();
+                    if (!name->isScalar())
+                    {
+                        return false;
+                    }
+                    c_str = wide_string_to_UTF8(name->get(0));
+                    std::string nameStr(c_str);
+                    FREE(c_str);
+                    exprs.push_back(nameStr);
+                }
+                else if (initial_list->get(0)->getType() == types::InternalType::ScilabString)
+                {
+                    exprs[0] = "List_CONSTRAINT"; // List coming from a CONSTRAINT2_c block
+
+                    types::String* x = initial_list->get(0)->getAs<types::String>();
+                    if (!x->isScalar())
+                    {
+                        return false;
+                    }
+                    c_str = wide_string_to_UTF8(x->get(0));
+                    std::string xStr(c_str);
+                    FREE(c_str);
+                    exprs.push_back(xStr);
+
+                    if (initial_list->get(1)->getType() != types::InternalType::ScilabString)
+                    {
+                        return false;
+                    }
+                    types::String* xd = initial_list->get(1)->getAs<types::String>();
+                    if (!xd->isScalar())
+                    {
+                        return false;
+                    }
+                    c_str = wide_string_to_UTF8(xd->get(0));
+                    std::string xdStr(c_str);
+                    FREE(c_str);
+                    exprs.push_back(xdStr);
+
+                    if (initial_list->get(2)->getType() != types::InternalType::ScilabString)
+                    {
+                        return false;
+                    }
+                    types::String* id = initial_list->get(2)->getAs<types::String>();
+                    if (!id->isScalar())
+                    {
+                        return false;
+                    }
+                    c_str = wide_string_to_UTF8(id->get(0));
+                    std::string idStr(c_str);
+                    FREE(c_str);
+                    exprs.push_back(idStr);
                 }
                 else
                 {
                     return false;
                 }
+            }
+            else if (initial_list->getSize() == 5)
+            {
+                exprs[0] = "List_LOOKUP2D"; // List coming from a LOOKUP2D block
 
-                // Finally, the block name
+                types::String* xx = initial_list->get(0)->getAs<types::String>();
+                if (!xx->isScalar())
+                {
+                    return false;
+                }
+                c_str = wide_string_to_UTF8(xx->get(0));
+                std::string xxStr(c_str);
+                FREE(c_str);
+                exprs.push_back(xxStr);
+
+                if (initial_list->get(1)->getType() != types::InternalType::ScilabString)
+                {
+                    return false;
+                }
+                types::String* yy = initial_list->get(1)->getAs<types::String>();
+                if (!yy->isScalar())
+                {
+                    return false;
+                }
+                c_str = wide_string_to_UTF8(yy->get(0));
+                std::string yyStr(c_str);
+                FREE(c_str);
+                exprs.push_back(yyStr);
+
                 if (initial_list->get(2)->getType() != types::InternalType::ScilabString)
                 {
                     return false;
                 }
-                types::String* name = initial_list->get(2)->getAs<types::String>();
-                if (!name->isScalar())
+                types::String* zz = initial_list->get(2)->getAs<types::String>();
+                if (!zz->isScalar())
                 {
                     return false;
                 }
-                c_str = wide_string_to_UTF8(name->get(0));
-                std::string nameStr(c_str);
+                c_str = wide_string_to_UTF8(zz->get(0));
+                std::string zzStr(c_str);
                 FREE(c_str);
-                exprs.push_back(nameStr);
+                exprs.push_back(zzStr);
+
+                if (initial_list->get(3)->getType() != types::InternalType::ScilabString)
+                {
+                    return false;
+                }
+                types::String* Method = initial_list->get(3)->getAs<types::String>();
+                if (!Method->isScalar())
+                {
+                    return false;
+                }
+                c_str = wide_string_to_UTF8(Method->get(0));
+                std::string MethodStr(c_str);
+                FREE(c_str);
+                exprs.push_back(MethodStr);
+
+                if (initial_list->get(4)->getType() != types::InternalType::ScilabString)
+                {
+                    return false;
+                }
+                types::String* Graf = initial_list->get(4)->getAs<types::String>();
+                if (!Graf->isScalar())
+                {
+                    return false;
+                }
+                c_str = wide_string_to_UTF8(Graf->get(0));
+                std::string GrafStr(c_str);
+                FREE(c_str);
+                exprs.push_back(GrafStr);
             }
             else
             {
@@ -1027,7 +1175,15 @@ struct exprs
             {
                 return false;
             }
-            if (header->get(0) != MBLOCK)
+            if (header->get(0) == MBLOCK)
+            {
+                exprs[0] = "List_MBLOCK"; // TList coming from an MBLOCK
+            }
+            else if (header->get(0) == MPBLOCK)
+            {
+                exprs[0] = "List_MPBLOCK"; // TList coming from an MPBLOCK
+            }
+            else
             {
                 return false;
             }
@@ -1068,7 +1224,6 @@ struct exprs
                 return false;
             }
 
-            exprs[0] = "List_MBLOCK"; // TList coming from an MBLOCK
             char* c_str; // Buffer
 
             // 'in'
