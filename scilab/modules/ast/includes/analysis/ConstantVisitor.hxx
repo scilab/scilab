@@ -28,7 +28,7 @@ namespace analysis
 
 class AnalysisVisitor;
 
-class ConstantVisitor : public ast::Visitor, public Chrono
+class EXTERN_AST ConstantVisitor : public ast::Visitor, public Chrono
 {
 
     bool _result;

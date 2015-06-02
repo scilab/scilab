@@ -18,6 +18,9 @@
 #ifndef SYMBOL_HH
 #define SYMBOL_HH
 
+#ifdef _MSC_VER
+#pragma warning (disable : 4251)
+#endif
 #include <set>
 #include <list>
 #include <string>
