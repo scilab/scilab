@@ -30,8 +30,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
-
 import org.scilab.modules.commons.xml.ScilabDocumentBuilderFactory;
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
+import org.scilab.modules.commons.xml.ScilabXMLUtilities;
 
 /**
  * Utility class to ease the jar loading management.
@@ -63,7 +64,7 @@ public final class LoadClassPath {
         String xpathExpression = XPATH_EXPRS + "[@on='" + module + "']";
 
         // Initialize xpath
-        XPathFactory factory = XPathFactory.newInstance();
+        XPathFactory factory = ScilabXPathFactory.newInstance();
         XPath xpath = factory.newXPath();
 
         // initialize document factory

@@ -22,9 +22,11 @@ import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Document;
-
 import org.scilab.modules.commons.OS;
+
 import static org.scilab.modules.commons.xml.XConfiguration.XConfAttribute;
+
+import org.scilab.modules.commons.xml.ScilabXPathFactory;
 import org.scilab.modules.commons.xml.XConfiguration;
 
 /**
@@ -71,12 +73,12 @@ public class SciNotesOptions {
 
             if (eol.equals("")) {
                 switch (OS.get()) {
-                case WINDOWS:
-                    this.eol = ScilabDocument.EOLWIN;
-                    break;
-                default:
-                    this.eol = ScilabDocument.EOLUNIX;
-                    break;
+                    case WINDOWS:
+                        this.eol = ScilabDocument.EOLWIN;
+                        break;
+                    default:
+                        this.eol = ScilabDocument.EOLUNIX;
+                        break;
                 }
             } else if (eol.startsWith("Windows")) {
                 this.eol = ScilabDocument.EOLWIN;
@@ -212,7 +214,7 @@ public class SciNotesOptions {
         private void set(boolean enable) {
             this.enable = enable;
             if (enable) {
-                XPathFactory xpathFactory = XPathFactory.newInstance();
+                XPathFactory xpathFactory = ScilabXPathFactory.newInstance();
                 XPath xp = xpathFactory.newXPath();
                 try {
                     header = (String) xp.compile("string(" + HEADERPATH + ")").evaluate(doc, XPathConstants.STRING);
