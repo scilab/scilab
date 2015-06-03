@@ -1076,7 +1076,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
         GraphicObject object = GraphicController.getController().getObjectFromId(id);
         int objectType = (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_TYPE__);
         int objectStyle = (objectType == GraphicObjectProperties.__GO_UICONTROL__ ? (Integer) GraphicController.getController().getProperty(id, GraphicObjectProperties.__GO_STYLE__) : -1);
-        if ((object != null) && isFigureChild(id) || (objectType == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle == GraphicObjectProperties.__GO_UI_FRAME__)
+        if ((object != null) && (isFigureChild(id) || isFigureParent(id)) || (objectType == GraphicObjectProperties.__GO_UICONTROL__ && objectStyle == GraphicObjectProperties.__GO_UI_FRAME__)
                 && objectType != GraphicObjectProperties.__GO_UIMENU__ && objectType != GraphicObjectProperties.__GO_UI_FRAME_BORDER__) {
 
             if (GraphicObjectProperties.__GO_VALID__ == property) {
@@ -1123,11 +1123,12 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 if (property == GraphicObjectProperties.__GO_SIZE__
                         || property == GraphicObjectProperties.__GO_AXES_SIZE__
                         || property == GraphicObjectProperties.__GO_CHILDREN__
-                        || property == GraphicObjectProperties.__GO_POSITION__) {
-                    Figure fig = (Figure) object;
-                    for (Integer gid : fig.getChildren()) {
+                        || property == GraphicObjectProperties.__GO_POSITION__
+                        || property == GraphicObjectProperties.__GO_VISIBLE__) {
+                    for (Integer gid : figure.getChildren()) {
                         GraphicObject go = GraphicController.getController().getObjectFromId(gid);
                         if (go instanceof Axes) {
+                            axesDrawer.computeMargins((Axes) go);
                             axesDrawer.computeRulers((Axes) go);
                         }
                     }
@@ -1225,6 +1226,28 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                 });
             } catch (Exception e) { }
         }
+    }
+
+    /**
+     * Check if the given id correspond to a parent of the current {@see Figure}.
+     * @param id the given id.
+     * @return true if the given id correspond to a parent of the current {@see Figure}.
+     */
+    private boolean isFigureParent(Integer id) {
+        GraphicObject object = GraphicController.getController().getObjectFromId(id);
+        if (object != null) {
+            Object parentObject = GraphicController.getController().getProperty(figure.getIdentifier(), GraphicObjectProperties.__GO_PARENT__);
+            Integer parentUID = parentObject == null ? 0 : (Integer) parentObject;
+            while (parentUID.intValue() != 0) {
+                if (parentUID.intValue() == id.intValue()) {
+                    return true;
+                }
+                parentObject = GraphicController.getController().getProperty(parentUID, GraphicObjectProperties.__GO_PARENT__);
+                parentUID = parentObject == null ? 0 : (Integer) parentObject;
+            }
+        }
+
+        return false;
     }
 
     /**
