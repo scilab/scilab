@@ -322,9 +322,9 @@ types::InternalType* createblklist(const scicos_block* const Blocks, const int f
     m->append(new types::Double(static_cast<double>(Blocks->nin)));
 
     /* 17 - insz */
-    types::Double* insz = new types::Double(Blocks->nin, 1);
+    types::Double* insz = new types::Double(3 * Blocks->nin, 1);
     d = insz->get();
-    for (int i = 0; i < Blocks->nin; ++i)
+    for (int i = 0; i < 3 * Blocks->nin; ++i)
     {
         d[i] = static_cast<double>(Blocks->insz[i]);
     }

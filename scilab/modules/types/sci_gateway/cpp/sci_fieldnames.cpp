@@ -16,6 +16,7 @@
 #include "double.hxx"
 #include "string.hxx"
 #include "list.hxx"
+#include "user.hxx"
 
 extern "C"
 {
@@ -36,8 +37,8 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
 
 
     // FIXME : iso-functionnal to Scilab < 6
-    // Works on other types excepts {m,t}list and struct
-    if (in[0]->isStruct() == false && in[0]->isMList() == false && in[0]->isTList() == false)
+    // Works on other types except userType, {m,t}list and struct
+    if (in[0]->isStruct() == false && in[0]->isMList() == false && in[0]->isTList() == false && in[0]->isUserType() == false)
     {
         out.push_back(Double::Empty());
         return Function::OK;
@@ -59,24 +60,49 @@ Function::ReturnValue sci_fieldnames(typed_list &in, int _iRetCount, typed_list 
         return Function::OK;
     }
 
-    // TLIST or MLIST
-    // We only need list capabilities so retrieve first argument as List.
-    List *pInList = in[0]->getAs<List>();
-    InternalType *pIT = pInList->get(0);
+    InternalType* pIT;
 
-    if (pIT == NULL || pIT->isString() == false)
+    // TLIST or MLIST
+    if (in[0]->isList() == true)
     {
-        // FIXME : iso-functionnal to Scilab < 6
-        // Works on other types excepts {m,t}list and struct
-        out.push_back(Double::Empty());
-        return Function::OK;
+        // We only need list capabilities to retrieve first argument as List.
+        List *pInList = in[0]->getAs<List>();
+        pIT = pInList->get(0);
+
+        if (pIT == nullptr || pIT->isString() == false)
+        {
+            // FIXME : iso-functionnal to Scilab < 6
+            // Works on other types except userType, {m,t}list and struct
+            out.push_back(Double::Empty());
+            return Function::OK;
+        }
+    }
+
+    // USER-TYPE (typically a Xcos object)
+    if (in[0]->isUserType() == true)
+    {
+        // We only need userType capabilities to retrieve first argument as UserType.
+        UserType *pInUser = in[0]->getAs<UserType>();
+
+        // Extract "diagram" first then the properties, or all in one shot?? Should DiagramA implement such a routine or should fieldnames include DiagramA?
+        //std::cout<<"diag "<<pInUser->getSharedTypeStr()<<std::endl;
+
+        // Extract the properties
+        typed_list one (1, new types::Double(1));
+        InternalType* pProperties = pInUser->extract(&one);
+        if (pProperties == nullptr || pProperties->isString() == false)
+        {
+            // FIXME : iso-functionnal to Scilab < 6
+            // Works on other types except userType, {m,t}list and struct
+            out.push_back(Double::Empty());
+            return Function::OK;
+        }
     }
 
     String *pAllFields = pIT->getAs<String>();
     wchar_t **pwcsAllStrings =  pAllFields->get();
     // shift to forget first value corresponding to type.
     //    ++pwcsAllStrings;
-
 
 
     String *pNewString = new String(pAllFields->getSize() - 1, 1, pwcsAllStrings + 1);

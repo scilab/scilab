@@ -490,7 +490,15 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                 controller.getObjectProperty(adaptee, BLOCK, kind, superPorts);
                 if (static_cast<int>(superPorts.size()) < portIndex)
                 {
-                    return false;
+                    if (!superPorts.empty())
+                    {
+                        // Arbitrarily take the highest possible value in case the user enters a wrong number
+                        portIndex = superPorts.size();
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
                 ScicosID port = superPorts[portIndex - 1];
@@ -602,6 +610,11 @@ struct rpar
             // set the diagram children as block children ; referencing them
             std::vector<ScicosID> diagramChildren;
             controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
+            if (diagramChildren.empty())
+            {
+                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
+                diagramChildren.push_back(0ll);
+            }
             std::vector<ScicosID> oldDiagramChildren;
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
 
@@ -842,7 +855,7 @@ struct dep_ut
         }
 
         types::Bool* current = v->getAs<types::Bool>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }

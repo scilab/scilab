@@ -571,7 +571,7 @@ int C2F(scicos)(double *x_in, int *xptr_in, double *z__,
                     break;
                 case DEBUG_BLOCK: /* debugging block */
                     Blocks[kf].funpt = (voidg)sciblk4;
-                    /*Blocks[kf].type=4;*/
+                    Blocks[kf].type *= -1;
                     debug_block = kf;
                     break;
 
@@ -3590,7 +3590,7 @@ void callf(double *t, scicos_block *block, scicos_flag *flag)
 
     /* debug block is never called */
     /*if (kf==(debug_block+1)) return;*/
-    if (block->type == 99)
+    if (block->type == DEBUG_BLOCK)
     {
         return;
     }
@@ -4051,7 +4051,7 @@ static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi,
     double *ptr_d = NULL;
 
     C2F(cosdebugcounter).counter = C2F(cosdebugcounter).counter + 1;
-    C2F(scsptr).ptr = Blocks[deb_blk].scsptr;
+    C2F(scsptr).ptr = block->scsptr;
 
     loc  = Blocks[deb_blk].funpt; /* GLOBAL */
     loc4 = (ScicosF4) loc;
@@ -4063,7 +4063,10 @@ static void call_debug_scicos(scicos_block *block, scicos_flag *flag, int flagi,
         block->xd  = block->res;
     }
 
+    // Temporarily replacing the block's computational function with DEBUG_BLOCK's so that sciblk4 will call %debug_scicos()
+    block->scsptr = Blocks[deb_blk].scsptr;
     (*loc4)(block, *flag);
+    block->scsptr = C2F(scsptr).ptr;
 
     /* Implicit Solver & explicit block & flag==0 */
     /* adjust continuous state vector after call */
