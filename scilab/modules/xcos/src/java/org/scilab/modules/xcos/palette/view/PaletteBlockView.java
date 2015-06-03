@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -14,17 +15,14 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Image;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
-import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
@@ -42,18 +40,18 @@ public final class PaletteBlockView extends JLabel {
 
     private PaletteBlockCtrl controller;
 
-    private ImageIcon originalIcon;
-
     /**
      * Default constructor
+     * @param palBlockSize The PaletteBlockSize
      * @param controller The associated controller
      */
-    public PaletteBlockView(PaletteBlockCtrl controller) {
-        super(controller.getModel().getName(), controller.getModel()
-              .getLoadedIcon(), SwingConstants.CENTER);
+    public PaletteBlockView(PaletteBlockSize palBlockSize, PaletteBlockCtrl controller) {
+        super(controller.getModel().getName(),
+              controller.getModel().getLoadedIcon(palBlockSize.getMaxIconWidth(),
+                                                  palBlockSize.getMaxIconHeight()),
+              SwingConstants.CENTER);
         this.controller = controller;
-        this.originalIcon = (ImageIcon) getIcon();
-        initComponents(controller.getPaletteBlockSize());
+        initComponents(palBlockSize);
     }
 
     /**
@@ -68,7 +66,6 @@ public final class PaletteBlockView extends JLabel {
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);
         setIconTextGap(DEFAULT_ICON_TEXT_GAP);
-        setIconSize(palBlockSize.getIconScale());
 
         final String text = controller.getModel().getName();
         setToolTipText(text);
@@ -103,14 +100,12 @@ public final class PaletteBlockView extends JLabel {
     }
 
     /**
-     * Set the icon size
-     * @param scale new scale
+     * Reloads the icon.
+     * @param maxWidth maximum width
+     * @param maxHeight maximum height
      */
-    public void setIconSize(float scale) {
-        int width = (int) (this.originalIcon.getIconWidth() * scale);
-        int height = (int) (this.originalIcon.getIconHeight() * scale);
-        setIcon(new ImageIcon(this.originalIcon.getImage().getScaledInstance(
-        		width, height, Image.SCALE_SMOOTH)));
+    public void refreshIcon(int maxWidth, int maxHeight) {
+        setIcon(controller.getModel().getLoadedIcon(maxWidth, maxHeight));
     }
 
     /**

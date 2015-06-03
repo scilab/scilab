@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -76,7 +77,6 @@ public final class PaletteBlockCtrl {
 
     private final PaletteBlock model;
     private final PaletteBlockView view;
-    private PaletteBlockSize palBlockSize;
 
     private transient WeakReference<Transferable> transferable = new WeakReference<Transferable>(null);
 
@@ -86,9 +86,8 @@ public final class PaletteBlockCtrl {
      * @param model the block data
      */
     public PaletteBlockCtrl(PaletteBlockSize palBlockSize, PaletteBlock model) {
-        this.palBlockSize = palBlockSize;
         this.model = model;
-        this.view = new PaletteBlockView(this);
+        this.view = new PaletteBlockView(palBlockSize, this);
         installListeners(this.view);
     }
 
@@ -99,13 +98,6 @@ public final class PaletteBlockCtrl {
     private void installListeners(PaletteBlockView view) {
         view.addMouseListener(MOUSE_LISTENER);
         installDnd();
-    }
-
-    /**
-     * @return the paletteBlockSize
-     */
-    public PaletteBlockSize getPaletteBlockSize() {
-        return palBlockSize;
     }
 
     /**

@@ -35,7 +35,7 @@
                 <term>pal_block_img:</term>
                 <listitem>
                     <para>the block icon to use on the palette
-                        manager (png, jpg, gif).
+                        manager (svg, png, jpg, gif).
                     </para>
                 </listitem>
             </varlistentry>

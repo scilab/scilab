@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -123,7 +124,7 @@ public class PaletteManagerPanel extends JSplitPane {
                 JPanel panel = (JPanel) jspR.getViewport().getComponent(0);
                 for (Component component : panel.getComponents()) {
                     PaletteBlockView view = (PaletteBlockView) component;
-                    view.setIconSize(newSize.getIconScale());
+                    view.refreshIcon(newSize.getMaxIconWidth(), newSize.getMaxIconHeight());
                     view.setFontSize(newSize.getFontSize());
                     view.setPreferredSize(newSize.getBlockDimension());
                 }
