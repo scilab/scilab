@@ -54,18 +54,20 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
     //local variable names are prefixed with a %  to limit conflicts with
     //variables  defined in %txt instructions
 
-    %nww="";%ierr=0;  // to make sure %nww and %ierr does not enter the difference
+    %ierr = 0;  // to make sure %ierr does not enter the difference
     if isempty(%txt) then return,end
-    %nww=who("get")
 
-    %ierr=execstr(%txt,"errcatch")
+    %ierr = execstr(%txt,"errcatch");
     if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
-    %mm=who("get")
-    // Compare the new list of variables with the old one to find new variables
-    %mm=%mm(members(%mm,%nww)==0)
-    //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
-    for %mi=%mm(:)'
+    // Use macrovar to extract the variable names present in %txt:
+    // listvar(3) contains the names already present in the context (case Superblock's context overlapping main diagram's one)
+    // listvar(5) contains the new variables (main diagram's context)
+    deff("foo()", %txt);
+    listvar = macrovar(foo);
+    %mm = [listvar(3); listvar(5)];
+
+    for %mi=%mm'
         if %mi=="scs_m" then
             mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m");
             continue
