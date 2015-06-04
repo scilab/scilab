@@ -16,6 +16,7 @@
 #include <utility>
 #include <iterator>
 
+#include <Eigen/Sparse>
 #include "double.hxx"
 #include "sparse.hxx"
 

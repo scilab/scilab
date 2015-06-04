@@ -1060,7 +1060,6 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/analysis/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/threads/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/console/includes/ \
-@XCOS_TRUE@			$(EIGEN_CPPFLAGS) \
 @XCOS_TRUE@			$(AM_CPPFLAGS)
 
 libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)

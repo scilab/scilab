@@ -17,6 +17,7 @@
 #include "tostring_common.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -1248,4 +1249,13 @@ ast::Exp* Double::getExp(const Location& loc)
     return new ast::DoubleExp(loc, this);
 }
 
+bool Double::isTrue()
+{
+    if (isEmpty() || isComplex())
+    {
+        return false;
+    }
+
+    return type_traits::isTrue<double>(m_iSize, m_pRealData);
+}
 }

@@ -12,9 +12,25 @@
 */
 
 #include "int.hxx"
+#include "type_traits.hxx"
 
 namespace types
 {
+template <class T>
+bool Int<T>::neg(InternalType *& out)
+{
+    out = new Int<T>(this->getDims(), this->getDimsArray());
+    type_traits::bin_neg<T, T>(this->m_iSize, this->m_pRealData, static_cast<Int<T> *>(out)->get());
+
+    return true;
+}
+
+template <class T>
+bool Int<T>::transpose(InternalType *& out)
+{
+    return type_traits::transpose(*this, out);
+}
+
 #ifdef _MSC_VER
 template class ArrayOf<char>;
 template class ArrayOf<unsigned char>;

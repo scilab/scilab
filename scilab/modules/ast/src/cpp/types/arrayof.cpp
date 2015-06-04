@@ -15,6 +15,7 @@
 #include "bool.hxx"
 #include "singlepoly.hxx"
 #include "singlestruct.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -1469,6 +1470,21 @@ bool ArrayOf<T>::resize(int* _piDims, int _iDims)
     m_iRows = m_piDims[0];
     m_iCols = m_piDims[1];
     m_iSize = iNewSize;
+    return true;
+}
+
+template <typename T>
+bool ArrayOf<T>::isTrue()
+{
+    return type_traits::isTrue<T>(m_iSize, m_pRealData);
+}
+
+template<typename T>
+bool ArrayOf<T>::neg(InternalType *& out)
+{
+    out = new Bool(this->m_iDims, this->m_piDims);
+    type_traits::neg<T, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
+
     return true;
 }
 

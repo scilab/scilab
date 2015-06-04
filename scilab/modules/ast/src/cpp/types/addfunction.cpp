@@ -13,6 +13,7 @@
 
 #include "context.hxx"
 #include "function.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {

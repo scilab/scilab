@@ -23,13 +23,13 @@
 #include "types_tools.hxx"
 #include "scilabexception.hxx"
 #include "inspector.hxx"
-#include "type_traits.hxx"
 #include "scilabWrite.hxx"
 
 extern "C"
 {
 #include "core_math.h"
 #include "localization.h"
+#include "os_string.h"
 }
 
 namespace types
@@ -193,10 +193,7 @@ public :
         return true;
     }
 
-    bool isTrue()
-    {
-        return type_traits::isTrue<T>(m_iSize, m_pRealData);
-    }
+    bool isTrue();
 
     // The function is not write here because we needs to create a Bool which inherits from ArrayOf<int>
     // so it will create a cyclic dependency... so the body of the function is in bool.hxx after the Bool definition.

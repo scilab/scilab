@@ -101,18 +101,9 @@ public :
         return true;
     }
 
-    bool neg(InternalType *& out)
-    {
-        out = new Int<T>(this->getDims(), this->getDimsArray());
-        type_traits::bin_neg<T, T>(this->m_iSize, this->m_pRealData, static_cast<Int<T> *>(out)->get());
+    bool neg(InternalType *& out);
 
-        return true;
-    }
-
-    virtual bool transpose(InternalType *& out)
-    {
-        return type_traits::transpose(*this, out);
-    }
+    virtual bool transpose(InternalType *& out);
 
     bool operator==(const InternalType& it)
     {
@@ -684,7 +675,6 @@ typedef Int<unsigned short> UInt16;
 typedef Int<unsigned int> UInt32;
 typedef Int<unsigned long long> UInt64;
 
-#ifdef _MSC_VER
 template class Int<char>;
 template class Int<unsigned char>;
 template class Int<short>;
@@ -693,7 +683,6 @@ template class Int<int>;
 template class Int<unsigned int>;
 template class Int<long long>;
 template class Int<unsigned long long>;
-#endif
 }
 
 

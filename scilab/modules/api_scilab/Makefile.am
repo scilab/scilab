@@ -51,7 +51,6 @@ libsciapi_scilab_la_CPPFLAGS= \
     -I$(top_srcdir)/modules/string/includes \
     -I$(top_srcdir)/modules/dynamic_link/includes \
     -I$(top_srcdir)/modules/threads/includes \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 if MAINTAINER_MODE

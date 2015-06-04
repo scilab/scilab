@@ -16,6 +16,7 @@
 #include "stringexp.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -659,6 +660,11 @@ wchar_t** String::allocData(int _iSize)
 ast::Exp* String::getExp(const Location& loc)
 {
     return new ast::StringExp(loc, this);
+}
+
+bool String::transpose(InternalType *& out)
+{
+    return type_traits::transpose(*this, out);
 }
 
 }
