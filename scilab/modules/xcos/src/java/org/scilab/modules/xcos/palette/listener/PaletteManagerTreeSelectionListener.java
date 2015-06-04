@@ -90,10 +90,7 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
             panel.setViewportView(view);
             nodeView = panel;
         } else if (node instanceof Custom) {
-            final Custom desc = (Custom) node;
-            PaletteDiagram diagram = new PaletteDiagram();
-            diagram.openDiagramAsPal(desc.getPath().getEvaluatedPath());
-            nodeView = diagram.getAsComponent();
+            nodeView = paletteManagerPanel.openDiagramAsPal(palBlockSize, node);
         } else {
             Logger.getLogger(PaletteManagerTreeSelectionListener.class.getName()).severe("tree selection is not handled");
             return;

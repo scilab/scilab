@@ -45,7 +45,6 @@ public class PaletteDiagram extends XcosDiagram {
 
     /**
      * Constructor
-     * @param palBlockSize PaletteBlockSize
      */
     public PaletteDiagram() {
         super();

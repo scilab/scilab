@@ -15,6 +15,7 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
@@ -29,6 +30,7 @@ import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import javax.swing.tree.TreeSelectionModel;
 
+import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
@@ -49,6 +51,7 @@ public class PaletteManagerPanel extends JSplitPane {
     private PaletteManager controller;
     private CustomMouseWheelListener mouseWheelListener;
     private JTree tree;
+    private PaletteDiagram diagramInstance;
 
     /**
      * Default constructor
@@ -117,6 +120,7 @@ public class PaletteManagerPanel extends JSplitPane {
 
         try {
             JScrollPane jspR = (JScrollPane) this.getRightComponent();
+            final Dimension dimension = jspR.getPreferredSize();
             setUpScrollBar(jspR, newSize);
             // check what's being displayed on the right panel
             PaletteNode node = (PaletteNode) tree.getLastSelectedPathComponent();
@@ -129,11 +133,14 @@ public class PaletteManagerPanel extends JSplitPane {
                     view.setPreferredSize(newSize.getBlockDimension());
                 }
             } else if (node instanceof Custom) {
-                // TODO
+                jspR = openDiagramAsPal(newSize, node);
+                jspR.setPreferredSize(dimension);
+                this.setRightComponent(jspR);
             } else {
                 return;
             }
             currentSize = newSize;
+            jspR.revalidate();
         } catch (NullPointerException e) {
         }
     }
@@ -146,6 +153,19 @@ public class PaletteManagerPanel extends JSplitPane {
     /** zoom out **/
     public void zoomOut() {
         zoom(currentSize.previous());
+    }
+
+    /**
+     * Open a diagram as a palette.
+     * @param pbs PaletteBlockSize
+     * @param node PaletteNode
+     * @return a JScrollPane with the diagram
+     */
+    public JScrollPane openDiagramAsPal(PaletteBlockSize pbs, PaletteNode node) {
+        String path = ((Custom) node).getPath().getEvaluatedPath();
+        this.diagramInstance = new PaletteDiagram();
+        this.diagramInstance.openDiagramAsPal(pbs, path);
+        return this.diagramInstance.getAsComponent();
     }
 
     /**
