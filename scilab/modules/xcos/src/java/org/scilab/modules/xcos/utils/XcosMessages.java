@@ -2,7 +2,8 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Vincent COUVERT
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
- * Copyright (C) Scilab Enterprises - 2011-2012 - Clement DAVID
+ * Copyright (C) 2011-2012 - Scilab Enterprises - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -60,6 +61,10 @@ public final class XcosMessages {
     public static final String REMOVE = Messages.gettext("Remove");
     public static final String CUSTOMIZE = Messages.gettext("Customize") + DOTS;
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
+
+    /* Palette browser */
+    public static final String ZOOM_IN = Messages.gettext("Zoom In");
+    public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
 
     /* Palette menu in palette browser */
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;

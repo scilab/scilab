@@ -27,9 +27,9 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabLAF;
-import org.scilab.modules.graph.utils.ScilabGraphMessages;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Zoom In Management
@@ -39,7 +39,7 @@ public class ZoomInAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
     
-    private static final String LABEL = ScilabGraphMessages.ZOOM_IN;
+    private static final String LABEL = XcosMessages.ZOOM_IN;
     private static final String ICON = FindIconHelper.findIcon("zoom-in");
 
     private static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
