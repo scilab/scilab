@@ -7,6 +7,10 @@ New Features
 * scatter plot with different mark colors is now available:
   TODO : save/load+display+doc of new properties
 
+Xcos
+====
+
+* Palette browser - zoom feature is now available via CTRL(+), CTRL(-) and CTRL(mousewheel).
 
 Compilation
 ============

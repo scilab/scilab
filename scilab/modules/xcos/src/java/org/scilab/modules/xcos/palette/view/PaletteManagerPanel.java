@@ -14,9 +14,13 @@ package org.scilab.modules.xcos.palette.view;
 
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.Toolkit;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import javax.swing.DropMode;
 import javax.swing.JPanel;
+import javax.swing.JScrollBar;
 import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.JTree;
@@ -149,6 +153,7 @@ public class PaletteManagerPanel extends JSplitPane {
      */
     private void initJScrollPane(JScrollPane panel) {
         panel.setBackground(Color.WHITE);
+
         panel.getVerticalScrollBar().setBlockIncrement(
             XcosConstants.PALETTE_BLOCK_HEIGHT
             + XcosConstants.PALETTE_VMARGIN);
@@ -162,6 +167,10 @@ public class PaletteManagerPanel extends JSplitPane {
         panel.getHorizontalScrollBar().setUnitIncrement(
             XcosConstants.PALETTE_BLOCK_WIDTH
             + XcosConstants.PALETTE_HMARGIN);
+
+        MouseWheelListener mouseListener = new CustomMouseWheelListener(
+                this, panel.getVerticalScrollBar());
+        panel.addMouseWheelListener(mouseListener);
     }
 
     /**
@@ -179,5 +188,46 @@ public class PaletteManagerPanel extends JSplitPane {
 
         /* Global layout */
         setContinuousLayout(true);
+    }
+
+    /**
+     * Implement custom mouse handling for the zoom
+     */
+    private static final class CustomMouseWheelListener implements MouseWheelListener {
+        private static final int ACCELERATOR_KEY = Toolkit.getDefaultToolkit().getMenuShortcutKeyMask();
+        private PaletteManagerPanel panel;
+        private JScrollBar verticalScrollBar;
+        private int unitIncrement;
+
+        /**
+         * Default constructor
+         * @param pmp PaletteManagerPanel instance
+         * @param verticalScrollBar VerticalScrollBar
+         */
+        public CustomMouseWheelListener(PaletteManagerPanel pmp,
+                                        JScrollBar verticalScrollBar) {
+            this.panel = pmp;
+            this.verticalScrollBar = verticalScrollBar;
+            this.unitIncrement = verticalScrollBar.getUnitIncrement();
+        }
+
+        /**
+         * When the wheel is used
+         * @param e The parameters
+         * @see java.awt.event.MouseWheelListener#mouseWheelMoved(java.awt.event.MouseWheelEvent)
+         */
+        @Override
+        public void mouseWheelMoved(MouseWheelEvent e) {
+            if ((e.getModifiers() & ACCELERATOR_KEY) != 0) {
+                verticalScrollBar.setUnitIncrement(0);
+                if (e.getWheelRotation() < 0) {
+                    panel.zoomIn();
+                } else if (e.getWheelRotation() > 0) {
+                    panel.zoomOut();
+                }
+            } else {
+                verticalScrollBar.setUnitIncrement(unitIncrement);
+            }
+        }
     }
 }

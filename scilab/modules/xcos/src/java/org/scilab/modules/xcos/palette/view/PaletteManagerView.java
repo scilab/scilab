@@ -179,6 +179,7 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         stb.add(ZoomOutAction.createPushButton());
 
         ZoomInAction.registerKeyAction(this);
+        ZoomOutAction.registerKeyAction(this);
 
         setToolBar(toolbar);
 
