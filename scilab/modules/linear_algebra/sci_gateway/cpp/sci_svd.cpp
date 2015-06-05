@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         std::wstring wstFuncName = L"%" + in[0]->getShortTypeStr() + L"_svd";
         return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
     }
-    pDbl = in[0]->getAs<types::Double>()->clone()->getAs<types::Double>();
+    pDbl = in[0]->clone()->getAs<types::Double>();
 
     if (in.size() == 2)
     {
@@ -102,7 +102,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         }
     }
 
-    if (pDbl->getRows() == 0) /* empty matrix */
+    if (pDbl->isEmpty()) /* empty matrix */
     {
         for (int i = 0; i < _iRetCount - 1; i++)
         {
@@ -119,12 +119,15 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             out.push_back(types::Double::Empty());
         }
+
+        delete pDbl;
         return types::Function::OK;
     }
 
     if ((pDbl->getRows() == -1) || (pDbl->getCols() == -1)) // manage eye case
     {
         Scierror(271, _("%s: Size varying argument a*eye(), (arg %d) not allowed here.\n"), "svd", 1);
+        delete pDbl;
         return types::Function::Error;
     }
 
@@ -141,6 +144,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
     if (C2F(vfinite)(&totalsize, pData) == false)
     {
         Scierror(264, _("%s: Wrong value for argument %d: Must not contain NaN or Inf.\n"), "svd", 1);
+        delete pDbl;
         return types::Function::Error;
     }
 
@@ -189,7 +193,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             }
         }
         break;
-            // default: // makes at the beginning of this gateway
+        // default: // makes at the beginning of this gateway
     }
 
     if (iRet != 0)
@@ -202,6 +206,8 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             Scierror(24, _("%s: Convergence problem...\n"), "svd");
         }
+
+        delete pDbl;
         return types::Function::Error;
     }
 
@@ -231,6 +237,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
         {
             out.push_back(ptrsU);
             out.push_back(ptrS);
+            delete ptrsV;
             break;
         }
         case 1:
@@ -238,6 +245,7 @@ types::Function::ReturnValue sci_svd(types::typed_list &in, int _iRetCount, type
             // default: // makes at the beginning of this gateway
     }
 
+    delete pDbl;
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
