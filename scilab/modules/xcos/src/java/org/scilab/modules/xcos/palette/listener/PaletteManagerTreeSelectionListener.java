@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -22,7 +23,6 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
-import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
@@ -97,9 +97,9 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
         }
 
         // update
+        paletteManagerPanel.updateHistory();
         nodeView.setPreferredSize(dimension);
         splitPanel.setRightComponent(nodeView);
         nodeView.validate();
     }
-
 }

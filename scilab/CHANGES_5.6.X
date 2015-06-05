@@ -12,6 +12,7 @@ Xcos
 
 * Palette browser - zoom feature is now available via CTRL(+), CTRL(-) and CTRL(mousewheel).
 * Palette browser is now able to load SVG icons.
+* Palette browser handles the action of going forward or backward.
 
 Compilation
 ============
