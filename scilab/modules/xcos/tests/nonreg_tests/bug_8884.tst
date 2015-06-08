@@ -14,8 +14,8 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=8884
 //
 // <-- Short Description -->
-// Region to super block does not reconstruct 2 links from the same start point
-// but only one.
+// Region to superblock does not reconstruct 2 links
+// from the same starting point but only one.
 
 xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8884.zcos");
 // Follow diagram labels

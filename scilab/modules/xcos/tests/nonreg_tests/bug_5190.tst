@@ -17,7 +17,7 @@
 //  If you're using an Apple one-button mouse, the context menu is not available at all. It should be displayed when press and hold the Control key while clicking.
 
 // Lauch xcos
-// check that context menu is available on blocks in palettes/diagrams/blocks in digrams/links
+// check that context menu is available on blocks in palettes/diagrams/blocks in diagrams/links
 
 
 

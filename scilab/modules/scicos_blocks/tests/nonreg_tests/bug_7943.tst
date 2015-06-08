@@ -19,8 +19,9 @@
 // copy paste in scilab with a binary version (installed)
 // click ok (message box)
 
+loadXcosLibs();
 scs_m_tmp = fortran_block("define");
 scs_m_res = fortran_block("set", scs_m_tmp, []);
-if ~isdef('scs_m_res') then pause, end
+if ~isdef("scs_m_res") then pause, end
 
 // pause level must be 0
