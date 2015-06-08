@@ -18,6 +18,8 @@ Scilab Bug Fixes
 
 * Bug #13924 fixed - rationals r1==r2 and r1~=r2 might sometimes be wrong.
 
+* Bug #13925 fixed - SciNotes used the wrong paired bracket highlight style.
+
 
 
                      Changes between version 5.5.1 and 5.5.2
