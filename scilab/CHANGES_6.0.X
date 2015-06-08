@@ -77,3 +77,5 @@ Scilab Bug Fixes
 * Bug #13517 fixed - isdef crashed Scilab when called with a vector of strings
                      as input in a function and after a declaration of variable.
 
+* Bug #13838 fixed - Sparse and complex substraction made Scilab crash.
+
