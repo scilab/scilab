@@ -284,6 +284,7 @@ public final class PaletteBlockCtrl {
             previouslySelected = this;
         }
         getView().setSelectedUI(selected);
+        getView().requestFocus();
     }
 
     /**
