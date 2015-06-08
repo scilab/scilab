@@ -44,15 +44,19 @@ Functions modified
 * pppdiv : return a scalar of type 'constant' when the rank is 0.
 * pdiv   : return a matrix of type 'constant' when all the rank are 0.
 
+Syntax clarifications
+=====================
+
+* Declaration of a number on two lines is no longer allowed:
+ 1..
+ 2
+
+* {"foo"} returns a cell not a string matrix.
 
 Deprecated behavior
 ====================
 
 * Syntax %i:10 is now deprecated.
-
-* Declaration of a number on two lines is no longer allowed:
- 1..
- 2
 
 * write string or string matrix in file does not add black space before each value
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
