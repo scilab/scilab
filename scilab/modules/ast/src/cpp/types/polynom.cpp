@@ -951,7 +951,7 @@ void Polynom::deleteAll()
 {
     for (int i = 0 ; i < m_iSizeMax ; i++)
     {
-        delete m_pRealData[i];
+        m_pRealData[i]->killMe();
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
