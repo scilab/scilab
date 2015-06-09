@@ -16,9 +16,6 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
-genlib: Processing file: scilab_error.sci
-genlib: Processing file: scilab_sum.sci
-genlib: Regenerate names and lib
 Building sources...
    Generate a loader file
    Generate a Makefile
@@ -47,16 +44,9 @@ Building gateway...
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy libskeleton_fortran.c to TMPDIR
-   ilib_gen_Make: Copy sci_fsum.c to TMPDIR
-   ilib_gen_Make: Modification of the Makefile in TMPDIR.
-   Running the makefile
-   Generate a cleaner file
-   Generate a gateway file
-   Generate a loader file
-   Generate a Makefile
-   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy libskeleton_c.c to TMPDIR
+   ilib_gen_Make: Copy libskeleton_c.cpp to TMPDIR
+   ilib_gen_Make: Copy libskeleton_c.h to TMPDIR
+   ilib_gen_Make: Copy libskeleton_c.hxx to TMPDIR
    ilib_gen_Make: Copy sci_cerror.c to TMPDIR
    ilib_gen_Make: Copy sci_csub.c to TMPDIR
    ilib_gen_Make: Copy sci_csum.c to TMPDIR
@@ -70,8 +60,27 @@ Building gateway...
    Generate a loader file
    Generate a Makefile
    ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
-   ilib_gen_Make: Copy libskeleton_cpp.c to TMPDIR
+   ilib_gen_Make: Copy libskeleton_fortran.cpp to TMPDIR
+   ilib_gen_Make: Copy libskeleton_fortran.h to TMPDIR
+   ilib_gen_Make: Copy libskeleton_fortran.hxx to TMPDIR
+   ilib_gen_Make: Copy sci_fsum.c to TMPDIR
+   ilib_gen_Make: Modification of the Makefile in TMPDIR.
+   Running the makefile
+   Generate a cleaner file
+   Generate a gateway file
+   Generate a loader file
+   Generate a Makefile
+   ilib_gen_Make: Copy compilation files (Makefile*, libtool...) to TMPDIR
+   ilib_gen_Make: Copy libskeleton_cpp.cpp to TMPDIR
+   ilib_gen_Make: Copy libskeleton_cpp.h to TMPDIR
+   ilib_gen_Make: Copy libskeleton_cpp.hxx to TMPDIR
    ilib_gen_Make: Copy sci_cpp_find.cxx to TMPDIR
+   ilib_gen_Make: Copy sci_cpperror.cpp to TMPDIR
+   ilib_gen_Make: Copy sci_cppfoo.cpp to TMPDIR
+   ilib_gen_Make: Copy sci_cppmultiplybypi.cpp to TMPDIR
+   ilib_gen_Make: Copy sci_cppsub.cpp to TMPDIR
+   ilib_gen_Make: Copy sci_cppsum.cpp to TMPDIR
+   ilib_gen_Make: configure : Generate Makefile.
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the makefile
    Generate a cleaner file
@@ -81,26 +90,16 @@ Generating localization
 -- Building for "en_US" --
 -- Building for "fr_FR" --
 Building help...
-
 Building the master document:
 	TMPDIR/toolbox_skeleton/help/en_US
-
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/en_US.
- 
- Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
- 
- Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xm 
-      l                                                                 
-
+Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
+Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xml
 Building the master document:
 	TMPDIR/toolbox_skeleton/help/fr_FR
-
 Building the manual file [javaHelp] in TMPDIR/toolbox_skeleton/help/fr_FR.
- 
- Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
- 
- Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xm 
-      l                                                                 
+Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
+Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xml
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
@@ -113,13 +112,10 @@ Start Toolbox Skeleton
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
    001/001 - [TMPDIR/toolbox_skeleton/] : 
-
    001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
    002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
    003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed
    004/004 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
-
-
    --------------------------------------------------------------------------
    Tests:    4,    Passed:    4,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------

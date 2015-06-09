@@ -107,7 +107,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("function _generate_image_from_doc\n");
 
         buffer.append("__olddrv__=driver();\n");
-        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");");
+        buffer.append("mprintf(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\\n\");");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append("clf();\n");
