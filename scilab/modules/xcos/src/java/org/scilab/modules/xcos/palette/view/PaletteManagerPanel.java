@@ -80,7 +80,7 @@ public class PaletteManagerPanel extends JSplitPane {
      * Fill up the content pane
      */
     private void fillUpContentPane() {
-        /** Default instances */
+        // Default instances
         JScrollPane panel = new JScrollPane();
         panel.setBackground(Color.WHITE);
         setUpScrollBar(panel, currentSize);
@@ -92,7 +92,7 @@ public class PaletteManagerPanel extends JSplitPane {
         tree = new JTree(new PaletteTreeModel(root));
         JScrollPane treeScrollPane = new JScrollPane(tree);
 
-        /** Setup tree */
+        // Setup tree
         tree.getSelectionModel().setSelectionMode(
             TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addMouseListener(new PaletteManagerMouseListener());

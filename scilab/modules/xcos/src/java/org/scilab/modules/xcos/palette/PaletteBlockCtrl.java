@@ -26,6 +26,7 @@ import java.awt.dnd.DragSource;
 import java.awt.dnd.InvalidDnDOperationException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
 import java.awt.event.MouseListener;
 import java.lang.ref.WeakReference;
 import java.util.logging.Level;
@@ -41,6 +42,7 @@ import org.scilab.modules.xcos.block.BlockFactory.BlockInterFunction;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.io.scicos.ScicosFormatException;
 import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
+import org.scilab.modules.xcos.palette.listener.PaletteBlockKeyListener;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
@@ -67,6 +69,7 @@ public final class PaletteBlockCtrl {
     }
 
     private static final double BLOCK_DEFAULT_POSITION = 10.0;
+    private static final KeyListener KEY_LISTENER = new PaletteBlockKeyListener();
     private static final MouseListener MOUSE_LISTENER = new PaletteBlockMouseListener();
     private static final Logger LOG = Logger.getLogger(PaletteBlockCtrl.class.getName());
 
@@ -96,6 +99,7 @@ public final class PaletteBlockCtrl {
      *            The view to setup
      */
     private void installListeners(PaletteBlockView view) {
+        view.addKeyListener(KEY_LISTENER);
         view.addMouseListener(MOUSE_LISTENER);
         installDnd();
     }

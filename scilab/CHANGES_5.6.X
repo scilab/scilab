@@ -13,6 +13,7 @@ Xcos
 * Palette browser - zoom feature is now available via CTRL(+), CTRL(-) and CTRL(mousewheel).
 * Palette browser is now able to load SVG icons.
 * Palette browser handles the action of going forward or backward.
+* Palette browser enable users to add blocks to the most recent diagram by using the ENTER key.
 
 Compilation
 ============
