@@ -697,9 +697,6 @@
     <ClInclude Include="includes\analysis\checkers\Checkers.hxx">
       <Filter>Header Files\analysis\checkers</Filter>
     </ClInclude>
-    <ClInclude Include="includes\analysis\checkers\TIType.hxx">
-      <Filter>Header Files\analysis\checkers</Filter>
-    </ClInclude>
     <ClInclude Include="includes\analysis\data\Block.hxx">
       <Filter>Header Files\analysis\data</Filter>
     </ClInclude>

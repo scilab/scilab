@@ -19,7 +19,6 @@
  Don't touch if you do not know what you are doing
 -->
 <module name="xcos">
-    <gateway name="sci_Xcos"                    function="xcos"                     type="0" />
     <gateway name="sci_warnBlockByUID"          function="warnBlockByUID"           type="0" />
     <gateway name="sci_closeXcosFromScilab"     function="closeXcos"                type="0" />
     <gateway name="sci_xcosDiagramToScilab"     function="xcosDiagramToScilab"      type="0" />
@@ -36,5 +35,7 @@
     <gateway name="sci_loadXcos"                function="loadXcos"                 type="0" />
     <gateway name="sci_xcosSimulationStarted"   function="xcosSimulationStarted"    type="0" />
     <gateway name="sci_xcosPalGet"              function="xcosPalGet"               type="0" />
+    <!-- Scilab 6 Gateways (C++) -->
+    <gateway name="sci_Xcos"                    function="xcos"                     type="1" />
 </module>
 

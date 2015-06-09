@@ -103,6 +103,9 @@
     <ClInclude Include="..\..\includes\gw_xcos.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gw_xcos.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\jni\Modelica.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>

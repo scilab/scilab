@@ -279,7 +279,6 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\call\Call.hxx" />
     <ClInclude Include="includes\analysis\call\SizeCall.hxx" />
     <ClInclude Include="includes\analysis\checkers\Checkers.hxx" />
-    <ClInclude Include="includes\analysis\checkers\TIType.hxx" />
     <ClInclude Include="includes\analysis\Chrono.hxx" />
     <ClInclude Include="includes\analysis\ConstantValue.hxx" />
     <ClInclude Include="includes\analysis\ConstantVisitor.hxx" />
