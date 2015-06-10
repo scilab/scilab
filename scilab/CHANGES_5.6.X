@@ -15,6 +15,8 @@ Xcos
 * Palette browser handles the action of going forward or backward.
 * Palette browser enable users to add blocks to the most recent diagram by using the ENTER key.
 
+* Bug #13553 fixed - Palette Browser - arrow keys doesn't work.
+
 Compilation
 ============
 

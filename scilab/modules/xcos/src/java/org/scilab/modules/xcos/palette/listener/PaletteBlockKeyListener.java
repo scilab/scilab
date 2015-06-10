@@ -16,11 +16,17 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
+import javax.swing.JScrollPane;
+
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.palette.view.PaletteView;
+import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement the default key listener for the block
@@ -36,8 +42,8 @@ public final class PaletteBlockKeyListener implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
-        // add the current block to the most recent diagram
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+            /** add the current block to the most recent diagram **/
             final List<XcosDiagram> allDiagrams = Xcos.getInstance().openedDiagrams();
             final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 
@@ -49,6 +55,54 @@ public final class PaletteBlockKeyListener implements KeyListener {
             final XcosDiagram theDiagram = allDiagrams.get(size - 1);
             BasicBlock current = control.getBlock();
             theDiagram.addCell(current);
+            return;
+        }
+
+        int x = 0;
+        int y = 0;
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            /** select the block below **/
+            x = 0;
+            y = 1;
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            /** select the block above **/
+            x = 0;
+            y = -1;
+        } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            /** select the block on the right **/
+            x = 1;
+            y = 0;
+        } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            /** select the block on the left **/
+            x = -1;
+            y = 0;
+        } else {
+            // nothing to do!
+            return;
+        }
+
+        // get position of the next block
+        PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
+        PaletteBlockSize blockSize = currentBlockView.getPaletteBlockSize();
+
+        x *= blockSize.getBlockDimension().width + XcosConstants.PALETTE_HMARGIN;
+        x += currentBlockView.getLocation().x;
+
+        y *= blockSize.getBlockDimension().height + XcosConstants.PALETTE_VMARGIN;
+        y += currentBlockView.getLocation().y;
+
+        if (x < 0 || y < 0) {
+            return;
+        }
+
+        // select the block
+        try {
+            JScrollPane jsp = (JScrollPane) PaletteManagerView.get().getPanel().getRightComponent();
+            PaletteView pview = (PaletteView) jsp.getViewport().getComponent(0);
+            PaletteBlockView bview = (PaletteBlockView) pview.getComponentAt(x, y);
+            bview.getController().setSelected(true);
+        } catch (ClassCastException err) {
+        } catch (NullPointerException err) {
         }
     }
 
