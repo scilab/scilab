@@ -137,9 +137,7 @@ public class PaletteManagerPanel extends JSplitPane {
                 JPanel panel = (JPanel) jspR.getViewport().getComponent(0);
                 for (Component component : panel.getComponents()) {
                     PaletteBlockView view = (PaletteBlockView) component;
-                    view.refreshIcon(newSize.getMaxIconWidth(), newSize.getMaxIconHeight());
-                    view.setFontSize(newSize.getFontSize());
-                    view.setPreferredSize(newSize.getBlockDimension());
+                    view.initComponents(newSize);
                 }
             } else if (node instanceof Custom) {
                 jspR = openDiagramAsPal(newSize, node);

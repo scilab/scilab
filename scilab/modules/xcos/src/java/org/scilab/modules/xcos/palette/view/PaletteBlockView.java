@@ -39,6 +39,7 @@ public final class PaletteBlockView extends JLabel {
             .createEmptyBorder();
 
     private PaletteBlockCtrl controller;
+    private PaletteBlockSize palBlockSize;
 
     /**
      * Default constructor
@@ -51,6 +52,7 @@ public final class PaletteBlockView extends JLabel {
                                                   palBlockSize.getMaxIconHeight()),
               SwingConstants.CENTER);
         this.controller = controller;
+        this.palBlockSize = palBlockSize;
         initComponents(palBlockSize);
     }
 
@@ -58,10 +60,16 @@ public final class PaletteBlockView extends JLabel {
      * Set up the graphical properties
      * @param palBlockSize The PaletteBlockSize
      */
-    private void initComponents(PaletteBlockSize palBlockSize) {
-        setSelectedUI(false);
-        setFontSize(palBlockSize.getFontSize());
+    public void initComponents(PaletteBlockSize palBlockSize) {
+        // adjust the jlabel size
         setPreferredSize(palBlockSize.getBlockDimension());
+
+        // adjust the font size
+        setFont(new Font(getFont().getFamily(), 0, palBlockSize.getFontSize()));
+
+        // reloads the icon with the correct size
+        setIcon(controller.getModel().getLoadedIcon(palBlockSize.getMaxIconWidth(),
+                                                    palBlockSize.getMaxIconHeight()));
 
         setVerticalTextPosition(SwingConstants.BOTTOM);
         setHorizontalTextPosition(SwingConstants.CENTER);
@@ -70,6 +78,8 @@ public final class PaletteBlockView extends JLabel {
         final String text = controller.getModel().getName();
         setToolTipText(text);
         setText(text);
+
+        this.palBlockSize = palBlockSize;
     }
 
     /**
@@ -92,20 +102,11 @@ public final class PaletteBlockView extends JLabel {
     }
 
     /**
-     * Set the font size
-     * @param fontSize font size
+     * Get the paletteBlockSize
+     * @return PaletteBlockSize
      */
-    public void setFontSize(int fontSize) {
-        setFont(new Font(getFont().getFamily(), 0, fontSize));
-    }
-
-    /**
-     * Reloads the icon.
-     * @param maxWidth maximum width
-     * @param maxHeight maximum height
-     */
-    public void refreshIcon(int maxWidth, int maxHeight) {
-        setIcon(controller.getModel().getLoadedIcon(maxWidth, maxHeight));
+    public PaletteBlockSize getPaletteBlockSize() {
+        return this.palBlockSize;
     }
 
     /**
