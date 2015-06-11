@@ -9,6 +9,6 @@
 
 loadXcosLibs();
 
-exec("SCI/test/xcos/LV.cosf", -1);
+exec("SCI/modules/scicos/tests/unit_tests/model/LV.cosf", -1);
 
 clear;
