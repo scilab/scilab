@@ -16,6 +16,8 @@ Scilab Bug Fixes
 
 * Bug #13881 fixed - datatipRemoveAll did not work.
 
+* Bug #13924 fixed - rationals r1==r2 and r1~=r2 might sometimes be wrong.
+
 
 
                      Changes between version 5.5.1 and 5.5.2
