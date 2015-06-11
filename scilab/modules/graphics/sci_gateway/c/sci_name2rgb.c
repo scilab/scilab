@@ -9,6 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
+#include "MALLOC.h"
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -23,6 +24,13 @@ int sci_name2rgb(char *fname, unsigned long fname_len)
     int* piAddr = NULL;
     char* pstColor = NULL;
     double color[3];
+    int i;
+    int nRows;
+    int nCols;
+    int nRowsCols;
+    char** pstColorMatrix = NULL;
+    double* pColor = NULL;
+
     CheckInputArgument(pvApiCtx, 1, 1);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
@@ -32,25 +40,55 @@ int sci_name2rgb(char *fname, unsigned long fname_len)
         return 1;
     }
 
-    if (isStringType(pvApiCtx, piAddr) == FALSE || isScalar(pvApiCtx, piAddr) == FALSE)
+    if (isStringType(pvApiCtx, piAddr) == FALSE)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
-    getAllocatedSingleString(pvApiCtx, piAddr, &pstColor);
-    name2rgb(pstColor, color);
-    freeAllocatedSingleString(pstColor);
-
-    if (color[0] == -1 || color[1] == -1 || color[2] == -1)
+    if (isScalar(pvApiCtx, piAddr) == TRUE)
     {
-        createEmptyMatrix(pvApiCtx, 2);
+        getAllocatedSingleString(pvApiCtx, piAddr, &pstColor);
+        name2rgb(pstColor, color);
+        freeAllocatedSingleString(pstColor);
+
+        if (color[0] == -1 || color[1] == -1 || color[2] == -1)
+        {
+            createEmptyMatrix(pvApiCtx, 2);
+        }
+        else
+        {
+            createMatrixOfDouble(pvApiCtx, 2, 1, 3, color);
+        }
     }
     else
     {
-        createMatrixOfDouble(pvApiCtx, 2, 1, 3, color);
+        getAllocatedMatrixOfString(pvApiCtx, piAddr, &nRows, &nCols, &pstColorMatrix);
+        nRowsCols = nRows * nCols;
+        pColor = (double*)MALLOC(3 * nRowsCols * sizeof(double));
+        for (i = 0; i < nRowsCols; ++i)
+        {
+            name2rgb(pstColorMatrix[i], color);
+            if (color[0] == -1 || color[1] == -1 || color[2] == -1)
+            {
+                break;
+            }
+            pColor[i] = color[0];
+            pColor[i + nRowsCols] = color[1];
+            pColor[i + 2 * nRowsCols] = color[2];
+        }
+        freeAllocatedMatrixOfString(nRows, nCols, pstColorMatrix);
+        if (color[0] == -1 || color[1] == -1 || color[2] == -1)
+        {
+            createEmptyMatrix(pvApiCtx, 2);
+            FREE(pColor);
+        }
+        else
+        {
+            createMatrixOfDouble(pvApiCtx, 2, nRowsCols, 3, pColor);
+            FREE(pColor);
+        }
     }
-
     AssignOutputVariable(pvApiCtx, 1) = 2;
     ReturnArguments(pvApiCtx);
     return 0;

@@ -25,13 +25,13 @@
             <varlistentry>
                 <term>name</term>
                 <listitem>
-                    <para>name of the color.</para>
+                    <para>name of the color or matrix with names of the colors.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>rgb</term>
                 <listitem>
-                    <para>vector of RGB integer values of a color.</para>
+                    <para>vector or matrix with 3 columns of RGB integer values of the colors.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
@@ -40,7 +40,7 @@
         <title>Description</title>
         <para>
             <literal>name2rgb</literal> returns the RGB values of a color given by its name. The result is
-            a vector <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
+            a vector or a matrix with 3 columns <literal>[r,g,b]</literal> where <literal>r</literal>, <literal>g</literal> and <literal>b</literal> are integers between 0 and 255
             corresponding to colors components red, green and blue. As usual 0 means no intensity and 
             255 means all the intensity of the color.
         </para>
@@ -71,5 +71,16 @@ rgb2name(rgb)
                 <link linkend="rgb2name">rgb2name</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0</revnumber>
+                <revremark>
+                    Function <function>name2rgb</function> can now handle a single string and a matrix of strings.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

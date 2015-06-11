@@ -7,6 +7,8 @@ New Features
 * scatter plot with different mark colors is now available:
   TODO : save/load+display+doc of new properties
 
+* name2rgb can now handle a single string and a matrix of strings.
+
 
 Compilation
 ============
