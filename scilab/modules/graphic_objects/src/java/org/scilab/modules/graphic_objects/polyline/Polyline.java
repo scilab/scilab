@@ -245,6 +245,9 @@ public class Polyline extends ClippableContouredObject {
                     case DATATIPS:
                         setDatatips((Integer[]) value);
                         break;
+                    case DATATIPSCOUNT:
+                    	// nothing should be done
+                        break;
                     case TIP_DISPLAY_FNC:
                         setDisplayFunction((String) value);
                         break;
@@ -435,14 +438,6 @@ public class Polyline extends ClippableContouredObject {
      */
     public Integer[] getDatatips() {
         return datatips.toArray(new Integer[datatips.size()]);
-    }
-
-    /**
-     * @param datatips the datatips to set
-     */
-    private UpdateStatus setDatatips(List<Integer> datatips) {
-        this.datatips = datatips;
-        return UpdateStatus.Success;
     }
 
     /**
