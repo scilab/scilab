@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -16,6 +17,8 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Rectangle;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
@@ -45,12 +48,29 @@ public class PaletteView extends JPanel implements Scrollable {
     /** Setup component */
     private void initComponents() {
         setBackground(Color.WHITE);
+
         setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,
-                                         XcosConstants.PALETTE_HMARGIN, XcosConstants.PALETTE_VMARGIN));
+                                         XcosConstants.PALETTE_HMARGIN,
+                                         XcosConstants.PALETTE_VMARGIN));
+
         setMinimumSize(new Dimension(
-                           (XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN),
-                           XcosConstants.PALETTE_BLOCK_HEIGHT
-                           + XcosConstants.PALETTE_VMARGIN));
+                XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN,
+                XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN));
+
+        setFocusable(true);
+        addFocusListener(new FocusListener() {
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+            @Override
+            public void focusGained(FocusEvent e) {
+                try {
+                    ((PaletteBlockView) getComponent(0)).getController().setSelected(true);
+                } catch (ClassCastException err) {
+                } catch (NullPointerException err) {
+                }
+            }
+        });
     }
 
     /**
