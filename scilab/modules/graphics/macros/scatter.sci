@@ -7,8 +7,9 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function scatter(varargin)
+function polyLine = scatter(varargin)
 
+    polyLine = 0;
     [lhs,rhs] = argn(0);
 
     if ~rhs
@@ -16,7 +17,7 @@ function scatter(varargin)
         t = linspace(0,25,200);
         x = t.*cos(t);
         y = t.*sin(t);
-        scatter(x,y,t,t,"fill","markerEdgeColor","darkblue")
+        polyLine = scatter(x,y,t,t,"fill","markerEdgeColor","darkblue")
         return;
     end
 
@@ -28,7 +29,6 @@ function scatter(varargin)
                 warning("Not enough input arguments.")
                 return;
             else
-                 disp("Graphic handle specified!")
                 axesHandle = varargin(1);
                 X = varargin(2);
                 Y = varargin(3);

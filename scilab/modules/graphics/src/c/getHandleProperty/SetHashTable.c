@@ -255,8 +255,7 @@ static setHashTableCouple propertySetTable[] =
     {"marks_count", set_marks_count_property},
     {"ticks_format", set_ticks_format_property},
     {"ticks_st", set_ticks_st_property},
-    {"colors", set_colors_property},
-    {"sizes", set_sizes_property}
+    {"colors", set_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/

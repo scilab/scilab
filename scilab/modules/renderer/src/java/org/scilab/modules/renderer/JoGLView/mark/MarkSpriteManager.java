@@ -119,8 +119,9 @@ public class MarkSpriteManager {
                 || property == GraphicObjectProperties.__GO_LINE_THICKNESS__
                 || property == GraphicObjectProperties.__GO_SELECTED__
                 || property == GraphicObjectProperties.__GO_COLOR_SET__
-                || property == GraphicObjectProperties.__GO_SIZES__
-        		|| property == GraphicObjectProperties.__GO_NUM_SIZES__) {
+                || property == GraphicObjectProperties.__GO_MARK_SIZES__
+                || property == GraphicObjectProperties.__GO_MARK_FOREGROUNDS__
+        		|| property == GraphicObjectProperties.__GO_MARK_BACKGROUNDS__) {
             dispose(id);
         }
     }

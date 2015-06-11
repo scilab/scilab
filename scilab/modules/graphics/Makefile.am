@@ -350,8 +350,6 @@ src/c/getHandleProperty/get_line_width_property.c \
 src/c/getHandleProperty/set_line_width_property.c \
 src/c/getHandleProperty/set_colors_property.c \
 src/c/getHandleProperty/get_colors_property.c \
-src/c/getHandleProperty/set_sizes_property.c \
-src/c/getHandleProperty/get_sizes_property.c \
 src/c/DefaultCommandArg.c \
 src/c/Axes.c \
 src/c/sciMatrix.c \

@@ -1,13 +1,10 @@
-                     Changes between version 5.5.1 and 5.6.0
+                     Changes between version 5.5.2 and 5.6.0
                      =======================================
 
 New Features
 =============
 
-* scatter plot with different mark colors is now available:
-  TODO : save/load+display+doc of new properties
-
-* name2rgb can now handle a single string and a matrix of strings.
+* scatter/scatter3 plot with different mark colors is now available.
 
 
 Compilation
@@ -15,3 +12,9 @@ Compilation
 
 * --without-xcos now only disable Xcos compilation. Xcos Graphic interface is disabled
 using --without-gui.
+
+
+Scilab Bug Fixes
+================
+
+* Bug #6064 fixed - scatter function did not exist in Scilab.

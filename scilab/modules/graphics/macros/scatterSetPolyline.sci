@@ -24,38 +24,29 @@ function scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill)
     if isempty(S) then
         polyLine.mark_size = 7;
     else
-        if size(S) == [1 1] then
+        if size(S) == [1 1] | size(S) == [1 n]
             polyLine.mark_size = ceil(sqrt(4*S/%pi));
-        elseif size(S) == [1 n]
-            polyLine.mark_size = -3;
-            polyLine.sizes = ceil(sqrt(4*S/%pi));
         else
             warning("S must be a scalar or a vector of the same length as X.");
             return;
         end
     end
 
-   // set mark foreground and background color
+    // set mark foreground and background color
     if isempty(C) then
         if markFg == -1 then
-            polyLine.mark_foreground = addcolor(name2rgb("blue")/255); // default
-        else
-            polyLine.mark_foreground = markFg;
+            markFg = addcolor(name2rgb("blue")/255); // default
         end
+        polyLine.mark_foreground = markFg;
         if markBg == -1 then
-            if fill == %T then
-                polyLine.mark_background = polyLine.mark_foreground;
-            else
-                polyLine.mark_background = 0; // transparent
-            end
-        else
-            if fill == %T then
-                polyLine.mark_background = markBg;
-            else
-                polyLine.mark_background = 0; // transparent
-            end
+            markBg = markFg;
         end
-    else
+        if fill == %T then
+            polyLine.mark_background = markBg;
+        else
+            polyLine.mark_background = 0; // transparent
+        end
+     else
         if size(C) == [1 1] then
             polyLine.mark_foreground = C; 
             if fill == %T then
@@ -68,16 +59,15 @@ function scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill)
                 end
             end
         else
-            polyLine.colors = C;
             if fill == %T then
                 if markFg == -1 then
-                    polyLine.mark_foreground = -3;
+                    polyLine.mark_foreground = C; // transparent
                 else
                     polyLine.mark_foreground = markFg;
                 end
-                polyLine.mark_background = -3;
+                polyLine.mark_background = C;
             else
-                polyLine.mark_foreground = -3;
+                polyLine.mark_foreground = C;
                 if markBg == -1 then
                     polyLine.mark_background = 0; // transparent
                 else

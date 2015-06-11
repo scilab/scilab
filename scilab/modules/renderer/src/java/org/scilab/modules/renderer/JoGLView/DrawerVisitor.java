@@ -602,19 +602,22 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         ElementsBuffer positions = dataManager.getVertexBuffer(polyline.getIdentifier());
                         int offset = polyline.getMarkOffset();
                         int stride = polyline.getMarkStride();
-                        if (polyline.getColorSet() && (polyline.getMark().getBackground() == -3 || polyline.getMark().getForeground() == -3)) {
+                        if (polyline.getColorSet() && (polyline.getNumMarkForegrounds() > 0) || (polyline.getNumMarkBackgrounds() > 0)) {
                             ElementsBuffer colors = dataManager.getColorBuffer(polyline.getIdentifier());
                             Color auxColor;
-                            if (polyline.getMark().getBackground() == -3) {
+                            if (polyline.getNumMarkBackgrounds() > 0) {
                                 auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getForeground());
                             } else {
                                 auxColor = ColorFactory.createColor(colorMap, polyline.getMark().getBackground());
                             }
                        		FloatBuffer data = positions.getData();
                        		FloatBuffer colorData = colors.getData();
-                           	Integer[] sizes = polyline.getSizeSet();
-                           	if ( (sizes != null) && (data != null) && (colorData != null) && (polyline.getMark().getSize() == -3) && (positions.getSize() == sizes.length) && (colors.getSize() == sizes.length) ) {
-                            		// markers with different sizes
+                           	Integer[] sizes = polyline.getMarkSizes();
+                           	if ( (sizes.length > 0) && (data != null) && (colorData != null) && (positions.getSize() == sizes.length) && (colors.getSize() == sizes.length) ) {
+                            		
+                           			Integer markSizeTmp = polyline.getMarkSize();
+                           			
+                           			// markers with different sizes
                        				data.rewind();
                        				colorData.rewind();
                        				
@@ -627,7 +630,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                        				
                                     while (data.remaining() >= stride * elementSize) {
                           				
-                      					polyline.setMarkSize(sizes[k++]);
+                                    	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                      					polyline.getMark().setSize(sizes[k++]);
 
                       					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
                         				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
@@ -653,15 +657,19 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                         				bufferManager.dispose(singlePosition);
                         			}
                         			// restore the size of the mark
-                        			polyline.setMarkSize(-3);
+                                	// Be careful, do not use polyline.setMarkSize since this will destroy the sizes
+                  					polyline.getMark().setSize(markSizeTmp);
                         	} else {
                                 Texture sprite = markManager.getMarkSprite(polyline, null, appearance);
                         		drawingTools.draw(sprite, AnchorPosition.CENTER, positions, offset, stride, 0, auxColor, colors);
                         	}
                         } else {
                     		FloatBuffer data = positions.getData();
-                        	Integer[] sizes = polyline.getSizeSet();
-                        	if ( (sizes != null) && (data != null) && (polyline.getMark().getSize() == -3) && (positions.getSize() == sizes.length) ) {
+                        	Integer[] sizes = polyline.getMarkSizes();
+                        	if ( (sizes.length > 0) && (data != null) && (positions.getSize() == sizes.length) ) {
+                        		
+                        		Integer markSizeTmp = polyline.getMarkSize();
+                        		
                         		// markers with different sizes
                    				data.rewind();
                     				
@@ -674,7 +682,8 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                    				
                                 while (data.remaining() >= stride * elementSize) {
                       				
-                  					polyline.setMarkSize(sizes[k++]);
+                                	// setting the size of the mark temporary 
+                  					polyline.getMark().setSize(sizes[k++]);
 
                   					BuffersManager bufferManager = drawingTools.getCanvas().getBuffersManager();
                     				ElementsBuffer singlePosition = bufferManager.createElementsBuffer();
@@ -691,7 +700,7 @@ public class DrawerVisitor implements Visitor, Drawer, GraphicView {
                     				bufferManager.dispose(singlePosition);
                     			}
                     			// restore the size of the mark
-                    			polyline.setMarkSize(-3);
+                    			polyline.getMark().setSize(markSizeTmp);
                         	}
                         	else {
                         		Texture sprite = markManager.getMarkSprite(polyline, colorMap, appearance);

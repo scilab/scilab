@@ -18,6 +18,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
+#include "MALLOC.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -28,12 +29,26 @@
 /*------------------------------------------------------------------------*/
 int set_mark_size_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    if (valueType != sci_matrix)
+	int status = -1;
+    int *tmp = NULL;
+
+    if ( valueType != sci_matrix )
     {
-        Scierror(999, _("Wrong type for '%s' property: Real expected.\n"), "mark_size");
+        Scierror(999, _("Wrong type for '%s' property: Matrix expected.\n"), "mark_size");
         return SET_PROPERTY_ERROR;
     }
 
-    return sciSetMarkSize(iObjUID, (int) ((double*)_pvData)[0]);
+    if ( nbRow != 1 || nbCol <= 0 )
+    {
+        Scierror(999, _("Wrong size for '%s' property: Row vector expected.\n"), "mark_size");
+        return SET_PROPERTY_ERROR;
+    }
+
+	tmp = MALLOC(nbCol * sizeof(int));
+    copyDoubleVectorToIntFromStack(_pvData, tmp, nbCol);
+	status = sciSetMarkSize(iObjUID, tmp, nbCol);
+	FREE(tmp);
+
+    return status;
 }
 /*------------------------------------------------------------------------*/

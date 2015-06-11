@@ -18,8 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-          scatter3(x,y,z,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
-          scatter3(&lt;axes_handle&gt;,...)
+          p = scatter3(x,y,z,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
+          p = scatter3(&lt;axes_handle&gt;,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -56,7 +56,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>s</term>
+                <term>&lt;s&gt;</term>
                 <listitem>
                     <para>
                         Specifying the sizes of the markers.
@@ -68,7 +68,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>c</term>
+                <term>&lt;c&gt;</term>
                 <listitem>
                     <para>
                         Specifying the colors of the markers.
@@ -276,6 +276,14 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>&lt;p&gt;</term>
+                <listitem>
+                    <para>
+                        Returns a handle to the created polyline.
+                    </para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
@@ -347,7 +355,7 @@ scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
-           Vary marker sie and color
+           Vary marker size and color
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
@@ -492,15 +500,13 @@ x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
 s = linspace(50,1,length(t))
-scatter3(x,y,z,s)
+p = scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <programlisting role="example"><![CDATA[
-// get polyline
-polyLine = gce()
 // modify ployline 
-polyLine.mark_foreground = addcolor([0.5 0 0])
-polyLine.mark_background = addcolor([0.5 0.5 0])
+p.mark_foreground = addcolor([0.5 0 0])
+p.mark_background = addcolor([0.5 0.5 0])
  ]]></programlisting>
         <scilab:image>
 t = 1:200
@@ -508,12 +514,11 @@ x = t.*cos(t).*sin(t)
 y = t.*sin(t).*sin(t)
 z = t.*cos(t)
 s = linspace(50,1,length(t))
-scatter3(x,y,z,s)
+p = scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
-polyLine = gce()
 // modify ployline 
-polyLine.mark_foreground = addcolor([0.5 0 0])
-polyLine.mark_background = addcolor([0.5 0.5 0])
+p.mark_foreground = addcolor([0.5 0 0])
+p.mark_background = addcolor([0.5 0.5 0])
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -527,9 +532,6 @@ polyLine.mark_background = addcolor([0.5 0.5 0])
             </member>
             <member>
                 <link linkend="gca">gca</link>
-            </member>
-            <member>
-                <link linkend="gce">gce</link>
             </member>
             <member>
                 <link linkend="gcf">gcf</link>

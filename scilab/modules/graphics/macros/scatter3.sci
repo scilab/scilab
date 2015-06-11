@@ -7,8 +7,9 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function scatter3(varargin)
+function polyLine = scatter3(varargin)
 
+    polyLine = 0;
     [lhs,rhs] = argn(0);
 
     if ~rhs
@@ -16,7 +17,7 @@ function scatter3(varargin)
         z = linspace(0,25,200);
         x = z.*cos(z);
         y = z.*sin(z);
-        scatter3(x,y,z,z,z,"fill","markerEdgeColor","darkblue");
+        polyLine = scatter3(x,y,z,z,z,"fill","markerEdgeColor","darkblue");
         set(gca(),"rotation_angles",[60,45])
         return;
     end
@@ -29,7 +30,6 @@ function scatter3(varargin)
                 warning("Not enough input arguments.")
                 return;
             else
-                 disp("Graphic handle specified!")
                 axesHandle = varargin(1);
                 X = varargin(2);
                 Y = varargin(3);

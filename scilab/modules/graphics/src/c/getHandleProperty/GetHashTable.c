@@ -253,8 +253,7 @@ static getHashTableCouple propertyGetTable[] =
     {"marks_count", get_marks_count_property},
     {"ticks_format", get_ticks_format_property},
     {"ticks_st", get_ticks_st_property},
-    {"colors", get_colors_property},
-    {"sizes", get_sizes_property}
+    {"colors", get_colors_property}
 };
 
 /*--------------------------------------------------------------------------*/

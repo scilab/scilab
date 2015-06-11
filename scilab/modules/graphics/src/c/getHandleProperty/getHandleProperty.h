@@ -200,6 +200,5 @@ int get_auto_margins_property(void* _pvCtx, int iObjUID);
 int get_ticks_format_property(void* _pvCtx, int iObjUID);
 int get_ticks_st_property(void* _pvCtx, int iObjUID);
 int get_colors_property(void* _pvCtx, int iObjUID);
-int get_sizes_property(void* _pvCtx, int iObjUID);
 
 #endif /* _GET_HANDLE_PROPERTY_H_ */

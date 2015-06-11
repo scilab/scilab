@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -241,6 +241,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_bar_layout_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_bar_width_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_border_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_datatips_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_box_property.c" />
@@ -256,7 +257,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_color_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_color_range_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_colored_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_cube_scaling_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_current_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_current_entity_property.c" />
@@ -343,7 +343,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_scrollable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\get_sizes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
@@ -358,6 +357,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_use_color_material_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_ambient_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_border_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_constraints_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_default_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_diffuse_color_property.c" />
@@ -532,7 +532,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_color_mode_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_color_range_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_colored_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_cube_scaling_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_current_axes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_current_entity_property.c" />
@@ -594,7 +593,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_screen_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_segs_color_property.c" />
-    <ClCompile Include="src\c\getHandleProperty\set_sizes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_surface_mode_property.c" />

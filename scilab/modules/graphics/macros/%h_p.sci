@@ -55,6 +55,27 @@ function %h_p(h)
                 if length(bzs)>70 then bzs="matrix "+strcat(string(size(h.z_shift)),"x"),end
             end
 
+            if size(h.mark_size,"*") > 10 then
+                msz="matrix "+strcat(string(size(h.mark_size)),"x")
+            else
+                msz=sci2exp(h.mark_size,0)
+                if length(msz)>70 then msz="matrix "+strcat(string(size(h.mark_size)),"x"),end
+            end
+
+            if size(h.mark_foreground,"*") > 10 then
+                mfg="matrix "+strcat(string(size(h.mark_foreground)),"x")
+            else
+                mfg=sci2exp(h.mark_foreground,0)
+                if length(mfg)>70 then mfg="matrix "+strcat(string(size(h.mark_foreground)),"x"),end
+            end
+
+            if size(h.mark_background,"*") > 10 then
+                mbg="matrix "+strcat(string(size(h.mark_background)),"x")
+            else
+                mbg=sci2exp(h.mark_background,0)
+                if length(mbg)>70 then mbg="matrix "+strcat(string(size(h.mark_background)),"x"),end
+            end
+
             u=h.user_data;
             t=[t;
             "parent: "+h.parent.type
@@ -76,13 +97,12 @@ function %h_p(h)
             "interp_color_vector = "+sci2exp(h.interp_color_vector)
             "interp_color_mode = "+sci2exp(h.interp_color_mode)
             "colors = "+sci2exp(h.colors)
-            "sizes = "+sci2exp(h.sizes)
             "mark_mode = "+sci2exp(h.mark_mode)
             "mark_style = "+sci2exp(h.mark_style)
             "mark_size_unit = "+sci2exp(h.mark_size_unit)
-            "mark_size = "+string(h.mark_size)
-            "mark_foreground = "+string(h.mark_foreground)
-            "mark_background = "+string(h.mark_background)
+            "mark_size = "+msz
+            "mark_foreground = "+mfg
+            "mark_background = "+mbg
             "mark_offset = "+string(h.mark_offset)
             "mark_stride = "+string(h.mark_stride)
             "x_shift = "+bxs

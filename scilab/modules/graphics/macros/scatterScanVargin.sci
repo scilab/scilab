@@ -12,18 +12,14 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
     scanFailed = %F;
     
     // check for size argument
-    // disp("check for size");
-    // disp(["nextArgin = " string(nextArgin)]);
     S = [];
     if  size(argins) >= nextArgin then
         if isempty(argins(nextArgin)) then
-            // disp("S = []");
             nextArgin = nextArgin + 1;
         else
             if type(argins(nextArgin)) == 1 then
                 [n1,n2] = size(argins(nextArgin));
                 if (n1 == 1 & n2 == 1) | (n1 == n & n2 == 1) | (n1 == 1 & n2 == n) then
-                    // disp("Size specified!");
                     S = argins(nextArgin);
                     if iscolumn(S) then
                         S = S.';
@@ -39,22 +35,17 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
     end
 
     // check for color argument
-    // disp("check for color");
-    // disp(["nextArgin = " string(nextArgin)]);
     C = [];
     if  size(argins) >= nextArgin then
         if isempty(argins(nextArgin)) then
-            // disp("C = []");
             nextArgin = nextArgin + 1;
         else
             [n1,n2] = size(argins(nextArgin));
             if type(argins(nextArgin)) == 1 then
                 if (n1 == n & n2 == 1) | (n1 == 1 & n2 == n) then
-                    // disp("Color vector specified!");
                     C = scatterLinearColorMap(argins(nextArgin));
                     nextArgin = nextArgin + 1;
                 elseif n1 == n & n2 == 3 then
-                    // disp("Color RGB matrix specified!");
                     C = addcolor(argins(nextArgin));            
                     nextArgin = nextArgin + 1;
                 else
@@ -70,7 +61,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     // check if string specifies a color
                     colorRGB = name2rgb(argins(nextArgin));
                     if ~isempty(colorRGB) then
-                        // disp("Single color string specified!");
                         C = addcolor(colorRGB/255);
                         nextArgin = nextArgin + 1;
                     end        
@@ -81,7 +71,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                         scanFailed = %T;
                         return;
                     else
-                         // disp("Color vector of strings specified!");
                          nextArgin = nextArgin + 1;
                     end
                 end
@@ -90,13 +79,10 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
     end
 
     // check for "fill" argument
-    // disp("check for fill");
-    // disp(["nextArgin = " string(nextArgin)]);
     fill = %F;
     if  size(argins) >= nextArgin then
         if type(argins(nextArgin)) == 10 then
             if argins(nextArgin) == "fill" then
-                // disp("fill specified");
                 fill = %T;
                 nextArgin = nextArgin + 1;
             end
@@ -109,7 +95,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
         if type(argins(nextArgin)) == 10 then
             ms = getMarkStyle(argins(nextArgin));
             if ms >= 0 & ms <= 14 then
-                // disp(strcat(["marker " argins(nextArgin)]));
                 markStyle = ms;
                 nextArgin = nextArgin + 1;
             end
@@ -117,8 +102,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
     end
 
     // check for property-value pairs
-    // disp("check for property-value pairs");
-    // disp(["nextArgin = " string(nextArgin)]);
     markFg = -1;
     markBg = -1;
     thickness = 1.0; // default
@@ -128,10 +111,8 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
             scanFailed = %T;
             return;
         else
-            // disp(["nextArgin = " string(nextArgin)]);
             select argins(nextArgin)
             case "marker"
-                // disp("Property marker");
                 markStyle = getMarkStyle(argins(nextArgin+1));
                 if markStyle == -1 then
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property marker."]));
@@ -139,7 +120,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end
             case "markerStyle"
-                // disp("Property markerStyle");
                 markStyle = getMarkStyle(argin(nextArgin+1));
                 if markStyle == -1 then
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property markerStyle."]));
@@ -147,7 +127,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end
             case "markerEdgeColor"
-                // disp("Property markerEdgeColor");
                 markFg = colorIndex(argins(nextArgin+1));
                 if markFg == -1 then
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property markerEdgeColor."]));
@@ -155,7 +134,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end;
             case "markerForeground"
-                // disp("Property markerForeground");
                 markFg = colorIndex(argins(nextArgin+1));
                 if markFg == -1 then
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property markerForeground."]));
@@ -163,7 +141,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end;
             case "markerFaceColor"
-                // disp("Property markerFaceColor");
                 fill = %T;
                 markBg = colorIndex(argins(nextArgin+1));
                 if markBg == -1 then
@@ -172,7 +149,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end;
             case "markerBackground"
-                // disp("Property markerBackground");
                 fill = %T;
                 markBg = colorIndex(argins(nextArgin+1));
                 if markBg == -1 then
@@ -182,7 +158,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                 end;
             case "linewidth"
                 if type(argins(nextArgin+1)) == 1 then
-                    // disp("Property linewidth");
                     thickness = argins(nextArgin+1);
                 else
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property linewidth."]));
@@ -191,7 +166,6 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                 end 
             case "thickness"
                 if type(argins(nextArgin+1)) == 1 then
-                    // disp("Property thickness");
                     thickness = argins(nextArgin+1);
                 else
                     warning(strcat([argins(nextArgin+1) " is not a valid value for property thickness."]));
@@ -199,7 +173,7 @@ function [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVa
                     return;
                 end
             else
-                warning(strcat(["There is no " argin(nextArgin) " property on the Scatter class."]));
+                warning(strcat(["There is no " argins(nextArgin) " property on the Scatter class."]));
                 scanFailed = %T;
                 return;
             end
@@ -214,12 +188,10 @@ function colorInd = colorIndex(colorSpec)
     if type(colorSpec) == 10 & size(colorSpec) == [1 1] then
         colorRGB = name2rgb(colorSpec);
         if ~isempty(colorRGB) then
-            // disp("Single color string specified!");
             colorInd = addcolor(colorRGB/255);
             return;
         end
     elseif type(colorSpec) == 1 & (size(colorSpec) == [1 3] | size(colorSpec) == [3 1]) then
-        // disp("Color RGB triple specified!");
         colorInd = addcolor(colorSpec);
         return; 
     end
