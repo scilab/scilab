@@ -237,7 +237,8 @@ struct context
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
-            if (current->getCols() != 0 && current->getCols() != 1)
+            // Only allow vectors and empty matrices
+            if (!current->isVector() && current->getSize() != 0)
             {
                 return false;
             }

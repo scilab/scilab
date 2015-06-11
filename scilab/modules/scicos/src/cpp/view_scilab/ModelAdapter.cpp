@@ -298,7 +298,8 @@ struct state
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -356,7 +357,8 @@ struct dstate
             return false;
         }
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -920,7 +922,8 @@ struct nzcross
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -971,7 +974,8 @@ struct nmode
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }

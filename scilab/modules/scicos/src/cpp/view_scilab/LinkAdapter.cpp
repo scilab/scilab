@@ -229,7 +229,7 @@ struct thick
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }
@@ -273,7 +273,7 @@ struct ct
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }
