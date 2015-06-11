@@ -4,6 +4,8 @@
 Scilab Bug Fixes
 ================
 
+* Bug #8990 fixed - zoom_auto feature was missing on the plot toolbar.
+
 * Bug #13807 fixed - Invalid margins were computed when figure was not visible.
 
 * Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
