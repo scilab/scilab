@@ -42,8 +42,8 @@ public final class PaletteBlockKeyListener implements KeyListener {
      */
     @Override
     public void keyPressed(KeyEvent e) {
+        /** add the current block to the most recent diagram **/
         if (e.getKeyCode() == KeyEvent.VK_ENTER) {
-            /** add the current block to the most recent diagram **/
             final List<XcosDiagram> allDiagrams = Xcos.getInstance().openedDiagrams();
             final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource()).getController();
 
@@ -58,22 +58,25 @@ public final class PaletteBlockKeyListener implements KeyListener {
             return;
         }
 
+        /** deselects block **/
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+            ((PaletteBlockView) e.getSource()).getController().setSelected(false);
+            return;
+        }
+
+        /** move selection (arrow keys) **/
         int x = 0;
         int y = 0;
         if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            /** select the block below **/
             x = 0;
             y = 1;
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            /** select the block above **/
             x = 0;
             y = -1;
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            /** select the block on the right **/
             x = 1;
             y = 0;
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            /** select the block on the left **/
             x = -1;
             y = 0;
         } else {
