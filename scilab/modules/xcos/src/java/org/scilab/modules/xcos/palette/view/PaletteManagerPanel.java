@@ -35,6 +35,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.scilab.modules.xcos.graph.PaletteDiagram;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.NavigationAction;
+import org.scilab.modules.xcos.palette.actions.ZoomAction;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
 import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
@@ -123,7 +124,7 @@ public class PaletteManagerPanel extends JSplitPane {
      * @param newSize new paletteblocksize enum
      */
     private void zoom(PaletteBlockSize newSize) {
-        if (newSize == null) {
+        if (newSize == null || newSize == currentSize) {
             return;
         }
 
@@ -146,6 +147,21 @@ public class PaletteManagerPanel extends JSplitPane {
             } else {
                 return;
             }
+
+            // update the status of both zoom buttons
+            if (newSize.next() == null) {
+                // is it the last zoom-in level?
+                ZoomAction.setEnabledZoomIn(false);
+                ZoomAction.setEnabledZoomOut(true);
+            } else if (newSize.previous() == null) {
+                // is it the last zoom-out level?
+                ZoomAction.setEnabledZoomIn(true);
+                ZoomAction.setEnabledZoomOut(false);
+            } else {
+                ZoomAction.setEnabledZoomIn(true);
+                ZoomAction.setEnabledZoomOut(true);
+            }
+
             currentSize = newSize;
             jspR.revalidate();
         } catch (NullPointerException e) {
