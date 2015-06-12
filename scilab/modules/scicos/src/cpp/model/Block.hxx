@@ -118,7 +118,7 @@ class Block: public BaseObject
 {
 public:
     Block() : BaseObject(BLOCK), m_parentDiagram(0), m_interfaceFunction(), m_geometry(), m_angle(),
-        m_exprs(std::vector<std::string> (1, "String")), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
+        m_exprs(), m_label(), m_style(), m_nzcross(std::vector<int> (1, 0)), m_nmode(std::vector<int> (1, 0)), m_equations(), m_uid(), m_sim(), m_in(), m_out(), m_ein(), m_eout(),
         m_parameter(), m_state(), m_parentBlock(0), m_children(), m_portReference(0) {};
     Block(const Block& o) : BaseObject(BLOCK), m_parentDiagram(o.m_parentDiagram), m_interfaceFunction(o.m_interfaceFunction), m_geometry(o.m_geometry),
         m_angle(o.m_angle), m_exprs(o.m_exprs), m_label(o.m_label), m_style(o.m_style), m_nzcross(o.m_nzcross), m_nmode(o.m_nmode), m_equations(o.m_equations), m_uid(o.m_uid),
@@ -189,12 +189,12 @@ private:
         return SUCCESS;
     }
 
-    void getExprs(std::vector<std::string>& data) const
+    void getExprs(std::vector<double>& data) const
     {
         data = m_exprs;
     }
 
-    update_status_t setExprs(const std::vector<std::string>& data)
+    update_status_t setExprs(const std::vector<double>& data)
     {
         if (data == m_exprs)
         {
@@ -673,7 +673,7 @@ private:
     std::string m_interfaceFunction;
     Geometry m_geometry;
     Angle m_angle;
-    std::vector<std::string> m_exprs;
+    std::vector<double> m_exprs;
     std::string m_label;
     std::string m_style;
     std::vector<int> m_nzcross;
