@@ -61,26 +61,15 @@ public class ZoomAction extends CommonCallBack {
 
     /**
      * Register the key for the action
-     * @param view PaletteManagerPanel instance
+     * @param am the ActionMap
+     * @param im the InputMap
      */
-    public static void registerKeyAction(PaletteManagerView view) {
-        // Multi-shortcut action
-        ActionMap[] ams = new ActionMap[] {
-                view.getTree().getActionMap(),
-                view.getPanel().getActionMap()
-        };
-        InputMap[] maps = new InputMap[] {
-                view.getTree().getInputMap(),
-                view.getPanel().getInputMap()
-        };
+    public static void registerKeyAction(ActionMap am, InputMap im) {
+        // register the actions to a unique action keyword
+        am.put(ZOOM_IN, new ZoomAction());
+        am.put(ZOOM_OUT, new ZoomAction());
 
-        // register the action to a unique action keyword
-        for (ActionMap am : ams) {
-            am.put(ZOOM_IN, new ZoomAction());
-            am.put(ZOOM_OUT, new ZoomAction());
-        }
-
-        // add custom key stroke for this action
+        // add custom key stroke for these action
         final KeyStroke[] keystrokesIn;
         final KeyStroke[] keystrokesOut;
         if (OS.get() == MAC) {
@@ -110,13 +99,11 @@ public class ZoomAction extends CommonCallBack {
             };
         }
 
-        for (InputMap map : maps) {
-            for (KeyStroke k : keystrokesIn) {
-                map.put(k, ZOOM_IN);
-            }
-            for (KeyStroke k : keystrokesOut) {
-                map.put(k, ZOOM_OUT);
-            }
+        for (KeyStroke k : keystrokesIn) {
+            im.put(k, ZOOM_IN);
+        }
+        for (KeyStroke k : keystrokesOut) {
+            im.put(k, ZOOM_OUT);
         }
     }
 

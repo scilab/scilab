@@ -23,6 +23,7 @@ import javax.swing.border.Border;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.actions.ZoomAction;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
@@ -53,6 +54,7 @@ public final class PaletteBlockView extends JLabel {
               SwingConstants.CENTER);
         this.controller = controller;
         this.palBlockSize = palBlockSize;
+        ZoomAction.registerKeyAction(getActionMap(), getInputMap());
         initComponents(palBlockSize);
     }
 
