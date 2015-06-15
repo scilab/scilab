@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -35,6 +36,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /** Implement the default mouse listener for the block */
@@ -44,10 +46,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
     }
 
     /**
-     * Load and perform display update on mouse click
-     *
-     * @param e
-     *            The associated event
+     * Load and perform display update on mouse click.
+     * @param e The associated event
      */
     @Override
     public void mouseClicked(MouseEvent e) {
@@ -131,30 +131,34 @@ public final class PaletteBlockMouseListener implements MouseListener {
     }
 
     /**
-     * Not used
-     *
-     * @param e
-     *            Not used
+     * Invoked when the mouse enters a palette block.
+     * @param e MouseEvent
      */
     @Override
     public void mouseEntered(MouseEvent e) {
+        PaletteBlockView view = (PaletteBlockView) e.getSource();
+        if (!view.getController().isSelected()) {
+            view.setStatusUI(StatusUI.HOVER);
+        }
     }
 
     /**
-     * Not used
-     *
-     * @param e
-     *            Not used
+     * Invoked when the mouse exits a palette block.
+     * @param e MouseEvent
      */
     @Override
     public void mouseExited(MouseEvent e) {
+        PaletteBlockView view = (PaletteBlockView) e.getSource();
+        if (view.getController().isSelected()) {
+            view.setStatusUI(StatusUI.SELECTED);
+        } else {
+            view.setStatusUI(StatusUI.NON_SELECTED);
+        }
     }
 
     /**
-     * Select on mouse press
-     *
-     * @param e
-     *            The associated event
+     * Select on mouse press.
+     * @param e MouseEvent
      */
     @Override
     public void mousePressed(MouseEvent e) {
@@ -164,9 +168,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
 
     /**
      * Not used
-     *
-     * @param e
-     *            Not used
+     * @param e Not used
      */
     @Override
     public void mouseReleased(MouseEvent e) {

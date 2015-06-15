@@ -46,6 +46,7 @@ import org.scilab.modules.xcos.palette.listener.PaletteBlockKeyListener;
 import org.scilab.modules.xcos.palette.listener.PaletteBlockMouseListener;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
@@ -287,10 +288,11 @@ public final class PaletteBlockCtrl {
             }
             previouslySelected = this;
             getView().requestFocus();
+            getView().setStatusUI(StatusUI.SELECTED);
         } else {
             PaletteManagerView.get().getPanel().requestFocus();
+            getView().setStatusUI(StatusUI.NON_SELECTED);
         }
-        getView().setSelectedUI(selected);
     }
 
     /**

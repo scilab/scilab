@@ -20,6 +20,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.border.Border;
+import javax.swing.border.EtchedBorder;
 
 import org.flexdock.plaf.common.border.ShadowBorder;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
@@ -35,12 +36,25 @@ public final class PaletteBlockView extends JLabel {
     private static final int DEFAULT_ICON_TEXT_GAP = 5;
 
     private static final Border SELECTED_BORDER = new ShadowBorder();
-
+    private static final Border HOVER_BORDER = BorderFactory
+            .createEtchedBorder(EtchedBorder.LOWERED);
     private static final Border NON_SELECTED_BORDER = BorderFactory
             .createEmptyBorder();
 
     private PaletteBlockCtrl controller;
     private PaletteBlockSize palBlockSize;
+
+    /**
+     * UI states
+     */
+    public enum StatusUI {
+        /** block is selected **/
+        SELECTED,
+        /** block is not selected **/
+        NON_SELECTED,
+        /** hover effect **/
+        HOVER
+    }
 
     /**
      * Default constructor
@@ -92,12 +106,13 @@ public final class PaletteBlockView extends JLabel {
     }
 
     /**
-     * @param status
-     *            true To set the UI state selected, false otherwise
+     * @param status Border status
      */
-    public void setSelectedUI(boolean status) {
-        if (status) {
+    public void setStatusUI(StatusUI status) {
+        if (status == StatusUI.SELECTED) {
             setBorder(SELECTED_BORDER);
+        } else if (status == StatusUI.HOVER) {
+            setBorder(HOVER_BORDER);
         } else {
             setBorder(NON_SELECTED_BORDER);
         }
