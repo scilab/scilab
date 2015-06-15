@@ -384,18 +384,26 @@ public :
     {
         int m_line;
         int m_absolute_line;
+        int m_macro_first_line;
         std::wstring m_name;
-        WhereEntry(int line, int absolute_line, const std::wstring& name) : m_line(line), m_absolute_line(absolute_line), m_name(name) {}
+        std::wstring m_file_name;
+        WhereEntry(int line, int absolute_line, const std::wstring& name, int first_line, const std::wstring& file_name) :
+            m_line(line), m_absolute_line(absolute_line), m_name(name), m_macro_first_line(first_line), m_file_name(file_name) {}
     };
-    static void where_begin(int _iLineNum, int _iLineLocation, const std::wstring& _wstName);
+    static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
     static void where_end();
     static const std::vector<WhereEntry>& getWhere();
+    static void fillWhereError(int _iErrorLine);
+    static void resetWhereError();
 
     static void macroFirstLine_begin(int _iLine);
     static void macroFirstLine_end();
     static int getMacroFirstLines();
+    static void setFileNameToLastWhere(const std::wstring& _fileName);
+    static void whereErrorToString(std::wostringstream &ostr);
 private :
     static std::vector<WhereEntry> m_Where;
+    static std::list<WhereEntry> m_WhereError;
     static std::vector<int> m_FirstMacroLine;
 
     //module called with variable by reference

@@ -23,5 +23,5 @@
 function f();  x=1;y=x(3);endfunction
 function g();exec(f);endfunction
 
-ierr=exec(g,'errcatch',-1)		
-if ierr<>21 then pause,end
+ierr=exec(g,"errcatch",-1);
+assert_checkequal(ierr, 999);

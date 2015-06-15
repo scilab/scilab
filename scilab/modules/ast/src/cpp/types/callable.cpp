@@ -27,7 +27,8 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
     //update verbose";" flag
     ConfigVariable::setVerbose(e.isVerbose());
     // add line and function name in where
-    ConfigVariable::where_begin(e.getLocation().first_line + 1 - ConfigVariable::getMacroFirstLines(), e.getLocation().first_line, getName());
+    int iFirstLine = e.getLocation().first_line;
+    ConfigVariable::where_begin(iFirstLine + 1 - ConfigVariable::getMacroFirstLines(), iFirstLine, this);
     Callable::ReturnValue Ret;
 
     try
@@ -61,7 +62,7 @@ bool Callable::invoke(typed_list & in, optional_list & opt, int _iRetCount, type
     {
         ConfigVariable::setLastErrorFunction(getName());
         ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-        throw ast::ScilabError();
+        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;

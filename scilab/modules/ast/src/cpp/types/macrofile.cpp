@@ -134,6 +134,7 @@ bool MacroFile::parse(void)
             const symbol::Symbol & sym = pFD->getSymbol();
             Macro* macro = new Macro(sym.getName(), *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);
             macro->setFirstLine(pFD->getLocation().first_line);
+            macro->setFileName(m_stPath);
 
             if (m_pMacro == nullptr && sym.getName() == getName())
             {

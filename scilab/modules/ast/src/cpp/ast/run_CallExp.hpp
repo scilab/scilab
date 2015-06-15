@@ -269,13 +269,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     ConfigVariable::setLastErrorFunction(pCall->getName());
                 }
-
-                if (pCall->isMacro() || pCall->isMacroFile())
-                {
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                    throw ScilabMessage(szError);
-                }
             }
 
             throw sm;

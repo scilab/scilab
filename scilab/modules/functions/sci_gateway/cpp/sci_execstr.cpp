@@ -57,7 +57,6 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     wchar_t *pstCommand = NULL;
     Parser parser;
 
-    int iOldSilentError = ConfigVariable::getSilentError();
     if (in.size() < 1 || in.size() > 3)
     {
         Scierror(999, _("%s: Wrong number of input arguments: %d to %d expected.\n"), "execstr" , 1, 3);
@@ -193,11 +192,6 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     int oldVal = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(-1);
 
-    if (bErrCatch)
-    {
-        ConfigVariable::setSilentError(1);
-    }
-
     if (ConfigVariable::getAnalyzerOptions() == 1)
     {
         analysis::AnalysisVisitor analysis;
@@ -219,6 +213,11 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                 ThreadManagement::SendAstPendingSignal();
                 pThreadMe->suspend();
             }
+
+            // Set the real location of this exp contained in the string of the input of execstr
+            // in case where execstr is called in a file.
+            (*j)->getLocation().first_line = ConfigVariable::getMacroFirstLines();
+            (*j)->getLocation().last_line += (ConfigVariable::getMacroFirstLines() - 1);
 
             //excecute script
             ExecVisitor execMe;
@@ -259,51 +258,17 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                     }
                     else if (Ret == Callable::Error)
                     {
-                        ConfigVariable::setSilentError(iOldSilentError);
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(pCall->getName());
-                        }
-
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
-                            throw ast::ScilabMessage(szError);
-                        }
-                        else
-                        {
-                            throw ast::ScilabMessage();
-                        }
+                        throw ast::ScilabMessage(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), (*j)->getLocation());
                     }
                 }
-                catch (ScilabMessage sm)
+                catch (ast::ScilabMessage sm)
                 {
-                    ConfigVariable::setSilentError(iOldSilentError);
-                    wostringstream os;
-                    PrintVisitor printMe(os);
-                    (*j)->accept(printMe);
-                    os << std::endl << std::endl;
                     if (ConfigVariable::getLastErrorFunction() == L"")
                     {
                         ConfigVariable::setLastErrorFunction(pCall->getName());
                     }
 
-                    if (pCall->isMacro() || pCall->isMacroFile())
-                    {
-                        wstring szAllError;
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                        szAllError = szError + os.str();
-                        os_swprintf(szError, bsiz, _W("in  execstr instruction    called by :\n").c_str());
-                        szAllError += szError;
-                        throw ast::ScilabMessage(szAllError);
-                    }
-                    else
-                    {
-                        sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                        throw sm;
-                    }
+                    throw sm;
                 }
             }
 
@@ -322,63 +287,23 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
                     scilabWriteW(ostr.str().c_str());
                 }
             }
-
-            //if( !checkPrompt(iMode, EXEC_MODE_MUTE) &&
-            //             bErrCatch == false)
-            //{
-            //	scilabWriteW(L"\n");
-            //}
         }
-        catch (ScilabMessage sm)
+        catch (ast::ScilabMessage sm)
         {
-            ConfigVariable::setSilentError(iOldSilentError);
+            ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
             if (bErrCatch == false && bMute == false)
             {
-                scilabErrorW(sm.GetErrorMessage().c_str());
-
-                CallExp* pCall = dynamic_cast<CallExp*>(*j);
-                if (pCall != NULL)
-                {
-                    //to print call expression only of it is a macro
-                    ExecVisitor execFunc;
-                    pCall->getName().accept(execFunc);
-
-                    if (execFunc.getResult() != NULL &&
-                            (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
-                    {
-                        wostringstream os;
-
-                        //add function failed
-                        PrintVisitor printMe(os);
-                        pCall->accept(printMe);
-                        os << std::endl;
-
-                        //add info on file failed
-                        wchar_t szError[bsiz];
-                        os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                        os << szError;
-
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
-                        }
-
-                        //restore previous prompt mode
-                        ConfigVariable::setPromptMode(oldVal);
-                        throw ast::ScilabMessage(os.str(), 0, (*j)->getLocation());
-                    }
-                }
-                throw ast::ScilabMessage((*j)->getLocation());
+                sm.SetErrorLocation((*j)->getLocation());
+                throw sm;
             }
-            else
-            {
-                iErr = ConfigVariable::getLastErrorNumber();
-                break;
-            }
+
+            ConfigVariable::resetWhereError();
+            iErr = ConfigVariable::getLastErrorNumber();
+            break;
         }
         catch (ast::ScilabError se)
         {
-            ConfigVariable::setSilentError(iOldSilentError);
+            ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
             // check on error number because error message can be empty.
             if (ConfigVariable::getLastErrorNumber() == 0)
             {
@@ -392,27 +317,19 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             iErr = ConfigVariable::getLastErrorNumber();
             if (bErrCatch == false)
             {
-                //in case of error, change mode to 2 ( prompt )
-                ConfigVariable::setPromptMode(2);
-                //write error
-                scilabErrorW(se.GetErrorMessage().c_str());
-
-                //write positino
-                // sciprint(_("in  execstr instruction    called by :\n"));
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                //throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
-                //print already done, so just foward exception but with message
-                //throw ast::ScilabError();
-                return Function::Error;
+                se.SetErrorLocation((*j)->getLocation());
+                throw se;
             }
+
+            ConfigVariable::resetWhereError();
             break;
         }
     }
 
     //restore previous prompt mode and silent mode
     ConfigVariable::setPromptMode(oldVal);
-    ConfigVariable::setSilentError(iOldSilentError);
 
     if (bErrCatch)
     {

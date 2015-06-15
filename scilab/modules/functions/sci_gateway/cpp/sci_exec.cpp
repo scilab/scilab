@@ -61,6 +61,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     bool bErrCatch      = false;
     Exp* pExp           = NULL;
     int iID             = 0;
+    types::Macro* pMacro = NULL;
     Parser parser;
 
     wchar_t* pwstFile = NULL;
@@ -219,6 +220,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             char* pst = wide_string_to_UTF8(parser.getErrorMessage());
             Scierror(999, "%s", pst);
             FREE(pst);
+
             delete parser.getTree();
             mclose(iID);
             return Function::Error;
@@ -242,10 +244,12 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             pExp = parser.getTree();
         }
+
+        // update where to set the name of the executed file.
+        ConfigVariable::setFileNameToLastWhere(pwstFile);
     }
     else if (in[0]->isMacro() || in[0]->isMacroFile())
     {
-        types::Macro* pMacro = NULL;
         typed_list input;
         optional_list optional;
         typed_list output;
@@ -261,9 +265,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 FREE(pstMacro);
                 return Function::Error;
             }
-
             pMacro = in[0]->getAs<MacroFile>()->getMacro();
-
         }
         else //1st argument is a macro name, execute it in the current environnement
         {
@@ -282,11 +284,24 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         promptMode = 3;
         pExp = pMacro->getBody();
+
+        // update where to set the name of the executed macro instead of "exec"
+        ConfigVariable::WhereEntry lastWhere = ConfigVariable::getWhere().back();
+        int iLine = lastWhere.m_line;
+        int iAbsLine = lastWhere.m_absolute_line;
+        ConfigVariable::where_end();
+        ConfigVariable::where_begin(iLine, iAbsLine, pMacro);
     }
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
         return Function::Error;
+    }
+
+    if (pMacro)
+    {
+        //store the line number where is stored this macro in file.
+        ConfigVariable::macroFirstLine_begin(pMacro->getFirstLine());
     }
 
     ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
@@ -358,6 +373,15 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 (*j)->accept(execMe);
                 //ConfigVariable::setPromptMode(promptMode);
 
+                if (pwstFile && (*j)->isFunctionDec())
+                {
+                    InternalType* pIT = symbol::Context::getInstance()->get((*j)->getAs<FunctionDec>()->getSymbol());
+                    if (pIT)
+                    {
+                        types::Macro* pMacro = pIT->getAs<types::Macro>();
+                        pMacro->setFileName(pwstFile);
+                    }
+                }
 
                 //to manage call without ()
                 if (execMe.getResult() != NULL && execMe.getResult()->isCallable())
@@ -372,74 +396,35 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         //in this case of calling, we can return only one values
                         ExecVisitor execCall;
                         execCall.setExpectedSize(1);
-                        Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
+                        pCall->invoke(in, opt, 1, out, execCall, *(*j));
 
-                        if (Ret == Callable::OK)
+                        if (out.size() == 0)
                         {
-                            if (out.size() == 0)
-                            {
-                                execMe.setResult(NULL);
-                            }
-                            else if (out.size() == 1)
-                            {
-                                out[0]->DecreaseRef();
-                                execMe.setResult(out[0]);
-                                bImplicitCall = true;
-                            }
-                            else
-                            {
-                                for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                                {
-                                    out[i]->DecreaseRef();
-                                    execMe.setResult(i, out[i]);
-                                }
-                            }
+                            execMe.setResult(NULL);
                         }
-                        else if (Ret == Callable::Error)
+                        else if (out.size() == 1)
                         {
-                            if (ConfigVariable::getLastErrorFunction() == L"")
+                            out[0]->DecreaseRef();
+                            execMe.setResult(out[0]);
+                            bImplicitCall = true;
+                        }
+                        else
+                        {
+                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
                             {
-                                ConfigVariable::setLastErrorFunction(pCall->getName());
-                            }
-
-                            if (pCall->isMacro() || pCall->isMacroFile())
-                            {
-                                wchar_t szError[bsiz];
-                                os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), (*j)->getLocation().first_line, pCall->getName().c_str());
-                                throw ast::ScilabMessage(szError);
-                            }
-                            else
-                            {
-                                throw ast::ScilabMessage();
+                                out[i]->DecreaseRef();
+                                execMe.setResult(i, out[i]);
                             }
                         }
                     }
                     catch (ScilabMessage sm)
                     {
-                        wostringstream os;
-                        PrintVisitor printMe(os);
-                        (*j)->accept(printMe);
-                        os << std::endl << std::endl;
                         if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                         }
 
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wstring szAllError;
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                            szAllError = szError + os.str();
-                            os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                            szAllError += szError;
-                            throw ast::ScilabMessage(szAllError);
-                        }
-                        else
-                        {
-                            sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                            throw sm;
-                        }
+                        throw sm;
                     }
                 }
 
@@ -478,55 +463,27 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
             throw ia;
         }
-        catch (const ScilabMessage& sm)
+        catch (ast::ScilabMessage& sm)
         {
-            scilabErrorW(sm.GetErrorMessage().c_str());
+            ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
 
-            CallExp* pCall = dynamic_cast<CallExp*>(*j);
-            if (pCall != NULL)
+            if (pMacro)
             {
-                //to print call expression only of it is a macro
-                ExecVisitor execFunc;
-                pCall->getName().accept(execFunc);
-
-                if (execFunc.getResult() != NULL &&
-                        (execFunc.getResult()->isMacro() || execFunc.getResult()->isMacroFile()))
+                if (ConfigVariable::getLastErrorFunction() == L"")
                 {
-                    wostringstream os;
-
-                    //add function failed
-                    PrintVisitor printMe(os);
-                    pCall->accept(printMe);
-                    os << std::endl;
-
-                    //add info on file failed
-                    wchar_t szError[bsiz];
-                    os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                    os << szError;
-
-                    if (ConfigVariable::getLastErrorFunction() == L"")
-                    {
-                        ConfigVariable::setLastErrorFunction(execFunc.getResult()->getAs<Callable>()->getName());
-                    }
-
-                    Location location = (*j)->getLocation();
-                    if (file)
-                    {
-                        delete pExp;
-                        mclose(iID);
-                        file->close();
-                        delete file;
-                        FREE(pstFile);
-                        FREE(pwstFile);
-                    }
-
-                    //restore previous prompt mode
-                    ConfigVariable::setPromptMode(oldVal);
-                    throw ast::ScilabMessage(os.str(), 0, location);
+                    ConfigVariable::setLastErrorFunction(pMacro->getName());
                 }
+
+                //restore previous prompt mode
+                ConfigVariable::setPromptMode(oldVal);
+
+                // reset last first line of macro called
+                ConfigVariable::macroFirstLine_end();
             }
 
-            Location location = (*j)->getLocation();
+            // get location of exp before delete it in "file" case.
+            Location loc = (*j)->getLocation();
+
             if (file)
             {
                 delete pExp;
@@ -537,10 +494,20 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 FREE(pwstFile);
             }
 
-            throw ast::ScilabMessage(location);
+
+            if (bErrCatch == false)
+            {
+                sm.SetErrorLocation(loc);
+                throw sm;
+            }
+
+            ConfigVariable::resetWhereError();
+            iErr = ConfigVariable::getLastErrorNumber();
+            break;
         }
-        catch (const ast::ScilabError& se)
+        catch (ast::ScilabError& se)
         {
+            ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
             if (ConfigVariable::getLastErrorNumber() == 0)
             {
                 ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
@@ -555,20 +522,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             {
                 if (file)
                 {
-                    //print failed command
-                    scilabError(getExpression(stFile, *j).c_str());
-                    scilabErrorW(L"\n");
-                }
-
-                //write error
-                scilabErrorW(se.GetErrorMessage().c_str());
-
-                //write position
-                wchar_t szError[bsiz];
-                os_swprintf(szError, bsiz, _W("at line % 5d of exec file called by :\n").c_str(), (*j)->getLocation().first_line);
-                scilabErrorW(szError);
-                if (file)
-                {
                     delete pExp;
                     mclose(iID);
                     file->close();
@@ -579,17 +532,23 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                 //restore previous prompt mode
                 ConfigVariable::setPromptMode(oldVal);
-                //throw ast::ScilabMessage(szError, 1, (*j)->getLocation());
-                //print already done, so just foward exception but with message
-                throw ast::ScilabError();
+
+                throw se;
             }
+
+            if (pMacro)
+            {
+                // reset last first line of macro called
+                ConfigVariable::macroFirstLine_end();
+            }
+
+            ConfigVariable::resetWhereError();
             break;
         }
     }
 
     //restore previous prompt mode
     ConfigVariable::setPromptMode(oldVal);
-
     if (bErrCatch)
     {
         out.push_back(new Double(iErr));

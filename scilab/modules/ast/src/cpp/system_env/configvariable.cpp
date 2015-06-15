@@ -12,8 +12,9 @@
 
 #include <vector>
 #include <list>
-#include "configvariable.hxx"
 #include "context.hxx"
+#include "configvariable.hxx"
+#include "macrofile.hxx"
 
 extern "C"
 {
@@ -21,6 +22,7 @@ extern "C"
 #include "os_string.h"
 #include "sci_malloc.h"
 #include "elem_common.h"
+#include "FileExist.h"
 }
 
 /*
@@ -1097,10 +1099,25 @@ int ConfigVariable::getFuncprot()
 */
 
 std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
+std::list<ConfigVariable::WhereEntry> ConfigVariable::m_WhereError;
 std::vector<int> ConfigVariable::m_FirstMacroLine;
-void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, const std::wstring& _wstName)
+void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall)
 {
-    m_Where.emplace_back(_iLineNum, _iLineLocation, _wstName);
+    std::wstring wstrFileName = L"";
+    types::Callable* pCall = _pCall;
+    if (pCall->isMacroFile())
+    {
+        types::Macro* pM = pCall->getAs<types::MacroFile>()->getMacro();
+        wstrFileName = pM->getFileName();
+        pCall = pM;
+    }
+    else if (pCall->isMacro())
+    {
+        types::Macro* pM = pCall->getAs<types::Macro>();
+        wstrFileName = pM->getFileName();
+    }
+
+    m_Where.emplace_back(_iLineNum, _iLineLocation, pCall->getName(), pCall->getFirstLine(), wstrFileName);
 }
 
 void ConfigVariable::where_end()
@@ -1131,6 +1148,133 @@ int ConfigVariable::getMacroFirstLines()
     }
 
     return m_FirstMacroLine.back();
+}
+void ConfigVariable::setFileNameToLastWhere(const std::wstring& _fileName)
+{
+    m_Where.back().m_file_name = _fileName;
+}
+
+void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
+{
+    int iLenName = 1;
+    bool isExecstr = false;
+    bool isExecfile = false;
+
+    // get max length of functions name and check if exec or execstr have been called.
+    for (auto & where : m_WhereError)
+    {
+        if (isExecstr == false && where.m_name == L"execstr")
+        {
+            isExecstr = true;
+            continue;
+        }
+        else if (isExecfile == false && where.m_name == L"exec")
+        {
+            isExecfile = true;
+            continue;
+        }
+
+        iLenName = (std::max)((int)where.m_name.length(), iLenName);
+
+        // in case of bin file, the file path and line is displayed only if the associated .sci file exists
+        if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
+        {
+            std::size_t pos = where.m_file_name.find_last_of(L".");
+            where.m_file_name.replace(pos, pos + 4, L".sci");
+            if (FileExistW(const_cast<wchar_t*>(where.m_file_name.c_str())) == false)
+            {
+                where.m_file_name = L"";
+            }
+        }
+    }
+
+    // add margin
+    iLenName++;
+
+    // initialize localized strings
+    std::wstring wstrBuiltin(_W("in builtin "));
+    std::wstring wstrAtLine(_W("at line % 5d of function "));
+    std::wstring wstrExecStr(_W("at line % 5d of executed string "));
+    std::wstring wstrExecFile(_W("at line % 5d of executed file "));
+
+    // compute max size between "at line xxx of function" and "in builtin "
+    // +1 : line number is pad to 5. length of "% 5d" + 1 == 5
+    int iMaxLen = (std::max)(wstrAtLine.length() + 1, wstrBuiltin.length());
+    if (isExecstr)
+    {
+        iMaxLen = (std::max)(((int)wstrExecStr.length()) + 1, iMaxLen);
+    }
+
+    if (isExecstr)
+    {
+        iMaxLen = (std::max)(((int)wstrExecFile.length()) + 1, iMaxLen);
+    }
+
+    // print call stack
+    ostr << std::left;
+    ostr.fill(L' ');
+    for (auto & where : m_WhereError)
+    {
+        ostr.width(iMaxLen);
+        if (where.m_line == 0)
+        {
+            ostr << wstrBuiltin;
+        }
+        else
+        {
+            if (where.m_name == L"execstr")
+            {
+                isExecstr = true;
+                wchar_t wcsTmp[bsiz];
+                os_swprintf(wcsTmp, bsiz, wstrExecStr.c_str(), where.m_line);
+                ostr << wcsTmp << std::endl;
+                continue;
+            }
+            else if (where.m_name == L"exec")
+            {
+                wchar_t wcsTmp[bsiz];
+                os_swprintf(wcsTmp, bsiz, wstrExecFile.c_str(), where.m_line);
+                ostr << wcsTmp << where.m_file_name << std::endl;
+                continue;
+            }
+            else
+            {
+                wchar_t wcsTmp[bsiz];
+                os_swprintf(wcsTmp, bsiz, wstrAtLine.c_str(), where.m_line);
+                ostr << wcsTmp;
+            }
+        }
+
+        ostr.width(iLenName);
+        ostr << where.m_name;
+
+        if (where.m_file_name != L"")
+        {
+            // -1 because the first line of a function dec is : "function myfunc()"
+            ostr << L"( " << where.m_file_name << L" " << _W("line") << L" " << where.m_macro_first_line + where.m_line - 1 << L" )";
+        }
+
+        ostr << std::endl;
+    }
+}
+
+void ConfigVariable::fillWhereError(int _iErrorLine)
+{
+    if (m_WhereError.empty())
+    {
+        // +1 because the first line of the funtionDec "function func()" is the line 1.
+        int iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
+        {
+            m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, (*where).m_name, (*where).m_macro_first_line, (*where).m_file_name);
+            iTmp = (*where).m_line;
+        }
+    }
+}
+
+void ConfigVariable::resetWhereError()
+{
+    m_WhereError.clear();
 }
 
 /*
