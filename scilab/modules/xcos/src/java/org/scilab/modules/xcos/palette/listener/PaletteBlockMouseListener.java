@@ -53,6 +53,7 @@ public final class PaletteBlockMouseListener implements MouseListener {
     public void mouseClicked(MouseEvent e) {
         if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
                 || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
+            /** opens a context menu **/
 
             ContextMenu menu = ScilabContextMenu.createContextMenu();
 
@@ -127,6 +128,21 @@ public final class PaletteBlockMouseListener implements MouseListener {
             ((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
             .setLocation(MouseInfo.getPointerInfo().getLocation().x,
                          MouseInfo.getPointerInfo().getLocation().y);
+        } else if (e.getClickCount() == 2
+                && SwingUtilities.isLeftMouseButton(e)) {
+            /** add the current block to the most recent diagram **/
+
+            final List<XcosDiagram> allDiagrams = Xcos.getInstance()
+                    .openedDiagrams();
+            final PaletteBlockCtrl control = ((PaletteBlockView) e.getSource())
+                    .getController();
+
+            int size = allDiagrams.size();
+            assert size != 0;
+
+            final XcosDiagram theDiagram = allDiagrams.get(size - 1);
+            BasicBlock current = control.getBlock();
+            theDiagram.addCell(current);
         }
     }
 
