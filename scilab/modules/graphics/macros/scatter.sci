@@ -21,18 +21,19 @@ function polyLine = scatter(varargin)
         return;
     end
 
-   //detect and set the current axes now:
+    //detect and set the current axes now:
+    n = size(varargin);
     if type(varargin(1)) == 9 then // graphic handle
         hdle = varargin(1);
         if hdle.type == "Axes" then
-            if size(varargin) < 3 then
+            if n < 3 then
                 warning("Not enough input arguments.")
                 return;
             else
                 axesHandle = varargin(1);
                 X = varargin(2);
                 Y = varargin(3);
-                nextArgin = 4;
+                polyLine = scatter3(axesHandle,X,Y,[],varargin(4:n));
             end
         else
             warning("Handle should be an Axes handle.")
@@ -43,46 +44,10 @@ function polyLine = scatter(varargin)
             warning("Not enough input arguments.")
             return;
         else
-            axesHandle = [];
             X = varargin(1);
             Y = varargin(2);
-            nextArgin = 3;
+            polyLine = scatter3(X,Y,[],varargin(3:n));
         end
     end
-
-    if (isempty(X) & isempty(Y)) then
-        // nothing has to be done
-        return;
-    end
     
-    if (~isvector(X) | ~isvector(Y) | size(X) ~= size(Y)) then
-        warning("X and Y must be vectors of the same length.")
-        return;
-    end
-    
-    n = length(X);
-    [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVargin(varargin,nextArgin,n);
-    if (scanFailed) then
-        return;
-    end
-
-    drawlater();
- 
-    if isempty(axesHandle) then
-       plot(X,Y);
-    else
-       plot(axesHandle,X,Y);
-    end
-    
-    currentEntity = gce();
-    polyLine = currentEntity.children;
-    if polyLine.Type <> "Polyline" then
-        warning("Handle should be a Polyline handle.");
-        return;
-    end
-
-    scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
-    
-    drawnow();
-
 endfunction
