@@ -60,16 +60,19 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
     %ierr = execstr(%txt,"errcatch");
     if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
-    // Use macrovar to extract the variable names present in %txt:
-    // listvar(3) contains the names already present in the context (case Superblock's context overlapping main diagram's one)
-    // listvar(5) contains the new variables (main diagram's context)
+    // Use 'macrovar' to extract the variable names present in %txt: listvar(5) contains all the output variables of the context
+    clear("foo"); // Locally reserve the "foo" name to avoid redefinition warning
     deff("foo()", %txt);
     listvar = macrovar(foo);
-    %mm = [listvar(3); listvar(5)];
+    %mm = listvar(5);
+    // In case clear() has been used in the context, remove its arguments
+    if %mm <> [] then
+        %mm(~isdef(%mm, "l")) = [];
+    end
 
     for %mi=%mm'
         if %mi=="scs_m" then
-            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m");
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored\n"),"scs_m");
             continue
         elseif %mi=="ans" then
             continue
@@ -79,7 +82,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
         %v=evstr(%mi);
 
         if typeof(%v)=="scs_m" then
-            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored\n"),"scs_m")
             continue
         elseif or(type(%v)==[11 13 14]) then
             continue
