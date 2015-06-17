@@ -13,14 +13,15 @@
 /*--------------------------------------------------------------------------*/
 #include "GuiManagement.h"
 #include "scilines.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 void setScilabLines(int nbRows, int nbCols)
 {
-    if (getLinesSize() == 0)
+    if (getConsoleLines() == 0)
     {
         /* The user does not want to be asked for more display */
         /* Modify only the number of columns used to format displayed data */
-        scilines(getLinesSize(), nbCols);
+        scilines(getConsoleLines(), nbCols);
     }
     else
     {

@@ -33,6 +33,10 @@ extern "C"
 #include "dynlib_ast.h"
 }
 
+// Minimal values for iConsoleLines & iConsoleWidth
+#define ICONSOLELINES_MIN 0
+#define ICONSOLEWIDTH_MIN 10
+
 class EXTERN_AST ConfigVariable
 {
     //module list

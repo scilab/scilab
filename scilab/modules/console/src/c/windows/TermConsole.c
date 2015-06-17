@@ -296,8 +296,8 @@ static unsigned char TerminalGetchar(void)
             case WINDOW_BUFFER_SIZE_EVENT:
             {
                 /* Read resize event Input */
-                setColumnsSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
-                setLinesSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
+                setConsoleWidth(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
+                setConsoleLines(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
 
                 ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
             }

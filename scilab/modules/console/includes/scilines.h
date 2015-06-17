@@ -45,31 +45,5 @@ CONSOLE_IMPEXP int C2F(scilines)(int *nl, int *nc);
 */
 CONSOLE_IMPEXP int C2F(scilinesdefault)(void);
 
-/**
-* set number of columns to display data
-* @param new size of columns
-* @return TRUE or FALSE
-*/
-CONSOLE_IMPEXP BOOL setColumnsSize(int colums);
-
-/**
-* set number of lines to display data
-* @param new size of lines
-* @return TRUE or FALSE
-*/
-CONSOLE_IMPEXP BOOL setLinesSize(int lines_);
-
-/**
-* get number of columns to display data
-* @return numbers of columns
-*/
-CONSOLE_IMPEXP int getColumnsSize(void);
-
-/**
-* get number of lines to display data
-* @return numbers of lines
-*/
-CONSOLE_IMPEXP int getLinesSize(void);
-
 #endif /* __SCILINES_H__ */
 /*--------------------------------------------------------------------------*/

@@ -26,6 +26,7 @@
 #include "sci_malloc.h"
 #include "localization.h"
 #include "scilines.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #define vsnprintf _vsnprintf
@@ -52,7 +53,7 @@ void sciprint_full(char *fmt, ...)
     }
 
     /* number of columns as set by command lines() */
-    colwidth = getColumnsSize();
+    colwidth = getConsoleWidth();
 
     split_s_buf = MALLOC(sizeof(char) * (colwidth + 1));
     if (split_s_buf == (char *) 0)

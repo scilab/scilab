@@ -183,7 +183,7 @@ int ConfigVariable::m_iConsoleWidth = 0;
 
 void ConfigVariable::setConsoleWidth(int _iConsoleWidth)
 {
-    m_iConsoleWidth = _iConsoleWidth;
+    m_iConsoleWidth = Max(ICONSOLEWIDTH_MIN, _iConsoleWidth);
 }
 
 int ConfigVariable::getConsoleWidth(void)
@@ -203,7 +203,7 @@ int ConfigVariable::m_iConsoleLines = 0; //console lines default value
 
 void ConfigVariable::setConsoleLines(int _iConsoleLines)
 {
-    m_iConsoleLines = _iConsoleLines;
+    m_iConsoleLines = Max(ICONSOLELINES_MIN, _iConsoleLines);
 }
 
 int ConfigVariable::getConsoleLines(void)
