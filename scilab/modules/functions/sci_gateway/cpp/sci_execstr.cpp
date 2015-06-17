@@ -152,6 +152,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
             out.push_back(new Double(999));
             //to lock last error information
             ConfigVariable::setLastErrorCall();
+            ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
+            ConfigVariable::setLastErrorNumber(999);
             return Function::OK;
         }
         else

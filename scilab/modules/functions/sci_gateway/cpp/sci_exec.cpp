@@ -87,103 +87,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         return Function::Error;
     }
 
-    if (in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
-    {
-        //1st argument is a path, parse file and execute it
-        int iParsePathLen = 0;
-        String* pS = in[0]->getAs<types::String>();
-
-        pwstFile = expandPathVariableW(pS->get(0));
-        pstFile = wide_string_to_UTF8(pwstFile);
-        stFile = std::string(pstFile);
-        file = new std::ifstream(pstFile);
-
-        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, (const wchar_t*)pwstFile, PATH_MAX * 2);
-
-        /*fake call to mopen to show file within file()*/
-        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
-        {
-            FREE(pwstTemp);
-            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstFile);
-            return Function::Error;
-        }
-
-        parser.parseFile(pwstTemp, L"exec");
-        FREE(pwstTemp);
-        if (parser.getExitStatus() !=  Parser::Succeded)
-        {
-            scilabWriteW(parser.getErrorMessage());
-            delete parser.getTree();
-            mclose(iID);
-            return Function::Error;
-        }
-
-        if (ConfigVariable::getSerialize())
-        {
-            ast::Exp* temp = parser.getTree();
-            if (ConfigVariable::getTimed())
-            {
-                pExp = callTyper(temp, L"exec");
-            }
-            else
-            {
-                pExp = callTyper(temp);
-            }
-
-            delete temp;
-        }
-        else
-        {
-            pExp = parser.getTree();
-        }
-    }
-    else if (in[0]->isMacro() || in[0]->isMacroFile())
-    {
-        types::Macro* pMacro = NULL;
-        typed_list input;
-        optional_list optional;
-        typed_list output;
-        ast::ExecVisitor execFunc;
-
-        if (in[0]->isMacroFile())
-        {
-            //1st argument is a macro name, parse and execute it in the current environnement
-            if (in[0]->getAs<MacroFile>()->parse() == false)
-            {
-                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
-                Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
-                FREE(pstMacro);
-                return Function::Error;
-            }
-
-            pMacro = in[0]->getAs<MacroFile>()->getMacro();
-
-        }
-        else //1st argument is a macro name, execute it in the current environnement
-        {
-            pMacro = in[0]->getAs<Macro>();
-        }
-
-        // unable for macro with varargin or varargout
-        auto inputs = pMacro->inputs_get();
-        auto outputs = pMacro->outputs_get();
-        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
-                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
-            return Function::Error;
-        }
-
-        promptMode = 3;
-        pExp = pMacro->getBody();
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
-        return Function::Error;
-    }
-
     // get mode and errcatch
     if (in.size() > 1)
     {
@@ -273,6 +176,117 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
         }
+    }
+
+    if (in[0]->isString() && in[0]->getAs<types::String>()->isScalar())
+    {
+        //1st argument is a path, parse file and execute it
+        int iParsePathLen = 0;
+        String* pS = in[0]->getAs<types::String>();
+
+        pwstFile = expandPathVariableW(pS->get(0));
+        pstFile = wide_string_to_UTF8(pwstFile);
+        stFile = std::string(pstFile);
+        file = new std::ifstream(pstFile);
+
+        wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
+        get_full_pathW(pwstTemp, (const wchar_t*)pwstFile, PATH_MAX * 2);
+
+        /*fake call to mopen to show file within file()*/
+        if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
+        {
+            FREE(pwstTemp);
+            Scierror(999, _("%s: Cannot open file %s.\n"), "exec", pstFile);
+            return Function::Error;
+        }
+
+        parser.parseFile(pwstTemp, L"exec");
+        FREE(pwstTemp);
+        if (parser.getExitStatus() !=  Parser::Succeded)
+        {
+            if (bErrCatch)
+            {
+                out.push_back(new Double(999));
+                //to lock last error information
+                ConfigVariable::setLastErrorCall();
+                ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
+                ConfigVariable::setLastErrorNumber(999);
+                delete parser.getTree();
+                mclose(iID);
+                return Function::OK;
+            }
+
+            char* pst = wide_string_to_UTF8(parser.getErrorMessage());
+            Scierror(999, "%s", pst);
+            FREE(pst);
+            delete parser.getTree();
+            mclose(iID);
+            return Function::Error;
+        }
+
+        if (ConfigVariable::getSerialize())
+        {
+            ast::Exp* temp = parser.getTree();
+            if (ConfigVariable::getTimed())
+            {
+                pExp = callTyper(temp, L"exec");
+            }
+            else
+            {
+                pExp = callTyper(temp);
+            }
+
+            delete temp;
+        }
+        else
+        {
+            pExp = parser.getTree();
+        }
+    }
+    else if (in[0]->isMacro() || in[0]->isMacroFile())
+    {
+        types::Macro* pMacro = NULL;
+        typed_list input;
+        optional_list optional;
+        typed_list output;
+        ast::ExecVisitor execFunc;
+
+        if (in[0]->isMacroFile())
+        {
+            //1st argument is a macro name, parse and execute it in the current environnement
+            if (in[0]->getAs<MacroFile>()->parse() == false)
+            {
+                char* pstMacro = wide_string_to_UTF8(in[0]->getAs<MacroFile>()->getName().c_str());
+                Scierror(999, _("%s: Unable to parse macro '%s'"), "exec", pstMacro);
+                FREE(pstMacro);
+                return Function::Error;
+            }
+
+            pMacro = in[0]->getAs<MacroFile>()->getMacro();
+
+        }
+        else //1st argument is a macro name, execute it in the current environnement
+        {
+            pMacro = in[0]->getAs<Macro>();
+        }
+
+        // unable for macro with varargin or varargout
+        auto inputs = pMacro->inputs_get();
+        auto outputs = pMacro->outputs_get();
+        if ((inputs->size() != 0 && inputs->back()->getSymbol().getName() == L"varargin") ||
+                outputs->size() != 0 && outputs->back()->getSymbol().getName() == L"varargout")
+        {
+            Scierror(999, _("%s: Wrong type for input argument #%d: A macro without varargin and varargout expected.\n"), "exec", 1);
+            return Function::Error;
+        }
+
+        promptMode = 3;
+        pExp = pMacro->getBody();
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "exec", 1);
+        return Function::Error;
     }
 
     ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
