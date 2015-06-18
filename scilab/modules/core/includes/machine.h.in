@@ -49,6 +49,12 @@
 /* uses G95 fortran */
 #undef G95_FORTRAN
 
+/* Define to 1 if you have the <archive_entry.h> header file. */
+#undef HAVE_ARCHIVE_ENTRY_H
+
+/* Define to 1 if you have the <archive.h> header file. */
+#undef HAVE_ARCHIVE_H
+
 /* Define to 1 if you have the `atexit' function. */
 #undef HAVE_ATEXIT
 
@@ -163,6 +169,9 @@
 
 /* Define to 1 if you have the `iswprint' function. */
 #undef HAVE_ISWPRINT
+
+/* Define to 1 if you have the `archive' library (-larchive). */
+#undef HAVE_LIBARCHIVE
 
 /* Define to 1 if you have the `curl' library (-lcurl). */
 #undef HAVE_LIBCURL
@@ -514,6 +523,9 @@
 
 /* With the HDF5 library */
 #undef WITH_HDF5
+
+/* With the libarchive library */
+#undef WITH_LIBARCHIVE
 
 /* With the MATIO library */
 #undef WITH_MATIO

@@ -120,6 +120,7 @@ libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(top_srcdir)/modules/preferences/includes/ \
 				$(XML_FLAGS) \
 				$(CURL_CFLAGS) \
+				$(LIBARCHIVE_CFLAGS) \
 				$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
@@ -134,7 +135,7 @@ endif
 libscifileio_algo_la_SOURCES = $(FILEIO_SOURCES)
 libscifileio_la_SOURCES = $(GATEWAY_SOURCES) $(GATEWAY_CXX_SOURCES)
 libscifileio_algo_la_CPPFLAGS = $(libscifileio_la_CPPFLAGS)
-libscifileio_algo_la_LIBADD = $(CURL_LIBS)
+libscifileio_algo_la_LIBADD = $(CURL_LIBS)  $(LIBARCHIVE_LIBS)
 
 # For the code check (splint)
 CHECK_SRC= $(FILEIO_SOURCES) $(GATEWAY_SOURCES)

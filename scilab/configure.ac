@@ -1557,6 +1557,12 @@ AC_PCRE()
 
 AC_CURL()
 
+#######################
+## Test for LIBARCHIVE
+#######################
+
+AC_LIBARCHIVE()
+
 #################
 ## Tcl/Tk library
 #################
@@ -2296,6 +2302,11 @@ echo "CURL configuration:"
 echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
 echo "  CURL_LIBS .......... = $CURL_LIBS"
 echo "  CURL_VERSION ....... = $CURL_VERSION"
+
+echo ""
+echo "LIBARCHIVE configuration:"
+echo "  LIBARCHIVE_CFLAGS .. = $LIBARCHIVE_CFLAGS"
+echo "  LIBARCHIVE_LIBS .... = $LIBARCHIVE_LIBS"
 
 
 echo ""
