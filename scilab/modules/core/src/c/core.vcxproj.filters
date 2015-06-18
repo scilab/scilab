@@ -23,15 +23,6 @@
     <ClCompile Include="commandwords.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="comparehandles.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="coretable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="cs2st.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="dynamic_gateways.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -41,16 +32,7 @@
     <ClCompile Include="dynamic_tclsci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="eqid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ExceptionMessage.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="exitCodeValue.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="force_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="freeArrayOfString.c">
@@ -98,9 +80,6 @@
     <ClCompile Include="..\..\sci_gateway\c\gw_user2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InitializeCore.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -113,13 +92,7 @@
     <ClCompile Include="md5.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="mode_exec.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\namstr.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="readGateway.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="returnanan.c">
@@ -132,9 +105,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="version.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="xscion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainCore.c">
@@ -201,9 +171,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\getvariablesname.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_tools.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="saveCWDInPreferences.c">
@@ -303,9 +270,6 @@
     <ClInclude Include="..\..\includes\inffic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\InitializeCore.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\InitializePreferences.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -322,9 +286,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\machine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\mode_exec.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\PARAMS.h">
@@ -414,13 +375,7 @@
     <ClInclude Include="..\..\includes\with_module.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\xscion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="backtrace.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="cs2st.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_gateways.h">
@@ -430,18 +385,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="dynamic_tclsci.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="eqid.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="exitCodeValue.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="expr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="funcprot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="getdebuginfo.h">
@@ -462,31 +405,7 @@
     <ClInclude Include="gw_dynamic_generic.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="inittypenames.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="LoadFunctionsTab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="md5.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="parse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="parserConstant.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="predef.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="readGateway.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="run.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="terme.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\partition.hxx">
@@ -541,6 +460,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="saveCWDInPreferences.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="funcprot.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

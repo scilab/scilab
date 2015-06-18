@@ -14,7 +14,6 @@
 #include "gw_elementary_functions.h"
 #include "stack-c.h"
 #include "basic_functions.h"
-#include "../../core/src/c/parse.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "msgs.h"

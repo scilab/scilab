@@ -10,18 +10,14 @@
 
 CORE_C_SOURCES = \
     src/c/csignal.c \
-    src/c/cs2st.c \
     src/c/md5.c \
     src/c/texmacs.c \
     src/c/getmodules.c \
     src/c/getmemory.c \
     src/c/isanan.c \
-    src/c/xscion.c \
     src/c/returnanan.c \
     src/c/loadversion.c \
     src/c/version.c \
-    src/c/InitializeCore.c \
-    src/c/coretable.c \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
     src/c/getcommandlineargs.c \
@@ -32,13 +28,9 @@ CORE_C_SOURCES = \
     src/c/getdynamicdebuginfo.c \
     src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
-    src/c/comparehandles.c \
     src/c/setPrecisionFPU.c \
     src/c/getos.c \
-    src/c/mode_exec.c \
     src/c/transposeMatrix.c \
-    src/c/eqid.c \
-    src/c/exitCodeValue.c \
     src/c/getversion.c \
     src/c/dynamic_tclsci.c \
     src/c/dynamic_parallel.c \
@@ -49,7 +41,6 @@ CORE_C_SOURCES = \
     src/c/setformat.c \
     src/c/InitializePreferences.c \
     src/c/saveCWDInPreferences.c \
-    src/c/sci_tools.c \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
@@ -232,7 +223,6 @@ includes/getcommandlineargs.h \
 includes/getmemory.h \
 includes/getos.h \
 includes/machine.h \
-includes/mode_exec.h \
 includes/sci_malloc.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
