@@ -20,6 +20,7 @@
 #include <vector>
 #include <sstream>
 
+#include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
 #include "internal.hxx"
@@ -231,6 +232,45 @@ public:
     }
 
     /**
+     * property comparison
+     */
+
+    types::Bool* equal(types::UserType*& ut)
+    {
+        const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(ut->getShortTypeStr());
+        // Check that 'ut' is an Adapter of the same type as *this
+        if (adapter_index == Adapters::INVALID_ADAPTER)
+        {
+            return new types::Bool(false);
+        }
+        if (this->getTypeStr() != ut->getTypeStr())
+        {
+            return new types::Bool(false);
+        }
+
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        types::Bool* ret = new types::Bool(1, 1 + properties.size());
+        ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
+
+        Controller controller = Controller();
+        int index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            types::InternalType* ith_prop1 = it->get(*static_cast<Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = it->get(*static_cast<Adaptor*>(ut), controller);
+            ret->set(index, *ith_prop1 == *ith_prop2);
+
+            // Getting a property allocates data, so free it
+            ith_prop1->killMe();
+            ith_prop2->killMe();
+        }
+
+        return ret;
+    }
+
+    /**
      * @return the Adaptee
      */
     Adaptee* getAdaptee() const
@@ -327,7 +367,7 @@ private:
         return NULL;
     }
 
-    types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
+    types::InternalType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {

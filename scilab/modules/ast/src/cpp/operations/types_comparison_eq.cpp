@@ -25,6 +25,7 @@
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "overload.hxx"
+#include "user.hxx"
 
 using namespace types;
 
@@ -2119,6 +2120,9 @@ void fillComparisonEqualFunction()
     scilab_fill_comparisonequal(ScalarHandle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
     scilab_fill_comparisonequal(MacroFile, ScalarHandle, M_E, MacroFile, GraphicHandle, Bool);
 
+    //UserType
+    scilab_fill_comparisonequal(UserType, UserType, UT_UT, UserType, UserType, Bool);
+
 #undef scilab_fill_comparisonequal
 
 }
@@ -3600,6 +3604,7 @@ types::InternalType* compequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, typ
     return pOut;
 }
 
+//List, TList, MList
 template<class T, class U, class O>
 InternalType* compequal_LT_LT(T *_pL, U *_pR)
 {
@@ -3740,4 +3745,11 @@ InternalType* compequal_MCR_MCR(T *_pL, U *_pR)
     }
 
     return new Bool(ret);
+}
+
+//UserType
+template<class T, class U, class O>
+InternalType* compequal_UT_UT(T *_pL, U *_pR)
+{
+    return _pL->equal(_pR);
 }

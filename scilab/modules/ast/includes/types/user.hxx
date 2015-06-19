@@ -15,6 +15,7 @@
 #define __USER_HXX__
 
 #include "types.hxx"
+#include "bool.hxx"
 
 namespace types
 {
@@ -57,6 +58,11 @@ public :
 public :
     /*** User can overload these methods                            ***/
     /*** all methods not overloaded will call scilab overload       ***/
+
+    virtual Bool* equal(UserType*& /*ut*/)
+    {
+        return NULL;
+    }
 
     // hasToString return false so scilab will call overload %..._p
     // and toString method is useless
