@@ -191,14 +191,15 @@ public:
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
-        if (current->getSize() != static_cast<int>(1 + properties.size()))
+        // The input TList can have fewer elements than the concerned adapter, but not more, and cannot be empty
+        if (current->getSize() > static_cast<int>(1 + properties.size()) || current->getSize() < 1)
         {
             return false;
         }
 
-        // check the header
+        // Check the header
         types::String* header = current->getFieldNames();
-        if (header->getSize() != static_cast<int>(1 + properties.size()))
+        if (header->getSize() > static_cast<int>(1 + properties.size()) || header->getSize() < 1)
         {
             return false;
         }
@@ -206,8 +207,8 @@ public:
         {
             return false;
         }
-        int index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        typename property<Adaptor>::props_t_it it = properties.begin();
+        for (int index = 1; index < header->getSize(); ++index, ++it)
         {
             if (header->get(index) != it->name)
             {
@@ -215,9 +216,9 @@ public:
             }
         }
 
-        // this is a valid tlist, get each tlist field value and pass it to the right property decoder
-        index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        // This is a valid tlist, get each tlist field value and pass it to the right property decoder
+        it = properties.begin();
+        for (int index = 1; index < header->getSize(); ++index, ++it)
         {
             bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
             if (!status)

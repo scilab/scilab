@@ -648,6 +648,59 @@ struct rpar
             // Link the Superblock ports to their inner "port blocks"
             return setInnerBlocksRefs(adaptor, diagramChildren, controller);
         }
+        else if (v->getType() == types::InternalType::ScilabMList)
+        {
+            ScicosID localAdaptee = controller.createObject(DIAGRAM);
+            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.getObject<model::Diagram>(localAdaptee));
+            if (!diagram->setAsTList(v, controller))
+            {
+                diagram->killMe();
+                return false;
+            }
+
+            adaptor.setDiagram(diagram);
+
+            // set the diagram children as block children ; referencing them
+            std::vector<ScicosID> diagramChildren;
+            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
+            if (diagramChildren.empty())
+            {
+                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
+                diagramChildren.push_back(0ll);
+            }
+            std::vector<ScicosID> oldDiagramChildren;
+            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
+
+            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, diagramChildren);
+            {
+                std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
+                for (const ScicosID id : diagramChildren)
+                {
+                    if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
+                    {
+                        auto o = controller.getObject(id);
+                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
+
+                        controller.referenceObject(id);
+                    }
+                }
+
+                std::sort(diagramChildren.begin(), diagramChildren.end());
+                for (const ScicosID id : oldDiagramChildren)
+                {
+                    if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
+                    {
+                        auto o = controller.getObject(id);
+                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
+
+                        controller.deleteObject(id);
+                    }
+                }
+            }
+
+            // Link the Superblock ports to their inner "port blocks"
+            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+        }
         else
         {
             return false;
