@@ -48,6 +48,7 @@ propertyUpdated( 3 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -57,7 +58,6 @@ propertyUpdated( 3 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 3 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 propertyUpdated( 3 , BLOCK , INPUTS ) : NO_CHANGES
@@ -115,6 +115,7 @@ propertyUpdated( 6 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -124,7 +125,6 @@ propertyUpdated( 6 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 6 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 propertyUpdated( 6 , BLOCK , INPUTS ) : NO_CHANGES

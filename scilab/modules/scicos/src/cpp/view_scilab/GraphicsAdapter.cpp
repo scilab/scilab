@@ -252,8 +252,8 @@ struct exprs
             {
                 return false;
             }
-
         }
+
         // All the following cases are meant for blocks:
         // CBLOCK, fortran_block, EXPRESSION, scifunc_block_m, PDE, CONSTRAINT2_c, LOOKUP2D, MBLOCK and MPBLOCK
         else if (v->getType() == types::InternalType::ScilabList)

@@ -56,6 +56,7 @@ propertyUpdated( 4 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , GEOMETRY ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -65,7 +66,6 @@ propertyUpdated( 4 , BLOCK , SIM_DEP_UT ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 4 , BLOCK , EXPRS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 propertyUpdated( 4 , BLOCK , INPUTS ) : NO_CHANGES
