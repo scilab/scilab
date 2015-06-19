@@ -24,7 +24,6 @@ importXcosDiagram(SCI+"/modules/xcos/tests/nonreg_tests/bug_12384.zcos");
 xcos_simulate(scs_m, 4);
 --------------------------------------------\
  Main Modelica : TMPDIR/Loop_im.mo
-
  Flat Modelica : TMPDIR/Loop_imf.mo
  Simulation C code :TMPDIR/Loop_im.c
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
