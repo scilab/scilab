@@ -100,6 +100,7 @@ public final class PaletteBlockCtrl {
      *            The view to setup
      */
     private void installListeners(PaletteBlockView view) {
+        view.setFocusTraversalKeysEnabled(false);
         view.addKeyListener(KEY_LISTENER);
         view.addMouseListener(MOUSE_LISTENER);
         installDnd();

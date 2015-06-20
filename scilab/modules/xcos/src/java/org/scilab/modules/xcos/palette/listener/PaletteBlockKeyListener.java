@@ -58,9 +58,11 @@ public final class PaletteBlockKeyListener implements KeyListener {
             return;
         }
 
-        /** deselects block **/
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE) {
-            ((PaletteBlockView) e.getSource()).getController().setSelected(false);
+        /** deselects block and loses focus **/
+        if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_TAB) {
+            PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
+            currentBlockView.getController().setSelected(false);
+            currentBlockView.transferFocusUpCycle();
             return;
         }
 
