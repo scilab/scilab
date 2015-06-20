@@ -117,6 +117,7 @@ public class ZoomAction extends CommonCallBack {
         btnZoomIn.setIcon(new ImageIcon(ICON_ZOOMIN));
         btnZoomIn.setToolTipText(LABEL_ZOOMIN);
         btnZoomIn.addActionListener(getCallBack());
+        btnZoomIn.setFocusable(true);
         setEnabledZoomIn(true);
         return btnZoomIn;
     }
@@ -131,6 +132,7 @@ public class ZoomAction extends CommonCallBack {
         btnZoomOut.setIcon(new ImageIcon(ICON_ZOOMOUT));
         btnZoomOut.setToolTipText(LABEL_ZOOMOUT);
         btnZoomOut.addActionListener(getCallBack());
+        btnZoomOut.setFocusable(true);
         setEnabledZoomOut(true);
         return btnZoomOut;
     }

@@ -58,6 +58,7 @@ public class NavigationAction extends CommonCallBack {
         btnNEXT.setIcon(new ImageIcon(ICON_NEXT));
         btnNEXT.setToolTipText(LABEL_NEXT);
         btnNEXT.addActionListener(getCallBack());
+        btnNEXT.setFocusable(true);
         setEnabledNext(false);
         return btnNEXT;
     }
@@ -72,6 +73,7 @@ public class NavigationAction extends CommonCallBack {
         btnPREV.setIcon(new ImageIcon(ICON_PREV));
         btnPREV.setToolTipText(LABEL_PREV);
         btnPREV.addActionListener(getCallBack());
+        btnPREV.setFocusable(true);
         setEnabledPrev(false);
         return btnPREV;
     }
