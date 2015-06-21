@@ -63,6 +63,8 @@ int sci_mputl(char *fname, unsigned long fname_len);
 int sci_tempname(char *fname, unsigned long fname_len);
 int sci_getURL(char *fname, unsigned long fname_len);
 int sci_splitURL(char *fname, unsigned long fname_len);
+int sci_archive_list(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

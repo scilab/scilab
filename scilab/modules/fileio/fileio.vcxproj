@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -208,6 +208,7 @@ lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_archive_list.c" />
     <ClCompile Include="sci_gateway\c\sci_getURL.c" />
     <ClCompile Include="sci_gateway\c\sci_splitURL.c" />
     <ClCompile Include="sci_gateway\c\sci_tempname.c" />
@@ -241,6 +242,7 @@ lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\getrelativefilename.c" />
     <ClCompile Include="src\c\getshortpathname.c" />
     <ClCompile Include="sci_gateway\c\gw_fileio.c" />
+    <ClCompile Include="src\c\archive_list.c" />
     <ClCompile Include="src\c\isdir.c" />
     <ClCompile Include="src\c\isDrive.c" />
     <ClCompile Include="src\c\mclearerr.c" />
@@ -315,6 +317,8 @@ lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
+    <ClInclude Include="includes\archive_list.h" />
+    <ClInclude Include="src\c\archive_list.h" />
     <ClInclude Include="includes\createtempfilename.h" />
     <ClInclude Include="includes\deleteafile.h" />
     <ClInclude Include="includes\diary.h" />

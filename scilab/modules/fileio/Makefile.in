@@ -222,7 +222,8 @@ am__objects_1 = src/c/libscifileio_algo_la-FileExist.lo \
 	src/c/libscifileio_algo_la-fprintfMat.lo \
 	src/c/libscifileio_algo_la-createtempfilename.lo \
 	src/c/libscifileio_algo_la-dlManager.lo \
-	src/c/libscifileio_algo_la-convert_tools.lo
+	src/c/libscifileio_algo_la-convert_tools.lo \
+	src/c/libscifileio_algo_la-archive_list.lo
 am_libscifileio_algo_la_OBJECTS = $(am__objects_1)
 libscifileio_algo_la_OBJECTS = $(am_libscifileio_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -280,7 +281,8 @@ am__objects_2 = sci_gateway/c/libscifileio_la-gw_fileio.lo \
 	sci_gateway/c/libscifileio_la-sci_mputl.lo \
 	sci_gateway/c/libscifileio_la-sci_tempname.lo \
 	sci_gateway/c/libscifileio_la-sci_getURL.lo \
-	sci_gateway/c/libscifileio_la-sci_splitURL.lo
+	sci_gateway/c/libscifileio_la-sci_splitURL.lo \
+	sci_gateway/c/libscifileio_la-sci_archive_list.lo
 am_libscifileio_la_OBJECTS = $(am__objects_2)
 libscifileio_la_OBJECTS = $(am_libscifileio_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscifileio_la_rpath =
@@ -681,7 +683,8 @@ src/c/fscanfMat.c \
 src/c/fprintfMat.c \
 src/c/createtempfilename.c \
 src/c/dlManager.c \
-src/c/convert_tools.c
+src/c/convert_tools.c \
+src/c/archive_list.c 
 
 GATEWAY_SOURCES = \
 sci_gateway/c/gw_fileio.c \
@@ -731,7 +734,8 @@ sci_gateway/c/sci_isfile.c \
 sci_gateway/c/sci_mputl.c \
 sci_gateway/c/sci_tempname.c \
 sci_gateway/c/sci_getURL.c \
-sci_gateway/c/sci_splitURL.c
+sci_gateway/c/sci_splitURL.c \
+sci_gateway/c/sci_archive_list.c 
 
 libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -1049,6 +1053,8 @@ src/c/libscifileio_algo_la-dlManager.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscifileio_algo_la-convert_tools.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscifileio_algo_la-archive_list.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifileio-algo.la: $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_DEPENDENCIES) $(EXTRA_libscifileio_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscifileio_algo_la_rpath) $(libscifileio_algo_la_OBJECTS) $(libscifileio_algo_la_LIBADD) $(LIBS)
@@ -1202,6 +1208,9 @@ sci_gateway/c/libscifileio_la-sci_getURL.lo:  \
 sci_gateway/c/libscifileio_la-sci_splitURL.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifileio_la-sci_archive_list.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifileio.la: $(libscifileio_la_OBJECTS) $(libscifileio_la_DEPENDENCIES) $(EXTRA_libscifileio_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscifileio_la_rpath) $(libscifileio_la_OBJECTS) $(libscifileio_la_LIBADD) $(LIBS)
@@ -1217,6 +1226,7 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_archive_list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_basename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_chdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_copyfile.Plo@am__quote@
@@ -1269,6 +1279,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-Status2Mode.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-URIFileToFilename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-addfile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-archive_list.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-basename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-cluni0.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscifileio_algo_la-convert_tools.Plo@am__quote@
@@ -1721,6 +1732,13 @@ src/c/libscifileio_algo_la-convert_tools.lo: src/c/convert_tools.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifileio_algo_la-convert_tools.lo `test -f 'src/c/convert_tools.c' || echo '$(srcdir)/'`src/c/convert_tools.c
 
+src/c/libscifileio_algo_la-archive_list.lo: src/c/archive_list.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscifileio_algo_la-archive_list.lo -MD -MP -MF src/c/$(DEPDIR)/libscifileio_algo_la-archive_list.Tpo -c -o src/c/libscifileio_algo_la-archive_list.lo `test -f 'src/c/archive_list.c' || echo '$(srcdir)/'`src/c/archive_list.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscifileio_algo_la-archive_list.Tpo src/c/$(DEPDIR)/libscifileio_algo_la-archive_list.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/archive_list.c' object='src/c/libscifileio_algo_la-archive_list.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifileio_algo_la-archive_list.lo `test -f 'src/c/archive_list.c' || echo '$(srcdir)/'`src/c/archive_list.c
+
 sci_gateway/c/libscifileio_la-gw_fileio.lo: sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifileio_la-gw_fileio.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Tpo -c -o sci_gateway/c/libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Tpo sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Plo
@@ -2056,6 +2074,13 @@ sci_gateway/c/libscifileio_la-sci_splitURL.lo: sci_gateway/c/sci_splitURL.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_splitURL.c' object='sci_gateway/c/libscifileio_la-sci_splitURL.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifileio_la-sci_splitURL.lo `test -f 'sci_gateway/c/sci_splitURL.c' || echo '$(srcdir)/'`sci_gateway/c/sci_splitURL.c
+
+sci_gateway/c/libscifileio_la-sci_archive_list.lo: sci_gateway/c/sci_archive_list.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifileio_la-sci_archive_list.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_archive_list.Tpo -c -o sci_gateway/c/libscifileio_la-sci_archive_list.lo `test -f 'sci_gateway/c/sci_archive_list.c' || echo '$(srcdir)/'`sci_gateway/c/sci_archive_list.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_archive_list.Tpo sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_archive_list.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_archive_list.c' object='sci_gateway/c/libscifileio_la-sci_archive_list.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifileio_la-sci_archive_list.lo `test -f 'sci_gateway/c/sci_archive_list.c' || echo '$(srcdir)/'`sci_gateway/c/sci_archive_list.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
