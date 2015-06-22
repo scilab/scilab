@@ -845,6 +845,14 @@
                             </imageobject>
                         </mediaobject>
                     </listitem>
+                    <listitem>
+                        <para>Optimal</para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/fr_FR/xcos_link_optimal_fr_FR.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
                 </itemizedlist>
                 <para/>
             </listitem>

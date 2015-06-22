@@ -107,6 +107,7 @@ import org.scilab.modules.xcos.configuration.model.DocumentType;
 import org.scilab.modules.xcos.configuration.utils.ConfigurationConstants;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleOptimalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.palette.actions.ViewPaletteBrowserAction;
@@ -485,6 +486,7 @@ public class XcosTab extends SwingScilabDockablePanel implements SimpleTab {
         linkStyle.add(StyleHorizontalAction.createMenu(diagram));
         linkStyle.add(StyleStraightAction.createMenu(diagram));
         linkStyle.add(StyleVerticalAction.createMenu(diagram));
+        linkStyle.add(StyleOptimalAction.createMenu(diagram));
         format.add(linkStyle);
         format.addSeparator();
 

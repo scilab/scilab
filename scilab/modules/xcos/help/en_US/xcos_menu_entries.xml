@@ -814,7 +814,7 @@
                 </para>
                 <para>
                     First select the link and select the appropriate menu item or use the shortcuts
-                    (<emphasis>H</emphasis>), <emphasis>S</emphasis>, <emphasis>V</emphasis>).
+                    (<emphasis>H</emphasis>), (<emphasis>S</emphasis>), (<emphasis>V</emphasis>), (<emphasis>O</emphasis>).
                     The following list shows the results obtained.
                 </para>
                 <itemizedlist>
@@ -845,6 +845,16 @@
                         <mediaobject>
                             <imageobject>
                                 <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_vertical_en_US.png"/>
+                            </imageobject>
+                        </mediaobject>
+                    </listitem>
+                    <listitem>
+                        <para>
+                            Optimal (<emphasis>O</emphasis>)
+                        </para>
+                        <mediaobject>
+                            <imageobject>
+                                <imagedata fileref="../images/xcos_menu_entries/en_US/xcos_link_optimal_en_US.png"/>
                             </imageobject>
                         </mediaobject>
                     </listitem>

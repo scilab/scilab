@@ -206,6 +206,7 @@ public final class XcosMessages {
     public static final String LINK_STYLE_STRAIGHT = Messages.gettext("Straight");
     public static final String LINK_STYLE_HORIZONTAL = Messages.gettext("Horizontal");
     public static final String LINK_STYLE_VERTICAL = Messages.gettext("Vertical");
+    public static final String LINK_STYLE_OPTIMAL = Messages.gettext("Optimal");
 
     public static final String DEBUG_LEVEL_LABEL = "<html>" + Messages.gettext("Set debugging level (0,1,2,3) <br/> it performs scicos_debug(n)") + "</html>";
     public static final String SET_DEBUG = Messages.gettext("Execution trace and Debug");

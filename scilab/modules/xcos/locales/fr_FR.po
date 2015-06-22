@@ -48,6 +48,9 @@ msgstr "Horizontal"
 msgid "Vertical"
 msgstr "Vertical"
 
+msgid "Optimal"
+msgstr "Optimal"
+
 msgid "No trace nor debug printing"
 msgstr "Ni trace d'exécution ni débogage"
 

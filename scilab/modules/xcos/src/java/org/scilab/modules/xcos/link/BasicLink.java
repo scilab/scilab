@@ -29,6 +29,7 @@ import org.scilab.modules.gui.menu.ScilabMenu;
 import org.scilab.modules.xcos.actions.EditFormatAction;
 import org.scilab.modules.xcos.block.actions.BorderColorAction;
 import org.scilab.modules.xcos.link.actions.StyleHorizontalAction;
+import org.scilab.modules.xcos.link.actions.StyleOptimalAction;
 import org.scilab.modules.xcos.link.actions.StyleStraightAction;
 import org.scilab.modules.xcos.link.actions.StyleVerticalAction;
 import org.scilab.modules.xcos.link.commandcontrol.CommandControlLink;
@@ -286,6 +287,7 @@ public abstract class BasicLink extends ScilabGraphUniqueObject {
         linkStyle.add(StyleHorizontalAction.createMenu(graph));
         linkStyle.add(StyleStraightAction.createMenu(graph));
         linkStyle.add(StyleVerticalAction.createMenu(graph));
+        linkStyle.add(StyleOptimalAction.createMenu(graph));
 
         menu.add(linkStyle);
 

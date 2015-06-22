@@ -88,6 +88,12 @@ msgid "Vertical"
 msgstr ""
 
 #
+# File: scilab_fake_localization_file.c, line:
+# File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 
+msgid "Optimal"
+msgstr ""
+
+#
 # File: scilab_fake_localization_file.c, line: 888
 # File: src/java/org/scilab/modules/xcos/utils/XcosMessages.java, line: 244
 msgid "No trace nor debug printing"
