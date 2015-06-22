@@ -18,9 +18,9 @@
 //    syntax is the same in both languages, the converter fails to
 //    convert the rounding of the field of a structure: "round(a.b)"
 
-MFILECONTENTS=["structure.field = 2;" 
+MFILECONTENTS=["structure.field = 2;"
 ""
-"data = round(structure.field);"]
+"data = round(structure.field);"];
 
 MFILE=TMPDIR+"/bug1082.m";
 SCIFILE=TMPDIR+"/bug1082.sci";
