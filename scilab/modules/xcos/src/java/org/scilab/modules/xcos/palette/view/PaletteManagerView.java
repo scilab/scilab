@@ -41,6 +41,7 @@ import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
 import org.scilab.modules.xcos.palette.actions.NavigationAction;
+import org.scilab.modules.xcos.palette.actions.SearchAction;
 import org.scilab.modules.xcos.palette.actions.ZoomAction;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -185,6 +186,10 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         stb.add(ZoomAction.createButtonZoomOut());
         ZoomAction.registerKeyAction(getPanel().getActionMap(), getPanel().getInputMap());
         ZoomAction.registerKeyAction(getTree().getActionMap(), getTree().getInputMap());
+
+        stb.addSeparator();
+
+        stb.add(SearchAction.createSearchBar());
 
         setToolBar(toolbar);
 
