@@ -15,7 +15,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=943
 //
 // <-- Short Description -->
-//    Conversion of (if, elseif, else) structure leads to 
+//    Conversion of (if, elseif, else) structure leads to
 //    mfile2sci failure in some particular indentation scheme.
 //
 //    Cyl_.m
@@ -24,13 +24,13 @@
 //    v = (r^2)*abs(p2-p1)*pi;
 //    l = p1-p2 ; d = 0.5*(p1+p2) ;
 //    j1 = (r^2)/2. ; j2 = (r^2)/4. + (l^2)/12. + d^2 ;
-//    if     (a==1), J = [j1,0.,0. ; 0.,j2,0. ; 0.,0.,j2] ; G = 
+//    if     (a==1), J = [j1,0.,0. ; 0.,j2,0. ; 0.,0.,j2] ; G =
 //    [0.5*(p1+p2);0.;0.] ;
-//    elseif (a==2), J = [j2,0.,0. ; 0.,j1,0. ; 0.,0.,j2] ; G = 
+//    elseif (a==2), J = [j2,0.,0. ; 0.,j1,0. ; 0.,0.,j2] ; G =
 //    [0.;0.5*(p1+p2);0.] ;
-//    elseif (a==3), J = [j2,0.,0. ; 0.,j2,0. ; 0.,0.,j1] ; G = 
+//    elseif (a==3), J = [j2,0.,0. ; 0.,j2,0. ; 0.,0.,j1] ; G =
 //    [0.;0.;0.5*(p1+p2)] ;
-//    else, J = [0.,0.,0. ; 0.,0.,0. ; 0.,0.,0.] ; G = 
+//    else, J = [0.,0.,0. ; 0.,0.,0. ; 0.,0.,0.] ; G =
 //    [0.;0.;0.] ; end,
 //
 //    Cyl2_.m
@@ -38,10 +38,10 @@
 // ...
 
 MFILECONTENTS=["a=10;";
-		"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"];
+"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"];
 
 MFILE=TMPDIR+"/bug943.m";
 SCIFILE=TMPDIR+"/bug943.sci";
@@ -51,16 +51,25 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"a = 10;";
-		"if a==1 then J = [1;2;3]; G = [4;5;6];";
-		"elseif a==2 then J = [1;2;3]; G = [4;5;6];";
-		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
-		"else J = [1;2;3]; G = [4;5;6];end;"];
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"a = 10;";
+"if a==1 then";
+"  J = [1;2;3];  G = [4;5;6];";
+"else";
+"  if a==2 then";
+"    J = [1;2;3];  G = [4;5;6];";
+"  else";
+"    if a==3 then";
+"      J = [1;2;3];  G = [4;5;6];";
+"    else";
+"      J = [1;2;3];  G = [4;5;6];";
+"    end;";
+"  end;";
+"end;"];
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

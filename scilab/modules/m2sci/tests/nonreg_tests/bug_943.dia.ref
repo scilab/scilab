@@ -35,10 +35,10 @@
 //
 // ...
 MFILECONTENTS=["a=10;";
-		"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
-		"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"];
+"if     (a==1), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"elseif (a==2), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"elseif (a==3), J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ;";
+"else, J = [1 ; 2 ; 3] ; G = [4 ; 5 ; 6] ; end,"];
 MFILE=TMPDIR+"/bug943.m";
 SCIFILE=TMPDIR+"/bug943.sci";
 mputl(MFILECONTENTS,MFILE);
@@ -61,15 +61,24 @@ mfile2sci(MFILE,TMPDIR);
   ****** End of mfile2sci() session ******
 SCIFILECONTENTS=mgetl(SCIFILE);
 SCIFILECONTENTSREF=["";
-		"// Display mode";
-		"mode(0);";
-		"";
-		"// Display warning for floating point exception";
-		"ieee(1);";
-		"";
-		"a = 10;";
-		"if a==1 then J = [1;2;3]; G = [4;5;6];";
-		"elseif a==2 then J = [1;2;3]; G = [4;5;6];";
-		"elseif a==3 then J = [1;2;3]; G = [4;5;6];";
-		"else J = [1;2;3]; G = [4;5;6];end;"];
+"// Display mode";
+"mode(0);";
+"";
+"// Display warning for floating point exception";
+"ieee(1);";
+"";
+"a = 10;";
+"if a==1 then";
+"  J = [1;2;3];  G = [4;5;6];";
+"else";
+"  if a==2 then";
+"    J = [1;2;3];  G = [4;5;6];";
+"  else";
+"    if a==3 then";
+"      J = [1;2;3];  G = [4;5;6];";
+"    else";
+"      J = [1;2;3];  G = [4;5;6];";
+"    end;";
+"  end;";
+"end;"];
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

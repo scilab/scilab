@@ -19,59 +19,66 @@
 // =============== Test 1 ===============
 
 function y=foo(x)
-	a=sin(x)
-	function y=sq(x), y=x^2,endfunction
-	y=sq(a)+1
+    a=sin(x)
+    function y=sq(x), y=x^2,endfunction
+    y=sq(a)+1
 endfunction
 
-CONTENTS = fun2string(foo);
+CONTENTS = tree2code(macr2tree(foo));
 
-REFCONTENTS=["function y=ans(x)";
-		"  a = sin(x)";
-		"  function y=sq(x), y=x^2,endfunction";
-		"  y = sq(a) + 1";
-		"endfunction"];
+REFCONTENTS=["function [y] = foo(x)";
+"a = sin(x)";
+"function y = sq(x)";
+"  y = x ^ 2";
+"endfunction";
+"y = sq(a)+1";
+"endfunction"
+""];
 
 if or(REFCONTENTS<>CONTENTS) then pause,end
 
 // =============== Test 2 ===============
 
 function one()
-  function two()
-    // A comment
-  endfunction
-  function three()
-    // A comment
-  endfunction
+    function two()
+        // A comment
+    endfunction
+    function three()
+        // A comment
+    endfunction
     //a comment here
 endfunction
 
-CONTENTS_II = fun2string(one);
+CONTENTS_II = tree2code(macr2tree(one));
 
-REFCONTENTS_II=["function []=ans()";
-		"  function two()";
-		"      // A comment";
-		"  endfunction";
-		"  function three()";
-		"      // A comment";
-		"  endfunction";
-		"  //a comment here";
-		"endfunction"];
+REFCONTENTS_II=["function [] = one()";
+"function  two()";
+"  // A comment";
+"endfunction";
+"function  three()";
+"  // A comment";
+"endfunction";
+"//a comment here";
+"endfunction";
+""];
 
 if or(REFCONTENTS_II<>CONTENTS_II) then pause,end
 
 // =============== Test 3 ===============
 
 function a=foo1()
-	a = 1 ; function foo2() ; disp("hello") ; endfunction ; disp("zut");
-	a = 2
+    a = 1 ; function foo2() ; disp("hello") ; endfunction ; disp("zut");
+    a = 2
 endfunction
 
-CONTENTS_III=fun2string(foo1);
+CONTENTS_III=tree2code(macr2tree(foo1));
 
-REFCONTENTS_III=["function a=ans()";
-		 "  a = 1;function foo2() , disp(""hello"") ;endfunction;disp(''zut'');";
-		 "  a = 2";
-		 "endfunction"];
+REFCONTENTS_III=["function [a] = foo1()";
+"a = 1;function  foo2()";
+"  disp(""hello"");";
+"endfunction;disp(""zut"");";
+"a = 2";
+"endfunction";
+""];
 
 if or(REFCONTENTS_III<>CONTENTS_III) then pause,end

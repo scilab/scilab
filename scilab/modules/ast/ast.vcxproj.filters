@@ -110,6 +110,9 @@
     <None Include="output_stream_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+    <None Include="string_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\exps\all.hxx">
