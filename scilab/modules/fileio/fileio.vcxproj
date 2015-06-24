@@ -208,11 +208,14 @@ lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="sci_gateway\c\sci_archive_extract.c" />
     <ClCompile Include="sci_gateway\c\sci_archive_list.c" />
     <ClCompile Include="sci_gateway\c\sci_getURL.c" />
     <ClCompile Include="sci_gateway\c\sci_splitURL.c" />
     <ClCompile Include="sci_gateway\c\sci_tempname.c" />
     <ClCompile Include="src\c\addfile.c" />
+    <ClCompile Include="src\c\archive_extract.c" />
+    <ClCompile Include="src\c\archive_list.c" />
     <ClCompile Include="src\c\basename.c" />
     <ClCompile Include="src\c\cluni0.c" />
     <ClCompile Include="src\c\convert_tools.c" />
@@ -317,7 +320,9 @@ lib /DEF:"$(ProjectDir)Preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h" />
+    <ClInclude Include="includes\archive_extract.h" />
     <ClInclude Include="includes\archive_list.h" />
+    <ClInclude Include="src\c\archive_extract.h" />
     <ClInclude Include="src\c\archive_list.h" />
     <ClInclude Include="includes\createtempfilename.h" />
     <ClInclude Include="includes\deleteafile.h" />

@@ -24,10 +24,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\c\archive_list.c">
+    <ClCompile Include="src\c\addfile.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\addfile.c">
+    <ClCompile Include="src\c\archive_extract.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\archive_list.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\basename.c">
@@ -169,6 +172,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\scanf_functions.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_archive_extract.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_archive_list.c">
@@ -345,6 +351,12 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\addfile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\archive_extract.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\c\archive_extract.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\archive_list.h">

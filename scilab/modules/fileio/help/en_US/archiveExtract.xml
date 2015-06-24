@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Kartik Gupta
+ * ...
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="archiveExtract" xml:lang="en">
+    <refnamediv>
+        <refname>archiveExtract</refname>
+        <refpurpose>Extracts an archive of the formats tar, tar.gz, tar.bz2 or zip</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>processedfiles = basename(archive[,permissions_flag [,destination_folder]])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>archive</term>
+                <listitem>
+                    <para>Absolute or relative path to an archive</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>flag</term>
+                <listitem>
+                    <para>optional boolean, used to set the permissions flag for the extracttion.
+                        Default value is False (<constant>%f</constant>).
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>destination_folder</term>
+                <listitem>
+                    <para>optional string argument, giving the absolute or relative path to the destination folder.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>archiveExtract(archive)</code> Extracts the given <varname>archive</varname>. The path can be absolute or relative. Returns 0 on success and -1 on failure.
+        </para>
+        <para>
+            If <varname>flag</varname> If this variable is passed as true then then permissions for the extracted files are preserved.
+        </para>
+        <para>
+            if <varname>destination_folder</varname> is given then the archive is extracted in the given folder
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = archiveExtract("example.tar")
+y = archiveExtract("example.tar.gz",%t)
+z = archiveExtract("example.zip",%f,"example2")
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.6.0</revnumber>
+                <revremark>
+                    Function <literal>archiveExtract</literal> introduced
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>
