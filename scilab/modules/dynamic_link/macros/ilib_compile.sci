@@ -97,7 +97,7 @@ function libn = ilib_compile(lib_name, ..
 
         // Binary version
         if isdir(SCI+"/../../include/scilab/") & ~ScilabTreeFound then
-            cflags="-I"+SCI+"/../../include/scilab/ -I"+SCI+"/../../include/  -I"+SCI+"/../../lib/Eigen/include/ " + cflags
+            cflags="-I"+SCI+"/../../include/scilab/ -I"+SCI+"/../../include/ " + cflags
             fflags="-I"+SCI+"/../../include/scilab/ " + fflags
             ScilabTreeFound=%t
         end

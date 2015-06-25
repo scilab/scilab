@@ -635,7 +635,6 @@ ac_subst_vars='am__EXEEXT_FALSE
 am__EXEEXT_TRUE
 LTLIBOBJS
 LIBOBJS
-EIGEN_CPPFLAGS
 CXXCPP
 CPP
 OTOOL64
@@ -777,7 +776,6 @@ enable_fast_install
 with_gnu_ld
 with_sysroot
 enable_libtool_lock
-with_eigen_include
 '
       ac_precious_vars='build_alias
 host_alias
@@ -1437,8 +1435,6 @@ Optional Packages:
   --with-gnu-ld           assume the C compiler uses GNU ld [default=no]
   --with-sysroot=DIR Search for dependent libraries within DIR
                         (or the compiler's sysroot if not specified).
-  --with-eigen-include=DIR
-                          Set the path to the EIGEN headers
 
 Some influential environment variables:
   CC          C compiler command
@@ -2086,97 +2082,6 @@ fi
   as_fn_set_status $ac_retval
 
 } # ac_fn_fc_try_link
-
-# ac_fn_cxx_check_header_mongrel LINENO HEADER VAR INCLUDES
-# ---------------------------------------------------------
-# Tests whether HEADER exists, giving a warning if it cannot be compiled using
-# the include files in INCLUDES and setting the cache variable VAR
-# accordingly.
-ac_fn_cxx_check_header_mongrel ()
-{
-  as_lineno=${as_lineno-"$1"} as_lineno_stack=as_lineno_stack=$as_lineno_stack
-  if eval \${$3+:} false; then :
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
-$as_echo_n "checking for $2... " >&6; }
-if eval \${$3+:} false; then :
-  $as_echo_n "(cached) " >&6
-fi
-eval ac_res=\$$3
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-else
-  # Is the header compilable?
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking $2 usability" >&5
-$as_echo_n "checking $2 usability... " >&6; }
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-$4
-#include <$2>
-_ACEOF
-if ac_fn_cxx_try_compile "$LINENO"; then :
-  ac_header_compiler=yes
-else
-  ac_header_compiler=no
-fi
-rm -f core conftest.err conftest.$ac_objext conftest.$ac_ext
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_header_compiler" >&5
-$as_echo "$ac_header_compiler" >&6; }
-
-# Is the header present?
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking $2 presence" >&5
-$as_echo_n "checking $2 presence... " >&6; }
-cat confdefs.h - <<_ACEOF >conftest.$ac_ext
-/* end confdefs.h.  */
-#include <$2>
-_ACEOF
-if ac_fn_cxx_try_cpp "$LINENO"; then :
-  ac_header_preproc=yes
-else
-  ac_header_preproc=no
-fi
-rm -f conftest.err conftest.i conftest.$ac_ext
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_header_preproc" >&5
-$as_echo "$ac_header_preproc" >&6; }
-
-# So?  What about this header?
-case $ac_header_compiler:$ac_header_preproc:$ac_cxx_preproc_warn_flag in #((
-  yes:no: )
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: accepted by the compiler, rejected by the preprocessor!" >&5
-$as_echo "$as_me: WARNING: $2: accepted by the compiler, rejected by the preprocessor!" >&2;}
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: proceeding with the compiler's result" >&5
-$as_echo "$as_me: WARNING: $2: proceeding with the compiler's result" >&2;}
-    ;;
-  no:yes:* )
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: present but cannot be compiled" >&5
-$as_echo "$as_me: WARNING: $2: present but cannot be compiled" >&2;}
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2:     check for missing prerequisite headers?" >&5
-$as_echo "$as_me: WARNING: $2:     check for missing prerequisite headers?" >&2;}
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: see the Autoconf documentation" >&5
-$as_echo "$as_me: WARNING: $2: see the Autoconf documentation" >&2;}
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2:     section \"Present But Cannot Be Compiled\"" >&5
-$as_echo "$as_me: WARNING: $2:     section \"Present But Cannot Be Compiled\"" >&2;}
-    { $as_echo "$as_me:${as_lineno-$LINENO}: WARNING: $2: proceeding with the compiler's result" >&5
-$as_echo "$as_me: WARNING: $2: proceeding with the compiler's result" >&2;}
-( $as_echo "## ------------------------------------------ ##
-## Report this to http://bugzilla.scilab.org/ ##
-## ------------------------------------------ ##"
-     ) | sed "s/^/$as_me: WARNING:     /" >&2
-    ;;
-esac
-  { $as_echo "$as_me:${as_lineno-$LINENO}: checking for $2" >&5
-$as_echo_n "checking for $2... " >&6; }
-if eval \${$3+:} false; then :
-  $as_echo_n "(cached) " >&6
-else
-  eval "$3=\$ac_header_compiler"
-fi
-eval ac_res=\$$3
-	       { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_res" >&5
-$as_echo "$ac_res" >&6; }
-fi
-  eval $as_lineno_stack; ${as_lineno_stack:+:} unset as_lineno
-
-} # ac_fn_cxx_check_header_mongrel
 cat >config.log <<_ACEOF
 This file contains any messages produced by compilers while
 running configure, to aid debugging if configure makes a mistake.
@@ -3139,6 +3044,7 @@ END
     as_fn_error $? "Your 'rm' program is bad, sorry." "$LINENO" 5
   fi
 fi
+
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking whether to enable maintainer-specific portions of Makefiles" >&5
@@ -21409,9 +21315,6 @@ ac_compiler_gnu=$ac_cv_c_compiler_gnu
 ac_config_files="$ac_config_files Makefile"
 
 
-#################
-## EIGEN
-#################
 ac_ext=c
 ac_cpp='$CPP $CPPFLAGS'
 ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
@@ -21610,110 +21513,6 @@ fi
 { $as_echo "$as_me:${as_lineno-$LINENO}: result: $ac_cv_path_GREP" >&5
 $as_echo "$ac_cv_path_GREP" >&6; }
  GREP="$ac_cv_path_GREP"
-
-
-
-
-ac_ext=cpp
-ac_cpp='$CXXCPP $CPPFLAGS'
-ac_compile='$CXX -c $CXXFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CXX -o conftest$ac_exeext $CXXFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_cxx_compiler_gnu
-
-
-
-# Check whether --with-eigen_include was given.
-if test "${with_eigen_include+set}" = set; then :
-  withval=$with_eigen_include; with_eigen_include=$withval
-else
-  with_eigen_include='yes'
-
-fi
-
-
-
-save_CPPFLAGS="$CPPFLAGS"
-
-if test "x$with_eigen_include" != "xyes"; then
-	CPPFLAGS="-I$with_eigen_include"
-	ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
-if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
-  EIGEN_CPPFLAGS="$CPPFLAGS"
-else
-  as_fn_error $? "Cannot find headers (Eigen/Sparse) of the library EIGEN in $with_eigen_include. Please install the dev package (Debian : libeigen3-dev)" "$LINENO" 5
-
-fi
-
-
-    PATH_TO_EIGEN=$with_eigen_include
-else
-	ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
-if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
-  EIGEN_CPPFLAGS=""
-else
-         $as_unset ac_cv_header_Eigen_Sparse
-                CPPFLAGS="-I/usr/include/eigen3/"
-                ac_fn_cxx_check_header_mongrel "$LINENO" "Eigen/Sparse" "ac_cv_header_Eigen_Sparse" "$ac_includes_default"
-if test "x$ac_cv_header_Eigen_Sparse" = xyes; then :
-  EIGEN_CPPFLAGS=$CPPFLAGS
-else
-  as_fn_error $? "Cannot find headers (Eigen/Sparse) of the library eigen. Please install the dev package (Debian : libeigen3-dev)" "$LINENO" 5
-
-fi
-
-
-
-fi
-
-
-    PATH_TO_EIGEN="/usr/include/eigen3/"
-fi
-CPPFLAGS="$save_CPPFLAGS"
-
-CHK_EIGEN_WORLD=3
-CHK_EIGEN_MAJOR=1
-CHK_EIGEN_MINOR=0
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later" >&5
-$as_echo_n "checking if Eigen is version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR or later... " >&6; }
-cat > conftest.$ac_ext <<EOF
-#line 21680 "configure"
-#include "confdefs.h"
-
-#include "$PATH_TO_EIGEN/Eigen/Sparse"
-#if EIGEN_VERSION_AT_LEAST(3,1,0)
-EIGEN_VERSION_OK
-#endif
-
-EOF
-if (eval "$ac_cpp conftest.$ac_ext") 2>&5 |
-  grep "EIGEN_VERSION_OK" >/dev/null 2>&1; then
-  rm -rf conftest*
-  \
-EIGEN_VERSION_OK=1
-else
-  rm -rf conftest*
-  \
-EIGEN_VERSION_OK=0
-fi
-rm -f conftest*
-
-if test $EIGEN_VERSION_OK = 0; then
-   as_fn_error $? "Version $CHK_EIGEN_WORLD.$CHK_EIGEN_MAJOR.$CHK_EIGEN_MINOR of Eigen expected (at least)" "$LINENO" 5
-else
-   { $as_echo "$as_me:${as_lineno-$LINENO}: result: yes" >&5
-$as_echo "yes" >&6; }
-fi
-
-
-
-$as_echo "#define WITH_EIGEN /**/" >>confdefs.h
-
-ac_ext=c
-ac_cpp='$CPP $CPPFLAGS'
-ac_compile='$CC -c $CFLAGS $CPPFLAGS conftest.$ac_ext >&5'
-ac_link='$CC -o conftest$ac_exeext $CFLAGS $CPPFLAGS $LDFLAGS conftest.$ac_ext $LIBS >&5'
-ac_compiler_gnu=$ac_cv_c_compiler_gnu
 
 
 
@@ -24719,5 +24518,4 @@ echo "  CXXFLAGS         = $CXXFLAGS"
 echo "  F77              = $F77"
 echo "  FFLAGS           = $FFLAGS"
 echo "  F77_LDFLAGS      = $F77_LDFLAGS"
-echo "  EIGEN CPPFLAGS   = $EIGEN_CPPFLAGS"
 echo ""
