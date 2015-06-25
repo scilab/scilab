@@ -8,8 +8,5 @@
 //
 // <-- CLI SHELL MODE -->
 
-refMsg = msprintf(_("%s: Undefined field in string matrix position : %d\n"), "getscicosvars", 2);
-assert_checkerror("getscicosvars([""x"" ""fake""])", refMsg);
-
-refMsg = msprintf(_("%s: Error with parameter ""%s"".\n"), "getscicosvars", "x");
+refMsg = msprintf(_("%s: scicosim is not running.\n"), "getscicosvars");
 assert_checkerror("getscicosvars([""x"" ""blocks""])", refMsg);

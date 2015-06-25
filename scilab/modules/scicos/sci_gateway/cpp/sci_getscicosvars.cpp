@@ -25,10 +25,16 @@
 extern "C"
 {
 #include "sciprint.h"
+#include "scicos-def.h"
 #include "charEncoding.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "import.h"
+
+    /*--------------------------------------------------------------------------*/
+    // Variable defined in sci_scicosim.cpp
+    extern COSIM_struct C2F(cosim);
+    /*--------------------------------------------------------------------------*/
 }
 
 #include "il_state.hxx"
@@ -90,6 +96,13 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
     if (_iRetCount > 1)
     {
         Scierror(78, _("%s: Wrong number of output argument(s): %d expected.\n"), funname.data(), 1);
+        return types::Function::Error;
+    }
+
+    int isrun = C2F(cosim).isrun;
+    if (!isrun)
+    {
+        Scierror(999, _("%s: scicosim is not running.\n"), funname.data());
         return types::Function::Error;
     }
 
@@ -349,7 +362,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
                  (strcmp(field, "pointi") == 0)      /* retrieve nelem */
                 )
         {
-            /* Retrieve dims and 'prt' of asked array with getscicosvarsfromimport() */
+            /* Retrieve dims and 'ptr' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
             ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
@@ -376,7 +389,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
                  (strcmp(field, "hmax") == 0)      /* retrieve hmax   */
                 )
         {
-            /* Retrieve dims and 'prt' of asked array with getscicosvarsfromimport() */
+            /* Retrieve dims and 'ptr' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
             ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
@@ -394,7 +407,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
         *************************************************/
         else if (strcmp(field, "blocks") == 0)
         {
-            /* Retrieve scicos_block 'prt' of asked array with getscicosvarsfromimport() */
+            /* Retrieve scicos_block 'ptr' of asked array with getscicosvarsfromimport() */
             void* ptr = nullptr;
             int nv, mv;
             ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
@@ -479,7 +492,7 @@ types::Function::ReturnValue sci_getscicosvars(types::typed_list &in, int _iRetC
         *******************************************/
         else if ((strcmp(field, "outtb_elem") == 0)) /* retrieve outtb_elem */
         {
-            /* Retrieve dims and prt of asked array with getscicosvarsfromimport */
+            /* Retrieve dims and 'ptr' of asked array with getscicosvarsfromimport */
             void* ptr = nullptr;
             int nv, mv;
             ok = getscicosvarsfromimport(field, &ptr, &nv, &mv) != 0;
