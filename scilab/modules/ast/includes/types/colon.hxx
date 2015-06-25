@@ -24,7 +24,7 @@
 
 #include "implicitlist.hxx"
 #include "double.hxx"
-#include "dollar.hxx"
+#include "polynom.hxx"
 
 namespace types
 {
@@ -36,7 +36,7 @@ public :
     {
         setStart(new Double(1));
         setStep(new Double(1));
-        setEnd(new Dollar());
+        setEnd(Polynom::Dollar());
         compute();
     }
 

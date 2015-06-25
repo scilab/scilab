@@ -501,7 +501,6 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabDouble :
             *_piType = sci_matrix;
             break;
-        case GenericType::ScilabDollar :
         case GenericType::ScilabPolynom :
             *_piType = sci_poly;
             break;

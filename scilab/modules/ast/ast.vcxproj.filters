@@ -340,9 +340,6 @@
     <ClInclude Include="includes\types\cpp_gateway_prototype.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>
-    <ClInclude Include="includes\types\dollar.hxx">
-      <Filter>Header Files\types</Filter>
-    </ClInclude>
     <ClInclude Include="includes\types\double.hxx">
       <Filter>Header Files\types</Filter>
     </ClInclude>

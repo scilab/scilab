@@ -18,7 +18,7 @@
 #include "types.hxx"
 #include "double.hxx"
 #include "bool.hxx"
-#include "dollar.hxx"
+#include "polynom.hxx"
 #include "colon.hxx"
 #include "string.hxx"
 #include "void.hxx"
@@ -459,8 +459,7 @@ public :
 
     void visitprivate(const DollarVar &/*e*/)
     {
-        Dollar* pVar = new Dollar();
-        setResult(pVar);
+        setResult(Polynom::Dollar());
     }
 
     void visitprivate(const TryCatchExp  &e)

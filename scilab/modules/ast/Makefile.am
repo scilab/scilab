@@ -344,7 +344,6 @@ includes/types/c_gateway_prototype.h \
 includes/types/colon.hxx \
 includes/types/container.hxx \
 includes/types/cpp_gateway_prototype.hxx \
-includes/types/dollar.hxx \
 includes/types/double.hxx \
 includes/types/file.hxx \
 includes/types/function.hxx \

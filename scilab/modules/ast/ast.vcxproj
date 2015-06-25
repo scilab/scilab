@@ -531,7 +531,6 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\types\container.hxx" />
     <ClInclude Include="includes\types\cpp_gateway_prototype.hxx" />
     <ClInclude Include="includes\types\c_gateway_prototype.h" />
-    <ClInclude Include="includes\types\dollar.hxx" />
     <ClInclude Include="includes\types\double.hxx" />
     <ClInclude Include="includes\types\file.hxx" />
     <ClInclude Include="includes\types\function.hxx" />
