@@ -68,6 +68,7 @@
         <pathelement location="${jhall.jar}"/>
         <pathelement location="${jgraphx.jar}"/>
         <pathelement location="${scirenderer.jar}"/>
+        <pathelement location="${lucene-core.jar}"/>
         <!-- Only useful for the documentation -->
         <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
         <pathelement location="${batik.jar}"/>

@@ -33,25 +33,26 @@ The option is "disableUnderMode" and can be:
     <path value="$SCILAB/thirdparty/looks-2.1.1.jar"/>
     <path value="$SCILAB/thirdparty/commons-logging-1.1.jar"/>
     <path value="$SCILAB/thirdparty/jhall.jar"/>
+    <path value="$SCILAB/thirdparty/lucene-core-5.2.1.jar"/>
 
     <!-- Load when needed -->
-    
+
     <path value="$SCILAB/thirdparty/freehep-util.jar" load="onUse">
       <load on="emf_graphic_export"/>
     </path>
-    
+
     <path value="$SCILAB/thirdparty/freehep-io.jar" load="onUse">
       <load on="emf_graphic_export"/>
     </path>
-    
+
     <path value="$SCILAB/thirdparty/freehep-graphicsio.jar" load="onUse">
       <load on="emf_graphic_export"/>
     </path>
-    
+
     <path value="$SCILAB/thirdparty/freehep-graphicsio-emf.jar" load="onUse">
       <load on="emf_graphic_export"/>
     </path>
-    
+
     <path value="$SCILAB/thirdparty/freehep-graphics2d.jar" load="onUse">
       <load on="emf_graphic_export"/>
     </path>

@@ -1,4 +1,4 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
 freehep-graphics2d.jar=@FREEHEP_GRAPHICS2D@
 
@@ -13,6 +13,8 @@ flexdock.jar=@FLEXDOCK@
 jogl2.jar=@JOGL2@
 
 jhall.jar=@JHALL@
+
+lucene-core.jar=@LUCENE@
 
 gluegen2.jar=@GLUEGEN2_RT@
 
@@ -135,5 +137,3 @@ library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 build_javasci=@JAVASCI_ENABLE@
 
 build_xcos=@XCOS_ENABLE@
-
-

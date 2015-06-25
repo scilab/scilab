@@ -18,6 +18,8 @@ jogl2.jar=${thirdparty.dir}/jogl2.jar
 
 jhall.jar=${thirdparty.dir}/jhall.jar
 
+lucene-core.jar=${thirdparty.dir}/lucene-core-5.2.1.jar
+
 gluegen2.jar=${thirdparty.dir}/gluegen2-rt.jar
 
 jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar
@@ -130,4 +132,3 @@ library.external_objects_java.name=org.scilab.modules.external_objects_java.jar
 build_javasci=true
 
 build_xcos=true
-

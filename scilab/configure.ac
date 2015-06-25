@@ -971,6 +971,11 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JHALL=$PACKAGE_JAR_FILE
                 AC_SUBST(JHALL)
 
+                # Lucene Apache
+                AC_JAVA_CHECK_PACKAGE([lucene-core],[org.apache.lucene.LucenePackage],[Lucene])
+                LUCENE=$PACKAGE_JAR_FILE
+                AC_SUBST(LUCENE)
+
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")
                 if test -z "$PACKAGE_JAR_FILE"; then
@@ -2243,6 +2248,7 @@ echo "  JGraph X ............ = $JGRAPHX"
 echo "  SciRenderer ......... = $SCIRENDERER"
 echo "  JLaTeXMath .......... = $JLATEXMATH"
 echo "  ECJ ................. = $ECJ"
+echo "  Lucene .............. = $LUCENE"
 fi
 
 echo ""
