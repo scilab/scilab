@@ -372,7 +372,7 @@ bool Cell::subMatrixToString(std::wostringstream& ostr, int* _piDims, int /*_iDi
 
 bool Cell::operator==(const InternalType& it)
 {
-    if (const_cast<InternalType &>(it).isCell())
+    if (const_cast<InternalType &>(it).isCell() == false)
     {
         return false;
     }
