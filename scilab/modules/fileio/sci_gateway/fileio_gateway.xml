@@ -83,4 +83,5 @@
     <PRIMITIVE gatewayId="34" primitiveId="48" primitiveName="splitURL" />
     <PRIMITIVE gatewayId="34" primitiveId="49" primitiveName="archiveList" />
     <PRIMITIVE gatewayId="34" primitiveId="50" primitiveName="archiveExtract" />
+    <PRIMITIVE gatewayId="34" primitiveId="51" primitiveName="archiveCompress" />
 </GATEWAY>

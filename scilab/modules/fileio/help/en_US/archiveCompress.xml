@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2015 - Kartik Gupta
+ * ...
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="archiveCompress" xml:lang="en">
+    <refnamediv>
+        <refname>archiveCompress</refname>
+        <refpurpose>Creates and archive of the formats tar, tar.gz, tar.bz2 or zip</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>x = archiveCompress(archive,[files],format)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>archive</term>
+                <listitem>
+                    <para>Absolute or relative path to an archive to be created</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>[files]</term>
+                <listitem>
+                    <para>A list of relative or absolute paths of the files to be included in the archive
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>Format</term>
+                <listitem>
+                    <para>The format argument.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <code>archiveCompress(archive,[files],format)</code> Creates the <varname>archive</varname>. The path can be absolute or relative. Returns 0 on success and -1 on failure.
+        </para>
+        <para>
+            <varname>[files]</varname> This list should contain the absolute or relative paths of all the files to be included in the archive.
+        </para>
+        <para>
+            <varname>format</varname> An empty string "" for .tar, "Z" for .zip, "y" or "j" for tar.bz2 and "z" for tar.gz .
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+x = archiveExtract("example.tar",["file1","file2"],"")
+y = archiveExtract("example.tar.gz",["~/file1","file2"],"z")
+z = archiveExtract("example.zip",["file1","~/file2"],"Z")
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.6.0</revnumber>
+                <revremark>
+                    Function <literal>archiveCompress(archive,[files],format)</literal> introduced
+                </revremark>
+            </revision>
+        </revhistory>
+    </refsection>
+</refentry>

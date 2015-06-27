@@ -12,25 +12,25 @@
 // ============================================================================
 
 x = archiveExtract("SCI/modules/fileio/tests/unit_tests/example.tar");
-if (~isfile("example1.txt") | ~isfile("example2.txt"))  then pause,end
-
+assert_checktrue(isfile("example1.txt"));
+assert_checktrue(isfile("example2.txt"));
 deletefile("example1.txt");
 deletefile("example2.txt");
 
 x = archiveExtract("SCI/modules/fileio/tests/unit_tests/example.tar",%f);
-if (~isfile("example1.txt") | ~isfile("example2.txt"))  then pause,end
-
+assert_checktrue(isfile("example1.txt"));
+assert_checktrue(isfile("example2.txt"));
 deletefile("example1.txt");
 deletefile("example2.txt");
 
 x = archiveExtract("SCI/modules/fileio/tests/unit_tests/example.tar",%t,"archiveExtract");
-if (~isfile("archiveExtract/example1.txt") | ~isfile("archiveExtract/example2.txt"))  then pause,end
-
+assert_checktrue(isfile("archiveExtract/example1.txt"));
+assert_checktrue(isfile("archiveExtract/example2.txt"));
 removedir("archiveExtract");
 
 ierr = execstr("archiveExtract(SCI)","errcatch");
-if ierr <> 999 then pause,end
+assert_checkequal(ierr,999);
 
 ierr = execstr("archiveExtract(SCI,1)","errcatch");
-if ierr <> 999 then pause,end
+assert_checkequal(ierr,999);
 
