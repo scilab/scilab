@@ -205,7 +205,7 @@ libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
 includes/analysis/checkers/Checkers.hxx \
-includes/analysis/Call.hxx \
+includes/analysis/call/Call.hxx \
 includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \

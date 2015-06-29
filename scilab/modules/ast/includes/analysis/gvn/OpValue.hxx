@@ -26,20 +26,20 @@ namespace analysis
  */
 struct OpValue
 {
-    enum Kind : unsigned char
+    enum Kind : uint8_t
     {
         UNARYMINUS = 0, UNARYNEG, PLUS, MINUS, TIMES, DOTTIMES, RDIV, DOTRDIV, POWER, DOTPOWER
     };
     const Kind kind;
-    unsigned long long lnum : 60;
-    unsigned long long rnum : 60;
+    uint64_t lnum : 60;
+    uint64_t rnum : 60;
 
     /**
      * \brief constructor for unary operation
      * \param _kind the operation kind
      * \param _lnum the value of the operand
      */
-    OpValue(Kind _kind, unsigned long long _lnum) : kind(_kind), lnum(_lnum) { }
+    OpValue(Kind _kind, uint64_t _lnum) : kind(_kind), lnum(_lnum) { }
 
     /**
      * \brief constructor for binary operation
@@ -47,11 +47,11 @@ struct OpValue
      * \param _lnum the value of the left operand
      * \param _rnum the value of the right operand
      */
-    OpValue(Kind _kind, unsigned long long _lnum, unsigned long long _rnum) : kind(_kind), lnum(_lnum), rnum(_rnum)
+    OpValue(Kind _kind, uint64_t _lnum, uint64_t _rnum) : kind(_kind), lnum(_lnum), rnum(_rnum)
     {
         if (isCommutative() && lnum > rnum)
         {
-            const unsigned long long x = lnum;
+            const uint64_t x = lnum;
             lnum = rnum;
             rnum = x;
         }

@@ -78,6 +78,9 @@
     <Filter Include="Header Files\analysis\positivity">
       <UniqueIdentifier>{8ed80f73-101f-4424-9cc3-dbd6293d0e05}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\analysis\call">
+      <UniqueIdentifier>{397aa440-f3cd-4be7-8f51-a9144b196a9d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_Import.def">
@@ -655,9 +658,6 @@
     <ClInclude Include="includes\analysis\SymInfo.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
-    <ClInclude Include="includes\analysis\Temporary.hxx">
-      <Filter>Header Files\analysis</Filter>
-    </ClInclude>
     <ClInclude Include="includes\analysis\TIType.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
@@ -1053,6 +1053,21 @@
     </ClInclude>
     <ClInclude Include="includes\analysis\positivity\PositivityVisitor.hxx">
       <Filter>Header Files\analysis\positivity</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\FBlockEmittedListener.hxx">
+      <Filter>Header Files\analysis</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\call\Call.hxx">
+      <Filter>Header Files\analysis\call</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\call\SizeCall.hxx">
+      <Filter>Header Files\analysis\call</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TemporaryManager.hxx">
+      <Filter>Header Files\analysis\data</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\analysis\data\TypeLocal.hxx">
+      <Filter>Header Files\analysis\data</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

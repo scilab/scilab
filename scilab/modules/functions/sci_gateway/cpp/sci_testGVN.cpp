@@ -79,7 +79,7 @@ Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, types::
     //gvn.print_info();
 
     Struct * pOut = new Struct(1, 1);
-    std::map<std::wstring, unsigned long long> maps = gvn.getSymMap();
+    std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
     for (const auto & p : maps)
     {
         pOut->addField(p.first);

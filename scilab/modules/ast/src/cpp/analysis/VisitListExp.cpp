@@ -20,11 +20,11 @@ namespace analysis
     {
         logger.log(L"ListExp", e.getLocation());
         e.getStart().accept(*this);
-        Result Rstart = getResult();
+        Result & Rstart = e.getStart().getDecorator().getResult();
         e.getEnd().accept(*this);
-        Result Rend = getResult();
+        Result & Rend = e.getEnd().getDecorator().getResult();
         e.getStep().accept(*this);
-        Result & Rstep = getResult();
+        Result & Rstep = e.getStep().getDecorator().getResult();
 
 	if (e.getParent()->isVarDec())
 	{
@@ -32,7 +32,8 @@ namespace analysis
 	    GVN::Value * endRange;
 	    if (Rstart.getConstant().getGVNValue(getGVN(), startRange) && Rend.getConstant().getGVNValue(getGVN(), endRange))
 	    {
-		const symbol::Symbol & sym = static_cast<ast::VarDec *>(e.getParent())->getSymbol();
+		ast::VarDec & vd = *static_cast<ast::VarDec *>(e.getParent());
+		const symbol::Symbol & sym = vd.getSymbol();
 		TIType typ(dm.getGVN(), TIType::DOUBLE);
 		Result & res = e.getDecorator().setResult(Result(typ, -1));
 		res.setRange(SymbolicRange(getGVN(), startRange, endRange));
@@ -63,7 +64,7 @@ namespace analysis
                 {
                     out = start;
                 }
-                e.getDecorator().setResult(Result(T, temp.add(T)));
+                e.getDecorator().setResult(Result(T, dm.getTmpId(T, false)));
                 break;
             }
             default:
@@ -136,7 +137,7 @@ namespace analysis
             }
         }
 
-        GVN::Value * ONEValue = getGVN().getValue(1.);
+        GVN::Value * ONEValue = getGVN().getValue(1);
         SymbolicDimension ONE(getGVN(), ONEValue);
         GVN::Value * v;
 

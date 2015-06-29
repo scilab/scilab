@@ -62,7 +62,7 @@ public:
      * \param _gvn the GVN associated with this dimension
      * \param dim the value of this dimension
      */
-    SymbolicDimension(GVN & _gvn, double dim) : gvn(&_gvn), value(dim == -1 ? _gvn.getValue() : _gvn.getValue(dim)) { }
+    SymbolicDimension(GVN & _gvn, int64_t dim) : gvn(&_gvn), value(dim == -1 ? _gvn.getValue() : _gvn.getValue(dim)) { }
 
     /**
      * \brief Get the associated GVN
@@ -104,7 +104,7 @@ public:
      * \brief Get the constant part of the associated polynomial
      * \return the constant
      */
-    inline double getConstant() const
+    inline int64_t getConstant() const
     {
         return value->poly->constant;
     }
@@ -149,7 +149,7 @@ public:
      * \brief Set the associated Value
      * \param _value a Value
      */
-    inline void setValue(const double _value)
+    inline void setValue(const int64_t _value)
     {
         value = gvn->getValue(_value);
     }
@@ -204,7 +204,7 @@ public:
     /**
      * \brief Overload of the + operator
      */
-    inline SymbolicDimension operator+(const double R) const
+    inline SymbolicDimension operator+(const int64_t R) const
     {
         return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::PLUS, *value, *gvn->getValue(R)));
     }
@@ -220,7 +220,7 @@ public:
     /**
      * \brief Overload of the - operator
      */
-    inline SymbolicDimension operator-(const double R) const
+    inline SymbolicDimension operator-(const int64_t R) const
     {
         return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::MINUS, *value, *gvn->getValue(R)));
     }
@@ -236,7 +236,7 @@ public:
     /**
      * \brief Overload of the * operator
      */
-    inline SymbolicDimension operator*(const double R) const
+    inline SymbolicDimension operator*(const int64_t R) const
     {
         return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::TIMES, *value, *gvn->getValue(R)));
     }
@@ -268,7 +268,7 @@ public:
     /**
      * \brief Overload of the / operator
      */
-    inline SymbolicDimension operator/(const double R) const
+    inline SymbolicDimension operator/(const int64_t R) const
     {
         return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::RDIV, *value, *gvn->getValue(R)));
     }
@@ -284,7 +284,7 @@ public:
     /**
      * \brief Overload of the ^ operator
      */
-    inline SymbolicDimension operator^(const double R) const
+    inline SymbolicDimension operator^(const int64_t R) const
     {
         return SymbolicDimension(gvn, gvn->getValue(OpValue::Kind::POWER, *value, *gvn->getValue(R)));
     }
@@ -300,7 +300,7 @@ public:
     /**
      * \brief Overload of the == operator
      */
-    inline bool operator==(const double R) const
+    inline bool operator==(const int64_t R) const
     {
         return value->poly->isConstant(R);
     }
@@ -316,7 +316,7 @@ public:
     /**
      * \brief Overload of the != operator
      */
-    inline bool operator!=(const double R) const
+    inline bool operator!=(const int64_t R) const
     {
         return !value->poly->isConstant(R);
     }
@@ -324,7 +324,7 @@ public:
     /**
      * \brief Overload of the + operator
      */
-    inline friend SymbolicDimension operator+(const double L, const SymbolicDimension & R)
+    inline friend SymbolicDimension operator+(const int64_t L, const SymbolicDimension & R)
     {
         return R + L;
     }
@@ -332,7 +332,7 @@ public:
     /**
      * \brief Overload of the - operator
      */
-    inline friend SymbolicDimension operator-(const double L, const SymbolicDimension & R)
+    inline friend SymbolicDimension operator-(const int64_t L, const SymbolicDimension & R)
     {
         return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::MINUS, *R.gvn->getValue(L), *R.value));
     }
@@ -340,7 +340,7 @@ public:
     /**
      * \brief Overload of the * operator
      */
-    inline friend SymbolicDimension operator*(const double L, const SymbolicDimension & R)
+    inline friend SymbolicDimension operator*(const int64_t L, const SymbolicDimension & R)
     {
         return R * L;
     }
@@ -348,7 +348,7 @@ public:
     /**
      * \brief Overload of the / operator
      */
-    inline friend SymbolicDimension operator/(const double L, const SymbolicDimension & R)
+    inline friend SymbolicDimension operator/(const int64_t L, const SymbolicDimension & R)
     {
         return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::RDIV, *R.gvn->getValue(L), *R.value));
     }
@@ -356,7 +356,7 @@ public:
     /**
      * \brief Overload of the ^ operator
      */
-    inline friend SymbolicDimension operator^(const double L, const SymbolicDimension & R)
+    inline friend SymbolicDimension operator^(const int64_t L, const SymbolicDimension & R)
     {
         return SymbolicDimension(R.gvn, R.gvn->getValue(OpValue::Kind::POWER, *R.gvn->getValue(L), *R.value));
     }
@@ -364,7 +364,7 @@ public:
     /**
      * \brief Overload of the == operator
      */
-    inline friend bool operator==(const double L, const SymbolicDimension & R)
+    inline friend bool operator==(const int64_t L, const SymbolicDimension & R)
     {
         return R == L;
     }
@@ -372,7 +372,7 @@ public:
     /**
      * \brief Overload of the != operator
      */
-    inline friend bool operator!=(const double L, const SymbolicDimension & R)
+    inline friend bool operator!=(const int64_t L, const SymbolicDimension & R)
     {
         return R != L;
     }

@@ -49,10 +49,10 @@ public:
      */
     struct Value
     {
-        unsigned long long value;
+        uint64_t value;
         const MultivariatePolynomial * poly;
 
-        Value(const unsigned long long _value) : value(_value), poly(nullptr) { }
+        Value(const uint64_t _value) : value(_value), poly(nullptr) { }
 
         friend inline std::wostream & operator<<(std::wostream & out, const Value & v)
         {
@@ -83,18 +83,18 @@ public:
 private:
 
     typedef std::unordered_map<OpValue, Value, OpValue::Hash, OpValue::Eq> MapValues;
-    typedef std::unordered_map<double, Value> MapDoubles;
+    typedef std::unordered_map<int64_t, Value> MapInt64;
     typedef std::multimap<symbol::Symbol, Value> MapSymbols;
     typedef std::unordered_map<MultivariatePolynomial, Value *, MultivariatePolynomial::Hash, MultivariatePolynomial::Eq> MapPolys;
     typedef std::list<Value> ListValues;
 
     MapValues mapv;
-    MapDoubles mapd;
+    MapInt64 mapi64;
     MapSymbols maps;
     MapPolys mapp;
     ListValues list;
 
-    unsigned long long current;
+    uint64_t current;
 
 public:
 
@@ -113,14 +113,14 @@ public:
     inline void clear()
     {
         mapv.clear();
-        mapd.clear();
+        mapi64.clear();
         maps.clear();
         mapp.clear();
         list.clear();
         current = 0;
     }
 
-    inline unsigned long long getCurrentValue() const
+    inline uint64_t getCurrentValue() const
 	{
 	    return current;
 	}
@@ -160,9 +160,9 @@ public:
         {
             Value & value = maps.emplace(sym, current++)->second;
             insertValue(mp, value);
-            if (mp.isConstant() && mapd.find(mp.constant) == mapd.end())
+            if (mp.isConstant() && mapi64.find(mp.constant) == mapi64.end())
             {
-                mapd.emplace(mp.constant, value);
+                mapi64.emplace(mp.constant, value);
             }
         }
     }
@@ -257,18 +257,24 @@ public:
      */
     inline Value * getValue(const double x)
     {
-        const auto i = mapd.find(x);
-        if (i == mapd.end())
-        {
-            Value & value = mapd.emplace(x, current++).first->second;
-            insertValue(x, value);
+	int64_t _x;
+	if (tools::asInteger(x, _x))
+	{
+	    const auto i = mapi64.find(_x);
+	    if (i == mapi64.end())
+	    {
+		Value & value = mapi64.emplace(_x, current++).first->second;
+		insertValue(_x, value);
+		
+		return &value;
+	    }
+	    else
+	    {
+		return &i->second;
+	    }
+	}
 
-            return &value;
-        }
-        else
-        {
-            return &i->second;
-        }
+	return nullptr;
     }
 
     /**
@@ -349,9 +355,9 @@ public:
      * \brief Get a map containing association between symbol names and value (as ULL)
      * \return a map
      */
-    inline std::map<std::wstring, unsigned long long> getSymMap() const
+    inline std::map<std::wstring, uint64_t> getSymMap() const
     {
-        std::map<std::wstring, unsigned long long> map;
+        std::map<std::wstring, uint64_t> map;
         for (const auto & p : maps)
         {
             map.emplace(p.first.getName(), p.second.value);
@@ -366,7 +372,7 @@ public:
     friend inline std::wostream & operator<<(std::wostream & out, const GVN & gvn)
     {
         out << L"Constants:" << std::endl;
-        for (const auto & p : gvn.mapd)
+        for (const auto & p : gvn.mapi64)
         {
             out << L"  " << p.first << L" -> " << p.second.value << std::endl;
         }
@@ -377,7 +383,7 @@ public:
             out << L"  " << p.first << L" -> " << p.second.value << std::endl;
         }
 
-        std::map<unsigned long long, std::wstring> map;
+        std::map<uint64_t, std::wstring> map;
         for (const auto & p : gvn.maps)
         {
             map.emplace(p.second.value, p.first.getName());
@@ -396,7 +402,7 @@ public:
         tools::printMapInfo(out, gvn.mapp, show_collisions);
 
         out << std::endl << L"Map constants stats:" << std::endl;
-        tools::printMapInfo(out, gvn.mapd, show_collisions);
+        tools::printMapInfo(out, gvn.mapi64, show_collisions);
 
         out << std::endl << L"Map values stats:" << std::endl;
         tools::printMapInfo(out, gvn.mapv, show_collisions);*/

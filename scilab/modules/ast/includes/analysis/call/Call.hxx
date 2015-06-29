@@ -24,7 +24,7 @@ namespace analysis
     class Call
     {
 
-    private:
+    protected:
 
         const std::wstring name;
         std::vector<TIType> args;

@@ -111,57 +111,75 @@ namespace analysis
 
 		    const double * real = pDbl->getReal();
 		    const int size = pDbl->getSize();
-		    double max = real[0];
-		    double min = max;
-
-                    if (!pDbl->isComplex())
-                    {
-                        for (int i = 0; i < size; ++i)
-                        {
-                            if (real[i] < min)
-                            {
-                                min = real[i];
-                            }
-                            else if (real[i] > max)
-                            {
-                                max = real[i];
-                            }
-                        }
-
-			out = SymbolicDimension(getGVN(), (double)size);
-			safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
-                        return true;
-                    }
-		    else
+		    int64_t max;
+		    if (tools::asInteger(real[0], max))
 		    {
-			const double * imag = pDbl->getImg();
-			int i;
-                        for (i = 0; i < size; ++i)
-                        {
-			    if (imag[i])
-			    {
-				break;
-			    }
-                            if (real[i] < min)
-                            {
-                                min = real[i];
-                            }
-                            else if (real[i] > max)
-                            {
-                                max = real[i];
-                            }
-                        }
-
-			if (i == size)
+			int64_t min = max;
+			if (!pDbl->isComplex())
 			{
-			    out = SymbolicDimension(getGVN(), (double)size);
+			    for (int i = 0; i < size; ++i)
+			    {
+				int64_t _real;
+				if (tools::asInteger(real[i], _real))
+				{
+				    if (_real < min)
+				    {
+					min = _real;
+				    }
+				    else if (_real > max)
+				    {
+					max = _real;
+				    }
+				}
+				else
+				{
+				    return false;
+				}
+			    }
+			    
+			    out = SymbolicDimension(getGVN(), size);
 			    safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
 			    return true;
 			}
 			else
 			{
-			    return false;
+			    const double * imag = pDbl->getImg();
+			    int i;
+			    for (i = 0; i < size; ++i)
+			    {
+				if (imag[i])
+				{
+				    break;
+				}
+				int64_t _real;
+				if (tools::asInteger(real[i], _real))
+				{
+				    if (_real < min)
+				    {
+					min = _real;
+				    }
+				    else if (_real > max)
+				    {
+					max = _real;
+				    }
+				}
+			    }
+
+			    if (i == size)
+			    {
+				out = SymbolicDimension(getGVN(), size);
+				safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
+				return true;
+			    }
+			    else
+			    {
+				return false;
+			    }
 			}
+		    }
+		    else
+		    {
+			return false;
 		    }
                 }
                 else if (pIT->isImplicitList())
@@ -202,8 +220,8 @@ namespace analysis
                                 min = (uint64_t)(start + (N - 1) * step);
                             }
 
-			    out = SymbolicDimension(getGVN(), (double)N);
-			    safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue((double)max));
+			    out = SymbolicDimension(getGVN(), N);
+			    safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue((int64_t)max));
 			    return true;
 			}
                         }
@@ -239,7 +257,7 @@ namespace analysis
                         }
                     }
 
-		    out = SymbolicDimension(getGVN(), (double)count);
+		    out = SymbolicDimension(getGVN(), count);
 		    safe = getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
 		    return true;
                 }
@@ -292,7 +310,9 @@ namespace analysis
 
 		return true;
 	    }
-	    
+
+	    // To use with find
+	    // e.g. a(find(a > 0)): find(a > 0) return a matrix where the max index is rc(a) so the extraction is safe
             if (_res.getType().ismatrix() && _res.getType().type != TIType::BOOLEAN)
             {
 		out = _res.getType().rows * _res.getType().cols;

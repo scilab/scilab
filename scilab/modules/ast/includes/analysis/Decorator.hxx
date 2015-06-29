@@ -13,7 +13,7 @@
 #ifndef __DECORATOR_HXX__
 #define __DECORATOR_HXX__
 
-#include "Call.hxx"
+#include "call/Call.hxx"
 #include "Result.hxx"
 
 #include <iostream>
@@ -30,8 +30,9 @@ struct Decorator
     bool hasRefCount;
     bool safeIndex;
     bool safeInsertion;
+    bool safe;
 
-    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safeIndex(false), safeInsertion(false) { }
+    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safeIndex(false), safeInsertion(false), safe(false) { }
 
     ~Decorator()
     {
@@ -98,7 +99,8 @@ struct Decorator
             << L", Del:" << (deco.deleteData ? L"T" : L"F")
             << L", RefC:" << (deco.hasRefCount ? L"T" : L"F")
             << L", SafeIndex:" << (deco.safeIndex ? L"T" : L"F")
-            << L", SafeInsertion:" << (deco.safeInsertion ? L"T" : L"F");
+            << L", SafeInsertion:" << (deco.safeInsertion ? L"T" : L"F")
+	    << L", Safe:" << (deco.safe ? L"T" : L"F");
 
         return out;
     }

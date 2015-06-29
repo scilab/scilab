@@ -132,7 +132,7 @@ namespace analysis
 		val->accept(*this);
 		Result & res = getResult();
 		TIType & ty = res.getType();
-		if (ty.ismatrix() && ty.isscalar() || (getCM().check(ConstraintManager::STRICT_POSITIVE, ty.rows.getValue()) || getCM().check(ConstraintManager::STRICT_POSITIVE, ty.cols.getValue())))
+		if ((ty.ismatrix() && ty.isscalar()) || (getCM().check(ConstraintManager::STRICT_POSITIVE, ty.rows.getValue()) || getCM().check(ConstraintManager::STRICT_POSITIVE, ty.cols.getValue())))
 		{
 		    if (isEq)
 		    {
@@ -147,7 +147,7 @@ namespace analysis
 		}
 	    }
 	}
-	
+
         if (shortcutExp)
         {
             e.replace(shortcutExp);

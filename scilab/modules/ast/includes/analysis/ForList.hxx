@@ -109,44 +109,6 @@ public:
         return std::is_integral<U>::value ? tools::trunc(max) : max;
     }
 
-    inline TIType getType() const
-    {
-        /*
-            if (isempty())
-            {
-                return TIType(TIType::EMPTY);
-            }
-
-            if (is_int())
-            {
-                if (is_uint())
-                {
-                    if (std::is_same<T, int32_t>::value)
-                    {
-                        return TIType(TIType::UINT32);
-                    }
-                    else
-                    {
-                        return TIType(TIType::UINT64);
-                    }
-                }
-                else
-                {
-                    if (std::is_same<T, int64_t>::value)
-                    {
-                        return TIType(TIType::INT32);
-                    }
-                    else
-                    {
-                        return TIType(TIType::INT64);
-                    }
-                }
-            }
-        */
-
-        return TIType(TIType::DOUBLE);
-    }
-
     friend std::wostream & operator<<(std::wostream & out, const ForList & fl)
     {
         out << L"ForList: { m: " << fl.min << L", s: " << fl.step << L", M: " << fl.max << L", int: " << (fl._int ? L"T" : L"F") << L", uint: " << (fl._unsigned ? L"T" : L"F");

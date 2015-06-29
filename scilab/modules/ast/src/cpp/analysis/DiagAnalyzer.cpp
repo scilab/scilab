@@ -61,7 +61,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     bool isOneDim = false;
     GVN::Value * dim;
     TIType & type = R1.getType();
-    GVN::Value * ONE = visitor.getGVN().getValue(1.);
+    GVN::Value * ONE = visitor.getGVN().getValue(1);
     isOneDim = visitor.getCM().check(ConstraintManager::EQUAL, type.rows.getValue(), ONE);
     if (isOneDim)
     {
@@ -80,7 +80,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
     {
         SymbolicDimension sdim = index == 0 ? SymbolicDimension(&visitor.getGVN(), dim) : SymbolicDimension(&visitor.getGVN(), visitor.getGVN().getValue(OpValue::Kind::PLUS, *dim, *visitor.getGVN().getValue(std::abs(index))));
         TIType resT(visitor.getGVN(), R1.getType().type, sdim, sdim);
-        e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+        e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
     }
     else
     {
@@ -89,7 +89,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         {
             SymbolicDimension dimONE(visitor.getGVN(), 1.);
             TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
-            e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+            e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
         }
         else
         {
@@ -100,7 +100,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                 {
                     SymbolicDimension dimONE(visitor.getGVN(), 1);
                     TIType resT(visitor.getGVN(), R1.getType().type, type.cols, dimONE);
-                    e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+                    e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
                 }
                 else
                 {
@@ -116,7 +116,7 @@ bool DiagAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
                     {
                         SymbolicDimension dimONE(visitor.getGVN(), 1);
                         TIType resT(visitor.getGVN(), R1.getType().type, type.rows, dimONE);
-                        e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+                        e.getDecorator().setResult(Result(resT, visitor.getDM().getTmpId(resT, false)));
                     }
                     else
                     {

@@ -29,7 +29,7 @@ namespace analysis
  */
 struct VarExp
 {
-    unsigned long long var;
+    uint64_t var;
 
     // this field is mutable since it is not used in the hash computation
     // and could me modified.
@@ -40,14 +40,14 @@ struct VarExp
      * \param _var the var number
      * \param _exp the exponent
      */
-    VarExp(unsigned long long _var, unsigned int _exp = 1) : var(_var), exp(_exp) { }
+    VarExp(uint64_t _var, unsigned int _exp = 1) : var(_var), exp(_exp) { }
 
     /**
      * \brief Print this VarExp
      * \param vars a map containing association between var number and wstring
      * \return a wstring containing the representation of this VarExp
      */
-    inline const std::wstring print(const std::map<unsigned long long, std::wstring> & vars) const
+    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
     {
         std::wostringstream wos;
         const auto i = vars.find(var);

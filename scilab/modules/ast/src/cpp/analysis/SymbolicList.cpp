@@ -139,9 +139,10 @@ namespace analysis
 	GVN::Value * gvnStart, * gvnStep, * gvnEnd;
 	if (Rstart.getConstant().getDblValue(start))
 	{
-	    if (tools::isAnInt(start))
+	    int64_t _start;
+	    if (tools::asInteger(start, _start))
 	    {
-		gvnStart = visitor.getGVN().getValue(start);
+		gvnStart = visitor.getGVN().getValue(_start);
 	    }
 	    else
 	    {
@@ -159,9 +160,10 @@ namespace analysis
 
 	if (Rstep.getConstant().getDblValue(step))
 	{
-	    if (tools::isAnInt(step))
+	    int64_t _step;
+	    if (tools::asInteger(step, _step))
 	    {
-		gvnStep = visitor.getGVN().getValue(step);
+		gvnStep = visitor.getGVN().getValue(_step);
 	    }
 	    else
 	    {
@@ -179,9 +181,10 @@ namespace analysis
 
 	if (Rend.getConstant().getDblValue(end))
 	{
-	    if (tools::isAnInt(end))
+	    int64_t _end;
+	    if (tools::asInteger(end, _end))
 	    {
-		gvnEnd = visitor.getGVN().getValue(end);
+		gvnEnd = visitor.getGVN().getValue(_end);
 	    }
 	    else
 	    {

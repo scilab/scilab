@@ -19,9 +19,6 @@ assert_checkequal(out.a, out.b);
 out = testGVN("a=n*3;b=3*n");
 assert_checkequal(out.a, out.b);
 
-out = testGVN("a=0.5*x;b=x/2");
-assert_checkequal(out.a, out.b);
-
 out = testGVN("a=2*n+1;b=1+n;c=b+n");
 assert_checkequal(out.a, out.c);
 

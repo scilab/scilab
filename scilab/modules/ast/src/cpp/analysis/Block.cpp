@@ -184,11 +184,38 @@ namespace analysis
         return info;
     }
 
-    Info & Block::addDefine(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp)
+    void Block::addLocal(const symbol::Symbol & sym, const TIType & type, const bool isAnInt)
+    {
+	if (parent)
+	{
+	    parent->addLocal(sym, type, isAnInt);
+	}
+    }
+
+    int Block::getTmpId(const TIType & type, const bool isAnInt)
+    {
+	if (parent)
+	{
+	    return parent->getTmpId(type, isAnInt);
+	}
+
+	return -1;
+    }
+    
+    void Block::releaseTmp(const int id)
+    {
+	if (parent)
+	{
+	    parent->releaseTmp(id);
+	}
+    }
+
+    Info & Block::addDefine(const symbol::Symbol & sym, const TIType & Rtype, const bool isIntIterator, ast::Exp * exp)
     {
         /* DEFINE:
            - if associated data is shared then we need to clone it
         */
+	addLocal(sym, Rtype, isIntIterator);
         Info & info = putAndClear(sym, exp);
         info.cleared = false;
         info.data = new Data(true, sym);
@@ -201,6 +228,7 @@ namespace analysis
 
     Info & Block::addShare(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp)
     {
+	addLocal(Lsym, Rtype, /* isIntIterator */ false);
         Info & Linfo = putAndClear(Lsym, exp);
         Info & Rinfo = putSymsInScope(Rsym);
         Linfo.cleared = false;
@@ -221,7 +249,7 @@ namespace analysis
     Info & Block::addMacroDef(ast::FunctionDec * dec)
     {
         TIType ty(getGVN(), TIType::MACRO);
-	Info & i = addDefine(dec->getSymbol(), ty, dec);
+	Info & i = addDefine(dec->getSymbol(), ty, false, dec);
 	i.exp = dec;
 
 	return i;
@@ -266,8 +294,7 @@ namespace analysis
         {
             if (pIT)
             {
-                ExistingMacroDef macrodef(*static_cast<types::Macro *>(pIT));
-                visitor.getPMC().getOutTypes(visitor, &macrodef, in, out);
+                visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out);
             }
             else
             {
@@ -279,8 +306,7 @@ namespace analysis
                 else
                 {
                     DataManager::getSymInScilabContext(getGVN(), sym, pIT);
-                    ExistingMacroDef macrodef(*static_cast<types::Macro *>(pIT));
-                    visitor.getPMC().getOutTypes(visitor, &macrodef, in, out);
+                    visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::Macro *>(pIT)), in, out);
                 }
             }
             break;
@@ -288,8 +314,7 @@ namespace analysis
         case TIType::MACROFILE:
         {
 	    DataManager::getSymInScilabContext(getGVN(), sym, pIT);
-	    ExistingMacroDef macrodef(*static_cast<types::MacroFile *>(pIT)->getMacro());
-	    visitor.getPMC().getOutTypes(visitor, &macrodef, in, out);
+	    visitor.getPMC().getOutTypes(visitor, dm->getMacroDef(static_cast<types::MacroFile *>(pIT)->getMacro()), in, out);
             break;
         }
         default:

@@ -30,16 +30,19 @@ namespace analysis
 class MacroDef
 {
 
+protected:
+    
     const unsigned int lhs;
     const unsigned int rhs;
+    ast::Exp * const original;
 
     std::set<symbol::Symbol> globals;
 
 public:
 
-    MacroDef(const unsigned int _lhs, const unsigned int _rhs) : lhs(_lhs), rhs(_rhs) { }
+    MacroDef(const unsigned int _lhs, const unsigned int _rhs, ast::Exp * _original) : lhs(_lhs), rhs(_rhs), original(_original) { }
     virtual ~MacroDef() { }
-    
+
     virtual ast::SeqExp & getBody() = 0;
     virtual const std::wstring & getName() = 0;
     virtual std::vector<symbol::Symbol> getIn() = 0;
@@ -50,14 +53,22 @@ public:
     {
         return lhs;
     }
+
     inline unsigned int getRhs() const
     {
         return rhs;
     }
+
+    inline ast::Exp * getOriginal() const
+	{
+	    return original;
+	}
+    
     inline std::set<symbol::Symbol> & getGlobals()
     {
         return globals;
     }
+
     inline const std::set<symbol::Symbol> & getGlobals() const
     {
         return globals;
@@ -102,7 +113,7 @@ public:
 	{
 	    delete se;
 	}
-
+    
     ast::SeqExp & getBody();
     const std::wstring & getName();
     std::vector<symbol::Symbol> getIn();
@@ -112,7 +123,7 @@ public:
 
 class DeclaredMacroDef : public MacroDef
 {
-    ast::FunctionDec * const dec;
+    ast::FunctionDec * dec;
 
 public:
 

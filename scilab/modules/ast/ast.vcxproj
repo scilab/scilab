@@ -279,6 +279,8 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\analyzers\TypeAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\analyzers\TypeofAnalyzer.hxx" />
     <ClInclude Include="includes\analysis\Call.hxx" />
+    <ClInclude Include="includes\analysis\call\Call.hxx" />
+    <ClInclude Include="includes\analysis\call\SizeCall.hxx" />
     <ClInclude Include="includes\analysis\checkers\Checkers.hxx" />
     <ClInclude Include="includes\analysis\checkers\check_abs.hxx" />
     <ClInclude Include="includes\analysis\checkers\check_acos.hxx" />
@@ -376,10 +378,13 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\data\MacroInfo.hxx" />
     <ClInclude Include="includes\analysis\data\MacroSignature.hxx" />
     <ClInclude Include="includes\analysis\data\PolymorphicMacroCache.hxx" />
+    <ClInclude Include="includes\analysis\data\TemporaryManager.hxx" />
     <ClInclude Include="includes\analysis\data\TITypeSignatureTuple.hxx" />
     <ClInclude Include="includes\analysis\data\TITypeTuple.hxx" />
+    <ClInclude Include="includes\analysis\data\TypeLocal.hxx" />
     <ClInclude Include="includes\analysis\data\XBlock.hxx" />
     <ClInclude Include="includes\analysis\Decorator.hxx" />
+    <ClInclude Include="includes\analysis\FBlockEmittedListener.hxx" />
     <ClInclude Include="includes\analysis\ForList.hxx" />
     <ClInclude Include="includes\analysis\gvn\ConstraintManager.hxx" />
     <ClInclude Include="includes\analysis\gvn\GVN.hxx" />
@@ -397,7 +402,6 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClInclude Include="includes\analysis\positivity\PositivityVisitor.hxx" />
     <ClInclude Include="includes\analysis\Result.hxx" />
     <ClInclude Include="includes\analysis\SymInfo.hxx" />
-    <ClInclude Include="includes\analysis\Temporary.hxx" />
     <ClInclude Include="includes\analysis\TIType.hxx" />
     <ClInclude Include="includes\analysis\tools.hxx" />
     <ClInclude Include="includes\ast\debugvisitor.hxx" />

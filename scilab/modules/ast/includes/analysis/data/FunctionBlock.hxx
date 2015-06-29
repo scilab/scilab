@@ -21,6 +21,8 @@
 #include "allexp.hxx"
 #include "Block.hxx"
 #include "MacroDef.hxx"
+#include "TypeLocal.hxx"
+#include "TemporaryManager.hxx"
 #include "TITypeSignatureTuple.hxx"
 #include "gvn/ConstraintManager.hxx"
 
@@ -32,36 +34,20 @@ struct MacroOut;
 class FunctionBlock : public Block
 {
 
-    struct __TypeLocal
-    {
-	TIType::Type type;
-	int rows;
-	int cols;
-
-	__TypeLocal(const TIType::Type _type, const int _rows, const int _cols) : type(_type), rows(_rows), cols(_cols) { }
-
-	inline bool operator<(const __TypeLocal & R) const
-	    {
-		return type < R.type || (type == R.type && (rows < R.rows || (rows == R.rows && cols < R.cols)));
-	    }
-
-	inline bool isScalar() const
-	    {
-		return rows == 1 && cols == 1;
-	    }
-    };
-    
     std::wstring name;
     std::vector<symbol::Symbol> in;
     std::vector<symbol::Symbol> out;
     std::set<symbol::Symbol> globals;
-    std::map<symbol::Symbol, std::set<__TypeLocal>> locals;
+    std::vector<std::pair<symbol::Symbol, TypeLocal>> types_in;
+    std::vector<std::pair<symbol::Symbol, TypeLocal>> types_out;
+    std::map<symbol::Symbol, std::set<TypeLocal>> locals;
     std::vector<GVN::Value *> inValues;
     unsigned int lhs;
     unsigned int rhs;
     int maxVarId;
     GVN fgvn;
     ConstraintManager constraintManager;
+    TemporaryManager tempManager;
 
 public:
 
@@ -93,31 +79,30 @@ public:
         return rhs;
     }
 
+    inline const std::vector<std::pair<symbol::Symbol, TypeLocal>> & getTypesIn() const
+	{
+	    return types_in;
+	}
+
+    inline const std::vector<std::pair<symbol::Symbol, TypeLocal>> & getTypesOut() const
+	{
+	    return types_out;
+	}
+
+    inline const std::map<symbol::Symbol, std::set<TypeLocal>> & getTypesLocals() const
+	{
+	    return locals;
+	}
+
     inline int getMaxVarId() const
     {
         return maxVarId;
     }
 
-    void finalize() override;
-    void addGlobal(const symbol::Symbol & sym) override;
-    Info & addDefine(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp) override;
-    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global) override;
-
-    bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
-    void setGlobals(const std::set<symbol::Symbol> & v);
-    //TITypeSignatureTuple getGlobals(std::vector<symbol::Symbol> & v);
-    MacroOut getOuts();
-
     inline void setLhsRhs(const unsigned int _lhs, const unsigned int _rhs)
     {
         lhs = _lhs;
         rhs = _rhs;
-    }
-
-    inline void setInOut(MacroDef * macrodef)
-    {
-        in = macrodef->getIn();
-        out = macrodef->getOut();
     }
 
     inline const MPolyConstraintSet & getConstraints() const
@@ -129,6 +114,41 @@ public:
     {
         return constraintManager.getGlobalConstants();
     }
+
+    inline const std::map<TypeLocal, std::stack<int>> & getTemp() const
+	{
+	    return tempManager.getTemp();
+	}
+
+    inline const std::map<TypeLocal, int> getTempCount(int & total) const
+	{
+	    int _total = 0;
+	    std::map<TypeLocal, int> map;
+	    for (const auto & p : getTemp())
+	    {
+		_total += p.second.size();
+		map.emplace(p.first, p.second.size());
+	    }
+
+	    total = _total;
+	    
+	    return map;
+	}
+
+    void finalize() override;
+    void addGlobal(const symbol::Symbol & sym) override;
+    Block * getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global) override;
+    void addLocal(const symbol::Symbol & sym, const TIType & type, const bool isAnInt) override;
+    int getTmpId(const TIType & type, const bool isAnInt) override;
+    void releaseTmp(const int id) override;
+
+    bool addIn(const TITypeSignatureTuple & tuple, const std::vector<GVN::Value *> & values);
+    void setGlobals(const std::set<symbol::Symbol> & v);
+    //TITypeSignatureTuple getGlobals(std::vector<symbol::Symbol> & v);
+    MacroOut getOuts();
+    void setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in);
+
+    friend std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock);
 };
 
 } // namespace analysis

@@ -104,9 +104,9 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
         case LHS:
         case RHS:
         {
-            const unsigned int val = kind == LHS ? fblock->getLHS() : fblock->getRHS();
+            const int64_t val = kind == LHS ? fblock->getLHS() : fblock->getRHS();
             Result & res = e.getDecorator().setResult(type);
-            res.getConstant() = visitor.getGVN().getValue((double)val);
+            res.getConstant() = visitor.getGVN().getValue(val);
             e.getDecorator().setCall(L"argn");
             visitor.setResult(res);
         }
@@ -116,12 +116,12 @@ bool ArgnAnalyzer::analyze(AnalysisVisitor & visitor, const unsigned int lhs, as
             mlhs.clear();
             mlhs.reserve(2);
 
-            const unsigned int flhs = fblock->getLHS();
-            const unsigned int frhs = fblock->getRHS();
+            const int64_t flhs = fblock->getLHS();
+            const int64_t frhs = fblock->getRHS();
             mlhs.emplace_back(type);
-            mlhs.back().getConstant() = visitor.getGVN().getValue((double)flhs);
+            mlhs.back().getConstant() = visitor.getGVN().getValue(flhs);
             mlhs.emplace_back(type);
-            mlhs.back().getConstant() = visitor.getGVN().getValue((double)frhs);
+            mlhs.back().getConstant() = visitor.getGVN().getValue(frhs);
 
             e.getDecorator().setCall(L"argn");
         }

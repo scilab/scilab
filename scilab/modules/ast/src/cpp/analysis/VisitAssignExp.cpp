@@ -27,7 +27,7 @@ namespace analysis
             {
                 // We have A = B (so the data associated to b is shared with a)
                 const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-                dm.share(sym, symR, getSymInfo(symR).getType(), &e);
+                getDM().share(sym, symR, getSymInfo(symR).getType(), &e);
             }
             else
             {
@@ -52,10 +52,12 @@ namespace analysis
                 }
 
                 Result & RR = getResult();
-                // Don't remove tmp... temp.remove(RR);
+                // Don't remove tmp... temp.remove(RR); WHY THIS COMMENT ?????
+
                 var.getDecorator().res = RR;
-                Info & info = dm.define(sym, RR.getType(), &e);
+                Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
                 info.getConstant() = RR.getConstant();
+		getDM().releaseTmp(RR.getTempId());
             }
         }
         else if (e.getLeftExp().isCallExp()) // A(12) = ...
@@ -67,11 +69,12 @@ namespace analysis
                 e.getRightExp().accept(*this);
                 Result RR = getResult();
                 ce.getDecorator().res = RR;
-                Info & info = dm.write(symL, RR.getType(), &e);
+                Info & info = getDM().write(symL, RR.getType(), &e);
                 if (analyzeIndices(info.type, ce))
 		{
 		    e.getDecorator().safeInsertion = (RR.getType() == getResult().getType());
 		}
+		getDM().releaseTmp(RR.getTempId());
             }
         }
         else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...
@@ -87,10 +90,11 @@ namespace analysis
                     // TODO: handle fields...
                     if (exp->isSimpleVar() && j != multipleLHS.end())
                     {
-                        const ast::SimpleVar & var = *static_cast<ast::SimpleVar *>(exp);
+                        ast::SimpleVar & var = *static_cast<ast::SimpleVar *>(exp);
                         const symbol::Symbol & sym = var.getSymbol();
-                        Info & info = dm.define(sym, j->getType(), exp);
+                        Info & info = getDM().define(sym, j->getType(), j->isAnInt(), exp);
                         info.setConstant(j->getConstant());
+			var.getDecorator().res = *j;
                         ++j;
                     }
                 }

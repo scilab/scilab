@@ -17,6 +17,7 @@
 #include <stack>
 #include <set>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 //#define DEBUG_DATAMANAGER
@@ -42,12 +43,13 @@ namespace analysis
     {
         friend class Block;
 
-        Block * root;
+	Block * root;
         Block * current;
         std::vector<Data *> data;
         unsigned int id;
         std::set<symbol::Symbol> globals;
         std::stack<FunctionBlock *> callStack;
+	std::unordered_map<types::Macro *, MacroDef *> macroDefCache;
         GVN gvn;
 
     public:
@@ -59,14 +61,15 @@ namespace analysis
 
         ~DataManager()
             {
-                //std::cerr << "delete DataManager: begin" << std::endl;
                 for (const auto d : data)
                 {
-                    //std::cout << "ptr delete=" << d << std::endl;
                     delete d;
                 }
                 delete root;
-                //std::cerr << "delete DataManager: end" << std::endl;
+		for (const auto & p : macroDefCache)
+		{
+		    delete p.second;
+		}
             }
 
         inline GVN & getGVN()
@@ -79,6 +82,16 @@ namespace analysis
                 return gvn;
             }
 
+	inline MacroDef * getMacroDef(types::Macro * macro)
+	    {
+		auto i = macroDefCache.find(macro);
+		if (i == macroDefCache.end())
+		{
+		    i = macroDefCache.emplace(macro, new ExistingMacroDef(*macro)).first;
+		}
+		return i->second;
+	    }
+	
         inline void addGlobal(const symbol::Symbol & sym)
             {
                 globals.emplace(sym);
@@ -104,6 +117,16 @@ namespace analysis
                 }
             }
 
+	inline int getTmpId(const TIType & type, const bool isAnInt)
+	    {
+		return current->getTmpId(type, isAnInt);
+	    }
+	
+	inline void releaseTmp(const int id)
+	    {
+		current->releaseTmp(id);
+	    }
+	
         inline Info & read(const symbol::Symbol & sym, ast::Exp * exp)
             {
                 return current->addRead(sym, exp);
@@ -114,9 +137,9 @@ namespace analysis
                 return current->addWrite(sym, Rtype, exp);
             }
 
-        inline Info & define(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp)
+        inline Info & define(const symbol::Symbol & sym, const TIType & Rtype, const bool isAnInt, ast::Exp * exp)
             {
-                return current->addDefine(sym, Rtype, exp);
+                return current->addDefine(sym, Rtype, isAnInt, exp);
             }
 
         inline Info & share(const symbol::Symbol & Lsym, const symbol::Symbol & Rsym, const TIType & Rtype, ast::Exp * exp)

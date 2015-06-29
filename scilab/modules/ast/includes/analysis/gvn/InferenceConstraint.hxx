@@ -132,7 +132,7 @@ struct MPolyConstraint : public InferenceConstraint
 
     MPolyConstraint(const MultivariatePolynomial & _poly, const Kind _kind) : poly(_poly), kind(_kind)
     {
-        double common;
+        int64_t common;
         if (poly.getCommonCoeff(common) && common != 1 && common != 0)
         {
             if (kind == EQ0)

@@ -17,11 +17,14 @@
 namespace analysis
 {
 
+    
+
     void AnalysisVisitor::visit(ast::OpExp & e)
     {
         logger.log(L"OpExp", e.getLocation());
         TIType resT(getGVN());
         int tempId = -1;
+	bool safe;
 
         e.getLeft().accept(*this);
         Result LR = getResult();
@@ -38,43 +41,12 @@ namespace analysis
                 {
                 case ast::OpExp::plus :
                 {
-                    resT = check_____add____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-
-                        if (ret)
-                        {
-                            resT = check_____add____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
-                    if (resT.isscalar())
-                    {
-                    }
+		    resT = checkEWBinOp<check_____add____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::minus:
                 {
-                    resT = check_____sub____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____sub____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
-                    if (resT.isscalar())
-                    {
-                    }
+		    resT = checkEWBinOp<check_____sub____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::times:
@@ -86,12 +58,22 @@ namespace analysis
                         if (ret)
                         {
                             resT = check_____times____(getGVN(), LT, RT);
+			    safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
+		    else
+		    {
+			safe = true;
+		    }
+
+		    tempId = dm.getTmpId(resT, false);
+		    dm.releaseTmp(LR.getTempId());
+		    dm.releaseTmp(RR.getTempId());
+		    
                     break;
                 }
                 case ast::OpExp::rdivide:
@@ -103,12 +85,21 @@ namespace analysis
                         if (ret)
                         {
                             resT = check_____rdivide____(getGVN(), LT, RT);
+			    safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
+		    else
+		    {
+			safe = true;
+		    }
+		    
+		    tempId = dm.getTmpId(resT, false);
+		    dm.releaseTmp(LR.getTempId());
+		    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::ldivide:
@@ -120,12 +111,21 @@ namespace analysis
                         if (ret)
                         {
                             resT = check_____ldivide____(getGVN(), LT, RT);
+			    safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
+		    else
+		    {
+			safe = true;
+		    }
+		    
+		    tempId = dm.getTmpId(resT, false);
+		    dm.releaseTmp(LR.getTempId());
+		    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::power:
@@ -137,174 +137,108 @@ namespace analysis
                         if (ret)
                         {
                             resT = check_____power____(getGVN(), LT, RT);
+			    safe = true;
                         }
                         else
                         {
                             resT = resT.asUnknownMatrix();
                         }
                     }
+		    else
+		    {
+			safe = true;
+		    }
+		    
+		    tempId = dm.getTmpId(resT, false);
+		    dm.releaseTmp(LR.getTempId());
+		    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::dottimes :
                 {
-                    resT = check_____dottimes____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____dottimes____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
-                    if (resT.isscalar())
-                    {
-                    }
+		    resT = checkEWBinOp<check_____dottimes____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::dotrdivide:
                 {
-                    resT = check_____dotrdiv____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____dotrdiv____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
-                    break;
+		    resT = checkEWBinOp<check_____dotrdiv____>(LT, RT, LR, RR, safe, tempId);
+		    break;
                 }
                 case ast::OpExp::dotpower:
                 {
-                    resT = check_____dotpower____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____dotpower____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
+		    resT = checkEWBinOp<check_____dotpower____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::unaryMinus :
                 {
                     resT = check_____unaryminus____(getGVN(), RT);
+		    if (!resT.hasInvalidDims())
+		    {
+			safe = true;
+		    }
+		    tempId = RR.getTempId();
                     break;
                 }
                 case ast::OpExp::krontimes :
                 {
                     resT = check_____krontimes____(getGVN(), LT, RT);
+		    if (!resT.hasInvalidDims())
+		    {
+			safe = true;
+		    }
+		    tempId = dm.getTmpId(resT, false);
+		    dm.releaseTmp(LR.getTempId());
+		    dm.releaseTmp(RR.getTempId());
                     break;
                 }
                 case ast::OpExp::eq:
                 {
-                    resT = check_____eq____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____eq____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::ne:
                 {
-                    resT = check_____neq____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____neq____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::lt:
                 {
-                    resT = check_____lt____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____lt____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::le:
                 {
-                    resT = check_____le____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____le____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::gt:
                 {
-                    resT = check_____gt____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____gt____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::ge:
                 {
-                    resT = check_____ge____(getGVN(), LT, RT);
+		    resT = checkEWBinOp<check_____ge____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalAnd:
                 {
-                    resT = check_____and____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____and____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
+		    resT = checkEWBinOp<check_____and____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalOr:
                 {
-                    resT = check_____or____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____or____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
+		    resT = checkEWBinOp<check_____or____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalShortCutAnd:
                 {
-                    resT = check_____andand____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____andand____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
+		    resT = checkEWBinOp<check_____andand____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 case ast::OpExp::logicalShortCutOr:
                 {
-                    resT = check_____oror____(getGVN(), LT, RT);
-                    if (resT.hasInvalidDims())
-                    {
-                        const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
-                        if (ret)
-                        {
-                            resT = check_____oror____(getGVN(), LT, RT);
-                        }
-                        else
-                        {
-                            resT = resT.asUnknownMatrix();
-                        }
-                    }
+		    resT = checkEWBinOp<check_____oror____>(LT, RT, LR, RR, safe, tempId);
                     break;
                 }
                 }
@@ -316,6 +250,7 @@ namespace analysis
             }
         }
 
+	e.getDecorator().safe = safe;
         e.getDecorator().res = Result(resT, tempId);
         setResult(e.getDecorator().res);
 
@@ -329,14 +264,16 @@ namespace analysis
         e.getExp().accept(*this);
         Result & LR = getResult();
         TIType & LT = LR.getType();
+	const int tempId = LR.getTempId();
         if (LT.isknown())
         {
             TIType resT = check_____not____(getGVN(), LT);
-            e.getDecorator().res = Result(resT, -1);
+            e.getDecorator().res = Result(resT, tempId);
+	    e.getDecorator().safe = true;
         }
         else
         {
-            e.getDecorator().res = Result(TIType(getGVN()), -1);
+            e.getDecorator().res = Result(TIType(getGVN()), tempId);
         }
         setResult(e.getDecorator().res);
     }
@@ -347,7 +284,11 @@ namespace analysis
         e.getExp().accept(*this);
         Result & res = getResult();
         const TIType & type = res.getType();
-        e.getDecorator().res = Result(TIType(dm.getGVN(), type.type, type.cols, type.rows));
+	TIType resType(dm.getGVN(), type.type, type.cols, type.rows);
+	e.getDecorator().res = Result(resType, dm.getTmpId(resType, false));
+	e.getDecorator().safe = true;
+	dm.releaseTmp(res.getTempId());
+	
         setResult(e.getDecorator().res);
     }
 }
