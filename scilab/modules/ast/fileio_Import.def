@@ -5,3 +5,4 @@ EXPORTS
 removedir
 getshortpathname
 FileExistW
+getfile_filename

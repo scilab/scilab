@@ -36,7 +36,7 @@
 
 #include "macrofile.hxx"
 #include "macro.hxx"
-#include "filemanager.hxx"
+#include "filemanager_interface.h"
 
 #include "runner.hxx"
 #include "threadmanagement.hxx"
@@ -935,12 +935,12 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 if (pITMacro)
                 {
                     types::Macro* pMacro = pITMacro->getAs<types::Macro>();
-                    types::File* pFile = FileManager::getFile(iFileID);
+                    const wchar_t* filename = getfile_filename(iFileID);
                     // scilab.quit is not open with mopen
-                    // in this case pFile is NULL because FileManager have not been filled.
-                    if (pFile)
+                    // in this case filename is NULL because FileManager have not been filled.
+                    if (filename)
                     {
-                        pMacro->setFileName(pFile->getFilename());
+                        pMacro->setFileName(filename);
                     }
                 }
             }

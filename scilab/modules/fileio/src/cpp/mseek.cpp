@@ -19,7 +19,6 @@ extern "C"
 #include <errno.h>
 #include "mseek.h"
 #include "sciprint.h"
-#include "filesmanagement.h"
 #include "localization.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"

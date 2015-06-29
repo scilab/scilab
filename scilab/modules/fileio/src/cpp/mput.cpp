@@ -22,7 +22,6 @@ extern "C"
 #define uint32_t unsigned long
 #endif
 #include "mput.h"
-#include "filesmanagement.h"
 #include "sciprint.h"
 #include "islittleendian.h"
 #include "convert_tools.h"
@@ -68,76 +67,6 @@ extern "C"
       sciprint(_("%s: Wrong value for input argument #%d (%s): '%s' or '%s' or '%s' expected.\n"),"mput",4,type," ","b","l"); \
       *ierr=1;return;							\
     }
-/*--------------------------------------------------------------------------*/
-/* write data without convertion (res is supposed to have type type) */
-void C2F(mputnc) (int *fd, void * res, int *n1, char *type, int *ierr)
-{
-    char c1, c2;
-    int i, n;
-    FILE *fa;
-    n = *n1;
-    *ierr = 0;
-    if ((fa = GetFileOpenedInScilab(*fd)) == NULL)
-    {
-        if ( getWarningMode() )
-        {
-            sciprint(_("%s: No input file associated to logical unit %d.\n"), "mput", *fd);
-        }
-        *ierr = 3;
-        return;
-    }
-    int swap = GetSwapStatus(*fd);
-
-    c1 = ( strlen(type) > 1) ? type[1] : ' ';
-    c2 = ( strlen(type) > 2) ? type[2] : ' ';
-    switch ( type[0] )
-    {
-        case 'i' :
-            MPUT_GEN_NC(int, c1);
-            break;
-        case 'l' :
-            MPUT_GEN_NC(long long, c1);
-            break;
-        case 's' :
-            MPUT_GEN_NC(short, c1);
-            break;
-        case 'c' :
-            MPUT_CHAR_NC(char) ;
-            break;
-        case 'd' :
-            MPUT_GEN_NC(double, c1);
-            break;
-        case 'f' :
-            MPUT_GEN_NC(float, c1);
-            break;
-        case 'u' :
-            switch ( c1 )
-            {
-                case 'i' :
-                    MPUT_GEN_NC(unsigned int, c2);
-                    break;
-                case 'l' :
-                    MPUT_GEN_NC(unsigned long long, c2);
-                    break;
-                case 's' :
-                    MPUT_GEN_NC(unsigned short, c2);
-                    break;
-                case ' ' :
-                    MPUT_GEN_NC(unsigned int, ' ');
-                    break;
-                case 'c' :
-                    MPUT_CHAR_NC(unsigned char);
-                    break;
-                default :
-                    *ierr = 1;
-                    return ;
-            }
-            break;
-        default :
-            *ierr = 1;
-            break;
-    }
-}
 /*--------------------------------------------------------------------------*/
 /*================================================
  * function to write data stored in double

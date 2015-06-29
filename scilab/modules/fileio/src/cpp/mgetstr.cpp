@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "mgetstr.h"
-#include "filesmanagement.h"
 #include "sci_malloc.h"
 #include "charEncoding.h"
 }

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -211,6 +211,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
   <ItemGroup>
     <ClCompile Include="src\cpp\addfile.cpp" />
     <ClCompile Include="src\cpp\delfile.cpp" />
+    <ClCompile Include="src\cpp\filemanager_interface.cpp" />
     <ClCompile Include="src\cpp\getfiledesc.cpp" />
     <ClCompile Include="src\cpp\getfileinfo.cpp" />
     <ClCompile Include="src\cpp\getfiletype.cpp" />
@@ -229,7 +230,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\FileExist.c" />
     <ClCompile Include="src\c\fileinfo.c" />
     <ClCompile Include="src\cpp\filemanager.cpp" />
-    <ClCompile Include="src\c\filesmanagement.c" />
     <ClCompile Include="src\c\FindFileExtension.c" />
     <ClCompile Include="src\c\findfiles.c" />
     <ClCompile Include="src\c\fprintfMat.c" />
@@ -245,13 +245,11 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\isDrive.c" />
     <ClCompile Include="src\cpp\mclose.cpp" />
     <ClCompile Include="src\cpp\mget.cpp" />
-    <ClCompile Include="src\c\mgeti.c" />
     <ClCompile Include="src\cpp\mgetl.cpp" />
     <ClCompile Include="src\cpp\mgetstr.cpp" />
     <ClCompile Include="src\cpp\mopen.cpp" />
     <ClCompile Include="src\c\movefile.c" />
     <ClCompile Include="src\cpp\mput.cpp" />
-    <ClCompile Include="src\c\mputi.c" />
     <ClCompile Include="src\cpp\mputl.cpp" />
     <ClCompile Include="src\cpp\mseek.cpp" />
     <ClCompile Include="src\cpp\mtell.cpp" />
@@ -309,7 +307,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\expandPathVariable.h" />
     <ClInclude Include="includes\FileExist.h" />
     <ClInclude Include="includes\filemanager.hxx" />
-    <ClInclude Include="includes\filesmanagement.h" />
+    <ClInclude Include="includes\filemanager_interface.h" />
     <ClInclude Include="includes\FindFileExtension.h" />
     <ClInclude Include="includes\findfiles.h" />
     <ClInclude Include="includes\fullpath.h" />
@@ -348,9 +346,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="src\c\getlongpathname.h" />
     <ClInclude Include="src\c\getrelativefilename.h" />
     <ClInclude Include="src\c\isDrive.h" />
-    <ClInclude Include="src\c\mgeti.h" />
     <ClInclude Include="src\c\movefile.h" />
-    <ClInclude Include="src\c\mputi.h" />
     <ClInclude Include="src\c\pathconvert.h" />
     <ClInclude Include="src\c\Status2Mode.h" />
   </ItemGroup>

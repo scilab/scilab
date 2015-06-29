@@ -57,9 +57,6 @@
     <ClCompile Include="src\cpp\filemanager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\filesmanagement.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\FindFileExtension.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -105,9 +102,6 @@
     <ClCompile Include="src\cpp\mget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\mgeti.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\cpp\mgetl.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -121,9 +115,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\mput.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\mputi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\mputl.cpp">
@@ -192,6 +183,9 @@
     <ClCompile Include="src\cpp\getfiletype.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\filemanager_interface.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="includes\mgetl.h">
@@ -228,9 +222,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\filemanager.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\filesmanagement.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="includes\FindFileExtension.h">
@@ -314,13 +305,7 @@
     <ClInclude Include="src\c\pathconvert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\mputi.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\movefile.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\c\mgeti.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\isDrive.h">
@@ -372,6 +357,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\c\convert_tools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\filemanager_interface.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

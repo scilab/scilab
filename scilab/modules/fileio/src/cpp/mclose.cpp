@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "mclose.h"
-#include "filesmanagement.h"
 #include "delfile.h"
 #include "core_math.h" /* Min Max */
 #include "sciprint.h"
