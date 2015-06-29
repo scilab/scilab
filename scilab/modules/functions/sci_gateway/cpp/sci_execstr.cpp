@@ -22,9 +22,6 @@
 #include "scilabWrite.hxx"
 #include "scilabexception.hxx"
 #include "configvariable.hxx"
-#include "context.hxx"
-#include "runner.hxx"
-#include "threadmanagement.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -189,7 +186,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     }
 
     //save current prompt mode
-    int oldVal = ConfigVariable::getPromptMode();
+    int iPromptMode = ConfigVariable::getPromptMode();
     ConfigVariable::setPromptMode(-1);
 
     if (ConfigVariable::getAnalyzerOptions() == 1)
@@ -200,136 +197,29 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         //pExp->accept(debugMe);
     }
 
-    ast::exps_t LExp = pExp->getAs<SeqExp>()->getExps();
+    ast::SeqExp* pSeqExp = pExp->getAs<SeqExp>();
 
-    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
+    // add execstr in list of macro called
+    // to manage line displayed when error occured.
+    ConfigVariable::macroFirstLine_begin(1);
 
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end(); j != itEnd; ++j)
+    try
     {
-        try
-        {
-            if (pThreadMe && pThreadMe->getInterrupt())
-            {
-                ThreadManagement::SendAstPendingSignal();
-                pThreadMe->suspend();
-            }
-
-            // Set the real location of this exp contained in the string of the input of execstr
-            // in case where execstr is called in a file.
-            (*j)->getLocation().first_line = ConfigVariable::getMacroFirstLines();
-            (*j)->getLocation().last_line += (ConfigVariable::getMacroFirstLines() - 1);
-
-            //excecute script
-            ExecVisitor execMe;
-            (*j)->accept(execMe);
-
-            //to manage call without ()
-            if (execMe.getResult() != NULL && execMe.getResult()->isCallable())
-            {
-                Callable *pCall = execMe.getResult()->getAs<Callable>();
-                types::typed_list out;
-                types::typed_list in;
-                types::optional_list opt;
-
-                try
-                {
-                    ExecVisitor execCall;
-                    Function::ReturnValue Ret = pCall->call(in, opt, 1, out, &execCall);
-
-                    if (Ret == Callable::OK)
-                    {
-                        if (out.size() == 0)
-                        {
-                            execMe.setResult(NULL);
-                        }
-                        else if (out.size() == 1)
-                        {
-                            out[0]->DecreaseRef();
-                            execMe.setResult(out[0]);
-                        }
-                        else
-                        {
-                            for (int i = 0; i < static_cast<int>(out.size()); i++)
-                            {
-                                out[i]->DecreaseRef();
-                                execMe.setResult(i, out[i]);
-                            }
-                        }
-                    }
-                    else if (Ret == Callable::Error)
-                    {
-                        throw ast::ScilabMessage(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), (*j)->getLocation());
-                    }
-                }
-                catch (ast::ScilabMessage sm)
-                {
-                    if (ConfigVariable::getLastErrorFunction() == L"")
-                    {
-                        ConfigVariable::setLastErrorFunction(pCall->getName());
-                    }
-
-                    throw sm;
-                }
-            }
-
-            //update ans variable.
-            if (execMe.getResult() != NULL && execMe.getResult()->isDeletable())
-            {
-                InternalType* pITAns = execMe.getResult();
-                symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                if ((*j)->isVerbose() && bErrCatch == false)
-                {
-                    std::wostringstream ostr;
-                    ostr << L" ans  =" << std::endl;
-                    ostr << std::endl;
-                    pITAns->toString(ostr);
-                    ostr << std::endl;
-                    scilabWriteW(ostr.str().c_str());
-                }
-            }
-        }
-        catch (ast::ScilabMessage sm)
-        {
-            ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
-            if (bErrCatch == false && bMute == false)
-            {
-                sm.SetErrorLocation((*j)->getLocation());
-                throw sm;
-            }
-
-            ConfigVariable::resetWhereError();
-            iErr = ConfigVariable::getLastErrorNumber();
-            break;
-        }
-        catch (ast::ScilabError se)
-        {
-            ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
-            // check on error number because error message can be empty.
-            if (ConfigVariable::getLastErrorNumber() == 0)
-            {
-                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                ConfigVariable::setLastErrorFunction(wstring(L""));
-            }
-
-            //store message
-            iErr = ConfigVariable::getLastErrorNumber();
-            if (bErrCatch == false)
-            {
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
-                se.SetErrorLocation((*j)->getLocation());
-                throw se;
-            }
-
-            ConfigVariable::resetWhereError();
-            break;
-        }
+        ExecVisitor execExps;
+        pSeqExp->accept(execExps);
     }
+    catch (ast::ScilabMessage sm)
+    {
+        if (bErrCatch == false && bMute == false)
+        {
+            ConfigVariable::macroFirstLine_end();
+            ConfigVariable::setPromptMode(iPromptMode);
+            throw sm;
+        }
 
-    //restore previous prompt mode and silent mode
-    ConfigVariable::setPromptMode(oldVal);
+        ConfigVariable::resetWhereError();
+        iErr = ConfigVariable::getLastErrorNumber();
+    }
 
     if (bErrCatch)
     {
@@ -339,6 +229,9 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         // allow print
         ConfigVariable::resetError();
     }
+
+    ConfigVariable::macroFirstLine_end();
+    ConfigVariable::setPromptMode(iPromptMode);
 
     delete pExp;
     return Function::OK;

@@ -293,7 +293,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         else if (_pSEI->pstFile)
         {
             //-f option execute exec('%s',-1)
-            Parser parser;
             char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
             sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 

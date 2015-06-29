@@ -41,7 +41,7 @@ public :
     std::wstring                getFileTypeAsString();
 
     void                        setFilename(std::wstring _stFilename);
-    std::wstring                getFilename();
+    std::wstring&               getFilename();
 
     int                         getCountLines();
 

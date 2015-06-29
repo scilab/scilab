@@ -1099,7 +1099,7 @@ int ConfigVariable::getFuncprot()
 */
 
 std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
-std::list<ConfigVariable::WhereEntry> ConfigVariable::m_WhereError;
+std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_WhereError;
 std::vector<int> ConfigVariable::m_FirstMacroLine;
 void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall)
 {
@@ -1264,6 +1264,7 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
     {
         // +1 because the first line of the funtionDec "function func()" is the line 1.
         int iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
             m_WhereError.emplace_back(iTmp, (*where).m_absolute_line, (*where).m_name, (*where).m_macro_first_line, (*where).m_file_name);
@@ -1376,4 +1377,19 @@ void ConfigVariable::setMexFunctionName(const std::string& name)
 std::string& ConfigVariable::getMexFunctionName()
 {
     return mexFunctionName;
+}
+
+/*
+** \}
+*/
+// executed file with exec
+int ConfigVariable::m_iFileID = 0;
+void ConfigVariable::setExecutedFileID(int _iFileID)
+{
+    m_iFileID = _iFileID;
+}
+
+int ConfigVariable::getExecutedFileID()
+{
+    return m_iFileID;
 }

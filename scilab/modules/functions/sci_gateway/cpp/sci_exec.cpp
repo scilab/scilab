@@ -102,16 +102,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                if (file)
-                {
-                    delete pExp;
-                    mclose(iID);
-                    file->close();
-                    delete file;
-                    FREE(pstFile);
-                    FREE(pwstFile);
-                }
-
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
                 return Function::Error;
             }
@@ -121,16 +111,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
                 if (in[2]->isDouble() == false || in[2]->getAs<Double>()->isScalar() == false)
                 {
-                    if (file)
-                    {
-                        delete pExp;
-                        mclose(iID);
-                        file->close();
-                        delete file;
-                        FREE(pstFile);
-                        FREE(pwstFile);
-                    }
-
                     //mode
                     Scierror(999, _("%s: Wrong type for input argument #%d: A integer expected.\n"), "exec", 3);
                     return Function::Error;
@@ -144,16 +124,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             if (in.size() > 2)
             {
-                if (file)
-                {
-                    delete pExp;
-                    mclose(iID);
-                    file->close();
-                    delete file;
-                    FREE(pstFile);
-                    FREE(pwstFile);
-                }
-
                 Scierror(999, _("%s: Wrong value for input argument #%d: 'errcatch' expected.\n"), "exec", 2);
                 return Function::Error;
             }
@@ -163,16 +133,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         else
         {
-            if (file)
-            {
-                delete pExp;
-                mclose(iID);
-                file->close();
-                delete file;
-                FREE(pstFile);
-                FREE(pwstFile);
-            }
-
             //not managed
             Scierror(999, _("%s: Wrong type for input argument #%d: A integer or string expected.\n"), "exec", 2);
             return Function::Error;
@@ -247,6 +207,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         // update where to set the name of the executed file.
         ConfigVariable::setFileNameToLastWhere(pwstFile);
+
+        ConfigVariable::setExecutedFileID(iID);
     }
     else if (in[0]->isMacro() || in[0]->isMacroFile())
     {
@@ -304,222 +266,89 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         ConfigVariable::macroFirstLine_begin(pMacro->getFirstLine());
     }
 
-    ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
-
-    char pstPrompt[64];
-    //get prompt
-    GetCurrentPrompt(pstPrompt);
-    std::string stPrompt(pstPrompt);
-
-    std::string str;
-    int iCurrentLine = -1; //no data in str
-    int iCurrentCol = 0; //no data in str
-
     //save current prompt mode
     int oldVal = ConfigVariable::getPromptMode();
-
     ConfigVariable::setPromptMode(promptMode);
 
-    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
-
-    for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd ; ++j)
+    // if not exp displaying, just execute the seqexp
+    if (file == NULL || promptMode == 0 || promptMode == 2)
     {
+        ast::SeqExp* pSeqExp = pExp->getAs<SeqExp>();
+
         try
         {
-            if (pThreadMe && pThreadMe->getInterrupt())
-            {
-                ThreadManagement::SendAstPendingSignal();
-                pThreadMe->suspend();
-            }
-
-            ast::exps_t::iterator k = j;
-            //mode == 0, print new variable but not command
-            if (file && ConfigVariable::getPromptMode() != 0 && ConfigVariable::getPromptMode() != 2)
-            {
-                int iLastLine = (*j)->getLocation().last_line;
-                do
-                {
-                    str = printExp(*file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
-                    iLastLine = (*k)->getLocation().last_line;
-                    k++;
-                }
-                while (k != LExp.end() && (*k)->getLocation().first_line == iLastLine);
-
-                // In case where the line ends by spaces, iCurrentCol is not reset
-                // by printExp because we don't know if that's the end of the expression
-                // before go out of the loop. So we have to reset column count
-                // and print a new line before manage the next line.
-                if (iCurrentCol != 0)
-                {
-                    iCurrentCol = 0;
-                    printLine("", "", true);
-                }
-            }
-            else
-            {
-                k++;
-            }
-
-
-            ast::exps_t::iterator p = j;
-            for (; p != k; p++)
-            {
-                bool bImplicitCall = false;
-                j = p;
-                //excecute script
-                //force -1 to prevent recursive call to exec to write in console
-                //ConfigVariable::setPromptMode(-1);
-                ExecVisitor execMe;
-                (*j)->accept(execMe);
-                //ConfigVariable::setPromptMode(promptMode);
-
-                if (pwstFile && (*j)->isFunctionDec())
-                {
-                    InternalType* pIT = symbol::Context::getInstance()->get((*j)->getAs<FunctionDec>()->getSymbol());
-                    if (pIT)
-                    {
-                        types::Macro* pMacro = pIT->getAs<types::Macro>();
-                        pMacro->setFileName(pwstFile);
-                    }
-                }
-
-                //to manage call without ()
-                if (execMe.getResult() != NULL && execMe.getResult()->isCallable())
-                {
-                    Callable *pCall = execMe.getResult()->getAs<Callable>();
-                    types::typed_list out;
-                    types::typed_list in;
-                    types::optional_list opt;
-
-                    try
-                    {
-                        //in this case of calling, we can return only one values
-                        ExecVisitor execCall;
-                        execCall.setExpectedSize(1);
-                        pCall->invoke(in, opt, 1, out, execCall, *(*j));
-
-                        if (out.size() == 0)
-                        {
-                            execMe.setResult(NULL);
-                        }
-                        else if (out.size() == 1)
-                        {
-                            out[0]->DecreaseRef();
-                            execMe.setResult(out[0]);
-                            bImplicitCall = true;
-                        }
-                        else
-                        {
-                            for (int i = 0 ; i < static_cast<int>(out.size()) ; i++)
-                            {
-                                out[i]->DecreaseRef();
-                                execMe.setResult(i, out[i]);
-                            }
-                        }
-                    }
-                    catch (ScilabMessage sm)
-                    {
-                        if (ConfigVariable::getLastErrorFunction() == L"")
-                        {
-                            ConfigVariable::setLastErrorFunction(pCall->getName());
-                        }
-
-                        throw sm;
-                    }
-                }
-
-                //update ans variable
-                SimpleVar* pVar = dynamic_cast<SimpleVar*>(*j);
-                //don't output Simplevar and empty result
-                if (execMe.getResult() != NULL && (pVar == NULL || bImplicitCall))
-                {
-                    InternalType* pITAns = execMe.getResult();
-                    symbol::Context::getInstance()->put(symbol::Symbol(L"ans"), pITAns);
-                    if ( (*j)->isVerbose() && bErrCatch == false)
-                    {
-                        //TODO manage multiple returns
-                        scilabWriteW(L" ans  =\n\n");
-                        std::wostringstream ostrName;
-                        ostrName << SPACES_LIST << L"ans";
-                        VariableToString(pITAns, ostrName.str().c_str());
-                    }
-                }
-            }
+            ExecVisitor execExps;
+            pSeqExp->accept(execExps);
         }
-        catch (const ast::InternalAbort& ia)
+        catch (ast::ScilabMessage sm)
         {
-            if (file)
-            {
-                delete pExp;
-                mclose(iID);
-                file->close();
-                delete file;
-                FREE(pstFile);
-                FREE(pwstFile);
-            }
-
-            //restore previous prompt mode
-            ConfigVariable::setPromptMode(oldVal);
-
-            throw ia;
-        }
-        catch (ast::ScilabMessage& sm)
-        {
-            ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
-
-            if (pMacro)
-            {
-                if (ConfigVariable::getLastErrorFunction() == L"")
-                {
-                    ConfigVariable::setLastErrorFunction(pMacro->getName());
-                }
-
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
-
-                // reset last first line of macro called
-                ConfigVariable::macroFirstLine_end();
-            }
-
-            // get location of exp before delete it in "file" case.
-            Location loc = (*j)->getLocation();
-
-            if (file)
-            {
-                delete pExp;
-                mclose(iID);
-                file->close();
-                delete file;
-                FREE(pstFile);
-                FREE(pwstFile);
-            }
-
-
             if (bErrCatch == false)
             {
-                sm.SetErrorLocation(loc);
+                ConfigVariable::setPromptMode(oldVal);
+                ConfigVariable::setExecutedFileID(0);
                 throw sm;
             }
 
             ConfigVariable::resetWhereError();
             iErr = ConfigVariable::getLastErrorNumber();
-            break;
         }
-        catch (ast::ScilabError& se)
+    }
+    else
+    {
+        ast::exps_t& LExp = pExp->getAs<SeqExp>()->getExps();
+
+        char pstPrompt[64];
+        //get prompt
+        GetCurrentPrompt(pstPrompt);
+        std::string stPrompt(pstPrompt);
+
+        std::string str;
+        int iCurrentLine = -1; //no data in str
+        int iCurrentCol = 0; //no data in str
+
+        for (ast::exps_t::iterator j = LExp.begin(), itEnd = LExp.end() ; j != itEnd; ++j)
         {
-            ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
-            if (ConfigVariable::getLastErrorNumber() == 0)
+            // printf some exp
+            ast::exps_t::iterator k = j;
+            int iLastLine = (*j)->getLocation().last_line;
+            do
             {
-                ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                ConfigVariable::setLastErrorFunction(wstring(L""));
+                str = printExp(*file, *k, stPrompt, &iCurrentLine, &iCurrentCol, str);
+                iLastLine = (*k)->getLocation().last_line;
+                k++;
+            }
+            while (k != LExp.end() && (*k)->getLocation().first_line == iLastLine);
+
+            // In case where the line ends by spaces, iCurrentCol is not reset
+            // by printExp because we don't know if that's the end of the expression
+            // before go out of the loop. So we have to reset column count
+            // and print a new line before manage the next line.
+            if (iCurrentCol != 0)
+            {
+                iCurrentCol = 0;
+                printLine("", "", true);
             }
 
-            //store message
-            iErr = ConfigVariable::getLastErrorNumber();
-            if (bErrCatch == false)
+            // create a seqexp with printed exp
+            ast::exps_t* someExps = new ast::exps_t();
+            someExps->assign(j, k);
+            k--;
+            SeqExp seqExp(Location((*j)->getLocation().first_line,      (*k)->getLocation().last_line,
+                                   (*j)->getLocation().first_column,    (*k)->getLocation().last_column),
+                          *someExps);
+
+            j = k;
+
+            try
             {
+                // execute printed exp
+                ExecVisitor execExps;
+                seqExp.accept(execExps);
+            }
+            catch (ast::ScilabMessage sm)
+            {
+                ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
+
                 if (file)
                 {
                     delete pExp;
@@ -530,20 +359,87 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     FREE(pwstFile);
                 }
 
-                //restore previous prompt mode
-                ConfigVariable::setPromptMode(oldVal);
+                if (pMacro)
+                {
+                    // reset last first line of macro called
+                    ConfigVariable::macroFirstLine_end();
+                }
 
-                throw se;
+                if (bErrCatch == false)
+                {
+                    ConfigVariable::setPromptMode(oldVal);
+                    ConfigVariable::setExecutedFileID(0);
+
+                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+                    ast::exps_t& protectExp = seqExp.getExps();
+                    for (int i = 0; i < protectExp.size(); ++i)
+                    {
+                        protectExp[i] = NULL;
+                    }
+
+                    throw sm;
+                }
+
+                ConfigVariable::resetWhereError();
+                iErr = ConfigVariable::getLastErrorNumber();
             }
-
-            if (pMacro)
+            catch (ast::ScilabError& se)
             {
-                // reset last first line of macro called
-                ConfigVariable::macroFirstLine_end();
+                ConfigVariable::setExecutedFileID(0);
+                ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
+                if (ConfigVariable::getLastErrorNumber() == 0)
+                {
+                    ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
+                    ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
+                    ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
+                    ConfigVariable::setLastErrorFunction(wstring(L""));
+                }
+
+                //store message
+                iErr = ConfigVariable::getLastErrorNumber();
+                if (bErrCatch == false)
+                {
+                    if (file)
+                    {
+                        delete pExp;
+                        mclose(iID);
+                        file->close();
+                        delete file;
+                        FREE(pstFile);
+                        FREE(pwstFile);
+                    }
+
+                    //restore previous prompt mode
+                    ConfigVariable::setPromptMode(oldVal);
+
+                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+                    ast::exps_t& protectExp = seqExp.getExps();
+                    for (int i = 0; i < protectExp.size(); ++i)
+                    {
+                        protectExp[i] = NULL;
+                    }
+
+                    throw se;
+                }
+
+                if (pMacro)
+                {
+                    // reset last first line of macro called
+                    ConfigVariable::macroFirstLine_end();
+                }
+
+                ConfigVariable::resetWhereError();
+                break;
             }
 
-            ConfigVariable::resetWhereError();
-            break;
+            ConfigVariable::setExecutedFileID(0);
+
+            // avoid double delete on exps when "seqExp" is destryed and "LExp" too
+            ast::exps_t& protectExp = seqExp.getExps();
+            for (int i = 0; i < protectExp.size(); ++i)
+            {
+                protectExp[i] = NULL;
+            }
         }
     }
 

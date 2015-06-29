@@ -36,6 +36,7 @@
 
 #include "macrofile.hxx"
 #include "macro.hxx"
+#include "filemanager.hxx"
 
 #include "runner.hxx"
 #include "threadmanagement.hxx"
@@ -925,6 +926,24 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             exp->accept(*this);
             setExpectedSize(iExpectedSize);
             InternalType * pIT = getResult();
+
+            // In case of exec file, set the file name in the Macro to store where it is defined.
+            int iFileID = ConfigVariable::getExecutedFileID();
+            if (iFileID && exp->isFunctionDec())
+            {
+                InternalType* pITMacro = symbol::Context::getInstance()->get(exp->getAs<FunctionDec>()->getSymbol());
+                if (pITMacro)
+                {
+                    types::Macro* pMacro = pITMacro->getAs<types::Macro>();
+                    types::File* pFile = FileManager::getFile(iFileID);
+                    // scilab.quit is not open with mopen
+                    // in this case pFile is NULL because FileManager have not been filled.
+                    if (pFile)
+                    {
+                        pMacro->setFileName(pFile->getFilename());
+                    }
+                }
+            }
 
             if (pIT != NULL)
             {

@@ -403,7 +403,7 @@ public :
     static void whereErrorToString(std::wostringstream &ostr);
 private :
     static std::vector<WhereEntry> m_Where;
-    static std::list<WhereEntry> m_WhereError;
+    static std::vector<WhereEntry> m_WhereError;
     static std::vector<int> m_FirstMacroLine;
 
     //module called with variable by reference
@@ -436,6 +436,14 @@ private:
 public:
     static void setMexFunctionName(const std::string& name);
     static std::string& getMexFunctionName();
+
+    // executed file with exec
+private:
+    static int m_iFileID;
+public:
+    static void setExecutedFileID(int _iFileID);
+    static int getExecutedFileID();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */
