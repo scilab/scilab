@@ -31,7 +31,7 @@ NgonGeneralData::NgonGeneralData(void)
     coordinates = NULL;
 
     colorValues = NULL;
-    numColors = 0;
+    numColorValues = 0;
 }
 
 NgonGeneralData::~NgonGeneralData(void)
@@ -41,7 +41,7 @@ NgonGeneralData::~NgonGeneralData(void)
         delete [] coordinates;
     }
 
-    if (numColors > 0)
+    if (numColorValues > 0)
     {
         delete [] colorValues;
     }
@@ -224,7 +224,7 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
         result = 1;
     }
 
-    if (numElementsArray[2] != this->numColors)
+    if (numElementsArray[2] != this->numColorValues)
     {
         if (numElementsArray[2] > 0)
         {
@@ -258,13 +258,13 @@ int NgonGeneralData::setNumElementsArray(int const* numElementsArray)
 
         if (newColorValues != NULL || numElementsArray[2] == 0)
         {
-            if (this->numColors > 0)
+            if (this->numColorValues > 0)
             {
                 delete [] colorValues;
             }
 
             colorValues = newColorValues;
-            this->numColors = numElementsArray[2];
+            this->numColorValues = numElementsArray[2];
         }
     }
     else
@@ -290,7 +290,7 @@ double* NgonGeneralData::getColors(void)
 
 void NgonGeneralData::setColors(double const* colors, int numElements)
 {
-    if (numElements > numColors)
+    if (numElements > numColorValues)
     {
         return;
     }
@@ -299,5 +299,5 @@ void NgonGeneralData::setColors(double const* colors, int numElements)
 
 int NgonGeneralData::getNumColors(void)
 {
-    return numColors;
+    return numColorValues;
 }
