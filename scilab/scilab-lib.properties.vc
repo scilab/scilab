@@ -20,6 +20,8 @@ jhall.jar=${thirdparty.dir}/jhall.jar
 
 lucene-core.jar=${thirdparty.dir}/lucene-core-5.2.1.jar
 
+lucene-analyzers-common.jar=${thirdparty.dir}/lucene-analyzers-common-5.2.1.jar
+
 gluegen2.jar=${thirdparty.dir}/gluegen2-rt.jar
 
 jrosetta-API.jar=${thirdparty.dir}/jrosetta-API.jar

@@ -20,7 +20,7 @@
     <property name="cache.dir" location="${build.dir}/cachefile"/>
     <!-- Where we can find the sources -->
     <property name="src.dir" location="src/java/"/>
-    
+
     <property name="modules.dir" value="${base.dir}/modules"/>
     <!-- JAR names -->
     <property file="${base.dir}/scilab-lib.properties"/>
@@ -29,14 +29,14 @@
     <property file="${base.dir}/scilab.properties"/>
     <!-- Set ${SCIVERSION} -->
     <property file="${base.dir}/Version.incl"/>
-    
+
     <path id="checkstyle.classpath">
         <pathelement location="${checkstyle.jar}"/>
         <pathelement location="${commons-logging.jar}"/>
         <pathelement location="${commons-beanutils.jar}"/>
         <pathelement location="${antlr.jar}"/>
     </path>
-    
+
     <path id="compile.classpath">
         <pathelement location="${library.types.dir}/${library.types.name}"/>
         <pathelement location="${library.graph.dir}/${library.graph.name}"/>
@@ -69,6 +69,7 @@
         <pathelement location="${jgraphx.jar}"/>
         <pathelement location="${scirenderer.jar}"/>
         <pathelement location="${lucene-core.jar}"/>
+        <pathelement location="${lucene-analyzers-common.jar}"/>
         <!-- Only useful for the documentation -->
         <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
         <pathelement location="${batik.jar}"/>
@@ -120,7 +121,7 @@
             <!-- Silent 'bootstrap class path not set in conjunction with -source 1.6'. We don't want to manage the detection of rt.jar. See https://blogs.oracle.com/darcy/entry/bootclasspath_older_source -->
         </javac>
     </target>
-    
+
     <!-- Create the jar -->
     <target name="jar" description="Build the jar file" depends="compile">
         <jar destfile="${build.jar.dir}/${library.name}" basedir="${classes.dir}">
@@ -138,8 +139,8 @@
             </manifest>
         </jar>
     </target>
-    
+
     <import file="build.qa.incl.xml"/>
-    
-    
+
+
 </project>

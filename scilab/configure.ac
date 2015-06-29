@@ -971,11 +971,16 @@ interface for JOGL2 - or libGL (OpenGL library) are installed and if the version
                 JHALL=$PACKAGE_JAR_FILE
                 AC_SUBST(JHALL)
 
-                # Lucene Apache
+                # Lucene Apache - core
                 AC_JAVA_CHECK_PACKAGE([lucene-core],[org.apache.lucene.LucenePackage],[Lucene])
                 LUCENE=$PACKAGE_JAR_FILE
                 AC_SUBST(LUCENE)
                 AC_JAVA_CHECK_VERSION_PACKAGE([lucene-core],[import org.apache.lucene.util.Constants;],$LUCENE,[5.2.1],[Constants.LUCENE_VERSION])
+
+                # Lucene Apache - analyzers-common
+                AC_JAVA_CHECK_PACKAGE([lucene-analyzers-common],[org.apache.lucene.analysis.standard.StandardAnalyzer],[StandardAnalyzer])
+                LUCENE_ANALYZER=$PACKAGE_JAR_FILE
+                AC_SUBST(LUCENE_ANALYZER)
 
                 # Console API
                 AC_JAVA_CHECK_PACKAGE([jrosetta-API],[com.artenum.rosetta.interfaces.core.ConsoleConfiguration],[JRosetta : Console API Artenum / Scilab],"yes")

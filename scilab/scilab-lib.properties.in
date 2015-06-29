@@ -16,6 +16,8 @@ jhall.jar=@JHALL@
 
 lucene-core.jar=@LUCENE@
 
+lucene-analyzers-common.jar=@LUCENE_ANALYZER@
+
 gluegen2.jar=@GLUEGEN2_RT@
 
 jgraphx.jar=@JGRAPHX@
