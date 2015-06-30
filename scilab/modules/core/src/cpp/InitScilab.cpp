@@ -558,10 +558,10 @@ void* scilabReadAndStore(void* param)
     // unlock main thread
     ThreadManagement::SendStartPendingSignal();
 
-    callOnPrompt();
-
     while (ConfigVariable::getForceQuit() == false)
     {
+        callOnPrompt();
+
         Parser parser;
         parser.setParseTrace(_pSEI->iParseTrace != 0);
 
@@ -643,8 +643,6 @@ void* scilabReadAndStore(void* param)
         command = NULL;
 
         ThreadManagement::WaitForConsoleExecDoneSignal();
-
-        callOnPrompt();
     }
 
     // Awake scilabReadAndExecCommand thread in case of scilab exit
