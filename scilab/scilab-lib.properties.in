@@ -18,6 +18,8 @@ lucene-core.jar=@LUCENE@
 
 lucene-analyzers-common.jar=@LUCENE_ANALYZER@
 
+lucene-queryparser.jar=@LUCENE_PARSER@
+
 gluegen2.jar=@GLUEGEN2_RT@
 
 jgraphx.jar=@JGRAPHX@

@@ -70,6 +70,7 @@
         <pathelement location="${scirenderer.jar}"/>
         <pathelement location="${lucene-core.jar}"/>
         <pathelement location="${lucene-analyzers-common.jar}"/>
+        <pathelement location="${lucene-queryparser.jar}"/>
         <!-- Only useful for the documentation -->
         <pathelement location="${library.helptools.dir}/${library.helptools.name}"/>
         <pathelement location="${batik.jar}"/>
