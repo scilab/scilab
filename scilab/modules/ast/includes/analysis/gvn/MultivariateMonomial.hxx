@@ -37,14 +37,14 @@ struct MultivariateMonomial
 
     // Since the coeff is not used to compute the hash we must set is as mutable to be able to modify it when extract
     // from an unordered_set or unordered_map.
-    mutable double coeff;
+    mutable int64_t coeff;
     Monomial monomial;
 
     /**
      * \brief constructor
      * \param var the default var to put in the monomial
      */
-    MultivariateMonomial(const unsigned long long var) : coeff(1)
+    MultivariateMonomial(const uint64_t var) : coeff(1)
     {
         monomial.emplace(var);
     }
@@ -53,7 +53,7 @@ struct MultivariateMonomial
      * \brief constructor
      * \param coeff the default coefficient for this empty monomial
      */
-    MultivariateMonomial(const double _coeff = 1) : coeff(_coeff) { }
+    MultivariateMonomial(const int64_t _coeff = 1) : coeff(_coeff) { }
 
     /**
      * \brief copy-constructor
@@ -66,7 +66,7 @@ struct MultivariateMonomial
      * \param var an id
      * \return true if the monomial contains the var
      */
-    inline bool contains(const unsigned long long var) const
+    inline bool contains(const uint64_t var) const
 	{
 	    return monomial.find(var) != monomial.end();
 	}
@@ -76,7 +76,7 @@ struct MultivariateMonomial
      * \param max an id
      * \return true if all the variables have an id leq to max
      */
-    inline bool checkVariable(const unsigned long long max) const
+    inline bool checkVariable(const uint64_t max) const
     {
 	return std::prev(monomial.end())->var <= max;
     }
@@ -163,17 +163,17 @@ struct MultivariateMonomial
     }
 
     /**
-     * \brief Product by a double
+     * \brief Product by a int64_t
      */
-    friend inline MultivariateMonomial operator*(const double L, const MultivariateMonomial & R)
+    friend inline MultivariateMonomial operator*(const int64_t L, const MultivariateMonomial & R)
     {
         return R * L;
     }
 
     /**
-     * \brief Product by a double
+     * \brief Product by a int64_t
      */
-    inline MultivariateMonomial operator*(const double R) const
+    inline MultivariateMonomial operator*(const int64_t R) const
     {
         MultivariateMonomial res(*this);
         res.coeff *= R;
@@ -181,18 +181,18 @@ struct MultivariateMonomial
     }
 
     /**
-     * \brief Product-assignment by a double
+     * \brief Product-assignment by a int64_t
      */
-    inline MultivariateMonomial & operator*=(const double R)
+    inline MultivariateMonomial & operator*=(const int64_t R)
     {
         coeff *= R;
         return *this;
     }
 
     /**
-     * \brief Division by a double
+     * \brief Division by a int64_t
      */
-    inline MultivariateMonomial operator/(const double R) const
+    inline MultivariateMonomial operator/(const int64_t R) const
     {
         MultivariateMonomial res(*this);
         res.coeff /= R;
@@ -200,9 +200,9 @@ struct MultivariateMonomial
     }
 
     /**
-     * \brief Division-assignment by a double
+     * \brief Division-assignment by a int64_t
      */
-    inline MultivariateMonomial & operator/=(const double R)
+    inline MultivariateMonomial & operator/=(const int64_t R)
     {
         coeff /= R;
         return *this;
@@ -238,7 +238,7 @@ struct MultivariateMonomial
      * \param vars a map containing var id -> string representation
      * \return the printed monomial
      */
-    inline const std::wstring print(const std::map<unsigned long long, std::wstring> & vars) const
+    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
     {
         std::wostringstream wos;
         wos << coeff;
@@ -276,7 +276,7 @@ struct MultivariateMonomial
             std::size_t h = 0;
             for (const auto & ve : m.monomial)
             {
-                h = tools::hash_combine(h, std::hash<unsigned long long>()(ve.var), std::hash<unsigned int>()(ve.exp));
+                h = tools::hash_combine(h, std::hash<uint64_t>()(ve.var), std::hash<unsigned int>()(ve.exp));
             }
             return h;
         }

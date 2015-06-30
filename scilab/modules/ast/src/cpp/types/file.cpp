@@ -170,7 +170,7 @@ void File::setFilename(std::wstring _stFilename)
     m_stFilename = _stFilename;
 }
 
-std::wstring File::getFilename()
+std::wstring& File::getFilename()
 {
     return m_stFilename;
 }

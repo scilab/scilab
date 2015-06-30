@@ -40,10 +40,11 @@ static int cmpNames(const void *a, const void *b)
 char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 {
     int rc = 0;
-    char **pstData = NULL;
+    wchar_t **pstData = NULL;
     char **fields = NULL;
     char *pstVar = NULL;
     wchar_t* pwstVar = NULL;
+    int iXlist = 0;
 
     char *lineBeforePoint = NULL;
     int pos = (int)(strlen(lineBeforeCaret) - strlen(pattern) - 1);
@@ -108,12 +109,7 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
 
         iSize = pFields->getSize();
 
-        pstData = (char**)MALLOC(sizeof(char*) * iSize);
-
-        for (int i = 0 ; i < iSize ; i++)
-        {
-            pstData[i] = wide_string_to_UTF8(pFields->get(i));
-        }
+        pstData = pFields->get();
     }
     else if (pIT->isTList() || pIT->isMList())
     {
@@ -127,53 +123,32 @@ char **getfieldsdictionary(char *lineBeforeCaret, char *pattern, int *size)
             return NULL;
         }
 
-        pstData = (char**)MALLOC(sizeof(char*) * iSize);
-
-        for (int i = 0 ; i < iSize ; i++)
-        {
-            pstData[i] = wide_string_to_UTF8(pFields->get(i + 1));
-        }
+        pstData = pFields->get();
+        iXlist = 1;
     }
     else
     {
         return NULL;
     }
 
-    int iFieldsSize = 0;
-    fields = (char**)getFieldsForType(pstData[0], NULL, NULL, 0, &iFieldsSize);
-    if (fields)
-    {
-        freeArrayOfString(pstData, rc);
-        pstData = fields;
-        for (rc = 0; fields[rc]; rc++)
-        {
-            ;
-        }
-    }
-
     int iLast = 0;
-    for (int i = 0 ; i < iSize ; i++)
+    char** _fields = (char**)MALLOC(sizeof(char*) * (iSize + 1));
+    wchar_t* wpattern = to_wide_string(pattern);
+    for (int i = iXlist; i < (iSize + iXlist); ++i)
     {
-        if (strstr(pstData[i], pattern) != pstData[i])
+        if (wcsstr(pstData[i], wpattern) == pstData[i])
         {
-            FREE(pstData[i]);
-            pstData[i] = NULL;
+            _fields[iLast++] = wide_string_to_UTF8(pstData[i]);
         }
-        else if (pstData[iLast] != pstData[i])
-        {
-            pstData[iLast] = pstData[i];
-            pstData[i] = NULL;
-            iLast++;
-        }
-        else
-        {
-            iLast++;
-        }
+
     }
 
-    *size = iLast;
-    qsort(pstData, *size, sizeof(char*), cmpNames);
+    FREE(wpattern);
 
-    return pstData;
+    _fields[iLast] = NULL;
+    *size = iLast;
+    qsort(_fields, *size, sizeof(char*), cmpNames);
+
+    return _fields;
 }
 /*--------------------------------------------------------------------------*/

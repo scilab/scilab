@@ -12,4 +12,4 @@
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=2987
 
-head_comments('sinc')
+head_comments("sinc")

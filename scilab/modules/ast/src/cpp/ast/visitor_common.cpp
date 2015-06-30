@@ -248,14 +248,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
             case GenericType::ScilabHandle :
                 poResult = new GraphicHandle(_iRows, _iCols);
                 break;
-            case GenericType::ScilabDollar :
-            {
-                int* piRank = new int[_iRows * _iCols];
-                memset(piRank, 0x00, _iRows * _iCols * sizeof(int));
-                poResult = new Polynom(_poSource->getAs<Polynom>()->getVariableName(), _iRows, _iCols, piRank);
-                delete[] piRank;
-                break;
-            }
             default :
                 // FIXME What should we do here ...
                 break;
@@ -366,11 +358,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
                         }
                     }
 
-                    return poResult;
-                }
-                else if (TypeSource == GenericType::ScilabDollar)
-                {
-                    poResult->getAs<Polynom>()->append(iCurRow, iCurCol, _poSource->getAs<Dollar>());
                     return poResult;
                 }
                 break;
@@ -529,11 +516,6 @@ InternalType* AddElementToVariable(InternalType* _poDest, InternalType* _poSourc
             case GenericType::ScilabHandle :
                 poResult->getAs<GraphicHandle>()->append(iCurRow, iCurCol, _poSource);
                 break;
-            case GenericType::ScilabDollar:
-            {
-                poResult->getAs<Polynom>()->append(iCurRow, iCurCol, _poSource);
-                break;
-            }
             default:
                 // call overload
                 return NULL;

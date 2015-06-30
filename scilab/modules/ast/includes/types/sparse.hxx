@@ -13,13 +13,18 @@
 #ifndef __SPARSE_HH__
 #define __SPARSE_HH__
 
-#include <Eigen/Sparse>
+//#include <Eigen/Sparse>
 #include <complex>
 #include "double.hxx"
 #include "bool.hxx"
 #include "keepForSparse.hxx"
 
 #define SPARSE_CONST
+
+namespace Eigen
+{
+template<typename _Scalar, int _Flags, typename _Index>  class SparseMatrix;
+}
 
 namespace types
 {
@@ -335,18 +340,8 @@ struct EXTERN_AST Sparse : GenericType
 
     bool neg(InternalType *& out);
 
-    bool transpose(InternalType *& out)
-    {
-        out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->transpose()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->transpose()) : 0);
-        return true;
-    }
-
-    bool adjoint(InternalType *& out)
-    {
-        out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
-        return true;
-    }
-
+    bool transpose(InternalType *& out);
+    bool adjoint(InternalType *& out);
     int newCholLLT(Sparse** permut, Sparse** factor) const;
 
     /** create a new sparse matrix containing the non zero values set to 1.
@@ -499,8 +494,8 @@ struct EXTERN_AST Sparse : GenericType
 
     SparseBool* newLesserThan(Sparse const&o);
 
-    typedef Eigen::SparseMatrix<double, Eigen::RowMajor>                 RealSparse_t;
-    typedef Eigen::SparseMatrix<std::complex<double>, Eigen::RowMajor>   CplxSparse_t;
+    typedef Eigen::SparseMatrix<double, 0x1, int>                   RealSparse_t;
+    typedef Eigen::SparseMatrix<std::complex<double>, 0x1, int>     CplxSparse_t;
     /**
        One and only one of the args should be 0.
        @param realSp ptr to an Eigen sparse matrix of double values
@@ -537,19 +532,7 @@ private :
 };
 
 template<typename T>
-inline static void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, Eigen::RowMajor> * const out)
-{
-    for (int i = 0; i < r; i++)
-    {
-        for (int j = 0; j < c; j++)
-        {
-            out->coeffRef(i, j) = !in->coeff(i, j);
-        }
-    }
-
-    out->prune(&keepForSparse<bool>);
-    out->finalize();
-}
+void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, 1, int> * const out);
 
 
 /*
@@ -652,11 +635,7 @@ struct EXTERN_AST SparseBool : GenericType
         return 1;
     }
 
-    bool transpose(InternalType *& out)
-    {
-        out = new SparseBool(new BoolSparse_t(matrixBool->transpose()));
-        return true;
-    }
+    bool transpose(InternalType *& out);
 
     /** @return the nb of non zero values.
      */
@@ -740,7 +719,7 @@ struct EXTERN_AST SparseBool : GenericType
     SparseBool* newLogicalOr(SparseBool const&o) const;
     SparseBool* newLogicalAnd(SparseBool const&o) const;
 
-    typedef Eigen::SparseMatrix<bool, Eigen::RowMajor> BoolSparse_t;
+    typedef Eigen::SparseMatrix<bool, 0x1, int> BoolSparse_t;
     SparseBool(BoolSparse_t* o);
     BoolSparse_t* matrixBool;
 

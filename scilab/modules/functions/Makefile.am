@@ -44,7 +44,6 @@ libscifunctions_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
     $(LLVM_INCLUDE) \
     $(LLVM_CPPFLAGS) \
-    $(EIGEN_CPPFLAGS) \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscifunctions.la

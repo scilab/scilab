@@ -50,10 +50,6 @@ SCICOS_IMPEXP void F2C(createlistvarfromptr)()
 {
     abort();
 }
-SCICOS_IMPEXP void F2C(xscion)()
-{
-    abort();
-}
 SCICOS_IMPEXP void F2C(getrhsvar)()
 {
     abort();

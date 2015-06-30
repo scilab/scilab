@@ -20,7 +20,14 @@ assert_checkequal(l(1), []);
 l = list();
 l(1) = {};
 assert_checkequal(l, list({}));
-size: Wrong number of input argument(s): 1 expected.
-at line   116 of function assert_checkequal called by :
-assert_checkequal(l, list({}))
-at line    39 of exec file called by :
+assert_checkequal(l(1), {});
+c = {};
+c{1} = [];
+assert_checkequal(c, {[]});
+assert_checkequal(c{1}, []);
+c{1} = {};
+assert_checkequal(c, {{}});
+assert_checkequal(c{1}, {});
+c{1} = list();
+assert_checkequal(c, {list()});
+assert_checkequal(c{1}, list());

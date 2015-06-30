@@ -25,6 +25,7 @@
 #include "macro.hxx"
 #include "macrofile.hxx"
 #include "overload.hxx"
+#include "user.hxx"
 
 using namespace types;
 
@@ -2121,6 +2122,8 @@ void fillComparisonNoEqualFunction()
     scilab_fill_comparison_no_equal(ScalarHandle, MacroFile, M_E, GraphicHandle, MacroFile, Bool);
     scilab_fill_comparison_no_equal(MacroFile, ScalarHandle, M_E, MacroFile, GraphicHandle, Bool);
 
+    //UserType
+    scilab_fill_comparison_no_equal(UserType, UserType, UT_UT, UserType, UserType, Bool);
 
 #undef scilab_fill_comparison_no_equal
 
@@ -3748,4 +3751,18 @@ InternalType* compnoequal_MCR_MCR(T *_pL, U *_pR)
     }
 
     return new Bool(ret);
+}
+
+//UserType
+template<class T, class U, class O>
+InternalType* compnoequal_UT_UT(T *_pL, U *_pR)
+{
+    // Get the equality and return its contrary
+    Bool* eq = _pL->equal(_pR);
+    for (int i = 0; i < eq->getSize(); ++i)
+    {
+        eq->set(i, !eq->get(i));
+    }
+
+    return eq;
 }

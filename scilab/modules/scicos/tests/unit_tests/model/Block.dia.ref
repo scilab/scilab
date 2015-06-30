@@ -172,6 +172,7 @@ propertyUpdated( 5 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 5 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 5 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -181,7 +182,6 @@ propertyUpdated( 5 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 5 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 5 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 5 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 5 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 6 , PORT )
@@ -381,6 +381,7 @@ propertyUpdated( 9 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 9 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 9 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -390,7 +391,6 @@ propertyUpdated( 9 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 9 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 9 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 9 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 9 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 10 , PORT )
@@ -590,6 +590,7 @@ propertyUpdated( 13 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 13 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 13 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -599,7 +600,6 @@ propertyUpdated( 13 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 13 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 13 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 13 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 13 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 14 , PORT )
@@ -803,6 +803,7 @@ propertyUpdated( 18 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 18 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 18 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 18 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -812,7 +813,6 @@ propertyUpdated( 18 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 18 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , IPAR ) : NO_CHANGES
-propertyUpdated( 18 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 18 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 18 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 19 , PORT )
@@ -1189,6 +1189,7 @@ propertyUpdated( 26 , BLOCK , STYLE ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , LABEL ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , GEOMETRY ) : SUCCESS
 propertyUpdated( 26 , BLOCK , ANGLE ) : NO_CHANGES
+propertyUpdated( 26 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 26 , BLOCK , STATE ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , DSTATE ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , ODSTATE ) : NO_CHANGES
@@ -1198,7 +1199,6 @@ propertyUpdated( 26 , BLOCK , SIM_DEP_UT ) : SUCCESS
 propertyUpdated( 26 , BLOCK , NZCROSS ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , NMODE ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , IPAR ) : SUCCESS
-propertyUpdated( 26 , BLOCK , EXPRS ) : SUCCESS
 propertyUpdated( 26 , BLOCK , EQUATIONS ) : NO_CHANGES
 propertyUpdated( 26 , BLOCK , PARENT_DIAGRAM ) : NO_CHANGES
 objectCreated( 27 , PORT )

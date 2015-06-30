@@ -7,9 +7,5 @@
 // =============================================================================
 //
 // <-- CLI SHELL MODE -->
-refMsg = msprintf(_("%s: Undefined field in string matrix position : %d\n"), "getscicosvars", 2);
-assert_checkerror("getscicosvars([""x"" ""fake""])", refMsg);
-assert_checkerror: Assertion failed: expected error message = "getscicosvars: Undefined field in string matrix position : 2" while computed error message = "getscicosvars: Undefined field in string matrix position: 2.".
-at line   120 of function assert_checkerror called by :
-assert_checkerror("getscicosvars([""x"" ""fake""])", refMsg)
-at line    25 of exec file called by :
+refMsg = msprintf(_("%s: scicosim is not running.\n"), "getscicosvars");
+assert_checkerror("getscicosvars([""x"" ""blocks""])", refMsg);

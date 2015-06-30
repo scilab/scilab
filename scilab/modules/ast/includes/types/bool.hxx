@@ -75,10 +75,7 @@ public:
         return L"b";
     }
 
-    virtual bool transpose(InternalType *& out)
-    {
-        return type_traits::transpose(*this, out);
-    }
+    virtual bool transpose(InternalType *& out);
 
 protected :
     inline ScilabType       getType(void)
@@ -102,16 +99,6 @@ private :
     virtual void            deleteImg();
     virtual int*            allocData(int _iSize);
 };
-
-// See the comment before ArrayOf<T>::neg to explain why the definition is here !!
-template<typename T>
-inline bool ArrayOf<T>::neg(InternalType *& out)
-{
-    out = new Bool(this->m_iDims, this->m_piDims);
-    type_traits::neg<T, int>(this->m_iSize, this->m_pRealData, static_cast<Bool *>(out)->get());
-
-    return true;
-}
 
 }
 

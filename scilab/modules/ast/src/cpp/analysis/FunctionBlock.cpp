@@ -10,6 +10,9 @@
  *
  */
 
+#include "debugvisitor.hxx"
+#include "printvisitor.hxx"
+
 #include "data/DataManager.hxx"
 #include "data/FunctionBlock.hxx"
 #include "data/CompleteMacroSignature.hxx"
@@ -56,7 +59,8 @@ namespace analysis
 
     void FunctionBlock::setGlobals(const std::set<symbol::Symbol> & v)
     {
-	globals = v;
+	//globals = v; => bug on mac
+	std::copy(v.begin(), v.end(), std::inserter(globals, globals.begin()));
     }
 
 /*    TITypeSignatureTuple FunctionBlock::getGlobals(std::vector<symbol::Symbol> & v)
@@ -123,28 +127,78 @@ namespace analysis
     void FunctionBlock::finalize()
     {
         dm->popFunction();
+
+	for (unsigned int i = 0; i != lhs; ++i)
+	{
+	    auto it = symMap.find(out[i]);
+	    if (it != symMap.end())
+	    {
+		const TIType & type = it->second.type;
+		if (type.isscalar())
+		{
+		    types_out.emplace_back(out[i], TypeLocal(type.type, 1, 1, false));
+		}
+		else
+		{
+		    types_out.emplace_back(out[i], TypeLocal(type.type, -1, -1, false));
+		}
+	    }
+	    else
+	    {
+		types_out.emplace_back(out[i], TypeLocal(TIType::UNKNOWN, -1, -1, false));
+	    }
+	    
+	    auto jt = locals.find(out[i]);
+	    if (jt != locals.end())
+	    {
+		jt->second.erase(types_out.back().second);
+		if (jt->second.empty())
+		{
+		    locals.erase(jt);
+		}
+	    }
+	}
     }
 
-    Info & FunctionBlock::addDefine(const symbol::Symbol & sym, const TIType & Rtype, ast::Exp * exp)
+    void FunctionBlock::addLocal(const symbol::Symbol & sym, const TIType & type, const bool isAnInt)
     {
-	Info & info = Block::addDefine(sym, Rtype, exp);
 	auto i = locals.find(sym);
 	if (i == locals.end())
 	{
-	    i = locals.emplace(sym, std::set<__TypeLocal>()).first;
+	    i = locals.emplace(sym, std::set<TypeLocal>()).first;
 	}
-	if (Rtype.isConstantDims())
-	{
-	    i->second.emplace(Rtype.type, Rtype.rows.getConstant(), Rtype.cols.getConstant());
-	}
-	else
-	{
-	    i->second.emplace(Rtype.type, -1, -1);
-	}
-	  
-        return info;
+
+	i->second.emplace(TypeLocal::get(type, isAnInt));
     }
 
+    int FunctionBlock::getTmpId(const TIType & type, const bool isAnInt)
+    {
+	return tempManager.getTmp(type, isAnInt);
+    }
+    
+    void FunctionBlock::releaseTmp(const int id)
+    {
+	tempManager.releaseTmp(id);
+    }
+
+    void FunctionBlock::setInOut(MacroDef * macrodef, const unsigned int rhs, const std::vector<TIType> & _in)
+    {
+        in = macrodef->getIn();
+        out = macrodef->getOut();
+
+	for (unsigned int i = 0; i != rhs; ++i)
+	{
+	    if (_in[i].isscalar())
+	    {
+		types_in.emplace_back(in[i], TypeLocal(_in[i].type, 1, 1, false));
+	    }
+	    else
+	    {
+		types_in.emplace_back(in[i], TypeLocal(_in[i].type, -1, -1, false));
+	    }
+	}
+    }
+    
     Block * FunctionBlock::getDefBlock(const symbol::Symbol & sym, std::map<symbol::Symbol, Info>::iterator & it, const bool global)
     {
 	it = symMap.find(sym);
@@ -166,5 +220,62 @@ namespace analysis
 	    }
 	}
 	return this;
+    }
+
+    std::wostream & operator<<(std::wostream & out, const FunctionBlock & fblock)
+    {
+	out << L"Function " << fblock.name << L'\n'
+	    << L" -LHS: " << fblock.lhs << L'\n'
+	    << L" -RHS: " << fblock.rhs << L'\n'
+	    << L" -in:" << L'\n';
+	for (const auto & p : fblock.types_in)
+	{
+	    out << L"   -" << p.first << L" -> " << p.second << L'\n';
+	}
+
+	out << L'\n'
+	    << L" -out:" << L'\n';
+	for (const auto & p : fblock.types_out)
+	{
+	    out << L"   -" << p.first << L" -> " << p.second << L'\n';
+	}
+	out << L'\n';
+	if (fblock.locals.empty())
+	{
+	    out << L" -locals: none" << L'\n';
+	}
+	else
+	{
+	    out << L" -locals:" << L'\n';
+	    for (const auto & p : fblock.locals)
+	    {
+		out << L"   -" << p.first << L" -> ";
+		tools::printSet(p.second, out);
+		out << L'\n';
+	    }
+	}
+
+	out << L'\n';
+	const std::map<TypeLocal, std::stack<int>> & temps = fblock.getTemp();
+	if (temps.empty())
+	{
+	    out << L" -temps: none" << L'\n';
+	}
+	else
+	{
+	    out << L" -temps:" << L'\n';
+	    for (const auto & p : temps)
+	    {
+		out << L"   -" << p.first << L" -> " << p.second.size() << L'\n';
+	    }
+	}
+
+	//ast::PrintVisitor pv(out, true, false);
+	//fblock.exp->accept(pv);
+
+	ast::DebugVisitor dv(out);
+	fblock.exp->accept(dv);
+
+	return out;
     }
 }

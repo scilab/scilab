@@ -31,11 +31,10 @@
 #include "ForList.hxx"
 #include "Result.hxx"
 #include "SymInfo.hxx"
-#include "Temporary.hxx"
 #include "TIType.hxx"
 #include "ConstantVisitor.hxx"
 #include "gvn/SymbolicList.hxx"
-
+#include "FBlockEmittedListener.hxx"
 #include "data/DataManager.hxx"
 #include "data/PolymorphicMacroCache.hxx"
 #include "gvn/ConstraintManager.hxx"
@@ -58,7 +57,6 @@ private:
 
     MapSymInfo symsinfo;
     Result _result;
-    Temporary temp;
     Calls allCalls;
     DataManager dm;
     PolymorphicMacroCache pmc;
@@ -68,6 +66,7 @@ private:
     ast::PrintVisitor pv;
     std::vector<Result> multipleLHS;
     logging::Logger logger;
+    std::vector<FBlockEmittedListener *> fblockListeners;
 
     static MapSymCall symscall;
     static MapSymCall initCalls();
@@ -128,6 +127,11 @@ public:
         return pv;
     }
 
+    inline ast::DebugVisitor & getDV()
+    {
+        return dv;
+    }
+
     inline ast::ExecVisitor & getExec()
     {
         return cv.getExec();
@@ -167,16 +171,6 @@ public:
         return _result;
     }
 
-    inline const Temporary & getTemp() const
-    {
-        return temp;
-    }
-
-    inline Temporary & getTemp()
-    {
-        return temp;
-    }
-
     inline const Calls & getCalls() const
     {
         return allCalls;
@@ -199,43 +193,20 @@ public:
         }
     }
 
-    template<typename T>
-    inline void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, T && args)
+    inline void registerFBlockEmittedListener(FBlockEmittedListener * listener)
     {
-        std::vector<Result> resargs;
-        std::vector<TIType> vargs;
-        vargs.reserve(args.size());
-        resargs.reserve(args.size());
+	if (listener)
+	{
+	    fblockListeners.push_back(listener);
+	}
+    }
 
-        for (typename T::const_iterator i = args.begin(), end = args.end(); i != end; ++i)
-        {
-            (*i)->accept(*this);
-            resargs.push_back(getResult());
-            vargs.push_back(getResult().getType());
-        }
-
-        const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(e.getName()).getSymbol();
-        int tempId = -1;
-        if (lhs > 1)
-        {
-            std::vector<TIType> types = dm.call(*this, lhs, sym, vargs, &e);
-            multipleLHS.clear();
-            multipleLHS.reserve(types.size());
-            for (const auto & type : types)
-            {
-                multipleLHS.emplace_back(type);
-            }
-        }
-        else
-        {
-            std::vector<TIType> out = dm.call(*this, lhs, sym, vargs, &e);
-            if (lhs == 1)
-            {
-                e.getDecorator().res = Result(out[0], tempId);
-                e.getDecorator().setCall(name, vargs);
-                setResult(e.getDecorator().res);
-            }
-        }
+    inline void emitFunctionBlock(FunctionBlock & fblock)
+    {
+	for (auto listener : fblockListeners)
+	{
+	    listener->action(fblock);
+	}
     }
 
     inline Info & getSymInfo(const symbol::Symbol & sym)
@@ -262,8 +233,48 @@ private:
         }
     }
 
+    template<TIType (F)(GVN &, const TIType &, const TIType &)>
+	inline TIType checkEWBinOp(TIType & LT, TIType & RT, const Result & LR, const Result & RR, bool & safe, int & tempId)
+    {
+	TIType resT = F(getGVN(), LT, RT);
+	if (resT.hasInvalidDims())
+	{
+	    const bool ret = getCM().check(ConstraintManager::SAMEDIMS, LT.rows.getValue(), LT.cols.getValue(), RT.rows.getValue(), RT.cols.getValue());
+	    
+	    if (ret)
+	    {
+		resT = F(getGVN(), LT, RT);
+		safe = true;
+	    }
+	    else
+	    {
+		resT = resT.asUnknownMatrix();
+	    }
+	}
+	else
+	{
+	    safe = true;
+	}
+	
+	tempId = getTmpIdForEWOp(resT, LR, RR);
+	
+	if (resT.isscalar())
+	{
+	}
+
+	return resT;
+    }
+
+    
     bool operGVNValues(ast::OpExp & oe);
     bool operSymbolicRange(ast::OpExp & oe);
+
+    // get temp id for an element-wise operation
+    // A + (B + 1) => B+1 is a temp, A is not and we can reuse the temp to put the result of A + (B+1)
+    int getTmpIdForEWOp(const TIType & resT, const Result & LR, const Result & RR);
+    void visitArguments(const std::wstring & name, const unsigned int lhs, const TIType & calltype, ast::CallExp & e, const ast::exps_t & args);
+
+    
 
     void visit(ast::SelectExp & e);
     void visit(ast::ListExp & e);
@@ -364,8 +375,8 @@ private:
         // TODO: e.getName() is not always a simple var: foo(a)(b)
         if (e.getName().isSimpleVar())
         {
-            ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
-            symbol::Symbol & sym = var.getSymbol();
+            const ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getName());
+            const symbol::Symbol & sym = var.getSymbol();
             const std::wstring & name = sym.getName();
             Info & info = getSymInfo(sym); // that put the sym in the current block !
 	    Result & res = e.getName().getDecorator().setResult(info.type);
@@ -383,7 +394,7 @@ private:
                 }
 
                 // Special analysis cases: size, zeros, ones, ...
-                MapSymCall::iterator it = symscall.find(sym.getName());
+                MapSymCall::iterator it = symscall.find(name);
                 if (it != symscall.end())
                 {
                     if (getCM().checkGlobalConstant(sym) && it->second.get()->analyze(*this, lhs, e))
@@ -545,22 +556,11 @@ private:
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-            double start, step, end;
-            if (asDouble(le.getStart(), start) && asDouble(le.getStep(), step) && asDouble(le.getEnd(), end))
-            {
-                ForList64 fl(start, step, end);
-                e.setListInfo(fl);
-                dm.define(sym, fl.getType(), &e).isint = true;
-                // No need to visit the list (it has been visited just before)
-            }
-            else
-            {
-                e.setListInfo(ForList64());
-                le.accept(*this);
-                Result & res = getResult();
-                Info & info = dm.define(sym, res.getType(), &e);
-                info.setRange(res.getRange());
-            }
+	    e.setListInfo(ForList64());
+	    le.accept(*this);
+	    Result & res = getResult();
+	    Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);
+	    info.setRange(res.getRange());
         }
     }
 

@@ -48,7 +48,7 @@ MFILECONTENTS=["% Test with fgets result stored in a variable";
 "% Test with fgets result not-stored in a variable";
 "fp = fopen(''testfile.txt'',''r'');";
 "disp(fgets(fp)); % -1 if eof";
-"fclose(fp);"]
+"fclose(fp);"];
 
 MFILE=TMPDIR+"/bug1003.m";
 SCIFILE=TMPDIR+"/bug1003.sci";
@@ -67,7 +67,7 @@ SCIFILECONTENTSREF=["";
 "// Test with fgets result stored in a variable";
 "fp = mtlb_fopen(""testfile.txt"",""r"");";
 "tempstr = "" "";";
-"while tempstr~=(-1)";
+"while tempstr<>-1";
 "  tempstr = mgetl(fp,1);  if isempty(tempstr) then tempstr = -1;end;  // -1 if eof";
 "  disp(tempstr);";
 "end;";

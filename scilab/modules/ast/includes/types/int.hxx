@@ -23,6 +23,7 @@
 #include "internal.hxx"
 #include "types_transposition.hxx"
 #include "configvariable.hxx"
+#include "type_traits.hxx"
 
 #include <sstream>
 #include <string>

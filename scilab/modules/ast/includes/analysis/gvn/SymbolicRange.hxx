@@ -60,7 +60,7 @@ public:
      * \param _start the starting value
      * \param _end the ending value
      */
-    SymbolicRange(GVN & _gvn, double _start, double _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
+    SymbolicRange(GVN & _gvn, int64_t _start, int64_t _end) : SymbolicRange(&_gvn, _gvn.getValue(_start), _gvn.getValue(_end)) { }
 
     inline void set(GVN & _gvn, GVN::Value * _start, GVN::Value * _end)
 	{
@@ -108,6 +108,16 @@ public:
     }
 
     /**
+     * \brief Overload of the + operator
+     */
+    inline SymbolicRange operator+(const GVN::Value & R) const
+    {
+        return SymbolicRange(gvn,
+                             gvn->getValue(OpValue::Kind::PLUS, *start, R),
+                             gvn->getValue(OpValue::Kind::PLUS, *end, R));
+    }
+
+    /**
      * \brief Overload of the - operator
      */
     inline SymbolicRange operator-(const SymbolicRange & R) const
@@ -115,6 +125,26 @@ public:
         return SymbolicRange(gvn,
                              gvn->getValue(OpValue::Kind::MINUS, *start, *R.end),
                              gvn->getValue(OpValue::Kind::MINUS, *end, *R.start));
+    }
+
+    /**
+     * \brief Overload of the - operator
+     */
+    inline SymbolicRange operator-(const GVN::Value & R) const
+    {
+        return SymbolicRange(gvn,
+                             gvn->getValue(OpValue::Kind::MINUS, *start, R),
+                             gvn->getValue(OpValue::Kind::MINUS, *end, R));
+    }
+
+    /**
+     * \brief Overload of the - operator
+     */
+    friend inline SymbolicRange operator-(const GVN::Value & L, const SymbolicRange & R)
+    {
+        return SymbolicRange(R.gvn,
+                             R.gvn->getValue(OpValue::Kind::MINUS, L, *R.end),
+                             R.gvn->getValue(OpValue::Kind::MINUS, L, *R.start));
     }
 
     /**
@@ -129,6 +159,17 @@ public:
     }
 
     /**
+     * \brief Overload of the * operator
+     */
+    inline SymbolicRange operator*(const GVN::Value & R) const
+    {
+        // We suppose that all the values are positive or null
+        return SymbolicRange(gvn,
+                             gvn->getValue(OpValue::Kind::TIMES, *start, R),
+                             gvn->getValue(OpValue::Kind::TIMES, *end, R));
+    }
+
+    /**
      * \brief Overload of the / operator
      */
     inline SymbolicRange operator/(const SymbolicRange & R) const
@@ -137,6 +178,27 @@ public:
         return SymbolicRange(gvn,
                              gvn->getValue(OpValue::Kind::RDIV, *start, *R.start),
                              gvn->getValue(OpValue::Kind::RDIV, *end, *R.end));
+    }
+
+    /**
+     * \brief Overload of the / operator
+     */
+    inline SymbolicRange operator/(const GVN::Value & R) const
+    {
+        // We suppose that all the values are positive or null
+        return SymbolicRange(gvn,
+                             gvn->getValue(OpValue::Kind::RDIV, *start, R),
+                             gvn->getValue(OpValue::Kind::RDIV, *end, R));
+    }
+
+    /**
+     * \brief Overload of the - operator
+     */
+    friend inline SymbolicRange operator/(const GVN::Value & L, const SymbolicRange & R)
+    {
+        return SymbolicRange(R.gvn,
+                             R.gvn->getValue(OpValue::Kind::RDIV, L, *R.end),
+                             R.gvn->getValue(OpValue::Kind::RDIV, L, *R.start));
     }
 
     /**

@@ -60,10 +60,10 @@ function pal = xcosPal(name, scs_m)
 
     if exists("name", "l") == 0 then
         name = "New palette";
-    elseif isempty(name) then
-        name = "New palette";
     elseif typeof(name) == "diagram" then
         scs_m = name;
+        name = "New palette";
+    elseif isempty(name) then
         name = "New palette";
     end
     // loading the scicos_diagram macro
@@ -83,7 +83,7 @@ function pal = xcosPal(name, scs_m)
     [],        [],      [],      []);
 
     // find palette name
-    if ~isempty(scs_m.objs) then
+    if length(scs_m.objs) > 0 then
         name = scs_m.props.title(1);
     end
 

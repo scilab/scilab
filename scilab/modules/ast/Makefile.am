@@ -216,7 +216,7 @@ libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
 includes/analysis/checkers/Checkers.hxx \
-includes/analysis/Call.hxx \
+includes/analysis/call/Call.hxx \
 includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
@@ -355,7 +355,6 @@ includes/types/c_gateway_prototype.h \
 includes/types/colon.hxx \
 includes/types/container.hxx \
 includes/types/cpp_gateway_prototype.hxx \
-includes/types/dollar.hxx \
 includes/types/double.hxx \
 includes/types/file.hxx \
 includes/types/function.hxx \

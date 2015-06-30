@@ -357,6 +357,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
                 return o->setGeometry(v);
             case ANGLE:
                 return o->setAngle(v);
+            case EXPRS:
+                return o->setExprs(v);
             case STATE:
                 return o->setState(v);
             case DSTATE:
@@ -480,8 +482,6 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         model::Block* o = getObject<model::Block>(uid);
         switch (p)
         {
-            case EXPRS:
-                return o->setExprs(v);
             case EQUATIONS:
                 return o->setEquations(v);
             default:

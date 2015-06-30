@@ -1176,7 +1176,6 @@ libscielementary_functions_la_CPPFLAGS = \
 	-I$(top_srcdir)/modules/output_stream/includes/ \
 	-I$(top_srcdir)/modules/threads/includes/ \
 	-I$(top_srcdir)/modules/string/includes/ \
-    $(EIGEN_CPPFLAGS) \
 	$(AM_CPPFLAGS)
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libscielementary_functions.la

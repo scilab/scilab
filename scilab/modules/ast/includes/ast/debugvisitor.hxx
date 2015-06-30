@@ -27,7 +27,7 @@ namespace ast
 class EXTERN_AST DebugVisitor : public GenVisitor<const_kind>
 {
 public:
-    DebugVisitor() {}
+    DebugVisitor(std::wostream & my_ostr = std::wcerr) : ostr(&my_ostr) { }
 
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
@@ -143,6 +143,16 @@ public:
             }
         }
     }
+
+protected:
+    std::wostream * ostr;
+
+private:
+    
+    void DEBUG_START_NODE(const ast::Ast & e);
+    void DEBUG_END_NODE(void);
+    void DEBUG(wstring str);
+    void DEBUG(wstring str, const Exp & e);
 };
 }
 #endif // !AST_DEBUGVISITOR_HXX

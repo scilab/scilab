@@ -3,8 +3,6 @@ LIBRARY    sciconsole.dll
 
 EXPORTS
 ConsolePrintf
-getLinesSize
-getColumnsSize
 linesmore
 TermPrintf_Windows	
 GetCurrentPrompt

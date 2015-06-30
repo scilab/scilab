@@ -20,6 +20,7 @@
 #include <vector>
 #include <sstream>
 
+#include "bool.hxx"
 #include "double.hxx"
 #include "user.hxx"
 #include "internal.hxx"
@@ -191,14 +192,15 @@ public:
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
-        if (current->getSize() != static_cast<int>(1 + properties.size()))
+        // The input TList can have fewer elements than the concerned adapter, but not more, and cannot be empty
+        if (current->getSize() > static_cast<int>(1 + properties.size()) || current->getSize() < 1)
         {
             return false;
         }
 
-        // check the header
+        // Check the header
         types::String* header = current->getFieldNames();
-        if (header->getSize() != static_cast<int>(1 + properties.size()))
+        if (header->getSize() > static_cast<int>(1 + properties.size()) || header->getSize() < 1)
         {
             return false;
         }
@@ -206,8 +208,8 @@ public:
         {
             return false;
         }
-        int index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        typename property<Adaptor>::props_t_it it = properties.begin();
+        for (int index = 1; index < header->getSize(); ++index, ++it)
         {
             if (header->get(index) != it->name)
             {
@@ -215,9 +217,9 @@ public:
             }
         }
 
-        // this is a valid tlist, get each tlist field value and pass it to the right property decoder
-        index = 1;
-        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        // This is a valid tlist, get each tlist field value and pass it to the right property decoder
+        it = properties.begin();
+        for (int index = 1; index < header->getSize(); ++index, ++it)
         {
             bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
             if (!status)
@@ -227,6 +229,45 @@ public:
         }
 
         return true;
+    }
+
+    /**
+     * property comparison
+     */
+
+    types::Bool* equal(types::UserType*& ut)
+    {
+        const Adapters::adapters_index_t adapter_index = Adapters::instance().lookup_by_typename(ut->getShortTypeStr());
+        // Check that 'ut' is an Adapter of the same type as *this
+        if (adapter_index == Adapters::INVALID_ADAPTER)
+        {
+            return new types::Bool(false);
+        }
+        if (this->getTypeStr() != ut->getTypeStr())
+        {
+            return new types::Bool(false);
+        }
+
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
+
+        types::Bool* ret = new types::Bool(1, 1 + properties.size());
+        ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
+
+        Controller controller = Controller();
+        int index = 1;
+        for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
+        {
+            types::InternalType* ith_prop1 = it->get(*static_cast<Adaptor*>(this), controller);
+            types::InternalType* ith_prop2 = it->get(*static_cast<Adaptor*>(ut), controller);
+            ret->set(index, *ith_prop1 == *ith_prop2);
+
+            // Getting a property allocates data, so free it
+            ith_prop1->killMe();
+            ith_prop2->killMe();
+        }
+
+        return ret;
     }
 
     /**
@@ -274,6 +315,14 @@ private:
             out = value;
             return true;
         }
+
+        // specific case : to ease debugging let the user retrieve the model ID
+        if (name == L"modelID")
+        {
+            out = new types::Double(m_adaptee->id());
+            return true;
+        }
+
         return false;
     }
 
@@ -326,7 +375,7 @@ private:
         return NULL;
     }
 
-    types::InternalType* insert(types::typed_list* _pArgs, InternalType* _pSource)
+    types::InternalType* insert(types::typed_list* _pArgs, types::InternalType* _pSource)
     {
         for (size_t i = 0; i < _pArgs->size(); i++)
         {

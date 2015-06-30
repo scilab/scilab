@@ -134,7 +134,7 @@ Function::ReturnValue sci_error(types::typed_list &in, int _iRetCount, types::ty
         }
 
         char* pst = wide_string_to_UTF8(pStr->get(0));
-        Scierror((int)pDbl->get(0), "%s", pst);
+        Scierror((int)pDbl->get(0), "%s\n", pst);
         FREE(pst);
     }
 

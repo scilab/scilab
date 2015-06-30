@@ -81,15 +81,7 @@ public :
         return (m_pImgData != NULL) || isViewAsZComplex();
     }
 
-    bool isTrue()
-    {
-        if (isEmpty() || isComplex())
-        {
-            return false;
-        }
-
-        return type_traits::isTrue<double>(m_iSize, m_pRealData);
-    }
+    bool isTrue();
 
     bool neg(InternalType *& out)
     {

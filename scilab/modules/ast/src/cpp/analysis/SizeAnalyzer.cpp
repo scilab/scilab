@@ -12,6 +12,7 @@
 
 #include "AnalysisVisitor.hxx"
 #include "analyzers/SizeAnalyzer.hxx"
+#include "call/SizeCall.hxx"
 #include "tools.hxx"
 #include "double.hxx"
 
@@ -125,7 +126,7 @@ namespace analysis
             SymbolicDimension & rows = res.getType().rows;
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = rows.getValue();
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::R));
             visitor.setResult(_res);
             break;
         }
@@ -134,7 +135,7 @@ namespace analysis
             SymbolicDimension & cols = res.getType().cols;
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = cols.getValue();
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::C));
             visitor.setResult(_res);
             break;
         }
@@ -145,7 +146,7 @@ namespace analysis
             SymbolicDimension prod = rows * cols;
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = prod.getValue();
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::RC));
             visitor.setResult(_res);
             break;
         }
@@ -161,14 +162,14 @@ namespace analysis
             mlhs.emplace_back(type);
             mlhs.back().getConstant() = cols.getValue();
 
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::R_C));
             break;
         }
         case ONE:
         {
             Result & _res = e.getDecorator().setResult(type);
             _res.getConstant() = new types::Double(1);
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::ONE));
             visitor.setResult(_res);
             break;
         }
@@ -176,7 +177,7 @@ namespace analysis
         {
 	    TIType _type(visitor.getGVN(), TIType::DOUBLE, 1, 2);
             Result & _res = e.getDecorator().setResult(_type);
-            e.getDecorator().setCall(L"size");
+            e.getDecorator().setCall(new SizeCall(SizeCall::BOTH));
             visitor.setResult(_res);
             break;
         }

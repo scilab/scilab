@@ -36,6 +36,7 @@
 
 #include "macrofile.hxx"
 #include "macro.hxx"
+#include "filemanager_interface.h"
 
 #include "runner.hxx"
 #include "threadmanagement.hxx"
@@ -926,6 +927,24 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             setExpectedSize(iExpectedSize);
             InternalType * pIT = getResult();
 
+            // In case of exec file, set the file name in the Macro to store where it is defined.
+            int iFileID = ConfigVariable::getExecutedFileID();
+            if (iFileID && exp->isFunctionDec())
+            {
+                InternalType* pITMacro = symbol::Context::getInstance()->get(exp->getAs<FunctionDec>()->getSymbol());
+                if (pITMacro)
+                {
+                    types::Macro* pMacro = pITMacro->getAs<types::Macro>();
+                    const wchar_t* filename = getfile_filename(iFileID);
+                    // scilab.quit is not open with mopen
+                    // in this case filename is NULL because FileManager have not been filled.
+                    if (filename)
+                    {
+                        pMacro->setFileName(filename);
+                    }
+                }
+            }
+
             if (pIT != NULL)
             {
                 bool bImplicitCall = false;
@@ -958,26 +977,12 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                     }
                     catch (ScilabMessage& sm)
                     {
-                        wostringstream os;
-                        PrintVisitor printMe(os);
-                        exp->accept(printMe);
-                        //os << std::endl << std::endl;
                         if (ConfigVariable::getLastErrorFunction() == L"")
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                         }
 
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-                            throw ScilabMessage(szError + os.str());
-                        }
-                        else
-                        {
-                            sm.SetErrorMessage(sm.GetErrorMessage() + os.str());
-                            throw sm;
-                        }
+                        throw sm;
                     }
                     catch (ast::ScilabError & se)
                     {
@@ -985,19 +990,9 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         {
                             ConfigVariable::setLastErrorFunction(pCall->getName());
                             ConfigVariable::setLastErrorLine(e.getLocation().first_line);
-                            throw ScilabError();
                         }
 
-                        if (pCall->isMacro() || pCall->isMacroFile())
-                        {
-                            wchar_t szError[bsiz];
-                            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), exp->getLocation().first_line, pCall->getName().c_str());
-                            throw ScilabMessage(szError);
-                        }
-                        else
-                        {
-                            throw ScilabMessage();
-                        }
+                        throw se;
                     }
                 }
 
@@ -1041,30 +1036,10 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 break;
             }
         }
-        catch (const ScilabMessage& sm)
+        catch (ScilabMessage& sm)
         {
-            scilabErrorW(sm.GetErrorMessage().c_str());
-
-            CallExp* pCall = dynamic_cast<CallExp*>(exp);
-            if (pCall != NULL)
-            {
-                //to print call expression only of it is a macro
-                pCall->getName().accept(*this);
-
-                if (getResult() != NULL && (getResult()->isMacro() || getResult()->isMacroFile()))
-                {
-                    wostringstream os;
-                    PrintVisitor printMe(os);
-                    pCall->accept(printMe);
-                    //os << std::endl << std::endl;
-                    if (ConfigVariable::getLastErrorFunction() == L"")
-                    {
-                        ConfigVariable::setLastErrorFunction(((InternalType*)getResult())->getAs<Callable>()->getName());
-                    }
-                    throw ScilabMessage(os.str(), 0, exp->getLocation());
-                }
-            }
-            throw ScilabMessage(exp->getLocation());
+            ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
+            throw sm;
         }
         catch (const ScilabError& se)
         {
@@ -1077,33 +1052,8 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                 ConfigVariable::setLastErrorFunction(wstring(L""));
             }
 
-            CallExp* pCall = dynamic_cast<CallExp*>(exp);
-            if (pCall != NULL)
-            {
-                //to print call expression only of it is a macro
-                try
-                {
-                    pCall->getName().accept(*this);
-                    if (getResult() != NULL && (getResult()->isMacro() || getResult()->isMacroFile()))
-                    {
-                        wostringstream os;
-                        PrintVisitor printMe(os);
-                        pCall->accept(printMe);
-                        //os << std::endl << std::endl;
-                        ConfigVariable::setLastErrorFunction(((InternalType*)getResult())->getAs<Callable>()->getName());
-                        scilabErrorW(se.GetErrorMessage().c_str());
-                        throw ScilabMessage(os.str(), 999, exp->getLocation());
-                    }
-                }
-                catch (ScilabError& se2)
-                {
-                    //just to catch exception, do nothing
-                }
-            }
-
-            scilabErrorW(se.GetErrorMessage().c_str());
-            scilabErrorW(L"\n");
-            throw ScilabMessage(exp->getLocation());
+            ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
+            throw ScilabMessage(se.GetErrorMessage(), se.GetErrorNumber(), se.GetErrorLocation());
         }
 
         // If something other than NULL is given to setResult, then that would imply
@@ -1447,7 +1397,7 @@ void RunVisitorT<T>::visitprivate(const MemfillExp &e)
 {
     e.getOriginal()->accept(*this);
 }
-    
+
 template <class T>
 void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
 {

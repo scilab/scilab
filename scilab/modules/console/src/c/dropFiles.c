@@ -87,12 +87,10 @@ BOOL LaunchFilebyExtension(char *File)
 
     if (CommandLine)
     {
-        wchar_t* pwstCommandLine = to_wide_string(CommandLine);
-        StoreCommand(pwstCommandLine);
+        StoreCommand(CommandLine);
         bOK = TRUE;
 
         FREE(CommandLine);
-        FREE(pwstCommandLine);
         CommandLine = NULL;
     }
 

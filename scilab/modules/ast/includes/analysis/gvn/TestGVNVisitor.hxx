@@ -61,7 +61,7 @@ public:
         return *_result;
     }
 
-    inline std::map<std::wstring, unsigned long long> getSymMap() const
+    inline std::map<std::wstring, uint64_t> getSymMap() const
     {
         return gvn.getSymMap();
     }
@@ -124,7 +124,7 @@ private:
         const GVN::Value & LV = getResult();
         e.getRight().accept(*this);
         const GVN::Value & RV = getResult();
-
+	
         switch (e.getOper())
         {
             case ast::OpExp::plus:
@@ -191,7 +191,7 @@ private:
             if (e.getRightExp().isCallExp())
             {
                 ast::CallExp & ce = static_cast<ast::CallExp &>(e.getRightExp());
-                std::unordered_map<unsigned long long, const MultivariatePolynomial *> args;
+                std::unordered_map<uint64_t, const MultivariatePolynomial *> args;
                 const symbol::Symbol & sym = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
                 for (auto & arg : ce.getExps())
                 {

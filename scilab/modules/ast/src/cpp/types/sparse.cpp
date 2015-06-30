@@ -1907,6 +1907,18 @@ int Sparse::newCholLLT(Sparse** _SpPermut, Sparse** _SpFactor) const
     return iInfo;
 }
 
+bool Sparse::transpose(InternalType *& out)
+{
+    out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->transpose()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->transpose()) : 0);
+    return true;
+}
+
+bool Sparse::adjoint(InternalType *& out)
+{
+    out = new Sparse(matrixReal ? new RealSparse_t(matrixReal->adjoint()) : 0, matrixCplx ? new CplxSparse_t(matrixCplx->adjoint()) : 0);
+    return true;
+}
+
 struct BoolCast
 {
     BoolCast(std::complex<double> const& c): b(c.real() || c.imag()) {}
@@ -2028,7 +2040,7 @@ template<typename S> struct GetReal: std::unary_function<typename S::InnerIterat
     }
 };
 template<> struct GetReal< Eigen::SparseMatrix<std::complex<double >, Eigen::RowMajor > >
-        : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
+    : std::unary_function<Sparse::CplxSparse_t::InnerIterator, double>
 {
     double operator()( Sparse::CplxSparse_t::InnerIterator it) const
     {
@@ -3415,5 +3427,27 @@ bool SparseBool::reshape(int _iNewRows, int _iNewCols)
     }
     return res;
 }
+
+bool SparseBool::transpose(InternalType *& out)
+{
+    out = new SparseBool(new BoolSparse_t(matrixBool->transpose()));
+    return true;
+}
+
+template<typename T>
+void neg(const int r, const int c, const T * const in, Eigen::SparseMatrix<bool, 1> * const out)
+{
+    for (int i = 0; i < r; i++)
+    {
+        for (int j = 0; j < c; j++)
+        {
+            out->coeffRef(i, j) = !in->coeff(i, j);
+        }
+    }
+
+    out->prune(&keepForSparse<bool>);
+    out->finalize();
+}
+
 
 }

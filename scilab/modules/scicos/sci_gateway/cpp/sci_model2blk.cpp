@@ -483,7 +483,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
                 return types::Function::Error;
             }
 
-            memset(Block.inptr, 0x00, size);
+            memset(Block.inptr[i], 0x00, size);
         }
     }
 
@@ -934,9 +934,9 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
     d = pIT->getAs<types::Double>();
     Block.nipar = d->getSize();
     Block.ipar = nullptr;
-    if (Block.nrpar > 0)
+    if (Block.nipar > 0)
     {
-        if ((Block.ipar = (int *)MALLOC(Block.nrpar * sizeof(int))) == nullptr)
+        if ((Block.ipar = (int *)MALLOC(Block.nipar * sizeof(int))) == nullptr)
         {
             freeBlock(&Block);
             Scierror(888, _("%s : Allocation error.\n"), name.data());
@@ -944,7 +944,7 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
         }
 
         const double* const r = d->get();
-        for (int j = 0; j < Block.nrpar; j++)
+        for (int j = 0; j < Block.nipar; j++)
         {
             Block.ipar[j] = static_cast<int>(r[j]);
         }

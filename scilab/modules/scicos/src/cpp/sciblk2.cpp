@@ -101,7 +101,7 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
 
     // Treating 'ipar' differently because it is an int tab, unlike the other double ones
     types::Double* Ipar = new types::Double(*nipar, 1);
-    std::transform(ipar, ipar + *nipar, Ipar, toDouble);
+    std::transform(ipar, ipar + *nipar, Ipar->get(), toDouble);
     in[6] = Ipar;
 
     types::List* Nin = new types::List();
@@ -171,35 +171,44 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
             types::Double* Xout = out[3]->getAs<types::Double>();
             memcpy(x, Xout->get(), *nx * sizeof(double));
 
-            if (*nout != 0)
+            if (*flag == 1 || *flag == 6)
             {
-                if (!out[4]->isList())
+                if (*nout != 0)
                 {
-                    setErrAndFree(-1, out);
-                    return;
-                }
-                types::List* Yout = out[4]->getAs<types::List>();
-                if (Yout->getSize() < *nout)
-                {
-                    // Consider that 'outptr' has not been defined in the macro: do not update the current 'outptr'
-                    break;
-                }
-                for (int k = *nout - 1; k >= 0; --k)
-                {
-                    if (!Yout->get(k)->isDouble())
+                    if (!out[4]->isList())
                     {
                         setErrAndFree(-1, out);
                         return;
                     }
-                    types::Double* KthElement = Yout->get(k)->getAs<types::Double>();
-                    double* y = (double*)outptr[k];
-                    int ny = outsz[k];
-                    int ny2 = 1;
-                    if (*flag == 1)
+                    types::List* Yout = out[4]->getAs<types::List>();
+                    if (Yout->getSize() < *nout)
                     {
-                        ny2 = outsz[*nout + k];
+                        // Consider that 'outptr' has not been defined in the macro: do not update the current 'outptr'
+                        break;
                     }
-                    memcpy(y, KthElement->get(), ny * ny2 * sizeof(double));
+                    for (int k = *nout - 1; k >= 0; --k)
+                    {
+                        if (!Yout->get(k)->isDouble())
+                        {
+                            setErrAndFree(-1, out);
+                            return;
+                        }
+                        types::Double* KthElement = Yout->get(k)->getAs<types::Double>();
+                        double* y = (double*)outptr[k];
+                        int ny = outsz[k];
+                        int ny2 = 1;
+                        if (*flag == 1)
+                        {
+                            ny2 = outsz[*nout + k];
+                        }
+                        if (KthElement->getSize() != ny * ny2)
+                        {
+                            // At initialization (flag 6), the 'y' returned by the macro is not necessarily properly initialized.
+                            // In this case, do nothing to avoid copying corrupt data
+                            break;
+                        }
+                        memcpy(y, KthElement->get(), ny * ny2 * sizeof(double));
+                    }
                 }
             }
             break;

@@ -129,13 +129,30 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
             delete pList;
         }
+        else if (arg->isPoly())
+        {
+            Polynom* pPoly = arg->getAs<Polynom>();
+            SinglePoly* pSinglePoly = pPoly->get(0);
+
+            int iMaxDim = 0;
+            double dblParse = -1 * pSinglePoly->get(0);
+            int iSize = getSize();
+
+            if (pSinglePoly->getRank() < 2 && dblParse >= 0 && dblParse < (double)iSize)
+            {
+                out.push_back(get(iSize - 1 - dblParse));
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         if (out.empty() == false)
         {
             return true;
         }
     }
-
     Callable::ReturnValue ret;
     // Overload of extraction need
     // the tlist from where we extract

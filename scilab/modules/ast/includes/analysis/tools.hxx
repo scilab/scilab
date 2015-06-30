@@ -174,6 +174,24 @@ namespace analysis
             }
         }
 
+	template<typename T>
+	inline static T powui(T x, uint64_t n)
+	{
+	    T p = x;
+	    T y = (n & 1) ? x : 1;
+	    
+	    while (n >>= 1)
+	    {
+		p *= p;
+		if (n & 1)
+		{
+		    y *= p;
+		}
+	    }
+	    
+	    return y;
+	}
+
         inline std::wostream & operator<<(std::wostream & out, const IntType & it)
         {
             switch (it)

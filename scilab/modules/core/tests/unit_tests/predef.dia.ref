@@ -11,10 +11,10 @@
 //
 a = 1;
 predef("all");
-ierr = execstr('clear a','errcatch');
+ierr = execstr("clear a","errcatch");
 assert_checktrue(ierr <> 0);
-ierr = execstr('predef(''clear'')','errcatch');
+ierr = execstr("predef(''clear'')","errcatch");
 assert_checktrue(ierr == 0);
-ierr = execstr('clear','errcatch');
+ierr = execstr("clear a","errcatch");
 assert_checktrue(ierr == 0);
 assert_checktrue(predef() == 0);

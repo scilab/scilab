@@ -36,14 +36,15 @@ namespace analysis
 struct MultivariatePolynomial
 {
     typedef std::unordered_set<MultivariateMonomial, MultivariateMonomial::Hash, MultivariateMonomial::Eq> Polynomial;
-    double constant;
+    int64_t constant;
+    bool valid;
     Polynomial polynomial;
 
     /**
      * \brief constructor
      * \param var to init polynomial
      */
-    MultivariatePolynomial(const unsigned long long var) : constant(0)
+    MultivariatePolynomial(const uint64_t var) : constant(0), valid(true)
     {
         polynomial.emplace(var);
     }
@@ -52,19 +53,19 @@ struct MultivariatePolynomial
      * \brief constructor
      * \param _constant to init polynomial
      */
-    MultivariatePolynomial(const double _constant = 0) : constant(_constant) { }
+    MultivariatePolynomial(const int64_t _constant = 0, const bool _valid = true) : constant(_constant), valid(_valid) { }
 
     /**
      * \brief constructor
      * \param _size the size of the polynomial (used to reserve the unordered_set)
      * \param _constant to init polynomial
      */
-    MultivariatePolynomial(const unsigned int _size, const double _constant) : constant(_constant), polynomial(_size) { }
+    MultivariatePolynomial(const unsigned int _size, const int64_t _constant) : constant(_constant), polynomial(_size), valid(true) { }
 
     /**
      * \brief copy constructor
      */
-    MultivariatePolynomial(const MultivariatePolynomial & mp) : constant(mp.constant), polynomial(mp.polynomial) { }
+    MultivariatePolynomial(const MultivariatePolynomial & mp) : constant(mp.constant), polynomial(mp.polynomial), valid(mp.valid) { }
 
     /**
      * \brief Get an invalid polynomial (i.e. constant == NaN)
@@ -72,7 +73,7 @@ struct MultivariatePolynomial
      */
     inline static MultivariatePolynomial getInvalid()
     {
-        return MultivariatePolynomial(tools::NaN());
+        return MultivariatePolynomial(0, false);
     }
 
     /**
@@ -81,7 +82,7 @@ struct MultivariatePolynomial
      */
     inline bool isValid() const
     {
-        return !tools::isNaN(constant);
+        return valid;
     }
 
     /**
@@ -90,7 +91,7 @@ struct MultivariatePolynomial
      */
     inline bool isInvalid() const
     {
-        return tools::isNaN(constant);
+        return !valid;
     }
 
     /**
@@ -98,7 +99,8 @@ struct MultivariatePolynomial
      */
     inline void invalid()
     {
-        constant = tools::NaN();
+        constant = 0;
+	valid = false;
         polynomial.clear();
     }
 
@@ -107,7 +109,7 @@ struct MultivariatePolynomial
      * \param var an id
      * \return true if the polynomial contains the var
      */
-    inline bool contains(const unsigned long long var) const
+    inline bool contains(const uint64_t var) const
 	{
 	    for (const auto & m : polynomial)
 	    {
@@ -125,7 +127,7 @@ struct MultivariatePolynomial
      * \param max an id
      * \return true if all the variables have an id leq to max
      */
-    inline bool checkVariable(const unsigned long long max) const
+    inline bool checkVariable(const uint64_t max) const
     {
         for (const auto & m : polynomial)
         {
@@ -142,7 +144,7 @@ struct MultivariatePolynomial
      * \param min an id
      * \return true if the polynomial contains a var with an id geq than min
      */
-    inline bool containsVarsGEq(const unsigned long long min) const
+    inline bool containsVarsGEq(const uint64_t min) const
     {
         for (const auto & m : polynomial)
         {
@@ -160,7 +162,7 @@ struct MultivariatePolynomial
      * \param min an id
      * \return a translated polynomial
      */
-    inline MultivariatePolynomial translateVariables(const unsigned long long t, const unsigned long long min) const
+    inline MultivariatePolynomial translateVariables(const uint64_t t, const uint64_t min) const
     {
 	MultivariatePolynomial mp;
         for (const auto & m : polynomial)
@@ -188,9 +190,9 @@ struct MultivariatePolynomial
      * \param coeff the multiplcative coefficient to applicate to the monomial
      * \return *this
      */
-    inline MultivariatePolynomial & add(const MultivariateMonomial & m, const double coeff = 1)
+    inline MultivariatePolynomial & add(const MultivariateMonomial & m, const int64_t coeff = 1)
     {
-        const double c = m.coeff * coeff;
+        const int64_t c = m.coeff * coeff;
         if (c)
         {
             Polynomial::iterator i = polynomial.find(m);
@@ -270,7 +272,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the + operator
      */
-    inline MultivariatePolynomial operator+(const double R) const
+    inline MultivariatePolynomial operator+(const int64_t R) const
     {
         if (isValid())
         {
@@ -284,7 +286,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the += operator
      */
-    inline MultivariatePolynomial & operator+=(const double R)
+    inline MultivariatePolynomial & operator+=(const int64_t R)
     {
         if (isValid())
         {
@@ -322,7 +324,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the - operator
      */
-    inline MultivariatePolynomial operator-(const double R) const
+    inline MultivariatePolynomial operator-(const int64_t R) const
     {
         if (isValid())
         {
@@ -354,7 +356,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the -= operator
      */
-    inline MultivariatePolynomial & operator-=(const double R)
+    inline MultivariatePolynomial & operator-=(const int64_t R)
     {
         if (isValid())
         {
@@ -563,7 +565,7 @@ struct MultivariatePolynomial
     {
         if (isValid())
         {
-            MultivariatePolynomial res(static_cast<unsigned int>(polynomial.size() + 1), 0.);
+            MultivariatePolynomial res(static_cast<unsigned int>(polynomial.size() + 1), int64_t(0));
             res.add(constant * R);
             for (const auto & mL : polynomial)
             {
@@ -594,7 +596,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the * operator
      */
-    inline MultivariatePolynomial operator*(const double R) const
+    inline MultivariatePolynomial operator*(const int64_t R) const
     {
         if (isValid())
         {
@@ -617,7 +619,7 @@ struct MultivariatePolynomial
             }
             else
             {
-                return MultivariatePolynomial(0.);
+                return MultivariatePolynomial(int64_t(0));
             }
         }
         return getInvalid();
@@ -626,13 +628,13 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the *= operator
      */
-    inline MultivariatePolynomial & operator*=(const double R)
+    inline MultivariatePolynomial & operator*=(const int64_t R)
     {
         if (isValid())
         {
             if (R == 0)
             {
-                constant = 0.;
+                constant = 0;
                 polynomial.clear();
             }
             else if (R != 1)
@@ -650,7 +652,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the / operator
      */
-    inline MultivariatePolynomial operator/(const double R) const
+    inline MultivariatePolynomial operator/(const int64_t R) const
     {
         if (isValid())
         {
@@ -671,7 +673,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of the /= operator
      */
-    inline MultivariatePolynomial & operator/=(const double R)
+    inline MultivariatePolynomial & operator/=(const int64_t R)
     {
         if (isValid())
         {
@@ -696,7 +698,7 @@ struct MultivariatePolynomial
         {
             if (R == 0)
             {
-                return MultivariatePolynomial(1.);
+                return MultivariatePolynomial(int64_t(1));
             }
             else if (R == 1)
             {
@@ -708,7 +710,7 @@ struct MultivariatePolynomial
                 {
                     if (polynomial.empty())
                     {
-                        return MultivariatePolynomial(0.);
+                        return MultivariatePolynomial(int64_t(0));
                     }
                     else if (polynomial.size() == 1)
                     {
@@ -722,11 +724,11 @@ struct MultivariatePolynomial
 
                 if (polynomial.empty())
                 {
-                    return MultivariatePolynomial(std::pow(constant, R));
+                    return MultivariatePolynomial(tools::powui(constant, R));
                 }
 
                 MultivariatePolynomial p = *this;
-                MultivariatePolynomial y = (R & 1) ? *this : MultivariatePolynomial(1.);
+                MultivariatePolynomial y = (R & 1) ? *this : MultivariatePolynomial(int64_t(1));
 
                 while (R >>= 1)
                 {
@@ -776,7 +778,7 @@ struct MultivariatePolynomial
             return getInvalid();
         }
 
-        std::unordered_map<unsigned long long, std::set<unsigned int>> expected_exps;
+        std::unordered_map<uint64_t, std::set<unsigned int>> expected_exps;
         for (const auto & m : polynomial)
         {
             for (const auto & ve : m.monomial)
@@ -788,7 +790,7 @@ struct MultivariatePolynomial
             }
         }
 
-        std::unordered_map<unsigned long long, std::unordered_map<unsigned int, MultivariatePolynomial>> exps;
+        std::unordered_map<uint64_t, std::unordered_map<unsigned int, MultivariatePolynomial>> exps;
         for (const auto & p : expected_exps)
         {
             if (p.second.size() == 1)
@@ -861,7 +863,7 @@ struct MultivariatePolynomial
                 }
                 else
                 {
-                    MultivariateMonomial mm(1.);
+                    MultivariateMonomial mm(int64_t(1));
                     r *= mm.add(ve);
                 }
             }
@@ -871,6 +873,41 @@ struct MultivariatePolynomial
         return res;
     }
 
+    /**
+     * \brief Check divisibility by an integer
+     * \return true if all the coeffs are divisible by n
+     */
+    inline bool isDivisibleBy(const int64_t n) const
+    {
+        if (constant % n == 0)
+        {
+            for (const auto & m : polynomial)
+            {
+                if (m.coeff % n != 0)
+                {
+		    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * \brief Check divisibility by a polynomial
+     * For now the polynomial must be constant.
+     * \return true if this is divisible by mp
+     */
+    inline bool isDivisibleBy(const MultivariatePolynomial & mp) const
+    {
+	if (mp.polynomial.empty())
+	{
+	    return isDivisibleBy(mp.constant);
+	}
+
+	return false;
+    }
+    
     /**
      * \brief Check positivity
      * \return true if all the coeffs are positive and the exponents are even
@@ -990,7 +1027,7 @@ struct MultivariatePolynomial
      * \param vars a mapping between vars numbers and wstring representation
      * \return a wstring representing this polynomial
      */
-    inline const std::wstring print(const std::map<unsigned long long, std::wstring> & vars) const
+    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
     {
         std::wostringstream wos;
         wos << constant;
@@ -1007,7 +1044,7 @@ struct MultivariatePolynomial
      */
     friend inline std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p)
     {
-        const std::map<unsigned long long, std::wstring> vars;
+        const std::map<uint64_t, std::wstring> vars;
         out << p.constant;
         std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(p.polynomial.begin(), p.polynomial.end());
         for (const auto & m : s)
@@ -1038,7 +1075,7 @@ struct MultivariatePolynomial
      * \param val the constant value to check
      * \return true if the polynomial is constant and equal to val
      */
-    inline bool isConstant(const double val) const
+    inline bool isConstant(const int64_t val) const
     {
         return isConstant() && constant == val;
     }
@@ -1048,7 +1085,7 @@ struct MultivariatePolynomial
      * \param[out] common the common value
      * \return true if there is a common coeff
      */
-    inline bool getCommonCoeff(double & common) const
+    inline bool getCommonCoeff(int64_t & common) const
     {
         if (constant != 0)
         {
@@ -1090,7 +1127,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of == operator
      */
-    inline bool operator==(const double R) const
+    inline bool operator==(const int64_t R) const
     {
         return polynomial.empty() && constant == R;
     }
@@ -1098,7 +1135,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of != operator
      */
-    inline bool operator!=(const double R) const
+    inline bool operator!=(const int64_t R) const
     {
         return !(*this == R);
     }
@@ -1106,7 +1143,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of == operator
      */
-    friend inline bool operator==(const double L, const MultivariatePolynomial & R)
+    friend inline bool operator==(const int64_t L, const MultivariatePolynomial & R)
     {
         return R == L;
     }
@@ -1114,7 +1151,7 @@ struct MultivariatePolynomial
     /**
      * \brief Overload of != operator
      */
-    friend inline bool operator!=(const double L, const MultivariatePolynomial & R)
+    friend inline bool operator!=(const int64_t L, const MultivariatePolynomial & R)
     {
         return R != L;
     }
@@ -1124,12 +1161,12 @@ struct MultivariatePolynomial
      */
     inline std::size_t hash() const
     {
-        std::size_t h = std::hash<double>()(constant);
+        std::size_t h = std::hash<int64_t>()(constant);
         for (const auto & m : polynomial)
         {
             // since the order of the monomials is not always the same
             // we must use a commutative operation to combine the monomial's hashes
-            h += tools::hash_combine(std::hash<double>()(m.coeff), MultivariateMonomial::Hash()(m));
+            h += tools::hash_combine(std::hash<int64_t>()(m.coeff), MultivariateMonomial::Hash()(m));
         }
 
         return h;
@@ -1162,7 +1199,7 @@ struct MultivariatePolynomial
 private:
 
     // Helper function to use with eval
-    inline static bool __isValid(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values)
+    inline static bool __isValid(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values)
     {
         for (const auto & p : values)
         {
@@ -1188,31 +1225,31 @@ private:
     }
 
     // Helper function to use with eval
-    inline static bool __isValid(const std::pair<unsigned long long, const MultivariatePolynomial *> & values)
+    inline static bool __isValid(const std::pair<uint64_t, const MultivariatePolynomial *> & values)
     {
 	return values.second->isValid();
     }
 
     // Helper function to use with eval
-    inline static bool __contains(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static bool __contains(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
         return values.find(val) != values.end();
     }
 
     // Helper function to use with eval
-    inline static bool __contains(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static bool __contains(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
     {
         return val < values.size();
     }
 
     // Helper function to use with eval
-    inline static bool __contains(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static bool __contains(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
         return values.first == val;
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __get(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
         const auto i = values.find(val);
         if (i != values.end())
@@ -1223,13 +1260,13 @@ private:
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::unordered_map<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __getSafe(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
 	return values.find(val)->second;
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __get(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
     {
 	if (val < values.size())
 	{
@@ -1239,13 +1276,13 @@ private:
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::vector<const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __getSafe(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
     {
         return values[val];
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __get(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
 	if (values.first == val)
 	{
@@ -1255,7 +1292,7 @@ private:
     }
 
     // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::pair<unsigned long long, const MultivariatePolynomial *> & values, const unsigned long long val)
+    inline static const MultivariatePolynomial * __getSafe(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
     {
 	return values.second;
     }

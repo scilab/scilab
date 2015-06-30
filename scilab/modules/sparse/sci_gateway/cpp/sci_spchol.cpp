@@ -13,6 +13,7 @@
 #include "sparse_gw.hxx"
 #include "function.hxx"
 #include "sparse.hxx"
+#include <Eigen/Sparse>
 
 extern "C"
 {

@@ -40,7 +40,7 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
         FunctionBlock & fblock = *static_cast<FunctionBlock *>(dm.getCurrent());
         fblock.setName(macrodef->getName());
         fblock.setLhsRhs(signature.lhs, rhs);
-        fblock.setInOut(macrodef);
+        fblock.setInOut(macrodef, rhs, in);
 	fblock.setGlobals(macrodef->getGlobals());
         if (!fblock.addIn(signature.tuple, values))
         {
@@ -48,9 +48,10 @@ const MacroOut * CompleteMacroSignature::analyze(AnalysisVisitor & visitor, cons
             return nullptr;
         }
 
-        macrodef->getBody().accept(visitor);
-	//macrodef->getBody().accept(visitor.getPV());
+        fblock.getExp()->accept(visitor);
         dm.finalizeBlock();
+	visitor.emitFunctionBlock(fblock);
+	//std::wcerr << fblock << std::endl;
         outMap.emplace_back(fblock.getConstraints(), fblock.getGlobalConstants(), fblock.getOuts());
 
         return &outMap.back().out;

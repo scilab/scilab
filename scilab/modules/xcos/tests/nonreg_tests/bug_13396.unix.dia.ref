@@ -63,7 +63,6 @@ end
 [cpr, ok] = xcos_compile(scs_m);
 --------------------------------------------\
  Main Modelica : TMPDIR/bug_13396_im.mo
-
  Flat Modelica : TMPDIR/bug_13396_imf.mo
  Simulation C code :TMPDIR/bug_13396_im.c
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
@@ -72,13 +71,11 @@ assert_checktrue(ok);
 xcos_simulate(scs_m, 4);
 --------------------------------------------\
  Main Modelica : TMPDIR/bug_13396_im.mo
-
  Flat Modelica : TMPDIR/bug_13396_imf.mo
  Simulation C code :TMPDIR/bug_13396_im.c
 WARNING: Diagram contains implicit blocks, compiling for implicit Solver.
 WARNING: Diagram has been compiled for implicit solver
-         switching to implicit Solver
-
+WARNING: switching to implicit Solver
 funcprot(prot);
 ilib_verbose(level);
 mdelete(TMPDIR+"/bug_13396.mo");

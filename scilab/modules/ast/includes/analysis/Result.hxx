@@ -76,6 +76,16 @@ public:
         return tempId;
     }
 
+    inline bool isTemp() const
+	{
+	    return tempId != -1;
+	}
+
+    inline bool hasGVNValue() const
+	{
+	    return constant.getGVNValue() != nullptr;
+	}
+
     inline ConstantValue & getConstant()
     {
         return constant;
@@ -114,6 +124,11 @@ public:
         return range;
     }
 
+    inline bool isAnInt() const
+	{
+	    return hasGVNValue() || getRange().isValid();
+	}
+
     inline SymbolicDimension & getMaxIndex()
 	{
 	    return maxIndex;
@@ -138,7 +153,10 @@ public:
     
     friend std::wostream & operator<<(std::wostream & out, const Result & res)
     {
-        out << L"Result {" << res.type << L", temp id:" << res.tempId << L", constant:" << res.constant << L"}";
+        out << L"Result {" << res.type
+	    << L", temp id:" << res.tempId
+	    << L", constant:" << res.constant
+	    << L", isAnInt:" << (res.isAnInt() ? L"T" : L"F") << L"}";
         return out;
     }
 };

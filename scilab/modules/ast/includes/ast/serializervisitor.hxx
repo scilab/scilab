@@ -17,6 +17,7 @@
 #include "dummyvisitor.hxx"
 #include "deserializervisitor.hxx"
 #include "timer.hxx"
+#include "charEncoding.h"
 #include "version.h"
 
 #define FAGMENT_SIZE 65536
@@ -176,11 +177,12 @@ private :
     void add_wstring(const std::wstring &w)
     {
         int size = (int)w.size();
-        const wchar_t *c_str = w.c_str();
-        int final_size = size * sizeof(wchar_t);
+        char *c_str = wide_string_to_UTF8(w.c_str());
+        int final_size = size * sizeof(char);
         add_uint32(final_size);
         need(final_size);
         memcpy(buf + buflen, c_str, final_size);
+        FREE(c_str);
         buflen += final_size;
     }
 

@@ -15,7 +15,6 @@
 #include "operations.hxx"
 #include "double.hxx"
 #include "int.hxx"
-
 #include "scilabexception.hxx"
 
 extern "C"

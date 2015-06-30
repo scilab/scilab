@@ -15,5 +15,4 @@
 // <-- Short Description -->
 // atomsSystemUpdate returned an error.
 atomsSystemUpdate();
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
+Scanning repository http://atoms.scilab.org/6.0 ... Done

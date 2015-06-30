@@ -15,6 +15,7 @@
 #include "boolexp.hxx"
 #include "tostring_common.hxx"
 #include "configvariable.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -339,6 +340,11 @@ int* Bool::allocData(int _iSize)
 ast::Exp* Bool::getExp(const Location& loc)
 {
     return new ast::BoolExp(loc, this);
+}
+
+bool Bool::transpose(InternalType *& out)
+{
+    return type_traits::transpose(*this, out);
 }
 
 }

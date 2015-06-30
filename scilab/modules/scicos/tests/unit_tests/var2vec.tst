@@ -114,3 +114,40 @@ st = struct();
 assert_checkequal(vec2var(var2vec(st)), st);
 stFull = struct("f1", [], "f2", Mat, "f3", HyperMat, "f4", int32(Mat), "f5", string(Mat), "f6", Mat>15);
 assert_checkequal(vec2var(var2vec(stFull)), stFull);
+
+// List containing a full TList, taken from PDE.sci
+params_pde = tlist(["paramspde";"a";"b";"txt_exp";"check_op1";"a1";"b1";"check_op2";"a2";"b2";..
+"check_op3";"a3";"b3";"check_op4";"a4";"b4";"check_op5";"a5";"b5";"check_op6";"a6";"b6";..
+"check_op7";"a7";"b7";"discr_cst";"discr_non_cst";"signe";"rad_automatique";"rad_manuel";..
+"methode";"ord1";"ord2";"ord3";"degre";"nnode";"txt_pas";"CI";"dCI";"CLa";"CLa_exp";"CLb";..
+"CLb_exp";"points"],"","","","0","","IN_EDP1(t)","0","","IN_EDP2(t)","0","","IN_EDP3(t)",..
+"0","","IN_EDP4(t)","0","","IN_EDP5(t)","0","","IN_EDP6(t)","0","","IN_EDP7(t)","0","0",..
+"0","0","0","0","","","","","","","","","0","IN_CL1(t)","0","IN_CL2(t)","");
+label = list(params_pde, [], "");
+assert_checkequal(vec2var(var2vec(params_pde)), params_pde);
+assert_checkequal(vec2var(var2vec(label)), label);
+
+// TList containing a List, taken from MBLOCK.sci
+in = ["u1"];
+intype = ["I"];
+out = ["y1";"y2"];
+outtype = ["I";"E"];
+param = ["R";"L"];
+paramv = list(0.1,.0001);
+pprop = [0;0];
+nameF = "generic";
+exprs = tlist(["MBLOCK","in","intype","out","outtype",...
+"param","paramv","pprop","nameF","funtxt"],...
+sci2exp(in(:)),..
+sci2exp(intype(:)),..
+sci2exp(out(:)),..
+sci2exp(outtype(:)),..
+sci2exp(param(:)),..
+list(string(0.1),string(.0001)),...
+sci2exp(pprop(:)),..
+nameF,[]);
+assert_checkequal(vec2var(var2vec(exprs)), exprs);
+
+// List containing a Struct
+lStFull = list(stFull, [], stFull, "test");
+assert_checkequal(vec2var(var2vec(lStFull)), lStFull);

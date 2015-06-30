@@ -1672,7 +1672,32 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     else
                     {
                         opartyp[j] = SCSCOMPLEX_N; // Double complex matrix
-                        opar[j] = (SCSCOMPLEX_COP *) oparDouble->get();
+                        // Allocate a long array in order to make the real and complex parts contiguous (oparDouble->get() and oparDouble->getImg())
+                        if ((opar[j] = new (std::nothrow) double[2 * oparDouble->getSize()]) == nullptr)
+                        {
+                            Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
+                            il_state->DecreaseRef();
+                            il_state->killMe();
+                            il_tcur->DecreaseRef();
+                            il_tcur->killMe();
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
+                            delete[] il_sim_labptr;
+                            delete[] l_sim_lab;
+                            delete[] il_sim_uidptr;
+                            delete[] l_sim_uid;
+                            delete[] lfunpt;
+                            delete[] oz;
+                            delete[] ozsz;
+                            delete[] oztyp;
+                            delete[] opar;
+                            delete[] oparsz;
+                            delete[] opartyp;
+                            return types::Function::Error;
+                        }
+                        memcpy(opar[j], oparDouble->get(), oparDouble->getSize() * sizeof(double)); // Real part
+                        memcpy((double*)(opar[j]) + oparDouble->getSize(), oparDouble->getImg(), oparDouble->getSize() * sizeof(double)); // Complex part
+                        // FIXME: delete oparDouble because we copied it instead of using it?
                     }
                     oparsz[j] = oparDouble->getRows();
                     oparsz[j + nopar] = oparDouble->getCols();
@@ -1861,7 +1886,34 @@ types::Function::ReturnValue sci_scicosim(types::typed_list &in, int _iRetCount,
                     else
                     {
                         outtbtyp[j] = SCSCOMPLEX_N; // Double complex matrix
-                        outtbptr[j] = (SCSCOMPLEX_COP *) outtbDouble->get();
+                        // Allocate a long array in order to make the real and complex parts contiguous (outtbDouble->get() and outtbDouble->getImg())
+                        if ((outtbptr[j] = new (std::nothrow) double[2 * outtbDouble->getSize()]) == nullptr)
+                        {
+                            Scierror(999, _("%s: Memory allocation error.\n"), funname.data());
+                            il_state->DecreaseRef();
+                            il_state->killMe();
+                            il_tcur->DecreaseRef();
+                            il_tcur->killMe();
+                            il_sim->DecreaseRef();
+                            il_sim->killMe();
+                            delete[] il_sim_labptr;
+                            delete[] l_sim_lab;
+                            delete[] il_sim_uidptr;
+                            delete[] l_sim_uid;
+                            delete[] lfunpt;
+                            delete[] oz;
+                            delete[] ozsz;
+                            delete[] oztyp;
+                            delete[] opar;
+                            delete[] oparsz;
+                            delete[] opartyp;
+                            delete[] outtbptr;
+                            delete[] outtbsz;
+                            return types::Function::Error;
+                        }
+                        memcpy(outtbptr[j], outtbDouble->get(), outtbDouble->getSize() * sizeof(double)); // Real part
+                        memcpy((double*)(outtbptr[j]) + outtbDouble->getSize(), outtbDouble->getImg(), outtbDouble->getSize() * sizeof(double)); // Complex part
+                        // FIXME: delete outtbDouble because we copied it instead of using it?
                     }
                     outtbsz[j] = outtbDouble->getRows();
                     outtbsz[j + nlnk] = outtbDouble->getCols();

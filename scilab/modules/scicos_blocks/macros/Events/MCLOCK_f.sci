@@ -38,7 +38,7 @@ function [x,y,typ]=MCLOCK_f(job,arg1,arg2)
         spath=list("model","rpar","objs",path)
         xx=arg1(spath)// get the block
         execstr("xxn="+xx.gui+"(''set'',xx)")
-        if or(xxn<>xx) then
+        if diffobjs(xxn,xx)==1 then
             // parameter or states changed
             arg1(spath)=xxn// Update
             newpar(size(newpar)+1)=path// Notify modification

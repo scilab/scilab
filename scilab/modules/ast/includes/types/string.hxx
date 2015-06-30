@@ -28,7 +28,6 @@
 #include "arrayof.hxx"
 #include "bool.hxx"
 #include "types_transposition.hxx"
-#include "type_traits.hxx"
 
 namespace types
 {
@@ -94,10 +93,7 @@ public :
         return false;
     }
 
-    virtual bool transpose(InternalType *& out)
-    {
-        return type_traits::transpose(*this, out);
-    }
+    virtual bool transpose(InternalType *& out);
 
     virtual ast::Exp*       getExp(const Location& loc);
 

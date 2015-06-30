@@ -37,7 +37,17 @@ int getOptionals(void* _pvCtx, char* pstFuncName, rhs_opts opts[])
 {
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
     types::optional_list opt = *pStr->m_pOpt;
-    for (int i = 0 ; i < opt.size() ; i++)
+    int i = 0;
+
+    /* reset first field since opts is declared static in calling function */
+
+    while (opts[i].pstName != NULL)
+    {
+        opts[i].iPos = -1;
+        i++;
+    }
+
+    for (i = 0 ; i < opt.size() ; i++)
     {
         int typeOfOpt = -1;
         char* pstOpts = wide_string_to_UTF8(opt[i].first.c_str());

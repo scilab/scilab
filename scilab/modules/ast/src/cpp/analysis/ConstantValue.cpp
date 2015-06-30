@@ -177,9 +177,9 @@ namespace analysis
 		{
 		    const double x = pDbl->get()[0];
 		    int64_t i;
-		    if (tools::asInteger<int64_t>(x, i))
+		    if (tools::asInteger(x, i))
 		    {
-			_val = gvn.getValue((double)i);
+			_val = gvn.getValue(i);
 			return true;
 		    }
                 }
@@ -209,7 +209,7 @@ namespace analysis
             {
                 if (gvnValue->poly->isConstant())
                 {
-                    _val = gvnValue->poly->constant;
+                    _val = (double)gvnValue->poly->constant;
                     return true;
                 }
             }
@@ -237,7 +237,7 @@ namespace analysis
             {
                 if (gvnValue->poly->isConstant())
                 {
-                    _val = gvnValue->poly->constant;
+                    _val = gvnValue->poly->constant != 0;
                     return true;
                 }
             }
@@ -271,7 +271,8 @@ namespace analysis
             {
                 if (gvnValue->poly->isConstant())
                 {
-                    _val = gvnValue->poly->constant;
+                    _val.real((double)gvnValue->poly->constant);
+		    _val.imag(0.);
                     return true;
                 }
             }

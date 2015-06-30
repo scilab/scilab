@@ -15,6 +15,7 @@
 #include "tostring_common.hxx"
 #include "scilabexception.hxx"
 #include "overload.hxx"
+#include "type_traits.hxx"
 
 extern "C"
 {
@@ -201,4 +202,10 @@ bool GraphicHandle::invoke(typed_list & in, optional_list & opt, int _iRetCount,
 
     return true;
 }
+
+bool GraphicHandle::transpose(InternalType *& out)
+{
+    return type_traits::transpose(*this, out);
+}
+
 }

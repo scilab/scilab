@@ -46,7 +46,6 @@
 #include "int.hxx"
 #include "cell.hxx"
 #include "colon.hxx"
-#include "dollar.hxx"
 #include "sparse.hxx"
 #include "graphichandle.hxx"
 #include "void.hxx"

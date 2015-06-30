@@ -13,8 +13,6 @@ out = testGVN("a=n+1;b=1+n");
 assert_checkequal(out.a, out.b);
 out = testGVN("a=n*3;b=3*n");
 assert_checkequal(out.a, out.b);
-out = testGVN("a=0.5*x;b=x/2");
-assert_checkequal(out.a, out.b);
 out = testGVN("a=2*n+1;b=1+n;c=b+n");
 assert_checkequal(out.a, out.c);
 out = testGVN("a=x+2;b=x+x*x+5+2*x-1+x;c=a*a;d=a^2;e=(x+2)*(2+x)");

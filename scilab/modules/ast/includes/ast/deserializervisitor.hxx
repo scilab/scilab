@@ -190,10 +190,13 @@ private :
     std::wstring* get_wstring(void)
     {
         unsigned int size = get_uint32();
-        wchar_t* ss = (wchar_t*)buf;
-        std::wstring* s = new std::wstring(ss, size / sizeof(wchar_t));
+        char* ss = (char*)buf;
+        std::string s(ss, size / sizeof(char));
+        wchar_t* ws = to_wide_string(s.data());
+        std::wstring* w = new std::wstring(ws);
+        FREE(ws);
         buf += size;
-        return s;
+        return w;
     }
 
     symbol::Symbol* get_Symbol(void)

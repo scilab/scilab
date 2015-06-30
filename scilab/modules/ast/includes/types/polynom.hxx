@@ -37,10 +37,10 @@ class EXTERN_AST Polynom : public ArrayOf<SinglePoly*>
 {
 public :
     Polynom();
-    Polynom(std::wstring& _szVarName, int _iRows, int _iCols);
-    Polynom(std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
-    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims);
-    Polynom(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    Polynom(const std::wstring& _szVarName, int _iRows, int _iCols);
+    Polynom(const std::wstring& _szVarName, int _iRows, int _iCols, const int *_piRank);
+    Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims);
+    Polynom(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
     virtual                 ~Polynom();
 
@@ -61,12 +61,13 @@ public :
     {
         return isScalar() ? isComplex() ? IdScalarPolynomComplex
                : IdScalarPolynom
-               : isComplex() ? IdPolynomComplex
+       : isComplex() ? IdPolynomComplex
                : IdPolynom;
     }
 
     bool isComplex(void);
 
+    bool isDollar();
     inline bool             isPoly()
     {
         return true;
@@ -118,9 +119,11 @@ public :
     bool transpose(InternalType *& out);
     bool adjoint(InternalType *& out);
 
+    static Polynom* Dollar();
+
 protected :
     std::wstring            m_szVarName;
-    void                    createPoly(std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
+    void                    createPoly(const std::wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank);
 
 private :
     virtual bool            subMatrixToString(std::wostringstream& ostr, int* _piDims, int _iDims);

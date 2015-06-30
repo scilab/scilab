@@ -28,24 +28,24 @@ Polynom::Polynom()
 #endif
 }
 
-Polynom::Polynom(wstring& _szVarName, int _iRows, int _iCols)
+Polynom::Polynom(const wstring& _szVarName, int _iRows, int _iCols)
 {
     int piDims[2]   = {_iRows, _iCols};
     createPoly(_szVarName, 2, piDims, NULL);
 }
 
-Polynom::Polynom(wstring& _szVarName, int _iRows, int _iCols, const int *_piRank)
+Polynom::Polynom(const wstring& _szVarName, int _iRows, int _iCols, const int *_piRank)
 {
     int piDims[2]   = {_iRows, _iCols};
     createPoly(_szVarName, 2, piDims, _piRank);
 }
 
-Polynom::Polynom(wstring& _szVarName, int _iDims, int* _piDims)
+Polynom::Polynom(const wstring& _szVarName, int _iDims, int* _piDims)
 {
     createPoly(_szVarName, _iDims, _piDims, NULL);
 }
 
-Polynom::Polynom(wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+Polynom::Polynom(const wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
 {
     createPoly(_szVarName, _iDims, _piDims, _piRank);
 }
@@ -61,7 +61,7 @@ Polynom::~Polynom()
 #endif
 }
 
-void Polynom::createPoly(wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
+void Polynom::createPoly(const wstring& _szVarName, int _iDims, int* _piDims, const int *_piRank)
 {
     m_szVarName = _szVarName;
     SinglePoly** pPoly = NULL;
@@ -951,7 +951,7 @@ void Polynom::deleteAll()
 {
     for (int i = 0 ; i < m_iSizeMax ; i++)
     {
-        delete m_pRealData[i];
+        m_pRealData[i]->killMe();
     }
     delete[] m_pRealData;
     m_pRealData = NULL;
@@ -992,6 +992,34 @@ InternalType* Polynom::insert(typed_list* _pArgs, InternalType* _pSource)
         throw ast::ScilabError(wstError, 999, *new Location());
     }
     return ArrayOf<SinglePoly*>::insert(_pArgs, _pSource);
+}
+
+Polynom* Polynom::Dollar()
+{
+    int iRank = 1;
+    Polynom* pDollar = new Polynom(L"$", 1, 1, &iRank);
+    double* pdblCoef = pDollar->get(0)->get();
+    pdblCoef[0] = 0;
+    pdblCoef[1] = 1;
+
+    return pDollar;
+}
+
+bool Polynom::isDollar()
+{
+    if (m_szVarName != L"$" || getSize() != 1)
+    {
+        return false;
+    }
+
+    double* pCoef = get(0)->get();
+
+    if (pCoef[0] != 0 && pCoef[1] != 1)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 }

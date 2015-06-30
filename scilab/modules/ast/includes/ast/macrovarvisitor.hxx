@@ -29,13 +29,22 @@ namespace ast
 class EXTERN_AST MacrovarVisitor : public DummyVisitor
 {
 public:
-    MacrovarVisitor() {}
+    MacrovarVisitor()
+    {
+        isAssignExpLeftExp = false;
+    }
     ~MacrovarVisitor() {}
 
+    void visit (const MatrixLineExp &e);
     void visit (const SimpleVar &e);
+    void visit(const OpExp &e);
     void visit(const CallExp &e);
+    void visit(const ForExp &e);
     void visit (const VarDec &e);
+    void visit (const FunctionDec &e);
+    void visit(const FieldExp &e);
     void visit(const AssignExp &e);
+    void visit(const AssignListExp &e);
 
     std::list<std::wstring>& getIn();
     std::list<std::wstring>& getOut();
@@ -65,6 +74,7 @@ public:
     std::list<std::wstring> m_local; // local variables
 
     std::wstring m_current;
+    bool isAssignExpLeftExp;
 };
 }
 

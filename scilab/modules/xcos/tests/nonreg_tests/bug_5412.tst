@@ -14,17 +14,17 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5412
 //
 // <-- Short Description -->
-// 
+//
 
 // Start xcos
 // Add a block (CONST_m for example)
-// Select it --> Right clic --> Selection to superblock
-// Edit the superblock (Double clic on it)
+// Select it --> Right click --> Selection to superblock
+// Edit the superblock (double click on it)
 // Simulation >> Set context and enter some text --> Click OK
-// Check the superblock is indicated as modified
+// Check that the superblock is indicated as modified
 // Close the superblock window
 
-// Edit the superblock (Double clic on it)
+// Edit the superblock (double click on it)
 // Simulation >> Set context
-// Check the text you entered is still here
+// Check that the text you entered is still there
 

@@ -521,7 +521,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
     //testing event algebraic loops
     ok=is_alg_event_loop(typ_l,clkconnect)
     if ~ok then
-        disp(mprintf("%s: alg_event_loop failed", "c_pass2"));
+        disp(msprintf("%s: alg_event_loop failed", "c_pass2"));
         messagebox(_("Algebraic loop on events."),"modal","error");
         return
     end
@@ -562,7 +562,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
 
                     [balg,vec]=ini_ordo3(primary)
                     if balg then
-                        disp(mprintf("%s: ini_ordo (3) failed", "c_pass2"));
+                        disp(msprintf("%s: ini_ordo (3) failed", "c_pass2"));
                         messagebox(_("Algebraic loop."),"modal","error"),
                         ok=%f
                         return
@@ -597,7 +597,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
                             if show_comment then mprintf("found non convergence\n"),pause,end
                             i=lp(1)  // first typ_l
                             if i==[] then
-                                disp(mprintf("%s: ini_ordo (2) failed", "c_pass2"));
+                                disp(msprintf("%s: ini_ordo (2) failed", "c_pass2"));
                                 messagebox(_("Algebraic loop."),"modal","error")
                                 ok=%f
                                 return
@@ -989,7 +989,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     end
     //
     if ~ok then
-        disp(mprintf("%s: scheduling failed", "c_pass2"));
+        disp(msprintf("%s: scheduling failed", "c_pass2"));
         messagebox(_("Algebraic loop."),"modal","error");
         iord=[],oord=[],zord=[],critev=[]
         return,
@@ -1093,7 +1093,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
         for i=1:nb
             if vec(i)==j-1&typ_l(i)<>-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (3) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (3) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 if typ_l(i)==1 then
@@ -1476,7 +1476,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
         for i=1:nb
             if vec(i)==j-1 then
                 if j==nb+2 then
-                    disp(mprintf("%s: tree (2) failed", "c_pass2"));
+                    disp(msprintf("%s: tree (2) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 for k=outoinptr(i):outoinptr(i+1)-1

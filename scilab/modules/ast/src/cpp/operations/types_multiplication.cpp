@@ -70,7 +70,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** DOUBLE * POLY
     */
-    else if (TypeL == InternalType::ScilabDouble && (TypeR == InternalType::ScilabPolynom || TypeR == InternalType::ScilabDollar))
+    else if (TypeL == InternalType::ScilabDouble && TypeR == InternalType::ScilabPolynom)
     {
         Double *pL   = _pLeftOperand->getAs<Double>();
         Polynom *pR     = _pRightOperand->getAs<types::Polynom>();
@@ -87,7 +87,7 @@ InternalType *GenericTimes(InternalType *_pLeftOperand, InternalType *_pRightOpe
     /*
     ** POLY * DOUBLE
     */
-    else if ((TypeL == InternalType::ScilabPolynom || TypeL == InternalType::ScilabDollar) && TypeR == InternalType::ScilabDouble)
+    else if (TypeL == InternalType::ScilabPolynom && TypeR == InternalType::ScilabDouble)
     {
         Polynom *pL          = _pLeftOperand->getAs<types::Polynom>();
         Double *pR              = _pRightOperand->getAs<Double>();

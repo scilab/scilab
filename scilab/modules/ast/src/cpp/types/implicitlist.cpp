@@ -17,6 +17,7 @@
 #include "int.hxx"
 #include "configvariable.hxx"
 #include "scilabWrite.hxx"
+#include "type_traits.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -702,6 +703,18 @@ ast::Exp * ImplicitList::getExp(const Location & loc)
 {
     return new ast::DoubleExp(loc, this);
 }
+
+bool ImplicitList::isTrue()
+{
+    // TODO : manage int & co
+    if (m_poStart->isDouble() && m_poStep->isDouble() && m_poEnd->isDouble())
+    {
+        return type_traits::isTrue(m_poStart->getAs<Double>()->get(0), m_poStep->getAs<Double>()->get(0), m_poEnd->getAs<Double>()->get(0));
+    }
+
+    return false;
+}
+
 }
 
 std::wstring printInLinePoly(types::SinglePoly* _pPoly, std::wstring _stVar)

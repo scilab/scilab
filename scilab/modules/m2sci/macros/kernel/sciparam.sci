@@ -37,7 +37,7 @@ function sciparam()
     ">"       , "log" ;
     "<="      , "log" ;
     ">="      , "log" ;
-    "~="      , "log" ;
+    "<>"      , "log" ;
     ":"       , "imp" ;
     "rc"      , "rc"  ;
     "ins"     , "i"   ;

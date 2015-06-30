@@ -23,7 +23,6 @@ extern "C"
 #include "os_string.h"
 #include "localization.h"
 #include "stackinfo.h"
-#include "mode_exec.h"
 #include "configvariable_interface.h"
 }
 
@@ -104,7 +103,7 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (getExecMode() == SILENT_EXEC_MODE || getSilentError() != VERBOSE_ERROR)
+    if (getPromptMode() == PROMPTMODE_SILENT || getSilentError() != VERBOSE_ERROR)
     {
         return 0;
     }

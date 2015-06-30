@@ -74,6 +74,16 @@ public :
         return L"function";
     }
 
+    const std::wstring&         getFileName()
+    {
+        return m_stPath;
+    }
+
+    void                        setFileName(const std::wstring& _fileName)
+    {
+        m_stPath = _fileName;
+    }
+
     std::list<symbol::Variable*>*   inputs_get();
     std::list<symbol::Variable*>*   outputs_get();
 
@@ -96,6 +106,7 @@ private :
     Double*                         m_pDblArgIn;
     Double*                         m_pDblArgOut;
     std::map<symbol::Variable*, Macro*> m_submacro;
+    std::wstring                    m_stPath;
 };
 }
 

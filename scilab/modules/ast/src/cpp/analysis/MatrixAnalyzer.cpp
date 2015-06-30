@@ -125,7 +125,16 @@ namespace analysis
         }
 
         TIType resT(visitor.getGVN(), R1.getType().type, rows, cols);
-        Result & _res = e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+	int tempId;
+	if (R1.getTempId() != -1)
+	{
+	    tempId = R1.getTempId();
+	}
+	else
+	{
+	    tempId = visitor.getDM().getTmpId(resT, false);
+	}
+        Result & _res = e.getDecorator().setResult(Result(resT, tempId));
         visitor.setResult(_res);
         return true;
     }
@@ -182,7 +191,16 @@ namespace analysis
 	    if (res)
 	    {
 		TIType resT(visitor.getGVN(), R1.getType().type, rows, cols);
-		Result & _res = e.getDecorator().setResult(Result(resT, visitor.getTemp().add(resT)));
+		int tempId;
+		if (R1.getTempId() != -1)
+		{
+		    tempId = R1.getTempId();
+		}
+		else
+		{
+		    tempId = visitor.getDM().getTmpId(resT, false);
+		}
+		Result & _res = e.getDecorator().setResult(Result(resT, tempId));
 		visitor.setResult(_res);
 
 		return true;

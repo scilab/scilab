@@ -9,26 +9,16 @@
 // White-box test for the xcosPalExport macro.
 path = TMPDIR + "/palette.sod";
 pal = xcosPal();
-xcosPalExport(pal, path)
- ans  =
- 
-  T  
+assert_checktrue(xcosPalExport(pal, path));
 if ~isfile(path) then bugmes();quit;end
 deletefile(path);
-[status, msg] = xcosPalExport(pal, path)
- msg  =
- 
-    
- status  =
- 
-  T  
+[status, msg] = xcosPalExport(pal, path);
+assert_checkequal(msg, "Success");
+assert_checktrue(status);
 if ~isfile(path) then bugmes();quit;end
 deletefile(path);
 savedPal = pal;
-xcosPalExport(pal, path)
- ans  =
- 
-  T  
+assert_checktrue(xcosPalExport(pal, path));
 clear pal;
 import_from_hdf5(path);
-if ~and(savedPal == pal) then bugmes();quit;end
+assert_checktrue(and(savedPal == pal));

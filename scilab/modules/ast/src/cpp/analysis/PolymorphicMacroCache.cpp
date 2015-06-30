@@ -103,7 +103,7 @@ namespace analysis
 
         const std::vector<symbol::Symbol> & declaredIn = macrodef.getIn();
         const unsigned int size = declaredIn.size();
-        DataManager & dm  = visitor.getDM();
+        DataManager & dm = visitor.getDM();
 
         if (in.size() < size)
         {

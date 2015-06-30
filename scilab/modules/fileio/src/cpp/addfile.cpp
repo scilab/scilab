@@ -16,7 +16,6 @@
 extern "C"
 {
 #include "addfile.h"
-#include "filesmanagement.h"
 #include "charEncoding.h"
 #include "sci_malloc.h"
 }

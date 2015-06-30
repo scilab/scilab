@@ -434,19 +434,26 @@ static SciErr getinternalVarAddress(void *_pvCtx, int _iVar, int **_piAddress)
 SciErr getVarNameFromPosition(void *_pvCtx, int _iVar, char *_pstName)
 {
     SciErr sciErr = sciErrInit();
-#if 0
-    int iNameLen = 0;
-    int iJob1 = 1;
 
-    CvNameL(&vstk_.idstk[(Top - Rhs + _iVar - 1) * 6], _pstName, &iJob1, &iNameLen);
-    if (iNameLen == 0)
+    if (_pvCtx == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Unable to get name of argument #%d"), "getVarNameFromPosition", _iVar);
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POSITION, _("%s: bad call to %s! (1rst argument).\n"), "",
+                        "getVarNameFromPosition");
         return sciErr;
     }
 
-    _pstName[iNameLen] = '\0';
-#endif
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    typed_list in = *pStr->m_pIn;
+
+    if (in[_iVar - 1]->isCallable())
+    {
+        std::wstring pwstring = in[_iVar - 1]->getAs<types::Callable>()->getName();
+        const wchar_t* pwcName = pwstring.c_str();
+        char* pstNameTempo = wide_string_to_UTF8(pwcName);
+        strcpy(_pstName, pstNameTempo);
+        FREE(pstNameTempo);
+    }
+
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -494,7 +501,6 @@ SciErr getVarType(void *_pvCtx, int *_piAddress, int *_piType)
         case GenericType::ScilabDouble :
             *_piType = sci_matrix;
             break;
-        case GenericType::ScilabDollar :
         case GenericType::ScilabPolynom :
             *_piType = sci_poly;
             break;

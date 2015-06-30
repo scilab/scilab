@@ -10,9 +10,6 @@ FILEIO_C_SOURCES = \
     src/c/do_xxscanf.c \
     src/c/findfiles.c \
     src/c/Status2Mode.c \
-    src/c/filesmanagement.c \
-    src/c/mgeti.c \
-    src/c/mputi.c \
     src/c/readline.c \
     src/c/getdrives.c \
     src/c/deleteafile.c \
@@ -96,6 +93,7 @@ GATEWAY_CPP_SOURCES = \
 
 FILEIO_CPP_SOURCES = \
 	src/cpp/expandPathVariable.cpp \
+	src/cpp/filemanager_interface.cpp \
 	src/cpp/mopen.cpp \
 	src/cpp/mclose.cpp \
 	src/cpp/mput.cpp \

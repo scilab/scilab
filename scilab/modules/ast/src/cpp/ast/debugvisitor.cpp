@@ -17,46 +17,46 @@ namespace ast
 {
 static int level = -1;
 
-static void DEBUG_START_NODE(const ast::Ast& e)
+void DebugVisitor::DEBUG_START_NODE(const ast::Ast& e)
 {
-    wcerr << L"(" << e.getNodeNumber() << L") ";
+    *ostr << L"(" << e.getNodeNumber() << L") ";
     ++level;
 }
 
-static void DEBUG_END_NODE(void)
+void DebugVisitor::DEBUG_END_NODE(void)
 {
     --level;
 }
 
-static void DEBUG(wstring str)
+void DebugVisitor::DEBUG(wstring str)
 {
     for (int i = 0 ; i < level; ++i)
     {
-        wcerr << L"  ";
+        *ostr << L"  ";
     }
     if (level > 0)
     {
-        wcerr << L"     ";
+        *ostr << L"     ";
     }
-    wcerr << str << endl;
+    *ostr << str << endl;
 }
 
-static void DEBUG(wstring str, const Exp &e)
+void DebugVisitor::DEBUG(wstring str, const Exp &e)
 {
     for (int i = 0 ; i < level; ++i)
     {
-        wcerr << L"  ";
+        *ostr << L"  ";
     }
     if (level > 0)
     {
-        wcerr << L"|_./ ";
+        *ostr << L"|_./ ";
     }
-    wcerr << str;
+    *ostr << str;
 
     Location loc = e.getLocation();
-    wcerr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
-    wcerr << loc.last_line << L"." << loc.last_column << L")";
-    wcerr << L" Deco(" << e.getDecorator() << L")" << endl;
+    *ostr << L" @(" << loc.first_line << L"." << loc.first_column << L" -> ";
+    *ostr << loc.last_line << L"." << loc.last_column << L")";
+    *ostr << L" Deco(" << e.getDecorator() << L")" << endl;
 }
 
 

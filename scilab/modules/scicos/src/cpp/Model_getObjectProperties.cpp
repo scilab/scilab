@@ -391,6 +391,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case ANGLE:
                 o->getAngle(v);
                 return true;
+            case EXPRS:
+                o->getExprs(v);
+                return true;
             case STATE:
                 o->getState(v);
                 return true;
@@ -527,9 +530,6 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
         model::Block* o = getObject<model::Block>(uid);
         switch (p)
         {
-            case EXPRS:
-                o->getExprs(v);
-                return true;
             case EQUATIONS:
                 o->getEquations(v);
                 return true;

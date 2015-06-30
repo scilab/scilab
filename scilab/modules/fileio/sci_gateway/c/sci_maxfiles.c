@@ -15,7 +15,6 @@
 #include "stack-c.h"
 #include "sci_malloc.h"
 #include "Scierror.h"
-#include "filesmanagement.h"
 #include "localization.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/

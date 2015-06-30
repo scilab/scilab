@@ -315,7 +315,7 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
         for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
-            if ( newlenLine >= (getColumnsSize() - 10) )
+            if ( newlenLine >= (getConsoleWidth() - 10) )
             {
                 TerminalPrintf("\n");
                 lenCurrentLine = 0;

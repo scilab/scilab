@@ -110,7 +110,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
         types::optional_list opt;
 
         // add line and function name in where
-        ConfigVariable::where_begin(0, 0, _stOverloadingFunctionName);
+        ConfigVariable::where_begin(0, 0, pCall);
 
         types::Function::ReturnValue ret = pCall->call(in, opt, _iRetCount, out, _execMe);
 
@@ -123,17 +123,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
     {
         // remove function name in where
         ConfigVariable::where_end();
-
-        if (pCall->isMacro() || pCall->isMacroFile())
-        {
-            wchar_t szError[bsiz];
-            os_swprintf(szError, bsiz, _W("at line % 5d of function %ls called by :\n").c_str(), sm.GetErrorLocation().first_line, pCall->getName().c_str());
-            throw ast::ScilabMessage(szError);
-        }
-        else
-        {
-            throw sm;
-        }
+        throw sm;
     }
 }
 

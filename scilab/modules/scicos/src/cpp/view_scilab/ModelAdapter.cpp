@@ -298,7 +298,8 @@ struct state
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -356,7 +357,8 @@ struct dstate
             return false;
         }
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -435,6 +437,11 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
 
     for (std::vector<ScicosID>::const_iterator it = children.begin(); it != children.end(); ++it)
     {
+        if (*it == 0ll)
+        {
+            continue; // Rule out mlists (Deleted or Annotations)
+        }
+
         if (controller.getObject(*it)->kind() == BLOCK) // Rule out Annotations and Links
         {
             std::string name;
@@ -483,7 +490,15 @@ bool setInnerBlocksRefs(ModelAdapter& adaptor, const std::vector<ScicosID>& chil
                 controller.getObjectProperty(adaptee, BLOCK, kind, superPorts);
                 if (static_cast<int>(superPorts.size()) < portIndex)
                 {
-                    return false;
+                    if (!superPorts.empty())
+                    {
+                        // Arbitrarily take the highest possible value in case the user enters a wrong number
+                        portIndex = superPorts.size();
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
 
                 ScicosID port = superPorts[portIndex - 1];
@@ -595,6 +610,64 @@ struct rpar
             // set the diagram children as block children ; referencing them
             std::vector<ScicosID> diagramChildren;
             controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
+            if (diagramChildren.empty())
+            {
+                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
+                diagramChildren.push_back(0ll);
+            }
+            std::vector<ScicosID> oldDiagramChildren;
+            controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
+
+            controller.setObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, diagramChildren);
+            {
+                std::sort(oldDiagramChildren.begin(), oldDiagramChildren.end());
+                for (const ScicosID id : diagramChildren)
+                {
+                    if (id != 0 && !std::binary_search(oldDiagramChildren.begin(), oldDiagramChildren.end(), id))
+                    {
+                        auto o = controller.getObject(id);
+                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, adaptor.getAdaptee()->id());
+
+                        controller.referenceObject(id);
+                    }
+                }
+
+                std::sort(diagramChildren.begin(), diagramChildren.end());
+                for (const ScicosID id : oldDiagramChildren)
+                {
+                    if (id != 0 && !std::binary_search(diagramChildren.begin(), diagramChildren.end(), id))
+                    {
+                        auto o = controller.getObject(id);
+                        controller.setObjectProperty(o->id(), o->kind(), PARENT_BLOCK, ScicosID());
+
+                        controller.deleteObject(id);
+                    }
+                }
+            }
+
+            // Link the Superblock ports to their inner "port blocks"
+            return setInnerBlocksRefs(adaptor, diagramChildren, controller);
+        }
+        else if (v->getType() == types::InternalType::ScilabMList)
+        {
+            ScicosID localAdaptee = controller.createObject(DIAGRAM);
+            DiagramAdapter* diagram = new DiagramAdapter(controller, controller.getObject<model::Diagram>(localAdaptee));
+            if (!diagram->setAsTList(v, controller))
+            {
+                diagram->killMe();
+                return false;
+            }
+
+            adaptor.setDiagram(diagram);
+
+            // set the diagram children as block children ; referencing them
+            std::vector<ScicosID> diagramChildren;
+            controller.getObjectProperty(diagram->getAdaptee()->id(), DIAGRAM, CHILDREN, diagramChildren);
+            if (diagramChildren.empty())
+            {
+                // bug_12998: If inserting an empty diagram in 'rpar', simulate an empty object
+                diagramChildren.push_back(0ll);
+            }
             std::vector<ScicosID> oldDiagramChildren;
             controller.getObjectProperty(adaptor.getAdaptee()->id(), BLOCK, CHILDREN, oldDiagramChildren);
 
@@ -676,9 +749,9 @@ struct ipar
         {
             return false;
         }
-
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -835,7 +908,7 @@ struct dep_ut
         }
 
         types::Bool* current = v->getAs<types::Bool>();
-        if (current->getRows() != 1 || current->getCols() != 2)
+        if (current->getSize() != 2)
         {
             return false;
         }
@@ -920,7 +993,8 @@ struct nzcross
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }
@@ -971,7 +1045,8 @@ struct nmode
         }
 
         types::Double* current = v->getAs<types::Double>();
-        if (current->getCols() != 0 && current->getCols() != 1)
+        // Only allow vectors and empty matrices
+        if (!current->isVector() && current->getSize() != 0)
         {
             return false;
         }

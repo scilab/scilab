@@ -65,6 +65,7 @@ spaces			[ \t\v\f]+
 integer			[0-9]+
 number			[0-9]+[\.][0-9]*
 little			\.[0-9]+
+bom             \xEF\xBB\xBF
 
 floating_D		({little}|{number}|{integer})[dD][+-]?{integer}
 floating_E		({little}|{number}|{integer})[eE][+-]?{integer}
@@ -159,6 +160,9 @@ controlldivide  ("\\."[^0-9])
 assign			"="
 
 %%
+<INITIAL>{bom}/.* {
+// BOM found ==> ignored
+}
 
 <INITIAL,BEGINID>"if"            {
 	if (last_token != DOT)
