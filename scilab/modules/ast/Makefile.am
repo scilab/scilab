@@ -201,11 +201,14 @@ includes/analysis/gvn/SymbolicRange.hxx \
 includes/analysis/gvn/TestGVNVisitor.hxx \
 includes/analysis/gvn/VarExp.hxx
 
+libsciast_call_scilab_la_includedir=$(pkgincludedir)/call/
+libsciast_call_scilab_la_include_HEADERS = \
+includes/analysis/call/Call.hxx
+
 libsciast_scilab_la_includedir=$(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
 includes/analysis/checkers/Checkers.hxx \
-includes/analysis/call/Call.hxx \
 includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
