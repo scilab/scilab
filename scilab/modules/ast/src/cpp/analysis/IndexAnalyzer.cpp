@@ -14,84 +14,84 @@
 
 namespace analysis
 {
-    
-    bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
+
+bool AnalysisVisitor::analyzeIndices(TIType & type, ast::CallExp & ce)
+{
+    const ast::exps_t args = ce.getArgs();
+    const unsigned int size = args.size();
+
+    if (size >= 3)
     {
-        const ast::exps_t args = ce.getArgs();
-        const unsigned int size = args.size();
-
-        if (size >= 3)
-        {
-            // Not handle yet...
-            // TODO
-            return false;
-        }
-
-        if (size == 0)
-        {
-            Result & res = ce.getDecorator().setResult(type);
-            setResult(res);
-            return true;
-        }
-
-        SymbolicDimension first, second;
-	bool safe, ret;
-
-        if (size == 1)
-        {
-            // when there is one argument, a(?) is equivalent to A(?,1)
-            // where A = matrix(a, r_a * c_a, 1)
-
-	    SymbolicDimension rows(type.rows);
-	    second = SymbolicDimension(getGVN(), 1.);
-            if (type.cols != 1)
-            {
-                rows *= type.cols;
-            }
-
-	    ret = getDimension(rows, *args.front(), safe, first);
-        }
-	else
-	{
-	    bool _safe;
-	    ret = getDimension(type.rows, *args.front(), _safe, first);
-	    if (ret)
-	    {
-		ret = getDimension(type.cols, *args.back(), safe, second);
-		safe = safe && _safe;
-	    }
-	    else
-	    {
-		safe = _safe;
-	    }
-	}
-
-	if (ret)
-	{
-	    TIType typ(getGVN(), type.type, first, second);
-	    Result & _res = ce.getDecorator().setResult(typ);
-            setResult(_res);
-	    ce.getDecorator().safeIndex = safe;
-	}
-
-	return ret;
+        // Not handle yet...
+        // TODO
+        return false;
     }
 
-
-    bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool & safe, SymbolicDimension & out)
+    if (size == 0)
     {
-        switch (arg.getType())
+        Result & res = ce.getDecorator().setResult(type);
+        setResult(res);
+        return true;
+    }
+
+    SymbolicDimension first, second;
+    bool safe, ret;
+
+    if (size == 1)
+    {
+        // when there is one argument, a(?) is equivalent to A(?,1)
+        // where A = matrix(a, r_a * c_a, 1)
+
+        SymbolicDimension rows(type.rows);
+        second = SymbolicDimension(getGVN(), 1.);
+        if (type.cols != 1)
         {
+            rows *= type.cols;
+        }
+
+        ret = getDimension(rows, *args.front(), safe, first);
+    }
+    else
+    {
+        bool _safe;
+        ret = getDimension(type.rows, *args.front(), _safe, first);
+        if (ret)
+        {
+            ret = getDimension(type.cols, *args.back(), safe, second);
+            safe = safe && _safe;
+        }
+        else
+        {
+            safe = _safe;
+        }
+    }
+
+    if (ret)
+    {
+        TIType typ(getGVN(), type.type, first, second);
+        Result & _res = ce.getDecorator().setResult(typ);
+        setResult(_res);
+        ce.getDecorator().safe = safe;
+    }
+
+    return ret;
+}
+
+
+bool AnalysisVisitor::getDimension(SymbolicDimension & dim, ast::Exp & arg, bool & safe, SymbolicDimension & out)
+{
+    switch (arg.getType())
+    {
         case ast::Exp::COLONVAR :
         {
-	    out = dim;
-	    safe = true;
+            out = dim;
+            safe = true;
             return true;
         }
         case ast::Exp::DOLLARVAR : // a($)
         {
-	    out = SymbolicDimension(getGVN(), 1.);
-	    safe = true;
+            out = SymbolicDimension(getGVN(), 1.);
+            safe = true;
             return true;
         }
         case ast::Exp::DOUBLEEXP : // a(12) or a([1 2])
@@ -104,83 +104,83 @@ namespace analysis
                     types::Double * const pDbl = static_cast<types::Double *>(pIT);
                     if (pDbl->isEmpty())
                     {
-			out = SymbolicDimension(getGVN(), 0.);
-			safe = true;
+                        out = SymbolicDimension(getGVN(), 0.);
+                        safe = true;
                         return true;
                     }
 
-		    const double * real = pDbl->getReal();
-		    const int size = pDbl->getSize();
-		    int64_t max;
-		    if (tools::asInteger(real[0], max))
-		    {
-			int64_t min = max;
-			if (!pDbl->isComplex())
-			{
-			    for (int i = 0; i < size; ++i)
-			    {
-				int64_t _real;
-				if (tools::asInteger(real[i], _real))
-				{
-				    if (_real < min)
-				    {
-					min = _real;
-				    }
-				    else if (_real > max)
-				    {
-					max = _real;
-				    }
-				}
-				else
-				{
-				    return false;
-				}
-			    }
-			    
-			    out = SymbolicDimension(getGVN(), size);
-			    safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
-			    return true;
-			}
-			else
-			{
-			    const double * imag = pDbl->getImg();
-			    int i;
-			    for (i = 0; i < size; ++i)
-			    {
-				if (imag[i])
-				{
-				    break;
-				}
-				int64_t _real;
-				if (tools::asInteger(real[i], _real))
-				{
-				    if (_real < min)
-				    {
-					min = _real;
-				    }
-				    else if (_real > max)
-				    {
-					max = _real;
-				    }
-				}
-			    }
+                    const double * real = pDbl->getReal();
+                    const int size = pDbl->getSize();
+                    int64_t max;
+                    if (tools::asInteger(real[0], max))
+                    {
+                        int64_t min = max;
+                        if (!pDbl->isComplex())
+                        {
+                            for (int i = 0; i < size; ++i)
+                            {
+                                int64_t _real;
+                                if (tools::asInteger(real[i], _real))
+                                {
+                                    if (_real < min)
+                                    {
+                                        min = _real;
+                                    }
+                                    else if (_real > max)
+                                    {
+                                        max = _real;
+                                    }
+                                }
+                                else
+                                {
+                                    return false;
+                                }
+                            }
 
-			    if (i == size)
-			    {
-				out = SymbolicDimension(getGVN(), size);
-				safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
-				return true;
-			    }
-			    else
-			    {
-				return false;
-			    }
-			}
-		    }
-		    else
-		    {
-			return false;
-		    }
+                            out = SymbolicDimension(getGVN(), size);
+                            safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
+                            return true;
+                        }
+                        else
+                        {
+                            const double * imag = pDbl->getImg();
+                            int i;
+                            for (i = 0; i < size; ++i)
+                            {
+                                if (imag[i])
+                                {
+                                    break;
+                                }
+                                int64_t _real;
+                                if (tools::asInteger(real[i], _real))
+                                {
+                                    if (_real < min)
+                                    {
+                                        min = _real;
+                                    }
+                                    else if (_real > max)
+                                    {
+                                        max = _real;
+                                    }
+                                }
+                            }
+
+                            if (i == size)
+                            {
+                                out = SymbolicDimension(getGVN(), size);
+                                safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
+                                return true;
+                            }
+                            else
+                            {
+                                return false;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
                 }
                 else if (pIT->isImplicitList())
                 {
@@ -193,47 +193,47 @@ namespace analysis
 
                         switch (type)
                         {
-                        case 0 :
-                        {
-			    out = SymbolicDimension(getGVN(), 0.);
-			    safe = true;
-			    return true;
-                        }
-                        case 1 :
-                        {
-			    out = SymbolicDimension(getGVN(), 1.);
-			    safe = false;
-			    return true;
-                        }
-                        case 2 :
-                        {
-                            const uint64_t N = ForList64::size(start, end, step);
-                            uint64_t max, min;
-                            if (step > 0)
+                            case 0 :
                             {
-                                min = start;
-                                max = (uint64_t)(start + (N - 1) * step);
+                                out = SymbolicDimension(getGVN(), 0.);
+                                safe = true;
+                                return true;
                             }
-                            else
+                            case 1 :
                             {
-                                max = start;
-                                min = (uint64_t)(start + (N - 1) * step);
+                                out = SymbolicDimension(getGVN(), 1.);
+                                safe = false;
+                                return true;
                             }
+                            case 2 :
+                            {
+                                const uint64_t N = ForList64::size(start, end, step);
+                                uint64_t max, min;
+                                if (step > 0)
+                                {
+                                    min = start;
+                                    max = (uint64_t)(start + (N - 1) * step);
+                                }
+                                else
+                                {
+                                    max = start;
+                                    min = (uint64_t)(start + (N - 1) * step);
+                                }
 
-			    out = SymbolicDimension(getGVN(), N);
-			    safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue((int64_t)max));
-			    return true;
-			}
+                                out = SymbolicDimension(getGVN(), N);
+                                safe = (min >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue((int64_t)max));
+                                return true;
+                            }
                         }
                     }
                 }
             }
-	    else
-	    {
-		out = SymbolicDimension(getGVN(), 1.);
-		safe = (de.getValue() >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(de.getValue()));
-		return true;	
-	    }
+            else
+            {
+                out = SymbolicDimension(getGVN(), 1.);
+                safe = (de.getValue() >= 1) && getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(de.getValue()));
+                return true;
+            }
             return false;
         }
         case ast::Exp::BOOLEXP : // a(a > 1) => a([%f %t %t]) => a([2 3])
@@ -257,24 +257,24 @@ namespace analysis
                         }
                     }
 
-		    out = SymbolicDimension(getGVN(), count);
-		    safe = getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
-		    return true;
+                    out = SymbolicDimension(getGVN(), count);
+                    safe = getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
+                    return true;
                 }
             }
-	    else
-	    {
-		if (be.getValue())
-		{
-		    out = SymbolicDimension(getGVN(), 1.);
-		}
-		else
-		{
-		    out = SymbolicDimension(getGVN(), 0.);
-		}
-		safe = true;
-		return true;	
-	    }
+            else
+            {
+                if (be.getValue())
+                {
+                    out = SymbolicDimension(getGVN(), 1.);
+                }
+                else
+                {
+                    out = SymbolicDimension(getGVN(), 0.);
+                }
+                safe = true;
+                return true;
+            }
             return false;
         }
         case ast::Exp::LISTEXP :
@@ -290,9 +290,9 @@ namespace analysis
                 TIType typ;
                 if (sl.getType(getGVN(), typ))
                 {
-		    out = SymbolicDimension(getGVN(), typ.cols.getValue());
-		    safe = false;//getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
-		    return true;
+                    out = SymbolicDimension(getGVN(), typ.cols.getValue());
+                    safe = false;//getCM().check(ConstraintManager::GREATER, dim.getValue(), getGVN().getValue(max));
+                    return true;
                 }
             }
             return false;
@@ -301,36 +301,36 @@ namespace analysis
         {
             arg.accept(*this);
             Result & _res = getResult();
-	    SymbolicRange & range = _res.getRange(); 
-	    if (range.isValid())
-	    {
-		//std::wcerr << *range.getStart()->poly << ":" << *range.getEnd()->poly << ",," << *dim.getValue()->poly << std::endl;
-		safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(1), dim.getValue());
-		out = _res.getType().rows * _res.getType().cols;
+            SymbolicRange & range = _res.getRange();
+            if (range.isValid())
+            {
+                //std::wcerr << *range.getStart()->poly << ":" << *range.getEnd()->poly << ",," << *dim.getValue()->poly << std::endl;
+                safe = getCM().check(ConstraintManager::VALID_RANGE, range.getStart(), range.getEnd(), getGVN().getValue(1), dim.getValue());
+                out = _res.getType().rows * _res.getType().cols;
 
-		return true;
-	    }
+                return true;
+            }
 
-	    // To use with find
-	    // e.g. a(find(a > 0)): find(a > 0) return a matrix where the max index is rc(a) so the extraction is safe
+            // To use with find
+            // e.g. a(find(a > 0)): find(a > 0) return a matrix where the max index is rc(a) so the extraction is safe
             if (_res.getType().ismatrix() && _res.getType().type != TIType::BOOLEAN)
             {
-		out = _res.getType().rows * _res.getType().cols;
-		SymbolicDimension & maxIndex = _res.getMaxIndex();
-		if (maxIndex.isValid())
-		{
-		    safe = getCM().check(ConstraintManager::GREATER, dim.getValue(), maxIndex.getValue());
-		}
-		else
-		{
-		    safe = false;
-		}
+                out = _res.getType().rows * _res.getType().cols;
+                SymbolicDimension & maxIndex = _res.getMaxIndex();
+                if (maxIndex.isValid())
+                {
+                    safe = getCM().check(ConstraintManager::GREATER, dim.getValue(), maxIndex.getValue());
+                }
+                else
+                {
+                    safe = false;
+                }
                 return true;
             }
             return false;
         }
-        }
     }
+}
 
 
 }

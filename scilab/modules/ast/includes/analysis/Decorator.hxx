@@ -28,11 +28,9 @@ struct Decorator
     bool cloneData;
     bool deleteData;
     bool hasRefCount;
-    bool safeIndex;
-    bool safeInsertion;
     bool safe;
 
-    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safeIndex(false), safeInsertion(false), safe(false) { }
+    Decorator() : res(), call(nullptr), cloneData(false), deleteData(false), hasRefCount(false), safe(false) { }
 
     ~Decorator()
     {
@@ -46,28 +44,28 @@ struct Decorator
 
     inline Call & setCall(Call * _call)
     {
-	delete call;
+        delete call;
         call = _call;
         return *call;
     }
 
     inline Call & setCall(const std::wstring & name)
     {
-	delete call;
+        delete call;
         call = new Call(name);
         return *call;
     }
 
     inline Call & setCall(const std::wstring & name, const std::vector<TIType> & args)
     {
-	delete call;
+        delete call;
         call = new Call(name, args);
         return *call;
     }
-    
+
     inline Call & setCall(const std::wstring & name, const TIType & arg)
     {
-	delete call;
+        delete call;
         call = new Call(name, arg);
         return *call;
     }
@@ -98,9 +96,7 @@ struct Decorator
         out << L", Cl:" << (deco.cloneData ? L"T" : L"F")
             << L", Del:" << (deco.deleteData ? L"T" : L"F")
             << L", RefC:" << (deco.hasRefCount ? L"T" : L"F")
-            << L", SafeIndex:" << (deco.safeIndex ? L"T" : L"F")
-            << L", SafeInsertion:" << (deco.safeInsertion ? L"T" : L"F")
-	    << L", Safe:" << (deco.safe ? L"T" : L"F");
+            << L", Safe:" << (deco.safe ? L"T" : L"F");
 
         return out;
     }

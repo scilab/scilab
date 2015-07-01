@@ -15,90 +15,91 @@
 namespace analysis
 {
 
-    void AnalysisVisitor::visit(ast::AssignExp & e)
+void AnalysisVisitor::visit(ast::AssignExp & e)
+{
+    logger.log(L"AssignExp", e.getLocation());
+    if (e.getLeftExp().isSimpleVar()) // A = ...
     {
-        logger.log(L"AssignExp", e.getLocation());
-        if (e.getLeftExp().isSimpleVar()) // A = ...
-        {
-            ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
-            const symbol::Symbol & sym = var.getSymbol();
+        ast::SimpleVar & var = static_cast<ast::SimpleVar &>(e.getLeftExp());
+        const symbol::Symbol & sym = var.getSymbol();
 
-            if (e.getRightExp().isSimpleVar())
+        if (e.getRightExp().isSimpleVar())
+        {
+            // We have A = B (so the data associated to b is shared with a)
+            const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
+            getDM().share(sym, symR, getSymInfo(symR).getType(), &e);
+        }
+        else
+        {
+            if (e.getRightExp().isCallExp()) // A = foo(...)
             {
-                // We have A = B (so the data associated to b is shared with a)
-                const symbol::Symbol & symR = static_cast<ast::SimpleVar &>(e.getRightExp()).getSymbol();
-                getDM().share(sym, symR, getSymInfo(symR).getType(), &e);
-            }
-            else
-            {
-                if (e.getRightExp().isCallExp()) // A = foo(...)
+                // apply the ConstantVisitor
+                e.getRightExp().accept(cv);
+                if (e.getRightExp().isCallExp())
                 {
-                    // apply the ConstantVisitor
-                    e.getRightExp().accept(cv);
-                    if (e.getRightExp().isCallExp())
-                    {
-                        visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
-                    }
-                    else
-                    {
-                        e.getRightExp().accept(*this);
-                    }
+                    visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ 1);
                 }
-                else // A = 1 + 2
+                else
                 {
-                    cv.setLHS(1);
-                    e.getRightExp().accept(cv);
                     e.getRightExp().accept(*this);
                 }
-
-                Result & RR = getResult();
-                // Don't remove tmp... temp.remove(RR); WHY THIS COMMENT ?????
-
-                var.getDecorator().res = RR;
-                Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
-                info.getConstant() = RR.getConstant();
-		getDM().releaseTmp(RR.getTempId());
             }
-        }
-        else if (e.getLeftExp().isCallExp()) // A(12) = ...
-        {
-            ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
-            if (ce.getName().isSimpleVar())
+            else // A = 1 + 2
             {
-                const symbol::Symbol & symL = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
+                cv.setLHS(1);
+                e.getRightExp().accept(cv);
                 e.getRightExp().accept(*this);
-                Result RR = getResult();
-                ce.getDecorator().res = RR;
-                Info & info = getDM().write(symL, RR.getType(), &e);
-                if (analyzeIndices(info.type, ce))
-		{
-		    e.getDecorator().safeInsertion = (RR.getType() == getResult().getType());
-		}
-		getDM().releaseTmp(RR.getTempId());
             }
+
+            Result & RR = getResult();
+            // Don't remove tmp... temp.remove(RR); WHY THIS COMMENT ?????
+
+            var.getDecorator().res = RR;
+            Info & info = getDM().define(sym, RR.getType(), RR.isAnInt(), &e);
+            info.getConstant() = RR.getConstant();
+            getDM().releaseTmp(RR.getTempId());
         }
-        else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...
+    }
+    else if (e.getLeftExp().isCallExp()) // A(12) = ...
+    {
+        ast::CallExp & ce = static_cast<ast::CallExp &>(e.getLeftExp());
+        if (ce.getName().isSimpleVar())
         {
-            ast::AssignListExp & ale = static_cast<ast::AssignListExp &>(e.getLeftExp());
-            if (e.getRightExp().isCallExp())
+            const symbol::Symbol & symL = static_cast<ast::SimpleVar &>(ce.getName()).getSymbol();
+            e.getRightExp().accept(*this);
+            Result & RR = e.getRightExp().getDecorator().getResult();
+            ce.getDecorator().res = RR;
+            Info & info = getDM().write(symL, RR.getType(), &e);
+            ce.getName().getDecorator().setResult(info.type);
+            if (analyzeIndices(info.type, ce))
             {
-                const ast::exps_t & exps = ale.getExps();
-                visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ exps.size());
-                std::vector<Result>::iterator j = multipleLHS.begin();
-                for (const auto exp : exps)
+                e.getDecorator().safe = (RR.getType() == getResult().getType());
+            }
+            getDM().releaseTmp(RR.getTempId());
+        }
+    }
+    else if (e.getLeftExp().isAssignListExp()) // [A, B] = ...
+    {
+        ast::AssignListExp & ale = static_cast<ast::AssignListExp &>(e.getLeftExp());
+        if (e.getRightExp().isCallExp())
+        {
+            const ast::exps_t & exps = ale.getExps();
+            visit(static_cast<ast::CallExp &>(e.getRightExp()), /* LHS */ exps.size());
+            std::vector<Result>::iterator j = multipleLHS.begin();
+            for (const auto exp : exps)
+            {
+                // TODO: handle fields...
+                if (exp->isSimpleVar() && j != multipleLHS.end())
                 {
-                    // TODO: handle fields...
-                    if (exp->isSimpleVar() && j != multipleLHS.end())
-                    {
-                        ast::SimpleVar & var = *static_cast<ast::SimpleVar *>(exp);
-                        const symbol::Symbol & sym = var.getSymbol();
-                        Info & info = getDM().define(sym, j->getType(), j->isAnInt(), exp);
-                        info.setConstant(j->getConstant());
-			var.getDecorator().res = *j;
-                        ++j;
-                    }
+                    ast::SimpleVar & var = *static_cast<ast::SimpleVar *>(exp);
+                    const symbol::Symbol & sym = var.getSymbol();
+                    Info & info = getDM().define(sym, j->getType(), j->isAnInt(), exp);
+                    info.setConstant(j->getConstant());
+                    var.getDecorator().res = *j;
+                    ++j;
                 }
             }
         }
     }
+}
 }

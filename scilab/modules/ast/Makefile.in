@@ -100,6 +100,7 @@ host_triplet = @host@
 DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(srcdir)/Makefile.am $(top_srcdir)/config/mkinstalldirs \
 	$(top_srcdir)/config/depcomp \
+	$(libsciast_call_scilab_la_include_HEADERS) \
 	$(libsciast_gvn_scilab_la_include_HEADERS) \
 	$(libsciast_la_include_HEADERS) \
 	$(libsciast_scilab_la_include_HEADERS)
@@ -160,6 +161,7 @@ am__uninstall_files_from_dir = { \
   }
 am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libsciast_la_etcdir)" \
+	"$(DESTDIR)$(libsciast_call_scilab_la_includedir)" \
 	"$(DESTDIR)$(libsciast_gvn_scilab_la_includedir)" \
 	"$(DESTDIR)$(libsciast_la_includedir)" \
 	"$(DESTDIR)$(libsciast_scilab_la_includedir)"
@@ -466,7 +468,8 @@ am__can_run_installinfo = \
     *) (install-info --version) >/dev/null 2>&1;; \
   esac
 DATA = $(libsciast_la_etc_DATA)
-HEADERS = $(libsciast_gvn_scilab_la_include_HEADERS) \
+HEADERS = $(libsciast_call_scilab_la_include_HEADERS) \
+	$(libsciast_gvn_scilab_la_include_HEADERS) \
 	$(libsciast_la_include_HEADERS) \
 	$(libsciast_scilab_la_include_HEADERS)
 am__tagged_files = $(HEADERS) $(SOURCES) $(TAGS_FILES) $(LISP)
@@ -941,11 +944,14 @@ includes/analysis/gvn/SymbolicRange.hxx \
 includes/analysis/gvn/TestGVNVisitor.hxx \
 includes/analysis/gvn/VarExp.hxx
 
+libsciast_call_scilab_la_includedir = $(pkgincludedir)/call/
+libsciast_call_scilab_la_include_HEADERS = \
+includes/analysis/call/Call.hxx
+
 libsciast_scilab_la_includedir = $(pkgincludedir)
 libsciast_scilab_la_include_HEADERS = \
 includes/analysis/AnalysisVisitor.hxx \
 includes/analysis/checkers/Checkers.hxx \
-includes/analysis/call/Call.hxx \
 includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
@@ -2867,6 +2873,27 @@ uninstall-libsciast_la_etcDATA:
 	@list='$(libsciast_la_etc_DATA)'; test -n "$(libsciast_la_etcdir)" || list=; \
 	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
 	dir='$(DESTDIR)$(libsciast_la_etcdir)'; $(am__uninstall_files_from_dir)
+install-libsciast_call_scilab_la_includeHEADERS: $(libsciast_call_scilab_la_include_HEADERS)
+	@$(NORMAL_INSTALL)
+	@list='$(libsciast_call_scilab_la_include_HEADERS)'; test -n "$(libsciast_call_scilab_la_includedir)" || list=; \
+	if test -n "$$list"; then \
+	  echo " $(MKDIR_P) '$(DESTDIR)$(libsciast_call_scilab_la_includedir)'"; \
+	  $(MKDIR_P) "$(DESTDIR)$(libsciast_call_scilab_la_includedir)" || exit 1; \
+	fi; \
+	for p in $$list; do \
+	  if test -f "$$p"; then d=; else d="$(srcdir)/"; fi; \
+	  echo "$$d$$p"; \
+	done | $(am__base_list) | \
+	while read files; do \
+	  echo " $(INSTALL_HEADER) $$files '$(DESTDIR)$(libsciast_call_scilab_la_includedir)'"; \
+	  $(INSTALL_HEADER) $$files "$(DESTDIR)$(libsciast_call_scilab_la_includedir)" || exit $$?; \
+	done
+
+uninstall-libsciast_call_scilab_la_includeHEADERS:
+	@$(NORMAL_UNINSTALL)
+	@list='$(libsciast_call_scilab_la_include_HEADERS)'; test -n "$(libsciast_call_scilab_la_includedir)" || list=; \
+	files=`for p in $$list; do echo $$p; done | sed -e 's|^.*/||'`; \
+	dir='$(DESTDIR)$(libsciast_call_scilab_la_includedir)'; $(am__uninstall_files_from_dir)
 install-libsciast_gvn_scilab_la_includeHEADERS: $(libsciast_gvn_scilab_la_include_HEADERS)
 	@$(NORMAL_INSTALL)
 	@list='$(libsciast_gvn_scilab_la_include_HEADERS)'; test -n "$(libsciast_gvn_scilab_la_includedir)" || list=; \
@@ -3019,7 +3046,7 @@ check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) $(HEADERS) all-local
 installdirs:
-	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciast_la_etcdir)" "$(DESTDIR)$(libsciast_gvn_scilab_la_includedir)" "$(DESTDIR)$(libsciast_la_includedir)" "$(DESTDIR)$(libsciast_scilab_la_includedir)"; do \
+	for dir in "$(DESTDIR)$(pkglibdir)" "$(DESTDIR)$(libsciast_la_etcdir)" "$(DESTDIR)$(libsciast_call_scilab_la_includedir)" "$(DESTDIR)$(libsciast_gvn_scilab_la_includedir)" "$(DESTDIR)$(libsciast_la_includedir)" "$(DESTDIR)$(libsciast_scilab_la_includedir)"; do \
 	  test -z "$$dir" || $(MKDIR_P) "$$dir"; \
 	done
 install: $(BUILT_SOURCES)
@@ -3096,6 +3123,7 @@ info: info-am
 info-am:
 
 install-data-am: install-data-local \
+	install-libsciast_call_scilab_la_includeHEADERS \
 	install-libsciast_gvn_scilab_la_includeHEADERS \
 	install-libsciast_la_etcDATA \
 	install-libsciast_la_includeHEADERS \
@@ -3145,7 +3173,8 @@ ps: ps-am
 
 ps-am:
 
-uninstall-am: uninstall-libsciast_gvn_scilab_la_includeHEADERS \
+uninstall-am: uninstall-libsciast_call_scilab_la_includeHEADERS \
+	uninstall-libsciast_gvn_scilab_la_includeHEADERS \
 	uninstall-libsciast_la_etcDATA \
 	uninstall-libsciast_la_includeHEADERS \
 	uninstall-libsciast_scilab_la_includeHEADERS \
@@ -3162,6 +3191,7 @@ uninstall-am: uninstall-libsciast_gvn_scilab_la_includeHEADERS \
 	install-data-local install-dvi install-dvi-am install-exec \
 	install-exec-am install-html install-html-am \
 	install-html-local install-info install-info-am \
+	install-libsciast_call_scilab_la_includeHEADERS \
 	install-libsciast_gvn_scilab_la_includeHEADERS \
 	install-libsciast_la_etcDATA \
 	install-libsciast_la_includeHEADERS \
@@ -3172,6 +3202,7 @@ uninstall-am: uninstall-libsciast_gvn_scilab_la_includeHEADERS \
 	maintainer-clean-generic mostlyclean mostlyclean-compile \
 	mostlyclean-generic mostlyclean-libtool pdf pdf-am ps ps-am \
 	tags tags-am uninstall uninstall-am \
+	uninstall-libsciast_call_scilab_la_includeHEADERS \
 	uninstall-libsciast_gvn_scilab_la_includeHEADERS \
 	uninstall-libsciast_la_etcDATA \
 	uninstall-libsciast_la_includeHEADERS \
