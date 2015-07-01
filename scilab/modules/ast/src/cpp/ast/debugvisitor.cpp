@@ -175,14 +175,14 @@ void DebugVisitor::visit (const SimpleVar &e)
     std::wstring ty;
     if (type.type != analysis::TIType::UNKNOWN)
     {
-	if (type.isscalar())
-	{
-	    ty = L" (" + analysis::TIType::toString(type.type) + L")";
-	}
-	else
-	{
-	    ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
-	}
+        if (type.isscalar())
+        {
+            ty = L" (" + analysis::TIType::toString(type.type) + L")";
+        }
+        else
+        {
+            ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+        }
     }
 
     DEBUG_START_NODE(e);
@@ -270,10 +270,6 @@ void DebugVisitor::visit(const CellCallExp &e)
 void DebugVisitor::visit(const CallExp &e)
 {
     std::wstring str;
-    if (e.getDecorator().safeIndex)
-    {
-	str = L" (Ins/Ext is safe)";
-    }
 
     DEBUG_START_NODE(e);
     DEBUG(L"Exec CallExp" + str, e);
