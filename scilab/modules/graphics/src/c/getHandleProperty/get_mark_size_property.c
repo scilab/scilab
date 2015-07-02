@@ -41,6 +41,12 @@ void* get_mark_size_property(void* _pvCtx, int iObjUID)
 
 	getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_SIZES__, jni_int, &piNumMarkSizes);
 
+    if (piNumMarkSizes == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size");
+        return NULL;
+    }
+
 	if (numMarkSizes == 0)
 	{
 		getGraphicObjectProperty(iObjUID, __GO_MARK_SIZE__, jni_int, &piMarkSize);

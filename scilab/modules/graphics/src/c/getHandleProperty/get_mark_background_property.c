@@ -35,11 +35,17 @@ void* get_mark_background_property(void* _pvCtx, int iObjUID)
     int iMarkBackground = 0;
     int* piMarkBackground = &iMarkBackground;
 
-	int * markBackgrounds = NULL;
+    int * markBackgrounds = NULL;
     int numMarkBackgrounds = 0;
     int * piNumMarkBackgrounds = &numMarkBackgrounds;
 
 	getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_BACKGROUNDS__, jni_int, (void**)&piNumMarkBackgrounds);
+
+    if (piNumMarkBackgrounds == NULL)
+    {
+        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_background");
+        return NULL;
+    }
 
 	if (numMarkBackgrounds == 0)
 	{
