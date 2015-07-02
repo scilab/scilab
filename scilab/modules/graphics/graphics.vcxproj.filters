@@ -167,9 +167,6 @@
     <ClCompile Include="src\c\getHandleProperty\get_colored_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_cube_scaling_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -788,9 +785,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_colored_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_cube_scaling_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1317,6 +1311,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
