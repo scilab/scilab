@@ -43,15 +43,14 @@ int get_mark_foreground_property(void* _pvCtx, int iObjUID)
 
     getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_FOREGROUNDS__, jni_int, (void**)&piNumMarkForegrounds);
 
-    if (piNumMarkForegrounds == NULL)
-    {
-        Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_foreground");
-        return -1;
-    }
-
     if (numMarkForegrounds == 0)
     {
         getGraphicObjectProperty(iObjUID, __GO_MARK_FOREGROUND__, jni_int, &piMarkForeground);
+        if (piMarkForeground == NULL)
+        {
+            Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_foreground");
+            return -1;
+        }
         return sciReturnDouble(_pvCtx, iMarkForeground);
     }
     else
