@@ -18,8 +18,8 @@
     <refsynopsisdiv>
         <title>Calling Sequence</title>
         <synopsis>
-          p = scatter3(x,y,z,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
-          p = scatter3(&lt;axes_handle&gt;,...)
+            p = scatter3(x,y,z,&lt;s&gt;,&lt;c&gt;,&lt;"fill"&gt;,&lt;marker&gt;,&lt;marker_property,value&gt;)
+            p = scatter3(&lt;axes_handle&gt;,...)
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -112,109 +112,109 @@
                         Marker types are specified by strings, see the table below.
                     </para>
                     <para>
-                    <informaltable border="1">
-                        <tr>
-                            <td>
-                                String
-                            </td>
-                            <td>
-                                Marker type
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"."</literal>
-                            </td>
-                            <td>Point</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"+"</literal>
-                            </td>
-                            <td>Plus sign</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"x"</literal>
-                            </td>
-                            <td>Cross</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"circle plus"</literal>
-                            </td>
-                            <td>Circle with plus</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"filled diamond"</literal>
-                            </td>
-                            <td>Filled diamond</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"d"</literal> or
-                                <literal>"diamond"</literal>
-                            </td>
-                            <td>Diamond</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"^"</literal>
-                            </td>
-                            <td>Upward-pointing triangle</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"v"</literal>
-                            </td>
-                            <td>Downward-pointing triangle</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"diamond plus"</literal>
-                            </td>
-                            <td>Diamond with plus</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"o"</literal>
-                            </td>
-                            <td>Circle (default)</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"*"</literal>
-                            </td>
-                            <td>Asterisk</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"s"</literal> or
-                                <literal>"square"</literal>
-                            </td>
-                            <td>Square</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"&gt;"</literal>
-                            </td>
-                            <td>Right-pointing triangle</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"&lt;"</literal>
-                            </td>
-                            <td>Left-pointing triangle</td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <literal>"pentagram"</literal> or
-                                <literal>"p"</literal>
-                            </td>
-                            <td>Five-pointed star</td>
-                        </tr>
-                     </informaltable>
+                        <informaltable border="1">
+                            <tr>
+                                <td>
+                                    String
+                                </td>
+                                <td>
+                                    Marker type
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"."</literal>
+                                </td>
+                                <td>Point</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"+"</literal>
+                                </td>
+                                <td>Plus sign</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"x"</literal>
+                                </td>
+                                <td>Cross</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"circle plus"</literal>
+                                </td>
+                                <td>Circle with plus</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"filled diamond"</literal>
+                                </td>
+                                <td>Filled diamond</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"d"</literal> or
+                                    <literal>"diamond"</literal>
+                                </td>
+                                <td>Diamond</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"^"</literal>
+                                </td>
+                                <td>Upward-pointing triangle</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"v"</literal>
+                                </td>
+                                <td>Downward-pointing triangle</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"diamond plus"</literal>
+                                </td>
+                                <td>Diamond with plus</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"o"</literal>
+                                </td>
+                                <td>Circle (default)</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"*"</literal>
+                                </td>
+                                <td>Asterisk</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"s"</literal> or
+                                    <literal>"square"</literal>
+                                </td>
+                                <td>Square</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"&gt;"</literal>
+                                </td>
+                                <td>Right-pointing triangle</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"&lt;"</literal>
+                                </td>
+                                <td>Left-pointing triangle</td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <literal>"pentagram"</literal> or
+                                    <literal>"p"</literal>
+                                </td>
+                                <td>Five-pointed star</td>
+                            </tr>
+                        </informaltable>
                     </para>
                 </listitem>
             </varlistentry>
@@ -222,7 +222,7 @@
                 <term>&lt;marker_property,value&gt;</term>
                 <listitem>
                     <para>
-                         A sequence of property value pairs can be used to specify type, color and line width of the markers.
+                        A sequence of property value pairs can be used to specify type, color and line width of the markers.
                     </para>
                 </listitem>
             </varlistentry>
@@ -322,15 +322,15 @@ scatter3(x,y,z)
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-t = 1:200
-x = t.*cos(t).*sin(t)
-y = t.*sin(t).*sin(t)
-z = t.*cos(t)
-scatter3(x,y,z)
-set(gca(),"rotation_angles",[60,45])
+            t = 1:200
+            x = t.*cos(t).*sin(t)
+            y = t.*sin(t).*sin(t)
+            z = t.*cos(t)
+            scatter3(x,y,z)
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
-           Vary marker size
+            Vary marker size
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
@@ -346,16 +346,16 @@ scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-t = 1:200
-x = t.*cos(t).*sin(t)
-y = t.*sin(t).*sin(t)
-z = t.*cos(t)
-s = linspace(50,1,length(t))
-scatter3(x,y,z,s)
-set(gca(),"rotation_angles",[60,45])
+            t = 1:200
+            x = t.*cos(t).*sin(t)
+            y = t.*sin(t).*sin(t)
+            z = t.*cos(t)
+            s = linspace(50,1,length(t))
+            scatter3(x,y,z,s)
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
-           Vary marker size and color
+            Vary marker size and color
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
@@ -375,18 +375,18 @@ scatter3(x,y,z,s,c)
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-t = 1:200
-x = t.*cos(t).*sin(t)
-y = t.*sin(t).*sin(t)
-z = t.*cos(t)
-s = linspace(50,1,length(t))
-set(gcf(),"color_map",coolcolormap(64))
-c = t
-scatter3(x,y,z,s,c)
-set(gca(),"rotation_angles",[60,45])
+            t = 1:200
+            x = t.*cos(t).*sin(t)
+            y = t.*sin(t).*sin(t)
+            z = t.*cos(t)
+            s = linspace(50,1,length(t))
+            set(gcf(),"color_map",coolcolormap(64))
+            c = t
+            scatter3(x,y,z,s,c)
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
-           Fill the markers
+            Fill the markers
         </para>
         <programlisting role="example"><![CDATA[
 // x, y and z initialisation
@@ -399,11 +399,11 @@ scatter3(x,y,z,"fill")
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,25,200)
-x = z.*cos(z)
-y = z.*sin(z)
-scatter3(x,y,z,"fill")
-set(gca(),"rotation_angles",[60,45])
+            z = linspace(0,25,200)
+            x = z.*cos(z)
+            y = z.*sin(z)
+            scatter3(x,y,z,"fill")
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
             Specify marker symbol
@@ -419,11 +419,11 @@ scatter3(x,y,z,"*")
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,25,200)
-x = z.*cos(z)
-y = z.*sin(z)
-scatter3(x,y,z,"*")
-set(gca(),"rotation_angles",[60,45])
+            z = linspace(0,25,200)
+            x = z.*cos(z)
+            y = z.*sin(z)
+            scatter3(x,y,z,"*")
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
             Change marker edge and face color
@@ -441,13 +441,13 @@ scatter3(x,y,z,...
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-z = linspace(0,25,200)
-x = z.*cos(z)
-y = z.*sin(z)
-scatter3(x,y,z,...
-        "markerEdgeColor","black",...
-        "markerFaceColor",[0 .8 .8])
-set(gca(),"rotation_angles",[60,45])
+            z = linspace(0,25,200)
+            x = z.*cos(z)
+            y = z.*sin(z)
+            scatter3(x,y,z,...
+            "markerEdgeColor","black",...
+            "markerFaceColor",[0 .8 .8])
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <para>
             Specify subplot for scatter plot
@@ -469,15 +469,16 @@ scatter3(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-n = 20
-[x,y] = meshgrid(linspace(-2,2,n))
-z = exp(-x.^2-y.^2)
-subplot(2,1,1)
-scatter3(gca(),x(:),y(:),z(:))
-set(gca(),"rotation_angles",[60,45])
-subplot(2,1,2)
-scatter3(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
-set(gca(),"rotation_angles",[60,45])        </scilab:image>
+            n = 20
+            [x,y] = meshgrid(linspace(-2,2,n))
+            z = exp(-x.^2-y.^2)
+            subplot(2,1,1)
+            scatter3(gca(),x(:),y(:),z(:))
+            set(gca(),"rotation_angles",[60,45])
+            subplot(2,1,2)
+            scatter3(gca(),x(:),y(:),z(:),"markerFaceColor",[0 .8 .8])
+            set(gca(),"rotation_angles",[60,45])        
+        </scilab:image>
         <para>
             Modify scatter plot after creation
         </para>
@@ -495,13 +496,13 @@ scatter3(x,y,z,s)
 set(gca(),"rotation_angles",[60,45])
  ]]></programlisting>
         <scilab:image>
-t = 1:200
-x = t.*cos(t).*sin(t)
-y = t.*sin(t).*sin(t)
-z = t.*cos(t)
-s = linspace(50,1,length(t))
-p = scatter3(x,y,z,s)
-set(gca(),"rotation_angles",[60,45])
+            t = 1:200
+            x = t.*cos(t).*sin(t)
+            y = t.*sin(t).*sin(t)
+            z = t.*cos(t)
+            s = linspace(50,1,length(t))
+            p = scatter3(x,y,z,s)
+            set(gca(),"rotation_angles",[60,45])
         </scilab:image>
         <programlisting role="example"><![CDATA[
 // modify ployline 
@@ -509,16 +510,16 @@ p.mark_foreground = addcolor([0.5 0 0])
 p.mark_background = addcolor([0.5 0.5 0])
  ]]></programlisting>
         <scilab:image>
-t = 1:200
-x = t.*cos(t).*sin(t)
-y = t.*sin(t).*sin(t)
-z = t.*cos(t)
-s = linspace(50,1,length(t))
-p = scatter3(x,y,z,s)
-set(gca(),"rotation_angles",[60,45])
-// modify ployline 
-p.mark_foreground = addcolor([0.5 0 0])
-p.mark_background = addcolor([0.5 0.5 0])
+            t = 1:200
+            x = t.*cos(t).*sin(t)
+            y = t.*sin(t).*sin(t)
+            z = t.*cos(t)
+            s = linspace(50,1,length(t))
+            p = scatter3(x,y,z,s)
+            set(gca(),"rotation_angles",[60,45])
+            // modify ployline 
+            p.mark_foreground = addcolor([0.5 0 0])
+            p.mark_background = addcolor([0.5 0.5 0])
         </scilab:image>
     </refsection>
     <refsection role="see also">
@@ -543,5 +544,16 @@ p.mark_background = addcolor([0.5 0.5 0])
                 <link linkend="polyline_properties">polyline_properties</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.6.0</revnumber>
+                <revremark>
+                    Function <function>scatter3</function> introduced.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
