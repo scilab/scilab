@@ -34,7 +34,7 @@ private :
     double* colorValues;
 
     /** The size of the color values array */
-    int numColors;
+    int numColorValues;
 
 protected :
     /** The coordinates array */

@@ -202,6 +202,7 @@ int set_marks_count_property(void* _pvCtx, int iObj, void* _pvData, int valueTyp
 int set_auto_margins_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ticks_format_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 int set_ticks_st_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
-int set_colors_property(void* _pvCtx, char* pobj, size_t stackPointer, int valueType, int nbRow, int nbCol);
+int set_colors_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
+int set_sizes_property(void* _pvCtx, int iObj, void* _pvData, int valueType, int nbRow, int nbCol);
 
 #endif /* _SET_HANDLE_PROPERTY_H_ */

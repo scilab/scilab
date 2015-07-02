@@ -27,6 +27,8 @@ import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProp
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Y_SHIFT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_Z_SHIFT__;
 import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_COLOR_SET__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_SIZES__;
+import static org.scilab.modules.graphic_objects.graphicObject.GraphicObjectProperties.__GO_NUM_SIZES__;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -52,7 +54,7 @@ public class Polyline extends ClippableContouredObject {
     private enum PolylineProperty { CLOSED, ARROWSIZEFACTOR, POLYLINESTYLE,
                                     INTERPCOLORVECTOR, INTERPCOLORVECTORSET, INTERPCOLORMODE,
                                     XSHIFT, YSHIFT, ZSHIFT, BARWIDTH, DATATIPS, DATATIPSCOUNT,
-                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET
+                                    TIP_DISPLAY_FNC, TIP_MARK, COLORSET, SIZESET, SIZESETCOUNT
                                   };
 
     /** Specifies whether the polyline is closed */
@@ -93,7 +95,11 @@ public class Polyline extends ClippableContouredObject {
 
     private Integer tipMark;
 
+    /** has color set */
     private boolean colorSet;
+
+    /** sizes objects list */
+    private List<Integer> sizes;
 
     /** Constructor */
     public Polyline() {
@@ -112,6 +118,7 @@ public class Polyline extends ClippableContouredObject {
         displayFnc = "";
         tipMark = 11;
         colorSet = false;
+        sizes = new ArrayList<Integer>();
     }
 
     @Override
@@ -156,6 +163,10 @@ public class Polyline extends ClippableContouredObject {
                 return PolylineProperty.TIP_MARK;
             case __GO_COLOR_SET__ :
                 return PolylineProperty.COLORSET;
+            case __GO_SIZES__ :
+                return PolylineProperty.SIZESET;
+            case __GO_NUM_SIZES__ :
+                return PolylineProperty.SIZESETCOUNT;
             default :
                 return super.getPropertyFromName(propertyName);
         }
@@ -199,6 +210,10 @@ public class Polyline extends ClippableContouredObject {
                     return getTipMark();
                 case COLORSET:
                     return getColorSet();
+                case SIZESET:
+                    return getSizeSet();
+                case SIZESETCOUNT:
+                    return sizes.size();
             }
         }
         return super.getProperty(property);
@@ -252,6 +267,9 @@ public class Polyline extends ClippableContouredObject {
                         break;
                     case COLORSET:
                         setColorSet((Boolean) value);
+                        break;
+                    case SIZESET:
+                        setSizeSet((Integer[]) value);
                         break;
                 }
             }
@@ -493,6 +511,29 @@ public class Polyline extends ClippableContouredObject {
      */
     public UpdateStatus setColorSet(Boolean colorSet) {
         this.colorSet = colorSet;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @return sizes
+     */
+    public Integer[] getSizeSet() {
+        return sizes.toArray(new Integer[sizes.size()]);
+    }
+
+    /**
+     * @param sizes the sizes to set
+     */
+    private UpdateStatus setSizeSet(List<Integer> sizes) {
+        this.sizes = sizes;
+        return UpdateStatus.Success;
+    }
+
+    /**
+     * @param sizes the sizes to set
+     */
+    public UpdateStatus setSizeSet(Integer[] sizes) {
+        this.sizes = new LinkedList<Integer>(Arrays.asList(sizes));
         return UpdateStatus.Success;
     }
 

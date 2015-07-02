@@ -343,6 +343,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\get_screen_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_scrollable_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\get_sizes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_specular_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\get_surface_color_property.c" />
@@ -593,6 +594,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\getHandleProperty\set_rotation_style_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_screen_position_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_segs_color_property.c" />
+    <ClCompile Include="src\c\getHandleProperty\set_sizes_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_sub_tics_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_surface_color_property.c" />
     <ClCompile Include="src\c\getHandleProperty\set_surface_mode_property.c" />

@@ -209,27 +209,32 @@ public class ScilabJavaCompiler {
         int cpt = 1;
         buffer.append("----------\n");
         for (Diagnostic <? extends JavaFileObject > d : diagnostics.getDiagnostics()) {
-            buffer.append(Integer.toString(cpt++)).append(". ").append(d.getKind()).append(" in ").append(d.getSource().toUri().getPath()).append(" (at line ").append(Long.toString(d.getLineNumber())).append(")\n");
+            buffer.append(Integer.toString(cpt++)).append(". ").append(d.getKind());
+            if (d.getSource() != null) {
+                buffer.append(" in ").append(d.getSource().toUri().getPath()).append(" (at line ").append(Long.toString(d.getLineNumber())).append(")\n");
 
-            Reader reader = null;
-            try {
-                reader = d.getSource().openReader(true);
-                reader.skip(d.getStartPosition());
-                char[] data = new char[(int) (d.getEndPosition() - d.getStartPosition() + 1)];
-                reader.read(data);
-                buffer.append("        ").append(data).append('\n');
-                Arrays.fill(data, '^');
-                buffer.append("        ").append(data).append('\n');
-            } catch (IOException e) {
+                Reader reader = null;
+                try {
+                    reader = d.getSource().openReader(true);
+                    reader.skip(d.getStartPosition());
+                    char[] data = new char[(int) (d.getEndPosition() - d.getStartPosition() + 1)];
+                    reader.read(data);
+                    buffer.append("        ").append(data).append('\n');
+                    Arrays.fill(data, '^');
+                    buffer.append("        ").append(data).append('\n');
+                } catch (IOException e) {
 
-            } finally {
-                if (reader != null) {
-                    try {
-                        reader.close();
-                    } catch (IOException e) { }
+                } finally {
+                    if (reader != null) {
+                        try {
+                            reader.close();
+                        } catch (IOException e) { }
+                    }
                 }
+            } else {
+                // this is not a file related error
+                buffer.append('\n');
             }
-
             buffer.append(d.getMessage(Locale.getDefault())).append('\n');
         }
 
