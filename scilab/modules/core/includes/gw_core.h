@@ -49,7 +49,7 @@ int C2F(sci_getmodules)(char *fname, unsigned long fname_len);
 int C2F(sci_with_module)(char *fname, unsigned long fname_len);
 int C2F(sci_getscilabmode)(char *fname, unsigned long fname_len);
 int C2F(sci_librarieslist)(char *fname, unsigned long fname_len);
-int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
+//int C2F(sci_getvariablesonstack)(char *fname, unsigned long fname_len);
 
 //C_GATEWAY_PROTOTYPE(sci_typename); -> c++
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);

@@ -65,7 +65,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 70
 # File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 # File: sci_gateway/c/sci_getversion.c, line: 211
 # File: sci_gateway/c/sci_readgateway.c, line: 130
 # File: sci_gateway/c/sci_warning.c, line: 157
@@ -311,7 +310,6 @@ msgstr ""
 # File: sci_gateway/c/sci_format.c, line: 92
 # File: sci_gateway/c/sci_format.c, line: 121
 # File: sci_gateway/c/sci_format.c, line: 425
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 54
 # File: sci_gateway/c/sci_predef.c, line: 121
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"

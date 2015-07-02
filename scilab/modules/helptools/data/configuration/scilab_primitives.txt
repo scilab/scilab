@@ -530,7 +530,6 @@ getscicosvars
 getscilabmode
 getshortpathname
 gettext
-getvariablesonstack
 getversion
 glist
 global

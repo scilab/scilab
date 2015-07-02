@@ -1,4 +1,4 @@
-            Changes between version 5.4.X and 6.0.0 of Scilab
+            Changes between version 5.5.2 and 6.0.0 of Scilab
             =================================================
 
 Installation
@@ -24,8 +24,8 @@ File input/output
 * fileinfo can now take a row vector as input.
 
 
-Removed functions (previously declared as obsolete)
-====================================================
+Removed functions
+==================
 
 * maxfile function is now obsolete.
 
@@ -34,6 +34,14 @@ Removed functions (previously declared as obsolete)
 * numdiff removed. Please use numderivative instead.
 
 * derivative removed. Please use numderivative instead.
+
+* curblockc removed. Please use curblock instead.
+
+
+Removed functions (based on old Scilab stack)
+==============================================
+
+* getvariablesonstack removed.
 
 
 Functions modified
@@ -44,6 +52,7 @@ Functions modified
 * pppdiv : return a scalar of type 'constant' when the rank is 0.
 * pdiv   : return a matrix of type 'constant' when all the rank are 0.
 
+
 Syntax clarifications
 =====================
 
@@ -53,6 +62,7 @@ Syntax clarifications
 
 * {"foo"} returns a cell not a string matrix.
 
+
 Deprecated behavior
 ====================
 
@@ -61,14 +71,6 @@ Deprecated behavior
 * write string or string matrix in file does not add black space before each value
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
     "-" + mgetl("TMPDIR/test") + "-"
-
-
-Removed functions
-==================
-
-* derivative removed. Please use numderivative instead.
-
-* curblockc removed. Please use curblock instead.
 
 
 Scilab Bug Fixes
