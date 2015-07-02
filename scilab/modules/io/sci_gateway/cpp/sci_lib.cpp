@@ -40,7 +40,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pIT->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for intput argument #%d: A string expected.\n"), "lib", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
@@ -48,7 +48,7 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
 
     if (pS->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for intput argument #%d: A string expected.\n"), "lib", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "lib", 1);
         return Function::Error;
     }
 
