@@ -6,9 +6,8 @@ EXPORTS
 ;core
 ;
 adre_
-intersci_
 ;
-vstk_ 
+vstk_
 com_
 iop_
 errgst_

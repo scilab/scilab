@@ -17,7 +17,6 @@ putlhsvar_
 getmatdims_
 overload_
 vartype_
-intersci_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

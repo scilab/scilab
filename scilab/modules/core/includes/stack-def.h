@@ -146,24 +146,6 @@ IMPORT ADRE_struct C2F(adre);
  */
 typedef struct
 {
-    int nbvars; /**< @TODO : add comment */
-    int iwhere[intersiz]; /**< @TODO : add comment */
-    int nbrows[intersiz]; /**< @TODO : add comment */
-    int nbcols[intersiz]; /**< @TODO : add comment */
-    int itflag[intersiz]; /**< @TODO : add comment */
-    int ntypes[intersiz]; /**< @TODO : add comment */
-    int lad[intersiz]; /**< @TODO : add comment */
-    int ladc[intersiz]; /**< @TODO : add comment */
-    int lhsvar[intersiz]; /**< @TODO : add comment */
-} INTERSCI_struct;
-
-IMPORT INTERSCI_struct C2F(intersci);
-
-/**
- * @TODO : add comment
- */
-typedef struct
-{
     int wmac; /**< @TODO : add comment */
     int lcntr; /**< @TODO : add comment */
     int nmacs; /**< @TODO : add comment */

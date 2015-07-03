@@ -20,7 +20,7 @@
 /*--------------------------------------------------------------------------*/
 #define MAX_FILES 100
 /*--------------------------------------------------------------------------*/
-static int DoOneLhs(void);
+//static int DoOneLhs(void);
 /*--------------------------------------------------------------------------*/
 /**
 * maxfiles sets the soft limit for the number of scilab files allowed to open simultaneously.
@@ -90,26 +90,26 @@ int sci_maxfiles(char *fname, unsigned long fname_len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int DoOneLhs(void)
-{
-    static int n1, m1;
-    int *paramoutINT = NULL;
-    paramoutINT = (int*)MALLOC(sizeof(int));
-
-    *paramoutINT = GetMaximumFileOpenedInScilab();
-
-    n1 = 1;
-    m1 = 1;
-    CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
-
-    LhsVar(1) = Rhs + 1;
-
-    if (paramoutINT)
-    {
-        FREE(paramoutINT);
-        paramoutINT = NULL;
-    }
-    PutLhsVar();
-    return 0;
-}
+//int DoOneLhs(void)
+//{
+//    static int n1, m1;
+//    int *paramoutINT = NULL;
+//    paramoutINT = (int*)MALLOC(sizeof(int));
+//
+//    *paramoutINT = GetMaximumFileOpenedInScilab();
+//
+//    n1 = 1;
+//    m1 = 1;
+//    CreateVarFromPtr(Rhs + 1, MATRIX_OF_INTEGER_DATATYPE, &n1, &m1, &paramoutINT);
+//
+//    LhsVar(1) = Rhs + 1;
+//
+//    if (paramoutINT)
+//    {
+//        FREE(paramoutINT);
+//        paramoutINT = NULL;
+//    }
+//    PutLhsVar();
+//    return 0;
+//}
 /*--------------------------------------------------------------------------*/

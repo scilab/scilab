@@ -17,7 +17,6 @@ checklhs_
 checkrhs_
 createvarfromptr_
 putlhsvar_
-intersci_
 createvar_
 GetData
 check_length

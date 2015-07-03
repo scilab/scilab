@@ -7,8 +7,7 @@ funtab_
 iop_
 callFunctionFromGateway
 com_
-putlhsvar_ 
-intersci_
+putlhsvar_
 freeArrayOfString
 getrhsvar_
 vartype_

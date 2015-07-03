@@ -9,7 +9,6 @@ com_
 stack_
 putlhsvar_
 getrhsvar_
-intersci_
 createvarfromptr_
 checklhs_
 checkrhs_

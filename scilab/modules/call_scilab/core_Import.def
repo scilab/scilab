@@ -9,7 +9,6 @@ TerminateCorePart2
 ExitScilab
 callFunctionFromGateway
 putlhsvar_
-intersci_
 createvarfromptr_
 checklhs_
 checkrhs_

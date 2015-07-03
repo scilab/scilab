@@ -3,7 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 callFunctionFromGateway
-intersci_
 com_
 vstk_
 getrhsvar_

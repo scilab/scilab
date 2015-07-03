@@ -12,7 +12,6 @@ checkrhs_
 getrhsvar_
 stack_
 getrhscvar_
-intersci_
 createvar_
 errgst_
 check_dim_prop

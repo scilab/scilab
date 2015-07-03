@@ -6,8 +6,7 @@ callFunctionFromGateway
 com_
 getSCIpath
 putlhsvar_
-intersci_
-createvarfromptr_ 
+createvarfromptr_
 stack_
 getrhsvar_
 gettype_
@@ -16,7 +15,7 @@ checklhs_
 checkrhs_
 createvar_
 getWarningMode
-freeArrayOfString 
+freeArrayOfString
 MyHeapAlloc
 MyHeapFree
 

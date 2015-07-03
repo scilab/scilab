@@ -60,7 +60,6 @@ CSIMP_struct C2F(csimp);
 ADRE_struct C2F(adre);
 COM_struct C2F(com);
 ERRGST_struct C2F(errgst);
-INTERSCI_struct C2F(intersci);
 IOP_struct C2F(iop);
 MTLBC_struct C2F(mtlbc);
 STACK_struct C2F(stack);

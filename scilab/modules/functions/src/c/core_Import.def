@@ -10,7 +10,6 @@ com_
 funtab_
 stack_
 vstk_
-intersci_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

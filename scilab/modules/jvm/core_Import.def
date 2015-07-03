@@ -8,7 +8,6 @@ stack_
 checkrhs_
 checklhs_
 createvarfromptr_
-intersci_
 putlhsvar_
 freeArrayOfString
 vstk_

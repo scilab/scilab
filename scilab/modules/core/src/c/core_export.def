@@ -15,9 +15,6 @@
     ptkeep_
     dbg_
 ;
-;used by intersci
-    intersci_
-;
 ;used by linear_algebra
 scigsch_
 scisch_

@@ -69,7 +69,6 @@ call_scilab
 jvm
 external_objects_java
 javasci
-intersci
 graph
 commons
 types

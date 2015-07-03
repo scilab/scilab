@@ -11,7 +11,6 @@ mkmlistfromvars_
 createvarfromptr_
 putlhsvar_
 stack_
-intersci_
 createvar_
 freeArrayOfWideString
 getrhsvar_

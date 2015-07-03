@@ -9,7 +9,6 @@ stack_
 vstk_
 getrhsvar_
 putlhsvar_
-intersci_
 gettype_
 checkrhs_
 checklhs_

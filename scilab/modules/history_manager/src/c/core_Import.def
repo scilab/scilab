@@ -7,7 +7,6 @@ freeArrayOfString
 callFunctionFromGateway
 com_
 putlhsvar_
-intersci_
 getrhsvar_
 gettype_
 vstk_

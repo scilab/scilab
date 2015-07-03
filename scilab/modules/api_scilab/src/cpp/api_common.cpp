@@ -382,9 +382,6 @@ SciErr getNamedVarDimension(void *_pvCtx, const char *_pstName, int *_piRows, in
 SciErr getVarAddressFromPosition(void *_pvCtx, int _iVar, int **_piAddress)
 {
     SciErr sciErr = getinternalVarAddress(_pvCtx, _iVar, _piAddress);
-    //sciprint("type : %d(%c)\n", (*_piAddress)[0], intersci_.ntypes[_iVar - 1]);
-    //update variable state to "read
-    //intersci_.ntypes[_iVar - 1] = '$';
     return sciErr;
 }
 
@@ -639,13 +636,6 @@ int isNamedVarComplex(void *_pvCtx, const char *_pstName)
 void createNamedVariable(int *_piVarID)
 {
     //deprecated
-}
-
-/*--------------------------------------------------------------------------*/
-int updateInterSCI(int _iVar, char _cType, int _iSCIAddress, int _iSCIDataAddress)
-{
-    //deprecated
-    return 0;
 }
 
 /*--------------------------------------------------------------------------*/

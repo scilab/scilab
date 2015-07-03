@@ -267,20 +267,6 @@ static void initial_c1_local(void)
   if(! C2F(scifunction)((c_local=n,&c_local),mx,nx,lx))\
 { sciprint(_(" results may be inaccurate. rcond = %s1\n"),name);  longjmp(fsqpenv,-1); }
 
-#define Nbvars C2F(intersci).nbvars
-
-/**
- * TODO : need a comment !!!!
- *
- */
-#define LhsVar(x) C2F(intersci).lhsvar[x-1]
-
-
-/* used to access data associated to a variable
- * for example when a variable is created with CreateVarFromPtr(...)
- */
-
-#define VarPtr(x) C2F(intersci).lad[x-1]
 
 typedef int (*interfun)(char *fname, unsigned long l);
 

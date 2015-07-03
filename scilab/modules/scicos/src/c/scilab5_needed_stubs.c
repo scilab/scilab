@@ -86,10 +86,6 @@ SCICOS_IMPEXP void F2C(putlhsvar)()
 {
     abort();
 }
-SCICOS_IMPEXP void F2C(intersci)()
-{
-    abort();
-}
 SCICOS_IMPEXP void F2C(checkrhs)()
 {
     abort();
