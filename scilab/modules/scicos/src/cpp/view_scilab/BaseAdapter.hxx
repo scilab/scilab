@@ -184,47 +184,43 @@ public:
 
     bool setAsTList(types::InternalType* v, Controller& controller)
     {
-        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
-        std::sort(properties.begin(), properties.end(), property<Adaptor>::original_index_cmp);
-
         if (v->getType() != types::InternalType::ScilabTList && v->getType() != types::InternalType::ScilabMList)
         {
             return false;
         }
         types::TList* current = v->getAs<types::TList>();
-        // The input TList can have fewer elements than the concerned adapter, but not more, and cannot be empty
-        if (current->getSize() > static_cast<int>(1 + properties.size()) || current->getSize() < 1)
+        // The input TList cannot be empty
+        if (current->getSize() < 1)
         {
             return false;
         }
 
         // Check the header
         types::String* header = current->getFieldNames();
-        if (header->getSize() > static_cast<int>(1 + properties.size()) || header->getSize() < 1)
+        if (header->getSize() < 1)
         {
             return false;
         }
+        // Make sure it is the same type as the Adapter
         if (header->get(0) != Adaptor::getSharedTypeStr())
         {
             return false;
         }
-        typename property<Adaptor>::props_t_it it = properties.begin();
-        for (int index = 1; index < header->getSize(); ++index, ++it)
-        {
-            if (header->get(index) != it->name)
-            {
-                return false;
-            }
-        }
 
-        // This is a valid tlist, get each tlist field value and pass it to the right property decoder
-        it = properties.begin();
-        for (int index = 1; index < header->getSize(); ++index, ++it)
+        // Retrieve the Adapter's properties
+        typename property<Adaptor>::props_t properties = property<Adaptor>::fields;
+
+        // For each input property, if it corresponds to an Adapter's property, set it.
+        for (int index = 1; index < header->getSize(); ++index)
         {
-            bool status = it->set(*static_cast<Adaptor*>(this), current->get(index), controller);
-            if (!status)
+            typename property<Adaptor>::props_t_it found = std::lower_bound(properties.begin(), properties.end(), header->get(index));
+            if (found != properties.end() && !(header->get(index) < found->name))
             {
-                return false;
+                bool status = found->set(*static_cast<Adaptor*>(this), current->get(index), controller);
+                if (!status)
+                {
+                    return false;
+                }
             }
         }
 
