@@ -18,7 +18,7 @@
 #include "double.hxx"
 #include "int.hxx"
 #include "filemanager.hxx"
-
+#include "readwrite.hxx"
 
 extern "C"
 {
@@ -42,9 +42,6 @@ extern "C"
 }
 
 using namespace types;
-
-InternalType::ScilabType checkformatread(const char* format);
-void closeFile(types::InternalType* _pIT, int _iID);
 
 template<typename T>
 bool is_of_type(const std::string & Str)
@@ -145,7 +142,7 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
         //checkformat
         pstFormat = wide_string_to_UTF8(pSFormat->get(0));
 
-        itTypeOfData = checkformatread(pstFormat);
+        itTypeOfData = checkformat(pstFormat);
         if (itTypeOfData == InternalType::ScilabNull)
         {
             closeFile(in[0], iID);
@@ -444,8 +441,6 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
                                 pS->resize(iRows, iCols);
                                 pS->set((iRows - 1), (iCols - 1), pCt);
                             }
-                            FREE(pCt);
-
                         }
 
                         if (error == 0)
@@ -654,83 +649,4 @@ Function::ReturnValue sci_read(typed_list &in, int _iRetCount, typed_list &out)
     }
 
     return Function::OK;
-}
-
-InternalType::ScilabType checkformatread(const char* format)
-{
-    const char type1[] =
-    {
-        'i', 'f', 'e',
-        'd', 'g', 'l',
-        'a', 'I', 'F',
-        'E', 'D', 'G',
-        'L', 'A'
-    };
-    const InternalType::ScilabType type2[] =
-    {
-        InternalType::ScilabInt32, InternalType::ScilabDouble, InternalType::ScilabDouble,
-        InternalType::ScilabDouble, InternalType::ScilabDouble, InternalType::ScilabBool,
-        InternalType::ScilabString, InternalType::ScilabInt32, InternalType::ScilabDouble,
-        InternalType::ScilabDouble, InternalType::ScilabDouble, InternalType::ScilabDouble,
-        InternalType::ScilabBool, InternalType::ScilabString
-    };
-
-    int size = (int)strlen(format);
-    bool isString = false;
-    InternalType::ScilabType previousType = InternalType::ScilabNull;
-
-    if (size < 2 || format[0] != '(' || format[size - 1] != ')')
-    {
-        return InternalType::ScilabNull;
-    }
-
-    for (int i = 1; i < size - 1; ++i)
-    {
-        char c = format[i];
-
-        if (c == '\'')
-        {
-            isString = !isString;
-        }
-
-        //while we are in string continue
-        if (isString)
-        {
-            continue;
-        }
-
-        for (int j = 0; j < sizeof(type1); j++)
-        {
-            if (c == type1[j])
-            {
-                if (previousType == InternalType::ScilabNull)
-                {
-                    previousType = type2[j];
-                }
-
-                //must have same format for all values
-                if (type2[j] != previousType)
-                {
-                    return InternalType::ScilabNull;
-                }
-
-                break;
-            }
-        }
-    }
-
-    return previousType;
-}
-
-void closeFile(types::InternalType* _pIT, int _iID)
-{
-    if (_pIT->isString())
-    {
-        int piMode[2] = { 0, 0 };
-        String* pSPath = _pIT->getAs<String>();
-        char* pstFilename = wide_string_to_UTF8(pSPath->get(0));
-        int  close = -_iID;
-        int iErr = C2F(clunit)(&close, pstFilename, piMode, (int)strlen(pstFilename));
-        FREE(pstFilename);
-    }
 }

@@ -13,7 +13,8 @@ IO_C_SOURCES = \
 
 IO_CPP_SOURCES = \
     src/cpp/io_gw.cpp \
-    src/cpp/loadlib.cpp
+    src/cpp/loadlib.cpp \
+    src/cpp/readwrite.cpp
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_read4b.c \

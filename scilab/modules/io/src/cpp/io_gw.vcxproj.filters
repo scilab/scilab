@@ -75,6 +75,9 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_read.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="readwrite.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io_gw.h">
@@ -84,6 +87,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="loadlib.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="readwrite.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
