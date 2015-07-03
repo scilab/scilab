@@ -29,9 +29,6 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    //Structure to store, link between % and input value
-    ArgumentPosition* pArgs = NULL;
-
     if (in.size() < 1)
     {
         Scierror(999, _("%s: Wrong number of input arguments: at least %d expected.\n"), "msprintf", 1);
@@ -54,75 +51,11 @@ types::Callable::ReturnValue sci_msprintf(types::typed_list &in, int _iRetCount,
         }
     }
 
-    wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
-    int iNumberPercent = 0;
-    int iNumberPercentPercent = 0;
-    for (int i = 0; i < wcslen(pwstInput); i++)
-    {
-        if (pwstInput[i] == L'%')
-        {
-            iNumberPercent++;
-            if (pwstInput[i + 1] == L'%')
-            {
-                //it is a %%, not a %_
-                iNumberPercentPercent++;
-                //force incremantation to bypass the second % of %%
-                i++;
-            }
-        }
-    }
-
-    //Input values must be less or equal than excepted
-    if ((in.size() - 1) > iNumberPercent - iNumberPercentPercent)
-    {
-        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "msprintf", iNumberPercent);
-        return types::Function::Error;
-    }
-
-    //determine if imput values are ... multiple values
-    int iNumberCols = 0;
-    if ( in.size() > 1 )
-    {
-        int iRefRows = in[1]->getAs<GenericType>()->getRows();
-        for (int i = 1 ; i < in.size() ; i++)
-        {
-            //all arguments must have the same numbers of rows !
-            if (iRefRows != in[i]->getAs<GenericType>()->getRows())
-            {
-                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "msprintf");
-                return types::Function::Error;
-            }
-
-            iNumberCols += in[i]->getAs<GenericType>()->getCols();
-        }
-    }
-
-    if (iNumberCols != iNumberPercent - iNumberPercentPercent)
-    {
-        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "msprintf");
-        return types::Function::Error;
-    }
-
-
-    //fill ArgumentPosition structure
-    pArgs = new ArgumentPosition[iNumberPercent - iNumberPercentPercent];
-    int idx = 0;
-    for (int i = 1 ; i < in.size() ; i++)
-    {
-        for (int j = 0 ; j < in[i]->getAs<GenericType>()->getCols() ; j++)
-        {
-            pArgs[idx].iArg = i;
-            pArgs[idx].iPos = j;
-            pArgs[idx].type = in[i]->getType();
-            idx++;
-        }
-    }
-
     int iOutputRows = 0;
     int iNewLine = 0;
-    wchar_t** pwstOutput = scilab_sprintf("msprintf", pwstInput, in, pArgs, iNumberPercent, &iOutputRows, &iNewLine);
+    wchar_t* pwstInput = in[0]->getAs<types::String>()->get()[0];
+    wchar_t** pwstOutput = scilab_sprintf("msprintf", pwstInput, in, &iOutputRows, &iNewLine);
 
-    delete[] pArgs;
     if (pwstOutput == NULL)
     {
         return types::Function::Error;

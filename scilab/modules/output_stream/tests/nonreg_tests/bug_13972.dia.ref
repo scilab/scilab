@@ -1,0 +1,119 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- Non-regression test for bug 13972 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=13972
+//
+// <-- Short Description -->
+// use of wildcard '*' in printf expressions was not managed
+//
+//with double
+printf("|%*f|\n", 20, rand());
+|            0.211325|
+printf("|%*f|\n", -20, rand());
+|0.756044            |
+printf("|%.*f|\n", 8, rand());
+|0.00022113|
+printf("|%.*f|\n", -8, rand());
+|0.330327|
+printf("|%*.*f|\n", 20, 8, rand());
+|          0.66538110|
+printf("|%*.*f|\n", 20, -8, rand());
+|            0.628392|
+printf("|%*.*f|\n", -20, 8, rand());
+|0.84974524          |
+printf("|%*.*f|\n", -20, -8, rand());
+|0.685731            |
+//with string
+printf("|%s|\n", "test");
+|test|
+printf("|%*s|\n", -10, "test");
+|test      |
+printf("|%*s|\n", -5, "test");
+|test |
+printf("|%*s|\n", 0, "test");
+|test|
+printf("|%*s|\n", 5, "test");
+| test|
+printf("|%*s|\n", 10, "test");
+|      test|
+//multiple
+printf("|%*s|%*s|%*s|%*s|\n", -10, "test", -5, "test", 5, "test", 10, "test");
+|test      |test | test|      test|
+printf("|%*s|\n", -10, ["t";"tt";"ttt";"tttt";"ttttt";"tttttt";"ttttttt";"tttttttt";"ttttttttt";"tttttttttt"]);
+|t         |
+|tt        |
+|ttt       |
+|tttt      |
+|ttttt     |
+|tttttt    |
+|ttttttt   |
+|tttttttt  |
+|ttttttttt |
+|tttttttttt|
+printf("|%*s|\n", 10, ["t";"tt";"ttt";"tttt";"ttttt";"tttttt";"ttttttt";"tttttttt";"ttttttttt";"tttttttttt"]);
+|         t|
+|        tt|
+|       ttt|
+|      tttt|
+|     ttttt|
+|    tttttt|
+|   ttttttt|
+|  tttttttt|
+| ttttttttt|
+|tttttttttt|
+printf("|%*d|%*d|%*d|%*d|\n", -10, -10, -5, -5, 5, 5, 10, 10);
+|-10       |-5   |    5|        10|
+printf("|%*d|\n", -8, [1;22;333;4444;55555;666666;7777777;88888888]);
+|1       |
+|22      |
+|333     |
+|4444    |
+|55555   |
+|666666  |
+|7777777 |
+|88888888|
+printf("|%*d|\n", 8, [1;22;333;4444;55555;666666;7777777;88888888]);
+|       1|
+|      22|
+|     333|
+|    4444|
+|   55555|
+|  666666|
+| 7777777|
+|88888888|
+printf("|%0*d|\n", 8, [1;22;333;4444;55555;666666;7777777;88888888]);
+|00000001|
+|00000022|
+|00000333|
+|00004444|
+|00055555|
+|00666666|
+|07777777|
+|88888888|
+printf("|%.*d|\n", -8, [1;22;333;4444;55555;666666;7777777;88888888]);
+|1|
+|22|
+|333|
+|4444|
+|55555|
+|666666|
+|7777777|
+|88888888|
+printf("|%.*d|\n", 8, [1;22;333;4444;55555;666666;7777777;88888888]);
+|00000001|
+|00000022|
+|00000333|
+|00004444|
+|00055555|
+|00666666|
+|07777777|
+|88888888|

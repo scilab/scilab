@@ -16,25 +16,35 @@
 #include "dynlib_output_stream_gw.h"
 #include "internal.hxx"
 
-typedef struct
+struct TokenDef
 {
     wchar_t* pwstToken;
     types::InternalType::ScilabType outputType;
-    bool bLengthFlag;
+    bool length;
     int width;
+    bool widthStar;
     int prec;
+    bool precStar;
     int typePos;
-} TokenDef;
+    int pos;
+    int col;
 
+    TokenDef() :
+        pwstToken(nullptr),
+        outputType(types::InternalType::ScilabNull),
+        length(false),
+        width(0),
+        widthStar(false),
+        prec(0),
+        precStar(false),
+        typePos(0),
+        pos(0),
+        col(0)
+    {}
+};
 
-typedef struct
-{
-    int iArg;
-    int iPos;
-    types::InternalType::ScilabType type;
-} ArgumentPosition;
+OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput, types::typed_list &in, int* _piOutputRows, int* _piNewLine);
 
-OUTPUT_STREAM_IMPEXP_GW wchar_t** scilab_sprintf(const char* _pstName, const wchar_t* _pwstInput, types::typed_list &in, ArgumentPosition* _pArgs, int _iArgsCount, int* _piOutputRows, int* piNewLine);
 
 
 #endif /* !__SCILAB_SPRINTF_HXX__ */

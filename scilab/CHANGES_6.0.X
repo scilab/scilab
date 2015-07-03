@@ -89,3 +89,5 @@ Scilab Bug Fixes
 
 * Bug #13838 fixed - Sparse and complex substraction made Scilab crash.
 
+* Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
+

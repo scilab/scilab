@@ -51,7 +51,6 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     int ifileMode                   = 0;
     wchar_t* wcsInput               = NULL;
     wchar_t** wcsStringToWrite      = NULL;
-    ArgumentPosition* pArgs         = NULL;
 
     if (in.size() < 2)
     {
@@ -145,68 +144,9 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     // Checking input string to write in file
-    wcsInput = pFileStr->get(0);
-
-    for (int i = 0; i < (int)wcslen(wcsInput); i++)
-    {
-        if (wcsInput[i] == '%')
-        {
-            iNumberPercent++;
-            if (wcsInput[i + 1] == '%')
-            {
-                iNumberPercent--;
-                i++;
-            }
-        }
-    }
-
-    //Input values must be less or equal than excepted
-    if ((in.size() - 2) > iNumberPercent)
-    {
-        Scierror(999, _("%s: Wrong number of input arguments: at most %d expected.\n"), "mprintf", iNumberPercent);
-        return types::Function::Error;
-    }
-
-    //determine if imput values are ... multiple values
-
-    if ( in.size() > 2 )
-    {
-        int iRefRows = in[2]->getAs<GenericType>()->getRows();
-        for (unsigned int i = 2 ; i < in.size() ; i++)
-        {
-            //all arguments must have the same numbers of rows !
-            if (iRefRows != in[i]->getAs<GenericType>()->getRows())
-            {
-                Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
-                return types::Function::Error;
-            }
-
-            iNumberCols += in[i]->getAs<GenericType>()->getCols();
-        }
-    }
-
-    if (iNumberCols != iNumberPercent)
-    {
-        Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), "mprintf");
-        return types::Function::Error;
-    }
-
-    //fill ArgumentPosition structure
-    pArgs = new ArgumentPosition[iNumberPercent];
-    int idx = 0;
-    for (unsigned int i = 2 ; i < in.size() ; i++)
-    {
-        for (int j = 0 ; j < in[i]->getAs<GenericType>()->getCols() ; j++)
-        {
-            pArgs[idx].iArg = i;
-            pArgs[idx].iPos = j;
-            pArgs[idx].type = in[i]->getType();
-            idx++;
-        }
-    }
-
     int iNewLine = 0;
-    wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, pArgs, iNumberPercent, &nbrOfLines, &iNewLine);
+    wcsInput = pFileStr->get(0);
+    wcsStringToWrite = scilab_sprintf("mfprintf", wcsInput, in, &nbrOfLines, &iNewLine);
 
     if (isSTD)
     {
@@ -239,8 +179,6 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
     }
 
     FREE(wcsStringToWrite);
-    delete[] pArgs;
-
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
