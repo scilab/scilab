@@ -32,7 +32,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Scilab stores "usual" variables in a stack <literal>stk</literal> (for global variables see  <link linkend="gstacksize">gstacksize</link>).
+            Scilab stores "usual" variables in a stack <literal>stk</literal>.
         </para>
         <para>
             <code>stacksize(n)</code> allows the user to increase or decrease the size of
@@ -71,9 +71,6 @@ disp("Current usage: "+ string(currentStackSize(2)))
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>
-            </member>
-            <member>
-                <link linkend="gstacksize">gstacksize</link>
             </member>
         </simplelist>
     </refsection>

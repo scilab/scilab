@@ -67,9 +67,6 @@ letsgo1()
                 <link linkend="clearglobal">clearglobal</link>
             </member>
             <member>
-                <link linkend="gstacksize">gstacksize</link>
-            </member>
-            <member>
                 <link linkend="resume">resume</link>
             </member>
         </simplelist>

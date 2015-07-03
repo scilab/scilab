@@ -36,8 +36,7 @@
     <refsection>
         <title>Description</title>
         <para>
-            Scilab stocke les variables usuelles dans une pile <literal>stk</literal>
-            (pour les variables globales voir <literal>gstacksize</literal>).
+            Scilab stocke les variables usuelles dans une pile <literal>stk</literal>.
         </para>
         <para>
             <literal>stacksize(n)</literal> permet d'augmenter ou de diminuer la taille
@@ -65,9 +64,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>
-            </member>
-            <member>
-                <link linkend="gstacksize">gstacksize</link>
             </member>
         </simplelist>
     </refsection>

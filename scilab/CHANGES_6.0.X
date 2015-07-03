@@ -43,6 +43,8 @@ Removed functions (based on old Scilab stack)
 
 * getvariablesonstack removed.
 
+* gstacksize removed.
+
 
 Functions modified
 ===================

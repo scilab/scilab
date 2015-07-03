@@ -37,7 +37,7 @@
     <refsection>
         <title>Описание</title>
         <para>
-            Scilab хранит "обычные" переменные в стеке <literal>stk</literal> (для глобальных переменных см.  <link linkend="gstacksize">gstacksize</link>).
+            Scilab хранит "обычные" переменные в стеке <literal>stk</literal>.
         </para>
         <para>
             <code>stacksize(n)</code> позволяет пользователю увеличить или уменьшить размер стека.
@@ -77,9 +77,6 @@ disp("В настоящий момент используется: "+ string(cur
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>
-            </member>
-            <member>
-                <link linkend="gstacksize">gstacksize</link>
             </member>
         </simplelist>
     </refsection>

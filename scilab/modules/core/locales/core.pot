@@ -430,11 +430,6 @@ msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 140
-# File: sci_gateway/c/sci_gstacksize.c, line: 147
-# File: sci_gateway/c/sci_gstacksize.c, line: 202
-# File: sci_gateway/c/sci_gstacksize.c, line: 218
-# File: sci_gateway/c/sci_gstacksize.c, line: 285
 # File: sci_gateway/c/sci_stacksize.c, line: 205
 # File: sci_gateway/c/sci_stacksize.c, line: 220
 # File: sci_gateway/c/sci_stacksize.c, line: 282
@@ -443,8 +438,6 @@ msgid "%s: Cannot allocate memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 153
-# File: sci_gateway/c/sci_gstacksize.c, line: 158
 # File: sci_gateway/c/sci_stacksize.c, line: 156
 # File: sci_gateway/c/sci_stacksize.c, line: 161
 #, c-format
@@ -452,15 +445,12 @@ msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 163
 # File: sci_gateway/c/sci_stacksize.c, line: 166
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 182
-# File: sci_gateway/c/sci_gstacksize.c, line: 187
 # File: sci_gateway/c/sci_stacksize.c, line: 185
 # File: sci_gateway/c/sci_stacksize.c, line: 190
 #, c-format

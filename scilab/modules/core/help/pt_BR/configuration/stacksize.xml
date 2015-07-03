@@ -34,8 +34,7 @@
     <refsection>
         <title>Descrição</title>
         <para>O Scilab armazena variáveis "usuais" em uma pilha
-            <literal>stk</literal> (para variáveis globais, ver
-            <literal>gstacksize</literal>).
+            <literal>stk</literal>.
         </para>
         <para>
             <literal>stacksize(n)</literal> permite aumentar ou diminuir o
@@ -64,9 +63,6 @@
         <simplelist type="inline">
             <member>
                 <link linkend="who">who</link>
-            </member>
-            <member>
-                <link linkend="gstacksize">gstacksize</link>
             </member>
         </simplelist>
     </refsection>

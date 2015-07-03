@@ -220,7 +220,6 @@ msgstr "%s: 無法分配記憶體.\n"
 #
 # File: sci_gateway/c/sci_stacksize.c, line: 105
 # File: sci_gateway/c/sci_stacksize.c, line: 111
-# File: sci_gateway/c/sci_gstacksize.c, line: 108
 #, c-format
 msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
 msgstr "%s: 超出數值限制. 未在 [%lu,%lu] 之內.\n"

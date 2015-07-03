@@ -539,7 +539,6 @@ graphicfunction
 grayplot
 grep
 gsort
-gstacksize
 h5attr
 h5close
 h5cp

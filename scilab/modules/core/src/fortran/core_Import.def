@@ -34,7 +34,6 @@ getscihome_
 getsci_
 scigmem_
 scigmem_
-getdefaultgstacksize_
 scimem_
 getdefaultstacksize_
 initfuncprot_
