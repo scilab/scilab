@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: sci_gateway/cpp/sci_export_to_hdf5.cpp, line: 103
 #, c-format
@@ -788,24 +788,24 @@ msgid "Bitfield is too big"
 msgstr ""
 
 #
-# File: src/cpp/H5DataFactory.cpp, line: 216
-# File: src/cpp/H5DataFactory.cpp, line: 219
+# File: src/cpp/H5DataFactory.cpp, line: 224
+# File: src/cpp/H5DataFactory.cpp, line: 227
 msgid "Cannot get data from an unknown data type."
 msgstr ""
 
 #
-# File: src/cpp/H5DataFactory.cpp, line: 289
+# File: src/cpp/H5DataFactory.cpp, line: 297
 msgid "Memory to allocate is too big"
 msgstr ""
 
 #
-# File: src/cpp/H5DataFactory.cpp, line: 314
-# File: src/cpp/H5DataFactory.cpp, line: 326
+# File: src/cpp/H5DataFactory.cpp, line: 322
+# File: src/cpp/H5DataFactory.cpp, line: 334
 msgid "Cannot allocate memory to get the data"
 msgstr ""
 
 #
-# File: src/cpp/H5DataFactory.cpp, line: 358
+# File: src/cpp/H5DataFactory.cpp, line: 366
 msgid "Cannot retrieve the data from the attribute"
 msgstr ""
 

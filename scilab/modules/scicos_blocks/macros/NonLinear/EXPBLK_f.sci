@@ -33,7 +33,7 @@ function [x,y,typ]=EXPBLK_f(job,arg1,arg2)
             exprs=exprs(2),
         end
         while %t do
-            [ok,a,exprs]=scicos_getvalue("Set a^u  block parameters",..
+            [ok,a,exprs]=scicos_getvalue("a^u: raise the value a to the power of the input",..
             "a (>0)",list("vec",1),exprs)
             if ~ok then
                 break,
