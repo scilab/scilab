@@ -4,13 +4,23 @@
 Scilab Bug Fixes
 ================
 
+* Bug #8990 fixed - zoom_auto feature was missing on the plot toolbar.
+
+* Bug #13807 fixed - Invalid margins were computed when figure was not visible.
+
 * Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
+
+* Bug #13834 fixed - Drawing a high number of strings in a figure generated a Java exceptions.
 
 * Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
 
 * Bug #13866 fixed - There were some issues with FFTW3 library.
 
 * Bug #13881 fixed - datatipRemoveAll did not work.
+
+* Bug #13924 fixed - rationals r1==r2 and r1~=r2 might sometimes be wrong.
+
+* Bug #13925 fixed - SciNotes used the wrong paired bracket highlight style.
 
 
 

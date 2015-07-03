@@ -77,6 +77,9 @@
         <submenu label="&amp;Original View" icon="zoom-original">
             <callback instruction='unzoom(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
         </submenu>
+        <submenu label="Fit zoom to data" icon="zoom-fit-drawing">
+            <callback instruction='zoom_auto(get_figure_handle([SCILAB_FIGURE_ID]))' type="0"/>
+        </submenu>
         <separator/>
         <submenu label="2D/3D &amp;Rotation" icon="transform-rotate">
             <callback instruction="set(get_figure_handle([SCILAB_FIGURE_ID]), 'info_message', 'Right click and drag to rotate.')" type="-2"/>

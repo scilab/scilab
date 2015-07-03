@@ -20,11 +20,8 @@ AC_DEFUN([AC_GET_MACOSX_VERSION],[
          10.6*)
               AC_MSG_RESULT([Mac OS X 10.6 - Snow Leopard.])
          ;;
-         *10.5*)
-              AC_MSG_RESULT([Mac OS X 10.5 - Leopard.])
-         ;;
          *)
-              AC_MSG_ERROR([MacOSX 10.5 to 10.10 are needed. Found $macosx_version])
+              AC_MSG_ERROR([MacOSX 10.6 to 10.10 are needed. Found $macosx_version])
          ;;
-	 esac
+    esac
 ])

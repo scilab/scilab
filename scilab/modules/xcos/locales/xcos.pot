@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: sci_gateway/c/gw_xcos.c, line: 56
 # File: src/noxcos/noxcos.c, line: 22
@@ -1528,6 +1528,16 @@ msgstr ""
 #
 # File: demos/modelica_demos.dem.gateway.sce, line: 13
 msgid "RLC circuit"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 14
+msgid "Heat conduction in a rod"
+msgstr ""
+
+#
+# File: demos/modelica_demos.dem.gateway.sce, line: 15
+msgid "Second order rotational system"
 msgstr ""
 
 #
