@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: macros/assert/assert_checkalmostequal.sci, line: 16
 # File: macros/assert/assert_checkfilesequal.sci, line: 15
@@ -425,13 +425,13 @@ msgid "%s is not an installed module or toolbox"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1087
+# File: macros/test_run.sci, line: 1093
 #, c-format
 msgid "The ref file (%s) doesn't exist"
 msgstr ""
 
 #
-# File: macros/test_run.sci, line: 1233
+# File: macros/test_run.sci, line: 1239
 #, c-format
 msgid ""
 "The file '%s' is not following the XUnit XML format. Root tag expected "
