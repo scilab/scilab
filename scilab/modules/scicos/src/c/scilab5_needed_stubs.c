@@ -110,14 +110,6 @@ SCICOS_IMPEXP void F2C(cha1)()
 }
 
 #ifndef _MSC_VER
-SCICOS_IMPEXP void F2C(vstk)()
-{
-    abort();
-}
-SCICOS_IMPEXP void F2C(stack)()
-{
-    abort();
-}
 SCICOS_IMPEXP void F2C(ierode)()
 {
     abort();

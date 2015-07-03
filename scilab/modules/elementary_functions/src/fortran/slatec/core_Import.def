@@ -5,8 +5,6 @@ EXPORTS
 ;
 ;core
 iop_
-stack_
-vstk_
 errgst_
 com_
 adre_

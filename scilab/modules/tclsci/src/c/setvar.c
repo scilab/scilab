@@ -27,7 +27,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int 
 
     for (i = 0; i < m * n; i++)
     {
-        MatrixDouble[i] = *stk(ptrValues++);
+        //MatrixDouble[i] = *stk(ptrValues++);
     }
 
 

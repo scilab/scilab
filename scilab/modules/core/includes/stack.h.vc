@@ -22,7 +22,7 @@ c intersiz used in interfaces
 c*-------------------------------------------------------------------
 Cc (DLL Digital Visual Fortran)     
 cDEC$ IF DEFINED (FORDLL)
-cDEC$ ATTRIBUTES DLLIMPORT:: /stack/, /recu/, /iop/
+cDEC$ ATTRIBUTES DLLIMPORT:: /recu/, /iop/
 cDEC$ ATTRIBUTES DLLIMPORT:: /errgst/, /com/, /adre/
 cDEC$ ATTRIBUTES DLLIMPORT:: /cha1/, /dbg/
 cDEC$ ATTRIBUTES DLLIMPORT:: /ierode/
@@ -39,7 +39,6 @@ C     ---------------------------------------------------------------
       parameter (intersiz=1024)
 c
       double precision stk(vsiz)
-      common /stack/ stk
       integer istk(2*vsiz)
       equivalence (istk(1),stk(1))
 

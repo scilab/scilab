@@ -317,7 +317,6 @@ cd ..
     <ClCompile Include="clunit.c" />
     <ClCompile Include="expsum.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="intstr.c" />
     <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
     <ClCompile Include="read_inter.c" />
@@ -334,7 +333,6 @@ cd ..
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="expsum.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="intstr.f" />
     <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />
     <f2c_rule Include="read_inter.f" />

@@ -60,21 +60,6 @@
 #define maxdb 100
 #define maxbpt 1000
 
-
-/**
- * @TODO : add comment
- */
-typedef struct
-{
-#ifndef _MSC_VER
-    double *Stk;
-#else
-    double Stk[vsiz];
-#endif
-} STACK_struct;
-
-IMPORT STACK_struct C2F(stack);
-
 /**
  * @TODO : add comment
  */

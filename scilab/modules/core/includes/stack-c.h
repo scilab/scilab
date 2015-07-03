@@ -116,19 +116,6 @@ static void initial_c1_local(void)
 #define Lhs C2F(com).lhs
 #define Err C2F(iop).err
 
-#define stk(x)  ( C2F(stack).Stk + x-1 )
-#define istk(x) (((int *) C2F(stack).Stk) + x-1 )
-#define sstk(x) (((float *) C2F(stack).Stk) + x-1 )
-#define cstk(x) (((char *) C2F(stack).Stk) + x-1 )
-
-#define zstk(x) (((doublecomplex *) C2F(stack).Stk) + x-1 )
-
-
-/* to retreive handles on the stack */
-#define hstk(x) (((long long *) C2F(stack).Stk) + x-1 )
-
-
-
 #define Maxvol(n,ct)  C2F(maxvol)((c_local=n,&c_local),ct,1L)
 
 #define CreateVarFromPtr(n,ct,mx,nx,lx) if ( ! C2F(createvarfromptr)((c_local=n,&c_local),ct,mx,nx,(void *)lx,1L)) \
@@ -301,20 +288,6 @@ typedef struct tagTabF
 
 
 int get_optionals(char *name, rhs_opts opts[]);
-
-
-/*-------------------------------------
- * get infos without being dependent
- * of stack structure !!! (! WOW !)
- *------------------------------------*/
-#define getType(il)			*istk(il)
-#define getNumberOfLines(il)		*istk(il+1)
-#define getNumberOfColumns(il)		*istk(il+2)
-#define getPrecision(il)		((getType(il) == sci_ints) ? (*istk(il+3)) : (0))
-#define getDoubleDataAddress(il)	sadr(il + 4)
-#define isComplex(il)			((getType(il) == sci_ints) ? (0) : (*istk(il+3))) == 0
-#define getElementByAddress(ea)		*stk(ea)
-
 
 /*------------------------------
  * prototypes

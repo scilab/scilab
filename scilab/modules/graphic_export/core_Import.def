@@ -5,8 +5,6 @@ EXPORTS
 
 ; core
 com_
-stack_
-vstk_
 getrhsvar_
 putlhsvar_
 gettype_

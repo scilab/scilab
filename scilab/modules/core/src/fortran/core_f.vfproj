@@ -70,7 +70,6 @@
 		<File RelativePath="clunit.f"/>
 		<File RelativePath="expsum.f"/>
 		<File RelativePath="folhp.f"/>
-		<File RelativePath="intstr.f"/>
 		<File RelativePath="putid.f"/>
 		<File RelativePath=".\read_inter.f"/>
 		<File RelativePath=".\readinter.f"/>

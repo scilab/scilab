@@ -7,7 +7,6 @@ callFunctionFromGateway
 com_
 putlhsvar_
 errorinfo_
-stack_
 getrhsvar_
 checklhs_
 checkrhs_

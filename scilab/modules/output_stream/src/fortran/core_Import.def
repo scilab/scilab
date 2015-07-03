@@ -8,9 +8,7 @@ EXPORTS
 gethmat_
 ;
 com_
-vstk_
 iop_
-stack_
 isanan_
 objvide_
 gettype_

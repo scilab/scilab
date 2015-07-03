@@ -4,9 +4,7 @@ LIBRARY    core.dll
 EXPORTS
 ;core
 com_
-stack_
 iop_
-vstk_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

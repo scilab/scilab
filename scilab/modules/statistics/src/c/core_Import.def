@@ -7,7 +7,6 @@ checkrhs_
 checklhs_
 getrhsvar_
 com_
-stack_
 putlhsvar_
 createvar_
 callFunctionFromGateway

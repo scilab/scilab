@@ -62,7 +62,6 @@ COM_struct C2F(com);
 ERRGST_struct C2F(errgst);
 IOP_struct C2F(iop);
 MTLBC_struct C2F(mtlbc);
-STACK_struct C2F(stack);
 DBG_struct C2F(dbg);
 MPROT_struct C2F(mprot);
 

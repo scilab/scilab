@@ -10,9 +10,7 @@ iop_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
-stack_
 adre_
-vstk_
 errgst_
 com_
 ;

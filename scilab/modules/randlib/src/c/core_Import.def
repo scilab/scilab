@@ -8,10 +8,8 @@ com_
 createvarfromptr_
 putlhsvar_
 createvar_
-stack_
 getrhsvar_
 gettype_
-vstk_
 checklhs_
 checkrhs_
 MyHeapAlloc

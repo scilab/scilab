@@ -5,7 +5,6 @@ EXPORTS
 ;--------------------------
 ; core
 ;--------------------------
-vstk_
 callFunctionFromGateway
 com_
 elementtype_
@@ -14,9 +13,7 @@ firstopt_
 freeArrayOfString
 iop_
 numopt_
-stack_
 vartype_
-vstk_
 GetDataSize
 GetData
 MyHeapAlloc

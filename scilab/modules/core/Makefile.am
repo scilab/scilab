@@ -63,7 +63,6 @@ CORE_CPP_SOURCES = \
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
     src/fortran/folhp.f \
-    src/fortran/intstr.f \
     src/fortran/xerbla.f \
     src/fortran/whatln.f \
     src/fortran/expsum.f \

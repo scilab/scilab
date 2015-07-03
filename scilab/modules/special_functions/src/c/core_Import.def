@@ -5,12 +5,10 @@ EXPORTS
 ;core
 callFunctionFromGateway
 com_
-vstk_
 putlhsvar_
 checklhs_
 checkrhs_
 getrhsvar_
-stack_
 getrhscvar_
 createvar_
 errgst_

@@ -30,9 +30,6 @@
     <ClCompile Include="folhp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="intstr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="putid.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -74,9 +71,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="folhp.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="intstr.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="putid.f">

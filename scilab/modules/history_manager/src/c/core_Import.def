@@ -9,11 +9,9 @@ com_
 putlhsvar_
 getrhsvar_
 gettype_
-vstk_
 checklhs_
 checkrhs_
 createvarfromptr_
-stack_
 createvar_
 MyHeapAlloc
 MyHeapFree

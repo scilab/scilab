@@ -10,9 +10,7 @@ callFunctionFromGateway
 com_
 fortran_mex_gateway
 errorinfo_
-stack_
 GetData
-vstk_
 MyHeapAlloc
 MyHeapFree
 

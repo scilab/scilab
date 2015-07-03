@@ -4,7 +4,6 @@ LIBRARY    core.dll
 EXPORTS
 callFunctionFromGateway
 com_
-vstk_
 getrhsvar_
 scifunction_
 scistring_

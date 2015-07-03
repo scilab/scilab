@@ -8,8 +8,6 @@ getLocalVariablesName
 callFunctionFromGateway
 com_
 funtab_
-stack_
-vstk_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc

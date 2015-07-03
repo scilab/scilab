@@ -8,5 +8,4 @@ EXPORTS
 cvname_
 errcontext_
 errloc_
-showstack_
 whatln_

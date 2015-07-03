@@ -8,8 +8,6 @@ EXPORTS
 callFunctionFromGateway
 com_
 backtrace_print
-stack_
-vstk_
 iop_
 scistring_
 str2name_

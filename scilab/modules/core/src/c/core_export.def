@@ -2,7 +2,6 @@
 ; forced exports (Commons fortran) in core
 ;
 ;used by core
-    stack_
     iop_
     errgst_
     com_

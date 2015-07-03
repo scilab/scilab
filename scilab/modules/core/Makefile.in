@@ -225,11 +225,11 @@ am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
 	src/cpp/libscicore_algo_la-getfunctionsname.lo \
 	src/cpp/libscicore_algo_la-InitScilab.lo
 am__objects_3 = src/fortran/clunit.lo src/fortran/folhp.lo \
-	src/fortran/intstr.lo src/fortran/xerbla.lo \
-	src/fortran/whatln.lo src/fortran/expsum.lo \
-	src/fortran/putid.lo src/fortran/readinter.lo \
-	src/fortran/rewindinter.lo src/fortran/backspaceinter.lo \
-	src/fortran/write_inter.lo src/fortran/read_inter.lo
+	src/fortran/xerbla.lo src/fortran/whatln.lo \
+	src/fortran/expsum.lo src/fortran/putid.lo \
+	src/fortran/readinter.lo src/fortran/rewindinter.lo \
+	src/fortran/backspaceinter.lo src/fortran/write_inter.lo \
+	src/fortran/read_inter.lo
 am_libscicore_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
 	$(am__objects_3)
 libscicore_algo_la_OBJECTS = $(am_libscicore_algo_la_OBJECTS)
@@ -729,7 +729,6 @@ CORE_CPP_SOURCES = \
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
     src/fortran/folhp.f \
-    src/fortran/intstr.f \
     src/fortran/xerbla.f \
     src/fortran/whatln.f \
     src/fortran/expsum.f \
@@ -1173,8 +1172,6 @@ src/fortran/$(DEPDIR)/$(am__dirstamp):
 src/fortran/clunit.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/folhp.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/intstr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/xerbla.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

@@ -6,7 +6,6 @@ transposeMatrixDouble
 transposeMatrixInt
 callFunctionFromGateway
 com_
-stack_
 putlhsvar_
 getrhsvar_
 createvarfromptr_

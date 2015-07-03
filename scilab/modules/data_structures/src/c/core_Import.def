@@ -7,8 +7,6 @@ EXPORTS
 ;
 iop_
 callFunctionFromGateway
-stack_
-vstk_
 com_
 MyHeapAlloc
 MyHeapFree

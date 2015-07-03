@@ -4,7 +4,6 @@ LIBRARY    core.dll
 EXPORTS
  putlhsvar_
  createvar_
- stack_
  com_
  getrhsvar_
  checklhs_

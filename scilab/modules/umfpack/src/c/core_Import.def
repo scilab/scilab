@@ -4,10 +4,8 @@ LIBRARY    core.dll
 EXPORTS
 ;core
 
-stack_
 createvar_
 com_
-vstk_
 callFunctionFromGateway
 putlhsvar_
 createcvar_
