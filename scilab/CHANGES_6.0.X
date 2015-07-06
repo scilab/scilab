@@ -23,6 +23,8 @@ File input/output
 
 * fileinfo can now take a row vector as input.
 
+* msprintf no more returns an error message when there are too many input argument (more values that format needs).
+
 
 Removed functions
 ==================
