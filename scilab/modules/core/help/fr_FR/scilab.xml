@@ -154,16 +154,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>Spécifie la valeur initiale de la stacksize, cette option est
-                        a utiliser avec l'option -ns. Lorsque Scilab est appelé sans
-                        l'option -ns la valeur initiale de la stacksize est définie par le
-                        script scilab.start.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-nb</term>
                 <listitem>
                     <para>si cette option est présente le message de chargement de Scilab n'est pas affiché.

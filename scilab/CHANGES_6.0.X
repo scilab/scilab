@@ -51,6 +51,8 @@ Removed functions (based on old Scilab stack)
 
 * str2code removed.
 
+* -mem option removed (used to set stacksize at startup).
+
 
 Functions modified
 ===================

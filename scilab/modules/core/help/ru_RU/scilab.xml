@@ -144,17 +144,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>
-                        Установка исходного размера стека <literal>stacksize</literal> для использования 
-                        совместно с опцией <literal>-ns</literal>. Без опции <literal>-ns</literal> 
-                        исходный размер стека <literal>stacksize</literal> устанавливается файлом-сценарием 
-                        <literal>scilab.start</literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-nb</term>
                 <listitem>
                     <para>

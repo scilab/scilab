@@ -141,16 +141,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>
-                        Set the initial <literal>stacksize</literal>, for use with <literal>-ns</literal> 
-                        option. Without <literal>-ns</literal> option the initial <literal>stacksize</literal> 
-                        is set by <literal>scilab.start</literal> script.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-nb</term>
                 <listitem>
                     <para>If this option is present then the Scilab loading message not displayed.
@@ -404,6 +394,12 @@ echo $? ]]></programlisting>
             <revision>
                 <revnumber>5.4.1</revnumber>
                 <revremark>scinotes and xcos individual scripts introduced. See SEP #87.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>-mem</literal> option removed.
+                </revremark>
             </revision>
         </revhistory>
     </refsection>
