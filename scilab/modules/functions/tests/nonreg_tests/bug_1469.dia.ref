@@ -38,331 +38,213 @@
 //test of line numbering in  functions, handling initial comments
 // ================ Test 1 =====================================================
 function foo,endfunction
-L=macr2lst(foo);
-R1=L(4)(1)=='15'&size(L)==6
- R1  =
- 
-  T  
+L=macr2tree(foo);
+R1=L(6)==1&size(L)==6;
 if ~R1 then bugmes();quit;end
 clear foo;
 // ================ Test 2 =====================================================
-function foo,,endfunction
-L=macr2lst(foo);
-R2=L(4)(1)=='15'&size(L)==6
- R2  =
- 
-  T  
-if ~R2 then bugmes();quit;end
-clear foo;
+// known syntax error in scilab 6
+//function foo,,endfunction
+//L=macr2tree(foo);
+//R2=L(6)==1&size(L)==6
+//if ~R2 then bugmes();quit;end
+//clear foo;
 // ================ Test 3 =====================================================
 function foo(),endfunction
-L=macr2lst(foo);
-R3=L(4)(1)=='15'&size(L)==6
- R3  =
- 
-  T  
+L=macr2tree(foo);
+R3=L(6)==1&size(L)==6;
 if ~R3 then bugmes();quit;end
 clear foo;
 // ================ Test 4 =====================================================
 function foo(),a=1,endfunction
-L=macr2lst(foo);
-R4=L(4)(1)=='6'&size(L)==8
- R4  =
- 
-  T  
+L=macr2tree(foo);
+R4=L(6)==1&size(L)==6;
 if ~R4 then bugmes();quit;end
 clear foo;
 // ================ Test 5 =====================================================
 function foo
 endfunction
-L=macr2lst(foo);
-R5=L(4)(1)=='15'&size(L)==7
- R5  =
- 
-  T  
+L=macr2tree(foo);
+R5=L(6)==2&size(L)==6;
 if ~R5 then bugmes();quit;end
 clear foo;
 // ================ Test 6 =====================================================
 function foo,
 endfunction
-L=macr2lst(foo);
-R6=L(4)(1)=='15'&size(L)==7
- R6  =
- 
-  T  
+L=macr2tree(foo);
+R6=L(6)==2&size(L)==6;
 if ~R6 then bugmes();quit;end
 clear foo;
 // ================ Test 7 =====================================================
 function foo//ZZZZ
 endfunction
-L=macr2lst(foo);
-R7=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
- R7  =
- 
-  T  
+L=macr2tree(foo);
+R7=L(6)==2&size(L)==6;
 if ~R7 then bugmes();quit;end
 clear foo;
 // ================ Test 8 =====================================================
 function foo,//ZZZZ
 endfunction
-L=macr2lst(foo);
-R8=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
- R8  =
- 
-  T  
+L=macr2tree(foo);
+R8=L(6)==2&size(L)==6;
 if ~R8 then bugmes();quit;end
 clear foo;
 // ================ Test 9 =====================================================
 function foo
-//ZZZZ
+    //ZZZZ
 endfunction
-L=macr2lst(foo);
-R9=L(4)(1)=='15'&L(5)(1)=='31'&size(L)==9
- R9  =
- 
-  T  
+L=macr2tree(foo);
+R9=L(6)==3&size(L)==6;
 if ~R9 then bugmes();quit;end
 clear foo;
 // ================ Test 10 ====================================================
 function foo,//ZZZZ
-  a=1
+    a=1
 endfunction
-L=macr2lst(foo);
-R10=L(4)(1)=='31'&L(5)(1)=='15'&L(6)(1)=='6'&size(L)==11
- R10  =
- 
-  T  
+L=macr2tree(foo);
+R10=L(6)==3&size(L)==6;
 if ~R10 then bugmes();quit;end
 clear foo;
 // ================ Test 11 ====================================================
 function loc=foo,[l,w]=where(),loc=l(1),endfunction
-R11= and(foo()==1)
- R11  =
- 
-  T  
+R11= and(foo()==1);
 if ~R11 then bugmes();quit;end
 clear foo;
 // ================ Test 12 ====================================================
 function loc=foo,//ZZZZ
-  [l,w]=where(),loc=l(1)
+    [l,w]=where(),loc=l(1)
 endfunction
-R12= and(foo()==2)
- R12  =
- 
-  T  
+R12= and(foo()==2);
 if ~R12 then bugmes();quit;end
 clear foo;
 // ================ Test 13 ====================================================
 function loc=foo
-//ZZZZ
-  [l,w]=where(),loc=l(1)
+    //ZZZZ
+    [l,w]=where(),loc=l(1)
 endfunction
-R13= and(foo()==3)
- R13  =
- 
-  T  
+R13= and(foo()==3);
 if ~R13 then bugmes();quit;end
 clear foo;
 // ================ Test 14 ====================================================
 function loc=foo1()
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
-R14= and(foo1()==[2,6,2,7])
- R14  =
- 
-  T  
+R14= and(foo1()==[2,6,2,7]);
 if ~R14 then bugmes();quit;end
 clear foo1;
 // ================ Test 15 ====================================================
 function loc=foo1()//ZZZZZZZ
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
-L=macr2lst(foo1);
-R15=and(foo1()==[2,6,2,7])&(L(4)(1)=='31')&(L(5)=='15')
- R15  =
- 
-  T  
+L=macr2tree(foo1);
+R15=and(foo1()==[2,6,2,7])&(L(6)==8);
 if ~R15 then bugmes();quit;end
 clear foo1;
 // ================ Test 16 ====================================================
 function loc=foo1()
-  //ZZZZZZZ
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    //ZZZZZZZ
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
-L=macr2lst(foo1);
-R16=and(foo1()==[3,7,2,8])&(L(4)=='15')&(L(5)(1)=='31')
- R16  =
- 
-  T  
+L=macr2tree(foo1);
+R16=and(foo1()==[3,7,2,8])&(L(6)==9);
 if ~R16 then bugmes();quit;end
 clear foo1;
 // ================ Test 17 ====================================================
 //pb execution des macros non compilee
-deff('y=foo(a,b,c)','y=a+b+c','n')
-R17=foo('aaa','bbb','cc')=='aaabbbcc'
- R17  =
- 
-  T  
+deff("y=foo(a,b,c)","y=a+b+c","n");
+R17=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R17 then bugmes();quit;end
 clear foo
 // ================ Test 18 ====================================================
-deff('y=foo(a,b,c)',['','y=a+b+c'],'n')
-R18=foo('aaa','bbb','cc')=='aaabbbcc'
- R18  =
- 
-  T  
+deff("y=foo(a,b,c)",["","y=a+b+c"],"n");
+R18=foo("aaa","bbb","cc")=="aaabbbcc";
 if ~R18 then bugmes();quit;end
-// ================ Test 19 ====================================================
-comp(foo)
-Warning : redefining function: foo                     . Use funcprot(0) to avoid this message
-
-R19=foo('aaa','bbb','cc')=='aaabbbcc'
- R19  =
- 
-  T  
-if ~R19 then bugmes();quit;end
 clear foo
+// ================ Test 19 ====================================================
+// comp is obsolete since Scilab 6
+//comp(foo)
+//R19=foo('aaa','bbb','cc')=='aaabbbcc'
+//if ~R19 then bugmes();quit;end
+//clear foo
 // ================ Test 20 ====================================================
 //function definition nested in a or loop!
-z=0;R20=%t
- R20  =
- 
-  T  
+z=0;R20=%t;
 for k=1:2
- function y=foo()
-   y=k
- endfunction
- L=macr2lst(foo);
- R20=R20&(L(4)=='15')&(L(5)(1)=='2');
- z=z+foo();
+    function y=foo()
+        y=k
+    endfunction
+    L=macr2tree(foo);
+    R20=R20&(L(6)==3);
+    z=z+foo();
 end
-R20=R20&z==3
- R20  =
- 
-  T  
+R20=R20&z==3;
 if ~R20 then bugmes();quit;end
 // ================ Test 21 ====================================================
 //test avec getf
-t=['function foo,//ZZZZ'
-'  a=1'
-'endfunction'];
-mputl(t,TMPDIR+'/foo.sci');
-warning('off');
-exec(TMPDIR+'/foo.sci')
- 
+t=["function foo,//ZZZZ"
+"  a=1"
+"endfunction"];
+mputl(t,TMPDIR+"/foo.sci");
+warning("off");
+exec(TMPDIR+"/foo.sci")
 function foo,//ZZZZ
   a=1
 endfunction
- 
-warning('on');
-L=macr2lst(foo); //getf ignores declaration line comments
-R21=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==11
- R21  =
- 
-  T  
+warning("on");
+L=macr2tree(foo); //getf ignores declaration line comments
+R21=L(6)==3&size(L)==6;
 if ~R21 then bugmes();quit;end
 clear foo;
 // ================ Test 22 ====================================================
-t=['function foo'
-'//ZZZZ'
-'  a=1'
-'endfunction'];
-mputl(t,TMPDIR+'/foo.sci');
-exec(TMPDIR+'/foo.sci')
- 
+t=["function foo"
+"//ZZZZ"
+"  a=1"
+"endfunction"];
+mputl(t,TMPDIR+"/foo.sci");
+exec(TMPDIR+"/foo.sci")
 function foo
 //ZZZZ
   a=1
 endfunction
- 
-L=macr2lst(foo); //getf ignores declaration line comments
-R22=L(4)(1)=='15'&L(5)(1)=='31'&L(6)(1)=='15'&size(L)==12
- R22  =
- 
-  T  
+L=macr2tree(foo); //getf ignores declaration line comments
+R22=L(6)==4&size(L)==6;
 if ~R22 then bugmes();quit;end
 clear foo;
 // ================ Test 23 ====================================================
 function foo()
-  function bar()
-    a=1
+    function bar()
+        a=1
+    endfunction
 endfunction
-endfunction
-t=fun2string(foo,'foo')
- t  =
- 
-!function []=foo()  !
-!                   !
-!  function bar()   !
-!                   !
-!      a=1          !
-!                   !
-!  endfunction      !
-!                   !
-!endfunction        !
-if size(t,1)<>5 then bugmes();quit;end
+t=macr2tree(foo);
+t=tree2code(t);
+if size(t,1)<>6 then bugmes();quit;end
 clear foo
 function foo()
-  function bar()
-    a=1
- endfunction
+    function bar()
+        a=1
+    endfunction
 endfunction
-t1=fun2string(foo,'foo')
- t1  =
- 
-!function []=foo()  !
-!                   !
-!  function bar()   !
-!                   !
-!      a=1          !
-!                   !
-!  endfunction      !
-!                   !
-!endfunction        !
+t1=macr2tree(foo);
+t1=tree2code(t1);
 if or(t<>t1) then bugmes();quit;end
 // ================ Test 24 ====================================================
 function test;endfunction
-L=macr2lst(test)
- L  =
- 
- 
-       L(1)
- 
- test   
- 
-       L(2)
- 
-     []
- 
-       L(3)
- 
-     []
- 
-       L(4)
- 
- 15   
- 
-       L(5)
- 
- 99   
- 
-       L(6)
- 
- 15   
+L=macr2tree(test);
 if size(L)<>6 then bugmes();quit;end
-if L(4)<>'15'|L(5)<>'99'| L(6)<>'15' then bugmes();quit;end
+if L(6)<>1 then bugmes();quit;end
