@@ -45,6 +45,10 @@ Removed functions (based on old Scilab stack)
 
 * gstacksize removed.
 
+* code2str removed.
+
+* str2code removed.
+
 
 Functions modified
 ===================

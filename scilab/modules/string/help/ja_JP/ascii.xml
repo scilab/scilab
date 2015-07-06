@@ -114,13 +114,7 @@ ascii([115 99 105 108 97 98])
             
             <member>
                 
-                <link linkend="code2str">code2str</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="str2code">str2code</link>
+                <link linkend="asciimat">asciimat</link>
                 
             </member>
             

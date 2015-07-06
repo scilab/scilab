@@ -297,9 +297,7 @@ TCL_SetVar
 TCL_UnsetVar
 TCL_UpVar
 _
-_code2str
 _d
-_str2code
 about
 abs
 acos
@@ -366,7 +364,6 @@ clearglobal
 closeEditor
 closeEditvar
 closeXcos
-code2str
 coeff
 comp
 completion
@@ -857,7 +854,6 @@ spones
 sprintf
 sqrt
 stacksize
-str2code
 strcat
 strchr
 strcmp
