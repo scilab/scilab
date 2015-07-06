@@ -27,7 +27,7 @@ function []=halt(varargin)
         end
 
         if size(varargin(1),"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"halt",1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"halt",1));
         end
 
         msg = string(varargin(1));

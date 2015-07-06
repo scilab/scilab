@@ -27,13 +27,11 @@ msgstr "%s: Memória esgotada.\n"
 
 #, c-format
 msgid "%s: Can not create a mlist with input argument #%d.\n"
-msgstr ""
-"%s: Não foi possível criar uma mlist com o argumento de entrada #%d.\n"
+msgstr "%s: Não foi possível criar uma mlist com o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Can not create a tlist with input argument #%d.\n"
-msgstr ""
-"%s: Não foi possível criar uma tlist com o argumento de entrada #%d.\n"
+msgstr "%s: Não foi possível criar uma tlist com o argumento de entrada #%d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: at least %d expected.\n"
@@ -90,7 +88,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 

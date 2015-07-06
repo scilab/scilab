@@ -95,8 +95,7 @@ msgstr "%s : Pas assez de mémoire disponible.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A pointer expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un pointeur attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un pointeur attendu.\n"
 
 #, c-format
 msgid ""
@@ -157,15 +156,14 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "La matrice n'est pas compatible avec les facteurs LU donnés"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 msgid "numeric factorization"
 msgstr "Factorisation numérique"
@@ -183,8 +181,7 @@ msgid "invalid matrix"
 msgstr "Matrice invalide"
 
 msgid "GENMMD ordering only works on symmetric matrices.\n"
-msgstr ""
-"Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
+msgstr "Le classement GENMMD ne fonctionne que sur des matrices symétriques.\n"
 
 msgid "The lower part of the matrix must be represented.\n"
 msgstr "La partie inférieure de la matrice doit être représentée.\n"
@@ -226,8 +223,7 @@ msgstr "   ensuite cliquez sur Ok   "
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 #, c-format
 msgid "%s: The file contains a rhs but it will not be read !"
@@ -291,15 +287,13 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d à %d attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une matrice creuse carrée "
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une matrice creuse "
 "carrée attendue.\n"

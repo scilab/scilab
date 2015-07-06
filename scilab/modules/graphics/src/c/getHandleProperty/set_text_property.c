@@ -32,7 +32,7 @@ int set_text_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, i
 {
     if (valueType != sci_strings)
     {
-        Scierror(999, _("Wrong type for '%s' property: String matrix expected.\n"), "text");
+        Scierror(999, _("Wrong type for '%s' property: string expected.\n"), "text");
         return SET_PROPERTY_ERROR;
     }
 

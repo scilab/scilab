@@ -79,7 +79,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
 
         if (iType1 != sci_strings)
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
             return 0;
         }
 
@@ -320,7 +320,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
 
                     if (!isStringType(pvApiCtx, piAddressVarThree))
                     {
-                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;
@@ -330,7 +330,7 @@ int sci_scinotes(char * fname, void* pvApiCtx)
 
                     if (ret)
                     {
-                        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+                        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
                         freeArrayOfWideString(pStVarOne, m1 * n1);
                         FREE(lenStVarOne);
                         return 0;

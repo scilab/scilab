@@ -70,7 +70,7 @@ msgstr ""
 "елемент керування рисунком.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип параметра %d: слід використовувати матрицю з рядків.\n"
 
@@ -110,7 +110,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -149,8 +149,8 @@ msgstr ""
 "допомогти зменшення кількості елементів або розміру рисунка."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
 "Не вдалося створити файл з експортованими даними. Будь ласка, повідомте про "
 "цю помилку за допомогою сторінки http://bugzilla.scilab.org."

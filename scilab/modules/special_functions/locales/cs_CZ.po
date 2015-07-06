@@ -75,8 +75,7 @@ msgstr "%s: Chyba číslo %d\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"

@@ -50,8 +50,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: Nodos duplicados o todos los nodos colineales (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto de los argumentos de entrada #%d y #%d: Se los "
 "esperaba del mismo tamaño.\n"
@@ -62,8 +61,7 @@ msgstr ""
 "%s: Valores incorrecto del argumento de entrada #%d: Tipo '%s' desconocido.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Valor incorrecto de los argumentos de entrada #%d y #%d: Se esperaban "
 "del mismo tamaño.\n"
@@ -162,8 +160,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s: Tamaño incorrecto del argumento de entrada #%d, #%d o #%d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x y/o y no están en orden estrictamente crecientes (o de detectó +-)\n"
 

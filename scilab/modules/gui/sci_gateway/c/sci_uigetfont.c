@@ -61,7 +61,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             // Retrieve a matrix of string at position 1.
             if (getAllocatedMatrixOfString(pvApiCtx, piAddrfontNameAdr, &nbRow, &nbCol, &fontNameAdr))
             {
-                Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, 1);
+                Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
                 return 1;
             }
 
@@ -69,13 +69,13 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
             if (fontNameSize != 1)
             {
                 freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 1);
                 return FALSE;
             }
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
             return FALSE;
         }
     }
@@ -101,7 +101,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 2);
@@ -137,7 +137,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 3);
@@ -174,7 +174,7 @@ int sci_uigetfont(char *fname, void* pvApiCtx)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 freeAllocatedMatrixOfString(nbRow, nbCol, fontNameAdr);
                 Scierror(999, _("%s: Wrong size for input argument #%d: A boolean expected.\n"), fname, 4);

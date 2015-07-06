@@ -56,8 +56,7 @@ msgid "%s: Wrong size for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 
 #, c-format
@@ -149,7 +148,7 @@ msgstr ""
 # File: sci_gateway/c/sci_loadfftwlibrary.c, line: 50
 # File: sci_gateway/c/sci_set_fftw_wisdom.c, line: 85
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
@@ -190,8 +189,7 @@ msgstr ""
 msgid "This module requires: "
 msgstr ""
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr ""
 
 msgid "See help fftw for more information."

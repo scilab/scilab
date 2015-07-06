@@ -41,7 +41,7 @@ msgstr ""
 "typu łańcuchowego mx1, mx2 lub mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwany jest "
 "pojedynczy łańcuch.\n"
@@ -106,7 +106,7 @@ msgstr ""
 "%s: Nieprawidłowa liczba parametrów wejściowych: oczekiwano najwyżej %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano "
 "pojedynczego łańcuchu znaków.\n"
@@ -281,17 +281,6 @@ msgstr ""
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano %d lub %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
-"znaków.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -567,8 +556,7 @@ msgstr "Instalowanie"
 msgid "Installation failed!"
 msgstr "Instalacja nie powiodła się!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalacja zakończona! Uruchom ponownie Scilab aby zmiany zostały "
 "uwzględnione."
@@ -653,8 +641,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano "
-"'filter:all','filter:main' albo prawidłowej nazwy kategorii głównej\n"
+"%s:  Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano 'filter:"
+"all','filter:main' albo prawidłowej nazwy kategorii głównej\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -801,8 +789,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Neither Wget or Curl found: Please install one of them\n"
-msgstr ""
-"%s: Nie znaleziono Wget ani Curl: Proszę zainstalować jeden z nich.\n"
+msgstr "%s: Nie znaleziono Wget ani Curl: Proszę zainstalować jeden z nich.\n"
 
 msgid "Download in progress... Please be patient."
 msgstr ""
@@ -884,16 +871,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - Obserwowany MD5SUM : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Nieprawidłowy argument dla wartości wejściowych #%d: Oczekiwano 'error\" "
 "lub 'warning\".\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego  nr %d: Oczekiwano ciągu "
 "znaków zakończonego .tar.gz, .tgz lub .zip\n"
@@ -1020,18 +1006,17 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: Drzewo zależności nie może być rozwiązane.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Zła wartość parametru wejściowego #%d: Oczekiwano liter  'A' lub 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
-"%s: Zła wartość parametru wejściowego nr %d: To nie jest prawidłowa "
-"wersja/zależność.\n"
+"%s: Zła wartość parametru wejściowego nr %d: To nie jest prawidłowa wersja/"
+"zależność.\n"
 
 msgid "Atoms:"
 msgstr ""
@@ -1089,13 +1074,11 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) nie zainstalowany.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: Nieprawidłowy argument dla wartości wejściowych nr %d: To nie jest "
 "prawidłowa wersja.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"
-msgstr ""
-"%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"
+msgstr "%s: Zła wartość parametru wejściowego #%d: Oczekiwano ASC lub DESC.\n"

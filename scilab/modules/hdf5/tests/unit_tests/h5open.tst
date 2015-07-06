@@ -9,7 +9,7 @@
 
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"), "h5open", 1, 5);
 assert_checkerror("h5open()",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5open", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5open", 1);
 assert_checkerror("h5open(42)",msgerr,999);
 
 a = h5open(TMPDIR + "/x.sod");

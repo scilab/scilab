@@ -64,8 +64,7 @@ msgid "P,Q and X"
 msgstr "P,Q und X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: falscher Wert für Eingangsargument #%d: '%s', '%s' oder '%s' erwartet.\n"
 
@@ -414,7 +413,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -433,8 +432,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d: Numerical expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: numerische Zahl erwartet.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: numerische Zahl erwartet.\n"
 
 #, c-format
 msgid ""
@@ -448,8 +446,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Numerical expected.\n"
-msgstr ""
-"%s: falscher Typ für Eingangsargument #%d: numerische Zahl erwartet.\n"
+msgstr "%s: falscher Typ für Eingangsargument #%d: numerische Zahl erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
@@ -464,8 +461,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -520,8 +516,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: falscher Wert für %d Eingangsargument: '%s', '%s', %d oder %d erwartet.\n"
 
@@ -535,8 +530,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: '%s' oder '%s' erwartet.\n"
 
 #, c-format
 msgid ""

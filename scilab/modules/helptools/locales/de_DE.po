@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangargument #%d: einzelne Zeichenkette erwartet.\n"
 
@@ -101,11 +101,6 @@ msgid "-- Deleting help files --\n"
 msgstr "- Lösche Hilfedateien -\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Falscher Typ an Eingangsargument #%d: eine Zeichenkette erwartet.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: der Hilfebrowser ist im %s Modus deaktiviert.\n"
 
@@ -150,7 +145,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Datei übersprungen %s"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -289,11 +284,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: falscher Typ für Eingangsargument #%d: ein Integer erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: falsche Größe für Eingangsargument #%d: einzelne Zeichenkette erwartet.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: falsche Größe für Eingangsargument #%d: ein Integer erwartet.\n"
 
@@ -318,11 +308,11 @@ msgstr "%s: die Kapiteldatei ist nicht gut formatiert in Zeile %d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit "
-".last_sucessfull_build endet, wird erwartet.\n"
+"%s: falscher Wert für Eingangsargument #%d: eine Zeichenkette, die mit ."
+"last_sucessfull_build endet, wird erwartet.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"

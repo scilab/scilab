@@ -59,7 +59,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
         //errcatch
         if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "execstr", 2);
             return types::Function::Error;
         }
 
@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
     {
         if (in[2]->isString() == false || in[2]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "execstr", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "execstr", 3);
             return types::Function::Error;
         }
 

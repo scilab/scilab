@@ -43,18 +43,18 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
-msgid "%s: Wrong size for first input argument: A string expected.\n"
+msgid "%s: Wrong size for first input argument: string expected.\n"
 msgstr ""
 "%s: Неверный размер первого входного аргумента: ожидалось строковое "
 "значение.\n"
 
 #, c-format
-msgid "%s: Wrong type for first input argument: A string expected.\n"
+msgid "%s: Wrong type for first input argument: string expected.\n"
 msgstr ""
 "%s: Неверный тип первого входного аргумента: ожидалось строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong size for second input argument: A string expected.\n"
+msgid "%s: Wrong size for second input argument: string expected.\n"
 msgstr ""
 "%s: Неверный размер второго входного аргумента: ожидалось строковое "
 "значение.\n"
@@ -65,16 +65,16 @@ msgstr ""
 "%s: Неверное значение второго входного аргумента: ожидалось 'r' или 'w'.\n"
 
 #, c-format
-msgid "%s: Wrong type for second input argument: A string expected.\n"
+msgid "%s: Wrong type for second input argument: string expected.\n"
 msgstr ""
 "%s: Неверный тип второго входного аргумента: ожидалось строковое значение.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
@@ -122,11 +122,6 @@ msgstr "%s: Сохранение массива столбцов с разным
 #, c-format
 msgid "%s: 2D array of strings saving is not implemented.\n"
 msgstr "%s: не осуществлено сохранение двумерного массива.\n"
-
-#, c-format
-msgid "%s: Wrong type for first input argument: String matrix expected.\n"
-msgstr ""
-"%s: Неверный тип первого входного аргумента: Ожидалась матрица строк.\n"
 
 #, c-format
 msgid "%s: Wrong type for first input argument: Double matrix expected.\n"

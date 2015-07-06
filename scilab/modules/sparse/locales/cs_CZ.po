@@ -302,8 +302,7 @@ msgstr "Argumenty:\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
@@ -459,7 +458,7 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format

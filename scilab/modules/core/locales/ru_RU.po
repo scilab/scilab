@@ -99,8 +99,7 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -120,7 +119,7 @@ msgstr "%s: Неверное значение входного аргумент�
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалась строка или целочисленный "
@@ -128,8 +127,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '0' or '1' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «0» или «1».\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «0» или «1».\n"
 
 #, c-format
 msgid "%s: Wrong type for inputs arguments.\n"
@@ -208,15 +206,14 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A int expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -228,10 +225,8 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s: Неверное значение входного параметра №%d: должно быть %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid "%s: Impossible to read %s gateway.\n"
@@ -258,8 +253,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr "%s: Запрашиваемый размер меньше минимального.\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 "%s: Нельзя создать стек (или изменить его размер). Возможно ошибка функции "
 "выделения памяти malloc.\n"
@@ -422,8 +416,8 @@ msgid ""
 "Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
 "for element wise operation \n"
 msgstr ""
-"Warning: \"%d.%s ...\" интерпретируется как \"%d.0%s ...\". Используйте \"%d "
-".%s ...\" для поэлементных операций \n"
+"Warning: \"%d.%s ...\" интерпретируется как \"%d.0%s ...\". Используйте "
+"\"%d .%s ...\" для поэлементных операций \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "Переменная окружения SCI не задана.\n"
@@ -596,8 +590,7 @@ msgstr "%s: параметр %d должен быть списком разме�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
+msgstr "%s: Неверный тип параметра %d: ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
@@ -706,8 +699,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Row vector expected.\n"
-msgstr ""
-"%s: Неверный тип элемента %d аргумента №%d: ожидался вектор-строка.\n"
+msgstr "%s: Неверный тип элемента %d аргумента №%d: ожидался вектор-строка.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
@@ -783,8 +775,7 @@ msgstr "%s: Неверное количество выходных параме�
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
@@ -1157,8 +1148,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: %s is an uneditable hard coded function.\n"
-msgstr ""
-"%s: %s является нередактируемой жёстко запрограммированной функцией.\n"
+msgstr "%s: %s является нередактируемой жёстко запрограммированной функцией.\n"
 
 #, c-format
 msgid "%s: Unable to find Perl file: %s"

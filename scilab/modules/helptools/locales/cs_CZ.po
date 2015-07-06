@@ -25,7 +25,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ pro vstupní argument #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
@@ -96,10 +96,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Mazání souborů s nápovědou --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: Prohlížeč nápovědy je v režimu %s zakázán.\n"
 
@@ -144,7 +140,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Soubor %s přeskočen."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 msgid " * Add some comments about XML file"
@@ -286,11 +282,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno celé číslo.\n"
 
@@ -315,16 +306,15 @@ msgstr "%s: Soubor KAPITOLA není na řádku %d dobře formátován\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící "
-".last_successful_build.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec končící ."
+"last_successful_build.\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"
-msgstr ""
-"%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
+msgstr "%s: Soubor last_successful_build není na řádku %d dobře formátován.\n"
 
 #, c-format
 msgid ""

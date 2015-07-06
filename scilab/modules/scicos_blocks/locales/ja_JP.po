@@ -67,7 +67,9 @@ msgstr "出力はuint32型となります.\n"
 #, c-format
 msgid ""
 "The Time vector has a wrong size, expecting [%d, %d] and getting [%d, %d].\n"
-msgstr "時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得してください.\n"
+msgstr ""
+"時間ベクトルの大きさが間違っています, [%d, %d] を指定し, [%d, %d] を取得して"
+"ください.\n"
 
 msgid "The Time vector type is not double.\n"
 msgstr "Timeベクトル型はdoubleではありません.\n"
@@ -79,13 +81,15 @@ msgid "Allocation problem in spline.\n"
 msgstr "スプラインでメモリ確保の問題が発生しました.\n"
 
 msgid "Invalid variable type : error in hypermat scilab coding.\n"
-msgstr "変数型に誤りがあります: ハイパー行列に関するScilabコードにエラーがあります.\n"
+msgstr ""
+"変数型に誤りがあります: ハイパー行列に関するScilabコードにエラーがあります.\n"
 
 #, c-format
 msgid ""
 "The LU factorization has been completed, but the factor U is exactly "
 "singular : U(%d,%d) is exactly zero."
-msgstr "LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
+msgstr ""
+"LU分解は完了しましたが,分解したUが完全に特異です:  U(%d,%d) が完全にゼロです."
 
 msgid "Read error!\n"
 msgstr "読込エラー!\n"
@@ -202,7 +206,9 @@ msgstr "&nbsp;- ビット数またはビットの添字: 添字 0 は LSB です
 msgid ""
 "&nbsp;&nbsp;&nbsp;&nbsp;If 'Bits to Extract' is set to 'Range of bits': "
 "[Start, End]"
-msgstr "&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開始,終了]"
+msgstr ""
+"&nbsp;&nbsp;&nbsp;&nbsp;展開するビットをビットの範囲に設定するかどうか: [開"
+"始,終了]"
 
 msgid "Bits to extract"
 msgstr "展開するビット"
@@ -497,7 +503,8 @@ msgid "Write is done on:"
 msgstr "書込みが完了しました:"
 
 msgid "&nbsp; - A formatted text file if a  format (Fortran type) is given"
-msgstr "&nbsp; - フォーマット (Fortran形式)が指定された場合は整形テキストファイル"
+msgstr ""
+"&nbsp; - フォーマット (Fortran形式)が指定された場合は整形テキストファイル"
 
 msgid "Input Size"
 msgstr "入力の大きさ"
@@ -674,7 +681,8 @@ msgid "Outport Size must be a 2 elements vector"
 msgstr "出力ポートの大きさは2要素のベクトルとする必要があります"
 
 msgid "Outport type must be a number between 1 and 9, or -1 for inheritance."
-msgstr "出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
+msgstr ""
+"出力ポートの型は1と9の間の数, または継承の場合は -1とする必要があります"
 
 msgid "Modulo counter (0 to N counter)"
 msgstr "剰余カウンタ (0 から Nのカウンタ)"
@@ -767,7 +775,8 @@ msgid "Read is done on:"
 msgstr "読込完了:"
 
 msgid "&nbsp; - A formatted text file if a  format (fortran type) is given"
-msgstr "&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
+msgstr ""
+"&nbsp; - フォーマット(fortran型)が指定された場合は整形済みのテキストファイル"
 
 msgid "Empty matrix or scalar expected."
 msgstr "空の行列またはスカラーを指定してください."

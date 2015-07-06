@@ -44,13 +44,13 @@ function  bar(varargin)
     if size(ListArg) == 4 then
         COLOR=ListArg(4);
         if type(COLOR) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected.\n"),"bar",4));
+            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",4));
         end
     end
     if size(ListArg) == 5 then
         STYLE=ListArg(5);
         if type(STYLE) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input arguments #%d: A string expected.\n"),"bar",5));
+            error(msprintf(gettext("%s: Wrong type for input arguments #%d: string expected.\n"),"bar",5));
         end
     end
     nv = size(ListArg)

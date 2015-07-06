@@ -22,7 +22,7 @@ function ret = createBorderFont(varargin)
 
     fontname = varargin(1);
     if typeof(fontname) <> "string" | size(fontname, "*") <> 1 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "createBorderFont", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "createBorderFont", 1));
     end
 
     fontsize = varargin(2);

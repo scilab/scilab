@@ -22,8 +22,7 @@ msgid "%s: The file %s does not exist.\n"
 msgstr "%s: el fitxer %s no existeix.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
+msgid "%s: Wrong input argument #%d: Path to a scilab script file expected.\n"
 msgstr ""
 "%s: el paràmetre d'entrada #%d és incorrecte: s'esperava un camí a un fitxer "
 "de script de Scilab.\n"

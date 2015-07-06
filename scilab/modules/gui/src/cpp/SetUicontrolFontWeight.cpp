@@ -27,12 +27,12 @@ int SetUicontrolFontWeight(void* _pvCtx, int iObjUID, void* _pvData, int valueTy
     // Font Name must be only one character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontWeight");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontWeight");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontWeight");
         return SET_PROPERTY_ERROR;
     }
 

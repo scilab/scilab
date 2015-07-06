@@ -196,13 +196,11 @@ msgstr "%s : Tamaño indeterminado. out(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Size. out2(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Tamaño indeterminado. out2(%d)=%d. Por favor ajuste su modelo.\n"
+msgstr "%s : Tamaño indeterminado. out2(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : Undetermined Type. outtyp(%d)=%d. Please adjust your model.\n"
-msgstr ""
-"%s : Type indeterminado. outtyp(%d)=%d. Por favor ajuste su modelo.\n"
+msgstr "%s : Type indeterminado. outtyp(%d)=%d. Por favor ajuste su modelo.\n"
 
 #, c-format
 msgid "%s : oz element of state must be a list.\n"
@@ -257,8 +255,7 @@ msgstr ""
 "double.\n"
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 "%s : error. outtb aun no soporta el tipo %d en las matrices de escalares "
 "enteros.\n"
@@ -338,8 +335,7 @@ msgstr "%s : El primer argumento debe ser una estructura.\n"
 
 #, c-format
 msgid "%s : First argument must be a scicos signal structure.\n"
-msgstr ""
-"%s : El primer argumento debe ser una estructura de señal de scicos.\n"
+msgstr "%s : El primer argumento debe ser una estructura de señal de scicos.\n"
 
 #, c-format
 msgid "%s: error %d. Stack is full.\n"
@@ -662,8 +658,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String array expected.\n"

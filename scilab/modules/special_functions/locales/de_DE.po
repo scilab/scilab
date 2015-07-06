@@ -56,8 +56,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Integer >= %d expected.\n"
-msgstr ""
-"%s: Falscher Typ für Eingangsargument #%d: Ganzzahl >= %d erwartet.\n"
+msgstr "%s: Falscher Typ für Eingangsargument #%d: Ganzzahl >= %d erwartet.\n"
 
 #, c-format
 msgid "%s: Only one of arg1 and arg2 may be a vector.\n"

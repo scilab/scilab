@@ -51,11 +51,11 @@ function tree_out = atomsDESCRIPTIONadd( tree_in , package_name , package_versio
     end
 
     if type(package_name) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONadd",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDESCRIPTIONadd",2));
     end
 
     if type(package_version) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONadd",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDESCRIPTIONadd",3));
     end
 
     if type(description) <> 17 then
@@ -66,11 +66,11 @@ function tree_out = atomsDESCRIPTIONadd( tree_in , package_name , package_versio
     // =========================================================================
 
     if size(package_name,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONadd",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDESCRIPTIONadd",2));
     end
 
     if size(package_version,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDESCRIPTIONadd",3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDESCRIPTIONadd",3));
     end
 
     // And now ... action

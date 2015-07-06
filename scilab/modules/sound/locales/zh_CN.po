@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
@@ -33,7 +33,7 @@ msgid "Cannot play file."
 msgstr "无法播放文件。"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -163,7 +163,8 @@ msgstr ""
 msgid ""
 "%s: Wrong value for input argument #%d: Must be %s or %s, an integer or a "
 "vector of %d integers.\n"
-msgstr "%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
+msgstr ""
+"%s：输入参数#%d的值错误：必须为%s或%s，一个整数，或者一个含有%d整数的向量。\n"
 
 #, c-format
 msgid ""
@@ -188,8 +189,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s：发生了一个错误：不支持%s。\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr "%s：发生了一个错误：不正确的文件格式。读<%s>区块时出错。\n"
 
 msgid "Invalid .wav file: found data before format information."

@@ -388,8 +388,8 @@ msgid ""
 "Bad seed for fsultra, must be integers in [0, 2^32-1]\n"
 msgstr ""
 "\n"
-"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, 2^32-"
-"1]\n"
+"Valors incorrectes per a fsultra, han de ser enters dins el rang [0, "
+"2^32-1]\n"
 
 #, c-format
 msgid ""

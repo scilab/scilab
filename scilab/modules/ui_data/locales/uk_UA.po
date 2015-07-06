@@ -24,8 +24,7 @@ msgstr "Модуль «%s» Scilab у режимі -nogui або -nwni вимк�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -38,7 +37,7 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 

@@ -41,7 +41,7 @@ function TitleLabel(varargin)
         ListArg(1) = null();
         nv=nv-1
     else
-        error(msprintf(gettext("%s: Wrong size or type for input argument #%d: A string expected.\n"),"TitleLabel",1));
+        error(msprintf(gettext("%s: Wrong size or type for input argument #%d: string expected.\n"),"TitleLabel",1));
     end
 
     T=[];

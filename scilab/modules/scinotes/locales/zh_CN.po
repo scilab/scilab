@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为字符串矩阵。\n"
 
 #, c-format
@@ -34,8 +34,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s：内存不足。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr "%s：第%d个参数的类型错误：应该为实矩阵或‘只读’。\n"
 
 #, c-format
@@ -46,10 +45,6 @@ msgstr "%s：第%d个参数的类型错误：应该为实矩阵。\n"
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr "%s：输入参数#%d和#%d的大小错误：应该为同样的维数。\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s：第%d个参数的类型错误：应该为字符串。\n"
 
 msgid "File"
 msgstr "文件"

@@ -26,10 +26,8 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Неверный размер входного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -37,13 +35,11 @@ msgstr "%s: Неверный размер входного параметра �
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'errcatch' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «errcatch».\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «errcatch».\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -58,17 +54,16 @@ msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Неверные значения входных параметров.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'm' or 'n' expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра №%d: ожидалось «m» или «n».\n"
+msgstr "%s: Неверное значение входного параметра №%d: ожидалось «m» или «n».\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
@@ -129,8 +124,7 @@ msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: Файлы с расширением %s не найдены в %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d:  ожидалась матрица строк.\n"
 
 #, c-format
@@ -206,8 +200,7 @@ msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось имя функции Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s: Неверные значения входного аргумента: функция не подготовлена к "
 "профилированию\n"

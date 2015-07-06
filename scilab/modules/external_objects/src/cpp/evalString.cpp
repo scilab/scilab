@@ -41,7 +41,7 @@ int ScilabGateway::evalString(char * fname, const int envId, void * pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for input argument #%d: A string expected."), 1);
+        throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for input argument #%d: string expected."), 1);
     }
 
     err = getVarDimension(pvApiCtx, addr, &row, &col);

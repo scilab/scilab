@@ -59,8 +59,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Assertion failed: expected = %s while computed = %s"
-msgstr ""
-"%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
+msgstr "%s: Affermazione fallita: era attesa = %s mentre quella calcolata = %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -194,8 +193,7 @@ msgstr ""
 "quelli in ingresso %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Erano attese %d righe nell'argomento in ingresso #%d, ma ve ne sono %d "
 "invece."
@@ -255,13 +253,13 @@ msgstr ""
 "vettore riga di stringhe o una matrice vuota.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"

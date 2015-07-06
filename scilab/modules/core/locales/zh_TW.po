@@ -151,7 +151,7 @@ msgstr "%s: 第 %d 個輸入參數的數值錯誤.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型別錯誤: 應該是字串或是純整數值.\n"
 
@@ -238,11 +238,11 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s: 第 %d 個輸入參數值錯誤: 應該是 int 整數.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數的型態錯誤: 應該是字串.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為字串.\n"
 
 #
@@ -256,8 +256,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 必須為 %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr "%s: 第 %d 的輸入參數型態錯誤:應該是一個純量或是字串.\n"
 
 #, c-format
@@ -285,8 +284,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr "%s: 要求的空間大小少於最低值.\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr "%s:無法建立(或調整)堆疊空間(可能是記憶體配置錯誤).\n"
 
 #, c-format
@@ -354,7 +352,9 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s'.\n"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s' expected. Input "
 "argument #%d must be '%s'.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 '%s'.\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s', '%s'. 第 %d 輸入參數應為 "
+"'%s'.\n"
 
 #
 # File: sci_gateway/c/sci_who.c, line: 226
@@ -556,8 +556,8 @@ msgid ""
 "Error: Not a valid version file %s (should start with <MODULE_VERSION> and "
 "contain <VERSION major='' minor='' maintenance='' revision='' string=''>)\n"
 msgstr ""
-"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' minor='' "
-"maintenance='' revision='' string=''>)\n"
+"錯誤:不是一個有效的版本檔%s (開頭應是<MODULE_VERSION>且包含<VERSION major='' "
+"minor='' maintenance='' revision='' string=''>)\n"
 
 #, c-format
 msgid ""
@@ -913,7 +913,8 @@ msgstr "%s: 錯誤的呼叫 %s! (第一參數).\n"
 #, c-format
 msgid ""
 "%s: (%s) too many arguments in the stack edit stack.h and enlarge intersiz.\n"
-msgstr "%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+msgstr ""
+"%s: (%s) 堆疊 (stacj) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
 
 #
 # File: src/c/stack2.c, line: 860
@@ -960,7 +961,8 @@ msgstr "%s: (%s)第二參數錯誤!\n"
 msgid ""
 "%s: createcvarfromptr: too many arguments on the stack, enlarge intersiz.\n"
 msgstr ""
-"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 intersiz 數值.\n"
+"%s: createcvarfromptr: 堆疊 (stack) 上有太多參數, 編輯 stack.h 檔以加大 "
+"intersiz 數值.\n"
 
 #
 # File: src/c/stack2.c, line: 1925

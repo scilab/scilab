@@ -44,7 +44,7 @@ msgid "%s: Wrong type for input argument #%d: String or integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -87,12 +87,10 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A square matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár, nebo řetězec.\n"
 
@@ -133,8 +131,7 @@ msgstr "%s: Zastaralá funkce. Prosím použijte '%s' krát '%s'."
 #, c-format
 msgid ""
 "%s: Obsolete function. Former external functions cannot be used anymore."
-msgstr ""
-"%s: Zastaralá funkce. Bývalé externí funkce již nemohou být používány."
+msgstr "%s: Zastaralá funkce. Bývalé externí funkce již nemohou být používány."
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -205,8 +202,7 @@ msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekávána souměrnost
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Not semi-definite positive"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Není kladně semidefinitní"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Není kladně semidefinitní"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d.\n"

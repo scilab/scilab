@@ -31,7 +31,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 輸入參數 的資料型態錯誤: 應該是字串型態.\n"
 
 #, c-format
@@ -567,8 +567,7 @@ msgstr ""
 msgid "Palette name"
 msgstr ""
 
-msgid ""
-"Diagram has been modified since last save.<br/> Do you want to save it?"
+msgid "Diagram has been modified since last save.<br/> Do you want to save it?"
 msgstr "Diagram已經異動 從上一次存檔.<br/> 你想要儲存嗎?"
 
 #, c-format
@@ -642,20 +641,16 @@ msgstr "加入到"
 msgid "Add to new diagram"
 msgstr "加入至新的圖框"
 
-msgid ""
-"Explicit data input port must be connected to explicit data output port"
+msgid "Explicit data input port must be connected to explicit data output port"
 msgstr "明確資料輸入埠必須連接到明確資料輸出埠"
 
-msgid ""
-"Implicit data input port must be connected to implicit data output port"
+msgid "Implicit data input port must be connected to implicit data output port"
 msgstr "不明確資料的輸入埠必須連接到不明確資料的輸出埠"
 
-msgid ""
-"Explicit data output port must be connected to explicit data input port"
+msgid "Explicit data output port must be connected to explicit data input port"
 msgstr "明確資料輸出埠必須連接到明確資料輸入埠"
 
-msgid ""
-"Implicit data output port must be connected to implicit data input port"
+msgid "Implicit data output port must be connected to implicit data input port"
 msgstr "不明確資料的輸出埠必須連接到不明確資料的輸入埠"
 
 msgid "Command port must be connected to control port"
@@ -741,8 +736,7 @@ msgstr ""
 msgid "Generate SuperBlock, please wait"
 msgstr ""
 
-msgid ""
-"Click on diagram to add link point or on a compatible target to finish"
+msgid "Click on diagram to add link point or on a compatible target to finish"
 msgstr "點按 diagram 以增加link point 或是 相容的目標來完成"
 
 msgid "All supported formats"
@@ -832,8 +826,8 @@ msgid "Expecting '%d'."
 msgstr ""
 
 msgid ""
-"<html><body>Compilation error: link ignored because it is not connected. "
-"<br/>Please reconnect it.</body></html>"
+"<html><body>Compilation error: link ignored because it is not connected. <br/"
+">Please reconnect it.</body></html>"
 msgstr ""
 
 #, c-format
@@ -994,8 +988,7 @@ msgid "%s: Wrong type for input argument %s: Block type expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: directory path string expected.\n"
+msgid "%s: Wrong type for input argument %s: directory path string expected.\n"
 msgstr "%s: 參數 %s 型別有誤: 目錄路徑字串(directory path string)才對.\n"
 
 #, c-format
@@ -1036,7 +1029,8 @@ msgstr ""
 
 #, c-format
 msgid "%s: All paths defined by %s variable must exist.\n"
-msgstr "%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
+msgstr ""
+"%s:   在 %s 變數(variable)定義的(defined)所有路徑(All paths) 必須存在.\n"
 
 #, c-format
 msgid ""
@@ -1079,10 +1073,8 @@ msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
 msgstr "%s: 輸出參數之數目錯誤: 應為 %d 到 %d 之數.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
-msgstr ""
-"%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgid "%s: Wrong type for input argument %s: palette type or path expected.\n"
+msgstr "%s: Wrong type for input argument %s: palette type or path expected.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument %s: File not found.\n"

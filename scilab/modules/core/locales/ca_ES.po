@@ -123,7 +123,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 
@@ -181,8 +181,7 @@ msgstr "%s: Nom incorrecte del mòdul %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
+msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
@@ -223,13 +222,13 @@ msgstr ""
 "%s: L'argument d'entrada #%d té un valor incorrecte. Ha de ser un enter.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -243,8 +242,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s: L'argument d'entrada #%d té un valor incorrecte: Ha de ser %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser un escalar "
 "o una cadena de caràcters.\n"
@@ -272,8 +270,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 
 #, c-format
@@ -633,8 +630,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: At least %d expected.\n"
-msgstr ""
-"%s: L'argument %d té una mida incorrecta: Han de ser com a mínim %d.\n"
+msgstr "%s: L'argument %d té una mida incorrecta: Han de ser com a mínim %d.\n"
 
 #, c-format
 msgid ""
@@ -830,8 +826,7 @@ msgstr "%s: (%s) el tercer argument és incorrecte!\n"
 
 #, c-format
 msgid "%s: Wrong type for argument: Complex expected.\n"
-msgstr ""
-"%s: El tipus d'argument és incorrecte: Ha de ser un nombre complex.\n"
+msgstr "%s: El tipus d'argument és incorrecte: Ha de ser un nombre complex.\n"
 
 #, c-format
 msgid "%s: bad call to %s!\n"

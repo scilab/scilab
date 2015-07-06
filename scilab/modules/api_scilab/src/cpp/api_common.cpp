@@ -779,7 +779,7 @@ SciErr getProcessMode(void *_pvCtx, int _iPos, int *_piAddRef, int *_piMode)
     }
     else
     {
-        addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"),
+        addErrorMessage(&sciErr, API_ERROR_GET_PROCESSMODE, _("%s: Wrong type for input argument #%d: string or scalar expected.\n"),
                         "getProcessMode", _iPos);
         return sciErr;
     }

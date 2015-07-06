@@ -19,8 +19,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-"%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
+msgstr "%s: Неверный размер входных параметров: ожидался одинаковый размер.\n"
 
 #, c-format
 msgid ""
@@ -156,7 +155,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "Mатрица несовместима с заданным LU-разложением"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
@@ -189,8 +188,7 @@ msgid "%s: No more memory (n=%d, nnz=%d).\n"
 msgstr "%s: Не осталось доступной памяти (n=%d, nnz=%d).\n"
 
 msgid "    CC^T Factorization: Matrix is not positive definite.\n"
-msgstr ""
-"    CC^T Разложение: Матрица не является положительно определённой.\n"
+msgstr "    CC^T Разложение: Матрица не является положительно определённой.\n"
 
 #, c-format
 msgid "                        nonpositive pivot in column %d\n"
@@ -267,8 +265,8 @@ msgid ""
 " approximate (lm,vm) with the inverse iterative power method \n"
 msgstr ""
 "\n"
-" примерно (lm,vm) с использованием инверсного итеративного степенного метода "
-"\n"
+" примерно (lm,vm) с использованием инверсного итеративного степенного "
+"метода \n"
 
 msgid " ------------------------------------------------------------\n"
 msgstr " ------------------------------------------------------------\n"
@@ -286,15 +284,13 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась квадратная разреженная "
 "матрица.\n"

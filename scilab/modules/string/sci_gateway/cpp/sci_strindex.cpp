@@ -65,7 +65,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
     {
         if (in[2]->isString() == false && in[2]->getAs<types::String>()->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "strindex", 3);
             return types::Function::Error;
         }
 
@@ -86,7 +86,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if (in[1]->isString() == false || (in[1]->getAs<types::String>()->getRows() != 1 && in[1]->getAs<types::String>()->getCols() != 1))
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a string vector expected.\n"), "strindex", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string or string vector expected.\n"), "strindex", 2);
         return types::Function::Error;
     }
 
@@ -101,7 +101,7 @@ types::Function::ReturnValue sci_strindex(types::typed_list &in, int _iRetCount,
 
     if (in[0]->isString() == false || in[0]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "strindex", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "strindex", 1);
         return types::Function::Error;
     }
 

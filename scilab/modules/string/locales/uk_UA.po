@@ -69,7 +69,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: помилка виділення пам’яті.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -78,8 +78,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
 "expected.\n"
 msgstr ""
-"%s: Помилкове значення вхідного параметра №%d: слід використовувати «u» "
-"(верхня) або «l» (нижня).\n"
+"%s: Помилкове значення вхідного параметра №%d: слід використовувати "
+"«u» (верхня) або «l» (нижня).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
@@ -105,8 +105,7 @@ msgstr ""
 "«string».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
+msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати "
 "непорожні рядки.\n"
@@ -124,19 +123,13 @@ msgstr ""
 "дійсних чисел або рядків.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
-"рядок.\n"
-
-#, c-format
 msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -157,12 +150,6 @@ msgstr "%s: помилкова розмірність вхідного пара�
 msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: мало бути значення >=1.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
-"значення типу «string».\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
@@ -471,8 +458,7 @@ msgstr "%s: цю можливість не реалізовано: %s.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"

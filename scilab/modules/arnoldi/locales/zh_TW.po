@@ -35,7 +35,7 @@ msgid ""
 msgstr "%s:輸入的參數%s容量錯誤: 指定一非正常的矩陣尺寸%dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -62,8 +62,7 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為純量.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr "%s: 輸入引數 #%d 型態錯誤: k 必需爲正整數.\n"
 
 #, c-format
@@ -113,8 +112,7 @@ msgid "%s: Wrong type for input argument #%d: %s must be a real scalar.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 
 #, c-format
@@ -128,8 +126,7 @@ msgid "%s: Wrong value for input argument #%d: %s must be %s or %s.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 
 #, c-format
@@ -231,7 +228,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -278,8 +275,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 
 #, c-format

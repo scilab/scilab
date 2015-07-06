@@ -18,11 +18,11 @@ msgstr ""
 "Language: pt_BR\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -231,14 +230,14 @@ msgstr ""
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)"
 msgstr ""
-"LOGGER_set_logfile: ERRO - Não é posível abrir o arquivo de registros '%s' "
-"(%s)"
+"LOGGER_set_logfile: ERRO - Não é posível abrir o arquivo de registros "
+"'%s' (%s)"
 
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
-"LOGGER_set_logfile: ERRO - Não é posível abrir o arquivo de registros '%s' "
-"(%s)\n"
+"LOGGER_set_logfile: ERRO - Não é posível abrir o arquivo de registros "
+"'%s' (%s)\n"
 
 #, c-format
 msgid "LOGGER-Default: %s%s"
@@ -314,8 +313,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_open_file:ERROR:Cannot open %s for reading (%s)\n"
-msgstr ""
-"%s:%d:OLE_open_file:ERRO: Não é possível abrir %s para leitura (%s)\n"
+msgstr "%s:%d:OLE_open_file:ERRO: Não é possível abrir %s para leitura (%s)\n"
 
 #, c-format
 msgid "%s:%d:OLE_open_directory:ERROR: %s"
@@ -331,8 +329,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:ERRO: Não é possível abrir %s para escrita (%s)"
+msgstr "%s:%d:OLE_store_stream:ERRO: Não é possível abrir %s para escrita (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -356,8 +353,7 @@ msgstr ""
 "arquivo %s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ERRO: Não se consegue abrir %s para escrita "
 "(%s)\n"
@@ -365,8 +361,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr ""
-"%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Anexo %s:%s:%s tamanho = %d\n"
+msgstr "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Anexo %s:%s:%s tamanho = %d\n"
 
 #, c-format
 msgid ""

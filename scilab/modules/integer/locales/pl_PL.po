@@ -22,15 +22,20 @@ msgstr "%s: Brak możliwości odczytu argumentu wejściowego #%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana matryca rzeczywista.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwana matryca "
+"rzeczywista.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
-msgstr "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwany skalar rzeczywisty.\n"
+msgstr ""
+"%s: Nieprawidłowy typ dla argumentu wejściowego #%d: Oczekiwany skalar "
+"rzeczywisty.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s: Nieprawidłowy rozmiar dla argumentu #%d: Oczekiwany skalar rzeczywisty.\n"
+msgstr ""
+"%s: Nieprawidłowy rozmiar dla argumentu #%d: Oczekiwany skalar rzeczywisty.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -38,8 +43,12 @@ msgstr "Brak pamięci.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr "%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: Oczekiwana wartość całkowita.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: Oczekiwana wartość "
+"całkowita.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: Musi znajdować sie w zestawie {%s}.\n"
+msgstr ""
+"%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: Musi znajdować sie "
+"w zestawie {%s}.\n"

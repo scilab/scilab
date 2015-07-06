@@ -34,8 +34,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input arguments: Must be > %d.\n"
-msgstr ""
-"%s: помилкове значення вхідних параметрів: значення мають бути > %d.\n"
+msgstr "%s: помилкове значення вхідних параметрів: значення мають бути > %d.\n"
 
 #, c-format
 msgid "%s: Can not read input argument #%d.\n"
@@ -79,8 +78,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: overflow or underflow of an extended range number\n"
-msgstr ""
-"%s: переповнення або втрата значимості у розширеному діапазоні чисел\n"
+msgstr "%s: переповнення або втрата значимості у розширеному діапазоні чисел\n"
 
 #, c-format
 msgid "%s: error number %d\n"

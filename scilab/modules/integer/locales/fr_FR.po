@@ -31,8 +31,7 @@ msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
+msgstr "%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

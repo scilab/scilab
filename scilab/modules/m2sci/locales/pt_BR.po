@@ -175,8 +175,7 @@ msgid "lhs cannot be a %s."
 msgstr "lhs não pode ser %s."
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
+msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr "Extração recursiva com um índice de tipo %s ainda não implementada."
 
 #, c-format
@@ -191,8 +190,7 @@ msgid "Matlab function %s not yet converted."
 msgstr "Função do Matlab %s ainda não convertida."
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 "mtlb(%s) pode ser substituído por %s() ou %s de %s for um M-file, ou não."
 
@@ -200,8 +198,7 @@ msgid "input argument must be an 'operation' tlist."
 msgstr "O argumento de entrada deve ser um tlist 'operation'."
 
 msgid "Wrong input argument in getrhs() (Must be a 'funcall' tlist)."
-msgstr ""
-"Argumento de entrada errado em getrhs() (deve ser um tlist 'funcall')."
+msgstr "Argumento de entrada errado em getrhs() (deve ser um tlist 'funcall')."
 
 #, c-format
 msgid "L.%d: Unknown variable %s is a M-file."
@@ -332,8 +329,8 @@ msgstr "se"
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
 msgstr ""
-"Não há dados suficientes, você deveria fornecer pelo menos "
-"variable_name|dimensions|datatype."
+"Não há dados suficientes, você deveria fornecer pelo menos variable_name|"
+"dimensions|datatype."
 
 msgid "too much data."
 msgstr "Muitos dados."
@@ -611,8 +608,7 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** Fim da sessão de mfile2sci()******"
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 "Pelo menos um operando de %s é uma matriz vazia, o equivalente Scilab é []."
 
@@ -628,8 +624,7 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "bug de M2SCI: extração de variável desconhecida %s em varslist."
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 "Inserção recursiva em uma variável que não é um Cell nem um Struct: %s."
 
@@ -737,8 +732,7 @@ msgstr ""
 "mtlb_exist() é apenas uma emulação parcial da função do Matlab exist()."
 
 msgid "Unknown type for input parameter: consider fclose(fid)."
-msgstr ""
-"Tipo desconhecido para o parâmetro de entrada: considere fclose(fid)."
+msgstr "Tipo desconhecido para o parâmetro de entrada: considere fclose(fid)."
 
 #, c-format
 msgid "%s with two outputs."
@@ -799,8 +793,7 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr "Classe não manipulada: %s."
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
+msgid "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 "isequal requer que os campos estejam na mesma ordem para que as estruturas "
 "sejam iguais."
@@ -869,8 +862,7 @@ msgstr ""
 "Então o resultado é ajustado para 1."
 
 msgid "Scilab sort() and gsort() do not work with multidimensional arrays"
-msgstr ""
-"sort() e gsort() do Scilab não trabalham com arrays multidimensionais."
+msgstr "sort() e gsort() do Scilab não trabalham com arrays multidimensionais."
 
 msgid "Call to sparse(): nzmax option ignored."
 msgstr "Chamada a sparse(): opção nzmax ignorada."

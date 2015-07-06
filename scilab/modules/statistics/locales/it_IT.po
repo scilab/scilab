@@ -66,8 +66,7 @@ msgid "P,Q and X"
 msgstr "P,Q e X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
 "'%s' o '%s'.\n"
@@ -207,8 +206,7 @@ msgstr ""
 
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %s\n"
-msgstr ""
-"La risposta sembrerebbe maggiore del più grande limite di ricerca %s\n"
+msgstr "La risposta sembrerebbe maggiore del più grande limite di ricerca %s\n"
 
 #, c-format
 msgid "Answer appears to be higher than greatest search bound %f\n"
@@ -317,8 +315,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %dx%d expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa "
-"%dx%d.\n"
+"%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa %dx"
+"%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: an integer expected.\n"
@@ -485,7 +483,7 @@ msgstr ""
 "reale o complessa, una di booleani o una polinomiale.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
 "o uno scalare.\n"
@@ -545,8 +543,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: Sono stati trovati dei NaN, usare %s() invece.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: erano attesi dei "
 "valori non-negativi.\n"
@@ -610,8 +607,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: L'argomento in ingresso #%d ha una dimensione sbagliata.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso '%s', "
 "'%s', %d o %d.\n"

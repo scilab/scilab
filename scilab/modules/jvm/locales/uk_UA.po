@@ -130,16 +130,16 @@ msgstr "Помилка: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 "Якщо ви користуєтеся бінарною версією Scilab, будь ласка, повідомте про ваду "
 "за адресою http://bugzilla.scilab.org/.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 "Якщо ви збирали Scilab власноруч, оновіть скрипт bin/scilab так, щоб шлях до "
 "віртуальної машини Java було вказано належним чином.\n"
@@ -220,8 +220,7 @@ msgid "Could not access to the constructor of the Main Scilab Class:\n"
 msgstr "Не вдалося отримати доступ до конструктора головного класу Scilab:\n"
 
 msgid "Could not create a Scilab main class. Error:\n"
-msgstr ""
-"Не вдалося створити головний клас Scilab. Повідомлення про помилку:\n"
+msgstr "Не вдалося створити головний клас Scilab. Повідомлення про помилку:\n"
 
 msgid "Cannot execute final hooks. Error:\n"
 msgstr "Не вдалося виконати завершальні скрипти. Помилка:\n"
@@ -257,8 +256,8 @@ msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"Помилка: некоректний файл шляху до класу %s (кодування відмінне від «utf-"
-"8»). Виявлено кодування «%s».\n"
+"Помилка: некоректний файл шляху до класу %s (кодування відмінне від "
+"«utf-8»). Виявлено кодування «%s».\n"
 
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"

@@ -35,7 +35,7 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -67,7 +67,7 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s: Внимание: каталог «%s» уже существует.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
 msgstr "%s: Неверный тип входного параметра: ожидалась строка.\n"
 
 #, c-format
@@ -95,8 +95,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Неверное значение входного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: Произошла ошибка при получении имени текущего каталога.\n"
 
 #, c-format
@@ -123,7 +122,7 @@ msgstr ""
 "точкой.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -148,7 +147,7 @@ msgstr ""
 "%s: Неверное значение входного параметра №%d: недопустимый путь «%s».\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
@@ -161,16 +160,14 @@ msgstr "%s: Неверный тип входного параметра №%d: �
 
 #, c-format
 msgid "%s: Wrong value for input argument: no empty string expected.\n"
-msgstr ""
-"%s: Неверное значение входного параметра: ожидались непустые строки\n"
+msgstr "%s: Неверное значение входного параметра: ожидались непустые строки\n"
 
 #, c-format
 msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Файл %s не открыт в Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -229,8 +226,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s: Файл %s не существует.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалось целое число или строка.\n"
 
@@ -345,8 +341,7 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра №%d: ожидалась строка или целое число.\n"
 
@@ -447,21 +442,18 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: Ошибка: требуется слишком много (> %d) преобразований.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (> %d) для указания %%[.\n"
 
 msgid "Bad conversion."
 msgstr "Плохое преобразование."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (< %d) для указания %%s .\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr "%s: Ошибка: поле %d слишком длинное (< %d) для указания %%c .\n"
 
 #, c-format
@@ -527,8 +519,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: Нет открытых в Scilab файлов.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d («%s»): формат не распознан.\n"
 
@@ -541,8 +532,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: Ошибка при открытии, чтении или записи.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалось «%s», «%s» или "
 "«%s».\n"

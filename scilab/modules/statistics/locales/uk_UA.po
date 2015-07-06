@@ -67,8 +67,7 @@ msgid "P,Q and X"
 msgstr "P, Q і X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -320,13 +319,11 @@ msgstr "%s: помилковий тип вхідного параметра №%
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: At least %d expected.\n"
@@ -471,7 +468,7 @@ msgstr ""
 "комплексних, булевих або поліноміальних значень.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний (числовий) тип.\n"
@@ -530,8 +527,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr "%s: виявлено NaN-и, скористайтеся краще %s().\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути вказано невід’ємні "
 "значення.\n"
@@ -595,8 +591,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: мало бути «%s», «%s», %d або "
 "%d.\n"

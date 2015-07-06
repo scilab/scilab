@@ -39,11 +39,11 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "Scilab %s Console"
 msgstr "Командное окно Scilab %s"
 
 msgid "Scilab 5.5.X family will be the latest one working under Windows XP."
-msgstr ""
-"Семейство Scilab 5.5.X будет последним, которое работает в Windows XP."
+msgstr "Семейство Scilab 5.5.X будет последним, которое работает в Windows XP."
 
 msgid "Error(s) : see help powershell"
 msgstr "Ошибка(и) : см. справку powershell"

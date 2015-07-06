@@ -29,7 +29,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -41,8 +41,7 @@ msgid "%s: Wrong number of input arguments: data doesn't fit with format.\n"
 msgstr "%s: Špatný počet vstupních argumentů: data neodpovídají formátu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: data se nevejdou do formátu.\n"
 
@@ -87,13 +86,12 @@ msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary ID %d not exists.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: ID deníku %d neexistuje.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: diary filename not exists.\n"
@@ -107,8 +105,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže uzavřít deník %d.\n"
 
@@ -118,8 +115,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže pozastavit deník.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: chyba nemůže pozastavit deník "
 "%d.\n"
@@ -370,8 +366,7 @@ msgstr "Špatný typ argumentu %d: Očekáván seznam.\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "Problém se symbolem porovnání...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Špatný počet vstupních argumentů: Tato funkce nemá žádný vstupní argument.\n"
 
@@ -467,8 +462,7 @@ msgstr "Nesprávná funkce (argument n: %d).\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
+msgstr "%s: Špatný typ argumentu %d: Očekávána komplexní nebo reálná matice.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
@@ -832,7 +826,7 @@ msgstr "Operandy operací / a \\ nesmí obsahovat NaN z Inf.\n"
 msgid "semi def fails.\n"
 msgstr "semi def selhává.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr "Špatný typ prvního argumentu: Očekáván jeden řetězec.\n"
 
 msgid "Entry name not found.\n"
@@ -994,8 +988,7 @@ msgstr "Velikost měnící argument a*eye(), (arg %d) zde není povolen.\n"
 msgid "endfunction is missing.\n"
 msgstr "chybí endfunction.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr "Pokyny na levé straně: čekání na tečku nebo levou závorku.\n"
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1108,10 +1101,8 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Konec optimalizace (lineární hledání selhalo).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
-msgstr ""
-"sfact : dosažena neúplná konvergence relativní přesnosti : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgstr "sfact : dosažena neúplná konvergence relativní přesnosti : 10**(%s).\n"
 
 msgid "Help file inconsistent...\n"
 msgstr "Soubor nápovědy nekonzistentní...\n"
@@ -1461,16 +1452,14 @@ msgstr "%s: Špatný počet vstupních argumentů.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec znaků.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec znaků.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec znaku.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván stavový model.\n"
 
 #, c-format

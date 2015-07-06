@@ -161,12 +161,11 @@ msgstr "%s: Impossibile ottenere i dati dell'argomento"
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
 "o uno scalare.\n"
@@ -275,8 +274,7 @@ msgstr "API_ERROR_GET_POLY_IN_LIST"
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr ""
-"%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
+msgstr "%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
 
 #, c-format
 msgid "%s: Unrecognized optional arguments %s.\n"

@@ -94,13 +94,12 @@ msgstr ""
 "mlist.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s) : an even number is expected.\n"
-msgstr ""
-"%s: Неверное количество входных параметров: ожидалось чётное число.\n"
+msgstr "%s: Неверное количество входных параметров: ожидалось чётное число.\n"
 
 #, c-format
 msgid "%s: 'dims' can not be used as a field name.\n"

@@ -23,11 +23,11 @@ function tbx_builder_gateway(module)
     // → module
 
     if type(module) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_builder_gateway",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_builder_gateway",1));
     end
 
     if size(module,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_builder_gateway",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_builder_gateway",1));
     end
 
     if ~isdir(module) then

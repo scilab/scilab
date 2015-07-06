@@ -69,7 +69,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         else
         {
             *iErr = API_ERROR_INVALID_TYPE;
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
     }
@@ -80,7 +80,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, cons
         if (*iErr == 0 )
         {
             *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
             return NULL;
         }
 
@@ -134,7 +134,7 @@ char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr = API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return NULL;
     }
 
@@ -143,7 +143,7 @@ char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
     if (*iErr == 0 )
     {
         *iErr = API_ERROR_CHECK_VAR_DIMENSION;
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 
@@ -285,7 +285,7 @@ char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
     if (iType != sci_strings)
     {
         *iErr =  API_ERROR_INVALID_TYPE;
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, _iVar);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, _iVar);
         return NULL;
     }
 

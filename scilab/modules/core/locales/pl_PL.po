@@ -125,7 +125,7 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 
@@ -147,8 +147,7 @@ msgstr "%s: Plik %s nie istnieje.\n"
 
 #, c-format
 msgid "%s: Wrong type of input argument #%d: String expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany łańcuch.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: Oczekiwany łańcuch.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: \"%s\" expected.\n"
@@ -224,12 +223,12 @@ msgstr ""
 "całkowitej (int).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwano łańcuch.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"
@@ -243,8 +242,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s: Zła wartość parametru wejściowego #%d: Musi być %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ dla argumentu wejściowego #%d: oczekiwany skalar lub "
 "łańcuch.\n"
@@ -272,8 +270,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 
 #, c-format
@@ -554,8 +551,7 @@ msgstr ""
 "Nieoczekiwany opcode, proszę zgłosić na raportowanie błędów programu Scilab."
 
 msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
-"Funkcji skompilowane z bardzo starymi wersjami nie są już obsługiwane."
+msgstr "Funkcji skompilowane z bardzo starymi wersjami nie są już obsługiwane."
 
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Brak pamięci dla stosu programu Scilab.\n"
@@ -691,8 +687,7 @@ msgstr "%s: Nieprawidłowy typ argumentu %d: Oczekiwana jest lista.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial matrix expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: Oczekiwano macierzy wielomianów.\n"
+msgstr "%s: Nieprawidłowy typ argumentu %d: Oczekiwano macierzy wielomianów.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Polynomial expected.\n"
@@ -710,8 +705,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Row vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: Oczekiwano wektora wierszowego.\n"
+msgstr "%s: Nieprawidłowy typ argumentu %d: Oczekiwano wektora wierszowego.\n"
 
 #, c-format
 msgid "%s: argument %d >(%d) should be a column vector.\n"
@@ -719,8 +713,7 @@ msgstr "%s: parametr %d >(%d) powinien być wektorem kolumnowym.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu %d: Oczekiwano wektora kolumnowego.\n"
+msgstr "%s: Nieprawidłowy typ argumentu %d: Oczekiwano wektora kolumnowego.\n"
 
 #, c-format
 msgid "%s: Wrong type for element %d of argument #%d: Pointer expected.\n"
@@ -1167,8 +1160,7 @@ msgstr "%s: Nie można znaleźć pliku Perl: %s"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Strings expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano łańcuch.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano łańcuch.\n"
 
 #, c-format
 msgid "%s: No perl command specified."

@@ -47,7 +47,7 @@ int sci_getfields(char *fname, void *pvApiCtx)
 
     if (rows != 1 || cols != 1)
     {
-        Scierror(999, _("%s: Wrong size for input argument: A string expected.\n"), fname);
+        Scierror(999, _("%s: Wrong size for input argument: string expected.\n"), fname);
     }
 
     sciErr = getMatrixOfString(pvApiCtx, piAddr, &rows, &cols, &length, NULL);

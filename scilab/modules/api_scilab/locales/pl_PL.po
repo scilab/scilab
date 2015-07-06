@@ -52,8 +52,7 @@ msgstr "%s: Nie można pobrać zmiennej \"%s\""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
 
 #, c-format
 msgid "%s: Unable to get argument \"%s\""
@@ -153,8 +152,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s: Niewłaściwy rozmiar parametru %d: oczekiwano (%d,%d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Zły typ parametru wejściowego #%d: Oczekiwano ciągu znaków lub skalara.\n"
 
@@ -286,8 +284,7 @@ msgstr "%s: Nieprawidłowe wywołanie pobrania macierzy nie-zespolonej"
 
 #, c-format
 msgid "%s: Formal variable name of polynomial can't exceed 4 characters"
-msgstr ""
-"%s: Nazwa zmiennej formalnej wielomianu nie może przekroczyć 4 znaków"
+msgstr "%s: Nazwa zmiennej formalnej wielomianu nie może przekroczyć 4 znaków"
 
 msgid "matrix of double"
 msgstr "macierz zmiennych double"

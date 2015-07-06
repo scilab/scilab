@@ -44,8 +44,7 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván mnohočlen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Očekáván racionální zlomek.\n"
 
@@ -96,10 +95,8 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
-msgstr ""
-"%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgstr "%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo polynomy.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: String expected.\n"

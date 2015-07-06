@@ -47,7 +47,7 @@ msgstr ""
 "compartilhada.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
 
@@ -91,8 +91,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument. Strings expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada: esperava-se textos.\n"
+msgstr "%s: Tipo incorreto para o argumento de entrada: esperava-se textos.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -291,14 +290,13 @@ msgstr ""
 "tem suporte no Windows."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
 "de textos.\n"
@@ -427,8 +425,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: Alerta: Scilab não foi capaz de encontrar onde os fontes do Scilab se "
-"encontram. Por favor envie um relato de erro através de "
-"http://bugzilla.scilab.org/\n"
+"encontram. Por favor envie um relato de erro através de http://bugzilla."
+"scilab.org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -554,20 +552,13 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d expected.\n"
-msgstr ""
-"%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
+msgstr "%s: Tamanho errado para o argumento de entrada #%d: Esperava-se %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
 msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d, %d ou "
 "%d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se uma matriz "
-"de textos.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

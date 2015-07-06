@@ -40,19 +40,18 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: No se puede leer el argumento de entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-"%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
+msgstr "%s: Valor incorrecto del argumento de entrada #%d: Se esperaba '%s'.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"

@@ -135,8 +135,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: Неверный размер строки у входного аргумента №%d: ожидался тот же размер "
 "строки, что и у входного аргумента №%d.\n"
@@ -216,7 +216,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr "%s: Матрицы A, C и D должны быть одного порядка.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 #, c-format
@@ -295,8 +295,7 @@ msgid "Press Return to continue ... \n"
 msgstr "Нажмите клавишу Enter для продолжения... \n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Неверный тип входного параметра: ожидалась линейная динамическая "
 "система.\n"
@@ -329,8 +328,8 @@ msgstr "%s: Входной параметр %d предполагается с �
 #, c-format
 msgid "%s: Needs %s => Use default value %s=%d.\n"
 msgstr ""
-"%s: Необходим параметр %s, поэтому используется значение по умолчанию "
-"%s=%d.\n"
+"%s: Необходим параметр %s, поэтому используется значение по умолчанию %s="
+"%d.\n"
 
 msgid "Autocorrelation Function"
 msgstr "Автокорреляционная функция"
@@ -500,8 +499,7 @@ msgid "Frequency (rad/s)"
 msgstr "Частота (рад/с)"
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 "Неверный тип аргумента №%d: ожидалась матрица пространства-состояний или "
 "рациональных значений.\n"
@@ -523,7 +521,7 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался массив строк.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -624,8 +622,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер аргумента %d: ожидался размер %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Неверное значение входного параметра №%d: ожидалась стабилизируемая "
 "система.\n"
@@ -673,8 +670,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar or string expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался скаляр или строка.\n"
 
 #, c-format
 msgid ""
@@ -777,8 +773,7 @@ msgstr "%s: Кривая усечена до первых %d точек диск
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: At least %d expected.\n"
@@ -819,8 +814,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Linear system expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась линейная система.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась линейная система.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -859,15 +853,13 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s не определено.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: Управляемое и наблюдаемое состояние (состояния)  %s около мнимой оси.\n"
 
 #, c-format
 msgid "%s: All modes of %s are nearly nonminimal so that %s is almost %d.\n"
-msgstr ""
-"%s: Все состояния %s почти неминимальны, так что %s практически %d.\n"
+msgstr "%s: Все состояния %s почти неминимальны, так что %s практически %d.\n"
 
 #, c-format
 msgid "%s: Francis equations not satisfied.\n"
@@ -1028,25 +1020,21 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s несимметрична.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалось линейное пространство "
 "состояний.\n"
 
 #, c-format
 msgid "%s: WARNING: the A matrix has eigenvalues near the imaginary axis.\n"
-msgstr ""
-"%s: ВНИМАНИЕ: матрица A имеет собственные значения около мнимой оси.\n"
+msgstr "%s: ВНИМАНИЕ: матрица A имеет собственные значения около мнимой оси.\n"
 
 #, c-format
 msgid "%s: Controllable & observable mode(s) of A near the imaginary axis"
-msgstr ""
-"%s: Управляемые и наблюдаемые состояния (состояние) A около мнимой оси"
+msgstr "%s: Управляемые и наблюдаемые состояния (состояние) A около мнимой оси"
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Все состояния A почти неминимальны, так что || G || практически 0.\n"
 
@@ -1173,8 +1161,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial array expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%d: ожидался массив полиномов.\n"
+msgstr "%s: Неверный тип входного параметра №%d: ожидался массив полиномов.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"

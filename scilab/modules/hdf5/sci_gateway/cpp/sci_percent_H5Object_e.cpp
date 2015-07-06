@@ -61,7 +61,7 @@ int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
 
     if (fieldtype != sci_matrix && fieldtype != sci_strings)
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a double expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string or double expected.\n"), fname, 1);
         return 0;
     }
 

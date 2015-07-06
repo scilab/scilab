@@ -41,7 +41,7 @@ Function::ReturnValue sci_load(types::typed_list &in, int _iRetCount, types::typ
     InternalType* pIT = in[0];
     if (pIT->getId() != InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname.data(), 1);
         return Function::Error;
     }
 

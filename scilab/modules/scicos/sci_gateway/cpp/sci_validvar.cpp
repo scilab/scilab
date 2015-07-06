@@ -49,7 +49,7 @@ types::Function::ReturnValue sci_validvar(types::typed_list &in, int _iRetCount,
 
     if (pS->isScalar() == false)
     {
-        Scierror(202, _("%s: Wrong size for argument #%d: A string expected.\n"), "validvar", 1);
+        Scierror(202, _("%s: Wrong size for argument #%d: string expected.\n"), "validvar", 1);
         return types::Function::Error;
     }
 

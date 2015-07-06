@@ -32,11 +32,11 @@ function atomsList(category)
     if rhs==1 then
 
         if type(category) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"atomsIsCategory",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsIsCategory",1));
         end
 
         if size(category,"*") <> 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"atomsIsCategory",1));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsIsCategory",1));
         end
 
         if ~atomsIsCategory(category) then

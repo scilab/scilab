@@ -24,7 +24,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -48,7 +48,7 @@ msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 整数を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -91,8 +91,8 @@ msgid ""
 "%s: Please quote the variable declaration. Example, save('myData.sod',a) "
 "becomes save('myData.sod','a').\n"
 msgstr ""
-"%s: 変数宣言をクオートしてください. 例えば, save('myData.sod',a) は save('myData.sod','a') "
-"となります.\n"
+"%s: 変数宣言をクオートしてください. 例えば, save('myData.sod',a) は "
+"save('myData.sod','a') となります.\n"
 
 #, c-format
 msgid "%s: See help('save') for the rational.\n"
@@ -150,7 +150,8 @@ msgstr "%s: 入力引数の数が間違っています.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' value expected.\n"

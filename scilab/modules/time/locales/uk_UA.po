@@ -52,7 +52,7 @@ msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -147,8 +147,7 @@ msgstr ""
 "розмірності mx3 або mx6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: %s має бути між %d та %d.\n"
 
@@ -196,8 +195,7 @@ msgstr ""
 "значення.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
 "збігатися.\n"

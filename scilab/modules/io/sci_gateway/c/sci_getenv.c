@@ -53,7 +53,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -87,7 +87,7 @@ int sci_getenv(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(pStVarTwo);
         }
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 

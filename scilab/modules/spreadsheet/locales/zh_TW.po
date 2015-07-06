@@ -18,11 +18,11 @@ msgstr ""
 "Language: \n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -272,7 +271,9 @@ msgstr "%s:%d:OLE_load_FAT:錯誤: 無法配置 %d 位元\n"
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr "%s:%d:OLE_load_FAT:錯誤: 無法載入區塊,匯入區段 (sector ) =0x%x, fat 位置= 0x%x"
+msgstr ""
+"%s:%d:OLE_load_FAT:錯誤: 無法載入區塊,匯入區段 (sector ) =0x%x, fat 位置= 0x"
+"%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
@@ -326,11 +327,11 @@ msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤: 無法由字串 '%s' 及 '%s' 產生
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr "%s:%d:OLEUNWRAP_save_stream:警告: 只寫入 %d 位元而非 %d 位元到檔案 %s 中\n"
+msgstr ""
+"%s:%d:OLEUNWRAP_save_stream:警告: 只寫入 %d 位元而非 %d 位元到檔案 %s 中\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s:%d:OLEUNWRAP_save_stream:錯誤:無法開啟檔案 %s 以寫入 (%s)\n"
 
 #, c-format

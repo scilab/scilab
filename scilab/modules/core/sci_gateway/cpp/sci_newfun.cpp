@@ -69,7 +69,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
     types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 1);
         return types::Function::Error;
     }
 
@@ -91,7 +91,7 @@ types::Function::ReturnValue sci_newfun(types::typed_list &in, int _iRetCount, t
     types::String* pS2 = pIT2->getAs<types::String>();
     if (pS2->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "newfun", 2);
         return types::Function::Error;
     }
 

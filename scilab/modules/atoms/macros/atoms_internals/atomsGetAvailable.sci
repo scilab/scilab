@@ -67,7 +67,7 @@ function packages = atomsGetAvailable(category,nameonly)
     if category<>[] then
 
         if type(category) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"atomsGetAvailable",1));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsGetAvailable",1));
         end
 
         if (size(category,"*") <> 1) & or(size(category) <> [1 2]) then

@@ -43,8 +43,7 @@ msgstr "%s: Brak możliwości odczytu argumentu wejściowego nr %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego #%d: oczekiwano skalara.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
@@ -62,13 +61,13 @@ msgstr ""
 "(>= 0).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekiwana jest wartość "
 "typu string.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar dla argumentu wejściowego nr %d: oczekiwano ciągu "
 "znaków.\n"

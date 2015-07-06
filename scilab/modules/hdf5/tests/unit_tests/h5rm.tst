@@ -9,7 +9,7 @@
 
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d to %d expected.\n"),"h5rm", 1, 2);
 assert_checkerror("h5rm()", msgerr, 77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), "h5rm", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string or H5Object expected.\n"), "h5rm", 1);
 assert_checkerror("h5rm(42)", msgerr, 999);
 msgerr = msprintf(gettext("%s: Wrong number of input arguments: %d expected.\n"),"h5rm", 2);
 assert_checkerror("h5rm(""42"")", msgerr, 999);
@@ -33,7 +33,7 @@ msgerr = msprintf(gettext("%s: %s\n"), "h5rm", gettext("Cannot remove a file."))
 assert_checkerror('h5rm(a)', msgerr, 999);
 msgerr = msprintf(gettext("%s: %s\n"), "h5rm", gettext("Cannot remove root element."));
 assert_checkerror('h5rm(a.root)', msgerr, 999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), "h5rm", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string or H5Object expected.\n"), "h5rm", 1);
 assert_checkerror('h5rm(a.root.Groups)', msgerr, 999);
 
 h5write(a.root.Group_3, "Dset_1", [1 2 ; 3 4]);

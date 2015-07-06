@@ -91,8 +91,7 @@ msgstr "[] ne fonctionne pas avec Tcl/Tk.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Une matrice attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
@@ -139,8 +138,7 @@ msgstr ""
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr ""
-"Erreur TCL : Erreur pendant l'initialisation de TCL (Tcl_Init) : %s\n"
+msgstr "Erreur TCL : Erreur pendant l'initialisation de TCL (Tcl_Init) : %s\n"
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"

@@ -48,7 +48,7 @@ int ScilabGateway::addToClasspath(char * fname, const int envId, void * pvApiCtx
 
         if (!isStringType(pvApiCtx, addr))
         {
-            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for argument #%d: A string expected."), 1);
+            throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Wrong type for argument #%d: string expected."), 1);
         }
 
         if (getAllocatedMatrixOfString(pvApiCtx, addr, &rows, &cols, &className))

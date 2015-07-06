@@ -69,7 +69,7 @@ int sci_xmlGetNsByHref(char *fname, void* pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr) || !checkVarDimension(pvApiCtx, addr, 1, 1))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
         return 0;
     }
 

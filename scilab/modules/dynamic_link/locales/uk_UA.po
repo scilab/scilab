@@ -47,7 +47,7 @@ msgstr ""
 "використання.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -288,8 +288,7 @@ msgstr "%s: цією можливість не можна скористатис
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 msgid ""
 "Due to the multivendors nature of the Unix world, the function "
@@ -300,13 +299,12 @@ msgstr ""
 "Windows."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
 "рядків.\n"
@@ -439,8 +437,8 @@ msgid ""
 "Please submit a bug report on http://bugzilla.scilab.org/\n"
 msgstr ""
 "%s: попередження: Scilab не вдалося виявити місце зберігання вихідних кодів "
-"Scilab. Будь ласка, повідомте про це на сторінці "
-"http://bugzilla.scilab.org/\n"
+"Scilab. Будь ласка, повідомте про це на сторінці http://bugzilla.scilab."
+"org/\n"
 
 #, c-format
 msgid "%s: Build command: %s\n"
@@ -492,8 +490,7 @@ msgstr "%s: помилкова розмірність вхідного пара�
 
 #, c-format
 msgid "   %s: Copy compilation files (Makefile*, libtool...) to TMPDIR\n"
-msgstr ""
-"   %s: копіювання файлів збирання (Makefile*, libtool...) до TMPDIR\n"
+msgstr "   %s: копіювання файлів збирання (Makefile*, libtool...) до TMPDIR\n"
 
 #, c-format
 msgid "   %s: Copy %s to TMPDIR\n"
@@ -525,8 +522,7 @@ msgstr ""
 
 #, c-format
 msgid "   %s: Use the previous detection of compiler.\n"
-msgstr ""
-"   %s: використання попереднього визначення параметрів компілятора.\n"
+msgstr "   %s: використання попереднього визначення параметрів компілятора.\n"
 
 #, c-format
 msgid "   %s: Modification of the Makefile in TMPDIR.\n"
@@ -574,14 +570,7 @@ msgstr "%s: помилкова розмірність вхідного пара�
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d,%d or %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: String matrix expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати матрицю з "
-"рядків.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути %d, %d або %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"

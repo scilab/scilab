@@ -121,16 +121,16 @@ msgstr "Fehler: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 "Wenn Sie eine Binärversion von Scilab verwenden, geben Sie einen "
 "Fehlerbreicht unter http://bugzilla.scilab.org/ ab.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 "Wenn Sie eine selbsterzeugte Version von Scilab verwenden, aktualisieren Sie "
 "das Skript Bin/Scilab, um einen Pfad zu JVM zu geben.\n"

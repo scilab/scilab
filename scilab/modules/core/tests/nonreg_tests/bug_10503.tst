@@ -15,6 +15,6 @@
 // <-- Short Description -->
 // error(999.666) did trunc error code without an error
 
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "error", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "error", 1);
 assert_checkerror("error(999.666)", msgerr);
 assert_checkerror("error(999)", msgerr);

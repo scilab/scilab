@@ -41,7 +41,7 @@ msgstr ""
 "matrice di dimensioni %dx%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: L'argomento %d è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
@@ -76,8 +76,7 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: k must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: k must be a positive integer.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: k deve essere un intero "
 "positivo.\n"
@@ -147,8 +146,7 @@ msgstr ""
 "scalare reale.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
+msgid "%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: %s deve essere uno "
 "scalare intero.\n"
@@ -168,8 +166,7 @@ msgstr ""
 "%s.\n"
 
 #, c-format
-msgid ""
-"%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
+msgid "%s: B is not positive definite. Try with sigma='SM' or sigma=scalar.\n"
 msgstr ""
 "%s: B non è definita positiva. Provare con sigma='SM' o sigma=scalar.\n"
 
@@ -302,7 +299,7 @@ msgstr ""
 "opts con tol, maxiter, ncv, resif, cholB."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
@@ -366,8 +363,7 @@ msgid "%s: Error with %s: info = %d.\n"
 msgstr "%s: Errore con %s: info = %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: n must be a positive integer.\n"
+msgid "%s: Wrong type for input argument #%d: n must be a positive integer.\n"
 msgstr ""
 "%s: L'argomento ingresso #%d è di tipo sbagliato: n deve essere un intero "
 "positivo.\n"

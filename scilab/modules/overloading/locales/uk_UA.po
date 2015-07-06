@@ -54,8 +54,7 @@ msgstr ""
 "або скаляр.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: прив’язку рядка у числовій матриці не реалізовано.\n"
 
 #, c-format
@@ -77,8 +76,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: некоректна назва поля.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: мало бути вказано коректну "
 "назву поля.\n"
@@ -92,8 +90,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: помилкова кількість вихідних параметрів.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра №%d: транспонування не може "
 "бути визначено.\n"
@@ -136,7 +133,7 @@ msgstr ""
 "число >= %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -147,13 +144,13 @@ msgstr ""
 "з набору {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип «string» "
 "або скалярний (числовий) тип.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -223,8 +220,7 @@ msgstr ""
 "кількості елементів"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «%s», "
 "«%s» або «%s».\n"
@@ -272,8 +268,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: Insertion of a sparse matrix in a matrix of numbers is not defined.\n"
-msgstr ""
-"%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
+msgstr "%s: вставлення розрідженої матриці до числової матриці не визначено.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer matrix expected.\n"
@@ -290,8 +285,8 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: помилкова розмірність вхідних параметрів.\n"
 
 msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
-"6.\n"
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
+"scilab-6.\n"
 "           Use vector .^ scalar instead.\n"
 msgstr ""
 "  Попередження: синтаксичні конструкції «вектор ^ скаляр» вважаються "
@@ -347,8 +342,7 @@ msgstr ""
 "%s: помилковий тип параметра %d: мало бути вказано дійсне числове значення.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr ""
 "%s: у матрицях вхідних і вихідних даних має бути однакова кількість "
 "елементів.\n"
@@ -381,5 +375,4 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"

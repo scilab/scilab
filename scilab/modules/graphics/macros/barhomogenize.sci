@@ -61,7 +61,7 @@ function  barhomogenize(varargin)
                 a=var1
                 WIDTH=varlist(2)
             else
-                error(msprintf(gettext("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"),"barhomogenize", 2));
+                error(msprintf(gettext("%s: Wrong type for input argument #%d: string or scalar expected.\n"),"barhomogenize", 2));
             end
         elseif or(varlist(1) == ["grouped","stacked"]) & (type(varlist(2)) == 1)
             STYLE=varlist(1)

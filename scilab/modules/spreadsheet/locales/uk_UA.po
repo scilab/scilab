@@ -19,13 +19,13 @@ msgstr ""
 "Language: uk\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -117,8 +117,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати рядок "
 "«%s» або «%s».\n"
@@ -373,8 +372,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
+msgstr "%s:%d:OLE_store_stream:ПОМИЛКА: не вдалося відкрити %s для запису (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -398,8 +396,7 @@ msgstr ""
 "файла %s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream: ПОМИЛКА: не вдалося відкрити %s для запису "
 "(%s)\n"

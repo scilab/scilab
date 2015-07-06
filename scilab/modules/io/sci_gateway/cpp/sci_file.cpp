@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
     // get action
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 1);
         return types::Function::Error;
     }
 
@@ -90,7 +90,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
         // get path
         if (in[1]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", 2);
             return types::Function::Error;
         }
 
@@ -124,7 +124,7 @@ types::Function::ReturnValue sci_file(types::typed_list &in, int _iRetCount, typ
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "file", i + 1);
+                Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "file", i + 1);
                 return types::Function::Error;
             }
 

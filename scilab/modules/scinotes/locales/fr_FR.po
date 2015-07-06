@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
 "attendue.\n"
@@ -36,8 +36,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle ou 'readonly' "
 "attendu.\n"
@@ -52,11 +51,6 @@ msgid ""
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
 msgid "File"
 msgstr "Fichier"
@@ -443,8 +437,7 @@ msgid "Underlined"
 msgstr "Souligné"
 
 msgid "Highlight corresponding keywords (e.g. if ... end)"
-msgstr ""
-"Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
+msgstr "Mettre en surbrillance les mots-clés correspondants (e.g. if ... end)"
 
 msgid "Tabulation and Indentation"
 msgstr "Tabulation et indentation"
@@ -819,8 +812,7 @@ msgstr "Onglet précédent"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
+msgstr "Enregistrez vos modifications avant d'exécuter ce fichier dans Scilab."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"

@@ -157,7 +157,7 @@ int sci_norm(char *fname, void* pvApiCtx)
     {
         if (getAllocatedSingleString(pvApiCtx, pflagAddr, &pflagChar)) // Retrieving flag dimensions.
         {
-            Scierror(205, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(205, _("%s: Wrong size for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 

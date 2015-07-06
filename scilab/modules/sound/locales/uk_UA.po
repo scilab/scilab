@@ -23,7 +23,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: не вдалося прочитати вхідний параметр №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -36,7 +36,7 @@ msgid "Cannot play file."
 msgstr "Не вдалося відтворити файл."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -124,8 +124,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments.\n"
@@ -212,11 +211,10 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: сталася помилка: %s не підтримується.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: сталася помилка: некоректний формат файла. Помилка читання фрагмента "
-"<%s>.\n"
+"%s: сталася помилка: некоректний формат файла. Помилка читання фрагмента <"
+"%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""

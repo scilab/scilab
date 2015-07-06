@@ -143,7 +143,7 @@ int sci_xtitle(char * fname, void *pvApiCtx)
         // Retrieve a matrix of string at position narg.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrStr, &m, &n, &Str))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname, narg);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname, narg);
             return 1;
         }
 

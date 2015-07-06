@@ -21,7 +21,7 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Módulo '%s' desativado em modo -nogui ou -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento inserido #%i: Esperava-se um argumento "
 "do tipo string.\n"

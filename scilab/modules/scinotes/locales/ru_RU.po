@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Не могу прочитать входной аргумент №%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Неверный тип аргумента №%d: ожидалась матрица строк.\n"
 
 #, c-format
@@ -34,8 +34,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Не осталось доступной памяти.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s: Неверный тип аргумента №%d: ожидалась вещественная матрица либо "
 "'readonly'.\n"
@@ -50,10 +49,6 @@ msgid ""
 msgstr ""
 "%s: Неверный размер входных параметров №%d и №%d: ожидались одинаковые "
 "размерности.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s: Неверный тип аргумента №%d: ожидалась строка.\n"
 
 msgid "File"
 msgstr "Файл"
@@ -378,8 +373,7 @@ msgid "Completion"
 msgstr "Завершение"
 
 msgid "Auto-complete brackets when cursor is at the end of a line"
-msgstr ""
-"Автоматически закрывать скобки, когда курсор находится в конце строки"
+msgstr "Автоматически закрывать скобки, когда курсор находится в конце строки"
 
 msgid "General display options"
 msgstr "Общие настройки отображения"
@@ -551,8 +545,7 @@ msgid "The file could not be created, check the path"
 msgstr "Не удалось создать файл, проверьте путь"
 
 msgid "The file is not writable so it is opened in read-only mode"
-msgstr ""
-"Нет разрешения на запись файла, поэтому он доступен только для чтения"
+msgstr "Нет разрешения на запись файла, поэтому он доступен только для чтения"
 
 msgid "You do not have the permissions to write this file"
 msgstr "У вас нет разрешения на запись этого файла"

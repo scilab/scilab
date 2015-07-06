@@ -62,7 +62,8 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Scilab无法创建Scilab Java Main-Class（无法找到main Scilab类。请检查Scilab和第三方软件包是否可用）。\n"
+"Scilab无法创建Scilab Java Main-Class（无法找到main Scilab类。请检查Scilab和第"
+"三方软件包是否可用）。\n"
 
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
@@ -90,7 +91,8 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"错误：不能返回Scilab Java环境（jvm_SCILAB）：请检查在调用该函数之前JVM是否被Scilab装载。\n"
+"错误：不能返回Scilab Java环境（jvm_SCILAB）：请检查在调用该函数之前JVM是否被"
+"Scilab装载。\n"
 
 #, c-format
 msgid ""
@@ -115,14 +117,14 @@ msgstr "错误：%s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
 msgstr ""
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
 msgstr ""
 
 #, c-format
@@ -231,7 +233,9 @@ msgstr "%s的格式错误。\n"
 msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
-msgstr "错误：不是一个正确的classpath 文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
+msgstr ""
+"错误：不是一个正确的classpath 文件%s（不是以'utf-8'编码），文件使用的是'%s'编"
+"码。\n"
 
 #, c-format
 msgid "Warning: could not find classpath declaration file %s.\n"
@@ -250,7 +254,8 @@ msgstr ""
 #, c-format
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
-msgstr "错误：不是一个正确的path文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
+msgstr ""
+"错误：不是一个正确的path文件%s（不是以'utf-8'编码），文件使用的是'%s'编码。\n"
 
 msgid "Scilab Java module not installed.\n"
 msgstr "Scilab Java模块没有安装。\n"

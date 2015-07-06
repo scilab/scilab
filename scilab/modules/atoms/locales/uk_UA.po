@@ -20,8 +20,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d to %d expected.\n"
@@ -44,7 +43,7 @@ msgstr ""
 "рядків mx1, mx2 або mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати одинарне "
 "значення типу «string».\n"
@@ -106,11 +105,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: at most %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: мало бути не більше %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати одинарний "
 "рядок.\n"
@@ -292,8 +290,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Error while copying the file '%s' to the directory '%s'.\n"
-msgstr ""
-"%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
+msgstr "%s: під час копіювання файла «%s» до каталогу «%s» сталася помилка.\n"
 
 #, c-format
 msgid "%s: Error while creating the directory '%s'.\n"
@@ -307,17 +304,6 @@ msgstr "%s: у «%s» вже існує файл з такою назвою.\n"
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 "%s: помилкова кількість вхідних параметрів: слід використовувати %d або %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
-"«string».\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -608,8 +594,7 @@ msgstr "Встановлення"
 msgid "Installation failed!"
 msgstr "Невдала спроба встановлення!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Встановлення завершено! Будь ласка, перезапустіть Scilab, щоб зміни набули "
 "чинності."
@@ -698,8 +683,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: помилкове значення вхідного параметра №%d: мало бути "
-"«filter:all»,«filter:main» або коректна назва основної категорії.\n"
+"%s: помилкове значення вхідного параметра №%d: мало бути «filter:"
+"all»,«filter:main» або коректна назва основної категорії.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -760,8 +745,7 @@ msgstr "%s: не знайдено gzip.\n"
 
 #, c-format
 msgid "%s: Extraction of the DESCRIPTION file ('%s') has failed.\n"
-msgstr ""
-"%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
+msgstr "%s: спроба видобування файла DESCRIPTION («%s») завершилася невдало.\n"
 
 msgid "Done"
 msgstr "Виконано"
@@ -943,16 +927,15 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - Отримана MD5SUM: «%s»\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати «error» "
 "або «warning».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід було вказати один рядок, "
 "що завершується на .tar.gz, .tgz або .zip.\n"
@@ -1082,16 +1065,15 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: не вдалося побудувати ієрархію залежностей.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: слід використовувати літеру "
 "«A» або «I».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: вказано некоректну версію або "
 "залежність.\n"
@@ -1154,8 +1136,7 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) не встановлено.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
 msgstr ""
 "%s: помилкове значення вхідного параметра №%d: некоректне значення версії.\n"
 

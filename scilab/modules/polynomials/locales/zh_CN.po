@@ -31,7 +31,8 @@ msgstr "%s：输入参数#%d的大小错误：应该为一个方阵。\n"
 msgid ""
 "%s: Wrong type for input argument #%d: A floating point number or polynomial "
 "or rational fraction array expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个浮点数、多项式或者有理分数数组。\n"
+msgstr ""
+"%s：输入参数#%d的类型错误：应该为一个浮点数、多项式或者有理分数数组。\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
@@ -42,8 +43,7 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个多项式。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个有理分数。\n"
 
 #, c-format
@@ -88,8 +88,7 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：输入参数#%d的值错误：必须在集合{%s}中。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 
 #, c-format

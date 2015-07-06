@@ -11,9 +11,9 @@ msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n
 assert_checkerror("h5label()",msgerr,77);
 msgerr = msprintf(gettext("%s: Wrong number of input argument(s): %d expected.\n"), "h5label", 4);
 assert_checkerror("h5label(42)",msgerr,77);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"), "h5label", 1);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string or H5Object expected.\n"), "h5label", 1);
 assert_checkerror("h5label(42,42,42,42)",msgerr,999);
-msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"), "h5label", 2);
+msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"), "h5label", 2);
 assert_checkerror("h5label(""42"",42,42,42)",msgerr,999);
 msgerr = msprintf(gettext("%s: Wrong type for input argument #%d: Row array of strings expected.\n"), "h5label", 4);
 assert_checkerror("h5label(""42"",""42"",42,42)",msgerr,999);

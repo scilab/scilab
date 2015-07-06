@@ -22,7 +22,7 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Le module Scilab '%s' est désactivé en mode -nogui ou -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères attendue.\n"
 
@@ -36,23 +36,16 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : '%s', '%s' ou '%s' "
 "attendu.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument n°%d : Une matrice de chaînes de caractères "
-"attendue.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -73,7 +66,7 @@ msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être >= %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or a real expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or real expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un réel attendu.\n"
@@ -88,8 +81,7 @@ msgstr "%s : Le numéro de figure doit être donné hors du mode '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Handle matrix expected.\n"
@@ -150,8 +142,7 @@ msgstr "Dimension erronée de la propriété '%s' : %d éléménts attendus.\n"
 
 #, c-format
 msgid ""
-"Wrong value for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+"Wrong value for '%s' property: string or 1 x %d real row vector expected.\n"
 msgstr ""
 "Valeur erronée de la propriété '%s' : Une chaîne de caractères ou un vecteur "
 "réel de taille x %d attendu.\n"
@@ -167,15 +158,14 @@ msgstr ""
 "caractères attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -192,8 +182,7 @@ msgstr "%s : Nombre erroné d'arguments d'entrée : %d ou %d attendus.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a string vector "
-"expected.\n"
+"%s: Wrong type for input argument #%d: string or string vector expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un vecteur de chaîne de caractères attendu.\n"
@@ -313,7 +302,7 @@ msgid "%s: Unknown property: %s for '%s' handles.\n"
 msgstr "%s : Propriété inconnue : %s pour les handles de type '%s'.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string or boolean expected.\n"
+msgid "%s: Wrong type for argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une chaîne de caractères ou un booléen "
 "attendu.\n"
@@ -375,8 +364,7 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
+msgid "%s: Wrong value for input argument #%d: A valid '%s' handle expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Un handle valide '%s' "
 "attendu.\n"
@@ -444,15 +432,13 @@ msgid "%s: Wrong number for input argument: %d expected.\n"
 msgstr "%s : Nombre erroné de l'argument d'entrée : %d attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A string or a macro name expected.\n"
+msgid "%s: Wrong size for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères ou un nom de macro attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a macro name expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or macro name expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un nom de macro attendu.\n"
@@ -462,20 +448,18 @@ msgid "%s: Wrong number of input arguments: %d expected.\n"
 msgstr "%s : Nombre erroné d'arguments d'entrée : %d attendus.\n"
 
 #, c-format
-msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %d or %d expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %d ou %d attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
@@ -493,8 +477,7 @@ msgstr ""
 "par-1 attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a vector expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou un vecteur "
 "attendu.\n"
@@ -513,8 +496,7 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
+msgid "%s: Wrong size for input argument #%d: At least 2 elements expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : 2 éléments au minimum "
 "attendus.\n"
@@ -540,8 +522,7 @@ msgstr ""
 "une mlist.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'élément %d de l'argument n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -640,8 +621,7 @@ msgid "%s: Wrong input argument #%d: '%s' or '%s' expected.\n"
 msgstr "%s : Argument d'entrée n°%d faux : '%s' ou '%s' attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
+msgid "%s: Wrong size for input argument #%d: 'pos' or 'gdi' value expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une valeur 'pos' ou "
 "'gdi' attendue.\n"
@@ -1126,12 +1106,12 @@ msgstr ""
 "Valeur erronée de la propriété '%s' : Les chiffres entre 0 et 1 attendus.\n"
 
 #, c-format
-msgid "Wrong type for '%s' property: A string expected.\n"
+msgid "Wrong type for '%s' property: string expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Une chaîne de caractères attendue.\n"
 
 #, c-format
-msgid "Wrong size for '%s' property: A string expected.\n"
+msgid "Wrong size for '%s' property: string expected.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Une chaîne de caractères attendue.\n"
 
@@ -1165,8 +1145,7 @@ msgstr "Type erroné de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong size for '%s' property: '%s', '%s' or '%s' expected.\n"
-msgstr ""
-"Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
+msgstr "Dimension erronée de la propriété '%s' : '%s', '%s' ou '%s' attendu.\n"
 
 #, c-format
 msgid "Wrong type for '%s' property: String expected.\n"
@@ -1187,16 +1166,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"Wrong size for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+"Wrong size for '%s' property: string or 1 x %d real row vector expected.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Une chaîne de caractères ou un "
 "vecteur réel de taille 1 x %d attendu.\n"
 
 #, c-format
 msgid ""
-"Wrong type for '%s' property: A string or a 1 x %d real row vector "
-"expected.\n"
+"Wrong type for '%s' property: string or 1 x %d real row vector expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Une chaîne de caractères ou un vecteur "
 "réel de taille 1 x %d attendu.\n"
@@ -1222,15 +1199,13 @@ msgstr ""
 "attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong size for '%s' property: A string or a vector of strings expected.\n"
+msgid "Wrong size for '%s' property: string or vector of strings expected.\n"
 msgstr ""
 "Dimension erronée de la propriété '%s' : Une chaîne de caractères ou un "
 "vecteur de chaîne de caractères attendu.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A string or a vector of strings expected.\n"
+msgid "Wrong type for '%s' property: string or vector of strings expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Une chaîne ou une matrice de chaînes de "
 "caractères attendue.\n"
@@ -1262,8 +1237,7 @@ msgstr ""
 "valeur numérique attendue.\n"
 
 #, c-format
-msgid ""
-"Wrong type for '%s' property: A real row vector or a string expected.\n"
+msgid "Wrong type for '%s' property: A real row vector or a string expected.\n"
 msgstr ""
 "Type erroné de la propriété '%s' : Un vecteur ligne de réels ou une chaîne "
 "de caractères attendu.\n"
@@ -2351,8 +2325,7 @@ msgstr "Impossible d'ouvrir : "
 msgid "Restoration error"
 msgstr "Erreur de restauration"
 
-msgid ""
-"The configuration file has been corrupted and reset to the default one."
+msgid "The configuration file has been corrupted and reset to the default one."
 msgstr ""
 "Le fichier de configuration a été endommagé. Réinitialisation à celui par "
 "défaut."
@@ -2617,8 +2590,7 @@ msgstr "%s : Impossible d'ajouter un menu dans ce mode : %s.\n"
 
 #, c-format
 msgid "%s: can not add a menu in console in this mode: %s.\n"
-msgstr ""
-"%s : Impossible d'ajouter un menu dans la console dans ce mode : %s.\n"
+msgstr "%s : Impossible d'ajouter un menu dans la console dans ce mode : %s.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A two-item list expected.\n"
@@ -2639,7 +2611,7 @@ msgid "%s: Wrong value for '%s' property: %d, %d or %d expected.\n"
 msgstr "%s : Valeur erronée de la propriété '%s' : %d, %d ou %d attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for '%s' property: A string expected.\n"
+msgid "%s: Wrong type for '%s' property: string expected.\n"
 msgstr ""
 "%s : Type erroné de la propriété '%s' : Une chaîne de caractères attendue.\n"
 
@@ -2668,8 +2640,7 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d, %d or %d expected."
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d  attendu(s)."
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d, %d ou %d  attendu(s)."
 
 #, c-format
 msgid ""
@@ -2679,8 +2650,7 @@ msgstr ""
 "caractères attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A border or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A border or a string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un cadre ou une chaîne de "
 "caractère attendu.\n"
@@ -2716,8 +2686,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
@@ -2763,12 +2732,10 @@ msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un uitree attendu.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
+msgstr "%s : Nombre erroné d'argument(s) d'\"entrée : Au moins %d attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
+msgid "%s: Wrong type for element %d of input argument #%d: uitree expected.\n"
 msgstr ""
 "%s : Type erroné de l'élément %d de l'argument d'entrée n°%d : Un uitree "
 "attendu.\n"
@@ -2819,8 +2786,7 @@ msgstr "%s : Aucun résultat trouvé.\n"
 
 #, c-format
 msgid "%s: No results found for property '%s' and value '%s'.\n"
-msgstr ""
-"%s : Aucun résultat trouvé pour la propriété '%s' et la valeur '%s'.\n"
+msgstr "%s : Aucun résultat trouvé pour la propriété '%s' et la valeur '%s'.\n"
 
 #, c-format
 msgid "%s:  #%d matching parent nodes.\n"
@@ -2839,7 +2805,7 @@ msgid "%s: Wrong type for %s: A list expected.\n"
 msgstr "%s : Type erroné de %s : Une liste attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for %s: A string expected.\n"
+msgid "%s: Wrong type for %s: string expected.\n"
 msgstr "%s : Type erroné de %s : Une chaîne de caractères attendue.\n"
 
 #, c-format

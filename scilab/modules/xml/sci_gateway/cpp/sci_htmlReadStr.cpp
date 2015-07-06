@@ -49,7 +49,7 @@ int sci_htmlReadStr(char *fname, void* pvApiCtx)
 
     if (!isStringType(pvApiCtx, addr))
     {
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

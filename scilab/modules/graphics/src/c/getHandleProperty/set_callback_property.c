@@ -46,7 +46,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
     {
         if (nbCol != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
         cbString = (char*)_pvData;
@@ -75,7 +75,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
         getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
         if (iRows * iCols != 1)
         {
-            Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
+            Scierror(999, _("Wrong size for '%s' property: string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
@@ -86,7 +86,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
     else
     {
 
-        Scierror(999, _("Wrong type for '%s' property: A string or a 2-item list expected.\n"), "Callback");
+        Scierror(999, _("Wrong type for '%s' property: string or 2-item list expected.\n"), "Callback");
         return SET_PROPERTY_ERROR;
     }
 

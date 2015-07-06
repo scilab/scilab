@@ -66,7 +66,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
 
         if (pSPath->isScalar() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 1);
             return types::Function::Error;
         }
 
@@ -131,7 +131,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         if (in[iPos]->isString() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", iRhs);
             return types::Function::Error;
         }
 
@@ -139,7 +139,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
         if (pSFormat->isScalar() == false)
         {
             closeFile(in[0], iID);
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", iRhs);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", iRhs);
             return types::Function::Error;
         }
 
@@ -189,7 +189,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
             default:
             {
                 closeFile(in[0], iID);
-                Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+                Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
                 return types::Function::Error;
             }
         }
@@ -304,7 +304,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 break;
                 default:
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
                     closeFile(in[0], iID);
                     return types::Function::Error;
                 }
@@ -419,7 +419,7 @@ types::Function::ReturnValue sci_write(types::typed_list &in, int _iRetCount, ty
                 break;
                 default:
                 {
-                    Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "write", 2);
+                    Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "write", 2);
                     return types::Function::Error;
                 }
             }

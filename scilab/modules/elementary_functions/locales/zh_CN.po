@@ -135,8 +135,7 @@ msgid ""
 msgstr "%s：第%d个输入参数的值错误：应该为正整数标量。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
@@ -144,11 +143,11 @@ msgid "%s: Wrong type for input argument #%d: A matrix expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为矩阵。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该为字符串。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -339,8 +338,7 @@ msgid "%s: Wrong size for input argument #%d: Square matrix expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为方阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
+msgid "%s: Wrong value for input argument #%d: Matrix is not diagonalisable.\n"
 msgstr "%s：第%d个输入参数的值错误：矩阵不是对角阵。\n"
 
 #, c-format
@@ -521,8 +519,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong sizes for input argument #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format
@@ -548,8 +545,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong size for input argument #%d: At least the size of input argument "
-"#%d expected.\n"
+"%s: Wrong size for input argument #%d: At least the size of input argument #"
+"%d expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该至少第%d个输入参数的大小。\n"
 
 #, c-format
@@ -675,8 +672,7 @@ msgid "%s: Wrong size for input argument #%d: Must have at least 4 rows.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
+msgid "%s: Wrong size for input argument #%d: Must have at least 4 columns.\n"
 msgstr ""
 
 #, c-format

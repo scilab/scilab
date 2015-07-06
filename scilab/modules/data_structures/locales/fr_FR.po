@@ -59,8 +59,7 @@ msgid "%s: Invalid hypermatrix insertion.\n"
 msgstr "%s : Insertion invalide dans une hypermatrice.\n"
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"Trop d'arguments dans la pile, éditez stack.h et augmentez intersiz.\n"
+msgstr "Trop d'arguments dans la pile, éditez stack.h et augmentez intersiz.\n"
 
 #, c-format
 msgid ""
@@ -91,7 +90,7 @@ msgstr ""
 "une mlist attendue.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"

@@ -132,8 +132,7 @@ msgstr "%s: Špatný počet vstupního(ch) argumentu(ů): Očekáváno alespoň 
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
@@ -148,13 +147,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A real expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno reálné číslo.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Same size expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
+msgstr "%s: Špatná velikost vstupních argumentů: Očekávána stejná velikost.\n"
 
 msgid "Defining %ODEOPTIONS variable"
 msgstr "Určuji proměnnou %ODEOPTIONS"
@@ -180,8 +177,7 @@ msgstr "5 : jeden krok, bez předání tcrit, a návrat"
 msgid "Meaning of jactype:"
 msgstr "Význam jactype:"
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr ""
 "0 : iterovaná funkce (není použit žádný jacobiho (pouze \"adamův\" nebo "
 "\"stiffův))"

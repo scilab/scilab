@@ -27,7 +27,7 @@ function res = atomsGetInstalledDetails(packages,section)
     // =========================================================================
 
     if type(packages) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsGetInstalledDetails",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsGetInstalledDetails",1));
     end
 
     if and(size(packages(1,:),"*") <> [2 3]) then

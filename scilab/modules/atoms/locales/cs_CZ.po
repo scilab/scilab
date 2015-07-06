@@ -37,7 +37,7 @@ msgstr ""
 "mx2 nebo mx3.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ pro vstupní argument #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
@@ -99,9 +99,8 @@ msgid "%s: Wrong number of input argument: at most %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno nejvíce %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván jeden řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: 'all' or 'main' expected.\n"
@@ -284,14 +283,6 @@ msgstr "%s: Dříve existující soubor se stejným názvem v '%s'.\n"
 #, c-format
 msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: Očekávány %d nebo %d.\n"
-
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
-
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A valid category expected.\n"
@@ -570,8 +561,7 @@ msgstr "Instalování"
 msgid "Installation failed!"
 msgstr "Instalace selhala!"
 
-msgid ""
-"Installation done! Please restart Scilab to take changes into account."
+msgid "Installation done! Please restart Scilab to take changes into account."
 msgstr ""
 "Instalace je hotova! Restartujte prosím Scilab, aby se změny mohli projevit."
 
@@ -655,8 +645,8 @@ msgid ""
 "%s: Wrong value for input argument #%d: 'filter:all','filter:main' or a "
 "valid main category expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno "
-"'filter:all','filter:main' nebo platná hlavní kategorie.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáváno 'filter:all','filter:"
+"main' nebo platná hlavní kategorie.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
@@ -882,19 +872,18 @@ msgid "\t - MD5SUM watched  : '%s'\n"
 msgstr "\t - Sledována MD5SUM : '%s'\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
+msgid "%s: Wrong value for input argument #%d:'error' or 'warning' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno 'error' nebo "
 "'warning'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: Single string that ends with "
-".tar.gz, .tgz or .zip expected.\n"
+"%s: Wrong value for input argument #%d: Single string that ends with .tar."
+"gz, .tgz or .zip expected.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván jeden řetězec končící "
-".tar.gz, .tgz nebo .zip.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Očekáván jeden řetězec končící ."
+"tar.gz, .tgz nebo .zip.\n"
 
 #, c-format
 msgid "%s: The file %s does not exist or is not read accessible.\n"
@@ -1017,18 +1006,17 @@ msgid "%s: The dependency tree cannot be resolved.\n"
 msgstr "%s: Strom závislostí nemůže být analyzován.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
+msgid "%s: Wrong value for input argument #%d: Letters 'A' or 'I' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekávána písmena 'A' nebo 'I'.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid "
-"version/dependency.\n"
+"%s: Wrong value for input argument #%d: This is not a valid version/"
+"dependency.\n"
 msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná "
-"verze/závislost.\n"
+"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze/"
+"závislost.\n"
 
 msgid "Atoms:"
 msgstr "Atoms:"
@@ -1084,10 +1072,8 @@ msgid "%s: %s (%s) isn't installed.\n"
 msgstr "%s: %s (%s) není nainstalován.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: This is not a valid version.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze.\n"
+msgid "%s: Wrong value for input argument #%d: This is not a valid version.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Toto není platná verze.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: ASC or DESC expected.\n"

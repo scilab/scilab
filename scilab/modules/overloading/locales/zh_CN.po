@@ -47,8 +47,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr ""
 
 #, c-format
@@ -66,8 +65,7 @@ msgid "%s: Invalid field name.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 
 #, c-format
@@ -79,8 +77,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 
 #, c-format
@@ -113,7 +110,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -121,11 +118,11 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：第%d个输入参数的值错误：必须在集合{%s}中。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -181,8 +178,7 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：第%d个输入参数的值出错：应该为‘%s’、‘%s’或‘%s’。\n"
 
 #, c-format
@@ -234,8 +230,8 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr ""
 
 msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
-"6.\n"
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
+"scilab-6.\n"
 "           Use vector .^ scalar instead.\n"
 msgstr ""
 
@@ -281,8 +277,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s：参数%d的类型错误：应该为实数标量。\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s：输入和输出矩阵必须有相同数目的元素。\n"
 
 #, c-format

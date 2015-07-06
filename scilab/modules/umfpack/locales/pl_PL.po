@@ -149,7 +149,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "Macierz nie jest zgodna z podanymi czynnikami LU"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -277,15 +277,13 @@ msgstr ""
 "%s: Nieprawidłowa liczba argumentów wejściowych: oczekiwano od %d do %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Nieprawidłowy typ argumentu wejściowego nr %d: oczekiwana kwadratowa "
 "macierz rzadka.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: oczekiwana kwadratowa "
 "macierz rzadka.\n"
@@ -296,8 +294,7 @@ msgstr "%s: Macierz i czynniki LU nie mają tych samych rozmiarów !\n"
 
 #, c-format
 msgid "%s: Invalid type and/or size and/or value for the second arg.\n"
-msgstr ""
-"%s: Niewłaściwy typ i/lub rozmiar i/lub wartość drugiego argumentu.\n"
+msgstr "%s: Niewłaściwy typ i/lub rozmiar i/lub wartość drugiego argumentu.\n"
 
 msgid " For this demo the current stack size is not enough "
 msgstr " Dla tego dema obecny rozmiar stosu jest zbyt mały "

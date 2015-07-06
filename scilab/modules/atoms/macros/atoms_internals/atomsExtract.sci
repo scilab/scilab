@@ -24,22 +24,22 @@ function dir_created = atomsExtract(archive_in,dir_out)
     // =========================================================================
 
     if type(archive_in) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsExtract",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsExtract",1));
     end
 
     if type(dir_out) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsExtract",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsExtract",2));
     end
 
     // Check input parameters size
     // =========================================================================
 
     if size(archive_in,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsExtract",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsExtract",1));
     end
 
     if size(dir_out,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsExtract",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsExtract",2));
     end
 
     // Check input parameters value

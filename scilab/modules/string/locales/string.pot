@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,25 +10,32 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_ascii.c, line: 171
-msgid "WARNING : \n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_ascii.c, line: 172
+# File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 69
+# File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_isnum.cpp, line: 40
+# File: modules/string/sci_gateway/cpp/sci_length.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_part.cpp, line: 44
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 38
+# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 37
+# File: modules/string/sci_gateway/cpp/sci_string.cpp, line: 318
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 38
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 38
+# File: modules/string/sci_gateway/cpp/sci_strrev.cpp, line: 37
+# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 37
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 38
 #, c-format
-msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_ascii.c, line: 250
+# File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 107
 #, c-format
 msgid ""
 "%s: Wrong type for argument #%d: Matrix of strings or Integer matrix "
@@ -36,119 +43,60 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isnum.c, line: 40
+# File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 113
 #, c-format
-msgid "%s: Feature %s is obsolete.\n"
+msgid "%s : wrong UTF-8 sequence.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isnum.c, line: 40
-# File: sci_gateway/c/sci_isnum.c, line: 41
-# File: sci_gateway/c/sci_isnum.c, line: 42
-msgid "Warning"
+# File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 135
+msgid "WARNING : \n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isnum.c, line: 41
+# File: modules/string/sci_gateway/cpp/sci_ascii.cpp, line: 136
 #, c-format
-msgid "%s: Please use %s instead.\n"
+msgid "%s: Wrong value for input argument #%d: Must be between %d and %d.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isnum.c, line: 42
+# File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 32
+# File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 47
+# File: modules/string/sci_gateway/cpp/sci_isnum.cpp, line: 46
+# File: modules/string/sci_gateway/cpp/sci_part.cpp, line: 50
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 43
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 48
+# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_string.cpp, line: 445
+# File: modules/string/sci_gateway/cpp/sci_string.cpp, line: 465
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 43
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 43
+# File: modules/string/sci_gateway/cpp/sci_strrev.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 43
+# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 47
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 48
 #, c-format
-msgid ""
-"%s: This feature will be permanently removed in Scilab %s\n"
-"\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_convstr.c, line: 124
-# File: sci_gateway/c/sci_grep.c, line: 322
-# File: sci_gateway/c/sci_isnum.c, line: 66
-# File: sci_gateway/c/sci_isnum.c, line: 76
-# File: sci_gateway/c/sci_length.c, line: 147
-# File: sci_gateway/c/sci_length.c, line: 165
-# File: sci_gateway/c/sci_length.c, line: 177
-# File: sci_gateway/c/sci_length.c, line: 202
-# File: sci_gateway/c/sci_length.c, line: 321
-# File: sci_gateway/c/sci_length.c, line: 444
-# File: sci_gateway/c/sci_length.c, line: 486
-# File: sci_gateway/c/sci_part.c, line: 114
-# File: sci_gateway/c/sci_regexp.c, line: 268
-# File: sci_gateway/c/sci_regexp.c, line: 306
-# File: sci_gateway/c/sci_strcat.c, line: 182
-# File: sci_gateway/c/sci_strcat.c, line: 203
-# File: sci_gateway/c/sci_strcat.c, line: 233
-# File: sci_gateway/c/sci_strcat.c, line: 245
-# File: sci_gateway/c/sci_strcat.c, line: 266
-# File: sci_gateway/c/sci_strcat.c, line: 283
-# File: sci_gateway/c/sci_strchr.c, line: 88
-# File: sci_gateway/c/sci_strindex.c, line: 291
-# File: sci_gateway/c/sci_string.c, line: 61
-# File: sci_gateway/c/sci_strncpy.c, line: 64
-# File: sci_gateway/c/sci_strncpy.c, line: 113
-# File: sci_gateway/c/sci_strncpy.c, line: 155
-# File: sci_gateway/c/sci_strrev.c, line: 55
-# File: sci_gateway/c/sci_strsplit.c, line: 88
-# File: sci_gateway/c/sci_strsplit.c, line: 164
-# File: sci_gateway/c/sci_strsplit.c, line: 235
-# File: sci_gateway/c/sci_strstr.c, line: 70
-# File: sci_gateway/c/sci_strstr.c, line: 95
-# File: sci_gateway/c/sci_strstr.c, line: 110
-# File: sci_gateway/c/sci_strstr.c, line: 122
-# File: sci_gateway/c/sci_strtod.c, line: 146
-# File: sci_gateway/c/sci_strtod.c, line: 274
-# File: src/c/pcre_error.c, line: 29
+# File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 38
 #, c-format
-msgid "%s: No more memory.\n"
+msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_convstr.c, line: 62
-# File: sci_gateway/c/sci_convstr.c, line: 92
-# File: sci_gateway/c/sci_convstr.c, line: 151
-# File: sci_gateway/c/sci_isalphanum.c, line: 59
-# File: sci_gateway/c/sci_isalphanum.c, line: 78
-# File: sci_gateway/c/sci_isascii.c, line: 102
-# File: sci_gateway/c/sci_isascii.c, line: 133
-# File: sci_gateway/c/sci_isascii.c, line: 169
-# File: sci_gateway/c/sci_isascii.c, line: 204
-# File: sci_gateway/c/sci_isascii.c, line: 229
-# File: sci_gateway/c/sci_isascii.c, line: 264
-# File: sci_gateway/c/sci_isdigit.c, line: 58
-# File: sci_gateway/c/sci_isdigit.c, line: 77
-# File: sci_gateway/c/sci_length.c, line: 280
-# File: sci_gateway/c/sci_length.c, line: 332
-# File: sci_gateway/c/sci_length.c, line: 455
-# File: sci_gateway/c/sci_length.c, line: 497
-# File: sci_gateway/c/sci_strchr.c, line: 98
-# File: sci_gateway/c/sci_strchr.c, line: 152
-# File: sci_gateway/c/sci_strsplit.c, line: 186
-# File: sci_gateway/c/sci_strsplit.c, line: 208
-# File: sci_gateway/c/sci_strsubst.c, line: 71
-# File: sci_gateway/c/sci_strsubst.c, line: 221
-# File: sci_gateway/c/sci_strtod.c, line: 155
-# File: sci_gateway/c/sci_strtod.c, line: 304
-# File: sci_gateway/c/sci_tokens.c, line: 98
+# File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 44
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 66
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 48
 #, c-format
-msgid "%s: Memory allocation error.\n"
+msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_convstr.c, line: 84
-# File: sci_gateway/c/sci_isalphanum.c, line: 48
-# File: sci_gateway/c/sci_isdigit.c, line: 47
-# File: sci_gateway/c/sci_strindex.c, line: 144
-# File: sci_gateway/c/sci_strtok.c, line: 52
-# File: sci_gateway/c/sci_strtok.c, line: 72
-# File: sci_gateway/c/sci_tokens.c, line: 149
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_convstr.c, line: 99
+# File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_convstr.cpp, line: 68
 #, c-format
 msgid ""
 "%s: Wrong value for input argument #%d: 'u' (Upper) or 'l' (Lower) "
@@ -156,353 +104,139 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_convstr.c, line: 109
-# File: sci_gateway/c/sci_convstr.c, line: 116
-# File: sci_gateway/c/sci_strcmp.c, line: 129
-# File: sci_gateway/c/sci_strcmp.c, line: 133
-# File: sci_gateway/c/sci_strcspn.c, line: 116
-# File: sci_gateway/c/sci_strcspn.c, line: 120
-# File: sci_gateway/c/sci_strncpy.c, line: 184
-# File: sci_gateway/c/sci_strrev.c, line: 61
-# File: sci_gateway/c/sci_strspn.c, line: 114
-# File: sci_gateway/c/sci_strspn.c, line: 118
-# File: sci_gateway/c/sci_strstr.c, line: 151
-# File: sci_gateway/c/sci_strstr.c, line: 155
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 61
+# File: modules/string/sci_gateway/cpp/sci_regexp.cpp, line: 63
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 58
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 35
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of strings expected.\n"
+msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_emptystr.c, line: 169
-# File: sci_gateway/c/sci_emptystr.c, line: 173
-# File: sci_gateway/c/sci_strncpy.c, line: 188
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Matrix of integers expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grep.c, line: 93
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_grep.c, line: 99
-# File: sci_gateway/c/sci_isletter.c, line: 96
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 77
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 96
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 102
+# File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 52
+# File: modules/string/sci_gateway/cpp/sci_isnum.cpp, line: 52
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 80
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 105
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 48
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 58
+# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 47
+# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 52
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 48
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 47
+# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 52
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 48
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 53
+# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 59
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 55
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 76
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_grep.c, line: 247
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 114
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Non-empty strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isalphanum.c, line: 42
-# File: sci_gateway/c/sci_isascii.c, line: 45
-# File: sci_gateway/c/sci_isascii.c, line: 53
-# File: sci_gateway/c/sci_isascii.c, line: 81
-# File: sci_gateway/c/sci_isascii.c, line: 94
-# File: sci_gateway/c/sci_isascii.c, line: 162
-# File: sci_gateway/c/sci_isascii.c, line: 184
-# File: sci_gateway/c/sci_isascii.c, line: 220
-# File: sci_gateway/c/sci_isdigit.c, line: 41
-# File: sci_gateway/c/sci_strchr.c, line: 122
-# File: sci_gateway/c/sci_strchr.c, line: 131
-# File: sci_gateway/c/sci_string.c, line: 42
-# File: sci_gateway/c/sci_string.c, line: 50
-# File: sci_gateway/c/sci_strsplit.c, line: 40
-# File: sci_gateway/c/sci_strsplit.c, line: 76
-# File: sci_gateway/c/sci_strsplit.c, line: 115
-# File: sci_gateway/c/sci_strsplit.c, line: 153
-# File: sci_gateway/c/sci_strsubst.c, line: 54
-# File: sci_gateway/c/sci_strsubst.c, line: 90
-# File: sci_gateway/c/sci_strsubst.c, line: 108
-# File: sci_gateway/c/sci_strsubst.c, line: 137
-# File: sci_gateway/c/sci_strsubst.c, line: 151
-# File: sci_gateway/c/sci_strsubst.c, line: 165
-# File: sci_gateway/c/sci_strsubst.c, line: 174
-# File: sci_gateway/c/sci_strsubst.c, line: 184
-# File: sci_gateway/c/sci_strtod.c, line: 60
-# File: sci_gateway/c/sci_strtod.c, line: 90
+# File: modules/string/sci_gateway/cpp/sci_grep.cpp, line: 215
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 110
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 120
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 117
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 110
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 120
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 103
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 114
+# File: modules/string/src/c/pcre_error.c, line: 31
 #, c-format
-msgid "%s: Can not read input argument #%d.\n"
+msgid "%s: No more memory.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_isascii.c, line: 67
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Real matrix or matrix of strings "
-"expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_isletter.c, line: 49
-# File: sci_gateway/c/sci_regexp.c, line: 85
-# File: sci_gateway/c/sci_regexp.c, line: 105
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_isnum.c, line: 55
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A matrix of string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_length.c, line: 132
-# File: sci_gateway/c/sci_strchr.c, line: 138
-# File: sci_gateway/c/sci_strcmp.c, line: 66
-# File: sci_gateway/c/sci_strindex.c, line: 381
-# File: sci_gateway/c/sci_strsubst.c, line: 96
-# File: sci_gateway/c/sci_strsubst.c, line: 143
-# File: sci_gateway/c/sci_strsubst.c, line: 157
-# File: sci_gateway/c/sci_strtok.c, line: 58
-# File: sci_gateway/c/sci_strtok.c, line: 79
-# File: sci_gateway/c/sci_tokens.c, line: 154
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_length.c, line: 140
-# File: sci_gateway/c/sci_length.c, line: 157
-# File: sci_gateway/c/sci_length.c, line: 189
-#, c-format
-msgid "%s: impossible to get dimensions of this matrix.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_length.c, line: 295
-#, c-format
-msgid "%s: Wrong type for input argument(s).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_part.c, line: 90
-# File: sci_gateway/c/sci_strcspn.c, line: 105
-# File: sci_gateway/c/sci_strncpy.c, line: 174
-# File: sci_gateway/c/sci_strsplit.c, line: 145
-# File: sci_gateway/c/sci_strspn.c, line: 103
-# File: sci_gateway/c/sci_strstr.c, line: 142
-#, c-format
-msgid "%s: Wrong size for input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_part.c, line: 103
-#, c-format
-msgid "%s: Wrong values for input argument #%d: Must be >= 1.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_regexp.c, line: 78
-# File: sci_gateway/c/sci_regexp.c, line: 98
-# File: sci_gateway/c/sci_strcat.c, line: 330
-# File: sci_gateway/c/sci_strtod.c, line: 65
-# File: sci_gateway/c/sci_strtod.c, line: 70
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_regexp.c, line: 145
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 86
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a string vector expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 128
-#, c-format
-msgid "%s: Wrong type for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 309
-# File: sci_gateway/c/sci_strindex.c, line: 93
-# File: sci_gateway/c/sci_strsubst.c, line: 128
-#, c-format
-msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 453
-#, c-format
-msgid "%s : Wrong size for input argument(s).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 495
-# File: sci_gateway/c/sci_strsplit.c, line: 214
-#, c-format
-msgid "%s: error.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 534
-#, c-format
-msgid "%s: Wrong size for input argument(s).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcat.c, line: 568
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty real "
-"matrix expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strchr.c, line: 77
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A character expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcmp.c, line: 55
-#, c-format
-msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcmp.c, line: 96
-# File: sci_gateway/c/sci_stripblanks.c, line: 103
-# File: sci_gateway/c/sci_stripblanks.c, line: 114
-#, c-format
-msgid "%s : No more memory.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strcmp.c, line: 122
-#, c-format
-msgid "%s: Wrong size for input arguments: Same sizes expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 65
-# File: sci_gateway/c/sci_strindex.c, line: 74
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Character expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 114
-# File: sci_gateway/c/sci_stripblanks.c, line: 75
-# File: sci_gateway/c/sci_stripblanks.c, line: 87
-# File: sci_gateway/c/sci_strsubst.c, line: 60
-# File: sci_gateway/c/sci_strtod.c, line: 121
-# File: sci_gateway/c/sci_strtod.c, line: 133
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
-"expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 154
-#, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A valid string expected (UTF-8 "
-"Encoding problem).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 165
-# File: sci_gateway/c/sci_strindex.c, line: 385
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row vector of strings or column "
-"vector of strings expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strindex.c, line: 320
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_string.c, line: 155
-# File: sci_gateway/c/sci_strsplit.c, line: 264
-#, c-format
-msgid "%s: Wrong type for input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stripblanks.c, line: 54
-#, c-format
-msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strncpy.c, line: 54
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strsplit.c, line: 62
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strsplit.c, line: 82
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strsplit.c, line: 95
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strsplit.c, line: 101
-#, c-format
-msgid "%s: Wrong value for input argument #%d: A value > 0 expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_strsplit.c, line: 131
+# File: modules/string/sci_gateway/cpp/sci_isalphanum.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_isascii.cpp, line: 39
+# File: modules/string/sci_gateway/cpp/sci_isdigit.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 42
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 113
 #, c-format
 msgid "%s: Wrong number of output arguments: %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 137
-# File: sci_gateway/c/sci_strsplit.c, line: 196
+# File: modules/string/sci_gateway/cpp/sci_isalphanum.cpp, line: 48
+# File: modules/string/sci_gateway/cpp/sci_isdigit.cpp, line: 48
 #, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
+msgid "%s: Wrong type for input argument#%d: A String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 202
+# File: modules/string/sci_gateway/cpp/sci_isalphanum.cpp, line: 56
+# File: modules/string/sci_gateway/cpp/sci_isdigit.cpp, line: 56
 #, c-format
-msgid "%s: Elements of %dth argument must be in increasing order.\n"
+msgid "%s: Wrong type for input argument#%d: A scalar String expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strsplit.c, line: 252
+# File: modules/string/sci_gateway/cpp/sci_isascii.cpp, line: 89
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a string expected, not a regexp "
-"pattern.\n"
+msgid "%s: Wrong type for input argument#%d: string or matrix expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strstr.c, line: 55
+# File: modules/string/sci_gateway/cpp/sci_isletter.cpp, line: 59
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 74
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 69
+# File: modules/string/sci_gateway/cpp/sci_strcspn.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 70
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 74
+# File: modules/string/sci_gateway/cpp/sci_strspn.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 74
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 61
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 83
+#, c-format
+msgid "%s: Wrong size for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_length.cpp, line: 98
+#, c-format
+msgid "%s: Wrong type for input argument(s).\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_part.cpp, line: 82
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A vector expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_regexp.cpp, line: 70
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 43
+#, c-format
+msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strcat.cpp, line: 96
+#, c-format
+msgid "%s: Wrong type for input argument #%d: ''%s'' or ''%s'' expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 68
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 68
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 62
+# File: modules/string/sci_gateway/cpp/sci_strstr.cpp, line: 68
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: Non-empty matrix of strings "
@@ -510,157 +244,320 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_strtod.c, line: 76
+# File: modules/string/sci_gateway/cpp/sci_strchr.cpp, line: 90
+# File: modules/string/sci_gateway/cpp/sci_strrchr.cpp, line: 90
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 93
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Char(s) expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 43
+# File: modules/string/sci_gateway/cpp/sci_strindex.cpp, line: 63
+# File: modules/string/sci_gateway/cpp/sci_strsubst.cpp, line: 41
+# File: modules/string/sci_gateway/cpp/sci_strtod.cpp, line: 46
+# File: modules/string/sci_gateway/cpp/sci_strtok.cpp, line: 41
+# File: modules/string/sci_gateway/cpp/sci_tokens.cpp, line: 43
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 77
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Char expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 84
+#, c-format
+msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strcmp.cpp, line: 104
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 67
+#, c-format
+msgid "%s : No more memory.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strindex.cpp, line: 85
+# File: modules/string/sci_gateway/cpp/sci_strsubst.cpp, line: 63
+#, c-format
+msgid "%s: Wrong value for input argument #%d: 's' or 'r' expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strindex.cpp, line: 92
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: string or string vector expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_string.cpp, line: 438
+#, c-format
+msgid "%s: Wrong type for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 50
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A boolean expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 78
+# File: modules/string/sci_gateway/cpp/sci_stripblanks.cpp, line: 86
+# File: modules/string/sci_gateway/cpp/sci_strtod.cpp, line: 68
+#, c-format
+msgid ""
+"%s: Wrong type for input argument #%d: Matrix of strings or empty matrix "
+"expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strncpy.cpp, line: 63
+#, c-format
+msgid "%s: Wrong size for input argument #%d: Non-empty matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strrev.cpp, line: 47
+#, c-format
+msgid "%s: Wrong type for input argument #%d: Matrix of Strings expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 37
+#, c-format
+msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 70
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 78
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 86
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A scalar double expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 94
+#, c-format
+msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 100
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A positive value expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 119
+#, c-format
+msgid "%s: Wrong size for input argument #%d: A Scalar or vector expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 141
+#, c-format
+msgid "%s: Wrong value for input argument #%d.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 148
+#, c-format
+msgid "%s: Elements of %dth argument must be in increasing order.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 155
+#, c-format
+msgid "%s: Memory allocation error.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 162
+#, c-format
+msgid "%s: error.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 182
+#, c-format
+msgid ""
+"%s: Wrong value for input argument #%d: a string expected, not a regexp "
+"pattern.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsplit.cpp, line: 191
+#, c-format
+msgid "%s: Wrong type for input argument#%d: A double or string expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strsubst.cpp, line: 92
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A string matrix expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strtod.cpp, line: 51
+#, c-format
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strtod.cpp, line: 84
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
+msgstr ""
+
+#
+# File: modules/string/sci_gateway/cpp/sci_strtod.cpp, line: 93
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '.' or ',' expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_tokens.c, line: 74
-# File: sci_gateway/c/sci_tokens.c, line: 86
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A character or a vector of single "
-"characters expected.\n"
-msgstr ""
-
-#
-# File: src/c/pcre_error.c, line: 32
+# File: modules/string/src/c/pcre_error.c, line: 34
 #, c-format
 msgid "%s: Delimiter must not be alphameric.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 35
+# File: modules/string/src/c/pcre_error.c, line: 37
 #, c-format
 msgid "%s: Capturing subpatterns error.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 38
+# File: modules/string/src/c/pcre_error.c, line: 40
 #, c-format
 msgid "%s: Partial matching not supported.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 41
+# File: modules/string/src/c/pcre_error.c, line: 43
 #, c-format
 msgid "%s: Contains explicit CR or LF match.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 44
+# File: modules/string/src/c/pcre_error.c, line: 46
 #, c-format
 msgid "%s: Duplicate name status changes.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 47
+# File: modules/string/src/c/pcre_error.c, line: 49
 #, c-format
 msgid "%s: Returned count is too big for offset size.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 50
+# File: modules/string/src/c/pcre_error.c, line: 52
 #, c-format
 msgid "%s: Match limit not relevant for DFA matching: ignored.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 53
+# File: modules/string/src/c/pcre_error.c, line: 55
 #, c-format
 msgid "%s: Can not compile pattern.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 56
+# File: modules/string/src/c/pcre_error.c, line: 58
 #, c-format
 msgid "%s: Matched text exceeds buffer limit.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 59
+# File: modules/string/src/c/pcre_error.c, line: 61
 #, c-format
 msgid "%s: Current PCRE library does not support UTF-8.\n"
 msgstr ""
 
 #
-# File: src/c/pcre_error.c, line: 62
+# File: modules/string/src/c/pcre_error.c, line: 64
 #, c-format
 msgid "%s: Unknown error.\n"
 msgstr ""
 
-# File: macros/%ip_part.sci, line: 28
+# File: modules/string/macros/%ip_part.sci, line: 28
 #, c-format
 msgid "%s: Wrong value for input argument #%d: $ expected.\n"
 msgstr ""
 
 #
-# File: macros/%mc_string.sci, line: 18
-#, c-format
-msgid "%s: Wrong type for input argument #%d: a function expected.\n"
-msgstr ""
-
-#
-# File: macros/%p_part.sci, line: 18
+# File: modules/string/macros/%p_part.sci, line: 18
 #, c-format
 msgid "%s: $ is the only implicit variable supported in selected indices"
 msgstr ""
 
 #
-# File: macros/arobasestring2strings.sci, line: 23
+# File: modules/string/macros/arobasestring2strings.sci, line: 23
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected.\n"
 msgstr ""
 
 #
-# File: macros/arobasestring2strings.sci, line: 31
+# File: modules/string/macros/arobasestring2strings.sci, line: 31
 #, c-format
 msgid "%s: Wrong type for input argument: String expected.\n"
 msgstr ""
 
 #
-# File: macros/arobasestring2strings.sci, line: 37
-# File: macros/tokenpos.sci, line: 16
+# File: modules/string/macros/arobasestring2strings.sci, line: 37
+# File: modules/string/macros/tokenpos.sci, line: 16
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #
-# File: macros/asciimat.sci, line: 27
+# File: modules/string/macros/asciimat.sci, line: 38
+# File: modules/string/macros/asciimat.sci, line: 51
+# File: modules/string/macros/asciimat.sci, line: 72
 #, c-format
 msgid "%s: Wrong input argument #%d: Inconsistent size.\n"
 msgstr ""
 
 #
-# File: macros/asciimat.sci, line: 40
-#, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A Real, Integer or String matrix "
-"expected.\n"
-msgstr ""
-
-#
-# File: macros/blanks.sci, line: 17
+# File: modules/string/macros/blanks.sci, line: 17
 #, c-format
 msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: macros/blanks.sci, line: 21
+# File: modules/string/macros/blanks.sci, line: 21
 #, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 
 #
-# File: macros/blanks.sci, line: 29
+# File: modules/string/macros/blanks.sci, line: 29
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: An non-negative integer expected.\n"
 msgstr ""
 
 #
-# File: macros/evstr.sci, line: 76
+# File: modules/string/macros/evstr.sci, line: 81
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or Complex matrix, Matrix of "
@@ -668,39 +565,39 @@ msgid ""
 msgstr ""
 
 #
-# File: macros/evstr.sci, line: 79
+# File: modules/string/macros/evstr.sci, line: 84
 #, c-format
 msgid "%s: Given expression has no value.\n"
 msgstr ""
 
 #
-# File: macros/expression2code.sci, line: 349
+# File: modules/string/macros/expression2code.sci, line: 354
 #, c-format
 msgid "%s: This feature has not been implemented: %s.\n"
 msgstr ""
 
 #
-# File: macros/justify.sci, line: 20
+# File: modules/string/macros/justify.sci, line: 36
 #, c-format
-msgid "%s: Wrong number of input arguments: %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: macros/justify.sci, line: 40
+# File: modules/string/macros/justify.sci, line: 40
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s, %s or %s expected.\n"
 msgstr ""
 
 #
-# File: macros/sci2exp.sci, line: 95
-# File: macros/sci2exp.sci, line: 815
+# File: modules/string/macros/sci2exp.sci, line: 102
+# File: modules/string/macros/sci2exp.sci, line: 814
 #, c-format
 msgid ""
 "%s: This feature has not been implemented: Variable translation of type %s.\n"
 msgstr ""
 
 #
-# File: macros/tokenpos.sci, line: 19
+# File: modules/string/macros/tokenpos.sci, line: 19
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A character or vector of characters "

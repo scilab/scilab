@@ -215,7 +215,7 @@ int sci_stringbox(char * fname, void *pvApiCtx)
         // Retrieve a matrix of string at position  1.
         if (getAllocatedMatrixOfString(pvApiCtx, piAddrstackPointer, &textNbRow, &textNbCol, &strStackPointer))
         {
-            Scierror(202, _("%s: Wrong type for argument #%d: String matrix expected.\n"), fname,  1);
+            Scierror(202, _("%s: Wrong type for argument #%d: string expected.\n"), fname,  1);
             return 1;
         }
 

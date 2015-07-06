@@ -176,8 +176,7 @@ msgstr "5：一个步骤，不经过tcrit，并返回"
 msgid "Meaning of jactype:"
 msgstr "jactype的意义："
 
-msgid ""
-"0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
+msgid "0 : functional iterations (no jacobian used ('adams' or 'stiff' only))"
 msgstr "0：函数迭代（没有使用雅可比（只支持’‘adams’‘或‘'stiff'’））"
 
 msgid "1 : user-supplied full jacobian"

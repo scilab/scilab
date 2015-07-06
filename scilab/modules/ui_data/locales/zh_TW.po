@@ -34,7 +34,7 @@ msgid "%s: Wrong type for input argument #%d: A String expected.\n"
 msgstr "%s: 第 %d  輸入參數型態錯誤: 應為一字串.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 #%d 輸入參數大小錯誤: 應該為一字串.\n"
 
 #, c-format

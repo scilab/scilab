@@ -47,8 +47,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和参数#%d的大小错误：应该为同样大小。\n"
 
 #, c-format
@@ -56,8 +55,7 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr "%s：输入参数#%d的值错误：未知的类型'%s'。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr "%s：输入参数#%d和#%d的值错误：应该为同样大小。\n"
 
 #, c-format
@@ -138,8 +136,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s：输入参数#%d，#%d或#%d的大小错误。\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr "%s：x和（或）y不是严格递增排序（或者存在+-inf）\n"
 
 #, c-format

@@ -157,8 +157,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
+msgstr "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se %s.\n"
 
 #, c-format
 msgid "%s: parameter %s not defined"

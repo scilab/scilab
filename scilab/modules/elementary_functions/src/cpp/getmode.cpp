@@ -77,7 +77,7 @@ int getMode(types::typed_list &in, int _iProcess, int _iRef)
     }
     else
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a scalar expected.\n"), "size", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "size", 2);
         iMode = -2;
     }
 

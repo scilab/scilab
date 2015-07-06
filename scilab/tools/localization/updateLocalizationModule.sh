@@ -3,6 +3,8 @@
 # Copyright (C) INRIA - 2007-2008 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2009-2011 - Sylvestre Ledru
 # Copyright (C) DIGITEO - 2011-2011 - Bruno JOFRET
+# Copyright (C) Scilab Enterprises - 2015 - Clement DAVID
+#
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
 # you should have received as part of this distribution.  The terms
@@ -34,47 +36,43 @@ if test -z "$SCI"; then
 fi
 
 MODULES=$1
-
+# Process all the modules and build the list
 if test "$MODULES" = "process_all"; then
     echo ".. Process all the modules one by one"
-    PROCESS_ALL=1
+    MODULES=`find $SCI/modules/ -maxdepth 1 -type d -printf '%P\n' ! -name ".*" ! -name 'javasci'`
 else
-    PROCESS_ALL=0
+    MODULES=`echo $MODULES|sed -e 's|./||'` # avoid to have ./module_name
 fi
 
-
 XGETTEXT=/usr/bin/xgettext
-FROM_CODE=ISO-8859-1
+FROM_CODE=UTF-8
 EXTENSIONS=( 'c' 'h' 'cpp' 'hxx' 'java' )
 EXTENSIONS_MACROS=( sci sce start quit )
-TARGETDIR=locales/
-TARGETDIR_MACROS=locales_macros/
+TARGETDIR=locales
 HEADER_TEMPLATE=$SCI/modules/localization/data/header.pot
-GUI_FILES="etc/*.x*l"
-PREFERENCE_FILES="src/xslt/*.xsl"
-FAKE_C_FILE=scilab_fake_localization_file.c
 TIMEZONE="+0100"
 # Gettext arg
 XGETTEXT_OPTIONS="--add-location --strict --keyword=_ --from-code $FROM_CODE --omit-header --no-wrap --sort-by-file"
 
-process_XML_files() {
-# First expression => remove line which does NOT contain label
-# Second expression =>  extract the content of the label and switch it to a gettext fake instruction
-# Third expression => remove empty lines
-# Please note that it will only extract string from the label tag
-    if test -n "$(ls $GUI_FILES 2>/dev/null)"; then
-        COMMON_SED='s/&amp;/\&/g'
-	sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES > $FAKE_C_FILE
-	sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $GUI_FILES >> $FAKE_C_FILE
-	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $GUI_FILES >> $FAKE_C_FILE
-    fi
-    if test -n "$(ls $PREFERENCE_FILES 2>/dev/null)"; then
-	sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $PREFERENCE_FILES  >> $FAKE_C_FILE
-    fi
+function preprocess_xml() {
+#
+# Process XML files, both help or xslt
+#
+    COMMON_SED='s/&amp;/\&/g'
+
+    FILES=$(ls $* 2>/dev/null)
+    [ -z "$FILES" ] && return
+    FAKE_C_FILE=$(printf "%s/src/%s_fake_xml.c" $PATHTOPROCESS $MODULE)
+
+    # remove line which does NOT contain label
+    sed  -e '/label/!s/.*//'  -e 's/.*label="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $FILES > $FAKE_C_FILE
+    # extract the content of the label and switch it to a gettext fake instruction
+    sed  -e '/tooltiptext/!s/.*//'  -e 's/.*tooltiptext="\([^"]*\)".*/gettext("\1")/' -e '/^$/d' -e $COMMON_SED $FILES >> $FAKE_C_FILE
+    # remove empty lines
+    sed -e 's/.*_(\([^"]*\)).*/gettext("\1")/' $FILES >> $FAKE_C_FILE
 }
 
-
-function generate_find_command {
+function generate_find_command() {
     # Setting the shell's Internal Field Separator to null
     OLD_IFS=$IFS
     IFS=''
@@ -84,7 +82,7 @@ function generate_find_command {
     local EXT=(${!array_string})
 #
 # Retrieve all the sources files
-    FILESCMD='find . -type f '
+    FILESCMD="find $PATHS -type f "
 ####### GENERATES THE FIND COMMAND
     i=0
     NB_ELEMENT=${#EXT[@]}
@@ -101,73 +99,41 @@ function generate_find_command {
     IFS=$OLD_IFS
 }
 
+function process_src() {
+    PATHS=$(ls -d $* 2>/dev/null)
+    [ -z "$PATHS" ] && return
 
-# Process all the modules ... then, build the list
-if test $PROCESS_ALL -eq 1; then
-    cd $SCI/modules/
-    MODULES=`find . -maxdepth 1 -type d  ! -name ".*" ! -name 'javasci'`
-fi
+    generate_find_command EXTENSIONS
+    [ -z "$FILESCMD" ] && return
+    FILES=`eval $FILESCMD|sort |tr "\n" " "`
 
+    # It is Scilab code... xgettext does not how to process it
+    XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
 
-function process_module {
+    echo "..... Source files in $*"
+    $XGETTEXT $XGETTEXT_OPTIONS -p $PATHTOPROCESS/$TARGETDIR -o ${MODULE}_src.pot $FILES >/dev/null 2>>xgettext_errors.log
+}
 
-    IS_MACROS=0
-    if test "$1" == "macros"; then
-        IS_MACROS=1
-    fi
+function process_macros() {
+    PATHS=$(ls -d $* 2>/dev/null)
+    [ -z "$PATHS" ] && return
 
-# Extract label from xml files
-    process_XML_files
-    if test $IS_MACROS -eq 1; then
-        generate_find_command EXTENSIONS_MACROS
-        local TARGETDIR=$TARGETDIR_MACROS
-    else
-        generate_find_command EXTENSIONS
-    fi
-    if test ! -d $TARGETDIR; then mkdir $TARGETDIR; fi
+    generate_find_command EXTENSIONS_MACROS
+    FILES=`eval $FILESCMD|sort |tr "\n" " "`
 
-    FILES=`eval $FILESCMD|tr "\n" " "`
+    # It is Scilab code... xgettext does not how to process it
+    XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
 
-    if test "$MODULE" = "core" -o "$MODULE" = "./core"; then
+    if test "$MODULE" = "core"; then
         # We want some strings from the ROOTDIR when it is the core module
         FILES="$FILES `ls $SCI/etc/scilab.*`"
     fi
 
-    # Also extract string straight from the XML because we have some gettext calls in it
-    if test -n "$(ls $GUI_FILES 2>/dev/null)" -a $IS_MACROS -ne 1; then
-        FILES="$FILES `ls $GUI_FILES`"
-    fi
+    echo "..... Scilab macros in $*"
+    $XGETTEXT $XGETTEXT_OPTIONS -p $PATHTOPROCESS/$TARGETDIR -o ${MODULE}_macros.pot $FILES >/dev/null 2>>xgettext_errors.log
 
-    FILES=$(echo $FILES|sort)
-
-    MODULE_NAME=`echo $MODULE|sed -e 's|./||'` # avoid to have ./module_name
-
-    if test $IS_MACROS -eq 1; then
-        echo "..... Parsing all Scilab macros in $PATHTOPROCESS"
-    else
-        echo "..... Parsing all sources in $PATHTOPROCESS"
-    fi
-# Parse all the sources and get the string which should be localized
-
-
-    if test $IS_MACROS -eq 1; then
-        MODULE_NAME=$MODULE_NAME-macros
-    fi
-    LOCALIZATION_FILE_US=$TARGETDIR/$MODULE_NAME.pot
-
-    if test -f $LOCALIZATION_FILE_US; then
-        # Localization file already existing. Retrieve POT-Creation-Date
-        CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US|sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
-    fi
-
-    echo "........ Generate the English localization file by parsing the code"
-    if test $IS_MACROS -eq 1; then
-        # It is Scilab code... xgettext does not how to process it
-        XGETTEXT_OPTIONS="$XGETTEXT_OPTIONS --language=C"
-    fi
-
-    $XGETTEXT $XGETTEXT_OPTIONS -p $TARGETDIR/ -o $MODULE_NAME.pot.tmp $FILES > /dev/null
-    if test ! -f $MODULE_NAME.pot.tmp -a $IS_MACROS -eq 1; then
+    # Post-process
+    if test -f $PATHTOPROCESS/$TARGETDIR/${MODULE}_macros.pot; then
         # Empty file => no string found
         # We are modifing on the fly Scilab localization files
         #
@@ -175,65 +141,77 @@ function process_module {
         # "" -> \"
         # '' -> '
         # '" -> \"
-        # "' -> ' -e "s/\"'/'/g" 
-        sed -i -e "s/\"\"/\\\"/g" -e "s/''/'/g" -e "s/'\"/\\\"/g" $TARGETDIR/$MODULE_NAME.pot.tmp
+        # "' -> '
+        sed -i -e "s/\"\"/\\\"/g" -e "s/''/'/g" -e "s/'\"/\\\"/g" $PATHTOPROCESS/$TARGETDIR/${MODULE}_macros.pot
         # We introduced invalid tag [msgstr "] and [msgid "]
         # restore them [msgstr ""] and [msgid ""]
-        sed -i -e "s/msgstr \"$/msgstr \"\"/" -e "s/msgid \"$/msgid \"\"/" $TARGETDIR/$MODULE_NAME.pot.tmp
+        sed -i -e "s/msgstr \"$/msgstr \"\"/" -e "s/msgid \"$/msgid \"\"/" $PATHTOPROCESS/$TARGETDIR/${MODULE}_macros.pot
     fi
+}
+
+function merge_pot() {
 
     if test  -z "$CreationDate"; then
         # File not existing before ... Set the current date a POT-Creation-Date
-        sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     else
-        sed -e "s/MODULE/$MODULE_NAME/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
+        sed -e "s/MODULE/$MODULE/" -e "s/CREATION-DATE/$CreationDate/" -e "s/REVISION-DATE/`date +'%Y-%m-%d %H:%M'`$TIMEZONE/" $HEADER_TEMPLATE > $LOCALIZATION_FILE_US
     fi
 
-    msguniq -u $LOCALIZATION_FILE_US.tmp >> $LOCALIZATION_FILE_US 2> /dev/null
+    for f in $PATHTOPROCESS/$TARGETDIR/${MODULE}_{src,macros}.pot; do
+        [ -f $f ] && msgcat $f >> $LOCALIZATION_FILE_US.tmp
+        [ $? -eq 0 ] && rm -f $f
+    done
+    [ -f $LOCALIZATION_FILE_US.tmp ] && msguniq -u $LOCALIZATION_FILE_US.tmp >>$LOCALIZATION_FILE_US
+    rm -f $LOCALIZATION_FILE_US.tmp
 
-    rm $LOCALIZATION_FILE_US.tmp 2> /dev/null
-
-    MSGOUTPUT=$(msgcat $LOCALIZATION_FILE_US)
+    MSGCOUNT=$(msgcat $LOCALIZATION_FILE_US |grep msgid |wc -l)
     if test $? -ne 0; then
         echo "Badly formated localization files"
+        cd -
         exit 32
     fi
-    if test -z "$(msgcat $LOCALIZATION_FILE_US)"; then
+    if test $MSGCOUNT -le 1 ; then
         # empty template. Kill it!
-        rm $LOCALIZATION_FILE_US
+        rm -f $LOCALIZATION_FILE_US
     fi
-
-    if test $IS_MACROS -eq 1; then
-        LOCALIZATION_FILE_NATIVE=$(echo $LOCALIZATION_FILE_US|sed -e "s|-macros||g" -e "s|_macros||g")
-        if test ! -f $LOCALIZATION_FILE_NATIVE; then
-            # no native code. Copy the macro one
-            cp $LOCALIZATION_FILE_US $LOCALIZATION_FILE_NATIVE
-        else
-        # merge locale macros => native code
-            msgcat --use-first  -o $LOCALIZATION_FILE_NATIVE.tmp  $LOCALIZATION_FILE_NATIVE $LOCALIZATION_FILE_US
-            mv $LOCALIZATION_FILE_NATIVE.tmp $LOCALIZATION_FILE_NATIVE
-        fi
-        rm -rf $TARGETDIR_MACROS
-    fi
-
-    # Remove fake file used to extract string from XML
-    rm $FAKE_C_FILE 2> /dev/null
-
-
 }
 
+function upgrade_po() {
+    # for all available languages, upgrade the po files
+    for f in $1/*.po; do
+        msguniq --use-first -o $f $f &>/dev/null ;
+        msgmerge -U  $1/${MODULE}.pot &>/dev/null ;
+    done
+}
+
+
+rm -f xgettext_errors.log # cleanup the error log
+cd $SCI # use relative path to SCI
 for MODULE in $MODULES; do
 
-    PATHTOPROCESS=$SCI/modules/$MODULE/
+    PATHTOPROCESS=modules/$MODULE
     if test ! -d $PATHTOPROCESS; then
         echo "... Cannot find module $PATHTOPROCESS"
-        exit
+        cd - >/dev/null
+        exit -1
     fi
-    echo "... Processing module $MODULE"
+    echo "... Processing \"$MODULE\""
+    LOCALIZATION_FILE_US=$PATHTOPROCESS/$TARGETDIR/${MODULE}.pot
 
-    cd $PATHTOPROCESS
-    process_module "src"
-    process_module "macros"
+    if test ! -d $PATHTOPROCESS/$TARGETDIR; then mkdir $PATHTOPROCESS/$TARGETDIR; fi
+    if test -f $LOCALIZATION_FILE_US; then
+        # Localization file already existing. Retrieve POT-Creation-Date
+        CreationDate=`grep POT-Creation-Date: $LOCALIZATION_FILE_US|sed -e 's|\"POT-Creation-Date: \(.*\)\\\n\"|\1|'`
+    fi
+ 
+    preprocess_xml $PATHTOPROCESS/etc/*.x*l $PATHTOPROCESS/etc/*.x*l
+    process_macros $PATHTOPROCESS/macros $PATHTOPROCESS/etc
+    process_src $PATHTOPROCESS/sci_gateway $PATHTOPROCESS/src
+    rm -f $PATHTOPROCESS/src/${MODULE}_fake_xml.c
+    merge_pot $PATHTOPROCESS/locales/*.pot
+    upgrade_po $PATHTOPROCESS/locales
 
-    cd $SCI/
 done # Browse modules
+cd - >/dev/null
+

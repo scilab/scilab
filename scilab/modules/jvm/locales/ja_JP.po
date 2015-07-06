@@ -46,7 +46,8 @@ msgstr "%s:  java.library.pathにpathを追加できませんでした。: %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d or #%d: String expected.\n"
-msgstr "%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d または #%d の型が間違っています: 文字列を指定してください.\n"
 
 #
 # File: src/c/InitializeJVM.c, line: 40
@@ -80,15 +81,16 @@ msgid ""
 "available).\n"
 msgstr ""
 "\n"
-"Scilab Java "
-"メイン・クラスを生成できません(私達は、主なScilabクラスを見つけることができません。Scilabとサードパーティパッケージが利用できるかどうか確かめ"
+"Scilab Java メイン・クラスを生成できません(私達は、主なScilabクラスを見つける"
+"ことができません。Scilabとサードパーティパッケージが利用できるかどうか確かめ"
 "て下さい)\n"
 
 msgid ""
 "If Scilab is used from Java, make sure that your IDE (ex: Netbeans, etc) is "
 "not adding extra dependencies which could not be found at runtime.\n"
 msgstr ""
-"javaからScilabを使用する場合, IDE (Netbeansなど)が実行時に解決できない外部への依存性を付加しないようにしてください.\n"
+"javaからScilabを使用する場合, IDE (Netbeansなど)が実行時に解決できない外部へ"
+"の依存性を付加しないようにしてください.\n"
 
 msgid "Could not access to the Main Scilab Class:\n"
 msgstr "Main Scilabクラスにアクセスできませんでした.\n"
@@ -114,8 +116,8 @@ msgid ""
 "has been loaded by Scilab before calling this function.\n"
 msgstr ""
 "\n"
-"エラー: Scilab Java環境(jvm_SCILAB)から戻れません: "
-"JVMがこのファンクションを呼ぶ前にScilabによってロードされたかどうか確かめて下さい。\n"
+"エラー: Scilab Java環境(jvm_SCILAB)から戻れません: JVMがこのファンクションを"
+"呼ぶ前にScilabによってロードされたかどうか確かめて下さい。\n"
 
 #, c-format
 msgid ""
@@ -124,7 +126,8 @@ msgid ""
 "existing JVM.\n"
 msgstr ""
 "\n"
-"奇妙なエラー. Java からコールされましたが, 実行中のJVMを見つけることができませんでした.\n"
+"奇妙なエラー. Java からコールされましたが, 実行中のJVMを見つけることができま"
+"せんでした.\n"
 
 #
 # File: src/c/JVM.c, line: 117
@@ -142,25 +145,33 @@ msgstr "エラー: %s\n"
 
 #, c-format
 msgid ""
-"If you are using a binary version of Scilab, please report a bug "
-"http://bugzilla.scilab.org/.\n"
-msgstr "バイナリ版のScilabを使用している場合, http://bugzilla.scilab.org/ にバグを報告してください.\n"
+"If you are using a binary version of Scilab, please report a bug http://"
+"bugzilla.scilab.org/.\n"
+msgstr ""
+"バイナリ版のScilabを使用している場合, http://bugzilla.scilab.org/ にバグを報"
+"告してください.\n"
 
 #, c-format
 msgid ""
-"If you are using a self-built version of Scilab, update the script "
-"bin/scilab to provide the path to the JVM.\n"
-msgstr "独自に構築したScilabを使用している場合, bin/scilab スクリプトを更新し, JVMのパスを指定してください.\n"
+"If you are using a self-built version of Scilab, update the script bin/"
+"scilab to provide the path to the JVM.\n"
+msgstr ""
+"独自に構築したScilabを使用している場合, bin/scilab スクリプトを更新し, JVMの"
+"パスを指定してください.\n"
 
 #, c-format
 msgid "The problem might be related to SELinux. Try to deactivate it.\n"
-msgstr "この問題はSELinuxに関係する可能性があります. SELinuxを無効にしてみてください.\n"
+msgstr ""
+"この問題はSELinuxに関係する可能性があります. SELinuxを無効にしてみてくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "Please also check that you are not trying to run Scilab 64 bits on a 32 bits "
 "system (or vice versa).\n"
-msgstr "Scilab 64ビット版を32ビットシステムで実行しようとしていないかについても確認してください.\n"
+msgstr ""
+"Scilab 64ビット版を32ビットシステムで実行しようとしていないかについても確認し"
+"てください.\n"
 
 #
 # File: src/c/JVM.c, line: 152
@@ -194,7 +205,8 @@ msgid ""
 "JVM error in AttachCurrentThread: Could not attach to the current thread.\n"
 msgstr ""
 "\n"
-"AttachCurrentThread で JVM エラーを発生しました : カレントのスレッドにアタッチできませんでした.\n"
+"AttachCurrentThread で JVM エラーを発生しました : カレントのスレッドにアタッ"
+"チできませんでした.\n"
 
 #
 # File: src/c/JVM_commons.c, line: 82
@@ -261,7 +273,8 @@ msgid ""
 "Error: Not a valid configuration file %s (encoding not '%s') Encoding '%s' "
 "found.\n"
 msgstr ""
-"エラー: 構成ファイル %s が適切ではありません(エンコーディングが '%s' ではない) エンコーディング '%s' が見つかりました\n"
+"エラー: 構成ファイル %s が適切ではありません(エンコーディングが '%s' ではな"
+"い) エンコーディング '%s' が見つかりました\n"
 
 #
 # File: src/c/loadClasspath.c, line: 78
@@ -286,8 +299,8 @@ msgid ""
 "Error : Not a valid classpath file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' "
-"が見つかりました\n"
+"エラー: classpathファイル %s が適切ではありません(エンコーディングが'utf-8'で"
+"はない) エンコーディング '%s' が見つかりました\n"
 
 #
 # File: src/c/loadClasspath.c, line: 184
@@ -314,7 +327,8 @@ msgstr ""
 msgid ""
 "Error : Not a valid path file %s (encoding not 'utf-8') Encoding '%s' found\n"
 msgstr ""
-"エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではない) エンコーディング '%s' が見つかりました\n"
+"エラー: pathファイル %s が適切ではありません(エンコーディングが'utf-8'ではな"
+"い) エンコーディング '%s' が見つかりました\n"
 
 #
 # File: src/nojvm/nojvm.c, line: 27

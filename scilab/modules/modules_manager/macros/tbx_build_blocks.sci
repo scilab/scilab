@@ -27,10 +27,10 @@ function tbx_build_blocks(module, names, macros_path)
 
     // checking module argument
     if type(module) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
     if size(module,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",1));
     end
     if ~isdir(module) then
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",module));
@@ -38,7 +38,7 @@ function tbx_build_blocks(module, names, macros_path)
 
     // checking names argument
     if type(names) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",2));
     end
 
     // checking optional macros_path argument
@@ -46,10 +46,10 @@ function tbx_build_blocks(module, names, macros_path)
         macros_path = module + "/macros/";
     end
     if type(macros_path) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if size(macros_path,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"tbx_build_blocks",3));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"tbx_build_blocks",3));
     end
     if ~isdir(macros_path) then
         error(msprintf(gettext("%s: The directory ''%s'' doesn''t exist or is not read accessible.\n"),"tbx_build_blocks",macros_path));

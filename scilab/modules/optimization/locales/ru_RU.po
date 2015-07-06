@@ -31,8 +31,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидался размер %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалось количество столбцов "
 "%d.\n"
@@ -343,10 +342,8 @@ msgstr "ожидается, что f = %f\n"
 msgid "Relative error on f = %e\n"
 msgstr "Относительная ошибка по f = %e\n"
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
-msgstr ""
-"Иллюстрирует чувствительномсь алгоритма Нельдера-Мида к размерности\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgstr "Иллюстрирует чувствительномсь алгоритма Нельдера-Мида к размерности\n"
 
 msgid ""
 "Han and Neumann. Effect of dimensionality on the nelder-mead simplex method. "
@@ -529,8 +526,7 @@ msgstr "%s: Элементы параметра №%d должны быть в [
 
 #, c-format
 msgid "%s: Wrong type for input argument #%s: external expected.\n"
-msgstr ""
-"%s: Неверный тип входного параметра №%s: ожидалась внешняя функция.\n"
+msgstr "%s: Неверный тип входного параметра №%s: ожидалась внешняя функция.\n"
 
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
@@ -560,14 +556,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Неверное количество входных параметров: ожидалось от %d до %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидался N-мерный массив.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A column vector expected.\n"
-msgstr ""
-"%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
+msgstr "%s: Неверный размер входного параметра №%d: ожидался вектор-столбец.\n"
 
 #, c-format
 msgid "%s: Order must be 1, 2 or 4.\n"
@@ -635,8 +629,7 @@ msgstr ""
 "[0,1]."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: Неверное значение входного аргумента №%d. Максимальное количество "
 "итераций (maxiter) должно быть больше 1."
@@ -667,8 +660,7 @@ msgstr ""
 "%s: Неверное значение входного аргумента №%d. x0 меньше нижней границы lb."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: Неверное значение входного аргумента №%d. x0 больше верхней границы ub."
 
@@ -982,8 +974,7 @@ msgstr ""
 #, c-format
 msgid ""
 "%s: The value of the 'PlotFcns' option is neither a function nor a list."
-msgstr ""
-"%s: Значение параметра 'PlotFcns' не является ни функцией, ни списком."
+msgstr "%s: Значение параметра 'PlotFcns' не является ни функцией, ни списком."
 
 #, c-format
 msgid "Calling sequence %s is obsolete."
@@ -1040,13 +1031,11 @@ msgstr ""
 "получено %s."
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr "%s: Ожидалась функция, но для переменной %s на вход №%d получено %s."
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Ожидалось логическое значение, но для переменной %s на вход №%d получено "
 "%s."
@@ -1135,8 +1124,7 @@ msgstr ""
 "%s: Неизвестный метод %s обнаружения необходимости восстановления оптимизации"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: Случайные границы начального симплекса недоступны без границ."
 
 #, c-format
@@ -1159,8 +1147,7 @@ msgstr ""
 "неравенств"
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr "%s: В задаче нет ограничений, но алгоритм Box разработан для них."
 
 #, c-format
@@ -1172,8 +1159,7 @@ msgstr ""
 "методом %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr ""
 
 #, c-format
@@ -1226,8 +1212,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d to %d expected.\n"
-msgstr ""
-"%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
+msgstr "%s: Неверное количество выходных аргументов: ожидалось от %d до %d.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Function or list expected.\n"
@@ -1294,8 +1279,7 @@ msgstr ""
 "%d.\n"
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr "%s: Верхняя граница %s переменной №%d меньше нижней границы %s.\n"
 
 #, c-format
@@ -1329,8 +1313,7 @@ msgstr "%s: Неизвестное значение %s для параметра
 #, c-format
 msgid ""
 "%s: Unexpected number of input arguments : %d provided while 2 are expected."
-msgstr ""
-"%s: Неверное количество входных параметров: задано %d, а ожидалось 2."
+msgstr "%s: Неверное количество входных параметров: задано %d, а ожидалось 2."
 
 #, c-format
 msgid ""
@@ -1387,8 +1370,7 @@ msgstr "%s: Неверный тип входного аргумента №%d: �
 msgid ""
 "%s: Number of rows of x is %d, which is different from number of vertices = "
 "%d."
-msgstr ""
-"%s: Количество строк x равно %d, что отличается от числа вершин = %d."
+msgstr "%s: Количество строк x равно %d, что отличается от числа вершин = %d."
 
 #, c-format
 msgid ""
@@ -1400,8 +1382,7 @@ msgstr ""
 msgid ""
 "%s: Number of rows of fv is %d, which is different from number of vertices = "
 "%d."
-msgstr ""
-"%s: Количество строк fv равно %d, что отличается от числа вершин = %d."
+msgstr "%s: Количество строк fv равно %d, что отличается от числа вершин = %d."
 
 #, c-format
 msgid "%s: Number of columns of fv is %d, which is different from 1."
@@ -1414,8 +1395,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s: Неверное значение входного аргумента №%d: ожидалось целое число.\n"
+msgstr "%s: Неверное значение входного аргумента №%d: ожидалось целое число.\n"
 
 #, c-format
 msgid ""
@@ -1514,8 +1494,7 @@ msgstr "%s: В массиве значений функции количеств
 msgid ""
 "%s: The number of columns in the function value array is %d, while expected "
 "1."
-msgstr ""
-"%s: В массиве значений функции количество столбцов %d, а ожидалось 1."
+msgstr "%s: В массиве значений функции количество столбцов %d, а ожидалось 1."
 
 #, c-format
 msgid "%s: The number of rows in x is %d, while expected %d."
@@ -1540,8 +1519,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real matrix expected.\n"
-msgstr ""
-"%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
+msgstr "%s: Неверный тип аргумента %d: Ожидалась матрица вещественных чисел.\n"
 
 #, c-format
 msgid ""

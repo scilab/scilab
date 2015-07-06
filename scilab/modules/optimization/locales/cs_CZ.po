@@ -30,8 +30,7 @@ msgid "%s: Wrong size for input argument #%d: %d expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: number of columns %d expected.\n"
+msgid "%s: Wrong size for input argument #%d: number of columns %d expected.\n"
 msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: očekáváno %d jako počet "
 "sloupců.\n"
@@ -42,8 +41,7 @@ msgstr "%s: Chyba při přidělování paměti.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A real scalar expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
+msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván reálný skalár.\n"
 
 #, c-format
 msgid "%s: Too many iterations (more than %d).\n"
@@ -343,8 +341,7 @@ msgstr "očekáváno f = %f\n"
 msgid "Relative error on f = %e\n"
 msgstr "Relativní chyba v f = %e\n"
 
-msgid ""
-"Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
+msgid "Illustrates the sensitivity to dimension of the Nelder-Mead algorithm\n"
 msgstr "Znázorňuje citlivost na rozměry algoritmu Nelder-Mead\n"
 
 msgid ""
@@ -542,8 +539,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%s: Očekáváno externí.\n"
 
 #, c-format
 msgid "%s: Jacobian cannot be a list, parameters must be set in G."
-msgstr ""
-"%s: Jacobiho matice nemůže být seznam, parametry musí být zadány v G."
+msgstr "%s: Jacobiho matice nemůže být seznam, parametry musí být zadány v G."
 
 #, c-format
 msgid "%s: Wrong measurement matrix."
@@ -559,16 +555,14 @@ msgstr "%s: Váhová matice musí být čtvercová."
 
 #, c-format
 msgid "%s: With hard coded function, user must give output size of G."
-msgstr ""
-"%s: S napevno zadanou funkcí musí uživatel zadat výstup o velikosti G."
+msgstr "%s: S napevno zadanou funkcí musí uživatel zadat výstup o velikosti G."
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d až %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
+msgid "%s: Wrong type for input argument #%d: N-dimensional array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno n-rozměrné pole.\n"
 
 #, c-format
@@ -636,8 +630,7 @@ msgid "%s: Wrong value for input argument #%d. gam must be in [0,1]."
 msgstr "%s: Špatná hodnota vstupního argumentu #%d. gam musí být v [0,1]."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. maxiter must be greater than 1."
+msgid "%s: Wrong value for input argument #%d. maxiter must be greater than 1."
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. maxiter musí být větší než 1."
 
@@ -667,8 +660,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. x0 je nižší než dolní hranice lb."
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
+msgid "%s: Wrong value for input argument #%d. x0 greater than upper bound ub."
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d. x0 je větší než horní hranice ub."
 
@@ -721,8 +713,7 @@ msgstr "%s: řešení neomezeno."
 #, c-format
 msgid ""
 "%s: Ill-posed problem. Number of unknowns (%s) > number of constraints (%s)"
-msgstr ""
-"%s: Špatně položený problém. Počet neznámých (%s) > počet omezení (%s)"
+msgstr "%s: Špatně položený problém. Počet neznámých (%s) > počet omezení (%s)"
 
 #, c-format
 msgid "%s: rank deficient problem"
@@ -1021,14 +1012,12 @@ msgstr ""
 "předáno %s."
 
 #, c-format
-msgid ""
-"%s: Expected function but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected function but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Očekávána funkce ale pro proměnnou %s u vstupu #%d, míst toho předáno %s."
 
 #, c-format
-msgid ""
-"%s: Expected boolean but for variable %s at input #%d, got %s instead."
+msgid "%s: Expected boolean but for variable %s at input #%d, got %s instead."
 msgstr ""
 "%s: Očekáván boolean ale pro proměnnou %s u vstupu #%d, místo toho předáno "
 "%s."
@@ -1111,8 +1100,7 @@ msgid "%s: Unknown restart detection %s"
 msgstr "%s: Neznámé zjištění restartu %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds initial simplex is not available without bounds."
+msgid "%s: Randomized bounds initial simplex is not available without bounds."
 msgstr "%s: Počáteční simplex náhodných hranic není bez hranic dostupný."
 
 #, c-format
@@ -1133,8 +1121,7 @@ msgid ""
 msgstr "%s: Nelze škálovat vrchol #%d/%d ve [%s] do omezení nerovnosti"
 
 #, c-format
-msgid ""
-"%s: Problem has no constraints, but Box algorithm is designed for them."
+msgid "%s: Problem has no constraints, but Box algorithm is designed for them."
 msgstr ""
 "%s: Problém nemá žádná omezení, ale Boxův algoritmus je pro ně navržen."
 
@@ -1147,8 +1134,7 @@ msgstr ""
 "restartu %s"
 
 #, c-format
-msgid ""
-"%s: Randomized bounds restart simplex is not available without bounds."
+msgid "%s: Randomized bounds restart simplex is not available without bounds."
 msgstr "%s: Simplex restartu s náhodnými hranicemi není bez nich dostupný."
 
 #, c-format
@@ -1256,8 +1242,7 @@ msgid ""
 msgstr "%s: Počet proměnných %d se neshoduje s počtem min hranic: %d.\n"
 
 #, c-format
-msgid ""
-"%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
+msgid "%s: The max bound %s for variable #%d is lower than the min bound %s.\n"
 msgstr "%s: Max hranice %s pro proměnnou #%d je nižší než min hranice %s.\n"
 
 #, c-format

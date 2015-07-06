@@ -241,8 +241,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 
 #, c-format

@@ -33,8 +33,7 @@ msgstr "%s: Не удалось открыть файл %s.\n"
 
 #, c-format
 msgid "%s: Wrong SOD file format version. Expected: %d Found: %d\n"
-msgstr ""
-"%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
+msgstr "%s: Неверная версия формата SOD-файла. Ожидалась: %d. Обнаружена: %d\n"
 
 #, c-format
 msgid "%s: Unable to delete existing variable \"%s\"."
@@ -59,7 +58,7 @@ msgid "%s: Unable to update HDF5 format version in \"%s\"."
 msgstr "%s: Невозможно обновить версию формата HDF5 в \"%s\"."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -71,8 +70,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s: Некорректный H5Object.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или H5Object.\n"
 
@@ -81,7 +79,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Недостаточно памяти.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format
@@ -109,8 +107,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A single string expected.\n"
-msgstr ""
-"%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
+msgstr "%s: Неверный тип входного аргумента №%d: ожидалась одиночная строка.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: six row vector expected.\n"
@@ -133,7 +130,7 @@ msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: ожидался H5Object.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидалось строковое значение.\n"
 
@@ -168,8 +165,7 @@ msgstr ""
 "строка или вектор-столбец.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался вектор-строка строковых "
 "значений.\n"
@@ -186,8 +182,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s: Не могу использовать H5Object: недопустимый объект.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или логическое "
 "значение.\n"
@@ -259,8 +254,7 @@ msgstr ""
 "%s: Неверное количество входных аргументов: ожидалось больше, чем %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидался тип string или double.\n"
 

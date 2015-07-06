@@ -47,8 +47,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván skalár, 'c', nebo 'd'.\n"
 
 #, c-format
-msgid ""
-"%s: Affection of a string in a matrix of numbers is not implemented.\n"
+msgid "%s: Affection of a string in a matrix of numbers is not implemented.\n"
 msgstr "%s: Ovlivnění řetězce v matici čísel není zavedeno.\n"
 
 #, c-format
@@ -66,8 +65,7 @@ msgid "%s: Invalid field name.\n"
 msgstr "%s: Neplatný název pole.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: a valid field name expected.\n"
+msgid "%s: Wrong value for input argument #%d: a valid field name expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván platný název pole.\n"
 
@@ -80,8 +78,7 @@ msgid "%s: Wrong number of output arguments.\n"
 msgstr "%s: Špatný počet výstupních argumentů.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
+msgid "%s: Wrong size for input argument #%d: Transpose can not be defined.\n"
 msgstr ""
 "%s: ŠPatná velikost vstupního argumentu #%d: Transpozice nemůže být určena.\n"
 
@@ -115,7 +112,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -123,11 +120,11 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -184,8 +181,7 @@ msgid "%s: Input and output matrices  must have the same number of elements"
 msgstr "%s: Vstupní a výstupní matice musí mít stejný počet prvků"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 
@@ -243,12 +239,12 @@ msgid "%s: Wrong size for input argument(s).\n"
 msgstr "%s: Špatná velikost vstupních argumentů.\n"
 
 msgid ""
-"  Warning: Syntax vector ^ scalar is obsolete it will be removed in scilab-"
-"6.\n"
+"  Warning: Syntax vector ^ scalar is obsolete it will be removed in "
+"scilab-6.\n"
 "           Use vector .^ scalar instead.\n"
 msgstr ""
-"  Varování: Syntaxe vektor ^ skalár je zastaralá, bude odstraněna v scilab-"
-"6.\n"
+"  Varování: Syntaxe vektor ^ skalár je zastaralá, bude odstraněna v "
+"scilab-6.\n"
 "           Místo toho použijte vektor .^ skalár.\n"
 
 #, c-format
@@ -293,8 +289,7 @@ msgid "%s: Wrong type for argument #%d: Real scalar expected.\n"
 msgstr "%s: Špatný typ argumentu %d: Očekáván reálný skalár.\n"
 
 #, c-format
-msgid ""
-"%s: input and output matrices  must have the same number of elements.\n"
+msgid "%s: input and output matrices  must have the same number of elements.\n"
 msgstr "%s: vstupní a výstupní matice musí mít stejný počet prvků.\n"
 
 #, c-format

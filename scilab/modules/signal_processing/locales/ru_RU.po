@@ -159,8 +159,7 @@ msgid "2-D convolution"
 msgstr "Двумерная свёртка"
 
 msgid "Arma simulation and identification"
-msgstr ""
-"Моделирование авторегрессионного скользящего среднего и идентификация"
+msgstr "Моделирование авторегрессионного скользящего среднего и идентификация"
 
 msgid "Arma, bidimensional version"
 msgstr "Модель авторегрессионного скользящего среднего, двумерная версия"
@@ -326,8 +325,7 @@ msgstr ""
 "на-1 либо два полинома\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: первый элемент НЕ должен быть "
 "%s.\n"
@@ -386,8 +384,7 @@ msgstr ""
 "число.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось положительное целое "
 "значение.\n"
@@ -473,8 +470,7 @@ msgstr ""
 "функций.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: ожидался массив из %d "
 "элементов.\n"

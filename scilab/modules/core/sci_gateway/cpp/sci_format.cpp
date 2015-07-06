@@ -137,7 +137,7 @@ types::Function::ReturnValue sci_format(types::typed_list &in, int _iRetCount, t
         //first argument
         if (in[0]->isString() == false && in[0]->isDouble() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected."), "format", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected."), "format", 1);
             return types::Function::Error;
         }
 

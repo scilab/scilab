@@ -51,8 +51,7 @@ msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
 msgstr "%s: Duplica nós ou colineares a todos os nós (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Tamanho errado para os argumentos de entrada #%d e #%d: Esperava-se "
 "tamanhos iguais.\n"
@@ -64,8 +63,7 @@ msgstr ""
 "desconhecido.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Valores errados para os argumentos de entrada #%d e #%d: Esperava-se "
 "tamanhos iguais.\n"
@@ -166,8 +164,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s: Tamanho errado para os argumentos de entrada #%d, #%d ou #%d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x e/ou y não estão em ordem estritamente crescente (ou +-inf detectado)\n"
 
@@ -210,8 +207,7 @@ msgstr "Tipo errado para o argumento de entrada #%d: Esperava-se string.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
-"%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
+msgstr "%s: Número errado de argumentos de entrada: deve ser entre %d e %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"

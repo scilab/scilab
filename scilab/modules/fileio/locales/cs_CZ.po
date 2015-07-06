@@ -33,7 +33,7 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáváno pole řetězců.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -65,7 +65,7 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s: Varování: Adresář '%s' již existuje.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu: Očekáván řetězec.\n"
 
 #, c-format
@@ -94,8 +94,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d.\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s: Chyba při pokusu o získání názvu současného adresáře,\n"
 
 #, c-format
@@ -122,7 +121,7 @@ msgstr ""
 "čísla.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -143,11 +142,10 @@ msgstr "%s: nelze přečíst soubor %s.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: '%s' je neplatná cesta.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -168,8 +166,7 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s: Soubor %s není ve Scilabu otevřen.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána matice řetězců.\n"
 
 #, c-format
@@ -225,8 +222,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s: Žádný takový soubor %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáváno celé číslo nebo řetězec.\n"
 
@@ -332,8 +328,7 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván Řetězec nebo Celé číslo.\n"
 
@@ -432,8 +427,7 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s: Vyskytla se chyba: příliš mnoho (> %d) převodů vyžadováno.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (> %d) pro příkaz %%[.\n"
 
@@ -441,14 +435,12 @@ msgid "Bad conversion."
 msgstr "Špatný převod."
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (< %d) pro příkaz %%s.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr ""
 "%s: Vyskytla se chyba: pole %d je příliš dlouhé (< %d) pro příkaz %%c.\n"
 
@@ -515,8 +507,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s: Ve Scilabu není otevřen žádný soubor.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d ('%s'): Formát nerozpoznán.\n"
 
 #, c-format
@@ -528,8 +519,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s: Chyba při otevírání, čtení nebo zápisu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 

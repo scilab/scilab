@@ -50,7 +50,7 @@ msgstr ""
 "%s: Nieprawidłowa wartość dla argumentu wejściowego #%d: oczekiwano '%s'\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Niewłaściwy rozmiar parametru wejściowego #%d: oczekiwano ciąg znaków.\n"
 
@@ -144,8 +144,7 @@ msgstr ""
 "macierz m*3lub m*6.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość argumentu wejściowego nr %d: %s musi być pomiędzy "
 "%d a %d.\n"
@@ -192,8 +191,7 @@ msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 
 #, c-format

@@ -26,15 +26,14 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
-msgstr ""
-"%s : Impossible de trouver ou de créer le répertoire de travail %s.\n"
+msgstr "%s : Impossible de trouver ou de créer le répertoire de travail %s.\n"
 
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
@@ -107,12 +106,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Suppression des fichiers d'aide --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
-"attendue.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s : Le navigateur d'aide n'est pas accessible dans le mode %s.\n"
 
@@ -157,7 +150,7 @@ msgid "%s: File skipped %s."
 msgstr "%s : Fichier non géré %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -175,12 +168,10 @@ msgid "Arguments"
 msgstr "Arguments"
 
 msgid "            Add here the input/output argument description."
-msgstr ""
-"            Ajouter ici la description des arguments d'entrée/sortie."
+msgstr "            Ajouter ici la description des arguments d'entrée/sortie."
 
 msgid "          Add here a paragraph of the function description."
-msgstr ""
-"          Ajouter ici un paragraphe sur la description de la fonction."
+msgstr "          Ajouter ici un paragraphe sur la description de la fonction."
 
 msgid "          Other paragraph can be added"
 msgstr "          Un autre paragraphe peut être ajouté"
@@ -195,8 +186,7 @@ msgid "        Add here scilab instructions and comments"
 msgstr "        Ajouter ici les instructions et commentaires Scilab"
 
 msgid "        Add here scilab instructions to generate a graphic"
-msgstr ""
-"        Ajouter ici les instructions Scilab pour générer un graphique"
+msgstr "        Ajouter ici les instructions Scilab pour générer un graphique"
 
 msgid "See Also"
 msgstr "Voir aussi"
@@ -304,12 +294,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
-"caractères attendue.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
@@ -335,8 +319,8 @@ msgstr "%s : Le fichier CHAPTER n'est pas bien formaté à la ligne %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : Une chaîne de caractères "
 "terminant par .last_successful_build attendue.\n"

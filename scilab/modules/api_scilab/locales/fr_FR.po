@@ -53,8 +53,7 @@ msgstr "%s : Impossible d'obtenir la variable \"%s\""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Unable to get argument \"%s\""
@@ -81,8 +80,7 @@ msgstr "%s : Nombre erroné d'argument(s) d'entrée : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): at most %d expected.\n"
@@ -98,13 +96,11 @@ msgstr "%s : Nombre erroné d'argument(s) de sortie : %d à %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) de sortie : au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s): at most %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) de sortie : au plus %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) de sortie : au plus %d attendu(s).\n"
 
 #, c-format
 msgid "%s: matrix argument expected"
@@ -151,8 +147,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s : Dimension erronée de l'argument %d : (%d,%d) attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractère ou un "
 "scalaire attendu.\n"

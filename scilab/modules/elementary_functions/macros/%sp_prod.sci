@@ -18,7 +18,7 @@ function r=%sp_prod(a,d,typ)
     end
     if size(d,"*")<>1 then
         if type(d)==10 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"prod",2))
+            error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"prod",2))
         else
             error(msprintf(_("%s: Wrong size for input argument #%d: A scalar expected.\n"),"prod",2))
         end

@@ -26,15 +26,14 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um único "
 "texto.\n"
 
 #, c-format
 msgid "%s: Could find or create the working directory %s.\n"
-msgstr ""
-"%s: Não foi possível encontrar ou criar o diretório de trabalho %s.\n"
+msgstr "%s: Não foi possível encontrar ou criar o diretório de trabalho %s.\n"
 
 #, c-format
 msgid "%s: Error while building documentation: %s.\n"
@@ -108,11 +107,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- Excluindo arquivos de ajuda --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr ""
-"%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um texto.\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s: O navegador de ajuda está desabilitado no modo %s.\n"
 
@@ -157,7 +151,7 @@ msgid "%s: File skipped %s."
 msgstr "%s: Arquivo ignorado %s."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
@@ -303,12 +297,6 @@ msgstr ""
 "inteiro.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr ""
-"%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um único "
-"texto.\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um número "
@@ -335,8 +323,8 @@ msgstr "%s: O arquivo CHAPTER não está formatado adequadamente na linha %d\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um texto "
 "terminado com .last_sucessful_build.\n"

@@ -49,12 +49,10 @@ msgstr ""
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr ""
-"%s: Powielone węzły lub wszystkie węzły są współliniowe (ier = %d).\n"
+msgstr "%s: Powielone węzły lub wszystkie węzły są współliniowe (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d i nr %d: Oczekiwano "
 "tego samego rozmiaru.\n"
@@ -65,8 +63,7 @@ msgstr ""
 "%s: Nieprawidłowe wartości parametrów wejściowych nr %d: Nieznany typ '%s'.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: Nieprawidłowe wartości parametrów wejściowych nr %d i nr %d: Oczekiwano "
 "tego samego rozmiaru.\n"
@@ -144,8 +141,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Must be %s.\n"
-msgstr ""
-"%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi być %s.\n"
+msgstr "%s: Nieprawidłowy rozmiar parametru wejściowego nr %d: Musi być %s.\n"
 
 #, c-format
 msgid "%s: For a clamped spline, you must give the endpoint slopes.\n"
@@ -170,10 +166,8 @@ msgstr ""
 "%s: Nieprawidłowe rozmiary parametrów wejściowych nr %d, nr %d i nr %d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
-msgstr ""
-"%s: x i/lub y nie są  w tylko rosnącym porządku (lub wykryto +-inf)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgstr "%s: x i/lub y nie są  w tylko rosnącym porządku (lub wykryto +-inf)\n"
 
 #, c-format
 msgid ""

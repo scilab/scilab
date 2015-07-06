@@ -36,7 +36,7 @@ types::Function::ReturnValue sci_host(types::typed_list &in, int _iRetCount, typ
 
     if (pIT->isString() == false || pIT->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(89, _("%s: Wrong size for input argument #%d: A string expected.\n"), "host", 1);
+        Scierror(89, _("%s: Wrong size for input argument #%d: string expected.\n"), "host", 1);
         return types::Function::Error;
     }
 

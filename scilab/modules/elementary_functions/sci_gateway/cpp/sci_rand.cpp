@@ -60,7 +60,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
         types::String* pS = in[0]->getAs<types::String>();
         if (pS->getSize() != 1)
         {
-            Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "rand", 1);
+            Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", 1);
             return types::Function::Error;
         }
 
@@ -123,7 +123,7 @@ types::Function::ReturnValue sci_rand(types::typed_list &in, int _iRetCount, typ
             types::String* pS = in[iSizeIn - 1]->getAs<types::String>();
             if (pS->getSize() != 1)
             {
-                Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "rand", iSizeIn);
+                Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "rand", iSizeIn);
                 return types::Function::Error;
             }
 

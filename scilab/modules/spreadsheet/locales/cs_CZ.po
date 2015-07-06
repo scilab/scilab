@@ -17,11 +17,11 @@ msgstr ""
 "X-Generator: Launchpad (build 17413)\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -106,8 +106,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáván řetězec '%s' nebo "
 "'%s'.\n"
@@ -235,8 +234,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván skalár.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
-msgstr ""
-"%s: Nelze přečíst očekávaná data, pravděpodobně neplatný soubor xls.\n"
+msgstr "%s: Nelze přečíst očekávaná data, pravděpodobně neplatný soubor xls.\n"
 
 #, c-format
 msgid "%s: End of file.\n"
@@ -307,8 +305,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
-msgstr ""
-"%s:%d:OLE_load_FAT:CHYBA: Přesáhnut hraniční limit paměti FAT %p >= %p"
+msgstr "%s:%d:OLE_load_FAT:CHYBA: Přesáhnut hraniční limit paměti FAT %p >= %p"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: sector request was negative (%d)"
@@ -369,8 +366,7 @@ msgstr ""
 "%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s:%d:OLEUNWRAP_save_stream:CHYBA: Nelze otevřít %s pro zápis (%s)\n"
 
 #, c-format

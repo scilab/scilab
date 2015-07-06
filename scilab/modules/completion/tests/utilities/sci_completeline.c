@@ -47,7 +47,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr1, &currentline))
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 1);
         return 1;
     }
 
@@ -60,7 +60,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr2, &stringToAdd))
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 2);
         return 1;
     }
 
@@ -73,7 +73,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr3, &filePattern))
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 3);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 3);
         return 1;
     }
 
@@ -86,7 +86,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
 
     if (getAllocatedSingleString(pvApiCtx, piAddr4, &defaultPattern))
     {
-        Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 4);
+        Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 4);
         return 1;
     }
 
@@ -114,7 +114,7 @@ int sci_completeline(char *fname, void *pvApiCtx)
 
         if (getAllocatedSingleString(pvApiCtx, piAddr6, &postCaretLine))
         {
-            Scierror(999, _("%s: Wrong type for argument #%d: A string expected.\n"), fname, 6);
+            Scierror(999, _("%s: Wrong type for argument #%d: string expected.\n"), fname, 6);
             return 1;
         }
     }

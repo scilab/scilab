@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Kann Eingabeargument nicht lesen #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ des Eingangsarguments #%d: Es wird eine Zeichenkette "
 "erwartet.\n"

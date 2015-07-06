@@ -66,8 +66,7 @@ msgstr "%s: помилкова кількість вхідних парамет�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
-msgstr ""
-"%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
+msgstr "%s: помилкова кількість вхідних параметрів: слід використовувати %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same types expected.\n"
@@ -148,8 +147,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Assertion failed: found false entry in condition = %s"
-msgstr ""
-"%s: помилка порівняння. Знайдено запис зі значенням «false» в умові %s"
+msgstr "%s: помилка порівняння. Знайдено запис зі значенням «false» в умові %s"
 
 #, c-format
 msgid ""
@@ -192,10 +190,8 @@ msgstr ""
 "параметрів %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
-msgstr ""
-"%s: мало бути %d рядків у вхідному параметрі №%d, виявлено %d рядків."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgstr "%s: мало бути %d рядків у вхідному параметрі №%d, виявлено %d рядків."
 
 #, c-format
 msgid ""
@@ -251,13 +247,13 @@ msgstr ""
 "масив з рядків або порожню матрицю.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 

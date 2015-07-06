@@ -39,8 +39,7 @@ msgstr "%s: dimensione sbagliata per l'argomento Inktyp.\n"
 
 #, c-format
 msgid "%s : lnksz and lnktyp argument must have the same length.\n"
-msgstr ""
-"%s : Gli argomenti Inksz e Inktyp devono avere la stessa lunghezza.\n"
+msgstr "%s : Gli argomenti Inksz e Inktyp devono avere la stessa lunghezza.\n"
 
 #, c-format
 msgid "%s : No more free memory.\n"
@@ -52,8 +51,7 @@ msgstr ""
 
 #, c-format
 msgid "%s : First argument must be a scicos_block typed list.\n"
-msgstr ""
-"%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
+msgstr "%s: Il primo argomento deve essere una lista tipizzata scicos_block.\n"
 
 #, c-format
 msgid "%s : First argument must be a valid scicos_block typed list.\n"
@@ -139,8 +137,7 @@ msgstr "%s: Memoria esaurita.\n"
 
 #, c-format
 msgid "%s : Undefined field in string matrix position : %d.\n"
-msgstr ""
-"%s: Campo non definito nella matrice di stringhe alla posizione: %d.\n"
+msgstr "%s: Campo non definito nella matrice di stringhe alla posizione: %d.\n"
 
 #, c-format
 msgid "%s : Error.\n"
@@ -252,8 +249,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
+msgid "%s : error. Type %d of int scalar matrix not yet supported for outtb.\n"
 msgstr ""
 
 #, c-format

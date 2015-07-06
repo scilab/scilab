@@ -63,7 +63,7 @@ int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
         err = getMatrixOfDouble(pvApiCtx, prefixaddr, &rows, &cols, &indexes);
         if (rows != 1 || cols != 1)
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or single integer expected\n"), fname, 1);
             return 0;
         }
     }
@@ -71,7 +71,7 @@ int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
     {
         if (!isStringType(pvApiCtx, prefixaddr) || !checkVarDimension(pvApiCtx, prefixaddr, 1, 1))
         {
-            Scierror(999, gettext("%s: Wrong type for input argument #%d: A string or a single integer expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong type for input argument #%d: string or single integer expected.\n"), fname, 1);
             return 0;
         }
 
@@ -95,7 +95,7 @@ int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
             if (!isStringType(pvApiCtx, nameaddr) || !checkVarDimension(pvApiCtx, nameaddr, 1, 1))
             {
                 freeAllocatedSingleString(prefix);
-                Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+                Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
                 return 0;
             }
 
@@ -165,7 +165,7 @@ int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
         {
             freeAllocatedSingleString(name);
         }
-        Scierror(999, gettext("%s: Wrong type for input argument #%d: A string expected.\n"), fname, Rhs - 1);
+        Scierror(999, gettext("%s: Wrong type for input argument #%d: string expected.\n"), fname, Rhs - 1);
         return 0;
     }
 

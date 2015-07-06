@@ -62,7 +62,7 @@ msgstr ""
 "čísla.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
@@ -98,7 +98,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -134,11 +134,11 @@ msgstr ""
 "velikosti čísla by tuto chybu mělo spravit."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
 msgstr ""
-"Nelze vytvořit soubor exportu, prosím ohlaste tuto chybu na "
-"http://bugzilla.scilab.org."
+"Nelze vytvořit soubor exportu, prosím ohlaste tuto chybu na http://bugzilla."
+"scilab.org."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "

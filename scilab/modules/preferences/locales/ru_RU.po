@@ -21,7 +21,7 @@ msgid "Scilab '%s' module disabled in -nogui or -nwni mode.\n"
 msgstr "Модуль «%s» выключен в режимах -nogui и -nwni.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%i: ожидалась строка.\n"
 
 msgid "An error occurred while opening Preferences window:"

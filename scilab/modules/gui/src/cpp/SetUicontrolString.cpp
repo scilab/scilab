@@ -47,7 +47,7 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
     // Label must be a character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "String");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "String");
         return SET_PROPERTY_ERROR;
     }
 
@@ -61,7 +61,7 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
             // Value can be string or a string vector
             if (nbCol > 1 && nbRow > 1)
             {
-                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string or a vector of strings expected.\n")), "String");
+                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string or vector of strings expected.\n")), "String");
                 return SET_PROPERTY_ERROR;
             }
             break;
@@ -111,7 +111,7 @@ int SetUicontrolString(void* _pvCtx, int iObjUID, void* _pvData, int valueType, 
             // Value must be only one string
             if (nbCol * nbRow > 1)
             {
-                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "String");
+                Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "String");
                 return SET_PROPERTY_ERROR;
             }
             break;

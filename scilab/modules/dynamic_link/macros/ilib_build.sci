@@ -31,11 +31,11 @@ function ilib_build(ilib_name, ..
     end
 
     if type(ilib_name) <> 10 then
-        error(999, msprintf(_("%s: Wrong type for input argument #%d: A string expected.\n"), "ilib_build", 1));
+        error(999, msprintf(_("%s: Wrong type for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if size(ilib_name,"*") <> 1 then
-        error(999, msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"), "ilib_build", 1));
+        error(999, msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"), "ilib_build", 1));
     end
 
     if type(table) <> 10 then

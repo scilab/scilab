@@ -142,8 +142,7 @@ msgstr ""
 
 #, c-format
 msgid "Tcl Error: Error during the Tcl initialization (Tcl_Init): %s\n"
-msgstr ""
-"Помилка Tcl: помилка під час спроби ініціалізації Tcl (Tcl_Init): %s\n"
+msgstr "Помилка Tcl: помилка під час спроби ініціалізації Tcl (Tcl_Init): %s\n"
 
 #, c-format
 msgid "Tcl Error: Error during the TK initialization (Tk_Init): %s\n"

@@ -24,7 +24,8 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: String expected.\n"
-msgstr "%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 入力引数  #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -40,7 +41,8 @@ msgstr "%s: メモリ不足です.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: String expected.\n"
-msgstr "%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
+msgstr ""
+"%s: 最初の入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
 msgid "%s: This feature is only used on Windows.\n"

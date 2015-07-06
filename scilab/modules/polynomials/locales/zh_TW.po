@@ -42,8 +42,7 @@ msgid "%s: Wrong size for input argument #%d: A polynomial expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一多項式.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr "%s: 第 %d 輸入參數長度錯誤: 應為一有理分式陣列.\n"
 
 #, c-format
@@ -88,8 +87,7 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應在集合 {%s}  之內.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 
 #, c-format

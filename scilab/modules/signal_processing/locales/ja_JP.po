@@ -25,7 +25,8 @@ msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real vector expected.\n"
@@ -33,11 +34,15 @@ msgstr "%s: 引数 #%d の型が間違っています: 実数ベクトルを指�
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 引数 #%d の型が間違っています: 実数または複素数ベクトルを指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の型が間違っています: 実数または複素数ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Real or complex matrix expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:　実数または複素数の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Memory allocation error.\n"
@@ -207,13 +212,17 @@ msgstr "長さ55"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Array of floating point numbers "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません:  浮動小数点数の配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません:  浮動小数点数の配列を指定してくださ"
+"い.\n"
 
 #
 # File: macros/bilt.sci, line: 34
@@ -248,7 +257,8 @@ msgstr "%s: 入力引数 #%d で不正な値: set {%s} をしなくてはなり�
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same degree expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 次数を同じにしてください.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 次数を同じにしてください.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"
@@ -262,13 +272,16 @@ msgstr "%s: 入力引数 #%d の値が正しくありません: 要素は正と�
 msgid ""
 "%s: Wrong values for input argument #%d: Distance between Max and Min "
 "elements must be greater than %g.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 最大要素と最小要素の距離は %g よりも大きくなくてはなりません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 最大要素と最小要素の距離は %g よりも"
+"大きくなくてはなりません.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same numbers of elements "
 "expected.\n"
-msgstr "%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d は互換性がありません: 要素数を同じにしてください.\n"
 
 #
 # File: macros/cepstrum.sci, line: 80
@@ -282,7 +295,8 @@ msgstr "%s: 引数 #%d の大きさが間違っています: ベクトルを指�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: %s or %s expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: %s または %sを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected.\n"
@@ -294,7 +308,8 @@ msgstr "%s: 引数 #%d と #%d の大きさは同じにする必要がありま�
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が正しくありません: %d から %d の範囲で指定してください.\n"
 
 #
 # File: macros/fft2.sci, line: 57
@@ -306,7 +321,9 @@ msgstr "%s: 入力引数の数が不正です: %d または、%d を想定しま
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real matrix or polynomial expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列または多項式を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数行列または多項式を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
@@ -314,18 +331,22 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数行列を指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: ベクトルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: a polynomial and 1-by-1 matrix "
 "or two polynomials expected.\n"
-msgstr "%s: 入力引数 #%d および #%d に互換性がありません:  多項式及び1行1列行列または2つの多項式を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d および #%d に互換性がありません:  多項式及び1行1列行列または"
+"2つの多項式を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: 最初の要素を %s とすることはできません.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: 最初の要素を %s とすることはできませ"
+"ん.\n"
 
 #, c-format
 msgid "%s: Filter order too small.\n"
@@ -335,27 +356,35 @@ msgstr "%s: フィルタ次数が小さすぎます.\n"
 msgid ""
 "%s: Wrong size for input argument #%d: A single input, single output system "
 "expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 1入力1出力システムを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d:  Linear dynamical system or row "
 "vector of floats expected.\n"
-msgstr "%s: 入力引数 #%d の型が正しくありません:  線形動的システムまたは浮動小数点数の行ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が正しくありません:  線形動的システムまたは浮動小数点数"
+"の行ベクトルを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d or %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d または %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real or polynomial matrix or a "
 "rational expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または多項式の行列または有理数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または多項式の行列または有理数を指"
+"定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A discrete system expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 離散時間システムを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 離散時間システムを指定してください.\n"
 
 #
 # File: macros/lattn.sci, line: 47
@@ -372,16 +401,17 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 正の整数を指�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: 正の整数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: 正の整数を指定してください.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr "%s: 入力引数 #%d の値が間違っています: 正の整数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Unsupported '%s' type.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています:  '%s' 型はサポートされていません.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています:  '%s' 型はサポートされていません.\n"
 
 #, c-format
 msgid "%s: Wrong size for input arguments: Incompatible sizes.\n"
@@ -393,11 +423,13 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 奇数の整数を�
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Array of double expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: doubleの配列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: doubleの配列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output arguments: %d or %d expected.\n"
-msgstr "%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 出力引数の数が間違っています: %d 個または%d 個の引数を指定してください.\n"
 
 #
 # File: macros/iir.sci, line: 46
@@ -415,11 +447,13 @@ msgstr "%s: 入力引数 #%d で不正な値: 負数でない整数を想定し�
 msgid ""
 "%s: Wrong values for input argument #%d: Elements must be in the interval "
 "[%s, %s].\n"
-msgstr "%s: 入力引数 #%d で不正な値: 要素は、[%s, %s] の間でなくてはなりません。\n"
+msgstr ""
+"%s: 入力引数 #%d で不正な値: 要素は、[%s, %s] の間でなくてはなりません。\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A tall matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが正しくありません: 縦長の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが正しくありません: 縦長の行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong values for input arguments #%d and #%d.\n"
@@ -432,7 +466,8 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Argument #%d expected to be "
 "less than argument #%d.\n"
 msgstr ""
-"%1$s: 入力引数 #%2$d と #%3$d で互換性がありません: 引数 #%5$d よりも小さい引数 #%4$d を想定します。\n"
+"%1$s: 入力引数 #%2$d と #%3$d で互換性がありません: 引数 #%5$d よりも小さい引"
+"数 #%4$d を想定します。\n"
 
 #
 # File: macros/%asn.sci, line: 23
@@ -445,7 +480,8 @@ msgstr "%s: 入力引数 #%d で不正な値: [%s, %s] の間でなくてはな�
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
-msgstr "%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
+msgstr ""
+"%s: 入力引数 #%d と #%d で互換性がありません: 大きさを同じにしてください.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s).\n"
@@ -461,8 +497,7 @@ msgstr "%s: 入力引数 #%d で不正な型: 有理分数配列を想定しま�
 #
 # File: macros/trans.sci, line: 62
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr "%s: 入力引数 #%d で不正なサイズ: %d 要素配列を想定します。\n"
 
 #, c-format
@@ -472,12 +507,16 @@ msgstr "%s: 入力引数 #%dの値が間違っています: 奇数とする必�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A %d-by-%d real vector expected.\n"
-msgstr "%s: 入力引数 #%dの型が間違っています: %d行%d列の実数ベクトルを指定してください .\n"
+msgstr ""
+"%s: 入力引数 #%dの型が間違っています: %d行%d列の実数ベクトルを指定してくださ"
+"い .\n"
 
 #, c-format
 msgid ""
 "%s: Wrong size for input argument #%d: A %d-by-%d real vector expected.\n"
-msgstr "%s: 入力引数 #%dの大きさが間違っています: %d行%d列の実数ベクトルを指定してください .\n"
+msgstr ""
+"%s: 入力引数 #%dの大きさが間違っています: %d行%d列の実数ベクトルを指定してく"
+"ださい .\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the interval %s.\n"
@@ -591,7 +630,9 @@ msgstr "%s: 入力引数 #%dの値が間違っています: 要素#%dが不正�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Real or complex vector expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 実数または複素ベクトルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: an integer expected.\n"
@@ -601,13 +642,16 @@ msgstr "%s: 引数 #%d の型が間違っています: 整数を指定してく�
 msgid ""
 "%s: Wrong value for argument #%d: the expected value must be greater than "
 "%d.\n"
-msgstr "%s: 引数 #%d の値が間違っています: %d より大きい値を指定してください.\n"
+msgstr ""
+"%s: 引数 #%d の値が間違っています: %d より大きい値を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong values for input argument #%d: The first element must be %s and "
 "the last %s.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 最初の要素は %s、最後の要素は %s としてください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 最初の要素は %s、最後の要素は %s と"
+"してください.\n"
 
 #, c-format
 msgid ""

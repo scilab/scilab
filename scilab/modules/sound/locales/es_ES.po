@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: No se puede leer el argumento de entrada#%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -34,7 +34,7 @@ msgid "Cannot play file."
 msgstr "No se puede interpretar el archivo."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -200,8 +200,7 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: Ha ocurrido un error: %s no está soportado.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
 "%s: Ha ocurrido un error: formato de archivo inválido. Error leyendo la "
 "porción <%s>.\n"

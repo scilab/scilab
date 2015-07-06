@@ -48,7 +48,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : '%s' attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -140,8 +140,7 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
+msgid "%s: Wrong value for input argument #%d: %s must be between %d and %d.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : %s doit être entre %d et "
 "%d.\n"
@@ -189,8 +188,7 @@ msgstr ""
 "attendue.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"

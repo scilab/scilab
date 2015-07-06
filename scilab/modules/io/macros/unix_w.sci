@@ -35,7 +35,7 @@ function unix_w(cmd)
     end
 
     if size(cmd,"*") <> 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"),"unix_w",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"unix_w",1));
     end
 
     if getos() == "Windows" then

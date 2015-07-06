@@ -153,8 +153,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 
 #, c-format
@@ -200,11 +199,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -224,8 +223,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong first input argument: File with .dia suffix expected."
-msgstr ""
-"%s: falsches erstes Eingangsargument: Datei mit .dia Suffix erwartet."
+msgstr "%s: falsches erstes Eingangsargument: Datei mit .dia Suffix erwartet."
 
 #, c-format
 msgid "Test failed ERROR DETECTED while executing %s"
@@ -252,8 +250,7 @@ msgstr ""
 
 #, c-format
 msgid "%s is not an installed module or toolbox"
-msgstr ""
-"%s ist kein installiertes Modul und keine installierte Werkzeugleiste"
+msgstr "%s ist kein installiertes Modul und keine installierte Werkzeugleiste"
 
 #, c-format
 msgid "The ref file (%s) doesn't exist"

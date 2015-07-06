@@ -34,7 +34,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -50,8 +50,7 @@ msgstr ""
 "con il formato.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
+msgid "%s: Wrong value of input argument #%d: data doesn't fit with format.\n"
 msgstr ""
 
 #, c-format
@@ -100,7 +99,7 @@ msgstr ""
 "scalare.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
@@ -124,8 +123,7 @@ msgstr ""
 "chiudere un diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not close diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not close diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "chiudere il diario %d.\n"
@@ -137,8 +135,7 @@ msgstr ""
 "fermare un diario.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
+msgid "%s: Wrong value for input argument #%d: error can not pause diary %d.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato:un errore non può "
 "fermare il diario %d.\n"
@@ -265,8 +262,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong type for argument #%d: Square matrix expected.\n"
-msgstr ""
-"L'argomento %d è di tipo sbagliato: era attesa una matrice quadrata.\n"
+msgstr "L'argomento %d è di tipo sbagliato: era attesa una matrice quadrata.\n"
 
 msgid "Invalid index.\n"
 msgstr "Indice non valido.\n"
@@ -396,8 +392,7 @@ msgstr "L'argomento %d è di tipo sbagliato: era attesa una lista.\n"
 msgid "Problem with comparison symbol...\n"
 msgstr "C'è un problema col simbolo di confronto...\n"
 
-msgid ""
-"Wrong number of input arguments: This function has no input argument.\n"
+msgid "Wrong number of input arguments: This function has no input argument.\n"
 msgstr ""
 "Il numero degli argomenti in ingresso è sbagliato: questa funzione non ha "
 "argomenti in ingresso.\n"
@@ -583,8 +578,7 @@ msgstr ""
 "Gli elementi del %d-esimo argomento devono essere in ordine crescente.\n"
 
 msgid "Elements of first argument are not (strictly) increasing.\n"
-msgstr ""
-"Gli elementi del primo argomento non sono (strettamente) crescenti.\n"
+msgstr "Gli elementi del primo argomento non sono (strettamente) crescenti.\n"
 
 #, c-format
 msgid "Elements of %dth argument are not in (strictly) decreasing order.\n"
@@ -783,8 +777,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: %d expected.\n"
@@ -868,8 +862,7 @@ msgid "Null variable cannot be used here.\n"
 msgstr "Una variabile nulla non può essere usata qui.\n"
 
 msgid "A sparse matrix entry is defined with two different values.\n"
-msgstr ""
-"Una voce della matrice sparsa è definito con due valori differenti.\n"
+msgstr "Una voce della matrice sparsa è definito con due valori differenti.\n"
 
 #, c-format
 msgid "%s not yet implemented for full input parameter.\n"
@@ -904,7 +897,7 @@ msgstr ""
 msgid "semi def fails.\n"
 msgstr "semi def fallisce.\n"
 
-msgid "Wrong type for first input argument: Single string expected.\n"
+msgid "Wrong type for first input argument: string expected.\n"
 msgstr ""
 "Il primo argomento in ingresso è di tipo sbagliato: era attesa una singola "
 "stringa.\n"
@@ -985,8 +978,7 @@ msgstr ""
 
 #, c-format
 msgid "Wrong value for argument #%d: Empty string expected.\n"
-msgstr ""
-"L'argomento %d ha un valore sbagliato: era attesa una matrice vuota.\n"
+msgstr "L'argomento %d ha un valore sbagliato: era attesa una matrice vuota.\n"
 
 msgid "Recursive extraction is not valid in this context.\n"
 msgstr "L'estrazione ricorsiva non è valida in questo contesto.\n"
@@ -1084,8 +1076,7 @@ msgstr ""
 msgid "endfunction is missing.\n"
 msgstr "manca endfunction.\n"
 
-msgid ""
-"Instruction left hand side: waiting for a dot or a left parenthesis.\n"
+msgid "Instruction left hand side: waiting for a dot or a left parenthesis.\n"
 msgstr ""
 
 msgid "Instruction left hand side: waiting for a name.\n"
@@ -1135,8 +1126,7 @@ msgstr "Non c'è convergenza nei passi della QR.\n"
 
 #, c-format
 msgid "The top %d x %d block may not be in Schur form.\n"
-msgstr ""
-"Il blocco superiore %d x %d potrebbe non essere nella forma di Shur.\n"
+msgstr "Il blocco superiore %d x %d potrebbe non essere nella forma di Shur.\n"
 
 #, c-format
 msgid "The first %d singular values may be incorrect.\n"
@@ -1150,8 +1140,7 @@ msgid "matrix is close to singular or badly scaled. rcond = %s\n"
 msgstr "la matrice sembra essere singolare o malamente a scala. rcond = %s\n"
 
 msgid "computing least squares solution. (see lsq).\n"
-msgstr ""
-"calcolo in corso della soluzione dei minimi quadrati. (vedere lsq).\n"
+msgstr "calcolo in corso della soluzione dei minimi quadrati. (vedere lsq).\n"
 
 msgid "eigenvectors are badly conditioned.\n"
 msgstr "gli autovalori sono condizionati male.\n"
@@ -1211,8 +1200,7 @@ msgid "End of optimization (linear search fails).\n"
 msgstr "Fine della ottimizzazione (la ricerca lineare fallisce).\n"
 
 #, c-format
-msgid ""
-"sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
+msgid "sfact : uncomplete convergence relative precision reached : 10**(%s).\n"
 msgstr ""
 
 msgid "Help file inconsistent...\n"
@@ -1422,8 +1410,7 @@ msgstr "%s: interruzione: valutazioni di una funzione > MEVALS.\n"
 
 #, c-format
 msgid "%s: maxpts was too small to obtain the required accuracy.\n"
-msgstr ""
-"%s: maxpts era troppo piccolo per ottenere la accuratezza richiesta.\n"
+msgstr "%s: maxpts era troppo piccolo per ottenere la accuratezza richiesta.\n"
 
 msgid "Too many input/output ports for highlighted block.\n"
 msgstr "Troppe porte di ingresso/uscita per il blocco evidenziato.\n"
@@ -1509,8 +1496,7 @@ msgid ""
 msgstr ""
 
 msgid "poly: variable name must be lesser than 5 characters long.\n"
-msgstr ""
-"poly: il nome della variabile deve essere lungo meno di 5 caratteri.\n"
+msgstr "poly: il nome della variabile deve essere lungo meno di 5 caratteri.\n"
 
 msgid ""
 "Warning: Syntax \"vector ^ scalar\" is obsolete. It will be removed in "
@@ -1579,8 +1565,7 @@ msgid "%s: Wrong type for input argument #%d: A character string expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A state-space model expected.\n"
+msgid "%s: Wrong type for input argument #%d: A state-space model expected.\n"
 msgstr ""
 
 #, c-format

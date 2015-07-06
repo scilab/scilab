@@ -18,7 +18,7 @@ msgstr ""
 "Language: de\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falsche Größe für Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
@@ -58,11 +58,11 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
+msgid "%s: Wrong size for input argument: string expected.\n"
 msgstr ""
 "%s: Falsche Grösse des Eingangsarguments: Eine Zeichenkette wird erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ für Eingangsargument #%d: eine Zeichenkette erwartet.\n"

@@ -46,12 +46,10 @@ msgstr "%s : xyz doit être une (n,3) matrice réelle avec n >= 10\n"
 
 #, c-format
 msgid "%s: Duplicate nodes or all nodes colinears (ier = %d).\n"
-msgstr ""
-"%s : Nœuds dupliqués ou tous les nœuds sont colinéaires (ier = %d).\n"
+msgstr "%s : Nœuds dupliqués ou tous les nœuds sont colinéaires (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Dimension erronée des arguments d'entrée n°%d et n°%d : Mêmes "
 "dimensions attendues.\n"
@@ -62,8 +60,7 @@ msgstr ""
 "%s : Valeurs erronées de l'argument d'entrée n°%d : Type '%s' inconnu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s : Valeur erronée des arguments d'entrée n°%d et n°%d : Mêmes dimensions "
 "attendues.\n"
@@ -165,8 +162,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s : Dimension erronée des arguments d'entrée n°%d, n°%d ou n°%d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s : x et/ou y ne sont pas dans un ordre strictement croissant (ou +-inf "
 "détecté)\n"
@@ -211,8 +207,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input arguments: Must be between %d and %d.\n"
-msgstr ""
-"%s : Nombre erroné d'arguments d'entrée : Doit être entre %d et %d.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Doit être entre %d et %d.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: Vector or matrix expected.\n"

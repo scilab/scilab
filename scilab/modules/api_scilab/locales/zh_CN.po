@@ -145,8 +145,7 @@ msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr "%s：参数%d的大小错误：应该为(%d,%d)。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr "%s：第%d个输入参数的类型错误：应该字符串或标量。\n"
 
 #, c-format

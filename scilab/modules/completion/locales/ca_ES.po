@@ -18,7 +18,7 @@ msgstr ""
 "Language: ca\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -60,12 +60,11 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
-msgstr ""
-"%s: mida incorrecta del paràmetre d'entrada: s'esperava una cadena.\n"
+msgid "%s: Wrong size for input argument: string expected.\n"
+msgstr "%s: mida incorrecta del paràmetre d'entrada: s'esperava una cadena.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"

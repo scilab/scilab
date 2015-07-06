@@ -71,13 +71,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Computed is real, but expected is complex."
-msgstr ""
-"%s: Вычисленное значение действительное , хотя ожидалось комплексное."
+msgstr "%s: Вычисленное значение действительное , хотя ожидалось комплексное."
 
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
-msgstr ""
-"%s: Вычисленное значение комплексное , хотя ожидалось действительное."
+msgstr "%s: Вычисленное значение комплексное , хотя ожидалось действительное."
 
 #, c-format
 msgid ""
@@ -178,8 +176,7 @@ msgstr ""
 "параметров %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 "%s: Ожидалось %d столбцов во входном параметре #%d, но получено %d столбцов."
 
@@ -236,11 +233,11 @@ msgstr ""
 "значений или пустая матрица.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного параметра №%d: ожидалась строка.\n"
 
 #, c-format

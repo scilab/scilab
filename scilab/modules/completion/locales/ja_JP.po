@@ -20,7 +20,7 @@ msgstr ""
 "X-Poedit-Language: Japanese\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -32,7 +32,8 @@ msgid ""
 "%s: Wrong value for input argument: '%s', '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
 msgstr ""
-"%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s'を指定してください.\n"
+"%s: 入力引数の値が間違っています: '%s', '%s', '%s', '%s', '%s' または '%s'を"
+"指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument(s).\n"
@@ -57,9 +58,9 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: 入力引数 #%d の大きさが間違っています.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
+msgid "%s: Wrong size for input argument: string expected.\n"
 msgstr "%s: 入力引数の大きさが間違っています: 文字列を指定してください.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"

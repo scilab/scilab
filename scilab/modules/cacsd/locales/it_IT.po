@@ -141,8 +141,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 "%s: La dimensione della riga dell'argomento #%d è sbagliata: era attesa la "
 "stessa dimensione dell'argomento #%d.\n"
@@ -226,7 +226,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr "%s: Le matrici A, C e D devono avere lo stesso ordine.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: L'argomento %d è di tipo sbagliato: era attesa una stringa.\n"
 
 #, c-format
@@ -308,8 +308,7 @@ msgid "Press Return to continue ... \n"
 msgstr "Premere invio per continuare ... \n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso è di tipo sbagliato: era atteso un sistema "
 "dinamico lineare.\n"
@@ -523,8 +522,7 @@ msgid "Frequency (rad/s)"
 msgstr "Frequenza (rad/s)"
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 "L'argomento #%d è di tipo sbagliato: era atteso un numero razionale o una "
 "matrice dello spazio degli stati.\n"
@@ -550,7 +548,7 @@ msgstr ""
 "stringhe.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -663,8 +661,7 @@ msgstr ""
 "%s: L'argomento in ingresso %d ha una dimensione sbagliata: era atteso %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un "
 "sistema stabilizzabile.\n"
@@ -911,8 +908,7 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s è indefinito\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: Modo/i controllabile/i e osservabile/i di %s vicino all'asse dei numeri "
 "immaginari.\n"
@@ -1029,8 +1025,8 @@ msgid ""
 "Hinfnorm is probably exactly max sv(D)\n"
 "The system might be all-pass"
 msgstr ""
-"%s: la norma non può essere calcolata.La accuratezza relativa è minore di 1e-"
-"3\n"
+"%s: la norma non può essere calcolata.La accuratezza relativa è minore di "
+"1e-3\n"
 "La norma di Hinf è probabilmente proprio max sv(D)\n"
 "Il sistema potrebbe essere di tipo all-pass."
 
@@ -1089,8 +1085,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s non è di tipo simmetrico.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno spazio "
 "di stato lineare.\n"
@@ -1108,8 +1103,7 @@ msgstr ""
 "immaginari."
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Tutti i modi di A sono non-minimi cosicché || G || è pressoché 0.\n"
 
@@ -1178,8 +1172,8 @@ msgstr "Im(h(exp(2if*dt)))"
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid ""
@@ -1326,8 +1320,8 @@ msgid ""
 "%s: Wrong type for input argument #%d: String, Scalar or empty matrix "
 "expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
-"stringa,uno scalare o una matrice nulla.\n"
+"%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa,"
+"uno scalare o una matrice nulla.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"

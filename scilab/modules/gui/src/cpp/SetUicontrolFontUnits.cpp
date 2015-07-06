@@ -27,12 +27,12 @@ int SetUicontrolFontUnits(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
     // Font units must be only one character string
     if (valueType != sci_strings)
     {
-        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: A string expected.\n")), "FontUnits");
+        Scierror(999, const_cast<char*>(_("Wrong type for '%s' property: string expected.\n")), "FontUnits");
         return SET_PROPERTY_ERROR;
     }
     if (nbCol != 1 || nbRow == 0)
     {
-        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: A string expected.\n")), "FontUnits");
+        Scierror(999, const_cast<char*>(_("Wrong size for '%s' property: string expected.\n")), "FontUnits");
         return SET_PROPERTY_ERROR;
     }
 

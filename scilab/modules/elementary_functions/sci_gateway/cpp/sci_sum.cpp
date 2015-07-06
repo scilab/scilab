@@ -262,7 +262,7 @@ types::Function::ReturnValue sci_sum(types::typed_list &in, int _iRetCount, type
                 pDblIn->killMe();
             }
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "sum", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "sum", 3);
             return types::Function::Error;
         }
 

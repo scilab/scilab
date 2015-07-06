@@ -60,7 +60,7 @@ msgstr ""
 "%s : Impossible de mettre à jour la version du format HDF5 dans \"%s\"."
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -74,8 +74,7 @@ msgid "%s: Invalid H5Object.\n"
 msgstr "%s : H5Object invalide.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a H5Object expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or H5Object expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un H5Object attendu.\n"
@@ -85,7 +84,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s : Plus de mémoire disponible.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -96,8 +95,7 @@ msgstr "%s : %s\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A H5Object expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un H5Object attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un H5Object attendu.\n"
 
 #, c-format
 msgid "%s: Cannot remove H5Object.\n"
@@ -138,11 +136,10 @@ msgstr "%s : Impossible d'imprimer le H5Object : Objet invalide.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: a H5Object expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un H5Object attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un H5Object attendu.\n"
 
 #, c-format
-msgid "%s: Wrong size for argument #%d: A string expected.\n"
+msgid "%s: Wrong size for argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument n°%d : Une chaîne de caractères "
 "attendue.\n"
@@ -178,8 +175,7 @@ msgstr ""
 "réel ou colonne attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Row array of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: Row array of strings expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un vecteur ligne de chaîne de "
 "caractères attendu.\n"
@@ -196,8 +192,7 @@ msgid "%s: Can not use H5Object: invalid object.\n"
 msgstr "%s : Impossible d'utiliser le H5Object : Objet invalide.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un booléen attendu.\n"
@@ -265,12 +260,10 @@ msgstr "%s : Format Scilab HDF5 invalide.\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: More than %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'arguments d'entrée : Plus de %d sont attendus.\n"
+msgstr "%s : Nombre erroné d'arguments d'entrée : Plus de %d sont attendus.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a double expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
 "un double attendu.\n"
@@ -562,8 +555,7 @@ msgid "Cannot get the links number"
 msgstr "Impossible d'obtenir le nombre de liens"
 
 msgid "Cannot create a column of strings on the stack."
-msgstr ""
-"Impossible de créer une colonne de chaîne de caractères dans la pile."
+msgstr "Impossible de créer une colonne de chaîne de caractères dans la pile."
 
 msgid "Cannot list group links."
 msgstr "Impossible de lister les liens du groupe."

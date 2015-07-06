@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -34,8 +34,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: 記憶體空間不足。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 
 #, c-format
@@ -46,10 +45,6 @@ msgstr ""
 msgid ""
 "%s: Wrong size for input arguments #%d and #%d: Same dimensions expected.\n"
 msgstr "%s: 第 %d 及第 %d 輸入參數長度錯誤: 應為相同維度.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr ""
 
 msgid "File"
 msgstr ""

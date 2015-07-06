@@ -18,11 +18,11 @@ msgstr ""
 "Language: pl\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -249,13 +248,11 @@ msgstr "rozdzielenie OLE: %s\n"
 
 #, c-format
 msgid "%s:%d:OLE_set_debug: Debug level set to %d"
-msgstr ""
-"%s:%d:OLE_set(ustaw)_debug(analizę): Analiza ustawiona na poziomie %d"
+msgstr "%s:%d:OLE_set(ustaw)_debug(analizę): Analiza ustawiona na poziomie %d"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Block buffer is NULL"
-msgstr ""
-"%s:%d:OLE_get(posiada)_block(blok):ERROR(błąd): Blok buforu jest ZEREM"
+msgstr "%s:%d:OLE_get(posiada)_block(blok):ERROR(błąd): Blok buforu jest ZEREM"
 
 #, c-format
 msgid "%s:%d:OLE_get_block:ERROR: Cannot allocate %d bytes for OLE block"
@@ -368,8 +365,7 @@ msgstr ""
 "%d bajtów do pliku %s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save(zapisz)_stream(ścieżkę):ERROR(błąd): Nie można otworzyć "
 "%s do zapisu (%s)\n"
@@ -414,8 +410,7 @@ msgstr "Dekodowanie pliku=%s"
 
 #, c-format
 msgid "ripOLE requires an input file to decode.\n"
-msgstr ""
-"ripOLE (rozdzielenie OLE) wymaga pliku wejściowego do rozkodowania.\n"
+msgstr "ripOLE (rozdzielenie OLE) wymaga pliku wejściowego do rozkodowania.\n"
 
 #, c-format
 msgid "ripOLE: decoding of %s resulted in error %d.\n"

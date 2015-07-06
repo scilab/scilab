@@ -62,8 +62,7 @@ msgid "P,Q and X"
 msgstr "P,Q 及 X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' 或 '%s' .\n"
 
 msgid "cdfchi: Error in cumgam\n"
@@ -112,7 +111,8 @@ msgstr "P,Q,F,Dfn 及 Dfd"
 msgid ""
 "%s: Wrong value for input argument #%d: '%s', '%s', '%s', '%s' or '%s' "
 "expected.\n"
-msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
+msgstr ""
+"%s: 第 %d 個輸入參數數值錯誤: 應為 '%s', '%s' , '%s' , '%s'  或 '%s' .\n"
 
 msgid "X,Shape and Rate"
 msgstr ""
@@ -394,7 +394,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -438,8 +438,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -489,8 +488,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr "%s: 第 %d 輸入參數數值錯誤: 應為 '%s', '%s', %d 或 %d.\n"
 
 #, c-format

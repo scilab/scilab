@@ -55,8 +55,7 @@ msgstr ""
 "%s: дублювання вузлів або всі вузли лежать на одній прямій (ier = %d).\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong size for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідних параметрів №%d і №%d: розмірність мала "
 "збігатися.\n"
@@ -66,8 +65,7 @@ msgid "%s: Wrong values for input argument #%d: Unknown '%s' type.\n"
 msgstr "%s: помилкові значення вхідного параметра №%d: невідомий тип «%s».\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
+msgid "%s: Wrong value for input arguments #%d and #%d: Same sizes expected.\n"
 msgstr ""
 "%s: помилкове значення вхідних параметрів №%d і №%d: розмірність мала "
 "збігатися.\n"
@@ -168,8 +166,7 @@ msgid "%s: Wrong size for input arguments #%d, #%d or #%d.\n"
 msgstr "%s: помилкова розмірність вхідних параметрів №%d, №%d або №%d.\n"
 
 #, c-format
-msgid ""
-"%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
+msgid "%s: x and/or y are not in strict increasing order (or +-inf detected)\n"
 msgstr ""
 "%s: x і/або y вказано не у порядку строго зростання (або виявлено "
 "±нескінченність)\n"

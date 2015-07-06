@@ -63,7 +63,7 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
     // Check second argument is a string
     if (in[1]->isString() == false || in[1]->getAs<types::String>()->getSize() != 1)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "typeof", 2);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "typeof", 2);
         return types::Function::Error;
     }
 

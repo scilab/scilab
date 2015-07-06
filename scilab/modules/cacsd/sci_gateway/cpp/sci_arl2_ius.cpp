@@ -208,7 +208,7 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
         // get "all"
         if (in[4]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "arl2_ius", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "arl2_ius", 5);
             return types::Function::Error;
         }
 

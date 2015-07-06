@@ -26,7 +26,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s：不能读取第%d个输入参数。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: Single string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
@@ -93,10 +93,6 @@ msgid "-- Deleting help files --\n"
 msgstr "-- 删除帮助文件 --\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
-msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
-
-#, c-format
 msgid "%s: The help browser is disabled in %s mode.\n"
 msgstr "%s：在%s模式下帮助浏览器被禁用。\n"
 
@@ -139,7 +135,7 @@ msgid "%s: File skipped %s."
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 msgid " * Add some comments about XML file"
@@ -277,10 +273,6 @@ msgid "%s: Wrong type for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数。\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: Single string expected.\n"
-msgstr "%s：输入参数#%d的大小错误：应该为一个字符串。\n"
-
-#, c-format
 msgid "%s: Wrong size for input argument #%d: An integer expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为一个整数。\n"
 
@@ -301,9 +293,10 @@ msgstr "%s：这个CHAPTER文件的第%d行的格式不正确。\n"
 
 #, c-format
 msgid ""
-"%s: Wrong value for input argument #%d: A string that end with "
-".last_successful_build expected.\n"
-msgstr "%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
+"%s: Wrong value for input argument #%d: A string that end with ."
+"last_successful_build expected.\n"
+msgstr ""
+"%s：输入参数#%d的值错误：应该为一个以 .last_successful_build 结尾的字符串。\n"
 
 #, c-format
 msgid "%s: The last_successful_build file is not well formated at line %d\n"

@@ -18,13 +18,13 @@ msgstr ""
 "Language: fr\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -111,8 +111,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s : Dimension erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 "%s : Valeur erronée de l'argument d'entrée n°%d : La chaîne de caractères "
 "'%s' ou '%s' attendue.\n"
@@ -243,8 +242,7 @@ msgstr "%s : Seul le format de fichier BIFF8 est pris en charge.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Failed to read expected data, may be invalid xls file.\n"
@@ -275,8 +273,8 @@ msgstr ""
 #, c-format
 msgid "LOGGER_set_logfile: ERROR - Cannot open logfile '%s' (%s)\n"
 msgstr ""
-"LOGGER_set_logfile: ERREUR - Impossible d'ouvrir le fichier de log '%s' "
-"(%s)\n"
+"LOGGER_set_logfile: ERREUR - Impossible d'ouvrir le fichier de log "
+"'%s' (%s)\n"
 
 #, c-format
 msgid "LOGGER-Default: %s%s"
@@ -368,8 +366,7 @@ msgstr ""
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:ERROR: Cannot open %s for writing (%s)"
-msgstr ""
-"%s:%d:OLE_store_stream:ERREUR: Impossible d'ouvrir %s en écriture (%s)"
+msgstr "%s:%d:OLE_store_stream:ERREUR: Impossible d'ouvrir %s en écriture (%s)"
 
 #, c-format
 msgid "%s:%d:OLE_store_stream:WARNING: Only wrote %d of %d bytes to file %s"
@@ -393,8 +390,7 @@ msgstr ""
 "dans le fichier %s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr ""
 "%s:%d:OLEUNWRAP_save_stream:ERREUR: Impossible d'ouvrir %s en écriture (%s)\n"
 

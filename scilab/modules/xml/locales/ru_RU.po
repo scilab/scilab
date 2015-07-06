@@ -33,7 +33,7 @@ msgid "%s: Memory allocation error.\n"
 msgstr "%s: Ошибка распределения памяти.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%d: Ожидалась строка.\n"
 
 #, c-format
@@ -61,14 +61,13 @@ msgid "%s: XML Document does not exist.\n"
 msgstr "%s: XML-документ не существует.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A string or a boolean expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or boolean expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: ожидалась строка или логическое "
 "значение.\n"
 
 #, c-format
-msgid "%s: Wrong dimension for input argument #%d: A string expected.\n"
+msgid "%s: Wrong dimension for input argument #%d: string expected.\n"
 msgstr "%s: Неверный размер входного аргумента №%d: ожидалась строка.\n"
 
 #, c-format
@@ -77,8 +76,7 @@ msgstr ""
 "%s: Неверный размер входного параметра №%d: ожидалась непустая строка.\n"
 
 #, c-format
-msgid ""
-"%s: The XML Document has not an URI and there is no second argument.\n"
+msgid "%s: The XML Document has not an URI and there is no second argument.\n"
 msgstr "%s: Документ XML не имеет URI и нет второго аргумента.\n"
 
 #, c-format
@@ -109,15 +107,14 @@ msgid "%s: XMLList does not exist.\n"
 msgstr "%s: XMLList не существует.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Неверное значение входного аргумента №%d: ожидалось «%s», «%s» или "
 "«%s».\n"
 
 #, c-format
 msgid ""
-"%s: Wrong dimension for input argument #%d: A string or a double expected.\n"
+"%s: Wrong dimension for input argument #%d: string or double expected.\n"
 msgstr ""
 "%s: Неверный размер входного аргумента №%d: Ожидалась строка или число типа "
 "double.\n"
@@ -149,16 +146,14 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a single integer "
-"expected\n"
+"%s: Wrong type for input argument #%d: string or single integer expected\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалась строка или одиночное "
 "целое число (integer)\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a single integer "
-"expected.\n"
+"%s: Wrong type for input argument #%d: string or single integer expected.\n"
 msgstr ""
 "%s: Неверный тип входного аргумента №%d: Ожидалась строка или одиночное "
 "целое число (integer).\n"
@@ -371,7 +366,7 @@ msgid "%s: No root element.\n"
 msgstr "%s: Нет корневого элемента.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%i: A string expected.\n"
+msgid "%s: Wrong type for input argument #%i: string expected.\n"
 msgstr "%s: Неверный тип входного аргумента №%i: ожидалась строка.\n"
 
 #, c-format

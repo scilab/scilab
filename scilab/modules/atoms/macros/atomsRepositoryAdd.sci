@@ -99,7 +99,7 @@ function nbAdd = atomsRepositoryAdd(url,section)
         // Allusers can be equal to "user" or "allusers"
 
         if type(section) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsRepositoryAdd",2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsRepositoryAdd",2));
         end
 
         if and(section<>["user","allusers"]) then

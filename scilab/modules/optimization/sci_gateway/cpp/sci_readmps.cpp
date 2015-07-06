@@ -75,7 +75,7 @@ types::Function::ReturnValue sci_readmps(types::typed_list &in, int _iRetCount, 
     // get file name
     if (in[0]->isString() == false)
     {
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "readmps", 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "readmps", 1);
         return types::Function::Error;
     }
 

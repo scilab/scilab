@@ -74,7 +74,7 @@ int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
     {
         if (row != 1 || col != 1)
         {
-            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: A string or a double expected.\n"), fname, 1);
+            Scierror(999, gettext("%s: Wrong dimension for input argument #%d: string or double expected.\n"), fname, 1);
             return 0;
         }
 

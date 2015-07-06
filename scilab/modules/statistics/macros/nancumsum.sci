@@ -55,7 +55,7 @@ function [s]=nancumsum(x,orient)
         orient = "*";
     else
         if and(type(orient) <> [1  10])  then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: A string or scalar expected.\n"), "nancumsum", 2));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string or scalar expected.\n"), "nancumsum", 2));
         end
         
         if ~or(orient == ["r", "*", "c"] | orient == [1, 2]) then

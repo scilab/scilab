@@ -39,7 +39,7 @@ types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCo
 
     if (in[0]->getId() != types::InternalType::IdScalarString)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname.data(), 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), fname.data(), 1);
         return types::Function::Error;
     }
 

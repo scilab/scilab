@@ -42,7 +42,7 @@ types::Function::ReturnValue sci_funptr(types::typed_list &in, int _iRetCount, t
     types::String* pS1 = pIT1->getAs<types::String>();
     if (pS1->isScalar() == false)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), "funptr", 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: string expected.\n"), "funptr", 1);
         return types::Function::Error;
     }
 

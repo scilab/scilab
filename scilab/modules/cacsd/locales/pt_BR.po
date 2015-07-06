@@ -129,8 +129,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -196,7 +196,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -275,8 +275,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 "%s: Tipo incorreto para argumento de entrada: esperava-se um sistema linear "
 "dinâmico.\n"
@@ -304,8 +303,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Input argument %d is assumed continuous time.\n"
-msgstr ""
-"%s: Argumento de entrada %d é assumido como sendo de tempo contínuo.\n"
+msgstr "%s: Argumento de entrada %d é assumido como sendo de tempo contínuo.\n"
 
 #, c-format
 msgid "%s: Needs %s => Use default value %s=%d.\n"
@@ -487,8 +485,7 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -508,7 +505,7 @@ msgstr ""
 "de textos.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamanho incorreto para o argumento de entrada #%d: esperava-se um "
 "texto.\n"
@@ -527,8 +524,7 @@ msgstr "%s: As frequências maiores que a de Nyquist são ignoradas.\n"
 
 #, c-format
 msgid "%s: Negative frequencies below Nyquist frequency are ignored.\n"
-msgstr ""
-"%s: As frequências negativas menores que a de Nyquist são ignoradas.\n"
+msgstr "%s: As frequências negativas menores que a de Nyquist são ignoradas.\n"
 
 #, c-format
 msgid "%s: Wrong value for input arguments #%d and #%d: %s < %s expected.\n"
@@ -596,8 +592,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: In continuous time expected.\n"
-msgstr ""
-"%s: Tipo inválido para argumento %d: esperava-se em tempo contínuo.\n"
+msgstr "%s: Tipo inválido para argumento %d: esperava-se em tempo contínuo.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be a positive scalar.\n"
@@ -616,8 +611,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr "%s: Tamanho incorreto para o argumento %d: esperava-se %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 "%s: Valor incorreto para o argumento de entrada #%d: esperava-se um sistema "
 "estabilizável.\n"
@@ -853,8 +847,7 @@ msgid "%s: %s is indefinite.\n"
 msgstr "%s: %s é indefinida.\n"
 
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr ""
 "%s: Modo(s) controlável e observável de %s está(ão) próximo(s) ao eixo "
 "imaginário.\n"
@@ -944,8 +937,7 @@ msgstr "%s: Solução de Riccati imprecisa: erro da equação = %g.\n"
 
 #, c-format
 msgid "%s: An eigenvalue of %s (observer) is close to Imaginary axis.\n"
-msgstr ""
-"%s: Um autovalor de %s (observador) está próximo ao eixo imaginário.\n"
+msgstr "%s: Um autovalor de %s (observador) está próximo ao eixo imaginário.\n"
 
 msgid "Unfeasible (Hx hamiltonian)"
 msgstr "Inviável (Hx hamiltonian)"
@@ -1029,8 +1021,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s não é simétrico.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr ""
 "%s: Tipo incorreto para o argumento de entrada #%d: esperava-se um espaço de "
 "estados linear.\n"
@@ -1047,8 +1038,7 @@ msgstr ""
 "imaginário."
 
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr ""
 "%s: Todos os modos de A são aproximadamente não-mínimos tal que || G || é "
 "quase 0.\n"

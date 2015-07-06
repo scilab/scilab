@@ -27,8 +27,7 @@ msgstr "%s: Questa caratteristica non è stata sviluppata.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
-msgstr ""
-"%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
+msgstr "%s: Questa caratteristica non è stata sviluppata in questa modalità.\n"
 
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
@@ -65,13 +64,13 @@ msgstr ""
 "scalare (>=0).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"

@@ -320,8 +320,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: First element must not be %s.\n"
+msgid "%s: Wrong value for input argument #%d: First element must not be %s.\n"
 msgstr ""
 
 #, c-format
@@ -371,8 +370,7 @@ msgid "%s: Wrong size for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: A positive integer expected.\n"
+msgid "%s: Wrong value for input argument #%d: A positive integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -452,8 +450,7 @@ msgstr ""
 "rzeczywistych.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A %d elements array expected.\n"
+msgid "%s: Wrong size for input argument #%d: A %d elements array expected.\n"
 msgstr ""
 "%s: Nieprawidłowy rozmiar argumentu wejściowego nr %d: Oczekiwane elementy "
 "tablicy %d.\n"

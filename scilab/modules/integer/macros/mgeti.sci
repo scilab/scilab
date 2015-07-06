@@ -20,7 +20,7 @@ function x = mgeti(varargin)
         type = varargin(2);
 
         if typeof(type) <> "string" then
-            error(msprintf(_("%s: Wrong type for argument #%d: A string expected.\n"), "mgeti", 2));
+            error(msprintf(_("%s: Wrong type for argument #%d: string expected.\n"), "mgeti", 2));
         end
 
         if size(type, '*') <> 1 then

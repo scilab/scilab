@@ -232,7 +232,7 @@ function savewave(filename,x,rate,nbits)
     end;
 
     if ~(type(filename) == 10) then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: A string expected.\n" ),"savewave",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n" ),"savewave",1));
     end
 
     if strindex(filename,".")==[] then

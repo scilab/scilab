@@ -64,8 +64,7 @@ msgid "P,Q and X"
 msgstr "P,Q i X"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość parametru wejściowego nr %d: oczekiwano '%s', '%s' "
 "lub '%s'.\n"
@@ -251,8 +250,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Vector expected.\n"
-msgstr ""
-"%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora.\n"
+msgstr "%s: Nieprawidłowy typ argumentu wejściowego nr %d: Oczekuje wektora.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected"
@@ -423,7 +421,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
@@ -475,8 +473,7 @@ msgid "%s: NaNs detected, please use %s() instead.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Non-negative values expected.\n"
+msgid "%s: Wrong value for input argument #%d: Non-negative values expected.\n"
 msgstr ""
 
 #, c-format
@@ -534,8 +531,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
+msgid "%s: Wrong value for %d input argument: '%s', '%s', %d or %d expected.\n"
 msgstr ""
 "%s: Nieprawidłowa wartość %d argumentu wejściowego: Oczekuje '%s', '%s', %d "
 "lub %d.\n"

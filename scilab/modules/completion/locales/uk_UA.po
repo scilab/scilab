@@ -18,7 +18,7 @@ msgstr ""
 "Language: uk\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий розмір вхідного параметра №%d: слід використовувати рядок.\n"
 
@@ -61,13 +61,13 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: помилкова розмірність вхідного параметра №%d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument: A string expected.\n"
+msgid "%s: Wrong size for input argument: string expected.\n"
 msgstr ""
 "%s: помилкова розмірність вхідного параметра. Слід використовувати рядковий "
 "тип (string).\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"

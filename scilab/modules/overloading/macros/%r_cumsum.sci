@@ -40,7 +40,7 @@ function a = %r_cumsum(varargin)
         end
     case 10 
         if size(d,'*') <> 1 then
-            error(msprintf(_("%s: Wrong size for input argument #%d: A string expected.\n"),"cumsum",2))
+            error(msprintf(_("%s: Wrong size for input argument #%d: string expected.\n"),"cumsum",2))
         end
         if and(d<>["r","c","*","m"]) then
             error(msprintf(_("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"),..
@@ -51,7 +51,7 @@ function a = %r_cumsum(varargin)
         d=pos(find(d==["r","c","*","m"]))
         
     else
-        error(msprintf(_("%s: Wrong type for input argument #%d: A string or scalar expected.\n"),"cumsum",2))
+        error(msprintf(_("%s: Wrong type for input argument #%d: string or scalar expected.\n"),"cumsum",2))
     end
 
     select d

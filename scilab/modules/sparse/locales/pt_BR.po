@@ -458,7 +458,7 @@ msgstr ""
 "%s: Quantidade incorreta de argumentos de entrada: esperava-se %d ou %d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo errado para o argumento de entrada #%d: Esperava-se uma string.\n"
 

@@ -99,7 +99,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong size for input argument #%d: A string or a macro name expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong size for input argument #%d: string or macro name expected.\n"), fname, 2);
                         return 1;
                     }
                 }
@@ -112,7 +112,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
                         sciErr = getVarNameFromPosition(pvApiCtx, 2, pstFunctionName);
                         if (sciErr.iErr)
                         {
-                            Scierror(999, _("%s: Wrong type for input argument #%d: A string or a macro name expected.\n"), fname, 2);
+                            Scierror(999, _("%s: Wrong type for input argument #%d: string or macro name expected.\n"), fname, 2);
                             return 1;
                         }
                         setGraphicObjectProperty(iDatatipUID, __GO_DATATIP_DISPLAY_FNC__, pstFunctionName, jni_string, 1);
@@ -123,7 +123,7 @@ int sci_datatip_set_display(char *fname, void* pvApiCtx)
                     }
                     else
                     {
-                        Scierror(999, _("%s: Wrong type for input argument #%d: A string or a macro name expected.\n"), fname, 2);
+                        Scierror(999, _("%s: Wrong type for input argument #%d: string or macro name expected.\n"), fname, 2);
                         return 1;
                     }
                 }

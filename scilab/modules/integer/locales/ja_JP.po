@@ -31,7 +31,8 @@ msgstr "%s: 引数 %d の型が間違っています: 実数スカラーを指�
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr "%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
+msgstr ""
+"%s: 引数 %d の大きさが間違っています: 実数スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -43,4 +44,6 @@ msgstr "%s: 入力引数 #%dの値が間違っています: 整数値を指定�
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
-msgstr "%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が正しくありません: 集合 {%s} に含まれる値を指定してくだ"
+"さい.\n"

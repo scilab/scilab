@@ -30,7 +30,7 @@ msgid "%s: Wrong value for input argument #%d: Integer >= %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：第%d个输入参数的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -38,11 +38,11 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s：第%d个输入参数的值错误：必须在集合{%s}中。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -79,8 +79,7 @@ msgid ""
 msgstr "%s：输入参数出错：第一个参数给出的维数与特定的 cell 内容不符。\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s：该特点还没有实现：对高维矩阵的支持。\n"
 
 #, c-format
@@ -123,8 +122,7 @@ msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
 msgstr "%s：输入参数 #%d 的类型出错：应该为方阵。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为%s， %s，“%s”或“%s”。\n"
 
 msgid "Jan"
@@ -209,8 +207,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s：在 Scilab 里没有小网格。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数 #%d 的值出错：应该为“%s”，“%s”或“%s”。\n"
 
 #, c-format

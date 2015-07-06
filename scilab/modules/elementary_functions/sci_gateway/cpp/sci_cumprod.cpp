@@ -232,7 +232,7 @@ types::Function::ReturnValue sci_cumprod(types::typed_list &in, int _iRetCount, 
                 pDblIn->killMe();
             }
 
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "cumprod", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "cumprod", 3);
             return types::Function::Error;
         }
 

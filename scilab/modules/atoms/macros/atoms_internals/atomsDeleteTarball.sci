@@ -29,22 +29,22 @@ function remList = atomsDeleteTarball(package,section,version)
     // 1st input argument
     // =========================================================================
     if type(package) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",1));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDeleteTarball",1));
     end
 
     if size(package(1,:),"*") > 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",1));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDeleteTarball",1));
     end
 
     // 2nd input argument
     // =========================================================================
 
     if type(section) <> 10 then
-        error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",2));
+        error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDeleteTarball",2));
     end
 
     if size(section(1,:),"*") > 1 then
-        error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",2));
+        error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDeleteTarball",2));
     end
 
     // 3rd input argument
@@ -55,11 +55,11 @@ function remList = atomsDeleteTarball(package,section,version)
         end
 
         if type(version) <> 10 then
-            error(msprintf(gettext("%s: Wrong type for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",3));
+            error(msprintf(gettext("%s: Wrong type for input argument #%d: string expected.\n"),"atomsDeleteTarball",3));
         end
 
         if size(version(1,:),"*") > 1 then
-            error(msprintf(gettext("%s: Wrong size for input argument #%d: Single string expected.\n"),"atomsDeleteTarball",3));
+            error(msprintf(gettext("%s: Wrong size for input argument #%d: string expected.\n"),"atomsDeleteTarball",3));
         end
         // If no 3rd argument is provided, 2nd argument is the version, section by default set to "all"
     else

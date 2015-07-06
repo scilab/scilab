@@ -61,8 +61,7 @@ msgstr "%s : Type erroné de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: Wrong size for argument #%d: Real scalar expected.\n"
-msgstr ""
-"%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
+msgstr "%s : Dimension erronée de l'argument %d : Un scalaire réel attendu.\n"
 
 #, c-format
 msgid "%s: No more memory.\n"
@@ -103,13 +102,11 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: An integer expected.\n"
-msgstr ""
-"%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
+msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un entier attendu.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -129,7 +126,7 @@ msgstr "%s : Valeur erronée de l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères ou "
@@ -229,13 +226,13 @@ msgid "%s: Wrong value for input argument #%d: A int expected.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Un int attendu.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères "
 "attendue.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une chaîne de "
 "caractères attendue.\n"
@@ -249,8 +246,7 @@ msgid "%s: Wrong value for input argument #%d: Must be %s.\n"
 msgstr "%s : Valeur erronée de l'argument d'entrée n°%d : Doit être %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument d'entrée n°%d : Un scalaire ou une chaîne de "
 "caractères attendu.\n"
@@ -277,12 +273,10 @@ msgstr "%s : Impossible d'allouer la quantité de mémoire indiquée.\n"
 
 #, c-format
 msgid "%s: The requested size is smaller than the minimal one.\n"
-msgstr ""
-"%s : La dimension demandée est plus petite que le minimum autorisé.\n"
+msgstr "%s : La dimension demandée est plus petite que le minimum autorisé.\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 "%s : Impossible de créer (ou de redimensionner) la pile (probablement du à "
 "une erreur de malloc).\n"
@@ -405,8 +399,7 @@ msgstr "Impossible d'appeler %s dans la bibliothèque %s : %s\n"
 
 #, c-format
 msgid "Error: Not a valid primitive ID %d.\n"
-msgstr ""
-"Erreur : Ce n'est pas un identifiant de primitive valide (ID =  %d).\n"
+msgstr "Erreur : Ce n'est pas un identifiant de primitive valide (ID =  %d).\n"
 
 msgid "Aborting current computation\n"
 msgstr "Abandon du calcul en cours\n"
@@ -448,8 +441,8 @@ msgid ""
 "Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
 "for element wise operation \n"
 msgstr ""
-"Attention : \"%d.%s ...\" est interprété comme \"%d.0%s ...\". Utilisez \"%d "
-".%s ...\" pour une opération élément par élément \n"
+"Attention : \"%d.%s ...\" est interprété comme \"%d.0%s ...\". Utilisez "
+"\"%d .%s ...\" pour une opération élément par élément \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "La variable d'environnement SCI n'est pas définie.\n"
@@ -672,8 +665,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice booléenne attendue.\n"
 
 #, c-format
 msgid ""
@@ -812,8 +804,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Matrix of handle expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
+msgstr "%s : Type erroné de l'argument %d : Une matrice de handle attendue.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): %d expected.\n"
@@ -1219,8 +1210,7 @@ msgstr "%s : Le fichier n'existe pas : %s"
 
 #, c-format
 msgid "%s: Wrong number of input argument(s): At least %d expected.\n"
-msgstr ""
-"%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
+msgstr "%s : Nombre erroné d'argument(s) d'entrée : Au moins %d attendu(s).\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Double expected.\n"

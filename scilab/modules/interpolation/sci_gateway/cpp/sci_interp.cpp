@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_interp(types::typed_list &in, int _iRetCount, t
     {
         if (in[4]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "interp", 5);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "interp", 5);
             return types::Function::Error;
         }
 

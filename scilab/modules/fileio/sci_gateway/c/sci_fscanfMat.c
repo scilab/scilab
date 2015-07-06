@@ -59,7 +59,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
         if (isStringType(pvApiCtx, piAddressVarThree) == 0 || isScalar(pvApiCtx, piAddressVarThree) == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 3);
             return 0;
         }
 
@@ -100,7 +100,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
         if (isStringType(pvApiCtx, piAddressVarTwo) == 0 || isScalar(pvApiCtx, piAddressVarTwo) == 0)
         {
             freeVar(&filename, &expandedFilename, &Format, &separator);
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 2);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 2);
             return 0;
         }
 
@@ -128,7 +128,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     if (isStringType(pvApiCtx, piAddressVarOne) == 0 || isScalar(pvApiCtx, piAddressVarOne) == 0)
     {
         freeVar(&filename, &expandedFilename, &Format, &separator);
-        Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), fname, 1);
         return 0;
     }
 

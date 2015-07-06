@@ -175,12 +175,16 @@ msgstr "(警告: 名前が重複しています: 関数名が %s から %s へ�
 #, c-format
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used"
-msgstr "Matlabツールボックス関数 %s は変換できませんでした、元の呼び出し順で使われました"
+msgstr ""
+"Matlabツールボックス関数 %s は変換できませんでした、元の呼び出し順で使われま"
+"した"
 
 #, c-format
 msgid ""
 "Matlab toolbox(es) function %s not converted, original calling sequence used."
-msgstr "Matlabツールボックス関数 %s は変換できませんでした、元の呼び出し順で使われました。"
+msgstr ""
+"Matlabツールボックス関数 %s は変換できませんでした、元の呼び出し順で使われま"
+"した。"
 
 #
 # File: macros/kernel/default_trad.sci, line: 58
@@ -207,8 +211,7 @@ msgid "lhs cannot be a %s."
 msgstr "lhs は、%s ができません。"
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
+msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr "インデックスを1つ有する %s 型の展開は未実装です."
 
 #
@@ -227,10 +230,10 @@ msgid "Matlab function %s not yet converted."
 msgstr "Matlab関数 %s はまだ変換されていません。"
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
-"mtlb(%s) は %s() または %s で置き換えることができます. これは, %s が M-file であるかどうかに依存しません."
+"mtlb(%s) は %s() または %s で置き換えることができます. これは, %s が M-file "
+"であるかどうかに依存しません."
 
 #
 # File: macros/kernel/getoperands.sci, line: 15
@@ -350,7 +353,9 @@ msgstr "// 変形引数出力(varargout)の推論"
 msgid ""
 "loginfos: verb_mode 0 should not be used in this context, information "
 "ignored."
-msgstr "loginfos: verb_mode 0 は、この前後関係で使われるべきでありません、情報は無視しました。"
+msgstr ""
+"loginfos: verb_mode 0 は、この前後関係で使われるべきでありません、情報は無視"
+"しました。"
 
 #
 # File: macros/kernel/m2sci_syntax.sci, line: 304
@@ -403,7 +408,9 @@ msgstr "もし"
 
 msgid ""
 "not enough data, you should give at least variable_name|dimensions|datatype."
-msgstr "データが足りません. 少なくとも「変数名/次元/データ型」を指定する必要があります."
+msgstr ""
+"データが足りません. 少なくとも「変数名/次元/データ型」を指定する必要がありま"
+"す."
 
 #
 # File: macros/kernel/sci_m2scideclare.sci, line: 55
@@ -619,7 +626,8 @@ msgstr "%s: %s モジュールはインストールされていません。\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
-msgstr "%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
+msgstr ""
+"%s: 入力引数の数が間違っています: %d から %d 個の引数を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Boolean matrix expected.\n"
@@ -627,7 +635,9 @@ msgstr "%s: 引数 #%d の型が間違っています: 論理値行列を指定�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: %d 行 %d 列の行列を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Could not read variables in %s"
@@ -754,7 +764,8 @@ msgstr "%d 個のMatlab 関数が未変換です, 元の呼び出し手順を使
 
 #, c-format
 msgid "%d Matlab Toolbox(es) Functions, original calling sequence used :"
-msgstr "%d 個のMatlab ツールボックス関数に関して, 元の呼び出し手順を使用します:"
+msgstr ""
+"%d 個のMatlab ツールボックス関数に関して, 元の呼び出し手順を使用します:"
 
 #, c-format
 msgid "%d Unknown Function(s), original calling sequence used :"
@@ -771,8 +782,10 @@ msgid ""
 "  Type help mtlb_<funname> in Scilab command window to get information about "
 "improvements."
 msgstr ""
-"変換には改善の余地があります: 関数コール mtlb_<関数名> のコメント //! を参照ください\n"
-"    Scilabコマンドウインドウで help mtlb_<関数名> と入力すると,改善に関する情報を得ることができます."
+"変換には改善の余地があります: 関数コール mtlb_<関数名> のコメント //! を参照"
+"ください\n"
+"    Scilabコマンドウインドウで help mtlb_<関数名> と入力すると,改善に関する情"
+"報を得ることができます."
 
 #
 # File: macros/mfile2sci.sci, line: 321
@@ -788,9 +801,10 @@ msgid "****** End of mfile2sci() session ******"
 msgstr "****** mfile2sci() セッションの終了 ******"
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
-msgstr "%s の少なくとも1つのオペランドが空行列です, Scilabにおける等価な値は  [] です."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgstr ""
+"%s の少なくとも1つのオペランドが空行列です, Scilabにおける等価な値は  [] で"
+"す."
 
 #, c-format
 msgid "recursive extraction from a variable %s of type %s."
@@ -809,8 +823,7 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr "M2SCIバグ: varslistで、未知の変数 %s の抽出"
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr "セルでも構造体でもない変数 %s への再帰的な挿入."
 
 #, c-format
@@ -827,7 +840,8 @@ msgstr "１つのオペランドが空行列です: %s , 結果を [] に設定�
 #, c-format
 msgid ""
 "At least one operand is an empty matrix for operator: %s, result set to []."
-msgstr "演算子 %s の少なくとも1つのオペランドが空行列です, 結果は [] に設定されます."
+msgstr ""
+"演算子 %s の少なくとも1つのオペランドが空行列です, 結果は [] に設定されます."
 
 #, c-format
 msgid ""
@@ -871,7 +885,9 @@ msgstr "二つの出力で chol() を呼び出します。"
 msgid ""
 "All children will be deleted, no HandleVisibility property in Scilab "
 "graphics."
-msgstr "すべての子が削除されました, ScilabグラフィックにHandleVisibilityプロパティが存在しません."
+msgstr ""
+"すべての子が削除されました, ScilabグラフィックにHandleVisibilityプロパティが"
+"存在しません."
 
 #
 # File: macros/sci_files/sci_clf.sci, line: 20
@@ -891,7 +907,9 @@ msgstr "全てのウインドウは削除されます."
 msgid ""
 "Scilab %s() does not work when dim input argument is greater than number of "
 "dims of first rhs..."
-msgstr "Scilab %s() は入力引数dimが右辺の最初の引数のdimsよりも大きい時には動作しません."
+msgstr ""
+"Scilab %s() は入力引数dimが右辺の最初の引数のdimsよりも大きい時には動作しませ"
+"ん."
 
 msgid ""
 "Verify that overloading functions have been written for inputs in display()."
@@ -922,7 +940,9 @@ msgid "Matlab exist(), mtlb_exist() is called."
 msgstr "Matlab exist(), mtlb_exist() は呼ばれました。"
 
 msgid "mtlb_exist() is just a partial emulation of Matlab exist() function."
-msgstr "mtlb_exist() がエミュレーションするのは, Matlab exists()関数の一部の機能のみです."
+msgstr ""
+"mtlb_exist() がエミュレーションするのは, Matlab exists()関数の一部の機能のみ"
+"です."
 
 #
 # File: macros/sci_files/sci_fclose.sci, line: 21
@@ -937,10 +957,12 @@ msgid "%s with two outputs."
 msgstr "%s: 二つの出力で"
 
 msgid "Verify that expression evaluated by execstr() is Scilab compatible."
-msgstr "execstr() によって評価された式がScilabと互換性があることを確認してください."
+msgstr ""
+"execstr() によって評価された式がScilabと互換性があることを確認してください."
 
 msgid "No equivalent for findstr() in Scilab so mtlb_findstr() is called."
-msgstr "Scilab の findstr()と互換性がないため, mtlb_findstr() がコールされました."
+msgstr ""
+"Scilab の findstr()と互換性がないため, mtlb_findstr() がコールされました."
 
 #
 # File: macros/sci_files/sci_fopen.sci, line: 29
@@ -995,9 +1017,10 @@ msgstr "Scilab %s() は複素数の値では動作しません: %s() のコー�
 msgid "Unhandled class: %s."
 msgstr "ハンドルされないクラス: %s"
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
-msgstr "isequal は等しいと判定するために,構造体のフィールドが同じ順序であることを必要とします."
+msgid "isequal requires fields are in the same order for structs to be equal."
+msgstr ""
+"isequal は等しいと判定するために,構造体のフィールドが同じ順序であることを必要"
+"とします."
 
 #
 # File: macros/sci_files/sci_load.sci, line: 28
@@ -1043,7 +1066,9 @@ msgstr "解決のため msprintf を参照して下さい。"
 msgid ""
 "Scilab and Matlab qr() do not give same results for this case: mtlb_qr() is "
 "used."
-msgstr "この場合, Scilab の qr() と　Matlab の qr() の結果は異なります: mtlb_qr() を使用します."
+msgstr ""
+"この場合, Scilab の qr() と　Matlab の qr() の結果は異なります: mtlb_qr() を"
+"使用します."
 
 msgid "is not a character string matrix."
 msgstr "は,文字列行列ではありません."
@@ -1051,7 +1076,9 @@ msgstr "は,文字列行列ではありません."
 msgid ""
 "WARNING: Matlab reshape() suppresses singleton higher dimension, it is not "
 "the case for matrix."
-msgstr "警告: Matlab reshape() は次元が1の場合にこれを削除しますが,行列の場合は例外です."
+msgstr ""
+"警告: Matlab reshape() は次元が1の場合にこれを削除しますが,行列の場合は例外で"
+"す."
 
 #
 # File: macros/sci_files/sci_save.sci, line: 28
@@ -1092,7 +1119,9 @@ msgstr "sparse() の呼び出し: nzmax オプションを無視しました。"
 msgid ""
 "For Scilab sparse(), input values must have the same size, not sure they "
 "have."
-msgstr "Scilab sparse()の場合,入力値の大きさは同じとする必要がありますが,これを確認できません."
+msgstr ""
+"Scilab sparse()の場合,入力値の大きさは同じとする必要がありますが,これを確認で"
+"きません."
 
 #
 # File: macros/sci_files/sci_warning.sci, line: 30

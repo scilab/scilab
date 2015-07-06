@@ -34,7 +34,7 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为字符串数组。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个字符串。\n"
 
 #, c-format
@@ -64,7 +64,7 @@ msgid "%s: Warning: Directory '%s' already exists.\n"
 msgstr "%s：警告：目录 '%s' 已经存在。\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument: A string expected.\n"
+msgid "%s: Wrong type for input argument: string expected.\n"
 msgstr "%s：输入参数的类型错误：应该为一个字符串。\n"
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong value for input argument #%d.\n"
 msgstr "%s：输入参数#%d的值错误。\n"
 
 #, c-format
-msgid ""
-"%s: Error while trying to retrieve the name of the current directory.\n"
+msgid "%s: Error while trying to retrieve the name of the current directory.\n"
 msgstr "%s：当尝试获取当前目录名时发生错误。\n"
 
 #, c-format
@@ -114,7 +113,7 @@ msgid ""
 msgstr "%s：输入参数#%d的类型错误：\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s：输入参数#%d的大小错误：应该为字符串。\n"
 
 #, c-format
@@ -138,7 +137,7 @@ msgid "%s: Wrong value for input argument #%d: '%s' is an invalid path.\n"
 msgstr "%s：输入参数#%d的值错误：'%s'是一个不正确的路径。\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -158,8 +157,7 @@ msgid "%s: The file %s is not opened in scilab.\n"
 msgstr "%s：不能在Scilab中打开文件 %s 。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
+msgid "%s: Wrong type for input argument #%d: A matrix of strings expected.\n"
 msgstr ""
 
 #, c-format
@@ -209,8 +207,7 @@ msgid "%s: No such file %s.\n"
 msgstr "%s：文件 %s 不存在。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: An integer or string expected.\n"
+msgid "%s: Wrong type for input argument #%d: An integer or string expected.\n"
 msgstr "%s：输入参数#%d的类型错误：应该为一个整数或字符串。\n"
 
 #, c-format
@@ -311,8 +308,7 @@ msgid "%s: Wrong size for input argument #%d: String expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: a String or Integer expected.\n"
+msgid "%s: Wrong type for input argument #%d: a String or Integer expected.\n"
 msgstr ""
 
 #, c-format
@@ -407,21 +403,18 @@ msgid "%s: An error occurred: too many (> %d) conversion required.\n"
 msgstr "%s：发生了一个错误：需要太多（>%d）转换。\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
+msgid "%s: An error occurred: field %d is too long (> %d) for %%[ directive.\n"
 msgstr "%s：发生了一个错误：对 %%[ 标志来说域 %d 太长（>%d）。\n"
 
 msgid "Bad conversion."
 msgstr "错误的转换。"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%s directive.\n"
 msgstr "%s：发生了一个错误：对 %%s 标志来说域 %d 太长（>%d）。\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
+msgid "%s: An error occurred: field %d is too long (< %d) for %%c directive.\n"
 msgstr "%s：发生了一个错误：对 %%c 标志来说域 %d 太长（>%d）。\n"
 
 #, c-format
@@ -480,8 +473,7 @@ msgid "%s: No File opened in Scilab.\n"
 msgstr "%s：在Scilab中没有打开的文件。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
+msgid "%s: Wrong value for input argument #%d ('%s'): Format not recognized.\n"
 msgstr "%s：输入参数#%d（%s）的值错误：格式未被识别。\n"
 
 #, c-format
@@ -493,8 +485,7 @@ msgid "%s: Error while opening, reading or writing.\n"
 msgstr "%s：打开文件，读文件或写文件时发生错误。\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr "%s：输入参数#%d的值错误：应该为'%s'、'%s'或'%s'。\n"
 
 #, c-format

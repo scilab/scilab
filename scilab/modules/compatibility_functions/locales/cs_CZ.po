@@ -30,7 +30,7 @@ msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno celé číslo >= %d.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: Špatná velikost vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -38,12 +38,12 @@ msgid "%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"
 msgstr "%s: Špatná hodnota vstupního argumentu #%d: Musí být v sadě {%s}.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string or scalar expected.\n"
+msgid "%s: Wrong type for input argument #%d: string or scalar expected.\n"
 msgstr ""
 "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec nebo skalár.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
@@ -53,8 +53,7 @@ msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno %s nebo %s.\
 #, c-format
 msgid ""
 "%s: Wrong type for input argument: Cell elements must be character arrays.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu: Prvky buňky musí být pole znaků.\n"
+msgstr "%s: Špatný typ vstupního argumentu: Prvky buňky musí být pole znaků.\n"
 
 #, c-format
 msgid "%s: This feature has not been implemented.\n"
@@ -85,8 +84,7 @@ msgstr ""
 "neshodují  se zadanými obsahy buňky.\n"
 
 #, c-format
-msgid ""
-"%s: This feature has not been implemented: Support for hypermatrices.\n"
+msgid "%s: This feature has not been implemented: Support for hypermatrices.\n"
 msgstr "%s: Tato funkce nebyla zavedena: Podpora hypermatic.\n"
 
 #, c-format
@@ -126,12 +124,10 @@ msgstr "%s: Všechna okna smazána.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Square matrix expected.\n"
-msgstr ""
-"%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
+msgstr "%s: Špatný typ vstupního argumentu #%d: Očekávána čtvercová matice.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: %s, %s,'%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: očekáván %s, %s, '%s', nebo "
 "'%s'.\n"
@@ -195,8 +191,7 @@ msgstr "%s: %s není zavedeno.\n"
 #, c-format
 msgid ""
 "%s: %s Scilab function does not work with more than one row variables.\n"
-msgstr ""
-"%s: Funkce Scilabu %s nepracuje s více než jednou řadou proměnných.\n"
+msgstr "%s: Funkce Scilabu %s nepracuje s více než jednou řadou proměnných.\n"
 
 #, c-format
 msgid "%s: The format '%s' is unknown.\n"
@@ -219,8 +214,7 @@ msgid "%s: No minor grid in Scilab.\n"
 msgstr "%s: Ve Scilabu není žádná malá mřížka.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s', '%s' or '%s' expected.\n"
 msgstr ""
 "%s: Špatná hodnota vstupního argumentu #%d: Očekáváno '%s', '%s' nebo '%s'.\n"
 

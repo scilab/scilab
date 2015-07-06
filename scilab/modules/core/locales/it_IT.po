@@ -137,7 +137,7 @@ msgstr "%s: L'argomento in ingresso #%d ha un valore sbagliato.\n"
 
 #, c-format
 msgid ""
-"%s: Wrong type for input argument #%d: A string or a scalar integer value "
+"%s: Wrong type for input argument #%d: string or scalar integer value "
 "expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una stringa "
@@ -247,13 +247,13 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: era atteso un int.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era attesa una "
 "stringa.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d ha una dimensione sbagliata: era attesa una "
 "stringa.\n"
@@ -268,8 +268,7 @@ msgstr ""
 "%s: L'argomento in ingresso #%d ha un valore sbagliato: deve essere %s.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: L'argomento in ingresso #%d è di tipo sbagliato: era atteso uno scalare "
 "o una stringa.\n"
@@ -299,8 +298,7 @@ msgid "%s: The requested size is smaller than the minimal one.\n"
 msgstr "%s: La dimensione richiesta è minore di quella minima.\n"
 
 #, c-format
-msgid ""
-"%s: Unable to create (or resize) the stack (probably a malloc error).\n"
+msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
 msgstr ""
 "%s: Impossibile creare (o ridimensionare) lo stack (probabile errore di "
 "malloc).\n"
@@ -471,8 +469,8 @@ msgid ""
 "Warning: \"%d.%s ...\" is interpreted as \"%d.0%s ...\". Use \"%d .%s ...\" "
 "for element wise operation \n"
 msgstr ""
-"Attenzione: \"%d.%s ...\" è interpretato come \"%d.0%s ...\". Usare \"%d .%s "
-"...\" per un'operazione basata sugli elementi \n"
+"Attenzione: \"%d.%s ...\" è interpretato come \"%d.0%s ...\". Usare \"%d ."
+"%s ...\" per un'operazione basata sugli elementi \n"
 
 msgid "SCI environment variable not defined.\n"
 msgstr "La variabile d'ambiente SCI non è definita.\n"
@@ -576,8 +574,8 @@ msgid ""
 "Error: Not a valid gateway file %s (encoding not 'utf-8') Encoding '%s' "
 "found\n"
 msgstr ""
-"Errore: %s non è un file di gateway valido (la codifica non è "
-"'utf8'),trovata la codifica '%s'\n"
+"Errore: %s non è un file di gateway valido (la codifica non è 'utf8'),"
+"trovata la codifica '%s'\n"
 
 msgid "Error returning tlist, memory full.\n"
 msgstr "Errore nel restituire tlist, la memoria è piena.\n"
@@ -594,8 +592,7 @@ msgstr ""
 "Scilab."
 
 msgid "Functions compiled with very old versions are no more handled."
-msgstr ""
-"Le funzioni compilate con versioni molto vecchie non sono più gestite."
+msgstr "Le funzioni compilate con versioni molto vecchie non sono più gestite."
 
 msgid "No space to allocate Scilab stack.\n"
 msgstr "Non c'è spazio per allocare lo stack di Scilab.\n"
@@ -657,8 +654,8 @@ msgstr ""
 #, c-format
 msgid "%s: Wrong size for argument #%d: (%d,%d) expected.\n"
 msgstr ""
-"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa "
-"(%d,%d).\n"
+"%s: L'argomento in ingresso %d ha una dimensione sbagliata: era attesa (%d,"
+"%d).\n"
 
 #, c-format
 msgid ""
@@ -886,8 +883,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Optional arguments name=val must be at the end.\n"
-msgstr ""
-"%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
+msgstr "%s: Gli argomenti opzionali name=val devono essere messi alla fine.\n"
 
 #, c-format
 msgid "%s: Unrecognized optional arguments %s.\n"
@@ -1029,8 +1025,7 @@ msgstr "deve essere uno scalare"
 
 #, c-format
 msgid "%s: %s has wrong dimensions (%d,%d), expecting (%d,%d).\n"
-msgstr ""
-"%s: %s ha delle dimensioni sbagliate (%d,%d), erano attese (%d,%d).\n"
+msgstr "%s: %s ha delle dimensioni sbagliate (%d,%d), erano attese (%d,%d).\n"
 
 #, c-format
 msgid "%s: %s has wrong %s dimension (%d), expecting (%d).\n"

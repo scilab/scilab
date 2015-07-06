@@ -2,7 +2,7 @@
 # Please see in SCI/tools/localization for localization management
 # Copyright (C) 2007-2008 - INRIA
 # Copyright (C) 2008-2011 - DIGITEO
-# Copyright (C) 2012-2014 - Scilab-Enterprises
+# Copyright (C) 2012-2015 - Scilab-Enterprises
 # This file is distributed under the same license as the Scilab package.
 #
 msgid ""
@@ -10,1318 +10,137 @@ msgstr ""
 "Project-Id-Version: Scilab\n"
 "Report-Msgid-Bugs-To: <localization@lists.scilab.org>\n"
 "POT-Creation-Date: 2013-04-16 17:44+0100\n"
-"Last-Translator: Vincent COUVERT <vincent.couvert@scilab-enterprises.com>\n"
+"Last-Translator: François Granade <francois.granade@scilab-enterprises.com>\n"
 "Language-Team: Scilab Localization <localization@lists.scilab.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-07-03 10:13+0100\n"
+"Revision-Date: 2015-08-17 11:28+0100\n"
 
-# File: sci_gateway/c/sci_clc.c, line: 41
-# File: sci_gateway/c/sci_lines.c, line: 206
-#, c-format
-msgid "%s: Wrong value for input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_clc.c, line: 47
-#, c-format
-msgid "%s: This feature has not been implemented.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_clc.c, line: 60
-# File: sci_gateway/c/sci_tohome.c, line: 29
+# File: modules/console/sci_gateway/c/sci_tohome.c, line: 29
+# File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 59
+# File: modules/console/sci_gateway/cpp/sci_tohome.cpp, line: 34
 #, c-format
 msgid "%s: This feature has not been implemented in this mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_iswaitingforinput.c, line: 38
+# File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 40
+#, c-format
+msgid "%s: Wrong type for input argument #%d: A double scalar expected.\n"
+msgstr ""
+
+#
+# File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 46
+#, c-format
+msgid "%s: Wrong value for input argument #%d: A positive double expected\n"
+msgstr ""
+
+#
+# File: modules/console/sci_gateway/cpp/sci_clc.cpp, line: 52
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 30
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 34
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d to %d expected.\n"
+msgstr ""
+
+#
+# File: modules/console/sci_gateway/cpp/sci_iswaitingforinput.cpp, line: 37
 #, c-format
 msgid "%s: Not implemented in this mode.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 67
-#, c-format
-msgid "%s: Memory allocation error.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_lines.c, line: 92
-# File: sci_gateway/c/sci_lines.c, line: 118
-# File: sci_gateway/c/sci_lines.c, line: 136
-# File: sci_gateway/c/sci_lines.c, line: 174
-# File: sci_gateway/c/sci_lines.c, line: 189
-# File: sci_gateway/c/sci_lines.c, line: 232
-# File: sci_gateway/c/sci_lines.c, line: 240
-#, c-format
-msgid "%s: Can not read input argument #%d.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_lines.c, line: 99
-# File: sci_gateway/c/sci_lines.c, line: 247
-# File: sci_gateway/c/sci_lines.c, line: 253
-# File: sci_gateway/c/sci_lines.c, line: 273
-# File: sci_gateway/c/sci_lines.c, line: 290
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 48
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 66
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 75
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 81
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A scalar expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_lines.c, line: 107
-# File: sci_gateway/c/sci_lines.c, line: 259
-# File: sci_gateway/c/sci_lines.c, line: 265
-#, c-format
-msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_lines.c, line: 130
-# File: sci_gateway/c/sci_lines.c, line: 199
-#, c-format
-msgid "%s: Wrong value for input argument #%d: An integer value expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_lines.c, line: 153
-# File: sci_gateway/c/sci_lines.c, line: 316
-# File: sci_gateway/c/sci_lines.c, line: 331
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 86
+# File: modules/console/sci_gateway/cpp/sci_lines.cpp, line: 91
 #, c-format
 msgid "%s: Wrong value for input argument #%d: A scalar (>= 0) expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_prompt.c, line: 61
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 42
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong number of output argument(s): %d to %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_prompt.c, line: 69
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 59
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong number of output argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_prompt.c, line: 80
+# File: modules/console/sci_gateway/cpp/sci_prompt.cpp, line: 65
 #, c-format
-msgid "%s: Wrong number of output argument(s).\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 184
-msgid "Console"
+# File: modules/console/sci_gateway/cpp/sci_tohome.cpp, line: 29
+#, c-format
+msgid "%s: Wrong number of input argument(s): %d expected.\n"
 msgstr ""
 
 #
-# File: scilab_fake_localization_file.c, line: 200
-msgid "Display"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 212
-msgid "Automatically adapt the display to the console"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 217
-msgid "Lines to display:"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 232
-msgid "Columns to display:"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 246
-msgid "Number of lines in console scroll buffer:"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 265
-msgid "General"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 268
-msgid "Produces an error"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 269
-msgid "Produces a warning"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 270
-msgid "Produces Inf or NaN"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 271
-msgid "Variable format"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 272
-msgid "Scientific format"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 275
-msgid "English"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 276
-msgid "French"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 277
-msgid "Portugese (Brazil)"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 278
-msgid "Catalan"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 279
-msgid "Czech"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 280
-msgid "Spanish"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 281
-msgid "Italian"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 282
-msgid "Polish"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 283
-msgid "Russian"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 284
-msgid "Chinese (Simplified)"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 285
-msgid "Chinese (Traditional)"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 286
-msgid "German"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 287
-msgid "Japanese"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 288
-msgid "Ukrainian"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 291
-# File: scilab_fake_localization_file.c, line: 639
-msgid "Start-up directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 293
-# File: scilab_fake_localization_file.c, line: 679
-msgid "Confirmation dialogs"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 296
-msgid "Warn before exiting Scilab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 297
-msgid "Warn before deleting Command History items"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 298
-msgid "Warn before clearing the Console"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 302
-msgid "Desktop layout"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 305
-msgid "Integrated"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 306
-msgid "Simple"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 310
-msgid "Shortcuts"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 314
-msgid "Cut or interrupt"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 315
-msgid "Copy or interrupt"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 316
-# File: scilab_fake_localization_file.c, line: 385
-# File: scilab_fake_localization_file.c, line: 464
-msgid "Select all"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 317
-msgid "Line beginning"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 318
-msgid "Line end"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 319
-msgid "Previous char"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 320
-msgid "Delete next char"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 321
-msgid "Delete previous char"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 322
-msgid "Delete end of line"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 323
-# File: scilab_fake_localization_file.c, line: 324
-msgid "Delete whole line"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 325
-msgid "Delete last word"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 326
-msgid "Previous console page"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 327
-msgid "Next console page"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 328
-msgid "Validate input"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 329
-msgid "Clear console"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 330
-msgid "Console box"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 331
-# File: scilab_fake_localization_file.c, line: 332
-msgid "Completion"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 333
-# File: scilab_fake_localization_file.c, line: 335
-msgid "Previous history line"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 334
-# File: scilab_fake_localization_file.c, line: 336
-msgid "Next history line"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 337
-msgid "Help Browser"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 338
-# File: scilab_fake_localization_file.c, line: 339
-msgid "Console Search Field"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 340
-# File: scilab_fake_localization_file.c, line: 391
-# File: scilab_fake_localization_file.c, line: 462
-msgid "Paste"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 341
-msgid "Open a file"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 342
-msgid "Load environment"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 343
-msgid "Save environment"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 344
-msgid "Quit"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 345
-msgid "Execute"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 346
-msgid "Empty clipboard"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 347
-msgid "Change current directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 348
-msgid "Display current directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 349
-# File: scilab_fake_localization_file.c, line: 438
-msgid "Page setup"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 350
-# File: scilab_fake_localization_file.c, line: 405
-# File: scilab_fake_localization_file.c, line: 454
-msgid "Print"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 351
-msgid "Preferences"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 352
-msgid "Show/Hide toolbar"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 353
-msgid "Clear history"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 354
-msgid "Resume"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 355
-msgid "Abort"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 356
-msgid "Interrupt"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 357
-msgid "Launch SciNotes"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 358
-msgid "Launch Xcos"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 359
-msgid "Matlab to Scilab Translator"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 360
-msgid "Module manager"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 361
-msgid "Variable Browser"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 362
-msgid "Command History"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 363
-msgid "File Browser"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 364
-msgid "Demonstrations"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 365
-msgid "Open Scilab website"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 366
-msgid "Open Online Help"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 367
-msgid "Open Scilab wiki"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 368
-msgid "Open ATOMS website"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 369
-msgid "Open File Exchange website"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 370
-msgid "Open Mailing lists"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 371
-msgid "Open Forge website"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 372
-msgid "Open Bugzilla"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 373
-msgid "About Scilab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 376
-msgid "Auto complete (, [,..."
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 377
-msgid "Auto complete keyword"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 378
-msgid "Generate Help prototype"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 379
-msgid "Tabify"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 380
-msgid "Untabify"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 381
-msgid "Indent"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 382
-msgid "Comment"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 383
-msgid "Uncomment"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 384
-msgid "Remove trailing whites"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 386
-msgid "Select block"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 387
-msgid "Open current tab in a new window"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 388
-msgid "Export current tab in a new window"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 389
-# File: scilab_fake_localization_file.c, line: 461
-msgid "Copy"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 390
-# File: scilab_fake_localization_file.c, line: 460
-msgid "Cut"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 392
-msgid "Paste a column"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 393
-msgid "Repeat selection on column"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 394
-# File: scilab_fake_localization_file.c, line: 458
-msgid "Undo"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 395
-# File: scilab_fake_localization_file.c, line: 459
-msgid "Redo"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 396
-msgid "Copy as HTML with line number"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 397
-msgid "New"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 398
-# File: scilab_fake_localization_file.c, line: 449
-msgid "Open"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 399
-msgid "Open URL"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 400
-msgid "Open source"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 401
-# File: scilab_fake_localization_file.c, line: 451
-# File: scilab_fake_localization_file.c, line: 511
-msgid "Save"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 402
-# File: scilab_fake_localization_file.c, line: 452
-msgid "Save as"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 403
-msgid "Reload"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 404
-msgid "Print preview"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 406
-# File: scilab_fake_localization_file.c, line: 455
-msgid "Close"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 407
-msgid "Exit"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 408
-msgid "To lower case"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 409
-msgid "To upper case"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 410
-msgid "Capitalize"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 411
-msgid "Help on keyword"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 412
-msgid "Load in Scilab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 413
-msgid "Execute in Scilab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 414
-msgid "Evaluate selection"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 415
-msgid "Save and execute"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 416
-msgid "Save and execute all"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 417
-msgid "Find"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 418
-msgid "Find next"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 419
-msgid "Find previous"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 420
-msgid "Incremental search"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 421
-msgid "Set anchor"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 422
-msgid "Remove anchor"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 423
-msgid "Go to next anchor"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 424
-msgid "Go to previous anchor"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 425
-msgid "Start Code Navigator"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 426
-msgid "Search word in file"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 427
-msgid "Search files"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 428
-msgid "Keyword completion"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 429
-msgid "Help"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 430
-msgid "About"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 431
-msgid "Next tab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 432
-msgid "Previous tab"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 433
-# File: scilab_fake_localization_file.c, line: 463
-msgid "Delete"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 434
-msgid "Next paragraph"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 435
-msgid "Previous paragraph"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 436
-msgid "Save all"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 437
-msgid "Overwrite"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 439
-msgid "Close all"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 440
-msgid "Close all but this"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 441
-msgid "Convert quote to double quote"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 442
-msgid "Line numbering"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 443
-msgid "Set the SciNotes font"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 444
-msgid "Set the SciNotes colors"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 448
-msgid "New diagram"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 450
-msgid "Open file in Scilab current directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 453
-msgid "Export"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 456
-msgid "Quit Xcos"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 465
-msgid "Invert selection"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 466
-msgid "Block Parameters"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 467
-msgid "Region to superblock"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 469
-msgid "Zoom In"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 470
-msgid "Zoom Out"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 471
-msgid "Fit diagram to view"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 472
-msgid "Normal 100%"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 473
-msgid "Palette browser"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 474
-msgid "Diagram browser"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 475
-msgid "Viewport"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 476
-msgid "Details"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 478
-msgid "Setup"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 479
-msgid "Execution trace and Debug"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 480
-msgid "Set Context"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 481
-msgid "Compile"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 482
-msgid "Start"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 483
-msgid "Stop"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 485
-msgid "Rotate"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 486
-msgid "Flip"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 487
-msgid "Mirror"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 488
-msgid "Show/Hide shadow"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 489
-msgid "Left"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 490
-msgid "Center"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 491
-msgid "Right"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 492
-msgid "Top"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 493
-msgid "Middle"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 494
-msgid "Bottom"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 495
-msgid "Border Color"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 496
-msgid "Fill Color"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 497
-msgid "Horizontal"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 498
-msgid "Straight"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 499
-msgid "Vertical"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 500
-msgid "Diagram background"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 501
-msgid "Grid"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 503
-msgid "Code generation"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 505
-msgid "Xcos Help"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 506
-msgid "Block Help"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 507
-msgid "Xcos Demonstrations"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 508
-msgid "About Xcos"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 514
-msgid "Save variable"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 517
-msgid "Save history"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 520
-msgid "Save file"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 537
-msgid "Environment"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 539
-msgid "Floating point exception (ieee): "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 555
-msgid "Printing format: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 569
-msgid "Width: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 590
-msgid "Language setting"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 592
-msgid "Default language: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 607
-# File: scilab_fake_localization_file.c, line: 631
-msgid "(This requires a restart of Scilab)"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 617
-msgid "Java Heap Memory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 619
-msgid "Select the memory (in MB) available in Java: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 641
-msgid "Use current working directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 647
-msgid "Use previous working directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 653
-msgid "Use default directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 662
-msgid "Default startup directory"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 699
-msgid "Desktop Layout"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 701
-msgid "Select a layout"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 715
-msgid "(Modify the layout requires to restart Scilab)"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 727
-msgid "Save layout on exiting"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 732
-msgid "Reset layout"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 742
-msgid "Keys binding"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 745
-msgid "Filter on action name: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 755
-msgid "Component"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 767
-msgid "Name: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 773
-msgid "Description: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 779
-msgid "Binding: "
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 811
-msgid "Action name"
-msgstr ""
-
-#
-# File: scilab_fake_localization_file.c, line: 812
-msgid "Key binding"
-msgstr ""
-
-#
-# File: src/c/cmdLine/autoCompletionCli.c, line: 225
-# File: src/c/windows/TermCompletion.c, line: 60
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 224
+# File: modules/console/src/c/windows/TermCompletion.c, line: 58
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 60
 msgid "File or Directory"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 494
-# File: src/c/windows/TermCompletion.c, line: 195
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 493
+# File: modules/console/src/c/windows/TermCompletion.c, line: 194
 msgid "Scilab Fields"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 528
-# File: src/c/windows/TermCompletion.c, line: 223
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 527
+# File: modules/console/src/c/windows/TermCompletion.c, line: 222
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 74
 msgid "Scilab Function"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 529
-# File: src/c/windows/TermCompletion.c, line: 224
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 528
+# File: modules/console/src/c/windows/TermCompletion.c, line: 223
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 71
 msgid "Scilab Command"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 530
-# File: src/c/windows/TermCompletion.c, line: 225
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 529
+# File: modules/console/src/c/windows/TermCompletion.c, line: 224
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 80
 msgid "Scilab Macro"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 531
-# File: src/c/windows/TermCompletion.c, line: 226
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 530
+# File: modules/console/src/c/windows/TermCompletion.c, line: 225
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 83
 msgid "Scilab Variable"
 msgstr ""
 
 #
-# File: src/c/cmdLine/autoCompletionCli.c, line: 533
-# File: src/c/windows/TermCompletion.c, line: 227
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
+# File: modules/console/src/c/cmdLine/autoCompletionCli.c, line: 532
+# File: modules/console/src/c/windows/TermCompletion.c, line: 226
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 77
 msgid "Graphics handle field"
 msgstr ""
 
 #
-# File: src/c/cmdLine/getKey.c, line: 370
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 560
+# File: modules/console/src/c/cmdLine/getKey.c, line: 367
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 560
 #, c-format
 msgid ""
 "Command is too long (more than %d characters long): could not send it to "
@@ -1329,12 +148,12 @@ msgid ""
 msgstr ""
 
 #
-# File: src/c/more.c, line: 25
+# File: modules/console/src/c/more.c, line: 25
 msgid "[Continue display? n (no) to stop, any other key to continue]"
 msgstr ""
 
 #
-# File: src/c/prompt.c, line: 43
+# File: modules/console/src/c/prompt.c, line: 49
 #, c-format
 msgid ""
 "Type '%s' or '%s' to return to standard level prompt.\n"
@@ -1342,26 +161,1438 @@ msgid ""
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
+# File: modules/console/src/console_fake_xml.c, line: 366
+# File: modules/console/src/console_fake_xml.c, line: 372
+msgid "Console"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 388
+# File: modules/console/src/console_fake_xml.c, line: 463
+msgid "Display"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 400
+# File: modules/console/src/console_fake_xml.c, line: 475
+msgid "Automatically adapt the display to the console"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 405
+# File: modules/console/src/console_fake_xml.c, line: 480
+msgid "Lines to display:"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 420
+# File: modules/console/src/console_fake_xml.c, line: 495
+msgid "Columns to display:"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 434
+# File: modules/console/src/console_fake_xml.c, line: 509
+msgid "Number of lines in console scroll buffer:"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 528
+# File: modules/console/src/console_fake_xml.c, line: 790
+msgid "General"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 531
+# File: modules/console/src/console_fake_xml.c, line: 793
+msgid "Produces an error"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 532
+# File: modules/console/src/console_fake_xml.c, line: 794
+msgid "Produces a warning"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 533
+# File: modules/console/src/console_fake_xml.c, line: 795
+msgid "Produces Inf or NaN"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 534
+# File: modules/console/src/console_fake_xml.c, line: 796
+msgid "Variable format"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 535
+# File: modules/console/src/console_fake_xml.c, line: 797
+msgid "Scientific format"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 538
+# File: modules/console/src/console_fake_xml.c, line: 800
+msgid "English"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 539
+# File: modules/console/src/console_fake_xml.c, line: 801
+msgid "French"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 540
+# File: modules/console/src/console_fake_xml.c, line: 802
+msgid "Portugese (Brazil)"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 541
+# File: modules/console/src/console_fake_xml.c, line: 803
+msgid "Catalan"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 542
+# File: modules/console/src/console_fake_xml.c, line: 804
+msgid "Czech"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 543
+# File: modules/console/src/console_fake_xml.c, line: 805
+msgid "Spanish"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 544
+# File: modules/console/src/console_fake_xml.c, line: 806
+msgid "Italian"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 545
+# File: modules/console/src/console_fake_xml.c, line: 807
+msgid "Polish"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 546
+# File: modules/console/src/console_fake_xml.c, line: 808
+msgid "Russian"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 547
+# File: modules/console/src/console_fake_xml.c, line: 809
+msgid "Chinese (Simplified)"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 548
+# File: modules/console/src/console_fake_xml.c, line: 810
+msgid "Chinese (Traditional)"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 549
+# File: modules/console/src/console_fake_xml.c, line: 811
+msgid "German"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 550
+# File: modules/console/src/console_fake_xml.c, line: 812
+msgid "Japanese"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 551
+# File: modules/console/src/console_fake_xml.c, line: 813
+msgid "Ukrainian"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 554
+# File: modules/console/src/console_fake_xml.c, line: 816
+# File: modules/console/src/console_fake_xml.c, line: 1164
+# File: modules/console/src/console_fake_xml.c, line: 1457
+msgid "Start-up directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 556
+# File: modules/console/src/console_fake_xml.c, line: 818
+# File: modules/console/src/console_fake_xml.c, line: 1204
+# File: modules/console/src/console_fake_xml.c, line: 1497
+msgid "Confirmation dialogs"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 559
+# File: modules/console/src/console_fake_xml.c, line: 821
+msgid "Warn before exiting Scilab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 560
+# File: modules/console/src/console_fake_xml.c, line: 822
+msgid "Warn before deleting Command History items"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 561
+# File: modules/console/src/console_fake_xml.c, line: 823
+msgid "Warn before clearing the Console"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 565
+# File: modules/console/src/console_fake_xml.c, line: 827
+msgid "Desktop layout"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 568
+# File: modules/console/src/console_fake_xml.c, line: 830
+msgid "Integrated"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 569
+# File: modules/console/src/console_fake_xml.c, line: 831
+msgid "Simple"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 573
+# File: modules/console/src/console_fake_xml.c, line: 835
+msgid "Shortcuts"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 577
+# File: modules/console/src/console_fake_xml.c, line: 839
+msgid "Cut or interrupt"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 578
+# File: modules/console/src/console_fake_xml.c, line: 840
+msgid "Copy or interrupt"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 579
+# File: modules/console/src/console_fake_xml.c, line: 648
+# File: modules/console/src/console_fake_xml.c, line: 727
+# File: modules/console/src/console_fake_xml.c, line: 841
+# File: modules/console/src/console_fake_xml.c, line: 910
+# File: modules/console/src/console_fake_xml.c, line: 989
+msgid "Select all"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 580
+# File: modules/console/src/console_fake_xml.c, line: 842
+msgid "Line beginning"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 581
+# File: modules/console/src/console_fake_xml.c, line: 843
+msgid "Line end"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 582
+# File: modules/console/src/console_fake_xml.c, line: 844
+msgid "Previous char"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 583
+# File: modules/console/src/console_fake_xml.c, line: 845
+msgid "Delete next char"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 584
+# File: modules/console/src/console_fake_xml.c, line: 846
+msgid "Delete previous char"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 585
+# File: modules/console/src/console_fake_xml.c, line: 847
+msgid "Delete end of line"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 586
+# File: modules/console/src/console_fake_xml.c, line: 587
+# File: modules/console/src/console_fake_xml.c, line: 848
+# File: modules/console/src/console_fake_xml.c, line: 849
+msgid "Delete whole line"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 588
+# File: modules/console/src/console_fake_xml.c, line: 850
+msgid "Delete last word"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 589
+# File: modules/console/src/console_fake_xml.c, line: 851
+msgid "Previous console page"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 590
+# File: modules/console/src/console_fake_xml.c, line: 852
+msgid "Next console page"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 591
+# File: modules/console/src/console_fake_xml.c, line: 853
+msgid "Validate input"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 592
+# File: modules/console/src/console_fake_xml.c, line: 854
+msgid "Clear console"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 593
+# File: modules/console/src/console_fake_xml.c, line: 855
+msgid "Console box"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 594
+# File: modules/console/src/console_fake_xml.c, line: 595
+# File: modules/console/src/console_fake_xml.c, line: 856
+# File: modules/console/src/console_fake_xml.c, line: 857
+msgid "Completion"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 596
+# File: modules/console/src/console_fake_xml.c, line: 598
+# File: modules/console/src/console_fake_xml.c, line: 858
+# File: modules/console/src/console_fake_xml.c, line: 860
+msgid "Previous history line"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 597
+# File: modules/console/src/console_fake_xml.c, line: 599
+# File: modules/console/src/console_fake_xml.c, line: 859
+# File: modules/console/src/console_fake_xml.c, line: 861
+msgid "Next history line"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 600
+# File: modules/console/src/console_fake_xml.c, line: 862
+msgid "Help Browser"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 601
+# File: modules/console/src/console_fake_xml.c, line: 602
+# File: modules/console/src/console_fake_xml.c, line: 863
+# File: modules/console/src/console_fake_xml.c, line: 864
+msgid "Console Search Field"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 603
+# File: modules/console/src/console_fake_xml.c, line: 654
+# File: modules/console/src/console_fake_xml.c, line: 725
+# File: modules/console/src/console_fake_xml.c, line: 865
+# File: modules/console/src/console_fake_xml.c, line: 916
+# File: modules/console/src/console_fake_xml.c, line: 987
+msgid "Paste"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 604
+# File: modules/console/src/console_fake_xml.c, line: 866
+msgid "Open a file"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 605
+# File: modules/console/src/console_fake_xml.c, line: 867
+msgid "Load environment"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 606
+# File: modules/console/src/console_fake_xml.c, line: 868
+msgid "Save environment"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 607
+# File: modules/console/src/console_fake_xml.c, line: 869
+msgid "Quit"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 608
+# File: modules/console/src/console_fake_xml.c, line: 870
+msgid "Execute"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 609
+# File: modules/console/src/console_fake_xml.c, line: 871
+msgid "Empty clipboard"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 610
+# File: modules/console/src/console_fake_xml.c, line: 872
+msgid "Change current directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 611
+# File: modules/console/src/console_fake_xml.c, line: 873
+msgid "Display current directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 612
+# File: modules/console/src/console_fake_xml.c, line: 701
+# File: modules/console/src/console_fake_xml.c, line: 874
+# File: modules/console/src/console_fake_xml.c, line: 963
+msgid "Page setup"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 613
+# File: modules/console/src/console_fake_xml.c, line: 668
+# File: modules/console/src/console_fake_xml.c, line: 717
+# File: modules/console/src/console_fake_xml.c, line: 875
+# File: modules/console/src/console_fake_xml.c, line: 930
+# File: modules/console/src/console_fake_xml.c, line: 979
+msgid "Print"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 614
+# File: modules/console/src/console_fake_xml.c, line: 876
+msgid "Preferences"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 615
+# File: modules/console/src/console_fake_xml.c, line: 877
+msgid "Show/Hide toolbar"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 616
+# File: modules/console/src/console_fake_xml.c, line: 878
+msgid "Clear history"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 617
+# File: modules/console/src/console_fake_xml.c, line: 879
+msgid "Resume"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 618
+# File: modules/console/src/console_fake_xml.c, line: 880
+msgid "Abort"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 619
+# File: modules/console/src/console_fake_xml.c, line: 881
+msgid "Interrupt"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 620
+# File: modules/console/src/console_fake_xml.c, line: 882
+msgid "Launch SciNotes"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 621
+# File: modules/console/src/console_fake_xml.c, line: 883
+msgid "Launch Xcos"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 622
+# File: modules/console/src/console_fake_xml.c, line: 884
+msgid "Matlab to Scilab Translator"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 623
+# File: modules/console/src/console_fake_xml.c, line: 885
+msgid "Module manager"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 624
+# File: modules/console/src/console_fake_xml.c, line: 886
+msgid "Variable Browser"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 625
+# File: modules/console/src/console_fake_xml.c, line: 887
+msgid "Command History"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 626
+# File: modules/console/src/console_fake_xml.c, line: 888
+msgid "File Browser"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 627
+# File: modules/console/src/console_fake_xml.c, line: 889
+msgid "Demonstrations"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 628
+# File: modules/console/src/console_fake_xml.c, line: 890
+msgid "Open Scilab website"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 629
+# File: modules/console/src/console_fake_xml.c, line: 891
+msgid "Open Online Help"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 630
+# File: modules/console/src/console_fake_xml.c, line: 892
+msgid "Open Scilab wiki"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 631
+# File: modules/console/src/console_fake_xml.c, line: 893
+msgid "Open ATOMS website"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 632
+# File: modules/console/src/console_fake_xml.c, line: 894
+msgid "Open File Exchange website"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 633
+# File: modules/console/src/console_fake_xml.c, line: 895
+msgid "Open Mailing lists"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 634
+# File: modules/console/src/console_fake_xml.c, line: 896
+msgid "Open Forge website"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 635
+# File: modules/console/src/console_fake_xml.c, line: 897
+msgid "Open Bugzilla"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 636
+# File: modules/console/src/console_fake_xml.c, line: 898
+msgid "About Scilab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 639
+# File: modules/console/src/console_fake_xml.c, line: 901
+msgid "Auto complete (, [,..."
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 640
+# File: modules/console/src/console_fake_xml.c, line: 902
+msgid "Auto complete keyword"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 641
+# File: modules/console/src/console_fake_xml.c, line: 903
+msgid "Generate Help prototype"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 642
+# File: modules/console/src/console_fake_xml.c, line: 904
+msgid "Tabify"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 643
+# File: modules/console/src/console_fake_xml.c, line: 905
+msgid "Untabify"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 644
+# File: modules/console/src/console_fake_xml.c, line: 906
+msgid "Indent"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 645
+# File: modules/console/src/console_fake_xml.c, line: 907
+msgid "Comment"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 646
+# File: modules/console/src/console_fake_xml.c, line: 908
+msgid "Uncomment"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 647
+# File: modules/console/src/console_fake_xml.c, line: 909
+msgid "Remove trailing whites"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 649
+# File: modules/console/src/console_fake_xml.c, line: 911
+msgid "Select block"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 650
+# File: modules/console/src/console_fake_xml.c, line: 912
+msgid "Open current tab in a new window"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 651
+# File: modules/console/src/console_fake_xml.c, line: 913
+msgid "Export current tab in a new window"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 652
+# File: modules/console/src/console_fake_xml.c, line: 724
+# File: modules/console/src/console_fake_xml.c, line: 914
+# File: modules/console/src/console_fake_xml.c, line: 986
+msgid "Copy"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 653
+# File: modules/console/src/console_fake_xml.c, line: 723
+# File: modules/console/src/console_fake_xml.c, line: 915
+# File: modules/console/src/console_fake_xml.c, line: 985
+msgid "Cut"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 655
+# File: modules/console/src/console_fake_xml.c, line: 917
+msgid "Paste a column"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 656
+# File: modules/console/src/console_fake_xml.c, line: 918
+msgid "Repeat selection on column"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 657
+# File: modules/console/src/console_fake_xml.c, line: 721
+# File: modules/console/src/console_fake_xml.c, line: 919
+# File: modules/console/src/console_fake_xml.c, line: 983
+msgid "Undo"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 658
+# File: modules/console/src/console_fake_xml.c, line: 722
+# File: modules/console/src/console_fake_xml.c, line: 920
+# File: modules/console/src/console_fake_xml.c, line: 984
+msgid "Redo"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 659
+# File: modules/console/src/console_fake_xml.c, line: 921
+msgid "Copy as HTML with line number"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 660
+# File: modules/console/src/console_fake_xml.c, line: 922
+msgid "New"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 661
+# File: modules/console/src/console_fake_xml.c, line: 712
+# File: modules/console/src/console_fake_xml.c, line: 923
+# File: modules/console/src/console_fake_xml.c, line: 974
+msgid "Open"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 662
+# File: modules/console/src/console_fake_xml.c, line: 924
+msgid "Open URL"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 663
+# File: modules/console/src/console_fake_xml.c, line: 925
+msgid "Open source"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 664
+# File: modules/console/src/console_fake_xml.c, line: 714
+# File: modules/console/src/console_fake_xml.c, line: 774
+# File: modules/console/src/console_fake_xml.c, line: 926
+# File: modules/console/src/console_fake_xml.c, line: 976
+# File: modules/console/src/console_fake_xml.c, line: 1036
+msgid "Save"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 665
+# File: modules/console/src/console_fake_xml.c, line: 715
+# File: modules/console/src/console_fake_xml.c, line: 927
+# File: modules/console/src/console_fake_xml.c, line: 977
+msgid "Save as"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 666
+# File: modules/console/src/console_fake_xml.c, line: 928
+msgid "Reload"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 667
+# File: modules/console/src/console_fake_xml.c, line: 929
+msgid "Print preview"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 669
+# File: modules/console/src/console_fake_xml.c, line: 718
+# File: modules/console/src/console_fake_xml.c, line: 931
+# File: modules/console/src/console_fake_xml.c, line: 980
+msgid "Close"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 670
+# File: modules/console/src/console_fake_xml.c, line: 932
+msgid "Exit"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 671
+# File: modules/console/src/console_fake_xml.c, line: 933
+msgid "To lower case"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 672
+# File: modules/console/src/console_fake_xml.c, line: 934
+msgid "To upper case"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 673
+# File: modules/console/src/console_fake_xml.c, line: 935
+msgid "Capitalize"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 674
+# File: modules/console/src/console_fake_xml.c, line: 936
+msgid "Help on keyword"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 675
+# File: modules/console/src/console_fake_xml.c, line: 937
+msgid "Load in Scilab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 676
+# File: modules/console/src/console_fake_xml.c, line: 938
+msgid "Execute in Scilab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 677
+# File: modules/console/src/console_fake_xml.c, line: 939
+msgid "Evaluate selection"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 678
+# File: modules/console/src/console_fake_xml.c, line: 940
+msgid "Save and execute"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 679
+# File: modules/console/src/console_fake_xml.c, line: 941
+msgid "Save and execute all"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 680
+# File: modules/console/src/console_fake_xml.c, line: 942
+msgid "Find"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 681
+# File: modules/console/src/console_fake_xml.c, line: 943
+msgid "Find next"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 682
+# File: modules/console/src/console_fake_xml.c, line: 944
+msgid "Find previous"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 683
+# File: modules/console/src/console_fake_xml.c, line: 945
+msgid "Incremental search"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 684
+# File: modules/console/src/console_fake_xml.c, line: 946
+msgid "Set anchor"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 685
+# File: modules/console/src/console_fake_xml.c, line: 947
+msgid "Remove anchor"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 686
+# File: modules/console/src/console_fake_xml.c, line: 948
+msgid "Go to next anchor"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 687
+# File: modules/console/src/console_fake_xml.c, line: 949
+msgid "Go to previous anchor"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 688
+# File: modules/console/src/console_fake_xml.c, line: 950
+msgid "Start Code Navigator"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 689
+# File: modules/console/src/console_fake_xml.c, line: 951
+msgid "Search word in file"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 690
+# File: modules/console/src/console_fake_xml.c, line: 952
+msgid "Search files"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 691
+# File: modules/console/src/console_fake_xml.c, line: 953
+msgid "Keyword completion"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 692
+# File: modules/console/src/console_fake_xml.c, line: 954
+msgid "Help"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 693
+# File: modules/console/src/console_fake_xml.c, line: 955
+msgid "About"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 694
+# File: modules/console/src/console_fake_xml.c, line: 956
+msgid "Next tab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 695
+# File: modules/console/src/console_fake_xml.c, line: 957
+msgid "Previous tab"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 696
+# File: modules/console/src/console_fake_xml.c, line: 726
+# File: modules/console/src/console_fake_xml.c, line: 958
+# File: modules/console/src/console_fake_xml.c, line: 988
+msgid "Delete"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 697
+# File: modules/console/src/console_fake_xml.c, line: 959
+msgid "Next paragraph"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 698
+# File: modules/console/src/console_fake_xml.c, line: 960
+msgid "Previous paragraph"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 699
+# File: modules/console/src/console_fake_xml.c, line: 961
+msgid "Save all"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 700
+# File: modules/console/src/console_fake_xml.c, line: 962
+msgid "Overwrite"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 702
+# File: modules/console/src/console_fake_xml.c, line: 964
+msgid "Close all"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 703
+# File: modules/console/src/console_fake_xml.c, line: 965
+msgid "Close all but this"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 704
+# File: modules/console/src/console_fake_xml.c, line: 966
+msgid "Convert quote to double quote"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 705
+# File: modules/console/src/console_fake_xml.c, line: 967
+msgid "Line numbering"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 706
+# File: modules/console/src/console_fake_xml.c, line: 968
+msgid "Set the SciNotes font"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 707
+# File: modules/console/src/console_fake_xml.c, line: 969
+msgid "Set the SciNotes colors"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 711
+# File: modules/console/src/console_fake_xml.c, line: 973
+msgid "New diagram"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 713
+# File: modules/console/src/console_fake_xml.c, line: 975
+msgid "Open file in Scilab current directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 716
+# File: modules/console/src/console_fake_xml.c, line: 978
+msgid "Export"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 719
+# File: modules/console/src/console_fake_xml.c, line: 981
+msgid "Quit Xcos"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 728
+# File: modules/console/src/console_fake_xml.c, line: 990
+msgid "Invert selection"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 729
+# File: modules/console/src/console_fake_xml.c, line: 991
+msgid "Block Parameters"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 730
+# File: modules/console/src/console_fake_xml.c, line: 992
+msgid "Region to superblock"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 732
+# File: modules/console/src/console_fake_xml.c, line: 994
+msgid "Zoom In"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 733
+# File: modules/console/src/console_fake_xml.c, line: 995
+msgid "Zoom Out"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 734
+# File: modules/console/src/console_fake_xml.c, line: 996
+msgid "Fit diagram to view"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 735
+# File: modules/console/src/console_fake_xml.c, line: 997
+msgid "Normal 100%"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 736
+# File: modules/console/src/console_fake_xml.c, line: 998
+msgid "Palette browser"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 737
+# File: modules/console/src/console_fake_xml.c, line: 999
+msgid "Diagram browser"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 738
+# File: modules/console/src/console_fake_xml.c, line: 1000
+msgid "Viewport"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 739
+# File: modules/console/src/console_fake_xml.c, line: 1001
+msgid "Details"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 741
+# File: modules/console/src/console_fake_xml.c, line: 1003
+msgid "Setup"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 742
+# File: modules/console/src/console_fake_xml.c, line: 1004
+msgid "Execution trace and Debug"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 743
+# File: modules/console/src/console_fake_xml.c, line: 1005
+msgid "Set Context"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 744
+# File: modules/console/src/console_fake_xml.c, line: 1006
+msgid "Compile"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 745
+# File: modules/console/src/console_fake_xml.c, line: 1007
+msgid "Start"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 746
+# File: modules/console/src/console_fake_xml.c, line: 1008
+msgid "Stop"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 748
+# File: modules/console/src/console_fake_xml.c, line: 1010
+msgid "Rotate"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 749
+# File: modules/console/src/console_fake_xml.c, line: 1011
+msgid "Flip"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 750
+# File: modules/console/src/console_fake_xml.c, line: 1012
+msgid "Mirror"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 751
+# File: modules/console/src/console_fake_xml.c, line: 1013
+msgid "Show/Hide shadow"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 752
+# File: modules/console/src/console_fake_xml.c, line: 1014
+msgid "Left"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 753
+# File: modules/console/src/console_fake_xml.c, line: 1015
+msgid "Center"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 754
+# File: modules/console/src/console_fake_xml.c, line: 1016
+msgid "Right"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 755
+# File: modules/console/src/console_fake_xml.c, line: 1017
+msgid "Top"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 756
+# File: modules/console/src/console_fake_xml.c, line: 1018
+msgid "Middle"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 757
+# File: modules/console/src/console_fake_xml.c, line: 1019
+msgid "Bottom"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 758
+# File: modules/console/src/console_fake_xml.c, line: 1020
+msgid "Border Color"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 759
+# File: modules/console/src/console_fake_xml.c, line: 1021
+msgid "Fill Color"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 760
+# File: modules/console/src/console_fake_xml.c, line: 1022
+msgid "Horizontal"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 761
+# File: modules/console/src/console_fake_xml.c, line: 1023
+msgid "Straight"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 762
+# File: modules/console/src/console_fake_xml.c, line: 1024
+msgid "Vertical"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 763
+# File: modules/console/src/console_fake_xml.c, line: 1025
+msgid "Diagram background"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 764
+# File: modules/console/src/console_fake_xml.c, line: 1026
+msgid "Grid"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 766
+# File: modules/console/src/console_fake_xml.c, line: 1028
+msgid "Code generation"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 768
+# File: modules/console/src/console_fake_xml.c, line: 1030
+msgid "Xcos Help"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 769
+# File: modules/console/src/console_fake_xml.c, line: 1031
+msgid "Block Help"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 770
+# File: modules/console/src/console_fake_xml.c, line: 1032
+msgid "Xcos Demonstrations"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 771
+# File: modules/console/src/console_fake_xml.c, line: 1033
+msgid "About Xcos"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 777
+# File: modules/console/src/console_fake_xml.c, line: 1039
+msgid "Save variable"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 780
+# File: modules/console/src/console_fake_xml.c, line: 1042
+msgid "Save history"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 783
+# File: modules/console/src/console_fake_xml.c, line: 1045
+msgid "Save file"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1062
+# File: modules/console/src/console_fake_xml.c, line: 1355
+msgid "Environment"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1064
+# File: modules/console/src/console_fake_xml.c, line: 1357
+msgid "Floating point exception (ieee): "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1080
+# File: modules/console/src/console_fake_xml.c, line: 1373
+msgid "Printing format: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1094
+# File: modules/console/src/console_fake_xml.c, line: 1387
+msgid "Width: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1115
+# File: modules/console/src/console_fake_xml.c, line: 1408
+msgid "Language setting"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1117
+# File: modules/console/src/console_fake_xml.c, line: 1410
+msgid "Default language: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1132
+# File: modules/console/src/console_fake_xml.c, line: 1156
+# File: modules/console/src/console_fake_xml.c, line: 1425
+# File: modules/console/src/console_fake_xml.c, line: 1449
+msgid "(This requires a restart of Scilab)"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1142
+# File: modules/console/src/console_fake_xml.c, line: 1435
+msgid "Java Heap Memory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1144
+# File: modules/console/src/console_fake_xml.c, line: 1437
+msgid "Select the memory (in MB) available in Java: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1166
+# File: modules/console/src/console_fake_xml.c, line: 1459
+msgid "Use current working directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1172
+# File: modules/console/src/console_fake_xml.c, line: 1465
+msgid "Use previous working directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1178
+# File: modules/console/src/console_fake_xml.c, line: 1471
+msgid "Use default directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1187
+# File: modules/console/src/console_fake_xml.c, line: 1480
+msgid "Default startup directory"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1224
+# File: modules/console/src/console_fake_xml.c, line: 1517
+msgid "Desktop Layout"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1226
+# File: modules/console/src/console_fake_xml.c, line: 1519
+msgid "Select a layout"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1240
+# File: modules/console/src/console_fake_xml.c, line: 1533
+msgid "(Modify the layout requires to restart Scilab)"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1252
+# File: modules/console/src/console_fake_xml.c, line: 1545
+msgid "Save layout on exiting"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1257
+# File: modules/console/src/console_fake_xml.c, line: 1550
+msgid "Reset layout"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1267
+# File: modules/console/src/console_fake_xml.c, line: 1560
+msgid "Keys binding"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1270
+# File: modules/console/src/console_fake_xml.c, line: 1563
+msgid "Filter on action name: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1280
+# File: modules/console/src/console_fake_xml.c, line: 1573
+msgid "Component"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1292
+# File: modules/console/src/console_fake_xml.c, line: 1585
+msgid "Name: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1298
+# File: modules/console/src/console_fake_xml.c, line: 1591
+msgid "Description: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1304
+# File: modules/console/src/console_fake_xml.c, line: 1597
+msgid "Binding: "
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1336
+# File: modules/console/src/console_fake_xml.c, line: 1629
+msgid "Action name"
+msgstr ""
+
+#
+# File: modules/console/src/console_fake_xml.c, line: 1337
+# File: modules/console/src/console_fake_xml.c, line: 1630
+msgid "Key binding"
+msgstr ""
+
+#
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 68
 msgid "Field"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciCompletionManager.java, line: 115
+# File: modules/console/src/java/org/scilab/modules/console/SciCompletionManager.java, line: 115
 msgid "No help"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 443
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 443
 msgid "Out of Screen"
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 648
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 648
 msgid "Could not change the Console Font."
 msgstr ""
 
 #
-# File: src/java/org/scilab/modules/console/SciConsole.java, line: 711
+# File: modules/console/src/java/org/scilab/modules/console/SciConsole.java, line: 711
 msgid "Could not change the Console Foreground."
 msgstr ""

@@ -23,7 +23,7 @@ msgstr ""
 "%s: Špatná velikost vstupního argumentu #%d: Počet sloupců je nekompatibilní "
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format

@@ -69,7 +69,7 @@ msgid "A single String expected"
 msgstr "Une chaîne de caractères attendue"
 
 #, c-format
-msgid "Wrong type for argument #%d: A string expected."
+msgid "Wrong type for argument #%d: string expected."
 msgstr "Type erroné de l'argument n°%d : Une chaîne de caractères attendue."
 
 #, c-format
@@ -125,7 +125,7 @@ msgid "Incompatible External Object"
 msgstr "Objet externe incompatible"
 
 #, c-format
-msgid "Wrong type for input argument #%d: A string expected."
+msgid "Wrong type for input argument #%d: string expected."
 msgstr ""
 "Type erroné de l'argument d'entrée n°%d : Une chaîne de caractères attendue."
 
@@ -184,8 +184,7 @@ msgid "Cannot wrap argument %d."
 msgstr "Impossible d'interfacer l'argument n°%d."
 
 msgid "Can only wrap as a reference to a named variable"
-msgstr ""
-"Il est seulement possible de lier une référence à une variable nommée"
+msgstr "Il est seulement possible de lier une référence à une variable nommée"
 
 msgid "Invalid variable: cannot retrieve the data type"
 msgstr "Variable invalide : Impossible de récupérer le type de données."

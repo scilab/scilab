@@ -79,8 +79,7 @@ msgid "Invalid string matrix (at most one column!)"
 msgstr "Matrice di stringhe non valida (serve almeno una colonna!)"
 
 msgid "Column length of string matrix must agree!"
-msgstr ""
-"La lunghezza delle colonne della matrice di stringhe deve concordare!"
+msgstr "La lunghezza delle colonne della matrice di stringhe deve concordare!"
 
 msgid "Use mtlb_sparse(sparse( ))!"
 msgstr "Usare mtlb_sparse(sparse( ))!"

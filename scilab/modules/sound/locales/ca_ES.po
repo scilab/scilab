@@ -22,7 +22,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: no es pot llegir el paràmetre d'entrada #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser una cadena "
 "de caràcters.\n"
@@ -35,7 +35,7 @@ msgid "Cannot play file."
 msgstr "No s'ha pogut reproduir el fitxer."
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: L'argument d'entrada #%d té una mida incorrecta: Ha de ser una cadena de "
 "text.\n"
@@ -202,11 +202,10 @@ msgid "%s: An error occurred: %s is not supported.\n"
 msgstr "%s: S'ha produït un error: %s no està suportat.\n"
 
 #, c-format
-msgid ""
-"%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
+msgid "%s: An error occurred: invalid file format. Error reading <%s> chunk.\n"
 msgstr ""
-"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de "
-"<%s>.\n"
+"%s: S'ha produït un error: Format de fitxer invàlid. Error en la lectura de <"
+"%s>.\n"
 
 msgid "Invalid .wav file: found data before format information."
 msgstr ""

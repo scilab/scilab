@@ -115,7 +115,7 @@ types::Function::ReturnValue sci_splin(types::typed_list &in, int _iRetCount, ty
     {
         if (in[2]->isString() == false)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d : A string expected.\n"), "splin", 3);
+            Scierror(999, _("%s: Wrong type for input argument #%d : string expected.\n"), "splin", 3);
             return types::Function::Error;
         }
 

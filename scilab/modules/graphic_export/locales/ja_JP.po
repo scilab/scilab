@@ -26,7 +26,9 @@ msgstr "-nogui または -nwni モードでは Scilab '%s' モジュールは無
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: An integer or a handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 整数またはハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 整数またはハンドルを指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A real expected.\n"
@@ -34,15 +36,19 @@ msgstr "%s: 入力引数 #%d の型が間違っています: 実数を指定し�
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A scalar expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: スカラーを指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: Handle matrix expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ハンドルの行列を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ハンドルの行列を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A graphic handle expected.\n"
-msgstr "%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の大きさが間違っています: グラフィックのハンドルを指定してく"
+"ださい.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be a valid handle.\n"
@@ -50,25 +56,30 @@ msgstr "%s: 入力引数 #%d には有効なハンドルを指定してくださ
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A ''%s'' handle expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: ''%s'' ハンドルを指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: ''%s'' ハンドルを指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A scalar or figure handle expected.\n"
-msgstr "%s: 引数 %d の型が間違っています:  スカラーまたは図のハンドルを指定してください.\n"
+msgstr ""
+"%s: 引数 %d の型が間違っています:  スカラーまたは図のハンドルを指定してくださ"
+"い.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: 入力引数 %d 型が間違っています: 文字列行列を指定してください.\n"
 
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: Single character string expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 1文字（文字列）を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 1文字（文字列）を指定してください.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
-msgstr "%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の値が間違っています: '%s' または '%s' を指定してください.\n"
 
 #, c-format
 msgid ""
@@ -78,7 +89,9 @@ msgstr "%s: 入力引数 #%d の大きさが間違っています: 文字列を�
 #, c-format
 msgid ""
 "%s: Wrong type for input argument #%d: A real between 0 and 1 expected.\n"
-msgstr "%s: 入力引数 #%d の型が間違っています: 0 から 1 の範囲の実数を指定してください.\n"
+msgstr ""
+"%s: 入力引数 #%d の型が間違っています: 0 から 1 の範囲の実数を指定してくださ"
+"い.\n"
 
 #, c-format
 msgid "%s: %s\n"
@@ -89,7 +102,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: 入力引数 #%d を読み込めません.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 入力引数 #%d の型が間違っています: 文字列を指定してください.\n"
 
 #, c-format
@@ -120,17 +133,23 @@ msgstr "ファイルが無効なため, エキスポートファイルを作成�
 msgid ""
 "Unable to create export file, not enough memory. Decreasing the number of "
 "elements or the size of the figure should fix this error."
-msgstr "メモリ不足のためエキスポートするファイルを作成できません.要素数または図の大きさを減らすことによりこのエラーを修正できます."
+msgstr ""
+"メモリ不足のためエキスポートするファイルを作成できません.要素数または図の大き"
+"さを減らすことによりこのエラーを修正できます."
 
 msgid ""
-"Unable to create export file, please fill a bug report at "
-"http://bugzilla.scilab.org."
-msgstr "エキスポートするファイルを作成できません. http://bugzilla.scilab.org でバグをレポートしてください."
+"Unable to create export file, please fill a bug report at http://bugzilla."
+"scilab.org."
+msgstr ""
+"エキスポートするファイルを作成できません. http://bugzilla.scilab.org でバグを"
+"レポートしてください."
 
 msgid ""
 "Unable to create export file, the file cannot be created or is locked by an "
 "other process."
-msgstr "エクスポートファイルを作成できませんでした.  ファイルを作成できなかったか他のプロセスにロックされています."
+msgstr ""
+"エクスポートファイルを作成できませんでした.  ファイルを作成できなかったか他の"
+"プロセスにロックされています."
 
 #, c-format
 msgid "Scilab '%s' module not installed.\n"

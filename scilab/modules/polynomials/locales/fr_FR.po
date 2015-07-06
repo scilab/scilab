@@ -47,8 +47,7 @@ msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: A rational fraction expected.\n"
+msgid "%s: Wrong size for input argument #%d: A rational fraction expected.\n"
 msgstr ""
 "%s : Dimension erronée de l'argument d'entrée n°%d : Une fraction "
 "rationnelle attendue.\n"
@@ -106,8 +105,7 @@ msgstr ""
 "{%s}.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
+msgid "%s: Wrong type for argument #%d: Real Matrix of Polynomials expected.\n"
 msgstr ""
 "%s : Type erroné de l'argument n°%d : Une matrice réelle de polynômes "
 "attendue.\n"
@@ -123,8 +121,7 @@ msgstr "%s : Valeur erronée de l'argument n°%d : %s ou %s attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Polynomial expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un polynôme attendu.\n"
 
 #, c-format
 msgid "%s: Input argument #%d must be real.\n"

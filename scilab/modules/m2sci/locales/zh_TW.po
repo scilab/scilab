@@ -167,8 +167,7 @@ msgid "lhs cannot be a %s."
 msgstr ""
 
 #, c-format
-msgid ""
-"recursive extraction with one index of type %s is not yet implemented."
+msgid "recursive extraction with one index of type %s is not yet implemented."
 msgstr ""
 
 #, c-format
@@ -183,8 +182,7 @@ msgid "Matlab function %s not yet converted."
 msgstr ""
 
 #, c-format
-msgid ""
-"mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
+msgid "mtlb(%s) can be replaced by %s() or %s whether %s is an M-file or not."
 msgstr ""
 
 msgid "input argument must be an 'operation' tlist."
@@ -562,8 +560,7 @@ msgid "****** End of mfile2sci() session ******"
 msgstr ""
 
 #, c-format
-msgid ""
-"At least one operand of %s is an empty matrix, Scilab equivalent is []."
+msgid "At least one operand of %s is an empty matrix, Scilab equivalent is []."
 msgstr ""
 
 #, c-format
@@ -578,8 +575,7 @@ msgid "M2SCI bug: extraction from unknown variable %s in varslist."
 msgstr ""
 
 #, c-format
-msgid ""
-"recursive insertion in a variable which is not a Cell nor a Struct: %s."
+msgid "recursive insertion in a variable which is not a Cell nor a Struct: %s."
 msgstr ""
 
 #, c-format
@@ -727,8 +723,7 @@ msgstr ""
 msgid "Unhandled class: %s."
 msgstr ""
 
-msgid ""
-"isequal requires fields are in the same order for structs to be equal."
+msgid "isequal requires fields are in the same order for structs to be equal."
 msgstr ""
 
 msgid "Option -regexp not yet handled: will be ignored."

@@ -58,8 +58,7 @@ msgid "%s: Invalid hypermatrix insertion.\n"
 msgstr ""
 
 msgid "Too many arguments in the stack, edit stack.h and enlarge intersiz.\n"
-msgstr ""
-"Demasiados argumentos en la pila, edite stack.h y aumente intersiz.\n"
+msgstr "Demasiados argumentos en la pila, edite stack.h y aumente intersiz.\n"
 
 #, c-format
 msgid ""
@@ -89,7 +88,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 

@@ -18,8 +18,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of input argument: %d expected with option '%s'.\n"
-msgstr ""
-"%s: Špatný počet vstupních argumentů: očekáváno %d s možností '%s'.\n"
+msgstr "%s: Špatný počet vstupních argumentů: očekáváno %d s možností '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected the option '%s'.\n"
@@ -31,8 +30,7 @@ msgstr "Možnost %s ovlivňuje pouze generátor clcg4\n"
 
 #, c-format
 msgid "%s: Wrong number of input arguments: %d expected with option '%s'.\n"
-msgstr ""
-"%s: Špatný počet vstupních argumentů: Očekáváno %d s možností '%s'.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d s možností '%s'.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: Scalar expected.\n"
@@ -84,8 +82,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong number of output argument: %d expected with option '%s'.\n"
-msgstr ""
-"%s: Špatný počet vstupních argumentů: Očekáváno %d s možností '%s'.\n"
+msgstr "%s: Špatný počet vstupních argumentů: Očekáváno %d s možností '%s'.\n"
 
 #, c-format
 msgid "%s: The %s option affects only the %s generator\n"
@@ -129,8 +126,7 @@ msgstr "%s: Špatný typ vstupního argumentu #%d: Očekáván řetězec.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Positive scalar expected.\n"
-msgstr ""
-"%s: Špatná hodnota vstupního argumentu #%d: Očekáván kladný skalár.\n"
+msgstr "%s: Špatná hodnota vstupního argumentu #%d: Očekáván kladný skalár.\n"
 
 msgid "Missing A and B for beta law\n"
 msgstr "Chybí A a B pro beta zákon\n"
@@ -162,8 +158,7 @@ msgstr "Chybí N a P pro MULtinomický zákon\n"
 
 #, c-format
 msgid "%s: Wrong size for input argument: Column vector expected.\n"
-msgstr ""
-"%s: Špatná velikost vstupního argumentu: Očekáván sloupcový vektor.\n"
+msgstr "%s: Špatná velikost vstupního argumentu: Očekáván sloupcový vektor.\n"
 
 msgid "N < 0\n"
 msgstr "N < 0\n"

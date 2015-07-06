@@ -62,8 +62,7 @@ msgstr ""
 "значення між %d та %d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument #%d: Positive integers expected.\n"
+msgid "%s: Wrong values for input argument #%d: Positive integers expected.\n"
 msgstr ""
 "%s: помилкові значення вхідного параметра №%d: слід використовувати додатні "
 "цілі числа.\n"
@@ -97,8 +96,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong values for input argument #%d: Must be a divisor of %d.\n"
-msgstr ""
-"%s: помилкові значення вхідного параметра №%d: має бути дільник %d.\n"
+msgstr "%s: помилкові значення вхідного параметра №%d: має бути дільник %d.\n"
 
 #, c-format
 msgid "%s: Incompatible input arguments #%d and #%d: Same sizes expected.\n"
@@ -151,7 +149,7 @@ msgid "%s: MKL fftw library does not implement wisdom functions yet.\n"
 msgstr "%s: у бібліотеці MKL fftw ще не реалізовано функції wisdom.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: помилковий тип вхідного параметра №%d: слід використовувати тип "
 "«string».\n"
@@ -197,12 +195,10 @@ msgstr "Вами вибрано встановлення Scilab з модуле�
 msgid "This module requires: "
 msgstr "Для роботи цього модуля потрібні: "
 
-msgid ""
-"Scilab will use standard fft by default until you install this library."
+msgid "Scilab will use standard fft by default until you install this library."
 msgstr ""
 "Scilab типово використовуватиме стандартну функцію швидкого перетворення "
 "Фур’є, доки не буде встановлено цю бібліотеку."
 
 msgid "See help fftw for more information."
-msgstr ""
-"Докладнішу інформацію можна отримати за допомогою команди «help fftw»."
+msgstr "Докладнішу інформацію можна отримати за допомогою команди «help fftw»."

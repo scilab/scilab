@@ -81,7 +81,7 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應該是字串型態.\n"
 
 #, c-format

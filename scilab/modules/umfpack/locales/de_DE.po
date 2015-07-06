@@ -146,7 +146,7 @@ msgid "Matrix is not compatible with the given LU factors"
 msgstr "Matrix ist nicht kompatibel mit den gegebenen LU Faktoren"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -269,14 +269,12 @@ msgid "%s: Wrong number of input arguments: %d to %d expected.\n"
 msgstr "%s: Falsche Anzahl an Eingangsargumenten: %d zu %d erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong type for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: falscher Typ für Eingangsargument #%d: quadratische Matrix erwartet.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
+msgid "%s: Wrong size for input argument #%d: Square sparse matrix expected.\n"
 msgstr ""
 "%s: falsche Größe für Eingangsargument #%d: quadratische Matrix erwartet.\n"
 

@@ -18,11 +18,11 @@ msgstr ""
 "Language: \n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -90,8 +90,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
+msgid "%s: Wrong value for input argument #%d: '%s' or '%s' string expected.\n"
 msgstr ""
 
 #, c-format
@@ -272,7 +271,9 @@ msgstr "%s：%d：OLE_load_FAT：错误：不能申请%d个字节。\n"
 msgid ""
 "%s:%d:OLE_load_FAT:ERROR: Not able to load block, import sector = 0x%x, fat "
 "position = 0x%x"
-msgstr "%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = 0x%x"
+msgstr ""
+"%s：%d：OLE_load_FAT：错误：无法装载块，import sector = 0x%x，fat position = "
+"0x%x"
 
 #, c-format
 msgid "%s:%d:OLE_load_FAT:ERROR: FAT memory boundary limit exceeded %p >= %p"
@@ -321,22 +322,24 @@ msgstr "%s：%d：OLE_store_stream：警告：只写了%d字节（总共%d字节
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to create filename string from "
 "'%s' and '%s'"
-msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：错误：不能从'%s'和'%s'来创建文件名字符串。"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_save_stream:WARNING: Only wrote %d of %d bytes to file %s\n"
-msgstr "%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_save_stream：警告：只写了%d字节（总共%d字节）到文件%s\n"
 
 #, c-format
-msgid ""
-"%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
+msgid "%s:%d:OLEUNWRAP_save_stream:ERROR: Unable to open %s for writing (%s)\n"
 msgstr "%s：%d：OLEUNWRAP_save_stream：错误：不能打开%s进行写操作（%s）\n"
 
 #, c-format
 msgid ""
 "%s:%d:OLEUNWRAP_decode_attachment:DEBUG: Attachment %s:%s:%s size = %d\n"
-msgstr "%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
+msgstr ""
+"%s：%d：OLEUNWRAP_decode_attachment：调试：Attachment %s:%s:%s size = %d\n"
 
 #, c-format
 msgid ""

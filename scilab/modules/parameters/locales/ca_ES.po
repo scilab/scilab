@@ -176,8 +176,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: %s expected.\n"
-msgstr ""
-"%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser %s.\n"
+msgstr "%s: L'argument d'entrada #%d és d'un tipus incorrecte: Ha de ser %s.\n"
 
 #, c-format
 msgid "%s: parameter %s not defined"

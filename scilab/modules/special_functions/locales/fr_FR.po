@@ -40,8 +40,7 @@ msgstr "%s : Impossible de lire l'argument d'entrée n°%d.\n"
 
 #, c-format
 msgid "%s: Wrong type for input argument #%d: A real expected.\n"
-msgstr ""
-"%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
+msgstr "%s : Type erroné de l'argument d'entrée n°%d : Un réel est attendu.\n"
 
 #, c-format
 msgid "%s: Wrong type for argument #%d: A matrix expected.\n"

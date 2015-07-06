@@ -39,8 +39,7 @@ msgstr ""
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be > %d.\n"
-msgstr ""
-"%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być > %d.\n"
+msgstr "%s: Nieprawidłowa wartość argumentu wejściowego #%d: musi być > %d.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Must be in the set  {%s}.\n"
@@ -76,8 +75,7 @@ msgstr "%s: Obliczona wartość jest liczbą rzeczywistą, oczekiwano zespolonej
 
 #, c-format
 msgid "%s: Computed is complex, but expected is real."
-msgstr ""
-"%s: Obliczona wartość jest liczbą zespoloną, oczekiwano rzeczywistej."
+msgstr "%s: Obliczona wartość jest liczbą zespoloną, oczekiwano rzeczywistej."
 
 #, c-format
 msgid ""
@@ -170,8 +168,7 @@ msgstr ""
 "wejściowych %d."
 
 #, c-format
-msgid ""
-"%s: Expected %d rows in input argument #%d, but found %d rows instead."
+msgid "%s: Expected %d rows in input argument #%d, but found %d rows instead."
 msgstr ""
 
 #, c-format
@@ -218,11 +215,11 @@ msgid ""
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format

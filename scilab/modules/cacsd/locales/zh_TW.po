@@ -127,8 +127,8 @@ msgstr ""
 
 #, c-format
 msgid ""
-"%s: Wrong row size for input argument #%d: Same row size of input argument "
-"#%d expected.\n"
+"%s: Wrong row size for input argument #%d: Same row size of input argument #"
+"%d expected.\n"
 msgstr ""
 
 #, c-format
@@ -194,7 +194,7 @@ msgid "%s: The matrices A, C and D must have the same order.\n"
 msgstr ""
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr ""
 
 #, c-format
@@ -271,8 +271,7 @@ msgid "Press Return to continue ... \n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument: Linear dynamical system expected.\n"
+msgid "%s: Wrong type for input argument: Linear dynamical system expected.\n"
 msgstr ""
 
 #, c-format
@@ -406,7 +405,8 @@ msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 列之維度必須
 msgid ""
 "%s: Wrong type for input argument #%d: Linear dynamical system or row vector "
 "of floats expected.\n"
-msgstr "%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
+msgstr ""
+"%s: 第 #%d 個輸入參數型態錯誤: 應該是一線動態系統或實數行 (row) 向量.\n"
 
 #, c-format
 msgid ""
@@ -489,8 +489,7 @@ msgid "Frequency (rad/s)"
 msgstr ""
 
 #, c-format
-msgid ""
-"Wrong type for argument #%d: Rational or State-space matrix expected.\n"
+msgid "Wrong type for argument #%d: Rational or State-space matrix expected.\n"
 msgstr ""
 
 #, c-format
@@ -508,7 +507,7 @@ msgid "%s: Wrong type for input argument #%d: String array expected.\n"
 msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為一字串陣列.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr "%s: 第 %d 個輸入參數長度錯誤: 應為一字串.\n"
 
 #
@@ -603,8 +602,7 @@ msgid "%s: Wrong size for argument #%d: %d expected.\n"
 msgstr ""
 
 #, c-format
-msgid ""
-"%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
+msgid "%s: Wrong value for input argument #%d: Stabilizable system expected.\n"
 msgstr ""
 
 #, c-format
@@ -662,7 +660,8 @@ msgstr "%s: 忽略輸入引數 #%d。\n"
 #, c-format
 msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same row dimensions expected.\n"
-msgstr "%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 行 (row) 之維度必須相同.\n"
+msgstr ""
+"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 行 (row) 之維度必須相同.\n"
 
 #
 # File: macros/ddp.sci, line: 86
@@ -853,8 +852,7 @@ msgstr "%s: %s 不定值.\n"
 #
 # File: macros/gamitg.sci, line: 336
 #, c-format
-msgid ""
-"%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
+msgid "%s: Controllable & observable mode(s) of %s near the imaginary axis.\n"
 msgstr "%s:  %s 接近虛軸之可控 (controllable) 及可觀 (observable) 模式.\n"
 
 #
@@ -1038,8 +1036,7 @@ msgid "%s: %s non symmetric.\n"
 msgstr "%s: %s 非對稱.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: Linear state space  expected.\n"
+msgid "%s: Wrong type for input argument #%d: Linear state space  expected.\n"
 msgstr "%s: 輸入引數的型態錯誤 #%d: 需爲線性子空間。\n"
 
 #
@@ -1057,8 +1054,7 @@ msgstr "%s: A 矩陣之有接近虛軸之可控 (controllable) 及可觀 (observ
 #
 # File: macros/linfn.sci, line: 214
 #, c-format
-msgid ""
-"%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
+msgid "%s: All modes of A are nearly nonminimal so that || G || is almost 0.\n"
 msgstr "%s: A 之所有模式皆非最小，因此 || G || 幾乎為 0.\n"
 
 #
@@ -1267,7 +1263,8 @@ msgid ""
 "%s: Incompatible input arguments #%d and #%d: Same formal variable names "
 "expected.\n"
 msgstr ""
-"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 (formal variable names.\n"
+"%s: 輸入參數 #%d 及 #%d 不相容(Incompatible): 應該有相同的形式變數名稱 "
+"(formal variable names.\n"
 
 #
 # File: macros/invsyslin.sci, line: 18

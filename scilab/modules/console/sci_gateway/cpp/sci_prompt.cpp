@@ -62,7 +62,7 @@ types::Function::ReturnValue sci_prompt(types::typed_list &in, int _iRetCount, t
 
         if ((in[0]->isString() == false) || !in[0]->getAs<types::String>()->isScalar())
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A string expected.\n"), "prompt", 1);
+            Scierror(999, _("%s: Wrong type for input argument #%d: string expected.\n"), "prompt", 1);
             return types::Function::Error;
         }
         SetTemporaryPrompt(wide_string_to_UTF8(in[0]->getAs<types::String>()->get(0)));

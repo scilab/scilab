@@ -25,7 +25,7 @@ msgid "%s: Can not read input argument #%d.\n"
 msgstr "%s: Nelze přečíst vstupní argument #%d.\n"
 
 #, c-format
-msgid "%s: Wrong type for argument #%d: String matrix expected.\n"
+msgid "%s: Wrong type for argument #%d: string expected.\n"
 msgstr "%s: Špatný typ argumentu #%d: Očekávána řetězcová matice.\n"
 
 #, c-format
@@ -33,8 +33,7 @@ msgid "%s: No more memory.\n"
 msgstr "%s: Není více paměti.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
+msgid "%s: Wrong type for argument #%d: Real matrix or 'readonly' expected.\n"
 msgstr ""
 "%s: Špatný typ argumentu #%d: Očekávána reálná matice nebo 'readonly'.\n"
 
@@ -48,10 +47,6 @@ msgid ""
 msgstr ""
 "%s: Špatná velikost vstupních argumentů #%d a #%d: Očekávány stejné "
 "rozměry.\n"
-
-#, c-format
-msgid "%s: Wrong type for argument #%d: A string expected.\n"
-msgstr "%s: Špatný typ argumentu #%d: Očekáván řetězec.\n"
 
 msgid "File"
 msgstr "Soubor"
@@ -799,8 +794,7 @@ msgstr "Předchozí karta"
 
 msgid ""
 "You need to save your modifications before executing this file into Scilab."
-msgstr ""
-"Před spuštěním tohoto souboru ve Scilab potřebujete uložit Vaše změny."
+msgstr "Před spuštěním tohoto souboru ve Scilab potřebujete uložit Vaše změny."
 
 msgid ""
 "This file is very long. \"Execute File Into Scilab\" could be better.\n"

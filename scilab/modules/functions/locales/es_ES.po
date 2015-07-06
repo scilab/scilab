@@ -26,8 +26,7 @@ msgid "%s: Wrong size for input argument #%d.\n"
 msgstr "%s: Tamaño incorrecto para el argumento de entrada #%d.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
+msgid "%s: Wrong type for input argument #%d: A scalar or a string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un escalar o "
 "un string.\n"
@@ -61,12 +60,12 @@ msgid "%s: Wrong value(s) for input argument(s).\n"
 msgstr "%s: Valores incorrectos de los argumentos de entrada.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tipo incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
 #, c-format
-msgid "%s: Wrong size for input argument #%d: A string expected.\n"
+msgid "%s: Wrong size for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Tamaño incorrecto del argumento de entrada #%d: Se esperaba un string.\n"
 
@@ -134,8 +133,7 @@ msgid "%s: No files with extension %s found in %s\n"
 msgstr "%s: No se encontraron archivos con extensión %s en %s\n"
 
 #, c-format
-msgid ""
-"%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
+msgid "%s: Wrong type for input argument #%d:  A matrix of string expected.\n"
 msgstr ""
 
 #, c-format
@@ -213,8 +211,7 @@ msgstr ""
 "Scilab.\n"
 
 #, c-format
-msgid ""
-"%s: Wrong values for input argument: No profile data in the function\n"
+msgid "%s: Wrong values for input argument: No profile data in the function\n"
 msgstr ""
 "%s: Valores incorrectos de argumentos de entrada: No hay perfil de datos en "
 "la función\n"

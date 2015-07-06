@@ -191,8 +191,7 @@ msgstr "Norm der rechten Hand Seite: %s\n"
 
 #, c-format
 msgid "Special processing where the right-hand side is zero.\n"
-msgstr ""
-"Spezielle Datenverarbeitung, während die rechte-Hand Seite Null ist.\n"
+msgstr "Spezielle Datenverarbeitung, während die rechte-Hand Seite Null ist.\n"
 
 #, c-format
 msgid "  Type of preconditionning #1 : %d\n"
@@ -329,8 +328,7 @@ msgstr "%s: falsche Typ für Eingangsargument #%d: Skalar erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong value for input argument #%d: Column vector expected.\n"
-msgstr ""
-"%s: falscher Wert für Eingangsargument #%d: Spaltenvektor erwartet.\n"
+msgstr "%s: falscher Wert für Eingangsargument #%d: Spaltenvektor erwartet.\n"
 
 #, c-format
 msgid "%s: Wrong number of input argument: At least %d expected.\n"
@@ -434,7 +432,7 @@ msgid "%s: Wrong number of input arguments: %d or %d expected.\n"
 msgstr "%s: Falsche Anzahl von Eingangsargumenten: %d oder %d erwartet.\n"
 
 #, c-format
-msgid "%s: Wrong type for input argument #%d: A string expected.\n"
+msgid "%s: Wrong type for input argument #%d: string expected.\n"
 msgstr ""
 "%s: Falscher Typ an Eingangsargument #%d: eine Zeichenkette erwartet.\n"
 
