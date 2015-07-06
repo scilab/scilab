@@ -1329,7 +1329,7 @@ types::Function::ReturnValue sci_grand(types::typed_list &in, int _iRetCount, ty
                     {
                         ierr = set_state_mt_simple(vectpDblInput[0]->get(0));
                     }
-                    else if (vectpDblInput[0]->getSize() != 625)
+                    else if (vectpDblInput[0]->getSize() == 625)
                     {
                         ierr = set_state_mt(vectpDblInput[0]->get());
                     }
