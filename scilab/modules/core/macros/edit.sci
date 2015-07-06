@@ -53,8 +53,7 @@ function edit(macroname,linenumber)
                 found = isfile(fname);
             elseif isdef(macroname)
                 if typeof(evstr(macroname)) == "function" then
-                    txt = fun2string(evstr(macroname));
-                    txt = strsubst(txt, "=ans(", " = " + macroname + "(");
+                    txt = tree2code(macr2tree(evstr(macroname)));
                     fname = tmpfile;
                     mputl(txt, fname);
                     found = %t;
