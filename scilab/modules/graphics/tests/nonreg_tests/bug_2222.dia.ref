@@ -12,8 +12,6 @@
 //
 // <-- Short Description -->
 // Graphic is slow when lack drawlater/drawnow
-stacksize(20000000);
-[WARNING]: stacksize: No more need to change Scilab stack size. Function will be removed in version 6.1.
 data=ones(30000,100);
 subplot(231)
 plot(data)

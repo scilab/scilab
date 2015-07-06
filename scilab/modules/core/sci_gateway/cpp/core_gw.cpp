@@ -47,7 +47,6 @@ int CoreModule::Load()
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"pause", &sci_pause, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"abort", &sci_abort, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"who", &sci_who, MODULE_NAME));
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"stacksize", &sci_stacksize, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"sciargs", &sci_sciargs, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"format", &sci_format, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"ieee", &sci_ieee, MODULE_NAME));

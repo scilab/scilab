@@ -235,7 +235,6 @@ extern "C" {
 #define API_ERROR_READ_POINTER                              12806
 
 /* error functions*/
-int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int iNeeded);
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...);
 int printError(SciErr* _psciErr, int _iLastMsg);
 char* getErrorMessage(SciErr _sciErr);

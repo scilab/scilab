@@ -853,7 +853,6 @@ splitURL
 spones
 sprintf
 sqrt
-stacksize
 strcat
 strchr
 strcmp

@@ -106,7 +106,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \

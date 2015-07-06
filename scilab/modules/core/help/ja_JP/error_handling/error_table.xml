@@ -32,9 +32,6 @@
         <para>14 "Eye variable undefined in this context."</para>
         <para>15 "Submatrix incorrectly defined."</para>
         <para>16 "Incorrect command!"</para>
-        <para>17 "stack size exceeded! Use stacksize function to increase
-            it."
-        </para>
         <para>18 "Too many variables."</para>
         <para>19 "Problem is singular."</para>
         <para>* 20 "Wrong type for argument #%d: Square matrix expected."</para>

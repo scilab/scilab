@@ -271,7 +271,6 @@ am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_pause.lo \
 	sci_gateway/cpp/libscicore_la-sci_abort.lo \
 	sci_gateway/cpp/libscicore_la-sci_who.lo \
-	sci_gateway/cpp/libscicore_la-sci_stacksize.lo \
 	sci_gateway/cpp/libscicore_la-sci_format.lo \
 	sci_gateway/cpp/libscicore_la-sci_sciargs.lo \
 	sci_gateway/cpp/libscicore_la-sci_ieee.lo \
@@ -772,7 +771,6 @@ GATEWAY_CPP_SOURCES = \
 	sci_gateway/cpp/sci_pause.cpp \
 	sci_gateway/cpp/sci_abort.cpp \
 	sci_gateway/cpp/sci_who.cpp \
-	sci_gateway/cpp/sci_stacksize.cpp \
 	sci_gateway/cpp/sci_format.cpp \
 	sci_gateway/cpp/sci_sciargs.cpp \
 	sci_gateway/cpp/sci_ieee.cpp \
@@ -1294,9 +1292,6 @@ sci_gateway/cpp/libscicore_la-sci_abort.lo:  \
 sci_gateway/cpp/libscicore_la-sci_who.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscicore_la-sci_stacksize.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscicore_la-sci_format.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -1396,7 +1391,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_predef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_quit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_sciargs.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_stacksize.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_typename.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_warning.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_where.Plo@am__quote@
@@ -2044,13 +2038,6 @@ sci_gateway/cpp/libscicore_la-sci_who.lo: sci_gateway/cpp/sci_who.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_who.cpp' object='sci_gateway/cpp/libscicore_la-sci_who.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_who.lo `test -f 'sci_gateway/cpp/sci_who.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_who.cpp
-
-sci_gateway/cpp/libscicore_la-sci_stacksize.lo: sci_gateway/cpp/sci_stacksize.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_stacksize.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_stacksize.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/cpp/sci_stacksize.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_stacksize.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_stacksize.Tpo sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_stacksize.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_stacksize.cpp' object='sci_gateway/cpp/libscicore_la-sci_stacksize.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscicore_la-sci_stacksize.lo `test -f 'sci_gateway/cpp/sci_stacksize.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_stacksize.cpp
 
 sci_gateway/cpp/libscicore_la-sci_format.lo: sci_gateway/cpp/sci_format.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-sci_format.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_format.Tpo -c -o sci_gateway/cpp/libscicore_la-sci_format.lo `test -f 'sci_gateway/cpp/sci_format.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_format.cpp

@@ -50,7 +50,7 @@ int intdsyev(char* fname)
             /* LWORK=C2F(maxvol)(&WORK, "d", 1L);   max memory currently available */
             if (LWORK < LWORKMIN)
             {
-                sciprint("not enough memory (use stacksize)");
+                sciprint("not enough memory");
                 SciError(9999);
             };
             CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
@@ -73,7 +73,7 @@ int intdsyev(char* fname)
             LWORK = C2F(maxvol)(&WORK, "d", 1L); /* max memory currently available */
             if (LWORK < LWORKMIN)
             {
-                sciprint("not enough memory (use stacksize)");
+                sciprint("not enough memory");
                 SciError(9999);
             };
             CreateVar(3, MATRIX_OF_DOUBLE_DATATYPE, &LWORK, &un, &lWORK);
@@ -90,6 +90,6 @@ int intdsyev(char* fname)
         default:
             return 0;
     }
-    return(0);
+    return (0);
 }
 /* -------------------------------------------------------------------------- */

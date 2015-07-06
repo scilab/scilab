@@ -28,7 +28,6 @@ function Xd=f(t,X)
     Xd=[pd;pid;xhd;zd;sigd];
 endfunction
 
-stacksize(80000000);
 lam=.8;
 
 p0=1;
@@ -56,7 +55,6 @@ delete(gcf());
 clear
 scf();
 N=5d6;
-stacksize(6*N);
 TT=linspace(0,1,N);
 plot2d(TT,sin(TT));
 delete(gcf());

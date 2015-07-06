@@ -13,8 +13,6 @@
 //
 // <-- Short Description -->
 // Scilab crashes when trying to plot2d huge amounts of data.
-stacksize(1e8)
-[WARNING]: stacksize: No more need to change Scilab stack size. Function will be removed in version 6.1.
 p=1:9000000;
 q=9000000:-1:1;
 plot2d(p,q)
