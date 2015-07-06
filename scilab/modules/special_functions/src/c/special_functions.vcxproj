@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -208,7 +208,6 @@ lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lgamma.cpp" />
     <ClCompile Include="..\cpp\faddeeva.cpp" />
     <ClCompile Include="DllmainSpecial_functions.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_special_functions.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besselh.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besseli.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_besselj.c" />

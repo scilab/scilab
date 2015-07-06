@@ -48,9 +48,6 @@
     <ClCompile Include="src\c\DllmainGraphics_export.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_graphic_export.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xs2bmp.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>

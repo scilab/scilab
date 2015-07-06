@@ -71,9 +71,6 @@
     <ClCompile Include="..\cpp\SetConsolePrompt.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_console.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="clc.c">
       <Filter>Source Files</Filter>
     </ClCompile>

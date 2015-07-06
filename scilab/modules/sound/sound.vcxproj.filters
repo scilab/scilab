@@ -27,9 +27,6 @@
     <ClCompile Include="src\c\DllmainSound.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_sound.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_beep.c">
       <Filter>Source Files</Filter>
     </ClCompile>

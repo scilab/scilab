@@ -235,8 +235,7 @@ am__DEPENDENCIES_1 =
 libsciexternal_objects_la_DEPENDENCIES =  \
 	libsciexternal_objects-algo.la $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
-am__objects_3 = sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo
-am__objects_4 = sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_e.lo \
+am__objects_3 = sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_e.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_p.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_foo_i_EObj.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EClass_e.lo \
@@ -267,8 +266,7 @@ am__objects_4 = sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_e.lo 
 	sci_gateway/cpp/libsciexternal_objects_la-sci_doubleExclam_invoke_.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_invoke_lu.lo \
 	sci_gateway/cpp/libsciexternal_objects_la-sci_percent_EObj_disp.lo
-am_libsciexternal_objects_la_OBJECTS = $(am__objects_3) \
-	$(am__objects_4)
+am_libsciexternal_objects_la_OBJECTS = $(am__objects_3)
 libsciexternal_objects_la_OBJECTS =  \
 	$(am_libsciexternal_objects_la_OBJECTS)
 libsciexternal_objects_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
@@ -291,24 +289,6 @@ DEFAULT_INCLUDES = -I.@am__isrc@ -I$(top_builddir)/modules/core/includes
 depcomp = $(SHELL) $(top_srcdir)/config/depcomp
 am__depfiles_maybe = depfiles
 am__mv = mv -f
-COMPILE = $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) \
-	$(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS)
-LTCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CFLAGS) $(CFLAGS)
-AM_V_CC = $(am__v_CC_@AM_V@)
-am__v_CC_ = $(am__v_CC_@AM_DEFAULT_V@)
-am__v_CC_0 = @echo "  CC      " $@;
-am__v_CC_1 = 
-CCLD = $(CC)
-LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CCLD) $(AM_CFLAGS) $(CFLAGS) \
-	$(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CCLD = $(am__v_CCLD_@AM_V@)
-am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
-am__v_CCLD_0 = @echo "  CCLD    " $@;
-am__v_CCLD_1 = 
 CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
 	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
 LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
@@ -650,7 +630,7 @@ modulename = external_objects
 
 #### external_objects : Conf files ####
 libsciexternal_objects_la_rootdir = $(mydatadir)
-libsciexternal_objects_la_root_DATA = license.txt 
+libsciexternal_objects_la_root_DATA = license.txt
 
 #### external_objects : init scripts & configuration files ####
 libsciexternal_objects_la_etcdir = $(mydatadir)/etc
@@ -783,7 +763,6 @@ EXTERNAL_OBJECTS_CPP_SOURCES = \
     src/cpp/wrapInFloat.cpp \
     src/cpp/EOType.cpp
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_external_objects.c
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_percent_EObj_e.cpp \
 	sci_gateway/cpp/sci_percent_EObj_p.cpp \
@@ -846,11 +825,11 @@ libsciexternal_objects_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/threads/includes \
     -I$(top_srcdir)/modules/console/includes
 
-pkglib_LTLIBRARIES = libsciexternal_objects.la 
-noinst_LTLIBRARIES = libsciexternal_objects-algo.la 
+pkglib_LTLIBRARIES = libsciexternal_objects.la
+noinst_LTLIBRARIES = libsciexternal_objects-algo.la
 libsciexternal_objects_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION) $(LD_FLAGS)
 libsciexternal_objects_algo_la_SOURCES = $(EXTERNAL_OBJECTS_C_SOURCES) $(EXTERNAL_OBJECTS_JNI_SOURCES) $(EXTERNAL_OBJECTS_CPP_SOURCES)
-libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES) 
+libsciexternal_objects_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libsciexternal_objects_algo_la_CFLAGS = $(libsciexternal_objects_la_CFLAGS)
 libsciexternal_objects_algo_la_CPPFLAGS = $(libsciexternal_objects_la_CPPFLAGS)
 libsciexternal_objects_la_LIBADD = libsciexternal_objects-algo.la $(X_LIBS) $(X_EXTRA_LIBS)
@@ -885,7 +864,7 @@ includes/ScilabStream.hxx
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .lo .o .obj
+.SUFFIXES: .sci .bin .cpp .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -1068,15 +1047,6 @@ src/cpp/libsciexternal_objects_algo_la-EOType.lo:  \
 
 libsciexternal_objects-algo.la: $(libsciexternal_objects_algo_la_OBJECTS) $(libsciexternal_objects_algo_la_DEPENDENCIES) $(EXTRA_libsciexternal_objects_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libsciexternal_objects_algo_la_OBJECTS) $(libsciexternal_objects_algo_la_LIBADD) $(LIBS)
-sci_gateway/c/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c
-	@: > sci_gateway/c/$(am__dirstamp)
-sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
-	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -1182,8 +1152,6 @@ libsciexternal_objects.la: $(libsciexternal_objects_la_OBJECTS) $(libsciexternal
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f sci_gateway/c/*.$(OBJEXT)
-	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
@@ -1192,7 +1160,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciexternal_objects_la-gw_external_objects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_doubleExclam_invoke_.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_invoke_lu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciexternal_objects_la-sci_percent_EClass_e.Plo@am__quote@
@@ -1272,37 +1239,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-wrap.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-wrapAsRef.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libsciexternal_objects_algo_la-wrapInFloat.Plo@am__quote@
-
-.c.o:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ $<
-
-.c.obj:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-@am__fastdepCC_TRUE@	$(COMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(COMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.c.lo:
-@am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-@am__fastdepCC_TRUE@	$(LTCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCC_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo: sci_gateway/c/gw_external_objects.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_la_CPPFLAGS) $(CPPFLAGS) $(libsciexternal_objects_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciexternal_objects_la-gw_external_objects.Tpo -c -o sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo `test -f 'sci_gateway/c/gw_external_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_external_objects.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciexternal_objects_la-gw_external_objects.Tpo sci_gateway/c/$(DEPDIR)/libsciexternal_objects_la-gw_external_objects.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_external_objects.c' object='sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciexternal_objects_la_CPPFLAGS) $(CPPFLAGS) $(libsciexternal_objects_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciexternal_objects_la-gw_external_objects.lo `test -f 'sci_gateway/c/gw_external_objects.c' || echo '$(srcdir)/'`sci_gateway/c/gw_external_objects.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1886,7 +1822,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 install-libsciexternal_objects_la_etcDATA: $(libsciexternal_objects_la_etc_DATA)
@@ -2090,8 +2025,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -2106,7 +2039,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -2156,7 +2089,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

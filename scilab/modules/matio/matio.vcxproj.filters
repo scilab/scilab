@@ -48,9 +48,6 @@
     <ClCompile Include="src\c\GetMatlabVariable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_matio.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\matfile_manager.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -176,7 +176,6 @@ am__objects_1 = sci_gateway/c/libscimpi_la-sci_mpi_init.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo \
-	sci_gateway/c/libscimpi_la-gw_mpi.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_recv.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_send.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo \
@@ -556,7 +555,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_finalize.c \
     sci_gateway/c/sci_mpi_comm_size.c \
     sci_gateway/c/sci_mpi_comm_rank.c \
-    sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
     sci_gateway/c/sci_mpi_send.c \
     sci_gateway/c/sci_mpi_irecv.c \
@@ -767,8 +765,6 @@ sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo:  \
 sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscimpi_la-sci_mpi_recv.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -814,7 +810,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo@am__quote@
@@ -880,13 +875,6 @@ sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo: sci_gateway/c/sci_mpi_comm_rank
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_rank.c' object='sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
-
-sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/gw_mpi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-gw_mpi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_mpi.c' object='sci_gateway/c/libscimpi_la-gw_mpi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
 
 sci_gateway/c/libscimpi_la-sci_mpi_recv.lo: sci_gateway/c/sci_mpi_recv.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_recv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c

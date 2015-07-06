@@ -77,9 +77,6 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="sci_gateway\c\gw_external_objects.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_doubleExclam_invoke_.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

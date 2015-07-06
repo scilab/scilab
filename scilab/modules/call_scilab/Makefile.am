@@ -13,8 +13,7 @@ CALLSCILAB_C_SOURCES = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_fromjava.c \
-    sci_gateway/c/sci_fromc.c \
-    sci_gateway/c/gw_call_scilab.c
+    sci_gateway/c/sci_fromc.c
 
 libscicall_scilab_la_CPPFLAGS= \
     -I$(srcdir)/includes/ \

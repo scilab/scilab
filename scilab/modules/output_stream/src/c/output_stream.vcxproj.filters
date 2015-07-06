@@ -56,9 +56,6 @@
     <ClCompile Include="..\cpp\getFullFilename.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_output_stream.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="msgout.c">
       <Filter>Source Files</Filter>
     </ClCompile>

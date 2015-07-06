@@ -232,8 +232,7 @@ libscifileio_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX \
 @MAINTAINER_MODE_FALSE@am_libscifileio_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libscifileio_algo_la_rpath =
 libscifileio_la_DEPENDENCIES = libscifileio-algo.la
-am__objects_3 = sci_gateway/c/libscifileio_la-gw_fileio.lo \
-	sci_gateway/c/libscifileio_la-sci_fprintfMat.lo \
+am__objects_3 = sci_gateway/c/libscifileio_la-sci_fprintfMat.lo \
 	sci_gateway/c/libscifileio_la-sci_fscanfMat.lo \
 	sci_gateway/c/libscifileio_la-sci_chdir.lo \
 	sci_gateway/c/libscifileio_la-sci_pwd.lo \
@@ -687,7 +686,6 @@ FILEIO_C_SOURCES = \
 	src/c/convert_tools.c
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_fileio.c \
     sci_gateway/c/sci_fprintfMat.c \
     sci_gateway/c/sci_fscanfMat.c \
     sci_gateway/c/sci_chdir.c \
@@ -1100,9 +1098,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscifileio_la-gw_fileio.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscifileio_la-sci_fprintfMat.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1268,7 +1263,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_chdir.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_copyfile.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_fprintfMat.Plo@am__quote@
@@ -1623,13 +1617,6 @@ src/c/libscifileio_algo_la-convert_tools.lo: src/c/convert_tools.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/convert_tools.c' object='src/c/libscifileio_algo_la-convert_tools.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscifileio_algo_la-convert_tools.lo `test -f 'src/c/convert_tools.c' || echo '$(srcdir)/'`src/c/convert_tools.c
-
-sci_gateway/c/libscifileio_la-gw_fileio.lo: sci_gateway/c/gw_fileio.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifileio_la-gw_fileio.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Tpo -c -o sci_gateway/c/libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Tpo sci_gateway/c/$(DEPDIR)/libscifileio_la-gw_fileio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_fileio.c' object='sci_gateway/c/libscifileio_la-gw_fileio.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifileio_la-gw_fileio.lo `test -f 'sci_gateway/c/gw_fileio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_fileio.c
 
 sci_gateway/c/libscifileio_la-sci_fprintfMat.lo: sci_gateway/c/sci_fprintfMat.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifileio_la-sci_fprintfMat.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_fprintfMat.Tpo -c -o sci_gateway/c/libscifileio_la-sci_fprintfMat.lo `test -f 'sci_gateway/c/sci_fprintfMat.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fprintfMat.c

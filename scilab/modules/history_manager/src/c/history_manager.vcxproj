@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -212,7 +212,6 @@ lib /DEF:"$(ProjectDir)history_browser_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$
   <ItemGroup>
     <ClCompile Include="DllmainHistory_Manager.c" />
     <ClCompile Include="getCommentDateSession.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_history_manager.c" />
     <ClCompile Include="..\cpp\HistoryFile.cpp" />
     <ClCompile Include="..\jni\HistoryManagement_wrap.c" />
     <ClCompile Include="..\cpp\HistoryManager.cpp" />

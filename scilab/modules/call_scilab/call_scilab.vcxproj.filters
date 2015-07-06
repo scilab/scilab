@@ -36,9 +36,6 @@
     <ClCompile Include="src\c\fromjava.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_call_scilab.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_fromc.c">
       <Filter>Source Files</Filter>
     </ClCompile>

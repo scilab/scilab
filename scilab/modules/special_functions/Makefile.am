@@ -28,8 +28,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_besselh.c \
     sci_gateway/c/sci_besseli.c \
     sci_gateway/c/sci_besselj.c \
-    sci_gateway/c/sci_besselk.c \
-    sci_gateway/c/gw_special_functions.c
+    sci_gateway/c/sci_besselk.c
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_faddeeva.cpp \

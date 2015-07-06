@@ -171,7 +171,6 @@ am__objects_1 = src/c/libsciarnoldi_la-eigs.lo \
 	src/c/libsciarnoldi_la-eigs_dependencies.lo
 am__objects_2 = sci_gateway/c/libsciarnoldi_la-sci_dseupd.lo \
 	sci_gateway/c/libsciarnoldi_la-sci_zneupd.lo \
-	sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo \
 	sci_gateway/c/libsciarnoldi_la-sci_dnaupd.lo \
 	sci_gateway/c/libsciarnoldi_la-sci_dneupd.lo \
 	sci_gateway/c/libsciarnoldi_la-sci_dsaupd.lo \
@@ -542,7 +541,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_zneupd \
     sci_gateway/c/sci_dseupd.c \
     sci_gateway/c/sci_zneupd.c \
-    sci_gateway/c/gw_arnoldi.c \
     sci_gateway/c/sci_dnaupd.c \
     sci_gateway/c/sci_dneupd.c \
     sci_gateway/c/sci_dsaupd.c \
@@ -753,9 +751,6 @@ sci_gateway/c/libsciarnoldi_la-sci_dseupd.lo:  \
 sci_gateway/c/libsciarnoldi_la-sci_zneupd.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libsciarnoldi_la-sci_dnaupd.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -785,7 +780,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-sci_dneupd.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-sci_dsaupd.Plo@am__quote@
@@ -847,13 +841,6 @@ sci_gateway/c/libsciarnoldi_la-sci_zneupd.lo: sci_gateway/c/sci_zneupd.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_zneupd.c' object='sci_gateway/c/libsciarnoldi_la-sci_zneupd.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciarnoldi_la-sci_zneupd.lo `test -f 'sci_gateway/c/sci_zneupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zneupd.c
-
-sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo: sci_gateway/c/gw_arnoldi.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo -c -o sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Tpo sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-gw_arnoldi.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_arnoldi.c' object='sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciarnoldi_la-gw_arnoldi.lo `test -f 'sci_gateway/c/gw_arnoldi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_arnoldi.c
 
 sci_gateway/c/libsciarnoldi_la-sci_dnaupd.lo: sci_gateway/c/sci_dnaupd.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciarnoldi_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciarnoldi_la-sci_dnaupd.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciarnoldi_la-sci_dnaupd.Tpo -c -o sci_gateway/c/libsciarnoldi_la-sci_dnaupd.lo `test -f 'sci_gateway/c/sci_dnaupd.c' || echo '$(srcdir)/'`sci_gateway/c/sci_dnaupd.c

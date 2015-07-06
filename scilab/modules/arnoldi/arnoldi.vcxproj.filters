@@ -27,9 +27,6 @@
     <ClCompile Include="src\c\DllmainArnoldi.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_arnoldi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_dnaupd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -87,6 +84,7 @@
     <None Include="locales\arnoldi.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="locales\arnoldi.pot" />
     <None Include="locales\arnoldi.pot" />
     <None Include="locales\arnoldi.pot" />
   </ItemGroup>

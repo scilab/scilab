@@ -8,11 +8,6 @@
 # http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_symbolic.c 
-
-GATEWAY_FORTRAN_SOURCES =
-
 FORTRAN_SOURCES = \
     src/fortran/atome.f \
     src/fortran/iseye.f \
@@ -55,7 +50,7 @@ modulename=symbolic
 
 #### symbolic : Conf files ####
 libscisymbolic_la_rootdir = $(mydatadir)
-libscisymbolic_la_root_DATA =  license.txt 
+libscisymbolic_la_root_DATA =  license.txt
 
 
 #### symbolic : init scripts ####

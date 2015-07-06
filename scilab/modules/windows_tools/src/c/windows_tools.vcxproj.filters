@@ -32,9 +32,6 @@
     <ClCompile Include="FindFileAssociation.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_windows_tools.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="httpdownloadfile.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -216,7 +216,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\c\DllmainCall_scilab.c" />
     <ClCompile Include="src\c\fromc.c" />
     <ClCompile Include="src\c\fromjava.c" />
-    <ClCompile Include="sci_gateway\c\gw_call_scilab.c" />
     <ClCompile Include="sci_gateway\c\sci_fromc.c" />
     <ClCompile Include="sci_gateway\c\sci_fromjava.c" />
     <ClCompile Include="src\c\SendScilabJobs.c" />

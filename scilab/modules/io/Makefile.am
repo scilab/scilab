@@ -23,7 +23,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_getenv.c \
     sci_gateway/c/sci_writeb.c \
     sci_gateway/c/sci_setenv.c \
-    sci_gateway/c/gw_io.c \
     sci_gateway/c/sci_getpid.c \
     sci_gateway/c/sci_write4b.c \
     sci_gateway/c/sci_save.c

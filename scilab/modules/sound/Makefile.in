@@ -16,7 +16,7 @@
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
@@ -164,8 +164,7 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(pkglib_LTLIBRARIES)
 libscisound_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = sci_gateway/c/libscisound_la-gw_sound.lo \
-	sci_gateway/c/libscisound_la-sci_beep.lo \
+am__objects_1 = sci_gateway/c/libscisound_la-sci_beep.lo \
 	sci_gateway/c/libscisound_la-sci_PlaySound.lo
 am_libscisound_la_OBJECTS = $(am__objects_1)
 libscisound_la_OBJECTS = $(am_libscisound_la_OBJECTS)
@@ -521,7 +520,6 @@ top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 yacc_present = @yacc_present@
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_sound.c \
     sci_gateway/c/sci_beep.c \
     sci_gateway/c/sci_PlaySound.c
 
@@ -555,7 +553,7 @@ modulename = sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
-libscisound_la_root_DATA = license.txt 
+libscisound_la_root_DATA = license.txt
 
 ####�sound : init scripts ####
 libscisound_la_etcdir = $(mydatadir)/etc
@@ -716,9 +714,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscisound_la-gw_sound.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscisound_la-sci_beep.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -737,7 +732,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscisound_la-gw_sound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscisound_la-sci_PlaySound.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscisound_la-sci_beep.Plo@am__quote@
 
@@ -764,13 +758,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
-
-sci_gateway/c/libscisound_la-gw_sound.lo: sci_gateway/c/gw_sound.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisound_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscisound_la-gw_sound.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscisound_la-gw_sound.Tpo -c -o sci_gateway/c/libscisound_la-gw_sound.lo `test -f 'sci_gateway/c/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sound.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscisound_la-gw_sound.Tpo sci_gateway/c/$(DEPDIR)/libscisound_la-gw_sound.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_sound.c' object='sci_gateway/c/libscisound_la-gw_sound.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisound_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscisound_la-gw_sound.lo `test -f 'sci_gateway/c/gw_sound.c' || echo '$(srcdir)/'`sci_gateway/c/gw_sound.c
 
 sci_gateway/c/libscisound_la-sci_beep.lo: sci_gateway/c/sci_beep.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscisound_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscisound_la-sci_beep.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscisound_la-sci_beep.Tpo -c -o sci_gateway/c/libscisound_la-sci_beep.lo `test -f 'sci_gateway/c/sci_beep.c' || echo '$(srcdir)/'`sci_gateway/c/sci_beep.c

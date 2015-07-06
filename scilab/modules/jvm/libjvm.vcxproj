@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -228,7 +228,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\getClasspath.c" />
     <ClCompile Include="src\c\getJvmOptions.c" />
     <ClCompile Include="src\c\getLibrarypath.c" />
-    <ClCompile Include="sci_gateway\c\gw_jvm.c" />
     <ClCompile Include="src\c\InitializeJVM.c" />
     <ClCompile Include="src\c\JVM.c" />
     <ClCompile Include="src\c\JVM_commons.c" />

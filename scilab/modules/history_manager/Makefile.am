@@ -8,12 +8,9 @@ HISTORY_MANAGER_CPP_SOURCES = \
     src/cpp/HistoryFile.cpp \
     src/cpp/HistoryManager.cpp \
     src/cpp/HistorySearch.cpp
-    
+
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c
-
-# List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/history_manager_gw.cpp \
@@ -30,7 +27,7 @@ GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_savehistory.cpp \
     sci_gateway/cpp/sci_sethistoryfile.cpp \
     sci_gateway/cpp/sci_historymanager.cpp
-    
+
 if GUI
 
 # List of the c files
@@ -81,11 +78,11 @@ noinst_LTLIBRARIES = libscihistory_manager-algo.la
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES)
-libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihistory_manager_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC= $(HISTORY_MANAGER_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 ## Libraries necessary

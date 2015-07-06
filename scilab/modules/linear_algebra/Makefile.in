@@ -193,8 +193,6 @@ am__v_lt_1 =
 @MAINTAINER_MODE_TRUE@am_libscilinear_algebra_algo_la_rpath =
 libscilinear_algebra_la_DEPENDENCIES = libscilinear_algebra-algo.la
 am__objects_4 =  \
-	sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo \
-	sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo \
 	sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo \
 	sci_gateway/c/libscilinear_algebra_la-sci_norm.lo
 am__objects_5 =  \
@@ -626,8 +624,6 @@ LINEAR_ALGEBRA_FORTRAN_SOURCES = \
     src/fortran/find.f
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_linear_algebra2.c \
-    sci_gateway/c/gw_linear_algebra.c \
     sci_gateway/c/assembleEigenvectors.c \
     sci_gateway/c/sci_norm.c
 
@@ -912,12 +908,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -993,8 +983,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-sci_norm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscilinear_algebra_la-linear_algebra_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscilinear_algebra_la-sci_balanc.Plo@am__quote@
@@ -1140,20 +1128,6 @@ src/c/libscilinear_algebra_algo_la-norm.lo: src/c/norm.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/norm.c' object='src/c/libscilinear_algebra_algo_la-norm.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscilinear_algebra_algo_la-norm.lo `test -f 'src/c/norm.c' || echo '$(srcdir)/'`src/c/norm.c
-
-sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo: sci_gateway/c/gw_linear_algebra2.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Tpo -c -o sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo `test -f 'sci_gateway/c/gw_linear_algebra2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_linear_algebra2.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Tpo sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_linear_algebra2.c' object='sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra2.lo `test -f 'sci_gateway/c/gw_linear_algebra2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_linear_algebra2.c
-
-sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo: sci_gateway/c/gw_linear_algebra.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Tpo -c -o sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo `test -f 'sci_gateway/c/gw_linear_algebra.c' || echo '$(srcdir)/'`sci_gateway/c/gw_linear_algebra.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Tpo sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-gw_linear_algebra.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_linear_algebra.c' object='sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscilinear_algebra_la-gw_linear_algebra.lo `test -f 'sci_gateway/c/gw_linear_algebra.c' || echo '$(srcdir)/'`sci_gateway/c/gw_linear_algebra.c
 
 sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo: sci_gateway/c/assembleEigenvectors.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilinear_algebra_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilinear_algebra_la-assembleEigenvectors.Tpo -c -o sci_gateway/c/libscilinear_algebra_la-assembleEigenvectors.lo `test -f 'sci_gateway/c/assembleEigenvectors.c' || echo '$(srcdir)/'`sci_gateway/c/assembleEigenvectors.c

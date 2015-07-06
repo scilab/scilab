@@ -191,8 +191,7 @@ am__v_lt_1 =
 libscispreadsheet_la_DEPENDENCIES = libscispreadsheet-algo.la
 am__objects_3 = sci_gateway/cpp/libscispreadsheet_la-sci_xls_read.lo \
 	sci_gateway/cpp/libscispreadsheet_la-sci_xls_open.lo
-am__objects_4 = sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo \
-	sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo \
+am__objects_4 = sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo \
 	sci_gateway/c/libscispreadsheet_la-sci_csvDefault.lo \
 	sci_gateway/c/libscispreadsheet_la-sci_csvRead.lo \
 	sci_gateway/c/libscispreadsheet_la-sci_csvStringToDouble.lo \
@@ -616,7 +615,6 @@ libscispreadsheet_la_CPPFLAGS = \
     $(AM_CPPFLAGS)
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_spreadsheet.c \
     sci_gateway/c/gw_csv_helpers.c \
     sci_gateway/c/sci_csvDefault.c \
     sci_gateway/c/sci_csvRead.c \
@@ -873,9 +871,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -913,7 +908,6 @@ distclean-compile:
 	-rm -f *.tab.c
 
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_csv_helpers.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-sci_csvDefault.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-sci_csvRead.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-sci_csvStringToDouble.Plo@am__quote@
@@ -1065,13 +1059,6 @@ src/c/ripole/libscispreadsheet_algo_la-bt-int.lo: src/c/ripole/bt-int.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/ripole/bt-int.c' object='src/c/ripole/libscispreadsheet_algo_la-bt-int.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/ripole/libscispreadsheet_algo_la-bt-int.lo `test -f 'src/c/ripole/bt-int.c' || echo '$(srcdir)/'`src/c/ripole/bt-int.c
-
-sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo: sci_gateway/c/gw_spreadsheet.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo -c -o sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Tpo sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_spreadsheet.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_spreadsheet.c' object='sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscispreadsheet_la-gw_spreadsheet.lo `test -f 'sci_gateway/c/gw_spreadsheet.c' || echo '$(srcdir)/'`sci_gateway/c/gw_spreadsheet.c
 
 sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo: sci_gateway/c/gw_csv_helpers.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscispreadsheet_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscispreadsheet_la-gw_csv_helpers.Tpo -c -o sci_gateway/c/libscispreadsheet_la-gw_csv_helpers.lo `test -f 'sci_gateway/c/gw_csv_helpers.c' || echo '$(srcdir)/'`sci_gateway/c/gw_csv_helpers.c

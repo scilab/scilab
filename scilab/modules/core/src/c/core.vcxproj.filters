@@ -68,18 +68,6 @@
     <ClCompile Include="GetXmlFileEncoding.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_core.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="gw_dynamic_generic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_user.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_user2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="isanan.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -159,9 +159,6 @@
     <ClCompile Include="src\c\DllmainXml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_xml.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\cpp\sci_extraction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -193,7 +193,6 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-freeArrayOfString.lo \
 	src/c/libscicore_algo_la-getstaticdebuginfo.lo \
 	src/c/libscicore_algo_la-getdynamicdebuginfo.lo \
-	src/c/libscicore_algo_la-gw_dynamic_generic.lo \
 	src/c/libscicore_algo_la-dynamic_gateways.lo \
 	src/c/libscicore_algo_la-setPrecisionFPU.lo \
 	src/c/libscicore_algo_la-getos.lo \
@@ -241,10 +240,7 @@ am__v_lt_1 =
 @MAINTAINER_MODE_TRUE@am_libscicore_algo_la_rpath =
 am__DEPENDENCIES_1 =
 libscicore_la_DEPENDENCIES = libscicore-algo.la $(am__DEPENDENCIES_1)
-am__objects_4 = sci_gateway/c/libscicore_la-gw_core.lo \
-	sci_gateway/c/libscicore_la-gw_user.lo \
-	sci_gateway/c/libscicore_la-gw_user2.lo \
-	sci_gateway/c/libscicore_la-sci_type.lo \
+am__objects_4 = sci_gateway/c/libscicore_la-sci_type.lo \
 	sci_gateway/c/libscicore_la-sci_getdebuginfo.lo
 am__objects_5 = sci_gateway/cpp/libscicore_la-core_gw.lo \
 	sci_gateway/cpp/libscicore_la-sci_getmodules.lo \
@@ -691,7 +687,6 @@ CORE_C_SOURCES = \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
-    src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
     src/c/setPrecisionFPU.c \
     src/c/getos.c \
@@ -739,9 +734,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/gw_core.c \
-	sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 
@@ -1085,8 +1077,6 @@ src/c/libscicore_algo_la-getstaticdebuginfo.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getdynamicdebuginfo.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-gw_dynamic_generic.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-dynamic_gateways.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-setPrecisionFPU.lo: src/c/$(am__dirstamp) \
@@ -1198,13 +1188,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscicore_la-gw_core.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscicore_la-gw_user.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscicore_la-gw_user2.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscicore_la-sci_type.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1353,9 +1336,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-gw_core.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user2.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-sci_getdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-core_gw.Plo@am__quote@
@@ -1414,7 +1394,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getos.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getstaticdebuginfo.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-getversion.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-isanan.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-islittleendian.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-loadversion.Plo@am__quote@
@@ -1588,13 +1567,6 @@ src/c/libscicore_algo_la-getdynamicdebuginfo.lo: src/c/getdynamicdebuginfo.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getdynamicdebuginfo.lo `test -f 'src/c/getdynamicdebuginfo.c' || echo '$(srcdir)/'`src/c/getdynamicdebuginfo.c
 
-src/c/libscicore_algo_la-gw_dynamic_generic.lo: src/c/gw_dynamic_generic.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-gw_dynamic_generic.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Tpo -c -o src/c/libscicore_algo_la-gw_dynamic_generic.lo `test -f 'src/c/gw_dynamic_generic.c' || echo '$(srcdir)/'`src/c/gw_dynamic_generic.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Tpo src/c/$(DEPDIR)/libscicore_algo_la-gw_dynamic_generic.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/gw_dynamic_generic.c' object='src/c/libscicore_algo_la-gw_dynamic_generic.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-gw_dynamic_generic.lo `test -f 'src/c/gw_dynamic_generic.c' || echo '$(srcdir)/'`src/c/gw_dynamic_generic.c
-
 src/c/libscicore_algo_la-dynamic_gateways.lo: src/c/dynamic_gateways.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-dynamic_gateways.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Tpo -c -o src/c/libscicore_algo_la-dynamic_gateways.lo `test -f 'src/c/dynamic_gateways.c' || echo '$(srcdir)/'`src/c/dynamic_gateways.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Tpo src/c/$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Plo
@@ -1720,27 +1692,6 @@ src/c/hashtable/libscicore_algo_la-hashtable_utility.lo: src/c/hashtable/hashtab
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/hashtable/hashtable_utility.c' object='src/c/hashtable/libscicore_algo_la-hashtable_utility.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/hashtable/libscicore_algo_la-hashtable_utility.lo `test -f 'src/c/hashtable/hashtable_utility.c' || echo '$(srcdir)/'`src/c/hashtable/hashtable_utility.c
-
-sci_gateway/c/libscicore_la-gw_core.lo: sci_gateway/c/gw_core.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-gw_core.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-gw_core.Tpo -c -o sci_gateway/c/libscicore_la-gw_core.lo `test -f 'sci_gateway/c/gw_core.c' || echo '$(srcdir)/'`sci_gateway/c/gw_core.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicore_la-gw_core.Tpo sci_gateway/c/$(DEPDIR)/libscicore_la-gw_core.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_core.c' object='sci_gateway/c/libscicore_la-gw_core.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicore_la-gw_core.lo `test -f 'sci_gateway/c/gw_core.c' || echo '$(srcdir)/'`sci_gateway/c/gw_core.c
-
-sci_gateway/c/libscicore_la-gw_user.lo: sci_gateway/c/gw_user.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-gw_user.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user.Tpo -c -o sci_gateway/c/libscicore_la-gw_user.lo `test -f 'sci_gateway/c/gw_user.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user.Tpo sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_user.c' object='sci_gateway/c/libscicore_la-gw_user.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicore_la-gw_user.lo `test -f 'sci_gateway/c/gw_user.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user.c
-
-sci_gateway/c/libscicore_la-gw_user2.lo: sci_gateway/c/gw_user2.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-gw_user2.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user2.Tpo -c -o sci_gateway/c/libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user2.Tpo sci_gateway/c/$(DEPDIR)/libscicore_la-gw_user2.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_user2.c' object='sci_gateway/c/libscicore_la-gw_user2.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscicore_la-gw_user2.lo `test -f 'sci_gateway/c/gw_user2.c' || echo '$(srcdir)/'`sci_gateway/c/gw_user2.c
 
 sci_gateway/c/libscicore_la-sci_type.lo: sci_gateway/c/sci_type.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscicore_la-sci_type.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscicore_la-sci_type.Tpo -c -o sci_gateway/c/libscicore_la-sci_type.lo `test -f 'sci_gateway/c/sci_type.c' || echo '$(srcdir)/'`sci_gateway/c/sci_type.c

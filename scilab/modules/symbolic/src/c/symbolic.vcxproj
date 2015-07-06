@@ -191,7 +191,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainSymbolic.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_symbolic.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_symbolic.h" />

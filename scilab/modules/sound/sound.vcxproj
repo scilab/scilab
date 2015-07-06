@@ -193,7 +193,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\c\DllmainSound.c" />
-    <ClCompile Include="sci_gateway\c\gw_sound.c" />
     <ClCompile Include="sci_gateway\c\sci_beep.c" />
     <ClCompile Include="sci_gateway\c\sci_PlaySound.c" />
   </ItemGroup>

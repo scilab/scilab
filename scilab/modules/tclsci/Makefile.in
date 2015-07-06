@@ -202,7 +202,7 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
 	sci_gateway/c/sci_TCL_UnsetVar.c \
-	sci_gateway/c/sci_TCL_ExistInterp.c sci_gateway/c/gw_tclsci.c \
+	sci_gateway/c/sci_TCL_ExistInterp.c \
 	sci_gateway/c/sci_TCL_EvalStr.c \
 	sci_gateway/c/sci_TCL_DeleteInterp.c \
 	sci_gateway/c/sci_TCL_GetVersion.c \
@@ -217,7 +217,6 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_DoOneEvent.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_UnsetVar.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo \
-@TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-gw_tclsci.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_DeleteInterp.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_GetVersion.lo \
@@ -605,7 +604,6 @@ yacc_present = @yacc_present@
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_DoOneEvent.c \
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_UnsetVar.c \
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistInterp.c \
-@TCLTK_TRUE@    sci_gateway/c/gw_tclsci.c \
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_EvalStr.c \
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_DeleteInterp.c \
 @TCLTK_TRUE@    sci_gateway/c/sci_TCL_GetVersion.c \
@@ -654,7 +652,7 @@ modulename = tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA = license.txt 
+libscitclsci_la_root_DATA = license.txt
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
@@ -935,9 +933,6 @@ sci_gateway/c/libscitclsci_la-sci_TCL_UnsetVar.lo:  \
 sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscitclsci_la-gw_tclsci.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -975,7 +970,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_DeleteInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_DoOneEvent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_EvalFile.Plo@am__quote@
@@ -1175,13 +1169,6 @@ sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo: sci_gateway/c/sci_TCL_Exis
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_TCL_ExistInterp.c' object='sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo `test -f 'sci_gateway/c/sci_TCL_ExistInterp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_ExistInterp.c
-
-sci_gateway/c/libscitclsci_la-gw_tclsci.lo: sci_gateway/c/gw_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitclsci_la-gw_tclsci.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Tpo -c -o sci_gateway/c/libscitclsci_la-gw_tclsci.lo `test -f 'sci_gateway/c/gw_tclsci.c' || echo '$(srcdir)/'`sci_gateway/c/gw_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Tpo sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_tclsci.c' object='sci_gateway/c/libscitclsci_la-gw_tclsci.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitclsci_la-gw_tclsci.lo `test -f 'sci_gateway/c/gw_tclsci.c' || echo '$(srcdir)/'`sci_gateway/c/gw_tclsci.c
 
 sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo: sci_gateway/c/sci_TCL_EvalStr.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_EvalStr.Tpo -c -o sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo `test -f 'sci_gateway/c/sci_TCL_EvalStr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_EvalStr.c

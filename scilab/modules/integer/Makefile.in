@@ -205,13 +205,12 @@ am__v_lt_1 =
 @MAINTAINER_MODE_FALSE@am_libsciinteger_algo_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciinteger_algo_la_rpath =
 libsciinteger_la_DEPENDENCIES = libsciinteger-algo.la
-am__objects_2 = sci_gateway/c/libsciinteger_la-gw_integer.lo
-am__objects_3 = sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
+am__objects_2 = sci_gateway/cpp/libsciinteger_la-integer_gw.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_inttype.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_double.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_int.lo \
 	sci_gateway/cpp/libsciinteger_la-sci_iconvert.lo
-am_libsciinteger_la_OBJECTS = $(am__objects_2) $(am__objects_3)
+am_libsciinteger_la_OBJECTS = $(am__objects_2)
 libsciinteger_la_OBJECTS = $(am_libsciinteger_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libsciinteger_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciinteger_la_rpath = -rpath $(pkglibdir)
@@ -615,7 +614,6 @@ INTEGER_C_SOURCES = \
     src/c/genbitops.c \
     src/c/genimpl.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/integer_gw.cpp \
     sci_gateway/cpp/sci_inttype.cpp \
@@ -900,15 +898,6 @@ src/c/libsciinteger_algo_la-genimpl.lo: src/c/$(am__dirstamp) \
 
 libsciinteger-algo.la: $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_DEPENDENCIES) $(EXTRA_libsciinteger_algo_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libsciinteger_algo_la_rpath) $(libsciinteger_algo_la_OBJECTS) $(libsciinteger_algo_la_LIBADD) $(LIBS)
-sci_gateway/c/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c
-	@: > sci_gateway/c/$(am__dirstamp)
-sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
-	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libsciinteger_la-gw_integer.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -936,8 +925,6 @@ libsciinteger.la: $(libsciinteger_la_OBJECTS) $(libsciinteger_la_DEPENDENCIES) $
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f sci_gateway/c/*.$(OBJEXT)
-	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
@@ -946,7 +933,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libsciinteger_la-gw_integer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-integer_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_double.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libsciinteger_la-sci_iconvert.Plo@am__quote@
@@ -1233,13 +1219,6 @@ src/c/libsciinteger_algo_la-genimpl.lo: src/c/genimpl.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciinteger_algo_la-genimpl.lo `test -f 'src/c/genimpl.c' || echo '$(srcdir)/'`src/c/genimpl.c
 
-sci_gateway/c/libsciinteger_la-gw_integer.lo: sci_gateway/c/gw_integer.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libsciinteger_la-gw_integer.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libsciinteger_la-gw_integer.Tpo -c -o sci_gateway/c/libsciinteger_la-gw_integer.lo `test -f 'sci_gateway/c/gw_integer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_integer.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libsciinteger_la-gw_integer.Tpo sci_gateway/c/$(DEPDIR)/libsciinteger_la-gw_integer.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_integer.c' object='sci_gateway/c/libsciinteger_la-gw_integer.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciinteger_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libsciinteger_la-gw_integer.lo `test -f 'sci_gateway/c/gw_integer.c' || echo '$(srcdir)/'`sci_gateway/c/gw_integer.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
@@ -1304,7 +1283,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
 install-libsciinteger_la_etcDATA: $(libsciinteger_la_etc_DATA)
@@ -1487,8 +1465,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1503,7 +1479,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1551,7 +1527,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

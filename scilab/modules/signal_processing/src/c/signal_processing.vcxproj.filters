@@ -29,9 +29,6 @@
     <ClCompile Include="DllmainSignal_processing.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_signal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="conv2.c">
       <Filter>Source Files</Filter>
     </ClCompile>

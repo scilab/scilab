@@ -37,8 +37,6 @@ INTEGER_C_SOURCES = \
     src/c/genbitops.c \
     src/c/genimpl.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_integer.c
-
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/integer_gw.cpp \
     sci_gateway/cpp/sci_inttype.cpp \

@@ -32,9 +32,6 @@
     <ClCompile Include="..\ezxml.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\sci_gateway\c\gw_scicos.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\import.c">
       <Filter>Source Files</Filter>
     </ClCompile>

@@ -201,7 +201,6 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile Include="DllmainIo.c" />
     <ClCompile Include="getenvc.c" />
     <ClCompile Include="getpidc.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_io.c" />
     <ClCompile Include="setenvc.c" />
     <ClCompile Include="systemc.c" />
     <ClCompile Include="v2cuniterror.c" />

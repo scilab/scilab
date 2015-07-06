@@ -190,9 +190,7 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscihistory_manager_la_DEPENDENCIES = libscihistory_manager-algo.la
-am__objects_4 =  \
-	sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo
-am__objects_5 = sci_gateway/cpp/libscihistory_manager_la-history_manager_gw.lo \
+am__objects_4 = sci_gateway/cpp/libscihistory_manager_la-history_manager_gw.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_addhistory.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_displayhistory.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_gethistory.lo \
@@ -206,8 +204,7 @@ am__objects_5 = sci_gateway/cpp/libscihistory_manager_la-history_manager_gw.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_savehistory.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_sethistoryfile.lo \
 	sci_gateway/cpp/libscihistory_manager_la-sci_historymanager.lo
-am_libscihistory_manager_la_OBJECTS = $(am__objects_4) \
-	$(am__objects_5)
+am_libscihistory_manager_la_OBJECTS = $(am__objects_4)
 libscihistory_manager_la_OBJECTS =  \
 	$(am_libscihistory_manager_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
@@ -590,9 +587,6 @@ HISTORY_MANAGER_CPP_SOURCES = \
 # List of the c files
 HISTORY_MANAGER_C_SOURCES = src/c/getCommentDateSession.c \
 	$(am__append_1)
-
-# List of the gateway c files
-GATEWAY_C_SOURCES = sci_gateway/c/gw_history_manager.c
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/history_manager_gw.cpp \
     sci_gateway/cpp/sci_addhistory.cpp \
@@ -647,11 +641,11 @@ noinst_LTLIBRARIES = libscihistory_manager-algo.la
 
 # All the sources needed by libscihistory_manager.la
 libscihistory_manager_algo_la_SOURCES = $(HISTORY_MANAGER_C_SOURCES) $(HISTORY_MANAGER_CPP_SOURCES)
-libscihistory_manager_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscihistory_manager_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 libscihistory_manager_algo_la_CPPFLAGS = $(libscihistory_manager_la_CPPFLAGS)
 
 # For the code check (splint)
-CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES) $(GATEWAY_C_SOURCES)
+CHECK_SRC = $(HISTORY_MANAGER_C_SOURCES)
 INCLUDE_FLAGS = $(libscihistory_manager_la_CPPFLAGS)
 libscihistory_manager_la_LIBADD = libscihistory_manager-algo.la
 modulename = history_manager
@@ -871,15 +865,6 @@ src/cpp/libscihistory_manager_algo_la-HistorySearch.lo:  \
 
 libscihistory_manager-algo.la: $(libscihistory_manager_algo_la_OBJECTS) $(libscihistory_manager_algo_la_DEPENDENCIES) $(EXTRA_libscihistory_manager_algo_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(CXXLINK)  $(libscihistory_manager_algo_la_OBJECTS) $(libscihistory_manager_algo_la_LIBADD) $(LIBS)
-sci_gateway/c/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c
-	@: > sci_gateway/c/$(am__dirstamp)
-sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
-	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -934,8 +919,6 @@ libscihistory_manager.la: $(libscihistory_manager_la_OBJECTS) $(libscihistory_ma
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
-	-rm -f sci_gateway/c/*.$(OBJEXT)
-	-rm -f sci_gateway/c/*.lo
 	-rm -f sci_gateway/cpp/*.$(OBJEXT)
 	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/c/*.$(OBJEXT)
@@ -948,7 +931,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihistory_manager_la-history_manager_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihistory_manager_la-sci_addhistory.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscihistory_manager_la-sci_displayhistory.Plo@am__quote@
@@ -1006,13 +988,6 @@ src/jni/libscihistory_manager_algo_la-HistoryManagement_wrap.lo: src/jni/History
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/HistoryManagement_wrap.c' object='src/jni/libscihistory_manager_algo_la-HistoryManagement_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscihistory_manager_algo_la-HistoryManagement_wrap.lo `test -f 'src/jni/HistoryManagement_wrap.c' || echo '$(srcdir)/'`src/jni/HistoryManagement_wrap.c
-
-sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo: sci_gateway/c/gw_history_manager.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Tpo -c -o sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo `test -f 'sci_gateway/c/gw_history_manager.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_manager.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Tpo sci_gateway/c/$(DEPDIR)/libscihistory_manager_la-gw_history_manager.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_history_manager.c' object='sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscihistory_manager_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscihistory_manager_la-gw_history_manager.lo `test -f 'sci_gateway/c/gw_history_manager.c' || echo '$(srcdir)/'`sci_gateway/c/gw_history_manager.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1162,7 +1137,6 @@ mostlyclean-libtool:
 
 clean-libtool:
 	-rm -rf .libs _libs
-	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
 	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/c/.libs src/c/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
@@ -1370,8 +1344,6 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
-	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/c/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
@@ -1391,7 +1363,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1441,7 +1413,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 

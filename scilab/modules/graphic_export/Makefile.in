@@ -189,9 +189,7 @@ am_libscigraphic_export_disable_la_OBJECTS = src/nographic_export/libscigraphic_
 libscigraphic_export_disable_la_OBJECTS =  \
 	$(am_libscigraphic_export_disable_la_OBJECTS)
 libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la
-am__objects_2 =  \
-	sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo \
-	sci_gateway/c/libscigraphic_export_la-xs2file.lo \
+am__objects_2 = sci_gateway/c/libscigraphic_export_la-xs2file.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2gif.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2ppm.lo \
@@ -603,7 +601,6 @@ GRAPHIC_EXPORT_CXX_SOURCES = \
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_graphic_export.c \
     sci_gateway/c/xs2file.c \
     sci_gateway/c/sci_xs2bmp.c \
     sci_gateway/c/sci_xs2gif.c \
@@ -885,9 +882,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphic_export_la-xs2file.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -956,7 +950,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2bmp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2emf.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2eps.Plo@am__quote@
@@ -1006,13 +999,6 @@ src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo: src/no
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nographic_export/nographic_export.c' object='src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
-
-sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo: sci_gateway/c/gw_graphic_export.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Tpo -c -o sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo `test -f 'sci_gateway/c/gw_graphic_export.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_export.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Tpo sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-gw_graphic_export.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_graphic_export.c' object='sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphic_export_la-gw_graphic_export.lo `test -f 'sci_gateway/c/gw_graphic_export.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphic_export.c
 
 sci_gateway/c/libscigraphic_export_la-xs2file.lo: sci_gateway/c/xs2file.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphic_export_la-xs2file.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-xs2file.Tpo -c -o sci_gateway/c/libscigraphic_export_la-xs2file.lo `test -f 'sci_gateway/c/xs2file.c' || echo '$(srcdir)/'`sci_gateway/c/xs2file.c

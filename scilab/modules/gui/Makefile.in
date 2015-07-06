@@ -283,7 +283,6 @@ am_libscigui_disable_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscigui_disable_la_OBJECTS = $(am_libscigui_disable_la_OBJECTS)
 libscigui_la_DEPENDENCIES = libscigui-algo.la
 am__objects_5 = sci_gateway/c/libscigui_la-sci_x_choice.lo \
-	sci_gateway/c/libscigui_la-gw_gui.lo \
 	sci_gateway/c/libscigui_la-sci_x_mdialog.lo \
 	sci_gateway/c/libscigui_la-sci_x_dialog.lo \
 	sci_gateway/c/libscigui_la-sci_x_choose.lo \
@@ -852,7 +851,6 @@ SWIG_WRAPPERS = src/jni/ScilabTermination.i
 BUILT_SOURCES = $(am__append_1) $(am__append_2)
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_x_choice.c \
-    sci_gateway/c/gw_gui.c \
     sci_gateway/c/sci_x_mdialog.c \
     sci_gateway/c/sci_x_dialog.c \
     sci_gateway/c/sci_x_choose.c \
@@ -1489,8 +1487,6 @@ sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 sci_gateway/c/libscigui_la-sci_x_choice.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigui_la-gw_gui.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigui_la-sci_x_mdialog.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -1675,7 +1671,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-gw_gui.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_ClipBoard.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_delmenu.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigui_la-sci_exportUI.Plo@am__quote@
@@ -1930,13 +1925,6 @@ sci_gateway/c/libscigui_la-sci_x_choice.lo: sci_gateway/c/sci_x_choice.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_x_choice.c' object='sci_gateway/c/libscigui_la-sci_x_choice.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigui_la-sci_x_choice.lo `test -f 'sci_gateway/c/sci_x_choice.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_choice.c
-
-sci_gateway/c/libscigui_la-gw_gui.lo: sci_gateway/c/gw_gui.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigui_la-gw_gui.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigui_la-gw_gui.Tpo -c -o sci_gateway/c/libscigui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigui_la-gw_gui.Tpo sci_gateway/c/$(DEPDIR)/libscigui_la-gw_gui.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_gui.c' object='sci_gateway/c/libscigui_la-gw_gui.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigui_la-gw_gui.lo `test -f 'sci_gateway/c/gw_gui.c' || echo '$(srcdir)/'`sci_gateway/c/gw_gui.c
 
 sci_gateway/c/libscigui_la-sci_x_mdialog.lo: sci_gateway/c/sci_x_mdialog.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigui_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigui_la-sci_x_mdialog.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigui_la-sci_x_mdialog.Tpo -c -o sci_gateway/c/libscigui_la-sci_x_mdialog.lo `test -f 'sci_gateway/c/sci_x_mdialog.c' || echo '$(srcdir)/'`sci_gateway/c/sci_x_mdialog.c

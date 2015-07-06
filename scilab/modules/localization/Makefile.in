@@ -213,9 +213,7 @@ am__v_lt_1 =
 am__DEPENDENCIES_1 =
 libscilocalization_la_DEPENDENCIES = libscilocalization-algo.la \
 	$(am__DEPENDENCIES_1)
-am__objects_5 =  \
-	sci_gateway/c/libscilocalization_la-gw_localization.lo \
-	sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo \
+am__objects_5 = sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo \
 	sci_gateway/c/libscilocalization_la-sci_gettext.lo
 am__objects_6 =  \
 	sci_gateway/cpp/libscilocalization_la-localization_gw.lo \
@@ -606,7 +604,6 @@ LOCALIZATION_CPP_SOURCES = \
     src/cpp/localization.cpp
 
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_localization.c \
     sci_gateway/c/sci_addlocalizationdomain.c \
     sci_gateway/c/sci_gettext.c
 
@@ -885,9 +882,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscilocalization_la-gw_localization.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -935,7 +929,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilocalization_la-gw_localization.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilocalization_la-sci_addlocalizationdomain.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscilocalization_la-sci_gettext.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscilocalization_la-localization_gw.Plo@am__quote@
@@ -1040,13 +1033,6 @@ src/c/libscilocalization_algo_la-getLocaleInfo_Apple.lo: src/c/getLocaleInfo_App
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/getLocaleInfo_Apple.c' object='src/c/libscilocalization_algo_la-getLocaleInfo_Apple.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscilocalization_algo_la-getLocaleInfo_Apple.lo `test -f 'src/c/getLocaleInfo_Apple.c' || echo '$(srcdir)/'`src/c/getLocaleInfo_Apple.c
-
-sci_gateway/c/libscilocalization_la-gw_localization.lo: sci_gateway/c/gw_localization.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilocalization_la-gw_localization.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilocalization_la-gw_localization.Tpo -c -o sci_gateway/c/libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscilocalization_la-gw_localization.Tpo sci_gateway/c/$(DEPDIR)/libscilocalization_la-gw_localization.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_localization.c' object='sci_gateway/c/libscilocalization_la-gw_localization.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscilocalization_la-gw_localization.lo `test -f 'sci_gateway/c/gw_localization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_localization.c
 
 sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo: sci_gateway/c/sci_addlocalizationdomain.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscilocalization_la_CPPFLAGS) $(CPPFLAGS) $(libscilocalization_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscilocalization_la-sci_addlocalizationdomain.Tpo -c -o sci_gateway/c/libscilocalization_la-sci_addlocalizationdomain.lo `test -f 'sci_gateway/c/sci_addlocalizationdomain.c' || echo '$(srcdir)/'`sci_gateway/c/sci_addlocalizationdomain.c

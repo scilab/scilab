@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -253,7 +253,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="sci_gateway\c\gw_csv_helpers.c" />
-    <ClCompile Include="sci_gateway\c\gw_spreadsheet.c" />
     <ClCompile Include="sci_gateway\c\sci_csvDefault.c" />
     <ClCompile Include="sci_gateway\c\sci_csvRead.c" />
     <ClCompile Include="sci_gateway\c\sci_csvStringToDouble.c" />

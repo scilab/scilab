@@ -50,8 +50,6 @@ PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 
 PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_preferences.c
-
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_addModulePreferences.cpp \
     sci_gateway/cpp/sci_removeModulePreferences.cpp \

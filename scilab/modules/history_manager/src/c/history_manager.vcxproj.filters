@@ -32,9 +32,6 @@
     <ClCompile Include="getCommentDateSession.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_history_manager.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\cpp\HistoryFile.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

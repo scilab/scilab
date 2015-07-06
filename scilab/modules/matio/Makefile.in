@@ -209,13 +209,12 @@ am__v_lt_1 =
 am__DEPENDENCIES_1 =
 libscimatio_la_DEPENDENCIES = libscimatio-algo.la \
 	$(am__DEPENDENCIES_1)
-am__libscimatio_la_SOURCES_DIST = sci_gateway/c/gw_matio.c \
-	sci_gateway/c/sci_matfile_open.c \
+am__libscimatio_la_SOURCES_DIST = sci_gateway/c/sci_matfile_open.c \
 	sci_gateway/c/sci_matfile_close.c \
 	sci_gateway/c/sci_matfile_listvar.c \
 	sci_gateway/c/sci_matfile_varreadnext.c \
 	sci_gateway/c/sci_matfile_varwrite.c
-@MATIO_TRUE@am__objects_3 = sci_gateway/c/libscimatio_la-gw_matio.lo \
+@MATIO_TRUE@am__objects_3 =  \
 @MATIO_TRUE@	sci_gateway/c/libscimatio_la-sci_matfile_open.lo \
 @MATIO_TRUE@	sci_gateway/c/libscimatio_la-sci_matfile_close.lo \
 @MATIO_TRUE@	sci_gateway/c/libscimatio_la-sci_matfile_listvar.lo \
@@ -670,7 +669,6 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 
 #### List of the gateway files ####
 @MATIO_TRUE@GATEWAY_C_SOURCES = \
-@MATIO_TRUE@    sci_gateway/c/gw_matio.c \
 @MATIO_TRUE@    sci_gateway/c/sci_matfile_open.c \
 @MATIO_TRUE@    sci_gateway/c/sci_matfile_close.c \
 @MATIO_TRUE@    sci_gateway/c/sci_matfile_listvar.c \
@@ -688,7 +686,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@    src/c/CreateDoubleVariable.c \
 @MATIO_TRUE@    src/c/CreateIntegerVariable.c \
 @MATIO_TRUE@    src/c/CreateSparseVariable.c \
-@MATIO_TRUE@    src/c/GetMatlabVariable.c 
+@MATIO_TRUE@    src/c/GetMatlabVariable.c
 
 
 #### List of the C++ files ####
@@ -704,7 +702,7 @@ HELP_CHAPTERLANG = en_US fr_FR pt_BR
 @MATIO_TRUE@    src/cpp/GetCharVariable.cpp \
 @MATIO_TRUE@	src/cpp/GetDoubleVariable.cpp \
 @MATIO_TRUE@    src/cpp/GetSparseVariable.cpp \
-@MATIO_TRUE@    src/cpp/GetMlistVariable.cpp 
+@MATIO_TRUE@    src/cpp/GetMlistVariable.cpp
 
 @MATIO_TRUE@libscimatio_la_LDFLAGS = $(AM_LDFLAGS)
 @MATIO_FALSE@GATEWAY_CPP_SOURCES = 
@@ -896,9 +894,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscimatio_la-gw_matio.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscimatio_la-sci_matfile_open.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -930,7 +925,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimatio_la-gw_matio.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimatio_la-sci_matfile_close.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimatio_la-sci_matfile_listvar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimatio_la-sci_matfile_open.Plo@am__quote@
@@ -1036,13 +1030,6 @@ src/c/libscimatio_algo_la-GetMatlabVariable.lo: src/c/GetMatlabVariable.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/GetMatlabVariable.c' object='src/c/libscimatio_algo_la-GetMatlabVariable.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscimatio_algo_la-GetMatlabVariable.lo `test -f 'src/c/GetMatlabVariable.c' || echo '$(srcdir)/'`src/c/GetMatlabVariable.c
-
-sci_gateway/c/libscimatio_la-gw_matio.lo: sci_gateway/c/gw_matio.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimatio_la-gw_matio.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimatio_la-gw_matio.Tpo -c -o sci_gateway/c/libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimatio_la-gw_matio.Tpo sci_gateway/c/$(DEPDIR)/libscimatio_la-gw_matio.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_matio.c' object='sci_gateway/c/libscimatio_la-gw_matio.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimatio_la-gw_matio.lo `test -f 'sci_gateway/c/gw_matio.c' || echo '$(srcdir)/'`sci_gateway/c/gw_matio.c
 
 sci_gateway/c/libscimatio_la-sci_matfile_open.lo: sci_gateway/c/sci_matfile_open.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscimatio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimatio_la-sci_matfile_open.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimatio_la-sci_matfile_open.Tpo -c -o sci_gateway/c/libscimatio_la-sci_matfile_open.lo `test -f 'sci_gateway/c/sci_matfile_open.c' || echo '$(srcdir)/'`sci_gateway/c/sci_matfile_open.c

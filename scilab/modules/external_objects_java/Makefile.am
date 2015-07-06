@@ -46,7 +46,6 @@ EXTERNAL_OBJECTS_JAVA_CPP_SOURCES = \
 #src/cpp/ScilabObjectsCPP.cpp
 # src/cpp/WrapAsDirectBuffer.cpp
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_external_objects_java.c \
     sci_gateway/cpp/sci_jimport.cpp \
     sci_gateway/cpp/sci_jgetclassname.cpp \
     sci_gateway/cpp/sci_jwrap.cpp \

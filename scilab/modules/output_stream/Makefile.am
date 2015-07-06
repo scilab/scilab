@@ -58,7 +58,6 @@ OUTPUT_STREAM_FORTRAN_SOURCES = \
 
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/gw_output_stream.c \
 	sci_gateway/c/sci_print.c
 
 

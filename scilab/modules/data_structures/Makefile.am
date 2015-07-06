@@ -4,10 +4,6 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/gw_data_structures1.c \
-    sci_gateway/c/gw_data_structures2.c
-
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/data_structures_gw.cpp \
     sci_gateway/cpp/sci_getfield.cpp \
@@ -39,10 +35,10 @@ else
 noinst_LTLIBRARIES = libscidata_structures.la
 endif
 
-libscidata_structures_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+libscidata_structures_la_SOURCES = $(GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
-CHECK_SRC= $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
+CHECK_SRC= $(GATEWAY_CPP_SOURCES)
 INCLUDE_FLAGS = $(libscidata_structures_la_CFLAGS)
 
 #### Target ######

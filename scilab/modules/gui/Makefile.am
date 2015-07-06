@@ -167,7 +167,6 @@ endif
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_x_choice.c \
-    sci_gateway/c/gw_gui.c \
     sci_gateway/c/sci_x_mdialog.c \
     sci_gateway/c/sci_x_dialog.c \
     sci_gateway/c/sci_x_choose.c \

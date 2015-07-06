@@ -51,9 +51,6 @@
     <ClCompile Include="src\c\getLibrarypath.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_jvm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\InitializeJVM.c">
       <Filter>Source Files</Filter>
     </ClCompile>

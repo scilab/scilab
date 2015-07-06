@@ -29,7 +29,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_TCL_DoOneEvent.c \
     sci_gateway/c/sci_TCL_UnsetVar.c \
     sci_gateway/c/sci_TCL_ExistInterp.c \
-    sci_gateway/c/gw_tclsci.c \
     sci_gateway/c/sci_TCL_EvalStr.c \
     sci_gateway/c/sci_TCL_DeleteInterp.c \
     sci_gateway/c/sci_TCL_GetVersion.c \
@@ -89,7 +88,7 @@ modulename=tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA =  license.txt 
+libscitclsci_la_root_DATA =  license.txt
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc

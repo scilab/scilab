@@ -192,7 +192,6 @@
   <ItemGroup>
     <ClCompile Include="sci_gateway\c\sci_eigs.c" />
     <ClCompile Include="src\c\DllmainArnoldi.c" />
-    <ClCompile Include="sci_gateway\c\gw_arnoldi.c" />
     <ClCompile Include="sci_gateway\c\sci_dnaupd.c" />
     <ClCompile Include="sci_gateway\c\sci_dneupd.c" />
     <ClCompile Include="sci_gateway\c\sci_dsaupd.c" />

@@ -26,7 +26,6 @@ CORE_C_SOURCES = \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
     src/c/getdynamicdebuginfo.c \
-    src/c/gw_dynamic_generic.c \
     src/c/dynamic_gateways.c \
     src/c/setPrecisionFPU.c \
     src/c/getos.c \
@@ -74,9 +73,6 @@ CORE_FORTRAN_SOURCES = \
 	src/fortran/read_inter.f
 
 GATEWAY_C_SOURCES = \
-	sci_gateway/c/gw_core.c \
-	sci_gateway/c/gw_user.c \
-	sci_gateway/c/gw_user2.c \
 	sci_gateway/c/sci_type.c \
 	sci_gateway/c/sci_getdebuginfo.c
 

@@ -21,9 +21,6 @@
     <ClCompile Include="noconsole.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_console.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\DllmainConsole.c">
       <Filter>Source Files</Filter>
     </ClCompile>

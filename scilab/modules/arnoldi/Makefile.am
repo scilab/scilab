@@ -12,7 +12,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_zneupd \
     sci_gateway/c/sci_dseupd.c \
     sci_gateway/c/sci_zneupd.c \
-    sci_gateway/c/gw_arnoldi.c \
     sci_gateway/c/sci_dnaupd.c \
     sci_gateway/c/sci_dneupd.c \
     sci_gateway/c/sci_dsaupd.c \

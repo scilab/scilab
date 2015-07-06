@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -244,7 +244,6 @@ lib /DEF:"$(ProjectDir)core_f_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_y_foo.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_EObj_z_foo.cpp" />
     <ClCompile Include="sci_gateway\cpp\sci_percent_foo_i_EObj.cpp" />
-    <ClCompile Include="sci_gateway\c\gw_external_objects.c" />
     <ClCompile Include="src\cpp\addNamedVariable.cpp" />
     <ClCompile Include="src\cpp\addToClasspath.cpp" />
     <ClCompile Include="src\cpp\array.cpp" />

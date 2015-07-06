@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -273,10 +273,6 @@ cd ..
     <ClCompile Include="getstaticDebugInfo_Windows.c" />
     <ClCompile Include="getversion.c" />
     <ClCompile Include="GetXmlFileEncoding.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_core.c" />
-    <ClCompile Include="gw_dynamic_generic.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_user.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_user2.c" />
     <ClCompile Include="hashtable\hashtable.c" />
     <ClCompile Include="hashtable\hashtable_utility.c" />
     <ClCompile Include="InitializePreferences.c" />

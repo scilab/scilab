@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -205,7 +205,6 @@ lib /DEF:"$(ProjectDir)Elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="src\c\DllmainFttw.c" />
     <ClCompile Include="src\c\fftw_utilities.c" />
     <ClCompile Include="src\c\fftwlibname.c" />
-    <ClCompile Include="sci_gateway\c\gw_fftw.c" />
     <ClCompile Include="sci_gateway\c\sci_disposefftwlibrary.c" />
     <ClCompile Include="sci_gateway\c\sci_fftw_flags.c" />
     <ClCompile Include="sci_gateway\c\sci_fftw_forget_wisdom.c" />

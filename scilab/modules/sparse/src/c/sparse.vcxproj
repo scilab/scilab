@@ -191,7 +191,6 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainSparse.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_sparse.c" />
     <ClCompile Include="lu.c" />
     <ClCompile Include="spAllocate.c" />
     <ClCompile Include="spBuild.c" />

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -257,7 +257,6 @@ lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platfo
     <ClCompile Include="src\jni\Driver.cpp" />
     <ClCompile Include="src\jni\FileExporter.cpp" />
     <ClCompile Include="src\c\DllmainGraphics_export.c" />
-    <ClCompile Include="sci_gateway\c\gw_graphic_export.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2bmp.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2eps.c" />
     <ClCompile Include="sci_gateway\c\sci_xs2gif.c" />

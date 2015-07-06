@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -264,7 +264,6 @@ lib /DEF:"$(ProjectDir)Call_scilab_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="createGUID.c" />
     <ClCompile Include="DllmainWindows_Tools.c" />
     <ClCompile Include="FindFileAssociation.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_windows_tools.c" />
     <ClCompile Include="httpdownloadfile.c" />
     <ClCompile Include="InitializeWindows_tools.c" />
     <ClCompile Include="TerminateWindows_tools.c" />

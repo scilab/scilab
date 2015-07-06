@@ -208,7 +208,6 @@
   <ItemGroup>
     <ClCompile Include="DllmainParallel.c" />
     <ClCompile Include="forkWindows.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_parallel.c" />
     <ClCompile Include="..\..\sci_gateway\c\sci_parallel_concurrency.c" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_parallel_run.cpp">
       <PreprocessorDefinitions Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">_SCL_SECURE_NO_WARNINGS  ;%(PreprocessorDefinitions)</PreprocessorDefinitions>

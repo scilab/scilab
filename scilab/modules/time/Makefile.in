@@ -183,8 +183,7 @@ am__objects_2 = sci_gateway/c/libscitime_la-sci_realtime.lo \
 	sci_gateway/c/libscitime_la-sci_calendar.lo \
 	sci_gateway/c/libscitime_la-sci_xpause.lo \
 	sci_gateway/c/libscitime_la-sci_sleep.lo \
-	sci_gateway/c/libscitime_la-sci_getdate.lo \
-	sci_gateway/c/libscitime_la-gw_time.lo
+	sci_gateway/c/libscitime_la-sci_getdate.lo
 am__objects_3 = sci_gateway/cpp/libscitime_la-time_gw.lo \
 	sci_gateway/cpp/libscitime_la-sci_tictoc.lo
 am_libscitime_la_OBJECTS = $(am__objects_2) $(am__objects_3)
@@ -562,7 +561,7 @@ yacc_present = @yacc_present@
 TIME_C_SOURCES = \
     src/c/realtime.c \
     src/c/timer.c \
-    src/c/getdate.c 
+    src/c/getdate.c
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_realtime.c \
@@ -570,8 +569,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_calendar.c \
     sci_gateway/c/sci_xpause.c \
     sci_gateway/c/sci_sleep.c \
-    sci_gateway/c/sci_getdate.c \
-    sci_gateway/c/gw_time.c
+    sci_gateway/c/sci_getdate.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/time_gw.cpp \
@@ -613,7 +611,7 @@ modulename = time
 
 #### time : Conf files ####
 libscitime_la_rootdir = $(mydatadir)
-libscitime_la_root_DATA = license.txt 
+libscitime_la_root_DATA = license.txt
 
 #### time : init scripts ####
 libscitime_la_etcdir = $(mydatadir)/etc
@@ -821,8 +819,6 @@ sci_gateway/c/libscitime_la-sci_sleep.lo:  \
 sci_gateway/c/libscitime_la-sci_getdate.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscitime_la-gw_time.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
@@ -851,7 +847,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_calendar.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_getdate.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitime_la-sci_realtime.Plo@am__quote@
@@ -950,13 +945,6 @@ sci_gateway/c/libscitime_la-sci_getdate.lo: sci_gateway/c/sci_getdate.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getdate.c' object='sci_gateway/c/libscitime_la-sci_getdate.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-sci_getdate.lo `test -f 'sci_gateway/c/sci_getdate.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getdate.c
-
-sci_gateway/c/libscitime_la-gw_time.lo: sci_gateway/c/gw_time.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitime_la-gw_time.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Tpo -c -o sci_gateway/c/libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Tpo sci_gateway/c/$(DEPDIR)/libscitime_la-gw_time.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_time.c' object='sci_gateway/c/libscitime_la-gw_time.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitime_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitime_la-gw_time.lo `test -f 'sci_gateway/c/gw_time.c' || echo '$(srcdir)/'`sci_gateway/c/gw_time.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\

@@ -597,7 +597,6 @@ am__objects_3 = sci_gateway/c/libscigraphics_la-sci_swap_handles.lo \
 	sci_gateway/c/libscigraphics_la-sci_drawlater.lo \
 	sci_gateway/c/libscigraphics_la-sci_champ.lo \
 	sci_gateway/c/libscigraphics_la-sci_unglue.lo \
-	sci_gateway/c/libscigraphics_la-gw_graphics.lo \
 	sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo \
 	sci_gateway/c/libscigraphics_la-sci_delete.lo \
 	sci_gateway/c/libscigraphics_la-sci_plot2d.lo \
@@ -1432,7 +1431,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_drawlater.c \
     sci_gateway/c/sci_champ.c \
     sci_gateway/c/sci_unglue.c \
-    sci_gateway/c/gw_graphics.c \
     sci_gateway/c/sci_zoom_rect.c \
     sci_gateway/c/sci_delete.c \
     sci_gateway/c/sci_plot2d.c \
@@ -2967,9 +2965,6 @@ sci_gateway/c/libscigraphics_la-sci_champ.lo:  \
 sci_gateway/c/libscigraphics_la-sci_unglue.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphics_la-gw_graphics.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -3088,7 +3083,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-gw_graphics.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_Legend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_StringBox.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_addcolor.Plo@am__quote@
@@ -6396,13 +6390,6 @@ sci_gateway/c/libscigraphics_la-sci_unglue.lo: sci_gateway/c/sci_unglue.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_unglue.c' object='sci_gateway/c/libscigraphics_la-sci_unglue.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-sci_unglue.lo `test -f 'sci_gateway/c/sci_unglue.c' || echo '$(srcdir)/'`sci_gateway/c/sci_unglue.c
-
-sci_gateway/c/libscigraphics_la-gw_graphics.lo: sci_gateway/c/gw_graphics.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-gw_graphics.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-gw_graphics.Tpo -c -o sci_gateway/c/libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/c/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphics.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphics_la-gw_graphics.Tpo sci_gateway/c/$(DEPDIR)/libscigraphics_la-gw_graphics.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_graphics.c' object='sci_gateway/c/libscigraphics_la-gw_graphics.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphics_la-gw_graphics.lo `test -f 'sci_gateway/c/gw_graphics.c' || echo '$(srcdir)/'`sci_gateway/c/gw_graphics.c
 
 sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo: sci_gateway/c/sci_zoom_rect.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphics_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphics_la-sci_zoom_rect.Tpo -c -o sci_gateway/c/libscigraphics_la-sci_zoom_rect.lo `test -f 'sci_gateway/c/sci_zoom_rect.c' || echo '$(srcdir)/'`sci_gateway/c/sci_zoom_rect.c

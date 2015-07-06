@@ -191,7 +191,6 @@ lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainFunctions.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_functions.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_functions.h" />

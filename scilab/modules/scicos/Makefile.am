@@ -100,7 +100,6 @@ sci_gateway/cpp/sci_callblk.cpp \
 sci_gateway/cpp/sci_model2blk.cpp
 
 GATEWAY_C_SOURCES = \
-sci_gateway/c/gw_scicos.c \
 sci_gateway/c/sci_ftree2.c \
 sci_gateway/c/sci_ftree3.c \
 sci_gateway/c/sci_ftree4.c \

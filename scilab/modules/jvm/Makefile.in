@@ -212,7 +212,6 @@ am__DEPENDENCIES_1 =
 libscijvm_la_DEPENDENCIES = libscijvm-algo.la $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1)
 am__objects_4 = sci_gateway/c/libscijvm_la-sci_javaclasspath.lo \
-	sci_gateway/c/libscijvm_la-gw_jvm.lo \
 	sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo
 am__objects_5 =  \
 	sci_gateway/cpp/libscijvm_la-sci_system_getproperty.lo \
@@ -658,7 +657,6 @@ libscijvm_la_include_HEADERS = \
 
 GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_javaclasspath.c \
-    sci_gateway/c/gw_jvm.c \
     sci_gateway/c/sci_javalibrarypath.c
 
 GATEWAY_CPP_SOURCES = \
@@ -932,8 +930,6 @@ sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 sci_gateway/c/libscijvm_la-sci_javaclasspath.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscijvm_la-gw_jvm.lo: sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -970,7 +966,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javaclasspath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscijvm_la-jvm_gw.Plo@am__quote@
@@ -1160,13 +1155,6 @@ sci_gateway/c/libscijvm_la-sci_javaclasspath.lo: sci_gateway/c/sci_javaclasspath
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_javaclasspath.c' object='sci_gateway/c/libscijvm_la-sci_javaclasspath.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-sci_javaclasspath.lo `test -f 'sci_gateway/c/sci_javaclasspath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javaclasspath.c
-
-sci_gateway/c/libscijvm_la-gw_jvm.lo: sci_gateway/c/gw_jvm.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-gw_jvm.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Tpo -c -o sci_gateway/c/libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Tpo sci_gateway/c/$(DEPDIR)/libscijvm_la-gw_jvm.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_jvm.c' object='sci_gateway/c/libscijvm_la-gw_jvm.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscijvm_la-gw_jvm.lo `test -f 'sci_gateway/c/gw_jvm.c' || echo '$(srcdir)/'`sci_gateway/c/gw_jvm.c
 
 sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo: sci_gateway/c/sci_javalibrarypath.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscijvm_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscijvm_la-sci_javalibrarypath.Tpo -c -o sci_gateway/c/libscijvm_la-sci_javalibrarypath.lo `test -f 'sci_gateway/c/sci_javalibrarypath.c' || echo '$(srcdir)/'`sci_gateway/c/sci_javalibrarypath.c
