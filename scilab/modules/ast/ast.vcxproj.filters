@@ -634,9 +634,6 @@
     <ClInclude Include="includes\analysis\AnalysisVisitor.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
-    <ClInclude Include="includes\analysis\Call.hxx">
-      <Filter>Header Files\analysis</Filter>
-    </ClInclude>
     <ClInclude Include="includes\analysis\Chrono.hxx">
       <Filter>Header Files\analysis</Filter>
     </ClInclude>
