@@ -26,6 +26,16 @@ File input/output
 * msprintf no more returns an error message when there are too many input argument (more values that format needs).
 
 
+Data structures
+================
+
+* cells and structs are not native types, hence improving performances.
+
+* structs field names are now ordered alphabaticaly:
+   - display uses this new order,
+   - fieldnames function returns a sorted vector of strings.
+
+
 Removed functions
 ==================
 
