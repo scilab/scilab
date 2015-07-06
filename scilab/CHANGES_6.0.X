@@ -29,7 +29,7 @@ File input/output
 Data structures
 ================
 
-* cells and structs are not native types, hence improving performances.
+* cells and structs are now native types, hence improving performances.
 
 * structs field names are now ordered alphabaticaly:
    - display uses this new order,
