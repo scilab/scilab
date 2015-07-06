@@ -42,7 +42,6 @@ c
       real,             pointer, dimension(:) :: sstk
       character,        pointer               :: cstk*(4*vsiz)
       complex*16,       pointer, dimension(:) :: zstk
-     $  istk, sstk, cstk, zstk
 
       integer ids(nsiz,psiz),pstk(psiz),rstk(psiz),pt,niv,macr,paus
       integer icall,krec
