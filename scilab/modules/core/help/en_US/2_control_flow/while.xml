@@ -11,13 +11,13 @@
             <literal>"end"</literal>.
         </para>
         <para>
-            <literal>while expr ,instructions,...[,else instructions], end</literal>
+            <literal>while expr ,instructions,..., end</literal>
         </para>
         <para>
-            <literal>while expr do instructions,...[,else instructions], end</literal>
+            <literal>while expr do instructions,..., end</literal>
         </para>
         <para>
-            <literal>while expr then instructions,...[,else instructions], end</literal>
+            <literal>while expr then instructions,..., end</literal>
         </para>
         <para>Notes:</para>
         <itemizedlist>
@@ -35,13 +35,6 @@
                     with Matlab it is also possible, but not recommended, to put a
                     space between the end of the expression and the beginning of
                     the first instruction.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    The optional <literal>[,else instructions]</literal> construction
-                    allows to gives <literal>instructions</literal> which are executed when
-                    <literal>expr</literal> expression becomes false.
                 </para>
             </listitem>
         </itemizedlist>
@@ -119,5 +112,16 @@ e,k
                 <link linkend="pause">pause</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    The <literal>[,else instructions]</literal> construction no more supported.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

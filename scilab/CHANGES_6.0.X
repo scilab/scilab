@@ -86,6 +86,8 @@ Deprecated behavior
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
     "-" + mgetl("TMPDIR/test") + "-"
 
+* while/else control instruction is no more supported.
+
 
 Scilab Bug Fixes
 ================
