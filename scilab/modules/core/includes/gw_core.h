@@ -29,7 +29,7 @@ int C2F(sci_isdef)(char *fname, unsigned long fname_len);
 C_GATEWAY_PROTOTYPE(C2F(sci_predef));
 int C2F(sci_clearfun)(char *fname, unsigned long fname_len);
 int C2F(sci_funptr)(char *fname, unsigned long fname_len);
-int C2F(sci_macr2lst)(char *fname, unsigned long fname_len);
+//int C2F(sci_macr2lst)(char *fname, unsigned long fname_len);
 int C2F(sci_setbpt)(char *fname, unsigned long fname_len);
 int C2F(sci_delbpt)(char *fname, unsigned long fname_len);
 int C2F(sci_dispbpt)(char *fname, unsigned long fname_len);

@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
-
 //for version after 3.0 the comments are no more handled by a preprocessor,
 //but by the parser itself
 
@@ -281,26 +279,8 @@ a=foo();
 if a<>15 then pause,end
 warning("on");
 
-//with macr2lst
-
+//with macr2tree
 //first define an utilitary function
-function [C,L,lc]=getcomments(lst,lc)
-    C=[],L=[];
-    if argn(2)<2 then lc=0,end
-    for l=lst
-        if type(l)==15 then
-            [CC,LL,lc]=getcomments(l,lc)
-            C=[C;CC]
-            L=[L;LL]
-        elseif l==[] then
-        elseif l(1)=="31" then
-            C=[C;l(2)]
-            L=[L;lc]
-        elseif l(1)=="15" then
-            lc=lc+1
-        end
-    end
-endfunction
 function [C,L,lc]=getcommentsintree(T,lc)
     C=[],L=[];
     if argn(2)<2 then lc=0,end
@@ -331,35 +311,6 @@ endfunction
 
 function a=foo
     a=0;k=0;//initialization
-    while %t //loop begin
-        k=k+1; //ttt tt
-        if a> 10 then //
-            break // go out the loop
-        else //111 111
-            a=a-1; //sdf dfd
-        end //x xxxx
-        a=a+k; //hhhh h
-    end //loop end
-endfunction
-
-[C,L]=getcomments(macr2lst(foo));
-Cref=["initialization";
-"loop begin";
-"ttt tt";
-"";
-" go out the loop";
-"111 111";
-"sdf dfd";
-"x xxxx";
-"hhhh h";
-"loop end"];
-if or(C<>Cref) then pause,end
-if or(L<>(1:10)') then pause,end
-
-//with macr2tree
-
-function a=foo
-    a=0;k=0;//initialization
     while %t
         k=k+1; //ttttt ttttt
         if a> 10 then //f f
@@ -381,7 +332,7 @@ Cref=["initialization";
 "xx xxx";
 "hhh hh";
 "loop end"];
-Lref=[1 3:10]';
+Lref=[1 3 5:6 8:12]';
 if or(C<>Cref) then pause,end
 if or(L<>Lref) then pause,end
 
@@ -404,5 +355,5 @@ endfunction
 
 deff("[y]=u(t)","if t==0 then y=0;else y=1,end") //step qsdqsqsd
 function y=foo(a),y=a,endfunction//test qsdqsd
-foo(2)  //zeros=0
+foo(2);  //zeros=0
 foo("f//");

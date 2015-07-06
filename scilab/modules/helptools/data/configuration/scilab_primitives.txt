@@ -679,7 +679,6 @@ ludel
 lufact
 luget
 lusolve
-macr2lst
 macr2tree
 matfile_close
 matfile_listvar
