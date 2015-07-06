@@ -13,5 +13,5 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2795
 //
 
-t=fun2string(dir);
-msprintf("%s\n",t); 
+t=["Line 1";"Line 2";"Line 3"];
+msprintf("%s\n",t);

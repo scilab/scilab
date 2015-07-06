@@ -41,6 +41,8 @@ Removed functions
 Removed functions (based on old Scilab stack)
 ==============================================
 
+* fun2string removed.
+
 * getvariablesonstack removed.
 
 * gstacksize removed.

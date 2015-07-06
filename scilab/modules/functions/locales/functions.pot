@@ -204,7 +204,6 @@ msgid "%s: File %s doesn't exist.\n"
 msgstr ""
 
 #
-# File: macros/fun2string.sci, line: 20
 # File: macros/genlib.sci, line: 17
 # File: macros/head_comments.sci, line: 14
 # File: macros/recompilefunction.sci, line: 12

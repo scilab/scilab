@@ -1936,7 +1936,6 @@ bytecode
 bytecodewalk
 check_gateways
 createfun
-fun2string
 genlib
 get_function_path
 get_profile
