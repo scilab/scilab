@@ -49,6 +49,8 @@ Removed functions
 
 * curblockc removed. Please use curblock instead.
 
+* extract_help_examples removed. (Undocumented and based on old help format).
+
 
 Removed functions (based on old Scilab stack)
 ==============================================

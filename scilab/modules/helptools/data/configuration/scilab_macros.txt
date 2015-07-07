@@ -29,7 +29,6 @@ apropos
 clean_help
 del_help_chapter
 del_module_help_chapter
-extract_help_examples
 find_links
 help
 help_from_sci
