@@ -14,6 +14,14 @@ Compilation
  * Scilab requires conforming C++11 compilers
 
 
+Signal processing
+==================
+
+* amell function:
+  - now checks its parameters be real numbers
+  - now throws an error if the second parameter isn't scalar
+
+
 File input/output
 ==================
 
