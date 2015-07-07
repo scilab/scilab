@@ -59,8 +59,6 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         first = 2;
     }
 
-    size_t posIn = first;
-
     //compute couple (index in input and col number ).
     std::list<std::pair<int, int> > inPos;
     for (int i = first; i < in.size(); ++i)
@@ -364,8 +362,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
     pwstFirstOutput = nullptr;
 
     int iLoop = 1;
-
-    if (rhs > first)
+    if (token.size() > 1)
     {
         std::list<TokenDef*>::iterator it = std::next(token.begin());
         iLoop = in[(*it)->pos]->getAs<GenericType>()->getRows();
@@ -373,12 +370,13 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
         {
             iLoop = std::min(iLoop, in[(*it)->pos]->getAs<GenericType>()->getRows());
         }
+
+        if (*_piNewLine || (*_piOutputRows) > 1)
+        {
+            (*_piOutputRows) *= iLoop;
+        }
     }
 
-    if (*_piNewLine || (*_piOutputRows) > 1)
-    {
-        (*_piOutputRows) *= iLoop;
-    }
 
     //if ((token.size() - 1) != inPos.size())
     //{
