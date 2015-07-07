@@ -279,14 +279,27 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
 
         if (_pDF->bPrintPoint)
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%#.0f%%0%d.0fD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%#d.%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
         }
         else
         {
-            os_swprintf(pwstFormat, 32, L"%ls%%.0f%%0%d.0fD%%+.02d", pwstSign, _pDF->iPrec);
+            os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
-        os_swprintf(pwstOutput, 32, pwstFormat, dblEnt, dblDec, (int)dblTemp);
+        if ((int)std::round(dblDec) != (int)dblDec)
+        {
+            double d1 = (int)std::round(dblDec);
+            d1 = fmod(d1, pow(10., _pDF->iPrec));
+            if (d1 < dblDec)
+            {
+                //inc integer part
+                ++dblEnt;
+            }
+
+            dblDec = d1;
+        }
+
+        os_swprintf(pwstOutput, 32, pwstFormat, (int)dblEnt, (int)dblDec, (int)dblTemp);
     }
     else if ((_pDF->bPrintOne == true) || (isEqual(fabs(_dblVal), 1)) == false)
     {
