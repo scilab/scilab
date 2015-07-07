@@ -5,48 +5,37 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
-
 clear;
 function writeData(filename, data)
     save(filename, data);
 endfunction
-
 function checkBinary(file1, file2)
     //open 1st file
     f1 = mopen(file1, "rb");
     mseek(0, f1, "end");
     size1 = mtell(f1);
     mseek(0, f1, "set");
-
     //open 2nd file
     f2 = mopen(file2, "rb");
     mseek(0, f2, "end");
     size2 = mtell(f2);
     mseek(0, f2, "set");
-
     //check file sizes
     if size1 <> size2 then
         mclose(f1);
         mclose(f2);
     end
-
     assert_checkequal(size1, size2);
-
     //get data for files
     data1 = mget(size1, "uc", f1);
     data2 = mget(size2, "uc", f2);
-
     mclose(f1);
     mclose(f2);
-
     assert_checkequal(data1, data2);
-
     //mdelete(file1);
     //mdelete(file2);
-
     //disp(size(data1, "*"));
 endfunction
-
 function writeAllData(path, radical)
     d = matrix(1:100, [10, 10]);
     data(:,:,1) = d - d * %i;
@@ -59,7 +48,6 @@ function writeAllData(path, radical)
     data(:,:,8) = -d * 2;
     data(:,:,9) = d - d * %i;
     data(:,:,10) = -d;
-
     //write double
     d = data;
     writeData(path + "double" + radical + ".sod", "d");
@@ -93,7 +81,6 @@ function writeAllData(path, radical)
     l = list(d,s,b,i8,i16,i32,i64,ui8,ui16,ui32,ui64,p);
     writeData(path + "list" + radical + ".sod", "l");
 endfunction
-
 function checkAllData(path, radical1, radical2)
     //check double
     checkBinary(path + "double" + radical1 + ".sod", path + "double" + radical2 + ".sod");
@@ -115,14 +102,10 @@ function checkAllData(path, radical1, radical2)
     //check list
     checkBinary(path + "list" + radical1 + ".sod", path + "list" + radical2 + ".sod");
 endfunction
-
 path = TMPDIR + "/";
 radical1 = "1";
 radical2 = "2";
-
 writeAllData(path, radical1);
 sleep(2000);
 writeAllData(path, radical2);
-
 checkAllData(path, radical1, radical2);
-

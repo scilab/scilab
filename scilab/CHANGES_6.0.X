@@ -125,5 +125,8 @@ Scilab Bug Fixes
 
 * Bug #13838 fixed - Sparse and complex substraction made Scilab crash.
 
+* Bug #13941 fixed - Internal timestamps of HDF5 files prevented having a fixed
+                     hash for an unvarying set of saved objects.
+
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
 
