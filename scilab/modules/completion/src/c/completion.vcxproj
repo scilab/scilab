@@ -282,10 +282,6 @@
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\functions\src\c\functions.vcxproj">
-      <Project>{53a01263-92be-4c87-aa9a-79297f882310}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\graphics\graphics.vcxproj">
       <Project>{8ccdd3c2-b025-4a12-a986-1aa28d7c0c33}</Project>
     </ProjectReference>
