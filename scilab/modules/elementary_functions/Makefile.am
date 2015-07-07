@@ -273,7 +273,6 @@ ELEMENTARIES_FUNCTIONS_FORTRAN_SOURCES = \
     src/fortran/wvmul.f \
     src/fortran/dmmul.f \
     src/fortran/wsqrt.f \
-    src/fortran/israt.f \
     src/fortran/rat.f \
     src/fortran/old_pythag.f \
     src/fortran/danints.f

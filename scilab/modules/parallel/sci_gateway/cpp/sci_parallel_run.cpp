@@ -23,8 +23,6 @@ extern "C" {
 #include "localization.h"
 #include "parameters.h"
 #include "Thread_Wrapper.h" /* locks for concurrency access */
-#include "stack-def.h" /* #define nlgh nsiz*4   */
-#include "stack-c.h"
 
 #ifdef _MSC_VER
 #include "mmapWindows.h"

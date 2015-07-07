@@ -70,11 +70,9 @@
 		<File RelativePath="clunit.f"/>
 		<File RelativePath="expsum.f"/>
 		<File RelativePath="folhp.f"/>
-		<File RelativePath="putid.f"/>
 		<File RelativePath=".\read_inter.f"/>
 		<File RelativePath=".\readinter.f"/>
 		<File RelativePath=".\rewindinter.f"/>
-		<File RelativePath="whatln.f"/>
 		<File RelativePath=".\withf2c.f"/>
 		<File RelativePath=".\write_inter.f"/>
 		<File RelativePath="xerbla.f"/></Filter>

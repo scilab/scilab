@@ -11,7 +11,7 @@
  */
 
 #include "errmds.h"
-#include "stack-def.h"
+#include "common_structure.h"
 /*--------------------------------------------------------------------------*/
 int C2F(errmds)(int *num, int *imess, int *imode)
 {

@@ -14,7 +14,7 @@
 #define __SETFORMAT_H__
 
 void setformat(const char * format, int width);
-char * getformat();
+const char * getformat();
 int getformatwidth();
 
 #endif // __SETFORMAT_H__

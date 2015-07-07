@@ -317,27 +317,20 @@ cd ..
     <ClCompile Include="clunit.c" />
     <ClCompile Include="expsum.c" />
     <ClCompile Include="folhp.c" />
-    <ClCompile Include="putid.c" />
     <ClCompile Include="readinter.c" />
     <ClCompile Include="read_inter.c" />
     <ClCompile Include="rewindinter.c" />
-    <ClCompile Include="whatln.c" />
     <ClCompile Include="write_inter.c" />
     <ClCompile Include="xerbla.c" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\includes\stack.h" />
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="backspaceinter.f" />
     <f2c_rule Include="clunit.f" />
     <f2c_rule Include="expsum.f" />
     <f2c_rule Include="folhp.f" />
-    <f2c_rule Include="putid.f" />
     <f2c_rule Include="readinter.f" />
     <f2c_rule Include="read_inter.f" />
     <f2c_rule Include="rewindinter.f" />
-    <f2c_rule Include="whatln.f" />
     <f2c_rule Include="write_inter.f" />
     <f2c_rule Include="xerbla.f" />
   </ItemGroup>

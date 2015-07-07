@@ -17,8 +17,6 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 #include "machine.h"
-#include "stack-def.h"
-#include "funcprot.h"
 /*-----------------------------------------------------------------------------------*/
 #pragma comment(lib, "../../../../bin/libxml2.lib")
 #pragma comment(lib, "../../../../bin/libintl.lib")
@@ -32,54 +30,6 @@
 #pragma comment(lib, "../../../../bin/output_stream_f.lib")
 /*-----------------------------------------------------------------------------------*/
 extern int C2F(withf2c)(int *bOK);
-/*-----------------------------------------------------------------------------------*/
-/* Force some definitions "globals" (commons fortran) */
-
-/* used by linear_algebra */
-
-SCIGSCH_struct C2F(scigsch);
-SCISCH_struct C2F(scisch);
-SCIZGSCH_union C2F(scizgsch);
-
-IERODE_struct C2F(ierode);
-
-/* manages CTRL-C event */
-BASBRK_struct C2F(basbrk);
-
-/**
-* simpmd : rational fraction simplification mode
-* used in polynomials and inisci.f (core)
-*/
-CSIMP_struct C2F(csimp);
-
-/* Previously on Windows commons were defined at first use
-*  it was a hazardous way ...
-*  We force definitions in core
-*/
-
-ADRE_struct C2F(adre);
-COM_struct C2F(com);
-ERRGST_struct C2F(errgst);
-IOP_struct C2F(iop);
-MTLBC_struct C2F(mtlbc);
-DBG_struct C2F(dbg);
-MPROT_struct C2F(mprot);
-
-struct
-{
-    int byptr[40], nbyptr;
-} C2F(ippty);
-
-struct
-{
-    int bkflag;
-    char bckbuf[4096];
-} C2F(keepme);
-
-struct
-{
-    int lwk;
-} C2F(ptkeep);
 /*-----------------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {

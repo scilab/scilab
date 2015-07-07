@@ -1,8 +1,7 @@
       subroutine rchek2(job, g, neq, y, yh, nyh, g0, g1, gx, jroot, irt
      $     ,IWORK)
 clll. optimize
-      include 'stack.h'
-      
+
       external g
       integer job, neq, nyh, jroot, irt
       double precision y, yh, g0, g1, gx
@@ -25,7 +24,7 @@ cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
 cDEC$ ATTRIBUTES DLLIMPORT:: /lsr001/
       common /lsr001/ rownr3(2), t0, tlast, toutc,
-     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge      
+     1   iownd3(3), iownr3(2), irfnd, itaskc, ngc, nge
 c     ------------------ masking ----------------
       integer IWORK
       dimension IWORK(*)
@@ -141,11 +140,11 @@ c set t1 to tn or toutc, whichever comes first, and get g at t1. -------
 
 C     Call DROOTS to search for root in interval from T0 to T1. -----------
       JFLAG = 0
-      
+
       DO 340 I = 1,Ngc
          JROOT(I)=IWORK(LMASK+I)
  340  CONTINUE
-      
+
  350  CONTINUE
       call roots2(ngc,hming, jflag, t0, t1, g0, g1, gx, x, jroot)
       IF (JFLAG .GT. 1) GO TO 360
@@ -154,12 +153,12 @@ C     Call DROOTS to search for root in interval from T0 to T1. -----------
       if(ierror.gt.0) return
       nge = nge + 1
       GO TO 350
-      
+
  360  CONTINUE
-      if (JFLAG.eq.2) then      ! root found         
+      if (JFLAG.eq.2) then      ! root found
          ZROOT=.false.
          MROOT=.false.
-         DO 361 I = 1,Ngc          
+         DO 361 I = 1,Ngc
             if(IWORK(LMASK+I).eq.1) then
                if(ABS(g1(i)).ne. ZERO) THEN
                   JROOT(I)=SIGN(2.0D0,g1(I))
@@ -181,13 +180,13 @@ C     Call DROOTS to search for root in interval from T0 to T1. -----------
                ENDIF
             ENDIF
  361     CONTINUE
-         
+
          call intdy (x, 0, yh, nyh, y, iflag)
 
          if (Zroot) then
             DO 380 I = 1,Ngc
                IF(ABS(JROOT(I)).EQ.2) JROOT(I)=0
- 380        CONTINUE  
+ 380        CONTINUE
             MROOT=.false.
             IRT=1
          endif
@@ -198,7 +197,7 @@ C     Call DROOTS to search for root in interval from T0 to T1. -----------
       T0 = X
       CALL DCOPY (Ngc, gx, 1, g0, 1)
       RETURN
-c     
+c
  390  continue
       return
 c----------------------- end of subroutine rchek -----------------------

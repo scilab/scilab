@@ -188,7 +188,6 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-GetXmlFileEncoding.lo \
 	src/c/libscicore_algo_la-islittleendian.lo \
 	src/c/libscicore_algo_la-getcommandlineargs.lo \
-	src/c/libscicore_algo_la-callFunctionFromGateway.lo \
 	src/c/libscicore_algo_la-commandwords.lo \
 	src/c/libscicore_algo_la-freeArrayOfString.lo \
 	src/c/libscicore_algo_la-getstaticdebuginfo.lo \
@@ -203,16 +202,12 @@ am__objects_1 = src/c/libscicore_algo_la-csignal.lo \
 	src/c/libscicore_algo_la-backtrace.lo \
 	src/c/libscicore_algo_la-signal_mgmt.lo \
 	src/c/libscicore_algo_la-suspendProcess.lo \
-	src/c/libscicore_algo_la-setlines.lo \
-	src/c/libscicore_algo_la-setformat.lo \
-	src/c/libscicore_algo_la-InitializePreferences.lo \
 	src/c/libscicore_algo_la-saveCWDInPreferences.lo \
 	src/c/libscicore_algo_la-getmaxMALLOC.lo \
 	src/c/libscicore_algo_la-sci_mem_alloc.lo \
 	src/c/hashtable/libscicore_algo_la-hashtable.lo \
 	src/c/hashtable/libscicore_algo_la-hashtable_utility.lo
-am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
-	src/cpp/libscicore_algo_la-demangle.lo \
+am__objects_2 = src/cpp/libscicore_algo_la-demangle.lo \
 	src/cpp/libscicore_algo_la-backtrace_print.lo \
 	src/cpp/libscicore_algo_la-storeCommand.lo \
 	src/cpp/libscicore_algo_la-banner.lo \
@@ -222,10 +217,10 @@ am__objects_2 = src/cpp/libscicore_algo_la-namstr.lo \
 	src/cpp/libscicore_algo_la-getvariablesname.lo \
 	src/cpp/libscicore_algo_la-getmacrosname.lo \
 	src/cpp/libscicore_algo_la-getfunctionsname.lo \
-	src/cpp/libscicore_algo_la-InitScilab.lo
+	src/cpp/libscicore_algo_la-InitScilab.lo \
+	src/cpp/libscicore_algo_la-setformat.lo
 am__objects_3 = src/fortran/clunit.lo src/fortran/folhp.lo \
-	src/fortran/xerbla.lo src/fortran/whatln.lo \
-	src/fortran/expsum.lo src/fortran/putid.lo \
+	src/fortran/xerbla.lo src/fortran/expsum.lo \
 	src/fortran/readinter.lo src/fortran/rewindinter.lo \
 	src/fortran/backspaceinter.lo src/fortran/write_inter.lo \
 	src/fortran/read_inter.lo
@@ -682,7 +677,6 @@ CORE_C_SOURCES = \
     src/c/GetXmlFileEncoding.c \
     src/c/islittleendian.c \
     src/c/getcommandlineargs.c \
-    src/c/callFunctionFromGateway.c \
     src/c/commandwords.c \
     src/c/freeArrayOfString.c \
     src/c/getstaticdebuginfo.c \
@@ -697,9 +691,6 @@ CORE_C_SOURCES = \
     src/c/backtrace.c \
     src/c/signal_mgmt.c \
     src/c/suspendProcess.c \
-    src/c/setlines.c \
-    src/c/setformat.c \
-    src/c/InitializePreferences.c \
     src/c/saveCWDInPreferences.c \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
@@ -707,7 +698,6 @@ CORE_C_SOURCES = \
     src/c/hashtable/hashtable_utility.c
 
 CORE_CPP_SOURCES = \
-    src/cpp/namstr.cpp \
     src/cpp/demangle.cpp \
     src/cpp/backtrace_print.cpp \
     src/cpp/storeCommand.cpp \
@@ -718,15 +708,14 @@ CORE_CPP_SOURCES = \
     src/cpp/getvariablesname.cpp \
     src/cpp/getmacrosname.cpp \
     src/cpp/getfunctionsname.cpp \
-    src/cpp/InitScilab.cpp
+    src/cpp/InitScilab.cpp \
+    src/cpp/setformat.cpp
 
 CORE_FORTRAN_SOURCES = \
     src/fortran/clunit.f \
     src/fortran/folhp.f \
     src/fortran/xerbla.f \
-    src/fortran/whatln.f \
     src/fortran/expsum.f \
-    src/fortran/putid.f \
     src/fortran/readinter.f \
     src/fortran/rewindinter.f \
     src/fortran/backspaceinter.f \
@@ -863,16 +852,7 @@ includes/sci_malloc.h \
 includes/PATH_MAX.h \
 includes/scilabDefaults.h \
 includes/scisparse.h \
-includes/stack-c.h \
 includes/sci_types.h \
-includes/stack-def.h \
-includes/stack.h \
-includes/stack1.h \
-includes/stack2.h \
-includes/stack3.h \
-includes/stack-optional.h \
-includes/stackinfo.h \
-includes/stackTypeVariable.h \
 includes/version.h \
 includes/getversion.h \
 includes/backtrace_print.h \
@@ -1067,8 +1047,6 @@ src/c/libscicore_algo_la-islittleendian.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getcommandlineargs.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-callFunctionFromGateway.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-commandwords.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-freeArrayOfString.lo: src/c/$(am__dirstamp) \
@@ -1097,12 +1075,6 @@ src/c/libscicore_algo_la-signal_mgmt.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-suspendProcess.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-setlines.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-setformat.lo: src/c/$(am__dirstamp) \
-	src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libscicore_algo_la-InitializePreferences.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-saveCWDInPreferences.lo:  \
 	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscicore_algo_la-getmaxMALLOC.lo: src/c/$(am__dirstamp) \
@@ -1127,8 +1099,6 @@ src/cpp/$(am__dirstamp):
 src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscicore_algo_la-namstr.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-demangle.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-backtrace_print.lo:  \
@@ -1151,6 +1121,8 @@ src/cpp/libscicore_algo_la-getfunctionsname.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscicore_algo_la-InitScilab.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscicore_algo_la-setformat.lo: src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/fortran/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran
 	@: > src/fortran/$(am__dirstamp)
@@ -1163,11 +1135,7 @@ src/fortran/folhp.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/xerbla.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/whatln.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/expsum.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/putid.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/readinter.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
@@ -1377,9 +1345,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_who.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscicore_la-sci_with_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-GetXmlFileEncoding.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-InitializePreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-backtrace.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-csignal.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-dynamic_gateways.Plo@am__quote@
@@ -1402,8 +1368,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-saveCWDInPreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-sci_mem_alloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setPrecisionFPU.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setformat.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-setlines.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-signal_mgmt.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-suspendProcess.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscicore_algo_la-texmacs.Plo@am__quote@
@@ -1418,8 +1382,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getfunctionsname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getmacrosname.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-getvariablesname.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-namstr.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-runner.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-setformat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-storeCommand.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-tasks.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscicore_algo_la-with_module.Plo@am__quote@
@@ -1532,13 +1496,6 @@ src/c/libscicore_algo_la-getcommandlineargs.lo: src/c/getcommandlineargs.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-getcommandlineargs.lo `test -f 'src/c/getcommandlineargs.c' || echo '$(srcdir)/'`src/c/getcommandlineargs.c
 
-src/c/libscicore_algo_la-callFunctionFromGateway.lo: src/c/callFunctionFromGateway.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-callFunctionFromGateway.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Tpo -c -o src/c/libscicore_algo_la-callFunctionFromGateway.lo `test -f 'src/c/callFunctionFromGateway.c' || echo '$(srcdir)/'`src/c/callFunctionFromGateway.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Tpo src/c/$(DEPDIR)/libscicore_algo_la-callFunctionFromGateway.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/callFunctionFromGateway.c' object='src/c/libscicore_algo_la-callFunctionFromGateway.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-callFunctionFromGateway.lo `test -f 'src/c/callFunctionFromGateway.c' || echo '$(srcdir)/'`src/c/callFunctionFromGateway.c
-
 src/c/libscicore_algo_la-commandwords.lo: src/c/commandwords.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-commandwords.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Tpo -c -o src/c/libscicore_algo_la-commandwords.lo `test -f 'src/c/commandwords.c' || echo '$(srcdir)/'`src/c/commandwords.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Tpo src/c/$(DEPDIR)/libscicore_algo_la-commandwords.Plo
@@ -1637,27 +1594,6 @@ src/c/libscicore_algo_la-suspendProcess.lo: src/c/suspendProcess.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-suspendProcess.lo `test -f 'src/c/suspendProcess.c' || echo '$(srcdir)/'`src/c/suspendProcess.c
 
-src/c/libscicore_algo_la-setlines.lo: src/c/setlines.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-setlines.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-setlines.Tpo -c -o src/c/libscicore_algo_la-setlines.lo `test -f 'src/c/setlines.c' || echo '$(srcdir)/'`src/c/setlines.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-setlines.Tpo src/c/$(DEPDIR)/libscicore_algo_la-setlines.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/setlines.c' object='src/c/libscicore_algo_la-setlines.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-setlines.lo `test -f 'src/c/setlines.c' || echo '$(srcdir)/'`src/c/setlines.c
-
-src/c/libscicore_algo_la-setformat.lo: src/c/setformat.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-setformat.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-setformat.Tpo -c -o src/c/libscicore_algo_la-setformat.lo `test -f 'src/c/setformat.c' || echo '$(srcdir)/'`src/c/setformat.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-setformat.Tpo src/c/$(DEPDIR)/libscicore_algo_la-setformat.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/setformat.c' object='src/c/libscicore_algo_la-setformat.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-setformat.lo `test -f 'src/c/setformat.c' || echo '$(srcdir)/'`src/c/setformat.c
-
-src/c/libscicore_algo_la-InitializePreferences.lo: src/c/InitializePreferences.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-InitializePreferences.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-InitializePreferences.Tpo -c -o src/c/libscicore_algo_la-InitializePreferences.lo `test -f 'src/c/InitializePreferences.c' || echo '$(srcdir)/'`src/c/InitializePreferences.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-InitializePreferences.Tpo src/c/$(DEPDIR)/libscicore_algo_la-InitializePreferences.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/InitializePreferences.c' object='src/c/libscicore_algo_la-InitializePreferences.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscicore_algo_la-InitializePreferences.lo `test -f 'src/c/InitializePreferences.c' || echo '$(srcdir)/'`src/c/InitializePreferences.c
-
 src/c/libscicore_algo_la-saveCWDInPreferences.lo: src/c/saveCWDInPreferences.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscicore_algo_la-saveCWDInPreferences.lo -MD -MP -MF src/c/$(DEPDIR)/libscicore_algo_la-saveCWDInPreferences.Tpo -c -o src/c/libscicore_algo_la-saveCWDInPreferences.lo `test -f 'src/c/saveCWDInPreferences.c' || echo '$(srcdir)/'`src/c/saveCWDInPreferences.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscicore_algo_la-saveCWDInPreferences.Tpo src/c/$(DEPDIR)/libscicore_algo_la-saveCWDInPreferences.Plo
@@ -1730,13 +1666,6 @@ sci_gateway/c/libscicore_la-sci_getdebuginfo.lo: sci_gateway/c/sci_getdebuginfo.
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
-
-src/cpp/libscicore_algo_la-namstr.lo: src/cpp/namstr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-namstr.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-namstr.Tpo -c -o src/cpp/libscicore_algo_la-namstr.lo `test -f 'src/cpp/namstr.cpp' || echo '$(srcdir)/'`src/cpp/namstr.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-namstr.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-namstr.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/namstr.cpp' object='src/cpp/libscicore_algo_la-namstr.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-namstr.lo `test -f 'src/cpp/namstr.cpp' || echo '$(srcdir)/'`src/cpp/namstr.cpp
 
 src/cpp/libscicore_algo_la-demangle.lo: src/cpp/demangle.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-demangle.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-demangle.Tpo -c -o src/cpp/libscicore_algo_la-demangle.lo `test -f 'src/cpp/demangle.cpp' || echo '$(srcdir)/'`src/cpp/demangle.cpp
@@ -1814,6 +1743,13 @@ src/cpp/libscicore_algo_la-InitScilab.lo: src/cpp/InitScilab.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/InitScilab.cpp' object='src/cpp/libscicore_algo_la-InitScilab.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-InitScilab.lo `test -f 'src/cpp/InitScilab.cpp' || echo '$(srcdir)/'`src/cpp/InitScilab.cpp
+
+src/cpp/libscicore_algo_la-setformat.lo: src/cpp/setformat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscicore_algo_la-setformat.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscicore_algo_la-setformat.Tpo -c -o src/cpp/libscicore_algo_la-setformat.lo `test -f 'src/cpp/setformat.cpp' || echo '$(srcdir)/'`src/cpp/setformat.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscicore_algo_la-setformat.Tpo src/cpp/$(DEPDIR)/libscicore_algo_la-setformat.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/setformat.cpp' object='src/cpp/libscicore_algo_la-setformat.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscicore_algo_la-setformat.lo `test -f 'src/cpp/setformat.cpp' || echo '$(srcdir)/'`src/cpp/setformat.cpp
 
 sci_gateway/cpp/libscicore_la-core_gw.lo: sci_gateway/cpp/core_gw.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscicore_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscicore_la-core_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscicore_la-core_gw.Tpo -c -o sci_gateway/cpp/libscicore_la-core_gw.lo `test -f 'sci_gateway/cpp/core_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/core_gw.cpp

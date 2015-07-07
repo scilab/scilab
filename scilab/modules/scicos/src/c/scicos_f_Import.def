@@ -4,7 +4,6 @@ LIBRARY    scicos_f.dll
 EXPORTS
 ;
 scifunc_
-skipvars_
 ltopadj_
 intvec2var_
 intvar2vec_

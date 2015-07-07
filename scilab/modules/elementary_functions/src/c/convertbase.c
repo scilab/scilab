@@ -14,10 +14,10 @@
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "machine.h" /* bsiz */
 #include "convertbase.h"
 #include "sci_malloc.h"
 #include "freeArrayOfString.h"
-#include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 #define char_a 'a'
 #define char_A 'A'

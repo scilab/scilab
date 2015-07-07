@@ -115,7 +115,6 @@
 		<File RelativePath=".\isort.f"/>
 		<File RelativePath=".\isova0.f"/>
 		<File RelativePath=".\isoval.f"/>
-		<File RelativePath=".\israt.f"/>
 		<File RelativePath=".\ivimp.f"/>
 		<File RelativePath=".\iwamax.f"/>
 		<File RelativePath=".\kronc.f"/>

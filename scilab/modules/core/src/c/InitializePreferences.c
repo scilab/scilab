@@ -14,7 +14,7 @@
 
 #include "getScilabPreference.h"
 #include "api_scilab.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 #include "setlines.h"
 #include "setformat.h"
 #include "os_string.h"

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -201,6 +201,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClCompile Include="colnewmsgs.c" />
     <ClCompile Include="dassl.c" />
     <ClCompile Include="DllmainDifferential_equations.c" />
+    <ClCompile Include="errmds.c" />
     <ClCompile Include="Ex-daskr.c" />
     <ClCompile Include="Ex-ode.c" />
     <ClCompile Include="Ex-odedc.c" />
@@ -214,6 +215,7 @@ lib /DEF:"$(ProjectDir)elementary_functions_f_Import.def" /SUBSYSTEM:WINDOWS /MA
     <ClInclude Include="..\..\includes\scifunctions.h" />
     <ClInclude Include="arnol.h" />
     <ClInclude Include="..\..\includes\dynlib_differential_equations.h" />
+    <ClInclude Include="errmds.h" />
     <ClInclude Include="Ex-daskr.h" />
     <ClInclude Include="Ex-ode.h" />
     <ClInclude Include="Ex-odedc.h" />

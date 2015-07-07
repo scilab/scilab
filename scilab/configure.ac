@@ -2065,7 +2065,6 @@ scilab-lib.properties
 scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
-modules/core/includes/stack.h
 modules/atoms/etc/repositories
 modules/atoms/tests/unit_tests/repositories.orig
 ])

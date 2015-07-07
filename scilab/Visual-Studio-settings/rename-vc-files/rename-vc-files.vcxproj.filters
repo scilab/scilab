@@ -27,9 +27,6 @@
     <rename_vc_extension_files Include="..\..\scilab.properties.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>
-    <rename_vc_extension_files Include="..\..\modules\core\includes\stack.h.vc">
-      <Filter>Rename Header Files</Filter>
-    </rename_vc_extension_files>
     <rename_vc_extension_files Include="..\..\modules\core\includes\version.h.vc">
       <Filter>Rename Header Files</Filter>
     </rename_vc_extension_files>

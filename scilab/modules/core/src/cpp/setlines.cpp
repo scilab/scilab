@@ -10,17 +10,17 @@
  *
  */
 
-#include "setieee.h"
-#include "stack-c.h"
+#include "configvariable.hxx"
+
+extern "C"
+{
+#include "setlines.h"
+}
 
 /*--------------------------------------------------------------------------*/
-void setieee(int ieee)
+void setlines(int lines, int columns)
 {
-    C2F(errgst).ieee = ieee;
-}
-/*--------------------------------------------------------------------------*/
-int getieee()
-{
-    return C2F(errgst).ieee;
+    ConfigVariable::setConsoleLines((std::max)(0, lines));
+    ConfigVariable::setConsoleWidth((std::max)(25, columns));
 }
 /*--------------------------------------------------------------------------*/

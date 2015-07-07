@@ -21,9 +21,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="coselm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ftree2.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -33,16 +30,10 @@
     <ClCompile Include="ftree4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scierr.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="scifunc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sctree.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="skipvars.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tree2.c">
@@ -56,9 +47,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="coselm.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="ftree2.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -68,16 +56,10 @@
     <f2c_rule Include="ftree4.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
-    <f2c_rule Include="scierr.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
     <f2c_rule Include="scifunc.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="sctree.f">
-      <Filter>Fortran files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="skipvars.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tree2.f">

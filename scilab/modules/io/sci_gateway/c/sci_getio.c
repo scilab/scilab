@@ -11,7 +11,6 @@
  */
 
 #include "gw_io.h"
-#include "stack-c.h"
 #include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int sci_getio(char *fname, unsigned long fname_len)

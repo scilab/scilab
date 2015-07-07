@@ -22,7 +22,6 @@ extern "C"
 #include "Scierror.h"
 #include "os_string.h"
 #include "localization.h"
-#include "stackinfo.h"
 #include "configvariable_interface.h"
 }
 

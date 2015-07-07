@@ -3,8 +3,6 @@ C/MEMBR ADD NAME=PRJA,SSI=0
      1   f, jac)
 clll. optimize
 
-      include 'stack.h'
-
       external f, jac
       integer neq, nyh, iwm
       integer iownd, iowns,

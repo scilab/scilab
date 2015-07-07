@@ -5,18 +5,8 @@ EXPORTS
 ; ---------------------------------------
 ; core
 ; ---------------------------------------
-iop_
-com_
-errgst_
-adre_
-dbg_
-ippty_
 mtlbc_
-basbrk_
-keepme_
-mprot_
 typnams_
-csimp_
 ptkeep_
 checkval_
 eqid_

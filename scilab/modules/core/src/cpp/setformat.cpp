@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte DENIZET
+ * Copyright (C) 2015 - Scilab Enterprises - Cedric Delamarre
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,13 +11,26 @@
  *
  */
 
-#include "setlines.h"
-#include "stack-c.h"
+#include "configvariable.hxx"
+
+extern "C"
+{
+#include "setformat.h"
+}
 
 /*--------------------------------------------------------------------------*/
-void setlines(int lines, int columns)
+void setformat(const char * format, int width)
 {
-    C2F(iop).lct[4] = Max(25, columns);
-    C2F(iop).lct[1] = Max(0, lines);
+    ConfigVariable::setFormatMode(*format == 'e' ? 0 : 1);
+    ConfigVariable::setFormatSize(width);
 }
 /*--------------------------------------------------------------------------*/
+const char* getformat()
+{
+    return ConfigVariable::getFormatMode() ? "v" : "e";
+}
+/*--------------------------------------------------------------------------*/
+int getformatwidth()
+{
+    return ConfigVariable::getFormatSize();
+}

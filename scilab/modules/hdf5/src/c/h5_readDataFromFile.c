@@ -24,7 +24,6 @@
 #include <stdlib.h>
 #include "sci_malloc.h"
 #include "sci_types.h"
-#include "stack3.h"
 #include "h5_attributeConstants.h"
 #include "h5_readDataFromFile.h"
 #include "doublecomplex.h"

@@ -14,8 +14,8 @@ DYNAMIC_LINK_CPP_SOURCES = \
     src/cpp/dynamic_link.cpp \
     src/cpp/addinter.cpp
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_call.c
+#GATEWAY_C_SOURCES = \
+#    sci_gateway/c/sci_call.c
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/dynamic_link_gw.cpp \
@@ -67,7 +67,7 @@ libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 CHECK_SRC=  $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
-# cyclic  
+# cyclic
 libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la
 
 #### Target ######
@@ -76,9 +76,9 @@ modulename=dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA =  license.txt 
+libscidynamic_link_la_root_DATA =  license.txt
 
-#### dynamic_link : init scripts #### 
+#### dynamic_link : init scripts ####
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
 libscidynamic_link_la_etc_DATA = \
     etc/dynamic_link.quit \
@@ -91,7 +91,7 @@ MACROSDIRSEXT = macros/utils
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
-#### dynamic_link : compilation scripts #### 
+#### dynamic_link : compilation scripts ####
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \

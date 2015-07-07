@@ -9,7 +9,6 @@ class SciError {};
 extern "C" {
 #include <stdio.h>
 #undef _PARAMS
-#include "stack-c.h"
     int send_scilab_job(char *, long int);
     void cc_test();
 

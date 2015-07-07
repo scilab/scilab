@@ -20,8 +20,6 @@
 #include <tk.h>
 
 #include "dynlib_tclsci.h"
-#include "stack-c.h"
-
 #include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/

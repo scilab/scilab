@@ -12,7 +12,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_windows_tools.h"
-#include "stack-c.h"
 #include "httpdownloadfile.h"
 #include "sci_malloc.h"
 #include "Scierror.h"

@@ -225,8 +225,7 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/c/tree.c src/c/scicos_malloc.c src/c/scicos_print.c \
 	src/c/import.c src/c/scicos.c src/c/scicos_free.c \
 	src/c/ezxml.c src/c/var2sci.c src/c/MlistGetFieldNumber.c \
-	src/c/lsodar.c src/c/ddaskr.c src/fortran/skipvars.f \
-	src/fortran/coselm.f src/fortran/sctree.f src/fortran/scierr.f \
+	src/c/lsodar.c src/c/ddaskr.c src/fortran/sctree.f \
 	src/fortran/ftree2.f src/fortran/ftree3.f src/fortran/ftree4.f \
 	src/fortran/scifunc.f
 am__dirstamp = $(am__leading_dot)dirstamp
@@ -268,10 +267,9 @@ am__objects_3 = src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo \
 	src/c/libsciscicos_algo_la-MlistGetFieldNumber.lo \
 	src/c/libsciscicos_algo_la-lsodar.lo \
 	src/c/libsciscicos_algo_la-ddaskr.lo
-am__objects_4 = src/fortran/skipvars.lo src/fortran/coselm.lo \
-	src/fortran/sctree.lo src/fortran/scierr.lo \
-	src/fortran/ftree2.lo src/fortran/ftree3.lo \
-	src/fortran/ftree4.lo src/fortran/scifunc.lo
+am__objects_4 = src/fortran/sctree.lo src/fortran/ftree2.lo \
+	src/fortran/ftree3.lo src/fortran/ftree4.lo \
+	src/fortran/scifunc.lo
 @XCOS_FALSE@am_libsciscicos_algo_la_OBJECTS = $(am__objects_1)
 @XCOS_TRUE@am_libsciscicos_algo_la_OBJECTS = $(am__objects_2) \
 @XCOS_TRUE@	$(am__objects_3) $(am__objects_4)
@@ -969,10 +967,7 @@ src/c/lsodar.c \
 src/c/ddaskr.c
 
 SCICOS_FORTRAN_SOURCES = \
-src/fortran/skipvars.f \
-src/fortran/coselm.f \
 src/fortran/sctree.f \
-src/fortran/scierr.f \
 src/fortran/ftree2.f \
 src/fortran/ftree3.f \
 src/fortran/ftree4.f \
@@ -1059,6 +1054,7 @@ libsciscicos_la_LDFLAGS = $(AM_LDFLAGS)
 @XCOS_TRUE@			-I$(top_srcdir)/modules/ast/includes/analysis/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/threads/includes/ \
 @XCOS_TRUE@			-I$(top_srcdir)/modules/console/includes/ \
+@XCOS_TRUE@			-I$(top_srcdir)/modules/differential_equations/includes/ \
 @XCOS_TRUE@			$(AM_CPPFLAGS)
 
 libsciscicos_cli_la_CPPFLAGS = $(libsciscicos_algo_la_CPPFLAGS)
@@ -1548,13 +1544,7 @@ src/fortran/$(am__dirstamp):
 src/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran/$(DEPDIR)
 	@: > src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/skipvars.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/coselm.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/sctree.lo: src/fortran/$(am__dirstamp) \
-	src/fortran/$(DEPDIR)/$(am__dirstamp)
-src/fortran/scierr.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/ftree2.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)

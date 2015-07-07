@@ -1136,8 +1136,6 @@ c-----------------------------------------------------------------------
 c the following card is for optimized compilation on llnl compilers.
 clll. optimize
 c-----------------------------------------------------------------------
-      include 'stack.h'
-
       external prepji, solsy
       integer illin, init, lyh, lewt, lacor, lsavr, lwm, liwm,
      1   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns

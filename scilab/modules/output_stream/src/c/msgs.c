@@ -13,7 +13,6 @@
 #include <string.h>
 #include "configvariable_interface.h"
 #include "sciprint.h"
-#include "stack-c.h" /* Fin */
 #include "sci_malloc.h"
 #include "msgs.h"
 #include "localization.h"

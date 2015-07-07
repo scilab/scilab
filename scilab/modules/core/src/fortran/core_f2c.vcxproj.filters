@@ -30,12 +30,6 @@
     <ClCompile Include="folhp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="putid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="whatln.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="xerbla.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -59,11 +53,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\stack.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
     <f2c_rule Include="clunit.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
@@ -71,12 +60,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="folhp.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="putid.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="whatln.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="xerbla.f">

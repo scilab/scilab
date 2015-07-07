@@ -32,6 +32,7 @@ libsciarnoldi_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
     $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libsciarnoldi.la

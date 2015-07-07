@@ -104,7 +104,6 @@
 		<File RelativePath=".\remez.f"/>
 		<File RelativePath=".\romeg.f"/>
 		<File RelativePath=".\rpem.f"/>
-		<File RelativePath=".\sci_ffir.f"/>
 		<File RelativePath=".\sn.f"/>
 		<File RelativePath=".\snell.f"/>
 		<File RelativePath=".\syredi.f"/>

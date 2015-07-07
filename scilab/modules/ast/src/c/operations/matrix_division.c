@@ -473,7 +473,7 @@ int iRightDivisionOfComplexMatrix(
     {
         cNorm = 'F';
         C2F(zlacpy)(&cNorm, &_iCols2, &_iCols2, (double*)poAt, &_iCols2, (double*)poAf, &_iCols2);
-        C2F(zgetrf)(&_iCols2, &_iCols2, (double*)poAf, &_iCols2, pIpiv, &iInfo);
+        C2F(zgetrf)(&_iCols2, &_iCols2, poAf, &_iCols2, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             cNorm = '1';
@@ -481,7 +481,7 @@ int iRightDivisionOfComplexMatrix(
             if (dblRcond > RCONDthresh)
             {
                 cNorm = 'N';
-                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, (double*)poAf, &_iCols2, pIpiv, (double*)poBt, &_iCols2, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols2, &_iRows1, poAf, &_iCols2, pIpiv, poBt, &_iCols2, &iInfo);
                 vTransposeDoubleComplexMatrix(poBt, _iCols2, _iRows1, poOut, 1);
                 vGetPointerFromDoubleComplex(poOut, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
@@ -728,14 +728,14 @@ int iLeftDivisionOfComplexMatrix(
 
     if (_iRows1 == _iCols1)
     {
-        C2F(zgetrf)(&_iCols1, &_iCols1, (double*)poVar1, &_iCols1, pIpiv, &iInfo);
+        C2F(zgetrf)(&_iCols1, &_iCols1, poVar1, &_iCols1, pIpiv, &iInfo);
         if (iInfo == 0)
         {
             C2F(zgecon)(&cNorm, &_iCols1, poVar1, &_iCols1, &dblAnorm, &dblRcond, pDwork, pRwork, &iInfo);
             if (dblRcond > RCONDthresh)
             {
                 cNorm    = 'N';
-                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, (double*)poVar1, &_iCols1, pIpiv, (double*)poVar2, &_iCols1, &iInfo);
+                C2F(zgetrs)(&cNorm, &_iCols1, &_iCols2, poVar1, &_iCols1, pIpiv, poVar2, &_iCols1, &iInfo);
                 vGetPointerFromDoubleComplex(poVar2, _iRowsOut * _iColsOut, _pdblRealOut, _pdblImgOut);
                 iExit = 1;
             }

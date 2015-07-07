@@ -25,7 +25,6 @@
 #include "cvstr.h"
 #include "sci_malloc.h"
 #include "core_math.h"
-#include "stack-def.h"
 /*--------------------------------------------------------------------------*/
 extern int *listentry(int *header, int i);
 /*--------------------------------------------------------------------------*/
@@ -34,7 +33,7 @@ int MlistGetFieldNumber(int *ptr, const char *string)
     int nf = 0, longueur = 0, istart = 0, k = 0, ilocal = 0, retval = 0;
     int *headerstr = NULL;
     /* allocate a place for the trailing '\0' */
-    static char str[nlgh + 1];
+    //    static char str[nlgh + 1];
 
     //headerstr = listentry(ptr , 1);
     //nf = headerstr[1] * headerstr[2] - 1;  /* number of fields */
