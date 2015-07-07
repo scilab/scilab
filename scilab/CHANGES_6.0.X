@@ -59,6 +59,17 @@ Removed functions
 
 * extract_help_examples removed. (Undocumented and based on old help format).
 
+* Symbolic module functions removed:
+  - addf
+  - cmb_lin
+  - ldivf
+  - mulf
+  - rdivf
+  - solve
+  - subf
+  - trianfml
+  - trisolve
+
 
 Removed functions (based on old Scilab stack)
 ==============================================

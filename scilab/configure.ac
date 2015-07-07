@@ -1995,7 +1995,6 @@ modules/mexlib/Makefile
 modules/sparse/Makefile
 modules/linear_algebra/Makefile
 modules/polynomials/Makefile
-modules/symbolic/Makefile
 modules/signal_processing/Makefile
 modules/arnoldi/Makefile
 modules/interpolation/Makefile

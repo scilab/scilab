@@ -65,7 +65,6 @@ gui \
 graphic_export \
 graphics \
 optimization \
-symbolic \
 randlib \
 interpolation \
 sound \
@@ -200,7 +199,6 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \

@@ -273,8 +273,8 @@ DIST_SUBDIRS = prebuildjava threads output_stream arnoldi \
 	windows_tools sparse completion history_manager string hdf5 \
 	fftw statistics dynamic_link console spreadsheet tclsci \
 	commons jvm action_binding graphic_objects renderer gui \
-	graphic_export graphics optimization symbolic randlib \
-	interpolation sound overloading m2sci development_tools \
+	graphic_export graphics optimization randlib interpolation \
+	sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing matio atoms graph ast \
 	scinotes parallel modules_manager ui_data history_browser \
@@ -599,8 +599,8 @@ SUBDIRS = prebuildjava threads output_stream arnoldi \
 	completion history_manager output_stream string hdf5 fftw \
 	statistics dynamic_link console arnoldi spreadsheet tclsci \
 	commons jvm action_binding graphic_objects renderer gui \
-	graphic_export graphics optimization symbolic randlib \
-	interpolation sound overloading m2sci development_tools \
+	graphic_export graphics optimization randlib interpolation \
+	sound overloading m2sci development_tools \
 	compatibility_functions helptools umfpack demo_tools \
 	genetic_algorithms simulated_annealing parameters matio atoms \
 	hdf5 graph ast scinotes parallel modules_manager ui_data \
@@ -689,7 +689,6 @@ ENGINE_LIBS_DYNAMIC_LOAD = \
 	$(top_builddir)/modules/optimization/libscioptimization.la \
 	$(top_builddir)/modules/signal_processing/libscisignal_processing.la \
 	$(top_builddir)/modules/interpolation/libsciinterpolation.la \
-	$(top_builddir)/modules/symbolic/libscisymbolic.la \
 	$(top_builddir)/modules/arnoldi/libsciarnoldi.la \
 	$(top_builddir)/modules/randlib/libscirandlib.la \
 	$(top_builddir)/modules/xcos/libscixcos.la \
