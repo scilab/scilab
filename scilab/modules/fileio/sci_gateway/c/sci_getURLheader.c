@@ -20,7 +20,7 @@
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
-int sci_getURL(char *fname, int fname_len)
+int sci_getURLheader(char *fname, int fname_len)
 {
     SciErr sciErr;
     int length = 0;
@@ -153,7 +153,7 @@ int sci_getURL(char *fname, int fname_len)
     }
 
     // call function
-    filePath = downloadFile(url, dest, username, password, &content, 0);
+    filePath = downloadFile(url, dest, username, password, &content, 1);
     if (filePath)
     {
         //Return the second argument which si the file name

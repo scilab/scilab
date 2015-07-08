@@ -286,7 +286,8 @@ am__objects_2 = sci_gateway/c/libscifileio_la-gw_fileio.lo \
 	sci_gateway/c/libscifileio_la-sci_splitURL.lo \
 	sci_gateway/c/libscifileio_la-sci_archive_list.lo \
 	sci_gateway/c/libscifileio_la-sci_archive_extract.lo \
-	sci_gateway/c/libscifileio_la-sci_archive_compress.lo
+	sci_gateway/c/libscifileio_la-sci_archive_compress.lo \
+	sci_gateway/c/libscifileio_la-sci_getURLheader.lo
 am_libscifileio_la_OBJECTS = $(am__objects_2)
 libscifileio_la_OBJECTS = $(am_libscifileio_la_OBJECTS)
 @MAINTAINER_MODE_FALSE@am_libscifileio_la_rpath =
@@ -743,7 +744,8 @@ sci_gateway/c/sci_getURL.c \
 sci_gateway/c/sci_splitURL.c \
 sci_gateway/c/sci_archive_list.c \
 sci_gateway/c/sci_archive_extract.c \
-sci_gateway/c/sci_archive_compress.c
+sci_gateway/c/sci_archive_compress.c \
+sci_gateway/c/sci_getURLheader.c
 
 libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \
@@ -1229,6 +1231,9 @@ sci_gateway/c/libscifileio_la-sci_archive_extract.lo:  \
 sci_gateway/c/libscifileio_la-sci_archive_compress.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscifileio_la-sci_getURLheader.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 
 libscifileio.la: $(libscifileio_la_OBJECTS) $(libscifileio_la_DEPENDENCIES) $(EXTRA_libscifileio_la_DEPENDENCIES) 
 	$(AM_V_CCLD)$(LINK) $(am_libscifileio_la_rpath) $(libscifileio_la_OBJECTS) $(libscifileio_la_LIBADD) $(LIBS)
@@ -1261,6 +1266,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_fscanfMat.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_fullpath.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getURL.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getURLheader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_get_absolute_file_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getdrives.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getlongpathname.Plo@am__quote@
@@ -2131,6 +2137,13 @@ sci_gateway/c/libscifileio_la-sci_archive_compress.lo: sci_gateway/c/sci_archive
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_archive_compress.c' object='sci_gateway/c/libscifileio_la-sci_archive_compress.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifileio_la-sci_archive_compress.lo `test -f 'sci_gateway/c/sci_archive_compress.c' || echo '$(srcdir)/'`sci_gateway/c/sci_archive_compress.c
+
+sci_gateway/c/libscifileio_la-sci_getURLheader.lo: sci_gateway/c/sci_getURLheader.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscifileio_la-sci_getURLheader.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getURLheader.Tpo -c -o sci_gateway/c/libscifileio_la-sci_getURLheader.lo `test -f 'sci_gateway/c/sci_getURLheader.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURLheader.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getURLheader.Tpo sci_gateway/c/$(DEPDIR)/libscifileio_la-sci_getURLheader.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_getURLheader.c' object='sci_gateway/c/libscifileio_la-sci_getURLheader.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscifileio_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscifileio_la-sci_getURLheader.lo `test -f 'sci_gateway/c/sci_getURLheader.c' || echo '$(srcdir)/'`sci_gateway/c/sci_getURLheader.c
 
 mostlyclean-libtool:
 	-rm -f *.lo

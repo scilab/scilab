@@ -113,7 +113,8 @@ sci_gateway/c/sci_getURL.c \
 sci_gateway/c/sci_splitURL.c \
 sci_gateway/c/sci_archive_list.c \
 sci_gateway/c/sci_archive_extract.c \
-sci_gateway/c/sci_archive_compress.c
+sci_gateway/c/sci_archive_compress.c \
+sci_gateway/c/sci_getURLheader.c
 
 libscifileio_la_CPPFLAGS = -I$(srcdir)/includes/ \
 				-I$(srcdir)/src/c/ \

@@ -155,13 +155,14 @@ int getProxyValues(char **proxyHost, long *proxyPort, char **proxyUserPwd)
     return 1;
 }
 /* ==================================================================== */
-char *downloadFile(char *url, char *dest, char *username, char *password, char **content)
+char *downloadFile(char *url, char *dest, char *username, char *password, char **content, int header)
 {
     CURL *curl;
     CURLcode res;
     char *filename = NULL;
     FILE *file;
     inputString buffer;
+    inputString header_buffer;
     char *destdir = NULL;
     char *destfile = NULL;
 
@@ -173,6 +174,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     }
 
     init_string(&buffer);
+    init_string(&header_buffer);
 
     res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
     if (res != CURLE_OK)
@@ -258,7 +260,18 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     strcat(filename, destfile);
     FREE(destdir);
     FREE(destfile);
-
+    struct curl_slist *chunk = NULL;
+    if (header == 1)
+    {
+        chunk = curl_slist_append(chunk, "Accept:");
+        chunk = curl_slist_append(chunk, "Another: yes");
+        res = curl_easy_setopt(curl, CURLOPT_HTTPHEADER, chunk);
+        if (res != CURLE_OK)
+        {
+            printf("error\n");
+            return NULL;
+        }
+    }
     res = curl_easy_setopt(curl, CURLOPT_URL, url);
     if (res != CURLE_OK)
     {
@@ -351,7 +364,30 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
             FREE(proxyUserPwd);
         }
     } /* end of the set of the proxy */
+    FILE *header_file;
+    if (header == 1)
+    {
+        char *header_filename;
+        header_filename = (char*)MALLOC(sizeof(char) * PATH_MAX + 1);
+        strcpy(header_filename, filename);
+        strcat(header_filename, ".header");
+        if (res != CURLE_OK)
+        {
+            FREE(filename);
+            Scierror(999, _("Failed to set the header option [%s]\n"), errorBuffer);
+            return NULL;
+        }
+        header_file = fopen(header_filename, "wb");
+        res = curl_easy_setopt(curl, CURLOPT_HEADERDATA, &header_buffer);
+        if (res != CURLE_OK)
+        {
+            FREE(filename);
+            FREE(header_filename);
+            Scierror(999, _("Failed to set the filename for the header data [%s]\n"), errorBuffer);
+            return NULL;
+        }
 
+    }
     res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
     if (res != CURLE_OK)
     {
@@ -379,7 +415,7 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
         return NULL;
     }
-
+    //    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
     res = curl_easy_perform(curl);
     if (res != 0)
     {
@@ -396,17 +432,21 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
         FREE(filename);
         return NULL;
     }
-
     /* Write the file */
     fwrite(buffer.ptr, sizeof(char), buffer.len, file);
-
+    fwrite(header_buffer.ptr, sizeof(char), header_buffer.len, header_file);
     /* Create the variable which contains the output argument */
     *content = buffer.ptr;
 
     /* always cleanup */
     curl_easy_cleanup(curl);
+    curl_slist_free_all(chunk);
 
     fclose(file);
+    if (header == 1)
+    {
+        fclose(header_file);
+    }
     return filename;
 }
 /* ==================================================================== */

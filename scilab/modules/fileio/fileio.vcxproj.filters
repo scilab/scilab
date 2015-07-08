@@ -342,6 +342,9 @@
     <ClCompile Include="sci_gateway\c\sci_getURL.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_getURLheader.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_splitURL.c">
       <Filter>Source Files</Filter>
     </ClCompile>

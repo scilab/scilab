@@ -24,6 +24,6 @@
  * @param[in] dest where to save the file
  * @return the file pointer
 */
-char *downloadFile(char *url, char *dest, char *username, char *password, char **content);
+char *downloadFile(char *url, char *dest, char *username, char *password, char **content, int header);
 
 #endif /* __DLMANAGER_H__ */
