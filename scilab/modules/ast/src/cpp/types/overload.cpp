@@ -91,7 +91,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
             std::wstring wstError(pwstError);
             FREE(pwstError);
             FREE(pstFuncName);
-            throw ast::ScilabError(wstError, 999, Location());
+            throw ast::ScilabError(wstError, 999, Location(1, 1, 1, 1));
         }
         else
         {
@@ -101,7 +101,7 @@ types::Function::ReturnValue Overload::call(std::wstring _stOverloadingFunctionN
             std::wstring wstError(pwstError);
             FREE(pwstError);
             FREE(pstFuncName);
-            throw ast::ScilabError(wstError, 999, Location());
+            throw ast::ScilabError(wstError, 999, Location(1, 1, 1, 1));
         }
     }
     types::Callable *pCall = pIT->getAs<types::Callable>();

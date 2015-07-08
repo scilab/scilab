@@ -24,6 +24,9 @@
 #include "sparse.hxx"
 #include "macrofile.hxx"
 #include "graphichandle.hxx"
+#include "user.hxx"
+#include "overload.hxx"
+#include "execvisitor.hxx"
 #include "handle_properties.hxx"
 #include "context.hxx"
 #include "serializervisitor.hxx"
@@ -53,12 +56,13 @@ static int export_double(int parent, const std::string& name, types::Double* dat
 static int export_string(int parent, const std::string& name, types::String* data);
 static int export_boolean(int parent, const std::string& name, types::Bool* data);
 static int export_list(int parent, const std::string& name, types::List* data);
-static int export_struct(int parent, const std::string& name, types::Struct* data);
+static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type = g_SCILAB_CLASS_STRUCT);
 template <class T> static int export_int(int parent, const std::string& name, int type, const char* prec, T* data);
 static int export_poly(int parent, const std::string& name, types::Polynom* data);
 static int export_sparse(int parent, const std::string& name, types::Sparse* data);
 static int export_cell(int parent, const std::string& name, types::Cell* data);
 static int export_macro(int parent, const std::string& name, types::Macro* data);
+static int export_usertype(int parent, const std::string& name, types::UserType* data);
 
 static int export_boolean_sparse(int parent, const std::string& name, types::SparseBool* data);
 static int export_handles(int parent, const std::string& name, types::GraphicHandle* data);
@@ -66,7 +70,7 @@ static int export_void(int parent, const std::string& name);
 static int export_undefined(int parent, const std::string& name);
 
 /*--------------------------------------------------------------------------*/
-static const std::string fname("export_to_hdf5");
+static const std::string fname("save");
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
@@ -217,8 +221,6 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
 
     //close hdf5 file
     closeHDF5File(iH5File);
-
-    out.push_back(new types::Bool(1));
     return types::Function::OK;
 }
 /*--------------------------------------------------------------------------*/
@@ -324,6 +326,9 @@ int export_data(int parent, const std::string& name, types::InternalType* data)
         case types::InternalType::ScilabHandle:
             dataset = export_handles(parent, name, data->getAs<types::GraphicHandle>());
             break;
+        case types::InternalType::ScilabUserType:
+            dataset = export_usertype(parent, name, data->getAs<types::UserType>());
+            break;
         default:
         {
             break;
@@ -423,10 +428,10 @@ static int export_boolean(int parent, const std::string& name, types::Bool* data
     return writeBooleanMatrix6(parent, name.data(), data->getDims(), data->getDimsArray(), data->get());
 }
 /*--------------------------------------------------------------------------*/
-static int export_struct(int parent, const std::string& name, types::Struct* data)
+static int export_struct(int parent, const std::string& name, types::Struct* data, const char* type)
 {
     //create a group with struct name
-    int dset = openList6(parent, name.data(), g_SCILAB_CLASS_STRUCT);
+    int dset = openList6(parent, name.data(), type);
     //store struct dimensions
     std::vector<int> dims = {1, data->getDims()};
     int ret = writeIntegerMatrix6(dset, "__dims__", H5T_NATIVE_INT32, "32", 2, dims.data(), data->getDimsArray());
@@ -853,4 +858,63 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
 
     closeList6(dset);
     return dset;
+}
+
+static int export_usertype(int parent, const std::string& name, types::UserType* data)
+{
+    types::InternalType* it = data->save();
+    if (it == nullptr)
+    {
+        types::typed_list in;
+        in.push_back(data);
+
+        types::typed_list out;
+        //overload
+        ast::ExecVisitor exec;
+        // rational case
+        std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
+        types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+        if (ret != types::Callable::OK)
+        {
+            return -1;
+        }
+
+        if (out.size() != 1)
+        {
+            for (auto& i : out)
+            {
+                i->killMe();
+            }
+            return -1;
+        }
+
+        it = out[0];
+    }
+
+    if (it->isUserType())
+    {
+        it->killMe();
+        return -1;
+    }
+
+    //create a struct around "usertype" to be able to restore it.
+    types::Struct* str = new types::Struct(1, 1);
+    types::SingleStruct* ss = str->get()[0];
+
+    //add fields
+    ss->addField(L"type");
+    ss->addField(L"data");
+
+    //assign values to new fields
+    ss->set(L"type", new types::String(data->getShortTypeStr().data()));
+    ss->set(L"data", it);
+
+    int ret = export_struct(parent, name, str, g_SCILAB_CLASS_USERTYPE);
+
+    //protect data against delete
+    it->IncreaseRef();
+    delete str;
+    it->DecreaseRef();
+
+    return ret;
 }

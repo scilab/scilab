@@ -59,6 +59,7 @@ GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
     sci_gateway/cpp/sci_listvar_in_hdf5_v2.cpp \
     sci_gateway/cpp/sci_listvar_in_hdf5_v3.cpp \
+    sci_gateway/cpp/sci_hdf5_file_version.cpp \
     sci_gateway/cpp/sci_h5dump.cpp \
     sci_gateway/cpp/sci_h5open.cpp \
     sci_gateway/cpp/sci_h5close.cpp \

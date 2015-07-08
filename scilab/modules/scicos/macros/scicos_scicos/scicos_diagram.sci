@@ -19,7 +19,7 @@
 // See the file ../license.txt
 //
 
-function scs_m=scicos_diagram(v1,v2,v3)
+function scs_m=scicos_diagram(v1,v2,v3,v4)
     if exists("props","local")==0 then props=scicos_params(),end
     if exists("objs","local")==0 then objs=list(),end
     if exists("version","local")==0 then version="",end

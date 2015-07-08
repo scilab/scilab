@@ -1017,7 +1017,7 @@ function %_sodload(%__filename__, varargin)
         end
     end
 
-    if isfile(%__filename__) & is_hdf5_file(%__filename__) then
+    if isfile(%__filename__) & is_hdf5_file(%__filename__) & hdf5_file_version(%__filename__) < 3 then
         %__resumeList__ = %__convertVariable__(%__resumeList__, %__resumeVarlist__);
     end
 

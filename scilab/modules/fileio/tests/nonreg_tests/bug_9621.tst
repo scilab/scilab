@@ -24,6 +24,8 @@ newobj = tlist(["MYTYPE"
 newobj.a = %t;
 newobj.c = 0.05;
 
-refMsg = msprintf(_("List element number 3 is Undefined."));
-
-assert_checkerror("save(""pb.dat"", ""newobj"")", refMsg);
+saved = newobj;
+save("TMPDIR/pb.dat", "newobj");
+clear newobj;
+load("TMPDIR/pb.dat");
+assert_checkequal(newobj, saved);

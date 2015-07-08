@@ -51,9 +51,9 @@ public :
     /*** User will be asked to implement the following methods      ***/
     /*** in order Scilab engine to manage correctly this user type  ***/
 
-    std::wstring    getTypeStr() = 0;
-    std::wstring    getShortTypeStr() = 0;
-    InternalType*   clone() = 0;
+    virtual std::wstring    getTypeStr() = 0;
+    virtual std::wstring    getShortTypeStr() = 0;
+    virtual InternalType*   clone() = 0;
 
 public :
     /*** User can overload these methods                            ***/
@@ -151,6 +151,14 @@ public :
         return NULL;
     }
 
+    //called by save to export your usertype as basic scilab type
+    //if you do not want to overload this function, save will call %yourtype_save overload function
+    virtual InternalType* save()
+    {
+        return nullptr;
+    }
+
+    //load must be done by overload %yourtype_load and must returns a pointer on your UserType
 };
 }
 

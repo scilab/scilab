@@ -212,6 +212,9 @@
     <ClCompile Include="..\cpp\handle_properties.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_file_version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h">

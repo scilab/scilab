@@ -31,6 +31,7 @@
 #include "context.hxx"
 #include "handle_properties.hxx"
 #include "deserializervisitor.hxx"
+#include "execvisitor.hxx"
 
 std::unordered_map<int, Links::PathList> Links::paths;
 
@@ -62,10 +63,10 @@ static types::InternalType* import_struct(int dataset);
 static types::InternalType* import_poly(int dataset);
 static types::InternalType* import_cell(int dataset);
 static types::InternalType* import_handles(int dataset);
-
 static types::InternalType* import_sparse(int dataset);
 static types::InternalType* import_boolean_sparse(int dataset);
 static types::InternalType* import_macro(int dataset);
+static types::InternalType* import_usertype(int dataset);
 
 
 /*--------------------------------------------------------------------------*/
@@ -285,6 +286,12 @@ types::InternalType* import_data(int dataset)
         closeDataSet(dataset);
         return new types::ListUndefined();
     }
+
+    if (type == g_SCILAB_CLASS_USERTYPE)
+    {
+        return import_usertype(dataset);
+    }
+
 
     return nullptr;
 }
@@ -1025,4 +1032,74 @@ static types::InternalType* import_macro(int dataset)
 
     closeList6(dataset);
     return macro;
+}
+
+static types::InternalType* import_usertype(int dataset)
+{
+    types::InternalType* it = import_struct(dataset);
+    if (it == nullptr || it->isStruct() == false)
+    {
+        delete it;
+        return nullptr;
+    }
+
+
+    types::Struct* str = it->getAs<types::Struct>();
+    
+    if(str->isScalar() == false)
+    {
+        delete it;
+        return nullptr;
+    }
+    
+    types::SingleStruct* ss = str->get()[0];
+
+    //extract type from struct
+    types::InternalType* itType  = ss->get(L"type");
+    if (itType == nullptr || itType->getId() != types::InternalType::IdScalarString)
+    {
+        delete it;
+        return nullptr;
+    }
+
+    types::String* s = it->getAs<types::String>();
+    wchar_t* type = s->get()[0];
+
+    types::InternalType* data = ss->get(L"data");
+    if (data == nullptr)
+    {
+        delete it;
+        return nullptr;
+    }
+
+    //call %yourtype_load overload
+    types::typed_list in;
+    in.push_back(data);
+
+    types::typed_list out;
+    //overload
+    ast::ExecVisitor exec;
+    // rational case
+    std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_load";
+    types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+
+    //clean temporary variables
+    delete it; //included type and data
+
+    if (ret != types::Callable::OK)
+    {
+        return nullptr;
+    }
+
+    if (out.size() != 1)
+    {
+        for (auto& i : out)
+        {
+            i->killMe();
+        }
+
+        return nullptr;
+    }
+
+    return out[0];
 }

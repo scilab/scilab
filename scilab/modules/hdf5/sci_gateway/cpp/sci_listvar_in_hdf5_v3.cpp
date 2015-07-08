@@ -67,11 +67,7 @@ static const std::string fname("listvar_in_hdf5");
 
 types::Function::ReturnValue sci_listvar_in_hdf5_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
-    bool verbose = ConfigVariable::getVerbose();
     int rhs = static_cast<int>(in.size());
-
-    bool varnameOnly = (rhs == 1 && verbose == false);
-
     if (rhs != 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): %d expected.\n"), fname.data(), 1);
@@ -122,7 +118,7 @@ types::Function::ReturnValue sci_listvar_in_hdf5_v3(types::typed_list &in, int _
         std::vector<char*> vars(items);
         items = getVariableNames6(iFile, vars.data());
 
-        if (_iRetCount == 1 && verbose)
+        if (_iRetCount == 1)
         {
             sciprint("Name                     Type           Size            Bytes\n");
             sciprint("-------------------------------------------------------------\n");
@@ -132,11 +128,6 @@ types::Function::ReturnValue sci_listvar_in_hdf5_v3(types::typed_list &in, int _
         {
             info[i].name = vars[i];
             info[i].size = 0;
-
-            if (varnameOnly)
-            {
-                continue;
-            }
 
             int dset = getDataSetIdFromName(iFile, vars[i]);
             if (dset == 0)

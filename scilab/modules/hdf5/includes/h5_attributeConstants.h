@@ -43,6 +43,7 @@ static const char g_SCILAB_CLASS_STRUCT[]       = "struct";
 static const char g_SCILAB_CLASS_CELL[]         = "cell";
 static const char g_SCILAB_CLASS_HANDLE[]       = "handle";
 static const char g_SCILAB_CLASS_MACRO[]        = "macro";
+static const char g_SCILAB_CLASS_USERTYPE[]     = "usertype";
 
 //integer precision
 #define SCI_INT8    1
