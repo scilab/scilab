@@ -61,6 +61,28 @@ struct dummy_property
     }
 };
 
+struct wpar
+{
+
+    static types::InternalType* get(const ParamsAdapter& adaptor, const Controller& controller)
+    {
+        types::Double* ret = new types::Double(1, 6);
+        ret->set(0, 600);
+        ret->set(1, 450);
+        ret->set(2, 0);
+        ret->set(3, 0);
+        ret->set(4, 600);
+        ret->set(5, 450);
+        return ret;
+    }
+
+    static bool set(ParamsAdapter& adaptor, types::InternalType* v, Controller& controller)
+    {
+        // The model does not store 'wpar'.
+        return dummy_property::set(adaptor, v, controller);
+    }
+};
+
 struct title
 {
 
@@ -373,7 +395,7 @@ static void initialize_fields()
     if (property<ParamsAdapter>::properties_have_not_been_set())
     {
         property<ParamsAdapter>::fields.reserve(10);
-        property<ParamsAdapter>::add_property(L"wpar", &dummy_property::get, &dummy_property::set);
+        property<ParamsAdapter>::add_property(L"wpar", &wpar::get, &wpar::set);
         property<ParamsAdapter>::add_property(L"title", &title::get, &title::set);
         property<ParamsAdapter>::add_property(L"tol", &tol::get, &tol::set);
         property<ParamsAdapter>::add_property(L"tf", &tf::get, &tf::set);

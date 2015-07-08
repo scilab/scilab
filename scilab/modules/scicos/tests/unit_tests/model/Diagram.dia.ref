@@ -18,7 +18,7 @@ Xcos trace: propertyUpdated( 1 , DIAGRAM , CONTEXT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , DIAGRAM , CHILDREN ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 scs_m  = 
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -30,7 +30,7 @@ void3 = []
 doc = list()
 scs_m.props
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -440,7 +440,7 @@ Xcos trace: propertyUpdated( 29 , LINK , SOURCE_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 29 , LINK , DESTINATION_PORT ) : NO_CHANGES
 Xcos trace: propertyUpdated( 17 , DIAGRAM , VERSION_NUMBER ) : NO_CHANGES
 scs_m  = 
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000

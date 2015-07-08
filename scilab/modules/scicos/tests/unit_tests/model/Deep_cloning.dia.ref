@@ -349,7 +349,7 @@ Xcos trace: propertyUpdated( 14 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 15 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 scs_m.objs(1).model.rpar // Checking 'sb' elements
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -539,7 +539,7 @@ Xcos trace: propertyUpdated( 21 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 22 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 l(1).objs(1).model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -1311,7 +1311,7 @@ Xcos trace: propertyUpdated( 58 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 59 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 scs_m.objs(1).model.rpar // Checking 'sb' elements
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -1612,7 +1612,7 @@ Xcos trace: propertyUpdated( 70 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 71 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 l(1).objs(1).model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -1920,7 +1920,7 @@ Xcos trace: propertyUpdated( 82 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 83 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 l2(1).objs(1).model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -2965,7 +2965,7 @@ Xcos trace: propertyUpdated( 120 , DIAGRAM , CHILDREN ) : SUCCESS
 Xcos trace: propertyUpdated( 121 , BLOCK , PARENT_DIAGRAM ) : SUCCESS
 l(1).objs(1).model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Super Block";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000

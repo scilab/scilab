@@ -434,7 +434,7 @@ evtout = []
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Super Block";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[40,40],[20,20],%t,0,"1",[],0,[],[],[],"",[],"E","","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"input",[],[],1,-1,-2,-1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"IN_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[240,40],[20,20],%t,0,"1",0,[],[],[],[],"","E",[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",-1,-2,-1,[],[],1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"OUT_f",list())),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Super Block";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[40,40],[20,20],%t,0,"1",[],0,[],[],[],"",[],"E","","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"input",[],[],1,-1,-2,-1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"IN_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[240,40],[20,20],%t,0,"1",0,[],[],[],[],"","E",[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",-1,-2,-1,[],[],1,[],[],[],[],list(),[],1,list(),"c",[],[%f,%f],"",0,0,list(),""),"OUT_f",list())),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -454,7 +454,7 @@ sb.doc
 // Access the contained diagram's fields
 sb.model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Super Block";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -468,7 +468,7 @@ doc = list()
 2     OUT_f
 sb.model.rpar.props
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Super Block";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -1660,7 +1660,7 @@ evtout = 1
 state = []
 dstate = []
 odstate = list()
-rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[399,162],[20,20],%t,0,"1",[],[],5,[],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",[],[],1,[],[],1,1,[],[],[],list(),[],1,list(),"d",[],[%f,%f],"",0,0,list(),""),"CLKOUT_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[320,232],[40,40],%t,0,["0.1";"0.1"],[],[],6,3,[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],list("evtdly4",4),[],[],1,[],[],1,1,1,[],[],list(),[0.1;0.1],[],list(),"d",0.1,[%f,%f],"",0,0,list(),""),"EVTDLY_c",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[340;340;380.71],[226.29;172;172],"",[0,0],[5,-1],[2,1,0],[4,1,1]),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[380.71066,172],[0.3333333,0.3333333],%t,0,[],[],[],3,[5;6],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"split",[],[],1,[],[],1,1,[1;1],[],[],list(),[],[],list(),"d",[0;0],[%f,%f],"",0,0,list(),""),"CLKSPLIT_f",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;399],[172;172],"",[0,0],[5,-1],[4,1,0],[1,1,1]),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;380.71;340;340],[172;302;302;277.71],"",[0,0],[5,-1],[4,2,0],[2,1,1])),"",list())
+rpar = mlist(["diagram","props","objs","version","contrib"],tlist(["params","wpar","title","tol","tf","context","void1","options","void2","void3","doc"],[600,450,0,0,600,450],["Untitled";""],[0.000001,0.000001,1.000D-10,100001,0,1,0],100000,[],[],tlist(["scsopt","3D","Background","Link","ID","Cmap"],list(%t,33),[8,1],[1,5],list([4,1,10,1],[4,1,2,1]),[0.8,0.8,0.8]),[],[],list()),list(mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[399,162],[20,20],%t,0,"1",[],[],5,[],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"output",[],[],1,[],[],1,1,[],[],[],list(),[],1,list(),"d",[],[%f,%f],"",0,0,list(),""),"CLKOUT_f",list()),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[320,232],[40,40],%t,0,["0.1";"0.1"],[],[],6,3,[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],list("evtdly4",4),[],[],1,[],[],1,1,1,[],[],list(),[0.1;0.1],[],list(),"d",0.1,[%f,%f],"",0,0,list(),""),"EVTDLY_c",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[340;340;380.71],[226.29;172;172],"",[0,0],[5,-1],[2,1,0],[4,1,1]),mlist(["Block","graphics","model","gui","doc"],mlist(["graphics","orig","sz","flip","theta","exprs","pin","pout","pein","peout","gr_i","id","in_implicit","out_implicit","in_style","out_style","in_label","out_label","style"],[380.71066,172],[0.3333333,0.3333333],%t,0,[],[],[],3,[5;6],[],"",[],[],"","","","",""),mlist(["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state","dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label","nzcross","nmode","equations","uid"],"split",[],[],1,[],[],1,1,[1;1],[],[],list(),[],[],list(),"d",[0;0],[%f,%f],"",0,0,list(),""),"CLKSPLIT_f",list()),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;399],[172;172],"",[0,0],[5,-1],[4,1,0],[1,1,1]),mlist(["Link","xx","yy","id","thick","ct","from","to"],[380.71;380.71;340;340],[172;302;302;277.71],"",[0,0],[5,-1],[4,2,0],[2,1,1])),"",list())
 ipar = []
 opar = list()
 blocktype = "h"
@@ -1673,7 +1673,7 @@ equations = list()
 uid = ""
 clk.model.rpar
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
@@ -1688,7 +1688,7 @@ doc = list()
 3     CLKSPLIT_f
 clk.model.rpar.props
  ans  =
-wpar = []
+wpar = [600,450,0,0,600,450]
 title = ["Untitled";""]
 tol = [0.000001,0.000001,1.000D-10,100001,0,1,0]
 tf = 100000
