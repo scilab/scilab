@@ -211,13 +211,11 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_host.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_load.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_unix.cpp" />
-    <ClCompile Include="loadlib.cpp" />
     <ClCompile Include="readwrite.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io_gw.h" />
     <ClInclude Include="..\..\includes\io_gw.hxx" />
-    <ClInclude Include="loadlib.hxx" />
     <ClInclude Include="readwrite.hxx" />
   </ItemGroup>
   <ItemGroup>

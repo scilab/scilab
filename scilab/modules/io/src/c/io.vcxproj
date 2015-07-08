@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../../libs/intl;../../../ast/includes/operations;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../dynamic_link/includes;../../../ast/includes/operations;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;IO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -109,7 +109,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../../libs/intl;../../../ast/includes/operations;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../dynamic_link/includes;../../../ast/includes/operations;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;IO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -136,7 +136,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../../libs/intl;../../../ast/includes/operations;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../dynamic_link/includes;../../../ast/includes/operations;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;IO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -170,7 +170,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../../libs/intl;../../../ast/includes/operations;../../../string/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/intl;../../../../libs/libxml2;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../windows_tools/src/c/scilab_windows;../../../dynamic_link/includes;../../../ast/includes/operations;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/symbol;../../../ast/includes/system_env;../../../ast/includes/parse;../../../threads/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;IO_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -198,6 +198,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\loadlib.cpp" />
     <ClCompile Include="DllmainIo.c" />
     <ClCompile Include="getenvc.c" />
     <ClCompile Include="getpidc.c" />
@@ -208,6 +209,7 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_io.h" />
     <ClInclude Include="..\..\includes\getenvc.h" />
+    <ClInclude Include="..\..\includes\loadlib.hxx" />
     <ClInclude Include="getpidc.h" />
     <ClInclude Include="..\..\includes\gw_io.h" />
     <ClInclude Include="..\..\includes\setenvc.h" />
@@ -235,6 +237,9 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
@@ -247,6 +252,9 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\libxml2.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

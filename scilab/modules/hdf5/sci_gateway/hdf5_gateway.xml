@@ -22,6 +22,7 @@
     <gateway name="sci_export_to_hdf5"                  function="export_to_hdf5"           type="1" />
     <gateway name="sci_export_to_hdf5"                  function="save"                     type="1" />
     <gateway name="sci_import_from_hdf5"                function="import_from_hdf5"         type="1" />
+    <gateway name="sci_import_from_hdf5"                function="load"                     type="1" />
     <gateway name="sci_import_from_hdf5_v1"             function="import_from_hdf5_v1"      type="0" />
     <gateway name="sci_import_from_hdf5_v2"             function="import_from_hdf5_v2"      type="0" />
     <gateway name="sci_import_from_hdf5_v3"             function="import_from_hdf5_v3"      type="1" />

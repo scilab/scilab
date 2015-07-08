@@ -29,7 +29,7 @@ extern "C"
 
 static char *GetXmlFileEncoding(std::string _filename);
 
-types::Library* loadlib(std::wstring _wstXML, int* err, bool _isFile, bool _bAddInContext)
+types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, bool _bAddInContext)
 {
     types::Library* lib = NULL;
 

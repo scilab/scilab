@@ -194,9 +194,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\sci_import_from_hdf5_v1.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -213,6 +210,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_file_version.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5_v1.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

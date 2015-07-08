@@ -121,6 +121,7 @@ int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
         }
     }
 
+    std::vector<wchar_t*> varList;
     if (iSelectedVar)
     {
         //selected variable
@@ -152,6 +153,7 @@ int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
                 break;
             }
 
+            varList.push_back(to_wide_string(pstVarName));
             FREE(pstVarName);
             pstVarName = NULL;
         }
@@ -175,6 +177,8 @@ int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
                     bImport = false;
                     break;
                 }
+
+                varList.push_back(to_wide_string(pstVarNameList[i]));
             }
 
             freeArrayOfString(pstVarNameList, iNbItem);
@@ -183,22 +187,18 @@ int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
     //close the file
     closeHDF5File(iFile);
 
-    int *piReturn = NULL;
-
-    sciErr = allocMatrixOfBoolean(pvApiCtx, nbIn + 1, 1, 1, &piReturn);
-    if (sciErr.iErr)
+    if (bImport == true && varList.size() != 0)
     {
-        printError(&sciErr, 0);
-        return 1;
-    }
-
-    if (bImport == true)
-    {
-        piReturn[0] = 1;
+        createMatrixOfWideString(pvApiCtx, nbIn + 1, 1, static_cast<int>(varList.size()), varList.data());
     }
     else
     {
-        piReturn[0] = 0;
+        createEmptyMatrix(pvApiCtx, nbIn + 1);
+    }
+
+    for (auto& i : varList)
+    {
+        FREE(i);
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbIn + 1;

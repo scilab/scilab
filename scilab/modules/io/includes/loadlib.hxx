@@ -13,8 +13,9 @@
 #ifndef __LOADLIB_H__
 #define __LOADLIB_H__
 
+#include "dynlib_io.h"
 #include "library.hxx"
 
-types::Library* loadlib(std::wstring _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
+IO_IMPEXP types::Library* loadlib(const std::wstring& _wstXML, int* ierr, bool _isFile = true, bool _bAddInContext = true);
 
 #endif /* !__LOADLIB_H__ */

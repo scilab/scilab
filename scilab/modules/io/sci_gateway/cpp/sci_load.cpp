@@ -19,7 +19,6 @@
 #include "library.hxx"
 #include "loadlib.hxx"
 
-
 extern "C"
 {
 #include "sci_malloc.h"

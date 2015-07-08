@@ -63,9 +63,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_lib.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="loadlib.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_write.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -81,9 +78,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\io_gw.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="loadlib.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="readwrite.hxx">
