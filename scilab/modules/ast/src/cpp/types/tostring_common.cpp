@@ -286,9 +286,9 @@ void addDoubleValue(std::wostringstream * _postr, double _dblVal, DoubleFormat *
             os_swprintf(pwstFormat, 32, L"%ls%%d%%0%ddD%%+.02d", pwstSign, _pDF->iPrec);
         }
 
-        if ((int)std::round(dblDec) != (int)dblDec)
+        if ((int)round(dblDec) != (int)dblDec)
         {
-            double d1 = (int)std::round(dblDec);
+            double d1 = (int)round(dblDec);
             d1 = fmod(d1, pow(10., _pDF->iPrec));
             if (d1 < dblDec)
             {
