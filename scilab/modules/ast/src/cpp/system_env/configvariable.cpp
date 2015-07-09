@@ -1262,8 +1262,13 @@ void ConfigVariable::fillWhereError(int _iErrorLine)
 {
     if (m_WhereError.empty())
     {
-        // +1 because the first line of the funtionDec "function func()" is the line 1.
-        int iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        int iTmp = 0;
+        if (_iErrorLine != 0)
+        {
+            // +1 because the first line of the funtionDec "function func()" is the line 1.
+            iTmp = _iErrorLine - getMacroFirstLines() + 1;
+        }
+
         m_WhereError.reserve(m_Where.size());
         for (auto where = m_Where.rbegin(); where != m_Where.rend(); ++where)
         {
