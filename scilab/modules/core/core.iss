@@ -45,16 +45,7 @@ Source: modules\{#CORE}\includes\sci_malloc.h; DestDir: {app}\modules\{#CORE}\in
 Source: modules\{#CORE}\includes\PATH_MAX.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scisparse.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\scilabDefaults.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack1.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack2.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack3.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack-c.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack-optional.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\sci_types.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack-def.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stack.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stackinfo.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
-Source: modules\{#CORE}\includes\stackTypeVariable.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\version.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\win_mem_alloc.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
 Source: modules\{#CORE}\includes\getversion.h; DestDir: {app}\modules\{#CORE}\includes; Components: {#COMPN_SCILAB}
