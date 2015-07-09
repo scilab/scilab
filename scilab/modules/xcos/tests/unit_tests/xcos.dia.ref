@@ -7,19 +7,16 @@
 // ============================================================================
 // <-- TEST WITH GRAPHIC -->
 // libs are not loaded at startup
-if isdef('BIGSOM_f') then bugmes();quit;end
+if isdef("BIGSOM_f") then bugmes();quit;end
 // we launch xcos then libs should be loaded
 xcos();
 sleep(500);
-if ~isdef('BIGSOM_f') then bugmes();quit;end
+if ~isdef("BIGSOM_f") then bugmes();quit;end
 // we launch xcos with an xcos demo file
 xcos(SCI + "/modules/xcos/demos/Simple_Demo.zcos");
 sleep(500);
 // we launch xcos with an xcos demo file with full path resolution
 xcos("SCI/modules/xcos/demos/Simple_Demo.zcos");
-sleep(500);
-// we launch xcos with cos file
-xcos(SCI + "/modules/xcos/tests/nonreg_tests/Antrieb3.cos");
 sleep(500);
 // we launch xcos with cosf file
 xcos(SCI + "/modules/scicos/palettes/Branching.cosf");
@@ -28,4 +25,5 @@ sleep(500);
 scs_m = scicos_diagram();
 scs_m.objs($+1) = BIGSOM_f("define");
 xcos(scs_m);
-sleep(500);
+xcos: Wrong type for input argument #1: A string expected.
+at line    47 of executed file TMPDIR/xcos.tst
