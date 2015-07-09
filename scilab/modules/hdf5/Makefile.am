@@ -50,15 +50,15 @@ HDF5_CXX_SOURCES = \
 
 GATEWAY_CXX_SOURCES = \
     sci_gateway/cpp/hdf5_gw.cpp \
-    sci_gateway/cpp/sci_export_to_hdf5.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5_v2.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5_v3.cpp \
-    sci_gateway/cpp/sci_is_hdf5_file.cpp \
-    sci_gateway/cpp/sci_listvar_in_hdf5.cpp \
-    sci_gateway/cpp/sci_import_from_hdf5_v1.cpp \
-    sci_gateway/cpp/sci_listvar_in_hdf5_v2.cpp \
-    sci_gateway/cpp/sci_listvar_in_hdf5_v3.cpp \
+    sci_gateway/cpp/sci_hdf5_save.cpp \
+    sci_gateway/cpp/sci_hdf5_load.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v1.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v2.cpp \
+    sci_gateway/cpp/sci_hdf5_load_v3.cpp \
+    sci_gateway/cpp/sci_hdf5_is_file.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar_v2.cpp \
+    sci_gateway/cpp/sci_hdf5_listvar_v3.cpp \
     sci_gateway/cpp/sci_hdf5_file_version.cpp \
     sci_gateway/cpp/sci_h5dump.cpp \
     sci_gateway/cpp/sci_h5open.cpp \

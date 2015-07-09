@@ -30,9 +30,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_host.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_load.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_unix.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>

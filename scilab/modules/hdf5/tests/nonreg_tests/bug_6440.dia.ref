@@ -25,14 +25,14 @@ A = [1 2 3];
 B = [4 5 6];
 data = [A B];
 c1 = pwd();
-ierr = execstr("export_to_hdf5(dataFile, ''data'');","errcatch");
+ierr = execstr("save(dataFile, ''data'');","errcatch");
 c2 = pwd();
 if ierr <> 0 then bugmes();quit;end
 if c1 <> c2 then bugmes();quit;end
 if ~isfile(dataFile) then bugmes();quit;end
 clear data;
 c3 = pwd();
-ierr = execstr("import_from_hdf5(dataFile);","errcatch");
+ierr = execstr("load(dataFile);","errcatch");
 c4 = pwd();
 if ierr <> 0 then bugmes();quit;end
 if c3 <> c4 then bugmes();quit;end

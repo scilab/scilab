@@ -458,7 +458,6 @@ exists
 exp
 expm
 exportUI
-export_to_hdf5
 eye
 fadj2sp
 fec
@@ -581,7 +580,6 @@ ieee
 ilib_verbose
 imag
 impl
-import_from_hdf5
 imult
 inpnvi
 int

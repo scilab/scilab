@@ -13,9 +13,15 @@
 // <-- Short Description -->
 //  API was unable to retrieve named variable address 
 //  when variable name is passed in argument of function
-function myExport(data, filepath)
-    export_to_hdf5(filepath, "data");
+function result = myExport(data, filepath)
+    result = %t
+    try
+        save(filepath, "data");
+    catch
+        retult = %f;
+    end
 endfunction
 myData = "blam";
 myFile = TMPDIR + "/myFile.sod";
-myExport(myData, myFile); // Should not produce any error
+if ~myExport(myData, myFile) then bugmes();quit;end
+

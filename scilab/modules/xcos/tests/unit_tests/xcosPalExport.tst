@@ -27,6 +27,6 @@ savedPal = pal;
 assert_checktrue(xcosPalExport(pal, path));
 
 clear pal;
-import_from_hdf5(path);
+load(path);
 assert_checktrue(and(savedPal == pal));
 

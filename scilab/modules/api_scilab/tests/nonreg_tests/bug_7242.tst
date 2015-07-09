@@ -16,8 +16,13 @@
 //  API was unable to retrieve named variable address
 //  when variable name is passed in argument of function
 
-function myExport(data, filepath)
-    export_to_hdf5(filepath, "data");
+function result = myExport(data, filepath)
+    result = %t
+    try
+        save(filepath, "data");
+    catch
+        retult = %f;
+    end
 endfunction
 
 myData = "blam";

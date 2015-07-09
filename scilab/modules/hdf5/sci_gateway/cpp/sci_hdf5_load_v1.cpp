@@ -53,9 +53,9 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
 static bool import_void_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
-static const std::string fname("import_from_hdf5");
+static const std::string fname("load");
 
-int sci_import_from_hdf5_v1(char *fn, int* pvApiCtx)
+int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -269,7 +269,7 @@ static bool import_data_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
         }
         default:
         {
-            Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
+            Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), fname.data());
 #ifdef PRINT_DEBUG
             {
                 char pstMsg[512];

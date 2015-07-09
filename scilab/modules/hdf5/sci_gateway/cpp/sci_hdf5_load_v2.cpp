@@ -34,7 +34,7 @@ extern "C"
 #include "freeArrayOfString.h"
 }
 
-#include "import_from_hdf5_v1.hxx"
+#include "hdf5_load_v1.hxx"
 
 static bool import_variable(int* pvCtx, int _iFile, char* _pstVarName);
 static bool import_data(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
@@ -52,9 +52,9 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
 static bool import_void(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 static bool import_undefined(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddress, char *_pstVarname);
 
-static const std::string fname("import_from_hdf5");
+static const std::string fname("load");
 
-int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
+int sci_hdf5_load_v2(char *fn, int* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -115,8 +115,7 @@ int sci_import_from_hdf5_v2(char *fn, int* pvApiCtx)
             //call older import functions and exit or ... EXIT !
             if (iVersion == 1 || iVersion == -1)
             {
-                //sciprint("old sci_import_from_hdf5_v1\n");
-                return sci_import_from_hdf5_v1(fn, pvApiCtx);
+                return sci_hdf5_load_v1(fn, pvApiCtx);
             }
         }
     }
@@ -294,7 +293,7 @@ static bool import_data(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAddr
         }
         default:
         {
-            Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), "import_from_hdf5");
+            Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), fname.data());
         }
     }
     return bRet;

@@ -21,7 +21,7 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
     //-- end
 
     // This will create a scs_m variable.
-    status = import_from_hdf5(hdf5FileToLoad);
+    status = load(hdf5FileToLoad);
     if ~status then
         error(msprintf(gettext("%s: Unable to import data from %s"), "xcosCodeGeneration", hdf5FileToLoad));
     end
@@ -35,8 +35,9 @@ function xcosCodeGeneration(hdf5FileToLoad, hdf5FileToSave)
     end
 
     if ok then
-        status = export_to_hdf5(hdf5FileToSave, "XX");
-        if ~status then
+        try
+            save(hdf5FileToSave, "XX");
+        catch
             error(msprintf(gettext("%s: Unable to export ''XX'' to %s"), "xcosCodeGeneration", hdf5FileToSave));
         end
     else

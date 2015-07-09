@@ -19,7 +19,7 @@ function %diagram_xcos(scs_m)
         tempfile = TMPDIR + filesep() + "xcos_scs_m_" + string(k) + ".h5";
     end
 
-    export_to_hdf5(tempfile, "scs_m");
+    save(tempfile, "scs_m");
 
     xcos(tempfile);
 

@@ -23,8 +23,6 @@ using namespace types;
 
 int IoModule::Load()
 {
-    symbol::Context::getInstance()->addFunction(Function::createFunction(L"load", &sci_load, MODULE_NAME));
-    //symbol::Context::getInstance()->addFunction(Function::createFunction(L"save", &sci_save, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"genlib", &sci_genlib, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"file", &sci_file, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(Function::createFunction(L"host", &sci_host, MODULE_NAME));

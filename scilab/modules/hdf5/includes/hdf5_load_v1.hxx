@@ -10,4 +10,4 @@
 *
 */
 
-int sci_import_from_hdf5_v1(char *fname, int* pvCtx);
+int sci_hdf5_load_v1(char *fname, int* pvCtx);

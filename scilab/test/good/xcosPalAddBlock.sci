@@ -39,9 +39,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     //  bigSomPath = TMPDIR + "/sum.h5";
     //
     //  scs_m = SUM_f("define");
-    //  export_to_hdf5(sumPath, "scs_m");
+    //  save(sumPath, "scs_m");
     //  scs_m = BIGSOM_f("define");
-    //  export_to_hdf5(bigSomPath, "scs_m");
+    //  save(bigSomPath, "scs_m");
     //
     //  pal = xcosPalAddBlock(pal, sumPath);
     //  pal = xcosPalAddBlock(pal, bigSomPath);
@@ -75,8 +75,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     if typeof(block) == "Block" then
         path = TMPDIR + "/" + block.gui + ".h5";
         scs_m = block;
-        err = export_to_hdf5(path, "scs_m");
-        if err <> %T then
+        try
+            save(path, "scs_m");
+        catch
             error(msprintf(gettext("%s: Unable to export ""%s"" to ""%s"".\n"), "xcosPalAddBlock", "block", path));
         end
 
@@ -87,8 +88,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         if exists(block) <> 0 & typeof(evstr(block)) == "function" then
             execstr("scs_m = " + block + "(""define"");");
             path = TMPDIR + "/" + block + ".h5";
-            err = export_to_hdf5(path, "scs_m");
-            if err <> %T then
+            try
+                save(path, "scs_m");
+            catch
                 error(msprintf(gettext("%s: Unable to export ""%s"" to ""%s"".\n"), "xcosPalAddBlock", "block", path));
             end
 
@@ -104,7 +106,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
 
             // store the block instance if not already saved
             if exists("scs_m", "l") == 0 then
-                status = import_from_hdf5(block);
+                status = load(block);
                 if ~status then
                     error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
                 end
@@ -174,6 +176,7 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
                 //              assume a well formatted string, do nothing
             end
         end
+
     end
 
     // Store the data into the palette structure

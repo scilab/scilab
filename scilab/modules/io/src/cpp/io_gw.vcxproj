@@ -209,7 +209,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_file.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_genlib.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_host.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_load.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_unix.cpp" />
     <ClCompile Include="readwrite.cpp" />
   </ItemGroup>

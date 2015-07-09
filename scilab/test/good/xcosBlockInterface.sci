@@ -19,7 +19,7 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
     alreadyran = %f;
 
     // define context
-    import_from_hdf5(hdf5ContextFile);
+    load(hdf5ContextFile);
     %scicos_context = struct();
     [%scicos_context, ierr] = script2var(context, %scicos_context)
 
@@ -35,8 +35,9 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
     end
     //end of for backward compatibility for scifunc
 
-    status = import_from_hdf5(hdf5FileToLoad);
-    if ~status then
+    try
+        load(hdf5FileToLoad);
+    catch
         error(msprintf(gettext("%s: Unable to import data from %s"), "xcosBlockInterface", hdf5FileToLoad));
     end
 
@@ -44,7 +45,7 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
     if ierr <> 0 then
         [msg, err] = lasterror();
         disp(msg);
-        export_to_hdf5(hdf5FileToSave, "scs_m");
+        save(hdf5FileToSave, "scs_m");
         return;
     end
 
@@ -53,7 +54,7 @@ function xcosBlockInterface(hdf5FileToLoad, hdf5FileToSave, ...
     // no file creation).
     updated = and([needcompile == 0, and(new_scs_m == scs_m)]) <> %t;
     if updated then
-        export_to_hdf5(hdf5FileToSave, "new_scs_m");
+        save(hdf5FileToSave, "new_scs_m");
     else
         deletefile(hdf5FileToSave);
     end

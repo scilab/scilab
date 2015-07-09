@@ -70,9 +70,9 @@ static types::InternalType* import_usertype(int dataset);
 
 
 /*--------------------------------------------------------------------------*/
-static const std::string fname("import_from_hdf5");
+static const std::string fname("load");
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_import_from_hdf5_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     std::string filename;
     int rhs = static_cast<int>(in.size());
@@ -106,21 +106,9 @@ types::Function::ReturnValue sci_import_from_hdf5_v3(types::typed_list &in, int 
     int iVersion = getSODFormatAttribute(iFile);
     if (iVersion != SOD_FILE_VERSION)
     {
-        if (iVersion > SOD_FILE_VERSION)
-        {
-            //can't read file with version newer that me !
-            Scierror(999, _("%s: Wrong SOD file format version. Max Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
-            return types::Function::Error;
-        }
-        else
-        {
-            //call older import functions and exit or ... EXIT !
-            if (iVersion == 1 || iVersion == -1)
-            {
-                //sciprint("old sci_import_from_hdf5_v1\n");
-                //return sci_import_from_hdf5_v1(fname, pvApiCtx);
-            }
-        }
+        //can't read file with version newer that me !
+        Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
+        return types::Function::Error;
     }
 
     if (rhs > 1)
@@ -1045,13 +1033,13 @@ static types::InternalType* import_usertype(int dataset)
 
 
     types::Struct* str = it->getAs<types::Struct>();
-    
-    if(str->isScalar() == false)
+
+    if (str->isScalar() == false)
     {
         delete it;
         return nullptr;
     }
-    
+
     types::SingleStruct* ss = str->get()[0];
 
     //extract type from struct

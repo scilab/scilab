@@ -203,7 +203,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\..\sci_gateway\cpp\hdf5_gw.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_export_to_hdf5.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_save.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5attr.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5close.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5cp.cpp" />
@@ -226,13 +226,13 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5umount.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_h5write.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_file_version.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5_v1.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5_v3.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_is_hdf5_file.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5_v2.cpp" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_listvar_in_hdf5_v3.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v1.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v3.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_is_file.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar_v2.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_listvar_v3.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_e.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_fieldnames.cpp" />
     <ClCompile Include="..\..\sci_gateway\cpp\sci_percent_H5Object_p.cpp" />
@@ -265,19 +265,19 @@
     <ClCompile Include="h5_readDataFromFile.c" />
     <ClCompile Include="h5_readDataFromFile_v1.c" />
     <ClCompile Include="h5_writeDataToFile.c" />
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_import_from_hdf5_v2.cpp" />
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_hdf5_load_v2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_hdf5_scilab.h" />
     <ClInclude Include="..\..\includes\h5_readDataFromFile_v1.h" />
     <ClInclude Include="..\..\includes\HDF5Objects.h" />
     <ClInclude Include="..\..\includes\hdf5_gw.hxx" />
-    <ClInclude Include="..\..\includes\import_from_hdf5_v1.hxx" />
     <ClInclude Include="..\..\includes\gw_hdf5.h" />
     <ClInclude Include="..\..\includes\h5_attributeConstants.h" />
     <ClInclude Include="..\..\includes\h5_fileManagement.h" />
     <ClInclude Include="..\..\includes\h5_readDataFromFile.h" />
     <ClInclude Include="..\..\includes\h5_writeDataToFile.h" />
+    <ClInclude Include="..\..\includes\hdf5_load_v1.hxx" />
     <ClInclude Include="..\..\includes\listvar_in_hdf5_v1.hxx" />
     <ClInclude Include="..\cpp\H5ArrayData.hxx" />
     <ClInclude Include="..\cpp\H5Attribute.hxx" />

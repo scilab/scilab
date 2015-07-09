@@ -30,9 +30,9 @@ extern "C"
 #include "h5_readDataFromFile.h"
 }
 
-static const std::string fname("import_from_hdf5");
+static const std::string fname("load");
 
-Function::ReturnValue sci_import_from_hdf5(typed_list &in, int _iRetCount, typed_list& out)
+Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& out)
 {
     int rhs = static_cast<int>(in.size());
     if (rhs < 1)
@@ -101,19 +101,19 @@ Function::ReturnValue sci_import_from_hdf5(typed_list &in, int _iRetCount, typed
         case -1:
         case 1:
         {
-            wstFuncName = L"import_from_hdf5_v1";
+            wstFuncName = L"hdf5_load_v1";
             needReprocess = true;
             break;
         }
         case 2:
         {
-            wstFuncName = L"import_from_hdf5_v2";
+            wstFuncName = L"hdf5_load_v2";
             needReprocess = true;
             break;
         }
         case 3:
         {
-            wstFuncName = L"import_from_hdf5_v3";
+            wstFuncName = L"hdf5_load_v3";
             break;
         }
         default :
@@ -143,15 +143,8 @@ Function::ReturnValue sci_import_from_hdf5(typed_list &in, int _iRetCount, typed
         typed_list in2(1, vars);
         typed_list out2;
         std::wstring wstFuncName = L"%_sodload";
-        Callable::ReturnValue Ret = Callable::Error;
-        Ret = Overload::call(wstFuncName, in2, _iRetCount, out2, &exec);
+        ret = Overload::call(wstFuncName, in2, size, out2, &exec);
         vars->DecreaseRef();
-
-        if (out2.size() != size)
-        {
-            Scierror(999, _("%s: Unable to load '%s'\n"), fname.data(), filename.data());
-            return Function::Error;
-        }
 
         symbol::Context* ctx = symbol::Context::getInstance();
         wchar_t** names = vars->get();

@@ -27,9 +27,9 @@ extern "C"
 #include "h5_readDataFromFile.h"
 }
 
-static const std::string fname("listvar_in_hdf5");
+static const std::string fname("hdf5_listvar");
 
-types::Function::ReturnValue sci_listvar_in_hdf5(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_hdf5_listvar(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int rhs = static_cast<int>(in.size());
     if (rhs < 1)
@@ -67,12 +67,12 @@ types::Function::ReturnValue sci_listvar_in_hdf5(types::typed_list &in, int _iRe
         case 1:
         case 2:
         {
-            wstFuncName = L"listvar_in_hdf5_v2";
+            wstFuncName = L"hdf5_listvar_v2";
             break;
         }
         case 3:
         {
-            wstFuncName = L"listvar_in_hdf5_v3";
+            wstFuncName = L"hdf5_listvar_v3";
             break;
         }
         default:

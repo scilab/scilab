@@ -63,9 +63,9 @@ static bool read_handles(int dataset, VarInfo6& info);
 static void generateInfo(VarInfo6& info);
 static int getDimsNode(int dataset, int* complex, std::vector<int>& dims);
 
-static const std::string fname("listvar_in_hdf5");
+static const std::string fname("hdf5_listvar");
 
-types::Function::ReturnValue sci_listvar_in_hdf5_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int rhs = static_cast<int>(in.size());
     if (rhs != 1)
@@ -290,6 +290,18 @@ static bool read_short_data(int dataset, VarInfo6& info)
     else if (type == g_SCILAB_CLASS_CELL)
     {
         info.type = sci_mlist;
+    }
+    else if (type == g_SCILAB_CLASS_HANDLE)
+    {
+        info.type = sci_handles;
+    }
+    else if (type == g_SCILAB_CLASS_MACRO)
+    {
+        info.type = sci_c_function;
+    }
+    else if (type == g_SCILAB_CLASS_USERTYPE)
+    {
+        info.type = sci_pointer;
     }
     else
     {

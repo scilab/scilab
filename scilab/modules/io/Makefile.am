@@ -28,7 +28,6 @@ GATEWAY_C_SOURCES = \
 
 GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_genlib.cpp \
-    sci_gateway/cpp/sci_load.cpp \
     sci_gateway/cpp/sci_file.cpp \
     sci_gateway/cpp/sci_host.cpp \
     sci_gateway/cpp/sci_unix.cpp \

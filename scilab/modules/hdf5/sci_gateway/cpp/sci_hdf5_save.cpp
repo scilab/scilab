@@ -72,7 +72,7 @@ static int export_undefined(int parent, const std::string& name);
 /*--------------------------------------------------------------------------*/
 static const std::string fname("save");
 /*--------------------------------------------------------------------------*/
-types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRetCount, types::typed_list &out)
+types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     int iH5File = 0;
     bool bAppendMode = false;
@@ -139,6 +139,17 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
         {
             iH5File = createHDF5File(filename.data());
         }
+        else
+        {
+            int iVersion = getSODFormatAttribute(iH5File);
+            if (iVersion != SOD_FILE_VERSION)
+            {
+                //to update version must be the same
+                closeHDF5File(iH5File);
+                Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
+                return types::Function::Error;
+            }
+        }
     }
     else
     {
@@ -158,18 +169,6 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
         }
 
         return types::Function::Error;
-    }
-
-    if (bAppendMode)
-    {
-        int iVersion = getSODFormatAttribute(iH5File);
-        if (iVersion != SOD_FILE_VERSION)
-        {
-            //to update version must be the same
-            closeHDF5File(iH5File);
-            Scierror(999, _("%s: Wrong SOD file format version. Expected: %d Found: %d\n"), fname.data(), SOD_FILE_VERSION, iVersion);
-            return types::Function::Error;
-        }
     }
 
     // export data
@@ -227,12 +226,12 @@ types::Function::ReturnValue sci_export_to_hdf5(types::typed_list &in, int _iRet
 static bool isVarExist(int _iFile, const char* _pstVarName)
 {
     //check if variable already exists
-    int iNbItem = getVariableNames(_iFile, NULL);
+    int iNbItem = getVariableNames6(_iFile, NULL);
     if (iNbItem)
     {
         char **pstVarNameList = (char **)MALLOC(sizeof(char *) * iNbItem);
 
-        iNbItem = getVariableNames(_iFile, pstVarNameList);
+        iNbItem = getVariableNames6(_iFile, pstVarNameList);
 
         //import all data
         for (int i = 0; i < iNbItem; i++)
@@ -873,22 +872,33 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
         ast::ExecVisitor exec;
         // rational case
         std::wstring wstFuncName = L"%" + data->getShortTypeStr() + L"_save";
-        types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
-        if (ret != types::Callable::OK)
-        {
-            return -1;
-        }
 
-        if (out.size() != 1)
+        try
         {
-            for (auto& i : out)
+            types::Callable::ReturnValue ret = Overload::call(wstFuncName, in, 1, out, &exec);
+
+            if (ret != types::Callable::OK)
             {
-                i->killMe();
+                return -1;
             }
+
+            if (out.size() != 1)
+            {
+                for (auto& i : out)
+                {
+                    i->killMe();
+                }
+                return -1;
+            }
+
+            it = out[0];
+        }
+        catch (ast::ScilabError& /*se*/)
+        {
+            //overload does not exist
             return -1;
         }
 
-        it = out[0];
     }
 
     if (it->isUserType())

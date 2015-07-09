@@ -5,26 +5,29 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 //
+
 // check function
 clear "checkValue";
 function checkValue(value)
     clear "varName";
     varName = value;
-    fileName = TMPDIR + "/exportImportHdf5.sod";
+    fileName = TMPDIR + "/saveloadHdf5.sod";
     // export to hdf5
     oldVarName = varName;
-    assert_checkequal(export_to_hdf5(fileName, "varName"), %t);
+    assert_checkequal(save(fileName, "varName"), %t);
     // check that the "varName" has not been modified by export
     assert_checkequal(oldVarName, varName);
     // reset ref value
     clear "varName" "oldVarName";
     assert_checkequal(exists("varName"), 0);
     // import from hdf5
-    assert_checkequal(import_from_hdf5(fileName), %t);
+    assert_checkequal(load(fileName), %t);
     assert_checkequal(varName, value);
 endfunction
+
 //// Empty matrix
 checkValue([]);
+
 //// Double
 // scalar
 checkValue(77);
@@ -33,6 +36,7 @@ checkValue([1, 2, 3, 4, 5]);
 checkValue([1; 2; 3; 4; 5]);
 // matrix
 checkValue([1, 2, 3; 4, 5, 6]);
+
 //// Double complex
 // scalar
 checkValue(1 + %i*2);
@@ -41,6 +45,7 @@ checkValue([1 + %i, 2 + %i, 3 + %i*2, 4 + %i*3, 5 + %i*4]);
 checkValue([1 + %i; 2 + %i; 3 + %i*2; 4 + %i*3; 5 + %i*4]);
 // matrix
 checkValue([1 + %i, 2 + %i, 3 + %i*2; 4 + %i*3, 5 + %i*4, 6 + %i]);
+
 //// String
 // single
 checkValue("Single String");
@@ -49,6 +54,7 @@ checkValue(["a", "b", "c"]);
 checkValue(["a"; "b"; "c"]);
 // matrix
 checkValue(["a", "b", "c"; "d", "e", "f"]);
+
 //// Polynomials
 s = poly(0, "s");
 // single
@@ -58,6 +64,7 @@ checkValue([s, s^2, 1 + 3*s^2, 1 + 2*s + 4*s^3]);
 checkValue([s; s^2; 1 + 3*s^2; 1 + 2*s + 4*s^3]);
 // matrix
 checkValue([s, s^2; 1 + 3*s^2, 1 + 2*s + 4*s^3]);
+
 //// Boolean
 // single
 checkValue(%t);
@@ -66,6 +73,7 @@ checkValue([%t, %t, %f, %t, %t]);
 checkValue([%t; %t; %f; %t; %t]);
 // matrix
 checkValue([%t, %t; %f, %f]);
+
 //// Integer
 clear "createIntValues";
 function intValues = createIntValues(value, flag)
@@ -90,12 +98,14 @@ function intValues = createIntValues(value, flag)
         break;
     end
 endfunction
+
 clear "checkIntValue";
 function checkIntValue(refValue, flag)
     for i = 1:6
         checkValue(createIntValues(refValue, flag(i)));
     end
 endfunction
+
 // all flags for createIntValues
 flag = [8, -8, 16, -16, 32, -32];
 // scalar
@@ -105,9 +115,11 @@ checkIntValue([1, 2, 3, 4, 5], flag);
 checkIntValue([1, 2, 3, 4, 5]', flag);
 // matrix
 checkIntValue([1, 2, 3; 4, 5, 6], flag);
+
 //// Sparse
 checkValue(sparse([1, 2; 4, 5; 3, 10], [1, 2, 3]));
 checkValue(sparse([1, 2; 4, 5; 3, 10], [1 + %i, 2 + 2*%i, 3 + 3*%i]));
+
 //// Boolean sparse
 valueRef = [%F, %F, %T, %F, %F
 %T, %F, %F, %F, %F
@@ -115,6 +127,7 @@ valueRef = [%F, %F, %T, %F, %F
 %F, %F, %F, %F, %T];
 checkValue(sparse(valueRef));
 checkValue(sparse([1, 1; 2, 2; 3, 3; 4, 4], [%t, %t, %t, %t]));
+
 //// List
 listNew = list();
 // empty list
@@ -190,6 +203,7 @@ lstRef = tlist(["tlistInTlist";
 "Poly";
 "List"], "List", lstRef, poly([1, 2], "s", "c"), list(1, %t));
 checkValue(lstRef);
+
 //// Mlist
 lstRef = mlist(["MLIST", "Name", "Value"], ["a", "b"; "c", "d"], [1, 2; 3, 4]);
 checkValue(lstRef);
@@ -208,6 +222,7 @@ lstRef = mlist(["hmInMlist";
 "Example_1"
 "Example_2"], "List", ones(1, 2, 3), hypermat([2 2 1 2], (1:8) == 0));
 checkValue(lstRef);
+
 //// Hypermatrix
 // double
 checkValue(ones(1, 2, 3, 4));
@@ -219,40 +234,48 @@ for i = flag
 end
 // boolean
 checkValue(hypermat([2 2 1 2],(1:8) == 0));
+
 //// Undefined
 valueRef = list(1, "two", "three");
 valueRef(5) = "five";
 valueRef(7) = 7;
 checkValue(valueRef);
+
 //// Void
 l = list(1, , 3);
+
 // l == l return [%t %f %t],
 // we can't use assertcheck_equal(computed, expected)
-fileName = TMPDIR + "/exportImportHdf5.sod";
+fileName = TMPDIR + "/saveloadHdf5.sod";
 // export to hdf5
 old_l = l;
-assert_checktrue(export_to_hdf5(fileName, "l"));
+assert_checktrue(save(fileName, "l"));
 // check that the "l" has not been modified by export
 assert_checkequal(old_l == l, [%t %f %t]);
 // reset ref value
 clear l old_l
 assert_checktrue(exists("l")==0);
 // import from hdf5
-assert_checktrue(import_from_hdf5(fileName));
+assert_checktrue(load(fileName));
 assert_checkequal(l == list(1, , 3), [%t %f %t]);
+
 // Struct
 data.data.data = 0;
 data.data.string = "Scilab";
 data.list = list(1,["S" "E"]);
 checkValue(data);
+
 data2.data.data = 42;
 data2.data.string = "Test";
 data2.list = list(1,["a" "b"]);
 checkValue(data2);
+
 struct_ = [data, data, data2; data2, data2, data];
 checkValue(struct_);
+
 emptyStruct = struct();
 checkValue(emptyStruct);
+
 // Cell
 Cell_ = cell(2,2,2);
 Cell_{1} = "scilab";
@@ -264,5 +287,6 @@ Cell_{6} = 6;
 Cell_{7} = poly(1:3,"s");
 Cell_{8} = "Yasp";
 checkValue(Cell_);
+
 emptyCell = cell();
 checkValue(emptyCell);

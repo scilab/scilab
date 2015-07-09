@@ -19,7 +19,7 @@ assert_checkequal(size(c0), [1 3]);
 assert_checkequal(c0(3),  0);
 assert_checkequal(size(zzeros), [1 5]);
 assert_checkequal(size(zpoles), [1 5]);
-import_from_hdf5(test_path+"syredi.h5");
+load(test_path+"syredi.h5");
 [fact1, b21, b11, b01, c11, c01, zzeros1, zpoles1] = syredi(1, 4, [1, 2, 0, 0], 0.02, 0.001);
 assert_checkequal(fact1, fact1_ref);
 assert_checkequal(b21, b21_ref);

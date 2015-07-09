@@ -33,16 +33,16 @@ function xcosBlockEval(hdf5FileToLoad, hdf5FileToSave, interfaceAlias, hdf5Conte
     funcprot(%mprt)
 
     // allocate the context
-    import_from_hdf5(hdf5ContextFile);
+    load(hdf5ContextFile);
     %scicos_context = struct();
     [%scicos_context, ierr] = script2var(context, %scicos_context)
 
     // Every parameter settings is done, perform block update
 
-    import_from_hdf5(hdf5FileToLoad);
+    load(hdf5FileToLoad);
 
     //create a structure with the new context
     [new_scs_m, y, typ] = interfaceAlias("set", scs_m, []);
 
-    export_to_hdf5(hdf5FileToSave, "new_scs_m");
+    save(hdf5FileToSave, "new_scs_m");
 endfunction

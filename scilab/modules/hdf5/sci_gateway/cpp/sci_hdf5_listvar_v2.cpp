@@ -61,7 +61,7 @@ static bool read_undefined(int _iDatasetId, int _iItemPos, int *_piAddress, VarI
 
 static void generateInfo(VarInfo* _pInfo, const char* _pstType);
 
-int sci_listvar_in_hdf5_v2(char *fname, int* pvApiCtx)
+int sci_hdf5_listvar_v2(char *fname, int* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddr     = NULL;

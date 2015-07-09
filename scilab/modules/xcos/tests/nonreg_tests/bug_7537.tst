@@ -24,23 +24,23 @@ doc = xmlRead(SCI + "/modules/xcos/etc/palettes.xml");
 blocks = xmlXPath(doc, "//block/@name");
 blocks = blocks.content;
 xmlDelete(doc);
-for blockIndex=1:size(blocks, '*')
+for blockIndex=1:size(blocks, "*")
     interfunction = blocks(blockIndex);
-    
+
     execstr("out = " + interfunction + "(''define'');");
-    
+
     xx = (modulo(blockIndex, 10) + 1) * 100;
     yy = int(blockIndex / 10) * 100;
     out.graphics.orig =[xx yy];
-    
+
     scs_m.objs(blockIndex) = out;
 end
 
 
 // export the diagram to h5
 h5name = TMPDIR + "/diagram.sod";
-status = export_to_hdf5(h5name, "scs_m");
-if ~status then pause, end
+err = execstr("save(h5name, ""scs_m"")", "errcatch");
+if err <> 0 then pause, end
 
 // import to xcos (decode/encode synchronous version)
 status = xcosDiagramToScilab(h5name);

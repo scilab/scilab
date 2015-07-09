@@ -35,7 +35,6 @@ public :
 
 #endif /* __IO_GW_HXX__ */
 
-CPP_GATEWAY_PROTOTYPE(sci_load);
 CPP_GATEWAY_PROTOTYPE(sci_genlib);
 CPP_GATEWAY_PROTOTYPE(sci_file);
 CPP_GATEWAY_PROTOTYPE(sci_host);
