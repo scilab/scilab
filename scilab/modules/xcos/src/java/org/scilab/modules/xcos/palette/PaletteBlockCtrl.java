@@ -291,6 +291,7 @@ public final class PaletteBlockCtrl {
             getView().requestFocus();
             getView().setStatusUI(StatusUI.SELECTED);
         } else {
+            previouslySelected = null;
             PaletteManagerView.get().getPanel().requestFocus();
             getView().setStatusUI(StatusUI.NON_SELECTED);
         }
