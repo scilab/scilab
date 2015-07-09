@@ -338,6 +338,9 @@ struct objs
 
                     diagramChildren.push_back(localAdaptee);
                     list->set(i, localAdaptor);
+
+                    // Do the linking in the next loop, in case the Link points to a Block that has not been added yet
+                    links.push_back(localAdaptor);
                 }
                 else
                 {
