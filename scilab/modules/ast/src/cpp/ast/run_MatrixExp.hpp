@@ -393,7 +393,7 @@ void RunVisitorT<T>::visitprivate(const MatrixExp &e)
             setResult(Double::Empty());
         }
     }
-    catch (ast::ScilabError error)
+    catch (ast::ScilabError& error)
     {
         setResult(NULL);
         throw error;
@@ -432,7 +432,7 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(std::wstring strType,
     catch (ast::ScilabMessage msg)
     {
         cleanInOut(in, out);
-        throw msg;
+        throw ScilabError(msg.GetErrorMessage(), msg.GetErrorNumber(), msg.GetErrorLocation());
     }
 
     if (Ret != Callable::OK)
