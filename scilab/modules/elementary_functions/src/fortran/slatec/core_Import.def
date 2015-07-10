@@ -5,7 +5,6 @@ EXPORTS
 ;
 ;core
 iop_
-errgst_
 com_
 adre_
 returnananfortran_

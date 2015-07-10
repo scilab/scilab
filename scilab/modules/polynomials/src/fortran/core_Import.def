@@ -10,6 +10,5 @@ csimp_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
-errgst_
 adre_
 ;

@@ -14,10 +14,6 @@ SCICOS_IMPEXP void F2C(ismenu)()
 {
     abort();
 }
-SCICOS_IMPEXP void F2C(errgst)()
-{
-    abort();
-}
 SCICOS_IMPEXP void F2C(check_dims)()
 {
     abort();

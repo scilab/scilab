@@ -5,7 +5,6 @@ EXPORTS
 ;
 ;core
 iop_
-errgst_
 com_
 parse_
 isrecursioncalltofunction_
@@ -13,5 +12,4 @@ eqid_
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
 adre_
-errgst_
 ;

@@ -6,7 +6,6 @@ EXPORTS
 ;
 com_
 iop_
-errgst_
 adre_
 parse_
 isrecursioncalltofunction_

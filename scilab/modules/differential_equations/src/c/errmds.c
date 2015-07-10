@@ -12,6 +12,9 @@
 
 #include "errmds.h"
 #include "common_structure.h"
+
+DIFFERENTIAL_EQUATIONS_IMPEXP STR_ERRGST C2F(errgst);
+
 /*--------------------------------------------------------------------------*/
 int C2F(errmds)(int *num, int *imess, int *imode)
 {

@@ -11,7 +11,6 @@ checkrhs_
 getrhsvar_
 getrhscvar_
 createvar_
-errgst_
 check_dim_prop
 createcvar_
 check_scalar

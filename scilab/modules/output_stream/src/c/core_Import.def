@@ -4,7 +4,6 @@
 EXPORTS
 iop_
 com_
-errgst_
 get_sci_data_strings
 getstackinfo_
 getIntermediateMemoryNeeded

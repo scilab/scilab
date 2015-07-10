@@ -7,7 +7,6 @@ EXPORTS
 com_
 iop_
 mtlbc_
-errgst_
 ;
 ; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
