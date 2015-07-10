@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-#include "gvn/TestGVNVisitor.hxx"
+//#include "gvn/TestGVNVisitor.hxx"
 
 #include "parser.hxx"
 #include "functions_gw.hxx"
@@ -74,19 +74,19 @@ Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, types::
         return Function::Error;
     }
 
-    analysis::TestGVNVisitor gvn;
-    pExp->accept(gvn);
-    //gvn.print_info();
+    //analysis::TestGVNVisitor gvn;
+    //pExp->accept(gvn);
+    ////gvn.print_info();
 
-    Struct * pOut = new Struct(1, 1);
-    std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
-    for (const auto & p : maps)
-    {
-        pOut->addField(p.first);
-        pOut->get(0)->set(p.first, new Double((double) p.second));
-    }
+    //Struct * pOut = new Struct(1, 1);
+    //std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
+    //for (const auto & p : maps)
+    //{
+    //    pOut->addField(p.first);
+    //    pOut->get(0)->set(p.first, new Double((double) p.second));
+    //}
 
-    out.push_back(pOut);
+    //out.push_back(pOut);
 
     delete pExp;
 

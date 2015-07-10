@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 
 #include "parser.hxx"
 #include "functions_gw.hxx"
@@ -73,36 +73,36 @@ Function::ReturnValue sci_testAnalysis(types::typed_list &in, int _iRetCount, ty
     ast::SimpleVar * var = new ast::SimpleVar(loc, sym);
     ast::CallExp ce(loc, *var, *args);
 
-    analysis::AnalysisVisitor analysis;
-    ce.accept(analysis);
+    //   analysis::AnalysisVisitor analysis;
+    //   ce.accept(analysis);
 
-    //analysis.print_info();
+    //   //analysis.print_info();
 
-    analysis::TIType & t = analysis.getResult().getType();
-    Struct * pOut = new Struct(1, 1);
-    pOut->addField(L"type");
-    pOut->get(0)->set(L"type", new String(analysis::TIType::toString(t.type).c_str()));
+    //   analysis::TIType & t = analysis.getResult().getType();
+    //   Struct * pOut = new Struct(1, 1);
+    //   pOut->addField(L"type");
+    //   pOut->get(0)->set(L"type", new String(analysis::TIType::toString(t.type).c_str()));
 
-    pOut->addField(L"rows");
-    if (t.rows.isConstant())
-    {
-	pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
-    }
-    else
-    {
-	pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
-    }
+    //   pOut->addField(L"rows");
+    //   if (t.rows.isConstant())
+    //   {
+    //pOut->get(0)->set(L"rows", new Double(t.rows.getConstant()));
+    //   }
+    //   else
+    //   {
+    //pOut->get(0)->set(L"rows", new Double(analysis::tools::NaN()));
+    //   }
 
-    pOut->addField(L"cols");
-    if (t.cols.isConstant())
-    {
-	pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
-    }
-    else
-    {
-	pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
-    }
-    out.push_back(pOut);
+    //   pOut->addField(L"cols");
+    //   if (t.cols.isConstant())
+    //   {
+    //pOut->get(0)->set(L"cols", new Double(t.cols.getConstant()));
+    //   }
+    //   else
+    //   {
+    //pOut->get(0)->set(L"cols", new Double(analysis::tools::NaN()));
+    //   }
+    //   out.push_back(pOut);
 
     //ast::DebugVisitor debugMe;
     //pExp->accept(debugMe);

@@ -50,7 +50,7 @@ public :
 
     inline int getNumFields() const
     {
-        return m_wstFields.size();
+        return static_cast<int>(m_wstFields.size());
     }
 
     bool                                    toString(std::wostringstream& ostr);

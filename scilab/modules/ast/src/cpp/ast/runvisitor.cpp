@@ -24,7 +24,7 @@
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
 #include "mutevisitor.hxx"
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 
 #include "visitor_common.hxx"
 
@@ -396,7 +396,7 @@ void RunVisitorT<T>::visitprivate(const ForExp  &e)
         //use ref count to lock var against clear and detect any changes
         pIL->IncreaseRef();
 
-        int size = pVar->getSize();
+        int size = static_cast<int>(pVar->getSize());
         for (int i = 0; i < size; ++i)
         {
             //check if loop index has changed, deleted, copy ...
@@ -645,73 +645,73 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const IntSelectExp &e)
 {
-    e.getSelect()->accept(*this);
-    InternalType* pIT = getResult();
-    setResult(nullptr);
     bool found = false;
-    if (pIT && pIT->isDouble())
-    {
-        Double * pDbl = static_cast<Double *>(pIT);
-        if (!pDbl->isComplex() && pDbl->getSize() == 1)
-        {
-            int64_t val;
-            if (analysis::tools::asInteger<int64_t>(pDbl->get(0), val))
-            {
-                Exp * exp = e.getExp(val);
-                found = true;
-                if (exp)
-                {
-                    Exp * body = exp->isCaseExp() ? exp->getAs<CaseExp>()->getBody() : exp;
-                    if (e.isBreakable())
-                    {
-                        const_cast<IntSelectExp*>(&e)->resetBreak();
-                        body->setBreakable();
-                    }
+    //e.getSelect()->accept(*this);
+    //InternalType* pIT = getResult();
+    //setResult(nullptr);
+    //if (pIT && pIT->isDouble())
+    //{
+    //    Double * pDbl = static_cast<Double *>(pIT);
+    //    if (!pDbl->isComplex() && pDbl->getSize() == 1)
+    //    {
+    //        int64_t val;
+    //        if (analysis::tools::asInteger<int64_t>(pDbl->get(0), val))
+    //        {
+    //            Exp * exp = e.getExp(val);
+    //            found = true;
+    //            if (exp)
+    //            {
+    //                Exp * body = exp->isCaseExp() ? exp->getAs<CaseExp>()->getBody() : exp;
+    //                if (e.isBreakable())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->resetBreak();
+    //                    body->setBreakable();
+    //                }
 
-                    if (e.isContinuable())
-                    {
-                        const_cast<IntSelectExp*>(&e)->resetContinue();
-                        body->setContinuable();
-                    }
+    //                if (e.isContinuable())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->resetContinue();
+    //                    body->setContinuable();
+    //                }
 
-                    if (e.isReturnable())
-                    {
-                        const_cast<IntSelectExp*>(&e)->resetReturn();
-                        body->setReturnable();
-                    }
+    //                if (e.isReturnable())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->resetReturn();
+    //                    body->setReturnable();
+    //                }
 
-                    try
-                    {
-                        //the good one
-                        body->accept(*this);
-                    }
-                    catch (ScilabMessage& sm)
-                    {
-                        pIT->killMe();
-                        throw sm;
-                    }
+    //                try
+    //                {
+    //                    //the good one
+    //                    body->accept(*this);
+    //                }
+    //                catch (ScilabMessage& sm)
+    //                {
+    //                    pIT->killMe();
+    //                    throw sm;
+    //                }
 
-                    if (e.isBreakable() && body->isBreak())
-                    {
-                        const_cast<IntSelectExp*>(&e)->setBreak();
-                        body->resetBreak();
-                    }
+    //                if (e.isBreakable() && body->isBreak())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->setBreak();
+    //                    body->resetBreak();
+    //                }
 
-                    if (e.isContinuable() && body->isContinue())
-                    {
-                        const_cast<IntSelectExp*>(&e)->setContinue();
-                        body->resetContinue();
-                    }
+    //                if (e.isContinuable() && body->isContinue())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->setContinue();
+    //                    body->resetContinue();
+    //                }
 
-                    if (e.isReturnable() && body->isReturn())
-                    {
-                        const_cast<IntSelectExp*>(&e)->setReturn();
-                        body->resetReturn();
-                    }
-                }
-            }
-        }
-    }
+    //                if (e.isReturnable() && body->isReturn())
+    //                {
+    //                    const_cast<IntSelectExp*>(&e)->setReturn();
+    //                    body->resetReturn();
+    //                }
+    //            }
+    //        }
+    //    }
+    //}
 
     if (!found)
     {

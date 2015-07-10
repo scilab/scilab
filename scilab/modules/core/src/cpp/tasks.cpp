@@ -10,7 +10,7 @@
 *
 */
 
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 #include "tasks.hxx"
 #include "timer.hxx"
 #include "context.hxx"
@@ -182,8 +182,8 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         //call analyzer visitor before exec visitor
         if (ConfigVariable::getAnalyzerOptions() == 1)
         {
-            analysis::AnalysisVisitor analysis;
-            newTree->accept(analysis);
+            //analysis::AnalysisVisitor analysis;
+            //newTree->accept(analysis);
         }
 
         exec = new ast::ExecVisitor();

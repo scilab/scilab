@@ -14,7 +14,7 @@
 #include <algorithm>
 #include <vector>
 #include <vector>
-
+#include <functional>
 #include "gsort.hxx"
 
 extern "C"

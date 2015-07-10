@@ -101,46 +101,7 @@ src/cpp/types/tlist.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
-src/cpp/types/void.cpp \
-src/cpp/analysis/AnalysisVisitor.cpp \
-src/cpp/analysis/ArgnAnalyzer.cpp \
-src/cpp/analysis/Block.cpp \
-src/cpp/analysis/Checkers.cpp \
-src/cpp/analysis/CompleteMacroSignature.cpp \
-src/cpp/analysis/ConstantValue.cpp \
-src/cpp/analysis/ConstantVisitor.cpp \
-src/cpp/analysis/ConstraintManager.cpp \
-src/cpp/analysis/DiagAnalyzer.cpp \
-src/cpp/analysis/FunctionBlock.cpp \
-src/cpp/analysis/IndexAnalyzer.cpp \
-src/cpp/analysis/CeilAnalyzer.cpp \
-src/cpp/analysis/InferenceConstraints.cpp \
-src/cpp/analysis/LengthAnalyzer.cpp \
-src/cpp/analysis/LoopBlock.cpp \
-src/cpp/analysis/MacroDef.cpp \
-src/cpp/analysis/MatrixAnalyzer.cpp \
-src/cpp/analysis/MemInitAnalyzer.cpp \
-src/cpp/analysis/OperGVNValues.cpp \
-src/cpp/analysis/OperSymbolicRange.cpp \
-src/cpp/analysis/PolymorphicMacroCache.cpp \
-src/cpp/analysis/SizeAnalyzer.cpp \
-src/cpp/analysis/SymbolicList.cpp \
-src/cpp/analysis/TIType.cpp \
-src/cpp/analysis/IconvertAnalyzer.cpp \
-src/cpp/analysis/InttypeAnalyzer.cpp \
-src/cpp/analysis/IsrealAnalyzer.cpp \
-src/cpp/analysis/IsscalarAnalyzer.cpp \
-src/cpp/analysis/FindAnalyzer.cpp \
-src/cpp/analysis/TypeAnalyzer.cpp \
-src/cpp/analysis/TypeofAnalyzer.cpp \
-src/cpp/analysis/OperAnalyzer.cpp \
-src/cpp/analysis/VisitListExp.cpp \
-src/cpp/analysis/VisitMatrixExp.cpp \
-src/cpp/analysis/VisitOpExp.cpp \
-src/cpp/analysis/VisitSelectExp.cpp \
-src/cpp/analysis/VisitAssignExp.cpp \
-src/cpp/analysis/VisitIfExp.cpp \
-src/cpp/analysis/XBlock.cpp
+src/cpp/types/void.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp

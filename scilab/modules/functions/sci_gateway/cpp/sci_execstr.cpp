@@ -11,7 +11,7 @@
 */
 
 #include <string.h>
-#include "AnalysisVisitor.hxx"
+//#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
 //#include "debugvisitor.hxx"
@@ -191,8 +191,8 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
 
     if (ConfigVariable::getAnalyzerOptions() == 1)
     {
-        analysis::AnalysisVisitor analysis;
-        pExp->accept(analysis);
+        //analysis::AnalysisVisitor analysis;
+        //pExp->accept(analysis);
         //ast::DebugVisitor debugMe;
         //pExp->accept(debugMe);
     }
