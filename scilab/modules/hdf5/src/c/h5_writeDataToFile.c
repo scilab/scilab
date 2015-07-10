@@ -1976,27 +1976,28 @@ int closeList(int _iFile, void *_pvList, char *_pstListName, int _iNbItem, int _
 
 static int deleteHDF5group(int _iFile, const char* _pstName)
 {
+    H5G_info_t groupInfo;
     hid_t status = 0;
     //open group
     hid_t groupID = H5Gopen(_iFile, _pstName, H5P_DEFAULT);
     //hid_t groupID = H5Gopen(_iFile, _pstName, H5P_DEFAULT);
+
     if (groupID < 0)
     {
         return -1;
     }
 
-    int ret = 0;
-    int index = 0;
-    int i = 0;
-    H5G_info_t groupInfo;
     //get children count
     status = H5Gget_info(groupID, &groupInfo);
     if (status != -1)
     {
         int index = 0;
+        int i = 0;
+
         //for each child,
         for (i = 0; i < groupInfo.nlinks; i++)
         {
+            int ret = 0;
             //get child name
             ssize_t size = H5Lget_name_by_idx(groupID, ".", H5_INDEX_NAME, H5_ITER_INC, index, 0, 0, H5P_DEFAULT) + 1;
             char* pstChildName = (char*)MALLOC(sizeof(char) * size);
@@ -2052,7 +2053,6 @@ int deleteHDF5Var(int _iFile, const char* _pstName)
     ret = deleteHDF5group(_iFile, _pstName);
     if (ret == -1)
     {
-        ret = 0;
         //delete current dataset link
         hid_t status = H5Ldelete(_iFile, _pstName, H5P_DEFAULT);
         if (status < 0)
@@ -2060,6 +2060,7 @@ int deleteHDF5Var(int _iFile, const char* _pstName)
             H5Eset_auto2(H5E_DEFAULT, oldfunc, oldclientdata);
             return -1;
         }
+        ret = 0;
     }
 
     H5Eset_auto2(H5E_DEFAULT, oldfunc, oldclientdata);

@@ -65,7 +65,7 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
     {
         //lib file
         int err = 0;
-        Library* lib = loadlib(wfilename, &err);
+        Library* lib = loadlib(in[0]->getAs<String>()->get()[0], &err);
 
         switch (err)
         {

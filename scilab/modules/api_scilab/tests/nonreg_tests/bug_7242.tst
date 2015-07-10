@@ -16,13 +16,8 @@
 //  API was unable to retrieve named variable address
 //  when variable name is passed in argument of function
 
-function result = myExport(data, filepath)
-    result = %t
-    try
-        save(filepath, "data");
-    catch
-        retult = %f;
-    end
+function myExport(data, filepath)
+    save(filepath, "data");
 endfunction
 
 myData = "blam";
