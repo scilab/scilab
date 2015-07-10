@@ -917,7 +917,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         // a.x where x is the last field
                         // insert directly in x instead of extract then insert
                         ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
-                        pEHNext->setReinsertion();
+                        pEHNext->setReinsertion(true);
                         evalFields.push_back(pEHNext);
                         if (workFields.empty())
                         {
@@ -1054,7 +1054,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         // a.x where x is the last field
                         // insert directly in x instead of extract then insert
                         ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
-                        pEHNext->setReinsertion();
+                        pEHNext->setReinsertion(true);
                         evalFields.push_back(pEHNext);
                         if (workFields.empty())
                         {
@@ -1195,7 +1195,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                             // a.x where x is the last field
                             // insert directly in x instead of extract then insert
                             ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
-                            pEHNext->setReinsertion();
+                            pEHNext->setReinsertion(true);
                             evalFields.push_back(pEHNext);
                             if (workFields.empty())
                             {
@@ -1270,7 +1270,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         // a.x where x is the last field
                         // insert directly in x instead of extract then insert
                         ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
-                        pEHNext->setReinsertion();
+                        pEHNext->setReinsertion(true);
                         evalFields.push_back(pEHNext);
                         if (workFields.empty())
                         {
@@ -1422,7 +1422,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                         // a.x where x is the last field
                         // insert directly in x instead of extract then insert
                         ExpHistory* pEHNext = new ExpHistory(pEH, (*iterFields)->getExp(), (*iterFields)->getArgs(), (*iterFields)->getLevel(), (*iterFields)->isCellExp(), _pAssignValue);
-                        pEHNext->setReinsertion();
+                        pEHNext->setReinsertion(true);
                         evalFields.push_back(pEHNext);
                         if (workFields.empty())
                         {

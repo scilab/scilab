@@ -54,7 +54,7 @@ public :
     ExpHistory*             getParent();
 
     // use to know if we have to reinsert current in there parent and where
-    void                    setReinsertion();
+    void                    setReinsertion(bool bForce = false);
     void                    resetReinsertion();
     bool                    reinsertMe();
     int                     getWhereReinsert();
