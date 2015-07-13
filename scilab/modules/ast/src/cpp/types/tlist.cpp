@@ -315,7 +315,7 @@ bool TList::toString(std::wostringstream& ostr)
         DecreaseRef();
         return true;
     }
-    catch (ast::ScilabError /* &e */)
+    catch (ast::ScilabMessage /* &e */)
     {
         // avoid error message about undefined overload %type_p
         ConfigVariable::resetError();
