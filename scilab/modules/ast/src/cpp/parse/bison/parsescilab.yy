@@ -908,8 +908,12 @@ lineEnd				{ /* !! Do Nothing !! */ }
 */
 /* What may content a function */
 functionBody :
-expressions			{ $$ = $1; }
-| /* Epsilon */			{
+expressions			{
+                        $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+                        $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+                        $$ = $1;
+                    }
+| /* Epsilon */		{
 				  ast::exps_t* tmp = new ast::exps_t;
 				  #ifdef BUILD_DEBUG_AST
 				    tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty function body")));
@@ -1385,14 +1389,18 @@ IF condition then thenBody END                          { $$ = new ast::IfExp(@$
 */
 /* Instructions that can be managed inside THEN */
 thenBody :
-expressions                             { $$ = $1; }
-| /* Epsilon */                         {
+expressions     {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                }
+| /* Epsilon */ {
     ast::exps_t* tmp = new ast::exps_t;
     #ifdef BUILD_DEBUG_AST
     tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty then body")));
     #endif
     $$ = new ast::SeqExp(@$, *tmp);
-                                        }
+                }
 ;
 
 /*
@@ -1400,7 +1408,11 @@ expressions                             { $$ = $1; }
 */
 /* Instructions that can be managed inside ELSE */
 elseBody :
-expressions                             { $$ = $1; }
+expressions         {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                    }
 | /* Epsilon */                         {
                                         #ifdef BUILD_DEBUG_AST
                                             ast::exps_t* tmp = new ast::exps_t;
@@ -1589,7 +1601,11 @@ CASE variable caseControlBreak caseBody							{
 ;
 
 caseBody :
-expressions				{ $$ = $1; }
+expressions				{
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                        }
 | /* Epsilon */			{
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
@@ -1653,7 +1669,11 @@ EOL						{ /* !! Do Nothing !! */ }
 ;
 
 forBody :
-expressions			{ $$ = $1; }
+expressions			{
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                    }
 | /* Epsilon */			{
                     ast::exps_t* tmp = new ast::exps_t;
                     #ifdef BUILD_DEBUG_AST
@@ -1676,7 +1696,11 @@ WHILE condition whileConditionBreak whileBody END	{ $$ = new ast::WhileExp(@$, *
 */
 /* Which instructions can be used in a while loop. */
 whileBody :
-expressions             { $$ = $1; }
+expressions             {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                        }
 | /* Epsilon */			{
                             ast::exps_t* tmp = new ast::exps_t;
                             #ifdef BUILD_DEBUG_AST
@@ -1731,10 +1755,26 @@ TRY catchBody CATCH catchBody END               { $$ =new ast::TryCatchExp(@$, *
 */
 /* Wich instructions can be used in a catch control. */
 catchBody :
-expressions                     { $$ = $1; }
-| EOL expressions               { $$ = $2; }
-| SEMI expressions              { $$ = $2; }
-| COMMA expressions             { $$ = $2; }
+expressions                     {
+            $1->getLocation().last_line = $1->getExps().back()->getLocation().last_line;
+            $1->getLocation().last_column = $1->getExps().back()->getLocation().last_column;
+            $$ = $1;
+                                }
+| EOL expressions               {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
+| SEMI expressions              {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
+| COMMA expressions             {
+            $2->getLocation().last_line = $2->getExps().back()->getLocation().last_line;
+            $2->getLocation().last_column = $2->getExps().back()->getLocation().last_column;
+            $$ = $2;
+                                }
 | EOL                           {
                                     ast::exps_t* tmp = new ast::exps_t;
                                     #ifdef BUILD_DEBUG_AST
