@@ -117,15 +117,22 @@ public :
         return m_iFirstLine;
     }
 
-    virtual void       setFirstLine(int _iFirstLine)
+    virtual int        getLastLine(void)
+    {
+        return m_iLastLine;
+    }
+
+    virtual void       setLines(int _iFirstLine, int _iLastLine)
     {
         m_iFirstLine = _iFirstLine;
+        m_iLastLine  = _iLastLine;
     }
 
 protected :
     std::wstring           m_wstName;
     std::wstring           m_wstModule;
     int                    m_iFirstLine;
+    int                    m_iLastLine;
 };
 }
 

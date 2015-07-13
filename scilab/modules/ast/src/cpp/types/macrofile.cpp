@@ -133,7 +133,7 @@ bool MacroFile::parse(void)
 
             const symbol::Symbol & sym = pFD->getSymbol();
             Macro* macro = new Macro(sym.getName(), *pVarList, *pRetList, (ast::SeqExp&)pFD->getBody(), m_wstModule);
-            macro->setFirstLine(pFD->getLocation().first_line);
+            macro->setLines(pFD->getLocation().first_line, pFD->getLocation().last_line);
             macro->setFileName(m_stPath);
 
             if (m_pMacro == nullptr && sym.getName() == getName())
@@ -195,9 +195,9 @@ Macro* MacroFile::getMacro(void)
     return m_pMacro;
 }
 
-void MacroFile::setFirstLine(int _iLine)
+void MacroFile::setLines(int _iFirstLine, int _iLastLine)
 {
-    getMacro()->setFirstLine(_iLine);
+    getMacro()->setLines(_iFirstLine, _iLastLine);
 }
 
 bool MacroFile::operator==(const InternalType& it)

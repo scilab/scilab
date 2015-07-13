@@ -118,7 +118,7 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
 
     l->append(v.getList());
     //nb lines
-    l->append(new types::Double(body->getLocation().last_line - body->getLocation().first_line + 1));
+    l->append(new types::Double(macro->getLastLine() - macro->getFirstLine() + 1));
     out.push_back(l);
     statement->killMe();
     return types::Function::OK;

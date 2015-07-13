@@ -53,7 +53,7 @@ public :
 
     Macro*                  getMacro(void);
 
-    void                    setFirstLine(int _iLine);
+    void                    setLines(int _iFirstLine, int _iLastLine);
 
     /* return type as string ( double, int, cell, list, ... )*/
     virtual std::wstring    getTypeStr()

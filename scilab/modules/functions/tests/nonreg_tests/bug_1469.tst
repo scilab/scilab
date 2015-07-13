@@ -45,7 +45,7 @@
 
 function foo,endfunction
 L=macr2lst(foo);
-R1=L(4)(1)=='15'&size(L)==6
+R1=L(4)(1)=="15"&size(L)==6
 if ~R1 then pause,end
 clear foo;
 
@@ -53,7 +53,7 @@ clear foo;
 
 function foo,,endfunction
 L=macr2lst(foo);
-R2=L(4)(1)=='15'&size(L)==6
+R2=L(4)(1)=="15"&size(L)==6
 if ~R2 then pause,end
 clear foo;
 
@@ -61,7 +61,7 @@ clear foo;
 
 function foo(),endfunction
 L=macr2lst(foo);
-R3=L(4)(1)=='15'&size(L)==6
+R3=L(4)(1)=="15"&size(L)==6
 if ~R3 then pause,end
 clear foo;
 
@@ -69,7 +69,7 @@ clear foo;
 
 function foo(),a=1,endfunction
 L=macr2lst(foo);
-R4=L(4)(1)=='6'&size(L)==8
+R4=L(4)(1)=="6"&size(L)==8
 if ~R4 then pause,end
 clear foo;
 
@@ -78,7 +78,7 @@ clear foo;
 function foo
 endfunction
 L=macr2lst(foo);
-R5=L(4)(1)=='15'&size(L)==7
+R5=L(4)(1)=="15"&size(L)==7
 if ~R5 then pause,end
 clear foo;
 
@@ -87,7 +87,7 @@ clear foo;
 function foo,
 endfunction
 L=macr2lst(foo);
-R6=L(4)(1)=='15'&size(L)==7
+R6=L(4)(1)=="15"&size(L)==7
 if ~R6 then pause,end
 clear foo;
 
@@ -96,7 +96,7 @@ clear foo;
 function foo//ZZZZ
 endfunction
 L=macr2lst(foo);
-R7=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
+R7=L(4)(1)=="31"&L(5)(1)=="15"&size(L)==8
 if ~R7 then pause,end
 clear foo;
 
@@ -105,27 +105,27 @@ clear foo;
 function foo,//ZZZZ
 endfunction
 L=macr2lst(foo);
-R8=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==8
+R8=L(4)(1)=="31"&L(5)(1)=="15"&size(L)==8
 if ~R8 then pause,end
 clear foo;
 
 // ================ Test 9 =====================================================
 
 function foo
-//ZZZZ
+    //ZZZZ
 endfunction
 L=macr2lst(foo);
-R9=L(4)(1)=='15'&L(5)(1)=='31'&size(L)==9
+R9=L(4)(1)=="15"&L(5)(1)=="31"&size(L)==9
 if ~R9 then pause,end
 clear foo;
 
 // ================ Test 10 ====================================================
 
 function foo,//ZZZZ
-  a=1
+    a=1
 endfunction
 L=macr2lst(foo);
-R10=L(4)(1)=='31'&L(5)(1)=='15'&L(6)(1)=='6'&size(L)==11
+R10=L(4)(1)=="31"&L(5)(1)=="15"&L(6)(1)=="6"&size(L)==11
 if ~R10 then pause,end
 clear foo;
 
@@ -139,7 +139,7 @@ clear foo;
 // ================ Test 12 ====================================================
 
 function loc=foo,//ZZZZ
-  [l,w]=where(),loc=l(1)
+    [l,w]=where(),loc=l(1)
 endfunction
 R12= and(foo()==2)
 if ~R12 then pause,end
@@ -148,8 +148,8 @@ clear foo;
 // ================ Test 13 ====================================================
 
 function loc=foo
-//ZZZZ
-  [l,w]=where(),loc=l(1)
+    //ZZZZ
+    [l,w]=where(),loc=l(1)
 endfunction
 R13= and(foo()==3)
 if ~R13 then pause,end
@@ -158,12 +158,12 @@ clear foo;
 // ================ Test 14 ====================================================
 
 function loc=foo1()
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
 R14= and(foo1()==[2,6,2,7])
 if ~R14 then pause,end
@@ -172,52 +172,52 @@ clear foo1;
 // ================ Test 15 ====================================================
 
 function loc=foo1()//ZZZZZZZ
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
 L=macr2lst(foo1);
-R15=and(foo1()==[2,6,2,7])&(L(4)(1)=='31')&(L(5)=='15')
+R15=and(foo1()==[2,6,2,7])&(L(4)(1)=="31")&(L(5)=="15")
 if ~R15 then pause,end
 clear foo1;
 
 // ================ Test 16 ====================================================
 
 function loc=foo1()
-  //ZZZZZZZ
-  [l,w]=where(),loc=l(1)
-  function loc=foo3(loc)
-    [l,w]=where(),loc=[loc,l(1:2)']
-  endfunction
-  [l,w]=where(),loc=[loc,l(1)]
-  loc=foo3(loc)
+    //ZZZZZZZ
+    [l,w]=where(),loc=l(1)
+    function loc=foo3(loc)
+        [l,w]=where(),loc=[loc,l(1:2)']
+    endfunction
+    [l,w]=where(),loc=[loc,l(1)]
+    loc=foo3(loc)
 endfunction
 L=macr2lst(foo1);
-R16=and(foo1()==[3,7,2,8])&(L(4)=='15')&(L(5)(1)=='31')
+R16=and(foo1()==[3,7,2,8])&(L(4)=="15")&(L(5)(1)=="31")
 if ~R16 then pause,end
 clear foo1;
 
 // ================ Test 17 ====================================================
 
 //pb execution des macros non compilee
-deff('y=foo(a,b,c)','y=a+b+c','n')
-R17=foo('aaa','bbb','cc')=='aaabbbcc'
+deff("y=foo(a,b,c)","y=a+b+c","n")
+R17=foo("aaa","bbb","cc")=="aaabbbcc"
 if ~R17 then pause,end
 clear foo
 
 // ================ Test 18 ====================================================
 
-deff('y=foo(a,b,c)',['','y=a+b+c'],'n')
-R18=foo('aaa','bbb','cc')=='aaabbbcc'
+deff("y=foo(a,b,c)",["","y=a+b+c"],"n")
+R18=foo("aaa","bbb","cc")=="aaabbbcc"
 if ~R18 then pause,end
 
 // ================ Test 19 ====================================================
 
 comp(foo)
-R19=foo('aaa','bbb','cc')=='aaabbbcc'
+R19=foo("aaa","bbb","cc")=="aaabbbcc"
 if ~R19 then pause,end
 clear foo
 
@@ -226,12 +226,12 @@ clear foo
 //function definition nested in a or loop!
 z=0;R20=%t
 for k=1:2
- function y=foo()
-   y=k
- endfunction
- L=macr2lst(foo);
- R20=R20&(L(4)=='15')&(L(5)(1)=='2');
- z=z+foo();
+    function y=foo()
+        y=k
+    endfunction
+    L=macr2lst(foo);
+    R20=R20&(L(4)=="15")&(L(5)(1)=="2");
+    z=z+foo();
 end
 R20=R20&z==3
 if ~R20 then pause,end
@@ -239,50 +239,50 @@ if ~R20 then pause,end
 // ================ Test 21 ====================================================
 
 //test avec getf
-t=['function foo,//ZZZZ'
-'  a=1'
-'endfunction'];
-mputl(t,TMPDIR+'/foo.sci');
-warning('off');
-exec(TMPDIR+'/foo.sci')
-warning('on');
+t=["function foo,//ZZZZ"
+"  a=1"
+"endfunction"];
+mputl(t,TMPDIR+"/foo.sci");
+warning("off");
+exec(TMPDIR+"/foo.sci")
+warning("on");
 L=macr2lst(foo); //getf ignores declaration line comments
-R21=L(4)(1)=='31'&L(5)(1)=='15'&size(L)==11
+R21=L(4)(1)=="31"&L(5)(1)=="15"&size(L)==11
 if ~R21 then pause,end
 clear foo;
 
 // ================ Test 22 ====================================================
 
-t=['function foo'
-'//ZZZZ'
-'  a=1'
-'endfunction'];
-mputl(t,TMPDIR+'/foo.sci');
-exec(TMPDIR+'/foo.sci')
+t=["function foo"
+"//ZZZZ"
+"  a=1"
+"endfunction"];
+mputl(t,TMPDIR+"/foo.sci");
+exec(TMPDIR+"/foo.sci")
 L=macr2lst(foo); //getf ignores declaration line comments
-R22=L(4)(1)=='15'&L(5)(1)=='31'&L(6)(1)=='15'&size(L)==12
+R22=L(4)(1)=="15"&L(5)(1)=="31"&L(6)(1)=="15"&size(L)==12
 if ~R22 then pause,end
 clear foo;
 
 // ================ Test 23 ====================================================
 function foo()
-  function bar()
-    a=1
+    function bar()
+        a=1
+    endfunction
 endfunction
-endfunction
-t=fun2string(foo,'foo')
+t=fun2string(foo,"foo")
 if size(t,1)<>5 then pause,end
 
 clear foo
 function foo()
-  function bar()
-    a=1
- endfunction
+    function bar()
+        a=1
+    endfunction
 endfunction
-t1=fun2string(foo,'foo')
+t1=fun2string(foo,"foo")
 if or(t<>t1) then pause,end
 // ================ Test 24 ====================================================
 function test;endfunction
 L=macr2lst(test)
 if size(L)<>6 then pause,end
-if L(4)<>'15'|L(5)<>'99'| L(6)<>'15' then pause,end
+if L(4)<>"15"|L(5)<>"99"| L(6)<>"15" then pause,end
