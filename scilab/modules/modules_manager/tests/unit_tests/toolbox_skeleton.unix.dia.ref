@@ -16,6 +16,8 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_error.sci
+genlib: Processing file: scilab_sum.sci
 Building sources...
    Generate a loader file
    Generate a Makefile
