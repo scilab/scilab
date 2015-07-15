@@ -17,6 +17,7 @@
 
 extern "C"
 {
+#include "FileExist.h"
 #include "sci_malloc.h"
 #include "os_string.h"
 #include "expandPathVariable.h"
@@ -58,6 +59,14 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     }
 
     char* pstFile = wide_string_to_UTF8(wstFile.c_str());
+
+    if (FileExist(pstFile) == FALSE)
+    {
+        *err = 1;
+        FREE(pstFile);
+        return NULL;
+    }
+
     char *encoding = GetXmlFileEncoding(pstFile);
 
     /* Don't care about line return / empty line */

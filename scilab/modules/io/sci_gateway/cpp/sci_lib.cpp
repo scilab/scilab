@@ -65,9 +65,9 @@ Function::ReturnValue sci_lib(types::typed_list &in, int _iRetCount, types::type
             break;
         case 1:
         {
-            char* pstPath = wide_string_to_UTF8(pwstPath);
-            Scierror(999, _("%s: %s is not a valid module file.\n"), "lib", pstPath);
-            FREE(pstPath);
+            char* pst = wide_string_to_UTF8(pstPath);
+            Scierror(999, _("%s: %s is not a valid lib path.\n"), "lib", pst);
+            FREE(pst);
             return Function::Error;
         }
         case 2:

@@ -70,7 +70,7 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
         switch (err)
         {
             case 1:
-                Scierror(999, _("%s: %s is not a valid module file.\n"), fname.data(), filename.data());
+                Scierror(999, _("%s: %s is not a valid lib file.\n"), fname.data(), filename.data());
                 return Function::Error;
             case 2:
                 Scierror(999, "%s: %s", fname.data(), _("Redefining permanent variable.\n"));
