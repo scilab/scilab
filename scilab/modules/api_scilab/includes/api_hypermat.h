@@ -21,7 +21,6 @@ extern "C" {
 #endif
 
 #include "api_common.h"
-#include "doublecomplex.h"
 
 /**************************************/
 /*   Hypermatrices matrix functions   */
