@@ -68,7 +68,6 @@
 #include BinariesSourcePath + "\modules\mexlib\mexlib.iss"
 #include BinariesSourcePath + "\modules\m2sci\m2sci.iss"
 #include BinariesSourcePath + "\modules\randlib\randlib.iss"
-#include BinariesSourcePath + "\modules\symbolic\symbolic.iss"
 #include BinariesSourcePath + "\modules\interpolation\interpolation.iss"
 #include BinariesSourcePath + "\modules\umfpack\umfpack.iss"
 #include BinariesSourcePath + "\modules\fftw\fftw.iss"

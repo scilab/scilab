@@ -71,7 +71,6 @@ begin
     ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="special_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
