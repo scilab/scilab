@@ -289,7 +289,6 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                         char **pStrRange = getRangeAsString((const char**)result->pstrValues, result->m, result->n, iRange, &newM, &newN);
                         if (pStrRange)
                         {
-                            printf("newM %d, newN : %d\n", newM, newN);
                             sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, newM, newN, pStrRange);
                             freeArrayOfString(pStrRange, newM * newN);
                         }
@@ -311,7 +310,6 @@ int sci_csvRead(char *fname, void* pvApiCtx)
                     }
                     else
                     {
-                        printf("..newM %d, newN : %d\n", result->m, result->n);
                         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, result->m, result->n, result->pstrValues);
                     }
                 }

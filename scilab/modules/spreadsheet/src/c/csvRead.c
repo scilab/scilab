@@ -126,7 +126,6 @@ csvResult* csvRead(const char *filename, const char *separator, const char *deci
         for (i = 0 ; i < nblines ; i++)
         {
             pstLines[i] = wide_string_to_UTF8(pwstLines[i]);
-            printf("mgetl %s\n", pstLines[i]);
         }
 
     }
@@ -272,14 +271,6 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
         }
     }
 
-    {
-        int i = 0;
-        for (i = 0 ; i < nbLines ; i++)
-        {
-            printf("%s\n", cleanedLines[i]);
-        }
-
-    }
     nbColumns = getNumbersOfColumnsInLines((const char **)cleanedLines, nbLines, separator);
     if (nbColumns == 0)
     {
@@ -302,7 +293,6 @@ csvResult* csvTextScan(const char **lines, int numberOfLines, const char *separa
     }
 
     cellsStrings = getStringsFromLines((const char **)cleanedLines, nbLines, separator, decimal, nbColumns, nbRows);
-    printf("nbRows %d, nbColumns %d \n", nbRows, nbColumns);
     if (cleanedLines)
     {
         freeArrayOfString(cleanedLines, nbLines);
