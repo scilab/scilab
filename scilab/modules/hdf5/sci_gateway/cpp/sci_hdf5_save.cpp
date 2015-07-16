@@ -462,6 +462,9 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
     int fieldCount = fields->getSize();
     wchar_t** pfields = fields->get();
 
+    //save fields list in vector to keep order
+    export_string(dset, "__fields__", fields);
+
 
     std::vector<hobj_ref_t> vrefs(size);
     //fill main group with struct field name

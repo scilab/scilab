@@ -64,18 +64,6 @@ std::unordered_map<std::wstring, int> & SingleStruct::getFields()
     return m_wstFields;
 }
 
-std::vector<std::wstring> SingleStruct::getFieldsName()
-{
-    std::vector<std::wstring> names;
-    names.reserve(m_wstFields.size());
-    for (const auto & p : m_wstFields)
-    {
-        names.emplace_back(p.first);
-    }
-
-    return names;
-}
-
 int SingleStruct::getFieldIndex(const std::wstring & _field)
 {
     const auto i = m_wstFields.find(_field);
@@ -188,17 +176,10 @@ std::vector<InternalType*> SingleStruct::extract(std::vector<std::wstring> & _st
 
 String* SingleStruct::getFieldNames()
 {
-    std::set<std::wstring> names;
-    for (const auto & p : m_wstFields)
+    String* pOut = new String((int)m_wstFields.size(), 1);
+    for (const auto & field : m_wstFields)
     {
-        names.emplace(p.first);
-    }
-
-    String* pOut = new String((int)names.size(), 1);
-    int i = 0;
-    for (const auto & name : names)
-    {
-        pOut->set(i++, name.c_str());
+        pOut->set(field.second, field.first.data());
     }
     return pOut;
 }

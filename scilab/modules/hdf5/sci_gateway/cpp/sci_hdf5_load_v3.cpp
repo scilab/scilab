@@ -581,72 +581,72 @@ static types::InternalType* import_struct(int dataset)
         return str;
     }
 
+    //get fields name
+    int dfield = getDataSetIdFromName(dataset, "__fields__");
+    int dim = 0;
+    getDatasetInfo(dfield, &complex, &dim, NULL);
+    std::vector<int> d(dim);
+    size = getDatasetInfo(dfield, &complex, &dim, d.data());
+
+    //get dims value
+    std::vector<char*> fields(size);
+    readStringMatrix(dfield, fields.data());
+
     //open __refs__ node
     int refs = getDataSetIdFromName(dataset, "__refs__");
 
-    H5O_info_t oinfo;
-    for (int i = 0; i < fieldCount; ++i)
+    for (const auto& name : fields)
     {
-        H5Oget_info_by_idx(dataset, ".", H5_INDEX_NAME, H5_ITER_NATIVE, i, &oinfo, H5P_DEFAULT);
-        ssize_t len = H5Lget_name_by_idx(dataset, ".", H5_INDEX_NAME, H5_ITER_INC, i, 0, 0, H5P_DEFAULT) + 1;
-        char* name = (char*)MALLOC(sizeof(char) * len);
-        H5Lget_name_by_idx(dataset, ".", H5_INDEX_NAME, H5_ITER_INC, i, name, len, H5P_DEFAULT);
+        wchar_t* field = to_wide_string(name);
+        str->addField(field);
 
-        if (strcmp(name, "__dims__") != 0 && strcmp(name, "__refs__") != 0)
+        int dataref = getDataSetIdFromName(dataset, name);
+        if (dataref < 0)
         {
-            wchar_t* field = to_wide_string(name);
-            str->addField(field);
-
-            int dataref = getDataSetIdFromName(dataset, name);
-            if (dataref < 0)
-            {
-                closeList6(dataset);
-                FREE(name);
-                return nullptr;
-            }
-
-            int refdim = 0;
-            getDatasetInfo(dataref, &complex, &refdim, NULL);
-            std::vector<int> refdims(refdim);
-            int refcount = getDatasetInfo(dataref, &complex, &refdim, refdims.data());
-            std::vector<hobj_ref_t> vrefs(refcount);
-            ret = H5Dread(dataref, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, vrefs.data());
-            if (ret < 0)
-            {
-                FREE(name);
-                return nullptr;
-            }
-
-
-            //import field
-            for (int j = 0; j < refcount; ++j)
-            {
-                int data = H5Rdereference(refs, H5R_OBJECT, &vrefs[j]);
-                if (data < 0)
-                {
-                    FREE(name);
-                    return nullptr;
-                }
-
-                types::InternalType* val = import_data(data);
-                if (val == nullptr)
-                {
-                    FREE(name);
-                    return nullptr;
-                }
-
-                sstr[j]->set(field, val);
-
-            }
-            FREE(field);
-
-            closeDataSet(dataref);
+            closeList6(dataset);
+            freeStringMatrix(dfield, fields.data());
+            return nullptr;
         }
 
-        FREE(name);
-    }
-    //str->addField();
+        int refdim = 0;
+        getDatasetInfo(dataref, &complex, &refdim, NULL);
+        std::vector<int> refdims(refdim);
+        int refcount = getDatasetInfo(dataref, &complex, &refdim, refdims.data());
+        std::vector<hobj_ref_t> vrefs(refcount);
+        ret = H5Dread(dataref, H5T_STD_REF_OBJ, H5S_ALL, H5S_ALL, H5P_DEFAULT, vrefs.data());
+        if (ret < 0)
+        {
+            freeStringMatrix(dfield, fields.data());
+            return nullptr;
+        }
 
+
+        //import field
+        for (int j = 0; j < refcount; ++j)
+        {
+            int data = H5Rdereference(refs, H5R_OBJECT, &vrefs[j]);
+            if (data < 0)
+            {
+                freeStringMatrix(dfield, fields.data());
+                return nullptr;
+            }
+
+            types::InternalType* val = import_data(data);
+            if (val == nullptr)
+            {
+                freeStringMatrix(dfield, fields.data());
+                return nullptr;
+            }
+
+            sstr[j]->set(field, val);
+
+        }
+
+        FREE(field);
+        closeDataSet(dataref);
+    }
+
+    freeStringMatrix(dfield, fields.data());
     closeList6(refs);
     closeList6(dataset);
     return str;

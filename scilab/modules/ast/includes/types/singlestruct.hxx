@@ -64,7 +64,6 @@ public :
     bool                                    addField(const std::wstring& _sKey);
     bool                                    addFieldFront(const std::wstring& _sKey);
     std::vector<InternalType *> &           getData();
-    std::vector<std::wstring>               getFieldsName();
     std::unordered_map<std::wstring, int> & getFields();
     int                                     getFieldIndex(const std::wstring& _field);
     bool                                    removeField(const std::wstring& _sKey);
