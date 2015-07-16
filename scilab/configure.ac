@@ -1914,6 +1914,8 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATORW L"/"
 
+#define bsiz 4096
+
 #endif /* MACHINE_H  */
 ])
 
