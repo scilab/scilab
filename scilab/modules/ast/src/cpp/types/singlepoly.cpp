@@ -235,7 +235,7 @@ bool SinglePoly::setCoef(Double* _pdblCoefR)
     return setCoef(pInR, pInI);
 }
 
-bool SinglePoly::setCoef(double* _pdblCoefR, double* _pdblCoefI)
+bool SinglePoly::setCoef(const double* _pdblCoefR, const double* _pdblCoefI)
 {
     if (_pdblCoefI != NULL && isComplex() == false)
     {

@@ -42,6 +42,7 @@
 #include "api_list.h"
 #include "api_error.h"
 #include "api_handle.h"
+#include "api_hypermat.h"
 #include "api_optional.h"
 
 #undef __INTERNAL_API_SCILAB__

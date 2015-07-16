@@ -18,6 +18,7 @@ API_SCILAB_CXX_SOURCES = \
     src/cpp/api_pointer.cpp \
     src/cpp/api_handle.cpp \
     src/cpp/api_error.cpp \
+    src/cpp/api_hypermat.cpp \
     src/cpp/returnProperty.cpp \
     src/cpp/returnPropertyList.cpp \
     src/cpp/api_optional.cpp \
