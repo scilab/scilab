@@ -158,7 +158,7 @@ struct Libraries
             }
         }
 
-        return -1;
+        return SCOPE_ALL;
     }
 
     void put(const Symbol& _keyLib, types::Library* _pLib, int _iLevel)
@@ -200,7 +200,7 @@ struct Libraries
         {
             if (lib->second->empty() == false)
             {
-                if (_iLevel == -1 || lib->second->top()->m_iLevel == _iLevel)
+                if (_iLevel == SCOPE_ALL || lib->second->top()->m_iLevel == _iLevel)
                 {
                     return lib->second->top()->m_pLib;
                 }
@@ -214,7 +214,7 @@ struct Libraries
             Library* lib = it->second;
             if (it->second->empty() == false)
             {
-                if (_iLevel == -1 || it->second->top()->m_iLevel == _iLevel)
+                if (_iLevel == SCOPE_ALL || it->second->top()->m_iLevel == _iLevel)
                 {
                     types::MacroFile* pMF = it->second->get(_key);
                     if (pMF)

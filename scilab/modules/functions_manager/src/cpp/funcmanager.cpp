@@ -421,19 +421,6 @@ bool FuncManager::LoadModules()
     return true;
 }
 
-bool FuncManager::StartModules()
-{
-    list<wstring>::const_iterator it = m_ModuleName.begin();
-    list<wstring>::const_iterator itEnd = m_ModuleName.end();
-    //excute .start file
-    for (; it != itEnd; ++it)
-    {
-        //ExecuteStartFile(*it);
-    }
-
-    return true;
-}
-
 bool FuncManager::EndModules()
 {
     list<wstring>::const_iterator it = m_ModuleName.begin();

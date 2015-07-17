@@ -233,7 +233,7 @@ struct Variables
             return it->second->top()->m_iLevel;
         }
 
-        return -1;
+        return SCOPE_ALL;
     }
 
     void put(const Symbol& _key, types::InternalType* _pIT, int _iLevel)
@@ -247,7 +247,7 @@ struct Variables
         MapVars::const_iterator it = vars.find(_key);
         if (it != vars.end() && it->second->empty() == false)
         {
-            if (_iLevel == -1 || it->second->top()->m_iLevel == _iLevel)
+            if (_iLevel == SCOPE_ALL || it->second->top()->m_iLevel == _iLevel)
             {
                 return it->second->get();
             }
@@ -260,7 +260,7 @@ struct Variables
     {
         if (_var != NULL && _var->empty() == false)
         {
-            if (_iLevel == -1 || _var->top()->m_iLevel == _iLevel)
+            if (_iLevel == SCOPE_ALL || _var->top()->m_iLevel == _iLevel)
             {
                 return _var->get();
             }

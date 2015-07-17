@@ -59,6 +59,7 @@ static bool read_undefined(int dataset, VarInfo6& info);
 static bool read_struct(int dataset, VarInfo6& info);
 static bool read_cell(int dataset, VarInfo6& info);
 static bool read_handles(int dataset, VarInfo6& info);
+static bool read_macro(int dataset, VarInfo6& info);
 
 static void generateInfo(VarInfo6& info);
 static int getDimsNode(int dataset, int* complex, std::vector<int>& dims);
@@ -411,6 +412,12 @@ static bool read_data(int dataset, VarInfo6& info)
         return read_handles(dataset, info);
     }
 
+    if (type == g_SCILAB_CLASS_MACRO)
+    {
+        info.type = sci_c_function;
+        return read_macro(dataset, info);
+    }
+
     Scierror(999, _("%s: Invalid HDF5 Scilab format.\n"), "listvar_in_hdf5");
     return false;
 }
@@ -759,6 +766,7 @@ static bool read_cell(int dataset, VarInfo6& info)
     generateInfo(info);
     return true;
 }
+
 static bool read_handles(int dataset, VarInfo6& info)
 {
     //get cell dimensions
@@ -774,28 +782,23 @@ static bool read_handles(int dataset, VarInfo6& info)
         return true;
     }
 
-    ////open __refs__ node
-    //int refs = getDataSetIdFromName(dataset, "__refs__");
-    //for (int i = 0; i < size; ++i)
-    //{
-    //    int ref = getDataSetIdFromName(refs, std::to_string(i).data());
-    //    VarInfo6 info2;
-    //    if (read_data(ref, info2) == false)
-    //    {
-    //        closeList6(refs);
-    //        closeList6(dataset);
-    //        return false;
-    //    }
-
-    //    info.size += info2.size;
-    //}
-
-    //closeList6(refs);
     closeList6(dataset);
 
     generateInfo(info);
     return true;
 }
+
+static bool read_macro(int dataset, VarInfo6& info)
+{
+    info.size = 0;
+    info.dims = 2;
+    info.pdims = {1, 1};
+    closeList6(dataset);
+    generateInfo(info);
+    return true;
+}
+
+
 static void generateInfo(VarInfo6& info)
 {
     std::ostringstream ostr;

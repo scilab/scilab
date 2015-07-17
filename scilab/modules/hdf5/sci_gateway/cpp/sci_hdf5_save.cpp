@@ -82,7 +82,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     symbol::Context* ctx = symbol::Context::getInstance();
 
     /* Check the number of input argument */
-    if (in.size() < 2)
+    if (in.size() < 1)
     {
         Scierror(999, _("%s: Wrong number of input argument(s): at least %d expected.\n"), fname.data(), 2);
         return types::Function::Error;
@@ -100,36 +100,68 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
     FREE(wfilename);
     FREE(cfilename);
 
-    for (int i = 1; i < rhs; ++i)
+    if (rhs == 1)
     {
-        if (in[i]->getId() != types::InternalType::IdScalarString)
+        //save environment
+        //get variables in scope 1
+        std::list<std::wstring> lst;
+        int size = ctx->getConsoleVarsName(lst);
+
+        if (size == 0)
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), 1);
-            return types::Function::Error;
+            return types::Function::OK;
         }
 
-        wchar_t* wvar = in[i]->getAs<types::String>()->get()[0];
-        if (wcscmp(wvar, L"-append") == 0)
+        for (const auto& wvar : lst)
         {
-            bAppendMode = true;
-            continue;
+            types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
+
+            //do not save macrofile
+            if (pIT->isMacroFile() || pIT->isFunction() || pIT->isLibrary())
+            {
+                continue;
+            }
+
+            char* cvar = wide_string_to_UTF8(wvar.data());
+            std::string var(cvar);
+            FREE(cvar);
+
+            //check var exists
+            vars[var] = pIT;
         }
-
-        types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
-        if (pIT == NULL)
-        {
-            Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
-            return types::Function::Error;
-        }
-
-        char* cvar = wide_string_to_UTF8(wvar);
-        std::string var(cvar);
-        FREE(cvar);
-
-        //check var exists
-        vars[var] = pIT;
     }
+    else
+    {
+        for (int i = 1; i < rhs; ++i)
+        {
+            if (in[i]->getId() != types::InternalType::IdScalarString)
+            {
+                Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), fname.data(), 1);
+                return types::Function::Error;
+            }
 
+            wchar_t* wvar = in[i]->getAs<types::String>()->get()[0];
+            if (wcscmp(wvar, L"-append") == 0)
+            {
+                bAppendMode = true;
+                continue;
+            }
+
+            types::InternalType* pIT = ctx->get(symbol::Symbol(wvar));
+            if (pIT == NULL)
+            {
+                Scierror(999, _("%s: Wrong value for input argument #%d: Defined variable expected.\n"), fname.data(), i + 1);
+                return types::Function::Error;
+            }
+
+            char* cvar = wide_string_to_UTF8(wvar);
+            std::string var(cvar);
+            FREE(cvar);
+
+            //check var exists
+            vars[var] = pIT;
+        }
+    }
     //check append option
     if (bAppendMode)
     {

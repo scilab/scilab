@@ -195,6 +195,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     createInnosetupMutex();
 #endif
 
+    //open scope lvl 0 for gateway from modules and first variables ( SCI, HOME, TMPDIR, ...)
+    symbol::Context::getInstance()->scope_begin();
+
     /* Scilab Startup */
     xmlInitParser();
     InitializeEnvironnement();
@@ -243,17 +246,19 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
     }
 
-    //open "protection" scope to protect all variables after scilab start
-    symbol::Context::getInstance()->scope_begin();
-
+    //load gateways
     LoadModules();
 
+    //open a scope for macros
+    symbol::Context::getInstance()->scope_begin();
     //execute scilab.start
     if (_pSEI->iNoStart == 0)
     {
-        StartModules();
         execScilabStartTask(_pSEI->iSerialize != 0);
     }
+
+    //open console scope
+    symbol::Context::getInstance()->scope_begin();
 
     ConfigVariable::setStartProcessing(false);
     int pause = 0;
@@ -351,7 +356,7 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
 
     clearScilabPreferences();
 
-    //close "protection" scope
+    //close console scope
     symbol::Context::getInstance()->scope_end();
 
     //execute scilab.quit
@@ -371,6 +376,12 @@ void StopScilabEngine(ScilabEngineInfo* _pSEI)
         //call all modules.quit
         EndModules();
     }
+
+    //close macros scope
+    symbol::Context::getInstance()->scope_end();
+
+    //close gateways scope
+    symbol::Context::getInstance()->scope_end();
 
     //clean context
     symbol::Context::getInstance()->clearAll();

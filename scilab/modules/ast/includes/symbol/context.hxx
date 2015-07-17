@@ -67,6 +67,7 @@ public:
     /** If key was associated to some Entry_T in the open scopes, return the
     ** most recent insertion DESPITE the current/last one. Otherwise return the empty pointer. */
     types::InternalType* getAllButCurrentLevel(const Symbol& key);
+    types::InternalType* getAtLevel(const Symbol& key, int level = SCOPE_ALL);
 
     /** If key was associated to some Entry_T in the open scopes, return the
     ** most recent insertion. Otherwise return the empty pointer. */
@@ -75,6 +76,7 @@ public:
     /*return function list in the module _stModuleName*/
     int getFunctionList(std::list<Symbol>& lst, std::wstring _stModuleName);
 
+    int getConsoleVarsName(std::list<std::wstring>& lst);
     int getVarsName(std::list<std::wstring>& lst);
     int getMacrosName(std::list<std::wstring>& lst);
     int getFunctionsName(std::list<std::wstring>& lst);
@@ -149,6 +151,7 @@ private:
     VarStack varStack;
     Variables variables;
     Libraries libraries;
+    VarList* console;
     int m_iLevel;
 
     Context();

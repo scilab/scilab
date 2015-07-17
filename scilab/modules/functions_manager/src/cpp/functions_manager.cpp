@@ -26,15 +26,6 @@ void LoadModules()
     }
 }
 
-void StartModules()
-{
-    FuncManager* pFM = FuncManager::getInstance();
-    if (pFM)
-    {
-        pFM->StartModules();
-    }
-}
-
 void EndModules()
 {
     FuncManager* pFM = FuncManager::getInstance();
