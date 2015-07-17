@@ -3657,7 +3657,7 @@ types::InternalType* compequal_M_M<Struct, Struct, Bool>(types::Struct* _pL, typ
 template<class T, class U, class O>
 InternalType* compequal_LT_LT(T *_pL, U *_pR)
 {
-    if ((_pL->getType() != _pR->getType()) && (_pL->getType() == GenericType::ScilabList || _pR->getType() == GenericType::ScilabList))
+    if (_pL->getType() != GenericType::ScilabList || _pR->getType() != GenericType::ScilabList)
     {
         //try to find overload function, if symbol exist, return NULL to let opexep to call it.
         //otherwise do a "binary" comparison
