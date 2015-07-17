@@ -25,6 +25,7 @@ import javax.swing.JTextField;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabLAF;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
@@ -102,7 +103,9 @@ public class SearchAction extends CommonCallBack {
      * @param e ActionEvent
      */
     public void actionPerformed(ActionEvent e) {
-        // TODO
+        if (!txtSearch.getText().isEmpty()) {
+            PaletteManagerView.get().getSearchManager().search(txtSearch.getText());
+        }
     }
 
     @Override
