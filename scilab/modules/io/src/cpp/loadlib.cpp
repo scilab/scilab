@@ -43,6 +43,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 
     if (_isFile)
     {
+        //remove / or \ at the end
         size_t pos = wstPath.find_last_of(L"/\\");
         wstPath = wstPath.substr(0, pos);
         pos = wstOriginalPath.find_last_of(L"/\\");
@@ -58,13 +59,59 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         wstFile += L"lib";
     }
 
-    char* pstFile = wide_string_to_UTF8(wstFile.c_str());
+
+    std::wstring libname;
+    MacroInfoList lst;
+    *err = parseLibFile(wstFile, lst, libname);
+    if (*err)
+    {
+        return lib;
+    }
+
+    lib = new types::Library(wstOriginalPath);
+
+    std::wstring stFilename(wstPath);
+    if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
+    {
+        stFilename += DIR_SEPARATORW;
+    }
+
+
+    for (const auto& macro : lst)
+    {
+        lib->add(macro.second.name, new types::MacroFile(macro.second.name, stFilename + macro.second.file, libname));
+    }
+
+
+    if (_bAddInContext)
+    {
+        symbol::Context* ctx = symbol::Context::getInstance();
+        symbol::Symbol sym = symbol::Symbol(libname);
+        if (ctx->isprotected(sym) == false)
+        {
+            ctx->put(sym, lib);
+        }
+        else
+        {
+            *err = 2;
+            delete lib;
+            lib = NULL;
+        }
+    }
+
+    return lib;
+}
+
+int parseLibFile(const std::wstring& _wstXML, MacroInfoList& info, std::wstring& libname)
+{
+    info.clear();
+
+    char* pstFile = wide_string_to_UTF8(_wstXML.data());
 
     if (FileExist(pstFile) == FALSE)
     {
-        *err = 1;
         FREE(pstFile);
-        return NULL;
+        return 1;
     }
 
     char *encoding = GetXmlFileEncoding(pstFile);
@@ -74,18 +121,18 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     /* check if the XML file has been encoded with utf8 (unicode) or not */
     if (stricmp("utf-8", encoding))
     {
-        *err = 1;
         FREE(pstFile);
         free(encoding);
         return NULL;
     }
 
     xmlDocPtr doc;
-    xmlXPathContextPtr xpathCtxt    = NULL;
-    xmlXPathObjectPtr xpathObj      = NULL;
-    wchar_t* pstName                = NULL;
-    wchar_t* pstLibName             = NULL;
-    wchar_t* pstFileName            = NULL;
+    xmlXPathContextPtr xpathCtxt = NULL;
+    xmlXPathObjectPtr xpathObj = NULL;
+    wchar_t* pstName = NULL;
+    wchar_t* pstLibName = NULL;
+    wchar_t* pstFileName = NULL;
+    wchar_t* pstMd5 = NULL;
 
     free(encoding);
 
@@ -93,26 +140,24 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
 
     if (doc == NULL)
     {
-        *err = 1;
-        //std::cout << "Error: Could not parse file " << pstFile << std::endl;
         FREE(pstFile);
-        return NULL;
+        return 1;
     }
 
     FREE(pstFile);
-
-    lib = new types::Library(wstOriginalPath);
 
     xpathCtxt = xmlXPathNewContext(doc);
     xpathObj = xmlXPathEval((const xmlChar*)"//scilablib", xpathCtxt);
     if (xpathObj && xpathObj->nodesetval->nodeMax)
     {
         xmlAttrPtr attrib = xpathObj->nodesetval->nodeTab[0]->properties;
-        if (xmlStrEqual (attrib->name, (const xmlChar*)"name"))
+        if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
         {
             /* we found the tag name */
             const char *str = (const char*)attrib->children->content;
             pstLibName = to_wide_string(str);
+            libname = pstLibName;
+            FREE(pstLibName);
             xmlXPathFreeObject(xpathObj);
         }
         else
@@ -122,8 +167,7 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
                 xmlXPathFreeContext(xpathCtxt);
             }
             xmlXPathFreeObject(xpathObj);
-            delete lib;
-            return NULL;
+            return 1;
         }
     }
 
@@ -131,14 +175,14 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
     if (xpathObj && xpathObj->nodesetval->nodeMax)
     {
         /* the Xpath has been understood and there are node */
-        for (int i = 0 ; i < xpathObj->nodesetval->nodeNr ; i++)
+        for (int i = 0; i < xpathObj->nodesetval->nodeNr; i++)
         {
             xmlAttrPtr attrib = xpathObj->nodesetval->nodeTab[i]->properties;
             /* Get the properties of <module>  */
             while (attrib != NULL)
             {
                 /* loop until when have read all the attributes */
-                if (xmlStrEqual (attrib->name, (const xmlChar*)"name"))
+                if (xmlStrEqual(attrib->name, (const xmlChar*)"name"))
                 {
                     /* we found the tag name */
                     const char *str = (const char*)attrib->children->content;
@@ -150,19 +194,18 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
                     const char *str = (const char*)attrib->children->content;
                     pstFileName = to_wide_string(str);
                 }
+                else if (xmlStrEqual(attrib->name, (const xmlChar*)"md5"))
+                {
+                    /* we found the tag activate */
+                    const char *str = (const char*)attrib->children->content;
+                    pstMd5 = to_wide_string(str);
+                }
                 attrib = attrib->next;
             }
 
-            if (pstName && pstFileName)
+            if (pstName && pstFileName && pstMd5)
             {
-                std::wstring stFilename(wstPath);
-                if (stFilename.empty() == false && *stFilename.rbegin() != DIR_SEPARATORW[0])
-                {
-                    stFilename += DIR_SEPARATORW;
-                }
-
-                stFilename += pstFileName;
-                lib->add(pstName, new types::MacroFile(pstName, stFilename, pstLibName));
+                info[pstFileName] = MacroInfo(pstName, pstFileName, pstMd5);
             }
 
             if (pstName)
@@ -176,6 +219,12 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
                 FREE(pstFileName);
                 pstFileName = NULL;
             }
+
+            if (pstMd5)
+            {
+                FREE(pstMd5);
+                pstMd5 = NULL;
+            }
         }
     }
 
@@ -188,25 +237,8 @@ types::Library* loadlib(const std::wstring& _wstXML, int* err, bool _isFile, boo
         xmlXPathFreeContext(xpathCtxt);
     }
 
-    if (_bAddInContext)
-    {
-        symbol::Context* ctx = symbol::Context::getInstance();
-        symbol::Symbol sym = symbol::Symbol(pstLibName);
-        if (ctx->isprotected(sym) == false)
-        {
-            ctx->put(symbol::Symbol(pstLibName), lib);
-        }
-        else
-        {
-            *err = 2;
-            delete lib;
-            lib = NULL;
-        }
-    }
-
     xmlFreeDoc(doc);
-    FREE(pstLibName);
-    return lib;
+    return 0;
 }
 
 static char *GetXmlFileEncoding(std::string _filename)

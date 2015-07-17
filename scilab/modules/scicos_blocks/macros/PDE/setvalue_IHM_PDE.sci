@@ -21,7 +21,7 @@
 
 function [ok,a_domaine,b_domaine,discr,signe,choix,type_meth,degre,Nbr_maillage,..
     CI,CI1,CLa_type,CLa_exp,CLb_type,CLb_exp,oper,a1,b1,a2,b2,a3,b3,a4,b4,a5,b5,..
-    a6,b6,a7,b7,k,mesures,params_pde]=setvalue_IHM_EDP(params_pde)
+    a6,b6,a7,b7,k,mesures,params_pde]=setvalue_IHM_PDE(params_pde)
     // Cette fonction permet d'evaluer les parametres de l'IHM suite au l'evaluation du context           //
     // Entree :                                                                                           //
     //    - params_pde (tlist) : rajouter a la list exprs du bloc EDP afin de sauvegarder les             //

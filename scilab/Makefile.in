@@ -2254,8 +2254,6 @@ clean-macros:
 # Find is necessary because of subdirs...
 	-@echo "-- Cleaning macros (*.bin) --"; \
 	find $(top_builddir) -name "*.bin" | xargs --no-run-if-empty rm 2> /dev/null; \
-	echo "-- Cleaning names files (names) --"; \
-	find $(top_builddir)/modules/*/macros -name "names" | xargs --no-run-if-empty rm 2> /dev/null; \
 	echo "-- Cleaning lib files (lib) --"; \
 	find $(top_builddir)/modules/*/macros -name "lib" | xargs --no-run-if-empty rm 2> /dev/null
 

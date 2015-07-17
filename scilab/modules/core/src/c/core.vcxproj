@@ -342,6 +342,7 @@ cd ..
     <ClInclude Include="..\..\includes\islittleendian.h" />
     <ClInclude Include="..\..\includes\loadversion.h" />
     <ClInclude Include="..\..\includes\machine.h" />
+    <ClInclude Include="..\..\includes\md5.h" />
     <ClInclude Include="..\..\includes\sci_malloc.h" />
     <ClInclude Include="..\..\includes\PARAMS.h" />
     <ClInclude Include="..\..\includes\PATH_MAX.h" />
@@ -380,7 +381,6 @@ cd ..
     <ClInclude Include="getstaticdebuginfo.h" />
     <ClInclude Include="getstaticDebugInfo_Windows.h" />
     <ClInclude Include="gw_dynamic_generic.h" />
-    <ClInclude Include="md5.h" />
     <ClInclude Include="saveCWDInPreferences.h" />
   </ItemGroup>
   <ItemGroup>
