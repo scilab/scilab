@@ -38,6 +38,7 @@ import org.scilab.modules.gui.utils.ClosingOperationsManager;
 import org.scilab.modules.gui.utils.WindowsConfigurationManager;
 import org.scilab.modules.xcos.Xcos;
 import org.scilab.modules.xcos.palette.PaletteManager;
+import org.scilab.modules.xcos.palette.PaletteSearchManager;
 import org.scilab.modules.xcos.palette.actions.ClosePalettesAction;
 import org.scilab.modules.xcos.palette.actions.LoadAsPalAction;
 import org.scilab.modules.xcos.palette.actions.NavigationAction;
@@ -55,6 +56,7 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
     private final PaletteManager controller;
     private PaletteManagerPanel panel;
+    private PaletteSearchManager searchMgr;
 
     /**
      * Default constructor
@@ -66,6 +68,7 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         super(XcosMessages.PALETTE_BROWSER + " - " + Xcos.TRADENAME,
               DEFAULT_TAB_UUID);
 
+        this.searchMgr = new PaletteSearchManager();
         this.controller = controller;
         setWindowIcon(Xcos.ICON.getImage());
 
@@ -261,6 +264,14 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
 
         win.addTab(this);
         return win;
+    }
+
+    /**
+     * Get the PalettesearchManager instance
+     * @return PalettesearchManager instance
+     */
+    public PaletteSearchManager getSearchManager() {
+        return searchMgr;
     }
 
 }
