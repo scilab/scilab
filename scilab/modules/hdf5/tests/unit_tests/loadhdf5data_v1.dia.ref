@@ -23,10 +23,10 @@ load(SCI+"/modules/hdf5/tests/sample_scilab_data/matricestringscalar_v1.sod");
 assert_checkequal(cscalar,["my single string"]);
 // Polynomials
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/polynomials_v1.sod");
-p_reference=poly([1 2],'s') ;
+p_reference=poly([1 2],"s") ;
 assert_checkequal(p,p_reference);
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/polynomialscoef_v1.sod");
-q_reference=poly([1 42],'s','c');
+q_reference=poly([1 42],"s","c");
 assert_checkequal(q,q_reference);
 // Boolean matrices
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/booleanscalar_v1.sod");
@@ -48,16 +48,16 @@ load(SCI+"/modules/hdf5/tests/sample_scilab_data/booleansparse_v1.sod");
 assert_checkequal(sp,sp_reference);
 // List
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/list_v1.sod");
-assert_checkequal(ls,list(2,%i,'f',ones(3,3)));
+assert_checkequal(ls,list(2,%i,"f",ones(3,3)));
 ls(2) =  list( %t, [32,42]); // alter ls to add the list
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/listnested_v1.sod");
 assert_checkequal(lsnested,ls);
 // tlist
-lst_reference  =  tlist(['random numbers';'Name';'Example'], 'Uniform',ones(1,2, 3));
+lst_reference  =  tlist(["random numbers";"Name";"Example"], "Uniform",ones(1,2, 3));
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/tlist_v1.sod");
 assert_checkequal(lst,lst_reference);
 // mlist
-M_ref=mlist(['V','name','value'],['a','b';'c' 'd'],[1 2; 3 4]);
+M_ref=mlist(["V","name","value"],["a","b";"c" "d"],[1 2; 3 4]);
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/mlist_v1.sod");
 // Commented because of bug 9531
 //assert_checkequal(M_ref,M);
@@ -135,7 +135,7 @@ assert_checkequal(uint32rowvector, uint32rowvector_ref);
 assert_checkequal(uint32colvector, uint32colvector_ref);
 assert_checkequal(uint32matrix, uint32matrix_ref);
 // undefined
-undefinedelement_ref=list(2,%i,'f',ones(3,3));
+undefinedelement_ref=list(2,%i,"f",ones(3,3));
 undefinedelement_ref(6)="toto";
 load(SCI+"/modules/hdf5/tests/sample_scilab_data/undefinedelement_v1.sod");
 assert_checkequal(undefinedelement, undefinedelement_ref);

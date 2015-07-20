@@ -14,12 +14,9 @@ assert_checkfalse(h5isGroup(42));
 
 w = "testing";
 x = list(1, "hello");
-y = [1 2;3 4];
-z = 1;
+
 save(TMPDIR + "/w.sod", "w");
 save(TMPDIR + "/x.sod", "x");
-save(TMPDIR + "/y.sod", "y");
-save(TMPDIR + "/z.sod", "z");
 
 a = h5open(TMPDIR + "/w.sod", "r");
 assert_checkequal(h5isGroup(a),%F);
@@ -31,8 +28,5 @@ h5close(a);
 b = h5open(TMPDIR + "/x.sod", "r");
 assert_checkequal(h5isGroup(b),%F);
 assert_checkequal(h5isGroup(b.root),%T);
-assert_checkequal(h5isGroup(b.root.x),%F);
-assert_checkequal(h5isGroup(b.root.x.type),%F);
+assert_checkequal(h5isGroup(b.root.x),%T);
 h5close(b);
-
-

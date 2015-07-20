@@ -11,30 +11,11 @@ function writeData(filename, data)
 endfunction
 function checkBinary(file1, file2)
     //open 1st file
-    f1 = mopen(file1, "rb");
-    mseek(0, f1, "end");
-    size1 = mtell(f1);
-    mseek(0, f1, "set");
-    //open 2nd file
-    f2 = mopen(file2, "rb");
-    mseek(0, f2, "end");
-    size2 = mtell(f2);
-    mseek(0, f2, "set");
-    //check file sizes
-    if size1 <> size2 then
-        mclose(f1);
-        mclose(f2);
-    end
-    assert_checkequal(size1, size2);
-    //get data for files
-    data1 = mget(size1, "uc", f1);
-    data2 = mget(size2, "uc", f2);
-    mclose(f1);
-    mclose(f2);
-    assert_checkequal(data1, data2);
+    md5_1 = getmd5(file1);
+    md5_2 = getmd5(file2);
+    assert_checkequal(md5_1, md5_2);
     //mdelete(file1);
     //mdelete(file2);
-    //disp(size(data1, "*"));
 endfunction
 function writeAllData(path, radical)
     d = matrix(1:100, [10, 10]);

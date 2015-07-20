@@ -896,7 +896,7 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
             it = out[0];
         }
-        catch (ast::ScilabError& /*se*/)
+        catch (ast::ScilabMessage& /*se*/)
         {
             //overload does not exist
             return -1;
