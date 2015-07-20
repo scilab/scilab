@@ -14,20 +14,15 @@ function [x,y,typ]=SELF_SWITCH(job,arg1,arg2)
         diagram = scicos_diagram();
         // Input forward
         diagram.objs(1) = IN_f("define");
-        diagram.objs(1).graphics.pout = 5;
 
         // Output's forward
         diagram.objs(2)=OUT_f("define");
-        diagram.objs(2).graphics.pin = 7;
 
         diagram.objs(3)=CONST_m("define");
-        diagram.objs(3).graphics.pout = 6;
         diagram.objs(3).graphics.exprs = "0";
         diagram.objs(3).model.rpar = 0;
 
         diagram.objs(4)=SWITCH_f("define");
-        diagram.objs(4).graphics.pin = [5 6]
-        diagram.objs(4).graphics.pout = 7
         if stateOpen == %t
             diagram.objs(4).model.ipar = 1;
             diagram.objs(4).graphics.exprs = ["2";"2"];
