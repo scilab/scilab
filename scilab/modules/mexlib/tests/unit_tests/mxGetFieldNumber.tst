@@ -30,10 +30,10 @@ ilib_mex_build("libmextest",["getFieldNumber","mexgetFieldNumber","cmex"], "mexg
 exec("loader.sce");
 
 c = struct("a", 3, "b", 1, "1", 2);
-assert_checkequal(getFieldNumber(c), 2);
+assert_checkequal(getFieldNumber(c), 1);
 
 c = struct("b", 3, "a", 5);
-assert_checkequal(getFieldNumber(c), 1);
+assert_checkequal(getFieldNumber(c), 2);
 
 c = struct("b", 32);
 assert_checkequal(getFieldNumber(c), -1);

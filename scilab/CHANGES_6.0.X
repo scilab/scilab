@@ -39,10 +39,6 @@ Data structures
 
 * cells and structs are now native types, hence improving performances.
 
-* structs field names are now ordered alphabaticaly:
-   - display uses this new order,
-   - fieldnames function returns a sorted vector of strings.
-
 
 Removed functions
 ==================
