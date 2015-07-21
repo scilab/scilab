@@ -349,13 +349,13 @@ public class RulerDrawer {
                 for (double value : ticks) {
                     Texture sprite = computeSprite(value, format);
                     Vector3d windowPosition = canvasProjection.project(rulerModel.getPosition(value));
-                    
+
                     // X != X means NaN so we are not able to project coordinates
                     // return basic format
                     if (windowPosition.getX() != windowPosition.getX()) {
                         return format;
                     }
-                    
+
                     Dimension textureSize = computeSpriteDimension(value);
 
                     Vector3d delta = projectCenterToEdge(textureSize, windowTicksDelta);

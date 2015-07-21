@@ -1,5 +1,5 @@
-            Changes between version 5.5.2 and 6.0.0 of Scilab
-            =================================================
+            Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
+            =========================================================
 
 Installation
 ============
@@ -11,7 +11,31 @@ Installation
 Compilation
 ===========
 
- * Scilab requires conforming C++11 compilers
+* A conforming C++11 compiler is now needed.
+
+* Java minimal version switch to 1.8.
+
+* Ant minimal version switched to 1.9.0 (for xompatibility with Java 1.8).
+
+
+Packaging & Supported operating systems
+=======================================
+
+* Scilab embedded JVM has been upgraded to Java 1.8 then to run or compile Scilab you need at least:
+   - Windows:
+        Windows 8 (Desktop)
+        Windows 7
+        Windows Vista SP2
+        Windows Server 2008 R2 SP1 (64-bit)
+        Windows Server 2012 (64-bit)
+   - Mac OS X:
+        Intel-based Mac running Mac OS X 10.8.3+, 10.9+
+   - Linux:
+        Red Hat Enterprise Linux 5.5+, 6.x (32-bit), 6.x (64-bit), 7.x (64-bit)
+        Oracle Linux 5.5+, 6.x (32-bit), 6.x (64-bit), 7.x (64-bit)
+        Ubuntu Linux 12.04 LTS, 13.x
+        Suse Linux Enterprise Server 10 SP2+, 11.x
+For more information, see: http://java.com/en/download/help/sysreq.xml
 
 
 Signal processing

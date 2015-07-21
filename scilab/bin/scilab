@@ -743,24 +743,23 @@ check_macosx_version()
     case $macosxMajorVersion in
         10)
             case $macosxMinorVersion in
-                7|8|9|10)
+                9|10)
                    # We force to install JRE on Lion
                    /usr/libexec/java_home --request > /dev/null
                    ;;
-                6)
-
-                    if test $macosxBuildVersion -le 4; then
-                        # Version <= 10.6.4
-                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                8)
+                    if test $macosxBuildVersion -le 3; then
+                        # Version <= 10.8.3
+                        osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
                     fi
                     ;;
                 *)
-                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+                    osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
                     ;;
             esac
             ;;
         *)
-            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.6.5 (Snow Leopard) or newer system" || exit 128
+            osascript $BINPATH/checkmacosx.applescript $macosxVersion "10.8.3 (Mountain Lion) or newer system" || exit 128
             ;;
     esac
 }
