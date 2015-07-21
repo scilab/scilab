@@ -249,6 +249,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         if (Ret != Callable::OK)
         {
             cleanInOut(in, out);
+            setResult(NULL);
             throw ScilabError();
         }
 
