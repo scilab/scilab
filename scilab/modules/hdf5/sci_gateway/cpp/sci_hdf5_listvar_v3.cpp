@@ -429,7 +429,7 @@ static bool read_double(int dataset, VarInfo6& info)
     if (ret < 0)
     {
         closeDataSet(dataset);
-        return nullptr;
+        return false;
     }
 
     info.pdims.resize(info.dims);
@@ -448,7 +448,7 @@ static bool read_string(int dataset, VarInfo6& info)
     if (ret < 0)
     {
         closeDataSet(dataset);
-        return nullptr;
+        return false;
     }
 
     info.pdims.resize(info.dims);
@@ -475,7 +475,7 @@ static bool read_boolean(int dataset, VarInfo6& info)
     if (ret < 0)
     {
         closeDataSet(dataset);
-        return nullptr;
+        return false;
     }
 
     info.pdims.resize(info.dims);
@@ -494,7 +494,7 @@ static bool read_integer(int dataset, VarInfo6& info)
     if (ret < 0)
     {
         closeDataSet(dataset);
-        return nullptr;
+        return false;
     }
 
     info.pdims.resize(info.dims);
@@ -575,7 +575,7 @@ static bool read_poly(int dataset, VarInfo6& info)
         int ret = getDatasetInfo(poly, &complex, &dims, NULL);
         if (ret < 0)
         {
-            return nullptr;
+            return false;
         }
 
         std::vector<int> d(dims);
