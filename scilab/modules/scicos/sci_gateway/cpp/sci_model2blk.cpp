@@ -989,6 +989,8 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
             {
                 d = pIT->getAs<types::Double>();
                 const int size = d->getSize();
+                Block.oparsz[i] = d->getRows();
+                Block.oparsz[Block.nopar + i] = d->getCols();
                 const double* const r = d->get();
                 if (d->isComplex() == false)
                 {
@@ -1029,29 +1031,59 @@ types::Function::ReturnValue sci_model2blk(types::typed_list &in, int _iRetCount
                 switch (pIT->getType())
                 {
                     case types::InternalType::ScilabInt8:
+                    {
                         Block.opartyp[i] = 81;
-                        ret = alloc_and_set(pIT->getAs<types::Int8>(), &Block.oparptr[i]);
+                        types::Int8* pI8 = pIT->getAs<types::Int8>();
+                        ret = alloc_and_set(pI8, &Block.oparptr[i]);
+                        Block.oparsz[i] = pI8->getRows();
+                        Block.oparsz[Block.nopar + i] = pI8->getCols();
                         break;
+                    }
                     case types::InternalType::ScilabInt16:
+                    {
                         Block.opartyp[i] = 82;
-                        ret = alloc_and_set(pIT->getAs<types::Int16>(), &Block.oparptr[i]);
+                        types::Int16* pI16 = pIT->getAs<types::Int16>();
+                        ret = alloc_and_set(pI16, &Block.oparptr[i]);
+                        Block.oparsz[i] = pI16->getRows();
+                        Block.oparsz[Block.nopar + i] = pI16->getCols();
                         break;
+                    }
                     case types::InternalType::ScilabInt32:
+                    {
                         Block.opartyp[i] = 84;
-                        ret = alloc_and_set(pIT->getAs<types::Int32>(), &Block.oparptr[i]);
+                        types::Int32* pI32 = pIT->getAs<types::Int32>();
+                        ret = alloc_and_set(pI32, &Block.oparptr[i]);
+                        Block.oparsz[i] = pI32->getRows();
+                        Block.oparsz[Block.nopar + i] = pI32->getCols();
                         break;
+                    }
                     case types::InternalType::ScilabUInt8:
+                    {
                         Block.opartyp[i] = 811;
-                        ret = alloc_and_set(pIT->getAs<types::UInt8>(), &Block.oparptr[i]);
+                        types::UInt8* pUI8 = pIT->getAs<types::UInt8>();
+                        ret = alloc_and_set(pUI8, &Block.oparptr[i]);
+                        Block.oparsz[i] = pUI8->getRows();
+                        Block.oparsz[Block.nopar + i] = pUI8->getCols();
                         break;
+                    }
                     case types::InternalType::ScilabUInt16:
+                    {
                         Block.opartyp[i] = 812;
-                        ret = alloc_and_set(pIT->getAs<types::UInt16>(), &Block.oparptr[i]);
+                        types::UInt16* pUI16 = pIT->getAs<types::UInt16>();
+                        ret = alloc_and_set(pUI16, &Block.oparptr[i]);
+                        Block.oparsz[i] = pUI16->getRows();
+                        Block.oparsz[Block.nopar + i] = pUI16->getCols();
                         break;
+                    }
                     case types::InternalType::ScilabUInt32:
+                    {
                         Block.opartyp[i] = 814;
-                        ret = alloc_and_set(pIT->getAs<types::UInt32>(), &Block.oparptr[i]);
+                        types::UInt32* pUI32 = pIT->getAs<types::UInt32>();
+                        ret = alloc_and_set(pUI32, &Block.oparptr[i]);
+                        Block.oparsz[i] = pUI32->getRows();
+                        Block.oparsz[Block.nopar + i] = pUI32->getCols();
                         break;
+                    }
                     default :
                         ret = false;
                         break;
