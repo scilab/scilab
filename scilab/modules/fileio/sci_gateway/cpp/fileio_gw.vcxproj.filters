@@ -144,9 +144,6 @@
     <ClCompile Include="..\c\sci_fscanfMat.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\c\sci_maxfiles.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\c\sci_movefile.c">
       <Filter>Source Files</Filter>
     </ClCompile>

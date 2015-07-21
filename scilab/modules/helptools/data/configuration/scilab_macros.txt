@@ -1359,7 +1359,6 @@ leastsq
 list2vec
 lmisolver
 lmitool
-numdiff
 pack
 pencost
 qpsolve

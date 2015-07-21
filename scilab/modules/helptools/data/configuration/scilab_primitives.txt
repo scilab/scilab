@@ -302,7 +302,6 @@ about
 abs
 acos
 addModulePreferences
-addf
 addhistory
 addinter
 addlocalizationdomain
@@ -391,7 +390,6 @@ ctree4
 cumprod
 cumsum
 curblock
-curblockc
 daskr
 dasrt
 dassl
@@ -685,7 +683,6 @@ matfile_varreadnext
 matfile_varwrite
 matrix
 max
-maxfiles
 mclearerr
 mclose
 meof
