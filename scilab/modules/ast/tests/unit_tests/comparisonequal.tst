@@ -1113,8 +1113,8 @@ delete(handle1);
 //polynom
 res = horner(1/(1-%s),1/(1-%s));
 
-assert_checkequal(res == (1-%s)/-%s, [%t %t %t %t]);
+assert_checkequal(res == (1-%s)/-%s, %t);
 assert_checkequal(res == (1-%s)/1, %f);
-assert_checkequal(res == 1/-%s, [%t %f %t %t]);
+assert_checkequal(res == 1/-%s, %f);
 
 
