@@ -642,7 +642,6 @@ jwrapinfloat
 kron
 lasterror
 ldiv
-ldivf
 legendre
 length
 lib
@@ -713,7 +712,6 @@ mtell
 mtlb_mode
 mtlb_sparse
 mucomp
-mulf
 nearfloat
 newaxes
 newest
@@ -767,7 +765,6 @@ rand
 rankqr
 rat
 rcond
-rdivf
 read
 read4b
 read_csv
@@ -864,7 +861,6 @@ strstr
 strsubst
 strtod
 strtok
-subf
 sum
 svd
 swap_handles

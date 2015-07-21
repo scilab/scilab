@@ -79,7 +79,7 @@ function [equations,impl_type]=gen_code_FEM(A,B1,B2,C1,C2,C3,F3,oper,N,..
         end
 
         for i=1:N
-            equations(i)="   res["+string(i-1)+"]="+subf(vec2(i+N),dvec2(i))+";";
+            equations(i)="   res["+string(i-1)+"]="+vec2(i+N)+"-"+dvec2(i)+";";
             F=mulfv(msprintfv(F3(i)),b7);
             if (i == 1) then
                 // prise en compte des conditions aux limites de type Dirichlet par dualisation en a

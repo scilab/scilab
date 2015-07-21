@@ -1367,7 +1367,6 @@ unpack
 vec2list
 aff2ab
 classmarkov
-cmb_lin
 coff
 colcomp
 companion
@@ -1544,7 +1543,6 @@ augment
 balreal
 bilin
 black
-bloc2exp
 bloc2ss
 bode
 bode_asymp
@@ -1695,8 +1693,6 @@ tf2des
 tf2ss
 time_id
 trfmod
-trianfml
-trisolve
 trzeros
 ui_observer
 unobs
