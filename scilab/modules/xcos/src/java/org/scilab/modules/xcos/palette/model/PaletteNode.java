@@ -228,6 +228,9 @@ public abstract class PaletteNode implements TreeNode {
             Collections.reverse(path);
 
             tree.setSelectionPath(new TreePath(path.toArray()));
+
+            // makes the PaletteSearchManager aware that the index should be updated.
+            PaletteManagerView.get().getSearchManager().setIndexIsOutdated(true);
         }
     }
 

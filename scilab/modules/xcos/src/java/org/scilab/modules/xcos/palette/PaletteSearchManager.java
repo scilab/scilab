@@ -38,6 +38,8 @@ import org.scilab.modules.xcos.palette.view.PaletteSearchView;
  */
 public final class PaletteSearchManager {
 
+    private Boolean indexIsOutdated = true;
+
     private Analyzer analyzer;
     private IndexWriter writer;
     private PaletteIndexer paletteIndexer;
@@ -64,23 +66,29 @@ public final class PaletteSearchManager {
     }
 
     /**
-     * Refreshes the whole Index
-     */
-    public void refreshIndex() {
-        TreeModel model = PaletteManagerView.get().getTree().getModel();
-        if (model != null) {
-            loadHashTable(model, model.getRoot(), "");
-            paletteIndexer.createIndex(ht);
-        }
-    }
-
-    /**
      * Look for a block into the Index.
      * @param query Query
      */
     public void search(String query) {
         PaletteManagerView.get().getPanel().setRightComponent(view);
+
+        if (indexIsOutdated) {
+            refreshIndex();
+            indexIsOutdated = false;
+        }
+
         paletteSearcher.search(query);
+    }
+
+    /**
+     * Refreshes the whole Index
+     */
+    private void refreshIndex() {
+        TreeModel model = PaletteManagerView.get().getTree().getModel();
+        if (model != null) {
+            loadHashTable(model, model.getRoot(), "");
+            paletteIndexer.createIndex(ht);
+        }
     }
 
     /**
@@ -102,6 +110,15 @@ public final class PaletteSearchManager {
                               treePath + File.separator + node.toString());
             }
         }
+    }
+
+    /**
+     * When the Index is outdated, the PaletteSearchManager
+     * will refresh it before the next search().
+     * @param b True if it is outdated. 
+     */
+    public void setIndexIsOutdated(Boolean b) {
+        indexIsOutdated = b;
     }
 
     /**
