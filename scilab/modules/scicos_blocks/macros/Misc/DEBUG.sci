@@ -39,10 +39,7 @@ function [x,y,typ]=DEBUG(job,arg1,arg2)
                 tt=["block=debug_scicos(block,flag)"]
 
                 if execstr("deff(tt,txt)","errcatch")==0 then
-                    warnMode = warning("query");
-                    warning("off");
-                    save(TMPDIR+"/debug_scicos", debug_scicos)
-                    warning(warnMode);
+                    save(TMPDIR+"/debug_scicos", "debug_scicos")
                     exprs(2)=txt
                     if (scicos_debug()<>2 & scicos_debug()<>3) then
                         scicos_debug(2)
