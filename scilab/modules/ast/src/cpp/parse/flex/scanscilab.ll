@@ -164,6 +164,15 @@ assign			"="
 // BOM found ==> ignored
 }
 
+<INITIAL,BEGINID>{booltrue}     {
+    BEGIN(INITIAL);
+    return scan_throw(BOOLTRUE);
+}
+<INITIAL,BEGINID>{boolfalse}    {
+    BEGIN(INITIAL);
+    return scan_throw(BOOLFALSE);
+}
+
 <INITIAL,BEGINID>"if"            {
 	if (last_token != DOT)
     {
