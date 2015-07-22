@@ -480,6 +480,8 @@ public :
             ConfigVariable::setSilentError(oldVal);
             //to lock lasterror
             ConfigVariable::setLastErrorCall();
+            // reset call stack filled when error occured
+            ConfigVariable::resetWhereError();
             e.getCatch().accept(*this);
         }
     }
