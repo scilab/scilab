@@ -67,6 +67,7 @@ int sci_archive_list(char *fname, unsigned long fname_len);
 int sci_archive_extract(char *fname, unsigned long fname_len);
 int sci_archive_compress(char *fname, unsigned long fname_len);
 int sci_getURLheader(char *fname, unsigned long fname_len);
+int sci_postURL(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FILEIO_H__ */
 /*--------------------------------------------------------------------------*/

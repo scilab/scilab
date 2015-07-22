@@ -85,4 +85,5 @@
     <PRIMITIVE gatewayId="34" primitiveId="50" primitiveName="archiveExtract" />
     <PRIMITIVE gatewayId="34" primitiveId="51" primitiveName="archiveCompress" />
     <PRIMITIVE gatewayId="34" primitiveId="52" primitiveName="getURLheader" />
+    <PRIMITIVE gatewayId="34" primitiveId="53" primitiveName="postURL" />
 </GATEWAY>

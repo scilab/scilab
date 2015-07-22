@@ -177,6 +177,9 @@
     <ClCompile Include="src\c\scanf_functions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_postURL.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_archive_compress.c">
       <Filter>Source Files</Filter>
     </ClCompile>

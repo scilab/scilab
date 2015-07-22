@@ -25,5 +25,5 @@
  * @return the file pointer
 */
 char *downloadFile(char *url, char *dest, char *username, char *password, char **content, int header);
-
+char *postFile(char *url, char **arguments, char **values, char *dest, char *username, char *password, char **content);
 #endif /* __DLMANAGER_H__ */

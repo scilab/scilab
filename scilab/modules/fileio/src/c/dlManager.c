@@ -450,6 +450,267 @@ char *downloadFile(char *url, char *dest, char *username, char *password, char *
     return filename;
 }
 /* ==================================================================== */
+char *postFile(char *url, char **arguments, char **values, char *dest, char *username, char *password, char **content)
+{
+    CURL *curl;
+    CURLcode res;
+    char *filename = NULL;
+    FILE *file;
+    inputString buffer;
+    inputString header_buffer;
+    char *destdir = NULL;
+    char *destfile = NULL;
+
+    curl = curl_easy_init();
+    if (curl == NULL)
+    {
+        Scierror(999, "Failed opening the curl handle.\n");
+        return NULL;
+    }
+
+    init_string(&buffer);
+    res = curl_easy_setopt(curl, CURLOPT_ERRORBUFFER, errorBuffer);
+    if (res != CURLE_OK)
+    {
+        Scierror(999, "Failed to set error buffer [%d]\n", res);
+        return NULL;
+    }
+
+    // Get destination directory and filename
+    if (dest != NULL)
+    {
+        // Destination is specified in argument
+        char* pathdrive = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathdir = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathfile = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+        char* pathext = (char*)MALLOC(sizeof(char) * (PATH_MAX + 1));
+
+        splitpath(dest, TRUE, pathdrive, pathdir, pathfile, pathext);
+
+        if (!isdir(dest))
+        {
+            // Destination is a file
+            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + 1) * sizeof(char));
+            strcpy(destdir, pathdrive);
+            strcat(destdir, pathdir);
+
+            // Get filename
+            destfile = (char *)MALLOC((strlen(pathfile) + strlen(pathext) + 1) * sizeof(char));
+            strcpy(destfile, pathfile);
+            strcat(destfile, pathext);
+        }
+        else
+        {
+            // Destination is a directory
+            destdir = (char *)MALLOC((strlen(pathdrive) + strlen(pathdir) + strlen(pathfile) + strlen(pathext) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            strcpy(destdir, pathdrive);
+            strcat(destdir, pathdir);
+            strcat(destdir, pathfile);
+            strcat(destdir, pathext);
+            strcat(destdir, DIR_SEPARATOR);
+
+            // Retrieve filename from URL
+            destfile = getFileNameFromURL(url);
+        }
+
+        FREE(pathdrive);
+        FREE(pathdir);
+        FREE(pathfile);
+        FREE(pathext);
+    }
+    else
+    {
+        // Destination is not specified in argument
+        // Destination directory is current dir
+        int err = 0;
+        char *currentdir;
+        currentdir = scigetcwd(&err);
+        if (!err)
+        {
+            destdir = (char *)MALLOC((strlen(currentdir) + strlen(DIR_SEPARATOR) + 1) * sizeof(char));
+            strcpy(destdir, currentdir);
+            strcat(destdir, DIR_SEPARATOR);
+            FREE(currentdir);
+        }
+        else
+        {
+            Scierror(999, _("Failed getting current dir, error code: %d\n"), err);
+            return NULL;
+        }
+
+        // Destination filename retrieved from URL
+        destfile = getFileNameFromURL(url);
+    }
+
+    if (destfile == NULL)
+    {
+        return NULL;
+    }
+
+    // Build file path
+    filename = (char *)MALLOC((strlen(destdir) + strlen(destfile) + 1) * sizeof(char));
+    strcpy(filename, destdir);
+    strcat(filename, destfile);
+    FREE(destdir);
+    FREE(destfile);
+    res = curl_easy_setopt(curl, CURLOPT_URL, url);
+    if (res != CURLE_OK)
+    {
+        Scierror(999, _("Failed to set URL [%s]\n"), errorBuffer);
+        FREE(filename);
+        return NULL;
+    }
+
+    //Set authentication variables
+    if (username != NULL)
+    {
+        char * userpass;
+        int uplen = (int)strlen(username);
+        if (password != NULL)
+        {
+            uplen = uplen + (int)strlen(password);
+        }
+
+        userpass = (char *)MALLOC((uplen + 2) * sizeof(char));
+
+        strcpy(userpass, username);
+        strcat(userpass, ":");
+        if (password != NULL)
+        {
+            strcat(userpass, password);
+        }
+
+        res = curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+        if (res != CURLE_OK)
+        {
+            FREE(filename);
+            FREE(userpass);
+            Scierror(999, "Failed to set httpauth type to ANY [%s]\n", errorBuffer);
+            return NULL;
+        }
+
+        res = curl_easy_setopt(curl, CURLOPT_USERPWD, userpass);
+        if (res != CURLE_OK)
+        {
+            FREE(filename);
+            Scierror(999, _("Failed to set user:pwd [%s]\n"), errorBuffer);
+            return NULL;
+        }
+    } /* end authentication section */
+
+    {
+        //Set proxy variables
+        char *proxyHost = NULL;
+        char *proxyUserPwd = NULL;
+        long proxyPort = 1080;
+        int proxySet = 0;
+
+        proxySet = getProxyValues(&proxyHost, &proxyPort, &proxyUserPwd);
+
+        if (proxySet == 1)
+        {
+            res = curl_easy_setopt(curl, CURLOPT_PROXY, proxyHost);
+            if (res != CURLE_OK)
+            {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
+                FREE(filename);
+                Scierror(999, _("Failed to set proxy host [%s]\n"), errorBuffer);
+                return NULL;
+            }
+
+            res = curl_easy_setopt(curl, CURLOPT_PROXYPORT, proxyPort);
+            if (res != CURLE_OK)
+            {
+                FREE(proxyHost);
+                FREE(proxyUserPwd);
+                FREE(filename);
+                Scierror(999, _("Failed to set proxy port [%s]\n"), errorBuffer);
+                return NULL;
+            }
+            if (proxyUserPwd != NULL)
+            {
+                res = curl_easy_setopt(curl, CURLOPT_PROXYUSERPWD, proxyUserPwd);
+                if (res != CURLE_OK)
+                {
+                    FREE(proxyHost);
+                    FREE(proxyUserPwd);
+                    FREE(filename);
+                    Scierror(999, _("Failed to set proxy user:password [%s]\n"), errorBuffer);
+                    return NULL;
+                }
+            }
+
+            FREE(proxyHost);
+            FREE(proxyUserPwd);
+        }
+    } /* end of the set of the proxy */
+    char post_string[1024];
+    int i = 0;
+    while(arguments[i]!=NULL)
+    {
+	    strcat(post_string,arguments[i]);
+	    strcat(post_string,"=");
+	    strcat(post_string,values[i]);
+	    strcat(post_string,"&");
+	    i++;
+    }
+    post_string[strlen(post_string)-1]=0;
+    curl_easy_setopt(curl, CURLOPT_POSTFIELDS, post_string);
+    res = curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, writefunc);
+    if (res != CURLE_OK)
+    {
+        FREE(filename);
+        Scierror(999, _("Failed to set write function [%s]\n"), errorBuffer);
+        return NULL;
+    }
+
+    //Get data to be written to the variable
+    res = curl_easy_setopt(curl, CURLOPT_WRITEDATA, &buffer);
+    if (res != CURLE_OK)
+    {
+        FREE(filename);
+        free_string(&buffer);
+        Scierror(999, _("Failed to set write data [%s]\n"), errorBuffer);
+        return NULL;
+    }
+
+    // Follow redirects
+    res = curl_easy_setopt(curl, CURLOPT_FOLLOWLOCATION, 1);
+    if (res != CURLE_OK)
+    {
+        FREE(filename);
+        free_string(&buffer);
+        Scierror(999, _("Failed to set 'Follow Location' [%s]\n"), errorBuffer);
+        return NULL;
+    }
+    //    curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+    res = curl_easy_perform(curl);
+    if (res != 0)
+    {
+        FREE(filename);
+        free_string(&buffer);
+        Scierror(999, _("Transfer did not complete successfully: %s\n"), errorBuffer);
+        return NULL;
+    }
+
+    wcfopen(file, (char*)filename, "wb");
+    if (file == NULL)
+    {
+        Scierror(999, _("Failed opening '%s' for writing.\n"), filename);
+        FREE(filename);
+        return NULL;
+    }
+    /* Write the file */
+    fwrite(buffer.ptr, sizeof(char), buffer.len, file);
+    *content = buffer.ptr;
+
+    /* always cleanup */
+    curl_easy_cleanup(curl);
+    fclose(file);
+    return filename;
+
+}
 static char *Curl_basename(char *path)
 {
     char *s1 = NULL;
