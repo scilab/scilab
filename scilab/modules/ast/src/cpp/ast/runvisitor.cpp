@@ -250,7 +250,7 @@ void RunVisitorT<T>::visitprivate(const FieldExp &e)
         {
             cleanInOut(in, out);
             setResult(NULL);
-            throw ScilabError();
+            throw ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         setResult(out);
@@ -1096,7 +1096,7 @@ void RunVisitorT<T>::visitprivate(const NotExp &e)
         if (Ret != Callable::OK)
         {
             cleanInOut(in, out);
-            throw ScilabError();
+            throw ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         setResult(out);
@@ -1154,7 +1154,7 @@ void RunVisitorT<T>::visitprivate(const TransposeExp &e)
         if (Ret != Callable::OK)
         {
             cleanInOut(in, out);
-            throw ScilabError();
+            throw ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         setResult(out);
@@ -1381,7 +1381,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
     if (Ret != Callable::OK)
     {
         cleanInOut(in, out);
-        throw ScilabError();
+        throw ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     setResult(out);

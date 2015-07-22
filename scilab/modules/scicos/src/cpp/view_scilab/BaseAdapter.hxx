@@ -30,6 +30,7 @@
 #include "callable.hxx"
 #include "overload.hxx"
 #include "scilabexception.hxx"
+#include "configvariable.hxx"
 
 #include "utilities.hxx"
 #include "Controller.hxx"
@@ -433,7 +434,7 @@ private:
         return true;
     }
 
-    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
+    bool invoke(types::typed_list & in, types::optional_list & /*opt*/, int /*_iRetCount*/, types::typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
     {
         if (in.size() == 0)
         {
@@ -483,7 +484,7 @@ private:
 
         if (ret == types::Callable::Error)
         {
-            throw ast::ScilabError();
+            throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         return true;

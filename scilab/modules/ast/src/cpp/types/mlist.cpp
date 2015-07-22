@@ -14,6 +14,7 @@
 #include "mlist.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
+#include "configvariable.hxx"
 
 #ifndef NDEBUG
 #include "inspector.hxx"
@@ -21,7 +22,7 @@
 
 namespace types
 {
-bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
+bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -79,7 +80,7 @@ bool MList::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/,
 
     if (ret == Callable::Error)
     {
-        throw ast::ScilabError();
+        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;

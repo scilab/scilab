@@ -77,7 +77,7 @@ bool TList::exists(const std::wstring& _sKey)
     return false;
 }
 
-bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & /*e*/)
+bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typed_list & out, ast::ConstVisitor & execFunc, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -192,7 +192,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
     if (ret == Callable::Error)
     {
-        throw ast::ScilabError();
+        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;
