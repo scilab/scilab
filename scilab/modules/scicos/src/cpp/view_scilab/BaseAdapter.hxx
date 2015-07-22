@@ -254,7 +254,7 @@ public:
         types::Bool* ret = new types::Bool(1, 1 + properties.size());
         ret->set(0, true); // First field is just the Adapter's name, which has been checked by the above conditions
 
-        Controller controller = Controller();
+        Controller controller;
         int index = 1;
         for (typename property<Adaptor>::props_t_it it = properties.begin(); it != properties.end(); ++it, ++index)
         {
@@ -305,7 +305,7 @@ private:
         typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
         if (found != property<Adaptor>::fields.end() && !(name < found->name))
         {
-            Controller controller = Controller();
+            Controller controller;
             types::InternalType* value = found->get(*static_cast<Adaptor*>(this), controller);
             if (value == 0)
             {
@@ -384,7 +384,7 @@ private:
                 types::String* pStr = (*_pArgs)[i]->getAs<types::String>();
                 std::wstring name = pStr->get(0);
 
-                Controller controller = Controller();
+                Controller controller;
                 typename property<Adaptor>::props_t_it found = std::lower_bound(property<Adaptor>::fields.begin(), property<Adaptor>::fields.end(), name);
                 if (found != property<Adaptor>::fields.end() && !(name < found->name))
                 {
