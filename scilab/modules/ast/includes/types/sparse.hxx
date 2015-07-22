@@ -452,7 +452,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '==' between the elements of *this and those of o.
      */
-    SparseBool* newEqualTo(Sparse const&o) const;
+    SparseBool* newEqualTo(Sparse &o);
 
     /**
        output 1-base column numbers of the non zero elements
@@ -729,7 +729,7 @@ struct EXTERN_AST SparseBool : GenericType
 
     Sparse* newOnes() const;
     SparseBool* newNotEqualTo(SparseBool const&o) const;
-    SparseBool* newEqualTo(SparseBool const&o) const;
+    SparseBool* newEqualTo(SparseBool& o);
 
     SparseBool* newLogicalOr(SparseBool const&o) const;
     SparseBool* newLogicalAnd(SparseBool const&o) const;

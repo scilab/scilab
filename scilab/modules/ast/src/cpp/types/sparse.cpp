@@ -2260,9 +2260,131 @@ SparseBool* Sparse::newGreaterOrEqual(Sparse const&o) const
     return cwiseOp<std::greater_equal>(*this, o);
 }
 
-SparseBool* Sparse::newEqualTo(Sparse const&o) const
+SparseBool* Sparse::newEqualTo(Sparse &o)
 {
-    return cwiseOp<std::equal_to>(*this, o);
+    int rowL = getRows();
+    int colL = getCols();
+
+    int rowR = o.getRows();
+    int colR = o.getCols();
+    int row = std::max(rowL, rowR);
+    int col = std::max(colL, colR);
+
+    //create a boolean sparse matrix with dims of sparses
+    types::SparseBool* ret = new types::SparseBool(row, col);
+
+    std::cout << "row " << row << std::endl << "col " << col << std::endl;
+
+    if (isScalar() && o.isScalar())
+    {
+        if (isComplex() || o.isComplex())
+        {
+            std::complex<double> l = getImg(0, 0);
+            std::complex<double> r = o.getImg(0, 0);
+            ret->set(0, 0, l == r, false);
+        }
+        else
+        {
+            double l = get(0, 0);
+            double r = o.get(0, 0);
+            ret->set(0, 0, l == r, false);
+        }
+    }
+    else if (isScalar())
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+
+        //compare all items of R with R[0]
+        if (isComplex() || o.isComplex())
+        {
+            std::complex<double> l = getImg(0, 0);
+            for (int i = 0; i < nnzR; ++i)
+            {
+                std::complex<double> r = o.getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+            }
+        }
+        else
+        {
+            double l = get(0, 0);
+            for (int i = 0; i < nnzR; ++i)
+            {
+                double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+            }
+        }
+    }
+    else if (o.isScalar())
+    {
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+
+        if (isComplex() || o.isComplex())
+        {
+            std::complex<double> r = o.getImg(0, 0);
+            for (int i = 0; i < nnzL; ++i)
+            {
+                std::complex<double> l = getImg(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+                ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l == r, false);
+            }
+        }
+        else
+        {
+            double r = get(0, 0);
+            for (int i = 0; i < nnzL; ++i)
+            {
+                double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+                ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l == r, false);
+            }
+        }
+    }
+    else
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+        //set all values to %t
+        ret->setTrue(false);
+        //set %f in each pL values
+        for (int i = 0; i < nnzL; ++i)
+        {
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, false, false);
+        }
+        ret->finalize();
+
+        //set _pR[i] == _pL[i] for each _pR values
+        if (isComplex() || o.isComplex())
+        {
+            for (int i = 0; i < nnzR; ++i)
+            {
+                //get l and r following non zeros value of R
+                std::complex<double> l = getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                std::complex<double> r = o.getImg(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                //set value following non zeros value of R
+                ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+            }
+        }
+        else
+        {
+            for (int i = 0; i < nnzR; ++i)
+            {
+                //get l and r following non zeros value of R
+                double l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+                //set value following non zeros value of R
+                ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+            }
+        }
+    }
+
+    ret->finalize();
+    return ret;
 }
 
 bool Sparse::reshape(int* _piDims, int _iDims)
@@ -3545,9 +3667,82 @@ SparseBool* SparseBool::newNotEqualTo(SparseBool const&o) const
     return cwiseOp<std::not_equal_to>(*this, o);
 }
 
-SparseBool* SparseBool::newEqualTo(SparseBool const&o) const
+SparseBool* SparseBool::newEqualTo(SparseBool& o)
 {
-    return cwiseOp<std::equal_to>(*this, o);
+    int rowL = getRows();
+    int colL = getCols();
+
+    int rowR = o.getRows();
+    int colR = o.getCols();
+    int row = std::max(rowL, rowR);
+    int col = std::max(colL, colR);
+
+    //create a boolean sparse matrix with dims of sparses
+    types::SparseBool* ret = new types::SparseBool(row, col);
+
+    if (isScalar() && o.isScalar())
+    {
+        bool l = get(0, 0);
+        bool r = o.get(0, 0);
+        ret->set(0, 0, l == r, false);
+    }
+    else if (isScalar())
+    {
+        int nnzR = static_cast<int>(o.nbTrue());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+
+        //compare all items of R with R[0]
+        bool l = get(0, 0);
+        for (int i = 0; i < nnzR; ++i)
+        {
+            bool r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+        }
+    }
+    else if (o.isScalar())
+    {
+        int nnzL = static_cast<int>(nbTrue());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+
+        bool r = get(0, 0);
+        for (int i = 0; i < nnzL; ++i)
+        {
+            bool l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l == r, false);
+        }
+    }
+    else
+    {
+        int nnzR = static_cast<int>(o.nbTrue());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+        int nnzL = static_cast<int>(nbTrue());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+        //set all values to %t
+        ret->setTrue(false);
+        //set %f in each pL values
+        for (int i = 0; i < nnzL; ++i)
+        {
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, false, false);
+        }
+        ret->finalize();
+
+        //set _pR[i] == _pL[i] for each _pR values
+        for (int i = 0; i < nnzR; ++i)
+        {
+            //get l and r following non zeros value of R
+            bool l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            bool r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            //set value following non zeros value of R
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l == r, false);
+        }
+    }
+
+    ret->finalize();
+    return ret;
 }
 
 SparseBool* SparseBool::newLogicalOr(SparseBool const&o) const
