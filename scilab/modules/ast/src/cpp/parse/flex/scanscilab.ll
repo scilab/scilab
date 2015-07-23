@@ -357,7 +357,7 @@ assign			"="
     return scan_throw(RETURN);
 }
 
-^{spaces}*/({id}){spaces}[^ \t\v\f(=<>~@] {
+^{spaces}*/({id}){spaces}([^ \t\v\f(=<>~@]|([~@]{spaces}*[^=]?)) {
         BEGIN(BEGINID);
 }
 
@@ -1149,7 +1149,7 @@ assign			"="
     }
 
     {assign} {
-        if (last_token == STR)
+        if (last_token == STR || last_token == SPACES)
         {
 	    wchar_t *pwText = to_wide_string(yytext);
             yylval.str = new std::wstring(pwText);
@@ -1164,7 +1164,7 @@ assign			"="
     }
 
     {lparen} {
-        if (last_token == STR)
+        if (last_token == STR || last_token == SPACES)
         {
 	    wchar_t *pwText = to_wide_string(yytext);
             yylval.str = new std::wstring(pwText);
@@ -1179,7 +1179,7 @@ assign			"="
     }
 
     {lowerthan} {
-        if (last_token == STR)
+        if (last_token == STR || last_token == SPACES)
         {
 	    wchar_t *pwText = to_wide_string(yytext);
             yylval.str = new std::wstring(pwText);
@@ -1194,7 +1194,7 @@ assign			"="
     }
 
     {greaterthan} {
-        if (last_token == STR)
+        if (last_token == STR || last_token == SPACES)
         {
 	    wchar_t *pwText = to_wide_string(yytext);
             yylval.str = new std::wstring(pwText);
@@ -1209,7 +1209,7 @@ assign			"="
     }
 
     {boolnot} {
-        if (last_token == STR)
+        if (last_token == STR || last_token == SPACES)
         {
 	    wchar_t *pwText = to_wide_string(yytext);
             yylval.str = new std::wstring(pwText);
