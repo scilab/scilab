@@ -296,7 +296,7 @@ set_macosx_java_vm () {
     # don't need to detect the CPU
     JAVA_SHLIB="libjava.jnilib"
     if test -z "$JAVA_HOME"; then
-      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.6+)
+      JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
     fi
     DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
