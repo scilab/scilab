@@ -42,7 +42,6 @@ src/cpp/extractblklist.cpp
 
 
 SCICOS_C_SOURCES = \
-src/c/scilab5_needed_stubs.c \
 src/c/tree.c \
 src/c/scicos_malloc.c \
 src/c/scicos_print.c \

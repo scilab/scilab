@@ -221,13 +221,12 @@ am__libsciscicos_algo_la_SOURCES_DIST = src/c/noscicos/noscicos.c \
 	src/cpp/view_scilab/StateAdapter.cpp \
 	src/cpp/view_scilab/TextAdapter.cpp src/cpp/sciblk2.cpp \
 	src/cpp/sciblk4.cpp src/cpp/createblklist.cpp \
-	src/cpp/extractblklist.cpp src/c/scilab5_needed_stubs.c \
-	src/c/tree.c src/c/scicos_malloc.c src/c/scicos_print.c \
-	src/c/import.c src/c/scicos.c src/c/scicos_free.c \
-	src/c/ezxml.c src/c/var2sci.c src/c/MlistGetFieldNumber.c \
-	src/c/lsodar.c src/c/ddaskr.c src/fortran/sctree.f \
-	src/fortran/ftree2.f src/fortran/ftree3.f src/fortran/ftree4.f \
-	src/fortran/scifunc.f
+	src/cpp/extractblklist.cpp src/c/tree.c src/c/scicos_malloc.c \
+	src/c/scicos_print.c src/c/import.c src/c/scicos.c \
+	src/c/scicos_free.c src/c/ezxml.c src/c/var2sci.c \
+	src/c/MlistGetFieldNumber.c src/c/lsodar.c src/c/ddaskr.c \
+	src/fortran/sctree.f src/fortran/ftree2.f src/fortran/ftree3.f \
+	src/fortran/ftree4.f src/fortran/scifunc.f
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/c/noscicos/libsciscicos_algo_la-noscicos.lo
 am__objects_2 = src/cpp/libsciscicos_algo_la-il_state.lo \
@@ -255,8 +254,7 @@ am__objects_2 = src/cpp/libsciscicos_algo_la-il_state.lo \
 	src/cpp/libsciscicos_algo_la-sciblk4.lo \
 	src/cpp/libsciscicos_algo_la-createblklist.lo \
 	src/cpp/libsciscicos_algo_la-extractblklist.lo
-am__objects_3 = src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo \
-	src/c/libsciscicos_algo_la-tree.lo \
+am__objects_3 = src/c/libsciscicos_algo_la-tree.lo \
 	src/c/libsciscicos_algo_la-scicos_malloc.lo \
 	src/c/libsciscicos_algo_la-scicos_print.lo \
 	src/c/libsciscicos_algo_la-import.lo \
@@ -953,7 +951,6 @@ src/cpp/createblklist.cpp \
 src/cpp/extractblklist.cpp
 
 SCICOS_C_SOURCES = \
-src/c/scilab5_needed_stubs.c \
 src/c/tree.c \
 src/c/scicos_malloc.c \
 src/c/scicos_print.c \
@@ -1514,8 +1511,6 @@ src/c/$(am__dirstamp):
 src/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/c/$(DEPDIR)
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
-src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo:  \
-	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-tree.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libsciscicos_algo_la-scicos_malloc.lo: src/c/$(am__dirstamp) \
@@ -2075,7 +2070,6 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_free.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_malloc.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scicos_print.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-scilab5_needed_stubs.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-tree.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libsciscicos_algo_la-var2sci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/noscicos/$(DEPDIR)/libsciscicos_algo_la-noscicos.Plo@am__quote@
@@ -2154,13 +2148,6 @@ src/c/noscicos/libsciscicos_algo_la-noscicos.lo: src/c/noscicos/noscicos.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/noscicos/noscicos.c' object='src/c/noscicos/libsciscicos_algo_la-noscicos.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/noscicos/libsciscicos_algo_la-noscicos.lo `test -f 'src/c/noscicos/noscicos.c' || echo '$(srcdir)/'`src/c/noscicos/noscicos.c
-
-src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo: src/c/scilab5_needed_stubs.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-scilab5_needed_stubs.Tpo -c -o src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo `test -f 'src/c/scilab5_needed_stubs.c' || echo '$(srcdir)/'`src/c/scilab5_needed_stubs.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciscicos_algo_la-scilab5_needed_stubs.Tpo src/c/$(DEPDIR)/libsciscicos_algo_la-scilab5_needed_stubs.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/scilab5_needed_stubs.c' object='src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciscicos_algo_la-scilab5_needed_stubs.lo `test -f 'src/c/scilab5_needed_stubs.c' || echo '$(srcdir)/'`src/c/scilab5_needed_stubs.c
 
 src/c/libsciscicos_algo_la-tree.lo: src/c/tree.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciscicos_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciscicos_algo_la-tree.lo -MD -MP -MF src/c/$(DEPDIR)/libsciscicos_algo_la-tree.Tpo -c -o src/c/libsciscicos_algo_la-tree.lo `test -f 'src/c/tree.c' || echo '$(srcdir)/'`src/c/tree.c
