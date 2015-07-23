@@ -155,7 +155,7 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
 
     /*** perform operations ***/
     double* pdblW   = new double[iRowsA];
-    double* pdblWgr = new double[iRowsA * iColsU + 1];
+    double* pdblWgr = new double[iRowsA * (iColsU + 1)];
 
     if (in.size() == 4)
     {
@@ -165,17 +165,14 @@ types::Function::ReturnValue sci_ltitr(types::typed_list &in, int _iRetCount, ty
     {
         memset(pdblWgr, 0x00, iRowsA * sizeof(double));
     }
-    printf("%f ", pdblWgr[0]);
 
     int ig = 0;
     for (int i = 0; i < iColsU; i++)
     {
         ig = (i + 1) * iRowsA;
         C2F(dmmul)(pdblA, &iRowsA, pdblWgr + ig - iRowsA, &iRowsA, pdblW, &iRowsA, &iRowsA, &iRowsA, &iOne);
-        C2F(dmmul)(pdblB, &iRowsA, pdblU + ((ig - 1) * iColsB), &iColsB, pdblWgr + ig, &iRowsA, &iRowsA, &iColsB, &iOne);
+        C2F(dmmul)(pdblB, &iRowsA, pdblU + (i * iColsB), &iColsB, pdblWgr + ig, &iRowsA, &iRowsA, &iColsB, &iOne);
         C2F(dadd)(&iRowsA, pdblW, &iOne, pdblWgr + ig, &iOne);
-        printf("%d ", ig);
-        printf("%f \n", pdblWgr[ig]);
     }
 
     /*** return output arguments ***/
