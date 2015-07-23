@@ -15,7 +15,9 @@ Compilation
 
 * Java minimal version switch to 1.8.
 
-* Ant minimal version switched to 1.9.0 (for xompatibility with Java 1.8).
+* Ant minimal version switched to 1.9.0 (for compatibility with Java 1.8).
+
+* ecj minimal version switched to 4.4.0 (for compatibility with Java 1.8).
 
 
 Packaging & Supported operating systems
