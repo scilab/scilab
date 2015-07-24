@@ -639,7 +639,10 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
 
 
     //return 0 to force extract to create an empty matrix
-    if (_pRef &&  _pRef->isDouble() && _pRef->getAs<Double>()->isEmpty())
+    if (_pRef &&
+            (_pRef->isDouble() && _pRef->getAs<Double>()->isEmpty() ||
+             _pRef->isCell() && _pRef->getAs<Cell>()->isEmpty() ||
+             _pRef->isStruct() && _pRef->getAs<Struct>()->isEmpty()))
     {
         return 0;
     }

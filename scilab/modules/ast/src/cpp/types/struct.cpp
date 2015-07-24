@@ -377,6 +377,15 @@ void Struct::deleteImg()
     return;
 }
 
+bool Struct::isEmpty()
+{
+    if (getDims() == 2 && getRows() == 0 && getCols() == 0)
+    {
+        return true;
+    }
+    return false;
+}
+
 SingleStruct** Struct::allocData(int _iSize)
 {
     SingleStruct** pData = new SingleStruct*[_iSize];
@@ -707,5 +716,10 @@ void Struct::deleteData(SingleStruct* data)
     {
         data->killMe();
     }
+}
+
+Struct* Struct::createEmpty()
+{
+    return new Struct();
 }
 }

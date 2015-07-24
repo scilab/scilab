@@ -182,6 +182,11 @@ protected :
 
     virtual T               getNullValue() = 0;
     virtual ArrayOf<T>*     createEmpty(int _iDims, int* _piDims, bool _bComplex = false) = 0;
+    virtual InternalType*   createEmpty()
+    {
+        return createEmptyDouble();
+    }
+
     virtual T               copyValue(T _data) = 0;
     virtual T*              allocData(int _iSize) = 0;
     virtual void            deleteAll() = 0;

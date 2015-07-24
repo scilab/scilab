@@ -24,12 +24,6 @@ extern "C"
 
 namespace types
 {
-/*    template <typename T>
-ArrayOf<T>* createEmptyDouble()
-{
-return Double::Empty();
-}
-*/
 //n-uplet in french
 int computeTuples(int* _piCountDim, int _iDims, int _iCurrentDim, int* _piIndex)
 {
@@ -903,7 +897,7 @@ InternalType* ArrayOf<T>::remove(typed_list* _pArgs)
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
         delete[] piNewDims;
-        return createEmptyDouble();
+        return createEmpty();
     }
 
     if (iDims == 1)
@@ -984,6 +978,11 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     int index;
     if (getScalarIndex(this, _pArgs, &index))
     {
+        if (getSize() == 0)
+        {
+            return createEmpty();
+        }
+
         if (index < 0 || index >= getSize())
         {
             return NULL;
@@ -1011,9 +1010,9 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
 
         //std::cout << start << ":" << step << ":" << end << std::endl;
         int size = static_cast<int>((end - start) / step + 1);
-        if (size <= 0)
+        if (size <= 0 || getSize() == 0)
         {
-            return createEmptyDouble();
+            return createEmpty();
         }
 
         bool isRowVector = getRows() == 1;
@@ -1049,7 +1048,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     {
         if (indexes.size() == 0)
         {
-            return createEmptyDouble();
+            return createEmpty();
         }
 
         if (dims.size() == 1)
@@ -1104,7 +1103,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         delete[] piCountDim;
         //free pArg content
         cleanIndexesArguments(_pArgs, &pArg);
-        return createEmptyDouble();
+        return createEmpty();
     }
 
     if (iSeqCount < 0)
@@ -1194,7 +1193,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
             delete[] piCountDim;
             //free pArg content
             cleanIndexesArguments(_pArgs, &pArg);
-            return createEmptyDouble();
+            return createEmpty();
         }
         else
         {

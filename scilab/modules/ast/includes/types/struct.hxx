@@ -133,6 +133,7 @@ public :
 private :
     virtual SingleStruct*       getNullValue();
     virtual Struct*             createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual Struct*             createEmpty();
     virtual SingleStruct*       copyValue(SingleStruct* _pData);
     virtual void                deleteAll();
     virtual void                deleteImg();

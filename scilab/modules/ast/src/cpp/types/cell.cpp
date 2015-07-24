@@ -464,4 +464,9 @@ void Cell::deleteData(InternalType* _pData)
         _pData->killMe();
     }
 }
+
+Cell* Cell::createEmpty()
+{
+    return new Cell();
+}
 }

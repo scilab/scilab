@@ -111,6 +111,7 @@ public :
 private :
     virtual InternalType*   getNullValue();
     virtual Cell*           createEmpty(int _iDims, int* _piDims, bool _bComplex = false);
+    virtual Cell*           createEmpty();
     virtual InternalType*   copyValue(InternalType* _pData);
     virtual void            deleteAll();
     virtual void            deleteImg();
