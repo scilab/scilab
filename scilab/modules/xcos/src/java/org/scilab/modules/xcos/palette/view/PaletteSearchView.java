@@ -15,29 +15,55 @@ package org.scilab.modules.xcos.palette.view;
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
+
+import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.model.PaletteBlock;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement a view to show the search results.
  * @author Marcos Cardinot <mcardinot@gmail.com>
  */
 @SuppressWarnings(value = { "serial" })
-public class PaletteSearchView extends JScrollPane {
+public class PaletteSearchView extends JPanel {
 
-    private JPanel panel;
+    private JLabel header;
+    private PaletteView paletteview;
 
     /**
      * Default constructor
      */
     public PaletteSearchView() {
-        this.panel = new JPanel();
-        initComponents();
+        this.header = new JLabel();
+        this.paletteview = new PaletteView();
     }
 
-    /** Setup component */
-    private void initComponents() {
-        panel.setLayout(new BoxLayout(panel, BoxLayout.PAGE_AXIS));
-        panel.add(new JLabel("Searching..."));
-        setViewportView(panel);
+    /**
+     * Setup component
+     */
+    public void initComponents() {
+        paletteview.removeAll();
+        removeAll();
+
+        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        add(header);
+        add(paletteview);
+    }
+
+    /**
+     * Set the header
+     * @param str String
+     */
+    public void setText(String str) {
+        header.setText(str);
+    }
+
+    /**
+     * Adds a palette block
+     * @param block PaletteBlock
+     */
+    public void addBlock(PaletteBlock block) {
+        PaletteBlockSize pbs = PaletteManagerView.get().getPanel().getCurrentSize();
+        paletteview.add(new PaletteBlockCtrl(pbs, block).getView());
     }
 }

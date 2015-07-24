@@ -68,8 +68,6 @@ public final class PaletteSearcher {
             for (int i = 0; i < hits.length; i++) {
                 Document doc = searcher.doc(hits[i].doc);
                 blockPaths.add(doc.get("treePath") + File.separator + doc.get("blockName"));
-                // TODO show results on the search view
-                System.out.println(blockPaths.get(i));
             }
             reader.close();
         } catch (IOException e) {

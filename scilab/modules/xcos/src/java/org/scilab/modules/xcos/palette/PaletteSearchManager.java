@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.util.Hashtable;
 import java.util.List;
 
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
 import javax.swing.tree.TreeModel;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -70,14 +72,26 @@ public final class PaletteSearchManager {
      * @param query Query
      */
     public void search(String query) {
-        PaletteManagerView.get().getPanel().setRightComponent(view);
+        view.initComponents();
+        view.setText("'" + query + "' - " + "Searching...");
+
+        JSplitPane splitPanel = (JSplitPane) PaletteManagerView.get().getPanel();
+        JScrollPane scrollPane = (JScrollPane) splitPanel.getRightComponent();
+        scrollPane.setViewportView(view);
 
         if (indexIsOutdated) {
             refreshIndex();
             indexIsOutdated = false;
         }
 
-        paletteSearcher.search(query);
+        List<String> blockPaths = paletteSearcher.search(query);
+        for (String blockPath : blockPaths) {
+            PaletteBlock block = getBlock(blockPath);
+            if (block != null) {
+                view.addBlock(block);
+            }
+        }
+        view.setText("'" + query + "' - " + blockPaths.size() + " matches.");
     }
 
     /**
@@ -135,5 +149,27 @@ public final class PaletteSearchManager {
      */
     public IndexWriter getIndexWriter() {
         return writer;
+    }
+
+    /**
+     * Get block
+     * @param blockPath the block path
+     * @return PaletteBlock
+     */
+    public PaletteBlock getBlock(String blockPath) {
+        int lastSeparator = blockPath.lastIndexOf(File.separator);
+        String treePath = blockPath.substring(0, lastSeparator);
+        String blockName = blockPath.substring(lastSeparator + 1);
+        List<PaletteBlock> blocks = ht.get(treePath);
+        if (blocks == null) {
+            return null;
+        }
+
+        for (PaletteBlock block : blocks) {
+            if (blockName.equals(block.getName())) {
+                return block;
+            }
+        }
+        return null;
     }
 }
