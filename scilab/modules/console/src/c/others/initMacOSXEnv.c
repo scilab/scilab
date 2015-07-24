@@ -86,6 +86,9 @@ static void setAppName(const char * name)
  */
 static int launchMacOSXEnv(ScilabEngineInfo* _pSEI)
 {
+
+#undef JVM_DETECTION
+#ifdef JVM_DETECTION
     int ret = -1;
     {
         CFStringRef targetJVM = CFSTR("1.5");
@@ -179,6 +182,20 @@ static int launchMacOSXEnv(ScilabEngineInfo* _pSEI)
             fprintf(stderr, "Error: cant find bundle: com.apple.JavaVM.\n");
         }
     }
+#else
+    int ret = 0;
+    /*
+     * This piece of code is mandatory because Mac OS X implementation of Java has a bug here.
+     * Cocoa does not know how to handle the new window created this way.
+     * See: http://lists.apple.com/archives/Java-dev/2009/Jan/msg00062.html
+     * Or Mac Os X bug #6484319
+     * Thanks to Mike Swingler
+     */
+    ProcessSerialNumber psn;
+    GetCurrentProcess(&psn);
+    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
+    /* End of the workaround */
+#endif
 
     if (ret == 0)
     {

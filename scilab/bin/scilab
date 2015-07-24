@@ -298,6 +298,8 @@ set_macosx_java_vm () {
     if test -z "$JAVA_HOME"; then
       JAVA_HOME=$(/usr/libexec/java_home --arch x86_64 --failfast --version 1.8+)
     fi
+    JAVA_JVM_VERSION=$JAVA_HOME
+    export JAVA_JVM_VERSION
     DYLD_LIBRARY_PATH="$JAVA_HOME/../Libraries${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
 
 }
