@@ -26,6 +26,7 @@ import org.apache.lucene.search.IndexSearcher;
 import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
+import org.scilab.modules.xcos.utils.XcosConstants;
 
 /**
  * Handles a near real time IndexReader from the IndexWriter.
@@ -57,8 +58,7 @@ public final class PaletteSearcher {
             IndexSearcher searcher = new IndexSearcher(reader);
             Query query = parser.parse(str);
 
-            final int limit = 100;
-            TopDocs results  = searcher.search(query, limit);
+            TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
 
             // TODO show results on the search view

@@ -41,6 +41,9 @@ public final class XcosConstants extends ScilabGraphConstants {
     /** Define the history length */
     public static final int HISTORY_LENGTH = 20;
 
+    /** Define the maximum number of hits to be displayed */
+    public static final int MAX_HITS = 150;
+
     /** the size of the palette block **/
     public enum PaletteBlockSize {
         /** small size **/
