@@ -63,9 +63,11 @@ public final class XcosMessages {
     public static final String SAVE_BLOCK_GUI = Messages.gettext("Save block GUI");
 
     /* Palette browser */
+    public static final String MATCHES = Messages.gettext("matches");
     public static final String NEXT = Messages.gettext("Next");
     public static final String PREVIOUS = Messages.gettext("Previous");
     public static final String SEARCH = Messages.gettext("Search");
+    public static final String SEARCHING = Messages.gettext("Searching...");
     public static final String ZOOM_IN = Messages.gettext("Zoom In");
     public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
 

@@ -33,6 +33,7 @@ import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.palette.view.PaletteSearchView;
+import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * Manager class for the palettes search.
@@ -73,7 +74,9 @@ public final class PaletteSearchManager {
      */
     public void search(String query) {
         view.initComponents();
-        view.setText("'" + query + "' - " + "Searching...");
+
+        final String queryLabel = "'" + query + "' - ";
+        view.setText(queryLabel + XcosMessages.SEARCHING);
 
         JSplitPane splitPanel = (JSplitPane) PaletteManagerView.get().getPanel();
         JScrollPane scrollPane = (JScrollPane) splitPanel.getRightComponent();
@@ -91,7 +94,7 @@ public final class PaletteSearchManager {
                 view.addBlock(block);
             }
         }
-        view.setText("'" + query + "' - " + blockPaths.size() + " matches.");
+        view.setText(queryLabel + blockPaths.size() + " " + XcosMessages.MATCHES);
     }
 
     /**
