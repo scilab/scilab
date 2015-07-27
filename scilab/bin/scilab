@@ -331,7 +331,7 @@ set_embedded_java_vm () {
                 JAVA_HOME=$SCIBINARYBASE/thirdparty/java/Contents/Home/
                 JAVA_JVM_VERSION=$JAVA_HOME
                 export JAVA_JVM_VERSION
-                DYLD_LIBRARY_PATH="$JAVA_HOME/lib:$JAVA_HOME/lib/server:${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
+                DYLD_LIBRARY_PATH="$JAVA_HOME/lib/server:${DYLD_LIBRARY_PATH:+:$DYLD_LIBRARY_PATH}"
                 ;;
             *)
             echo "Could not find the Java configuration for the OS <${OS}>. Please contact us or submit a bug report with your detailed configuration http://bugzilla.scilab.org/"
