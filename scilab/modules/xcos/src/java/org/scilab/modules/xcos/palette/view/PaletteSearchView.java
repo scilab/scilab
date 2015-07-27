@@ -12,6 +12,8 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import java.awt.Component;
+
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -45,7 +47,10 @@ public class PaletteSearchView extends JPanel {
         paletteview.removeAll();
         removeAll();
 
-        setLayout(new BoxLayout(this, BoxLayout.PAGE_AXIS));
+        header.setAlignmentX(Component.LEFT_ALIGNMENT);
+        paletteview.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(header);
         add(paletteview);
     }
