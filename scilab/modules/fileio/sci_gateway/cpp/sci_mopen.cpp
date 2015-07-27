@@ -35,7 +35,7 @@ Function::ReturnValue sci_mopen(typed_list &in, int _iRetCount, typed_list &out)
     int iErr                = 0;
     int iID                 = 0;
     wchar_t* pstFilename    = NULL;
-    const wchar_t* pstMode        = L"rb";
+    const wchar_t* pstMode  = L"rb";
     int iSwap               = 0;
 
     //check output parameters
