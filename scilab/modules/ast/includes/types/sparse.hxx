@@ -385,18 +385,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '<' between the elements of *this and those of o.
      */
-    SparseBool* newLessThan(Sparse const&o) const;
-
-    /* coefficient wise relational operator > between *this sparse matrix and an other.
-       Matrices must have the same dimensions except if one of them is of size (1,1)
-       (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
-
-       @param o other sparse matrix
-
-       @return ptr to a new Sparse matrix where each element is the result of the logical operator
-        '>' between the elements of *this and those of o.
-     */
-    SparseBool* newGreaterThan(Sparse const&o) const;
+    SparseBool* newLessThan(Sparse &o);
 
     /* coefficient wise relational operator != between *this sparse matrix and an other.
        Matrices must have the same dimensions except if one of them is of size (1,1)
@@ -422,22 +411,7 @@ struct EXTERN_AST Sparse : GenericType
        @return ptr to a new Sparse matrix where each element is the result of the logical operator
         '<=' between the elements of *this and those of o.
      */
-    SparseBool* newLessOrEqual(Sparse const&o) const;
-
-    /* coefficient wise relational operator >= between *this sparse matrix and an other.
-       Matrices must have the same dimensions except if one of them is of size (1,1)
-       (i.e. a scalar) : it is then treated as a constant matrix of thre required dimensions.
-
-       Do not use this function is possible as the result will be dense because
-       0. >= 0. is true, hence the result matrix will hold a non default value (i.e. true)
-       for each pair of default values (0.) of the sparse arguments !
-
-       @param o other sparse matrix
-
-       @return ptr to a new Sparse matrix where each element is the result of the logical operator
-        '>=' between the elements of *this and those of o.
-     */
-    SparseBool* newGreaterOrEqual(Sparse const&o) const;
+    SparseBool* newLessOrEqual(Sparse &o);
 
     /* coefficient wise relational operator == between *this sparse matrix and an other.
        Matrices must have the same dimensions except if one of them is of size (1,1)

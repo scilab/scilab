@@ -2235,14 +2235,96 @@ void Sparse::opposite(void)
     }
 }
 
-SparseBool* Sparse::newLessThan(Sparse const&o) const
+SparseBool* Sparse::newLessThan(Sparse &o)
 {
-    return cwiseOp<std::less>(*this, o);
-}
+    //only real values !
 
-SparseBool* Sparse::newGreaterThan(Sparse const&o) const
-{
-    return cwiseOp<std::greater>(*this, o);
+    //return cwiseOp<std::less>(*this, o);
+    int rowL = getRows();
+    int colL = getCols();
+
+    int rowR = o.getRows();
+    int colR = o.getCols();
+    int row = std::max(rowL, rowR);
+    int col = std::max(colL, colR);
+
+    //create a boolean sparse matrix with dims of sparses
+    types::SparseBool* ret = new types::SparseBool(row, col);
+    if (isScalar() && o.isScalar())
+    {
+        double l = get(0, 0);
+        double r = o.get(0, 0);
+        ret->set(0, 0, l < r, false);
+    }
+    else if (isScalar())
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+
+        //compare all items of R with R[0]
+        double l = get(0, 0);
+        if (l < 0)
+        {
+            //set true
+            ret->setTrue(false);
+        }
+
+        for (int i = 0; i < nnzR; ++i)
+        {
+            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l < r, false);
+        }
+    }
+    else if (o.isScalar())
+    {
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+
+        double r = o.get(0, 0);
+        if (r >= 0)
+        {
+            ret->setTrue(true);
+        }
+
+        for (int i = 0; i < nnzL; ++i)
+        {
+            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l < r, false);
+        }
+    }
+    else
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+        //set all values to %t
+        ret->setFalse(false);
+
+        for (int i = 0; i < nnzL; ++i)
+        {
+            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l < 0, false);
+        }
+        ret->finalize();
+
+        //set _pR[i] == _pL[i] for each _pR values
+        for (int i = 0; i < nnzR; ++i)
+        {
+            //get l and r following non zeros value of R
+            double l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            //set value following non zeros value of R
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l < r, false);
+        }
+    }
+
+    ret->finalize();
+    return ret;
 }
 
 SparseBool* Sparse::newNotEqualTo(Sparse const&o) const
@@ -2250,14 +2332,96 @@ SparseBool* Sparse::newNotEqualTo(Sparse const&o) const
     return cwiseOp<std::not_equal_to>(*this, o);
 }
 
-SparseBool* Sparse::newLessOrEqual(Sparse const&o) const
+SparseBool* Sparse::newLessOrEqual(Sparse &o)
 {
-    return cwiseOp<std::less_equal>(*this, o);
-}
+    //only real values !
 
-SparseBool* Sparse::newGreaterOrEqual(Sparse const&o) const
-{
-    return cwiseOp<std::greater_equal>(*this, o);
+    //return cwiseOp<std::less>(*this, o);
+    int rowL = getRows();
+    int colL = getCols();
+
+    int rowR = o.getRows();
+    int colR = o.getCols();
+    int row = std::max(rowL, rowR);
+    int col = std::max(colL, colR);
+
+    //create a boolean sparse matrix with dims of sparses
+    types::SparseBool* ret = new types::SparseBool(row, col);
+    if (isScalar() && o.isScalar())
+    {
+        double l = get(0, 0);
+        double r = o.get(0, 0);
+        ret->set(0, 0, l <= r, false);
+    }
+    else if (isScalar())
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+
+        //compare all items of R with R[0]
+        double l = get(0, 0);
+        if (l <= 0)
+        {
+            //set true
+            ret->setTrue(false);
+        }
+
+        for (int i = 0; i < nnzR; ++i)
+        {
+            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l <= r, false);
+        }
+    }
+    else if (o.isScalar())
+    {
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+
+        double r = o.get(0, 0);
+        if (r > 0)
+        {
+            ret->setTrue(true);
+        }
+
+        for (int i = 0; i < nnzL; ++i)
+        {
+            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l <= r, false);
+        }
+    }
+    else
+    {
+        int nnzR = static_cast<int>(o.nonZeros());
+        std::vector<int> rowcolR(nnzR * 2, 0);
+        o.outputRowCol(rowcolR.data());
+        int nnzL = static_cast<int>(nonZeros());
+        std::vector<int> rowcolL(nnzL * 2, 0);
+        outputRowCol(rowcolL.data());
+        //set all values to %t
+        ret->setTrue(false);
+
+        for (int i = 0; i < nnzL; ++i)
+        {
+            double l = get(rowcolL[i] - 1, rowcolL[i + nnzL] - 1);
+            ret->set(rowcolL[i] - 1, rowcolL[i + nnzL] - 1, l <= 0, false);
+        }
+        ret->finalize();
+
+        //set _pR[i] == _pL[i] for each _pR values
+        for (int i = 0; i < nnzR; ++i)
+        {
+            //get l and r following non zeros value of R
+            double l = get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            double r = o.get(rowcolR[i] - 1, rowcolR[i + nnzR] - 1);
+            //set value following non zeros value of R
+            ret->set(rowcolR[i] - 1, rowcolR[i + nnzR] - 1, l <= r, false);
+        }
+    }
+
+    ret->finalize();
+    return ret;
 }
 
 SparseBool* Sparse::newEqualTo(Sparse &o)
