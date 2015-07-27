@@ -1,6 +1,16 @@
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
 
+New Features
+=============
+
+* scatter/scatter3 plot with different mark colors is now available.
+
+* parulacolormap is now available.
+
+* name2rgb can now handle a single string and a matrix of strings.
+
+
 Installation
 ============
 
@@ -18,6 +28,9 @@ Compilation
 * Ant minimal version switched to 1.9.0 (for compatibility with Java 1.8).
 
 * ecj minimal version switched to 4.4.0 (for compatibility with Java 1.8).
+
+* --without-xcos now only disable Xcos compilation. Xcos Graphic interface is disabled
+using --without-gui.
 
 
 Packaging & Supported operating systems
@@ -147,6 +160,10 @@ Deprecated behavior
 Scilab Bug Fixes
 ================
 
+* Bug #6064 fixed - scatter function did not exist in Scilab.
+
+* Bug #8990 fixed - zoom_auto feature was missing on the plot toolbar.
+
 * Bug #9621 fixed - A tlist with undefined fields can now be saved.
 
 * Bug #12202 fixed - Mixing int8 and doubles with colon operator lead to wrong results.
@@ -156,10 +173,27 @@ Scilab Bug Fixes
 * Bug #13517 fixed - isdef crashed Scilab when called with a vector of strings
                      as input in a function and after a declaration of variable.
 
+* Bug #13807 fixed - Invalid margins were computed when figure was not visible.
+
+* Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
+
+* Bug #13834 fixed - Drawing a high number of strings in a figure generated a Java exceptions.
+
 * Bug #13838 fixed - Sparse and complex substraction made Scilab crash.
+
+* Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
+
+* Bug #13866 fixed - There were some issues with FFTW3 library.
+
+* Bug #13881 fixed - datatipRemoveAll did not work.
+
+* Bug #13924 fixed - rationals r1==r2 and r1~=r2 might sometimes be wrong.
+
+* Bug #13925 fixed - SciNotes used the wrong paired bracket highlight style.
 
 * Bug #13941 fixed - Internal timestamps of HDF5 files prevented having a fixed
                      hash for an unvarying set of saved objects.
 
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
+
 
