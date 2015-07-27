@@ -1115,6 +1115,16 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         return NULL;
     }
 
+    //a = {};a(1:2, 1:2) -> {}
+    if (getSize() == 0)
+    {
+        delete[] piMaxDim;
+        delete[] piCountDim;
+        //free pArg content
+        cleanIndexesArguments(_pArgs, &pArg);
+        return createEmpty();
+    }
+
     if (iDims < m_iDims)
     {
         for (int i = 0; i < iDims; i++)
