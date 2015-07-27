@@ -73,6 +73,7 @@ public final class PaletteSearchManager {
      * @param query Query
      */
     public void search(String query) {
+        PaletteManagerView.get().getTree().clearSelection();
         view.initComponents();
 
         final String queryLabel = "'" + query + "' - ";
