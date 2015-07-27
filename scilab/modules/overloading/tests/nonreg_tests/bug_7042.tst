@@ -10,15 +10,15 @@
 // <-- CLI SHELL MODE -->
 //
 // <-- Bugzilla URL -->
-// http://bugzilla.scilab.org/show_bug.cgi?id= 7042
+// http://bugzilla.scilab.org/show_bug.cgi?id=7042
 //
 // <-- Short Description -->
 // insertion of an empty matrix into a struct (to remove a row or column)
 // is buggy when multiple index is used
-d11=struct('day',25,'month' ,'DEC','year',2006);
-d12=struct('day',2,'month' ,'DEC','year',2006);
-d21=struct('day',8,'month' ,'Feb','year',2010);
-d22=struct('day',12,'month' ,'Feb','year',2010);
+d11=struct("day",25,"month" ,"DEC","year",2006);
+d12=struct("day",2,"month" ,"DEC","year",2006);
+d21=struct("day",8,"month" ,"Feb","year",2010);
+d22=struct("day",12,"month" ,"Feb","year",2010);
 
 d=[d11 d12;d21 d22];
 
