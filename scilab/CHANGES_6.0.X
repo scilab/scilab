@@ -78,6 +78,18 @@ Data structures
 
 * cells and structs are now native types, hence improving performances.
 
+* cells:
+  - insertion and extraction must be done via () or {}.
+  - fields .dims and .entries have been removed, use size and () instead.
+
+* struct
+  - dims field has been removed, use size instead.
+
+* hypermatrix:
+  - hypermatrices are natively managed (without mlist overloading).
+  - typeof function now returns real type like constant, string, ... instead of hypermat
+  - type function returns real type like 1, 10, ... instead of 17 (mlist).
+  - fields .dims and .entries have been removed, use size and () instead.
 
 Removed functions
 ==================
@@ -133,7 +145,7 @@ Functions modified
 * ode    : y0 is restricted to a column vector.
 * pppdiv : return a scalar of type 'constant' when the rank is 0.
 * pdiv   : return a matrix of type 'constant' when all the rank are 0.
-
+* typeof : add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
 
 Syntax clarifications
 =====================
@@ -148,7 +160,9 @@ Syntax clarifications
 Deprecated behavior
 ====================
 
-* Syntax %i:10 is now deprecated.
+* {} become different of [] and wiil be use on cells.
+
+* Syntax %i:10 is now deprecated. (only real scalar can be used).
 
 * write string or string matrix in file does not add black space before each value
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
