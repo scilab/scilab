@@ -978,12 +978,17 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
     int index;
     if (getScalarIndex(this, _pArgs, &index))
     {
+        if (index < 0)
+        {
+            return NULL;
+        }
+
         if (getSize() == 0)
         {
             return createEmpty();
         }
 
-        if (index < 0 || index >= getSize())
+        if (index >= getSize())
         {
             return NULL;
         }
