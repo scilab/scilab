@@ -15,7 +15,6 @@
 #include "singlestruct.hxx"
 #include "string.hxx"
 #include "double.hxx"
-#include "scilabexception.hxx"
 #include "localization.hxx"
 #include "scilabWrite.hxx"
 
@@ -135,14 +134,14 @@ InternalType* SingleStruct::insert(typed_list* _pArgs, InternalType* _pSource)
     {
         std::wostringstream os;
         os << _W("Unable to insert multiple item in a struct.\n");
-        throw ast::ScilabError(os.str());
+        throw ast::InternalError(os.str());
     }
 
     if ((*_pArgs)[0]->isString() == false)
     {
         std::wostringstream os;
         os << _W("Assignment between unlike types is not allowed.\n");
-        throw ast::ScilabError(os.str());
+        throw ast::InternalError(os.str());
     }
 
     String* pstKey = (*_pArgs)[0]->getAs<String>();

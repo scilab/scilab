@@ -20,7 +20,6 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "threadmanagement.hxx"
 
@@ -214,13 +213,13 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
         ExecVisitor execExps;
         pSeqExp->accept(execExps);
     }
-    catch (ast::ScilabMessage sm)
+    catch (const ast::InternalError& ie)
     {
         if (bErrCatch == false && bMute == false)
         {
             ConfigVariable::macroFirstLine_end();
             ConfigVariable::setPromptMode(iPromptMode);
-            throw sm;
+            throw ie;
         }
 
         ConfigVariable::resetWhereError();

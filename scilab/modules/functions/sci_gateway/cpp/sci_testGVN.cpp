@@ -22,8 +22,6 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
-#include "configvariable.hxx"
 #include "context.hxx"
 
 #include <iostream>

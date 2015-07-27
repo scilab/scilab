@@ -18,13 +18,14 @@
 #pragma warning (disable : 4251)
 #endif
 
-#include <vector>
+#include <list>
 #include <string>
-
-#include "internal.hxx"
+#include "dynlib_ast.h"
 
 namespace types
 {
+class InternalType;
+
 #ifndef NDEBUG
 class EXTERN_AST Inspector
 {

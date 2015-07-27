@@ -381,11 +381,11 @@ Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt
     {
         m_pOldFunc(nlhs, plhs, nrhs, prhs);
     }
-    catch (ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
         delete[] plhs;
         delete[] prhs;
-        throw se;
+        throw ie;
     }
 
     if (_iRetCount == 1 && plhs[0] == NULL)

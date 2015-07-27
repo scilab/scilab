@@ -25,7 +25,7 @@ void ode_f(int* n, double* t, double* y, double* ydot)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execOdeF(n, t, y, ydot);
@@ -38,7 +38,7 @@ void ode_jac(int *n, double *t, double *y, int *ml, int *mu, double *J, int *nrp
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execFunctionJac(n, t, y, ml, mu, J, nrpd);
@@ -51,7 +51,7 @@ void ode_g(int* n, double* t, double* y, int* ng, double* gout)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execFunctionG(n, t, y, ng, gout);
@@ -65,7 +65,7 @@ double intg_f(double* x)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     return deFunction->execIntgF(x);
@@ -79,7 +79,7 @@ double int2d_f(double* x, double* y)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     return deFunction->execInt2dF(x, y);
@@ -93,7 +93,7 @@ void int3d_f(double* x, int* numfun, double* funvls)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execInt3dF(x, numfun, funvls);
@@ -107,7 +107,7 @@ void bvode_gsub(int* i, double* z, double* g)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execBvodeGsub(i, z, g);
@@ -119,7 +119,7 @@ void bvode_dgsub(int* i, double* z, double* g)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execBvodeDgsub(i, z, g);
@@ -131,7 +131,7 @@ void bvode_fsub(double* x, double* z, double* d)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execBvodeFsub(x, z, d);
@@ -143,7 +143,7 @@ void bvode_dfsub(double* x, double* z, double* d)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execBvodeDfsub(x, z, d);
@@ -155,7 +155,7 @@ void bvode_guess(double* x, double* z, double* d)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execBvodeGuess(x, z, d);
@@ -169,7 +169,7 @@ void impl_f(int* neq, double* t, double* y, double* s, double* r, int* ires)
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execImplF(neq, t, y, s, r, ires);
@@ -181,7 +181,7 @@ void impl_g(int* neq, double* t, double* y, double* ml, double* mu, double* p, i
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execImplG(neq, t, y, ml, mu, p, nrowp);
@@ -193,7 +193,7 @@ void impl_jac(int* neq, double* t, double* y, double* s, double* ml, double* mu,
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execImplJac(neq, t, y, s, ml, mu, p, nrowp);
@@ -207,7 +207,7 @@ void dassl_f(double* t, double* y, double* ydot, double* delta, int* ires, doubl
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execDasslF(t, y, ydot, delta, ires, rpar, ipar);
@@ -219,7 +219,7 @@ void dassl_jac(double* t, double* y, double* ydot, double* pd, double* cj, doubl
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execDasslJac(t, y, ydot, pd, cj, rpar, ipar);
@@ -233,7 +233,7 @@ void dasrt_g(int* ny, double* t, double* y, int* ng, double* gout, double* rpar,
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execDasrtG(ny, t, y, ng, gout, rpar, ipar);
@@ -249,7 +249,7 @@ void daskr_psol(int* neq, double* t, double* y, double* ydot, double* savr, doub
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execDaskrPsol(neq, t, y, ydot, savr, wk, cj, wght, wp, iwp,
@@ -264,7 +264,7 @@ void daskr_pjac(double* res, int* ires, int* neq, double* t, double* y, double* 
 
     if (deFunction == NULL)
     {
-        throw ast::ScilabError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
+        throw ast::InternalError(_("An error occurred while getting DifferentialEquationFunctions object.\n"));
     }
 
     deFunction->execDaskrPjac(res, ires, neq, t, y, ydot, rewt, savr, wk, h, cj,

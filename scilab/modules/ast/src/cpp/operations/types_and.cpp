@@ -536,7 +536,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -546,7 +546,7 @@ InternalType* and_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -625,7 +625,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
 
     if (iDimsL != iDimsR)
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -635,7 +635,7 @@ InternalType* and_int_M_M(T *_pL, U *_pR)
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 
@@ -704,7 +704,7 @@ InternalType* and_M_M<SparseBool, SparseBool, SparseBool>(SparseBool* _pL, Spars
 
     if (_pL->getRows() != _pR->getRows() || _pL->getCols() != _pR->getCols())
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     return _pL->newLogicalAnd(*_pR);

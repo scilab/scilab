@@ -243,9 +243,9 @@ static SciErr createCommonNamedList(void* _pvCtx, const char* _pstName, int _iLi
             return sciErr;
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createNamedList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createNamedList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -309,9 +309,9 @@ static SciErr createCommonList(void* _pvCtx, int _iVar, int _iListType, int _iNb
             return sciErr;
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -519,9 +519,9 @@ static SciErr createCommonListInList(void* _pvCtx, const char* _pstName, int* _p
             return sciErr;
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -657,9 +657,9 @@ static SciErr allocCommonMatrixOfDoubleInList(void* _pvCtx, int _iVar, int* _piP
     {
         pDbl = new Double(_iRows, _iCols, _iComplex == 1);
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDoubleInList" : "allocMatrixOfDoubleInList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -942,9 +942,9 @@ SciErr createCommonMatrixOfStringInList(void* _pvCtx, const char* _pstName, int*
     {
         pS = new String(_iRows, _iCols);
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -1078,9 +1078,9 @@ SciErr allocMatrixOfBooleanInList(void* _pvCtx, int _iVar, int* _piParent, int _
     {
         pBool = new Bool(_iRows, _iCols);
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "allocMatrixOfBooleanInList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "allocMatrixOfBooleanInList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -1431,9 +1431,9 @@ static SciErr allocCommonMatrixOfIntegerInList(void* _pvCtx, int _iVar, const ch
             break;
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "allocMatrixOfIntegerInList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "allocMatrixOfIntegerInList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -1837,9 +1837,9 @@ static SciErr createCommonSparseMatrixInList(void* _pvCtx, int _iVar, const char
     {
         pSparse = new Sparse(_iRows, _iCols, _iComplex == 1);
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -2037,9 +2037,9 @@ SciErr createCommonBooleanSparseMatrixInList(void* _pvCtx, const char* _pstName,
     {
         pSparse = new SparseBool(_iRows, _iCols);
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), funcName, ie.GetErrorMessage().c_str());
         return sciErr;
     }
 
@@ -2212,9 +2212,9 @@ SciErr createCommonPointerInList(void* _pvCtx, const char* _pstName, int* _piPar
             return sciErr;
         }
     }
-    catch (ast::ScilabError se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createPointerInList", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createPointerInList", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 

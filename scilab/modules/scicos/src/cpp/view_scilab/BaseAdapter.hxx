@@ -29,7 +29,6 @@
 #include "string.hxx"
 #include "callable.hxx"
 #include "overload.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 
 #include "utilities.hxx"
@@ -473,7 +472,7 @@ private:
         {
             ret = Overload::call(L"%" + getShortTypeStr() + L"_e", in, 1, out, &execFunc);
         }
-        catch (ast::ScilabError & /*se*/)
+        catch (ast::InternalError & /*se*/)
         {
             ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
         }
@@ -484,7 +483,7 @@ private:
 
         if (ret == types::Callable::Error)
         {
-            throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+            throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
         }
 
         return true;

@@ -42,7 +42,7 @@ namespace ast {
                         std::wostringstream os;
                         os << _W("Can not assign multiple value in a single variable") << std::endl;
                         //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
-                        throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                     }
 
                     pIT = getResult();
@@ -74,7 +74,7 @@ namespace ast {
                         {
                             std::wostringstream os;
                             os << _W("Redefining permanent variable.\n");
-                            throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                            throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                         }
                     }
 
@@ -107,7 +107,7 @@ namespace ast {
                     {
                         std::wostringstream os;
                         os << _W("Redefining permanent variable.\n");
-                        throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                        throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                     }
                 }
 
@@ -144,7 +144,7 @@ namespace ast {
                     // if the right hand is NULL.
                     std::wostringstream os;
                     os << _W("Unable to extract right part expression.\n");
-                    throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                 }
 
                 std::list<ExpHistory*> fields;
@@ -156,14 +156,14 @@ namespace ast {
                     }
                     std::wostringstream os;
                     os << _W("Get fields from expression failed.");
-                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
                 try
                 {
                     pOut = evaluateFields(pCell, fields, pITR);
                 }
-                catch (ast::ScilabError error)
+                catch (const InternalError& error)
                 {
                     // catch error when call overload
                     for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
@@ -187,7 +187,7 @@ namespace ast {
                 {
                     std::wostringstream os;
                     os << _W("Fields evaluation failed.");
-                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
                 if (pOut != NULL)
@@ -207,7 +207,7 @@ namespace ast {
                     //manage error
                     std::wostringstream os;
                     os << _W("Invalid Index.\n");
-                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
                 return;
@@ -234,7 +234,7 @@ namespace ast {
                     // if the right hand is NULL.
                     std::wostringstream os;
                     os << _W("Unable to extract right part expression.\n");
-                    throw ast::ScilabError(os.str(), 999, e.getLeftExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getLeftExp().getLocation());
                 }
 
                 bool alreadyProcessed = false;
@@ -249,7 +249,7 @@ namespace ast {
                         {
                             std::wostringstream os;
                             os << _W("Redefining permanent variable.\n");
-                            throw ast::ScilabError(os.str(), 999, pCall->getLocation());
+                            throw ast::InternalError(os.str(), 999, pCall->getLocation());
                         }
 
                         // prevent delete after extractFullMatrix
@@ -272,7 +272,7 @@ namespace ast {
                         {
                             std::wostringstream os;
                             os << _W("Submatrix incorrectly defined.\n");
-                            throw ast::ScilabError(os.str(), 999, e.getLocation());
+                            throw ast::InternalError(os.str(), 999, e.getLocation());
                         }
 
 
@@ -298,7 +298,7 @@ namespace ast {
 
                         std::wostringstream os;
                         os << _W("Instruction left hand side: waiting for a name.");
-                        throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                     }
 
                     // prevent delete after extractFullMatrix
@@ -309,7 +309,7 @@ namespace ast {
                     {
                         pOut = evaluateFields(pCall, fields, pITR);
                     }
-                    catch (ast::ScilabError error)
+                    catch (const InternalError& error)
                     {
                         // catch error when call overload
                         for (std::list<ExpHistory*>::const_iterator i = fields.begin(), end = fields.end(); i != end; i++)
@@ -335,7 +335,7 @@ namespace ast {
                     {
                         std::wostringstream os;
                         os << _W("Fields evaluation failed.");
-                        throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                     }
                 }
 
@@ -371,7 +371,7 @@ namespace ast {
                     std::wostringstream os;
                     os << _W("Incompatible assignation: trying to assign ") << exec.getResultSize();
                     os << _W(" values in ") << iLhsCount << _W(" variables.") << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
                 exps_t::const_reverse_iterator it;
@@ -445,7 +445,7 @@ namespace ast {
                     }
                     std::wostringstream os;
                     os << _W("Get fields from expression failed.");
-                    throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                 }
 
                 try
@@ -458,10 +458,10 @@ namespace ast {
                         }
                         std::wostringstream os;
                         os << _W("Fields evaluation failed.");
-                        throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+                        throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
                     }
                 }
-                catch (ScilabError error)
+                catch (const InternalError& error)
                 {
                     for (auto i : fields)
                     {
@@ -497,9 +497,9 @@ namespace ast {
             std::wostringstream os;
             os << _W("unknow script form");
             //os << ((Location)e.getRightExp().getLocation()).getLocationString() << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.getRightExp().getLocation());
+            throw ast::InternalError(os.str(), 999, e.getRightExp().getLocation());
         }
-        catch (ast::ScilabError error)
+        catch (const InternalError& error)
         {
             throw error;
         }

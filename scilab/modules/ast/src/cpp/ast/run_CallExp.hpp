@@ -35,7 +35,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             clearResult();
             std::wostringstream os;
             os << _W("Wrong number of output arguments.\n") << std::endl;
-            throw ast::ScilabError(os.str(), 999, e.getLocation());
+            throw ast::InternalError(os.str(), 999, e.getLocation());
         }
 
         //get function arguments
@@ -55,7 +55,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                     std::wostringstream os;
                     os << _W("left side of optional parameter must be a variable") << std::endl;
-                    throw ast::ScilabError(os.str(), 999, e.getLocation());
+                    throw ast::InternalError(os.str(), 999, e.getLocation());
                 }
 
                 SimpleVar* pVar = pL->getAs<SimpleVar>();
@@ -174,7 +174,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
                             std::wostringstream os;
                             os << _W("Invalid index.\n");
-                            throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+                            throw ast::InternalError(os.str(), 999, e.getFirstLocation());
                         }
                     }
                     else
@@ -207,7 +207,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                     {
                         std::wostringstream os;
                         os << _W("bad lhs, expected : ") << iRetCount << _W(" returned : ") << out.size() << std::endl;
-                        throw ScilabError(os.str(), 999, e.getLocation());
+                        throw InternalError(os.str(), 999, e.getLocation());
                     }
 
                     setExpectedSize(iSaveExpectedSize);
@@ -246,7 +246,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 {
                     std::wostringstream os;
                     os << _W("Invalid index.\n");
-                    throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+                    throw ast::InternalError(os.str(), 999, e.getFirstLocation());
                 }
             }
 
@@ -255,29 +255,6 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 pListArg->DecreaseRef();
                 pListArg->killMe();
             }
-        }
-        catch (ScilabMessage & sm)
-        {
-            setExpectedSize(iSaveExpectedSize);
-            if(pIT != getResult())
-            {
-                pIT->killMe();
-            }
-
-            clearResult();
-            cleanInOut(in, out);
-            cleanOpt(opt);
-
-            if (pIT->isCallable())
-            {
-                Callable *pCall = pIT->getAs<Callable>();
-                if (ConfigVariable::getLastErrorFunction() == L"")
-                {
-                    ConfigVariable::setLastErrorFunction(pCall->getName());
-                }
-            }
-
-            throw sm;
         }
         catch (InternalAbort & ia)
         {
@@ -293,7 +270,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
             throw ia;
         }
-        catch (ScilabError & se)
+        catch (const InternalError& ie)
         {
             setExpectedSize(iSaveExpectedSize);
             if(pIT != getResult())
@@ -305,7 +282,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
             cleanInOut(in, out);
             cleanOpt(opt);
 
-            throw se;
+            throw ie;
         }
     }
 }
@@ -329,7 +306,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
 
             if (pIT->isCell() == false)
             {
-                throw ast::ScilabError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
+                throw ast::InternalError(_W("[error] Cell contents reference from a non-cell array object.\n"), 999, e.getFirstLocation());
             }
             //Create list of indexes
             ast::exps_t exps = e.getArgs();
@@ -343,7 +320,7 @@ void RunVisitorT<T>::visitprivate(const CellCallExp &e)
                 std::wostringstream os;
                 os << _W("inconsistent row/column dimensions\n");
                 //os << ((*e.args_get().begin())->getLocation()).getLocationString() << std::endl;
-                throw ast::ScilabError(os.str(), 999, e.getFirstLocation());
+                throw ast::InternalError(os.str(), 999, e.getFirstLocation());
             }
 
             if (pList->getSize() == 1)

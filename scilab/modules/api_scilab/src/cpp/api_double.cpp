@@ -249,9 +249,9 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
             }
         }
     }
-    catch (const ast::ScilabError& se)
+    catch (const ast::InternalError& ie)
     {
-        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble", se.GetErrorMessage().c_str());
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble", ie.GetErrorMessage().c_str());
         return sciErr;
     }
 

@@ -105,18 +105,17 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (in.size() < 2 || in.size() > 18)
         {
             Scierror(77, _("%s: Wrong number of input argument(s): %d to %d expected.\n"), "optim", 2, 18);
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         if (_iRetCount > 7)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", 1, 7);
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         /*** get inputs arguments ***/
-
-        /*** get optionals ***/
+        // get optionals
         for (int iOpt = 0 ; iOpt < opt.size() ; iOpt++)
         {
             // "imp"
@@ -125,7 +124,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 types::Double* pDblImp = opt[iOpt].second->getAs<types::Double>();
@@ -133,7 +132,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (pDblImp->isScalar() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A scalar expected.\n"), "optim", "imp");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 iImp = (int)pDblImp->get(0);
@@ -144,14 +143,14 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "nap");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblNap = opt[iOpt].second->getAs<types::Double>();
                 if (pDblNap->isScalar() == false || pDblNap->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "nap");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 iNap = (int)pDblNap->get(0);
@@ -162,14 +161,14 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "iter");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblIter = opt[iOpt].second->getAs<types::Double>();
                 if (pDblIter->isScalar() == false || pDblIter->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "iter");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 iItMax = (int)pDblIter->get(0);
@@ -180,14 +179,14 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblEpsg = opt[iOpt].second->getAs<types::Double>();
                 if (pDblEpsg->isScalar() == false || pDblEpsg->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsg");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 dEpsg = pDblEpsg->get(0);
@@ -198,14 +197,14 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblEpsf = opt[iOpt].second->getAs<types::Double>();
                 if (pDblEpsf->isScalar() == false || pDblEpsf->isComplex())
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%s: A real scalar expected.\n"), "optim", "epsf");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 dEpsf = pDblEpsf->get(0);
@@ -216,7 +215,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (opt[iOpt].second->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%s: A real scalar expected.\n"), "optim", "epsx");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblEpsx = opt[iOpt].second->getAs<types::Double>();
@@ -246,7 +245,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             {
                 Scierror(50, _("%s: Subroutine not found: %s\n"), "optim", pst);
                 FREE(pst);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
@@ -258,7 +257,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (pList->getSize() == 0)
             {
                 Scierror(50, _("%s: Argument #%d: Subroutine not found in list: %s\n"), "optim", iPos + 1, "(string empty)");
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             if (pList->get(0)->isString())
@@ -272,7 +271,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 {
                     Scierror(50, _("%s: Subroutine not found: %s\n"), "optim", pst);
                     FREE(pst);
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 memcpy(C2F(optim).nomsub, pst, std::max(size_t(6), strlen(pst)));
@@ -291,13 +290,13 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: The first argument in the list must be a string or a function.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or a function expected.\n"), "optim", iPos + 1);
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         iPos++;
@@ -309,13 +308,13 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (pStrContr->isScalar() == false || wcscmp(pStrContr->get(0), L"b"))
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: String \"b\" expected.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             if (in.size() < 5)
             {
                 Scierror(77, _("%s: Wrong number of input argument(s): %d or more expected.\n"), "optim", 5);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             iPos++;
@@ -334,7 +333,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             iPos++;
@@ -353,7 +352,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             else
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             iContr = 2;
@@ -389,19 +388,19 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A matrix or polynom expected.\n"), "optim", iPos + 1);
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         if (iContr == 2 && (iSizeX0 != iSizeBinf || iSizeX0 != iSizeBsub))
         {
             Scierror(999, _("%s: Bounds and initial guess are incompatible.\n"), "optim");
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         if (pDblEpsx != NULL && (pDblEpsx->getSize() != iSizeX0))
         {
             Scierror(999, _("%s: Wrong value for input argument #%s: Incorrect stopping parameters.\n"), "optim", "epsx");
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         // alloc g output data
@@ -416,7 +415,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (pStr->isScalar() == false)
             {
                 Scierror(999, _("%s: Wrong type for input argument #%d: Scalar string expected.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             if (wcscmp(pStr->get(0), L"qn") == 0) // default case
@@ -437,7 +436,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             //        else
             //        {
             //            Scierror(999, _("%s: Wrong value for input argument #%d: \"qn\", \"gc\", \"nd\" expected.\n"), "optim", iPos + 1);
-            //            throw ast::ScilabMessage();
+            //            throw ast::ScilabException();
             //        }
         }
 
@@ -454,7 +453,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (in[iPos]->isDouble() && pDbl->isScalar() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "optim", iPos + 1);
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 iMem = (int)pDbl->get(0);
@@ -509,7 +508,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (iAlgo != 1)
             {
                 Scierror(137, _("%s: NO hot restart available in this method.\n"), "optim");
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             pDblWork = in[iPos]->getAs<types::Double>();
@@ -517,7 +516,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (pDblWork->getSize() != iWorkSize + iWorkSizeI)
             {
                 Scierror(137, _("Hot restart: dimension of working table (argument n:%d).\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             double* pdbl = pDblWork->get();
@@ -557,7 +556,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                             if (pDblNap->isScalar() == false || pDblNap->isComplex())
                             {
                                 Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optim", i + 1);
-                                throw ast::ScilabMessage();
+                                throw ast::ScilabException();
                             }
 
                             iNap = (int)pDblNap->get(0);
@@ -568,7 +567,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                             if (pDblIter->isScalar() == false || pDblIter->isComplex())
                             {
                                 Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optim", i + 1);
-                                throw ast::ScilabMessage();
+                                throw ast::ScilabException();
                             }
 
                             iItMax = (int)pDblIter->get(0);
@@ -579,7 +578,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                             if (pDblEpsg->isScalar() == false || pDblEpsg->isComplex())
                             {
                                 Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optim", i + 1);
-                                throw ast::ScilabMessage();
+                                throw ast::ScilabException();
                             }
 
                             dEpsg = pDblEpsg->get(0);
@@ -590,7 +589,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                             if (pDblEpsf->isScalar() == false || pDblEpsf->isComplex())
                             {
                                 Scierror(999, _("%s: Wrong size for input argument #%d: A real scalar expected.\n"), "optim", i + 1);
-                                throw ast::ScilabMessage();
+                                throw ast::ScilabException();
                             }
 
                             dEpsf = pDblEpsf->get(0);
@@ -601,7 +600,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                             if (pDblEpsx->getSize() != iSizeX0)
                             {
                                 Scierror(999, _("%s: Wrong value for input argument #%d: Incorrect stopping parameters.\n"), "optim", i + 1);
-                                throw ast::ScilabMessage();
+                                throw ast::ScilabException();
                             }
 
                             iEpsx = 0;
@@ -610,7 +609,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                         else
                         {
                             Scierror(999, _("%s: Wrong type for input argument #%d: A String expected.\n"), "optim", i + 1);
-                            throw ast::ScilabMessage();
+                            throw ast::ScilabException();
                         }
                     }
                     else if (in[i]->isString())
@@ -621,7 +620,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                     else
                     {
                         Scierror(999, _("%s: Wrong type for input argument #%d: A scalar of a string expected.\n"), "optim", i + 1);
-                        throw ast::ScilabMessage();
+                        throw ast::ScilabException();
                     }
                 }
             }
@@ -630,7 +629,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (iSim != 1)
                 {
                     Scierror(999, _("%s: \"in\" not allowed with simulator defined by a function.\n"), "optim");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 iIndSim = 10;
@@ -639,12 +638,12 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (iIndSim == 0)
                 {
                     Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
                 else if (iIndSim < 0)
                 {
                     Scierror(134, _("%s: Problem with initial constants in simul.\n"), "optim");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 piIzs   = new int[C2F(nird).nizs];
@@ -657,12 +656,12 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (iIndSim == 0)
                 {
                     Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
                 else if (iIndSim < 0)
                 {
                     Scierror(134, _("%s: Problem with initial constants in simul.\n"), "optim");
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
             }
             else if (wcscmp(pStr->get(0), L"ti") == 0)
@@ -671,7 +670,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (in[iPos]->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "optim", iPos + 1);
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblTi = in[iPos]->getAs<types::Double>();
@@ -691,7 +690,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
                 if (in[iPos]->isDouble() == false)
                 {
                     Scierror(999, _("%s: Wrong type for input argument #%d: A scalar expected.\n"), "optim", iPos + 1);
-                    throw ast::ScilabMessage();
+                    throw ast::ScilabException();
                 }
 
                 pDblTd = in[iPos]->getAs<types::Double>();
@@ -710,7 +709,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             else
             {
                 Scierror(999, _("%s: Wrong value for input argument #%d: \"ar\", \"in\", \"ti\" or \"td\" not allowed.\n"), "optim", iPos + 1);
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             iPos++;
@@ -732,12 +731,12 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (iIndSim == 0)
             {
                 Scierror(131, _("%s: Stop requested by simulator (ind=0).\n"), "optim");
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
             else if (iIndSim < 0)
             {
                 Scierror(134, _("%s: Problem with initial constants in simul.\n"), "optim");
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             if (iNap < 2 || iItMax < 1)
@@ -783,7 +782,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (checkOptimError(iArret, iIndOpt, iImp, dEpsg))
             {
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
         }
         // algorithme n1qn3 : Gradient Conjugate without constraints
@@ -863,7 +862,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (checkOptimError(iArret, iIndOpt, iImp, dEpsg))
             {
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
         }
@@ -920,7 +919,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (checkOptimError(iArret, iIndOpt, iImp, dEpsg))
             {
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
         }
         // optimiseur qnbd : quasi-newton with bound constraints
@@ -940,7 +939,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (checkOptimError(iArret, iIndOpt, iImp, dEpsg))
             {
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
         }
         // optimiseur gcbd : Gradient Conjugate with bound constraints
@@ -972,13 +971,13 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
             if (checkOptimError(iArret, iIndOpt, iImp, dEpsg))
             {
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
         }
         else if (iContr != 3) // bad algo
         {
             Scierror(136, _("%s: This method is NOT implemented.\n"), "optim");
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         /*** return output arguments ***/
@@ -986,7 +985,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
         if (iRetCount1 == 0)
         {
             Scierror(78, _("%s: Wrong number of output argument(s): %d to %d expected.\n"), "optim", iSaveI + iSaveD, iSaveI + iSaveD + 1);
-            throw ast::ScilabMessage();
+            throw ast::ScilabException();
         }
 
         // return f
@@ -1044,7 +1043,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
             if (iAlgo != 1)
             {
                 Scierror(137, _("%s: NO hot restart available in this method.\n"), "optim");
-                throw ast::ScilabMessage();
+                throw ast::ScilabException();
             }
 
             if (iContr == 1)
@@ -1122,14 +1121,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         ret = types::Function::OK;
     }
-    catch (ast::ScilabError &e)
+    catch (const ast::ScilabException& /* e */)
+    {
+        // free memory, then return error
+    }
+    catch (const ast::InternalError& e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
-    }
-    catch (ast::ScilabMessage& /*m*/)
-    {
     }
 
     /*** free memory ***/

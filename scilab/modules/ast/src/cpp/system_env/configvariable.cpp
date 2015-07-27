@@ -381,7 +381,7 @@ int ConfigVariable::getLastErrorLine(void)
 ** \{
 */
 
-std::wstring ConfigVariable::m_wstErrorFunction;
+std::wstring ConfigVariable::m_wstErrorFunction = L"";
 
 void ConfigVariable::setLastErrorFunction(const std::wstring& _wstErrorFunction)
 {

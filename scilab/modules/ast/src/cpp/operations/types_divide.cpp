@@ -13,8 +13,6 @@
 #include "types_divide.hxx"
 #include "types_finite.hxx"
 
-#include "scilabexception.hxx"
-
 extern "C"
 {
 #include "matrix_right_division.h"
@@ -95,18 +93,18 @@ InternalType *GenericRDivide(InternalType *_pLeftOperand, InternalType *_pRightO
         switch (iResult)
         {
             case 1 :
-                throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+                throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
             case 2 :
-                throw ast::ScilabError(_W("With NaN or Inf a division by scalar expected.\n"));
+                throw ast::InternalError(_W("With NaN or Inf a division by scalar expected.\n"));
             case 3 :
-                throw ast::ScilabError(_W("Division by zero...\n"));
+                throw ast::InternalError(_W("Division by zero...\n"));
             case 4 :
                 if (getWarningMode())
                 {
                     sciprint(_("Warning : Division by zero...\n"));
                 }
                 break;
-            //            default : throw ast::ScilabError(_W("Operator / : Error %d not yet managed.\n"), iResult);
+            //            default : throw ast::InternalError(_W("Operator / : Error %d not yet managed.\n"), iResult);
             default :
                 sciprint(_("Operator / : Error %d not yet managed.\n"), iResult);
         }
@@ -543,7 +541,7 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
 
         delete[] pDbl;
         delete[] pDblSp;
-        throw ast::ScilabError(_W("Invalid exponent.\n"));
+        throw ast::InternalError(_W("Invalid exponent.\n"));
         return 1;
     }
 

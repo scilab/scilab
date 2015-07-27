@@ -72,7 +72,7 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
 
     // error message catched
     std::wostringstream os;
-    bool bCatched = false;
+    bool bCatch = false;
 
     // *** check the minimal number of input args. ***
     if (in.size() < 4 || in.size() > 9)
@@ -690,16 +690,10 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 Scierror(999, _("%s: %s return with state %d.\n"), "dassl", "dassl",  idid);
             }
         }
-        catch (ast::ScilabMessage &sm)
+        catch (ast::InternalError &ie)
         {
-            os << sm.GetErrorMessage();
-            bCatched = true;
-            iret = 1;
-        }
-        catch (ast::ScilabError &e)
-        {
-            os << e.GetErrorMessage();
-            bCatched = true;
+            os << ie.GetErrorMessage();
+            bCatch = true;
             iret = 1;
         }
 
@@ -721,12 +715,12 @@ types::Function::ReturnValue sci_dassl(types::typed_list &in, int _iRetCount, ty
                 FREE(rtol);
             }
 
-            if (bCatched)
+            if (bCatch)
             {
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "dassl", "dassl");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             return types::Function::Error;

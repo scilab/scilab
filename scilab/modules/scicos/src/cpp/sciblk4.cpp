@@ -268,7 +268,7 @@ void sciblk4(scicos_block* Blocks, const int flag)
             return;
         }
     }
-    catch (ast::ScilabMessage& /*sm*/)
+    catch (const ast::InternalError& /*ie*/)
     {
         set_block_error(-1);
         return;
@@ -286,9 +286,9 @@ void sciblk4(scicos_block* Blocks, const int flag)
 
     switch (flag)
     {
-        /**************************
-        * update continuous state
-        **************************/
+            /**************************
+            * update continuous state
+            **************************/
         case 0:
         {
             if (Blocks->nx != 0)

@@ -387,15 +387,10 @@ bool FuncManager::ExecuteFile(wstring _stFile)
     try
     {
         parser.getTree()->accept(exec);
-
     }
-    catch (const ast::ScilabMessage& sm)
+    catch (const ast::InternalError& ie)
     {
-        scilabWriteW(sm.GetErrorMessage().c_str());
-    }
-    catch (const ast::ScilabError& se)
-    {
-        scilabWriteW(se.GetErrorMessage().c_str());
+        scilabWriteW(ie.GetErrorMessage().c_str());
     }
 
     //restore previous prompt mode

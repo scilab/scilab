@@ -57,9 +57,6 @@ types::InternalType* callOverload(const ast::Exp& e,
 
 types::InternalType* callOverload(std::wstring strType, types::InternalType* _paramL, types::InternalType* _paramR);
 
-
-types::List* getPropertyTree(ast::Exp* e, types::List* pList);
-
 types::InternalType* insertionCall(const ast::Exp& e, types::typed_list* _pArgs, types::InternalType* _pVar, types::InternalType* _pInsert);
 
 EXTERN_AST void callOnPrompt(void);

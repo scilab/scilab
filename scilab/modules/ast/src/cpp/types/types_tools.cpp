@@ -44,7 +44,7 @@ double getIndex(InternalType* val)
 {
     switch (val->getType())
     {
-        //scalar
+            //scalar
         case InternalType::ScilabDouble:
         {
             return getIndex(val->getAs<Double>());
@@ -606,7 +606,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 {
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("variable size exceeded : less than %d expected.\n").c_str(), INT_MAX);
-                    throw ast::ScilabError(szError);
+                    throw ast::InternalError(szError);
                 }
 
                 int d = static_cast<int>(pCurrentArg->get(j));
@@ -631,7 +631,7 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
             delete[] _piCountDim;
             cleanIndexesArguments(_pArgsIn, _pArgsOut);
 
-            throw ast::ScilabError(szError);
+            throw ast::InternalError(szError);
         }
         _pArgsOut->push_back(pCurrentArg);
 
@@ -739,10 +739,10 @@ types::Function::ReturnValue VariableToString(types::InternalType* pIT, const wc
             pIT->DecreaseRef();
             return ret;
         }
-        catch (ast::ScilabError &e)
+        catch (const ast::InternalError &ie)
         {
             pIT->DecreaseRef();
-            throw e;
+            throw ie;
         }
     }
     else

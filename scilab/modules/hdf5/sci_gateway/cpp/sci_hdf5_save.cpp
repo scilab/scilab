@@ -112,7 +112,7 @@ types::Function::ReturnValue sci_hdf5_save(types::typed_list &in, int _iRetCount
             return types::Function::OK;
         }
 
-        for (const auto& wvar : lst)
+        for (const auto & wvar : lst)
         {
             types::InternalType* pIT = ctx->getAtLevel(symbol::Symbol(wvar), SCOPE_CONSOLE);
 
@@ -846,7 +846,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     //inputs
     std::vector<char*> inputNames;
     auto inputs = data->getInputs();
-    for (auto& input : *inputs)
+    for (auto & input : *inputs)
     {
         inputNames.push_back(wide_string_to_UTF8(input->getSymbol().getName().data()));
     }
@@ -855,7 +855,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     dims[1] = static_cast<int>(inputNames.size());
     writeStringMatrix6(dset, "inputs", 2, dims, inputNames.data());
 
-    for (auto& in : inputNames)
+    for (auto & in : inputNames)
     {
         FREE(in);
     }
@@ -863,7 +863,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     //outputs
     std::vector<char*> outputNames;
     auto outputs = data->getOutputs();
-    for (auto& output : *outputs)
+    for (auto & output : *outputs)
     {
         outputNames.push_back(wide_string_to_UTF8(output->getSymbol().getName().data()));
     }
@@ -872,7 +872,7 @@ static int export_macro(int parent, const std::string& name, types::Macro* data)
     dims[1] = static_cast<int>(outputNames.size());
     writeStringMatrix6(dset, "outputs", 2, dims, outputNames.data());
 
-    for (auto& in : outputNames)
+    for (auto & in : outputNames)
     {
         FREE(in);
     }
@@ -919,7 +919,7 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
             if (out.size() != 1)
             {
-                for (auto& i : out)
+                for (auto & i : out)
                 {
                     i->killMe();
                 }
@@ -928,7 +928,7 @@ static int export_usertype(int parent, const std::string& name, types::UserType*
 
             it = out[0];
         }
-        catch (ast::ScilabMessage& /*se*/)
+        catch (const ast::InternalError& /*ie*/)
         {
             //overload does not exist
             return -1;

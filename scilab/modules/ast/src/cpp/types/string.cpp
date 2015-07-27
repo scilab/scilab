@@ -560,12 +560,10 @@ wchar_t* String::copyValue(wchar_t* _pwstData)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate data.\n"));
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
-    return NULL;
 
+    return NULL;
 }
 
 wchar_t* String::copyValue(const wchar_t* _pwstData)
@@ -650,9 +648,7 @@ wchar_t** String::allocData(int _iSize)
     {
         char message[bsiz];
         os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(_iSize * sizeof(char*)) / 1.e6);
-        ast::ScilabError se(message);
-        se.SetErrorNumber(999);
-        throw (se);
+        throw ast::InternalError(message);
     }
     return pStr;
 }

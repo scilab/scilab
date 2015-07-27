@@ -124,7 +124,7 @@ protected :
                 {
                     char message[bsiz];
                     os_sprintf(message, _("Can not allocate %.2f MB memory.\n"),  (double) ((double) m_iSize * (double) m_piDims[i] * sizeof(T)) / 1.e6);
-                    throw (ast::ScilabError(message));
+                    throw ast::InternalError(message);
                 }
 
                 m_iSize = iTmpSize;
@@ -136,9 +136,7 @@ protected :
                 m_pImgData = NULL;
                 char message[bsiz];
                 os_sprintf(message, _("Can not allocate negative size (%d).\n"), m_iSize);
-                ast::ScilabError se(message);
-                se.SetErrorNumber(999);
-                throw (se);
+                throw ast::InternalError(message);
             }
 
         }
@@ -170,9 +168,7 @@ protected :
         {
             char message[bsiz];
             os_sprintf(message, _("Can not allocate %.2f MB memory.\n"), (double)(m_iSize * sizeof(T)) / 1.e6);
-            ast::ScilabError se(message);
-            se.SetErrorNumber(999);
-            throw (se);
+            throw ast::InternalError(message);
         }
 
         m_iSizeMax = m_iSize;
@@ -407,7 +403,7 @@ public :
             {
                 std::wostringstream os;
                 os << _W("Invalid index.\n");
-                throw ast::ScilabError(os.str(), 999, e.getLocation());
+                throw ast::InternalError(os.str(), 999, e.getLocation());
             }
             out.push_back(_out);
         }

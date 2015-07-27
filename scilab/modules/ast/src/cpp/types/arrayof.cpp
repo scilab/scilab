@@ -436,7 +436,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
             wchar_t szError[bsiz];
             os_swprintf(szError, bsiz, _W("Invalid index.\n").c_str());
-            throw ast::ScilabError(szError);
+            throw ast::InternalError(szError);
         }
 
         if (pSource->isScalar())

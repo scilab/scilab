@@ -1099,15 +1099,11 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
-            catch (ast::ScilabMessage &sm)
+            catch (ast::InternalError &ie)
             {
-                os << sm.GetErrorMessage();
+                os << ie.GetErrorMessage();
                 bCatch = true;
-            }
-            catch (ast::ScilabError &e)
-            {
-                os << e.GetErrorMessage();
-                bCatch = true;
+                err = 1;
             }
 
             // FREE allocated data
@@ -1144,7 +1140,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
                     os << szError;
-                    throw ast::ScilabMessage(os.str());
+                    throw ast::InternalError(os.str());
                 }
 
                 return types::Function::Error;
@@ -1324,15 +1320,9 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     Scierror(999, _("%s: %s exit with state %d.\n"), "ode", strMeth.c_str(), istate);
                 }
             }
-            catch (ast::ScilabMessage &sm)
+            catch (ast::InternalError &ie)
             {
-                os << sm.GetErrorMessage();
-                bCatch = true;
-                err = 1;
-            }
-            catch (ast::ScilabError &e)
-            {
-                os << e.GetErrorMessage();
+                os << ie.GetErrorMessage();
                 bCatch = true;
                 err = 1;
             }
@@ -1370,7 +1360,7 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                     wchar_t szError[bsiz];
                     os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "ode", strMeth.c_str());
                     os << szError;
-                    throw ast::ScilabMessage(os.str());
+                    throw ast::InternalError(os.str());
                 }
 
                 return types::Function::Error;

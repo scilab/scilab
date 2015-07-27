@@ -3703,7 +3703,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     /* check dimension*/
     if (_pL->getDims() != _pR->getDims())
     {
-        throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+        throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
     }
 
     int* piDimsL = _pL->getDimsArray();
@@ -3713,7 +3713,7 @@ types::InternalType* compnoequal_M_M<GraphicHandle, GraphicHandle, Bool>(Graphic
     {
         if (piDimsL[i] != piDimsR[i])
         {
-            throw ast::ScilabError(_W("Inconsistent row/column dimensions.\n"));
+            throw ast::InternalError(_W("Inconsistent row/column dimensions.\n"));
         }
     }
 

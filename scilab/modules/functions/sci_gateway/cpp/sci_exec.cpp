@@ -21,7 +21,6 @@
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
-#include "scilabexception.hxx"
 #include "configvariable.hxx"
 #include "types_tools.hxx"
 #include "runner.hxx"
@@ -283,13 +282,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             ExecVisitor execExps;
             pSeqExp->accept(execExps);
         }
-        catch (ast::ScilabMessage sm)
+        catch (const ast::InternalError ie)
         {
             if (bErrCatch == false)
             {
                 ConfigVariable::setPromptMode(oldVal);
                 ConfigVariable::setExecutedFileID(0);
-                throw sm;
+                throw ie;
             }
 
             ConfigVariable::resetWhereError();
@@ -348,54 +347,13 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ExecVisitor execExps;
                 seqExp.accept(execExps);
             }
-            catch (ast::ScilabMessage sm)
-            {
-                ConfigVariable::fillWhereError(sm.GetErrorLocation().first_line);
-
-                if (file)
-                {
-                    delete pExp;
-                    mclose(iID);
-                    file->close();
-                    delete file;
-                    FREE(pstFile);
-                    FREE(pwstFile);
-                }
-
-                if (pMacro)
-                {
-                    // reset last first line of macro called
-                    ConfigVariable::macroFirstLine_end();
-                }
-
-                if (bErrCatch == false)
-                {
-                    ConfigVariable::setPromptMode(oldVal);
-                    ConfigVariable::setExecutedFileID(0);
-
-                    // avoid double delete on exps when "seqExp" is destryed and "LExp" too
-                    ast::exps_t& protectExp = seqExp.getExps();
-                    for (int i = 0; i < protectExp.size(); ++i)
-                    {
-                        protectExp[i] = NULL;
-                    }
-
-                    throw sm;
-                }
-
-                ConfigVariable::resetWhereError();
-                iErr = ConfigVariable::getLastErrorNumber();
-            }
-            catch (ast::ScilabError& se)
+            catch (const ast::InternalError& ie)
             {
                 ConfigVariable::setExecutedFileID(0);
-                ConfigVariable::fillWhereError(se.GetErrorLocation().first_line);
-                if (ConfigVariable::getLastErrorNumber() == 0)
+                ConfigVariable::fillWhereError(ie.GetErrorLocation().first_line);
+                if (ConfigVariable::getLastErrorLine() == 0)
                 {
-                    ConfigVariable::setLastErrorMessage(se.GetErrorMessage());
-                    ConfigVariable::setLastErrorNumber(se.GetErrorNumber());
-                    ConfigVariable::setLastErrorLine(se.GetErrorLocation().first_line);
-                    ConfigVariable::setLastErrorFunction(wstring(L""));
+                    ConfigVariable::setLastErrorLine(ie.GetErrorLocation().first_line);
                 }
 
                 //store message
@@ -422,7 +380,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                         protectExp[i] = NULL;
                     }
 
-                    throw se;
+                    throw ie;
                 }
 
                 if (pMacro)

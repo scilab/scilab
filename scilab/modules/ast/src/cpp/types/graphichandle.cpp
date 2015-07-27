@@ -13,7 +13,6 @@
 #include <sstream>
 #include "graphichandle.hxx"
 #include "tostring_common.hxx"
-#include "scilabexception.hxx"
 #include "overload.hxx"
 #include "type_traits.hxx"
 

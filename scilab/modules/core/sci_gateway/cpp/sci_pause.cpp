@@ -15,7 +15,6 @@
 #include "threadmanagement.hxx"
 #include "configvariable.hxx"
 #include "threadId.hxx"
-#include "scilabexception.hxx"
 
 extern "C"
 {

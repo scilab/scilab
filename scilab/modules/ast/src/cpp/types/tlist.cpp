@@ -164,7 +164,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
     {
         ret = Overload::call(L"%" + stType + L"_e", in, _iRetCount, out, &execFunc);
     }
-    catch (ast::ScilabError &se)
+    catch (const ast::InternalError &ie)
     {
         try
         {
@@ -177,10 +177,10 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
             }
             else
             {
-                throw se;
+                throw ie;
             }
         }
-        catch (ast::ScilabError & /*se*/)
+        catch (ast::InternalError & /*se*/)
         {
             ret = Overload::call(L"%l_e", in, 1, out, &execFunc);
         }
@@ -192,7 +192,7 @@ bool TList::invoke(typed_list & in, optional_list & /*opt*/, int _iRetCount, typ
 
     if (ret == Callable::Error)
     {
-        throw ast::ScilabError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
+        throw ast::InternalError(ConfigVariable::getLastErrorMessage(), ConfigVariable::getLastErrorNumber(), e.getLocation());
     }
 
     return true;
@@ -315,8 +315,14 @@ bool TList::toString(std::wostringstream& ostr)
         DecreaseRef();
         return true;
     }
-    catch (ast::ScilabMessage /* &e */)
+    catch (ast::InternalError& e)
     {
+        if (e.GetErrorType() == ast::TYPE_ERROR)
+        {
+            DecreaseRef();
+            throw e;
+        }
+
         // avoid error message about undefined overload %type_p
         ConfigVariable::resetError();
     }

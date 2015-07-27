@@ -136,7 +136,7 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
             return;
         }
     }
-    catch (ast::ScilabMessage& /*sm*/)
+    catch (const ast::InternalError& /*ie*/)
     {
         setErrAndFree(-1, out);
         return;

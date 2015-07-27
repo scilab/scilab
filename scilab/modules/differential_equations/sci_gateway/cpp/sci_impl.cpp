@@ -657,15 +657,9 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 }
             }
         }
-        catch (ast::ScilabMessage &sm)
+        catch (ast::InternalError &ie)
         {
-            os << sm.GetErrorMessage();
-            bCatch = true;
-            err = 1;
-        }
-        catch (ast::ScilabError &e)
-        {
-            os << e.GetErrorMessage();
+            os << ie.GetErrorMessage();
             bCatch = true;
             err = 1;
         }
@@ -695,7 +689,7 @@ types::Function::ReturnValue sci_impl(types::typed_list &in, int _iRetCount, typ
                 wchar_t szError[bsiz];
                 os_swprintf(szError, bsiz, _W("%s: An error occured in '%s' subroutine.\n").c_str(), "impl", "lsodi");
                 os << szError;
-                throw ast::ScilabMessage(os.str());
+                throw ast::InternalError(os.str());
             }
 
             return types::Function::Error;
