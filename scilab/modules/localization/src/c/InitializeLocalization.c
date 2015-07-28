@@ -143,7 +143,7 @@ BOOL InitializeLocalization(void)
     /* Here, the "" means that we will try to use the language of the system
      * first. If it doesn't work, we switch back to default (English) */
 #ifdef FORCE_LOCALE_EN_US
-    setlanguage(L"en_US");
+    setlanguage(L"C");
 #else
     setlanguage(L"");
 #endif
