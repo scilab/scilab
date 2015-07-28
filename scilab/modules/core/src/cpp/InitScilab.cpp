@@ -250,6 +250,10 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
     }
 
+    //set prompt value
+    int pause = 0;
+    C2F(setprlev) (&pause);
+
     //load gateways
     LoadModules();
 
@@ -265,10 +269,6 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
     symbol::Context::getInstance()->scope_begin();
 
     ConfigVariable::setStartProcessing(false);
-    int pause = 0;
-
-    //set prompt value
-    C2F(setprlev) (&pause);
 
     ConfigVariable::setPromptMode(0);
     try
@@ -793,53 +793,56 @@ static void stateShow(Parser::ControlStatus status)
 {
     switch (status)
     {
-        case Parser::WithinFor:
-            SetTemporaryPrompt("-for       ->");
-            break;
-        case Parser::WithinWhile:
-            SetTemporaryPrompt("-while     ->");
-            break;
-        case Parser::WithinIf:
-            SetTemporaryPrompt("-if        ->");
-            break;
-        case Parser::WithinElse:
-            SetTemporaryPrompt("-else      ->");
-            break;
-        case Parser::WithinElseIf:
-            SetTemporaryPrompt("-elseif    ->");
-            break;
-        case Parser::WithinTry:
-            SetTemporaryPrompt("-try       ->");
-            break;
-        case Parser::WithinCatch:
-            SetTemporaryPrompt("-catch     ->");
-            break;
-        case Parser::WithinFunction:
-            SetTemporaryPrompt("-function  ->");
-            break;
-        case Parser::WithinSelect:
-            SetTemporaryPrompt("-select    ->");
-            break;
-        case Parser::WithinCase:
-            SetTemporaryPrompt("-case      ->");
-            break;
-        case Parser::WithinSwitch:
-            SetTemporaryPrompt("-switch    ->");
-            break;
-        case Parser::WithinOtherwise:
-            SetTemporaryPrompt("-otherwise ->");
-            break;
-        case Parser::WithinMatrix:
-            SetTemporaryPrompt("- [        ->");
-            break;
-        case Parser::WithinCell:
-            SetTemporaryPrompt("- {        ->");
-            break;
-        case Parser::WithinBlockComment:
-            SetTemporaryPrompt("- /*       ->");
-            break;
-        case Parser::WithinDots:
-            SetTemporaryPrompt("- ...      ->");
+        //case Parser::WithinFor:
+        //    SetTemporaryPrompt("-for       ->");
+        //    break;
+        //case Parser::WithinWhile:
+        //    SetTemporaryPrompt("-while     ->");
+        //    break;
+        //case Parser::WithinIf:
+        //    SetTemporaryPrompt("-if        ->");
+        //    break;
+        //case Parser::WithinElse:
+        //    SetTemporaryPrompt("-else      ->");
+        //    break;
+        //case Parser::WithinElseIf:
+        //    SetTemporaryPrompt("-elseif    ->");
+        //    break;
+        //case Parser::WithinTry:
+        //    SetTemporaryPrompt("-try       ->");
+        //    break;
+        //case Parser::WithinCatch:
+        //    SetTemporaryPrompt("-catch     ->");
+        //    break;
+        //case Parser::WithinFunction:
+        //    SetTemporaryPrompt("-function  ->");
+        //    break;
+        //case Parser::WithinSelect:
+        //    SetTemporaryPrompt("-select    ->");
+        //    break;
+        //case Parser::WithinCase:
+        //    SetTemporaryPrompt("-case      ->");
+        //    break;
+        //case Parser::WithinSwitch:
+        //    SetTemporaryPrompt("-switch    ->");
+        //    break;
+        //case Parser::WithinOtherwise:
+        //    SetTemporaryPrompt("-otherwise ->");
+        //    break;
+        //case Parser::WithinMatrix:
+        //    SetTemporaryPrompt("- [        ->");
+        //    break;
+        //case Parser::WithinCell:
+        //    SetTemporaryPrompt("- {        ->");
+        //    break;
+        //case Parser::WithinBlockComment:
+        //    SetTemporaryPrompt("- /*       ->");
+        //    break;
+        //case Parser::WithinDots:
+        //    SetTemporaryPrompt("- ...      ->");
+        //    break;
+        default :
+            SetTemporaryPrompt("  > ");
             break;
         case Parser::AllControlClosed:
             //ClearTemporaryPrompt();

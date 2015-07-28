@@ -691,7 +691,7 @@ function status = test_single(_module, _testPath, _testName)
     sciFile = strsubst(sciFile, "pause; end", "bugmes();quit;end");
 
     //to avoid suppression of input --> with prompts
-    sciFile = strsubst(sciFile, "-->", "@#>");
+    sciFile = strsubst(sciFile, "--> ", "@#> ");
     //remove halt calls
     sciFile = strsubst(sciFile, "halt();", "");
 
@@ -1051,9 +1051,9 @@ function status = test_single(_module, _testPath, _testName)
         end
 
         //suppress the prompts
-        dia = strsubst(dia, "-->", "");
-        dia = strsubst(dia, "@#>", "-->");
-        dia = strsubst(dia, "-1->", "");
+        dia = strsubst(dia, "--> ", "");
+        dia = strsubst(dia, "@#> ", "--> ");
+        dia = strsubst(dia, "-1-> ", "");
 
         //standardise  number display
 

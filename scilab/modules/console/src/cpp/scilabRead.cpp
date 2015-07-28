@@ -35,7 +35,7 @@ void setScilabInputMethod(SCILAB_INPUT_METHOD reader)
 void C2F(scilabread)(char* strRead, int len)
 {
     char* str = scilabRead();
-    int size = Min(strlen(str), len - 1);
+    int size = Min(static_cast<int>(strlen(str)), len - 1);
     strncpy(strRead, str, size);
     strRead[size] = '\0';
     FREE(str);
