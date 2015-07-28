@@ -27,13 +27,15 @@ using namespace types;
 
 bool GraphicsModule::loadedDep = false;
 
-void GraphicsModule::LoadDeps(std::wstring _functionName)
+int GraphicsModule::LoadDeps(std::wstring _functionName)
 {
     if (loadedDep == false)
     {
         loadOnUseClassPath("graphics");
         loadedDep = true;
     }
+
+    return 1;
 }
 
 

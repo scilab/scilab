@@ -10,13 +10,29 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "nopreferences.h"
+#include "preferences_gw.hxx"
+extern "C"
+{
 #include "Scierror.h"
 #include "localization.h"
+}
 /*--------------------------------------------------------------------------*/
 int gw_preferences(void)
 {
     Scierror(999, _("Scilab '%s' module not installed.\n"), "preferences");
     return 0;
+}
+/*--------------------------------------------------------------------------*/
+int sci_addModulePreferences(char * fname, void *pvApiCtx)
+{
+    return gw_preferences();
+}
+int sci_preferences(char * fname, void *pvApiCtx)
+{
+    return gw_preferences();
+}
+int sci_removeModulePreferences(char * fname, void *pvApiCtx)
+{
+    return gw_preferences();
 }
 /*--------------------------------------------------------------------------*/

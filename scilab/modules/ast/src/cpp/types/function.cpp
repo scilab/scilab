@@ -100,10 +100,17 @@ Function::~Function()
 
 Function::ReturnValue Function::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
     }
+
+    if (ret == 0)
+    {
+        return Error;
+    }
+
     return this->m_pFunc(in, _iRetCount, out);
 }
 
@@ -147,10 +154,17 @@ InternalType* OptFunction::clone()
 
 Function::ReturnValue OptFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
     }
+
+    if (ret == 0)
+    {
+        return Error;
+    }
+
     return this->m_pFunc(in, opt, _iRetCount, out);
 }
 
@@ -177,9 +191,15 @@ InternalType* WrapFunction::clone()
 
 Function::ReturnValue WrapFunction::call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
+    }
+
+    if (ret == 0)
+    {
+        return Error;
     }
 
     ReturnValue retVal = Callable::OK;
@@ -329,9 +349,15 @@ InternalType* WrapMexFunction::clone()
 
 Function::ReturnValue WrapMexFunction::call(typed_list &in, optional_list &/*opt*/, int _iRetCount, typed_list &out, ast::ConstVisitor* /*execFunc*/)
 {
+    int ret = 1;
     if (m_pLoadDeps != NULL)
     {
-        m_pLoadDeps(m_wstName);
+        ret = m_pLoadDeps(m_wstName);
+    }
+
+    if (ret == 0)
+    {
+        return Error;
     }
 
     ReturnValue retVal = Callable::OK;

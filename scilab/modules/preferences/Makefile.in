@@ -191,7 +191,8 @@ libscipreferences_algo_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
 @GUI_TRUE@am_libscipreferences_algo_la_rpath =
 libscipreferences_cli_la_DEPENDENCIES = libscipreferences-algo.la
 am__objects_2 =  \
-	src/nopreferences/libscipreferences_cli_la-nopreferences.lo
+	src/nopreferences/libscipreferences_cli_la-nopreferences.lo \
+	sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo
 am_libscipreferences_cli_la_OBJECTS = $(am__objects_2)
 libscipreferences_cli_la_OBJECTS =  \
 	$(am_libscipreferences_cli_la_OBJECTS)
@@ -201,7 +202,8 @@ libscipreferences_la_DEPENDENCIES = libscipreferences-algo.la \
 	$(am__DEPENDENCIES_1)
 am__objects_3 = sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo \
 	sci_gateway/cpp/libscipreferences_la-sci_removeModulePreferences.lo \
-	sci_gateway/cpp/libscipreferences_la-sci_preferences.lo
+	sci_gateway/cpp/libscipreferences_la-sci_preferences.lo \
+	sci_gateway/cpp/libscipreferences_la-preferences_gw.lo
 am__objects_4 = src/jni/libscipreferences_la-ScilabPreferences.lo
 am_libscipreferences_la_OBJECTS = $(am__objects_3) $(am__objects_4)
 libscipreferences_la_OBJECTS = $(am_libscipreferences_la_OBJECTS)
@@ -622,10 +624,11 @@ libscipreferences_la_src_xslt_xwizard_DATA = \
 
 PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
-GATEWAY_CXX_SOURCES = \
+GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_addModulePreferences.cpp \
     sci_gateway/cpp/sci_removeModulePreferences.cpp \
-    sci_gateway/cpp/sci_preferences.cpp
+    sci_gateway/cpp/sci_preferences.cpp \
+    sci_gateway/cpp/preferences_gw.cpp
 
 libscipreferences_la_CPPFLAGS = \
     $(JAVA_JNI_INCLUDE) \
@@ -641,14 +644,13 @@ libscipreferences_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/core/includes/ \
-    -I$(top_srcdir)/modules/functions/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
     $(AM_CPPFLAGS)
 
 
@@ -665,15 +667,19 @@ libscipreferences_cli_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
     $(AM_CPPFLAGS)
 
-PREFERENCES_CLI_C_SOURCES = src/nopreferences/nopreferences.c
-libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_C_SOURCES)
+PREFERENCES_CLI_CPP_SOURCES = src/nopreferences/nopreferences.cpp \
+							  sci_gateway/cpp/preferences_gw.cpp
+
+libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_CPP_SOURCES)
 libscipreferences_la_LDFLAGS = $(AM_LDFLAGS)
 pkglib_LTLIBRARIES = libscipreferences-cli.la $(am__append_1)
 @GUI_TRUE@noinst_LTLIBRARIES = libscipreferences-algo.la
 libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES)
-libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)  $(PREFERENCES_JNI_SOURCES)
+libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)  $(PREFERENCES_JNI_SOURCES)
 libscipreferences_algo_la_CFLAGS = $(libscipreferences_la_CFLAGS)
 libscipreferences_algo_la_CPPFLAGS = $(libscipreferences_la_CPPFLAGS)
 
@@ -865,15 +871,18 @@ src/nopreferences/$(DEPDIR)/$(am__dirstamp):
 src/nopreferences/libscipreferences_cli_la-nopreferences.lo:  \
 	src/nopreferences/$(am__dirstamp) \
 	src/nopreferences/$(DEPDIR)/$(am__dirstamp)
-
-libscipreferences-cli.la: $(libscipreferences_cli_la_OBJECTS) $(libscipreferences_cli_la_DEPENDENCIES) $(EXTRA_libscipreferences_cli_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscipreferences_cli_la_OBJECTS) $(libscipreferences_cli_la_LIBADD) $(LIBS)
 sci_gateway/cpp/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp
 	@: > sci_gateway/cpp/$(am__dirstamp)
 sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
 	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+
+libscipreferences-cli.la: $(libscipreferences_cli_la_OBJECTS) $(libscipreferences_cli_la_DEPENDENCIES) $(EXTRA_libscipreferences_cli_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscipreferences_cli_la_OBJECTS) $(libscipreferences_cli_la_LIBADD) $(LIBS)
 sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
@@ -881,6 +890,9 @@ sci_gateway/cpp/libscipreferences_la-sci_removeModulePreferences.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/cpp/libscipreferences_la-sci_preferences.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscipreferences_la-preferences_gw.lo:  \
 	sci_gateway/cpp/$(am__dirstamp) \
 	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 src/jni/$(am__dirstamp):
@@ -909,6 +921,8 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipreferences_cli_la-preferences_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-preferences_gw.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_preferences.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_removeModulePreferences.Plo@am__quote@
@@ -947,13 +961,6 @@ src/c/libscipreferences_algo_la-getScilabPreference.lo: src/c/getScilabPreferenc
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_algo_la_CPPFLAGS) $(CPPFLAGS) $(libscipreferences_algo_la_CFLAGS) $(CFLAGS) -c -o src/c/libscipreferences_algo_la-getScilabPreference.lo `test -f 'src/c/getScilabPreference.c' || echo '$(srcdir)/'`src/c/getScilabPreference.c
 
-src/nopreferences/libscipreferences_cli_la-nopreferences.lo: src/nopreferences/nopreferences.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/nopreferences/libscipreferences_cli_la-nopreferences.lo -MD -MP -MF src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Tpo -c -o src/nopreferences/libscipreferences_cli_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Tpo src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nopreferences/nopreferences.c' object='src/nopreferences/libscipreferences_cli_la-nopreferences.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nopreferences/libscipreferences_cli_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.c' || echo '$(srcdir)/'`src/nopreferences/nopreferences.c
-
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
 @am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
@@ -978,6 +985,20 @@ src/nopreferences/libscipreferences_cli_la-nopreferences.lo: src/nopreferences/n
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
+src/nopreferences/libscipreferences_cli_la-nopreferences.lo: src/nopreferences/nopreferences.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/nopreferences/libscipreferences_cli_la-nopreferences.lo -MD -MP -MF src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Tpo -c -o src/nopreferences/libscipreferences_cli_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.cpp' || echo '$(srcdir)/'`src/nopreferences/nopreferences.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Tpo src/nopreferences/$(DEPDIR)/libscipreferences_cli_la-nopreferences.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/nopreferences/nopreferences.cpp' object='src/nopreferences/libscipreferences_cli_la-nopreferences.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/nopreferences/libscipreferences_cli_la-nopreferences.lo `test -f 'src/nopreferences/nopreferences.cpp' || echo '$(srcdir)/'`src/nopreferences/nopreferences.cpp
+
+sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo: sci_gateway/cpp/preferences_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipreferences_cli_la-preferences_gw.Tpo -c -o sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo `test -f 'sci_gateway/cpp/preferences_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/preferences_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipreferences_cli_la-preferences_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscipreferences_cli_la-preferences_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/preferences_gw.cpp' object='sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_cli_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipreferences_cli_la-preferences_gw.lo `test -f 'sci_gateway/cpp/preferences_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/preferences_gw.cpp
+
 sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo: sci_gateway/cpp/sci_addModulePreferences.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Tpo -c -o sci_gateway/cpp/libscipreferences_la-sci_addModulePreferences.lo `test -f 'sci_gateway/cpp/sci_addModulePreferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_addModulePreferences.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Tpo sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-sci_addModulePreferences.Plo
@@ -998,6 +1019,13 @@ sci_gateway/cpp/libscipreferences_la-sci_preferences.lo: sci_gateway/cpp/sci_pre
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_preferences.cpp' object='sci_gateway/cpp/libscipreferences_la-sci_preferences.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipreferences_la-sci_preferences.lo `test -f 'sci_gateway/cpp/sci_preferences.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_preferences.cpp
+
+sci_gateway/cpp/libscipreferences_la-preferences_gw.lo: sci_gateway/cpp/preferences_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscipreferences_la-preferences_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-preferences_gw.Tpo -c -o sci_gateway/cpp/libscipreferences_la-preferences_gw.lo `test -f 'sci_gateway/cpp/preferences_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/preferences_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-preferences_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscipreferences_la-preferences_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/preferences_gw.cpp' object='sci_gateway/cpp/libscipreferences_la-preferences_gw.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscipreferences_la-preferences_gw.lo `test -f 'sci_gateway/cpp/preferences_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/preferences_gw.cpp
 
 src/jni/libscipreferences_la-ScilabPreferences.lo: src/jni/ScilabPreferences.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscipreferences_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscipreferences_la-ScilabPreferences.lo -MD -MP -MF src/jni/$(DEPDIR)/libscipreferences_la-ScilabPreferences.Tpo -c -o src/jni/libscipreferences_la-ScilabPreferences.lo `test -f 'src/jni/ScilabPreferences.cpp' || echo '$(srcdir)/'`src/jni/ScilabPreferences.cpp

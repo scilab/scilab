@@ -39,7 +39,8 @@ CORE_C_SOURCES = \
     src/c/getmaxMALLOC.c \
     src/c/sci_mem_alloc.c \
     src/c/hashtable/hashtable.c \
-    src/c/hashtable/hashtable_utility.c
+    src/c/hashtable/hashtable_utility.c \
+    src/c/InitializePreferences.c
 
 CORE_CPP_SOURCES = \
     src/cpp/demangle.cpp \

@@ -50,10 +50,11 @@ PREFERENCES_JNI_SOURCES = src/jni/ScilabPreferences.cpp
 
 PREFERENCES_C_SOURCES = src/c/getScilabPreference.c
 
-GATEWAY_CXX_SOURCES = \
+GATEWAY_CPP_SOURCES = \
     sci_gateway/cpp/sci_addModulePreferences.cpp \
     sci_gateway/cpp/sci_removeModulePreferences.cpp \
-    sci_gateway/cpp/sci_preferences.cpp
+    sci_gateway/cpp/sci_preferences.cpp \
+    sci_gateway/cpp/preferences_gw.cpp
 
 libscipreferences_la_CPPFLAGS = \
     $(JAVA_JNI_INCLUDE) \
@@ -69,14 +70,13 @@ libscipreferences_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/system_env/ \
     -I$(top_srcdir)/modules/ast/includes/types/ \
     -I$(top_srcdir)/modules/commons/src/jni/ \
-    -I$(top_srcdir)/modules/jvm/includes/ \
-    -I$(top_srcdir)/modules/fileio/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/core/includes/ \
-    -I$(top_srcdir)/modules/functions/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
     -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
     $(AM_CPPFLAGS)
 
 # Without the preferences module
@@ -92,10 +92,14 @@ libscipreferences_cli_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/ast/includes/analysis/ \
     -I$(top_srcdir)/modules/localization/includes/ \
     -I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
     $(AM_CPPFLAGS)
 
-PREFERENCES_CLI_C_SOURCES = src/nopreferences/nopreferences.c
-libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_C_SOURCES)
+PREFERENCES_CLI_CPP_SOURCES = src/nopreferences/nopreferences.cpp \
+							  sci_gateway/cpp/preferences_gw.cpp
+
+libscipreferences_cli_la_SOURCES = $(PREFERENCES_CLI_CPP_SOURCES)
 
 libscipreferences_la_LDFLAGS = $(AM_LDFLAGS)
 
@@ -108,7 +112,7 @@ endif
 
 
 libscipreferences_algo_la_SOURCES = $(PREFERENCES_C_SOURCES)
-libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)  $(PREFERENCES_JNI_SOURCES)
+libscipreferences_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)  $(PREFERENCES_JNI_SOURCES)
 libscipreferences_algo_la_CFLAGS = $(libscipreferences_la_CFLAGS)
 libscipreferences_algo_la_CPPFLAGS = $(libscipreferences_la_CPPFLAGS)
 

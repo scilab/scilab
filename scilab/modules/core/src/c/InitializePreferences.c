@@ -78,7 +78,8 @@ void InitializePreferences(int useCWD)
             // it is not true so ...
             lines = (int)atof(prefs->linesToDisplay);
             cols = (int)atof(prefs->columnsToDisplay);
-            setlines(lines, cols);
+            setConsoleLines(lines);
+            setConsoleWidth(cols);
         }
     }
 

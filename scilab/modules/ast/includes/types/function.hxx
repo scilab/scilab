@@ -44,7 +44,7 @@ public :
         EntryPointCPPOpt    = 3,
     };
 
-    typedef void (*LOAD_DEPS)(std::wstring);
+    typedef int (*LOAD_DEPS)(std::wstring);
     typedef int (*INIT_MODULE)(void);
     typedef ReturnValue (*GW_FUNC)(typed_list &in, int _iRetCount, typed_list &out);
     typedef ReturnValue (*GW_FUNC_OPT)(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out);
