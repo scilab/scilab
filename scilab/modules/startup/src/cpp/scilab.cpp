@@ -17,6 +17,7 @@
 #include <cstdio>
 #include <iostream>
 #include <string.h>
+#include <setjmp.h>
 
 extern "C"
 {
@@ -29,8 +30,14 @@ extern "C"
 #include "ConsoleRead.h"
 #include "version.h"
 #include "sci_malloc.h"
+#include "lasterror.h"
 
     extern char *getCmdLine(void);
+#ifdef _MSC_VER
+    jmp_buf ScilabJmpEnv;
+#else
+    extern jmp_buf ScilabJmpEnv;
+#endif
 }
 
 #include "configvariable.hxx"
@@ -302,9 +309,20 @@ int main(int argc, char *argv[])
         exit(0);
     }
 
-    StartScilabEngine(pSEI);
-    iRet = RunScilabEngine(pSEI);
-    StopScilabEngine(pSEI);
-    FREE(pSEI);
-    return iRet;
+    int val = setjmp(ScilabJmpEnv);
+    if (!val)
+    {
+        StartScilabEngine(pSEI);
+        iRet = RunScilabEngine(pSEI);
+        StopScilabEngine(pSEI);
+        FREE(pSEI);
+        return iRet;
+    }
+    else
+    {
+        // We probably had a segfault so print error
+        std::wcerr << getLastErrorMessage() << std::endl;
+        return val;
+    }
 }
+

@@ -56,9 +56,6 @@
     <ClCompile Include="MutexClosingScilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scilab_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spawncommand.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -128,9 +125,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="scilab_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SetHeapOptions.h">
