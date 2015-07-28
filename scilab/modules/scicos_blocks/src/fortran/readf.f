@@ -37,7 +37,7 @@ c
       double precision t,xd(*),x(*),z(*),tvec(*),rpar(*),u(*),y(*)
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
-      character buf(4096)
+      character*4096 buf
 c
 c
       integer n
@@ -141,7 +141,7 @@ c     buffered and masked read
       double precision z(*)
       double precision tmp(100)
       integer fmttyp
-      character buf(4096)
+      character*4096 buf
 c
       ievt=ipar(3)
       N=ipar(4)

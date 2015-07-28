@@ -39,7 +39,7 @@ c
       integer i, n, jj
       integer mode(2)
       integer fmttyp
-      character buf(4096)
+      character*4096 buf
 c
       N=ipar(4)
       K=int(z(1))
