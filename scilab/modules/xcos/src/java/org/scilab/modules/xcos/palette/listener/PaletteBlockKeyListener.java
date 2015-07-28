@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette.listener;
 
+import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
@@ -24,6 +25,7 @@ import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
+import org.scilab.modules.xcos.palette.view.PaletteSearchView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
@@ -103,7 +105,17 @@ public final class PaletteBlockKeyListener implements KeyListener {
         // select the block
         try {
             JScrollPane jsp = (JScrollPane) PaletteManagerView.get().getPanel().getRightComponent();
-            PaletteView pview = (PaletteView) jsp.getViewport().getComponent(0);
+            Component c = jsp.getViewport().getComponent(0);
+            String cName = c.getName();
+            PaletteView pview;
+            if (cName.equals("PaletteView")) {
+                pview = (PaletteView) c;
+            } else if (cName.equals("PaletteSearchView")) {
+                PaletteSearchView sview = (PaletteSearchView) c;
+                pview = (PaletteView) sview.getComponent(1);
+            } else {
+                return;
+            }
             PaletteBlockView bview = (PaletteBlockView) pview.getComponentAt(x, y);
             bview.getController().setSelected(true);
         } catch (ClassCastException err) {

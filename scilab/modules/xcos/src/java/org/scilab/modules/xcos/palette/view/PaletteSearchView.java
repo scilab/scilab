@@ -36,6 +36,7 @@ public class PaletteSearchView extends JPanel {
      * Default constructor
      */
     public PaletteSearchView() {
+        setName("PaletteSearchView");
         this.header = new JLabel();
         this.paletteview = new PaletteView();
     }

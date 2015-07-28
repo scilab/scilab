@@ -42,6 +42,7 @@ public class PaletteView extends JPanel implements Scrollable {
      * Default constructor
      */
     public PaletteView() {
+        setName("PaletteView");
         initComponents();
     }
 
