@@ -31,7 +31,6 @@ clear %modalWarning;
 PWD = pwd();
 
 // Startup message  ===================================================
-
 // if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
 if (sciargs() <> "-nb") & getscilabmode() == "STD" then
   printf("\n\n%s\n", gettext("Startup execution:"));
@@ -150,3 +149,9 @@ if getscilabmode() == "STD" then
 end
 // ====================================================================
 clear ans
+
+printf("------------------------------------------------------------\n");
+printf("This is alpha version: avoid using in production\n");
+printf("but please report any problem at http://bugzilla.scilab.org.\n");
+printf("Thank you!\n");
+printf("------------------------------------------------------------\n");
