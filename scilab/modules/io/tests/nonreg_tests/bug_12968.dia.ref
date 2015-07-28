@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=12968
 //
 // <-- Short Description -->
-//  Cannot save varaible with name "temp"
+//  Cannot save variable with name "temp"
 temp = 0:10;
 tempRef = temp;
 save(TMPDIR + "/save.bin", "temp");
