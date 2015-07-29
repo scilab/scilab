@@ -1700,7 +1700,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         // l(x) = [] when l is not defined => create l = []
         pOut = Double::Empty();
     }
-    else if (_pInsert->isDouble() && _pInsert->getAs<Double>()->isEmpty() && _pVar->isList() == false)
+    else if (_pInsert->isDouble() && _pInsert->getAs<Double>()->isEmpty() && _pVar->isStruct() == false && _pVar->isList() == false)
     {
         //insert [] so deletion except for Struct and List which can insert []
         InternalType::ScilabType varType = _pVar->getType();
@@ -1783,7 +1783,7 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
             }
             case InternalType::ScilabStruct :
             {
-                pOut = _pVar->getAs<Struct>()->remove(_pArgs);
+                pOut = _pVar->getAs<Struct>()->insert(_pArgs, _pInsert);
                 break;
             }
             case InternalType::ScilabHandle :
