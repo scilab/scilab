@@ -33,7 +33,7 @@
             <literal>catch</literal>キーワードまでの命令はスキップされ,
             <literal>catch</literal> および <literal>end</literal>
             キーワードの間の命令が,デフォルトのエラーモードで
-            実行されます (<link linkend="errcatch">errcatch</link>参照).
+            実行されます.
         </para>
         <para>
             <link linkend="lasterror">lasterror</link> 関数により
@@ -51,7 +51,7 @@
         </para>
         <para>
             <literal>try-catch</literal> は以下に
-	    多少なりとも似ていることにも注意してください:
+            多少なりとも似ていることにも注意してください:
         </para>
         <programlisting role=""><![CDATA[ 
 if execstr("<try instructions>","errcatch")<>0 then
@@ -59,9 +59,9 @@ if execstr("<try instructions>","errcatch")<>0 then
 end
  ]]></programlisting>
         <para>
-            この命令は,<link linkend="errcatch">errcatch</link>と同様の
+            この命令は,"errcatch" と同様の
             内部機構を使用しています.
-            これが,<link linkend="errcatch">errcatch</link> または
+            これが,
             <emphasis>execstr(...,"errcatch")</emphasis>
             を<literal>try</literal>-<literal>catch</literal>
             制御構造の中に含めることができない理由です.
@@ -129,9 +129,6 @@ nestedtry("a string","a string")
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

@@ -36,9 +36,6 @@ test(1)
             <member>
                 <link linkend="pause">pause</link>
             </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
         </simplelist>
     </refsection>
 </refentry>

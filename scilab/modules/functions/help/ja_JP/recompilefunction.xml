@@ -94,9 +94,7 @@
                 
                 <para>
                     
-                    この関数は<link linkend="fun2string">fun2string</link>により
-                    
-                    関数変数を逆コンパイルし, <link linkend="deff">deff</link>により
+                    <link linkend="deff">deff</link>により
                     
                     指定した種類に再コンパイルします.
                     
@@ -135,12 +133,6 @@ showprofile(asinh)
             <member>
                 
                 <link linkend="deff">deff</link>
-                
-            </member>
-            
-            <member>
-                
-                <link linkend="fun2string">fun2string</link>
                 
             </member>
             

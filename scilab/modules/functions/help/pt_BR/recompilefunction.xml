@@ -47,7 +47,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    Esta função compila reversamente uma variável função via <link linkend="fun2string">fun2string</link>, e a recompila para o tipo
+                    E a recompila para o tipo
                     desejado através de <link linkend="deff">deff</link>.
                 </para>
             </listitem>
@@ -72,9 +72,6 @@ showprofile(asinh)
             </member>
             <member>
                 <link linkend="deff">deff</link>
-            </member>
-            <member>
-                <link linkend="fun2string">fun2string</link>
             </member>
             <member>
                 <link linkend="profile">profile</link>
