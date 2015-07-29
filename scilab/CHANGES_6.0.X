@@ -284,6 +284,9 @@ Scilab Bug Fixes
 * Bug #13941 fixed - Internal timestamps of HDF5 files prevented having a fixed
                      hash for an unvarying set of saved objects.
 
+* Bug #13942 fixed - Now the palette browser tree is always resized when
+                     expanded/collapsed.
+
 * Bug #13971 fixed - A space has been added between Scilab prompt and cursor.
 
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.

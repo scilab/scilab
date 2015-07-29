@@ -26,6 +26,7 @@ import javax.swing.tree.TreeSelectionModel;
 import org.scilab.modules.xcos.palette.PaletteManager;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
+import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeWillExpandListener;
 import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
@@ -68,6 +69,7 @@ public class PaletteManagerPanel extends JSplitPane {
         tree.getSelectionModel().setSelectionMode(
             TreeSelectionModel.SINGLE_TREE_SELECTION);
         tree.addMouseListener(new PaletteManagerMouseListener());
+        tree.addTreeWillExpandListener(new PaletteManagerTreeWillExpandListener());
         tree.addTreeSelectionListener(new PaletteManagerTreeSelectionListener(
                                           panel));
 
