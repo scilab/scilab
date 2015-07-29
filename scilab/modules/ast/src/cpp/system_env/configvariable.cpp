@@ -15,6 +15,7 @@
 #include "context.hxx"
 #include "configvariable.hxx"
 #include "macrofile.hxx"
+#include "threadmanagement.hxx"
 
 extern "C"
 {
@@ -114,6 +115,11 @@ bool ConfigVariable::m_bForceQuit = false;
 void ConfigVariable::setForceQuit(bool _bForceQuit)
 {
     m_bForceQuit = _bForceQuit;
+    // unlock scilabReadAndExecCommand thread which wait for a command.
+    if (m_bForceQuit)
+    {
+        ThreadManagement::SendCommandStoredSignal();
+    }
 }
 
 bool ConfigVariable::getForceQuit(void)
