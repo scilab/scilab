@@ -3,9 +3,9 @@
 
 
 
-This file details the technical changes done in the 6.0.0-alpha-1 release.
+This file details the technical changes done in Scilab 6.0.0-alpha-1 release.
 
-For a more complete overview of the changes in this release, please see the "What's new" page of the help, by simply typing "help" in Scilab.
+For a more complete overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
 
 
 
@@ -31,22 +31,22 @@ Installation
 Compilation
 ===========
 
-* A conforming C++11 compiler is now needed.
+* A C++11 compliant compiler is now needed.
 
 * Java minimal version switch to 1.8.
 
-* Ant minimal version switched to 1.9.0 (for compatibility with Java 1.8).
+* Ant minimal version switched to 1.9.0 (for Java 1.8 compatibility).
 
-* ecj minimal version switched to 4.4.0 (for compatibility with Java 1.8).
+* ecj minimal version switched to 4.4.0 (for Java 1.8 compatibility).
 
-* --without-xcos now only disable Xcos compilation. Xcos Graphic interface is disabled
+* --without-xcos now only disable Xcos compilation. Xcos graphical interface is disabled
 using --without-gui.
 
 
-Packaging & Supported operating systems
+Packaging & Supported Operating Systems
 =======================================
 
-* Scilab embedded JVM has been upgraded to Java 1.8 then to run or compile Scilab you need at least:
+* Scilab embedded JVM has been upgraded to Java 1.8. To run or compile Scilab 6.0.0-alpha-1 you need at least:
    - Windows:
         Windows 8 (Desktop)
         Windows 7
@@ -60,63 +60,64 @@ Packaging & Supported operating systems
         Oracle Linux 5.5+, 6.x (32-bit), 6.x (64-bit), 7.x (64-bit)
         Ubuntu Linux 12.04 LTS, 13.x
         Suse Linux Enterprise Server 10 SP2+, 11.x
-For more information, see: http://java.com/en/download/help/sysreq.xml
+For more information, please consult: http://java.com/en/download/help/sysreq.xml
 
 
-Signal processing
+Signal Processing
 ==================
 
 * amell function:
-  - now checks its parameters be real numbers
-  - now throws an error if the second parameter isn't scalar
+  - now checks its parameters are real numbers,
+  - now throws an error if the second parameter is not a scalar.
 
 
-File input/output
+Input/Output File
 ==================
 
-* The use of I/O console is now allowed with functions: mget, mgetl, mgetstr, mput, mputl and mputstr.
+* The use of I/O console is now allowed with the following functions:
+  mget, mgetl, mgetstr, mput, mputl and mputstr.
 
 * mclearerr now returns a flag indicating the file identifier validity.
 
 * fileinfo can now take a row vector as input.
 
-* msprintf no more returns an error message when there are too many input argument (more values that format needs).
+* msprintf no more returns an error message when there are too many input arguments (more values that format needs).
 
 
-Data structures
+Data Structures
 ================
 
 * cells and structs are now native types, hence improving performances.
 
 * cells:
   - insertion and extraction must be done via () or {}.
-  - fields .dims and .entries have been removed, use size and () instead.
+  - .dims and .entries fields have been removed, please use size and () instead.
 
 * struct
-  - dims field has been removed, use size instead.
+  - dims field has been removed, please use size instead.
 
 * hypermatrix:
   - hypermatrices are natively managed (without mlist overloading).
   - typeof function now returns real type like constant, string, ... instead of hypermat
   - type function returns real type like 1, 10, ... instead of 17 (mlist).
-  - fields .dims and .entries have been removed, use size and () instead.
+  - .dims and .entries fields have been removed, please use size and () instead.
 
-Removed functions
+Removed Functions
 ==================
 
 * maxfiles function is now obsolete.
 
 * intersci has been removed. Please use swig instead.
 
-* numdiff removed. Please use numderivative instead.
+* numdiff has been removed. Please use numderivative instead.
 
-* derivative removed. Please use numderivative instead.
+* derivative has been removed. Please use numderivative instead.
 
-* curblockc removed. Please use curblock instead.
+* curblockc has been removed. Please use curblock instead.
 
-* extract_help_examples removed. (Undocumented and based on old help format).
+* extract_help_examples has been removed. (Undocumented and based on former help format).
 
-* Symbolic module functions removed:
+* Symbolic module functions have been removed:
   - addf
   - cmb_lin
   - ldivf
@@ -128,37 +129,45 @@ Removed functions
   - trisolve
   - block2exp
 
-Removed functions (based on old Scilab stack)
-==============================================
+Removed Functions (based on former Scilab stack)
+================================================
 
-* fun2string removed.
+* comp.
 
-* getvariablesonstack removed.
+* errcatch.
 
-* gstacksize removed.
+* iserror.
 
-* macr2lst removed.
+* fun2string.
 
-* stacksize removed.
+* getvariablesonstack.
 
-* code2str removed.
+* gstacksize.
 
-* str2code removed.
+* macr2lst.
 
-* -mem option removed (used to set stacksize at startup).
+* stacksize.
+
+* code2str.
+
+* str2code.
+
+* -mem option (used to set stacksize at startup).
 
 
-Functions modified
+Modified Functions
 ===================
 
-* impl   : Recall impl with the same parameters as in its previous stop is now available.
-* ode    : y0 is restricted to a column vector.
-* pppdiv : return a scalar of type 'constant' when the rank is 0.
-* pdiv   : return a matrix of type 'constant' when all the rank are 0.
-* typeof : add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
+* exec: exec of macro executes the body in the current scope but the prototype must have zero input and output arguments.
+* error: an error number in input is deprecated.
+* impl: Recall impl with the same parameters as in its previous stop is now available.
+* ode: y0 is restricted to a column vector.
+* pppdiv: Return a scalar of type 'constant' when the rank is 0.
+* pdiv: Return a matrix of type 'constant' when all the rank are 0.
+* typeof: Add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
 
 
-Syntax modifications
+Syntax Modifications
 =====================
 
 * Declaration of a number on two lines is no longer allowed:
@@ -172,18 +181,20 @@ Syntax modifications
 * New shortcut operators have been introduced: && and ||.
 
 
-Deprecated behavior
-====================
+Deprecated Behaviors
+=====================
 
-* {} become different of [] and wiil be use on cells.
+* {} becomes different of [] and will be used on cells.
 
-* Syntax %i:10 is now deprecated. (only real scalar can be used).
+* Syntax %i:10 is now deprecated (only real scalars can be used).
 
-* write string or string matrix in file does not add black space before each value
+* Writing string or string matrix in a file does not add blanck space before each value:
     write("TMPDIR/test", ["test", "sample"; "sample", "test"])
     "-" + mgetl("TMPDIR/test") + "-"
 
 * while/else control instruction is no more supported.
+
+* (a=b) executed like a == b is now deprecated and returns an error.
 
 
 Scilab Bug Fixes
@@ -195,7 +206,7 @@ Scilab Bug Fixes
 
 * Bug #9621 fixed - A tlist with undefined fields can now be saved.
 
-* Bug #12202 fixed - Mixing int8 and doubles with colon operator lead to wrong results.
+* Bug #12202 fixed - Mixing int8 and doubles with colon operator led to wrong results.
 
 * Bug #13289 fixed - Using non-integer indexes for mlists made Scilab crash.
 
@@ -206,11 +217,11 @@ Scilab Bug Fixes
 
 * Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
 
-* Bug #13834 fixed - Drawing a high number of strings in a figure generated a Java exceptions.
+* Bug #13834 fixed - Drawing a high number of strings in a figure generated a Java exception.
 
 * Bug #13838 fixed - Sparse and complex substraction made Scilab crash.
 
-* Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
+* Bug #13854 fixed - Under some operating systems, SciNotes did not initialize a new document at startup.
 
 * Bug #13866 fixed - There were some issues with FFTW3 library.
 
