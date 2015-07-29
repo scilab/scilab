@@ -1,6 +1,16 @@
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
 
+
+
+This file details the technical changes done in the 6.0.0-alpha-1 release.
+
+For a more complete overview of the changes in this release, please see the "What's new" page of the help, by simply typing "help" in Scilab.
+
+
+
+
+
 New Features
 =============
 
@@ -147,7 +157,8 @@ Functions modified
 * pdiv   : return a matrix of type 'constant' when all the rank are 0.
 * typeof : add a 2nd argument "overload" of get overloaded name (typeof(cell(), "overload") -> "ce")
 
-Syntax clarifications
+
+Syntax modifications
 =====================
 
 * Declaration of a number on two lines is no longer allowed:
@@ -155,6 +166,10 @@ Syntax clarifications
  2
 
 * {"foo"} returns a cell not a string matrix.
+
+* Declaring non-homogenous strings ("string' or 'string") is no more allowed.
+
+* New shortcut operators have been introduced: && and ||.
 
 
 Deprecated behavior
@@ -213,3 +228,13 @@ Scilab Bug Fixes
 * Bug #13972 fixed - Wildcard ('*') was not managed in printf expressions.
 
 
+Known issues
+=============
+
+* Xcos does not work in this version.
+
+* Debugging capabilities are not yet replugged.
+
+* Profiling capabilities are not yet replugged.
+
+* This version will start in English by default.
