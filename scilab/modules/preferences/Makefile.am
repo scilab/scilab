@@ -77,6 +77,7 @@ libscipreferences_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/fileio/includes/ \
     -I$(top_srcdir)/modules/api_scilab/includes/ \
     -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
     $(AM_CPPFLAGS)
 
 # Without the preferences module
@@ -94,6 +95,7 @@ libscipreferences_cli_la_CPPFLAGS = \
     -I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/string/includes/ \
     -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
     $(AM_CPPFLAGS)
 
 PREFERENCES_CLI_CPP_SOURCES = src/nopreferences/nopreferences.cpp \
