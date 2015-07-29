@@ -97,6 +97,26 @@ namespace analysis
 	return *this;
     }
 
+    types::InternalType * ConstantValue::getIT() const
+    {
+        if (kind == ITVAL)
+        {
+            return val.pIT;
+        }
+	
+        return nullptr;
+    }
+    
+    GVN::Value * ConstantValue::getGVNValue() const
+    {
+        if (kind == GVNVAL)
+        {
+            return val.gvnVal;
+        }
+
+        return nullptr;
+    }
+
     void ConstantValue::merge(const ConstantValue & cv)
     {
         if (kind != UNKNOWN && cv.kind != UNKNOWN)
@@ -127,7 +147,7 @@ namespace analysis
             {
 		// cv.kind == ITVAL
                 double x;
-                if (cv.getDblValue(x) && get<GVN::Value *>()->poly->isConstant(x))
+                if (cv.getDblValue(x) && val.gvnVal->poly->isConstant(x))
                 {
 		    kind = ITVAL;
 		    val.pIT = cv.val.pIT;
@@ -142,7 +162,7 @@ namespace analysis
             {
 		// kind == ITVAL
                 double x;
-                if (!getDblValue(x) || !cv.get<GVN::Value *>()->poly->isConstant(x))
+                if (!getDblValue(x) || !cv.val.gvnVal->poly->isConstant(x))
                 {
 		    val.pIT->DecreaseRef();
 		    val.pIT->killMe();

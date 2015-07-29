@@ -1,6 +1,6 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) 2006 - INRIA - Antoine ELIAS
+* Copyright (C) 2015 - Scilab Enterprises - Calixte DENIZET
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -12,7 +12,7 @@
 
 #include <string.h>
 
-//#include "gvn/TestGVNVisitor.hxx"
+#include "gvn/TestGVNVisitor.hxx"
 
 #include "parser.hxx"
 #include "functions_gw.hxx"
@@ -72,19 +72,19 @@ Function::ReturnValue sci_testGVN(types::typed_list &in, int _iRetCount, types::
         return Function::Error;
     }
 
-    //analysis::TestGVNVisitor gvn;
-    //pExp->accept(gvn);
-    ////gvn.print_info();
+    analysis::TestGVNVisitor gvn;
+    pExp->accept(gvn);
+    gvn.print_info();
 
-    //Struct * pOut = new Struct(1, 1);
-    //std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
-    //for (const auto & p : maps)
-    //{
-    //    pOut->addField(p.first);
-    //    pOut->get(0)->set(p.first, new Double((double) p.second));
-    //}
+    Struct * pOut = new Struct(1, 1);
+    std::map<std::wstring, uint64_t> maps = gvn.getSymMap();
+    for (const auto & p : maps)
+    {
+        pOut->addField(p.first);
+        pOut->get(0)->set(p.first, new Double((double) p.second));
+    }
 
-    //out.push_back(pOut);
+    out.push_back(pOut);
 
     delete pExp;
 

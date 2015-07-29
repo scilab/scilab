@@ -17,6 +17,7 @@
 #include <map>
 #include <sstream>
 #include <string>
+#include <stdint.h>
 
 namespace analysis
 {
@@ -47,38 +48,12 @@ struct VarExp
      * \param vars a map containing association between var number and wstring
      * \return a wstring containing the representation of this VarExp
      */
-    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
-    {
-        std::wostringstream wos;
-        const auto i = vars.find(var);
-        if (i != vars.end())
-        {
-            wos << i->second;
-        }
-        else
-        {
-            wos << L"$" << var;
-        }
-
-        if (exp > 1)
-        {
-            wos << L"^" << exp;
-        }
-        return wos.str();
-    }
+    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
 
     /**
      * \brief Overload of the operator <<
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const VarExp & ve)
-    {
-        out << (char)('a' + ve.var);
-        if (ve.exp > 1)
-        {
-            out << L"^" << ve.exp;
-        }
-        return out;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const VarExp & ve);
 
     /**
      * \brief Overload of the operator <<

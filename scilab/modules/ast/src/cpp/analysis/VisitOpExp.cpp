@@ -24,7 +24,7 @@ void AnalysisVisitor::visit(ast::OpExp & e)
     logger.log(L"OpExp", e.getLocation());
     TIType resT(getGVN());
     int tempId = -1;
-    bool safe;
+    bool safe = false;
 
     e.getLeft().accept(*this);
     Result LR = getResult();
@@ -51,13 +51,13 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::times:
                 {
-                    resT = check_____times____(getGVN(), LT, RT);
+                    resT = Checkers::check_____times____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.rows.getValue());
                         if (ret)
                         {
-                            resT = check_____times____(getGVN(), LT, RT);
+                            resT = Checkers::check_____times____(getGVN(), LT, RT);
                             safe = true;
                         }
                         else
@@ -78,13 +78,13 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::rdivide:
                 {
-                    resT = check_____rdivide____(getGVN(), LT, RT);
+                    resT = Checkers::check_____rdivide____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.cols.getValue(), RT.cols.getValue());
                         if (ret)
                         {
-                            resT = check_____rdivide____(getGVN(), LT, RT);
+                            resT = Checkers::check_____rdivide____(getGVN(), LT, RT);
                             safe = true;
                         }
                         else
@@ -104,13 +104,13 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::ldivide:
                 {
-                    resT = check_____ldivide____(getGVN(), LT, RT);
+                    resT = Checkers::check_____ldivide____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.rows.getValue(), RT.rows.getValue());
                         if (ret)
                         {
-                            resT = check_____ldivide____(getGVN(), LT, RT);
+                            resT = Checkers::check_____ldivide____(getGVN(), LT, RT);
                             safe = true;
                         }
                         else
@@ -130,13 +130,13 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::power:
                 {
-                    resT = check_____power____(getGVN(), LT, RT);
+                    resT = Checkers::check_____power____(getGVN(), LT, RT);
                     if (resT.hasInvalidDims())
                     {
                         const bool ret = getCM().check(ConstraintManager::EQUAL, LT.rows.getValue(), LT.cols.getValue());
                         if (ret)
                         {
-                            resT = check_____power____(getGVN(), LT, RT);
+                            resT = Checkers::check_____power____(getGVN(), LT, RT);
                             safe = true;
                         }
                         else
@@ -171,7 +171,7 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::unaryMinus :
                 {
-                    resT = check_____unaryminus____(getGVN(), RT);
+                    resT = Checkers::check_____unaryminus____(getGVN(), RT);
                     if (!resT.hasInvalidDims())
                     {
                         safe = true;
@@ -181,7 +181,7 @@ void AnalysisVisitor::visit(ast::OpExp & e)
                 }
                 case ast::OpExp::krontimes :
                 {
-                    resT = check_____krontimes____(getGVN(), LT, RT);
+                    resT = Checkers::check_____krontimes____(getGVN(), LT, RT);
                     if (!resT.hasInvalidDims())
                     {
                         safe = true;
@@ -267,7 +267,7 @@ void AnalysisVisitor::visit(ast::NotExp & e)
     const int tempId = LR.getTempId();
     if (LT.isknown())
     {
-        TIType resT = check_____not____(getGVN(), LT);
+        TIType resT = Checkers::check_____not____(getGVN(), LT);
         e.getDecorator().res = Result(resT, tempId);
         e.getDecorator().safe = true;
     }

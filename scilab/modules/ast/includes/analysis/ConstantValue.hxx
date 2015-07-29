@@ -77,47 +77,17 @@ public:
         return kind != UNKNOWN;
     }
 
-    inline types::InternalType * getIT() const
-    {
-        if (kind == ITVAL)
-        {
-            return val.pIT;
-        }
-
-        return nullptr;
-    }
-
-    inline GVN::Value * getGVNValue() const
-    {
-        if (kind == GVNVAL)
-        {
-            return val.gvnVal;
-        }
-
-        return nullptr;
-    }
-
+    types::InternalType * getIT() const;
+    GVN::Value * getGVNValue() const;
     bool getGVNValue(GVN & gvn, GVN::Value *& _val) const;
     bool getDblValue(double & _val) const;
     bool getBoolValue(bool & _val) const;
     bool getCplxValue(std::complex<double> & _val) const;
     bool getStrValue(std::wstring & val) const;
-
-    template<typename T> inline T get() const;
-
     void merge(const ConstantValue & cv);
 
     friend std::wostream & operator<<(std::wostream & out, const ConstantValue & cv);
 };
-
-template<> inline GVN::Value * ConstantValue::get<>() const
-{
-    return val.gvnVal;
-}
-template<> inline types::InternalType * ConstantValue::get<>() const
-{
-    return val.pIT;
-}
 
 } // namespace analysis
 

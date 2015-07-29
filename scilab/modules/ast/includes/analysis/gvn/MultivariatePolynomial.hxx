@@ -20,12 +20,14 @@
 #include <set>
 #include <sstream>
 #include <string>
+#include <unordered_map>
 #include <unordered_set>
 #include <vector>
 
 #include "core_math.h"
 #include "tools.hxx"
 #include "MultivariateMonomial.hxx"
+#include "dynlib_ast.h"
 
 namespace analysis
 {
@@ -33,7 +35,7 @@ namespace analysis
  * \struct MultivariatePolynomial
  * \brief Represents a multivariate polynomial
  */
-struct MultivariatePolynomial
+struct EXTERN_AST MultivariatePolynomial
 {
     typedef std::unordered_set<MultivariateMonomial, MultivariateMonomial::Hash, MultivariateMonomial::Eq> Polynomial;
     int64_t constant;
@@ -71,118 +73,52 @@ struct MultivariatePolynomial
      * \brief Get an invalid polynomial (i.e. constant == NaN)
      * \return invalid polynomial
      */
-    inline static MultivariatePolynomial getInvalid()
-    {
-        return MultivariatePolynomial(0, false);
-    }
+    static MultivariatePolynomial getInvalid();
 
     /**
      * \brief Check if it is valid
      * \return true if it is valid
      */
-    inline bool isValid() const
-    {
-        return valid;
-    }
+    bool isValid() const;
 
     /**
      * \brief Check if it is invalid
      * \return true if it is invalid
      */
-    inline bool isInvalid() const
-    {
-        return !valid;
-    }
+    bool isInvalid() const;
 
     /**
      * \brief Invalidate the polynomial
      */
-    inline void invalid()
-    {
-        constant = 0;
-	valid = false;
-        polynomial.clear();
-    }
+    void invalid();
 
     /**
      * \brief Check if a variable is contained in the polynomial
      * \param var an id
      * \return true if the polynomial contains the var
      */
-    inline bool contains(const uint64_t var) const
-	{
-	    for (const auto & m : polynomial)
-	    {
-		if (m.contains(var))
-		{
-		    return true;
-		}
-	    }
+    bool contains(const uint64_t var) const;
 
-	    return false;
-	}
-    
     /**
      * \brief Check if the variables of the polynomial have an id lower or equal to max
      * \param max an id
      * \return true if all the variables have an id leq to max
      */
-    inline bool checkVariable(const uint64_t max) const
-    {
-        for (const auto & m : polynomial)
-        {
-            if (!m.checkVariable(max))
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+    bool checkVariable(const uint64_t max) const;
 
     /**
      * \brief Check if the variables of the polynomial have an id greater or equal to min
      * \param min an id
      * \return true if the polynomial contains a var with an id geq than min
      */
-    inline bool containsVarsGEq(const uint64_t min) const
-    {
-        for (const auto & m : polynomial)
-        {
-	    if (m.monomial.lower_bound(min) != m.monomial.end())
-	    {
-		return true;
-	    }
-        }
+    bool containsVarsGEq(const uint64_t min) const;
 
-	return false;
-    }
-    
     /**
      * \brief Translate the variables of the polynomial which have an id greater or equal to min
      * \param min an id
      * \return a translated polynomial
      */
-    inline MultivariatePolynomial translateVariables(const uint64_t t, const uint64_t min) const
-    {
-	MultivariatePolynomial mp;
-        for (const auto & m : polynomial)
-        {
-	    MultivariateMonomial mm(m);
-	    MultivariateMonomial::Monomial::iterator i = mm.monomial.lower_bound(min);
-	    if (i != mm.monomial.end())
-	    {
-		// We don't modify the order in the set, so we can const_cast
-		for (MultivariateMonomial::Monomial::iterator j = std::prev(mm.monomial.end()); j != i; --j)
-		{
-		    const_cast<VarExp &>(*j).var += t;
-		}
-		const_cast<VarExp &>(*i).var += t;
-	    }
-	    mp.add(mm);
-        }
-
-	return mp;
-    }
+    MultivariatePolynomial translateVariables(const uint64_t t, const uint64_t min) const;
 
     /**
      * \brief Add a monomial in the polynomial
@@ -190,575 +126,138 @@ struct MultivariatePolynomial
      * \param coeff the multiplcative coefficient to applicate to the monomial
      * \return *this
      */
-    inline MultivariatePolynomial & add(const MultivariateMonomial & m, const int64_t coeff = 1)
-    {
-        const int64_t c = m.coeff * coeff;
-        if (c)
-        {
-            Polynomial::iterator i = polynomial.find(m);
-            if (i == polynomial.end())
-            {
-                Polynomial::iterator j = polynomial.insert(m).first;
-                j->coeff = c;
-            }
-            else
-            {
-                if (i->coeff == -c)
-                {
-                    polynomial.erase(i);
-                }
-                else
-                {
-                    i->coeff += c;
-                }
-            }
-        }
-        return *this;
-    }
+    MultivariatePolynomial & add(const MultivariateMonomial & m, const int64_t coeff = 1);
 
     /**
      * \brief Subtract a monomial in the polynomial
      * \param m the monomial to add
      */
-    inline void sub(const MultivariateMonomial & m)
-    {
-        Polynomial::iterator i = polynomial.find(m);
-        if (i == polynomial.end())
-        {
-            if (m.coeff)
-            {
-                polynomial.insert(m).first->coeff = -m.coeff;
-            }
-        }
-        else
-        {
-            if (i->coeff == m.coeff)
-            {
-                polynomial.erase(i);
-            }
-            else
-            {
-                i->coeff -= m.coeff;
-            }
-        }
-    }
+    void sub(const MultivariateMonomial & m);
 
     /**
      * \brief Overload of the + operator
      */
-    inline MultivariatePolynomial operator+(const MultivariateMonomial & R) const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.add(R);
-            return res;
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator+(const MultivariateMonomial & R) const;
 
     /**
      * \brief Overload of the += operator
      */
-    inline MultivariatePolynomial & operator+=(const MultivariateMonomial & R)
-    {
-        if (isValid())
-        {
-            add(R);
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator+=(const MultivariateMonomial & R);
 
     /**
      * \brief Overload of the + operator
      */
-    inline MultivariatePolynomial operator+(const int64_t R) const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.constant += R;
-            return res;
-        }
-        return *this;
-    }
+    MultivariatePolynomial operator+(const int64_t R) const;
 
     /**
      * \brief Overload of the += operator
      */
-    inline MultivariatePolynomial & operator+=(const int64_t R)
-    {
-        if (isValid())
-        {
-            constant += R;
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator+=(const int64_t R);
 
     /**
      * \brief Overload of the - operator
      */
-    inline MultivariatePolynomial operator-(const MultivariateMonomial & R) const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.sub(R);
-            return res;
-        }
-        return *this;
-    }
+    MultivariatePolynomial operator-(const MultivariateMonomial & R) const;
 
     /**
      * \brief Overload of the -= operator
      */
-    inline MultivariatePolynomial & operator-=(const MultivariateMonomial & R)
-    {
-        if (isValid())
-        {
-            sub(R);
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator-=(const MultivariateMonomial & R);
 
     /**
      * \brief Overload of the - operator
      */
-    inline MultivariatePolynomial operator-(const int64_t R) const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.constant -= R;
-            return res;
-        }
-        return *this;
-    }
+    MultivariatePolynomial operator-(const int64_t R) const;
 
     /**
      * \brief Overload of the - operator (unary)
      */
-    inline MultivariatePolynomial operator-() const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.constant = -res.constant;
-            for (auto & m : res.polynomial)
-            {
-                m.coeff = -m.coeff;
-            }
-            return res;
-        }
-        return *this;
-    }
+    MultivariatePolynomial operator-() const;
 
     /**
      * \brief Overload of the -= operator
      */
-    inline MultivariatePolynomial & operator-=(const int64_t R)
-    {
-        if (isValid())
-        {
-            constant -= R;
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator-=(const int64_t R);
 
     /**
      * \brief Overload of the + operator
      */
-    inline MultivariatePolynomial operator+(const MultivariatePolynomial & R) const
-    {
-        if (isValid() && R.isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.constant += R.constant;
-            for (const auto & m : R.polynomial)
-            {
-                res.add(m);
-            }
-            return res;
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator+(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of the += operator
      */
-    inline MultivariatePolynomial & operator+=(const MultivariatePolynomial & R)
-    {
-        if (isValid() && R.isValid())
-        {
-            constant += R.constant;
-            for (const auto & m : R.polynomial)
-            {
-                add(m);
-            }
-        }
-        else
-        {
-            invalid();
-        }
-
-        return *this;
-    }
+    MultivariatePolynomial & operator+=(const MultivariatePolynomial & R);
 
     /**
      * \brief Overload of the - operator
      */
-    inline MultivariatePolynomial operator-(const MultivariatePolynomial & R) const
-    {
-        if (isValid() && R.isValid())
-        {
-            MultivariatePolynomial res(*this);
-            res.constant -= R.constant;
-            for (const auto & m : R.polynomial)
-            {
-                res.sub(m);
-            }
-            return res;
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator-(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of the -= operator
      */
-    inline MultivariatePolynomial & operator-=(const MultivariatePolynomial & R)
-    {
-        if (isValid() && R.isValid())
-        {
-            constant -= R.constant;
-            for (const auto & m : R.polynomial)
-            {
-                sub(m);
-            }
-        }
-        else
-        {
-            invalid();
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator-=(const MultivariatePolynomial & R);
 
     /**
      * \brief Overload of the * operator
      */
-    inline MultivariatePolynomial operator*(const MultivariatePolynomial & R) const
-    {
-        if (isValid() && R.isValid())
-        {
-            if (R.isConstant())
-            {
-                return *this * R.constant;
-            }
-            else if (isConstant())
-            {
-                return R * constant;
-            }
-            else
-            {
-                MultivariatePolynomial res(static_cast<unsigned int>((polynomial.size() + 1) * (R.polynomial.size() + 1) - 1), constant * R.constant);
-                for (const auto & mR : R.polynomial)
-                {
-                    res.add(mR, constant);
-                }
-                for (const auto & mL : polynomial)
-                {
-                    res.add(mL, R.constant);
-                    for (const auto & mR : R.polynomial)
-                    {
-                        res.add(mL * mR);
-                    }
-                }
-                return res;
-            }
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator*(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of the / operator
      */
-    inline MultivariatePolynomial operator/(const MultivariatePolynomial & R) const
-    {
-        if (isValid() && R.isValid())
-        {
-            if (R.isConstant())
-            {
-                if (R.constant != 1)
-                {
-                    return *this / R.constant;
-                }
-                else
-                {
-                    return *this;
-                }
-            }
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator/(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of the /= operator
      */
-    inline MultivariatePolynomial & operator/=(const MultivariatePolynomial & R)
-    {
-        if (isValid() && R.isValid())
-        {
-            if (R.polynomial.empty())
-            {
-                constant /= R.constant;
-                for (auto & m : polynomial)
-                {
-                    m.coeff /= R.constant;
-                }
-            }
-            else
-            {
-                MultivariatePolynomial res(*this / R);
-                polynomial = res.polynomial;
-                constant = res.constant;
-            }
-        }
-        else
-        {
-            invalid();
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator/=(const MultivariatePolynomial & R);
 
     /**
      * \brief Overload of the *= operator
      */
-    inline MultivariatePolynomial & operator*=(const MultivariatePolynomial & R)
-    {
-        if (isValid() && R.isValid())
-        {
-            if (R.polynomial.empty())
-            {
-                constant *= R.constant;
-                for (auto & m : polynomial)
-                {
-                    m.coeff *= R.constant;
-                }
-            }
-            else
-            {
-                MultivariatePolynomial res(*this * R);
-                polynomial = res.polynomial;
-                constant = res.constant;
-            }
-        }
-        else
-        {
-            invalid();
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator*=(const MultivariatePolynomial & R);
 
     /**
      * \brief Overload of the * operator
      */
-    inline MultivariatePolynomial operator*(const MultivariateMonomial & R) const
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res(static_cast<unsigned int>(polynomial.size() + 1), int64_t(0));
-            res.add(constant * R);
-            for (const auto & mL : polynomial)
-            {
-                res.add(mL * R);
-            }
-            return res;
-        }
-        else
-        {
-            return getInvalid();
-        }
-    }
+    MultivariatePolynomial operator*(const MultivariateMonomial & R) const;
 
     /**
      * \brief Overload of the *= operator
      */
-    inline MultivariatePolynomial & operator*=(const MultivariateMonomial & R)
-    {
-        if (isValid())
-        {
-            MultivariatePolynomial res = *this * R;
-            polynomial = res.polynomial;
-            constant = res.constant;
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator*=(const MultivariateMonomial & R);
 
     /**
      * \brief Overload of the * operator
      */
-    inline MultivariatePolynomial operator*(const int64_t R) const
-    {
-        if (isValid())
-        {
-            if (R)
-            {
-                if (R == 1)
-                {
-                    return *this;
-                }
-                else
-                {
-                    MultivariatePolynomial res(*this);
-                    res.constant *= R;
-                    for (auto & m : res.polynomial)
-                    {
-                        m.coeff *= R;
-                    }
-                    return res;
-                }
-            }
-            else
-            {
-                return MultivariatePolynomial(int64_t(0));
-            }
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator*(const int64_t R) const;
 
     /**
      * \brief Overload of the *= operator
      */
-    inline MultivariatePolynomial & operator*=(const int64_t R)
-    {
-        if (isValid())
-        {
-            if (R == 0)
-            {
-                constant = 0;
-                polynomial.clear();
-            }
-            else if (R != 1)
-            {
-                constant *= R;
-                for (auto & m : polynomial)
-                {
-                    m.coeff *= R;
-                }
-            }
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator*=(const int64_t R);
 
     /**
      * \brief Overload of the / operator
      */
-    inline MultivariatePolynomial operator/(const int64_t R) const
-    {
-        if (isValid())
-        {
-            if (R != 1)
-            {
-                MultivariatePolynomial res(*this);
-                res.constant /= R;
-                for (auto & m : res.polynomial)
-                {
-                    m.coeff /= R;
-                }
-                return res;
-            }
-        }
-        return *this;
-    }
+    MultivariatePolynomial operator/(const int64_t R) const;
 
     /**
      * \brief Overload of the /= operator
      */
-    inline MultivariatePolynomial & operator/=(const int64_t R)
-    {
-        if (isValid())
-        {
-            if (R != 1)
-            {
-                constant /= R;
-                for (auto & m : polynomial)
-                {
-                    m.coeff /= R;
-                }
-            }
-        }
-        return *this;
-    }
+    MultivariatePolynomial & operator/=(const int64_t R);
 
     /**
      * \brief Overload of the ^ operator (exponentiation)
      */
-    inline MultivariatePolynomial operator^(unsigned int R) const
-    {
-        if (isValid())
-        {
-            if (R == 0)
-            {
-                return MultivariatePolynomial(int64_t(1));
-            }
-            else if (R == 1)
-            {
-                return *this;
-            }
-            else
-            {
-                if (constant == 0)
-                {
-                    if (polynomial.empty())
-                    {
-                        return MultivariatePolynomial(int64_t(0));
-                    }
-                    else if (polynomial.size() == 1)
-                    {
-                        const MultivariateMonomial & m = *polynomial.begin();
-                        MultivariatePolynomial res;
-                        res.polynomial.emplace(m ^ R);
-
-                        return res;
-                    }
-                }
-
-                if (polynomial.empty())
-                {
-                    return MultivariatePolynomial(tools::powui(constant, R));
-                }
-
-                MultivariatePolynomial p = *this;
-                MultivariatePolynomial y = (R & 1) ? *this : MultivariatePolynomial(int64_t(1));
-
-                while (R >>= 1)
-                {
-                    p *= p;
-                    if (R & 1)
-                    {
-                        y *= p;
-                    }
-                }
-
-                return y;
-            }
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator^(unsigned int R) const;
 
     /**
      * \brief Overload of the ^ operator (exponentiation)
      */
-    inline MultivariatePolynomial operator^(const MultivariatePolynomial & R) const
-    {
-        if (isValid() && R.isValid())
-        {
-            if (R.isConstant() && R.constant == (unsigned int)R.constant)
-            {
-                return (*this) ^ ((unsigned int)R.constant);
-            }
-        }
-        return getInvalid();
-    }
+    MultivariatePolynomial operator^(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Evaluate a polynomial
@@ -877,300 +376,119 @@ struct MultivariatePolynomial
      * \brief Check divisibility by an integer
      * \return true if all the coeffs are divisible by n
      */
-    inline bool isDivisibleBy(const int64_t n) const
-    {
-        if (constant % n == 0)
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff % n != 0)
-                {
-		    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isDivisibleBy(const int64_t n) const;
 
     /**
      * \brief Check divisibility by a polynomial
      * For now the polynomial must be constant.
      * \return true if this is divisible by mp
      */
-    inline bool isDivisibleBy(const MultivariatePolynomial & mp) const
-    {
-	if (mp.polynomial.empty())
-	{
-	    return isDivisibleBy(mp.constant);
-	}
+    bool isDivisibleBy(const MultivariatePolynomial & mp) const;
 
-	return false;
-    }
-    
     /**
      * \brief Check positivity
      * \return true if all the coeffs are positive and the exponents are even
      */
-    inline bool isPositive() const
-    {
-        if (constant >= 0)
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff >= 0)
-                {
-                    for (const auto & ve : m.monomial)
-                    {
-                        if (ve.exp % 2) // exp is odd
-                        {
-                            return false;
-                        }
-                    }
-                }
-                else
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isPositive() const;
 
     /**
      * \brief Check strict positivity
      * \param checkConstant if true the constant is checked too
      * \return true if all the coeffs are strict positive
      */
-    inline bool isCoeffStrictPositive(const bool checkConstant = true) const
-    {
-        if (!checkConstant || (constant > 0))
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff <= 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isCoeffStrictPositive(const bool checkConstant = true) const;
 
     /**
      * \brief Check positivity
      * \param checkConstant if true the constant is checked too
      * \return true if all the coeffs are positive
      */
-    inline bool isCoeffPositive(const bool checkConstant = true) const
-    {
-        if (!checkConstant || (constant >= 0))
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff < 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isCoeffPositive(const bool checkConstant = true) const;
 
     /**
      * \brief Check strict negativity
      * \param checkConstant if true the constant is checked too
      * \return true if all the coeffs are strict negative
      */
-    inline bool isCoeffStrictNegative(const bool checkConstant = true) const
-    {
-        if (!checkConstant || (constant < 0))
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff >= 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isCoeffStrictNegative(const bool checkConstant = true) const;
 
     /**
      * \brief Check negativity
      * \param checkConstant if true the constant is checked too
      * \return true if all the coeffs are negative
      */
-    inline bool isCoeffNegative(const bool checkConstant = true) const
-    {
-        if (!checkConstant || (constant <= 0))
-        {
-            for (const auto & m : polynomial)
-            {
-                if (m.coeff > 0)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-        return false;
-    }
+    bool isCoeffNegative(const bool checkConstant = true) const;
 
     /**
      * \brief Helper function to print a polynomial
      * \param vars a mapping between vars numbers and wstring representation
      * \return a wstring representing this polynomial
      */
-    inline const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const
-    {
-        std::wostringstream wos;
-        wos << constant;
-        std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(polynomial.begin(), polynomial.end());
-        for (const auto & m : s)
-        {
-            wos << L" + " << m.print(vars);
-        }
-        return wos.str();
-    }
+    const std::wstring print(const std::map<uint64_t, std::wstring> & vars) const;
 
     /**
      * \brief Overload of << operator
      */
-    friend inline std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p)
-    {
-        const std::map<uint64_t, std::wstring> vars;
-        out << p.constant;
-        std::set<MultivariateMonomial, MultivariateMonomial::Compare> s(p.polynomial.begin(), p.polynomial.end());
-        for (const auto & m : s)
-        {
-            out << L" + " << m.print(vars);
-        }
-        return out;
-    }
+    friend std::wostream & operator<<(std::wostream & out, const MultivariatePolynomial & p);
 
     /**
      * \return true if the two polynomials are differing only by a constant
      */
-    inline bool isDiffConstant(const MultivariatePolynomial & R) const
-    {
-        return polynomial == R.polynomial;
-    }
+    bool isDiffConstant(const MultivariatePolynomial & R) const;
 
     /**
      * \return true if the polynomial is constant
      */
-    inline bool isConstant() const
-    {
-        return polynomial.empty();
-    }
+    bool isConstant() const;
 
     /**
      * \brief Check if a polynomial is constant and equal to a value
      * \param val the constant value to check
      * \return true if the polynomial is constant and equal to val
      */
-    inline bool isConstant(const int64_t val) const
-    {
-        return isConstant() && constant == val;
-    }
+    bool isConstant(const int64_t val) const;
 
     /**
      * \brief Get the common coeff for all the monomials
      * \param[out] common the common value
      * \return true if there is a common coeff
      */
-    inline bool getCommonCoeff(int64_t & common) const
-    {
-        if (constant != 0)
-        {
-            return false;
-        }
-        if (polynomial.empty())
-        {
-            common = constant;
-            return true;
-        }
-
-        common = polynomial.begin()->coeff;
-        for (Polynomial::const_iterator i = std::next(polynomial.begin()), e = polynomial.end(); i != e; ++i)
-        {
-            if (i->coeff != common)
-            {
-                return false;
-            }
-        }
-        return true;
-    }
+    bool getCommonCoeff(int64_t & common) const;
 
     /**
      * \brief Overload of == operator
      */
-    inline bool operator==(const MultivariatePolynomial & R) const
-    {
-        return constant == R.constant && polynomial == R.polynomial;
-    }
+    bool operator==(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of != operator
      */
-    inline bool operator!=(const MultivariatePolynomial & R) const
-    {
-        return !(*this == R);
-    }
+    bool operator!=(const MultivariatePolynomial & R) const;
 
     /**
      * \brief Overload of == operator
      */
-    inline bool operator==(const int64_t R) const
-    {
-        return polynomial.empty() && constant == R;
-    }
+    bool operator==(const int64_t R) const;
 
     /**
      * \brief Overload of != operator
      */
-    inline bool operator!=(const int64_t R) const
-    {
-        return !(*this == R);
-    }
+    bool operator!=(const int64_t R) const;
 
     /**
      * \brief Overload of == operator
      */
-    friend inline bool operator==(const int64_t L, const MultivariatePolynomial & R)
-    {
-        return R == L;
-    }
+    friend bool operator==(const int64_t L, const MultivariatePolynomial & R);
 
     /**
      * \brief Overload of != operator
      */
-    friend inline bool operator!=(const int64_t L, const MultivariatePolynomial & R)
-    {
-        return R != L;
-    }
+    friend bool operator!=(const int64_t L, const MultivariatePolynomial & R);
 
     /**
      * \return a hash
      */
-    inline std::size_t hash() const
-    {
-        std::size_t h = std::hash<int64_t>()(constant);
-        for (const auto & m : polynomial)
-        {
-            // since the order of the monomials is not always the same
-            // we must use a commutative operation to combine the monomial's hashes
-            h += tools::hash_combine(std::hash<int64_t>()(m.coeff), MultivariateMonomial::Hash()(m));
-        }
-
-        return h;
-    }
+    std::size_t hash() const;
 
     /**
      * \struct Hash
@@ -1198,104 +516,19 @@ struct MultivariatePolynomial
 
 private:
 
-    // Helper function to use with eval
-    inline static bool __isValid(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values)
-    {
-        for (const auto & p : values)
-        {
-            if (p.second->isInvalid())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // Helper function to use with eval
-    inline static bool __isValid(const std::vector<const MultivariatePolynomial *> & values)
-    {
-        for (const auto & v : values)
-        {
-            if (v->isInvalid())
-            {
-                return false;
-            }
-        }
-        return true;
-    }
-
-    // Helper function to use with eval
-    inline static bool __isValid(const std::pair<uint64_t, const MultivariatePolynomial *> & values)
-    {
-	return values.second->isValid();
-    }
-
-    // Helper function to use with eval
-    inline static bool __contains(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-        return values.find(val) != values.end();
-    }
-
-    // Helper function to use with eval
-    inline static bool __contains(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-        return val < values.size();
-    }
-
-    // Helper function to use with eval
-    inline static bool __contains(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-        return values.first == val;
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-        const auto i = values.find(val);
-        if (i != values.end())
-        {
-            return i->second;
-        }
-        return nullptr;
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-	return values.find(val)->second;
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-	if (val < values.size())
-	{
-	    return values[val];
-	}
-	return nullptr;
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-        return values[val];
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __get(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-	if (values.first == val)
-	{
-	    return values.second;
-	}
-        return nullptr;
-    }
-
-    // Helper function to use with eval
-    inline static const MultivariatePolynomial * __getSafe(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val)
-    {
-	return values.second;
-    }
+    // Helper functions to use with eval
+    static bool __isValid(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values);
+    static bool __isValid(const std::vector<const MultivariatePolynomial *> & values);
+    static bool __isValid(const std::pair<uint64_t, const MultivariatePolynomial *> & values);
+    static bool __contains(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
+    static bool __contains(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val);
+    static bool __contains(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __get(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __getSafe(const std::unordered_map<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __get(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __getSafe(const std::vector<const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __get(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
+    static const MultivariatePolynomial * __getSafe(const std::pair<uint64_t, const MultivariatePolynomial *> & values, const uint64_t val);
 };
 
 } // namespace analysis

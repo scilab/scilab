@@ -30,7 +30,6 @@
 #include "Chrono.hxx"
 #include "ForList.hxx"
 #include "Result.hxx"
-#include "SymInfo.hxx"
 #include "TIType.hxx"
 #include "ConstantVisitor.hxx"
 #include "gvn/SymbolicList.hxx"
@@ -49,13 +48,11 @@ class EXTERN_AST AnalysisVisitor : public ast::Visitor, public Chrono
 
 public:
 
-    typedef std::map<symbol::Symbol, SymInfo> MapSymInfo;
     typedef unordered_map<std::wstring, std::shared_ptr<CallAnalyzer>> MapSymCall;
     typedef std::vector<Call *> Calls;
 
 private:
 
-    MapSymInfo symsinfo;
     Result _result;
     Calls allCalls;
     DataManager dm;
@@ -239,77 +236,77 @@ private:
     */
     inline static TIType _check_plus(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____add____(gvn, Ltype, Rtype);
+        return Checkers::check_____add____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_minus(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____sub____(gvn, Ltype, Rtype);
+        return Checkers::check_____sub____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_dottimes(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____dottimes____(gvn, Ltype, Rtype);
+        return Checkers::check_____dottimes____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_dotrdiv(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____dotrdiv____(gvn, Ltype, Rtype);
+        return Checkers::check_____dotrdiv____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_dotpower(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____dotpower____(gvn, Ltype, Rtype);
+        return Checkers::check_____dotpower____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_eq(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____eq____(gvn, Ltype, Rtype);
+        return Checkers::check_____eq____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_neq(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____neq____(gvn, Ltype, Rtype);
+        return Checkers::check_____neq____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_lt(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____lt____(gvn, Ltype, Rtype);
+        return Checkers::check_____lt____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_le(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____le____(gvn, Ltype, Rtype);
+        return Checkers::check_____le____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_gt(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____gt____(gvn, Ltype, Rtype);
+        return Checkers::check_____gt____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_ge(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____ge____(gvn, Ltype, Rtype);
+        return Checkers::check_____ge____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_and(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____and____(gvn, Ltype, Rtype);
+        return Checkers::check_____and____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_or(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____or____(gvn, Ltype, Rtype);
+        return Checkers::check_____or____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_andand(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____and____(gvn, Ltype, Rtype);
+        return Checkers::check_____and____(gvn, Ltype, Rtype);
     }
 
     inline static TIType _check_oror(GVN & gvn, const TIType & Ltype, const TIType & Rtype)
     {
-        return check_____or____(gvn, Ltype, Rtype);
+        return Checkers::check_____or____(gvn, Ltype, Rtype);
     }
 
     template<TIType (F)(GVN &, const TIType &, const TIType &)>
@@ -635,7 +632,7 @@ private:
         if (e.getInit().isListExp())
         {
             ast::ListExp & le = static_cast<ast::ListExp &>(e.getInit());
-            e.setListInfo(ForList64());
+            //e.setListInfo(ForList64());
             le.accept(*this);
             Result & res = getResult();
             Info & info = dm.define(sym, res.getType(), res.isAnInt(), &e);

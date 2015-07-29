@@ -172,18 +172,18 @@ void DebugVisitor::visit (const NilExp &e)
 void DebugVisitor::visit (const SimpleVar &e)
 {
     std::wstring ty;
-    //analysis::TIType type = e.getDecorator().getResult().getType();
-    //if (type.type != analysis::TIType::UNKNOWN)
-    //{
-    //    if (type.isscalar())
-    //    {
-    //        ty = L" (" + analysis::TIType::toString(type.type) + L")";
-    //    }
-    //    else
-    //    {
-    //        ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
-    //    }
-    //}
+    analysis::TIType type = e.getDecorator().getResult().getType();
+    if (type.type != analysis::TIType::UNKNOWN)
+    {
+       if (type.isscalar())
+       {
+           ty = L" (" + analysis::TIType::toString(type.type) + L")";
+       }
+       else
+       {
+           ty = L" (" + analysis::TIType::toString(type.type) + L"*)";
+       }
+    }
 
     DEBUG_START_NODE(e);
     DEBUG(L"Exec SimpleVar : " + e.getSymbol().getName() + ty, e);

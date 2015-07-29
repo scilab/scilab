@@ -105,7 +105,136 @@ src/cpp/types/tlist.cpp \
 src/cpp/types/tostring_common.cpp \
 src/cpp/types/types.cpp \
 src/cpp/types/types_tools.cpp \
-src/cpp/types/void.cpp
+src/cpp/types/void.cpp \
+src/cpp/analysis/AnalysisVisitor.cpp \
+src/cpp/analysis/ArgnAnalyzer.cpp \
+src/cpp/analysis/Block.cpp \
+src/cpp/analysis/Checkers.cpp \
+src/cpp/analysis/CompleteMacroSignature.cpp \
+src/cpp/analysis/ConstantValue.cpp \
+src/cpp/analysis/ConstantVisitor.cpp \
+src/cpp/analysis/ConstraintManager.cpp \
+src/cpp/analysis/Data.cpp \
+src/cpp/analysis/DataManager.cpp \
+src/cpp/analysis/DiagAnalyzer.cpp \
+src/cpp/analysis/FunctionBlock.cpp \
+src/cpp/analysis/GlobalsCollector.cpp \
+src/cpp/analysis/GVN.cpp \
+src/cpp/analysis/IndexAnalyzer.cpp \
+src/cpp/analysis/Info.cpp \
+src/cpp/analysis/CeilAnalyzer.cpp \
+src/cpp/analysis/InferenceConstraints.cpp \
+src/cpp/analysis/LengthAnalyzer.cpp \
+src/cpp/analysis/LoopBlock.cpp \
+src/cpp/analysis/MacroDef.cpp \
+src/cpp/analysis/MatrixAnalyzer.cpp \
+src/cpp/analysis/MemInitAnalyzer.cpp \
+src/cpp/analysis/MultivariateMonomial.cpp \
+src/cpp/analysis/MultivariatePolynomial.cpp \
+src/cpp/analysis/OperGVNValues.cpp \
+src/cpp/analysis/OperSymbolicRange.cpp \
+src/cpp/analysis/OpValue.cpp \
+src/cpp/analysis/PolymorphicMacroCache.cpp \
+src/cpp/analysis/SizeAnalyzer.cpp \
+src/cpp/analysis/SymbolicList.cpp \
+src/cpp/analysis/TIType.cpp \
+src/cpp/analysis/IconvertAnalyzer.cpp \
+src/cpp/analysis/InttypeAnalyzer.cpp \
+src/cpp/analysis/IsrealAnalyzer.cpp \
+src/cpp/analysis/IsscalarAnalyzer.cpp \
+src/cpp/analysis/FindAnalyzer.cpp \
+src/cpp/analysis/TemporaryManager.cpp \
+src/cpp/analysis/TypeAnalyzer.cpp \
+src/cpp/analysis/TypeofAnalyzer.cpp \
+src/cpp/analysis/OperAnalyzer.cpp \
+src/cpp/analysis/VarExp.cpp \
+src/cpp/analysis/VisitListExp.cpp \
+src/cpp/analysis/VisitMatrixExp.cpp \
+src/cpp/analysis/VisitOpExp.cpp \
+src/cpp/analysis/VisitSelectExp.cpp \
+src/cpp/analysis/VisitAssignExp.cpp \
+src/cpp/analysis/VisitIfExp.cpp \
+src/cpp/analysis/XBlock.cpp \
+src/cpp/analysis/check_____dotpower____.cpp\
+src/cpp/analysis/check_rand.cpp\
+src/cpp/analysis/check_____ge____.cpp\
+src/cpp/analysis/check_____or____.cpp\
+src/cpp/analysis/check_____power____.cpp\
+src/cpp/analysis/check_____not____.cpp\
+src/cpp/analysis/check_isreal.cpp\
+src/cpp/analysis/check_____transp____.cpp\
+src/cpp/analysis/check_abs.cpp\
+src/cpp/analysis/check_cosh.cpp\
+src/cpp/analysis/check_typeof.cpp\
+src/cpp/analysis/check_int16.cpp\
+src/cpp/analysis/check_iconvert.cpp\
+src/cpp/analysis/check_gettext.cpp\
+src/cpp/analysis/check_____neq____.cpp\
+src/cpp/analysis/check_____and____.cpp\
+src/cpp/analysis/check_tan.cpp\
+src/cpp/analysis/check_cumsum.cpp\
+src/cpp/analysis/check_size.cpp\
+src/cpp/analysis/check_____andand____.cpp\
+src/cpp/analysis/check_asin.cpp\
+src/cpp/analysis/check_____dottransp____.cpp\
+src/cpp/analysis/check_or.cpp\
+src/cpp/analysis/check_____eq____.cpp\
+src/cpp/analysis/check_log.cpp\
+src/cpp/analysis/check_floor.cpp\
+src/cpp/analysis/check_int.cpp\
+src/cpp/analysis/check_fix.cpp\
+src/cpp/analysis/check_sqrt.cpp\
+src/cpp/analysis/check_uint16.cpp\
+src/cpp/analysis/check_____le____.cpp\
+src/cpp/analysis/check_zeros.cpp\
+src/cpp/analysis/check_ls.cpp\
+src/cpp/analysis/check_max.cpp\
+src/cpp/analysis/check_uint32.cpp\
+src/cpp/analysis/check_int64.cpp\
+src/cpp/analysis/check_prod.cpp\
+src/cpp/analysis/check_type.cpp\
+src/cpp/analysis/check_sin.cpp\
+src/cpp/analysis/check_round.cpp\
+src/cpp/analysis/check_____krontimes____.cpp\
+src/cpp/analysis/check_int32.cpp\
+src/cpp/analysis/check_____gt____.cpp\
+src/cpp/analysis/check_inttype.cpp\
+src/cpp/analysis/check_exp.cpp\
+src/cpp/analysis/check_atan.cpp\
+src/cpp/analysis/check_____dotrdiv____.cpp\
+src/cpp/analysis/check_imag.cpp\
+src/cpp/analysis/check_uint8.cpp\
+src/cpp/analysis/check_ceil.cpp\
+src/cpp/analysis/check_uint64.cpp\
+src/cpp/analysis/check_____lt____.cpp\
+src/cpp/analysis/check_sinm.cpp\
+src/cpp/analysis/check_isinf.cpp\
+src/cpp/analysis/check_____sub____.cpp\
+src/cpp/analysis/check_sinh.cpp\
+src/cpp/analysis/check_toc.cpp\
+src/cpp/analysis/check_isscalar.cpp\
+src/cpp/analysis/check_int8.cpp\
+src/cpp/analysis/check_____rdivide____.cpp\
+src/cpp/analysis/check_matrix.cpp\
+src/cpp/analysis/check_____oror____.cpp\
+src/cpp/analysis/check_cos.cpp\
+src/cpp/analysis/check_and.cpp\
+src/cpp/analysis/check_____unaryminus____.cpp\
+src/cpp/analysis/check_tanh.cpp\
+src/cpp/analysis/check_____add____.cpp\
+src/cpp/analysis/check_isnan.cpp\
+src/cpp/analysis/check_imult.cpp\
+src/cpp/analysis/check_____times____.cpp\
+src/cpp/analysis/check_argn.cpp\
+src/cpp/analysis/check_cumprod.cpp\
+src/cpp/analysis/check_erf.cpp\
+src/cpp/analysis/check_ones.cpp\
+src/cpp/analysis/check_erfc.cpp\
+src/cpp/analysis/check_min.cpp\
+src/cpp/analysis/check_sum.cpp\
+src/cpp/analysis/check_____ldivide____.cpp\
+src/cpp/analysis/check_acos.cpp\
+src/cpp/analysis/check_____dottimes____.cpp
 
 if ENABLE_DEBUG
 libsciast_la_SOURCES += src/cpp/types/inspector.cpp
@@ -178,7 +307,6 @@ includes/analysis/ConstantValue.hxx \
 includes/analysis/Decorator.hxx \
 includes/analysis/ForList.hxx \
 includes/analysis/Result.hxx \
-includes/analysis/SymInfo.hxx \
 includes/analysis/TIType.hxx \
 includes/analysis/tools.hxx \
 includes/ast/debugvisitor.hxx \

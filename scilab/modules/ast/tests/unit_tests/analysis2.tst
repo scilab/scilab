@@ -4,9 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
-// <-- NOT FIXED -->
 // <-- CLI SHELL MODE -->
+//
 
 a = 1:5;
 b = 1:10;

@@ -28,7 +28,7 @@ namespace analysis
 
         if (valL.getKind() == ConstantValue::GVNVAL)
         {
-            gvnL = valL.get<GVN::Value *>();
+            gvnL = valL.getGVNValue();
         }
         else
         {
@@ -42,7 +42,7 @@ namespace analysis
 
         if (valR.getKind() == ConstantValue::GVNVAL)
         {
-            gvnR = valR.get<GVN::Value *>();
+            gvnR = valR.getGVNValue();
         }
         else
         {

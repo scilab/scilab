@@ -4,9 +4,9 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-
-// <-- NOT FIXED -->
+//
 // <-- CLI SHELL MODE -->
+//
 
 function y=test1(a, b)
     y = a+b;
