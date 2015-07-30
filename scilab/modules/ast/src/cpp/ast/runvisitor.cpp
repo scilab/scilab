@@ -810,6 +810,10 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
     setResult(NULL);
     if (pIT)
     {
+        // protect pIT to avoid double free when
+        // the variable in select is override in the case
+        pIT->IncreaseRef();
+
         //find good case
         exps_t cases = e.getCases();
         for (auto exp : cases)
@@ -833,6 +837,7 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
                     }
                     catch (ScilabMessage& sm)
                     {
+                        pIT->DecreaseRef();
                         pIT->killMe();
                         throw sm;
                     }
@@ -874,7 +879,11 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
         }
         catch (ScilabMessage& sm)
         {
-            pIT->killMe();
+            if (pIT)
+            {
+                pIT->DecreaseRef();
+                pIT->killMe();
+            }
             throw sm;
         }
 
@@ -899,7 +908,11 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
 
     clearResult();
 
-    pIT->killMe();
+    if (pIT)
+    {
+        pIT->DecreaseRef();
+        pIT->killMe();
+    }
 }
 
 template <class T>
