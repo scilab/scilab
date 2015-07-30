@@ -40,7 +40,7 @@
 #include "LanguagePreferences_Windows.h"
 #endif
 
-#define FORCE_LOCALE_EN_US
+//#define FORCE_LOCALE_EN_US
 /*--------------------------------------------------------------------------*/
 
 BOOL InitializeLocalization(void)
