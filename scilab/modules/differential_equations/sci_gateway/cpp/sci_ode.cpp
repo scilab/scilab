@@ -1336,7 +1336,6 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
                 bCatch = true;
                 err = 1;
             }
-
             // FREE allocated data
             if (err == 1) // error case
             {
@@ -1522,15 +1521,23 @@ types::Function::ReturnValue sci_ode(types::typed_list &in, int _iRetCount, type
             }
         }
 
-        types::Double* pDblRd = new types::Double(1, sizeOfRd);
-        //rd: The first entry contains the stopping time.
-        pDblRd->set(0, C2F(lsr001).tlast);
-        for (int i = 0; i < pDblNg->get(0); i++)
+        types::Double* pDblRd = NULL;
+        if (sizeOfRd == 1) // Not root found, return empty matrix
         {
-            if (jroot[i])
+            pDblRd = types::Double::Empty();
+        }
+        else
+        {
+            pDblRd = new types::Double(1, sizeOfRd);
+            //rd: The first entry contains the stopping time.
+            pDblRd->set(0, C2F(lsr001).tlast);
+            for (int i = 0; i < pDblNg->get(0); i++)
             {
-                k++;
-                pDblRd->set(k, (double)i + 1);
+                if (jroot[i])
+                {
+                    k++;
+                    pDblRd->set(k, (double)i + 1);
+                }
             }
         }
         out.push_back(pDblRd); // rd
