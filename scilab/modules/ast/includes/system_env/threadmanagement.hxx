@@ -43,9 +43,14 @@ private :
     static __threadSignal m_CommandStored;
     static __threadSignalLock m_CommandStoredLock;
 
+    // used to avoid "Spurious Wakeups"
+    static bool m_AstPendingWasSignalled;
+    static bool m_ConsoleExecDoneWasSignalled;
+    static bool m_AwakeRunnerWasSignalled;
+    static bool m_StartPendingWasSignalled;
+    static bool m_CommandStoredWasSignalled;
 
 public :
-
     static void initialize(void);
 
     static void LockStart(void);

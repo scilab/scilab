@@ -72,11 +72,12 @@ int StoreConsoleCommand(char *command)
                                         /* is interruptible*/ 1,
                                         /* from console */ 1);
 
-    ThreadManagement::UnlockStoreCommand();
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
+
+    ThreadManagement::UnlockStoreCommand();
 
     return 0;
 }
@@ -89,11 +90,12 @@ int StorePrioritaryCommand(char *command)
                                         /* is interruptible*/ 0,
                                         /* from console */ 0);
 
-    ThreadManagement::UnlockStoreCommand();
     // Awake Scilab to execute a new command
     ThreadManagement::SendCommandStoredSignal();
     // Awake Runner to execute this prioritary command
     ThreadManagement::SendAwakeRunnerSignal();
+
+    ThreadManagement::UnlockStoreCommand();
 
     return 0;
 }
