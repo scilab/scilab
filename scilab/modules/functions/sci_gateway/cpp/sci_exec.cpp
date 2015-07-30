@@ -244,7 +244,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             return Function::Error;
         }
 
-        promptMode = 3;
         pExp = pMacro->getBody();
 
         // update where to set the name of the executed macro instead of "exec"
