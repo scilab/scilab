@@ -37,6 +37,7 @@ extern "C"
 #include "mclose.h"
 #include "freeArrayOfString.h"
 #include "os_wfopen.h"
+#include "expandPathVariable.h"
 };
 /*------------------------------------------------------------------------*/
 #define DEFAULT_HISTORY_FILE_MAX_LINES 20000
@@ -65,7 +66,10 @@ void HistoryFile::setFilename(std::string _stFilename)
 {
     if (_stFilename.empty() == false)
     {
-        m_stFilename = _stFilename;
+        // TODO: const_cast is very bad...
+        char * expanded = expandPathVariable((char *)(_stFilename.c_str()));
+        m_stFilename = std::string(expanded);
+        FREE(expanded);
     }
     else
     {
