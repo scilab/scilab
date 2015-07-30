@@ -1,3 +1,12 @@
+        Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab
+        =================================================================
+
+
+(please remove this line when adding the first changed item...)
+
+
+
+
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
 
@@ -6,8 +15,6 @@
 This file details the technical changes done in Scilab 6.0.0-alpha-1 release.
 
 For a more complete overview of the changes in this release, please consult the "What's new" page of the help, by simply typing "help" in Scilab console.
-
-
 
 
 
