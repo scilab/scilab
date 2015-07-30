@@ -172,7 +172,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
         {
             if (sizeIn == 1)
             {
-                for (int& i : indexes)
+                for (int & i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -183,7 +183,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
             }
             else
             {
-                for (int& i : indexes)
+                for (int & i : indexes)
                 {
                     if (set(i, *pRealData) == false)
                     {
@@ -237,7 +237,7 @@ InternalType* ArrayOf<T>::insert(typed_list* _pArgs, InternalType* _pSource)
 
     //remove last dimension at size 1
     //remove last dimension if are == 1
-    for (int i = (iDims - 1); i >= 2; i--)
+    for (int i = (iDims - 1); i >= m_iDims; i--)
     {
         if (piMaxDim[i] == 1)
         {
@@ -1070,7 +1070,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         if (isComplex())
         {
             int idx = 0;
-            for (int& i : indexes)
+            for (int & i : indexes)
             {
                 if (i < 0 || i >= size)
                 {
@@ -1086,7 +1086,7 @@ InternalType* ArrayOf<T>::extract(typed_list* _pArgs)
         else
         {
             int idx = 0;
-            for (int& i : indexes)
+            for (int & i : indexes)
             {
                 pOut->set(idx, get(i));
                 ++idx;
