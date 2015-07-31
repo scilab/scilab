@@ -21,6 +21,7 @@
 #include "debugvisitor.hxx"
 #include "stepvisitor.hxx"
 #include "visitor_common.hxx"
+#include "threadmanagement.hxx"
 
 #include "scilabWrite.hxx"
 #include "runner.hxx"
@@ -228,15 +229,18 @@ void execScilabStartTask(bool _bSerialize)
     wstring stSCI = ConfigVariable::getSCIPath();
 
     stSCI += SCILAB_START;
+    ThreadManagement::LockParser();
     parse.parseFile(stSCI, L"");
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.start");
+        ThreadManagement::UnlockParser();
         return;
     }
 
+    ThreadManagement::UnlockParser();
     execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
 }
 
@@ -250,15 +254,18 @@ void execScilabQuitTask(bool _bSerialize)
     wstring stSCI = ConfigVariable::getSCIPath();
 
     stSCI += SCILAB_QUIT;
+    ThreadManagement::LockParser();
     parse.parseFile(stSCI, L"");
 
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
         scilabWriteW(L"Failed to parse scilab.quit");
+        ThreadManagement::UnlockParser();
         return;
     }
 
+    ThreadManagement::UnlockParser();
     execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
 }
 

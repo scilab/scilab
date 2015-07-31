@@ -161,6 +161,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             return Function::Error;
         }
 
+        ThreadManagement::LockParser();
         parser.parseFile(pwstTemp, L"exec");
         FREE(pwstTemp);
         if (parser.getExitStatus() !=  Parser::Succeded)
@@ -174,6 +175,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ConfigVariable::setLastErrorNumber(999);
                 delete parser.getTree();
                 mclose(iID);
+                ThreadManagement::UnlockParser();
                 return Function::OK;
             }
 
@@ -183,6 +185,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
             delete parser.getTree();
             mclose(iID);
+            ThreadManagement::UnlockParser();
             return Function::Error;
         }
 
@@ -205,6 +208,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             pExp = parser.getTree();
         }
 
+        ThreadManagement::UnlockParser();
         // update where to set the name of the executed file.
         ConfigVariable::setFileNameToLastWhere(pwstFile);
 
