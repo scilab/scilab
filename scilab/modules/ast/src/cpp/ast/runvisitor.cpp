@@ -927,11 +927,14 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             continue;
         }
 
+        ThreadManagement::LockAst();
         if (pThreadMe && pThreadMe->getInterrupt())
         {
             ThreadManagement::SendAstPendingSignal();
+            ThreadManagement::UnlockAst();
             pThreadMe->suspend();
         }
+        ThreadManagement::UnlockAst();
 
         try
         {

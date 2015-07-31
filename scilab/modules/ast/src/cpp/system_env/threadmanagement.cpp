@@ -21,6 +21,7 @@ __threadLock ThreadManagement::m_StartLock;
 __threadLock ThreadManagement::m_RunnerLock;
 __threadLock ThreadManagement::m_ParseLock;
 __threadLock ThreadManagement::m_StoreCommandLock;
+__threadLock ThreadManagement::m_AstLock;
 
 __threadSignal ThreadManagement::m_ConsoleExecDone;
 __threadSignalLock ThreadManagement::m_ConsoleExecDoneLock;
@@ -49,6 +50,7 @@ void ThreadManagement::initialize()
     __InitLock(&m_StartLock);
     __InitLock(&m_ParseLock);
     __InitLock(&m_StoreCommandLock);
+    __InitLock(&m_AstLock);
 
     __InitSignal(&m_AwakeRunner);
     __InitSignalLock(&m_AwakeRunnerLock);
@@ -130,6 +132,22 @@ void ThreadManagement::UnlockRunner(void)
     __UnLock(&m_RunnerLock);
 }
 
+void ThreadManagement::LockAst(void)
+{
+#ifdef DEBUG_THREAD
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "LockAst" << std::endl;
+#endif // DEBUG_THREAD
+    __Lock(&m_AstLock);
+}
+
+void ThreadManagement::UnlockAst(void)
+{
+#ifdef DEBUG_THREAD
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "UnlockAst" << std::endl;
+#endif // DEBUG_THREAD
+    __UnLock(&m_AstLock);
+}
+
 void ThreadManagement::SendAstPendingSignal(void)
 {
 #ifdef DEBUG_THREAD
@@ -147,6 +165,7 @@ void ThreadManagement::WaitForAstPendingSignal(void)
     std::cout << "[" << __GetCurrentThreadKey() << "] " << "WaitForAstPendingSignal" << std::endl;
 #endif // DEBUG_THREAD
     __LockSignal(&m_AstPendingLock);
+    ThreadManagement::UnlockAst();
     m_AstPendingWasSignalled = false;
     while (m_AstPendingWasSignalled == false)
     {

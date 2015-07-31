@@ -27,6 +27,7 @@ private :
     static __threadLock m_StartLock;
     static __threadLock m_ParseLock;
     static __threadLock m_StoreCommandLock;
+    static __threadLock m_AstLock;
 
     static __threadSignal m_ConsoleExecDone;
     static __threadSignalLock m_ConsoleExecDoneLock;
@@ -61,6 +62,8 @@ public :
     static void UnlockStoreCommand(void);
     static void LockRunner(void);
     static void UnlockRunner(void);
+    static void LockAst(void);
+    static void UnlockAst(void);
 
     static void SendAstPendingSignal(void);
     static void WaitForAstPendingSignal(void);

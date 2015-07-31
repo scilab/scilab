@@ -76,6 +76,7 @@ void *Runner::launch(void *args)
         bdoUnlock = true;
     }
 
+    ThreadManagement::LockAst();
     if (pThread->getInterrupt()) // non-prioritary
     {
         // Unlock prioritary thread waiting for
@@ -83,8 +84,10 @@ void *Runner::launch(void *args)
         // This case appear when error is throw or when
         // non-prioritary execute this last SeqExp.
         pThread->setInterrupt(false);
+        pThread->setInterruptible(false);
         ThreadManagement::SendAstPendingSignal();
     }
+    ThreadManagement::UnlockAst();
 
     if (pThread->isConsoleCommand())
     {
@@ -118,6 +121,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
         {
             if (pInterruptibleThread)
             {
+                ThreadManagement::LockAst();
                 if (pInterruptibleThread->isInterruptible())
                 {
                     pInterruptibleThread->setInterrupt(true);
@@ -125,6 +129,7 @@ void Runner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
                 }
                 else
                 {
+                    ThreadManagement::UnlockAst();
                     __WaitThreadDie(pInterruptibleThread->getThreadId());
                     pInterruptibleThread = NULL;
                 }
