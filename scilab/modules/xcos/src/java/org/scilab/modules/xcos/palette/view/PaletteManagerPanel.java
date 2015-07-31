@@ -132,13 +132,25 @@ public class PaletteManagerPanel extends JSplitPane {
             JScrollPane jspR = (JScrollPane) this.getRightComponent();
             final Dimension dimension = jspR.getPreferredSize();
             setUpScrollBar(jspR, newSize);
+
             // check what's being displayed on the right panel
             PaletteNode node = (PaletteNode) tree.getLastSelectedPathComponent();
-            if (node instanceof PreLoaded) {
-                JPanel panel = (JPanel) jspR.getViewport().getComponent(0);
-                for (Component component : panel.getComponents()) {
-                    PaletteBlockView view = (PaletteBlockView) component;
-                    view.initComponents(newSize);
+            if (node instanceof PreLoaded || node == null) {
+                Component c = jspR.getViewport().getComponent(0);
+                String cName = c.getName();
+                PaletteView pview;
+                if (cName.equals("PaletteView")) {
+                    pview = (PaletteView) c;
+                } else if (cName.equals("PaletteSearchView")) {
+                    PaletteSearchView sview = (PaletteSearchView) c;
+                    pview = (PaletteView) sview.getComponent(1);
+                } else {
+                    return;
+                }
+
+                for (Component component : pview.getComponents()) {
+                    PaletteBlockView bview = (PaletteBlockView) component;
+                    bview.initComponents(newSize);
                 }
             } else if (node instanceof Custom) {
                 jspR = openDiagramAsPal(newSize, node);
@@ -165,6 +177,7 @@ public class PaletteManagerPanel extends JSplitPane {
             currentSize = newSize;
             jspR.revalidate();
         } catch (NullPointerException e) {
+            e.printStackTrace();
         }
     }
 
