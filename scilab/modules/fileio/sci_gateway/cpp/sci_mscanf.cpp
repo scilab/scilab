@@ -176,7 +176,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
     {
         if (sizeOfVector == 0)
         {
-            out.push_back(types::Double::Empty());
+            out.push_back(new types::String(L""));
             return types::Function::OK;
         }
 
@@ -271,7 +271,7 @@ types::Function::ReturnValue sci_mscanf(types::typed_list &in, int _iRetCount, t
 
                 int dimsArrayOfCell[2] = {1, (int)pITTemp->size()};
                 types::Cell* pCell = new types::Cell(2, dimsArrayOfCell);
-                for (int i = 0; i < pITTemp->size(); i++)
+                for (int i = 0; i < dimsArrayOfCell[1]; i++)
                 {
                     pCell->set(i, (*pITTemp)[i]);
                 }
