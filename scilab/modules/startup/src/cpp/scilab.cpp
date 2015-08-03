@@ -61,7 +61,12 @@ extern "C"
 static void usage(void)
 {
     std::cerr << "Usage: Scilab <options>" << std::endl;
-    std::cerr << "      -f file          : Batch mode on the given file." << std::endl;
+    std::cerr << "      -e Instruction   : execute the scilab instruction given in Instruction argument.";
+    std::cerr << "                         -e and -f arguments are mutually exclusive.";
+    std::cerr << "      -f File          : execute the scilab script given in File argument.";
+    std::cerr << "                         -e and -f arguments are mutually exclusive.";
+    std::cerr << "      -quit            : force scilab exit after execution of script from -e or -f argument.";
+    std::cerr << "                         this flag is ignored if it is not used with -e or -f argument.";
     std::cerr << "      -l lang          : Change the language of scilab ( default : en_US )." << std::endl;
     std::cerr << "      -nw              : Enable console mode." << std::endl;
     std::cerr << "      -nwni            : Enable terminal mode." << std::endl;
@@ -143,6 +148,10 @@ static int get_option(const int argc, char *argv[], ScilabEngineInfo* _pSEI)
             {
                 _pSEI->pstParseFile = argv[i];
             }
+        }
+        else if (!strcmp("-quit", argv[i]))
+        {
+            _pSEI->iForceQuit = 1;
         }
         else if (!strcmp("-version", argv[i]))
         {

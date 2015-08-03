@@ -41,6 +41,7 @@ typedef struct
     int isPrioritary;
     int isConsoleCommand;
     int iStartConsoleThread;
+    int iForceQuit;
 } ScilabEngineInfo;
 
 ScilabEngineInfo* InitScilabEngineInfo();

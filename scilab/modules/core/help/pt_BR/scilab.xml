@@ -1,24 +1,24 @@
-<?xml version="1.0" encoding="ISO-8859-1"?>
-<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="en">
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="scilab" xml:lang="pt">
     <refnamediv>
         <refname>scilab</refname>
         <refpurpose>principal script para executar o Scilab e ferramentas de
-            miscelânea
+            miscelÃ¢nea
         </refpurpose>
     </refnamediv>
     <refsynopsisdiv>
-        <title>Sqeüência de Chamamento</title>
+        <title>SqeÃ¼Ãªncia de Chamamento</title>
         <synopsis>scilab &lt;Options&gt;</synopsis>
     </refsynopsisdiv>
-    <refsection>
-        <title>Descrição</title>
+    <refsection role="arguments">
+        <title>ParÃ¢metros</title>
         <variablelist>
             <varlistentry>
                 <term>-args Arguments</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, os argumentos são passados ao
-                        Scilab. Eles podem ser recebidos pela função <link linkend="sciargs">sciargs</link>. para passagem de múltiplos
-                        argumentos use, seqüências de palavras separadas por espaços entre
+                    <para>Se esta opÃ§Ã£o estiver presente, os argumentos sÃ£o passados ao
+                        Scilab. Eles podem ser recebidos pela funÃ§Ã£o <link linkend="sciargs">sciargs</link>. para passagem de mÃºltiplos
+                        argumentos use, seqÃ¼Ãªncias de palavras separadas por espaÃ§os entre
                         aspas simples: <literal>scilab -args 'foo1 foo2'</literal>
                     </para>
                 </listitem>
@@ -27,7 +27,7 @@
                 <term>-display Display</term>
                 <listitem>
                     <para>Para uso apenas em sistemas Xwindow para ajustar um display de
-                        servidor X. O display padrão é unix:0.0
+                        servidor X. O display padrÃ£o Ã© unix:0.0
                     </para>
                     <para>
                         <literal>-display</literal> pode ser abreviado por
@@ -44,12 +44,12 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-e Instrução</term>
+                <term>-e InstruÃ§Ã£o</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, então a instrução Scilab
-                        <literal>Instrução</literal> é executada primeiro (logo após a
-                        execução do arquivo de inicialização) no Scilab. As opções
-                        <literal>-e</literal> e <literal>-f</literal> são mutuamente
+                    <para>Se esta opÃ§Ã£o estiver presente, entÃ£o a instruÃ§Ã£o Scilab
+                        <literal>InstruÃ§Ã£o</literal> Ã© executada primeiro (logo apÃ³s a
+                        execuÃ§Ã£o do arquivo de inicializaÃ§Ã£o) no Scilab. As opÃ§Ãµes
+                        <literal>-e</literal> e <literal>-f</literal> sÃ£o mutuamente
                         exclusivas
                     </para>
                 </listitem>
@@ -57,22 +57,32 @@
             <varlistentry>
                 <term>-f arquivo</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, então o script Scilab
-                        <literal>arquivo</literal> é executado primeiro (logo após a
-                        execução do arquivo de inicialização) no Scilab. As opções
-                        <literal>-e</literal> e <literal>-f</literal> são mutuamente
+                    <para>Se esta opÃ§Ã£o estiver presente, entÃ£o o script Scilab
+                        <literal>arquivo</literal> Ã© executado primeiro (logo apÃ³s a
+                        execuÃ§Ã£o do arquivo de inicializaÃ§Ã£o) no Scilab. As opÃ§Ãµes
+                        <literal>-e</literal> e <literal>-f</literal> sÃ£o mutuamente
                         exclusivas.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-quit</term>
+                <listitem>
+                    This option forces scilab to always exit after the instruction(s) passed with the <literal>-e</literal>
+                    option, or the script referred to by the <literal>-f</literal> option, have been executed,
+                    even in case of a runtime error. This option should always be used in batch mode.
+                    It is ignored if neither <literal>-e</literal> nor <literal>-f</literal> options are present.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-l idioma</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, ela fica o idioma do usuário.
-                        Os possíveis valores para <literal>idioma</literal> são
-                        <literal>'fr'</literal> para francês, <literal>'en'</literal> para
-                        inglês e 'br' para português brasileiro. O idioma padrão é inglês. O
-                        valor padrão é fixado no arquivo
+                    <para>Se esta opÃ§Ã£o estiver presente, ela fica o idioma do usuÃ¡rio.
+                        Os possÃ­veis valores para <literal>idioma</literal> sÃ£o
+                        <literal>'fr'</literal> para francÃªs, <literal>'en'</literal> para
+                        inglÃªs e 'br' para portuguÃªs brasileiro. O idioma padrÃ£o Ã© inglÃªs. O
+                        valor padrÃ£o Ã© fixado no arquivo
                         <literal>scilab.start</literal>.
                     </para>
                 </listitem>
@@ -80,59 +90,216 @@
             <varlistentry>
                 <term>-nb</term>
                 <listitem>
-                    <para>Se esta opção está presente, então o cartão de boas-vindas não
-                        é impresso.
+                    <para>Se esta opÃ§Ã£o estÃ¡ presente, entÃ£o o cartÃ£o de boas-vindas nÃ£o
+                        Ã© impresso.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-ns</term>
                 <listitem>
-                    <para>Se esta opção está presente, o arquivo de inicialização
+                    <para>Se esta opÃ§Ã£o estÃ¡ presente, o arquivo de inicializaÃ§Ã£o
                         <literal>SCI/etc/scilab.start</literal> e os arquivos de
-                        inicialização do usuário <literal>SCIHOME/.scilab</literal>,
-                        <literal>SCIHOME/scilab.ini</literal> não são executados.
+                        inicializaÃ§Ã£o do usuÃ¡rio <literal>SCIHOME/.scilab</literal>,
+                        <literal>SCIHOME/scilab.ini</literal> nÃ£o sÃ£o executados.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-nouserstartup</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, os arquivos de inicialização
-                        do usuário <literal>SCIHOME/.scilab</literal>,
-                        <literal>SCIHOME/scilab.ini</literal> não são executados.
+                    <para>Se esta opÃ§Ã£o estiver presente, os arquivos de inicializaÃ§Ã£o
+                        do usuÃ¡rio <literal>SCIHOME/.scilab</literal>,
+                        <literal>SCIHOME/scilab.ini</literal> nÃ£o sÃ£o executados.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-nw</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, então o Scilab não é executado
-                        em uma janela específica.
+                    <para>Se esta opÃ§Ã£o estiver presente, entÃ£o o Scilab nÃ£o Ã© executado
+                        em uma janela especÃ­fica.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-nwni / -nogui</term>
                 <listitem>
-                    <para>Se esta opção estiver presente, então o Scilab não é executado
-                        em uma janela específica e não aceita interação do usuário. Esta
-                        opção pode ser utilizada com as opções -f ou -e .
+                    <para>Se esta opÃ§Ã£o estiver presente, entÃ£o o Scilab nÃ£o Ã© executado
+                        em uma janela especÃ­fica e nÃ£o aceita interaÃ§Ã£o do usuÃ¡rio. Esta
+                        opÃ§Ã£o pode ser utilizada com as opÃ§Ãµes -f ou -e .
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>--texmacs</term>
                 <listitem>
-                    <para>Esta opção é reservada para TexMacs.</para>
+                    <para>Esta opÃ§Ã£o Ã© reservada para TexMacs.</para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>-version</term>
                 <listitem>
-                    <para>Esta opção imprime a versão do produto e sai.</para>
+                    <para>Esta opÃ§Ã£o imprime a versÃ£o do produto e sai.</para>
                 </listitem>
             </varlistentry>
         </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Description of environment variables</title>
+        <variablelist>
+            <varlistentry>
+                <term>SCIVERBOSE</term>
+                <listitem>
+                    <para>
+                        If this variable is present, Scilab startup script will show a startup debug information.
+                        Mainly used for bug report and debugging purposes.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>JAVA_HOME</term>
+                <listitem>
+                    <para>
+                        Specify which Java to use. For example,
+                        <literal>JAVA_HOME=/usr/lib/jvm/java-7-openjdk/ scilab</literal> will start Scilab with Java 7.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SCI_DISABLE_TK</term>
+                <listitem>
+                    <para>Disable Tk (but not Tcl) features.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>SCI_JAVA_ENABLE_HEADLESS</term>
+                <listitem>
+                    <para>
+                        Enable Java Headless VM (i.e. without GUI features).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection role="description">
+        <title>Java Virtual Machine options</title>
+        <para>Starting from Scilab 5.0, the graphical user interface (GUI) and the
+            build documentation are based on Java features. In some cases, it can be
+            important to edit the JVM options (Java Virtual Machine).
+        </para>
+        <para>These options are available in the
+            <emphasis>jvm_options.xml</emphasis> file.
+        </para>
+        <para>In version 5.0.X and 5.1.X, this file is stored as
+            <emphasis>SCI/modules/jvm/etc/jvm_options.xml</emphasis>.
+        </para>
+        <para>In version &gt;= 5.2.0, the file is available in
+            <emphasis>etc/jvm_options.xml</emphasis>.
+        </para>
+        <para>
+            <emphasis>
+                By default, the three following options are
+                easily accessible in the configuration file:
+            </emphasis>
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>-XmxXXXm</term>
+                <listitem>
+                    <para>This option set the amount of memory available by the Java
+                        Virtual Machine. By default, 256M are allocated. If you change this
+                        value, check that the value does not exceed the memory available on
+                        the system.
+                    </para>
+                    <para>Since Scilab 5.4.0, this value can be changed in the preferences menu.</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-Djava.compiler=JIT</term>
+                <listitem>
+                    <para>
+                        This option with the argument <emphasis>JIT</emphasis> enables
+                        the Java Just In Time compiler. It is activated by default.
+                        <emphasis>NONE</emphasis> disables the JIT and decreases
+                        dramatically performances.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>-verbose:jni / -Xcheck:jni</term>
+                <listitem>
+                    <para>These options enable more checks and output from the JNI
+                        calls. These options are useful in case of debugging and are
+                        disabled by default since they decreases performances.
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>Many more options are available. They can improve the performances,
+            change look and feel, change memory managements... See: <ulink url="http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html">http://www.oracle.com/technetwork/java/javase/tech/vmoptions-jsp-140102.html</ulink>.
+        </para>
+    </refsection>
+    <refsection role="examples">
+        <title>Exemplos</title>
+        <programlisting role="no-scilab-exec"><![CDATA[
+# Let's start Scilab in profiling mode without attaching a gdb once a SIGSEGV is met.
+# We are under Bash shell
+export SCILAB_VALGRIND_OPT="--db-attach=no --log-file=myfile.txt"
+scilab -profiling
+
+# Let's start Scilab in debug mode without stopping after each SIGSEGV
+# First, we write a small command file
+echo "handle SIGSEGV nostop" &> debug.txt
+# Now set the custom option
+# We are under Bash shell
+export SCILAB_GDB_OPT="--command=debug.txt"
+# Start Scilab in debug mode
+scilab -debug]]></programlisting>
+        <programlisting role="no-scilab-exec"><![CDATA[
+# Under GNU/Linux, Mac OS X or Unix:
+$ echo "disp(%pi)"|scilab-cli
+or
+$ echo "disp(%pi)"|scilab -nwni
+
+# Only open the Scilab help window:
+$ scilab-adv-cli -e "help()"
+or
+$ scilab -nw -e "help()"
+
+
+# Scilab can be used for scripting aspects:
+echo "if 1<>2 then exit(99) end"|scilab-cli
+echo $? ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver tambÃ©m</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exit">exit</link>
+            </member>
+            <member>
+                <link linkend="startup">startup</link>
+            </member>
+        </simplelist>
+    </refsection>
+    <refsection role="history">
+        <title>HistÃ³rico</title>
+        <revhistory>
+            <revision>
+                <revnumber>5.4.0</revnumber>
+                <revremark>-noatomsautoload added.</revremark>
+            </revision>
+            <revision>
+                <revnumber>5.4.1</revnumber>
+                <revremark>scinotes and xcos individual scripts introduced. See SEP #87.</revremark>
+            </revision>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <literal>-quit</literal> option added. <literal>-mem</literal> option removed.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

@@ -962,6 +962,8 @@ do_help()
     echo     "                    -e and -f arguments are mutually exclusive."
     echo     "  -f File         : execute the scilab script given in File argument."
     echo     "                    -e and -f arguments are mutually exclusive."
+    echo     "  -quit           : force scilab exit after execution of script from -e or -f argument."
+    echo     "                    this flag is ignored if it is not used with -e or -f argument."
     echo     "  -l Lang         : set the current language. Lang can be equal to fr or en."
     echo     "  -nb             : do not display Scilab loading on start."
     echo     "  -ns             : do not execute scilab.start startup file. This argument will disable many features in Scilab (Only use if you know what you are doing)."
@@ -1068,7 +1070,7 @@ if test "$rest" = "yes"; then
                     exit 5
                 fi
                 ;;
-            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize)
+            --parse-trace|--pretty-print|--help|--AST-trace|--no-exec|--context-dump|--exec-verbose|--timed|--AST-timed|--serialize|-quit)
 	    #This are Scilab6 dedicated options.
 	            ;;
             -psn_*)

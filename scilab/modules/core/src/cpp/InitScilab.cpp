@@ -126,6 +126,7 @@ ScilabEngineInfo* InitScilabEngineInfo()
     pSEI->isInterruptible = 1;      // by default all thread are interruptible
     pSEI->isPrioritary = 0;         // by default all thread are non-prioritary
     pSEI->iStartConsoleThread = 1;  // used in call_scilab to avoid "prompt" thread execution
+    pSEI->iForceQuit = 0;           // management of -quit argument
 
     return pSEI;
 }
@@ -134,7 +135,16 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 {
     int iMainRet = 0;
     ConfigVariable::setStartProcessing(true);
-    ConfigVariable::setForceQuit(false);
+
+    // ignore -e argument if the command is empty
+    if (_pSEI->pstExec && strcmp(_pSEI->pstExec, "") == 0)
+    {
+        _pSEI->pstExec = NULL;
+    }
+
+    // ignore -quit if -e or -f are not given
+    _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
+    ConfigVariable::setForceQuit(_pSEI->iForceQuit);
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -506,7 +516,7 @@ void* scilabReadAndExecCommand(void* param)
 
     ScilabEngineInfo* _pSEI = (ScilabEngineInfo*)param;
 
-    while (ConfigVariable::getForceQuit() == false)
+    do
     {
         if (GetCommand(&command, &iInterruptibleCmd, &iPrioritaryCmd, &iConsoleCmd) == 0)
         {
@@ -543,6 +553,7 @@ void* scilabReadAndExecCommand(void* param)
         processCommand(_pSEI);
         FREE(command);
     }
+    while (ConfigVariable::getForceQuit() == false);
 
     return NULL;
 }
@@ -703,6 +714,12 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
             FileBrowserChDir(cwd);
             FREE(cwd);
         }
+    }
+
+    // -e -quit with parser error, command queue is empty
+    if (_pSEI->iForceQuit && isEmptyCommandQueue())
+    {
+        return 1;
     }
 
     __threadId threadIdConsole;
