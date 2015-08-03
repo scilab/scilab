@@ -11,14 +11,20 @@ New Features
 Xcos
 ====
 
-* Palette browser - zoom feature is now available via CTRL(+), CTRL(-) and CTRL(mousewheel).
-* Palette browser is now able to load SVG icons.
-* Palette browser handles the action of going forward or backward.
-* Palette browser enable users to add blocks to the most recent diagram by using the ENTER key.
-* Palette browser includes a palette of blocks you have used most recently.
-* Palette browser is now able to select multiple blocks by holding down the ctrl key or by dragging the mouse pointer.
+* The palette browser has been improved and now is able to :
+   * zoom using CTRL(+), CTRL(-) and CTRL(mousewheel).
+   * load SVG icons
+   * go forward or backward
+   * add blocks to the most recent diagram by using the ENTER key.
+   * dynamically update the blocks used most recently.
+
+* Bug #10326 fixed - Adds a search engine for the palette browser.
+
+* Bug #12453 fixed - The left panel of the palette browser keeps its size when some category is enabled or disabled.
 
 * Bug #13906 fixed - It is now possible to navigate through the Palette browser with the arrow keys.
+
+* Bug #13942 fixed - Now the palette browser tree is always resized when expanded/collapsed.
 
 
 Compilation
