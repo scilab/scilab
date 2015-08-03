@@ -14,6 +14,7 @@ package org.scilab.modules.xcos.palette.actions;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.lang.reflect.InvocationTargetException;
 
@@ -60,6 +61,7 @@ public class SearchAction extends CommonCallBack {
 
         txtSearch = new JTextField();
         txtSearch.setPreferredSize(new Dimension(150, 22));
+        txtSearch.setFont(new Font("SansSerif", Font.PLAIN, 10));
         searchBar.add(txtSearch);
 
         btnSearch = new JButton();

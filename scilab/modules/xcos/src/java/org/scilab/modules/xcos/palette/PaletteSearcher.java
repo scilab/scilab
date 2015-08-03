@@ -61,10 +61,6 @@ public final class PaletteSearcher {
             TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
 
-            // TODO show results on the search view
-            int numTotalHits = results.totalHits;
-            System.out.println(numTotalHits + " total matching documents");
-
             for (int i = 0; i < hits.length; i++) {
                 Document doc = searcher.doc(hits[i].doc);
                 blockPaths.add(doc.get("treePath") + File.separator + doc.get("blockName"));
