@@ -24,7 +24,7 @@ extern int C2F(ql0001)(int *m, int *me, int *mmax, int *n, int *nmax, int *mnn,
                        int *iprint, double *war, int *lwar, int *iwar, int *liwar,
                        double *eps1);
 /*--------------------------------------------------------------------------*/
-int sci_qld(char *fname, unsigned long fname_len)
+int sci_qld(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     static int un = 1, zero = 0;
@@ -282,7 +282,8 @@ int sci_qld(char *fname, unsigned long fname_len)
 
     if ((*(me) < 0) || (*(me) > n))
     {
-        Err = 7;
+        // FIX ME
+        //        Err = 7;
         SciError(116);
         return 0;
     }

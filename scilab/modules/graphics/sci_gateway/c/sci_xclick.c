@@ -17,6 +17,7 @@
 /* desc : interface for xclick routine                                    */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -33,7 +34,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xclick(char *fname, unsigned long fname_len)
+int sci_xclick(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -161,16 +162,15 @@ int sci_xclick(char *fname, unsigned long fname_len)
 
     if (nbOutputArgument(pvApiCtx) >= 5)
     {
-        char* strRep = NULL;
+        char *strRep  = NULL;
         AssignOutputVariable(pvApiCtx, 5) = nbInputArgument(pvApiCtx) + 5;
         istr = (int)strlen(menuCallback);
 
-        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, (const char**)&strRep))
+        if (allocSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 5, istr * one, &strRep))
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
             return 1;
         }
-
         strncpy(strRep, menuCallback, istr);
     }
 

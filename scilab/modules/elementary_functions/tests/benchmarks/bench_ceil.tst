@@ -11,8 +11,6 @@
 
 // <-- BENCH NB RUN : 10000 -->
 
-stacksize(30000000);
-
 // <-- BENCH START -->
-a = ceil(1000 * rand(700,1,'u'));
+a = ceil(1000 * rand(700,1,"u"));
 // <-- BENCH END -->

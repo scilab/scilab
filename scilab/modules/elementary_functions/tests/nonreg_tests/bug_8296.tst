@@ -45,5 +45,5 @@ assert_checktrue( (n1 == 3) & (n2 == 2) & (n3 == 3));
 assert_checktrue((n1 == 3) & (n2 == 2) & (n3 == 3) & (n4 == 1));
 
 A = ones(3,2);
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: An integer value expected.\n"),"size",2);
+msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Scalar positive integer expected.\n"),"size",2);
 assert_checkerror ( "size(A, 1.2)" , msgerr);

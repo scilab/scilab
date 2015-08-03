@@ -1,20 +1,30 @@
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) 2006 - INRIA - Sylvestre Ledru <sylvestre.ledru@inria.fr>
-# 
+#
 # This file is distributed under the same license as the Scilab package.
 
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_sound.c \
-sci_gateway/c/sci_beep.c \
-sci_gateway/c/sci_PlaySound.c
+GATEWAY_C_SOURCES = \
+    sci_gateway/c/sci_beep.c \
+    sci_gateway/c/sci_PlaySound.c
 
-libscisound_la_CPPFLAGS=  -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			$(AM_CPPFLAGS)
+libscisound_la_CPPFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/string/includes \
+    $(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscisound.la
 
@@ -32,7 +42,7 @@ modulename=sound
 
 #### sound : Conf files ####
 libscisound_la_rootdir = $(mydatadir)
-libscisound_la_root_DATA =  license.txt 
+libscisound_la_root_DATA =  license.txt
 
 
 ####�sound : init scripts ####

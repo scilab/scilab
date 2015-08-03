@@ -33,7 +33,16 @@
             <varlistentry>
                 <term>names</term>
                 <listitem>
-                    <para>2 column string matrix giving the table of pairs 'scilab-name', 'interface name'</para>
+                    <para>2 or 3 columns string matrix giving the table of pairs 'scilab-name', 'interface name', ['language']</para>
+                    <para><literal>language</literal> can be :
+                    <listitem>
+                        <para>csci : C entry point for API Scilab ( default value )</para>
+                        <para>fsci : Fortran entry point for API Scilab</para>
+                        <para>cmex : C mexlib entry point for MexLib</para>
+                        <para>fmex : Fortran mexlib entry point for MexLib</para>
+                        <para>cppsci : C++ entry point for C++ API Scilab</para>
+                    </listitem>
+                    </para>
                 </listitem>
             </varlistentry>
             <varlistentry>

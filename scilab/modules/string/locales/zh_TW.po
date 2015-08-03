@@ -50,12 +50,6 @@ msgid ""
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_code2str.c, line: 49
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Real matrix expected.\n"
-msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
-
-#
 # File: src/c/pcre_error.c, line: 28
 # File: sci_gateway/c/sci_strcat.c, line: 128
 # File: sci_gateway/c/sci_strcat.c, line: 142
@@ -74,9 +68,6 @@ msgstr "%s: 第 %d 個輸入參數型態錯誤: 應為實數矩陣.\n"
 # File: sci_gateway/c/sci_strtod.c, line: 61
 # File: sci_gateway/c/sci_strtod.c, line: 78
 # File: sci_gateway/c/sci_isascii.c, line: 103
-# File: sci_gateway/c/sci_str2code.c, line: 85
-# File: sci_gateway/c/sci_code2str.c, line: 60
-# File: sci_gateway/c/sci_code2str.c, line: 74
 # File: sci_gateway/c/sci_strrev.c, line: 56
 # File: sci_gateway/c/sci_strrchr.c, line: 79
 # File: sci_gateway/c/sci_grep.c, line: 264
@@ -117,7 +108,6 @@ msgstr "%s: 第 %d 個輸入參數數值錯誤: 應為 'u' (Upper) 或 'l' (Lowe
 # File: sci_gateway/c/sci_strcmp.c, line: 127
 # File: sci_gateway/c/sci_strcmp.c, line: 131
 # File: sci_gateway/c/sci_strsplit.c, line: 205
-# File: sci_gateway/c/sci_str2code.c, line: 91
 # File: sci_gateway/c/sci_strrev.c, line: 62
 # File: sci_gateway/c/sci_strrchr.c, line: 94
 # File: sci_gateway/c/sci_strspn.c, line: 83

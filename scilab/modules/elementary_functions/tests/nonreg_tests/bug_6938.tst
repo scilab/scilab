@@ -22,7 +22,7 @@ if or(e <> [1.    2.    2.  -51.]) then pause, end
 
 if execstr("[f, e] = frexp();", "errcatch") <> 77 then pause, end
 if execstr("[f] = frexp(%pi);", "errcatch") <> 78 then pause, end
-if execstr("[f, e] = frexp(""a"");", "errcatch") <> 246 then pause, end
+if execstr("[f, e] = frexp(""a"");", "errcatch") <> 999 then pause, end
 
 if execstr("[f, e] = frexp(%i);", "errcatch") <> 999 then pause, end
 if lasterror() <> msprintf(_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "frexp", 1) then pause, end

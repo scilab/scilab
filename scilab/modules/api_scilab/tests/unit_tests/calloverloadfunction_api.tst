@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/calloverloadfunction_api"));
 cd(pathconvert(TMPDIR+"/calloverloadfunction_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/calloverloadfunction_api.c",pathconvert(TMPDIR+"/calloverloadfunction_api/calloverloadfunction_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("callOverload", ["getSize", "callOverload"], "calloverloadfunction_api.c", [], "", "", cflags);
+ilib_build("gw_callOverload", ["getSize", "callOverload"], "calloverloadfunction_api.c", [], "", "", cflags);
 exec("loader.sce");
 
 function x = %c_getSize(a)

@@ -10,21 +10,21 @@ package org.scilab.modules.graphic_objects;
 
 public class ScilabNativeViewJNI {
 
-    static {
-        try {
-            System.loadLibrary("scigraphic_objects");
-        } catch (UnsatisfiedLinkError e) {
-            System.err.println("Native library failed to load. \n" + e);
-            System.exit(1);
-        }
+  static {
+    try {
+        System.loadLibrary("scigraphic_objects");
+    } catch (UnsatisfiedLinkError e) {
+      System.err.println("Native library failed to load. \n" + e);
+      System.exit(1);
     }
+  }
 
-    public final static native void ScilabNativeView__createObject(int jarg1);
-    public final static native void ScilabNativeView__deleteObject(int jarg1);
-    public final static native void ScilabNativeView__updateObject(int jarg1, int jarg2);
-    public final static native void ScilabNativeView__setCurrentFigure(int jarg1);
-    public final static native void ScilabNativeView__setCurrentSubWin(int jarg1);
-    public final static native void ScilabNativeView__setCurrentObject(int jarg1);
-    public final static native int ScilabNativeView__getValidDefaultFigureId();
-    public final static native int ScilabNativeView__getFigureFromIndex(int jarg1);
+  public final static native void ScilabNativeView__createObject(int jarg1);
+  public final static native void ScilabNativeView__deleteObject(int jarg1);
+  public final static native void ScilabNativeView__updateObject(int jarg1, int jarg2);
+  public final static native void ScilabNativeView__setCurrentFigure(int jarg1);
+  public final static native void ScilabNativeView__setCurrentSubWin(int jarg1);
+  public final static native void ScilabNativeView__setCurrentObject(int jarg1);
+  public final static native int ScilabNativeView__getValidDefaultFigureId();
+  public final static native int ScilabNativeView__getFigureFromIndex(int jarg1);
 }

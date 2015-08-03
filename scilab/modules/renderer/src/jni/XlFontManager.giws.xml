@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.renderer.utils.textRendering">
+        <package name="org.scilab.modules.renderer.utils.textRendering">
     <object name="XlFontManager">
         <method name="getInstalledFontsName" returnType="String[]">
         </method>

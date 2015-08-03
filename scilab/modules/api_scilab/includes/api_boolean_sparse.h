@@ -20,6 +20,8 @@
 extern "C" {
 #endif
 
+#include "dynlib_api_scilab.h"
+
     /*******************************/
     /*   boolean sparse functions  */
     /*******************************/

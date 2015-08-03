@@ -21,5 +21,4 @@ function post_xcos_simulate(%cpr, scs_m, needcompile)
 endfunction
 // simulate
 xcos_simulate(scs_m, 4);
- 
- post_xcos_simulate   
+ post_xcos_simulate

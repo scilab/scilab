@@ -16,13 +16,14 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUicontrolString(void* _pvCtx, int iObjUID)
+void* GetUicontrolString(void* _pvCtx, int iObjUID)
 {
     int iNbColStrings = 0;
     int *piNbColStrings = &iNbColStrings;
     int iNbStrings = 0;
     int *piNbStrings = &iNbStrings;
     char **pstString = NULL;
+    void* ret = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING_SIZE__, jni_int, (void **) &piNbStrings);
     getGraphicObjectProperty(iObjUID, __GO_UI_STRING_COLNB__, jni_int, (void **) &piNbColStrings);
@@ -31,20 +32,23 @@ int GetUicontrolString(void* _pvCtx, int iObjUID)
     {
         if (iNbStrings == 0 || iNbColStrings == 0)
         {
-            return sciReturnEmptyMatrix(_pvCtx);
+            ret = sciReturnEmptyMatrix();
         }
         else if (iNbColStrings == 1)
         {
-            return sciReturnStringMatrix(_pvCtx, pstString, 1, iNbStrings);
+            ret = sciReturnStringMatrix(pstString, 1, iNbStrings);
         }
         else
         {
-            return sciReturnStringMatrix(_pvCtx, pstString, iNbStrings / iNbColStrings, iNbColStrings);
+            ret = sciReturnStringMatrix(pstString, iNbStrings / iNbColStrings, iNbColStrings);
         }
+
+        releaseGraphicObjectProperty(__GO_UI_STRING__, pstString, jni_string_vector, iNbStrings);
+        return ret;
     }
     else
     {
         Scierror(999, const_cast<char*>(_("No '%s' property for this object.\n")), "String");
-        return FALSE;
+        return NULL;
     }
 }

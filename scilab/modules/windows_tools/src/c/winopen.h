@@ -22,7 +22,7 @@
 * @param[in] a filename. SCI is converted
 * @return TRUE or FALSE
 */
-BOOL winopen(char *scilabfilename);
+BOOL winopen(wchar_t *scilabfilename);
 
 #endif /* __WINOPEN_H__ */
 /*--------------------------------------------------------------------------*/

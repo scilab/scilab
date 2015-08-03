@@ -18,6 +18,7 @@
 ;
 #define TIME "time"
 ;
+Source: bin\{#TIME}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TIME}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#TIME}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -39,7 +40,7 @@ Source: modules\{#TIME}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TIME}\m
 Source: modules\{#TIME}\macros\*.bin; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\*.sci; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TIME}\macros\lib; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TIME}\macros\names; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
+;Source: modules\{#TIME}\macros\names; DestDir: {app}\modules\{#TIME}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TIME}\tests\*.*; DestDir: {app}\modules\{#TIME}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

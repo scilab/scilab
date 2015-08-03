@@ -16,7 +16,7 @@
 //   error recovery problem
 
 function toto();x=1;y=x(3)+1;endfunction
-function titi();execstr('toto();disp ok');endfunction
-ierr=exec(titi,'errcatch',-1)		
-		
-if ierr<>21 then pause,end
+function titi();execstr("toto();disp ok");endfunction
+ierr=exec(titi,"errcatch",-1);
+
+if ierr<>999 then pause,end

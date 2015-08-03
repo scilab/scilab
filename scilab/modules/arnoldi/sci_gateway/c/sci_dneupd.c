@@ -25,7 +25,7 @@ extern int C2F(dneupd)(int *rvec, char *howmny, int *select, double *dr,
                        int *ncv, double *v, int *ldv, int *iparam, int *ipntr,
                        double *workd, double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
-int sci_dneupd(char *fname, unsigned long fname_len)
+int sci_dneupd(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -75,7 +75,6 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
-    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int Dr,        mDr,       nDr;
     int Di,        mDi,       nDi;
@@ -83,9 +82,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
     int mSIGMAr,   nSIGMAr;
     int mSIGMAi,   nSIGMAi;
     int mWORKev,   nWORKev;
-    int mBMAT,     nBMAT;
     int mN,        nN;
-    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -557,7 +554,7 @@ int sci_dneupd(char *fname, unsigned long fname_len)
 
     if (pINFO[0] < 0)
     {
-        C2F(errorinfo)("dneupd", (int*)(pINFO), 6L);
+        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
         return 0;
     }
 

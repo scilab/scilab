@@ -86,6 +86,8 @@ C
       double precision tps(2),tms(2),dnrm2,sqrt,phi,gnrm,phi0
       integer dg,dgback,dgr
       external feq, jacl2
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
       common /sortie/ io,info,ll
       common /no2f/ gnrm
 C

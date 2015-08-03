@@ -4,9 +4,8 @@
 /* ========================================================================== */
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <MALLOC.h>
 /* ========================================================================== */
-int sci_bug_11106(char *fname)
+int sci_bug_11106(char *fname, void* pvApiCtx)
 {
     int* piAddr = NULL;
     char pstRet[64];

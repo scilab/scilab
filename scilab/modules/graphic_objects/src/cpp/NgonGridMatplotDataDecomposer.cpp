@@ -460,6 +460,8 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 fillColorsByIndex((double *)data, buffer, elementsSize, nbRow, nbCol, colormap, colormapSize);
                 break;
             }
+            default:
+                break;
         }
     }
     else
@@ -832,6 +834,8 @@ void NgonGridMatplotDataDecomposer::getRGBAData(ImageType imagetype, DataType da
                 }
                 break;
             }
+            default:
+                break;
         }
     }
 }

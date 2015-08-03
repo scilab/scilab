@@ -2,8 +2,7 @@ C/MEMBR ADD NAME=PREPJI,SSI=0
       subroutine prepji (neq, y, yh, nyh, ewt, rtem, savr, s, wm, iwm,
      1   res, jac, adda)
 clll. optimize
-      include 'stack.h'
-      
+
       external res, jac, adda
       integer neq, nyh, iwm
       integer iownd, iowns,
@@ -17,6 +16,7 @@ clll. optimize
       double precision con, fac, hl0, r, srur, yi, yj, yjj
       dimension neq(*), y(*), yh(nyh,*), ewt(*), rtem(*),
      1   s(*), savr(*), wm(*), iwm(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),

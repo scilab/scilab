@@ -6,7 +6,7 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 
-// unit tests for qmr() function 
+// unit tests for qmr() function
 // =============================================================================
 warning('off')
 
@@ -131,7 +131,7 @@ assert_checkalmostequal ( xcomputed , xexpected , %eps);
 // =================================================================================================
 A=[100,1;1,10.];
 b=[101;11];
-[xcomputed, flag, err, iter, res]=qmr(A,b,x0=[0.5;0.5]);
+[xcomputed, flag, err, iter, res]=qmr(A,b, [0.5;0.5]);
 assert_checkequal ( iter , 2 );
 
 // 9. Test the special case where b=0
@@ -292,7 +292,7 @@ assert_checkalmostequal ( xcomputed , xexpected , %eps);
 
 
 // --------------------
-// If A is a function 
+// If A is a function
 // -------------------
 
 // 1. Interface
@@ -458,7 +458,6 @@ function y = func_qmr(x,t)
         y = Amat'*x;
     end
 endfunction
-
 [xcomputed, flag, err, iter, res]=qmr(func_qmr,b,x0,M1,M2,maxit);
 assert_checkalmostequal ( xcomputed , xexpected , %eps);
 
@@ -550,7 +549,7 @@ assert_checkerror("qmr(A, b, x0, functionM1, 1)", refMsg);
 [xcomputed, flag, err, iter, res]=qmr(A,b,x0,functionM1,functionM1t);
 assert_checkalmostequal ( xcomputed , xexpected , %eps);
 
-// Test : A is a matrix, M1 is a function, M2 is a matrix 
+// Test : A is a matrix, M1 is a function, M2 is a matrix
 // ======================================================
 A = [10 1;1 10];
 b = [11;11];

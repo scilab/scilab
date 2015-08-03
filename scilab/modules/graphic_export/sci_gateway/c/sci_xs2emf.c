@@ -15,8 +15,8 @@
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xs2emf( char * fname, unsigned long fname_len )
+int sci_xs2emf( char * fname, void* pvApiCtx)
 {
-    return xs2file( fname, EMF_EXPORT ) ;
+    return xs2file( fname, EMF_EXPORT, pvApiCtx) ;
 }
 /*--------------------------------------------------------------------------*/

@@ -36,9 +36,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -56,7 +54,7 @@
 #include "loadTextRenderingAPI.h"
 #include "sciprint.h"
 
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"

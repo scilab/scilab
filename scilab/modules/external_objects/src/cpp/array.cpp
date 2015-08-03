@@ -62,7 +62,7 @@ int ScilabGateway::array(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.createarray(className, args, Rhs - 1);
     }
-    catch (std::exception & e)
+    catch (std::exception & /*e*/)
     {
         delete[] args;
         freeAllocatedSingleString(className);
@@ -76,7 +76,7 @@ int ScilabGateway::array(char * fname, const int envId, void * pvApiCtx)
     {
         ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & e)
+    catch (ScilabAbstractEnvironmentException & /*e*/)
     {
         env.removeobject(ret);
         throw;

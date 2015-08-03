@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // A keyword was not fully helpable depending on the caret position
 
-scinotes(get_function_path("test_run"), 110);
+scinotes(get_function_path("test_run"), 128);
 
 // Put the caret like these "|test_run" or "tes|t_run" or "test_run|"
 // In the three cases, in the help menu, we should have "Help on test_run"

@@ -25,6 +25,7 @@
 #include "machine.h"
 #include "charEncoding.h"
 #include "mget.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/

@@ -15,9 +15,9 @@
 // <-- Short Description -->
 // The max function does not manage empty matrix.
 assert_checkequal(max([],[],[]), []);
-errmsg = msprintf(_("null matrix (argument # %d).\n"), 1);
+errmsg = msprintf(_("max: null matrix (argument # %d).\n"), 1);
 assert_checkerror("max([],1,1)", errmsg, 45);
-errmsg2 = msprintf(_("null matrix (argument # %d).\n"), 2);
+errmsg2 = msprintf(_("max: null matrix (argument # %d).\n"), 2);
 assert_checkerror("max(1,[],[])", errmsg2, 45);
-errmsg3 = msprintf(_("null matrix (argument # %d).\n"), 3);
+errmsg3 = msprintf(_("max: null matrix (argument # %d).\n"), 3);
 assert_checkerror("max(1,1,[])", errmsg3, 45);

@@ -17,7 +17,7 @@ if L<>[]|U<>[] then pause,end
 [L,U,E]=lu(A);
 if L<>[]|U<>[]|E<>[] then pause,end
 //Non full rank
-A=rand(5,2);A=A*A';;Ac=rand(5,2)+%i*rand(5,2);Ac=Ac*Ac';
+A=rand(5,2);A=A*A';Ac=rand(5,2)+%i*rand(5,2);Ac=Ac*Ac';
 [L,U,E]=lu(A);
 if Err(L*U-E*A) >200*%eps then pause,end
 [L,U,E]=lu(Ac);
@@ -28,7 +28,6 @@ if Err(L*U-E*Ac) >200*%eps then pause,end
 //Square
 A=rand(5,5);Ac=A+%i*rand(A);
 //Real case 
-
 [L,U]=lu(A);
 if Err(L*U-A) >200*%eps then pause,end
 [L,U,E]=lu(A);

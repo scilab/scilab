@@ -19,6 +19,7 @@
 extern "C" {
 #endif
 
+#include "dynlib_api_scilab.h"
     /**
      * Get boolean variable
      * @param[in] _piAddress variable address

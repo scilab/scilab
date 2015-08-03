@@ -15,62 +15,58 @@
 /*--------------------------------------------------------------------------*/
 #include "machine.h"
 #include "dynlib_elementary_functions.h"
+#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 ELEMENTARY_FUNCTIONS_IMPEXP int gw_elementary_functions(void);
 /*--------------------------------------------------------------------------*/
-int sci_abs(char *fname, unsigned long fname_len);
-int sci_real(char *fname, unsigned long fname_len);
-int sci_imag(char *fname, unsigned long fname_len);
-int sci_conj(char *fname, unsigned long fname_len);
-int sci_round(char *fname, unsigned long fname_len);
-int sci_int(char *fname, unsigned long fname_len);
-int sci_size(char *fname, unsigned long fname_len);
-int sci_sum(char *fname, unsigned long fname_len);
-int sci_prod(char *fname, unsigned long fname_len);
-int sci_diag(char *fname, unsigned long fname_len);
-int sci_triu(char *fname, unsigned long fname_len);
-int sci_tril(char *fname, unsigned long fname_len);
-int sci_eye(char *fname, unsigned long fname_len);
-int sci_rand(char *fname, unsigned long fname_len);
-int sci_ones(char *fname, unsigned long fname_len);
-int sci_maxi(char *fname, unsigned long fname_len);
-int sci_kron(char *fname, unsigned long fname_len);
-int sci_scimatrix(char *fname, unsigned long fname_len);
-int sci_sin(char *fname, unsigned long fname_len);
-int sci_cos(char *fname, unsigned long fname_len);
-int sci_atan(char *fname, unsigned long fname_len);
-int sci_exp(char *fname, unsigned long fname_len);
-int sci_sqrt(char *fname, unsigned long fname_len);
-int sci_log(char *fname, unsigned long fname_len);
 int sci_chinesehat(char *fname, unsigned long fname_len);
-int sci_sign(char *fname, unsigned long fname_len);
-int sci_clean(char *fname, unsigned long fname_len);
-int sci_floor(char *fname, unsigned long fname_len);
-int sci_ceil(char *fname, unsigned long fname_len);
-int sci_expm(char *fname, unsigned long fname_len);
-int sci_cumsum(char *fname, unsigned long fname_len);
-int sci_cumprod(char *fname, unsigned long fname_len);
-int sci_testmatrix(char *fname, unsigned long fname_len);
-int sci_isreal(char *fname, unsigned long fname_len);
-int sci_frexp(char *fname, unsigned long fname_len);
-int sci_zeros(char *fname, unsigned long fname_len);
-int sci_tan(char *fname, unsigned long fname_len);
-int sci_log1p(char *fname, unsigned long fname_len);
-int sci_imult(char *fname, unsigned long fname_len);
-int sci_asin(char *fname, unsigned long fname_len);
-int sci_acos(char *fname, unsigned long fname_len);
-int sci_number_properties(char *fname, unsigned long fname_len);
-int sci_nearfloat(char *fname, unsigned long fname_len);
-int sci_dsearch(char *fname, unsigned long fname_len);
-int sci_isequal(char *fname, unsigned long fname_len);
-int sci_spones(char *fname, unsigned long fname_len);
-int sci_gsort(char *fname, unsigned long fname_len);
+//int sci_spones(char *fname, unsigned long fname_len);
 int sci_isequalbitwise(char *fname, unsigned long fname_len);
-int sci_rat(char *fname, unsigned long fname_len);
-int sci_base2dec(char *fname, unsigned long fname_len);
-int sci_dec2base(char *fname, unsigned long fname_len);
-int C2F(sci_find)(char *fname, unsigned long fname_len);
-int sci_log10(char *fname, unsigned long fname_len);
+
+// YaSp
+//C_GATEWAY_PROTOTYPE(sci_abs);
+//C_GATEWAY_PROTOTYPE(sci_acos);
+//C_GATEWAY_PROTOTYPE(sci_asin);
+//C_GATEWAY_PROTOTYPE(sci_atan);
+//C_GATEWAY_PROTOTYPE(sci_ceil);
+//C_GATEWAY_PROTOTYPE(sci_clean);
+//C_GATEWAY_PROTOTYPE(sci_conj);
+//C_GATEWAY_PROTOTYPE(sci_cos);
+//C_GATEWAY_PROTOTYPE(sci_cumprod);
+//C_GATEWAY_PROTOTYPE(sci_cumsum);
+//C_GATEWAY_PROTOTYPE(sci_diag);
+//C_GATEWAY_PROTOTYPE(sci_dsearch);
+//C_GATEWAY_PROTOTYPE(sci_exp);
+//C_GATEWAY_PROTOTYPE(sci_expm);
+//C_GATEWAY_PROTOTYPE(sci_floor);
+//C_GATEWAY_PROTOTYPE(sci_frexp);
+//C_GATEWAY_PROTOTYPE(sci_gsort);
+//C_GATEWAY_PROTOTYPE(sci_imag);
+//C_GATEWAY_PROTOTYPE(sci_imult);
+//C_GATEWAY_PROTOTYPE(sci_int);
+//C_GATEWAY_PROTOTYPE(sci_isreal);
+//C_GATEWAY_PROTOTYPE(sci_kron);
+//C_GATEWAY_PROTOTYPE(sci_log);
+//C_GATEWAY_PROTOTYPE(sci_log1p);
+//C_GATEWAY_PROTOTYPE(sci_scimatrix);
+//C_GATEWAY_PROTOTYPE(sci_maxi);
+//C_GATEWAY_PROTOTYPE(sci_mini);
+C_GATEWAY_PROTOTYPE(sci_nearfloat);
+C_GATEWAY_PROTOTYPE(sci_number_properties);
+//C_GATEWAY_PROTOTYPE(sci_prod);
+//C_GATEWAY_PROTOTYPE(sci_real);
+//C_GATEWAY_PROTOTYPE(sci_round);
+//C_GATEWAY_PROTOTYPE(sci_sign);
+//C_GATEWAY_PROTOTYPE(sci_sin);
+C_GATEWAY_PROTOTYPE(sci_sqrt);
+//C_GATEWAY_PROTOTYPE(sci_tan);
+C_GATEWAY_PROTOTYPE(sci_testmatrix);
+//C_GATEWAY_PROTOTYPE(sci_tril);
+//C_GATEWAY_PROTOTYPE(sci_triu);
+C_GATEWAY_PROTOTYPE(sci_base2dec);
+C_GATEWAY_PROTOTYPE(sci_dec2base);
+C_GATEWAY_PROTOTYPE(sci_log10);
+
 #endif /*  __GW_ELEMENTARIES_FUNCTIONS__ */
 /*--------------------------------------------------------------------------*/
 

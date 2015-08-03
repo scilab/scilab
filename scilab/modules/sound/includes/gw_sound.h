@@ -18,8 +18,8 @@
 /*--------------------------------------------------------------------------*/
 SOUND_IMPEXP int gw_sound(void);
 /*--------------------------------------------------------------------------*/
-SOUND_IMPEXP int sci_beep(char *fname, unsigned long fname_len);
-SOUND_IMPEXP int sci_Playsound(char *fname, unsigned long fname_len);
+SOUND_IMPEXP int sci_beep(char *fname, void* pvApiCtx);
+SOUND_IMPEXP int sci_PlaySound(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SOUND__ */
 /*--------------------------------------------------------------------------*/

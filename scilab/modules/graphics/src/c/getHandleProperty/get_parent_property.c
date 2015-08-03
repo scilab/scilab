@@ -25,14 +25,14 @@
 #include "getHandleProperty.h"
 #include "HandleManagement.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "CurrentObject.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_parent_property(void* _pvCtx, int iObjUID)
+void* get_parent_property(void* _pvCtx, int iObjUID)
 {
     int iParentID = 0;
     int* piParentID = &iParentID;
@@ -42,11 +42,11 @@ int get_parent_property(void* _pvCtx, int iObjUID)
     if (iParentID == 0)
     {
         /* No parent for this object */
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
-        return sciReturnHandle(_pvCtx, getHandle(iParentID));
+        return sciReturnHandle(getHandle(iParentID));
     }
 }
 /*------------------------------------------------------------------------*/

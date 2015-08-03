@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_bar_width_property(void* _pvCtx, int iObjUID)
+void* get_bar_width_property(void* _pvCtx, int iObjUID)
 {
     double dblBarWidth = 0.0;
     double *pdblBarWidth = &dblBarWidth;
@@ -40,9 +40,9 @@ int get_bar_width_property(void* _pvCtx, int iObjUID)
     if (pdblBarWidth == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "bar_width");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, dblBarWidth);
+    return sciReturnDouble(dblBarWidth);
 }
 /*------------------------------------------------------------------------*/

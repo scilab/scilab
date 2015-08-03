@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_size_property(void* _pvCtx, int iObjUID)
+void* get_mark_size_property(void* _pvCtx, int iObjUID)
 {
     int iMarkSize = 0;
     int* piMarkSize = &iMarkSize;
@@ -39,7 +39,7 @@ int get_mark_size_property(void* _pvCtx, int iObjUID)
     int numMarkSizes = 0;
     int * piNumMarkSizes = &numMarkSizes;
 
-    getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_SIZES__, jni_int, &piNumMarkSizes);
+	getGraphicObjectProperty(iObjUID, __GO_NUM_MARK_SIZES__, jni_int, &piNumMarkSizes);
 
     if (numMarkSizes == 0)
     {
@@ -47,14 +47,14 @@ int get_mark_size_property(void* _pvCtx, int iObjUID)
         if (piMarkSize == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size");
-            return -1;
+            return NULL;
         }
-        return sciReturnDouble(_pvCtx, iMarkSize);
+        return sciReturnDouble(iMarkSize);
     }
     else
     {
         getGraphicObjectProperty(iObjUID, __GO_MARK_SIZES__, jni_int_vector, &markSizes);
-        return sciReturnRowVectorFromInt(_pvCtx, markSizes, numMarkSizes);
+        return sciReturnRowVectorFromInt(markSizes, numMarkSizes);
     }
 }
 /*------------------------------------------------------------------------*/

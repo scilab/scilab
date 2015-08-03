@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_mark_foreground_property(void* _pvCtx, int iObjUID)
+void* get_mark_foreground_property(void* _pvCtx, int iObjUID)
 {
     int iMarkForeground = 0;
     int* piMarkForeground = &iMarkForeground;
@@ -49,14 +49,14 @@ int get_mark_foreground_property(void* _pvCtx, int iObjUID)
         if (piMarkForeground == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_foreground");
-            return -1;
+            return NULL;
         }
-        return sciReturnDouble(_pvCtx, iMarkForeground);
+        return sciReturnDouble(iMarkForeground);
     }
     else
     {
         getGraphicObjectProperty(iObjUID, __GO_MARK_FOREGROUNDS__, jni_int_vector, &markForegrounds);
-        return sciReturnRowVectorFromInt(_pvCtx, markForegrounds, numMarkForegrounds);
+        return sciReturnRowVectorFromInt(markForegrounds, numMarkForegrounds);
     }
 }
 /*------------------------------------------------------------------------*/

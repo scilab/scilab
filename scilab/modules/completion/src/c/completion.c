@@ -12,24 +12,23 @@
 #include <string.h>
 #include <stdlib.h>
 #include "completion.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "getvariablesname.h"
 #include "commandwords.h"
-#include "getfunctionslist.h"
-#include "getmacrosdictionary.h"
+#include "getfunctionsname.h"
+#include "getmacrosname.h"
 #include "completion_generic.h"
 #include "getfilesdictionary.h"
 #include "getfieldsdictionary.h"
 #include "getDictionarySetProperties.h"
 #include "getDictionaryGetProperties.h"
 #include "toolsdictionary.h"
-#if _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
+#include "stdio.h"
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned);
+char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned);
 /*--------------------------------------------------------------------------*/
-char **completion(char *somechars, int *sizeArrayReturned)
+char **completion(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
 
@@ -94,17 +93,16 @@ char **completion(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
+char **completionOnFunctions(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = GetFunctionsList(&sizedictionary);
+    dictionary = getFunctionsName(&sizedictionary);
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary, sizedictionary);
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
@@ -115,7 +113,7 @@ char **completionOnFunctions(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
+char **completionOnCommandWords(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -126,7 +124,6 @@ char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
     if (dictionary)
     {
         dictionary = SortDictionary(dictionary, sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
@@ -137,18 +134,16 @@ char **completionOnCommandWords(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnMacros(char *somechars, int *sizeArrayReturned)
+char **completionOnMacros(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
     int sizedictionary = 0;
 
-    dictionary = getmacrosdictionary(&sizedictionary);
+    dictionary = getMacrosName(&sizedictionary);
 
     if (dictionary)
     {
-        dictionary = SortDictionary(dictionary, sizedictionary);
-        dictionary = RemoveDuplicateDictionary(dictionary, &sizedictionary);
         ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
         freePointerDictionary(dictionary, sizedictionary);
     }
@@ -159,21 +154,20 @@ char **completionOnMacros(char *somechars, int *sizeArrayReturned)
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnVariables(char *somechars, int *sizeArrayReturned)
+char **completionOnVariables(const char *somechars, int *sizeArrayReturned)
 {
+    int i = 0;
     char **ListWords = NULL;
     char **dictionary = NULL;
     int sizedictionary = 0;
-
     dictionary = getVariablesName(&sizedictionary, TRUE);
-
     ListWords = completionOnDictionary(dictionary, sizedictionary, somechars, sizeArrayReturned);
     freePointerDictionary(dictionary, sizedictionary);
 
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturned)
+char **completionOnVariablesWithoutMacros(const char *somechars, int *sizeArrayReturned)
 {
     int i = 0;
     int j = 0;
@@ -192,8 +186,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
         char **dictionaryMacros = NULL;
         int sizedictionaryMacros = 0;
 
-        dictionaryMacros = getmacrosdictionary(&sizedictionaryMacros);
-        dictionaryMacros = SortDictionary(dictionaryMacros, sizedictionaryMacros);
+        dictionaryMacros = getMacrosName(&sizedictionaryMacros);
 
         /* Search if we have more than one definition */
         for ( i = 0; i < sizedictionaryVariables; i++)
@@ -220,7 +213,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                     /* do a copy of dictionary of Variables */
                     for ( i = 0; i < sizedictionaryVariables; i++)
                     {
-                        ListWordsTmp[i] = strdup(dictionaryVariables[i]);
+                        ListWordsTmp[i] = os_strdup(dictionaryVariables[i]);
                     }
 
                     for ( i = 0; i < sizedictionaryVariables; i++)
@@ -242,7 +235,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
                         {
                             if (ListWordsTmp[i])
                             {
-                                ListWords[k] = strdup(ListWordsTmp[i]);
+                                ListWords[k] = os_strdup(ListWordsTmp[i]);
                                 if (k <= sizeListWords)
                                 {
                                     k++;
@@ -289,7 +282,7 @@ char **completionOnVariablesWithoutMacros(char *somechars, int *sizeArrayReturne
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnFiles(char *somechars, int *sizeArrayReturned)
+char **completionOnFiles(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -332,7 +325,7 @@ char **completionOnFields(char *lineBeforeCaret, char *pattern, int *sizeArrayRe
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayReturned)
+char **completionOnHandleGraphicsProperties(const char *somechars, int *sizeArrayReturned)
 {
     char **ListWords = NULL;
     char **dictionary = NULL;
@@ -380,7 +373,7 @@ char **completionOnHandleGraphicsProperties(char *somechars, int *sizeArrayRetur
     return ListWords;
 }
 /*--------------------------------------------------------------------------*/
-char **completionOnDictionary(char **dictionary, int sizedictionary, char *somechars, int *sizearrayreturned)
+char **completionOnDictionary(char **dictionary, int sizedictionary, const char *somechars, int *sizearrayreturned)
 {
     char **ListWords = NULL;
 

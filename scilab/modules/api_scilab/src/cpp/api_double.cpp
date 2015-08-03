@@ -13,16 +13,28 @@
 * still available and supported in Scilab 6.
 */
 
-#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+#include "gatewaystruct.hxx"
+#include "double.hxx"
+#include "context.hxx"
+
+extern "C"
+{
+#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_double.h"
 #include "localization.h"
+#include "elem_common.h"
+#include "sci_tools.h"
+    extern int C2F(entier)(int *n, double *d__, int *s);
+    extern int C2F(icopy)(int *, int *, int *, int *, int *);
+}
 
-#include "call_scilab.h"
+using namespace types;
 
-extern int C2F(entier)(int *n, double *d__, int *s);
-extern int C2F(icopy)(int *, int *, int *, int *, int *);
 /*******************************/
 /*   double matrix functions   */
 /*******************************/
@@ -31,8 +43,8 @@ static int getCommonScalarDouble(void* _pvCtx, int* _piAddress, int _iComplex, d
 static int createCommonScalarDouble(void* _pvCtx, int _iVar, int _iComplex, double _dblReal, double _dblImg);
 static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double _dblReal, double _dblImg);
 static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _iComplex, double* _pdblReal, double* _pdblImg);
-
-
+static int createCommonMatrixDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int* _piReal, int* _piImg);
+static int createCommonScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iReal, int _iImg);
 
 SciErr getMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, double** _pdblReal)
 {
@@ -48,18 +60,17 @@ SciErr getComplexZMatrixOfDouble(void* _pvCtx, int* _piAddress, int* _piRows, in
 {
     int iSize = 0;
     double *pdblReal = NULL;
-    double *pdblImg	 = NULL;
 
-    SciErr sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 'z', isVarComplex(_pvCtx, _piAddress), _piRows, _piCols, &pdblReal, &pdblImg);
+    SciErr sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 'z', 0, _piRows, _piCols, &pdblReal, NULL);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_GET_ZDOUBLE, _("%s: Unable to get argument #%d"), "getComplexZMatrixOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
         return sciErr;
     }
 
-    iSize = *_piRows **_piCols;
-    SciToF77(pdblReal, iSize, iSize);
-    *_pdblZ	= (doublecomplex*)pdblReal;
+    Double* pDbl = (Double*)_piAddress;
+    pDbl->convertToZComplex();
+    *_pdblZ	= (doublecomplex*)(pDbl->get());
     return sciErr;
 }
 
@@ -78,6 +89,10 @@ SciErr getMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _piRows, i
 
     //Warning we overwrite double by int !!!!
     C2F(entier)(&iSize, pdblReal, *_piReal);
+
+    Double* pD = (Double*)_piAddress;
+    pD->setViewAsInteger();
+
     return sciErr;
 }
 
@@ -85,20 +100,20 @@ SciErr getComplexMatrixOfDoubleAsInteger(void* _pvCtx, int* _piAddress, int* _pi
 {
     double* pdblReal = NULL;
     double* pdblImg  = NULL;
-    int iSize = 0;
+
     SciErr sciErr = getCommonMatrixOfDouble(_pvCtx, _piAddress, 'i', 1, _piRows, _piCols, &pdblReal, &pdblImg);
     if (sciErr.iErr)
     {
         return sciErr;
     }
 
-    iSize = *_piRows **_piCols;
-    *_piReal = (int*)pdblReal;
-    *_piImg = (int*)pdblImg;
+    Double* pD = (Double*)_piAddress;
+    //convert values and view of data to int and int*
+    pD->convertToInteger();
 
-    //Warning we overwrite double by int !!!!
-    C2F(entier)(&iSize, pdblReal, *_piReal);
-    C2F(entier)(&iSize, pdblImg, *_piImg);
+    *_piReal = (int*)pD->get();
+    *_piImg = (int*)pD->getImg();
+
     return sciErr;
 }
 
@@ -106,7 +121,6 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, char _cType, int _
 {
     SciErr sciErr = sciErrInit();
     int iType = 0;
-
     if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "getComplexMatrixOfDouble" : "getMatrixOfDouble");
@@ -129,40 +143,12 @@ SciErr getCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, char _cType, int _
 
     if (_pdblReal != NULL)
     {
-        *_pdblReal	= (double*)(_piAddress + 4);
-    }
-    if (isVarComplex(_pvCtx, _piAddress) && _pdblImg != NULL)
-    {
-        *_pdblImg	= (double*)(_piAddress + 4) + *_piRows **_piCols;
+        *_pdblReal = ((InternalType*)_piAddress)->getAs<Double>()->getReal();
     }
 
-    if (_cType == 'i')
+    if (_iComplex && _pdblImg != NULL)
     {
-        /*update to set view as integer*/
-        int iRhs = getRhsFromAddress(_pvCtx, _piAddress);
-        int iNewPos = Top - Rhs + iRhs;
-        int iAddr = *Lstk(iNewPos);
-        int iSCIAddress = sadr(iadr(iAddr) + 4);
-        iSCIAddress = iadr(iSCIAddress);
-        updateInterSCI(iRhs, _cType, iAddr, iSCIAddress);
-    }
-    else if (_cType == 'z')
-    {
-        int iRhs = getRhsFromAddress(_pvCtx, _piAddress);
-        int iNewPos = Top - Rhs + iRhs;
-        int iAddr = *Lstk(iNewPos);
-        int iSCIAddress = sadr(iadr(iAddr) + 4);
-
-        //printf("iRhs : %d\n", iRhs);
-        //printf("intersci_.ntypes : %c\n", intersci_.ntypes[iRhs - 1]);
-        //printf("intersci_.iwhere : %d\n", intersci_.iwhere[iRhs - 1]);
-        //printf("intersci_.lad : %d\n-----------------------\n", intersci_.lad[iRhs - 1]);
-
-        updateInterSCI(iRhs, _cType, iAddr, iSCIAddress);
-
-        //printf("intersci_.ntypes : %c\n", intersci_.ntypes[iRhs - 1]);
-        //printf("intersci_.iwhere : %d\n", intersci_.iwhere[iRhs - 1]);
-        //printf("intersci_.lad : %d\n\n", intersci_.lad[iRhs - 1]);
+        *_pdblImg = ((InternalType*)_piAddress)->getAs<Double>()->getImg();
     }
 
     return sciErr;
@@ -236,70 +222,81 @@ SciErr allocComplexMatrixOfDoubleAsInteger(void* _pvCtx, int _iVar, int _iRows, 
 SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
 {
     SciErr sciErr = sciErrInit();
-    int iNewPos = Top - Rhs + _iVar;
-    int iAddr = *Lstk(iNewPos);
-    int* piAddr = NULL;
 
-    int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-    if (iMemSize > iFreeSpace)
+    if (_pvCtx == NULL)
     {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble");
         return sciErr;
     }
 
-    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-    fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, _pdblReal, _pdblImg);
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    typed_list in = *pStr->m_pIn;
+    InternalType** out = pStr->m_pOut;
 
-    int iSCIAddress = sadr(iadr(iAddr) + 4);
-    if (_cType == 'i')
+    Double* pDbl = NULL;
+    try
     {
-        iSCIAddress = iadr(iSCIAddress);
+        if (_cType == 'z')
+        {
+            pDbl = new Double(_iRows, _iCols, _iComplex == 1, true);
+        }
+        else
+        {
+            pDbl = new Double(_iRows, _iCols, _iComplex == 1);
+            if (_cType == 'i')
+            {
+                pDbl->setViewAsInteger();
+            }
+        }
+    }
+    catch (const ast::ScilabError& se)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble", se.GetErrorMessage().c_str());
+        return sciErr;
     }
 
-    updateInterSCI(_iVar, _cType, iAddr, iSCIAddress);
-    updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols * (_iComplex + 1));
+    if (pDbl == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble");
+        return sciErr;
+    }
+
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+    out[rhs - 1] = pDbl;
+    *_pdblReal = pDbl->getReal();
+    if (*_pdblReal == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocexMatrixOfDouble");
+        return sciErr;
+    }
+
+    if (_iComplex && _pdblImg != NULL)
+    {
+        *_pdblImg	= pDbl->getImg();
+        if (*_pdblImg == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), _iComplex ? "allocComplexMatrixOfDouble" : "allocMatrixOfDouble");
+            return sciErr;
+        }
+    }
+
     return sciErr;
 }
 
 SciErr allocComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const doublecomplex** _pdblData)
 {
-    double* pdblReal = NULL;
-    double* pdblImg = NULL;
+    SciErr sciErr = sciErrInit();
+    double *pdblReal	= NULL;
+    double *pdblImg		= NULL;
 
-    SciErr sciErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+    sciErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 'z', 1, _iRows, _iCols, &pdblReal, NULL);
     if (sciErr.iErr)
     {
+        addErrorMessage(&sciErr, API_ERROR_ALLOC_COMPLEX_DOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
         return sciErr;
     }
 
-    //warning convert double* to doublecomplex*
     *_pdblData = (doublecomplex*)pdblReal;
-
-    //strore storage information to putlhsvar
-    intersci_.ntypes[_iVar - 1] = 'z';
-    return sciErr;
-}
-
-SciErr fillCommonMatrixOfDouble(void* _pvCtx, int* _piAddress, int _iComplex, int _iRows, int _iCols, double** _pdblReal, double** _pdblImg)
-{
-    SciErr sciErr = sciErrInit();
-    _piAddress[0]		= sci_matrix;
-    _piAddress[1]		= Min(_iRows, _iRows * _iCols);
-    _piAddress[2]		= Min(_iCols, _iRows * _iCols);
-    _piAddress[3]		= _iComplex;
-
-
-    if (_pdblReal != NULL)
-    {
-        *_pdblReal		= (double*)(_piAddress + 4);
-
-        if (_iComplex != 0 && _pdblImg != NULL)
-        {
-            *_pdblImg	= *_pdblReal + _iRows * _iCols;
-        }
-    }
-
     return sciErr;
 }
 
@@ -381,18 +378,17 @@ SciErr createComplexMatrixOfDoubleAsInteger(void* _pvCtx, int _iVar, int _iRows,
 
 SciErr createComplexZMatrixOfDouble(void* _pvCtx, int _iVar, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
-    double *pdblReal		= NULL;
-    double *pdblImg			= NULL;
+    SciErr sciErr = sciErrInit();
+    const doublecomplex *pdblZ = NULL;
 
-
-    SciErr sciErr = allocComplexMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblReal, &pdblImg);
+    sciErr = allocComplexZMatrixOfDouble(_pvCtx, _iVar, _iRows, _iCols, &pdblZ);
     if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_ZDOUBLE, _("%s: Unable to create variable in Scilab memory"), "allocComplexMatrixOfDouble");
         return sciErr;
     }
 
-    vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
+    memcpy((void*)pdblZ, _pdblData, _iRows * _iCols * sizeof(doublecomplex));
     return sciErr;
 }
 
@@ -409,13 +405,10 @@ SciErr createNamedComplexMatrixOfDouble(void* _pvCtx, const char* _pstName, int 
 SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const doublecomplex* _pdblData)
 {
     SciErr sciErr = sciErrInit();
-    int iVarID[nsiz];
-    int iSaveRhs = Rhs;
-    int iSaveTop = Top;
-    int iSize = _iRows * _iCols;
-    int *piAddr = NULL;
-    double *pdblReal = NULL;
-    double *pdblImg = NULL;
+
+    int iOne					= 1;
+    int iTwo					= 2;
+    int iSize					= _iRows * _iCols;
 
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
@@ -423,25 +416,26 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
         return sciErr;
     }
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+    Double* pDbl = new Double(_iRows, _iCols, true);
 
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    double* pdblReal = pDbl->get();
+    double* pdblImg = pDbl->getImg();
+    C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->r), &iTwo, pdblReal, &iOne);
+    C2F(dcopy)(&iSize, const_cast<double*>(&_pdblData->i), &iOne, pdblImg, &iOne);
 
-    //write matrix information
-    fillCommonMatrixOfDouble(_pvCtx, piAddr, 1, _iRows, _iCols, &pdblReal, &pdblImg);
-
-    vGetPointerFromDoubleComplex(_pdblData, _iRows * _iCols, pdblReal, pdblImg);
-
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (2) * 2);
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
+    wchar_t* pwstName = to_wide_string(_pstName);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
+    FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pDbl);
+    }
+    else
+    {
+        delete pDbl;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
 
     return sciErr;
 }
@@ -449,54 +443,39 @@ SciErr createNamedComplexZMatrixOfDouble(void* _pvCtx, const char* _pstName, int
 SciErr createCommonNamedMatrixOfDouble(void* _pvCtx, const char* _pstName, int _iComplex, int _iRows, int _iCols, const double* _pdblReal, const double* _pdblImg)
 {
     SciErr sciErr = sciErrInit();
-    int iVarID[nsiz];
-    int iSaveRhs = Rhs;
-    int iSaveTop = Top;
-    int iSize = _iRows * _iCols;
-    int *piAddr = NULL;
-    double *pdblReal = NULL;
-    double *pdblImg = NULL;
-    int iOne = 1;
-
     if (!checkNamedVarFormat(_pvCtx, _pstName))
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createCommonNamedMatrixOfDouble", _pstName);
         return sciErr;
     }
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+    wchar_t* pwstName           = to_wide_string(_pstName);
+    int iOne					= 1;
+    int iSize					= _iRows * _iCols;
 
-    int iMemSize = _iRows * _iCols * (_iComplex + 1) + 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
+    Double* pDbl = new Double(_iRows, _iCols, _iComplex == 1);
 
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-
-    //write matrix information
-    fillCommonMatrixOfDouble(_pvCtx, piAddr, _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
-    //copy data in stack
+    double* pdblReal = pDbl->get();
     C2F(dcopy)(&iSize, const_cast<double*>(_pdblReal), &iOne, pdblReal, &iOne);
 
     if (_iComplex)
     {
+        double* pdblImg = pDbl->getImg();
         C2F(dcopy)(&iSize, const_cast<double*>(_pdblImg), &iOne, pdblImg, &iOne);
     }
 
-    //update "variable index"
-    updateLstk(Top, *Lstk(Top) + sadr(4), iSize * (_iComplex + 1) * 2);
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
-
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
+    FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
+    {
+        ctx->put(sym, pDbl);
+    }
+    else
+    {
+        delete pDbl;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
+    }
     return sciErr;
 }
 
@@ -659,7 +638,7 @@ static int getCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int _i
 /*--------------------------------------------------------------------------*/
 int createScalarDouble(void* _pvCtx, int _iVar, double _dblReal)
 {
-    return createCommonScalarDouble(_pvCtx, _iVar, 0, _dblReal, NULL);
+    return createCommonScalarDouble(_pvCtx, _iVar, 0, _dblReal, 0);
 }
 /*--------------------------------------------------------------------------*/
 int createScalarComplexDouble(void* _pvCtx, int _iVar, double _dblReal, double _dblImg)
@@ -711,3 +690,72 @@ static int createCommonNamedScalarDouble(void* _pvCtx, const char* _pstName, int
     return 0;
 }
 /*--------------------------------------------------------------------------*/
+int createScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal)
+{
+    return createCommonScalarDoubleFromInteger(_pvCtx, _iVar, 0, _iReal, 0);
+}
+/*--------------------------------------------------------------------------*/
+int createScalarComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iReal, int _iImg)
+{
+    return createCommonScalarDoubleFromInteger(_pvCtx, _iVar, 1, _iReal, _iImg);
+}
+/*--------------------------------------------------------------------------*/
+static int createCommonScalarDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iReal, int _iImg)
+{
+    SciErr sciErr;
+    double* pdblReal = NULL;
+    double* pdblImg     = NULL;
+
+
+    sciErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 'i', _iComplex, 1, 1, &pdblReal, &pdblImg);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_SCALAR_FROM_INTEGER, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createScalarComplexDoubleFromInteger" : "createScalarDoubleFromInteger");
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
+
+    pdblReal[0] = (double)_iReal;
+
+    if (_iComplex)
+    {
+        pdblImg[0] = (double)_iImg;
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+int createMatrixOfDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal)
+{
+    return createCommonMatrixDoubleFromInteger(_pvCtx, _iVar, 0, _iRows, _iCols, _piReal, NULL);
+}
+/*--------------------------------------------------------------------------*/
+int createMatrixOfComplexDoubleFromInteger(void* _pvCtx, int _iVar, int _iRows, int _iCols, int* _piReal, int* _piImg)
+{
+    return createCommonMatrixDoubleFromInteger(_pvCtx, _iVar, 1, _iRows, _iCols, _piReal, _piImg);
+}
+/*--------------------------------------------------------------------------*/
+static int createCommonMatrixDoubleFromInteger(void* _pvCtx, int _iVar, int _iComplex, int _iRows, int _iCols, int* _piReal, int* _piImg)
+{
+    SciErr sciErr;
+    double* pdblReal = NULL;
+    double* pdblImg     = NULL;
+
+
+    sciErr = allocCommonMatrixOfDouble(_pvCtx, _iVar, 'i', _iComplex, _iRows, _iCols, &pdblReal, &pdblImg);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_CREATE_MATRIX_FROM_INTEGER, _("%s: Unable to create variable in Scilab memory"), _iComplex ? "createMatrixOfComplexDoubleFromInteger" : "createMatrixOfDoubleFromInteger");
+        printError(&sciErr, 0);
+        return sciErr.iErr;
+    }
+
+    memcpy(pdblReal, _piReal, _iRows * _iCols * sizeof(int));
+
+    if (_iComplex)
+    {
+        memcpy(pdblImg, _piImg, _iRows * _iCols * sizeof(int));
+    }
+    return 0;
+}
+/*--------------------------------------------------------------------------*/
+

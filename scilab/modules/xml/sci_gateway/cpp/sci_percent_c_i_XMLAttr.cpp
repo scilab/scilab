@@ -31,7 +31,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_c_i_XMLAttr(char *fname, unsigned long fname_len)
+int sci_percent_c_i_XMLAttr(char *fname, void* pvApiCtx)
 {
     XMLAttr *a;
     int lhsid;

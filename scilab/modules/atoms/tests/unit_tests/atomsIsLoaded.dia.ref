@@ -15,41 +15,37 @@ atomsSetConfig("autoloadAddAfterInstall","False");
 atomsSetConfig("Verbose" ,"False");
 //force official ATOMS repository
 atomsRepositorySetOfl(mgetl(SCI+"/modules/atoms/tests/unit_tests/repositories.orig"));
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
+Scanning repository http://atoms.scilab.org/6.0 ... Done
 // Install toolbox N°2
-atomsInstall(["toolbox_2","2.1"],"user");
+atomsInstall(["toolbox_2V6","2.1"],"user");
 // Check installation
-if ~ atomsIsInstalled(["toolbox_1","2.0","user"]) then bugmes();quit;end
-if ~ atomsIsInstalled(["toolbox_2","2.1","user"]) then bugmes();quit;end
-atomsLoad(["toolbox_2","2.1","user"]);
-
+if ~ atomsIsInstalled(["toolbox_1V6","2.0","user"]) then bugmes();quit;end
+if ~ atomsIsInstalled(["toolbox_2V6","2.1","user"]) then bugmes();quit;end
+atomsLoad(["toolbox_2V6","2.1","user"]);
 Start Toolbox 1
 	Load macros
-
 Start Toolbox 2
 	Load macros
-
-if ~ atomsIsLoaded("toolbox_2")                  then bugmes();quit;end
-if ~ atomsIsLoaded(["toolbox_2","2.1"])          then bugmes();quit;end
-if ~ atomsIsLoaded(["toolbox_2","2.1","user"])   then bugmes();quit;end
-if ~ atomsIsLoaded("toolbox_1")                  then bugmes();quit;end
-if ~ atomsIsLoaded(["toolbox_1","2.0"])          then bugmes();quit;end
-if ~ atomsIsLoaded(["toolbox_1","2.0","user"])   then bugmes();quit;end
-if atomsIsLoaded(["toolbox_1","2.0","allusers"]) then bugmes();quit;end
-if atomsIsLoaded(["toolbox_2","2.1","allusers"]) then bugmes();quit;end
-A = [ "toolbox_1" "2.0" "user"     ; ..
-"toolbox_2" "2.1" "user"     ; ..
-"toolbox_2" ""    "user"     ; ..
-"toolbox_2" "2.1" ""         ; ..
-"toolbox_2" ""    ""         ; ..
-"toolbox_2" "2.1" "allusers" ];
+if ~ atomsIsLoaded("toolbox_2V6")                  then bugmes();quit;end
+if ~ atomsIsLoaded(["toolbox_2V6","2.1"])          then bugmes();quit;end
+if ~ atomsIsLoaded(["toolbox_2V6","2.1","user"])   then bugmes();quit;end
+if ~ atomsIsLoaded("toolbox_1V6")                  then bugmes();quit;end
+if ~ atomsIsLoaded(["toolbox_1V6","2.0"])          then bugmes();quit;end
+if ~ atomsIsLoaded(["toolbox_1V6","2.0","user"])   then bugmes();quit;end
+if atomsIsLoaded(["toolbox_1V6","2.0","allusers"]) then bugmes();quit;end
+if atomsIsLoaded(["toolbox_2V6","2.1","allusers"]) then bugmes();quit;end
+A = [ "toolbox_1V6" "2.0" "user"     ; ..
+"toolbox_2V6" "2.1" "user"     ; ..
+"toolbox_2V6" ""    "user"     ; ..
+"toolbox_2V6" "2.1" ""         ; ..
+"toolbox_2V6" ""    ""         ; ..
+"toolbox_2V6" "2.1" "allusers" ];
 if or(atomsIsLoaded(A) <> [%T ; %T ; %T ; %T ; %T ; %F]) then bugmes();quit;end
 // Remove toolbox_2
 // =============================================================================
-atomsRemove("toolbox_2","user");
-	the package toolbox_2 (2.1-2) is currently loaded, It will be removed at next Scilab start
-	the package toolbox_1 (2.0-2) is currently loaded, It will be removed at next Scilab start
+atomsRemove("toolbox_2V6","user");
+	the package toolbox_2V6 (2.1-1) is currently loaded, It will be removed at next Scilab start
+	the package toolbox_1V6 (2.0-1) is currently loaded, It will be removed at next Scilab start
 // Restore original values
 // =============================================================================
 atomsRestoreConfig(%T);

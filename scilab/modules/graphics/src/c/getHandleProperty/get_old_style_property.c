@@ -23,19 +23,19 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*------------------------------------------------------------------------*/
 
-int get_old_style_property(void* _pvCtx, int iObjUID)
+void* get_old_style_property(void* _pvCtx, int iObjUID)
 {
     if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "old_style");
-        return -1;
+        return NULL;
     }
 
     /* no more old style */
-    return sciReturnString(_pvCtx, "off");
+    return sciReturnString("off");
 }
 /*------------------------------------------------------------------------*/

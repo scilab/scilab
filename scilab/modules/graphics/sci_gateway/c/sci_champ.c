@@ -16,7 +16,7 @@
 /* file: sci_champ.c                                                      */
 /* desc : interface for champ (and champ1) routine                        */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -26,19 +26,19 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_champ (char *fname, unsigned long fname_len)
+int sci_champ (char *fname, void *pvApiCtx)
 {
-    return sci_champ_G(fname, C2F(champ), fname_len);
+    return sci_champ_G(fname, C2F(champ), pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
-int sci_champ1 (char *fname, unsigned long fname_len)
+int sci_champ1 (char *fname, void *pvApiCtx)
 {
-    return sci_champ_G(fname, C2F(champ1), fname_len);
+    return sci_champ_G(fname, C2F(champ1), pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/
 int sci_champ_G(char *fname,
                 int (*func) (double *, double *, double *, double *, int *, int *, char *, double *, double *, int),
-                unsigned long fname_len)
+                void *pvApiCtx)
 {
     SciErr sciErr;
     double arfact_def = 1.0;
@@ -71,7 +71,7 @@ int sci_champ_G(char *fname,
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
     else if (nbInputArgument(pvApiCtx) < 4)
@@ -85,7 +85,7 @@ int sci_champ_G(char *fname,
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;

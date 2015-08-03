@@ -549,7 +549,7 @@ p.mark_background = addcolor([0.5 0.5 0])
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revremark>
                     Function <function>scatter3</function> introduced.
                 </revremark>

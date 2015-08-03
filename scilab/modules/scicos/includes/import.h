@@ -52,9 +52,9 @@ typedef struct
     int* mod;         /* modes of the blocks */
     int *nmod;        /* length of mod register */
     int* modptr;      /* vector of pointers */
-    int* iz;          /* vectors of labels */
+    char** iz;          /* vectors of labels */
     int* izptr;       /* vector of pointers on block labels */
-    int* uid;         /* vectors of uids */
+    char** uid;         /* vectors of uids */
     int* uidptr;      /* vector of pointers on block uids */
     int* inpptr;      /* vector of pointers on block inputs */
     int* inplnk;      /* vector of pointers on input link */
@@ -120,6 +120,6 @@ SCICOS_IMPEXP void C2F(getouttb)(int *nsize, int *nvec, double *outtc);
 
 SCICOS_IMPEXP void C2F(getlabel)(int *kfun, char *label, int *n);
 
-SCICOS_IMPEXP int C2F(getscilabel)(int *kfun, int label[], int *n);
+SCICOS_IMPEXP int getscilabel(int *kfun, char *label, int *n);
 
 #endif /* __IMPORT_H__ */

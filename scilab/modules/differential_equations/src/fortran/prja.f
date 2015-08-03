@@ -2,9 +2,7 @@ C/MEMBR ADD NAME=PRJA,SSI=0
       subroutine prja (neq, y, yh, nyh, ewt, ftem, savf, wm, iwm,
      1   f, jac)
 clll. optimize
-      
-      include 'stack.h'
-      
+
       external f, jac
       integer neq, nyh, iwm
       integer iownd, iowns,
@@ -21,11 +19,13 @@ clll. optimize
      1   vmnorm, fnorm, bnorm
       dimension neq(*), y(*), yh(nyh,*), ewt(*), ftem(*), savf(*),
      1   wm(*), iwm(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ rownd2, rowns2(20), pdnorm,
      1   iownd2(3), iowns2(2), jtyp, mused, mxordn, mxords
 c-----------------------------------------------------------------------

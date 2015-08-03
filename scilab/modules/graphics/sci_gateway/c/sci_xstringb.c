@@ -16,7 +16,7 @@
 /* file: sci_xstringb.c                                                   */
 /* desc : interface for xstringb routine                                  */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -24,7 +24,7 @@
 #include "freeArrayOfString.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_xstringb(char *fname, unsigned long fname_len)
+int sci_xstringb(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -52,7 +52,7 @@ int sci_xstringb(char *fname, unsigned long fname_len)
     if ( nbInputArgument(pvApiCtx) <= 0 )
     {
         /* demo */
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0 ;
     }
 

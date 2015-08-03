@@ -78,15 +78,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>-mem N</term>
-                <listitem>
-                    <para>Ajusta o tamanho de pilha inicial, para uso com a opção -ns.
-                        Sem a opção -ns, a pilha inicial é ajustada pelo script
-                        scilab.start.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>-nb</term>
                 <listitem>
                     <para>Se esta opção está presente, então o cartão de boas-vindas não

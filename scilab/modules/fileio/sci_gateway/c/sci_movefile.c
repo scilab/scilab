@@ -13,11 +13,12 @@
 
 #ifndef _MSC_VER
 #include <errno.h>
+#include <string.h>
 #else
 #include <windows.h>
 #endif
 #include "gw_fileio.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -30,9 +31,9 @@
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename);
-static int returnMoveFileResultOnStack(int ierr, char *fname);
+static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_movefile(char *fname, unsigned long fname_len)
+int sci_movefile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -162,7 +163,7 @@ int sci_movefile(char *fname, unsigned long fname_len)
             return 0;
         }
 
-        returnMoveFileResultOnStack(ierrMove, fname);
+        returnMoveFileResultOnStack(ierrMove, fname, pvApiCtx);
     }
     else
     {
@@ -212,7 +213,7 @@ static wchar_t *getFilenameWithExtensionForMove(wchar_t * wcFullFilename)
     return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static int returnMoveFileResultOnStack(int ierr, char *fname)
+static int returnMoveFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
 {
     double dError = 0.;
     wchar_t *sciError = NULL;

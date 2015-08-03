@@ -7,23 +7,22 @@
 
 // <-- TEST WITH GRAPHIC -->
 
-// Example #1 : a small linear test system 
+// Example #1 : a small linear test system
 A = sparse( [ 2 -1  0  0  0;
-             -1  2 -1  0  0; 
-              0 -1  2 -1  0; 
-              0  0 -1  2 -1; 
-              0  0  0 -1  2] );
+-1  2 -1  0  0;
+0 -1  2 -1  0;
+0  0 -1  2 -1;
+0  0  0 -1  2] );
 Cp = taucs_chfact(A);
 [Ct, p] = taucs_chget(Cp);
 full(A(p,p) - Ct'*Ct);  // this must be near the null matrix
 taucs_chdel(Cp);
 
 // Example #2 a real example
-stacksize(3000000);  // the last PlotSparse need memory
 // first load a sparse matrix
 [A] = ReadHBSparse(SCI+"/modules/umfpack/examples/bcsstk24.rsa");
 // compute the factorization
-Cptr = taucs_chfact(A); 
+Cptr = taucs_chfact(A);
 // retrieve the factor at scilab level
 [Ct, p] = taucs_chget(Cptr);
 // plot the initial matrix

@@ -14,6 +14,11 @@
 #include <windows.h>
 #include "machine.h"
 /*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
 /* COMMON used by fortran */

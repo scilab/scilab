@@ -35,7 +35,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-int get_labels_font_style_property(void* _pvCtx, int iObjUID)
+void* get_labels_font_style_property(void* _pvCtx, int iObjUID)
 {
     int iFontStyle = 0;
     int* piFontStyle = &iFontStyle;
@@ -45,9 +45,9 @@ int get_labels_font_style_property(void* _pvCtx, int iObjUID)
     if (piFontStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "labels_font_style");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnDouble(_pvCtx, iFontStyle);
+    return sciReturnDouble(iFontStyle);
 }
 /*------------------------------------------------------------------------*/

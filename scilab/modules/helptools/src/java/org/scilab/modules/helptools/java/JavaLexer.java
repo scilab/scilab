@@ -1052,8 +1052,7 @@ public final class JavaLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 18 :
-                {
+                case 18 : {
                     handler.handleComment("*");
                     handler.handleNothing("\n");
                     saveLexState = COMMENT;

@@ -14,22 +14,18 @@
 #define __GW_MPI__
 
 #include "dynlib_mpi.h"
+#include "c_gateway_prototype.h"
 
-MPI_IMPEXP int gw_mpi(void);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_init);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_finalize);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_comm_size);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_comm_rank);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_recv);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_send);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_get_processor_name);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_bcast);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_irecv);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_isend);
+MPI_IMPEXP C_GATEWAY_PROTOTYPE (sci_mpi_wait);
 
-typedef int (*MPI_Interf) (char *fname, unsigned long l);
-/*--------------------------------------------------------------------------*/
-/* interface for the previous function Table */
-/*--------------------------------------------------------------------------*/
-int sci_mpi_init(char *fname, unsigned long fname_len);
-int sci_mpi_finalize(char *fname, unsigned long fname_len);
-int sci_mpi_comm_size(char *fname, unsigned long fname_len);
-int sci_mpi_comm_rank(char *fname, unsigned long fname_len);
-int sci_mpi_recv(char *fname, unsigned long fname_len);
-int sci_mpi_send(char *fname, unsigned long fname_len);
-int sci_mpi_get_processor_name(char *fname, unsigned long fname_len);
-int sci_mpi_bcast(char *fname, unsigned long fname_len);
-int sci_mpi_irecv(char *fname, unsigned long fname_len);
-int sci_mpi_isend(char *fname, unsigned long fname_len);
-int sci_mpi_wait(char *fname, unsigned long fname_len);
 #endif /*  __GW_MPI__ */

@@ -24,3 +24,4 @@ deff("foo()","a=4")
 funcprot(2);
 if funcprot() <> 2 then pause,end
 if execstr("deff(""foo()"",""a=5"");","errcatch") == 0 then pause,end
+if execstr("deff(""foo()"",""a=4"");","errcatch") <> 0 then pause,end

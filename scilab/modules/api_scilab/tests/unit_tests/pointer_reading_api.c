@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int read_pointer(char *fname, unsigned long fname_len)
+int read_pointer(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -26,7 +26,7 @@ int read_pointer(char *fname, unsigned long fname_len)
     if (nbInputArgument(pvApiCtx) == 0)
     {
         //create mode
-        double* pdblData    = (double*)malloc(sizeof(double) * 2 * 2);
+        double* pdblData    = (double*)MALLOC(sizeof(double) * 2 * 2);
         pdblData[0]			= 1;
         pdblData[1]			= 3;
         pdblData[2]			= 2;

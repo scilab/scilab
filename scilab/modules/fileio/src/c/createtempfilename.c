@@ -19,12 +19,14 @@
 #include <string.h>
 #include <stdio.h>
 #include "createtempfilename.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 #include "splitpath.h"
 #include "machine.h"
 #include "PATH_MAX.h"
 #include "getshortpathname.h"
 #include "FileExist.h"
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char *createtempfilename(const char *prefix, BOOL bShortFormat)
 {
@@ -57,7 +59,7 @@ char *createtempfilename(const char *prefix, BOOL bShortFormat)
         {
             close(fd);
         }
-        tempfilename = strdup(TempFileName);
+        tempfilename = os_strdup(TempFileName);
     }
 #endif
     return tempfilename;

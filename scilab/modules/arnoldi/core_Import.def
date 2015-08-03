@@ -6,9 +6,7 @@ EXPORTS
 callFunctionFromGateway
 com_
 putlhsvar_
-intersci_
 errorinfo_
-stack_
 getrhsvar_
 checklhs_
 checkrhs_

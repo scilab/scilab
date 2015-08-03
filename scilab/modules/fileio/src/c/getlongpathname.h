@@ -15,6 +15,7 @@
 
 #include <wchar.h>
 #include "BOOL.h" /* BOOL */
+#include "dynlib_fileio.h"
 
 /**
 * Retrieves the long path form of the specified path
@@ -24,7 +25,7 @@
 * on Linux returns same path name
 * used for Windows
 */
-char *getlongpathname(char *shortpathname, BOOL *convertok);
+FILEIO_IMPEXP char *getlongpathname(char *shortpathname, BOOL *convertok);
 
 /**
 * Retrieves the long path form of the specified path (wide string)
@@ -34,7 +35,7 @@ char *getlongpathname(char *shortpathname, BOOL *convertok);
 * on Linux returns same path name
 * used for Windows
 */
-wchar_t *getlongpathnameW(wchar_t *wcshortpathname, BOOL *convertok);
+FILEIO_IMPEXP wchar_t *getlongpathnameW(wchar_t *wcshortpathname, BOOL *convertok);
 
 
 #endif /* __GETLONGPATHNAME_H__ */

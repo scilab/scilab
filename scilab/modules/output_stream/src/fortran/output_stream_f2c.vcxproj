@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -29,23 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -283,11 +283,7 @@ cd ..
     <ClCompile Include="fmt.c" />
     <ClCompile Include="fmttyp.c" />
     <ClCompile Include="formatnumber.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intdisp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\intprint.c" />
     <ClCompile Include="lspdsp.c" />
-    <ClCompile Include="print.c" />
-    <ClCompile Include="prntid.c" />
     <ClCompile Include="strdsp.c" />
     <ClCompile Include="wmdsp.c" />
     <ClCompile Include="wspdsp.c" />
@@ -303,11 +299,7 @@ cd ..
     <f2c_rule Include="fmt.f" />
     <f2c_rule Include="fmttyp.f" />
     <f2c_rule Include="formatnumber.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intdisp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\intprint.f" />
     <f2c_rule Include="lspdsp.f" />
-    <f2c_rule Include="print.f" />
-    <f2c_rule Include="prntid.f" />
     <f2c_rule Include="strdsp.f" />
     <f2c_rule Include="wmdsp.f" />
     <f2c_rule Include="wspdsp.f" />

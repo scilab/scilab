@@ -70,3 +70,10 @@ m = l(1);
 assert_checkfalse(isdef("m"));
 assert_checkequal(l(2), 1);
 assert_checkequal(l(3), 1);
+
+a=list(list(1));
+b=a;
+b(1)(1) = 2;
+// a must not be modified !
+assert_checkequal(a, list(list(1)));
+

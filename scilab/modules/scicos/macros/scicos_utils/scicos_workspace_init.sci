@@ -32,21 +32,18 @@ function scicos_workspace_init()
     //and which contain 2 variables "x" and "t"
     //
     prt=funcprot(),funcprot(0)
-    varnames = who("get")   ;
-    varnames = varnames(1:$-predef()+1);  //** exclude protected variables
-    varnames(varnames=="ans")=[];
+    varnames = who("get");
+    //varnames = varnames(1:$-predef()+1);  //** exclude protected variables
+    protected = ["ans" "%e" "%eps" "%fftw" "%gui" "%i" "%inf" "%io" "%nan" "%pi" "%s" "%z" "%tk" "PWD" "SCI" "SCIHOME" "TMPDIR" "home" "workingDirectory" "workingfiles"];
+    varnames(members(varnames, protected) <> 0) = [];
     for var=varnames'
         v=evstr(var);
         if typeof(v)=="st" then
-            fn=fieldnames(v)
+            fn=fieldnames(v);
             if and(fn==["values";"time"] | fn==["time";"values"]) then
                 if execstr("x=v.values","errcatch")==0 then
                     if execstr("t=v.time","errcatch") ==0 then
-                        // remove deprecation warning on save, this will be reimplemented on 6.x
-                        warnMode = warning("query");
-                        warning("off");
-                        execstr("save("""+path+var+""",x,t)")
-                        warning(warnMode);
+                        execstr("save("""+path+var+""",""x"",""t"")");
                     end
                 end
             end

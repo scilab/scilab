@@ -25,7 +25,7 @@
 #include <string.h>
 
 #include "machine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #if defined(HAVE_GLIBC_BACKTRACE)
 #include <memory.h>

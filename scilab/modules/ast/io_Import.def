@@ -1,0 +1,6 @@
+LIBRARY    io.dll
+
+
+EXPORTS
+setenvc
+getenvc

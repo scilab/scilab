@@ -77,12 +77,17 @@ function libn = ilib_compile(lib_name, ..
         // Source tree version
         // Headers are dispatched in the source tree
         if isdir(SCI+"/modules/core/includes/") then
-            defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization" ];
+            defaultModulesCHeader=[ "core", "mexlib","api_scilab","output_stream","localization",  "dynamic_link",  "threads",  "string",  "console"];
+            defaultKernelCHeader=[ "analysis" "ast" "exps" "operations" "parse" "symbol" "system_env" "types"];
             defaultModulesFHeader=[ "core" ];
             ScilabTreeFound=%t
 
-            for x = defaultModulesCHeader(:)';
-                cflags=" -I"+SCI+"/modules/"+x+"/includes/ "+cflags;
+            for x = defaultModulesCHeader;
+                cflags = cflags + " -I" + SCI + "/modules/" + x + "/includes/ ";
+            end
+
+            for x = defaultKernelCHeader;
+                cflags = cflags + " -I" + SCI + "/modules/ast/includes/" + x;
             end
 
             for x = defaultModulesFHeader(:)';
@@ -103,6 +108,12 @@ function libn = ilib_compile(lib_name, ..
             fflags="-I/usr/include/scilab/ "+fflags
             ScilabTreeFound=%t
         end
+
+        global cppCompilation;
+        if cppCompilation then
+            cflags = cflags + " --std=c++11";
+        end
+        clearglobal cppCompilation;
 
         if ( ilib_verbose() <> 0 & ScilabTreeFound <> %t) then
             mprintf(gettext("%s: Warning: Scilab has not been able to find where the Scilab sources are. Please submit a bug report on http://bugzilla.scilab.org/\n"),"ilib_compile");

@@ -22,7 +22,7 @@ function [tree]=sci_mkdir(tree)
     end
 
     if lhs==3 then
-        no_equiv(msprintf(gettext("%s when called with three outputs."),expression2code(tree)));
+        no_equiv(msprintf(gettext("%s when called with three outputs."), strcat(expression2code(tree), "")));
     end
 
 endfunction

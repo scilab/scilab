@@ -7,7 +7,7 @@
 //
 // <-- CLI SHELL MODE -->
 
-C=cell(1,6);C.entries=list(1,%s+1,[3,4],[%f %t],int32(8),-24);
+C={1,%s+1,[3,4],[%f %t],int32(8),-24};
 S=[];S.a=1;S(6).a=33;
 
 data=list(1:6,string(1:6),(1:6)+%s,(1:6)>2, int32(1:6),C,S);
@@ -28,7 +28,7 @@ end
 //scalar case
 a=33;
 if or(size(squeeze(a))<>[1 1]) then pause,end
-c=cell(1,1);c(1).entries=1:3;
+c={1:3};
 if or(size(squeeze(c))<>[1 1]) then pause,end
 //empty matrix
 if or(size(squeeze([]))<>[0 0]) then pause,end

@@ -29,37 +29,45 @@ libscifftw_la_rootdir = $(mydatadir)
 
 #### fftw : init scripts ####
 libscifftw_la_etcdir = $(mydatadir)/etc
-libscifftw_la_etc_DATA = etc/fftw.quit etc/fftw.start
+libscifftw_la_etc_DATA = \
+    etc/fftw.quit \
+    etc/fftw.start
 
 if FFTW
 
-FFTW_C_SOURCES = src/c/callfftw.c \
-src/c/fftwlibname.c \
-src/c/fftw_utilities.c \
-src/c/sci_data_utilities.c \
-src/c/with_fftw.c
+FFTW_C_SOURCES = \
+    src/c/callfftw.c \
+    src/c/fftwlibname.c \
+    src/c/fftw_utilities.c \
+    src/c/with_fftw.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_fftw.c \
+FFTW_CPP_SOURCES = \
+    src/cpp/fftw_common.cpp
+
+GATEWAY_C_SOURCES = \
 	sci_gateway/c/sci_fftwlibraryisloaded.c \
 	sci_gateway/c/sci_disposefftwlibrary.c \
-	sci_gateway/c/sci_fftw.c \
 	sci_gateway/c/sci_fftw_flags.c \
 	sci_gateway/c/sci_loadfftwlibrary.c \
 	sci_gateway/c/sci_get_fftw_wisdom.c \
 	sci_gateway/c/sci_set_fftw_wisdom.c \
-	sci_gateway/c/sci_fftw_forget_wisdom.c \
-	sci_gateway/c/sci_dct.c \
-	sci_gateway/c/sci_dst.c 
+	sci_gateway/c/sci_fftw_forget_wisdom.c
+
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/fftw_gw.cpp \
+    sci_gateway/cpp/sci_fftw.cpp \
+    sci_gateway/cpp/sci_dst.cpp \
+    sci_gateway/cpp/sci_dct.cpp
 
 #### fftw : Conf files ####
-libscifftw_la_root_DATA =  license.txt 
+libscifftw_la_root_DATA =  license.txt
 
 #### fftw : gateway declaration ####
-libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
-libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
+#libscifftw_la_sci_gatewaydir = $(mydatadir)/sci_gateway
+#libscifftw_la_sci_gateway_DATA = sci_gateway/fftw_gateway.xml
 
-libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES)
-libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)
+libscifftw_algo_la_SOURCES = $(FFTW_C_SOURCES) $(FFTW_CPP_SOURCES)
+libscifftw_la_SOURCES = $(GATEWAY_C_SOURCES)  $(GATEWAY_CPP_SOURCES)
 libscifftw_algo_la_CPPFLAGS = $(libscifftw_la_CPPFLAGS)
 
 # For the code check (splint)
@@ -68,28 +76,52 @@ INCLUDE_FLAGS = $(libscifftw_la_CPPFLAGS)
 
 libscifftw_la_LIBADD = libscifftw-algo.la $(FFTW3_LIB)
 
-libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/dynamic_link/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			$(FFTW3_CFLAGS) \
-			$(AM_CPPFLAGS)
+libscifftw_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/console/includes/ \
+    -I$(top_srcdir)/modules/dynamic_link/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/elementary_functions/includes/ \
+    $(FFTW3_CFLAGS) \
+    $(AM_CPPFLAGS)
 
 else
 
-FFTW_C_SOURCES = src/nofftw/nofftw.c
+FFTW_CPP_SOURCES = src/nofftw/nofftw.cpp
 
-libscifftw_la_SOURCES = $(FFTW_C_SOURCES)
+libscifftw_la_SOURCES = $(FFTW_CPP_SOURCES)
 
-libscifftw_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			$(AM_CPPFLAGS)
+libscifftw_la_CPPFLAGS = \
+-I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    $(AM_CPPFLAGS)
 endif
 
 include $(top_srcdir)/Makefile.incl.am

@@ -23,7 +23,7 @@
 #include "Format.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xgraduate(char *fname, unsigned long fname_len)
+int sci_xgraduate(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

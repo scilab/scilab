@@ -13,18 +13,24 @@
  * still available and supported in Scilab 6.
  */
 
+#include "gatewaystruct.hxx"
+#include "pointer.hxx"
+#include "context.hxx"
+#include "scilabexception.hxx"
+
+extern "C"
+{
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "localization.h"
+}
 
-#include "MALLOC.h"
-#include "call_scilab.h"
+using namespace types;
 
 SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
 {
     SciErr sciErr = sciErrInit();
     int iType = 0;
-    double *pdblTmp = NULL;
 
     if (_piAddress == NULL)
     {
@@ -45,126 +51,74 @@ SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr)
         return sciErr;
     }
 
-    pdblTmp = (double*)(_piAddress + 4);
-
-    *_pvPtr = (void*)((unsigned long int)(*pdblTmp));
-    return sciErr;
-}
-
-SciErr fillPointer(void* _pvCtx, int *_piAddress, void** _pvPtr)
-{
-    SciErr sciErr = sciErrInit();
-    if (_piAddress == NULL)
-    {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillPointer");
-        return sciErr;
-    }
-
-    _piAddress[0] = sci_pointer;
-    _piAddress[1] = 1;
-    _piAddress[2] = 1;
-    _piAddress[3] = 0;
-
-    *_pvPtr = _piAddress + 4;
-
-    return sciErr;
-}
-
-SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr)
-{
-    SciErr sciErr = sciErrInit();
-    int iNewPos = Top - Rhs + _iVar;
-    int iAddr = *Lstk(iNewPos);
-    int* piAddr = NULL;
-    void* pvPtr = NULL;
-
-    int iMemSize = 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-    if (iMemSize > iFreeSpace)
-    {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
-    }
-
-    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-
-    sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
-    if (sciErr.iErr)
-    {
-        addErrorMessage(&sciErr, API_ERROR_ALLOC_POINTER, _("%s: Unable to create variable in Scilab memory"), "allocPointer");
-        return sciErr;
-    }
-
-    *_pvPtr = pvPtr;
-    updateInterSCI(_iVar, '$', iAddr, sadr(iadr(iAddr) + 4));
-    updateLstk(iNewPos, sadr(iadr(iAddr) + 4), 2);
-
+    *_pvPtr = ((InternalType*)_piAddress)->getAs<Pointer>()->get();
     return sciErr;
 }
 
 SciErr createPointer(void* _pvCtx, int _iVar, void* _pvPtr)
 {
-    void* pvPtr = NULL;
+    SciErr sciErr = sciErrInit();
 
-    SciErr sciErr = allocPointer(_pvCtx, _iVar, &pvPtr);
-    if (sciErr.iErr)
+    if (_pvCtx == NULL)
     {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_POINTER, _("%s: Unable to create variable in Scilab memory"), "createPointer");
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "creatPointer");
         return sciErr;
     }
 
-    ((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    InternalType** out = pStr->m_pOut;
+
+    Pointer* pP = NULL;
+
+    try
+    {
+        pP = new Pointer(_pvPtr);
+        if (pP == NULL)
+        {
+            addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocate variable"), "createPointer");
+            return sciErr;
+        }
+    }
+    catch (ast::ScilabError se)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: %ls"), "createPointer", se.GetErrorMessage().c_str());
+        return sciErr;
+    }
+
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+    out[rhs - 1] = pP;
 
     return sciErr;
 }
 
-SciErr createNamedPointer(void* _pvCtx, const char* _pstName, int* _pvPtr)
+SciErr createNamedPointer(void* _pvCtx, const char* _pstName, void* _pvPtr)
 {
     SciErr sciErr = sciErrInit();
-    int iVarID[nsiz];
-    int iSaveRhs = Rhs;
-    int iSaveTop = Top;
-    void* pvPtr = NULL;
-    int *piAddr = NULL;
 
-    if (!checkNamedVarFormat(_pvCtx, _pstName))
+    // check variable name
+    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
     {
-        addErrorMessage(&sciErr, API_ERROR_INVALID_NAME, _("%s: Invalid variable name: %s."), "createNamedPointer", _pstName);
+        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedPointer", _pstName);
         return sciErr;
     }
 
-    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
-    Top = Top + Nbvars + 1;
+    wchar_t* pwstName = to_wide_string(_pstName);
 
-    int iMemSize = 1;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(*Lstk(Top)));
-    if (iMemSize > iFreeSpace)
+    Pointer* pP = new Pointer(_pvPtr);
+    symbol::Context* ctx = symbol::Context::getInstance();
+    symbol::Symbol sym = symbol::Symbol(pwstName);
+    FREE(pwstName);
+    if (ctx->isprotected(sym) == false)
     {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
-        return sciErr;
+        ctx->put(sym, pP);
     }
-
-    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
-
-    //write matrix information
-    sciErr = fillPointer(_pvCtx, piAddr, &pvPtr);
-    if (sciErr.iErr)
+    else
     {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_POINTER, _("%s: Unable to create %s named \"%s\""), "createNamedPointer", _("pointer"), _pstName);
-        return sciErr;
+        delete pP;
+        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
     }
+    FREE(pwstName);
 
-    //copy data in stack
-    ((double*)pvPtr)[0] = (double) ((unsigned long int)_pvPtr);
-
-    updateLstk(Top, *Lstk(Top) + sadr(4), 2);
-
-    Rhs = 0;
-    //Add name in stack reference list
-    createNamedVariable(iVarID);
-
-    Top = iSaveTop;
-    Rhs = iSaveRhs;
     return sciErr;
 }
 

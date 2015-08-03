@@ -1,43 +1,47 @@
 /*
- * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
- *
- * This file must be used under the terms of the CeCILL.
- * This source file is licensed as described in the file COPYING, which
- * you should have received as part of this distribution.  The terms
- * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- *
- * Please note that piece of code will be rewrited for the Scilab 6 family
- * However, the API (profile of the functions in the header files) will be
- * still available and supported in Scilab 6.
- */
+* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2013 - Scilab Enterprises - Calixte DENIZET
+*
+* This file must be used under the terms of the CeCILL.
+* This source file is licensed as described in the file COPYING, which
+* you should have received as part of this distribution.  The terms
+* are also available at
+* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+*
+* Please note that piece of code will be rewrited for the Scilab 6 family
+* However, the API (profile of the functions in the header files) will be
+* still available and supported in Scilab 6.
+*/
 
 #include <stdio.h>
+#include "double.hxx"
+#include "bool.hxx"
+#include "string.hxx"
+#include "int.hxx"
+#include "polynom.hxx"
+#include "gatewaystruct.hxx"
+
+extern "C"
+{
 #include "api_scilab.h"
 #include "api_internal_common.h"
 #include "api_internal_double.h"
 #include "localization.h"
 
 #include "call_scilab.h"
+}
 
 int isHypermatType(void* _pvCtx, int* _piAddress)
 {
-    if (_piAddress[0] != sci_mlist || _piAddress[1] != 3)
+    types::InternalType* it = (types::InternalType*)_piAddress;
+    if (it->isGenericType() == false)
     {
-        // not a mlist or not containing 3 fields
         return 0;
     }
 
-    if (_piAddress[6] != sci_strings || _piAddress[7] != 1 || _piAddress[8] != 3)
+    types::GenericType* gt = it->getAs<types::GenericType>();
+    if (gt->getDims() < 3)
     {
-        // first field is not a matrix 1x3 of strings
-        return 0;
-    }
-
-    if (_piAddress[11] - 1 != 2 || _piAddress[14] != 17 || _piAddress[15] != 22)
-    {
-        // mlist type is not of length 2 or type is not "hm" ("hm" == [17 22])
         return 0;
     }
 
@@ -46,690 +50,927 @@ int isHypermatType(void* _pvCtx, int* _piAddress)
 
 int isHypermatComplex(void* _pvCtx, int* _piAddress)
 {
-    int * _piItemAddress = NULL;
-    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
-    if (sciErr.iErr)
+    types::InternalType* it = (types::InternalType*)_piAddress;
+    if (it->isGenericType() == false)
     {
         return 0;
     }
 
-    return isVarComplex(_pvCtx, _piItemAddress);
+    types::GenericType* gt = it->getAs<types::GenericType>();
+    if (gt->isComplex())
+    {
+        return 1;
+    }
+
+    return 0;
 }
 
 SciErr getHypermatType(void *_pvCtx, int *_piAddress, int *_piType)
 {
-    int * _piItemAddress = NULL;
-    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getVarType(_pvCtx, _piItemAddress, _piType);
+    return getVarType(_pvCtx, _piAddress, _piType);
 }
 
 SciErr getHypermatOfIntegerPrecision(void *_pvCtx, int *_piAddress, int *_piPrecision)
 {
-    int * _piItemAddress = NULL;
-    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &_piItemAddress);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfIntegerPrecision(_pvCtx, _piItemAddress, _piPrecision);
+    return getMatrixOfIntegerPrecision(_pvCtx, _piAddress, _piPrecision);
 }
 
 SciErr getHypermatDimensions(void *_pvCtx, int *_piAddress, int **_dims, int *_ndims)
 {
-    int * _piItemAddress = NULL;
-    int _rows = 0;
-
-    SciErr sciErr = getListItemAddress(_pvCtx, _piAddress, 2, &_piItemAddress);
-    if (sciErr.iErr)
+    SciErr sciErr = sciErrInit();
+    types::InternalType* it = (types::InternalType*)_piAddress;
+    if (it->isGenericType() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_NOT_MATRIX_TYPE, _("%s: matrix argument expected"), "getHypermatDimensions");
         return sciErr;
     }
 
-    return getMatrixOfInteger32(_pvCtx, _piItemAddress, &_rows, _ndims, _dims);
+    types::GenericType* gt = it->getAs<types::GenericType>();
+    *_ndims = gt->getDims();
+    *_dims = gt->getDimsArray();
+    return sciErr;
 }
 
-SciErr getHypermatEntries(void* _pvCtx, int* _piAddress, int ** _piEntriesAddress)
+static int getHypermatEntries(void* _pvCtx, int* _piAddress, void** _piEntriesAddress)
 {
-    return getListItemAddress(_pvCtx, _piAddress, 3, _piEntriesAddress);
+    types::InternalType* it = (types::InternalType*)_piAddress;
+    if (it->isGenericType() == false)
+    {
+        return 1;
+    }
+
+    switch (it->getType())
+    {
+        case types::InternalType::ScilabDouble:
+        {
+            *_piEntriesAddress = it->getAs<types::Double>();
+            break;
+        }
+        case types::InternalType::ScilabBool:
+        {
+            *_piEntriesAddress = it->getAs<types::Bool>();
+            break;
+        }
+        case types::InternalType::ScilabString:
+        {
+            *_piEntriesAddress = it->getAs<types::String>();
+            break;
+        }
+        case types::InternalType::ScilabPolynom:
+        {
+            *_piEntriesAddress = it->getAs<types::Polynom>();
+            break;
+        }
+        case types::InternalType::ScilabInt8:
+        {
+            *_piEntriesAddress = it->getAs<types::Int8>();
+            break;
+        }
+        case types::InternalType::ScilabInt16:
+        {
+            *_piEntriesAddress = it->getAs<types::Int16>();
+            break;
+        }
+        case types::InternalType::ScilabInt32:
+        {
+            *_piEntriesAddress = it->getAs<types::Int32>();
+            break;
+        }
+        case types::InternalType::ScilabInt64:
+        {
+            *_piEntriesAddress = it->getAs<types::Int64>();
+            break;
+        }
+        case types::InternalType::ScilabUInt8:
+        {
+            *_piEntriesAddress = it->getAs<types::UInt8>();
+            break;
+        }
+        case types::InternalType::ScilabUInt16:
+        {
+            *_piEntriesAddress = it->getAs<types::UInt16>();
+            break;
+        }
+        case types::InternalType::ScilabUInt32:
+        {
+            *_piEntriesAddress = it->getAs<types::UInt32>();
+            break;
+        }
+        case types::InternalType::ScilabUInt64:
+        {
+            *_piEntriesAddress = it->getAs<types::UInt64>();
+            break;
+        }
+        default:
+        {
+            *_piEntriesAddress = NULL;
+            break;
+        }
+    }
+
+    return 0;
 }
 
 SciErr getHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double** _pdblReal)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void* entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isDouble() == false)
     {
-        return sciErr;
+        addErrorMessage(&sciErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), "getHypermatOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfDouble(_pvCtx, entries, &_rows, &_cols, _pdblReal);
+    types::Double* d = (types::Double*)entries;
+    *_dims = d->getDimsArray();
+    *_ndims = d->getDims();
+    *_pdblReal = d->get();
+    return sciErr;
 }
 
 SciErr getComplexHypermatOfDouble(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, double** _pdblReal, double** _pdblImg)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void* entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isDouble() == false)
     {
-        return sciErr;
+        addErrorMessage(&sciErr, API_ERROR_GET_DOUBLE, _("%s: Unable to get argument #%d"), "getHypermatOfDouble", getRhsFromAddress(_pvCtx, _piAddress));
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getComplexMatrixOfDouble(_pvCtx, entries, &_rows, &_cols, _pdblReal, _pdblImg);
+    types::Double* d = (types::Double*)entries;
+    *_dims = d->getDimsArray();
+    *_ndims = d->getDims();
+    *_pdblReal = d->get();
+    *_pdblImg = d->getImg();
+    return sciErr;
 }
 
 SciErr getHypermatPolyVariableName(void* _pvCtx, int* _piAddress, char* _pstVarName, int* _piVarNameLen)
 {
-    int * entries = NULL;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isPoly() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatPolyVariableName");
         return sciErr;
     }
 
-    return getPolyVariableName(_pvCtx, entries, _pstVarName, _piVarNameLen);
+    types::Polynom* p = (types::Polynom*)entries;
+    std::wstring var = p->getVariableName();
+
+    char* varname = wide_string_to_UTF8(var.data());
+    *_piVarNameLen = static_cast<int>(strlen(varname));
+
+    if (_pstVarName)
+    {
+        strcpy(_pstVarName, varname);
+    }
+
+    FREE(varname);
+    return sciErr;
 }
 
 SciErr getHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piNbCoef, double** _pdblReal)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isPoly() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfPoly");
+        return sciErr;
+    }
+
+    types::Polynom* p = (types::Polynom*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+
+    if (_piNbCoef == NULL)
     {
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+    p->getSizes(_piNbCoef);
+
+    if (_pdblReal == NULL)
     {
         return sciErr;
     }
 
-    return getMatrixOfPoly(_pvCtx, entries, &_rows, &_cols, _piNbCoef, _pdblReal);
+    int size = p->getSize();
+    types::SinglePoly** s = p->get();
+
+    for (int i = 0; i < size; i++)
+    {
+        memcpy(_pdblReal[i], s[i]->get(), sizeof(double) * s[i]->getSize());
+    }
+
+    return sciErr;
 }
 
 SciErr getComplexHypermatOfPoly(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piNbCoef, double** _pdblReal, double** _pdblImg)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isPoly() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getComplexHypermatOfPoly");
+        return sciErr;
+    }
+
+    types::Polynom* p = (types::Polynom*)entries;
+
+    if (p->isComplex() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_COMPLEXITY, _("%s: Bad call to get a non complex matrix"), "getComplexHypermatOfPoly");
+        return sciErr;
+    }
+
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+
+    if (_piNbCoef == NULL)
     {
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+    p->getSizes(_piNbCoef);
+
+    if (_pdblReal == NULL)
     {
         return sciErr;
     }
 
-    return getComplexMatrixOfPoly(_pvCtx, entries, &_rows, &_cols, _piNbCoef, _pdblReal, _pdblImg);
+    int size = p->getSize();
+    types::SinglePoly** s = p->get();
+
+    for (int i = 0; i < size; i++)
+    {
+        memcpy(_pdblReal[i], s[i]->get(), sizeof(double) * s[i]->getSize());
+        memcpy(_pdblImg[i], s[i]->getImg(), sizeof(double) * s[i]->getSize());
+    }
+
+    return sciErr;
 }
 
 SciErr getHypermatOfString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piLength, char** _pstStrings)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isString() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfString");
+        return sciErr;
+    }
+
+    types::String* p = (types::String*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    int size = p->getSize();
+
+    if (_piLength == NULL)
     {
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+
+    if (_pstStrings == NULL || *_pstStrings == NULL)
     {
-        return sciErr;
+        wchar_t** s = p->get();
+        for (int i = 0; i < size; i++)
+        {
+            char* c = wide_string_to_UTF8(s[i]);
+            _piLength[i] = (int)strlen(c);
+            FREE(c);
+        }
+    }
+    else
+    {
+        wchar_t** s = p->get();
+        for (int i = 0; i < size; i++)
+        {
+            if (_pstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getHypermatOfString");
+                return sciErr;
+            }
+
+            char* c = wide_string_to_UTF8(s[i]);
+            strcpy(_pstStrings[i], c);
+            FREE(c);
+        }
     }
 
-    return getMatrixOfString(_pvCtx, entries, &_rows, &_cols, _piLength, _pstStrings);
+    return sciErr;
 }
 
 SciErr getHypermatOfWideString(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int* _piLength, wchar_t** _pwstStrings)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isString() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfWideString");
+        return sciErr;
+    }
+
+    types::String* p = (types::String*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    int size = p->getSize();
+
+    if (_piLength == NULL)
     {
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+
+    if (_pwstStrings == NULL || *_pwstStrings == NULL)
     {
-        return sciErr;
+        wchar_t** s = p->get();
+        for (int i = 0; i < size; i++)
+        {
+            _piLength[i] = (int)wcslen(s[i]);
+        }
+    }
+    else
+    {
+        wchar_t** s = p->get();
+        for (int i = 0; i < size; i++)
+        {
+            if (_pwstStrings[i] == NULL)
+            {
+                addErrorMessage(&sciErr, API_ERROR_INVALID_SUBSTRING_POINTER, _("%s: Invalid argument address"), "getHypermatOfWideString");
+                return sciErr;
+            }
+
+            wcscpy(_pwstStrings[i], s[i]);
+        }
     }
 
-    return getMatrixOfWideString(_pvCtx, entries, &_rows, &_cols, _piLength, _pwstStrings);
+    return sciErr;
 }
 
 SciErr getHypermatOfInteger8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, char** _pcData8)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isInt8() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfInteger8");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfInteger8(_pvCtx, entries, &_rows, &_cols, _pcData8);
+    types::Int8* p = (types::Int8*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_pcData8 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfUnsignedInteger8(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned char** _pucData8)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isUInt8() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfUnsignedInteger8");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfUnsignedInteger8(_pvCtx, entries, &_rows, &_cols, _pucData8);
+    types::UInt8* p = (types::UInt8*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_pucData8 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfInteger16(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, short** _psData16)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isInt16() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfInteger16");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfInteger16(_pvCtx, entries, &_rows, &_cols, _psData16);
+    types::Int16* p = (types::Int16*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_psData16 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfUnsignedInteger16(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned short** _pusData16)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isUInt16() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfUnsignedInteger16");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfUnsignedInteger16(_pvCtx, entries, &_rows, &_cols, _pusData16);
+    types::UInt16* p = (types::UInt16*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_pusData16 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfInteger32(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int** _piData32)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isInt32() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfInteger32");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfInteger32(_pvCtx, entries, &_rows, &_cols, _piData32);
+    types::Int32* p = (types::Int32*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_piData32 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfUnsignedInteger32(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned int** _puiData32)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isUInt32() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfUnsignedInteger32");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
+    types::UInt32* p = (types::UInt32*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_puiData32 = p->get();
+    return sciErr;
+}
+
+SciErr getHypermatOfInteger64(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, long long** _pllData64)
+{
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
+
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isInt64() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfInteger64");
         return sciErr;
     }
 
-    return getMatrixOfUnsignedInteger32(_pvCtx, entries, &_rows, &_cols, _puiData32);
+    types::Int64* p = (types::Int64*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_pllData64 = p->get();
+    return sciErr;
+}
+
+SciErr getHypermatOfUnsignedInteger64(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, unsigned long long** _pullData64)
+{
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
+
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isUInt64() == false)
+    {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfUnsignedInteger64");
+        return sciErr;
+    }
+
+    types::UInt64* p = (types::UInt64*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_pullData64 = p->get();
+    return sciErr;
 }
 
 SciErr getHypermatOfBoolean(void* _pvCtx, int* _piAddress, int **_dims, int *_ndims, int** _piBool)
 {
-    int * entries = NULL;
-    int _rows = 0;
-    int _cols = 0;
+    SciErr sciErr = sciErrInit();
+    void * entries = NULL;
 
-    SciErr sciErr = getHypermatDimensions(_pvCtx, _piAddress, _dims, _ndims);
-    if (sciErr.iErr)
+    int ret = getHypermatEntries(_pvCtx, _piAddress, &entries);
+
+    if (ret || entries == NULL || ((types::InternalType*)entries)->isBool() == false)
     {
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getHypermatOfBoolean");
         return sciErr;
     }
 
-    sciErr = getHypermatEntries(_pvCtx, _piAddress, &entries);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    return getMatrixOfBoolean(_pvCtx, entries, &_rows, &_cols, _piBool);
-}
-
-SciErr createEmptyHypermat(void *_pvCtx, int _iVar, const int * _dims, int _ndims, int ** _piAddress)
-{
-    static const char * fields[3] = {"hm", "dims", "entries"};
-
-    SciErr sciErr = createMList(_pvCtx, _iVar, 3, _piAddress);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, 3, fields);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
-    sciErr = createMatrixOfInteger32InList(_pvCtx, _iVar, *_piAddress, 2, 1, _ndims, _dims);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    types::Bool* p = (types::Bool*)entries;
+    *_dims = p->getDimsArray();
+    *_ndims = p->getDims();
+    *_piBool = p->get();
     return sciErr;
 }
 
 SciErr createHypermatOfString(void *_pvCtx, int _iVar, int * _dims, int _ndims, const char* const* _pstStrings)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::String* p = new types::String(_ndims, _dims);
+    int size = p->getSize();
+
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
+    for (int i = 0; i < size; ++i)
     {
-        iNbElements *= _dims[i];
+        wchar_t* w = to_wide_string(_pstStrings[i]);
+        p->set(i, w);
+        FREE(w);
     }
 
-    sciErr = createMatrixOfStringInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pstStrings);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _dims, int _ndims, const int* _piNbCoef, const double* const* _pdblReal)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    wchar_t* w = to_wide_string(_pstVarName);
+    types::Polynom* p = new types::Polynom(w, _ndims, _dims, _piNbCoef);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
+    types::SinglePoly** s = p->get();
+
+    for (int i = 0; i < size; ++i)
     {
-        iNbElements *= _dims[i];
+        s[i]->setCoef(_pdblReal[i], NULL);
     }
 
-    sciErr = createMatrixOfPolyInList(_pvCtx, _iVar, _piAddress, 3, _pstVarName, iNbElements, 1, _piNbCoef, _pdblReal);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createComplexHypermatOfPoly(void *_pvCtx, int _iVar, char* _pstVarName, int * _dims, int _ndims, const int* _piNbCoef, const double* const* _pdblReal, const double* const* _pdblImg)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    wchar_t* w = to_wide_string(_pstVarName);
+    types::Polynom* p = new types::Polynom(w, _ndims, _dims, _piNbCoef);
+    p->setComplex(true);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
+    types::SinglePoly** s = p->get();
+
+    for (int i = 0; i < size; ++i)
     {
-        iNbElements *= _dims[i];
+        s[i]->setCoef(_pdblReal[i], _pdblImg[i]);
     }
 
-    sciErr = createComplexMatrixOfPolyInList(_pvCtx, _iVar, _piAddress, 3, _pstVarName, iNbElements, 1, _piNbCoef, _pdblReal, _pdblImg);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr allocHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, double** _pdblReal)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Double* p = new types::Double(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = allocMatrixOfDoubleInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pdblReal);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    *_pdblReal = p->get();
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, const double * _pdblReal)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Double* p = new types::Double(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfDoubleInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pdblReal);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_pdblReal);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createComplexHypermatOfDouble(void *_pvCtx, int _iVar, int * _dims, int _ndims, const double * _pdblReal, const double * _pdblImg)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Double* p = new types::Double(_ndims, _dims, true);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createComplexMatrixOfDoubleInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pdblReal, _pdblImg);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_pdblReal);
+    p->setImg(_pdblImg);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfBoolean(void *_pvCtx, int _iVar, int * _dims, int _ndims, const int * _piBool)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+
+    types::Bool* p = new types::Bool(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfBooleanInList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _piBool);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_piBool);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfInteger8(void *_pvCtx, int _iVar, int * _dims, int _ndims, const char * _pcData8)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Int8* p = new types::Int8(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfInteger8InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pcData8);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_pcData8);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfUnsignedInteger8(void *_pvCtx, int _iVar, int * _dims, int _ndims, const unsigned char * _pucData8)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::UInt8* p = new types::UInt8(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfUnsignedInteger8InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pucData8);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_pucData8);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfInteger16(void *_pvCtx, int _iVar, int * _dims, int _ndims, const short * _psData16)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Int16* p = new types::Int16(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfInteger16InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _psData16);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_psData16);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfUnsignedInteger16(void *_pvCtx, int _iVar, int * _dims, int _ndims, const unsigned short * _pusData16)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::UInt16* p = new types::UInt16(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfUnsignedInteger16InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _pusData16);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_pusData16);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfInteger32(void *_pvCtx, int _iVar, int * _dims, int _ndims, const int * _piData32)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::Int32* p = new types::Int32(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
-
-    sciErr = createMatrixOfInteger32InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _piData32);
-    if (sciErr.iErr)
-    {
-        return sciErr;
-    }
-
+    p->set(_piData32);
+    out[rhs - 1] = p;
     return sciErr;
 }
 
 SciErr createHypermatOfUnsignedInteger32(void *_pvCtx, int _iVar, int * _dims, int _ndims, const unsigned int * _puiData32)
 {
-    int * _piAddress = NULL;
-    int iNbElements = 1;
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
 
-    SciErr sciErr = createEmptyHypermat(_pvCtx, _iVar, _dims, _ndims, &_piAddress);
-    if (sciErr.iErr)
+    types::UInt32* p = new types::UInt32(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
-    for (int i = 0; i < _ndims; i++)
-    {
-        iNbElements *= _dims[i];
-    }
+    p->set(_puiData32);
+    out[rhs - 1] = p;
+    return sciErr;
+}
 
-    sciErr = createMatrixOfUnsignedInteger32InList(_pvCtx, _iVar, _piAddress, 3, iNbElements, 1, _puiData32);
-    if (sciErr.iErr)
+SciErr createHypermatOfInteger64(void *_pvCtx, int _iVar, int * _dims, int _ndims, const long long* _pllData64)
+{
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+
+    types::Int64* p = new types::Int64(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
     {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
         return sciErr;
     }
 
+    p->set(_pllData64);
+    out[rhs - 1] = p;
+    return sciErr;
+}
+
+SciErr createHypermatOfUnsignedInteger64(void *_pvCtx, int _iVar, int * _dims, int _ndims, const unsigned long long* _pullData64)
+{
+    SciErr sciErr = sciErrInit();
+    types::GatewayStruct* pStr = (types::GatewayStruct*)_pvCtx;
+    types::typed_list in = *pStr->m_pIn;
+    types::InternalType** out = pStr->m_pOut;
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+
+    types::UInt64* p = new types::UInt64(_ndims, _dims);
+
+    int size = p->getSize();
+    if (size == 0)
+    {
+        delete p;
+        out[rhs - 1] = types::Double::Empty();
+        return sciErr;
+    }
+
+    p->set(_pullData64);
+    out[rhs - 1] = p;
     return sciErr;
 }

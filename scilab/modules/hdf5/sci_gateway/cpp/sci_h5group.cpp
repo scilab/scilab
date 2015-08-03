@@ -34,7 +34,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5group(char *fname, unsigned long fname_len)
+int sci_h5group(char *fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;

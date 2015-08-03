@@ -33,7 +33,7 @@ function [scicos_ver]=find_scicos_version(scs_m)
         scicos_ver = scicos_ver;
     end
 
-    if type(scs_m)==17 then
+    if type(scs_m)==17 || type(scs_m)==128 then
         //case for diagrams >= 4.2
         if find(getfield(1,scs_m)=="version")<>[] then
             if scs_m.version<>"" then

@@ -37,7 +37,8 @@ c     chevauchent, l'adresse de a1 (resp b1) doit etre au moins egale a
 c     l'adresse de a  (resp b)
 c
 c     w    :  tableau de travail de taille:
-c             2*(na+nb)+min(na,nb)+10*max(na,nb)+3*max(na,nb)**2+4
+c             n0 = max(na,nb) + 1
+c             2*(na+nb)+min(na,nb)+10*n0+3*n0**2+4
 c     ierr :
 c             en entree ierr specifie l'espace memoire disponible dans w
 c             en sortie:
@@ -89,8 +90,8 @@ c
 
       n0=max(na1,nb1)+1
       lfree=lw+10*n0+3*n0*n0
-      if(lfree.ge.maxw.and.na1.gt.0.and.nb1.gt.0) ierr=2
-      if(lfree.ge.maxw.or.na1.eq.0.or.nb1.eq.0) then
+      if(lfree.gt.maxw.and.na1.gt.0.and.nb1.gt.0) ierr=2
+      if(lfree.gt.maxw.or.na1.eq.0.or.nb1.eq.0) then
          if(nz.eq.0) then
             call dcopy(na1+1,a(la0),1,a1,1)
             call dcopy(nb1+1,b(lb0),1,b1,1)

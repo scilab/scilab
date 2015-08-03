@@ -19,17 +19,19 @@
 /*--------------------------------------------------------------------------*/
 SPARSE_IMPEXP int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
+//YaSp
+SPARSE_IMPEXP int sci_spmin (char *fname, void* pvApiCtx);
+SPARSE_IMPEXP int sci_spmax (char *fname, void* pvApiCtx);
+
 int sci_sparsefunc (char *fname, unsigned long fname_len);
 int sci_spget (char *fname, unsigned long fname_len);
 int sci_full (char *fname, unsigned long fname_len);
-int sci_lufact (char *fname, unsigned long fname_len);
-int sci_lusolve (char *fname, unsigned long fname_len);
-int sci_ludel (char *fname, unsigned long fname_len);
-int sci_luget (char *fname, unsigned long fname_len);
-int sci_spclean (char *fname, unsigned long fname_len);
+//int sci_lufact (char *fname, unsigned long fname_len); -> c++
+//int sci_lusolve (char *fname, unsigned long fname_len);
+//int sci_ludel (char *fname, unsigned long fname_len);
+//int sci_luget (char *fname, unsigned long fname_len);
+SPARSE_IMPEXP int sci_spclean (char *fname, unsigned long fname_len);
 int sci_nnz (char *fname, unsigned long fname_len);
-int sci_spmax (char *fname, unsigned long fname_len);
-int sci_spmin (char *fname, unsigned long fname_len);
 int sci_spmatrix (char *fname, unsigned long fname_len);
 int sci_spchol (char *fname, unsigned long fname_len);
 int sci_fadj2sp (char *fname, unsigned long fname_len);
@@ -45,6 +47,7 @@ int sci_msparse (char *fname, unsigned long fname_len);
 int sci_mspget (char *fname, unsigned long fname_len);
 int sci_mfull (char *fname, unsigned long fname_len);
 extern int C2F(scita2lpd) (char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPARSE__ */
 /*--------------------------------------------------------------------------*/

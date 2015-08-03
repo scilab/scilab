@@ -105,7 +105,7 @@ c = jcompile("Test", ["public class Test {";
 "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32([1,2,3,4]), junwrap(t.returnLong()));
+assert_checkequal(int64([1,2,3,4]), junwrap(t.returnLong()));
 
 c = jcompile("Test", ["public class Test {";
 "public long returnLong() {";
@@ -114,7 +114,7 @@ c = jcompile("Test", ["public class Test {";
 "}";]);
 t = c.new();
 assert_checkequal(jgetclassname(c),"Test");
-assert_checkequal(int32(32), junwrap(t.returnLong()));
+assert_checkequal(int64(32), junwrap(t.returnLong()));
 
 //////////////////////////////////////////////
 

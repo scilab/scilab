@@ -13,13 +13,8 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include <stdio.h>
-#include "gw_string.h"
-#include "stack-c.h"
-#include "MALLOC.h"
-#include "Scierror.h"
+#include "sci_malloc.h"
 #include "CreateEmptystr.h"
-#include "localization.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 char ** CreateEmptystr(int m1, int n1)

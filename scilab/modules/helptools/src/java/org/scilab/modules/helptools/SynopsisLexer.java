@@ -648,8 +648,7 @@ public final class SynopsisLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 10 :
-                {
+                case 10 : {
                     htmlBuffer.append("<span class=\"comment\">");
                     htmlBuffer.append(yytext());
                     htmlBuffer.append("</span>");

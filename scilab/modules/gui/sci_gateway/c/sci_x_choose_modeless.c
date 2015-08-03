@@ -18,7 +18,7 @@
 #include "getPropertyAssignedValue.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_choose_modeless(char *fname, unsigned long fname_len)
+int sci_x_choose_modeless(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -106,7 +106,7 @@ int sci_x_choose_modeless(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 3)
     {
-        if (VarType(3) ==  sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrbuttonLabelAdr);
             if (sciErr.iErr)

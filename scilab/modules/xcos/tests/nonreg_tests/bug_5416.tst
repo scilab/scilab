@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5416
 //
 // <-- Short Description -->
-// If one modify a value inside a superblock, the change is not propagated 
+// If one modifies a value inside a superblock, the change is not propagated
 // to the whole diagram.
 
 
@@ -22,7 +22,7 @@
 // xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
 // Open a superblock
 // modify value inside
-// check that the simulation differs when values changes
+// check that the simulation differs when values change
 
 
 

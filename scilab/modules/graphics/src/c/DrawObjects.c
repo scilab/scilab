@@ -26,10 +26,6 @@
 #include <stdio.h>
 #include <string.h>
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
-
 #include "DrawObjects.h"
 #include "GetProperty.h"
 #include "SetProperty.h"
@@ -41,7 +37,7 @@
 #include "Format.h"
 #include "HandleManagement.h"
 
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "localization.h"
 
 #include "math.h" /* fabs, floor, log10, pow */

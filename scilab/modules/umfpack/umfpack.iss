@@ -18,7 +18,6 @@
 ;
 #define UMFPACK "umfpack"
 ;
-Source: bin\no{#UMFPACK}.dll; DestDir: {app}\bin; DestName: {#UMFPACK}.dll; Components: not ({#COMPN_SCILAB})
 Source: bin\lib{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 Source: bin\{#UMFPACK}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
@@ -35,13 +34,10 @@ Source: modules\{#UMFPACK}\macros\buildmacros.sce; DestDir: {app}\modules\{#UMFP
 Source: modules\{#UMFPACK}\macros\buildmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\cleanmacros.bat; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\lib; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#UMFPACK}\macros\names; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#UMFPACK}\macros\*.bin; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#UMFPACK}\macros\*.sci; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#UMFPACK}\macros\*.bin; DestDir: {app}\modules\{#UMFPACK}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#UMFPACK}\examples\*.*; DestDir: {app}\modules\{#UMFPACK}\examples; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
-;
-;Source: modules\{#UMFPACK}\demos\*.*; DestDir: {app}\modules\{#UMFPACK}\demos; Flags: recursesubdirs;  Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#UMFPACK}\tests\*.*; DestDir: {app}\modules\{#UMFPACK}\tests; Flags: recursesubdirs; Components: {#COMPN_SCILAB} and {#COMPN_TESTS}
 ;

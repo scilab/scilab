@@ -31,7 +31,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatipcreate(char *fname, unsigned long fname_len)
+int sci_datatipcreate(char *fname, void* pvApiCtx)
 {
     int iErr            = 0;
     int nbRow           = 0;

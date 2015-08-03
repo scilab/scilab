@@ -10,21 +10,17 @@
 global status;
 status = [];
 function continueSimulation = pre_xcos_simulate(scs_m, needcompile)
-  global status;
-  1 + "string"
-  status = [status 'pre_called'];
+    global status;
+    1 + "string"
+    status = [status "pre_called"];
 endfunction
 function post_xcos_simulate(%cpr, scs_m, needcompile)
-  global status;
-  1 + "string"
-  status = [status 'post_called'];
+    global status;
+    1 + "string"
+    status = [status "post_called"];
 endfunction
 assert_checktrue(importXcosDiagram(SCI + "/modules/xcos/demos/Simple_Demo.zcos"));
 xcos_simulate(scs_m, 4);
- 
- Error occurred in pre_xcos_simulate: Cancelling simulation.   
- at line 4 of function pre_xcos_simulate
-assert_checkequal(status, [])
- ans  =
- 
-  T  
+ Error occurred in pre_xcos_simulate: Cancelling simulation.
+ at line 1 of function pre_xcos_simulate
+assert_checkequal(status, []);

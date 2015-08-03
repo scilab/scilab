@@ -29,7 +29,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRead(char *fname, unsigned long fname_len)
+int sci_xmlRead(char *fname, void* pvApiCtx)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;

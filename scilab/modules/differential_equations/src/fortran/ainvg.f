@@ -2,8 +2,7 @@ C/MEMBR ADD NAME=AINVG,SSI=0
       subroutine ainvg (res, adda, neq, t, y, ydot, miter,
      1                   ml, mu, pw, ipvt, ier )
 clll. optimize
-      
-      include 'stack.h'
+
       external res, adda
       integer neq, miter, ml, mu, ipvt, ier
       integer i, lenpw, mlp1, nrowpw

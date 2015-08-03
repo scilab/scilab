@@ -19,7 +19,7 @@
 %module CommonFileUtils
 %{
 #include "../../includes/fileutils.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"

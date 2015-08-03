@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -79,11 +79,17 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -95,8 +101,13 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <Link>
       <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -109,10 +120,15 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
@@ -124,6 +140,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <Link>
       <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -134,13 +152,20 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -153,6 +178,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <Link>
       <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -170,13 +197,19 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;..;../../../includes;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../../libs/intl;../../../../string/includes</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;..;../../../includes;../../cpp/scilab_windows;../../../../../libs/intl;../../../../core/includes;../../../../core/src/c;../../../../gui/includes;../../../../gui/src/c;../../../../localization/includes;../../../../localization/src/c;../../../../output_stream/includes;../../../../fileio/includes;../../../../action_binding/includes;../../../../string/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;SCILAB_WINDOWS_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <PreLinkEvent>
@@ -189,6 +222,8 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <Link>
       <AdditionalDependencies>core.lib;scilocalization.lib;scigui.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -202,9 +237,10 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp" />
+    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp" />
     <ClCompile Include="buildMainWindowTitle_Windows.c" />
     <ClCompile Include="console.c" />
-    <ClCompile Include="console_main.c" />
     <ClCompile Include="ConvertSlash.c" />
     <ClCompile Include="DllmainScilab_Windows.c" />
     <ClCompile Include="FilesAssociations.c" />
@@ -212,27 +248,23 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClCompile Include="FocusOnConsole.c" />
     <ClCompile Include="forbiddenToUseScilab.c" />
     <ClCompile Include="getBlasType.c" />
-    <ClCompile Include="getScilabDirectory.c" />
     <ClCompile Include="getVideoAdapters.c" />
     <ClCompile Include="InnosetupMutex.c" />
     <ClCompile Include="killScilabProcess.c" />
     <ClCompile Include="mmapWindows.c" />
     <ClCompile Include="MutexClosingScilab.c" />
-    <ClCompile Include="scilab_main.c" />
-    <ClCompile Include="SetScilabEnvironmentVariables.c" />
     <ClCompile Include="spawncommand.c" />
     <ClCompile Include="splashScreen.cpp" />
-    <ClCompile Include="strdup_windows.c" />
     <ClCompile Include="TextToPrint.c" />
-    <ClCompile Include="windows_main.c" />
     <ClCompile Include="WindowShow.c" />
     <ClCompile Include="wmcopydata.c" />
     <ClCompile Include="WndThread.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h" />
+    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h" />
     <ClInclude Include="buildMainWindowTitle_Windows.h" />
     <ClInclude Include="console.h" />
-    <ClInclude Include="console_main.h" />
     <ClInclude Include="..\..\..\includes\ConvertSlash.h" />
     <ClInclude Include="dynlib_scilab_windows.h" />
     <ClInclude Include="FilesAssociations.h" />
@@ -240,21 +272,16 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ClInclude Include="..\..\..\includes\FocusOnConsole.h" />
     <ClInclude Include="forbiddenToUseScilab.h" />
     <ClInclude Include="getBlasType.h" />
-    <ClInclude Include="getScilabDirectory.h" />
     <ClInclude Include="getVideoAdapters.h" />
     <ClInclude Include="InnosetupMutex.h" />
     <ClInclude Include="killScilabProcess.h" />
     <ClInclude Include="mmapWindows.h" />
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h" />
     <ClInclude Include="resource.h" />
-    <ClInclude Include="scilab_main.h" />
     <ClInclude Include="SetHeapOptions.h" />
-    <ClInclude Include="SetScilabEnvironmentVariables.h" />
     <ClInclude Include="spawncommand.h" />
     <ClInclude Include="splashScreen.h" />
-    <ClInclude Include="..\..\..\includes\strdup_windows.h" />
     <ClInclude Include="TextToPrint.h" />
-    <ClInclude Include="windows_main.h" />
     <ClInclude Include="WindowShow.h" />
     <ClInclude Include="wmcopydata.h" />
     <ClInclude Include="WndThread.h" />
@@ -272,6 +299,9 @@ lib /DEF:"$(ProjectDir)Gui_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /
     <ProjectReference Include="..\..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>

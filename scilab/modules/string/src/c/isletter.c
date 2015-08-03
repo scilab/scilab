@@ -16,7 +16,7 @@
 #include <wchar.h>
 #include <wctype.h> /* iswalpha */
 #include "isletter.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 /*--------------------------------------------------------------------------*/
 BOOL *isletter(char *input_string, int *sizeArray)

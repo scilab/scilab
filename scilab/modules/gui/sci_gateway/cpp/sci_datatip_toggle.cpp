@@ -25,7 +25,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatip_toggle(char *fname, unsigned long fname_len)
+int sci_datatip_toggle(char *fname, void* pvApiCtx)
 {
     int iFigureUID      = 0;
 

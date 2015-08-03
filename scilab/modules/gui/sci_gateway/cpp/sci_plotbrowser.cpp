@@ -29,7 +29,7 @@ extern "C"
 using namespace org_scilab_modules_gui_plotbrowser;
 
 /*--------------------------------------------------------------------------*/
-int sci_plotbrowser(char *fname, unsigned long fname_len)
+int sci_plotbrowser(char *fname, void* pvApiCtx)
 {
     int iFigureUid  = 0;
     int* piAddr     = NULL;

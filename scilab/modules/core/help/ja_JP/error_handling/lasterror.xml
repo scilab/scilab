@@ -70,14 +70,14 @@
             (<link linkend="dot">dot</link>参照)が含まれる場合のに差異を生じます.
         </para>
         <para>
-            この関数は,<link linkend="errcatch">errcatch</link> または 
-	    <link linkend="execstr">execstr</link>を使用する場合に特に有用です.
+            この関数は,
+            <link linkend="execstr">execstr</link>を使用する場合に特に有用です.
         </para>
         <para>
-	  記録されたエラーメッセージは,
-          <literal>lasterror(%f)</literal>とコールすることにより次回
-          <literal>lasterror</literal>をコールする時のために保持する
-          ことができます.
+            記録されたエラーメッセージは,
+            <literal>lasterror(%f)</literal>とコールすることにより次回
+            <literal>lasterror</literal>をコールする時のために保持する
+            ことができます.
         </para>
     </refsection>
     <refsection>
@@ -90,9 +90,6 @@ if ierr>0 then disp(lasterror()),end
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
             <member>
                 <link linkend="execstr">execstr</link>
             </member>

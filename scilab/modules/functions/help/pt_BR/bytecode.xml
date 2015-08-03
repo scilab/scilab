@@ -81,9 +81,6 @@ bytecode(foo)
                 <link linkend="bytecodewalk">bytecodewalk</link>
             </member>
             <member>
-                <link linkend="macr2lst">macr2lst</link>
-            </member>
-            <member>
                 <link linkend="macr2tree">macr2tree</link>
             </member>
         </simplelist>

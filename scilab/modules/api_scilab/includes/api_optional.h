@@ -16,11 +16,19 @@
 #error Do not include api_optional.h. Include api_scilab.h instead.
 #endif
 
-#include "stack-optional.h"
-
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+    typedef struct rhs_opts__
+    {
+        int iPos ; /** stack position : -1 if not present */
+        char* pstName;
+        int iType;// -1 not yet defined
+        int iRows;
+        int iCols;
+        int* piAddr;
+    } rhs_opts;
 
     /**
      * Get optional variable
@@ -29,7 +37,9 @@ extern "C" {
      * @return if the operation succeeded ( 0 ) or not ( !0 )
      */
     int getOptionals(void* _pvCtx, char* fname, rhs_opts opts[]);
-
+    int FirstOpt(void* _pvCtx);
+    int NumOpt(void* _pvCtx);
+    int FindOpt(void* _pvCtx, char* pstProperty, rhs_opts opts[]);
 #ifdef __cplusplus
 }
 #endif

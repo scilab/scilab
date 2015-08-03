@@ -1412,8 +1412,7 @@ public final class FunctionScanner {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 5 :
-                {
+                case 5 : {
                     functionName = id;
                     return ScilabDocument.ScilabLeafElement.FUN;
                 }

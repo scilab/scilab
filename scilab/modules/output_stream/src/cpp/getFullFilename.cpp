@@ -23,7 +23,7 @@ extern "C"
 {
 #include "machine.h"
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 }
 /*--------------------------------------------------------------------------*/

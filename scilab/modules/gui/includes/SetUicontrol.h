@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 #include "checkColorRange.h"
 #include "getPropertyAssignedValue.h"
-#include "stricmp.h"
+#include "os_string.h"
 
 GUI_IMPEXP int SetUicontrolIcon(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 GUI_IMPEXP int SetUicontrolBackgroundColor(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
@@ -58,5 +58,5 @@ GUI_IMPEXP int SetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID, void* _pvD
 GUI_IMPEXP int SetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol ) ;
 GUI_IMPEXP int SetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol);
 
-char *IntToStyle(int _iStyle);
+const char *IntToStyle(int _iStyle);
 #endif /* __SET_UICONTROL_H__ */

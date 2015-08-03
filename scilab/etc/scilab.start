@@ -13,49 +13,11 @@
 mode(-1);  // silent execution mode
 
 // clean database when restarted ======================================
-predef("clear"); //unprotect all variables
-clear  // erase all variables
+//predef("clear"); //unprotect all variables
+clear;  // erase all variables
 clearglobal();
 
-// Set stack size   ===================================================
-function setStackSize()
-  defaultstacksize = 10000000;
-  old = stacksize()
-  params = sciargs();
-  nparam = find(params == "-mem");
-  if (nparam) then
-    ierr = execstr("newstacksize=" + params(nparam + 1), "errcatch");
-    if (ierr == 0) then
-      if old(1) <> newstacksize then
-        stacksize(newstacksize);
-      end
-    else
-      if old(1) <> defaultstacksize then
-        stacksize(defaultstacksize);
-      end
-    end
-  else
-    if old(1) <> defaultstacksize then
-      stacksize(defaultstacksize);
-    end
-  end
-endfunction
-setStackSize();
-clear setStackSize;
-
-// Special variables definition =======================================
-oldieee=ieee()
-ieee(2);
-%inf = 1/0;
-ieee(0);
-%nan = %inf-%inf;
-// boolean variables
-%T = %t;
-%F = %f;
 %tk = (with_module("tclsci") & getscilabmode() <> "NWNI");
-
-ieee(oldieee);
-clear oldieee
 
 // Default Obsolete Warning policy  ===================================
 global %modalWarning;
@@ -69,25 +31,21 @@ clear %modalWarning;
 PWD = pwd();
 
 // Startup message  ===================================================
-if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
-  write(%io(2),[" ";gettext("Startup execution:")]);
-  write(%io(2),gettext("  loading initial environment"));
+// if (sciargs() <> "-nb") & ~fromjava() & ~fromc() & getscilabmode() == "STD" then
+if (sciargs() <> "-nb") & getscilabmode() == "STD" then
+  printf("\n\n%s\n", gettext("Startup execution:"));
+  printf(gettext("  loading initial environment") + "\n");
 end
 
-if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+//if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & ~fromjava() & ~fromc() & sciargs()<>"-nb")
+if ((getscilabmode() == "NWNI" | getscilabmode() == "NW") & sciargs()<>"-nb")
    [v, opts] = getversion()
-   write(%io(2), strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")");
+   printf(strsubst(v, "scilab-", "Scilab ") + " (" + opts($-1) + ", " + opts($) + ")\n");
    clear v opts;
 end
 
 // loads modules ======================================================
 modules    = getmodules();
-
-// Map 'load' to 'old binary files load' called %_load to be able to load Scilab libraries
-warning("off");
-load = %_load;
-warning("on");
-
 for i=1:size(modules,"*")
   startFile = "SCI/modules/" + modules(i) + "/etc/" + modules(i) + ".start";
   ierr=exec(startFile, 'errcatch', -1);
@@ -97,12 +55,6 @@ for i=1:size(modules,"*")
      exit(2);
    end
 end
-// Fix for bug #12842: to be removed in Scilab 6
-function bug_12842()
-  execstr("[%__variableList__, %__varB__, %__varC__, %__varD__] = listvarinfile(""SCI\modules\atoms\macros\atoms_internals\lib"")", "errcatch");
-endfunction
-bug_12842();
-clear bug_12842
 clear modules i load ierr startFile;
 
 // Create some configuration variables ================================
@@ -169,8 +121,7 @@ if sciargs()<>"-nouserstartup" then
       end
   end
 
-  clear i;
-  clear startupfiles;
+  clear i startupfiles workingfiles workingDirectory;
 end
 
 // Menus/toolbar can now be enabled ====================================
@@ -198,3 +149,9 @@ if getscilabmode() == "STD" then
 end
 // ====================================================================
 clear ans
+
+printf("------------------------------------------------------------\n");
+printf("This is alpha version: avoid using in production\n");
+printf("but please report any problem at http://bugzilla.scilab.org.\n");
+printf("Thank you!\n");
+printf("------------------------------------------------------------\n");

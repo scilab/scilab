@@ -13,30 +13,30 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_display_function_data_property(void* _pvCtx, int iObjUID)
+void* get_display_function_data_property(void* _pvCtx, int iObjUID)
 {
     int iDisplayDataSize = 0;
     int *piDisplayDataSize = &iDisplayDataSize;
     int *piDisplayData = NULL;
 
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION_SIZE__, jni_int, (void **)&piDisplayDataSize);
     getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION__, jni_int_vector, (void **)&piDisplayData);
 
     if ((piDisplayData == NULL) || (piDisplayDataSize == NULL))
     {
-        status = sciReturnEmptyMatrix(_pvCtx);
+        status = sciReturnEmptyMatrix();
     }
     else
     {
-        status = sciReturnUserData(_pvCtx, piDisplayData, iDisplayDataSize);
+        status = sciReturnUserData(piDisplayData, iDisplayDataSize);
     }
 
     return status;

@@ -18,7 +18,9 @@
 #include "pcre_private.h"
 #include "localization.h"
 #include "Scierror.h"
-void pcre_error(char *fname, int errorCode)
+#include "pcre_error.h"
+
+void pcre_error(char const * fname, int errorCode)
 {
     switch (errorCode)
     {

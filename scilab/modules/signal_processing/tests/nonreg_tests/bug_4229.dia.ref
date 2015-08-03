@@ -15,6 +15,6 @@
 // <-- Short Description -->
 // delip does not return an error message if one element of first input
 // argument is negative
-errmsg = msprintf(_("Incompatible input argument.\n"));
+errmsg = msprintf(_("%s: Wrong value for input argument #%d: Must be in the interval [%s, %s].\n"), "delip", 1, "0", "+INF");
 assert_checkerror("delip([-2 2], 0.5)", errmsg);
 assert_checkerror("delip([2 -2], 0.5)", errmsg);

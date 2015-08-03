@@ -14,11 +14,9 @@
 #include <string.h>
 #include "promptecho.h"
 #include "basout.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "prompt.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 int C2F(promptecho)(int *lunit, char *string, int *strl, int string_len)
 {
@@ -28,7 +26,7 @@ int C2F(promptecho)(int *lunit, char *string, int *strl, int string_len)
 
     if (GetTemporaryPrompt())
     {
-        promptstr = strdup(GetTemporaryPrompt());
+        promptstr = os_strdup(GetTemporaryPrompt());
     }
     else
     {

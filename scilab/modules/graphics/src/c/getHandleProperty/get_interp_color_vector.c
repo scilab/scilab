@@ -25,13 +25,13 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int get_interp_color_vector_property(void* _pvCtx, int iObjUID)
+void* get_interp_color_vector_property(void* _pvCtx, int iObjUID)
 {
     int* piInterpVector = NULL;
     int iInterpVectorSet = 0;
@@ -44,19 +44,19 @@ int get_interp_color_vector_property(void* _pvCtx, int iObjUID)
     if (piInterpVectorSet == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_vector");
-        return -1;
+        return NULL;
     }
 
     if (iInterpVectorSet == FALSE)
     {
-        return sciReturnEmptyMatrix(_pvCtx);
+        return sciReturnEmptyMatrix();
     }
     else
     {
         getGraphicObjectProperty(iObjUID, __GO_INTERP_COLOR_VECTOR__, jni_int_vector, (void **) &piInterpVector);
         getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void **) &piNumElements);
 
-        return sciReturnRowVectorFromInt(_pvCtx, piInterpVector, iNumElements);
+        return sciReturnRowVectorFromInt(piInterpVector, iNumElements);
     }
 }
 /*--------------------------------------------------------------------------*/

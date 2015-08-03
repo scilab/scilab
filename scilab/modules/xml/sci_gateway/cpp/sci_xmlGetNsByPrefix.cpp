@@ -16,6 +16,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include "gw_xml.h"
 #include "Scierror.h"
 #include "api_scilab.h"
@@ -26,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetNsByPrefix(char *fname, unsigned long fname_len)
+int sci_xmlGetNsByPrefix(char *fname, void* pvApiCtx)
 {
     XMLElement *elem = 0;
     const XMLNs *ns = 0;

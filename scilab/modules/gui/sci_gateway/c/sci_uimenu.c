@@ -15,17 +15,17 @@
 */
 
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include "BuildObjects.h"
 #include "gw_gui.h"
 #include "localization.h"
-#include "stack-c.h"
 #include "GetProperty.h"
 #include "sciprint.h"
 #include "SetPropertyStatus.h"
 #include "SetHashTable.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "CreateUimenu.h"
 #include "createGraphicObject.h"
 #include "setGraphicObjectProperty.h"
@@ -35,9 +35,7 @@
 #include "api_scilab.h"
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
-// callSetProperty get a stack pointer in input argument.
-/*--------------------------------------------------------------------------*/
-int sci_uimenu(char *fname, unsigned long fname_len)
+int sci_uimenu(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int nbRow = 0, nbCol = 0;

@@ -30,7 +30,7 @@ function [tree]=%i_ce2sci(tree)
     if to.vtype<>Struct then
         if and(to.vtype<>[Cell,Unknown]) then
             if to.vtype==Double & and(to.dims==list(0,0)) then
-                insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
+                m2sci_insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
                 // To be sure that variable will now be of type Cell
                 [bval,index]=isdefinedvar(to)
                 varslist(index).infer.type.vtype=Cell
@@ -38,7 +38,7 @@ function [tree]=%i_ce2sci(tree)
                 error(msprintf(gettext("destination variable is not a cell: %s is of type %s."),to.name,string(to.vtype)))
             end
         elseif to.vtype==Unknown then
-            insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
+            m2sci_insert(Equal(list(to),Funcall("cell",1,list(),list(to))))
             // To be sure that variable will now be of type Cell
             [bval,index]=isdefinedvar(to)
             varslist(index).infer.type.vtype=Cell

@@ -32,10 +32,9 @@ Source: modules\{#SPREADSHEET}\etc\{#SPREADSHEET}.start; DestDir: {app}\modules\
 Source: modules\{#SPREADSHEET}\macros\buildmacros.sce; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SPREADSHEET}\macros\buildmacros.bat; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SPREADSHEET}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SPREADSHEET}\macros\*.bin; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SPREADSHEET}\macros\*.sci; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#SPREADSHEET}\macros\*.bin; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#SPREADSHEET}\macros\lib; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#SPREADSHEET}\macros\names; DestDir: {app}\modules\{#SPREADSHEET}\macros; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#SPREADSHEET}\demos\*.*; DestDir: {app}\modules\{#SPREADSHEET}\demos; Flags: recursesubdirs; Components: {#COMPN_SCILAB}
 ;

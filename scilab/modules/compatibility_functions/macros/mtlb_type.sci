@@ -14,7 +14,8 @@ function []=mtlb_type(filename)
         disp(mgetl(mopen(filename,"r")))
     else
         if type(evstr(filename))==13 then // Compiled function
-            disp(fun2string(evstr(filename)))
+            tree=macr2tree(evstr(filename));
+            disp(tree2code(tree))
         elseif strindex(filename,".")==[] then // File without extension
             Mfilename=filename+".m"
             [x,ierr]=fileinfo(Mfilename)

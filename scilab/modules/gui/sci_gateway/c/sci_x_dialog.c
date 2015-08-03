@@ -19,7 +19,7 @@
 #include "getPropertyAssignedValue.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_dialog(char *fname, unsigned long fname_len)
+int sci_x_dialog(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -74,7 +74,7 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) == 2)
     {
-        if (VarType(2) ==  sci_strings)
+        if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrinitialValueAdr);
             if (sciErr.iErr)
@@ -123,7 +123,8 @@ int sci_x_dialog(char *fname, unsigned long fname_len)
         userValue = getMessageBoxValue(messageBoxID);
 
         nbCol = 1;
-        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &userValueSize, &nbCol, userValue);
+        createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, userValueSize, nbCol, userValue);
+        freeArrayOfString(userValue, userValueSize);
         /* TO DO : delete of userValue */
     }
 

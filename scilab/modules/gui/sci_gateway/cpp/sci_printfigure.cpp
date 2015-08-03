@@ -10,16 +10,17 @@
  *
  */
 
+#define NOMINMAX
 #include "CallScilabBridge.hxx"
 #include "GiwsException.hxx"
+#include <algorithm>
 
 extern "C"
 {
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
-#include "IsAScalar.h"
 #include "gw_gui.h"
 #include "getScilabJavaVM.h"
 #include "FigureList.h"
@@ -28,7 +29,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_printfigure(char *fname, unsigned long l)
+int sci_printfigure(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -39,7 +40,7 @@ int sci_printfigure(char *fname, unsigned long l)
     int * piAddr1   = NULL;
     double* l1      = NULL;
 
-    nbInputArgument(pvApiCtx) = Max(0, nbInputArgument(pvApiCtx));
+    nbInputArgument(pvApiCtx) = std::max(0, nbInputArgument(pvApiCtx));
     CheckInputArgument(pvApiCtx, 1, 1);
     CheckOutputArgument(pvApiCtx, 0, 1);
 
@@ -61,7 +62,7 @@ int sci_printfigure(char *fname, unsigned long l)
                 return 1;
             }
 
-            if (!IsAScalar(1))
+            if (!isScalar(pvApiCtx, piAddr1))
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                 return 1;

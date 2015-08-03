@@ -14,34 +14,17 @@
 // <-- Short Description -->
 // Loading a .scg file fails when the legend contains accentuated characters.
 
-// Old binary format save/load
-plot2d();
-legend(["é","è","à"]);
-f = gcf();
-warning("off");
-save("TMPDIR/bug_10867.scg", f);
-warning("on");
-delete(gcf());
-load("TMPDIR/bug_10867.scg");
-// Test the other problems listed in the bug report (for new SOD format)
-a = gca();
-assert_checkequal(a.children(1).text, ["é";"è";"à"]);
-assert_checkequal(a.children(2).children(1).mark_mode, "off");
-assert_checkequal(a.children(2).children(2).mark_mode, "on");
-assert_checkequal(a.children(2).children(3).mark_mode, "on");
-assert_checkequal(a.auto_ticks, ["on" "on" "on"]);
-delete(gcf());
 
 // SOD format save/load
 plot2d();
-legend(["é","è","à"]);
+legend(["Ã©","Ã¨","Ã "]);
 f = gcf();
 save("TMPDIR/bug_10867.scg", "f");
 delete(gcf());
 load("TMPDIR/bug_10867.scg");
 // Test the other problems listed in the bug report (for new SOD format)
 a = gca();
-assert_checkequal(a.children(1).text, ["é";"è";"à"]);
+assert_checkequal(a.children(1).text, ["Ã©";"Ã¨";"Ã "]);
 assert_checkequal(a.children(2).children(1).mark_mode, "off");
 assert_checkequal(a.children(2).children(2).mark_mode, "on");
 assert_checkequal(a.children(2).children(3).mark_mode, "on");

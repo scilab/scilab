@@ -11,29 +11,26 @@
  *
  */
 #include <stdio.h>
+#include <string.h>
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dlManager.h"
 #include "localization.h"
 /* ==================================================================== */
 static void freeAllocatedStrings(char** url, char** dest, char** username, char** password, char** content, char** filePath);
 /* ==================================================================== */
-int sci_getURL(char *fname, int fname_len)
+int sci_getURL(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
-    int length = 0;
 
-    int *piAddr = NULL;
     char *url = NULL;
     char *dest = NULL;
     char *username = NULL;
     char *password = NULL;
     char *content = NULL;
 
-    int iRows = 0, iCols = 0;
-    int iType = 0;
     int *piAddressVarOne = NULL;
     int ret = 0;
     char *filePath = NULL;

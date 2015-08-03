@@ -101,10 +101,13 @@ public class ScilabImageConverter implements ExternalImageConverter {
         return null;
     }
 
+
     private final String convertToPNG(String currentFile, String code, Map<String, String> attributes, File imageFile, String imageName) {
+
         buffer.append("function _generate_image_from_doc\n");
+
         buffer.append("__olddrv__=driver();\n");
-        buffer.append("disp(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\");");
+        buffer.append("mprintf(\"Generate image " + imageName + " from Scilab code from file " + new File(currentFile).getName() + "\\n\");");
         buffer.append("driver(\"png\");\n");
         buffer.append("xinit(\"").append(imageFile.getAbsolutePath()).append("\");\n");
         buffer.append("clf();\n");
@@ -112,6 +115,7 @@ public class ScilabImageConverter implements ExternalImageConverter {
         buffer.append("___f___=gcf();___f___.anti_aliasing=\"2x\";clear(\"___f___\");\n");
         buffer.append("xend();\n");
         buffer.append("driver(__olddrv__);\n");
+
         buffer.append("endfunction\n");
         buffer.append("_generate_image_from_doc();\n");
         buffer.append("clear _generate_image_from_doc;\n");

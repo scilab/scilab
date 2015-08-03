@@ -187,7 +187,7 @@ scs_m.objs(1)=scicos_block(..
                        ["model","sim","in","in2","intyp","out","out2","outtyp","evtin","evtout","state",..
                        "dstate","odstate","rpar","ipar","opar","blocktype","firing","dep_ut","label",..
                        "nzcross","nmode","equations"],list("variable_delay",4),[1;1],[],1,1,[],1,[],[],..
-                       [],[],list(),[1,0],1024,list(),"d",[],[%f,%t,%f],"",0,0,list()),"VARIABLE_DELAY",..
+                       [],[],list(),[1,0],1024,list(),"d",[],[%f,%f],"",0,0,list()),"VARIABLE_DELAY",..
                        list()),..
                        mlist(["Block","graphics","model","gui","doc"],..
                        mlist(..

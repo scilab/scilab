@@ -33,7 +33,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xpolys(char *fname, unsigned long fname_len)
+int sci_xpolys(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

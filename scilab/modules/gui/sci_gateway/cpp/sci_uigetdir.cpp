@@ -20,7 +20,7 @@ extern "C"
 #include "gw_gui.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
@@ -30,7 +30,7 @@ extern "C"
 using namespace org_scilab_modules_gui_filechooser;
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetdir(char *fname, unsigned long l)
+int sci_uigetdir(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -172,7 +172,7 @@ int sci_uigetdir(char *fname, unsigned long l)
     }
     else
     {
-        char* empty = "";
+        const char * empty = "";
         /* The user canceled the selection --> returns an empty string */
         sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, 1, 1, &empty);
         if (sciErr.iErr)

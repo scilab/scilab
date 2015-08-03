@@ -10,8 +10,8 @@
 
 if isempty([ atomsRepositoryList("user") ; atomsRepositoryList("allusers")]) then
 
-    rep1 = "http://scene10.test.atoms.scilab.org";
-    rep2 = "http://scene11.test.atoms.scilab.org";
+    rep1 = "http://scene10.6.0.test.atoms.scilab.org";
+    rep2 = "http://scene11.6.0.test.atoms.scilab.org";
 
     if atomsRepositoryAdd(rep1,"user")     <> 1 then pause, end
     if atomsRepositoryAdd(rep2,"allusers") <> 1 then pause, end

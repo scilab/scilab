@@ -21,7 +21,7 @@
 #include "../c/completeLine_wrap_java.h"
 #include "getCommonPart.h"
 #include "getPartLine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 %}
 
 %include "../../../jvm/src/jni/scilab_typemaps.i"

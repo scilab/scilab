@@ -24,16 +24,14 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_axes_reverse_property(void* _pvCtx, int iObjUID)
+void* get_axes_reverse_property(void* _pvCtx, int iObjUID)
 {
     int const axesReversePropertiesNames[3] = {__GO_X_AXIS_REVERSE__, __GO_Y_AXIS_REVERSE__, __GO_Z_AXIS_REVERSE__};
     char * axes_reverse[3]  = { NULL, NULL, NULL };
@@ -42,7 +40,7 @@ int get_axes_reverse_property(void* _pvCtx, int iObjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -51,16 +49,16 @@ int get_axes_reverse_property(void* _pvCtx, int iObjUID)
         if (piAxesReverse == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "axes_reverse");
-            return -1;
+            return NULL;
         }
 
         if (iAxesReverse)
         {
-            axes_reverse[i] = strdup("on");
+            axes_reverse[i] = os_strdup("on");
         }
         else
         {
-            axes_reverse[i] = strdup("off");
+            axes_reverse[i] = os_strdup("off");
         }
 
         if (axes_reverse[i] == NULL)
@@ -71,12 +69,12 @@ int get_axes_reverse_property(void* _pvCtx, int iObjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_axes_reverse_property");
-            return -1;
+            return NULL;
         }
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, axes_reverse, 3);
+    status = sciReturnRowStringVector(axes_reverse, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

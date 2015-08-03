@@ -20,7 +20,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "stricmp.h"
+#include "os_string.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"
@@ -31,7 +31,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*------------------------------------------------------------------------*/
 int set_clip_state_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {

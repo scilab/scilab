@@ -16,7 +16,7 @@
 #include <wchar.h>
 #include <wctype.h>
 #include "isalphanum.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 BOOL *isalphanumW(wchar_t *input_string, int *returnedSize)
 {

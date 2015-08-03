@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_text_box_property(void* _pvCtx, int iObjUID)
+void* get_text_box_property(void* _pvCtx, int iObjUID)
 {
     double* size;
 
@@ -39,9 +39,9 @@ int get_text_box_property(void* _pvCtx, int iObjUID)
     if (size == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text_box");
-        return -1;
+        return NULL;
     }
 
-    return sciReturnRowVector(_pvCtx, size, 2);
+    return sciReturnRowVector(size, 2);
 }
 /*------------------------------------------------------------------------*/

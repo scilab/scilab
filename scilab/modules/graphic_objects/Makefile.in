@@ -115,9 +115,10 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @SWIG_TRUE@am__append_4 = swig
 subdir = modules/graphic_objects
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -232,7 +233,8 @@ am__objects_4 =  \
 	src/cpp/libscigraphic_objects_la-createObjectData.lo \
 	src/cpp/libscigraphic_objects_la-pickSurface.lo \
 	src/cpp/libscigraphic_objects_la-Texture.lo \
-	src/cpp/libscigraphic_objects_la-NormalGenerator.lo
+	src/cpp/libscigraphic_objects_la-NormalGenerator.lo \
+	src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo
 am_libscigraphic_objects_la_OBJECTS = $(am__objects_2) \
 	$(am__objects_3) $(am__objects_4)
 libscigraphic_objects_la_OBJECTS =  \
@@ -376,6 +378,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -399,6 +402,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -435,6 +439,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -547,6 +554,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -602,6 +611,7 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 
 #### Target ######
 modulename = graphic_objects
@@ -612,8 +622,9 @@ libscigraphic_objects_la_root_DATA = changelog.txt license.txt readme.txt
 
 #### graphic_objects : init scripts ####
 libscigraphic_objects_la_etcdir = $(mydatadir)/etc
-libscigraphic_objects_la_etc_DATA = etc/graphic_objects.quit \
-				etc/graphic_objects.start
+libscigraphic_objects_la_etc_DATA = \
+    etc/graphic_objects.quit \
+	etc/graphic_objects.start
 
 
 # Where all the Scilab stuff is installed (macros, help, ...)
@@ -642,7 +653,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -684,7 +695,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -692,76 +703,101 @@ BUILT_SOURCES = includes/graphicObjectsProperties.h $(am__append_2) \
 	$(am__append_4)
 #This file is also generated, but can not be listed to prevent GCJ call.
 #src/java/org/scilab/modules/graphic_objects/graphicObject/GraphicObjectProperties.java
-GRAPHIC_OBJECTS_JNI_SOURCES = src/jni/CallGraphicController.cpp \
-                              src/jni/Builder.cpp \
-                              src/jni/CallXmlLoader.cpp
+GRAPHIC_OBJECTS_JNI_SOURCES = \
+    src/jni/CallGraphicController.cpp \
+    src/jni/Builder.cpp \
+    src/jni/CallXmlLoader.cpp
 
-GRAPHIC_OBJECTS_C_SOURCES = src/jni/DataLoader_wrap.c \
-							src/jni/ScilabNativeView_wrap.c \
-							src/jni/PolylineData_wrap.c \
-							src/jni/SurfaceData_wrap.c \
-                            src/jni/ObjectData_wrap.c
+GRAPHIC_OBJECTS_C_SOURCES = \
+    src/jni/DataLoader_wrap.c \
+    src/jni/ScilabNativeView_wrap.c \
+    src/jni/PolylineData_wrap.c \
+    src/jni/SurfaceData_wrap.c \
+    src/jni/ObjectData_wrap.c
 
-GRAPHIC_OBJECTS_CXX_SOURCES = src/cpp/createGraphicObject.cpp \
-								src/cpp/getGraphicObjectProperty.cpp \
-								src/cpp/getConsoleIdentifier.cpp \
-								src/cpp/setGraphicObjectProperty.cpp \
-								src/cpp/deleteGraphicObject.cpp \
-								src/cpp/dataModel.cpp \
-								src/cpp/Data3D.cpp \
-								src/cpp/DataLoader.cpp \
-								src/cpp/NgonData.cpp \
-								src/cpp/NgonGeneralData.cpp \
-								src/cpp/NgonGridData.cpp \
-								src/cpp/NgonGridMatplotData.cpp \
-								src/cpp/NgonPolylineData.cpp \
-								src/cpp/MeshData.cpp \
-								src/cpp/MeshFecData.cpp \
-								src/cpp/ColorComputer.cpp \
-								src/cpp/DecompositionUtils.cpp \
-								src/cpp/Fac3DColorComputer.cpp \
-								src/cpp/Fac3DDecomposer.cpp \
-								src/cpp/NgonGridDataDecomposer.cpp \
-								src/cpp/NgonGridGrayplotDataDecomposer.cpp \
-								src/cpp/MatPlotDecomposer.cpp \
-								src/cpp/NgonGridMatplotDataDecomposer.cpp \
-								src/cpp/Plot3DDecomposer.cpp \
-								src/cpp/PolylineDecomposer.cpp \
-								src/cpp/MeshFecDataDecomposer.cpp \
-								src/cpp/Triangulator.cpp \
-								src/cpp/ScilabView.cpp \
-								src/cpp/FigureList.cpp \
-								src/cpp/HandleManagement.cpp \
-								src/cpp/AxesModel.cpp \
-								src/cpp/FigureModel.cpp \
-								src/cpp/CurrentFigure.cpp \
-								src/cpp/CurrentObject.cpp \
-								src/cpp/CurrentSubwin.cpp \
-								src/cpp/createObjectData.cpp \
-								src/cpp/pickSurface.cpp \
-								src/cpp/Texture.cpp \
-								src/cpp/NormalGenerator.cpp
+GRAPHIC_OBJECTS_CXX_SOURCES = \
+    src/cpp/createGraphicObject.cpp \
+    src/cpp/getGraphicObjectProperty.cpp \
+    src/cpp/getConsoleIdentifier.cpp \
+    src/cpp/setGraphicObjectProperty.cpp \
+    src/cpp/deleteGraphicObject.cpp \
+    src/cpp/dataModel.cpp \
+    src/cpp/Data3D.cpp \
+    src/cpp/DataLoader.cpp \
+    src/cpp/NgonData.cpp \
+    src/cpp/NgonGeneralData.cpp \
+    src/cpp/NgonGridData.cpp \
+    src/cpp/NgonGridMatplotData.cpp \
+    src/cpp/NgonPolylineData.cpp \
+    src/cpp/MeshData.cpp \
+    src/cpp/MeshFecData.cpp \
+    src/cpp/ColorComputer.cpp \
+    src/cpp/DecompositionUtils.cpp \
+    src/cpp/Fac3DColorComputer.cpp \
+    src/cpp/Fac3DDecomposer.cpp \
+    src/cpp/NgonGridDataDecomposer.cpp \
+    src/cpp/NgonGridGrayplotDataDecomposer.cpp \
+    src/cpp/MatPlotDecomposer.cpp \
+    src/cpp/NgonGridMatplotDataDecomposer.cpp \
+    src/cpp/Plot3DDecomposer.cpp \
+    src/cpp/PolylineDecomposer.cpp \
+    src/cpp/MeshFecDataDecomposer.cpp \
+    src/cpp/Triangulator.cpp \
+    src/cpp/ScilabView.cpp \
+    src/cpp/FigureList.cpp \
+    src/cpp/HandleManagement.cpp \
+    src/cpp/AxesModel.cpp \
+    src/cpp/FigureModel.cpp \
+    src/cpp/CurrentFigure.cpp \
+    src/cpp/CurrentObject.cpp \
+    src/cpp/CurrentSubwin.cpp \
+    src/cpp/createObjectData.cpp \
+    src/cpp/pickSurface.cpp \
+    src/cpp/Texture.cpp \
+    src/cpp/NormalGenerator.cpp \
+    src/cpp/DllmainGraphic_objects.cpp
 
-GIWS_WRAPPERS = src/jni/graphic_objects.giws.xml \
-                src/jni/builder.giws.xml
+GIWS_WRAPPERS = \
+    src/jni/graphic_objects.giws.xml \
+    src/jni/builder.giws.xml
 
-libscigraphic_objects_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			-I$(srcdir)/includes/ \
-			-I$(srcdir)/src/cpp/ \
-			-I$(srcdir)/src/c/ \
-			-I$(srcdir)/src/jni/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/commons/src/jni/ \
-			-I$(top_srcdir)/modules/core/includes/ \
-	 		-I$(top_srcdir)/modules/jvm/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+libscigraphic_objects_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/cpp/ \
+    -I$(srcdir)/src/c/ \
+    -I$(srcdir)/src/jni/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/core/includes/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(JAVA_JNI_INCLUDE) \
+    $(AM_CPPFLAGS)
 
 
 # Without the graphic_objects module
-libscigraphic_objects_disable_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/
+libscigraphic_objects_disable_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    $(AM_CPPFLAGS)
 
 GRAPHIC_OBJECTS_DISABLE_C_SOURCES = src/nographic_objects/nographic_objects.c
 libscigraphic_objects_disable_la_SOURCES = $(GRAPHIC_OBJECTS_DISABLE_C_SOURCES)
@@ -774,12 +810,13 @@ CHECK_SRC = $(GRAPHIC_OBJECTS_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscigraphic_objects_la_CPPFLAGS)
 
 #### SWIG Declaration ####
-SWIG_WRAPPERS = src/jni/DataLoader.i \
-				src/jni/ScilabNativeView.i \
-				src/jni/PolylineData.i \
-				src/jni/SurfaceData.i \
-				src/jni/graphic_objects.i \
-				src/jni/ObjectData.i
+SWIG_WRAPPERS = \
+    src/jni/DataLoader.i \
+    src/jni/ScilabNativeView.i \
+    src/jni/PolylineData.i \
+    src/jni/SurfaceData.i \
+    src/jni/graphic_objects.i \
+    src/jni/ObjectData.i
 
 libscigraphic_objects_la_LIBADD = $(top_builddir)/modules/output_stream/libscioutput_stream.la $(X_LIBS) $(X_EXTRA_LIBS)
 
@@ -976,6 +1013,8 @@ src/cpp/libscigraphic_objects_la-Texture.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphic_objects_la-NormalGenerator.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscigraphic_objects.la: $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_DEPENDENCIES) $(EXTRA_libscigraphic_objects_la_DEPENDENCIES) 
 	$(AM_V_CXXLD)$(libscigraphic_objects_la_LINK) $(am_libscigraphic_objects_la_rpath) $(libscigraphic_objects_la_OBJECTS) $(libscigraphic_objects_la_LIBADD) $(LIBS)
@@ -1000,6 +1039,7 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Data3D.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-DataLoader.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-DecompositionUtils.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-DllmainGraphic_objects.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Fac3DColorComputer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-Fac3DDecomposer.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_objects_la-FigureList.Plo@am__quote@
@@ -1425,6 +1465,13 @@ src/cpp/libscigraphic_objects_la-NormalGenerator.lo: src/cpp/NormalGenerator.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_objects_la-NormalGenerator.lo `test -f 'src/cpp/NormalGenerator.cpp' || echo '$(srcdir)/'`src/cpp/NormalGenerator.cpp
 
+src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo: src/cpp/DllmainGraphic_objects.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphic_objects_la-DllmainGraphic_objects.Tpo -c -o src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo `test -f 'src/cpp/DllmainGraphic_objects.cpp' || echo '$(srcdir)/'`src/cpp/DllmainGraphic_objects.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigraphic_objects_la-DllmainGraphic_objects.Tpo src/cpp/$(DEPDIR)/libscigraphic_objects_la-DllmainGraphic_objects.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/DllmainGraphic_objects.cpp' object='src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_objects_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_objects_la-DllmainGraphic_objects.lo `test -f 'src/cpp/DllmainGraphic_objects.cpp' || echo '$(srcdir)/'`src/cpp/DllmainGraphic_objects.cpp
+
 mostlyclean-libtool:
 	-rm -f *.lo
 
@@ -1757,7 +1804,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1766,7 +1813,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1775,11 +1822,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1800,7 +1847,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \
@@ -1948,8 +1995,6 @@ distclean-local:
 	rm -f $(builddir)/help/*/.last_successful_build_javaHelp $(builddir)/help/*/.list_*
 
 .PHONY: macros java swig giws
-			$(AM_CPPFLAGS)
-			$(AM_CPPFLAGS)
 
 includes/graphicObjectsProperties.h: Makefile.am src/scripts/propertiesMap.properties
 	@$(top_srcdir)/modules/graphic_objects/src/scripts/genPropertiesName.sh --C $(top_srcdir)/modules/graphic_objects/src/scripts/propertiesMap.properties $(top_srcdir)/modules/graphic_objects/includes/graphicObjectProperties.h

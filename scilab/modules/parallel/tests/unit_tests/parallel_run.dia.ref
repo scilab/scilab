@@ -7,7 +7,6 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // <-- CLI SHELL MODE -->
-stacksize("max");
 ilib_verbose(0);
 funcprot(0);
 function make_compiled_function(name, ext, code)

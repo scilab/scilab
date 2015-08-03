@@ -8,13 +8,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-function dynamic_linklib = startModule()
-
 //Load  functions libraries
 // =============================================================================
-  load('SCI/modules/dynamic_link/macros/lib');
-endfunction
-
-dynamic_linklib = startModule();
-clear startModule;
+load('SCI/modules/dynamic_link/macros/lib');
 

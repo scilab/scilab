@@ -23,7 +23,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "freeArrayOfString.h"
@@ -39,7 +39,7 @@
 #define DEF_LEGEND_LOCATION "in_upper_right"
 
 /*--------------------------------------------------------------------------*/
-int sci_Legend(char * fname, unsigned long fname_len)
+int sci_Legend(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

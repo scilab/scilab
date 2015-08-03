@@ -20,16 +20,14 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csvRead.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "complex_array.h"
 #include "gw_csv_helpers.h"
 #include "getRange.h"
+#include "os_string.h"
 
 static void freeVar(char** filename, char** separator, char** decimal, char** conversion, int** iRange, char*** toreplace, int sizeReplace, char** regexp);
 /* ==================================================================== */
@@ -38,7 +36,7 @@ static void freeVar(char** filename, char** separator, char** decimal, char** co
 /* ==================================================================== */
 /* csvRead(filename, separator, decimal, conversion, substitute, range)*/
 /* ==================================================================== */
-int sci_csvRead(char *fname, unsigned long fname_len)
+int sci_csvRead(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -139,7 +137,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        regexp = strdup(getCsvDefaultCommentsRegExp());
+        regexp = os_strdup(getCsvDefaultCommentsRegExp());
         if (regexp)
         {
             if (strcmp(regexp, "") == 0)
@@ -210,7 +208,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
         }
         else
         {
-            conversion = strdup(getCsvDefaultConversion());
+            conversion = os_strdup(getCsvDefaultConversion());
         }
     }
 
@@ -226,7 +224,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        decimal = strdup(getCsvDefaultDecimal());
+        decimal = os_strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs >= 2)
@@ -241,7 +239,7 @@ int sci_csvRead(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(getCsvDefaultSeparator());
+        separator = os_strdup(getCsvDefaultSeparator());
     }
 
     if (strcmp(separator, "\\t") == 0)
@@ -425,21 +423,21 @@ int sci_csvRead(char *fname, unsigned long fname_len)
                         if (haveRegexp == 0)
                         {
                             char **emptyStringMatrix = NULL;
-                            emptyStringMatrix = (char**) malloc(sizeof(char*));
+                            emptyStringMatrix = (char**)MALLOC(sizeof(char*));
                             emptyStringMatrix[0] = "";
                             sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, 1, 1, emptyStringMatrix);
-                            free(emptyStringMatrix);
+                            FREE(emptyStringMatrix);
                         }
                         else
                         {
                             if (result->nbComments > 0)
                             {
-                               sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
+                                sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, result->nbComments, 1, result->pstrComments);
                             }
                             else
                             {
-                               iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs+2);
-                               sciErr.iErr = iErrEmpty;
+                                iErrEmpty = createEmptyMatrix(pvApiCtx, Rhs + 2);
+                                sciErr.iErr = iErrEmpty;
                             }
                         }
                         if (sciErr.iErr)

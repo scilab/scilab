@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 execstr('a=1') // sets a=1.
 if isdef('a')<> %t then bugmes();quit;end
 if a<> 1 then bugmes();quit;end
@@ -16,21 +17,19 @@ execstr(['if %t then';
          ' b=0'
          'end'])
 ierr = execstr('a=zzzzzzz','errcatch');
-if ierr <> 4 then bugmes();quit;end 
+if ierr <> 999 then bugmes();quit;end
 ierr = execstr('a=1?02','errcatch');
-if ierr <> 276 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end
 ierr = execstr('a=[1 2 3)','errcatch');
-if ierr <> 2 then bugmes();quit;end
+if ierr <> 999 then bugmes();quit;end
 // variable1 does not exist
 if execstr('variable1;','errcatch')<>0 then disp("Trigger an error"),end
- 
- Trigger an error   
+ Trigger an error
 // variable2 exists ... no error is triggered by execstr
-variable2 = [2,3]; 
+variable2 = [2,3];
 if execstr('variable2;','errcatch')<>0 then 
    disp("Trigger an error");
 else
    disp("execstr is happy");
- 
- execstr is happy   
 end
+ execstr is happy

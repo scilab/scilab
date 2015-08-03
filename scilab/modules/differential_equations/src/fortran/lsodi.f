@@ -1136,8 +1136,6 @@ c-----------------------------------------------------------------------
 c the following card is for optimized compilation on llnl compilers.
 clll. optimize
 c-----------------------------------------------------------------------
-      include 'stack.h'
-
       external prepji, solsy
       integer illin, init, lyh, lewt, lacor, lsavr, lwm, liwm,
      1   mxstep, mxhnil, nhnil, ntrep, nslast, nyh, iowns
@@ -1167,6 +1165,7 @@ c lsodi, intdy, stodi, prepji, and solsy.  groups of variables are
 c replaced by dummy arrays in the common declarations in routines
 c where those variables are not used.
 c-----------------------------------------------------------------------
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavr, lwm, liwm,

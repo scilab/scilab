@@ -19,13 +19,13 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_ticks_format_property(void* _pvCtx, int iObjUID)
+void* get_ticks_format_property(void* _pvCtx, int iObjUID)
 {
     int const propr[3] = {__GO_X_AXIS_FORMAT__, __GO_Y_AXIS_FORMAT__, __GO_Z_AXIS_FORMAT__};
     char * fmts[3]  = { NULL, NULL, NULL };
@@ -38,10 +38,10 @@ int get_ticks_format_property(void* _pvCtx, int iObjUID)
         if (fmts[i] == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "ticks_format");
-            return -1;
+            return NULL;
         }
     }
 
-    return sciReturnRowStringVector(_pvCtx, fmts, 3);
+    return sciReturnRowStringVector(fmts, 3);
 }
 /*------------------------------------------------------------------------*/

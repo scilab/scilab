@@ -204,7 +204,7 @@ protected:
 
     inline static void create(void * pvCtx, const int position, const int rows, const int cols, unsigned long long * ptr)
     {
-        SciErr err = createMatrixOfUnsignedIntege64(pvCtx, position, rows, cols, ptr);
+        SciErr err = createMatrixOfUnsignedInteger64(pvCtx, position, rows, cols, ptr);
         checkError(err);
     }
 
@@ -214,7 +214,7 @@ protected:
         SciErr err = allocMatrixOfUnsignedInteger64(pvCtx, position, rows, cols, &_ptr);
         checkError(err);
 
-        return_ ptr;
+        return _ptr;
     }
 
 #else

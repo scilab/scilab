@@ -16,5 +16,5 @@
 // Check format of HDF5 file
 //
 
-ierr = execstr("import_from_hdf5(SCI + ""/modules/hdf5/tests/nonreg_tests/bug_8170.sod"")", "errcatch");
+ierr = execstr("load(SCI + ""/modules/hdf5/tests/nonreg_tests/bug_8170.sod"")", "errcatch");
 if ierr == 0 then pause, end

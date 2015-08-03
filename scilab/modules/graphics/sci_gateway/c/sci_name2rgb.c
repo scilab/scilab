@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -18,7 +18,7 @@
 #include "CurrentFigure.h"
 #include "createGraphicObject.h"
 
-int sci_name2rgb(char *fname, unsigned long fname_len)
+int sci_name2rgb(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;

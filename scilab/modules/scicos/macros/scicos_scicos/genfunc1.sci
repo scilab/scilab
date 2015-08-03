@@ -60,9 +60,10 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as a functions of "+depp],txt1)
             if txt1==[] then return,end
             // check if txt defines y from u
-            mac=null();deff("[]=mac()",txt1,"n")
-            ok1=check_mac(mac)
-            if ok1 then
+            mac=null();
+            if execstr("deff(""[]=mac()"",txt1,""n"")", "errcatch") <> 0 then
+                messagebox(["Incorrect syntax: ";lasterror()],"modal")
+            else
                 vars=macrovar(mac)
                 for k=1:ni
                     if or(vars(3)=="u"+string(k)) then dep_u=%t,end
@@ -96,9 +97,10 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as  function(s) of "+depp],txt0)
 
             if txt0==[] then return,end
-            mac=null();deff("[]=mac()",txt0,"n")
-            ok1=check_mac(mac)
-            if ok1 then
+            mac=null();
+            if execstr("deff(""[]=mac()"",txt0,""n"")", "errcatch") <> 0 then
+                messagebox(["Incorrect syntax: ";lasterror()],"modal")
+            else
                 vars=macrovar(mac)
                 if or(vars(5)=="xd") then
                     break,
@@ -126,9 +128,10 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             t1
             "at event time, as functions of "+depp],txt2)
             if txt2==[] then return,end
-            mac=null();deff("[]=mac()",txt2,"n")
-            ok1=check_mac(mac)
-            if ok1 then
+            mac=null();
+            if execstr("deff(""[]=mac()"",txt2,""n"")", "errcatch") <> 0 then
+                messagebox(["Incorrect syntax: ";lasterror()],"modal")
+            else
                 vars=macrovar(mac)
                 if ~or(vars(5)=="x") then txt3=[txt3;"x=[]"];end
                 if ~or(vars(5)=="z") then txt3=[txt3;"z=[]"];end
@@ -149,10 +152,10 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "vector of output time events t_evo (size:"+string(nco)+")"
             "at event time. "],txt3)
             if txt3==[] then return,end
-            mac=null();deff("[]=mac()",txt3,"n")
-            //   alan.layec
-            ok1=check_mac(mac)
-            if ok1 then
+            mac=null();
+            if execstr("deff(""[]=mac()"",txt3,""n"")", "errcatch") <> 0 then
+                messagebox(["Incorrect syntax: ";lasterror()],"modal")
+            else
                 vars=macrovar(mac)
                 if ~or(vars(5)=="t_evo") then txt3=[txt3;"t_evo=[]"];end
                 break;
@@ -182,9 +185,12 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         t1
         "as  function(s) of "+depp],txt4)
         if txt4==[] then return,end
-        mac=null();deff("[]=mac()",txt4,"n")
-        ok1=check_mac(mac)
-        if ok1 then break,end
+        mac=null();
+        if execstr("deff(""[]=mac()"",txt4,""n"")", "errcatch") <> 0 then
+            messagebox(["Incorrect syntax: ";lasterror()],"modal")
+        else
+            break
+        end
     end
 
     //flag = 5
@@ -206,9 +212,12 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
         t1
         "as  function(s) of "+depp],txt5)
         if txt5==[] then return,end
-        mac=null();deff("[]=mac()",txt5,"n")
-        ok1=check_mac(mac)
-        if ok1 then break,end
+        mac=null();
+        if execstr("deff(""[]=mac()"",txt5,""n"")", "errcatch") <> 0 then
+            messagebox(["Incorrect syntax: ";lasterror()],"modal")
+        else
+            break
+        end
     end
 
     //flag = 6
@@ -238,9 +247,10 @@ function [ok,tt,dep_ut]=genfunc1(tt,inp,out,nci,nco,nx,nz,nrp,type_)
             "as a function of "+depp],txt6)
             if txt6==[] then return,end
 
-            mac=null();deff("[]=mac()",txt6,"n")
-            ok1=check_mac(mac)
-            if ok1 then
+            mac=null();
+            if execstr("deff(""[]=mac()"",txt6,""n"")", "errcatch") <> 0 then
+                messagebox(["Incorrect syntax: ";lasterror()],"modal")
+            else
                 vars=macrovar(mac)
                 for k=1:no
                     if and(vars(5)<>"y"+string(k)) then txt6=[txt6;"y"+string(k)+"=[]"],end

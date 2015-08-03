@@ -13,21 +13,19 @@
 */
 #include <string.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "gw_localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
 static char *convertString_dgettext(const char *domain, const char *pStr);
 /*--------------------------------------------------------------------------*/
-int sci_gettext(char *fname, unsigned long fname_len)
+int sci_gettext(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;

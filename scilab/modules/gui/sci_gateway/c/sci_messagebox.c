@@ -16,11 +16,11 @@
 #include "CallMessageBox.h"
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "messageboxoptions.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_messagebox(char *fname, unsigned long fname_len)
+int sci_messagebox(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -92,7 +92,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 2);
                 return FALSE;
@@ -130,7 +130,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (nbRow*nbCol == 1)
+            if (nbRow * nbCol == 1)
             {
                 /* The icon argument can be used to give the modal option or the buttons names */
                 if (isModalOption(iconAdr[0]))
@@ -180,7 +180,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (nbRow*nbCol == 1)
+            if (nbRow * nbCol == 1)
             {
                 /* The buttons names argument can be used to give the modal option */
                 if (isModalOption(buttonsTextAdr[0]))
@@ -216,7 +216,7 @@ int sci_messagebox(char *fname, unsigned long fname_len)
                 return 1;
             }
 
-            if (nbRow*nbCol != 1)
+            if (nbRow * nbCol != 1)
             {
                 Scierror(999, _("%s: Wrong size for input argument #%d: A string expected.\n"), fname, 5);
                 return FALSE;

@@ -14,18 +14,18 @@
  */
 #include <string.h>
 #include <stdio.h>
+
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "csvWrite.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "csvDefault.h"
 #include "checkCsvWriteFormat.h"
 #include "gw_csv_helpers.h"
+#include "os_string.h"
 
 
 static void freeVar(char** separator, char** decimal, char** filename, char** precisionFormat, char*** pHeadersLines, int sizeHeader);
@@ -33,7 +33,7 @@ static void freeVar(char** separator, char** decimal, char** filename, char** pr
 // csvWrite(M, filename[, separator, decimal, precision]) */
 // with M string or double (not complex)
 // =============================================================================
-int sci_csvWrite(char *fname, unsigned long fname_len)
+int sci_csvWrite(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -132,7 +132,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        precisionFormat = strdup(getCsvDefaultPrecision());
+        precisionFormat = os_strdup(getCsvDefaultPrecision());
     }
 
     if (Rhs > 3)
@@ -154,7 +154,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        decimal = strdup(getCsvDefaultDecimal());
+        decimal = os_strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs > 2)
@@ -168,7 +168,7 @@ int sci_csvWrite(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(getCsvDefaultSeparator());
+        separator = os_strdup(getCsvDefaultSeparator());
     }
 
     filename = csv_getArgumentAsString(pvApiCtx, 2, fname, &iErr);

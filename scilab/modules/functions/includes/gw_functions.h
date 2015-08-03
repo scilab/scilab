@@ -20,14 +20,8 @@
 /*--------------------------------------------------------------------------*/
 FUNCTIONS_SCILAB_IMPEXP int gw_functions(void);
 /*--------------------------------------------------------------------------*/
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_lib)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_deff)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_exec)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int C2F(sci_execstr)(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_librarieslist(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_libraryinfo(char *fname, unsigned long fname_len);
-FUNCTIONS_SCILAB_IMPEXP int sci_whereis(char *fname, unsigned long fname_len);
+//YaSp
+FUNCTIONS_SCILAB_IMPEXP int sci_libfunc(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/
-

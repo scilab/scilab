@@ -5,14 +5,7 @@ EXPORTS
 ;
 ;core
 iop_
-stack_
-vstk_
-recu_
-errgst_
 com_
-cha1_
 adre_
-intersci_
 returnananfortran_
 ;
-  

@@ -21,7 +21,7 @@
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "SetProperty.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -36,7 +36,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xtitle(char * fname, unsigned long fname_len)
+int sci_xtitle(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 
@@ -57,7 +57,7 @@ int sci_xtitle(char * fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 

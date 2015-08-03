@@ -26,14 +26,12 @@ extern "C"
 #include "gw_gui.h"
 #include "PATH_MAX.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "BOOL.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -79,7 +77,7 @@ using namespace org_scilab_modules_gui_filechooser;
 
 /*--------------------------------------------------------------------------*/
 
-int sci_uigetfile(char *fname, unsigned long fname_len)
+int sci_uigetfile(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 
@@ -152,7 +150,7 @@ int sci_uigetfile(char *fname, unsigned long fname_len)
             description = (char **)MALLOC(sizeof(char *) * nbRow);
             for (int i = 0; i < nbRow; i++)
             {
-                description[i] = strdup(mask[nbRow + i]);
+                description[i] = os_strdup(mask[nbRow + i]);
             }
         }
         else

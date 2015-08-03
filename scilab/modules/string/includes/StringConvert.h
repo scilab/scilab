@@ -14,6 +14,7 @@
 #define __STRINGCONVERT_H__
 
 #include "dynlib_string.h"
+#include <wchar.h>
 
 /**
 * changes `\``n` --> `\n` idem for \t and \r
@@ -21,5 +22,6 @@
 * @return number of \n found
 */
 STRING_IMPEXP int StringConvert(char *str);
+STRING_IMPEXP int StringConvertW(wchar_t *str);
 
 #endif /* __STRINGCONVERT_H__ */

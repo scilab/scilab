@@ -27,7 +27,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatipmove(char *fname, unsigned long fname_len)
+int sci_datatipmove(char *fname, void* pvApiCtx)
 {
     int iDatatipUID         = 0;
     int* piAddr             = NULL;

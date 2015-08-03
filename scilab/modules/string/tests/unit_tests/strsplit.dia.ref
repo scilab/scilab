@@ -2,32 +2,34 @@
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2007-2008 - INRIA
 // Copyright (C) 2009 - DIGITEO - Allan CORNET
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
 //===============================
 // unit tests strsplit
 //===============================
-STR_SPLITED = ['strsplit splits';'a string';'into';'a vector of strings'];
-STR = 'strsplit splits a string into a vector of strings';
+funcprot(0);
+STR_SPLITED = ["strsplit splits";"a string";"into";"a vector of strings"];
+STR = "strsplit splits a string into a vector of strings";
 INDICES = [15 25 30];
 R = stripblanks(strsplit(STR,INDICES));
 assert_checkequal(R, STR_SPLITED);
 //===============================
 assert_checkequal(strsplit([],[1 1 1]), []);
 //===============================
-// Scilab 4.x 
+// Scilab 4.x
 //if execstr('strsplit([],[3 2 1])','errcatch') <> 99  then bugmes();quit;end
 // Scilab 5.x
 assert_checkequal(strsplit([],[3 2 1]), []);
 //===============================
-assert_checkequal(execstr('strsplit('',[0 1])','errcatch'), 31);
-// Scilab 4.x 
+assert_checkequal(execstr("strsplit('''',[0 1])","errcatch"), 999);
+// Scilab 4.x
 //if execstr('strsplit([])','errcatch') <> 39  then bugmes();quit;end
 // Scilab 5.1
 //if execstr('strsplit([])','errcatch') <> 77  then bugmes();quit;end
 // Scilab 5.2
-assert_checkequal(execstr('strsplit([])','errcatch'), 0);
+assert_checkequal(execstr("strsplit([])","errcatch"), 0);
 assert_checkequal(strsplit([]), []);
 //===============================
 ref_1 = ["toto"];
@@ -125,13 +127,13 @@ assert_checkequal(r_1, r_3);
 assert_checkequal(r_2, r_4);
 //===============================
 ref_1 = ["abc";""];
-ref_2 = ',';
+ref_2 = ",";
 [r_1, r_2] = strsplit("abc,",",");
 assert_checkequal(ref_1, r_1);
 assert_checkequal(ref_2, r_2);
 //===============================
 ref_1 = ["abc";""];
-ref_2 = ',';
+ref_2 = ",";
 [r_1, r_2] = strsplit("abc,",",",1);
 assert_checkequal(ref_1, r_1);
 assert_checkequal(ref_2, r_2);
@@ -184,3 +186,4 @@ c = "י";
 [r_1,r_2] = strsplit(v,c);
 assert_checkequal(strcat(r_1,r_2), v);
 //===============================
+funcprot(1);

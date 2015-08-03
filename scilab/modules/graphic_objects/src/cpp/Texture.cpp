@@ -33,6 +33,9 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
 
     switch (imagetype)
     {
+        case MATPLOT_NONE:
+            break;
+
         case MATPLOT_RGB :
             switch (datatype)
             {
@@ -137,6 +140,8 @@ bool Texture::getImage(void const * data, const int numElements, const DataType 
                 case MATPLOT_HM1_Double :
                 case MATPLOT_Double :
                     size = numElements * sizeof(double);
+                    break;
+                default:
                     break;
             }
             break;

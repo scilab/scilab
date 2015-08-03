@@ -57,6 +57,9 @@ C!
       double precision x,phi0,phi,gnrm
 C
       external feq, jacl2
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /comall/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
       common /temps/ t
       common /comall/ nall1 /sortie/ io,info,ll
       common /no2f/ gnrm

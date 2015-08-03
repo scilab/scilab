@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/GetWindowsVersion;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -114,7 +114,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/GetWindowsVersion;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -146,7 +146,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/GetWindowsVersion;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -186,7 +186,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;../../libs/GetWindowsVersion;../../java/jdk/include/win32;../../java/jdk/include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/GetWindowsVersion;../../libs/libxml2;../../libs/libxml2/libxml;../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../windows_tools/includes;../string/includes;../core/includes;../fileio/includes;../output_stream/includes;../localization/includes;../call_scilab/includes;../api_scilab/includes;../preferences/includes;../dynamic_link/includes;../ast/includes/types;../ast/includes/ast;../ast/includes/analysis;../ast/includes/exps;../ast/includes/operations;../ast/includes/symbol;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;LIBJVM_EXPORTS;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -228,7 +228,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\getClasspath.c" />
     <ClCompile Include="src\c\getJvmOptions.c" />
     <ClCompile Include="src\c\getLibrarypath.c" />
-    <ClCompile Include="sci_gateway\c\gw_jvm.c" />
     <ClCompile Include="src\c\InitializeJVM.c" />
     <ClCompile Include="src\c\JVM.c" />
     <ClCompile Include="src\c\JVM_commons.c" />
@@ -237,10 +236,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClCompile Include="src\c\loadClasspath.c" />
     <ClCompile Include="src\c\loadLibrarypath.c" />
     <ClCompile Include="src\c\loadOnUseClassPath.c" />
-    <ClCompile Include="sci_gateway\c\sci_javaclasspath.c" />
-    <ClCompile Include="sci_gateway\c\sci_javalibrarypath.c" />
-    <ClCompile Include="sci_gateway\c\sci_system_getproperty.c" />
-    <ClCompile Include="sci_gateway\c\sci_system_setproperty.c" />
     <ClCompile Include="src\c\system_getproperty.c" />
     <ClCompile Include="src\c\system_setproperty.c" />
     <ClCompile Include="src\c\TerminateJVM.c" />
@@ -252,7 +247,6 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\loadOnUseClassPath.h" />
     <ClInclude Include="src\c\createMainScilabObject.h" />
     <ClInclude Include="includes\dynlib_jvm.h" />
-    <ClInclude Include="src\c\getClasspath.h" />
     <ClInclude Include="src\c\getJvmOptions.h" />
     <ClInclude Include="src\c\getLibrarypath.h" />
     <ClInclude Include="includes\getScilabJavaVM.h" />
@@ -266,7 +260,7 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
     <ClInclude Include="includes\loadBackGroundClassPath.h" />
     <ClInclude Include="src\c\loadClasspath.h" />
     <ClInclude Include="src\c\loadLibrarypath.h" />
-    <ClInclude Include="src\c\system_getproperty.h" />
+    <ClInclude Include="includes\system_getproperty.h" />
     <ClInclude Include="src\c\system_setproperty.h" />
     <ClInclude Include="includes\TerminateJVM.h" />
     <ClInclude Include="src\c\with_java.h" />
@@ -294,15 +288,14 @@ lib /DEF:"$(ProjectDir)preferences_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Pla
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\api_scilab\api_scilab.vcxproj">
-      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
+    <ProjectReference Include="..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\dynamic_link\src\c\dynamic_link.vcxproj">
       <Project>{eab6c580-22b3-4359-ba1d-dd7499a96163}</Project>
     </ProjectReference>
     <ProjectReference Include="..\fileio\fileio.vcxproj">
       <Project>{4fc72d4a-80ee-4b1a-8724-0201c1a35621}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
     <ProjectReference Include="..\io\src\c\io.vcxproj">
       <Project>{80c0f142-184b-4e08-a8ee-5e71437cf904}</Project>

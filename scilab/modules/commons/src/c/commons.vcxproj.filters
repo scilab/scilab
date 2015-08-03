@@ -1,25 +1,25 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{5849332e-4973-499d-862f-7a39742056fa}</UniqueIdentifier>
+      <UniqueIdentifier>{aca22ddf-c32f-4f49-b1c5-87bd9efcc375}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{5be8576b-880f-404a-88e9-cef1ec43fc27}</UniqueIdentifier>
+      <UniqueIdentifier>{5ec0dd89-fe24-4807-ad09-1a428d8c0a17}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{0a1ff52e-6ad2-4cc6-836f-4a83515837a6}</UniqueIdentifier>
+      <UniqueIdentifier>{7c763d56-c259-4513-b025-2c364e76ea59}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{4fceabb3-16e6-4b09-b030-2fa8a88333c5}</UniqueIdentifier>
+      <UniqueIdentifier>{4b6a462a-07e6-47ab-a873-764f21e809ed}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{74ee55e7-359a-4343-a41b-2f9465ad02eb}</UniqueIdentifier>
+      <UniqueIdentifier>{28785fb7-7faf-4c58-9854-af0173d7d29c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{8d469228-8f88-42ba-8476-e9e09a737537}</UniqueIdentifier>
+      <UniqueIdentifier>{adc1991a-c0ed-4f75-8a9d-94f37f8bc9bb}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

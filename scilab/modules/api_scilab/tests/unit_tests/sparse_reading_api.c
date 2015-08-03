@@ -14,9 +14,8 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "MALLOC.h"
 
-int read_sparse(char *fname, unsigned long fname_len)
+int read_sparse(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int i, j, k;

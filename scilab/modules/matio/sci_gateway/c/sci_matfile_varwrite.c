@@ -11,10 +11,6 @@
  *
  */
 
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
-
 #include "gw_matio.h"
 #include "GetMatlabVariable.h"
 #include "api_scilab.h"
@@ -25,7 +21,7 @@ enum matfile_errors
     UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varwrite(char *fname, unsigned long fname_len)
+int sci_matfile_varwrite(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile = NULL;

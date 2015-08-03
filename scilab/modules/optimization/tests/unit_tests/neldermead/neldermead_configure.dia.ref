@@ -138,7 +138,7 @@ cmd = "nm = neldermead_configure(nm,''-restartstep'',[1 2 3]);";
 assert_checkerror(cmd,"%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d",[],"neldermead_configure",2,1,1,3);
 cmd = "nm = neldermead_configure(nm,''-restartstep'',[-1 2]'');";
 assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
-  "neldermead_configure","value",3,"2.22D-308",1,"-1");
+  "neldermead_configure","value",3,string(number_properties("tiny")),1,"-1");
 nm = neldermead_destroy(nm);
 //
 // Check -restarteps
@@ -149,24 +149,21 @@ assert_checkerror(cmd,"%s: Wrong size for input argument #%d: %d-by-%d matrix ex
   "neldermead_configure",3,1,1);
 cmd = "nm = neldermead_configure(nm,''-restarteps'',-1);";
 assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
-  "neldermead_configure","value",3,"2.22D-308",1,"-1");
+  "neldermead_configure","value",3,string(number_properties("tiny")),1,"-1");
 nm = neldermead_destroy(nm);
 //
 // Check the display system
 nm = neldermead_new ();
 nm
- nm  =
- 
+nm  = 
 Nelder-Mead Object:
 ======================
-
 Simplex0 Method : axes
 Simplex0 Length : 1
 Simplex0, Pfeffer, Delta Usual : 0.05
 Simplex0, Pfeffer, Delta Zero : 0.0075
 Simplex0, Given, Coords :
 []
-
 Termination parameters
 Termination on simplex size : T
 Termination on simplex size, Absolute Tolerance : 0
@@ -186,7 +183,6 @@ Termination on Variance : F
 Termination on Variance, Absolute Tolerance : 0
 Termination on Variance, Relative Tolerance : 2.220D-16
 Termination on Variance, Variance of Initial Simplex : 0
-
 Algorithms parameters
 Method : variable
 Reflection Factor (rho) : 1
@@ -210,7 +206,6 @@ Box, Scaling, Method  : tox0
 Box, Scaling, Minimum : 0.00001
 Box, Bounds Parameter: 0.000001
 Box, Reflection Coefficient : 1.3
-
 optbase: <TOPTIM Object>
 simplex0: <TSIMPLEX Object>
 simplexopt: <constant Object>

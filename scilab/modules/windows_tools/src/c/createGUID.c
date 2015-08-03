@@ -1,6 +1,7 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) INRIA - Allan CORNET
+* Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -13,20 +14,23 @@
 /*--------------------------------------------------------------------------*/
 #include <unknwn.h>
 #include "createGUID.h"
-#include "strdup_Windows.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #define _OLEAUT32_
 /*--------------------------------------------------------------------------*/
-char *createGUID(void)
+wchar_t *createGUID(void)
 {
     GUID guid;
-    WORD* wstrGUID[100];
-    char strGUID[100];
+    wchar_t* pwstrGUID = NULL;
+    wchar_t* ret = NULL;
 
     CoCreateGuid (&guid);
-    StringFromCLSID (&guid, wstrGUID);
-    WideCharToMultiByte (CP_ACP, 0, *wstrGUID, -1, strGUID, MAX_PATH, NULL, NULL);
-    strGUID[strlen(strGUID) - 1] = '\0';
-    return strdup(strGUID + 1);
+    StringFromCLSID(&guid, &pwstrGUID);
+
+    //remove first '{' and last '}'
+    pwstrGUID[wcslen(pwstrGUID) - 1] = L'\0';
+    ret = os_wcsdup(pwstrGUID + 1);
+    CoTaskMemFree(pwstrGUID);
+    return ret;
 }
 /*--------------------------------------------------------------------------*/

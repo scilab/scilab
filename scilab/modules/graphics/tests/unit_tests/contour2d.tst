@@ -1,12 +1,13 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - DIGITEO - Michael Baudin
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- TEST WITH GRAPHIC -->
-
+funcprot(0);
 //
 // Test #0: the demo
 h = scf();
@@ -47,3 +48,5 @@ h = scf();
 z=feval(t,t,my_surface);
 contour(t,t,z+0.2*abs(z),20,flag=[0 2 4]);
 close(h);
+
+funcprot(1);

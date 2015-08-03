@@ -296,29 +296,6 @@
             
             <varlistentry>
                 
-                <term>-mem N</term>
-                
-                <listitem>
-                    
-                    <para>
-                        <literal>-ns</literal>オプションと共に指定し,
-                        
-                        <literal>stacksize</literal>の初期値を設定します. 
-                        
-                        <literal>-ns</literal>オプションを指定しない場合, 
-                        
-                        <literal>stacksize</literal>の初期値は
-                        
-                        <literal>scilab.start</literal>により設定されます.
-                        
-                    </para>
-                    
-                </listitem>
-                
-            </varlistentry>
-            
-            <varlistentry>
-                
                 <term>-nb</term>
                 
                 <listitem>

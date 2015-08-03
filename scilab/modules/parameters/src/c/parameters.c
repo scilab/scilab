@@ -16,15 +16,13 @@
 /*--------------------------------------------------------------------------*/
 #include "parameters.h"
 #include "sci_types.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int commonFindLabel(void* _pvCtx, int * _piAddress, char const * const _pstLabelToFind);
 static int commonFindLabelPartial(void* _pvCtx, int * _piAddress, char const * const _pstLabelToFind);
@@ -444,7 +442,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
         {
             if (label_list[0])
             {
-                *_pstValue = strdup(label_list[0]);
+                *_pstValue = os_strdup(label_list[0]);
             }
             else
             {
@@ -452,7 +450,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                 {
                     sciprint(_("%s: wrong parameter type. %s expected. Return default value %s.\n"), "getStringInPList", "string", _pstDefaultValue);
                 }
-                *_pstValue = strdup(_pstDefaultValue);
+                *_pstValue = os_strdup(_pstDefaultValue);
             }
         }
         else
@@ -461,7 +459,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
             {
                 sciprint(_("%s: parameter not found. Return default value %s.\n"), "getStringInPList", _pstDefaultValue);
             }
-            *_pstValue = strdup(_pstDefaultValue);
+            *_pstValue = os_strdup(_pstDefaultValue);
         }
 
         if (len_label)
@@ -473,7 +471,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
     }
     else
     {
-        *_pstValue = strdup(_pstDefaultValue);
+        *_pstValue = os_strdup(_pstDefaultValue);
     }
 
     /* Now check parameters */
@@ -521,7 +519,7 @@ SciErr getStringInPList(void* _pvCtx, int * _piAddress, const char * _pstLabel, 
                         *_pstValue = NULL;
                     }
 
-                    *_pstValue = strdup(_pstDefaultValue);
+                    *_pstValue = os_strdup(_pstDefaultValue);
 
                     va_end(vl);
                     addErrorMessage(&_SciErr, 999, _("%s: wrong value for parameter %s: value %s\n"), "getStringInPList", _pstLabel, *_pstValue);
@@ -923,14 +921,14 @@ SciErr createPList(void* _pvCtx, int _iVar, int ** _piAddress, char ** _pstLabel
 
     _SciErr = createMList(_pvCtx, _iVar, _iNbParams + 1, _piAddress);
     label_list = (char **)MALLOC((_iNbParams + 1) * sizeof(char *));
-    label_list[0] = strdup("plist");
+    label_list[0] = os_strdup("plist");
 
     for (i = 1; i <= _iNbParams; i++)
     {
-        label_list[i] = strdup(_pstLabelNames[i - 1]);
+        label_list[i] = os_strdup(_pstLabelNames[i - 1]);
     }
 
-    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, label_list);
+    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, *_piAddress, 1, 1, _iNbParams + 1, (char const * const*) label_list);
 
     if (label_list)
     {
@@ -997,8 +995,8 @@ SciErr createStringInPList(void* _pvCtx, int _iVar, int * _piAddress, char * _ps
     sciprint("DEBUG: addStringInPList - itemPos = %d _pstLabelName = %s\n", itemPos, _pstLabelName);
 #endif
 
-    tmp_val[0] = strdup(_pstValue);
-    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, _piAddress, itemPos, 1, 1, tmp_val);
+    tmp_val[0] = os_strdup(_pstValue);
+    _SciErr = createMatrixOfStringInList(_pvCtx, _iVar, _piAddress, itemPos, 1, 1, (char const * const*) tmp_val);
 
     if (tmp_val[0])
     {

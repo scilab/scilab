@@ -16,11 +16,11 @@
 #include "sci_mpi.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "serialization.h"
 #include "deserialization.h"
 
-int sci_mpi_wait(char *fname, unsigned long fname_len)
+int sci_mpi_wait(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iRet = 0;

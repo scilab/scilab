@@ -31,7 +31,7 @@
 #include "Scierror.h"
 #include "sciprint.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 
 #include "getGraphicObjectProperty.h"

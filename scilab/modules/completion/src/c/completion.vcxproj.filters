@@ -2,27 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{ad687e14-f73e-44d1-b54d-e18012fe1ab7}</UniqueIdentifier>
+      <UniqueIdentifier>{20653953-d021-4515-a90d-615ed4b211b6}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{81d3fcfb-fa9e-44ca-82f8-f19b3a7beefe}</UniqueIdentifier>
+      <UniqueIdentifier>{2089688a-2b1f-46e0-ab25-b5eff54e092e}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{f75b76f3-ab8f-4d5e-ba4e-af1e56f77448}</UniqueIdentifier>
+      <UniqueIdentifier>{3692dbe0-2468-497d-af0f-d0739496af1a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{7b3cd816-630e-4cc3-a647-f52648c8ad08}</UniqueIdentifier>
+      <UniqueIdentifier>{625af44d-3cd2-4f70-a51d-ffbbbd71cd47}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{9e8611a6-4cba-4ba5-8ac1-a83cceba5f58}</UniqueIdentifier>
+      <UniqueIdentifier>{973dbeac-2c3b-4f03-b61f-7dc2fd0fb7f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{4ad53753-5887-4dff-b846-d04e29ac60dc}</UniqueIdentifier>
+      <UniqueIdentifier>{610d4aff-7c32-4a32-82cf-d59e4d0d2018}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{0f3f4bfc-acef-4a7e-bb4a-0033b39389de}</UniqueIdentifier>
+      <UniqueIdentifier>{d452d74c-791c-4dc3-ac94-efe79074cc20}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -44,28 +44,13 @@
     <ClCompile Include="completion_wrap_java.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DllmainCompletion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getCommonPart.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="getfieldsdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="getfilesdictionary.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getmacrosdictionary.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="getPartLine.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_completion.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_completion.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="toolsdictionary.c">
@@ -78,6 +63,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\XMLFieldsGetter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_completion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\getfieldsdictionary.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\cpp\EOFieldsGetter.cpp">
@@ -110,6 +101,9 @@
     <ClCompile Include="..\cpp\XMLSetFieldsGetter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\cpp\DllmainCompletion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\completeLine.h">
@@ -139,16 +133,7 @@
     <ClInclude Include="getfilesdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\getmacrosdictionary.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\includes\getPartLine.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_completion.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="toolsdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\getfields.h">
@@ -161,6 +146,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\XMLFieldsGetter.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\toolsdictionary.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\cpp\EOFieldsGetter.hxx">
@@ -201,15 +189,12 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="Scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="..\..\completion.iss" />
-    <None Include="..\..\sci_gateway\completion_gateway.xml" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\completion.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="..\..\sci_gateway\completion_gateway.xml" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="completion.rc">

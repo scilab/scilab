@@ -30,7 +30,7 @@
 #include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xfarcs(char *fname, unsigned long fname_len)
+int sci_xfarcs(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

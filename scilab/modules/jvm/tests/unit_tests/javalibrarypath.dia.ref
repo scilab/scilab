@@ -4,10 +4,8 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-ierr = execstr('a = javalibrarypath(2);','errcatch');
-if ierr <> 999 then bugmes();quit;end
+assert_checktrue(execstr("a = javalibrarypath(2);","errcatch")==999);
 result = javalibrarypath();
-if size(result,"*") < 1 then bugmes();quit;end
+assert_checktrue(size(result,"*") > 1);
 // Does not return anything
-ierr = execstr('javalibrarypath(TMPDIR);;','errcatch');
-if ierr <> 0 then bugmes();quit;end
+assert_checktrue(execstr("javalibrarypath(TMPDIR);","errcatch")==0);

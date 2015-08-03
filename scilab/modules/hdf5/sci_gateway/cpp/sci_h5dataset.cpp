@@ -27,7 +27,7 @@ using namespace org_modules_hdf5;
   Scilab prototype:
 */
 
-int sci_h5dataset(char *fname, unsigned long fname_len)
+int sci_h5dataset(char *fname, int* pvApiCtx)
 {
     H5Object * hobj = 0;
     SciErr err;

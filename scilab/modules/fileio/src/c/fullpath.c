@@ -19,7 +19,7 @@
 #endif
 #include "fullpath.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "machine.h"
 #include "PATH_MAX.h"
 #include "strsubst.h"

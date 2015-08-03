@@ -7,6 +7,7 @@
 // ===========================================================================
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+funcprot(0);
 ilib_verbose(0);
 //DASSL
 // PROBLEM 1..   LINEAR DIFFERENTIAL/ALGEBRAIC SYSTEM
@@ -184,7 +185,7 @@ t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
 //hot restart
 t01=nn(1);t=100:20:200;[pp,qq]=size(yy);y01=yy(2:3,qq);y0d1=yy(3:4,qq);
 [yy,nn,hotd]=dae("root",[y01,y0d1],t01,t,atol,rtol,"res22","jac22",ng,"gr22",hotd);
-dasrt encountered trouble
+dasrt encountered trouble.
 rtol=[1.d-6;1.d-6];
 atol=[1.d-6;1.d-4];
 t0=0;y0=[2;0];y0d=[0;-2];t=[20:20:200];ng=1;
@@ -317,8 +318,6 @@ y0=yy(1,1);y0d=yy(2,1);t0=nn(1);t=[3,4,5,6];
 assert_checkalmostequal(nn(1),2.500009,0.001);
 // Same problem, but using macro for the derivative evaluation function 'res1'
 deff("[delta,ires]=res1(t,y,ydot)","ires=0;delta=ydot-((2.*log(y)+8)./t-5).*y")
-Warning : redefining function: res1                    . Use funcprot(0) to avoid this message
-
 deff("[rts]=gr1(t,y,yd)","rts=[((2*log(y)+8)/t-5)*y;log(y)-2.2491]")
 y0=1;t=2:6;t0=1;y0d=3;
 atol=1.d-6;rtol=0;ng=2;
@@ -447,8 +446,6 @@ function [wp, iwp, ires] = pjac(neq, t, y, ydot, h, cj, rewt, savr)
         ydot(i) = ypsave;
     end
 endfunction
-Warning : redefining function: pjac                    . Use funcprot(0) to avoid this message
-
 [yy,nn]=dae("root2",[y0,y0d],t0,t,rtol,atol,res2,jac2,ng,"gr2",psol,pjac);
 assert_checkalmostequal(nn(1),81.163512,0.003);
 deff("s=gr2(t,y,yd)","s=y(1)")

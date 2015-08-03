@@ -10,7 +10,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-
+#include <string.h>
 #include "gw_gui.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -20,7 +20,7 @@
 #include "getGraphicObjectProperty.h"
 #include "HandleManagement.h"
 /*--------------------------------------------------------------------------*/
-int sci_uiwait(char *fname, unsigned long fname_len)
+int sci_uiwait(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

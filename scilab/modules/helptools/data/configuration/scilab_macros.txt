@@ -29,7 +29,6 @@ apropos
 clean_help
 del_help_chapter
 del_module_help_chapter
-extract_help_examples
 find_links
 help
 help_from_sci
@@ -1355,13 +1354,11 @@ NDcost
 aplat
 bvodeS
 datafit
-derivative
 karmarkar
 leastsq
 list2vec
 lmisolver
 lmitool
-numdiff
 pack
 pencost
 qpsolve
@@ -1370,7 +1367,6 @@ unpack
 vec2list
 aff2ab
 classmarkov
-cmb_lin
 coff
 colcomp
 companion
@@ -1547,7 +1543,6 @@ augment
 balreal
 bilin
 black
-bloc2exp
 bloc2ss
 bode
 bode_asymp
@@ -1698,8 +1693,6 @@ tf2des
 tf2ss
 time_id
 trfmod
-trianfml
-trisolve
 trzeros
 ui_observer
 unobs
@@ -1918,7 +1911,6 @@ datatipsGUI
 orthProj
 pixDist
 setStringPosition
-%_listvarinfile
 %dir_p
 dir
 dirname
@@ -1938,7 +1930,6 @@ bytecode
 bytecodewalk
 check_gateways
 createfun
-fun2string
 genlib
 get_function_path
 get_profile

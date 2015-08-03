@@ -21,6 +21,9 @@
     <ClCompile Include="nogui.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="nogui_gw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nogui.rc">

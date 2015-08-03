@@ -3,6 +3,5 @@
 EXPORTS 
 getYConsoleScreenSize
 getXConsoleScreenSize
-strdup_windows
 setFocusOnConsole
 mmap

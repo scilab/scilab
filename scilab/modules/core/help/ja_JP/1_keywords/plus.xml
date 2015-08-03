@@ -7,8 +7,8 @@
     <refsynopsisdiv>
         <title>呼出し手順</title>
         <synopsis>
-	  X+Y
-          str1+str2
+            X+Y
+            str1+str2
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -18,8 +18,8 @@
                 <term>X,Y</term>
                 <listitem>
                     <para>
-                        数値,多項式または有理数のスカラーまたはベクトルまたは行列. 
-			<literal>syslin</literal> リストとすることも可能
+                        数値,多項式または有理数のスカラーまたはベクトルまたは行列.
+                        <literal>syslin</literal> リストとすることも可能
                     </para>
                 </listitem>
             </varlistentry>
@@ -55,7 +55,7 @@
     </refsection>
     <refsection>
         <title>例</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 [1,2]+1
 []+2
 s=poly(0,"s");
@@ -67,9 +67,6 @@ s+2
     <refsection role="see also">
         <title>参照</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="addf">addf</link>
-            </member>
             <member>
                 <link linkend="mtlb_mode">mtlb_mode</link>
             </member>

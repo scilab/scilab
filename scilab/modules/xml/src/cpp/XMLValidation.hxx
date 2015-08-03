@@ -87,8 +87,8 @@ public:
     }
 
 protected:
-    static std::string * errorBuffer;
-    static std::list < XMLValidation * >&openValidationFiles;
+    static std::string errorBuffer;
+    static std::list<XMLValidation *> openValidationFiles;
 
     /**
      * Error function for the XML parser
@@ -103,3 +103,4 @@ protected:
 }
 
 #endif
+

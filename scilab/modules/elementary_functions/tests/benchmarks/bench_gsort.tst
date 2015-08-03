@@ -11,11 +11,9 @@
 
 // <-- BENCH NB RUN : 10 -->
 
-stacksize(30000000);
-
 a = 0;
 b = 0;
-a = rand(2000000, 1, 'n');
+a = rand(2000000, 1, "n");
 
 // <-- BENCH START -->
 b = -gsort(-a);

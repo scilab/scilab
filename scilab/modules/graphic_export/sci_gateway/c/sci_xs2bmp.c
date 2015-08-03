@@ -15,8 +15,8 @@
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xs2bmp( char * fname, unsigned long fname_len )
+int sci_xs2bmp(char * fname, void* pvApiCtx)
 {
-    return xs2file( fname, BMP_EXPORT ) ;
+    return xs2file(fname, BMP_EXPORT, pvApiCtx);
 }
 /*--------------------------------------------------------------------------*/

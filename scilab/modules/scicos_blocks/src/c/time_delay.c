@@ -20,7 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_print.h"
 #include "scicos_block.h"
 #include "localization.h"

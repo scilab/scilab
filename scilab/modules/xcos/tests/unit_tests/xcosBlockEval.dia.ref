@@ -20,10 +20,13 @@ ioBlocks = ["IN_f", "OUT_f", "INIMPL_f", "OUTIMPL_f", "CLKIN_f", "CLKOUT_f", ..
 for index = 1:size(ioBlocks, '*')
     cmd = "blk = " + ioBlocks(index) + "(""define"");";
     if (execstr(cmd, "errcatch") <> 0) then bugmes();quit;end;
+    
     // context and block settings
     context = ["myVariable = 42;"];
     blk.graphics.exprs = "myVariable";
+    
     new_blk = xcosBlockEval(evstr(ioBlocks(index)), blk, context);
+    
     // check settings
     if (new_blk.graphics.exprs <> "myVariable") then bugmes();quit;end;
     if (new_blk.model.ipar <> 42) then bugmes();quit;end;

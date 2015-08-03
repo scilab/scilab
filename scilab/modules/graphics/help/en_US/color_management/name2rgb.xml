@@ -76,7 +76,7 @@ rgb2name(rgb)
         <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.6.0</revnumber>
+                <revnumber>6.0.0</revnumber>
                 <revremark>
                     Function <function>name2rgb</function> can now handle a single string and a matrix of strings.
                 </revremark>

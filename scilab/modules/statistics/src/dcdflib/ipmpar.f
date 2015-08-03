@@ -33,17 +33,16 @@ C     IPMPAR(8) = M, THE NUMBER OF BASE-B DIGITS.
 C     IPMPAR(9) = EMIN, THE SMALLEST EXPONENT E.
 C     IPMPAR(10) = EMAX, THE LARGEST EXPONENT E.
 C-----------------------------------------------------------------------
-C     RWRITTEN BY JPC to use lapack dlamch + a small c program 
+C     RWRITTEN BY JPC to use lapack dlamch + a small c program
 C     for ipmpar(3)
 C-----------------------------------------------------------------------
       DOUBLE PRECISION   DLAMCH
-      EXTERNAL DLAMCH 
-      include 'stack.h'
+      EXTERNAL DLAMCH
       goto (1,1,3,4,1,1,1,1,9,10) i
- 1    continue 
-      call basout(io,wte,'ipmpar called with wrong argument')
+ 1    continue
+      call basout(io,6,'ipmpar called with wrong argument')
       ipmpar = 0
-      return 
+      return
  3    ipmpar = largestint()
       return
  4    ipmpar=dlamch('b')

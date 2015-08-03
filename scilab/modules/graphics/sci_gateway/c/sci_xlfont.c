@@ -18,6 +18,8 @@
 /* desc : interface for xlfont routine                                    */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
+#include "gw_graphics.h"
 #include "api_scilab.h"
 #include "RendererFontManager.h"
 #include "freeArrayOfString.h"
@@ -25,11 +27,11 @@
 #include "Scierror.h"
 #include "FileExist.h"
 /*--------------------------------------------------------------------------*/
-static int xlfont_no_rhs(char * fname);
-static int xlfont_one_rhs(char * fname);
-static int xlfont_n_rhs(char * fname);
+static int xlfont_no_rhs(char * fname, void* pvApiCtx);
+static int xlfont_one_rhs(char * fname, void* pvApiCtx);
+static int xlfont_n_rhs(char * fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
-int sci_xlfont(char * fname, unsigned long fname_len)
+int sci_xlfont(char * fname, void *pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 0, 4);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -37,19 +39,19 @@ int sci_xlfont(char * fname, unsigned long fname_len)
     switch (nbInputArgument(pvApiCtx))
     {
         case 0:
-            return xlfont_no_rhs(fname);
+            return xlfont_no_rhs(fname, pvApiCtx);
             break;
         case 1:
-            return xlfont_one_rhs(fname);
+            return xlfont_one_rhs(fname, pvApiCtx);
             break;
         default:
-            return xlfont_n_rhs(fname);
+            return xlfont_n_rhs(fname, pvApiCtx);
             break;
     }
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_no_rhs(char * fname)
+static int xlfont_no_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0;
@@ -73,7 +75,7 @@ static int xlfont_no_rhs(char * fname)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_one_rhs(char * fname)
+static int xlfont_one_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     if ((checkInputArgumentType(pvApiCtx, 1, sci_strings)))
@@ -189,7 +191,7 @@ static int xlfont_one_rhs(char * fname)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static int xlfont_n_rhs(char * fname)
+static int xlfont_n_rhs(char * fname, void* pvApiCtx)
 {
     SciErr sciErr;
     BOOL isBold = FALSE;

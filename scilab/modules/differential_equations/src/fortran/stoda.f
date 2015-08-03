@@ -2,8 +2,7 @@ C/MEMBR ADD NAME=STODA,SSI=0
       subroutine stoda (neq, y, yh, nyh, yh1, ewt, savf, acor,
      1   wm, iwm, f, jac, pjac, slvs)
 clll. optimize
-      
-      include 'stack.h'
+
       external f, jac, pjac, slvs
       integer neq, nyh, iwm
       integer iownd, ialth, ipup, lmax, meo, nqnyh, nslp,
@@ -25,12 +24,14 @@ clll. optimize
       dimension neq(*), y(*), yh(nyh,*), yh1(*), ewt(*), savf(*),
      1   acor(*), wm(*), iwm(*)
       dimension sm1(12)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, conit, crate, el(13), elco(13,12),
      1   hold, rmax, tesco(3,12),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround, iownd(14),
      3   ialth, ipup, lmax, meo, nqnyh, nslp,
      4   icf, ierpj, iersl, jcur, jstart, kflag, l, meth, miter,
      5   maxord, maxcor, msbp, mxncf, n, nq, nst, nfe, nje, nqu
+cDEC$ ATTRIBUTES DLLIMPORT:: /lsa001/
       common /lsa001/ rownd2, pdest, pdlast, ratio, cm1(12), cm2(5),
      1   pdnorm,
      2   iownd2(3), icount, irflag, jtyp, mused, mxordn, mxords

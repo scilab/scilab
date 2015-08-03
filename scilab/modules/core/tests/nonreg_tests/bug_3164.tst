@@ -17,10 +17,10 @@
 function varargout = test1();
     s.a=1;s.b=3;varargout = s
 endfunction
-if execstr('test1()','errcatch')<>140 then pause,end
+if execstr("test1()","errcatch") == 0 then pause,end
 
 function varargout = test2();
     varargout = 1
 endfunction
-if execstr('test2()','errcatch')<>140 then pause,end
+if execstr("test2()","errcatch") == 0 then pause,end
 

@@ -19,6 +19,7 @@ extern "C"
 #include "FigureModel.h"
 #include "AxesModel.h"
 #include "CurrentSubwin.h"
+#include "api_scilab.h"
 }
 
 #include "CallGraphicController.hxx"
@@ -94,7 +95,18 @@ int createNewFigureWithAxes()
     if (iUserDataSize != 0)
     {
         int* pUserData = NULL;
+
         getGraphicObjectProperty(getFigureModel(), __GO_USER_DATA__, jni_int_vector, (void**)&pUserData);
+
+        if(sizeof(void*) == 4) //32 bits
+        {
+            increaseValRef(NULL, (int*)*(int*)pUserData);
+        }
+        else //64 bits
+        {
+            increaseValRef(NULL, (int*)*(long long*)pUserData);
+        }
+
         setGraphicObjectProperty(id, __GO_USER_DATA__, pUserData, jni_int_vector, iUserDataSize);
     }
 

@@ -19,7 +19,7 @@ extern "C" {
 
 using namespace org_modules_external_objects;
 
-int sci_invoke_lu(char * fname, unsigned long fname_len)
+int sci_invoke_lu(char * fname, void* pvApiCtx)
 {
     try
     {

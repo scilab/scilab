@@ -10,6 +10,7 @@
  */
 
 #include <wchar.h>
+#include <string.h>
 #include <wctype.h>
 #include <stdlib.h>
 #include <stdio.h>
@@ -25,7 +26,7 @@
 #include "initConsoleMode.h"
 #include "cliPrompt.h"
 #include "getKey.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "HistoryManager.h"
 #include "charEncoding.h"
 #include "cliDisplayManagement.h"
@@ -218,7 +219,7 @@ static void getKey(wchar_t ** commandLine, unsigned int *cursorLocation)
 
     key = getwchar();
 
-	// Need to clear the stdin
+    // Need to clear the stdin
     if (key == WEOF && feof(stdin))
     {
         clearerr(stdin);
@@ -323,10 +324,6 @@ char *getCmdLine(void)
 
     if (commandLine == NULL || commandLine[nextLineLocationInWideString] == L'\0')
     {
-        if (commandLine != NULL)
-        {
-            FREE(commandLine);
-        }
         commandLine = MALLOC(1024 * sizeof(*commandLine));
         *commandLine = L'\0';
         nextLineLocationInWideString = 0;
@@ -372,6 +369,11 @@ char *getCmdLine(void)
         return NULL;
     }
 
+    if (commandLine[nextLineLocationInWideString] == L'\0')
+    {
+        FREE(commandLine);
+        commandLine = NULL;
+    }
     return multiByteString;
 }
 

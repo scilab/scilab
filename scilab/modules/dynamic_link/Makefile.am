@@ -4,34 +4,48 @@
 # This file is distributed under the same license as the Scilab package.
 
 
-DYNAMIC_LINK_C_SOURCES = src/c/addinter.c \
-src/c/dynamic_link.c \
-src/c/dl_genErrorMessage.c \
-src/c/GetFunctionByName.c \
-src/c/ilib_verbose.c \
-src/c/dynamiclibrary_others.c
+DYNAMIC_LINK_C_SOURCES = \
+    src/c/dl_genErrorMessage.c \
+    src/c/GetFunctionByName.c \
+    src/c/ilib_verbose.c \
+    src/c/dynamiclibrary_others.c
 
-GATEWAY_C_SOURCES = sci_gateway/c/gw_dynamic_link.c \
-sci_gateway/c/sci_getdynlibext.c \
-sci_gateway/c/sci_addinter.c \
-sci_gateway/c/sci_call.c \
-sci_gateway/c/sci_link.c \
-sci_gateway/c/sci_ulink.c \
-sci_gateway/c/sci_c_link.c \
-sci_gateway/c/sci_ilib_verbose.c
+DYNAMIC_LINK_CPP_SOURCES = \
+    src/cpp/dynamic_link.cpp \
+    src/cpp/addinter.cpp
 
-GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_fort.f
+#GATEWAY_C_SOURCES = \
+#    sci_gateway/c/sci_call.c
+
+GATEWAY_CPP_SOURCES = \
+    sci_gateway/cpp/dynamic_link_gw.cpp \
+    sci_gateway/cpp/sci_link.cpp \
+    sci_gateway/cpp/sci_c_link.cpp \
+    sci_gateway/cpp/sci_ulink.cpp \
+    sci_gateway/cpp/sci_ilib_verbose.cpp \
+    sci_gateway/cpp/sci_getdynlibext.cpp \
+    sci_gateway/cpp/sci_addinter.cpp
 
 libscidynamic_link_la_CPPFLAGS = \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/fileio/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
--I$(top_srcdir)/modules/string/includes/ \
--I$(top_srcdir)/modules/io/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(srcdir)/includes/ \
-$(AM_CPPFLAGS)
+	-I$(srcdir)/includes/ \
+	-I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+	-I$(top_srcdir)/modules/io/includes/ \
+	-I$(top_srcdir)/modules/api_scilab/includes/ \
+	-I$(top_srcdir)/modules/output_stream/includes/ \
+	-I$(top_srcdir)/modules/functions_manager/includes/ \
+	-I$(top_srcdir)/modules/string/includes/ \
+	-I$(top_srcdir)/modules/fileio/includes/ \
+	-I$(top_srcdir)/modules/threads/includes/ \
+	-I$(top_srcdir)/modules/localization/includes/ \
+	$(AM_CPPFLAGS)
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libscidynamic_link.la
@@ -44,8 +58,8 @@ libscidynamic_link_la_includedir=$(pkgincludedir)
 libscidynamic_link_la_include_HEADERS = includes/dynamiclibrary_others.h \
 includes/dynamiclibrary.h
 
-libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES)
-libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscidynamic_link_algo_la_SOURCES = $(DYNAMIC_LINK_C_SOURCES) $(DYNAMIC_LINK_CPP_SOURCES)
+libscidynamic_link_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CPP_SOURCES)
 libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
 
@@ -53,7 +67,7 @@ libscidynamic_link_algo_la_CPPFLAGS = $(libscidynamic_link_la_CPPFLAGS)
 CHECK_SRC=  $(DYNAMIC_LINK_C_SOURCES) $(GATEWAY_C_SOURCES)
 INCLUDE_FLAGS = $(libscidynamic_link_la_CPPFLAGS)
 
-# cyclic  
+# cyclic
 libscidynamic_link_la_LIBADD = libscidynamic_link-algo.la
 
 #### Target ######
@@ -62,11 +76,13 @@ modulename=dynamic_link
 
 #### dynamic_link : Conf files ####
 libscidynamic_link_la_rootdir = $(mydatadir)
-libscidynamic_link_la_root_DATA =  license.txt 
+libscidynamic_link_la_root_DATA =  license.txt
 
-#### dynamic_link : init scripts #### 
+#### dynamic_link : init scripts ####
 libscidynamic_link_la_etcdir = $(mydatadir)/etc
-libscidynamic_link_la_etc_DATA = etc/dynamic_link.quit etc/dynamic_link.start
+libscidynamic_link_la_etc_DATA = \
+    etc/dynamic_link.quit \
+    etc/dynamic_link.start
 
 #### dynamic_link : internal functions ####
 MACROSDIRSEXT = macros/utils
@@ -75,7 +91,7 @@ MACROSDIRSEXT = macros/utils
 libscidynamic_link_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscidynamic_link_la_sci_gateway_DATA = sci_gateway/dynamic_link_gateway.xml
 
-#### dynamic_link : compilation scripts #### 
+#### dynamic_link : compilation scripts ####
 libscidynamic_link_la_scriptdir = $(mydatadir)/src/scripts/
 libscidynamic_link_la_script_DATA = src/scripts/Makefile.in \
 src/scripts/configure.ac \

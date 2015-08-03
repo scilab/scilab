@@ -7,6 +7,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+funcprot(0);
 function flag = MY_assert_equal ( computed , expected )
   if computed==expected then
     flag = 1;
@@ -116,3 +117,4 @@ expected = [
     41.3561438102252765248  
 ];
 MY_assert_equal ( computed , expected );
+funcprot(1);

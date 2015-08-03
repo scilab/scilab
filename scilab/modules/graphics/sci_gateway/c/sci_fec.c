@@ -16,7 +16,7 @@
 /* file: sci_fec.c                                                        */
 /* desc : interface for sci_fec routine                                   */
 /*------------------------------------------------------------------------*/
-
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -27,7 +27,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_fec(char *fname, unsigned long fname_len)
+int sci_fec(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0, m4 = 0, n4 = 0, mn1 = 0;
@@ -68,7 +68,7 @@ int sci_fec(char *fname, unsigned long fname_len)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, fname_len);
+        sci_demo(fname, pvApiCtx);
         return 0;
     }
 
@@ -80,7 +80,7 @@ int sci_fec(char *fname, unsigned long fname_len)
         return 0;
     }
 
-    if (FirstOpt() < 5)
+    if (FirstOpt(pvApiCtx) < 5)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 5);
         return -1;

@@ -12,22 +12,22 @@
 
 #include "ScilabPreferences.hxx"
 #include "GiwsException.hxx"
+#include "preferences_gw.hxx"
 
 extern "C"
 {
-#include "gw_preferences.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "getScilabJavaVM.h"
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 }
 
 using namespace org_scilab_modules_preferences;
 
 /*--------------------------------------------------------------------------*/
-int sci_addModulePreferences(char * fname, unsigned long fname_len)
+int sci_addModulePreferences(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = 0;

@@ -15,7 +15,7 @@ extern "C"
 #include "api_scilab.h"
 #include "getScilabJavaVM.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "gw_gui.h"
 #include "HandleManagement.h"
@@ -25,7 +25,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 }
 
-int sci_datatip_set_display(char *fname, unsigned long fname_len)
+int sci_datatip_set_display(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 1, 2);

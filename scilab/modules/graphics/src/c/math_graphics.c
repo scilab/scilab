@@ -152,8 +152,8 @@ void normalize2d(double vect[2])
 void iNormalize2d(int vect[2])
 {
     double norm = NORM_2D(vect);
-    vect[0] = round(vect[0] / norm);
-    vect[1] = round(vect[1] / norm);
+    vect[0] = scilab_round(vect[0] / norm);
+    vect[1] = scilab_round(vect[1] / norm);
 }
 /*----------------------------------------------------------------------------*/
 BOOL isPointInTriangle(const double point[2], const double a[2],

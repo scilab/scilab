@@ -16,7 +16,7 @@ function tree=sci_acoth(tree)
     X=getrhs(tree)
     X=convert2double(X)
 
-    set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."),expression2code(X),expression2code(tree)),2)
+    set_infos(msprintf(gettext("If %s is outside [-1,1]\n   complex part of output of %s will be the opposite of Matlab one."), strcat(expression2code(X), ""), strcat(expression2code(tree), "")),2)
 
     tree.name="atanh"
     Op=Operation("./",list(Cste(1),X),list())

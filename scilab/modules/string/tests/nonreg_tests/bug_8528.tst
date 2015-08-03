@@ -17,10 +17,10 @@
 //
 
 if length(ascii(181)) <> 1 then pause, end
-if length(ascii([83.    99.    105.    108.    97.    98.])) <> 6 then pause, end
+if length(ascii([83 99 105 108 97 98])) <> 6 then pause, end
 if length("Scilab") <> 6 then pause, end
-if length(ascii([83.    99.    105.    181.   108.    97.    98.])) <> 7 then pause, end
-if length("Sciµlab") <> 7 then pause, end
-for i=127:255 
-  if length(ascii(i)) <> 1 then pause, end
+if length(ascii([83 99 105 181 108 97 98])) <> 7 then pause, end
+if length("SciÂµlab") <> 7 then pause, end
+for i=127:255
+    if length(ascii(i)) <> 1 then pause, end
 end

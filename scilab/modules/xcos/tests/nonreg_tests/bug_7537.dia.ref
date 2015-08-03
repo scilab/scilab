@@ -30,8 +30,8 @@ for blockIndex=1:size(blocks, '*')
 end
 // export the diagram to h5
 h5name = TMPDIR + "/diagram.sod";
-status = export_to_hdf5(h5name, "scs_m");
-if ~status then bugmes();quit;end
+err = execstr("save(h5name, ""scs_m"")", "errcatch");
+if err <> 0 then bugmes();quit;end
 // import to xcos (decode/encode synchronous version)
 status = xcosDiagramToScilab(h5name);
 if status <> 0 then bugmes();quit;end

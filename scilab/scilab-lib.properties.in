@@ -1,4 +1,4 @@
-; Definition of lib used in Scilab 
+; Definition of lib used in Scilab
 
 freehep-graphics2d.jar=@FREEHEP_GRAPHICS2D@
 

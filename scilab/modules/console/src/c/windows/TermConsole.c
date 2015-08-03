@@ -14,10 +14,10 @@
 #include <stdio.h>
 #include <ctype.h>
 #include "TermConsole.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "TermCommand.h"
 #include "FocusOnConsole.h"
-#include "strdup_Windows.h"
+#include "os_string.h"
 #include "TermCompletion.h"
 #include "TermLine.h"
 #include "scilines.h"
@@ -296,8 +296,8 @@ static unsigned char TerminalGetchar(void)
             case WINDOW_BUFFER_SIZE_EVENT:
             {
                 /* Read resize event Input */
-                setColumnsSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
-                setLinesSize(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
+                setConsoleWidth(irBuffer.Event.WindowBufferSizeEvent.dwSize.X);
+                setConsoleLines(irBuffer.Event.WindowBufferSizeEvent.dwSize.Y);
 
                 ReadConsoleInput (Win32InputStream, &irBuffer, 1, &n);
             }

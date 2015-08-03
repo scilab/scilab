@@ -51,7 +51,7 @@ function demo_gui()
     "get_figure_handle";
     "subdemolist";
     "demolistlock";
-    "resize_gui";
+    "resize_demo_gui";
     "demo_gui_update";
     "demo_gui"];
 
@@ -72,85 +72,3 @@ function demo_gui()
 
 endfunction
 
-function script_path = demo_gui_update()
-    global subdemolist;
-
-    // Suppression d'une figure précédemment dessinée, si figure il y a ...
-    all_figs = winsid();
-    all_figs = all_figs(all_figs >= 100001); // All Scilab graphic windows opened for demos
-    for fig_index = 1:size(all_figs, "*")
-        fig_to_del = get_figure_handle(all_figs(fig_index));
-        if ~isempty(fig_to_del) then
-            delete(fig_to_del);
-        end
-    end
-
-    // Handle de la figure
-    demo_fig = get("scilab_demo_fig");
-
-    // Frame sur laquelle on a cliqué
-    my_selframe_num = msscanf(gcbo.tag, "listbox_%d");
-
-    // Récupération de la liste des démos
-    my_index = gcbo.value;
-    if my_index == [] then
-        script_path = [];
-        return;
-    end
-
-    my_data = gcbo.user_data;
-
-    script_path = my_data(my_index(1,1),2);
-    if grep(script_path,"dem.gateway.sce") == 1 then
-        // On est dans le cas ou une nouvelle frame va être affichée
-
-        // Mise à jour du nombre de frame
-        demo_fig.userdata.frame_number = my_selframe_num+1;
-        resize_gui(demo_fig.userdata.frame_number);
-        previous_demolist = demo_fig.userdata.subdemolist;
-
-        mode(-1);
-        exec(script_path,-1); // This script erases subdemolist variable if needed
-
-        // Create a temporary variable for userdata
-        // because mixing handles and structs can lead to problems
-        ud = demo_fig.userdata;
-        ud.subdemolist = subdemolist;
-        demo_fig.userdata = ud;
-        clearglobal subdemolist
-
-        frame = get("frame_" + string(my_selframe_num+1));
-
-        b = frame.border;
-        b.title = my_data(my_index(1,1),1)
-        frame.border = b;
-
-        listbox = get("listbox_" + string(my_selframe_num+1));
-        listbox.string = demo_fig.userdata.subdemolist(:, 1);
-
-        listbox.userdata = demo_fig.userdata.subdemolist;
-
-        //Prints an arrow if its a submenu
-        a = grep(listbox.userdata(:,2),"dem.gateway.sce")
-        listbox.string(a) = "<html>"+listbox.string(a)+" &#x25B8; </html>";
-
-        ud = demo_fig.userdata;
-        ud.subdemolist = previous_demolist;
-        demo_fig.userdata = ud;
-    else
-        // Mise à jour du nombre de frame
-        demo_fig.userdata.frame_number = my_selframe_num;
-        resize_gui(demo_fig.userdata.frame_number);
-    end
-endfunction
-
-function resize_gui(frame_number)
-    axes_w = frame_number * 250; // axes width
-    demo_fig = get("scilab_demo_fig");
-    demo_fig.axes_size(1) = axes_w;
-    demo_fig.children($:-1:$-(frame_number-1)).visible = "on";
-    //hide other frame
-    demo_fig.children($-frame_number:-1:1).visible = "off";
-    //clean listbox
-    demo_fig.children($-frame_number:-1:1).children(1).string = "";
-endfunction

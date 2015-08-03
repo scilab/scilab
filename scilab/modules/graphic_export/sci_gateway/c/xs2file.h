@@ -24,7 +24,7 @@
  * @param fileType type of the export (ie JPG_EXPORT, BMP_EXPORT, PS_EXPORT, ...).
  * @return 0 if success, -1 otherwise
  */
-int xs2file(char * fname, ExportFileType fileType) ;
+int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx);
 
 
 #endif /* _INT_XS2FILE_H_ */

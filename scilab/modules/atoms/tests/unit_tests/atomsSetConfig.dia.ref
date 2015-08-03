@@ -55,8 +55,7 @@ assert_checkequal(string(atomsSetConfig("proxyUser","scilab")),"1");
 assert_checkequal(string(atomsSetConfig("proxyPassword","scilab")),"1");
 assert_checkequal(string(atomsSetConfig("downloadTool",config_downloadTool)),"0");
 assert_checkequal(string(atomsSetConfig("offline","False")),"1");
-Scanning repository http://atoms.scilab.org/5.5 ... Done
-
+Scanning repository http://atoms.scilab.org/6.0 ... Done
 assert_checkequal(string(atomsSetConfig("autoload","True")),"1");
 assert_checkequal(atomsGetConfig(),ref);
 // Restore original values

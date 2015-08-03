@@ -15,22 +15,22 @@
 
 namespace org_modules_xml
 {
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Pure virtual class for XMLElement and XMLList
-     */
-    class XMLRemovable
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Pure virtual class for XMLElement and XMLList
+ */
+class XMLRemovable
+{
 
 public:
 
-        /**
-         * Remove this object or this list of objects from the document
-         */
-        virtual void remove() const = 0;
-    };
+    /**
+     * Remove this object or this list of objects from the document
+     */
+    virtual void remove() const = 0;
+};
 }
 
 #endif

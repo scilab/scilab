@@ -14,15 +14,15 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=7945
 //
 // <-- Short Description -->
-// Fix the Xcos title to be coherent with the Scilab plateform
+// Fix the Xcos title to be coherent with the Scilab platform
 
 xcos();
-// check that the diagram title is "Untitled - Xcos"
-// check that the palette browser title is "Palette browser - Xcos"
+// Check that the diagram title is "Untitled - Xcos"
+// Check that the palette browser title is "Palette browser - Xcos"
 
 xcos("SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos");
-// check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos) - Xcos"
+// Check that the title is "Boost_Converter (SCI/modules/xcos/demos/Electrical/Boost_Converter.zcos) - Xcos"
 
-xcos("SCI/modules/scicos/demos/Bouncing_ball.cosf");
-// check that the title is "*Bouncing_ball - Xcos"
+xcos("SCI/modules/xcos/demos/Bouncing_ball.zcos");
+// Check that the title is "Bouncing_ball - Xcos"
 

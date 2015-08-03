@@ -16,26 +16,25 @@
 // long programs (several hours) I get a negative value for timer()
 
 // compares result with another tools ;)
-// t= cputime; pause(9.9);e=cputime-t 
+// t= cputime; pause(9.9);e=cputime-t
 
 timer();sleep(9900);timer()
 
 // another test
-stacksize('max');
 runs = 50;
 cumulate = 0; a = 0; b = 0;
 for i = 1:runs
-  timer();
-    a = abs(rand(1500, 1500, 'n')/10);
+    timer();
+    a = abs(rand(1500, 1500, "n")/10);
     b = a';
     a = matrix(b, 750, 3000);
     b = a';
-  timing = timer();
-  cumulate = cumulate + timing;
+    timing = timer();
+    cumulate = cumulate + timing;
 end;
 timing = cumulate/runs;
 times(1, 1) = timing;
-disp('Creation, transp., deformation of a 1500x1500 matrix (sec): ' + string(timing));
-clear('a'); clear('b');
+disp("Creation, transp., deformation of a 1500x1500 matrix (sec): " + string(timing));
+clear("a"); clear("b");
 
 

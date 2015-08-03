@@ -37,7 +37,6 @@ C     Directly generates ratio of noncentral numerator chisquare variate
 C     to central denominator chisquare variate.
 C
 C**********************************************************************
-      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION dfd,dfn,xnonc
 C     ..
@@ -67,16 +66,16 @@ C     JJV case dfn > 1.0
 
 C     xden = genchi(dfd)/dfd
  30   xden = 2.0*sgamma(dfd/2.0)/dfd
-      
+
 C     JJV changed constant so that it will not underflow at compile time
 C     JJV while not slowing generator by using double precision or logs.
 C      IF (.NOT. (xden.LE. (1.0E-38*xnum))) GO TO 40
       IF (.NOT. (xden.LE. (1.0E-37*xnum))) GO TO 40
-      call basout(io,wte,'nf: Generated numbers would cause overflow')
+      call basout(io,6,'nf: Generated numbers would cause overflow')
 C     JJV next 2 lines changed to maintain truncation of large deviates.
 C      WRITE (*,*) ' GENNF returning 1.0E38'
 C      gennf = 1.0E38
-       call basout(io,wte,' returning 1.0E37')
+       call basout(io,6,' returning 1.0E37')
       gennf = 1.0E37
       GO TO 50
 

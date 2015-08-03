@@ -12,7 +12,7 @@ mkdir(pathconvert(TMPDIR+"/common_read_api"));
 cd(pathconvert(TMPDIR+"/common_read_api"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/common_read_api.c",pathconvert(TMPDIR+"/common_read_api/common_read_api.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("common_read",["common_read","common_read"],"common_read_api.c",[],"","",cflags);
+ilib_build("gw_common_read",["common_read","common_read"],"common_read_api.c",[],"","",cflags);
 exec("loader.sce");
 
              

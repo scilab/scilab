@@ -1,23 +1,23 @@
-c     Scicos 
-c 
-c     Copyright (C) INRIA - METALAU Project <scicos@inria.fr> 
-c 
-c     This program is free software; you can redistribute it and/or modify 
-c     it under the terms of the GNU General Public License as published by 
-c     the Free Software Foundation; either version 2 of the License, or 
-c     (at your option) any later version. 
-c 
-c     This program is distributed in the hope that it will be useful, 
-c     but WITHOUT ANY WARRANTY; without even the implied warranty of 
-c     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the 
-c     GNU General Public License for more details. 
-c 
-c     You should have received a copy of the GNU General Public License 
-c     along with this program; if not, write to the Free Software 
-c     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA. 
-c 
-c     See the file ./license.txt 
-c 
+c     Scicos
+c
+c     Copyright (C) INRIA - METALAU Project <scicos@inria.fr>
+c
+c     This program is free software; you can redistribute it and/or modify
+c     it under the terms of the GNU General Public License as published by
+c     the Free Software Foundation; either version 2 of the License, or
+c     (at your option) any later version.
+c
+c     This program is distributed in the hope that it will be useful,
+c     but WITHOUT ANY WARRANTY; without even the implied warranty of
+c     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+c     GNU General Public License for more details.
+c
+c     You should have received a copy of the GNU General Public License
+c     along with this program; if not, write to the Free Software
+c     Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+c
+c     See the file ./license.txt
+c
 
       subroutine writef(flag,nevprt,t,xd,x,nx,z,nz,tvec,ntvec,
      &     rpar,nrpar,ipar,nipar,u,nu,y,ny)
@@ -36,12 +36,11 @@ c
       integer flag,nevprt,nx,nz,ntvec,nrpar,ipar(*)
       integer nipar,nu,ny
 
-
-      include 'stack.h'
       integer i, n, jj
       integer mode(2)
       integer fmttyp
-c     
+      character*4096 buf
+c
       N=ipar(4)
       K=int(z(1))
       lunit=int(z(2))
@@ -123,7 +122,7 @@ c     .        unformatted write
  100  continue
       err=0
       call basout(io,wte,'File '//buf(1:lfil)//' Cannot be opened')
- 110  continue      
+ 110  continue
       flag=-1
       return
       end

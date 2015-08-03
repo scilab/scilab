@@ -8,5 +8,6 @@ EXPORTS
  strdup_windows
  wstrdup_windows
  CallWindowsShell
+ CallWindowsShellW
 ;
 

@@ -16,8 +16,8 @@
                        if ~isempty(%fileToLoad) then
                        xload(%fileToLoad,[SCILAB_FIGURE_ID]);
                        disp(msprintf(gettext("Figure loaded.\n")));
-                       end
-                       clear %fileToLoad'
+                       end;
+                       clear %fileToLoad;'
           type="0"/>
         </submenu>
         <submenu label="&amp;Save..." accelerator="OSSCKEY S" icon="document-save">
@@ -27,11 +27,11 @@
                        if ~isempty(%fileToSave) then
                        if isempty(fileparts(%fileToSave, "extension")) then
                        %fileToSave = %fileToSave + ".scg";
-                       end
+                       end;
                        xsave(%fileToSave, get_figure_handle([SCILAB_FIGURE_ID]));
                        disp(msprintf(gettext("Figure saved.\n")));
-                       end
-                       clear %fileToSave isempty'
+                       end;
+                       clear %fileToSave isempty;'
           type="0"/>
         </submenu>
         <separator/>

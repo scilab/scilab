@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.gui.filechooser">
+        <package name="org.scilab.modules.gui.filechooser">
     <object name="Juigetfile">  
         <method name="uigetfile" returnType="void" modifier="static"/>
         

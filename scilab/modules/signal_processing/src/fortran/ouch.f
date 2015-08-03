@@ -12,10 +12,9 @@ c   and the program stops.  in this latter case the
 c   filter design is probably acceptable, but should
 c   be checked by computing a frequency response.
 c!
-      INCLUDE 'stack.h'
       common /oops/niter,iout
       character bufstr*(4096)
-      
+
       write(bufstr, 1001)
       call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
 1001  format('************ failure to converge **********')
@@ -35,6 +34,6 @@ c!
       write(bufstr, 1005)
       call basout(io ,wte ,bufstr(1:lnblnk(bufstr)))
 1005  format('may be correct, but should be verified with an fft')
-      
+
       return
       end

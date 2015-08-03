@@ -30,10 +30,10 @@ using namespace org_modules_hdf5;
   - h5readattr(obj, name)
   - h5readattr(obj, location, name)
   - h5readattr(filename, location, name)
-/*
+*/
 
 /*--------------------------------------------------------------------------*/
-int sci_h5readattr(char *fname, unsigned long fname_len)
+int sci_h5readattr(char *fname, int* pvApiCtx)
 {
     SciErr err;
     H5Object * hobj = 0;

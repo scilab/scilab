@@ -13,13 +13,13 @@
 #ifndef _MSC_VER
 #define _GNU_SOURCE             /* basename crashes this extension otherwise */
 #endif
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include <curl/curl.h>
 #include <libxml/uri.h>
 #include <string.h>
 #include "dlManager.h"
 #include "Scierror.h"
-#include "SCIHOME.h"
+#include "sci_home.h"
 #include "PATH_MAX.h"
 #include "isdir.h"
 #include "charEncoding.h"
@@ -29,7 +29,7 @@
 #include "scicurdir.h"
 #include "splitpath.h"
 #include "getScilabPreference.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "freeArrayOfString.h"
 /* ==================================================================== */
 #ifndef HAVE_BASENAME

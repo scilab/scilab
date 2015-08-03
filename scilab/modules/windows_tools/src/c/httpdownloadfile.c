@@ -16,7 +16,7 @@
 #include <windows.h>
 #include <wininet.h>
 #include <urlmon.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "httpdownloadfile.h"
 /* http://msdn2.microsoft.com/en-us/library/aa385098.aspx */
 /* http://msdn.microsoft.com/en-us/library/ms775123(VS.85).aspx */
