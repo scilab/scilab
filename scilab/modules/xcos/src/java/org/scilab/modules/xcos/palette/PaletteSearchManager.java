@@ -18,7 +18,6 @@ import java.util.Hashtable;
 import java.util.List;
 
 import javax.swing.JScrollPane;
-import javax.swing.JSplitPane;
 import javax.swing.tree.TreeModel;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -31,6 +30,7 @@ import org.apache.lucene.store.RAMDirectory;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.palette.view.PaletteSearchView;
 import org.scilab.modules.xcos.utils.XcosMessages;
@@ -79,8 +79,8 @@ public final class PaletteSearchManager {
         final String queryLabel = "'" + query + "' - ";
         view.setText(queryLabel + XcosMessages.SEARCHING);
 
-        JSplitPane splitPanel = (JSplitPane) PaletteManagerView.get().getPanel();
-        JScrollPane scrollPane = (JScrollPane) splitPanel.getRightComponent();
+        PaletteManagerPanel panel = PaletteManagerView.get().getPanel();
+        JScrollPane scrollPane = (JScrollPane) panel.getRightComponent();
         scrollPane.setViewportView(view);
 
         if (indexIsOutdated) {
@@ -96,6 +96,7 @@ public final class PaletteSearchManager {
             }
         }
         view.setText(queryLabel + blockPaths.size() + " " + XcosMessages.MATCHES);
+        view.revalidate();
     }
 
     /**
@@ -133,7 +134,7 @@ public final class PaletteSearchManager {
     /**
      * When the Index is outdated, the PaletteSearchManager
      * will refresh it before the next search().
-     * @param b True if it is outdated. 
+     * @param b True if it is outdated.
      */
     public void setIndexIsOutdated(Boolean b) {
         indexIsOutdated = b;

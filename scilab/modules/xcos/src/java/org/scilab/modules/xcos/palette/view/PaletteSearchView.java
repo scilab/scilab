@@ -16,7 +16,6 @@ import java.awt.Component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
@@ -27,7 +26,7 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
  * @author Marcos Cardinot <mcardinot@gmail.com>
  */
 @SuppressWarnings(value = { "serial" })
-public class PaletteSearchView extends JPanel {
+public class PaletteSearchView extends PaletteView {
 
     private JLabel header;
     private PaletteView paletteview;
