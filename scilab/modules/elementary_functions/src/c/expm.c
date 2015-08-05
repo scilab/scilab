@@ -2848,12 +2848,12 @@ int zexpms2(double *_pdblReal, double *_pdblImg, double *_pdblReturnReal, double
         switch (iRet)
         {
             case -1 :
-                //YaSp
+                //Scilab 6
                 //sprintf(C2F(cha1).buf, "%1.4E", dblRcond);
                 //Msgs(5,1);
                 break;
             case -2 :
-                //YaSp
+                //Scilab 6
                 //Msgs(9, (int)dblRcond);
                 break;
             default :

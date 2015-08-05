@@ -56,7 +56,7 @@ extern "C"
 /*
 ** Usage
 **
-** Display usage : options available in YaSp
+** Display usage : options available
 */
 static void usage(void)
 {

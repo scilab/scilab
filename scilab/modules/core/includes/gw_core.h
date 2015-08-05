@@ -55,7 +55,7 @@ int C2F(sci_librarieslist)(char *fname, unsigned long fname_len);
 int C2F(sci_funcprot)(char *fname, void* pvApiCtx);
 //int C2F(sci_newfun)(char *fname, void* pvApiCtx); -> C++
 
-//Yasp
+//Scilab 6
 C_GATEWAY_PROTOTYPE(sci_type);
 C_GATEWAY_PROTOTYPE(sci_getdebuginfo);
 /*--------------------------------------------------------------------------*/

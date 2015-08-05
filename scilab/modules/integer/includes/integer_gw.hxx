@@ -33,7 +33,7 @@ public :
 CPP_GATEWAY_PROTOTYPE(sci_inttype);
 CPP_GATEWAY_PROTOTYPE(sci_double);
 CPP_GATEWAY_PROTOTYPE(sci_iconvert);
-//YaSp
+//Scilab 6
 CPP_GATEWAY_PROTOTYPE(sci_integer8);
 CPP_GATEWAY_PROTOTYPE(sci_uinteger8);
 CPP_GATEWAY_PROTOTYPE(sci_integer16);

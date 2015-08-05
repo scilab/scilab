@@ -203,7 +203,7 @@ if or(real(spec(S(1:n,1:n)))>=0) then pause,end
 if or(real(spec(S(n+1:$,n+1:$)))<0) then pause,end
 
 // equal to schur(A, 'd');
-C=[ "extern double dpythags(double,double);" // YaSp function
+C=[ "extern double dpythags(double,double);" // Scilab 6 function
 ""
 "int mytest2(double* _real, double* _img)"
 "{"
@@ -238,7 +238,7 @@ if or(real(spec(S(n+1:$,n+1:$)))<0) then pause,end
 // equal to schur(Ac, 'd');
 C=[ "#include ""doublecomplex.h"""
 ""
-"extern double dpythags(double,double);" // YaSp function
+"extern double dpythags(double,double);" // Scilab 6 function
 ""
 "int mytest4(doublecomplex* _complex)"
 "{"
@@ -551,7 +551,7 @@ if Err(As-Q'*A*Z) >200*%eps then pause,end
 if Err(Es-Q'*E*Z) >200*%eps then pause,end
 
 // equal to schur(A, E, 'd');
-C=[ "extern double dpythags(double,double);" // YaSp function
+C=[ "extern double dpythags(double,double);" // Scilab 6 function
 ""
 "int mytest6(double* _real, double* _img, double* _beta)"
 "{"
@@ -684,7 +684,7 @@ if Err(Es-Q'*E*Z) >1000*%eps then pause,end
 // equal to schur(A, E, 'd');
 C=[ "#include ""doublecomplex.h"";"
 ""
-"extern double dpythags(double,double);" // YaSp function
+"extern double dpythags(double,double);" // Scilab 6 function
 ""
 "int mytest8(doublecomplex* _alpha, doublecomplex* _beta)"
 "{"

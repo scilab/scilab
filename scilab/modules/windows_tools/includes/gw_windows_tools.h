@@ -17,7 +17,7 @@
 #include "dynlib_windows_tools.h"
 /*--------------------------------------------------------------------------*/
 WINDOWS_TOOLS_IMPEXP int gw_windows_tools(void);
-//YaSp
+//Scilab 6
 int sci_dos(char *fname, void* pvApiCtx);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_WINDOWS_TOOLS_H__ */

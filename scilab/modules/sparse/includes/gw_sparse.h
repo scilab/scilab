@@ -19,7 +19,7 @@
 /*--------------------------------------------------------------------------*/
 SPARSE_IMPEXP int gw_sparse(void);
 /*--------------------------------------------------------------------------*/
-//YaSp
+//Scilab 6
 SPARSE_IMPEXP int sci_spmin (char *fname, void* pvApiCtx);
 SPARSE_IMPEXP int sci_spmax (char *fname, void* pvApiCtx);
 

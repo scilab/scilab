@@ -181,7 +181,7 @@ void LoggerView::log(enum LogLevel level, const wchar_t* msg)
 }
 
 // generated with :
-// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/YaSp/scilab/modules/scicos/includes/utilities.hxx
+// awk ' $2 == "//!<" {sub(",","", $1); print "case " $1 ":\n    os << \"" $1 "\";\n    break;" }' ~/work/branches/master/scilab/modules/scicos/includes/utilities.hxx
 
 std::ostream& operator<<(std::ostream& os, update_status_t u)
 {

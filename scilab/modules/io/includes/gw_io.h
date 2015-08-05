@@ -19,7 +19,7 @@
 IO_IMPEXP int gw_io(void);
 /*--------------------------------------------------------------------------*/
 
-//YaSp
+//Scilab 6
 int sci_getenv(char *fname, void* pvApiCtx);
 int sci_setenv(char *fname, void* pvApiCtx);
 

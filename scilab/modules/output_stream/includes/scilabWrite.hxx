@@ -10,8 +10,8 @@
  *
  */
 
-#ifndef __YASPIO_HXX__
-#define __YASPIO_HXX__
+#ifndef __SCILABWRITE_HXX__
+#define __SCILABWRITE_HXX__
 
 #define SPACES_LIST L"      "
 
@@ -22,23 +22,23 @@ extern "C"
 {
 #endif
 
-    typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
+typedef void (*SCILAB_OUTPUT_METHOD)(const char *text);
 
-    OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
+OUTPUT_STREAM_IMPEXP void setScilabOutputMethod(SCILAB_OUTPUT_METHOD writer);
 
-    OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void scilabWrite(const char* _pstText);
 
-    OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
+OUTPUT_STREAM_IMPEXP void scilabWriteW(const wchar_t* _pwstText);
 
-    OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
-    OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
+OUTPUT_STREAM_IMPEXP void scilabError(const char* _pstText);
+OUTPUT_STREAM_IMPEXP void scilabErrorW(const wchar_t* _pwstText);
 
-    /* functions write in "console" without take care of mode*/
-    OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
-    OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
+/* functions write in "console" without take care of mode*/
+OUTPUT_STREAM_IMPEXP void scilabForcedWriteW(const wchar_t* _pwsText);
+OUTPUT_STREAM_IMPEXP void scilabForcedWrite(const char* _pstText);
 
 #ifdef __cplusplus
 }
 #endif
 
-#endif /* __YASPIO_HXX__ */
+#endif /* __SCILABWRITE_HXX__ */
