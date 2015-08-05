@@ -272,52 +272,45 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     ConfigVariable::setPromptMode(0);
     int iScript = 0;
-    try
+    if (_pSEI->pstExec)
     {
-        if (_pSEI->pstExec)
+        //-e option
+        Parser parser;
+        parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
+
+        if (parser.getExitStatus() == Parser::Failed)
         {
-            //-e option
-            Parser parser;
-            parseCommandTask(&parser, _pSEI->iTimed != 0, _pSEI->pstExec);
-
-            if (parser.getExitStatus() == Parser::Failed)
-            {
-                scilabWriteW(parser.getErrorMessage());
-            }
-            else if (parser.getControlStatus() !=  Parser::AllControlClosed)
-            {
-                _pSEI->iMultiLine = 1;
-            }
-            else
-            {
-                StoreConsoleCommand(_pSEI->pstExec);
-            }
-
-            if (parser.getTree())
-            {
-                delete parser.getTree();
-                parser.setTree(NULL);
-            }
-            iMainRet = ConfigVariable::getExitStatus();
-            iScript = 1;
+            scilabWriteW(parser.getErrorMessage());
         }
-        else if (_pSEI->pstFile)
+        else if (parser.getControlStatus() !=  Parser::AllControlClosed)
         {
-            //-f option execute exec('%s',-1)
-            char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
-            sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
-
-            StoreConsoleCommand(pstCommand);
-            FREE(pstCommand);
-            iMainRet = ConfigVariable::getExitStatus();
-            _pSEI->pstExec = NULL;
-            _pSEI->pstFile = NULL;
-            iScript = 1;
+            _pSEI->iMultiLine = 1;
         }
+        else
+        {
+            StoreConsoleCommand(_pSEI->pstExec);
+        }
+
+        if (parser.getTree())
+        {
+            delete parser.getTree();
+            parser.setTree(NULL);
+        }
+        iMainRet = ConfigVariable::getExitStatus();
+        iScript = 1;
     }
-    catch (const ast::ScilabException& se)
+    else if (_pSEI->pstFile)
     {
-        scilabErrorW(se.GetErrorMessage().c_str());
+        //-f option execute exec('%s',-1)
+        char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
+        sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
+
+        StoreConsoleCommand(pstCommand);
+        FREE(pstCommand);
+        iMainRet = ConfigVariable::getExitStatus();
+        _pSEI->pstExec = NULL;
+        _pSEI->pstFile = NULL;
+        iScript = 1;
     }
 
     ConfigVariable::setPromptMode(2);
@@ -732,11 +725,31 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     // thread to manage command stored
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
 
-    __WaitThreadDie(threadIdCommand);
+#ifdef DEBUG_THREAD
+    std::cout << std::endl << "------------ threads summary ------------" << std::endl;
+    std::cout << "Main Thread                       : " << __GetCurrentThreadKey() << std::endl;
+    if (_pSEI->iStartConsoleThread)
+    {
+        std::cout << "scilabReadAndStore Thread         : " << threadKeyConsole << std::endl;
+    }
+    std::cout << "scilabReadAndExecCommand Thread   : " << threadKeyCommand << std::endl;
+    std::cout << "-----------------------------------------" << std::endl;
+#endif // DEBUG_THREAD
 
-#ifdef DEBUG
-    std::cerr << "To end program press [ENTER]" << std::endl;
-#endif
+    do
+    {
+        ThreadManagement::WaitForRunMeSignal();
+        try
+        {
+            StaticRunner::launch();
+        }
+        catch (const ast::InternalAbort& /*ia*/)
+        {
+            // go out when exit/quit is called
+        }
+        ThreadManagement::SendAwakeRunnerSignal();
+    }
+    while (ConfigVariable::getForceQuit() == false);
 
     return ConfigVariable::getExitStatus();
 }

@@ -190,7 +190,7 @@ void execAstTask(ast::Exp* tree, bool serialize, bool timed, bool ASTtimed, bool
         exec = new ast::ExecVisitor();
     }
 
-    Runner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
+    StaticRunner::execAndWait(newTree, exec, isInterruptibleThread, isPrioritaryThread, isConsoleCommand);
     //DO NOT DELETE tree or newTree, they was deleted by Runner or previously;
 
     if (timed)
@@ -227,11 +227,10 @@ void execScilabStartTask(bool _bSerialize)
 {
     Parser parse;
     wstring stSCI = ConfigVariable::getSCIPath();
-
     stSCI += SCILAB_START;
+
     ThreadManagement::LockParser();
     parse.parseFile(stSCI, L"");
-
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
@@ -239,9 +238,14 @@ void execScilabStartTask(bool _bSerialize)
         ThreadManagement::UnlockParser();
         return;
     }
-
     ThreadManagement::UnlockParser();
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
+    }
+    StaticRunner::exec(newTree, new ast::ExecVisitor());
 }
 
 /*
@@ -252,11 +256,10 @@ void execScilabQuitTask(bool _bSerialize)
 {
     Parser parse;
     wstring stSCI = ConfigVariable::getSCIPath();
-
     stSCI += SCILAB_QUIT;
+
     ThreadManagement::LockParser();
     parse.parseFile(stSCI, L"");
-
     if (parse.getExitStatus() != Parser::Succeded)
     {
         scilabWriteW(parse.getErrorMessage());
@@ -264,9 +267,14 @@ void execScilabQuitTask(bool _bSerialize)
         ThreadManagement::UnlockParser();
         return;
     }
-
     ThreadManagement::UnlockParser();
-    execAstTask(parse.getTree(), _bSerialize, false, false, false, true, true, false);
+
+    ast::Exp* newTree = parse.getTree();
+    if (_bSerialize)
+    {
+        newTree = callTyper(parse.getTree());
+    }
+    StaticRunner::exec(newTree, new ast::ExecVisitor());
 }
 
 

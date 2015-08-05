@@ -611,20 +611,7 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
         if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
             //return or resume
-            ThreadId* pThreadId = ConfigVariable::getLastPausedThread();
-            if (pThreadId == NULL)
-            {
-                //no paused thread, so just go leave
-                return;
-            }
-
-            //force exit without prompt of current thread ( via Aborted status )
-            ThreadId* pMe = ConfigVariable::getThread(__GetCurrentThreadKey());
-            pMe->setStatus(ThreadId::Aborted);
-
-            //resume previous execution thread
-            pThreadId->resume();
-
+            ConfigVariable::DecreasePauseLevel();
             return;
         }
         else
@@ -918,8 +905,6 @@ void RunVisitorT<T>::visitprivate(const SelectExp &e)
 template <class T>
 void RunVisitorT<T>::visitprivate(const SeqExp  &e)
 {
-    types::ThreadId* pThreadMe = ConfigVariable::getThread(__GetCurrentThreadKey());
-
     for (auto exp : e.getExps())
     {
         if (exp->isCommentExp())
@@ -927,14 +912,12 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
             continue;
         }
 
-        ThreadManagement::LockAst();
-        if (pThreadMe && pThreadMe->getInterrupt())
+        // interrupt me to execute a prioritary command
+        while (StaticRunner_isInterruptibleCommand() == 1 && StaticRunner_isRunnerAvailable() == 1)
         {
-            ThreadManagement::SendAstPendingSignal();
-            ThreadManagement::UnlockAst();
-            pThreadMe->suspend();
+            StaticRunner_launch();
+            StaticRunner_setInterruptibleCommand(1);
         }
-        ThreadManagement::UnlockAst();
 
         try
         {

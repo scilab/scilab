@@ -12,7 +12,6 @@
 
 #include "threadmanagement.hxx"
 
-//#define DEBUG_THREAD
 #ifdef DEBUG_THREAD
 #include <iostream>
 #endif // DEBUG_THREAD
@@ -21,7 +20,6 @@ __threadLock ThreadManagement::m_StartLock;
 __threadLock ThreadManagement::m_RunnerLock;
 __threadLock ThreadManagement::m_ParseLock;
 __threadLock ThreadManagement::m_StoreCommandLock;
-__threadLock ThreadManagement::m_AstLock;
 
 __threadSignal ThreadManagement::m_ConsoleExecDone;
 __threadSignalLock ThreadManagement::m_ConsoleExecDoneLock;
@@ -29,8 +27,8 @@ __threadSignalLock ThreadManagement::m_ConsoleExecDoneLock;
 __threadSignal ThreadManagement::m_AwakeRunner;
 __threadSignalLock ThreadManagement::m_AwakeRunnerLock;
 
-__threadSignal ThreadManagement::m_AstPending;
-__threadSignalLock ThreadManagement::m_AstPendingLock;
+__threadSignal ThreadManagement::m_AvailableRunner;
+__threadSignalLock ThreadManagement::m_AvailableRunnerLock;
 
 __threadSignal ThreadManagement::m_StartPending;
 __threadSignalLock ThreadManagement::m_StartPendingLock;
@@ -38,11 +36,15 @@ __threadSignalLock ThreadManagement::m_StartPendingLock;
 __threadSignal ThreadManagement::m_CommandStored;
 __threadSignalLock ThreadManagement::m_CommandStoredLock;
 
-bool ThreadManagement::m_AstPendingWasSignalled         = false;
+__threadSignal ThreadManagement::m_RunMe;
+__threadSignalLock ThreadManagement::m_RunMeLock;
+
+bool ThreadManagement::m_AvailableRunnerWasSignalled         = false;
 bool ThreadManagement::m_ConsoleExecDoneWasSignalled    = false;
 bool ThreadManagement::m_AwakeRunnerWasSignalled        = false;
 bool ThreadManagement::m_StartPendingWasSignalled       = false;
 bool ThreadManagement::m_CommandStoredWasSignalled      = false;
+bool ThreadManagement::m_RunMeWasSignalled              = false;
 
 void ThreadManagement::initialize()
 {
@@ -50,7 +52,6 @@ void ThreadManagement::initialize()
     __InitLock(&m_StartLock);
     __InitLock(&m_ParseLock);
     __InitLock(&m_StoreCommandLock);
-    __InitLock(&m_AstLock);
 
     __InitSignal(&m_AwakeRunner);
     __InitSignalLock(&m_AwakeRunnerLock);
@@ -58,14 +59,17 @@ void ThreadManagement::initialize()
     __InitSignal(&m_ConsoleExecDone);
     __InitSignalLock(&m_ConsoleExecDoneLock);
 
-    __InitSignal(&m_AstPending);
-    __InitSignalLock(&m_AstPendingLock);
+    __InitSignal(&m_AvailableRunner);
+    __InitSignalLock(&m_AvailableRunnerLock);
 
     __InitSignal(&m_StartPending);
     __InitSignalLock(&m_StartPendingLock);
 
     __InitSignal(&m_CommandStored);
     __InitSignalLock(&m_CommandStoredLock);
+
+    __InitSignal(&m_RunMe);
+    __InitSignalLock(&m_RunMeLock);
 }
 
 void ThreadManagement::LockStart(void)
@@ -132,46 +136,29 @@ void ThreadManagement::UnlockRunner(void)
     __UnLock(&m_RunnerLock);
 }
 
-void ThreadManagement::LockAst(void)
+void ThreadManagement::SendAvailableRunnerSignal(void)
 {
 #ifdef DEBUG_THREAD
-    std::cout << "[" << __GetCurrentThreadKey() << "] " << "LockAst" << std::endl;
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "SendAvailableRunnerSignal" << std::endl;
 #endif // DEBUG_THREAD
-    __Lock(&m_AstLock);
+    __LockSignal(&m_AvailableRunnerLock);
+    m_AvailableRunnerWasSignalled = true;
+    __Signal(&m_AvailableRunner);
+    __UnLockSignal(&m_AvailableRunnerLock);
 }
 
-void ThreadManagement::UnlockAst(void)
+void ThreadManagement::WaitForAvailableRunnerSignal(void)
 {
 #ifdef DEBUG_THREAD
-    std::cout << "[" << __GetCurrentThreadKey() << "] " << "UnlockAst" << std::endl;
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "WaitForAvailableRunnerSignal" << std::endl;
 #endif // DEBUG_THREAD
-    __UnLock(&m_AstLock);
-}
-
-void ThreadManagement::SendAstPendingSignal(void)
-{
-#ifdef DEBUG_THREAD
-    std::cout << "[" << __GetCurrentThreadKey() << "] " << "SendAstPendingSignal" << std::endl;
-#endif // DEBUG_THREAD
-    __LockSignal(&m_AstPendingLock);
-    m_AstPendingWasSignalled = true;
-    __Signal(&m_AstPending);
-    __UnLockSignal(&m_AstPendingLock);
-}
-
-void ThreadManagement::WaitForAstPendingSignal(void)
-{
-#ifdef DEBUG_THREAD
-    std::cout << "[" << __GetCurrentThreadKey() << "] " << "WaitForAstPendingSignal" << std::endl;
-#endif // DEBUG_THREAD
-    __LockSignal(&m_AstPendingLock);
-    ThreadManagement::UnlockAst();
-    m_AstPendingWasSignalled = false;
-    while (m_AstPendingWasSignalled == false)
+    __LockSignal(&m_AvailableRunnerLock);
+    m_AvailableRunnerWasSignalled = false;
+    while (m_AvailableRunnerWasSignalled == false)
     {
-        __Wait(&m_AstPending, &m_AstPendingLock);
+        __Wait(&m_AvailableRunner, &m_AvailableRunnerLock);
     }
-    __UnLockSignal(&m_AstPendingLock);
+    __UnLockSignal(&m_AvailableRunnerLock);
 
 }
 
@@ -275,4 +262,29 @@ void ThreadManagement::WaitForCommandStoredSignal(void)
         __Wait(&m_CommandStored, &m_CommandStoredLock);
     }
     __UnLockSignal(&m_CommandStoredLock);
+}
+
+void ThreadManagement::SendRunMeSignal(void)
+{
+#ifdef DEBUG_THREAD
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "SendRunMeSignal" << std::endl;
+#endif // DEBUG_THREAD
+    __LockSignal(&m_RunMeLock);
+    m_RunMeWasSignalled = true;
+    __Signal(&m_RunMe);
+    __UnLockSignal(&m_RunMeLock);
+}
+
+void ThreadManagement::WaitForRunMeSignal(void)
+{
+#ifdef DEBUG_THREAD
+    std::cout << "[" << __GetCurrentThreadKey() << "] " << "WaitForRunMeSignal" << std::endl;
+#endif // DEBUG_THREAD
+    __LockSignal(&m_RunMeLock);
+    m_RunMeWasSignalled = false;
+    while (m_RunMeWasSignalled == false)
+    {
+        __Wait(&m_RunMe, &m_RunMeLock);
+    }
+    __UnLockSignal(&m_RunMeLock);
 }
