@@ -27,7 +27,7 @@
 int set_diffuse_color_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
     BOOL status = FALSE;
-    double * color;
+    double * color = NULL;
 
     if (valueType != sci_matrix)
     {
