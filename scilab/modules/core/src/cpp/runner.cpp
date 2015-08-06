@@ -53,6 +53,7 @@ void StaticRunner::launch()
         if (ConfigVariable::getPauseLevel())
         {
             ConfigVariable::DecreasePauseLevel();
+            delete runMe;
             throw ia;
         }
 
@@ -63,11 +64,13 @@ void StaticRunner::launch()
             pCtx->scope_end();
         }
 
-        // management of exit/quit
-        if (ConfigVariable::getForceQuit())
+        if (runMe->isConsoleCommand())
         {
-            throw ia;
+            ThreadManagement::SendConsoleExecDoneSignal();
         }
+
+        delete runMe;
+        throw ia;
     }
 
     if (getScilabMode() != SCILAB_NWNI && getScilabMode() != SCILAB_API)

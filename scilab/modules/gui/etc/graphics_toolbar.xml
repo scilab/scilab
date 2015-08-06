@@ -35,6 +35,6 @@
     <separator/>
     <!-- Help -->
     <button icon="help-browser" tooltiptext="Help Browser">
-        <callback instruction="help();" type="-2"/>
+        <callback instruction="help();" type="10"/>
     </button>
 </toolbar>

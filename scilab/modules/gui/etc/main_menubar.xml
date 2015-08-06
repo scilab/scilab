@@ -75,13 +75,13 @@
     <!-- Control menu -->
     <menu label="&amp;Control" enabled="true">
         <submenu label="&amp;Resume" icon="media-playback-start">
-            <callback instruction="resume;" type="-2"/>
+            <callback instruction="resume;" type="4"/>
         </submenu>
         <submenu label="&amp;Abort" icon="process-stop">
-            <callback instruction="abort;" type="-2"/>
+            <callback instruction="abort;" type="4"/>
         </submenu>
         <submenu label="&amp;Interrupt">
-            <callback instruction="pause;" type="-2"/>
+            <callback instruction="pause;" type="4"/>
         </submenu>
     </menu>
     <!-- Applications menu -->
@@ -117,11 +117,11 @@
     <!-- Help menu -->
     <menu label="&amp;?" enabled="true">
         <submenu label="Scilab &amp;Help" accelerator="F1" icon="help-browser">
-            <callback instruction="help();" type="0"/>
+            <callback instruction="help();" type="10"/>
         </submenu>
         <separator/>
         <submenu label="Scilab &amp;Demonstrations" icon="applications-system">
-            <callback instruction="demo_gui();" type="0"/>
+            <callback instruction="demo_gui();" type="10"/>
         </submenu>
         <separator/>
         <submenu label="&amp;Links">

@@ -53,7 +53,7 @@ public class CallBack {
     public static final int JAVA_OUT_OF_XCLICK_AND_XGETMOUSE = -3;
 
     /**
-     * Scilab instruction without GCBO setting (old addmenu compatibility)
+     * Scilab instruction without GCBO setting (used in case of pause/resume/abort)
      */
     public static final int SCILAB_INSTRUCTION_WITHOUT_GCBO = 4;
 
