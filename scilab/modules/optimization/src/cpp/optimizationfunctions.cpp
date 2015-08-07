@@ -27,25 +27,21 @@ extern "C"
 ** \{
 */
 
-// need the current thread, not the last running thread.
-std::map<__threadId, OptimizationFunctions*> Optimization::m_mapOptimizationFunctions;
+OptimizationFunctions* Optimization::m_OptimizationFunctions;
 
-void Optimization::addOptimizationFunctions(OptimizationFunctions* _deFunction)
+void Optimization::addOptimizationFunctions(OptimizationFunctions* _opFunction)
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapOptimizationFunctions[pThread->getThreadId()] = _deFunction;
+    m_OptimizationFunctions = _opFunction;
 }
 
 void Optimization::removeOptimizationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapOptimizationFunctions.erase(pThread->getThreadId());
+    m_OptimizationFunctions = NULL;
 }
 
 OptimizationFunctions* Optimization::getOptimizationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapOptimizationFunctions[pThread->getThreadId()];
+    return m_OptimizationFunctions;
 }
 
 /*

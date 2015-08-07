@@ -32,24 +32,21 @@ extern "C"
 
 // need the current thread, not the last running thread.
 
-std::map<__threadId, DifferentialEquationFunctions*> DifferentialEquation::m_mapDifferentialEquationFunctions;
+DifferentialEquationFunctions* DifferentialEquation::m_DifferentialEquationFunctions;
 
 void DifferentialEquation::addDifferentialEquationFunctions(DifferentialEquationFunctions* _deFunction)
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions[pThread->getThreadId()] = _deFunction;
+    m_DifferentialEquationFunctions = _deFunction;
 }
 
 void DifferentialEquation::removeDifferentialEquationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapDifferentialEquationFunctions.erase(pThread->getThreadId());
+    m_DifferentialEquationFunctions = NULL;
 }
 
 DifferentialEquationFunctions* DifferentialEquation::getDifferentialEquationFunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapDifferentialEquationFunctions[pThread->getThreadId()];
+    return m_DifferentialEquationFunctions;
 }
 
 

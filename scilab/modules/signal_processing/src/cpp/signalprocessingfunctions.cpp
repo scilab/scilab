@@ -24,24 +24,21 @@ extern "C"
 
 /*--------------------------------------------------------------------------*/
 
-std::map<__threadId, Signalprocessingfunctions*> Signalprocessing::m_mapSignalprocessingfunctions;
+Signalprocessingfunctions* Signalprocessing::m_Signalprocessingfunctions;
 
 void Signalprocessing::addSignalprocessingfunctions(Signalprocessingfunctions* _spFunction)
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapSignalprocessingfunctions[pThread->getThreadId()] = _spFunction;
+    m_Signalprocessingfunctions = _spFunction;
 }
 
 void Signalprocessing::removeSignalprocessingfunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    m_mapSignalprocessingfunctions.erase(pThread->getThreadId());
+    m_Signalprocessingfunctions = NULL;
 }
 
 Signalprocessingfunctions* Signalprocessing::getSignalprocessingfunctions()
 {
-    types::ThreadId* pThread = ConfigVariable::getLastRunningThread();
-    return m_mapSignalprocessingfunctions[pThread->getThreadId()];
+    return m_Signalprocessingfunctions;
 }
 
 Signalprocessingfunctions::Signalprocessingfunctions(std::wstring callerName)

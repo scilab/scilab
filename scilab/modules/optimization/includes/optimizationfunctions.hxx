@@ -108,7 +108,7 @@ class OPTIMIZATION_IMPEXP Optimization
 {
     // differential equation functions
 private :
-    static std::map<__threadId, OptimizationFunctions*> m_mapOptimizationFunctions;
+    static OptimizationFunctions* m_OptimizationFunctions;
 
 public :
     static void addOptimizationFunctions(OptimizationFunctions* _opFunction);
