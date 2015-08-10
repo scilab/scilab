@@ -19,7 +19,6 @@ function []=wheel_show(xx,t,p)
     // xx= [theta,phi,psi,teta,phi,psi,x,y]
 
 
-
     [lhs,rhs]=argn(0)
     if rhs <= 2 , p=%pi/3;end
     if rhs <= 2 , t=%pi/3;end
@@ -125,18 +124,6 @@ function []=wheel_show(xx,t,p)
 
 endfunction
 
-
-function [xxu,yyu,zzu]=wheelgf(n,t,xu,yu,zu,xx)
-    [xxu,yyu,zzu]=fort("wheelg",n,1,"i",t,2,"i",xu,3,"d",yu,4,"d",zu,5,"d",xx,6,"d","sort",3,4,5);
-endfunction
-
-
-function [y]=test_wheel(n,t,x)
-    y   = x;
-    [y] = fort("wheel",n,1,"i",t,2,"d",x,3,"d",y,4,"d","sort",4);
-endfunction
-
-
 function [xxu,yyu,zzu]=wheelgs(n,t,xu,yu,zu,xx)
 
     // slower version without dynamic link
@@ -169,16 +156,18 @@ function []=wheel_build_and_load()
         my_cur_path = pwd();
         chdir(TMPDIR);
         path  = SCI+"/modules/differential_equations/demos/wheel/Maple";
-        fcode = mgetl(path+"/dlslv.f");  mputl(fcode,"dlslv.f");
+        fcode = mgetl(path+"/dlslv.f");mputl(fcode,"dlslv.f");
         fcode = mgetl(path+"/wheel.f");  mputl(fcode,"wheel.f");
         fcode = mgetl(path+"/wheelg.f"); mputl(fcode,"wheelg.f");
+        fcode = mgetl(path+"/sci_wheelg.c");mputl(fcode, "sci_wheelg.c");
         files = ["wheel.f","wheelg.f","dlslv.f" ];
         ilib_verbose(0);
-        ilib_for_link(["wheel";"wheelg"],files,[],"f");
+        lib_ = ilib_for_link(["wheel";"wheelg"], files, [],"f");
+        link(lib_, "wheel", "f");
+        ilib_build("gw_wheel",["wheelg","sci_wheelg"],"sci_wheelg.c",basename(lib_));
         exec("loader.sce",-1);
         chdir(my_cur_path);
     end
-
 endfunction
 
 
