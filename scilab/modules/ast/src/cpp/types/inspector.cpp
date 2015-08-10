@@ -16,6 +16,7 @@
 
 #include "inspector.hxx"
 #include "types.hxx"
+#include "string.hxx"
 
 namespace types
 {
@@ -156,6 +157,12 @@ void Inspector::displayMemleak()
                     }
 
                     std::wcerr << pi;
+
+                    if (pi->isString())
+                    {
+                        types::String* pS = pi->getAs<types::String>();
+                        std::wcerr << pS->get(0) << std::endl;
+                    }
                 }
             }
 

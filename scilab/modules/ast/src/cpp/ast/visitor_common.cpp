@@ -594,8 +594,6 @@ InternalType* callOverload(const ast::Exp& e, std::wstring _strType, typed_list*
     // For insertion in TList, call normal insertion if overload doesn't exits
     if ((_dest  && _dest->isTList() && pFunc == NULL) == false || _source->isListDelete())
     {
-        bool bThrow = false;
-        const ast::InternalError* ie;
         ast::ExecVisitor exec;
 
         try
@@ -604,8 +602,19 @@ InternalType* callOverload(const ast::Exp& e, std::wstring _strType, typed_list*
         }
         catch (const ast::InternalError& error)
         {
-            bThrow = true;
-            ie = &error;
+            // unprotect variables
+            for (int i = 0; i < (int)_pArgs->size(); i++)
+            {
+                (*_pArgs)[i]->DecreaseRef();
+            }
+
+            _source->DecreaseRef();
+            if (_dest)
+            {
+                _dest->DecreaseRef();
+            }
+
+            throw error;
         }
 
         // unprotect variables
@@ -622,11 +631,6 @@ InternalType* callOverload(const ast::Exp& e, std::wstring _strType, typed_list*
 
         if (ret == Function::Error)
         {
-            if (bThrow)
-            {
-                throw *ie;
-            }
-
             //manage error
             std::wostringstream os;
             os << _W("Error in overload function: ") << function_name << std::endl;
