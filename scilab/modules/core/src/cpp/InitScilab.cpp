@@ -30,6 +30,7 @@
 #include "visitor_common.hxx"
 #include "operations.hxx"
 #include "threadmanagement.hxx"
+#include "numericconstants.hxx"
 
 #include "expandPathVariable.h"
 
@@ -167,7 +168,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 #endif
 
     ThreadManagement::initialize();
-
+    NumericConstants::Initialize();
     checkForLinkerErrors();
 
 #ifdef _MSC_VER
@@ -994,7 +995,7 @@ static void Add_pi(void)
 
 static void Add_eps(void)
 {
-    Add_Double_Constant(L"%eps", C2F(dlamch) ("p", 1L), 0, false);
+    Add_Double_Constant(L"%eps", NumericConstants::eps_machine, 0, false);
 }
 
 static void Add_e(void)

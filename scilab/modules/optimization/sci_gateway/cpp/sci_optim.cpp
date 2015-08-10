@@ -17,6 +17,7 @@
 #include "polynom.hxx"
 #include "list.hxx"
 #include "optimizationfunctions.hxx"
+#include "numericconstants.hxx"
 #include <limits>
 
 extern "C"
@@ -96,7 +97,7 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
     // stop arguments "ar"
     int iNap        = 100;
     int iItMax      = 100;
-    double dEpsg    = C2F(dlamch)((char*)"p", 1L); // p : eps*base
+    double dEpsg    = NumericConstants::eps_machine; // p : eps*base
     double dTol     = dEpsg;
     double dEpsf    = 0;
 
@@ -1121,15 +1122,15 @@ types::Function::ReturnValue sci_optim(types::typed_list &in, types::optional_li
 
         ret = types::Function::OK;
     }
-    catch (const ast::ScilabException& /* e */)
-    {
-        // free memory, then return error
-    }
     catch (const ast::InternalError& e)
     {
         char* pstrMsg = wide_string_to_UTF8(e.GetErrorMessage().c_str());
         Scierror(999, pstrMsg);
         FREE(pstrMsg);
+    }
+    catch (const ast::ScilabException& /* e */)
+    {
+        // free memory, then return error
     }
 
     /*** free memory ***/

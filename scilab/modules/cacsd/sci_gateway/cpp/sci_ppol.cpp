@@ -34,8 +34,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     types::Double* pDblB = NULL;
     types::Double* pDblP = NULL;
 
-    char cP       = 'p';
-    double dblEps = 0.1 * sqrt(C2F(dlamch)(&cP, 1L));
+    double dblEps = 0.1 * sqrt(nc_eps_machine());
 
     int iOne   = 1;
     int iSizeP = 0;

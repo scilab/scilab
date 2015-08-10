@@ -220,6 +220,8 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/sci_tmpdir.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/threadmanagement.cpp \
+	src/cpp/system_env/numericconstants.cpp \
+	src/cpp/system_env/numericconstants_interface.cpp \
 	src/cpp/types/addfunction.cpp src/cpp/types/arrayof.cpp \
 	src/cpp/types/bool.cpp src/cpp/types/callable.cpp \
 	src/cpp/types/cell.cpp src/cpp/types/double.cpp \
@@ -296,6 +298,8 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/system_env/libsciast_la-sci_tmpdir.lo \
 	src/cpp/system_env/libsciast_la-setenvvar.lo \
 	src/cpp/system_env/libsciast_la-threadmanagement.lo \
+	src/cpp/system_env/libsciast_la-numericconstants.lo \
+	src/cpp/system_env/libsciast_la-numericconstants_interface.lo \
 	src/cpp/types/libsciast_la-addfunction.lo \
 	src/cpp/types/libsciast_la-arrayof.lo \
 	src/cpp/types/libsciast_la-bool.lo \
@@ -753,6 +757,8 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/system_env/sci_tmpdir.cpp \
 	src/cpp/system_env/setenvvar.cpp \
 	src/cpp/system_env/threadmanagement.cpp \
+	src/cpp/system_env/numericconstants.cpp \
+	src/cpp/system_env/numericconstants_interface.cpp \
 	src/cpp/types/addfunction.cpp src/cpp/types/arrayof.cpp \
 	src/cpp/types/bool.cpp src/cpp/types/callable.cpp \
 	src/cpp/types/cell.cpp src/cpp/types/double.cpp \
@@ -1354,6 +1360,12 @@ src/cpp/system_env/libsciast_la-setenvvar.lo:  \
 src/cpp/system_env/libsciast_la-threadmanagement.lo:  \
 	src/cpp/system_env/$(am__dirstamp) \
 	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
+src/cpp/system_env/libsciast_la-numericconstants.lo:  \
+	src/cpp/system_env/$(am__dirstamp) \
+	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
+src/cpp/system_env/libsciast_la-numericconstants_interface.lo:  \
+	src/cpp/system_env/$(am__dirstamp) \
+	src/cpp/system_env/$(DEPDIR)/$(am__dirstamp)
 src/cpp/types/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/types
 	@: > src/cpp/types/$(am__dirstamp)
@@ -1517,6 +1529,8 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-dynamic_module.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-lasterror.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants_interface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-sci_home.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-sci_path.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-sci_tmpdir.Plo@am__quote@
@@ -1983,6 +1997,20 @@ src/cpp/system_env/libsciast_la-threadmanagement.lo: src/cpp/system_env/threadma
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/threadmanagement.cpp' object='src/cpp/system_env/libsciast_la-threadmanagement.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-threadmanagement.lo `test -f 'src/cpp/system_env/threadmanagement.cpp' || echo '$(srcdir)/'`src/cpp/system_env/threadmanagement.cpp
+
+src/cpp/system_env/libsciast_la-numericconstants.lo: src/cpp/system_env/numericconstants.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-numericconstants.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants.Tpo -c -o src/cpp/system_env/libsciast_la-numericconstants.lo `test -f 'src/cpp/system_env/numericconstants.cpp' || echo '$(srcdir)/'`src/cpp/system_env/numericconstants.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants.Tpo src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/numericconstants.cpp' object='src/cpp/system_env/libsciast_la-numericconstants.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-numericconstants.lo `test -f 'src/cpp/system_env/numericconstants.cpp' || echo '$(srcdir)/'`src/cpp/system_env/numericconstants.cpp
+
+src/cpp/system_env/libsciast_la-numericconstants_interface.lo: src/cpp/system_env/numericconstants_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-numericconstants_interface.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants_interface.Tpo -c -o src/cpp/system_env/libsciast_la-numericconstants_interface.lo `test -f 'src/cpp/system_env/numericconstants_interface.cpp' || echo '$(srcdir)/'`src/cpp/system_env/numericconstants_interface.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants_interface.Tpo src/cpp/system_env/$(DEPDIR)/libsciast_la-numericconstants_interface.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/system_env/numericconstants_interface.cpp' object='src/cpp/system_env/libsciast_la-numericconstants_interface.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/system_env/libsciast_la-numericconstants_interface.lo `test -f 'src/cpp/system_env/numericconstants_interface.cpp' || echo '$(srcdir)/'`src/cpp/system_env/numericconstants_interface.cpp
 
 src/cpp/types/libsciast_la-addfunction.lo: src/cpp/types/addfunction.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/types/libsciast_la-addfunction.lo -MD -MP -MF src/cpp/types/$(DEPDIR)/libsciast_la-addfunction.Tpo -c -o src/cpp/types/libsciast_la-addfunction.lo `test -f 'src/cpp/types/addfunction.cpp' || echo '$(srcdir)/'`src/cpp/types/addfunction.cpp

@@ -16,6 +16,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "returnanan.h"
+#include "numericconstants_interface.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
 extern int C2F(dset)();
@@ -23,7 +24,6 @@ extern int C2F(dscal)();
 extern int C2F(wscal)();
 extern int C2F(zbesh)();
 extern int C2F(dcopy)();
-extern double C2F(dlamch)();
 /*--------------------------------------------------------------------------*/
 static int zbeshg(double *x1r, double *x1i, double *alpha,
                   int *kode, int *k, int *n, double *yr,
@@ -37,7 +37,7 @@ int zbeshv(double *xr, double *xi, int *nx,
            double *alpha, int *na, int *kode, int *k, double
            *yr, double *yi, double *wr, double *wi, int *ierr)
 {
-    double eps = C2F(dlamch)("p", strlen("p"));
+    double eps = nc_eps_machine();
     int iOne = 1;
     int i = 0, j = 0, nz = 0;
 

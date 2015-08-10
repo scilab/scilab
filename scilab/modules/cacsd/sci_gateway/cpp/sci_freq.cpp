@@ -14,6 +14,7 @@
 #include "function.hxx"
 #include "double.hxx"
 #include "polynom.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -129,7 +130,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         {
             types::Polynom* pPolyDen = in[1]->getAs<types::Polynom>();
 
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
 
             if (pPolyDen->isComplex())
             {
@@ -206,7 +207,7 @@ types::Function::ReturnValue freqRational(types::typed_list &in, int _iRetCount,
         {
             types::Polynom* pPolyNum = in[0]->getAs<types::Polynom>();
 
-            double dblEps = getRelativeMachinePrecision();
+            double dblEps = NumericConstants::eps;
             if (pPolyNum->isComplex())
             {
                 bool cplx = false;

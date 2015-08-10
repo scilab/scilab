@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -107,7 +107,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;_DEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -130,7 +130,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -161,7 +161,7 @@
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/c;../../libs/mpi/include;../../libs/intl;../api_scilab/includes;../core/includes;../output_stream/includes;../localization/includes;../elementary_functions/includes;../ast/includes/operations;../ast/includes/ast;../ast/includes/types;../ast/includes/system_env</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>FORDLL;NDEBUG;_WINDOWS;_USRDLL;MPI_EXPORTS;_CRT_SECURE_NO_DEPRECATE;OMPI_IMPORTS;OPAL_IMPORTS;ORTE_IMPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>

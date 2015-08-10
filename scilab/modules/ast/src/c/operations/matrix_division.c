@@ -296,7 +296,7 @@ int iRightDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows2, &_iCols2, _pdblReal2, &_iRows2, pDwork);
 
@@ -444,7 +444,7 @@ int iRightDivisionOfComplexMatrix(
     pJpvt       = (int*)malloc(sizeof(int) * _iRows2);
     pRwork      = (double*)malloc(sizeof(double) * 2 * _iRows2);
 
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     cNorm       = '1';
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows2, &_iCols2, (double*)poVar2, &_iRows2, (double*)poDwork);
@@ -599,7 +599,7 @@ int iLeftDivisionOfRealMatrix(
 
     cNorm       = '1';
     pDwork      = (double*)malloc(sizeof(double) * iWorkMin);
-    dblEps      = C2F(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(dlange)(&cNorm, &_iRows1, &_iCols1, _pdblReal1, &_iRows1, pDwork);
 
@@ -722,7 +722,7 @@ int iLeftDivisionOfComplexMatrix(
 
     cNorm       = '1';
     pDwork      = (doublecomplex*)malloc(sizeof(doublecomplex) * iWorkMin);
-    dblEps      = F2C(dlamch)("eps", 1L);
+    dblEps      = nc_eps();
     RCONDthresh = 10 * dblEps;
     dblAnorm    = C2F(zlange)(&cNorm, &_iRows1, &_iCols1, (double*)poVar1, &_iRows1, (double*)pDwork);
 

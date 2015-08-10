@@ -56,7 +56,7 @@ types::Function::ReturnValue sci_lufact(types::typed_list &in, int _iRetCount, t
         return types::Function::Error;
     }
 
-    abstol = C2F(dlamch) ("p", 1L);
+    abstol = nc_eps_machine();
 
     //call format
     if (in.size() == 2)

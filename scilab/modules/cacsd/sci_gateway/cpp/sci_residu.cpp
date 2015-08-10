@@ -40,8 +40,7 @@ types::Function::ReturnValue sci_residu(types::typed_list &in, int _iRetCount, t
     types::Polynom* pPoly[3] = {NULL, NULL, NULL};
     types::Double* pDblOut   = NULL;
 
-    char cP         = 'p';
-    double dblEps   = C2F(dlamch)(&cP, 1L);
+    double dblEps   = nc_eps_machine();
     double dZero    = 0;
     int iOne        = 1;
     int iSize       = 0;

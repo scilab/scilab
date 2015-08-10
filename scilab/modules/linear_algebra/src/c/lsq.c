@@ -15,7 +15,7 @@
 #include "machine.h"
 #include "core_math.h"
 #include "sci_malloc.h"
-
+#include "numericconstants_interface.h"
 #include "lsq.h"
 
 
@@ -35,9 +35,6 @@ extern void C2F(dlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int co
 
 extern void C2F(zlacpy)(char const * uplo /* "U"pper, "L"ower, or full*/, int const * piRows, int const * piCols
                         , doublecomplex const* pdblSource, int const * piLDSource, doublecomplex* pdblDest, int const* piLDDest);
-
-/* query for epsilon */
-extern double C2F(dlamch)(char const query[1], long );
 
 /*
  * [try to] allocate workspace for [d|z]gelsy Lapack routines. First try to allocate optimal worksize (after querying Lapack for this size). If that fails
@@ -109,7 +106,7 @@ int iLsqM(double* pData1, int iRows, int iCols, double* pData2, int iNRhs, int c
     int* pPivot = NULL;
     int worksize = 0 ;
     int unusedRank;
-    double const treshold = pTreshold ? *pTreshold : sqrt(C2F(dlamch)("e", 1L)) ;
+    double const treshold = pTreshold ? *pTreshold : sqrt(nc_eps());
 
     if ( (pRwork = (double*)( complexArgs ? (double*)MALLOC(2 * iCols * sizeof(double)) : allocDgelsyWorkspace(iRows, iCols, iNRhs, &worksize)))
             && (pXb = (double*)MALLOC(Max(iRows, iCols) * iNRhs * (complexArgs ? sizeof(doublecomplex) : sizeof(double))))

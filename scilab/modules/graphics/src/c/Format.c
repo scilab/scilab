@@ -43,7 +43,8 @@
 #include "sciprint.h"
 #include "localization.h"
 #include "Scierror.h"
-#include <machine.h>
+#include "machine.h"
+#include "numericconstants_interface.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
@@ -54,8 +55,6 @@
 #define MAX_LOG_TICKS 15
 
 /* end here */
-
-extern double C2F(dlamch)  (char *CMACH, unsigned long int);
 
 static void FormatPrec (char *fmt, int *desres, double xmin, double xmax,
                         double xpas);
@@ -562,7 +561,7 @@ static void decompSup(double x, int *xk, int *xa, int b)
             static int first = 0;
             if (first == 0)
             {
-                epsilon = 10.0 * F2C(dlamch)("e", 1L);
+                epsilon = 10.0 * nc_eps();
                 first++;
             }
             /* if x is very near (k+1)10^a (epsilon machine)
@@ -612,7 +611,7 @@ static void decompInf(double x, int *xk, int *xa, int b)
             static int first = 0;
             if (first == 0)
             {
-                epsilon = 10.0 * F2C(dlamch)("e", 1L);
+                epsilon = 10.0 * nc_eps();
                 first++;
             }
             *xa = (int) floor(log10(x)) - b + 1;

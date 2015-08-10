@@ -604,6 +604,12 @@
     <ClInclude Include="includes\system_env\threadmanagement.hxx">
       <Filter>Header Files\system_env</Filter>
     </ClInclude>
+    <ClInclude Include="includes\system_env\numericconstants.hxx">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
+    <ClInclude Include="includes\system_env\numericconstants_interface.h">
+      <Filter>Header Files\system_env</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cpp\ast\debugvisitor.cpp">
@@ -868,6 +874,12 @@
       <Filter>Source Files\ast</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\system_env\threadmanagement.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\numericconstants.cpp">
+      <Filter>Source Files\system_env</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\system_env\numericconstants_interface.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
   </ItemGroup>

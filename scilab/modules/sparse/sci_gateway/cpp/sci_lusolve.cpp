@@ -94,7 +94,7 @@ types::Function::ReturnValue sci_lusolve(types::typed_list &in, int _iRetCount, 
         pSpIn->getNbItemByRow(itemsRow);
 
         fmatindex = new int[1];
-        abstol = C2F(dlamch) ("p", 1L);
+        abstol = nc_eps_machine();
         C2F(lufact1)(dbl, itemsRow, colPos, &m1, &nonZeros, fmatindex, &abstol, &reltol, &nrank, &ierr);
         fact = true;
 

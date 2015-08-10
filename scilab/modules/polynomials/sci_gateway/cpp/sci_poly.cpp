@@ -29,8 +29,6 @@ extern "C"
     extern int C2F(dprxc)(int*, double*, double*);
     extern int C2F(wprxc)(int*, double*, double*, double*, double*);
     extern double C2F(dasum)(int*, double*, int*);
-    extern double C2F(dlamch) (const char*, unsigned long int);
-
 }
 /*--------------------------------------------------------------------------*/
 types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, types::typed_list &out)
@@ -136,7 +134,7 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         double* pdblCoefReal = pPolyOut->get(0)->get();
         if (pDblIn->isComplex())
         {
-            double dblEps = (double)C2F(dlamch)("p", 1L);
+            double dblEps = nc_eps_machine();
             pPolyOut->setComplex(true);
             double* pdblInImg   = pDblIn->getImg();
             double* pdblCoefImg = pPolyOut->get(0)->getImg();

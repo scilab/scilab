@@ -17,6 +17,7 @@
 #include "sci_malloc.h"
 #include "core_math.h"
 #include "svd.h"
+#include "numericconstants_interface.h"
 
 /*
  * Lapack functions performing the real work
@@ -33,8 +34,6 @@ extern void C2F(dgesvd)(char const jobU[1]/* 'A'|'S'|'O'|'N'*/, char const jobVT
  */
 /* sorting (used to correct a Lapack bug */
 extern void C2F(dlasrt)(char const id[1]/* 'I'ncreasing|'D'ecreasing order */, int const* length, double* array, int* info);
-/* querying for epsilon, used for default treshold value */
-extern double C2F(dlamch)(char const query[1], long );
 
 /*
  * functions used to allocate workspace for Lapack functions
@@ -138,7 +137,7 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
                           || (pRWork = (double*) MALLOC(5 * Min(iRows, iCols) * sizeof(double))))
                       && (pVT = (pU
                                  ? (double*)MALLOC(colsToCompute * iCols * (complexArg ? sizeof(doublecomplex) : sizeof(double)))
-                                     : pData)))))
+                                 : pData)))))
     {
         ret = complexArg
               ? iZgesvd(job,  (doublecomplex*)pData, iRows, iCols, colsToCompute, pSV, (doublecomplex*) pU, (doublecomplex*)pVT
@@ -158,7 +157,7 @@ int iSvdM(double* pData, int iRows, int iCols, int complexArg, int economy, doub
                 if (pRk) /* compute rank */
                 {
                     int i, rk;
-                    tol = (tol == 0.) ? (Max(iRows, iCols) * C2F(dlamch)("e", 1L) * pSV[0]) : tol; /* original Fortran code does the strict fp compare */
+                    tol = (tol == 0.) ? (Max(iRows, iCols) * nc_eps() * pSV[0]) : tol; /* original Fortran code does the strict fp compare */
                     rk = -1;
                     for (i = 0; i != Min(iRows, iCols); ++i)
                     {

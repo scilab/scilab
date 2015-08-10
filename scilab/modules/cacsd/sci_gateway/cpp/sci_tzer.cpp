@@ -13,6 +13,7 @@
 #include "cacsd_gw.hxx"
 #include "function.hxx"
 #include "double.hxx"
+#include "numericconstants.hxx"
 
 extern "C"
 {
@@ -31,8 +32,8 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     int iRows[4] = {0, 0, 0, 0};
     int iCols[4] = {0, 0, 0, 0};
     double* pdblIn[4] = {NULL, NULL, NULL, NULL};
-    char cP = 'p';
-    double dblEps = C2F(dlamch)(&cP, 1L);
+
+    double dblEps = NumericConstants::eps_machine;
     int iOne = 1;
 
     if (in.size() != 4)

@@ -68,6 +68,8 @@ src/cpp/system_env/sci_path.cpp \
 src/cpp/system_env/sci_tmpdir.cpp \
 src/cpp/system_env/setenvvar.cpp \
 src/cpp/system_env/threadmanagement.cpp \
+src/cpp/system_env/numericconstants.cpp \
+src/cpp/system_env/numericconstants_interface.cpp \
 src/cpp/types/addfunction.cpp \
 src/cpp/types/arrayof.cpp \
 src/cpp/types/bool.cpp \
