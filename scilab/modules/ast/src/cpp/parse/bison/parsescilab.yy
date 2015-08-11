@@ -104,7 +104,7 @@ static void print_rules(const std::string& _parent, const double _value)
     {                                                           \
         if(ParserSingleInstance::stopOnFirstError())            \
         {                                                       \
-            return ParserSingleInstance::getExitStatus();       \
+            ParserSingleInstance::setExitStatus(Parser::ParserStatus::Failed);       \
         }                                                       \
     }
 

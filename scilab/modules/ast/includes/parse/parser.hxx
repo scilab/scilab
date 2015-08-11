@@ -34,7 +34,6 @@ class EXTERN_AST Parser
 {
 public:
     Parser() :
-        _stop_on_first_error(false),
         _strict_mode(false),
         _parse_trace(false),
         _exit_status(Succeded),
@@ -146,20 +145,11 @@ public:
         _strict_mode = false;
     }
 
-    bool stopOnFirstError(void)
-    {
-        return _stop_on_first_error;
-    }
-    void enableStopOnFirstError(void)
-    {
-        _stop_on_first_error = true;
-    }
-    void disableStopOnFirstError(void)
-    {
-        _stop_on_first_error = false;
-    }
-
     void releaseTmpFile();
+    bool stopOnFirstError(void);
+    void enableStopOnFirstError(void);
+    void disableStopOnFirstError(void);
+
     /** \} */
 
 
@@ -167,7 +157,6 @@ private :
     const std::wstring _file_name;
     const std::wstring _prog_name;
     std::wstring _error_message;
-    bool _stop_on_first_error;
     bool _strict_mode;
     bool _parse_trace;
     ParserStatus _exit_status;
