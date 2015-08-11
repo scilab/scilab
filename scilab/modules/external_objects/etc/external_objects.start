@@ -7,8 +7,7 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-// TODO : make this '71' more dynamic (with a funptr)
-intppty(71);
+intppty("external_objects");
 evoid = mlist(["_EVoid", "_EnvId", "_id"], int32(0), int32(0));
 enull = mlist(["_EObj", "_EnvId", "_id"], int32(0), int32(0));
 load("SCI/modules/external_objects/macros/lib");

@@ -32,18 +32,6 @@
 function [] = scisptdemo()
     // demo pour l'interface umf
     mode(-1)
-    st = stacksize();
-    if st(1) < 3000000 then
-        messagebox([gettext(" For this demo the current stack size is not enough ");
-        gettext(" enter the following at the scilab prompt :          ");
-        gettext("                                                     ");
-        gettext("              stacksize(3000000);                    ");
-        gettext("                                                     ");
-        gettext("           then re enter scisptdemo()                ");
-        gettext("                                                     ");
-        gettext("               CLICK TO  CONTINUE                    ")]);
-        return
-    end
 
     oldln = lines();
     lines(0)

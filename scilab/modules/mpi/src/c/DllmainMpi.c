@@ -12,12 +12,16 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
+//for Visual Leak Detector in debug compilation mode
+#if defined(DEBUG_VLD) && defined(_DEBUG)
+#include <vld.h>
+#endif
+/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../bin/libintl.lib")
 #pragma comment(lib,"../../bin/blasplus.lib")
 
 //MS MPI
 #pragma comment(lib,"../../libs/mpi/lib/msmpi.lib")
-
 
 /*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)

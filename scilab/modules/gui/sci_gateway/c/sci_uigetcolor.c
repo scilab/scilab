@@ -17,7 +17,7 @@
 #include "CallColorChooser.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetcolor(char *fname, unsigned long fname_len)
+int sci_uigetcolor(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

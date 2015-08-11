@@ -14,16 +14,8 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{dbeffa4a-5d59-463e-b17a-64883141146b}</UniqueIdentifier>
+      <UniqueIdentifier>{567e5ac3-4edc-4ee2-bf81-7768b8d337d3}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\c\mexlib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\c\sci_gateway.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\mex.h">
@@ -42,5 +34,13 @@
     <None Include="Core_f_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\cpp\mexlib.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\cpp\sci_gateway.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

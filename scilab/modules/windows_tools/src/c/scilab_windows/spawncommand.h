@@ -75,5 +75,12 @@ SCILAB_WINDOWS_IMPEXP int ClosePipeInfo (pipeinfo pipe);
 */
 SCILAB_WINDOWS_IMPEXP int CallWindowsShell(char *command);
 
+/**
+* Call cmd.exe windows shell
+* @param[in] command to execute
+* @param[out] exit code returned by cmd
+*/
+SCILAB_WINDOWS_IMPEXP int CallWindowsShellW(wchar_t* _pstCommand);
+
 #endif /* __SPAWNCOMMAND_H__ */
 /*--------------------------------------------------------------------------*/

@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    Ctrl-i should indent
 
-// scinotes(SCI/modules/scinotes/tests/nonreg_tests/scinotes_indent_test.sci)
+// scinotes("SCI/modules/scinotes/tests/nonreg_tests/scinotes_indent_test.sci")
 
 // Select all with Ctrl-a
 

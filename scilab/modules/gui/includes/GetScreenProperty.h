@@ -20,6 +20,6 @@
  * @param propertyName the name of the property to get
  * @return execution status
  */
-GUI_IMPEXP int GetScreenProperty(void* _pvCtx, char *propertyName);
+GUI_IMPEXP void* GetScreenProperty(void* _pvCtx, char *propertyName);
 
 #endif /* !__GETSCREENPROPERTY_H__ */

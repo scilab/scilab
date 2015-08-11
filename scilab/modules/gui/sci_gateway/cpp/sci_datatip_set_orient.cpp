@@ -22,12 +22,12 @@ extern "C"
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "stricmp.h"
+#include "os_string.h"
 }
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatip_set_orient(char *fname, unsigned long fname_len)
+int sci_datatip_set_orient(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     CheckInputArgument(pvApiCtx, 2, 2);

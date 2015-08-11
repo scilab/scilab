@@ -14,6 +14,6 @@
 // <-- ENGLISH IMPOSED -->
 funcprot(0);
 function varargout=test(),varargout="";a=1,endfunction
-if execstr('test()','errcatch')<>140 then bugmes();quit;end
+if execstr("test()","errcatch")==0 then bugmes();quit;end
 function varargout=test();a=1,endfunction
-if execstr('test()','errcatch')<>21 then bugmes();quit;end
+if execstr("test()","errcatch")==0 then bugmes();quit;end

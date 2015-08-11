@@ -16,7 +16,6 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_finalize.c \
     sci_gateway/c/sci_mpi_comm_size.c \
     sci_gateway/c/sci_mpi_comm_rank.c \
-    sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
     sci_gateway/c/sci_mpi_send.c \
     sci_gateway/c/sci_mpi_irecv.c \
@@ -31,13 +30,18 @@ CC = $(OPENMPI_CC)
 libscimpi_la_CFLAGS=  -Iincludes/ \
 	-Isrc/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
+	-I$(top_srcdir)/modules/ast/includes/ast \
+	-I$(top_srcdir)/modules/ast/includes/operations \
+	-I$(top_srcdir)/modules/ast/includes/types \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes
+	-I$(top_srcdir)/modules/api_scilab/includes \
+	-I$(top_srcdir)/modules/elementary_functions/includes
+
 # libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
 libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding 
+# Name of the future library (.la will be replace by .so, .a, etc regarding
 # the system)
 pkglib_LTLIBRARIES = libscimpi.la
 
@@ -53,11 +57,11 @@ modulename=mpi
 libscimpi_la_rootdir = $(mydatadir)
 libscimpi_la_root_DATA = readme.txt
 
-#### mpi : init scripts #### 
+#### mpi : init scripts ####
 libscimpi_la_etcdir = $(mydatadir)/etc
 libscimpi_la_etc_DATA = etc/mpi.quit etc/mpi.start
 
-#### mpi : gateway declaration #### 
+#### mpi : gateway declaration ####
 libscimpi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimpi_la_sci_gateway_DATA = sci_gateway/mpi_gateway.xml
 

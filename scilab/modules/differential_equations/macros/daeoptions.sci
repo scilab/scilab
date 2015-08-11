@@ -113,7 +113,7 @@ function [%DAEOPTIONS] = daeoptions(%DAEOPTIONS)
     "2 : full printing";
     " ";
     "Default values are given in square brackets"
-    "If the function is called without argument, default values"+...
+    "If the function is called without argument, default values"+ ...
     " are used"
     ]
 

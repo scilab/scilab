@@ -47,22 +47,7 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"if %t then t = 1;end;"]
- SCIFILECONTENTSREF  =
- 
-!                                                 !
-!                                                 !
-!// Display mode                                  !
-!                                                 !
-!mode(0);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!// Display warning for floating point exception  !
-!                                                 !
-!ieee(1);                                         !
-!                                                 !
-!                                                 !
-!                                                 !
-!if %t then t = 1;end;                            !
+"if %t then"; 
+"  t = 1;"
+"end;"];
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then bugmes();quit;end

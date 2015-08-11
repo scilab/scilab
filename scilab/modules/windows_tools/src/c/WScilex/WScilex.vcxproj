@@ -27,22 +27,22 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -78,7 +78,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -89,7 +89,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(IntDir)WScilex.pdb</ProgramDatabaseFile>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -101,7 +101,7 @@
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_DEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -112,7 +112,7 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <ProgramDatabaseFile>$(OutDir)WScilex.pdb</ProgramDatabaseFile>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
@@ -121,7 +121,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -132,7 +132,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).exe</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX86</TargetMachine>
@@ -146,7 +146,7 @@
     </Midl>
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
-      <AdditionalIncludeDirectories>$(SolutionDir)libs\DetectFramework2;$(SolutionDir)libs\GetWindowsVersion;$(SolutionDir)modules\core\includes;$(SolutionDir)modules\windows_tools\src\c\scilab_windows;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../../../../libs/intl;../../../../functions_manager/includes;../../../../console/includes;../../../../elementary_functions/includes;../../../../localization/includes;../../../../shell/includes;../../../../history_manager/includes;../../../../fileio/includes;../../../../output_stream/includes;../../../../string/includes;../../../../api_scilab/includes;../../../../threads/includes;../../../../core/src/c;../../../../dynamic_link/includes;../../../../tclsci/includes;../../../../jvm/includes;../../../../gui/includes;../../../../graphics/includes;../../../../core/includes;../../../../ast/includes/types;../../../../ast/includes/ast;../../../../ast/includes/analysis;../../../../ast/includes/exps;../../../../ast/includes/operations;../../../../ast/includes/symbol;../../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <ObjectFileName>$(Configuration)/</ObjectFileName>
@@ -157,7 +157,7 @@
       <OutputFile>$(SolutionDir)bin\$(ProjectName).exe</OutputFile>
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <GenerateDebugInformation>false</GenerateDebugInformation>
-      <SubSystem>Windows</SubSystem>
+      <SubSystem>Console</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <TargetMachine>MachineX64</TargetMachine>
@@ -165,9 +165,6 @@
       <RandomizedBaseAddress>false</RandomizedBaseAddress>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="WScilex.c" />
-  </ItemGroup>
   <ItemGroup>
     <ClInclude Include="resource.h" />
   </ItemGroup>
@@ -189,22 +186,24 @@
     <ResourceCompile Include="WScilex.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\libs\GetWindowsVersion\GetWindowsVersion.vcxproj">
-      <Project>{982bf37f-42c4-4d37-8d14-60521b141503}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\..\tools\localization\generatePoFile.vcxproj">
-      <Project>{6880d4df-bc7a-411f-ad9b-20a14429a92f}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\console\src\c\console.vcxproj">
+      <Project>{445d3b85-c9b1-498b-9c88-0a3c2390b1cc}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\..\functions\scripts\buildmacros\BuildMacros.vcxproj">
-      <Project>{66f2fb48-5d68-4445-a856-119f685a371b}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
     </ProjectReference>
-    <ProjectReference Include="..\CScilex\CScilex.vcxproj">
-      <Project>{9ba6f7e4-ae64-4fd9-a5a7-0996a8b73b77}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\..\..\startup\src\cpp\scilab.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -48,22 +48,22 @@
         </para>
         <para>
             <literal>error(message)</literal> は<literal>message</literal>の文字列を
-             出力します.
-             エラーメッセージの番号は 10000 となります.
-         </para>
-         <para>
-             <literal>error(message,n)</literal> は
-             <literal>message</literal>の文字列を出力します.
-             エラーメッセージの番号は<literal>n</literal>で指定されます.
-             この番号は 10000 より大きい必要があります. 
-         </para>
-         <para>
-             <literal>error(n)</literal> は,
-             エラー番号 <literal>n</literal>の
-             定義済みエラーメッセージを出力します. 
-         </para>
-         <para>
-	   いくつかの定義済みエラーメッセージは
+            出力します.
+            エラーメッセージの番号は 10000 となります.
+        </para>
+        <para>
+            <literal>error(message,n)</literal> は
+            <literal>message</literal>の文字列を出力します.
+            エラーメッセージの番号は<literal>n</literal>で指定されます.
+            この番号は 10000 より大きい必要があります. 
+        </para>
+        <para>
+            <literal>error(n)</literal> は,
+            エラー番号 <literal>n</literal>の
+            定義済みエラーメッセージを出力します. 
+        </para>
+        <para>
+            いくつかの定義済みエラーメッセージは
             パラメータを必要とします(
             <link linkend="error_table">error_table</link>参照).
             この場合,パラメータの値を指定するために
@@ -89,9 +89,6 @@ lasterror()]]></programlisting>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

@@ -3,7 +3,6 @@ LIBRARY    core.dll
 
 EXPORTS
 scistring_
-intersci_
 callFunctionFromGateway
 com_
 MyHeapAlloc

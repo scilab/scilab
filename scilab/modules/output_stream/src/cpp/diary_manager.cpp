@@ -13,7 +13,7 @@
 #include "diary_manager.hxx"
 #include "DiaryList.hxx"
 #include "diary.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static DiaryList *SCIDIARY = NULL;
 /*--------------------------------------------------------------------------*/
@@ -260,7 +260,7 @@ int diaryAppend(wchar_t *filename)
     return -1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWrite(wchar_t *wstr, BOOL bInput)
+int diaryWrite(const wchar_t *wstr, BOOL bInput)
 {
     if (SCIDIARY)
     {
@@ -277,7 +277,7 @@ int diaryWrite(wchar_t *wstr, BOOL bInput)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int diaryWriteln(wchar_t *wstr, BOOL bInput)
+int diaryWriteln(const wchar_t *wstr, BOOL bInput)
 {
     if (SCIDIARY)
     {

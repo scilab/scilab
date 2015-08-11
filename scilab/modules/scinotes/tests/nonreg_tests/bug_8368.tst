@@ -16,7 +16,7 @@
 // <-- Short Description -->
 // Incremental search did not highlight correctly the pattern under Windows.
 
-edit derivative
+edit numderivative
 
 // F3 to make an incremental search, put f in the text field and hit 2 times
 // the ENTER key, a 'f' must be highlighted rather than a 'u'.

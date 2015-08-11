@@ -29,7 +29,8 @@ function [x1,p1]=srkf(y,x0,p0,f,h,q,r)
     g=[0*q,chol(q)'];
 
     mat=[h*p0,j;f*p0,g];
-    [q,tmat]=qr(mat')';
+    [q,tmat]=qr(mat');
+    tmat=tmat';
     p1=tmat(p+1:p+n,p+1:p+n);
     k=tmat(p+1:p+n,1:p);
     re=tmat(1:p,1:p);

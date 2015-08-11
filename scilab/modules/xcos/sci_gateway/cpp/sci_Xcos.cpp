@@ -11,12 +11,15 @@
  *
  */
 /*--------------------------------------------------------------------------*/
+
+#include <iostream>
+
 #include "Xcos.hxx"
-#include "GiwsException.hxx"
+#include "loadStatus.hxx"
 
 extern "C" {
 #include "gw_xcos.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -30,7 +33,7 @@ using namespace org_scilab_modules_xcos;
 static int callXcos(char* fname, char* file, char* var);
 
 /*--------------------------------------------------------------------------*/
-int sci_Xcos(char *fname, unsigned long fname_len)
+int sci_Xcos(char *fname, void *pvApiCtx)
 {
     CheckRhs(0, 2);
     CheckLhs(0, 1);
@@ -44,10 +47,10 @@ int sci_Xcos(char *fname, unsigned long fname_len)
      */
     if (Rhs == 0)
     {
+        int ret = callXcos(fname, NULL, NULL);
         LhsVar(1) = 0;
         PutLhsVar();
-
-        return callXcos(fname, NULL, NULL);
+        return ret;
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVar);
@@ -168,8 +171,9 @@ int sci_Xcos(char *fname, unsigned long fname_len)
     {
         int lw = 1;
 
+        // FIXME
         // overloaded by %diagram_xcos.sci
-        C2F(overload)(&lw, fname, fname_len);
+        //C2F(overload)(&lw, fname, fname_len);
 
         LhsVar(1) = 0;
         PutLhsVar();
@@ -215,12 +219,18 @@ int sci_Xcos(char *fname, unsigned long fname_len)
 
 static int callXcos(char *fname, char* file, char* var)
 {
+    set_loaded_status(XCOS_CALLED);
+
     try
     {
         Xcos::xcos(getScilabJavaVM(), file, var);
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        std::cerr << exception.getJavaExceptionName() << std::endl;
+        std::cerr << exception.getJavaDescription() << std::endl;
+        std::cerr << exception.getJavaStackTrace() << std::endl;
+
         Scierror(999, "%s: %s\n", fname,
                  exception.getJavaDescription().c_str());
 
@@ -236,6 +246,10 @@ static int callXcos(char *fname, char* file, char* var)
     }
     catch (GiwsException::JniException &exception)
     {
+        std::cerr << exception.getJavaExceptionName() << std::endl;
+        std::cerr << exception.getJavaDescription() << std::endl;
+        std::cerr << exception.getJavaStackTrace() << std::endl;
+
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
 
         if (file)

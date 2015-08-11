@@ -38,7 +38,7 @@ static int check_xy(char *fname, char dir, int mn, int xpos, int xm, int xn,
                     double* pdblX, int ypos, int yRow, int yCol, double* pdblY, int *ntics);
 
 /*--------------------------------------------------------------------------*/
-int sci_drawaxis(char *fname, unsigned long fname_len)
+int sci_drawaxis(char *fname, void* pvApiCtx)
 {
     /** XXXXX : un point en suspens c'est le "S" ou une adresse est
      *  stockees ds un unsigned long : est ce sufisant ?
@@ -68,7 +68,7 @@ int sci_drawaxis(char *fname, unsigned long fname_len)
     int nb_tics_labels = -1;
     int iRhs = nbInputArgument(pvApiCtx);
 
-    nopt = NumOpt();
+    nopt = NumOpt(pvApiCtx);
 
     CheckInputArgument(pvApiCtx, minrhs, maxrhs + nopt);
     CheckOutputArgument(pvApiCtx, minlhs, maxlhs);

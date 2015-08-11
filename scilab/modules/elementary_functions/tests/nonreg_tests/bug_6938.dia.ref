@@ -20,6 +20,6 @@ if or(size(f) <> [1 4]) then bugmes();quit;end
 if or(e <> [1.    2.    2.  -51.]) then bugmes();quit;end
 if execstr("[f, e] = frexp();", "errcatch") <> 77 then bugmes();quit;end
 if execstr("[f] = frexp(%pi);", "errcatch") <> 78 then bugmes();quit;end
-if execstr("[f, e] = frexp(""a"");", "errcatch") <> 246 then bugmes();quit;end
+if execstr("[f, e] = frexp(""a"");", "errcatch") <> 999 then bugmes();quit;end
 if execstr("[f, e] = frexp(%i);", "errcatch") <> 999 then bugmes();quit;end
 if lasterror() <> msprintf(_("%s: Wrong type for input argument #%d: Real matrix expected.\n"), "frexp", 1) then bugmes();quit;end

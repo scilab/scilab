@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAsNumber(char *fname, unsigned long fname_len)
+int sci_xmlAsNumber(char *fname, void* pvApiCtx)
 {
     int id;
     SciErr err;

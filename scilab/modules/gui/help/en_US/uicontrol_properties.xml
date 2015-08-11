@@ -53,7 +53,7 @@
             <varlistentry>
                 <term>Callback_Type</term>
                 <listitem>
-                    <para>Integer</para>
+                    <para>Scalar</para>
                     <para>The type of callback transmitted to the uicontrol.</para>
                     <itemizedlist>
                         <listitem>
@@ -63,17 +63,13 @@
                         </listitem>
                         <listitem>
                             <para>
-                                <literal>0</literal> a Scilab instruction
+                                <literal>0</literal> or <literal>2</literal> a Scilab instruction
+                                <literal>10</literal> or <literal>12</literal> a prioritary, non-interruptible Scilab instruction
                             </para>
                         </listitem>
                         <listitem>
                             <para>
                                 <literal>1</literal> a C or a Fortran function
-                            </para>
-                        </listitem>
-                        <listitem>
-                            <para>
-                                <literal>2</literal> a Scilab function
                             </para>
                         </listitem>
                     </itemizedlist>
@@ -163,7 +159,7 @@
                 <listitem>
                     <para>String</para>
                     <para>
-                        Used for <literal>radiobutton</literal> and <literal>checkbox</literal> style uicontrols, 
+                        Used for <literal>radiobutton</literal> and <literal>checkbox</literal> style uicontrols,
                         this property allow to manage uicontrols of the same group as a whole. For example, <literal>checkbox</literal> uicontrols of a group
                         will manage selection unicity automatically.
                     </para>
@@ -374,7 +370,7 @@
                     </para>
                     <itemizedlist>
                         <listitem>
-                            <para>  
+                            <para>
                                 For <literal>pushbutton</literal> or <literal>text</literal> uicontrols, if the text is enclosed between two $ (dollar sign), then it will be
                                 considered as a LaTeX expression, and if it is enclosed between &lt; and &gt;, it will be considered
                                 as a MathML one.
@@ -399,8 +395,8 @@
                             <para>
                                 For <literal>listbox</literal> and <literal>popupmenu</literal> uicontrols which manage colors selection, icons, background
                                 and foreground colors, the <literal>String</literal> property can be set to a matrix matching the format:
-                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal> 
-                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal> 
+                                <literal>["#color1", "Item1", "#background1", "#foreground1"; "#color2", "Item2", ..., ...]</literal>
+                                <literal>["icon1", "Item1", "#background1", "#foreground1"; "icon2", "Item2", ..., ...]</literal>
                                 with <literal>"#color1"</literal>, <literal>"#background1"</literal> and <literal>"#foreground1"</literal> in HTML format <literal>#XXXXXX</literal>.
                                 Then the component will display a colored box or icon on the left of the associated string,
                                 and different background/foreground colors for items.
@@ -434,7 +430,7 @@
                 <listitem>
                     <para>Boolean</para>
                     <para>
-                        Indicates whether the tabs of a <literal>tab</literal> style uicontrol 
+                        Indicates whether the tabs of a <literal>tab</literal> style uicontrol
                         must be wrapped (<literal>title_scroll=%F</literal>) or scrolled (<literal>title_scroll=%T</literal>).
                     </para>
                 </listitem>

@@ -54,19 +54,25 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
     //local variable names are prefixed with a %  to limit conflicts with
     //variables  defined in %txt instructions
 
-    %nww="";%ierr=0;  // to make sure %nww and %ierr does not enter the difference
+    %ierr = 0;  // to make sure %ierr does not enter the difference
     if isempty(%txt) then return,end
-    %nww=size(who("get"),"*")
 
-    %ierr=execstr(%txt,"errcatch")
+    %ierr = execstr(%txt,"errcatch");
     if %ierr<>0 then mprintf("%s\n",lasterror()), return,end
 
-    %mm=who("get")
-    %mm=%mm(1:size(%mm,"*")-%nww)
-    //%mm contains the list of the variables defined by execstr(%txt,'errcatch')
-    for %mi=%mm(:)'
+    // Use 'macrovar' to extract the variable names present in %txt: listvar(5) contains all the output variables of the context
+    clear("foo"); // Locally reserve the "foo" name to avoid redefinition warning
+    deff("foo()", %txt);
+    listvar = macrovar(foo);
+    %mm = listvar(5);
+    // In case clear() has been used in the context, remove its arguments
+    if %mm <> [] then
+        %mm(~isdef(%mm, "l")) = [];
+    end
+
+    for %mi=%mm'
         if %mi=="scs_m" then
-            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m");
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored\n"),"scs_m");
             continue
         elseif %mi=="ans" then
             continue
@@ -76,7 +82,7 @@ function [%ll,%ierr]=getvardef(%txt,%ll)
         %v=evstr(%mi);
 
         if typeof(%v)=="scs_m" then
-            mprintf(_("The variable name %s cannot be used as block parameter: ignored"),"scs_m")
+            mprintf(_("The variable name %s cannot be used as block parameter: ignored\n"),"scs_m")
             continue
         elseif or(type(%v)==[11 13 14]) then
             continue

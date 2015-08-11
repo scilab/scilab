@@ -28,7 +28,7 @@ extern "C"
 #include "charEncoding.h"
 #include "getScilabDirectory.h"
 #include "InnosetupMutex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 };
 /*--------------------------------------------------------------------------*/
 #define SPLASH_WINDOW_CLASSNAME "Scilab splashscreen"
@@ -134,7 +134,7 @@ static DWORD WINAPI ThreadSplashScreen(LPVOID lpParam)
     wndcls.hCursor = LoadCursor(NULL, IDC_APPSTARTING);
     wndcls.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
     wndcls.lpszClassName = SPLASH_WINDOW_CLASSNAME;
-    wndcls.hIcon = LoadIcon(wndcls.hInstance, (char*)MAKEINTRESOURCE(IDI_APPLICATION));
+    wndcls.hIcon = LoadIcon(wndcls.hInstance, MAKEINTRESOURCE(IDI_APPLICATION));
 
     if (!RegisterClass(&wndcls))
     {

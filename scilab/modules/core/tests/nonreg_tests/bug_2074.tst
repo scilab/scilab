@@ -30,5 +30,5 @@ if or(A<>[2 0;2 0])|or(a<>[1;1]) then pause,end
 A=zeros(2,2); [A(:,1)]=illegalLHS();
 if or(A<>[1 0;1 0]) then pause,end
 
-A=zeros(2,2); [A(:,1),b]=illegalLHS()  
+A=zeros(2,2); [A(:,1),b]=illegalLHS();
 if or(A<>[1 0;1 0])|or(b<>[2;2])  then pause,end

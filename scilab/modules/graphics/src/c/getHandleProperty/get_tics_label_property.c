@@ -26,13 +26,13 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "Format.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tics_labels_property(void* _pvCtx, int iObjUID)
+void* get_tics_labels_property(void* _pvCtx, int iObjUID)
 {
     char** labels = NULL;
     int iNumberTicksLabels = 0;
@@ -42,7 +42,7 @@ int get_tics_labels_property(void* _pvCtx, int iObjUID)
     if (piNumberTicksLabels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_TICKS_LABELS__, jni_string_vector, (void **) &labels);
@@ -50,10 +50,10 @@ int get_tics_labels_property(void* _pvCtx, int iObjUID)
     if (labels == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_labels");
-        return -1;
+        return NULL;
     }
 
     /* User-specified ticks labels */
-    return sciReturnRowStringVector(_pvCtx, labels, iNumberTicksLabels);
+    return sciReturnRowStringVector(labels, iNumberTicksLabels);
 }
 /*------------------------------------------------------------------------*/

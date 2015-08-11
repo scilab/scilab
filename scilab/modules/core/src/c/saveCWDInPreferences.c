@@ -13,9 +13,9 @@
 #include <stdlib.h>
 
 #include "getScilabPreference.h"
-#include "stricmp.h"
+#include "os_string.h"
 #include "scicurdir.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 void saveCWDInPreferences()
 {

@@ -4,6 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+//
 // <-- Non-regression test for bug 3407 -->
 //
 // <-- Bugzilla URL -->
@@ -36,27 +37,27 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>2 then bugmes();quit;end
 function l=myfun2()
- if  %t then
+ if  %t then 
    [l,w]=where()
  end
 endfunction
 l=myfun2();if l(1)<>3 then bugmes();quit;end
 function l=myfun2()
  if  [%t
-      %t] then
+      %t] then 
    [l,w]=where()
  end
 endfunction
 l=myfun2();if l(1)<>4 then bugmes();quit;end
 function l=myfun2()
  if  [%t,..
-      %t] then
+      %t] then 
    [l,w]=where()
  end
 endfunction
 l=myfun2();if l(1)<>4 then bugmes();quit;end
 function l=myfun2()
- if  %f then
+ if  %f then 
    l=0,
  else	
    [l,w]=where()
@@ -64,7 +65,7 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>5 then bugmes();quit;end
 function l=myfun2()
- if  %f then
+ if  %f then 
    l=0,
  else	
    l=0
@@ -80,26 +81,26 @@ function l=myfun2(),
 endfunction
 l=myfun2();if l(1)<>2 then bugmes();quit;end
 function l=myfun2(),
-  for k=1,..
+  for k=1,.. 
     [l,w]=where(),
   end,
 endfunction
 l=myfun2();if l(1)<>3 then bugmes();quit;end
 function l=myfun2(),
-  for k=1,
+  for k=1, 
     [l,w]=where(),
   end,
 endfunction
 l=myfun2();if l(1)<>3 then bugmes();quit;end
 function l=myfun2(),
-  for k=1,
+  for k=1, 
     l=0
   end,
   [l,w]=where(),
 endfunction
 l=myfun2();if l(1)<>5 then bugmes();quit;end
 function l=myfun2(),
-  for k=1,
+  for k=1, 
     l=0
   end,
   x=[1;
@@ -108,7 +109,7 @@ function l=myfun2(),
 endfunction
 l=myfun2();if l(1)<>7 then bugmes();quit;end
 function l=myfun2(),
-  for k=1,
+  for k=1, 
     l=0
   end,
   x=[1,..
@@ -124,27 +125,18 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>2 then bugmes();quit;end
 function l=myfun2()
- while  %t then
+ while  %t then 
    [l,w]=where(),break
  end
 endfunction
 l=myfun2();if l(1)<>3 then bugmes();quit;end
 function l=myfun2()
- while  %f then
+ while  %f then 
    l=0,
  end
  [l,w]=where()
 endfunction
 l=myfun2();if l(1)<>5 then bugmes();quit;end
-function l=myfun2()
- while  %f then
-   l=0,
- else	
-   l=0
- end
- [l,w]=where()
-endfunction
-l=myfun2();if l(1)<>7 then bugmes();quit;end
 //Select
 function l=myfun2(),select 1,case 1 then [l,w]=where(),end,endfunction
 l=myfun2();if l(1)<>1 then bugmes();quit;end
@@ -153,21 +145,21 @@ function l=myfun2()
 endfunction
 l=myfun2();if l(1)<>2 then bugmes();quit;end
 function l=myfun2()
- select 1,case 1
+ select 1,case 1 
    [l,w]=where()
  end
 endfunction
 l=myfun2();if l(1)<>3 then bugmes();quit;end
 function l=myfun2()
  select 1,..
- case 1
+ case 1 
    [l,w]=where()
  end
 endfunction
 l=myfun2();if l(1)<>4 then bugmes();quit;end
 function l=myfun2()
  select 1,
- case 1
+ case 1 
    [l,w]=where()
  end
 endfunction
@@ -176,7 +168,7 @@ function l=myfun2()
  select 1,
  case 0
    l=0
- case 1
+ case 1 
    [l,w]=where()
  end
 endfunction

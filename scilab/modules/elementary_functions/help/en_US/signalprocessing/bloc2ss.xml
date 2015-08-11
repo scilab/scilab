@@ -3,11 +3,11 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Serge STEER
  * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -45,10 +45,10 @@
             be the string <literal>'blocd'</literal>. Each other element of this list
             is itself a list of one the following types :
         </para>
-        <programlisting><![CDATA[ 
+        <programlisting><![CDATA[
 list('transfer','name_of_linear_system')
  ]]></programlisting>
-        <programlisting><![CDATA[  
+        <programlisting><![CDATA[
 list('link','name_of_link',
              [number_of_upstream_box,upstream_box_port],
              [downstream_box_1,downstream_box_1_portnumber],
@@ -104,7 +104,7 @@ list('link','name_of_link',
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Initialization
 syst=list('blocd'); l=1;
 
@@ -124,7 +124,7 @@ syst(l)=list('transfer',['1','1']);  //adder
 l=l+1;
 syst(l)=list('link','U1',[-1],[n_adder,1]);
 
-// Internal 
+// Internal
 l=l+1;
 syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
 l=l+1;
@@ -140,7 +140,7 @@ syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
             state-space representation for <literal>1/(s^2+s-1)</literal>.
         </para>
         <para>[2] LFT example</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //Initialization
 syst=list('blocd');
 l=1;
@@ -148,13 +148,13 @@ l=1;
 //System (2x2 blocks plant)
 l=l+1;
 n_s=l;
-syst(l)=list('transfer',['P11','P12';'P21','P22']); 
- 
+syst(l)=list('transfer',['P11','P12';'P21','P22']);
+
 //Controller
 l=l+1;
 n_k=l;
 syst(l)=list('transfer','k');
- 
+
 //Links
 l=l+1;
 syst(l)=list('link','w',[-1],[n_s,1]);
@@ -166,23 +166,19 @@ l=l+1;
 syst(l)=list('link','y',[n_s,2],[n_k,1]);
  ]]></programlisting>
         <para>With</para>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 A=[0,1;0,0];
 B=[1;1];
 C=[1,1];
 D=poly(0,'s');
 P=syslin('c',A,B,C,D);
  ]]></programlisting>
-        <para>
-            <literal>bloc2exp(syst)</literal> returns the evaluation the lft of
-            <literal>P</literal> and <literal>K</literal>.
-        </para>
     </refsection>
     <refsection role="see also">
         <title>See Also</title>
         <simplelist type="inline">
             <member>
-                <link linkend="bloc2exp">bloc2exp</link>
+                <link linkend="poly">poly</link>
             </member>
         </simplelist>
     </refsection>

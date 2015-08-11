@@ -95,7 +95,7 @@
 *                    for some output elements
 */
 
-void sciblk4(scicos_block *Blocks, int flag);
+void sciblk4(scicos_block *Blocks, const int flag);
 
 #endif /* __SCIBLK4_H__ */
 /*--------------------------------------------------------------------------*/

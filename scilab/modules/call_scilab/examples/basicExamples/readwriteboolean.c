@@ -19,6 +19,7 @@
 /*------------------------------------------------------------*/
 int main(void)
 {
+    void* pvApiCtx = NULL;
 #ifdef _MSC_VER
     if ( StartScilab(NULL, NULL, 0) == FALSE )
 #else

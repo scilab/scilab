@@ -23,15 +23,15 @@ tab_ref = [
 "حريات وحقوق",
 "תוכנית"];
 
-if length(ascii(0)) <> 1 then pause,end
+assert_checkequal(length(ascii(0)), 0);
 
-for i = 1 : size(tab_ref,'*')
-  str = ascii(0) + tab_ref(i) + ascii(0);
-  if length(str) <> ( 1 + length(tab_ref(i)) + 1) then pause,end
-end  
+for i = 1 : size(tab_ref,"*")
+    str = ascii(0) + tab_ref(i) + ascii(0);
+    assert_checkequal(length(str), length(tab_ref(i)));
+end
 
 strs = [ascii(0) ; ascii(0)];
-if length(strs) <> [1;1] then pause,end
+assert_checkequal(length(strs), [0;0]);
 
-strs = ['' ; ''];
-if length(strs) <> [0;0] then pause,end
+strs = ["" ; ""];
+assert_checkequal(length(strs), [0;0]);

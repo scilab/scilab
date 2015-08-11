@@ -12,12 +12,11 @@
 
 #ifndef __BROWSE_VAR_MANAGER_H__
 #define __BROWSE_VAR_MANAGER_H__
-/*--------------------------------------------------------------------------*/#
-#include "dynlib_ui_data.h"
 
+#include "dynlib_ui_data.h"
+/*--------------------------------------------------------------------------*/
 UI_DATA_IMPEXP void OpenBrowseVar();
 UI_DATA_IMPEXP void UpdateBrowseVar();
 UI_DATA_IMPEXP void SetBrowseVarData();
-
 /*--------------------------------------------------------------------------*/
 #endif /* __BROWSE_VAR_MANAGER_H__ */

@@ -33,12 +33,11 @@
 #include "Fec.h"
 #include "GrayPlot.h"
 #include "localization.h"
-#include "MALLOC.h" /* MALLOC */
+#include "sci_malloc.h" /* MALLOC */
 #include "Scierror.h"
 #include "sciCall.h"
 #include "Plot2d.h"
 #include "HandleManagement.h"
-#include "stack-def.h" /* bsiz */
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

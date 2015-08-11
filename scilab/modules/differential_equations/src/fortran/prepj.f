@@ -3,8 +3,6 @@ C/MEMBR ADD NAME=PREPJ,SSI=0
      1   f, jac)
 clll. optimize
 
-      include 'stack.h'
-
       external f, jac
       integer neq, nyh, iwm
       integer iownd, iowns,
@@ -19,6 +17,7 @@ clll. optimize
      1   vnorm
       dimension neq(*), y(*), yh(nyh,*), ewt(*), ftem(*), savf(*),
      1   wm(*), iwm(*)
+cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ rownd, rowns(209),
      2   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      3   iownd(14), iowns(6),

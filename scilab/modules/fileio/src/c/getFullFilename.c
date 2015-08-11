@@ -12,7 +12,7 @@
 /*--------------------------------------------------------------------------*/
 #include "getFullFilename.h"
 #include "charEncoding.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
 #include "scicurdir.h"

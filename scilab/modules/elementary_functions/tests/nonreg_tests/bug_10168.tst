@@ -17,4 +17,4 @@
 
 a = 1:1:10000;
 b = a';
-assert_checktrue(execstr("kron(a,b)","errcatch")==17);
+assert_checktrue(execstr("kron(a,b)","errcatch")==0);

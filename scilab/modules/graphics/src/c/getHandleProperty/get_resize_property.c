@@ -19,7 +19,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_resize_property(void* _pvCtx, int iObjUID)
+void* get_resize_property(void* _pvCtx, int iObjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
@@ -34,11 +34,11 @@ int get_resize_property(void* _pvCtx, int iObjUID)
 
     if (visible)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }
 /*------------------------------------------------------------------------*/

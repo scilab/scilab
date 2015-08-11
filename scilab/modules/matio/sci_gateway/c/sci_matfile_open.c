@@ -13,17 +13,18 @@
  */
 
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "matfile_manager.h"
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
+#include <string.h>
 
 /*******************************************************************************
    Interface for MATIO function called Mat_Open
    Scilab function name : matfile_open
 *******************************************************************************/
-int sci_matfile_open(char *fname, unsigned long fname_len)
+int sci_matfile_open(char *fname, void* pvApiCtx)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile;

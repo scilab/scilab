@@ -27,10 +27,6 @@
 ;#define SCILAB_F2C
 ;-------------------------------------------------------------------------------
 #define MODULES_LIST_WEB_PAGE 'http://wiki.scilab.org/howto/install/windows'
-#define MKL_DOWNLOAD_HTTP 'http://fileexchange.scilab.org/toolboxes/MKL'
-#define MKL_BLASLAPACK_PACKAGENAME 'blas-lapack-mkl-5.4-win32.zip'
-#define MKL_COMMONS_PACKAGENAME 'commons-mkl-5.4-win32.zip'
-#define MKL_FFTW_PACKAGENAME 'fftw-mkl-5.4-win32.zip'
 ;-------------------------------------------------------------------------------
 [CustomMessages]
 #include BinariesSourcePath + "\tools\innosetup\custommessages.iss"
@@ -65,10 +61,7 @@
 #include BinariesSourcePath + "\tools\innosetup\registry.iss"
 ;-------------------------------------------------------------------------------
 [Code]
-#include BinariesSourcePath + "\tools\innosetup\code_unzip.iss"
-#include BinariesSourcePath + "\tools\innosetup\code_download.iss"
 #include BinariesSourcePath + "\tools\innosetup\code_modules.iss"
-#include BinariesSourcePath + "\tools\innosetup\code_offline_installation.iss"
 #include BinariesSourcePath + "\tools\innosetup\code.iss"
 [Run]
 ;-------------------------------------------------------------------------------

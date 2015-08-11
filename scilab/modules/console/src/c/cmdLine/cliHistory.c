@@ -19,7 +19,7 @@
 #include "cliPrompt.h"
 #include "cliHistory.h"
 #include "HistoryManager.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 
 /* Get the prev command line */

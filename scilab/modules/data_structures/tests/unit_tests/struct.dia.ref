@@ -33,7 +33,7 @@ foo(1) = 1;
 foo(2) = 2;
 foo(3) = 3;
 foo = foo([%T %F %T]);
-foo(3) = 2; 
+foo(3) = 2;
 if or([1; 3; 2] <> foo) then bugmes();quit;end
 clear;
 foo(1).bar = 1;
@@ -75,4 +75,4 @@ if z.b.c.z <> 21 then bugmes();quit;end
 if ~isfield(z,"b") then bugmes();quit;end
 if ~isfield(z.b,"c") then bugmes();quit;end
 z(1).x.x = 1;
-if execstr('z(42).x','errcatch')<>21 then bugmes();quit;end
+if execstr('z(42).x','errcatch')<>999 then bugmes();quit;end

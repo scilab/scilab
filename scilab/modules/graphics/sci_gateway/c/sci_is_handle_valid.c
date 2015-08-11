@@ -23,7 +23,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_is_handle_valid(char *fname, unsigned long fname_len)
+int sci_is_handle_valid(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

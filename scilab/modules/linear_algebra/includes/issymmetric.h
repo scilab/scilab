@@ -2,6 +2,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007-2008 - INRIA - Bruno JOFRET <bruno.jofret@inria.fr>
+ * Copyright (C) 2011 - DIGITEO - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -33,6 +34,6 @@
 ** Check wether or not a Matrix is Symmetric.
 */
 
-LINEAR_ALGEBRA_IMPEXP int C2F(issymmetric)(int *stackPosition);
+LINEAR_ALGEBRA_IMPEXP int isSymmetric(double* _pdblReal, double* _pdblImg, int _iIsComplex, int _iRows, int _iCols);
 
 #endif /* !__ISSYMMETRIC__ */

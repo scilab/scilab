@@ -35,7 +35,7 @@
 #include "sciprint.h"
 #include "Scierror.h"
 
-#include "MALLOC.h"             /* MALLOC */
+#include "sci_malloc.h"             /* MALLOC */
 #include "scitokenize.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
@@ -627,6 +627,8 @@ BOOL update_specification_bounds(int iSubwinUID, double rect[6], int flag)
 
         rect[4] = dataBounds[4];
         rect[5] = dataBounds[5];
+
+        releaseGraphicObjectProperty(__GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
     }
 
     setGraphicObjectProperty(iSubwinUID, __GO_DATA_BOUNDS__, rect, jni_double_vector, 6);

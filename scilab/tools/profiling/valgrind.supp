@@ -11,61 +11,30 @@
    fun:tgetnum
 }
 {
-   dl_init/static_initialization_and_destruction
+   scilab-console/tgetstr
    Memcheck:Leak
-   fun:_Znwm
    ...
-   fun:_dl_init
+   fun:tgetstr
 }
 {
-   PThread auto cleanup at exit
+   dlerror leak thread local storage memory
    Memcheck:Leak
+   match-leak-kinds: reachable
    fun:calloc
+   fun:_dlerror_run
+}
+{
+   pthread_create will be clear on exit
+   Memcheck:Leak
+   match-leak-kinds: possible
+   fun:calloc
+   fun:allocate_dtv
    fun:_dl_allocate_tls
-   fun:pthread_create*
-}
-{
-   Last error messages
-   Memcheck:Leak
-   fun:malloc
-   fun:strdup
-   fun:addErrorMessage
-}
-{
-   Realloc the stack on freemem64
-   Memcheck:Leak
-   fun:realloc
-   fun:freemem64
-   fun:TerminateCorePart2
-   fun:ExitScilab
-   fun:realmain
+   fun:allocate_stack
+   fun:pthread_create@@GLIBC_2.2.5
+   fun:__CreateThreadWithParams
+   fun:interactiveMain
+   fun:RunScilabEngine
    fun:main
-   fun:__libc_start_main
-   obj:/home/davidcl/work/branches/master-review/scilab/.libs/lt-scilab-cli-bin
-   obj:*
-   obj:*
-   obj:*
-   obj:*
-}
-{
-   Last getCmdLine free issue
-   Memcheck:Leak
-   fun:malloc
-   fun:getCmdLine
-   fun:getCommandLine
-   fun:watchGetCommandLine
-   fun:start_thread
-   fun:clone
-}
-{
-   Fixeable but crash-ed using javasci
-   Memcheck:Leak
-   fun:malloc
-   fun:wide_string_to_UTF8
-   fun:getCmdLine
-   fun:getCommandLine
-   fun:watchGetCommandLine
-   fun:start_thread
-   fun:clone
 }
 

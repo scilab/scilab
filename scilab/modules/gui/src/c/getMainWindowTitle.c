@@ -15,10 +15,8 @@
 #include "getMainWindowTitle.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabObject.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 char * getMainWindowTitle(void)
 {
@@ -53,7 +51,7 @@ char * getMainWindowTitle(void)
                                 strValue = (*env)->GetStringUTFChars(env, jstr, 0);
                                 if (strValue)
                                 {
-                                    title = strdup(strValue);
+                                    title = os_strdup(strValue);
                                 }
                                 (*env)->ReleaseStringUTFChars(env, jstr , strValue);
                             }

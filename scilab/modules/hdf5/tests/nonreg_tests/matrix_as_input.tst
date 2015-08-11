@@ -6,9 +6,9 @@
 // =============================================================================
 //
 // <-- Short Description -->
-// If the input of import_from_hdf5 was a matrix of string, a segfault occurred
+// If the input of load was a matrix of string, a segfault occurred
 //
 
 myFiles=ls(SCI+"/modules/types/tests/java/org/scilab/tests/modules/types/referenceData/*");
 // Used to segfault
-assert_checkerror("import_from_hdf5(myFiles)",[],999);
+assert_checkerror("load(myFiles)",[],999);

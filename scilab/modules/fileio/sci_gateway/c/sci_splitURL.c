@@ -14,11 +14,11 @@
 #include "sciprint.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 
 /* ==================================================================== */
-int sci_splitURL(char *fname, int fname_len)
+int sci_splitURL(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int length = 0;

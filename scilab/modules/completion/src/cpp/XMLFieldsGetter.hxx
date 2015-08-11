@@ -19,10 +19,8 @@
 
 extern "C"
 {
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 }
 
 namespace org_modules_completion
@@ -66,7 +64,7 @@ protected :
         char ** cpy = (char **)MALLOC(sizeof(char *) * size);
         for (int i = 0; i < size; i++)
         {
-            cpy[i] = strdup(arr[i]);
+            cpy[i] = os_strdup(arr[i]);
         }
 
         return const_cast<const char **>(cpy);

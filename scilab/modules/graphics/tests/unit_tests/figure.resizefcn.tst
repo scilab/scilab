@@ -9,7 +9,7 @@
 
 // Create a default figure
 function resizeMe()
-  disp("resize");
+    disp("resize");
 endfunction
 
 f = scf();
@@ -27,15 +27,6 @@ assert_checkerror("f = gcf();f.resizefcn = [""resizeMe()"" ""resizeMe()""];", re
 refMsg = msprintf(_("''%s'' property does not exist for this handle.\n"), "resizefcn");
 assert_checkerror("a = gca();a.resizefcn = ""resizeMe()""", refMsg); // set
 assert_checkerror("a = gca();v = a.resizefcn;", refMsg); // get
-
-// Save/Load (V5)
-warning("off");
-save(TMPDIR + "/figure.resizefcn.bin", f);
-warning("on");
-delete(f);
-clear f
-load(TMPDIR + "/figure.resizefcn.bin");
-assert_checkequal(f.resizefcn, "resizeMe()");
 
 // Save/Load (SOD)
 save(TMPDIR + "/figure.resizefcn.bin", "f");

@@ -21,14 +21,14 @@
 * @param[in] filename
 * @return BOOLEAN TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL deleteafile(char *filename);
+FILEIO_IMPEXP BOOL deleteafile(const char *filename);
 
 /**
 * delete a file by filename
 * @param[in] filenameW wide string
 * @return BOOLEAN TRUE or FALSE
 */
-FILEIO_IMPEXP BOOL deleteafileW(wchar_t *filenameW);
+FILEIO_IMPEXP BOOL deleteafileW(const wchar_t *filenameW);
 
 #endif /* __DELETEAFILE_H__ */
 /*--------------------------------------------------------------------------*/

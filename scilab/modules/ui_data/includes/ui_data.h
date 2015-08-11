@@ -18,7 +18,7 @@
 extern "C" {
 #endif
     /*------------------------------------------------------------------------*/
-    void putScilabVariable(char * name, char ** lines, int rows, int cols);
+    void putScilabVariable(const char * name, const char* const* lines, int rows, int cols);
     char * getUnnamedVariable();
     /*------------------------------------------------------------------------*/
 #ifdef __cplusplus

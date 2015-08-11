@@ -19,7 +19,7 @@ extern "C" {
 
 using namespace org_modules_external_objects;
 
-int sci_percent_EObj_disp(char * fname, unsigned long fname_len)
+int sci_percent_EObj_disp(char * fname, void* pvApiCtx)
 {
     try
     {

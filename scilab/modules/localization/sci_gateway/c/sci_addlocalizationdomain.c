@@ -12,19 +12,16 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include <stdlib.h>
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "gw_localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "strsubst.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
 
-int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
+int sci_addlocalizationdomain(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr1 = NULL;
@@ -48,19 +45,19 @@ int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), "addlocalizationdomain", 1);
         return 0;
     }
 
     if (isStringType(pvApiCtx, piAddr1) == 0 || isScalar(pvApiCtx, piAddr1) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 1);
+        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "addlocalizationdomain", 1);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddr1, &pstDomain))
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), "addlocalizationdomain");
         return 0;
     }
 
@@ -69,19 +66,19 @@ int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 2);
+        Scierror(999, _("%s: Can not read input argument #%d.\n"), "addlocalizationdomain", 2);
         return 0;
     }
 
     if (isStringType(pvApiCtx, piAddr2) == 0 || isScalar(pvApiCtx, piAddr2) == 0)
     {
-        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), fname, 2);
+        Scierror(999, _("%s: Wrong size for input argument #%d: String expected.\n"), "addlocalizationdomain", 2);
         return 0;
     }
 
     if (getAllocatedSingleString(pvApiCtx, piAddr2, &pstPath))
     {
-        Scierror(999, _("%s: Memory allocation error.\n"), fname);
+        Scierror(999, _("%s: Memory allocation error.\n"), "addlocalizationdomain");
         return 0;
     }
 
@@ -89,11 +86,12 @@ int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
     pstRet = bindtextdomain(pstDomain, expandedPath);
 
     freeAllocatedSingleString(pstPath);
+    freeAllocatedSingleString(pstDomain);
     FREE(expandedPath);
 
     if (pstRet == NULL)
     {
-        Scierror(999, _("%s: Unable to add new domain %s.\n"), fname, pstDomain);
+        Scierror(999, _("%s: Unable to add new domain %s.\n"), "addlocalizationdomain", pstDomain);
         freeAllocatedSingleString(pstDomain);
         return 0;
     }
@@ -102,12 +100,10 @@ int sci_addlocalizationdomain(char *fname, unsigned long fname_len)
 
     if (createScalarBoolean(pvApiCtx, iRhs + 1, 1))
     {
-        Scierror(999, _("%s: Unable to add new domain %s.\n"), fname, pstDomain);
+        Scierror(999, _("%s: Unable to add new domain %s.\n"), "addlocalizationdomain", pstDomain);
         freeAllocatedSingleString(pstDomain);
         return 0;
     }
-
-    freeAllocatedSingleString(pstDomain);
 
     AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
     ReturnArguments(pvApiCtx);

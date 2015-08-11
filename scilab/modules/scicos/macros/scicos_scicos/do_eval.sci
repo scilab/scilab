@@ -41,8 +41,8 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
     // This function is used to alert the user on setvalue
     // (invalid exprs we keep the previous parameters)
     function message(str)
-        if length(arg1.doc) >= 1 then
-            uid = arg1.doc(1);
+        if length(arg1.model.uid) >= 1 then
+            uid = arg1.model.uid;
             uid = [full_uids uid];
 
             html = "<html><body>";
@@ -105,8 +105,8 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
                     xset("window",%now_win)
                 else
                     previous_full_uids = full_uids;
-                    if length(o.doc) >= 1 then
-                        full_uids = [full_uids o.doc(1)];
+                    if length(o.model.uid) >= 1 then
+                        full_uids = [full_uids o.model.uid];
                     end
                     [sblock,%w,needcompile2,ok]=do_eval(sblock,list(),scicos_context1)
                     needcompile1=max(needcompile1,needcompile2)
@@ -121,8 +121,8 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
             else
                 model=o.model
                 if ~isdef(o.gui) | ~or(type(evstr(o.gui) == [13 11])) then
-                    if length(o.doc) >= 1 then
-                        uid = [full_uids o.doc(1)];
+                    if length(o.model.uid) >= 1 then
+                        uid = [full_uids o.model.uid];
 
                         html = "<html><body>";
                         html = html + "<em>" + gettext("Evaluation problem: Unknown block") + "</em><br/>";
@@ -163,7 +163,7 @@ function [scs_m,cpr,needcompile,ok]=do_eval(scs_m,cpr,%scicos_context)
                         end
                     end
 
-                    if (prod(size(model.sim))==1 & ~model.equations==list()) | itisanMBLOCK then
+                    if (prod(size(model.sim))==1 & ~(model.equations==list())) | itisanMBLOCK then
                         if ~isequal(model.equations.parameters,model_n.equations.parameters) then
                             param_name   = model.equations.parameters(1);
                             param_name_n = model_n.equations.parameters(1);

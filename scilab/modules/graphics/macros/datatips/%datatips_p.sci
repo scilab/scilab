@@ -8,8 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function %datatips_p(d)
-    fun=fun2string(d.formatfunction)
-
     F=getfield(1,d);
     txt=[];
     L=max(length(F(2:$)))
@@ -22,9 +20,10 @@ function %datatips_p(d)
             txt=[txt;
             part(f,1:L+1)+"= "+sci2exp(d.replace)]
         elseif  f=="formatfunction" then
+            tree = macr2tree(d.formatfunction);
             txt=[txt;
             part(f,1:L+1)+": "
-            "  "+fun2string(d.formatfunction)]
+            "  "+tree2code(tree)]
         elseif f=="tips" then
             txt=[txt;
             part(f,1:L+1)+": "+string(size(d.tips,"*"))+ " tip handles" ]

@@ -15,7 +15,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUimenuChecked(void* _pvCtx, int iObjUID)
+void* GetUimenuChecked(void* _pvCtx, int iObjUID)
 {
     int checked = 0;
     int *piChecked = &checked;
@@ -25,16 +25,15 @@ int GetUimenuChecked(void* _pvCtx, int iObjUID)
     if (piChecked == NULL)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "Checked");
-
-        return FALSE;
+        return NULL;
     }
 
     if (checked == TRUE)
     {
-        return sciReturnString(_pvCtx, "on");
+        return sciReturnString("on");
     }
     else
     {
-        return sciReturnString(_pvCtx, "off");
+        return sciReturnString("off");
     }
 }

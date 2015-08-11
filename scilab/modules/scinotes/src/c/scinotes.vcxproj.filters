@@ -2,27 +2,27 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{efbdc4d1-dd8b-4ddb-bba6-47eddea3ea5c}</UniqueIdentifier>
+      <UniqueIdentifier>{5e94792b-6e00-4539-b27e-66f63fc1e4fc}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{b70da001-658d-4f37-bf6f-a55067a0ee85}</UniqueIdentifier>
+      <UniqueIdentifier>{4904c8a4-1e85-4dde-a016-1b57810ab353}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{6ead0ade-2d54-423a-a14d-2b833c78e915}</UniqueIdentifier>
+      <UniqueIdentifier>{0b440340-a0ec-4837-946d-daa2509f3f3b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{6b10ec04-5b9e-47a0-b5d6-ca4858224eb5}</UniqueIdentifier>
+      <UniqueIdentifier>{7904e13e-926d-407e-88c8-230085fadef8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{e68ea0f6-5f53-4216-800c-2243ad3d9e22}</UniqueIdentifier>
+      <UniqueIdentifier>{2cb83969-f443-4860-aeb6-8fae19b3c73f}</UniqueIdentifier>
     </Filter>
     <Filter Include="swig">
-      <UniqueIdentifier>{04789187-62f2-4df4-bb87-eb9fee2cb49a}</UniqueIdentifier>
+      <UniqueIdentifier>{d000f65a-156c-435a-a9f0-dcf99948657f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{c470fad2-08f4-4f6d-a01c-ca6ca7bb4c80}</UniqueIdentifier>
+      <UniqueIdentifier>{964fe396-ff34-4c6c-a0ed-bd09914cccd4}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -30,9 +30,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainSCINOTES.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_scinotes.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\..\sci_gateway\cpp\sci_closeSciNotesFromScilab.cpp">
@@ -67,6 +64,9 @@
     <ClInclude Include="..\jni\SciNotes.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\scinotes_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="core_import.def">
@@ -86,5 +86,9 @@
     <ResourceCompile Include="scinotes.rc">
       <Filter>Resource Files</Filter>
     </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
   </ItemGroup>
 </Project>

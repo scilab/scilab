@@ -17,12 +17,12 @@
 #include "storeCommand.h" /* StoreCommand */
 #include "clrscr_nw.h"
 #include "TermLine.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 void ControlC_Command(void)
 {
     int j = 2;
-    C2F (sigbas) (&j);
+    //C2F (sigbas) (&j);
 }
 /*--------------------------------------------------------------------------*/
 void ControlX_Command(void)

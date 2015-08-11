@@ -19,4 +19,4 @@
 if execstr("msprintf(""string = %s , number = %d .\n"",""Hello world"")","errcatch") == 0 then pause, end
 
 // test2 : too many input arguments
-if execstr("msprintf(""string = %s , number = %d .\n"",""Hello world"",2,3)","errcatch") == 0 then pause, end
+if execstr("msprintf(""string = %s , number = %d .\n"",""Hello world"",2,3)","errcatch") <> 0 then pause, end

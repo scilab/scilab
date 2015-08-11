@@ -15,15 +15,15 @@
 #ifndef _GET_DATA_PROPERTY_H_
 #define _GET_DATA_PROPERTY_H_
 
-int getmatplotdata (void * _pvCtx, int iObjUID);
+void* getmatplotdata (int iObjUID);
 
 /* the grayplot data is now given as a tlist (like for surface and champ objects) */
 
-int getgrayplotdata (int iObjUID);
+void* getgrayplotdata (int iObjUID);
 
 /* the champ data is now given as a tlist (like for surface objects) */
-int getchampdata(int iObjUID);
+void* getchampdata(int iObjUID);
 
-int get3ddata(int iObjUID);
+void* get3ddata(int iObjUID);
 
 #endif /* _GET_DATA_PROPERTY_H_ */

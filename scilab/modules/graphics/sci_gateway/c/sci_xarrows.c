@@ -24,7 +24,7 @@
 #include "HandleManagement.h"
 #include "BuildObjects.h"
 /*--------------------------------------------------------------------------*/
-int sci_xarrows(char *fname, unsigned long fname_len)
+int sci_xarrows(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

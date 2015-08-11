@@ -12,7 +12,6 @@
 #include "completion.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "gw_completion.h"
 /*--------------------------------------------------------------------------*/
 int gw_completion(void)
 {

@@ -14,16 +14,14 @@ endfunction
 // Register function
 post_xcos_simulate = list("disp_post_simulate");
 xcos_simulate(scs_m, 4);
- 
- Calling disp_post_simulate   
+ Calling disp_post_simulate
 assert_checktrue(isdef('cumsum_r'));
 clear('cumsum_r');
 // Register function
 clear post_xcos_simulate
 post_xcos_simulate = disp_post_simulate;
 xcos_simulate(scs_m, 4);
- 
- Calling disp_post_simulate   
+ Calling disp_post_simulate
 assert_checktrue(isdef('cumsum_r'));
 function analyze_post_simulate(%cpr, scs_m, needcompile)
 // Retrieve all objects
@@ -54,26 +52,18 @@ clear('cumsum_r');
 clear post_xcos_simulate
 post_xcos_simulate = list("analyze_post_simulate");
 xcos_simulate(scs_m, 4);
- 
- Diagram Analysis:   
- 
- Found 24 Blocks.   
- 
- Found 22 Links.   
- 
- Found 0 Other component.   
+ Diagram Analysis:
+ Found 24 Blocks.
+ Found 22 Links.
+ Found 0 Other component.
 assert_checktrue(isdef('cumsum_r'));
 clear('cumsum_r');
 // Register function
 clear post_xcos_simulate
 post_xcos_simulate = analyze_post_simulate;
 xcos_simulate(scs_m, 4);
- 
- Diagram Analysis:   
- 
- Found 24 Blocks.   
- 
- Found 22 Links.   
- 
- Found 0 Other component.   
+ Diagram Analysis:
+ Found 24 Blocks.
+ Found 22 Links.
+ Found 0 Other component.
 assert_checktrue(isdef('cumsum_r'));

@@ -33,7 +33,7 @@ extern "C"
 #endif
 
 /*--------------------------------------------------------------------------*/
-int sci_driver(char * fname, unsigned long fname_len )
+int sci_driver(char * fname, void *pvApiCtx)
 {
     SciErr err;
     int * addr = NULL;

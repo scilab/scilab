@@ -14,35 +14,35 @@
 
 
 defaultlibs = ["Branching",
-               "Linear",
-               "Misc",
-               "Sources",
-               "Events",
-               "Integerop",
-               "Matrixop",
-               "Nonlinear",
-               "Sinks",
-               "Threshold"];
+"Linear",
+"Misc",
+"Sources",
+"Events",
+"Integerop",
+"Matrixop",
+"Nonlinear",
+"Sinks",
+"Threshold"];
 
 defaultlibs  = defaultlibs + "lib";
 notTested = ["SUPER_f", "DSUPER", ..              // Specific blocks
-             "IN_f", "OUT_f", "INIMPL_f", "OUTIMPL_f",..
-             "CLKIN_f", "CLKINV_f", "CLKOUT_f", "CLKOUTV_f",..
-             "VirtualCLK0",..
-             "SPLIT_f", "CLKSPLIT_f",..
-             "TEXT_f", "PAL_f", "DEBUG", "DEBUG_SCICOS"..
-             "SIGNUM", "MAXMIN", "ABS_VALUE", ..    // buggy blocks
-             "PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
-             "TKSCALE", "BARXY", ..
-             "SLIDER_f", "WFILE_f", ..            // Deprecated blocks
-             "MPBLOCK", "fortran_block", ..       // blocks with code generation
-             "CBLOCK", "scifunc_block", "scifunc_block_m"];
+"IN_f", "OUT_f", "INIMPL_f", "OUTIMPL_f",..
+"CLKIN_f", "CLKINV_f", "CLKOUT_f", "CLKOUTV_f",..
+"VirtualCLK0",..
+"SPLIT_f", "CLKSPLIT_f",..
+"TEXT_f", "PAL_f", "DEBUG", "DEBUG_SCICOS"..
+"SIGNUM", "MAXMIN", "ABS_VALUE", ..    // buggy blocks
+"PENDULUM_ANIM", "BPLATFORM", "MBLOCK", ..
+"TKSCALE", "BARXY", ..
+"SLIDER_f", "WFILE_f", "func_block" ..  // Deprecated blocks
+"MPBLOCK", "fortran_block", ..       // blocks with code generation
+"CBLOCK", "scifunc_block", "scifunc_block_m"];
 
 invalidFunctions = unique(gsort(["csuper", "junk", ..
-                "clkfrom", "clkgoto", ..
-                "goto", "from", "gotomo", "frommo", ..
-                "limpsplit", "sampleclk", ..
-                "gototagvisibility", "clkgototagvisibility", "gototagvisibilitymo"]));
+"clkfrom", "clkgoto", ..
+"goto", "from", "gotomo", "frommo", ..
+"limpsplit", "sampleclk", ..
+"gototagvisibility", "clkgototagvisibility", "gototagvisibilitymo"]));
 
 funcprot(0);
 ilib_verbose(0);
@@ -55,20 +55,20 @@ function [result]=x_mdialog(title, labelsv, labelsh, default_inputs_vector)
         default_inputs_vector = labelsh;
         result = x_dialog(labelsv, default_inputs_vector);
     elseif rhs == 4 then
-        vSize = size(labelsv, '*');
-        hSize = size(labelsh, '*');
+        vSize = size(labelsv, "*");
+        hSize = size(labelsh, "*");
         if size(default_inputs_vector) <> [vSize, hSize] then
-            mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
+        mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
         result = default_inputs_vector;
     else
-        mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
+    mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
 endfunction
 
 // Stubbing the x_dialog method
 // checking it's arguments size only
 function [result]=x_dialog(labels, default_inputs_vector)
     if(or(size(labels) <> size(default_inputs_vector))) then
-        mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
+    mprintf("%s\nError: dialog wrong size.", cmd); pause, end;
     result = default_inputs_vector;
 endfunction
 
@@ -81,7 +81,7 @@ endfunction
 // Stubbing the edit_curv method
 function [xx, yy, ok, gc] = edit_curv(xx, yy,  axis, args, gc)
     ok = %T;
-    if ~exists("gc", 'l') then
+    if ~exists("gc", "l") then
         rect=[0 0 1 1];
         axisdata=[2 10 2 10];
         gc = list(rect, axisdata);
@@ -119,22 +119,22 @@ for i = 1:size(defaultlibs,"*")
 
         // Not tested blocks (Xcos customs)
         if or(interfunction == notTested) then
-          continue;
+            continue;
         end
 
         // Check for signature
         vars=macrovar(evstr(interfunction));
         if or([size(vars(1)) <> [3 1] , size(vars(2)) <> [3 1]]) then
-          continue;
+            continue;
         end
 
         // New Scilab instance
         cmd = "scs_m=" + interfunction + "(""define"", [], []);";
         if execstr(cmd, "errcatch")<>0 then
-            mprintf("%s\n",cmd); pause, end
+        mprintf("%s\n",cmd); pause, end
         cmd = "scs_m=" + interfunction + "(""set"", scs_m, []);";
         if execstr(cmd, "errcatch")<>0 then
-            mprintf("%s\n",cmd); pause, end
+        mprintf("%s\n",cmd); pause, end
 
         // calling the model2blk will locate the funptr are error on
         if ~or(scs_m.model.sim == invalidFunctions) then

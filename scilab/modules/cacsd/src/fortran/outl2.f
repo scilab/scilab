@@ -32,6 +32,9 @@ c%
       dimension tq(*),neq(*)
       dimension v(*)
       character*80 buf
+cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
+cDEC$ ATTRIBUTES DLLIMPORT:: /comall/
+cDEC$ ATTRIBUTES DLLIMPORT:: /no2f/
       common/no2f/ef2
       common/comall/nall/sortie/nwf,info,ll
 

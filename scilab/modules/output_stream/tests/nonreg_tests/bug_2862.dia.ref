@@ -4,10 +4,14 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+// <-- CLI SHELL MODE -->
 printf("%x",2^31-1);
-7fffffffprintf("%x",2^31);
-80000000printf("%x",2^31+1);
-80000001if sprintf("%x",2^31-1) <> '7fffffff' then bugmes();quit;end
+7fffffff
+printf("%x",2^31);
+80000000
+printf("%x",2^31+1);
+80000001
+if sprintf("%x",2^31-1) <> '7fffffff' then bugmes();quit;end
 if sprintf("%x",2^31) <> '80000000' then bugmes();quit;end
 if sprintf("%x",2^31+1) <> '80000001' then bugmes();quit;end
 if sprintf("%x",2^31+2) <> '80000002' then bugmes();quit;end

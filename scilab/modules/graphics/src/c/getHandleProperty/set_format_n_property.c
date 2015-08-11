@@ -28,7 +28,7 @@
 #include "GetProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "string.h"
 #include "StringMatrix.h"
 #include "Format.h"

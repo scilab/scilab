@@ -12,7 +12,7 @@
 
 #include <string.h>
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_special_functions.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -24,7 +24,7 @@ extern void C2F(dxlegf)(double *dnu1, int *nudiff, int *mu1, int *mu2,
 static double return_an_inf(void);
 static int verify_cstr(double x[], int nb_elt, int *xmin, int *xmax);
 /*--------------------------------------------------------------------------*/
-int sci_legendre(char *fname, unsigned long fname_len)
+int sci_legendre(char *fname, void* pvApiCtx)
 {
     /*
     *   Interface onto the (Slatec) dxleg.f code.

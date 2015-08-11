@@ -58,7 +58,7 @@ public abstract class ScilabCloseCallBack extends CommonCallBack {
             public void callBack() {
                 Thread launchMe = new Thread() {
                     public void run() {
-                        InterpreterManagement.putCommandInScilabQueue(getCommand());
+                        InterpreterManagement.requestScilabExec(getCommand());
                     }
                 };
                 launchMe.start();

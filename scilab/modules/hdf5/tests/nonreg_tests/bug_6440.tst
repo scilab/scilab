@@ -16,9 +16,9 @@
 // xcos demos did not work and returned an error "Unable to open file".
 //
 
-dataDirP1 = TMPDIR + '/世界您好';
-dataDirP2 = TMPDIR + '/世界您好/JOSÉDO~1/';
-dataFile = dataDirP2 + '/my_data.sod";
+dataDirP1 = TMPDIR + "/世界您好";
+dataDirP2 = TMPDIR + "/世界您好/JOSÉDO~1/";
+dataFile = dataDirP2 + "/my_data.sod";
 
 mkdir(dataDirP1);
 mkdir(dataDirP2);
@@ -29,7 +29,7 @@ B = [4 5 6];
 
 data = [A B];
 c1 = pwd();
-ierr = execstr("export_to_hdf5(dataFile, ''data'');","errcatch");
+ierr = execstr("save(dataFile, ''data'');","errcatch");
 c2 = pwd();
 
 if ierr <> 0 then pause,end
@@ -39,7 +39,7 @@ if ~isfile(dataFile) then pause, end
 clear data;
 
 c3 = pwd();
-ierr = execstr("import_from_hdf5(dataFile);","errcatch");
+ierr = execstr("load(dataFile);","errcatch");
 c4 = pwd();
 
 if ierr <> 0 then pause,end

@@ -22,13 +22,13 @@
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 static int playsound(wchar_t *wcFilename);
 /*--------------------------------------------------------------------------*/
 /* private function called by playsnd */
 /*--------------------------------------------------------------------------*/
-int sci_Playsound (char *fname, unsigned long fname_len)
+int sci_PlaySound(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;

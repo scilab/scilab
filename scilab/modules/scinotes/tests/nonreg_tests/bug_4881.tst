@@ -16,7 +16,7 @@
 // <-- Short Description -->
 //    In the "Menu→Search→find/replace" dialog window, check the radio box "Selected lines" has no effect : The whole file is always processed.
 
-editor (SCI/modules/atoms/macros/atomsInstall.sci)
+editor SCI/modules/atoms/macros/atomsInstall.sci
 
 //"Menu→Search→Find/Replace"
 //Find    : " "
@@ -27,4 +27,4 @@ editor (SCI/modules/atoms/macros/atomsInstall.sci)
 //Press the button "Replace All"
 
 //=> All spaces are erased.
-                    
+

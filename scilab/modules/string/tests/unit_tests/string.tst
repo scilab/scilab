@@ -10,9 +10,9 @@
 //===============================
 // unit tests string
 //===============================
-assert_checkequal(string(1), '1');
+assert_checkequal(string(1), "1");
 //===============================
-assert_checkequal(string(1.5), '1.5');
+assert_checkequal(string(1.5), "1.5");
 //===============================
 // Special display cases :
 assert_checkequal(string(0+%i), "%i");
@@ -32,29 +32,29 @@ assert_checkequal(string(-2-2*%i), "-2-%i*2");
 //===============================
 assert_checkequal(string([]), []);
 //===============================
-assert_checkequal(string(''), '');
+assert_checkequal(string(""), "");
 //===============================
-assert_checkequal(string(1:3), ['1','2','3']);
+assert_checkequal(string(1:3), ["1","2","3"]);
 //===============================
-assert_checkequal(string([1;2;3]), ['1';'2';'3']);
+assert_checkequal(string([1;2;3]), ["1";"2";"3"]);
 //===============================
-assert_checkequal(string('foo'), 'foo');
+assert_checkequal(string("foo"), "foo");
 //===============================
-deff('y = mymacro(x)', 'y = x + 1');
+deff("y = mymacro(x)", "y = x + 1");
 [out, in, text] = string(mymacro);
-assert_checkequal(out, 'y');
-assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+assert_checkequal(out, "y");
+assert_checkequal(in, "x");
+assert_checkequal(text, [" "; "y = x + 1"; " "]);
 //===============================
 mymacro = null();
-deff('y = mymacro(x)', 'y = x + 1', 'n');
+deff("y = mymacro(x)", "y = x + 1", "n");
 [out, in, text]=string(mymacro);
-assert_checkequal(out, 'y');
-assert_checkequal(in, 'x');
-assert_checkequal(text, [' '; 'y = x + 1'; ' ']);
+assert_checkequal(out, "y");
+assert_checkequal(in, "x");
+assert_checkequal(text, [" "; "y = x + 1"; " "]);
 //===============================
 R = string(corelib);
-assert_checkequal(strsubst(R(1),'\','/'), 'SCI/modules/core/macros/');
+assert_checkequal(strsubst(R(1),"\","/"), "SCI/modules/core/macros/");
 //===============================
 A = floor(abs(2^8  * rand(10,10)));
 B = floor(abs(2^16 * rand(10,10)));

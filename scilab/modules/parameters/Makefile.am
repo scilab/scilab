@@ -11,13 +11,22 @@
 
 PARAMETERS_C_SOURCES = src/c/parameters.c
 
-libsciparameters_la_CPPFLAGS=-I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/core/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
-$(AM_CPPFLAGS) 
+libsciparameters_la_CFLAGS= \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/string/includes
 
 if MAINTAINER_MODE
 pkglib_LTLIBRARIES = libsciparameters.la
@@ -26,12 +35,13 @@ noinst_LTLIBRARIES = libsciparameters.la
 endif
 
 
+libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC= $(libsciparameters_la_SOURCES)
-INCLUDE_FLAGS = $(libsciparameters_la_CPPFLAGS) 
+INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS)
 
 #### Target ######
 modulename=parameters

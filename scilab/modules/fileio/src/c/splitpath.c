@@ -15,7 +15,7 @@
 #include "splitpath.h"
 #include "charEncoding.h"
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
 void splitpathW(const wchar_t* path, BOOL bExpand, wchar_t* drv, wchar_t* dir, wchar_t* name, wchar_t* ext)

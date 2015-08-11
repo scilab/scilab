@@ -42,9 +42,9 @@ function [status, msg] = xcosPalExport(pal, path)
     //   bigSomPath = TMPDIR + "/sum.sod";
     //
     //   scs_m = SUM_f("define");
-    //   export_to_hdf5(sumPath, "scs_m");
+    //   save(sumPath, "scs_m");
     //   scs_m = BIGSOM("define");
-    //   export_to_hdf5(bigSomPath, "scs_m");
+    //   save(bigSomPath, "scs_m");
     //
     //   pal = xcosPalAddBlock(pal, sumPath);
     //   pal = xcosPalAddBlock(pal, bigSomPath);
@@ -92,8 +92,9 @@ function [status, msg] = xcosPalExport(pal, path)
     pal = pal;
 
     // export the data to the temp file
-    status = export_to_hdf5(path, "pal");
-    if ~status then
+    try
+        save(path, "pal");
+    catch
         msg = msprintf(gettext("%s: Unable to export the palette to hdf5.\n"), "xcosPalExport");
         if  lhs == 1 then
             error(msg);

@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-int GetUiobjectForegroundColor(void* _pvCtx, int iObjUID)
+void* GetUiobjectForegroundColor(void* _pvCtx, int iObjUID)
 {
     double *tmp = NULL;
-    int status = 0;
+    void* status = NULL;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_FOREGROUNDCOLOR__, jni_double_vector, (void **) &tmp);
 
     if (tmp == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ForegroundColor");
-        return FALSE;
+        return NULL;
     }
     else
     {
-        status = sciReturnRowVector(_pvCtx, tmp, 3);
+        status = sciReturnRowVector(tmp, 3);
         delete[] tmp;
         return status;
     }

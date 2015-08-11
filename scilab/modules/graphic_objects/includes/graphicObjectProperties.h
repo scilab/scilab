@@ -415,7 +415,11 @@
 #define __GO_UI_FRAME_BORDER_TYPE__ 392
 #define __GO_UI_SCROLLABLE__ 393
 #define __GO_COLOR_SET__ 394
-#define __GO_SIZES__ 395
-#define __GO_NUM_SIZES__ 396
+#define __GO_MARK_SIZES__ 395
+#define __GO_NUM_MARK_SIZES__ 396
+#define __GO_MARK_FOREGROUNDS__ 397
+#define __GO_NUM_MARK_FOREGROUNDS__ 398
+#define __GO_MARK_BACKGROUNDS__ 399
+#define __GO_NUM_MARK_BACKGROUNDS__ 400
 
 #endif /* !__GRAPHIC_OBJECT_PROPERTIES_H__ */

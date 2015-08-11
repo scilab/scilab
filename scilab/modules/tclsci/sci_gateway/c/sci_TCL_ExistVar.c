@@ -19,75 +19,75 @@
 /*--------------------------------------------------------------------------*/
 int sci_TCL_ExistVar(char *fname, unsigned long l)
 {
-    static int l1, n1, m1;
-    static int l2, n2, m2;
+    /*    static int l1, n1, m1;
+        static int l2, n2, m2;
 
-    Tcl_Interp *TCLinterpreter = NULL;
+        Tcl_Interp *TCLinterpreter = NULL;
 
-    CheckRhs(1, 2);
-    CheckLhs(1, 1);
+        CheckRhs(1, 2);
+        CheckLhs(1, 1);
 
-    if (GetType(1) == sci_strings)
-    {
-        char *VarName = NULL;
-
-        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-        VarName = cstk(l1);
-
-        if (!existsGlobalInterp())
+        if (GetType(1) == sci_strings)
         {
-            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
-            return 0;
-        }
+            char *VarName = NULL;
 
-        if (Rhs == 2)
-        {
-            /* two arguments given - get a pointer on the slave interpreter */
-            if (GetType(2) == sci_strings)
+            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+            VarName = cstk(l1);
+
+            if (!existsGlobalInterp())
             {
-                GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-                TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
-                releaseTclInterp();
-                if (TCLinterpreter == NULL)
+                Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+                return 0;
+            }
+
+            if (Rhs == 2)
+            {
+                // two arguments given - get a pointer on the slave interpreter
+                if (GetType(2) == sci_strings)
                 {
-                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                    GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
+                    TCLinterpreter = Tcl_GetSlave(getTclInterp(), cstk(l2));
+                    releaseTclInterp();
+                    if (TCLinterpreter == NULL)
+                    {
+                        Scierror(999, _("%s: No such slave interpreter.\n"), fname);
+                        return 0;
+                    }
+                }
+                else
+                {
+                    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
                     return 0;
                 }
             }
             else
             {
-                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 2);
-                return 0;
+                // only one argument given - use the main interpreter
+                TCLinterpreter = getTclInterp();
+                releaseTclInterp();
             }
+
+            n1 = 1;
+            if ( Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) )
+            {
+                CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
+                *istk(l1) = (int)(TRUE);
+            }
+            else
+            {
+                CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
+                *istk(l1) = (int)(FALSE);
+            }
+
+            LhsVar(1) = Rhs + 1;
+            PutLhsVar();
         }
         else
         {
-            /* only one argument given - use the main interpreter */
-            TCLinterpreter = getTclInterp();
-            releaseTclInterp();
+            Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
+            return 0;
         }
 
-        n1 = 1;
-        if ( Tcl_GetVar(TCLinterpreter, VarName, TCL_GLOBAL_ONLY) )
-        {
-            CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
-            *istk(l1) = (int)(TRUE);
-        }
-        else
-        {
-            CreateVar(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &l1);
-            *istk(l1) = (int)(FALSE);
-        }
-
-        LhsVar(1) = Rhs + 1;
-        PutLhsVar();
-    }
-    else
-    {
-        Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
-        return 0;
-    }
-
-    return 0;
+    */    return 0;
 }
 /*--------------------------------------------------------------------------*/

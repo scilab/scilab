@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "FileExist.h"
@@ -29,7 +29,7 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "getFullFilename.h"
 #include "loadOnUseClassPath.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "FigureList.h"
 }
 /*--------------------------------------------------------------------------*/
@@ -41,9 +41,8 @@ using namespace org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 static int sci_toprint_one_rhs(void* _pvCtx, const char *fname);
 static int sci_toprint_two_rhs(void* _pvCtx, const char *fname);
-
 /*--------------------------------------------------------------------------*/
-int sci_toprint(char *fname, unsigned long l)
+int sci_toprint(char *fname, void* pvApiCtx)
 {
     CheckInputArgument(pvApiCtx, 1, 2);
     CheckOutputArgument(pvApiCtx, 0, 1);
@@ -128,9 +127,9 @@ static int sci_toprint_one_rhs(void* _pvCtx, const char *fname)
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
         }
     }
-    else if (isDoubleType(pvApiCtx, piAddressVarOne))
+    else if (isDoubleType(_pvCtx, piAddressVarOne))
     {
-        if (isScalar(pvApiCtx, piAddressVarOne))
+        if (isScalar(_pvCtx, piAddressVarOne))
         {
             double dValue = 0.;
 

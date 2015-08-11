@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 }
 
@@ -36,13 +36,9 @@ XMLValidationDTD::XMLValidationDTD(const char *path, std::string * error): XMLVa
         FREE(expandedPath);
         if (!validationFile)
         {
-            if (errorBuffer)
-            {
-                delete errorBuffer;
-            }
-            errorBuffer = new std::string(gettext("Cannot parse the DTD"));
-
-            *error = *errorBuffer;
+            errorBuffer.clear();
+            errorBuffer.append(gettext("Cannot parse the DTD"));
+            *error = errorBuffer;
         }
         else
         {
@@ -84,13 +80,8 @@ XMLValidationDTD::~XMLValidationDTD()
             resetScope();
         }
     }
-
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-
-        errorBuffer = 0;
-    }
+    
+    errorBuffer.clear();
 }
 
 bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) const
@@ -98,16 +89,12 @@ bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) co
     bool ret;
     xmlValidCtxt *vctxt = xmlNewValidCtxt();
 
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-    }
-    errorBuffer = new std::string("");
+    errorBuffer.clear();
 
     if (!vctxt)
     {
-        errorBuffer->append(gettext("Cannot create a valid context"));
-        *error = *errorBuffer;
+        errorBuffer.append(gettext("Cannot create a valid context"));
+        *error = errorBuffer;
         return false;
     }
 
@@ -120,7 +107,7 @@ bool XMLValidationDTD::validate(const XMLDocument & doc, std::string * error) co
 
     if (!ret)
     {
-        *error = *errorBuffer;
+        *error = errorBuffer;
     }
 
     return ret;
@@ -131,22 +118,21 @@ bool XMLValidationDTD::validate(xmlTextReader * reader, std::string * error) con
     int last;
     int valid;
 
-    if (errorBuffer)
-    {
-        delete errorBuffer;
-    }
-    errorBuffer = new std::string("");
+    errorBuffer.clear();
 
     if (!internalValidate)
     {
-        errorBuffer->append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
-        *error = *errorBuffer;
+        errorBuffer.append(gettext("Due to a libxml2 limitation, it is not possible to validate a document against an external DTD\nPlease see help xmlValidate.\n"));
+        *error = errorBuffer;
         return false;
     }
 
     xmlTextReaderSetParserProp(reader, XML_PARSER_VALIDATE, 1);
     xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
-    while ((last = xmlTextReaderRead(reader)) == 1) ;
+    while ((last = xmlTextReaderRead(reader)) == 1)
+    {
+        ;
+    }
     valid = xmlTextReaderIsValid(reader);
 
     xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -154,7 +140,7 @@ bool XMLValidationDTD::validate(xmlTextReader * reader, std::string * error) con
 
     if (last == -1 || valid != 1)
     {
-        *error = *errorBuffer;
+        *error = errorBuffer;
         return false;
     }
 
@@ -174,3 +160,4 @@ const std::string XMLValidationDTD::toString() const
     return oss.str();
 }
 }
+

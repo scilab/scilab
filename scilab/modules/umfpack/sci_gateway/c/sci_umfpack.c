@@ -65,6 +65,8 @@
   |              mb >= 1 , nb = mA in Case 2                    |
   |                                                             |
   +------------------------------------------------------------*/
+
+#include <string.h> // memset
 #include "api_scilab.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
@@ -72,9 +74,9 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
-int sci_umfpack(char* fname, unsigned long l)
+int sci_umfpack(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

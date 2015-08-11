@@ -13,6 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
+#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -20,7 +21,7 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
 }
@@ -28,7 +29,7 @@ extern "C"
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_xcosDiagramToScilab(char *fname, unsigned long fname_len)
+int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx)
 {
     CheckRhs(1, 1);
     CheckLhs(0, 1);
@@ -88,6 +89,7 @@ int sci_xcosDiagramToScilab(char *fname, unsigned long fname_len)
      */
     int iRet = 0;
 
+    set_loaded_status(XCOS_CALLED);
     try
     {
         iRet = Xcos::xcosDiagramToScilab(getScilabJavaVM(), pstXcosFile);

@@ -59,7 +59,6 @@ C**********************************************************************
 C     Modified by S. Steer INRIA 1998,to replace ASSIGN instruction by
 c     Computed GOTO
 C**********************************************************************
-      include 'stack.h'
 C     .. Scalar Arguments ..
       DOUBLE PRECISION fx,x,zabsst,zabsto,zbig,zrelst,zrelto,zsmall,
      +                 zstpmu
@@ -93,7 +92,7 @@ C     .. Executable Statements ..
       IF (status.GT.0) GO TO 310
 
       qcond = .NOT. qxmon(small,x,big)
-      IF (qcond) then 
+      IF (qcond) then
          call basout(io,wte,' SMALL, X, BIG not monotone in INVR')
          status = -100
          return

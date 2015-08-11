@@ -25,7 +25,7 @@
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_drawnow(char *fname, unsigned long fname_len)
+int sci_drawnow(char *fname, void* pvApiCtx)
 {
     int iTrue = (int)TRUE;
     int iParentFigureUID = 0;

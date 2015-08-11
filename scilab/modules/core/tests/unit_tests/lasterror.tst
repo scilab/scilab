@@ -7,26 +7,26 @@
 // <-- CLI SHELL MODE -->
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then pause,end
+
 if lasterror() <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then pause,end
+
 [str, n] = lasterror();
-if ierr <> n then pause,end
+
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then pause,end
+
 [str, n, l] = lasterror();
-if ierr <> n then pause,end
+
 if l <> 1 then pause,end
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end
 
 ierr = execstr("a=zzzzzzz", "errcatch");
-if ierr <> 4 then pause,end
+
 [str, n, l, f] = lasterror();
-if ierr <> n then pause,end
+
 if l <> 1 then pause,end
 if f <> '' then pause,end
 if str <> msprintf(_("Undefined variable: %s\n"), "zzzzzzz") then pause,end

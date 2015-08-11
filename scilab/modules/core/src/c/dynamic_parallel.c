@@ -10,25 +10,26 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-#include "callDynamicGateway.h"
+//#include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "dynamic_parallel.h"
 /*--------------------------------------------------------------------------*/
 /* PARALLEL module */
 #define PARALLEL_MODULE_NAME "parallel"
 static DynLibHandle hParallelLib = NULL;
-static PROC_GATEWAY ptr_gw_parallel = NULL;
+static void* ptr_gw_parallel = NULL;
 static char* dynlibname_parallel = NULL;
 static char* gatewayname_parallel = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_parallel(void)
 {
-    return gw_dynamic_generic(PARALLEL_MODULE_NAME,
-                              &dynlibname_parallel,
-                              &gatewayname_parallel,
-                              &hParallelLib,
-                              &ptr_gw_parallel);
+    //return gw_dynamic_generic(PARALLEL_MODULE_NAME,
+    //    &dynlibname_parallel,
+    //    &gatewayname_parallel,
+    //    &hParallelLib,
+    //    &ptr_gw_parallel);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 #define PARALLEL_CONCURRENCY_NAME "parallelConcurrency"
@@ -85,10 +86,11 @@ BOOL dynTerminateParallel(void)
     {
         ptr_parallel_forbidden = NULL;
     }
-    return freeDynamicGateway(&dynlibname_parallel,
-                              &gatewayname_parallel,
-                              &hParallelLib,
-                              &ptr_gw_parallel);
+    //return freeDynamicGateway(&dynlibname_parallel,
+    //    &gatewayname_parallel,
+    //    &hParallelLib,
+    //    &ptr_gw_parallel);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 

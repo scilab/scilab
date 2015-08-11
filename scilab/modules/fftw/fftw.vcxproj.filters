@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{9cf2ab0b-42d0-4c04-aa37-3fc1cfaf9640}</UniqueIdentifier>
+      <UniqueIdentifier>{9d1010a3-2200-4cb7-a50a-f44d4daa7d5e}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{f9cf187f-0c6e-4ad0-a9f9-6db2def25e81}</UniqueIdentifier>
+      <UniqueIdentifier>{22f9482d-72af-4856-b4ea-a3b9ec92b7c3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{474a3608-a988-49bd-b65f-7c60deada13c}</UniqueIdentifier>
+      <UniqueIdentifier>{78abb3de-e008-4f99-af80-0a55d0938868}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -36,13 +36,7 @@
     <ClCompile Include="src\c\fftwlibname.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\gw_fftw.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_disposefftwlibrary.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_fftw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_fftw_flags.c">
@@ -66,13 +60,19 @@
     <ClCompile Include="src\c\with_fftw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_dct.c">
+    <ClCompile Include="sci_gateway\cpp\fftw_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\sci_dst.c">
+    <ClCompile Include="sci_gateway\cpp\sci_dct.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\sci_data_utilities.c">
+    <ClCompile Include="sci_gateway\cpp\sci_dst.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\cpp\sci_fftw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\fftw_common.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -86,9 +86,6 @@
     <ClInclude Include="src\c\fftw3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\fftw_utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\c\fftwlibname.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -98,7 +95,10 @@
     <ClInclude Include="includes\with_fftw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\c\sci_data_utilities.h">
+    <ClInclude Include="includes\fftw_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cpp\fftw_common.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -111,9 +111,6 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="scilab_windows_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="fftw.iss" />
     <None Include="sci_gateway\fftw_gateway.xml" />
     <None Include="Makefile.am" />
@@ -123,5 +120,15 @@
     <None Include="locales\fftw.pot">
       <Filter>localization</Filter>
     </None>
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
+    <None Include="locales\fftw.pot" />
   </ItemGroup>
 </Project>

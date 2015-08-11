@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -50,22 +50,21 @@
     <refsection>
         <title>Description</title>
         <para>
-            <literal>input(message)</literal> gives the user the prompt in the text string and 
-            then waits for input from the keyboard. 
+            <literal>input(message)</literal> gives the user the prompt in the text string and
+            then waits for input from the keyboard.
             The input can be expression which is evaluated by <link linkend="evstr">evstr</link>.
             If nothing but a carriage return is
-            entered at the prompt <literal>input(message)</literal> returns an empty matrix
+            entered at the prompt <literal>input(message)</literal> returns an empty matrix.
         </para>
         <para>
             Invoked with two arguments, the output is a character string which is the
             expression entered at keyboard.  If nothing but a carriage return is
-            entered at the prompt <literal>input(message)</literal> returns  a single white
-            space  <literal>" "</literal>.
+            entered at the prompt, <literal>input(message)</literal> returns an empty string.
         </para>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 //x=input("How many iterations?")
 //x=input("What is your name?","string")
  ]]></programlisting>
@@ -82,6 +81,23 @@
             <member>
                 <link linkend="x_mdialog">x_mdialog</link>
             </member>
+            <member>
+                <link linkend="isempty">isempty</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        In case where nothing is entered with the string input argument,
+                        input returns an empty string instead of a space.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

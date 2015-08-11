@@ -16,7 +16,7 @@ dnl Process this file with autoconf to produce a configure script.
 
 
 AC_REVISION($Revision$)dnl
-AC_INIT([Scilab],[5],[http://bugzilla.scilab.org/])
+AC_INIT([Scilab],[6],[http://bugzilla.scilab.org/])
 AC_PREREQ(2.68)
 AC_CONFIG_MACRO_DIR([m4])
 
@@ -36,8 +36,8 @@ else
     DEVTOOLS_LIBDIR=
 fi
 
-SCILAB_VERSION_MAJOR=5
-SCILAB_VERSION_MINOR=6
+SCILAB_VERSION_MAJOR=6
+SCILAB_VERSION_MINOR=0
 SCILAB_VERSION_MAINTENANCE=0
 AC_SUBST(SCILAB_VERSION_MAJOR)
 AC_SUBST(SCILAB_VERSION_MINOR)
@@ -157,6 +157,9 @@ AC_ARG_ENABLE(build-swig,
 
 AC_ARG_ENABLE(build-giws,
     AC_HELP_STRING([--enable-build-giws],[Regenerate C/C++ => Java wrappers produces by Giws]))
+
+AC_ARG_ENABLE(build-parser,
+    AC_HELP_STRING([--enable-build-parser],[Regenerate code for the parser (Lex & YACC)]))
 
 
 ################################################
@@ -707,6 +710,7 @@ if test "$enable_code_coverage" = yes; then
    CODECOVERAGE_LDFLAGS="-coverage -lgcov"
 fi
 AM_CONDITIONAL(CODE_COVERAGE, test "$enable_code_coverage" = yes)
+AM_CONDITIONAL(ENABLE_DEBUG, test "$enable_debug" = yes)
 
 # flag for possible compilations in configure
 SCILIBS_CFLAGS=''
@@ -720,6 +724,13 @@ if test $IS_64_BITS_CPU = true -o "$MACOSX" = "1"; then
 fi
 
 AM_CONDITIONAL(IS_64_BITS_CPU, test $IS_64_BITS_CPU = true)
+
+# check if the compiler supports c++11
+saved_cppflags="$CXXFLAGS"
+CXXFLAGS=""
+AX_CXX_COMPILE_STDCXX_11(noext,mandatory)
+STDCXX_11_CXXFLAGS="$CXXFLAGS"
+CXXFLAGS="$saved_cppflags"
 
 ################
 ## SSE
@@ -741,6 +752,33 @@ esac
 #######################
 AC_CHECK_UNDERSCORE_FORTRAN()
 
+###############################
+### Regenerate the parser files
+### Flex & Yacc
+###############################
+
+if test "$enable_build_parser" = yes; then
+
+   AC_PROG_LEX
+   if test -z "$LEX" -o "$LEX" = ":"; then
+	  AC_MSG_ERROR([No implementation of Lex (flex, lex) detected. Please install it (package flex)])
+   fi
+
+   AC_PROG_YACC
+   if test -z "$YACC"; then
+	  AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)])
+  fi
+# Actually, AC_PROG_YACC is lying. It sometimes put yacc into $YACC even it
+# hasn't been able to find it.
+#  AC_CHECK_PROG(YACC_PRESENT, $YACC, AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)]) )
+
+   AC_CHECK_PROG(yacc_present, $YACC, "yes","no")
+   if test "x$yacc_present" != "xyes"; then
+      AC_MSG_ERROR([No implementation of Yacc (bison, yacc) detected. Please install it (package bison)])
+   fi
+
+fi
+AM_CONDITIONAL(BUILD_PARSER, test "$enable_build_parser" = yes)
 
 #################
 ## HDF5
@@ -820,10 +858,10 @@ if test "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no
 
      AC_JAVA_DETECT_JVM
      case "$ac_java_jvm_version" in
-        1.6 | 1.7 | 1.8)
+        1.8)
         ;;
         *)
-            AC_MSG_ERROR([Wrong version of Java. Expected at least 1.6. Found $ac_java_jvm_version])
+            AC_MSG_ERROR([Wrong version of Java. Expected at least 1.8. Found $ac_java_jvm_version])
         ;;
      esac
 
@@ -1417,6 +1455,13 @@ AM_CONDITIONAL(FFTW, test "$with_fftw" != no)
 
 
 #################
+## EIGEN
+#################
+
+AC_EIGEN()
+
+
+#################
 ## MPI
 #################
 
@@ -1880,11 +1925,19 @@ AH_BOTTOM([
 #endif
 #define DIR_SEPARATOR "/"
 
+#ifdef DIR_SEPARATORW
+	   #undef DIR_SEPARATORW
+#endif
+#define DIR_SEPARATORW L"/"
+
+#define bsiz 4096
+
 #endif /* MACHINE_H  */
 ])
 
 # Define the standard extension of a dynamic library
 AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared library])
+AC_DEFINE_UNQUOTED([SHARED_LIB_EXTW],[L"$shrext_cmds"],[Extension of a shared library ( wide string )])
 
 
 
@@ -1892,15 +1945,15 @@ AC_DEFINE_UNQUOTED([SHARED_LIB_EXT],["$shrext_cmds"],[Extension of a shared libr
 ## Update the years in the various part of the code.
 #################
 
-if test ! -f modules/core/src/c/banier.c; then
-   AC_MSG_ERROR([Could not find the Scilab banier file.])
+if test ! -f modules/core/src/cpp/banner.cpp; then
+   AC_MSG_ERROR([Could not find the Scilab banner file.])
 fi
 
 CURRENT_YEAR=`date "+%Y"`
-DETECTED_YEAR=`grep "Copyright (c) 2011-" modules/core/src/c/banier.c|sed -e "s/.*Copyright (c) 2011-\([[0-9]]*\).*/\1/g"`
+DETECTED_YEAR=`grep "Copyright (c) 2011-" modules/core/src/cpp/banner.cpp|sed -e "s/.*Copyright (c) 2011-\([[0-9]]*\).*/\1/g"`
 
 if test "$CURRENT_YEAR" != "$DETECTED_YEAR"; then
-   sed -i -e "s| 2011-$DETECTED_YEAR | 2011-$CURRENT_YEAR |g" modules/core/src/c/banier.c modules/windows_tools/src/c/scilab_windows/console.c
+   sed -i -e "s| 2011-$DETECTED_YEAR | 2011-$CURRENT_YEAR |g" modules/core/src/cpp/banner.cpp modules/windows_tools/src/c/scilab_windows/console.c
    sed -i -e "s| 2011-$DETECTED_YEAR Scilab Enterprises| 2011-$CURRENT_YEAR Scilab Enterprises|g" etc/Info.plist.in
    sed -i -e "s|VALUE \"LegalCopyright\", \"Copyright (C) $DETECTED_YEAR|VALUE \"LegalCopyright\", \"Copyright (C) $CURRENT_YEAR|" $(find . -iname '*.rc')
    AC_MSG_WARN([New year ($CURRENT_YEAR) detected. Copyright files updated. Please commit them ASAP.])
@@ -1927,10 +1980,10 @@ if test "$enable_stop_on_warning" = yes; then
 fi
 
 # SCI_*FLAGS contains all defaults values detected on configure
-SCI_CFLAGS=$(echo   $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
-SCI_CXXFLAGS=$(echo $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
-SCI_FFLAGS=$(echo   $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
-SCI_LDFLAGS=$(echo  $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
+SCI_CFLAGS=$(echo                       $LARGEFILE_CFLAGS   $CODECOVERAGE_CFLAGS   $DEBUG_CFLAGS   $ARCH_CFLAGS   $COMPILER_CFLAGS   $SCILIBS_CFLAGS   $SSE_CFLAGS   $BACKTRACE_CFLAGS   $WARNING_CFLAGS)
+SCI_CXXFLAGS=$(echo $STDCXX_11_CXXFLAGS $LARGEFILE_CXXFLAGS $CODECOVERAGE_CXXFLAGS $DEBUG_CXXFLAGS $ARCH_CXXFLAGS $COMPILER_CXXFLAGS $SCILIBS_CXXFLAGS $SSE_CXXFLAGS $BACKTRACE_CXXFLAGS $WARNING_CXXFLAGS)
+SCI_FFLAGS=$(echo                       $LARGEFILE_FFLAGS   $CODECOVERAGE_FFLAGS   $DEBUG_FFLAGS   $ARCH_FFLAGS   $COMPILER_FFLAGS   $SCILIBS_FFLAGS   $SSE_FFLAGS   $BACKTRACE_FFLAGS   $WARNING_FFLAGS)
+SCI_LDFLAGS=$(echo                      $LARGEFILE_LDFLAGS  $CODECOVERAGE_LDFLAGS  $DEBUG_LDFLAGS  $ARCH_LDFLAGS  $COMPILER_LDFLAGS  $SCILIBS_LDFLAGS  $SSE_LDFLAGS  $BACKTRACE_LDFLAGS  $WARNING_LDFLAGS)
 AC_SUBST(SCI_CFLAGS)
 AC_SUBST(SCI_CXXFLAGS)
 AC_SUBST(SCI_FFLAGS)
@@ -1940,6 +1993,9 @@ AC_CONFIG_FILES([
 contrib/Makefile
 desktop/images/icons/Makefile
 desktop/Makefile
+modules/threads/Makefile
+modules/ast/Makefile
+modules/functions_manager/Makefile
 modules/helptools/Makefile
 modules/data_structures/Makefile
 modules/differential_equations/Makefile
@@ -1957,16 +2013,13 @@ modules/mexlib/Makefile
 modules/sparse/Makefile
 modules/linear_algebra/Makefile
 modules/polynomials/Makefile
-modules/symbolic/Makefile
 modules/signal_processing/Makefile
 modules/arnoldi/Makefile
 modules/interpolation/Makefile
-modules/intersci/Makefile
 modules/localization/Makefile
 modules/cacsd/Makefile
 modules/boolean/Makefile
 modules/integer/Makefile
-modules/double/Makefile
 modules/fileio/Makefile
 modules/spreadsheet/Makefile
 modules/string/Makefile
@@ -2029,7 +2082,6 @@ scilab-lib.properties
 scilab-lib-doc.properties
 modules/helptools/etc/SciDocConf.xml
 modules/core/includes/version.h
-modules/core/includes/stack.h
 modules/atoms/etc/repositories
 modules/atoms/tests/unit_tests/repositories.orig
 ])
@@ -2156,6 +2208,10 @@ if test $FFTW_ENABLE = yes;  then
 else
    echo "Not using FFTW"
 fi
+
+echo ""
+echo "Eigen3 Configuration:"
+echo "  EIGEN CPPFLAGS ...... = $EIGEN_CPPFLAGS"
 
 echo ""
 if test $MATIO_ENABLE = yes;  then
@@ -2309,11 +2365,20 @@ echo "  PCRE_LIBS .......... = $PCRE_LIBS"
 echo "  PCRE_VERSION ....... = $PCRE_VERSION"
 
 echo ""
+echo "Regenerate Scilab's parser"
+if test "$enable_build_parser" != no; then
+echo "  YACC ............... = $YACC"
+echo "  LEX ................ = $LEX"
+echo "  YFLAGS ............. = $YFLAGS"
+else
+echo "  Regenerate parser disabled (will use embedded sources)"
+fi
+
+echo ""
 echo "CURL configuration:"
 echo "  CURL_CFLAGS ........ = $CURL_CFLAGS"
 echo "  CURL_LIBS .......... = $CURL_LIBS"
 echo "  CURL_VERSION ....... = $CURL_VERSION"
-
 
 echo ""
 echo "SWIG Configuration:"

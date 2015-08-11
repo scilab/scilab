@@ -19,6 +19,12 @@ function []=xload(fil,num)
     if  argn(2)==2 then scf(num),end
     f=gcf()
     res = execstr("load(fil)","errcatch") ;
+    // Get latest figure created by load
+    loadedFig = gcf();
+    for kC=1:size(loadedFig.children, "*")
+        copy(loadedFig.children(kC), f); // Copy axes
+    end
+    delete(loadedFig); // Delete it, returned figure will be the one set as current by xload
     if res==0 then
         f.visible="on"
         f.immediate_drawing="on";

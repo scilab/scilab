@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -88,13 +88,12 @@
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;integer_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -111,7 +110,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -119,13 +118,12 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;integer_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <IgnoreSpecificDefaultLibraries>libmmdd.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -140,7 +138,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -150,13 +148,12 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;integer_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -175,7 +172,7 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../includes;../../../output_stream/includes;../../../localization/includes;../../../core/includes;../../../../libs/intl;../../../api_scilab/includes;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;INTEGER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
@@ -185,13 +182,12 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)integer_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)integer_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;integer_f.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;polynomials_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
@@ -204,7 +200,6 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\c\sci_iconvert.c" />
     <ClCompile Include="db2int.c" />
     <ClCompile Include="DllmainInteger.c" />
     <ClCompile Include="genabs.c" />
@@ -247,8 +242,6 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
     <ClCompile Include="gentril.c" />
     <ClCompile Include="gentriu.c" />
     <ClCompile Include="genvmul.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_integer.c" />
-    <ClCompile Include="i_nextj.c" />
     <ClCompile Include="tpconv.c" />
   </ItemGroup>
   <ItemGroup>
@@ -305,7 +298,6 @@ lib /DEF:"$(ProjectDir)Polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(P
   <ItemGroup>
     <None Include="..\..\locales\integer.pot" />
     <None Include="core_import.def" />
-    <None Include="integer_f_Import.def" />
     <None Include="Polynomials_f_Import.def" />
     <None Include="..\..\integer.iss" />
     <None Include="..\..\sci_gateway\integer_gateway.xml" />

@@ -24,8 +24,8 @@ class H5Object;
 class H5VariableScope
 {
 
-    static std::vector<H5Object *> & scope;
-    static std::stack<int> & freePlaces;
+    static std::vector<H5Object *> scope;
+    static std::stack<int> freePlaces;
 
 public:
 
@@ -34,17 +34,9 @@ public:
     static void removeId(const int id);
     static void removeIdAndDelete(const int id);
     static void clearScope();
-
-private :
-
-    static std::vector<H5Object *> * initScope()
-    {
-        std::vector<H5Object *> * _scope = new std::vector<H5Object *>();
-        _scope->reserve(1024);
-
-        return _scope;
-    }
+    static void initScope();
 };
 }
 
 #endif // __H5VARIABLESCOPE_HXX__
+

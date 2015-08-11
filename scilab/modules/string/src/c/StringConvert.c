@@ -59,3 +59,50 @@ int StringConvert(char *str)
     return count;
 }
 /*--------------------------------------------------------------------------*/
+int StringConvertW(wchar_t *str)
+/* changes `\``n` --> `\n` idem for \t and \r */
+{
+    wchar_t *str1;
+    int count = 0;
+    str1 = str;
+
+    while ( *str != 0)
+    {
+        if ( *str == L'\\' )
+        {
+            switch ( *(str + 1))
+            {
+                case L'n' :
+                    *str1 = L'\n' ;
+                    str1++;
+                    str += 2;
+                    count++;
+                    break;
+                case L't' :
+                    *str1 = L'\t' ;
+                    str1++;
+                    str += 2;
+                    break;
+                case L'r' :
+                    *str1 = L'\r' ;
+                    str1++;
+                    str += 2;
+                    break;
+                default :
+                    *str1 = *str;
+                    str1++;
+                    str++;
+                    break;
+            }
+        }
+        else
+        {
+            *str1 = *str;
+            str1++;
+            str++;
+        }
+    }
+    *str1 = L'\0';
+    return count;
+}
+/*--------------------------------------------------------------------------*/

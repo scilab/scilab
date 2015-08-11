@@ -9,7 +9,7 @@
 
 %module HistoryManagement
 %{
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "../../includes/HistoryManager.h"
 #include "../../includes/TerminateHistoryManager.h"
 #include "../../includes/InitializeHistoryManager.h"

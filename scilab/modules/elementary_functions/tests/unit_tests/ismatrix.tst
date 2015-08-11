@@ -77,45 +77,45 @@ assert_checkequal(ismatrix(s), %t); // 3D structure array with singleton
 // Cells
 assert_checkequal(ismatrix(cell()), %f); // Empty cell
 a = cell(1);
-a(1).entries = 1;
+a{1} = 1;
 assert_checkequal(ismatrix(a), %t); // Scalar case
 clear a;
 a = cell(1,3);
-a(1).entries = 1:3;
-a(2).entries = 1:3;
-a(3).entries = 1:3;
+a{1} = 1:3;
+a{2} = 1:3;
+a{3} = 1:3;
 assert_checkequal(ismatrix(a), %t); // Row case
 clear a;
 a = cell(3,1);
-a(1).entries = 1:3;
-a(2).entries = 1:3;
-a(3).entries = 1:3;
+a{1} = 1:3;
+a{2} = 1:3;
+a{3} = 1:3;
 assert_checkequal(ismatrix(a), %t); // Column case
 clear a;
 a = cell(3,2);
-a(1,1).entries = 1:3;
-a(1,2).entries = 1:3;
-a(2,1).entries = 1:3;
-a(2,2).entries = 1:3;
-a(3,2).entries = 1:3;
-a(3,1).entries = 1:3;
+a{1,1} = 1:3;
+a{1,2} = 1:3;
+a{2,1} = 1:3;
+a{2,2} = 1:3;
+a{3,2} = 1:3;
+a{3,1} = 1:3;
 assert_checkequal(ismatrix(a), %t); // Matrix case
 clear a;
 a = cell(2,2,2);
-a(1,1,1).entries =1:3;
-a(1,2,1).entries =1:3;
-a(2,1,1).entries =1:3;
-a(2,2,1).entries =1:3;
-a(1,1,2).entries =1:3;
-a(1,2,2).entries =1:3;
-a(2,1,2).entries =1:3;
-a(2,2,2).entries =1:3;
+a{1,1,1} =1:3;
+a{1,2,1} =1:3;
+a{2,1,1} =1:3;
+a{2,2,1} =1:3;
+a{1,1,2} =1:3;
+a{1,2,2} =1:3;
+a{2,1,2} =1:3;
+a{2,2,2} =1:3;
 assert_checkequal(ismatrix(a), %f); // Cubic case
 a = cell(2,1,2);
-a(1,1,1).entries=1:3;
-a(2,1,1).entries=1:3
-a(1,1,2).entries=1:3;
-a(2,1,2).entries=1:3;
+a{1,1,1}=1:3;
+a{2,1,1}=1:3;
+a{1,1,2}=1:3;
+a{2,1,2}=1:3;
 assert_checkequal(ismatrix(a), %t); // Hypermatrix with singleton (square)
 
 // Lists

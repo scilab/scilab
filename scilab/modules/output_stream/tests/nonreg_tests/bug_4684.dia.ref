@@ -17,4 +17,6 @@ ref = 'Value is: Inf';
 tst = msprintf('Value is: %d', %inf);
 if ref <> tst then bugmes();quit;end
 printf('Value is: %d', -%inf);
-Valueis:-Infprintf('Value is: %d', %inf);
+Value is: -Inf
+printf('Value is: %d', %inf);
+Value is: Inf

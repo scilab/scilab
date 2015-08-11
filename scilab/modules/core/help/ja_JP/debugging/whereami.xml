@@ -11,8 +11,8 @@
     <refsection>
         <title>説明</title>
         <para>
-	  <code>whereami()</code>を含む命令への呼び出しツリーを表示します.
-          <function>pause</function>レベル内で使用可能です.
+            <code>whereami()</code>を含む命令への呼び出しツリーを表示します.
+            <function>pause</function>レベル内で使用可能です.
         </para>
     </refsection>
     <refsection>
@@ -33,9 +33,6 @@ test(1)
             </member>
             <member>
                 <link linkend="pause">pause</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

@@ -26,11 +26,11 @@
 #include "localization.h"
 
 /*------------------------------------------------------------------------*/
-int get_bar_layout_property(void* _pvCtx, int iObjUID)
+void* get_bar_layout_property(void* _pvCtx, int iObjUID)
 {
     //
     // FIXME
     //
-    return -1;
+    return NULL;
 }
 /*------------------------------------------------------------------------*/

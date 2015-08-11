@@ -18,10 +18,7 @@
 ;
 #define FUNCTIONS "functions"
 ;
-Source: bin\{#FUNCTIONS}.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#FUNCTIONS}_f.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#FUNCTIONS}.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
-Source: bin\{#FUNCTIONS}_f.lib; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
+Source: bin\{#FUNCTIONS}_gw.dll; DestDir: {app}\bin; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\license.txt; DestDir: {app}\modules\{#FUNCTIONS}; Components: {#COMPN_SCILAB}
 ;
@@ -33,9 +30,8 @@ Source: modules\{#FUNCTIONS}\etc\{#FUNCTIONS}.start; DestDir: {app}\modules\{#FU
 ;Source: modules\{#FUNCTIONS}\includes\*.h; DestDir: {app}\modules\{#FUNCTIONS}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#FUNCTIONS}\macros\lib; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\macros\names; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#FUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\*.sci; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#FUNCTIONS}\macros\*.bin; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#FUNCTIONS}\macros\cleanmacros.bat; DestDir: {app}\modules\{#FUNCTIONS}\macros; Components: {#COMPN_SCILAB}

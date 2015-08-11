@@ -25,7 +25,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_h5open(char *fname, unsigned long fname_len)
+int sci_h5open(char *fname, int* pvApiCtx)
 {
     H5File * h5file = 0;
     SciErr err;

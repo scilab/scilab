@@ -39,7 +39,7 @@ function params=scicos_params(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     void3=[]
     if exists("doc","local")==0 then doc=list(),end
 
-    params=tlist(["params","wpar","title","tol","tf","context",..
+    params=scicos_new(["params","wpar","title","tol","tf","context",..
     "void1","options","void2","void3","doc"],..
     wpar,titlex,tol,tf,context,void1,options,void2,..
     void3,doc)

@@ -26,7 +26,7 @@
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_uicontextmenu(char *fname, unsigned long fname_len)
+int sci_uicontextmenu(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

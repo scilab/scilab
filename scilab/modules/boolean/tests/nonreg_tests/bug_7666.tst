@@ -15,8 +15,8 @@
 // <-- Short Description -->
 // Inconstencies between and/or and &/|
 
-assert_checkequal(or([0.6 -0.9]), 0.6 | -0.9)
-assert_checkequal(or([0.6 -1.1]), 0.6 | -1.1)
-assert_checkequal(and([0.6 -0.7]), 0.6 & -0.7)
-assert_checkequal(and([0.6 -1.1]), 0.6 & -1.1)
-assert_checkequal(and([2.1 -1.1]), 2.1 & -1.1)
+assert_checkequal(or([0.6 -0.9]), 0.6 | -0.9);
+assert_checkequal(or([0.6 -1.1]), 0.6 | -1.1);
+assert_checkequal(and([0.6 -0.7]), 0.6 & -0.7);
+assert_checkequal(and([0.6 -1.1]), 0.6 & -1.1);
+assert_checkequal(and([2.1 -1.1]), 2.1 & -1.1);

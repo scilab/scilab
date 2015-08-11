@@ -2,37 +2,34 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{f9a90e4f-9351-4467-8798-48191a9df869}</UniqueIdentifier>
+      <UniqueIdentifier>{f3637efa-59c9-4dc6-b5eb-aef34f059d5f}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{d6c29247-2ffd-4f8c-b671-e06968c21254}</UniqueIdentifier>
+      <UniqueIdentifier>{cd5337eb-a025-4da8-af28-c55532068464}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{6c591ec8-f5fc-447c-9dad-43fc66c1fa93}</UniqueIdentifier>
+      <UniqueIdentifier>{1f3b1d55-f72d-412a-8ffe-c56e9c918364}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{5181bf70-a912-4986-8345-c3e21297dfb1}</UniqueIdentifier>
+      <UniqueIdentifier>{d8e8243b-57f9-497a-a1f2-604f7e324df9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{50085a97-ce54-4fea-94f7-3c5bf7eb6095}</UniqueIdentifier>
+      <UniqueIdentifier>{5b20f84a-c418-40dd-9143-92b4ec6b88c2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{95a638f6-feb6-49cc-82fa-ef82e0e424db}</UniqueIdentifier>
+      <UniqueIdentifier>{852df993-f240-481b-b90a-b5a569b9d371}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="arnol.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="colnewtable.c">
+    <ClCompile Include="colnewmsgs.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dassl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="dassltable.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainDifferential_equations.c">
@@ -41,67 +38,28 @@
     <ClCompile Include="feval.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="fevaltable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fydot2table.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="fydottable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_differential_equations6.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="impltable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int2dtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="int3dtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="intgtable.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="rk4.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_bvode.c">
+    <ClCompile Include="..\cpp\checkodeerror.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_feval.c">
+    <ClCompile Include="..\cpp\scifunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int2d.c">
+    <ClCompile Include="..\cpp\differentialequationfunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_int3d.c">
+    <ClCompile Include="Ex-odedc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_intg.c">
+    <ClCompile Include="Ex-daskr.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_odc.c">
+    <ClCompile Include="Ex-ode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_ode.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\Ex-daskr.c">
+    <ClCompile Include="errmds.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -115,22 +73,31 @@
     <ClInclude Include="feval.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations2.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations3.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations4.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\includes\gw_differential_equations6.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="rk4.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\differentialequationfunctions.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\scifunctions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\common_structure.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex-odedc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex-daskr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Ex-ode.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\includes\checkodeerror.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="errmds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -146,6 +113,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\differential_equations.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="elementary_functions_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

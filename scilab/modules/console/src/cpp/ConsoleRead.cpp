@@ -12,9 +12,13 @@
 
 /*--------------------------------------------------------------------------*/
 #include "ConsoleRead.hxx"
+
 /*--------------------------------------------------------------------------*/
 #include "CallScilabBridge.hxx"
-using namespace org_scilab_modules_gui_bridge;
+
+#include "os_string.h"
+
+using namespace  org_scilab_modules_gui_bridge;
 /*--------------------------------------------------------------------------*/
 static char *line = NULL;
 /*--------------------------------------------------------------------------*/
@@ -26,6 +30,6 @@ char *ConsoleRead(void)
         line = NULL;
     }
     line = CallScilabBridge::readLine(getScilabJavaVM());
-    return line;
+    return os_strdup(line);
 }
 /*--------------------------------------------------------------------------*/

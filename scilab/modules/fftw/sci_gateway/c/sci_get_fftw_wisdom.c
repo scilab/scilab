@@ -12,10 +12,11 @@
 *
 */
 /*--------------------------------------------------------------------------*/
+#include <string.h>
 #include <stdlib.h>
 #include "callfftw.h"
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fftw.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
@@ -31,7 +32,7 @@
 * Output : a scilab string matrix
 *
 */
-int sci_get_fftw_wisdom(char *fname, unsigned long fname_len)
+int sci_get_fftw_wisdom(char *fname, void* pvApiCtx)
 {
     int n1 = 0, i = 0, j = 0;
     char *Str = NULL;

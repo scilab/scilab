@@ -19,7 +19,7 @@ function [tree]=sci_cla(tree)
 
     // a=gca()
     a=gettempvar()
-    insert(Equal(list(a),Funcall("gca",1,list(),list())))
+    m2sci_insert(Equal(list(a),Funcall("gca",1,list(),list())))
 
     tree.name="delete"
     tree.rhs=list(Operation("ext",list(a,Cste("children")),list()))

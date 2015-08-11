@@ -77,7 +77,7 @@ struct OLE_directory_entry
     unsigned int right_child;
     unsigned int root;
 
-    unsigned char class[OLE_DIRECTORY_CLASS_SIZE];
+    unsigned char _class[OLE_DIRECTORY_CLASS_SIZE];
     unsigned int userflags;
     unsigned char timestamps[OLE_DIRECTORY_TIMESTAMPS_SIZE];
     unsigned int start_sector;

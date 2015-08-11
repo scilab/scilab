@@ -3,20 +3,15 @@ LIBRARY    core.dll
 
 EXPORTS
 ;core
-cha1_
 callFunctionFromGateway
 freeArrayOfString
 freeArrayOfWideString
 gettype_
 com_
-vstk_
 checklhs_
 checkrhs_
 iop_
-stack_
 putlhsvar_
-intersci_
-getWarningMode
 createvar_
 getrhsvar_
 vartype_
@@ -25,3 +20,4 @@ overload_
 MyHeapAlloc
 MyHeapFree
 MyHeapRealloc
+

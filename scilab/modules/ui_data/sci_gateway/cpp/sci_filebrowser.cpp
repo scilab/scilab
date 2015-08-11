@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2011 - DIGITEO - Calixte DENIZET
+ * Copyright (C) 2015 - Scilab Enterprises - Antoine ELIAS
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -10,26 +11,38 @@
  *
  */
 
+#include "ui_data_gw.hxx"
+#include "ui_data.h"
+#include "function.hxx"
 #include "FileBrowser.hxx"
 
 extern "C"
 {
-#include "gw_ui_data.h"
+#include "Scierror.h"
 #include "getScilabJavaVM.h"
-#include "api_scilab.h"
 #include "scicurdir.h"
 }
-
-using namespace org_scilab_modules_ui_data;
-
 /*--------------------------------------------------------------------------*/
-int sci_filebrowser(char *fname, unsigned long fname_len)
+using namespace org_scilab_modules_ui_data;
+/*--------------------------------------------------------------------------*/
+static const std::string fname("filebrowser");
+/*--------------------------------------------------------------------------*/
+types::Function::ReturnValue sci_filebrowser(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     char * cwd = NULL;
     int err = 0;
 
-    CheckRhs(0, 0);
-    CheckLhs(0, 1);
+    if (in.size() != 0)
+    {
+        Scierror(999, _("%s: Wrong number of input arguments: %d expected.\n"), fname.data(), 0);
+        return types::Function::Error;
+    }
+
+    if (_iRetCount != 1)
+    {
+        Scierror(999, _("%s: Wrong number of output arguments: %d expected.\n"), fname.data(), 1);
+        return types::Function::Error;
+    }
 
     FileBrowser::openFileBrowser(getScilabJavaVM());
 
@@ -39,8 +52,5 @@ int sci_filebrowser(char *fname, unsigned long fname_len)
         FileBrowser::setBaseDir(getScilabJavaVM(), cwd);
     }
 
-    LhsVar(1) = 0;
-    PutLhsVar();
-
-    return 0;
+    return types::Function::OK;
 }

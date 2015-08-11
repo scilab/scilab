@@ -6,12 +6,11 @@
 // =============================================================================
 // <-- CLI SHELL MODE -->
 // This Scilab script saves MAT-files to test the MATIO module
-chdir("SCI/modules/matio/tests/unit_tests/")
- ans  =
- 
-  T  
+chdir("SCI/modules/matio/tests/unit_tests/");
 clear
-names=who('local');
+names=who("local");
+[a, opt] = getversion();
+Version = opt(2);
 //
 // TESTS FOR CELL ARRAYS
 //
@@ -110,7 +109,16 @@ int32scalar = int32(1);
 int32rowvector = int32([1 -4 7]);
 int32colvector = int32([1;-4;7]);
 int32matrix = int32([1 -4 7;-9 6 -3]);
-// TODO: int64 tests ?
+//
+// TESTS FOR 64-BITS SIGNED INTEGERS
+//
+if Version == "x64" then
+    emptyint64matrix = int64([]);
+    int64scalar = int64(1);
+    int64rowvector = int64([1 -4 7]);
+    int64colvector = int64([1;-4;7]);
+    int64matrix = int64([1 -4 7;-9 6 -3]);
+end
 //
 // TESTS FOR 8-BITS UNSIGNED INTEGERS
 //
@@ -135,7 +143,16 @@ uint32scalar = uint32(1);
 uint32rowvector = uint32([1 -4 7]);
 uint32colvector = uint32([1;-4;7]);
 uint32matrix = uint32([1 -4 7;-9 6 -3]);
-// TODO: uint64 tests ?
+//
+// TESTS FOR 64-BITS UNSIGNED INTEGERS
+//
+if Version == "x64" then
+    emptyuint64matrix = uint64([]);
+    uint64scalar = uint64(1);
+    uint64rowvector = uint64([1 -4 7]);
+    uint64colvector = uint64([1;-4;7]);
+    uint64matrix = uint64([1 -4 7;-9 6 -3]);
+end
 //
 // TESTS FOR ND-ARRAYS
 //
@@ -150,30 +167,41 @@ eye100x100 = eye(100,100);
 // Create files
 //
 varNames = who("local");
-varNames = varNames(1:($-size(names,"*")-1));
+varNamesTemp = [];
+for varIndex=1:size(varNames,"*")
+    if ~or(varNames(varIndex)==names) then
+        varNamesTemp($+1)=varNames(varIndex);
+    end
+end
+varNames = varNamesTemp;
+clear varNamesTemp
 varNames(grep(varNames,"%")) = [];
 varNames(varNames=="makecell") = [];
 varNames(varNames=="struct") = [];
+varNames(varNames=="names") = [];
+varNames(varNames=="a") = [];
+varNames(varNames=="opt") = [];
+varNames(varNames=="Version") = [];
 binFormats = ["-v4";"-v6";"-v7"];
 for varIndex=1:size(varNames,"*")
-  for formatIndex=1:size(binFormats,"*")
-    // Integers and NDarrays not saved in -v4 format
-    if formatIndex>1 | ...
-	(formatIndex==1 & isempty(strindex(varNames(varIndex), "int")) ...
-	& isempty(strindex(varNames(varIndex), "NDarray")) & isempty(strindex(varNames(varIndex), "cell")) & isempty(strindex(varNames(varIndex), "struct")) & isempty(strindex(varNames(varIndex), "sparse")))
-        // Save data in Matlab format
-        filename = TMPDIR+filesep()+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
-	saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
-        execstr(saveCmd);
-	// Read saved file
-	execstr("sci"+varNames(varIndex)+"="+varNames(varIndex)); // Save variable for comparison
-	execstr("clear "+varNames(varIndex)); // Clear variable
-	execstr("loadmatfile "+filename); // Load file contaning variable
-	execstr("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")"); // Compare
-	if ~compareOK then bugmes();quit;end // Stop execution if necessary
-	clear compareOK
-	mdelete(filename)
+    for formatIndex=1:size(binFormats,"*")
+        // Integers and NDarrays not saved in -v4 format
+        if formatIndex>1 | ...
+            (formatIndex==1 & isempty(strindex(varNames(varIndex), "int")) ...
+            & isempty(strindex(varNames(varIndex), "NDarray")) & isempty(strindex(varNames(varIndex), "cell")) & isempty(strindex(varNames(varIndex), "struct")) & isempty(strindex(varNames(varIndex), "sparse")))
+            // Save data in Matlab format
+            filename = TMPDIR+filesep()+varNames(varIndex)+binFormats(formatIndex)+"-scilab.mat";
+            saveCmd = "savematfile "+filename+" "+varNames(varIndex)+" "+binFormats(formatIndex);
+            execstr(saveCmd);
+            // Read saved file
+            execstr("sci"+varNames(varIndex)+"="+varNames(varIndex)); // Save variable for comparison
+            execstr("clear "+varNames(varIndex)); // Clear variable
+            execstr("loadmatfile "+filename); // Load file contaning variable
+            execstr("compareOK=and(sci"+varNames(varIndex)+"=="+varNames(varIndex)+")"); // Compare
+            if ~compareOK then bugmes();quit;end // Stop execution if necessary
+            clear compareOK
+            mdelete(filename)
+        end
     end
-  end
 end
 // TODO: save all variables in a single file ?

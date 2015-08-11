@@ -7,8 +7,7 @@
 // <-- Short Description -->
 // White-box test for the xcosPal macro.
 fields=["name";"blockNames";"icons";"style"]
- fields  =
- 
+fields  = 
 !name        !
 !            !
 !blockNames  !

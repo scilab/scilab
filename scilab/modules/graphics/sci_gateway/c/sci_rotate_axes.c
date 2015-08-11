@@ -30,7 +30,7 @@
 #include "getPropertyAssignedValue.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_rotate_axes(char *fname, unsigned long fname_len)
+int sci_rotate_axes(char *fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

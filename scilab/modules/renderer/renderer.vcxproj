@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -83,26 +83,34 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -115,25 +123,32 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -142,31 +157,42 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -178,31 +204,41 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>includes;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../core/includes;../windows_tools/includes;../output_stream/includes;../../java/jdk/include;../../java/jdk/include/win32;src/jni;../../libs/intl;../elementary_functions/includes;../gui/includes;../api_scilab/includes;../commons/src/jni;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>includes;src/cpp;src/jni;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../libs/intl;../jvm/includes;../localization/includes;../graphics/includes;../graphics/includes/handleDrawing;../graphic_export/includes;../commons/src/jni;../core/includes;../string/includes;../output_stream/includes;../elementary_functions/includes;../gui/includes;../api_scilab/includes;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;RENDERER_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
-      <DisableSpecificWarnings>4251</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)graphics_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)graphics.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>graphics.lib;core.lib;scilab_windows.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>graphics.lib;core.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -231,13 +267,15 @@ lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(
     <ResourceCompile Include="renderer.rc" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="locales\en_US\renderer.pot" />
+    <None Include="locales\renderer.pot" />
     <None Include="renderer_header.def" />
     <None Include="graphics_Import.def" />
     <None Include="core_import.def" />
-    <None Include="scilab_windows_Import.def" />
     <None Include="Makefile.am" />
     <None Include="renderer.iss" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\bin\libjvm.lib" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\tools\Dumpexts\Dumpexts.vcxproj">

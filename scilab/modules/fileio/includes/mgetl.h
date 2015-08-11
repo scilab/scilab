@@ -44,7 +44,7 @@ typedef enum
  *
  * @return  null if it fails, else strings readed.
 **/
-FILEIO_IMPEXP char ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
+FILEIO_IMPEXP wchar_t ** mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr);
 
 #endif /* __MGETL_H__ */
 /*--------------------------------------------------------------------------*/

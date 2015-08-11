@@ -67,6 +67,13 @@ public final class ScilabSpecialTextUtilities {
         if (icon == null) {
             // Shortcut when we are sure text is
             // neither Latex nor MathML
+            try {
+                //we set a void icon to erase an eventual latex or html one
+                setIcon(component, icon);
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
             return false;
         }
 

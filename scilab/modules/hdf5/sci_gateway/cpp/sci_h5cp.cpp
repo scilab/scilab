@@ -39,7 +39,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5cp(char *fname, unsigned long fname_len)
+int sci_h5cp(char *fname, int* pvApiCtx)
 {
     SciErr err;
     H5Object * sobj = 0;

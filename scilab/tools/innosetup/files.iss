@@ -17,6 +17,9 @@
 #ifndef SCILAB_X64
 #include BinariesSourcePath + "\tools\innosetup\atlas.iss"
 #endif
+#include BinariesSourcePath + "\tools\innosetup\MKL.iss"
+#include BinariesSourcePath + "\tools\innosetup\FFTW_MKL.iss"
+#include BinariesSourcePath + "\tools\innosetup\MKL_commons.iss"
 #include BinariesSourcePath + "\tools\tools.iss"
 #include BinariesSourcePath + "\contrib\toolbox_skeleton.iss"
 #include BinariesSourcePath + "\modules\core\core.iss"
@@ -26,7 +29,6 @@
 #include BinariesSourcePath + "\modules\output_stream\output_stream.iss"
 #include BinariesSourcePath + "\modules\string\string.iss"
 #include BinariesSourcePath + "\modules\io\io.iss"
-#include BinariesSourcePath + "\modules\double\double.iss"
 #include BinariesSourcePath + "\modules\integer\integer.iss"
 #include BinariesSourcePath + "\modules\overloading\overloading.iss"
 #include BinariesSourcePath + "\modules\elementary_functions\elementary_functions.iss"
@@ -63,11 +65,9 @@
 #include BinariesSourcePath + "\modules\statistics\statistics.iss"
 #include BinariesSourcePath + "\modules\signal_processing\signal_processing.iss"
 #include BinariesSourcePath + "\modules\javasci\javasci.iss"
-#include BinariesSourcePath + "\modules\intersci\intersci.iss"
 #include BinariesSourcePath + "\modules\mexlib\mexlib.iss"
 #include BinariesSourcePath + "\modules\m2sci\m2sci.iss"
 #include BinariesSourcePath + "\modules\randlib\randlib.iss"
-#include BinariesSourcePath + "\modules\symbolic\symbolic.iss"
 #include BinariesSourcePath + "\modules\interpolation\interpolation.iss"
 #include BinariesSourcePath + "\modules\umfpack\umfpack.iss"
 #include BinariesSourcePath + "\modules\fftw\fftw.iss"
@@ -87,15 +87,17 @@
 #include BinariesSourcePath + "\modules\scinotes\scinotes.iss"
 #include BinariesSourcePath + "\modules\xcos\xcos.iss"
 #include BinariesSourcePath + "\modules\graph\graph.iss"
-#ifndef SCILAB_F2C
-#include BinariesSourcePath + "\modules\parallel\parallel.iss"
-#endif
+;#ifndef SCILAB_F2C
+;#include BinariesSourcePath + "\modules\parallel\parallel.iss"
+;#endif
 #include BinariesSourcePath + "\modules\modules_manager\modules_manager.iss"
 #include BinariesSourcePath + "\modules\ui_data\ui_data.iss"
 #include BinariesSourcePath + "\modules\history_browser\history_browser.iss"
+#include BinariesSourcePath + "\modules\threads\threads.iss"
 #include BinariesSourcePath + "\modules\xml\xml.iss"
 #include BinariesSourcePath + "\modules\preferences\preferences.iss"
 #include BinariesSourcePath + "\modules\graphic_objects\graphic_objects.iss"
+#include BinariesSourcePath + "\modules\ast\ast.iss"
+#include BinariesSourcePath + "\modules\functions_manager\functions_manager.iss"
 #include BinariesSourcePath + "\modules\mpi\mpi.iss"
 ;-------------------------------------------------------------------------------
-;

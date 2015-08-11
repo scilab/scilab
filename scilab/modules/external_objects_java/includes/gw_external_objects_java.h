@@ -17,33 +17,34 @@
 #include "dynlib_external_objects_java_scilab.h"
 /*--------------------------------------------------------------------------*/
 EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int gw_external_objects_java(void);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jimport(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetclassname(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jwrap(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetmethods(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetfields(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetfield(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcompile(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jnewInstance(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jremove(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jexists(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_junwrap(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_junwraprem(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jenableTrace(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jdisableTrace(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jdeff(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jarray(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcast(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jallowClassReloading(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jwrapinfloat(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jsetfield(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoUnwrap(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoTranspose(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jconvMatrixMethod(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetinfo(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke_db(char *fname, unsigned long fname_len);
-EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcreatejar(char *fname, unsigned long fname_len);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jimport(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetclassname(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jwrap(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetmethods(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetfields(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetfield(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcompile(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jnewInstance(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jremove(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jexists(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_junwrap(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_junwraprem(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jenableTrace(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jdisableTrace(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jdeff(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jarray(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcast(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jallowClassReloading(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jwrapinfloat(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jsetfield(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoUnwrap(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jautoTranspose(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jconvMatrixMethod(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jgetinfo(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jinvoke_db(char *fname, void* pvApiCtx);
+EXTERNAL_OBJECTS_JAVA_SCILAB_IMPEXP int sci_jcreatejar(char *fname, void* pvApiCtx);
+
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_EXTERNAL_OBJECTS_H__ */
 /*--------------------------------------------------------------------------*/

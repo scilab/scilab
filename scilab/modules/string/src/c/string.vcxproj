@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -79,27 +79,36 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/pcre;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../functions/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilab_windows.lib;core.lib;string_f.lib;scilocalization.lib;linpack_f.lib;functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -112,26 +121,34 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/pcre;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../functions/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilab_windows.lib;core.lib;string_f.lib;scilocalization.lib;linpack_f.lib;functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -140,33 +157,45 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/pcre;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../functions/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4723</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilab_windows.lib;core.lib;string_f.lib;scilocalization.lib;linpack_f.lib;functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX86</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -178,33 +207,44 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
       <TargetEnvironment>X64</TargetEnvironment>
     </Midl>
     <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../cpp;../../../../libs/pcre;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../functions/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../../libs/pcre;../../../../libs/hashtable;../../../../libs/intl;../../../core/includes;../../../api_scilab/includes;../../../windows_tools/includes;../../../localization/includes;../../../output_stream/includes;../../../dynamic_link/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;STRING_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <CompileAs>Default</CompileAs>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <DisableSpecificWarnings>4723</DisableSpecificWarnings>
     </ClCompile>
     <PreLinkEvent>
       <Message>Make dependencies</Message>
       <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)string_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)string_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)scilab_windows_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilab_windows.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)localization_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)linpack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)functions.lib" 1&gt;NUL 2&gt;NUL
+lib /DEF:"$(ProjectDir)localization_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)scilocalization.lib" 1&gt;NUL 2&gt;NUL
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>scilab_windows.lib;core.lib;string_f.lib;scilocalization.lib;linpack_f.lib;functions.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>core.lib;scilocalization.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
       <TargetMachine>MachineX64</TargetMachine>
       <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
@@ -212,62 +252,27 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="..\cpp\os_wtoi.cpp" />
     <ClCompile Include="..\cpp\sort_inter.cpp" />
-    <ClCompile Include="code2str.c" />
     <ClCompile Include="convstr.c" />
     <ClCompile Include="cvstr.c" />
     <ClCompile Include="DllMainString.c" />
     <ClCompile Include="getfastcode.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_string.c" />
-    <ClCompile Include="InitializeString.c" />
     <ClCompile Include="isalphanum.c" />
+    <ClCompile Include="isascii.c" />
     <ClCompile Include="isdigit.c" />
     <ClCompile Include="isletter.c" />
     <ClCompile Include="men_Sutils.c" />
+    <ClCompile Include="os_wcstok.c" />
     <ClCompile Include="partfunction.c" />
     <ClCompile Include="pcre_error.c" />
     <ClCompile Include="pcre_private.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_ascii.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_code2str.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_convstr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_emptystr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_grep.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isalphanum.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isascii.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isdigit.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isletter.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_length.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_part.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_regexp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_str2code.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strcat.c">
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">MinSpace</Optimization>
-      <Optimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">MinSpace</Optimization>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_strchr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strcmp.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strcspn.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strindex.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_string.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_stripblanks.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strncpy.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strrev.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strsplit.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strspn.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strstr.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strsubst.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strtod.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_strtok.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_tokens.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_isnum.c" />
     <ClCompile Include="scistrtostr.c" />
-    <ClCompile Include="setScilabCharactersCodes.c" />
     <ClCompile Include="StringConvert.c" />
     <ClCompile Include="stringsCompare.c" />
-    <ClCompile Include="stringsstrrchr.c" />
     <ClCompile Include="stringsstrrev.c" />
+    <ClCompile Include="..\cpp\stripblanks.cpp" />
     <ClCompile Include="stringToDouble.c" />
-    <ClCompile Include="stripblanks.c" />
     <ClCompile Include="stristr.c" />
     <ClCompile Include="strsplit.c" />
     <ClCompile Include="strsubst.c" />
@@ -278,12 +283,8 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\string.pot" />
-    <None Include="functions_Import.def" />
     <None Include="core_import.def" />
-    <None Include="linpack_f_Import.def" />
     <None Include="localization_Import.def" />
-    <None Include="Scilab_windows_Import.def" />
-    <None Include="string_f_Import.def" />
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\string.iss" />
     <None Include="..\..\sci_gateway\string_gateway.xml" />
@@ -292,13 +293,16 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ResourceCompile Include="string.rc" />
   </ItemGroup>
   <ItemGroup>
+    <Library Include="..\..\..\..\bin\blasplus.lib" />
+    <Library Include="..\..\..\..\bin\lapack.lib" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\..\..\..\tools\Dumpexts\Dumpexts.vcxproj">
       <Project>{3170e4c2-1173-4264-a222-7ee8ccb3ddf7}</Project>
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\api_scilab\api_scilab.vcxproj">
-      <Project>{43c5bab1-1dca-4743-a183-77e0d42fe7d0}</Project>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
     </ProjectReference>
     <ProjectReference Include="..\..\..\integer\src\c\integer.vcxproj">
       <Project>{c7865caa-ec7c-41eb-8324-2b81c384ca20}</Project>
@@ -310,21 +314,22 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\includes\code2str.h" />
     <ClInclude Include="..\..\includes\cvstr.h" />
     <ClInclude Include="..\..\includes\dynlib_string.h" />
+    <ClInclude Include="..\..\includes\dynlib_string_gw.h" />
     <ClInclude Include="..\..\includes\getfastcode.h" />
-    <ClInclude Include="..\..\includes\gw_string.h" />
-    <ClInclude Include="..\..\includes\InitializeString.h" />
     <ClInclude Include="..\..\includes\men_Sutils.h" />
+    <ClInclude Include="..\..\includes\os_string.h" />
+    <ClInclude Include="..\..\includes\os_wcstok.h" />
+    <ClInclude Include="..\..\includes\os_wtoi.h" />
     <ClInclude Include="..\..\includes\pcre_private.h" />
     <ClInclude Include="..\..\includes\scistrtostr.h" />
-    <ClInclude Include="..\..\includes\stricmp.h" />
     <ClInclude Include="..\..\includes\StringConvert.h" />
     <ClInclude Include="..\..\includes\stringToDouble.h" />
-    <ClInclude Include="..\..\includes\stripblanks.h" />
+    <ClInclude Include="..\..\includes\string_gw.hxx" />
     <ClInclude Include="..\..\includes\stristr.h" />
     <ClInclude Include="..\..\includes\strsubst.h" />
+    <ClInclude Include="..\cpp\stripblanks.hxx" />
     <ClInclude Include="..\..\includes\stringToComplex.h" />
     <ClInclude Include="..\..\includes\complex_array.h" />
     <ClInclude Include="..\cpp\sort_inter.h" />
@@ -332,14 +337,13 @@ lib /DEF:"$(ProjectDir)functions_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClInclude Include="convstr.h" />
     <ClInclude Include="CreateEmptystr.h" />
     <ClInclude Include="isalphanum.h" />
+    <ClInclude Include="isascii.h" />
     <ClInclude Include="isdigit.h" />
     <ClInclude Include="isletter.h" />
     <ClInclude Include="partfunction.h" />
     <ClInclude Include="pcre_error.h" />
     <ClInclude Include="pcre_internal.h" />
-    <ClInclude Include="setScilabCharactersCodes.h" />
     <ClInclude Include="stringsCompare.h" />
-    <ClInclude Include="stringsstrrchr.h" />
     <ClInclude Include="stringsstrrev.h" />
     <ClInclude Include="strsplit.h" />
     <ClInclude Include="tokens.h" />

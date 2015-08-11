@@ -17,6 +17,7 @@
 #
 # Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 # Copyright (C) DIGITEO - 2010 - Allan CORNET
+# Copyright (C) DIGITEO - 2010 - Bruno JOFRET
 #
 # This file must be used under the terms of the CeCILL.
 # This source file is licensed as described in the file COPYING, which
@@ -111,13 +112,25 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 	$(top_srcdir)/config/depcomp
 @NEED_JAVA_TRUE@am__append_1 = java
 @GIWS_TRUE@am__append_2 = giws
-@GUI_TRUE@am__append_3 = libscitypes.la
-@SWIG_TRUE@am__append_4 = swig
+@ENABLE_DEBUG_TRUE@am__append_3 = \
+@ENABLE_DEBUG_TRUE@    sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorGetItem.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorShowItem.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+
+@GUI_TRUE@am__append_4 = libscitypes-java.la
+@SWIG_TRUE@am__append_5 = swig
+check_PROGRAMS = testTypes$(EXEEXT)
+TESTS = testTypes$(EXEEXT)
 subdir = modules/types
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -169,38 +182,65 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 	"$(DESTDIR)$(libscitypes_la_etcdir)" \
 	"$(DESTDIR)$(libscitypes_la_rootdir)" \
 	"$(DESTDIR)$(libscitypes_la_sci_gatewaydir)"
-LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
-libscitypes_algo_la_LIBADD =
+LTLIBRARIES = $(pkglib_LTLIBRARIES)
+libscitypes_java_la_DEPENDENCIES =  \
+	$(top_builddir)/modules/commons/libscicommons.la \
+	$(top_builddir)/modules/jvm/libscijvm.la
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo
-am__objects_2 =
-am__objects_3 = src/cpp/libscitypes_algo_la-ScilabToJava.lo \
-	src/jni/libscitypes_algo_la-ScilabVariables.lo \
-	src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo \
-	src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo
-am_libscitypes_algo_la_OBJECTS = $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3)
-libscitypes_algo_la_OBJECTS = $(am_libscitypes_algo_la_OBJECTS)
+am__objects_1 = src/jni/libscitypes_java_la-getScilabVariable_wrap.lo
+am__objects_2 = src/cpp/libscitypes_java_la-ScilabToJava.lo \
+	src/jni/libscitypes_java_la-ScilabVariables.lo \
+	src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo \
+	src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo
+am_libscitypes_java_la_OBJECTS = $(am__objects_1) $(am__objects_2)
+libscitypes_java_la_OBJECTS = $(am_libscitypes_java_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
-@GUI_TRUE@am_libscitypes_algo_la_rpath =
-libscitypes_disable_la_LIBADD =
-am_libscitypes_disable_la_OBJECTS = $(am__objects_2)
-libscitypes_disable_la_OBJECTS = $(am_libscitypes_disable_la_OBJECTS)
-libscitypes_la_DEPENDENCIES =  \
-	$(top_builddir)/modules/commons/libscicommons.la \
-	$(top_builddir)/modules/jvm/libscijvm.la
-am__objects_4 = src/jni/libscitypes_la-getScilabVariable_wrap.lo
-am__objects_5 = src/cpp/libscitypes_la-ScilabToJava.lo \
-	src/jni/libscitypes_la-ScilabVariables.lo \
-	src/jni/libscitypes_la-ScilabVariablesRefresh.lo \
-	src/jni/libscitypes_la-ScilabPolynomialToJava.lo
-am_libscitypes_la_OBJECTS = $(am__objects_4) $(am__objects_2) \
-	$(am__objects_5)
+@GUI_TRUE@am_libscitypes_java_la_rpath = -rpath $(pkglibdir)
+libscitypes_la_LIBADD =
+am__libscitypes_la_SOURCES_DIST = sci_gateway/cpp/types_gw.cpp \
+	sci_gateway/cpp/sci_list.cpp sci_gateway/cpp/sci_struct.cpp \
+	sci_gateway/cpp/sci_insert.cpp sci_gateway/cpp/sci_null.cpp \
+	sci_gateway/cpp/sci_cell.cpp sci_gateway/cpp/sci_makecell.cpp \
+	sci_gateway/cpp/sci_usertype.cpp \
+	sci_gateway/cpp/sci_typeof.cpp sci_gateway/cpp/sci_tlist.cpp \
+	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_fieldnames.cpp \
+	sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp \
+	sci_gateway/cpp/sci_inspectorGetItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetItemCount.cpp \
+	sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowItem.cpp \
+	sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp \
+	sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+@ENABLE_DEBUG_TRUE@am__objects_3 = sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo \
+@ENABLE_DEBUG_TRUE@	sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo
+am__objects_4 = sci_gateway/cpp/libscitypes_la-types_gw.lo \
+	sci_gateway/cpp/libscitypes_la-sci_list.lo \
+	sci_gateway/cpp/libscitypes_la-sci_struct.lo \
+	sci_gateway/cpp/libscitypes_la-sci_insert.lo \
+	sci_gateway/cpp/libscitypes_la-sci_null.lo \
+	sci_gateway/cpp/libscitypes_la-sci_cell.lo \
+	sci_gateway/cpp/libscitypes_la-sci_makecell.lo \
+	sci_gateway/cpp/libscitypes_la-sci_usertype.lo \
+	sci_gateway/cpp/libscitypes_la-sci_typeof.lo \
+	sci_gateway/cpp/libscitypes_la-sci_tlist.lo \
+	sci_gateway/cpp/libscitypes_la-sci_mlist.lo \
+	sci_gateway/cpp/libscitypes_la-sci_isfield.lo \
+	sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo \
+	$(am__objects_3)
+am_libscitypes_la_OBJECTS = $(am__objects_4)
 libscitypes_la_OBJECTS = $(am_libscitypes_la_OBJECTS)
-@GUI_TRUE@am_libscitypes_la_rpath = -rpath $(pkglibdir)
+am_testTypes_OBJECTS = src/cpp/testTypes-test-types.$(OBJEXT)
+testTypes_OBJECTS = $(am_testTypes_OBJECTS)
+testTypes_DEPENDENCIES = $(top_builddir)/modules/ast/libsciast.la
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -253,10 +293,10 @@ AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
 am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
 am__v_CXXLD_0 = @echo "  CXXLD   " $@;
 am__v_CXXLD_1 = 
-SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_disable_la_SOURCES) $(libscitypes_la_SOURCES)
-DIST_SOURCES = $(libscitypes_algo_la_SOURCES) \
-	$(libscitypes_disable_la_SOURCES) $(libscitypes_la_SOURCES)
+SOURCES = $(libscitypes_java_la_SOURCES) $(libscitypes_la_SOURCES) \
+	$(testTypes_SOURCES)
+DIST_SOURCES = $(libscitypes_java_la_SOURCES) \
+	$(am__libscitypes_la_SOURCES_DIST) $(testTypes_SOURCES)
 am__can_run_installinfo = \
   case $$AM_UPDATE_INFO_DIR in \
     n|no|NO) false;; \
@@ -283,6 +323,28 @@ am__define_uniq_tagged_files = \
   done | $(am__uniquify_input)`
 ETAGS = etags
 CTAGS = ctags
+am__tty_colors_dummy = \
+  mgn= red= grn= lgn= blu= brg= std=; \
+  am__color_tests=no
+am__tty_colors = { \
+  $(am__tty_colors_dummy); \
+  if test "X$(AM_COLOR_TESTS)" = Xno; then \
+    am__color_tests=no; \
+  elif test "X$(AM_COLOR_TESTS)" = Xalways; then \
+    am__color_tests=yes; \
+  elif test "X$$TERM" != Xdumb && { test -t 1; } 2>/dev/null; then \
+    am__color_tests=yes; \
+  fi; \
+  if test $$am__color_tests = yes; then \
+    red='[0;31m'; \
+    grn='[0;32m'; \
+    lgn='[1;32m'; \
+    blu='[1;34m'; \
+    mgn='[0;35m'; \
+    brg='[1m'; \
+    std='[m'; \
+  fi; \
+}
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
 ACLOCAL = @ACLOCAL@
 ALL_LINGUAS = @ALL_LINGUAS@
@@ -334,6 +396,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -357,6 +420,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -393,6 +457,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -508,6 +575,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -563,13 +632,14 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 
 #### Target ######
 modulename = types
 
 #### types : Conf files ####
 libscitypes_la_rootdir = $(mydatadir)
-libscitypes_la_root_DATA = license.txt 
+libscitypes_la_root_DATA = license.txt
 
 #### types : init scripts ####
 libscitypes_la_etcdir = $(mydatadir)/etc
@@ -603,7 +673,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -645,45 +715,94 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
-TYPES_JNI_SOURCES = 
-TYPES_C_SOURCES = src/jni/getScilabVariable_wrap.c
-TYPES_CXX_SOURCES = src/cpp/ScilabToJava.cpp \
-	            src/jni/ScilabVariables.cpp \
-	            src/jni/ScilabVariablesRefresh.cpp \
-		    src/jni/ScilabPolynomialToJava.cpp
+
+#### types : include files ####
+libscitypes_la_includedir = $(pkgincludedir)
+TYPES_JAVA_C_SOURCES = src/jni/getScilabVariable_wrap.c
+TYPES_JAVA_CPP_SOURCES = \
+    src/cpp/ScilabToJava.cpp \
+    src/jni/ScilabVariables.cpp \
+    src/jni/ScilabVariablesRefresh.cpp \
+    src/jni/ScilabPolynomialToJava.cpp
 
 GIWS_WRAPPERS = src/jni/ScilabVariables.giws.xml
-BUILT_SOURCES = $(am__append_2) $(am__append_4)
+BUILT_SOURCES = $(am__append_2) $(am__append_5)
+TYPES_GATEWAY_CPP_SOURCES = sci_gateway/cpp/types_gw.cpp \
+	sci_gateway/cpp/sci_list.cpp sci_gateway/cpp/sci_struct.cpp \
+	sci_gateway/cpp/sci_insert.cpp sci_gateway/cpp/sci_null.cpp \
+	sci_gateway/cpp/sci_cell.cpp sci_gateway/cpp/sci_makecell.cpp \
+	sci_gateway/cpp/sci_usertype.cpp \
+	sci_gateway/cpp/sci_typeof.cpp sci_gateway/cpp/sci_tlist.cpp \
+	sci_gateway/cpp/sci_mlist.cpp sci_gateway/cpp/sci_isfield.cpp \
+	sci_gateway/cpp/sci_fieldnames.cpp $(am__append_3)
+libscitypes_java_la_CFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(srcdir)/includes
 
-#GATEWAY_C_SOURCES =
+libscitypes_java_la_CPPFLAGS = \
+    $(JAVA_JNI_INCLUDE) \
+    -I$(srcdir)/src/jni \
+    -I$(srcdir)/src/cpp \
+    -I$(srcdir)/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/commons/src/jni/ \
+    -I$(top_srcdir)/modules/jvm/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    $(AM_CPPFLAGS)
 
-#GATEWAY_CXX_SOURCES =
-libscitypes_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
-			   -I$(srcdir)/includes/ \
-			   -I$(srcdir)/src/jni/ \
-			   -I$(srcdir)/src/cpp/ \
-			   -I$(srcdir)/includes/ \
-			   -I$(top_srcdir)/modules/commons/src/jni/ \
-			   -I$(top_srcdir)/modules/jvm/includes/ \
-			   -I$(top_srcdir)/modules/output_stream/includes/ \
-			   -I$(top_srcdir)/modules/api_scilab/includes/ \
-			   $(AM_CPPFLAGS)
+libscitypes_la_CPPFLAGS = \
+	-I$(srcdir)/includes \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+	-I$(top_srcdir)/modules/elementary_functions/includes \
+	-I$(top_srcdir)/modules/localization/includes \
+	-I$(top_srcdir)/modules/output_stream/includes \
+	-I$(top_srcdir)/modules/functions_manager/includes \
+	-I$(top_srcdir)/modules/string/includes \
+	-I$(top_srcdir)/modules/threads/includes \
+    -I$(top_srcdir)/modules/dynamic_link/includes \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/console/includes \
+	-I$(srcdir)/src/cpp \
+	$(AM_CPPFLAGS)
 
-TYPES_DISABLE_C_SOURCES = 
-libscitypes_disable_la_SOURCES = $(TYPES_DISABLE_C_SOURCES)
-libscitypes_algo_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CXX_SOURCES)
-libscitypes_algo_la_CPPFLAGS = $(libscitypes_la_CPPFLAGS)
-libscitypes_la_LIBADD = $(top_builddir)/modules/commons/libscicommons.la \
+pkglib_LTLIBRARIES = libscitypes.la $(am__append_4)
+libscitypes_algo_la_CPPFLAGS = \
+    $(libscitypes_la_CPPFLAGS) \
+    $(AM_CPPFLAGS)
+
+libscitypes_java_la_LIBADD = \
+			$(top_builddir)/modules/commons/libscicommons.la \
 			$(top_builddir)/modules/jvm/libscijvm.la
 
-pkglib_LTLIBRARIES = libscitypes-disable.la $(am__append_3)
-@GUI_TRUE@noinst_LTLIBRARIES = libscitypes-algo.la
-libscitypes_la_SOURCES = $(TYPES_C_SOURCES) $(TYPES_JNI_SOURCES) $(TYPES_CXX_SOURCES)
-#libscitypes_algo_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_CXX_SOURCES)
+libscitypes_java_la_SOURCES = $(TYPES_JAVA_C_SOURCES) $(TYPES_JAVA_CPP_SOURCES)
+libscitypes_la_SOURCES = $(TYPES_GATEWAY_CPP_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(TYPES_C_SOURCES) $(GATEWAY_C_SOURCES)
@@ -698,6 +817,17 @@ SWIG_WRAPPERS = src/jni/sci_types.i \
 libscitypes_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscitypes_la_sci_gateway_DATA = 
 @NEED_JAVA_TRUE@USEANT = 1
+
+####################
+####################
+check_INCLUDES = \
+    -Iincludes/ \
+    -Isrc/cpp \
+    -I$(top_srcdir)/modules/ast/includes
+
+testTypes_SOURCES = src/cpp/test-types.cpp
+testTypes_CPPFLAGS = $(check_INCLUDES)
+testTypes_LDADD = $(top_builddir)/modules/ast/libsciast.la
 all: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) all-am
 
@@ -734,17 +864,6 @@ $(top_srcdir)/configure: @MAINTAINER_MODE_TRUE@ $(am__configure_deps)
 $(ACLOCAL_M4): @MAINTAINER_MODE_TRUE@ $(am__aclocal_m4_deps)
 	cd $(top_builddir) && $(MAKE) $(AM_MAKEFLAGS) am--refresh
 $(am__aclocal_m4_deps):
-
-clean-noinstLTLIBRARIES:
-	-test -z "$(noinst_LTLIBRARIES)" || rm -f $(noinst_LTLIBRARIES)
-	@list='$(noinst_LTLIBRARIES)'; \
-	locs=`for p in $$list; do echo $$p; done | \
-	      sed 's|^[^/]*$$|.|; s|/[^/]*$$||; s|$$|/so_locations|' | \
-	      sort -u`; \
-	test -z "$$locs" || { \
-	  echo rm -f $${locs}; \
-	  rm -f $${locs}; \
-	}
 
 install-pkglibLTLIBRARIES: $(pkglib_LTLIBRARIES)
 	@$(NORMAL_INSTALL)
@@ -786,7 +905,7 @@ src/jni/$(am__dirstamp):
 src/jni/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/jni/$(DEPDIR)
 	@: > src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo:  \
+src/jni/libscitypes_java_la-getScilabVariable_wrap.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 src/cpp/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp
@@ -794,36 +913,106 @@ src/cpp/$(am__dirstamp):
 src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/$(DEPDIR)
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscitypes_algo_la-ScilabToJava.lo: src/cpp/$(am__dirstamp) \
+src/cpp/libscitypes_java_la-ScilabToJava.lo: src/cpp/$(am__dirstamp) \
 	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_algo_la-ScilabVariables.lo:  \
+src/jni/libscitypes_java_la-ScilabVariables.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo:  \
+src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo:  \
+src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo:  \
 	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
 
-libscitypes-algo.la: $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_DEPENDENCIES) $(EXTRA_libscitypes_algo_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) $(am_libscitypes_algo_la_rpath) $(libscitypes_algo_la_OBJECTS) $(libscitypes_algo_la_LIBADD) $(LIBS)
-
-libscitypes-disable.la: $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_DEPENDENCIES) $(EXTRA_libscitypes_disable_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) -rpath $(pkglibdir) $(libscitypes_disable_la_OBJECTS) $(libscitypes_disable_la_LIBADD) $(LIBS)
-src/jni/libscitypes_la-getScilabVariable_wrap.lo:  \
-	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscitypes_la-ScilabToJava.lo: src/cpp/$(am__dirstamp) \
-	src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_la-ScilabVariables.lo: src/jni/$(am__dirstamp) \
-	src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_la-ScilabVariablesRefresh.lo:  \
-	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
-src/jni/libscitypes_la-ScilabPolynomialToJava.lo:  \
-	src/jni/$(am__dirstamp) src/jni/$(DEPDIR)/$(am__dirstamp)
+libscitypes-java.la: $(libscitypes_java_la_OBJECTS) $(libscitypes_java_la_DEPENDENCIES) $(EXTRA_libscitypes_java_la_DEPENDENCIES) 
+	$(AM_V_CXXLD)$(CXXLINK) $(am_libscitypes_java_la_rpath) $(libscitypes_java_la_OBJECTS) $(libscitypes_java_la_LIBADD) $(LIBS)
+sci_gateway/cpp/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp
+	@: > sci_gateway/cpp/$(am__dirstamp)
+sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
+	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
+	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-types_gw.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_list.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_struct.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_insert.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_null.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_cell.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_makecell.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_usertype.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_typeof.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_tlist.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_mlist.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_isfield.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo:  \
+	sci_gateway/cpp/$(am__dirstamp) \
+	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
 
 libscitypes.la: $(libscitypes_la_OBJECTS) $(libscitypes_la_DEPENDENCIES) $(EXTRA_libscitypes_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) $(am_libscitypes_la_rpath) $(libscitypes_la_OBJECTS) $(libscitypes_la_LIBADD) $(LIBS)
+	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscitypes_la_OBJECTS) $(libscitypes_la_LIBADD) $(LIBS)
+
+clean-checkPROGRAMS:
+	@list='$(check_PROGRAMS)'; test -n "$$list" || exit 0; \
+	echo " rm -f" $$list; \
+	rm -f $$list || exit $$?; \
+	test -n "$(EXEEXT)" || exit 0; \
+	list=`for p in $$list; do echo "$$p"; done | sed 's/$(EXEEXT)$$//'`; \
+	echo " rm -f" $$list; \
+	rm -f $$list
+src/cpp/testTypes-test-types.$(OBJEXT): src/cpp/$(am__dirstamp) \
+	src/cpp/$(DEPDIR)/$(am__dirstamp)
+
+testTypes$(EXEEXT): $(testTypes_OBJECTS) $(testTypes_DEPENDENCIES) $(EXTRA_testTypes_DEPENDENCIES) 
+	@rm -f testTypes$(EXEEXT)
+	$(AM_V_CXXLD)$(CXXLINK) $(testTypes_OBJECTS) $(testTypes_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.$(OBJEXT)
+	-rm -f sci_gateway/cpp/*.lo
 	-rm -f src/cpp/*.$(OBJEXT)
 	-rm -f src/cpp/*.lo
 	-rm -f src/jni/*.$(OBJEXT)
@@ -832,16 +1021,32 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_algo_la-ScilabToJava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_la-ScilabToJava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabPolynomialToJava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariables.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariablesRefresh.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_algo_la-getScilabVariable_wrap.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_la-ScilabPolynomialToJava.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_la-ScilabVariables.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_la-ScilabVariablesRefresh.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_cell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_fieldnames.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_insert.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorDeleteUnreferencedItems.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetFunctionList.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItem.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItemCount.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetUnreferencedItem.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowItem.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowUnreferencedItem.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_isfield.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_list.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_makecell.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_mlist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_null.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_struct.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_tlist.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_typeof.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_usertype.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscitypes_la-types_gw.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscitypes_java_la-ScilabToJava.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/testTypes-test-types.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_java_la-ScilabPolynomialToJava.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariables.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariablesRefresh.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscitypes_java_la-getScilabVariable_wrap.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -867,19 +1072,12 @@ distclean-compile:
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
-src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_algo_la-getScilabVariable_wrap.Tpo -c -o src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_algo_la-getScilabVariable_wrap.Tpo src/jni/$(DEPDIR)/libscitypes_algo_la-getScilabVariable_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/getScilabVariable_wrap.c' object='src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscitypes_java_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(libscitypes_java_la_CFLAGS) $(CFLAGS) -MT src/jni/libscitypes_java_la-getScilabVariable_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_java_la-getScilabVariable_wrap.Tpo -c -o src/jni/libscitypes_java_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_java_la-getScilabVariable_wrap.Tpo src/jni/$(DEPDIR)/libscitypes_java_la-getScilabVariable_wrap.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/getScilabVariable_wrap.c' object='src/jni/libscitypes_java_la-getScilabVariable_wrap.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscitypes_algo_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
-
-src/jni/libscitypes_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/jni/libscitypes_la-getScilabVariable_wrap.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Tpo -c -o src/jni/libscitypes_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Tpo src/jni/$(DEPDIR)/libscitypes_la-getScilabVariable_wrap.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/jni/getScilabVariable_wrap.c' object='src/jni/libscitypes_la-getScilabVariable_wrap.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/jni/libscitypes_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(libscitypes_java_la_CFLAGS) $(CFLAGS) -c -o src/jni/libscitypes_java_la-getScilabVariable_wrap.lo `test -f 'src/jni/getScilabVariable_wrap.c' || echo '$(srcdir)/'`src/jni/getScilabVariable_wrap.c
 
 .cpp.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -905,67 +1103,194 @@ src/jni/libscitypes_la-getScilabVariable_wrap.lo: src/jni/getScilabVariable_wrap
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
 
-src/cpp/libscitypes_algo_la-ScilabToJava.lo: src/cpp/ScilabToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitypes_algo_la-ScilabToJava.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitypes_algo_la-ScilabToJava.Tpo -c -o src/cpp/libscitypes_algo_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscitypes_algo_la-ScilabToJava.Tpo src/cpp/$(DEPDIR)/libscitypes_algo_la-ScilabToJava.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabToJava.cpp' object='src/cpp/libscitypes_algo_la-ScilabToJava.lo' libtool=yes @AMDEPBACKSLASH@
+src/cpp/libscitypes_java_la-ScilabToJava.lo: src/cpp/ScilabToJava.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitypes_java_la-ScilabToJava.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitypes_java_la-ScilabToJava.Tpo -c -o src/cpp/libscitypes_java_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscitypes_java_la-ScilabToJava.Tpo src/cpp/$(DEPDIR)/libscitypes_java_la-ScilabToJava.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabToJava.cpp' object='src/cpp/libscitypes_java_la-ScilabToJava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscitypes_algo_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscitypes_java_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
 
-src/jni/libscitypes_algo_la-ScilabVariables.lo: src/jni/ScilabVariables.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_algo_la-ScilabVariables.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariables.Tpo -c -o src/jni/libscitypes_algo_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariables.Tpo src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariables.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariables.cpp' object='src/jni/libscitypes_algo_la-ScilabVariables.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscitypes_java_la-ScilabVariables.lo: src/jni/ScilabVariables.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_java_la-ScilabVariables.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariables.Tpo -c -o src/jni/libscitypes_java_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariables.Tpo src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariables.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariables.cpp' object='src/jni/libscitypes_java_la-ScilabVariables.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_algo_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_java_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
 
-src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo: src/jni/ScilabVariablesRefresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariablesRefresh.Tpo -c -o src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariablesRefresh.Tpo src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabVariablesRefresh.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariablesRefresh.cpp' object='src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo: src/jni/ScilabVariablesRefresh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariablesRefresh.Tpo -c -o src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariablesRefresh.Tpo src/jni/$(DEPDIR)/libscitypes_java_la-ScilabVariablesRefresh.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariablesRefresh.cpp' object='src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_algo_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_java_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
 
-src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo: src/jni/ScilabPolynomialToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabPolynomialToJava.Tpo -c -o src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabPolynomialToJava.Tpo src/jni/$(DEPDIR)/libscitypes_algo_la-ScilabPolynomialToJava.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabPolynomialToJava.cpp' object='src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo' libtool=yes @AMDEPBACKSLASH@
+src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo: src/jni/ScilabPolynomialToJava.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_java_la-ScilabPolynomialToJava.Tpo -c -o src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_java_la-ScilabPolynomialToJava.Tpo src/jni/$(DEPDIR)/libscitypes_java_la-ScilabPolynomialToJava.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabPolynomialToJava.cpp' object='src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_algo_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_java_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_java_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
 
-src/cpp/libscitypes_la-ScilabToJava.lo: src/cpp/ScilabToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscitypes_la-ScilabToJava.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscitypes_la-ScilabToJava.Tpo -c -o src/cpp/libscitypes_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscitypes_la-ScilabToJava.Tpo src/cpp/$(DEPDIR)/libscitypes_la-ScilabToJava.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/ScilabToJava.cpp' object='src/cpp/libscitypes_la-ScilabToJava.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscitypes_la-types_gw.lo: sci_gateway/cpp/types_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-types_gw.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-types_gw.Tpo -c -o sci_gateway/cpp/libscitypes_la-types_gw.lo `test -f 'sci_gateway/cpp/types_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/types_gw.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-types_gw.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-types_gw.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/types_gw.cpp' object='sci_gateway/cpp/libscitypes_la-types_gw.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscitypes_la-ScilabToJava.lo `test -f 'src/cpp/ScilabToJava.cpp' || echo '$(srcdir)/'`src/cpp/ScilabToJava.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-types_gw.lo `test -f 'sci_gateway/cpp/types_gw.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/types_gw.cpp
 
-src/jni/libscitypes_la-ScilabVariables.lo: src/jni/ScilabVariables.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_la-ScilabVariables.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_la-ScilabVariables.Tpo -c -o src/jni/libscitypes_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_la-ScilabVariables.Tpo src/jni/$(DEPDIR)/libscitypes_la-ScilabVariables.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariables.cpp' object='src/jni/libscitypes_la-ScilabVariables.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscitypes_la-sci_list.lo: sci_gateway/cpp/sci_list.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_list.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_list.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_list.lo `test -f 'sci_gateway/cpp/sci_list.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_list.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_list.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_list.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_list.cpp' object='sci_gateway/cpp/libscitypes_la-sci_list.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_la-ScilabVariables.lo `test -f 'src/jni/ScilabVariables.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariables.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_list.lo `test -f 'sci_gateway/cpp/sci_list.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_list.cpp
 
-src/jni/libscitypes_la-ScilabVariablesRefresh.lo: src/jni/ScilabVariablesRefresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_la-ScilabVariablesRefresh.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_la-ScilabVariablesRefresh.Tpo -c -o src/jni/libscitypes_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_la-ScilabVariablesRefresh.Tpo src/jni/$(DEPDIR)/libscitypes_la-ScilabVariablesRefresh.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabVariablesRefresh.cpp' object='src/jni/libscitypes_la-ScilabVariablesRefresh.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscitypes_la-sci_struct.lo: sci_gateway/cpp/sci_struct.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_struct.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_struct.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_struct.lo `test -f 'sci_gateway/cpp/sci_struct.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_struct.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_struct.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_struct.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_struct.cpp' object='sci_gateway/cpp/libscitypes_la-sci_struct.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_la-ScilabVariablesRefresh.lo `test -f 'src/jni/ScilabVariablesRefresh.cpp' || echo '$(srcdir)/'`src/jni/ScilabVariablesRefresh.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_struct.lo `test -f 'sci_gateway/cpp/sci_struct.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_struct.cpp
 
-src/jni/libscitypes_la-ScilabPolynomialToJava.lo: src/jni/ScilabPolynomialToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscitypes_la-ScilabPolynomialToJava.lo -MD -MP -MF src/jni/$(DEPDIR)/libscitypes_la-ScilabPolynomialToJava.Tpo -c -o src/jni/libscitypes_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/jni/$(DEPDIR)/libscitypes_la-ScilabPolynomialToJava.Tpo src/jni/$(DEPDIR)/libscitypes_la-ScilabPolynomialToJava.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/jni/ScilabPolynomialToJava.cpp' object='src/jni/libscitypes_la-ScilabPolynomialToJava.lo' libtool=yes @AMDEPBACKSLASH@
+sci_gateway/cpp/libscitypes_la-sci_insert.lo: sci_gateway/cpp/sci_insert.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_insert.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_insert.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_insert.lo `test -f 'sci_gateway/cpp/sci_insert.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insert.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_insert.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_insert.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_insert.cpp' object='sci_gateway/cpp/libscitypes_la-sci_insert.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/jni/libscitypes_la-ScilabPolynomialToJava.lo `test -f 'src/jni/ScilabPolynomialToJava.cpp' || echo '$(srcdir)/'`src/jni/ScilabPolynomialToJava.cpp
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_insert.lo `test -f 'sci_gateway/cpp/sci_insert.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_insert.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_null.lo: sci_gateway/cpp/sci_null.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_null.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_null.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_null.lo `test -f 'sci_gateway/cpp/sci_null.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_null.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_null.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_null.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_null.cpp' object='sci_gateway/cpp/libscitypes_la-sci_null.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_null.lo `test -f 'sci_gateway/cpp/sci_null.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_null.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_cell.lo: sci_gateway/cpp/sci_cell.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_cell.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_cell.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_cell.lo `test -f 'sci_gateway/cpp/sci_cell.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cell.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_cell.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_cell.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_cell.cpp' object='sci_gateway/cpp/libscitypes_la-sci_cell.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_cell.lo `test -f 'sci_gateway/cpp/sci_cell.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_cell.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_makecell.lo: sci_gateway/cpp/sci_makecell.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_makecell.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_makecell.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_makecell.lo `test -f 'sci_gateway/cpp/sci_makecell.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_makecell.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_makecell.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_makecell.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_makecell.cpp' object='sci_gateway/cpp/libscitypes_la-sci_makecell.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_makecell.lo `test -f 'sci_gateway/cpp/sci_makecell.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_makecell.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_usertype.lo: sci_gateway/cpp/sci_usertype.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_usertype.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_usertype.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_usertype.lo `test -f 'sci_gateway/cpp/sci_usertype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usertype.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_usertype.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_usertype.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_usertype.cpp' object='sci_gateway/cpp/libscitypes_la-sci_usertype.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_usertype.lo `test -f 'sci_gateway/cpp/sci_usertype.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_usertype.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_typeof.lo: sci_gateway/cpp/sci_typeof.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_typeof.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_typeof.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_typeof.lo `test -f 'sci_gateway/cpp/sci_typeof.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_typeof.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_typeof.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_typeof.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_typeof.cpp' object='sci_gateway/cpp/libscitypes_la-sci_typeof.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_typeof.lo `test -f 'sci_gateway/cpp/sci_typeof.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_typeof.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_tlist.lo: sci_gateway/cpp/sci_tlist.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_tlist.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_tlist.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_tlist.lo `test -f 'sci_gateway/cpp/sci_tlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tlist.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_tlist.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_tlist.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_tlist.cpp' object='sci_gateway/cpp/libscitypes_la-sci_tlist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_tlist.lo `test -f 'sci_gateway/cpp/sci_tlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_tlist.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_mlist.lo: sci_gateway/cpp/sci_mlist.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_mlist.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_mlist.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_mlist.lo `test -f 'sci_gateway/cpp/sci_mlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mlist.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_mlist.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_mlist.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_mlist.cpp' object='sci_gateway/cpp/libscitypes_la-sci_mlist.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_mlist.lo `test -f 'sci_gateway/cpp/sci_mlist.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_mlist.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_isfield.lo: sci_gateway/cpp/sci_isfield.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_isfield.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_isfield.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_isfield.lo `test -f 'sci_gateway/cpp/sci_isfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isfield.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_isfield.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_isfield.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_isfield.cpp' object='sci_gateway/cpp/libscitypes_la-sci_isfield.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_isfield.lo `test -f 'sci_gateway/cpp/sci_isfield.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_isfield.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo: sci_gateway/cpp/sci_fieldnames.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_fieldnames.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo `test -f 'sci_gateway/cpp/sci_fieldnames.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fieldnames.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_fieldnames.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_fieldnames.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_fieldnames.cpp' object='sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_fieldnames.lo `test -f 'sci_gateway/cpp/sci_fieldnames.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fieldnames.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo: sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorDeleteUnreferencedItems.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo `test -f 'sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorDeleteUnreferencedItems.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorDeleteUnreferencedItems.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorDeleteUnreferencedItems.lo `test -f 'sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorDeleteUnreferencedItems.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo: sci_gateway/cpp/sci_inspectorGetItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItem.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo `test -f 'sci_gateway/cpp/sci_inspectorGetItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItem.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorGetItem.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetItem.lo `test -f 'sci_gateway/cpp/sci_inspectorGetItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetItem.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo: sci_gateway/cpp/sci_inspectorGetItemCount.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItemCount.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo `test -f 'sci_gateway/cpp/sci_inspectorGetItemCount.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetItemCount.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItemCount.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetItemCount.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorGetItemCount.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetItemCount.lo `test -f 'sci_gateway/cpp/sci_inspectorGetItemCount.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetItemCount.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo: sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetUnreferencedItem.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo `test -f 'sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetUnreferencedItem.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetUnreferencedItem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetUnreferencedItem.lo `test -f 'sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetUnreferencedItem.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo: sci_gateway/cpp/sci_inspectorShowItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowItem.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo `test -f 'sci_gateway/cpp/sci_inspectorShowItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorShowItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowItem.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowItem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorShowItem.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorShowItem.lo `test -f 'sci_gateway/cpp/sci_inspectorShowItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorShowItem.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo: sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowUnreferencedItem.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo `test -f 'sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowUnreferencedItem.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorShowUnreferencedItem.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorShowUnreferencedItem.lo `test -f 'sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorShowUnreferencedItem.cpp
+
+sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo: sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetFunctionList.Tpo -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo `test -f 'sci_gateway/cpp/sci_inspectorGetFunctionList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetFunctionList.Tpo sci_gateway/cpp/$(DEPDIR)/libscitypes_la-sci_inspectorGetFunctionList.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_inspectorGetFunctionList.cpp' object='sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitypes_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscitypes_la-sci_inspectorGetFunctionList.lo `test -f 'sci_gateway/cpp/sci_inspectorGetFunctionList.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_inspectorGetFunctionList.cpp
+
+src/cpp/testTypes-test-types.o: src/cpp/test-types.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testTypes_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testTypes-test-types.o -MD -MP -MF src/cpp/$(DEPDIR)/testTypes-test-types.Tpo -c -o src/cpp/testTypes-test-types.o `test -f 'src/cpp/test-types.cpp' || echo '$(srcdir)/'`src/cpp/test-types.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testTypes-test-types.Tpo src/cpp/$(DEPDIR)/testTypes-test-types.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-types.cpp' object='src/cpp/testTypes-test-types.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testTypes_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testTypes-test-types.o `test -f 'src/cpp/test-types.cpp' || echo '$(srcdir)/'`src/cpp/test-types.cpp
+
+src/cpp/testTypes-test-types.obj: src/cpp/test-types.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testTypes_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/testTypes-test-types.obj -MD -MP -MF src/cpp/$(DEPDIR)/testTypes-test-types.Tpo -c -o src/cpp/testTypes-test-types.obj `if test -f 'src/cpp/test-types.cpp'; then $(CYGPATH_W) 'src/cpp/test-types.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-types.cpp'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/testTypes-test-types.Tpo src/cpp/$(DEPDIR)/testTypes-test-types.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/test-types.cpp' object='src/cpp/testTypes-test-types.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(testTypes_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/testTypes-test-types.obj `if test -f 'src/cpp/test-types.cpp'; then $(CYGPATH_W) 'src/cpp/test-types.cpp'; else $(CYGPATH_W) '$(srcdir)/src/cpp/test-types.cpp'; fi`
 
 mostlyclean-libtool:
 	-rm -f *.lo
 
 clean-libtool:
 	-rm -rf .libs _libs
+	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/jni/.libs src/jni/_libs
 install-libscitypes_la_etcDATA: $(libscitypes_la_etc_DATA)
@@ -1084,6 +1409,99 @@ cscopelist-am: $(am__tagged_files)
 distclean-tags:
 	-rm -f TAGS ID GTAGS GRTAGS GSYMS GPATH tags
 
+check-TESTS: $(TESTS)
+	@failed=0; all=0; xfail=0; xpass=0; skip=0; \
+	srcdir=$(srcdir); export srcdir; \
+	list=' $(TESTS) '; \
+	$(am__tty_colors); \
+	if test -n "$$list"; then \
+	  for tst in $$list; do \
+	    if test -f ./$$tst; then dir=./; \
+	    elif test -f $$tst; then dir=; \
+	    else dir="$(srcdir)/"; fi; \
+	    if $(TESTS_ENVIRONMENT) $${dir}$$tst $(AM_TESTS_FD_REDIRECT); then \
+	      all=`expr $$all + 1`; \
+	      case " $(XFAIL_TESTS) " in \
+	      *[\ \	]$$tst[\ \	]*) \
+		xpass=`expr $$xpass + 1`; \
+		failed=`expr $$failed + 1`; \
+		col=$$red; res=XPASS; \
+	      ;; \
+	      *) \
+		col=$$grn; res=PASS; \
+	      ;; \
+	      esac; \
+	    elif test $$? -ne 77; then \
+	      all=`expr $$all + 1`; \
+	      case " $(XFAIL_TESTS) " in \
+	      *[\ \	]$$tst[\ \	]*) \
+		xfail=`expr $$xfail + 1`; \
+		col=$$lgn; res=XFAIL; \
+	      ;; \
+	      *) \
+		failed=`expr $$failed + 1`; \
+		col=$$red; res=FAIL; \
+	      ;; \
+	      esac; \
+	    else \
+	      skip=`expr $$skip + 1`; \
+	      col=$$blu; res=SKIP; \
+	    fi; \
+	    echo "$${col}$$res$${std}: $$tst"; \
+	  done; \
+	  if test "$$all" -eq 1; then \
+	    tests="test"; \
+	    All=""; \
+	  else \
+	    tests="tests"; \
+	    All="All "; \
+	  fi; \
+	  if test "$$failed" -eq 0; then \
+	    if test "$$xfail" -eq 0; then \
+	      banner="$$All$$all $$tests passed"; \
+	    else \
+	      if test "$$xfail" -eq 1; then failures=failure; else failures=failures; fi; \
+	      banner="$$All$$all $$tests behaved as expected ($$xfail expected $$failures)"; \
+	    fi; \
+	  else \
+	    if test "$$xpass" -eq 0; then \
+	      banner="$$failed of $$all $$tests failed"; \
+	    else \
+	      if test "$$xpass" -eq 1; then passes=pass; else passes=passes; fi; \
+	      banner="$$failed of $$all $$tests did not behave as expected ($$xpass unexpected $$passes)"; \
+	    fi; \
+	  fi; \
+	  dashes="$$banner"; \
+	  skipped=""; \
+	  if test "$$skip" -ne 0; then \
+	    if test "$$skip" -eq 1; then \
+	      skipped="($$skip test was not run)"; \
+	    else \
+	      skipped="($$skip tests were not run)"; \
+	    fi; \
+	    test `echo "$$skipped" | wc -c` -le `echo "$$banner" | wc -c` || \
+	      dashes="$$skipped"; \
+	  fi; \
+	  report=""; \
+	  if test "$$failed" -ne 0 && test -n "$(PACKAGE_BUGREPORT)"; then \
+	    report="Please report to $(PACKAGE_BUGREPORT)"; \
+	    test `echo "$$report" | wc -c` -le `echo "$$banner" | wc -c` || \
+	      dashes="$$report"; \
+	  fi; \
+	  dashes=`echo "$$dashes" | sed s/./=/g`; \
+	  if test "$$failed" -eq 0; then \
+	    col="$$grn"; \
+	  else \
+	    col="$$red"; \
+	  fi; \
+	  echo "$${col}$$dashes$${std}"; \
+	  echo "$${col}$$banner$${std}"; \
+	  test -z "$$skipped" || echo "$${col}$$skipped$${std}"; \
+	  test -z "$$report" || echo "$${col}$$report$${std}"; \
+	  echo "$${col}$$dashes$${std}"; \
+	  test "$$failed" -eq 0; \
+	else :; fi
+
 distdir: $(DISTFILES)
 	@srcdirstrip=`echo "$(srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
 	topsrcdirstrip=`echo "$(top_srcdir)" | sed 's/[].[^$$\\*]/\\\\&/g'`; \
@@ -1115,7 +1533,8 @@ distdir: $(DISTFILES)
 	  fi; \
 	done
 check-am: all-am
-	$(MAKE) $(AM_MAKEFLAGS) check-local
+	$(MAKE) $(AM_MAKEFLAGS) $(check_PROGRAMS)
+	$(MAKE) $(AM_MAKEFLAGS) check-TESTS check-local
 check: $(BUILT_SOURCES)
 	$(MAKE) $(AM_MAKEFLAGS) check-am
 all-am: Makefile $(LTLIBRARIES) $(DATA) all-local
@@ -1150,6 +1569,8 @@ clean-generic:
 distclean-generic:
 	-test -z "$(CONFIG_CLEAN_FILES)" || rm -f $(CONFIG_CLEAN_FILES)
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
+	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/cpp/$(am__dirstamp)
 	-rm -f src/jni/$(DEPDIR)/$(am__dirstamp)
@@ -1161,11 +1582,11 @@ maintainer-clean-generic:
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
 clean: clean-am
 
-clean-am: clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
+clean-am: clean-checkPROGRAMS clean-generic clean-libtool clean-local \
+	clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1213,7 +1634,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
+	-rm -rf sci_gateway/cpp/$(DEPDIR) src/cpp/$(DEPDIR) src/jni/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1237,17 +1658,17 @@ uninstall-am: uninstall-libscitypes_la_etcDATA \
 
 .MAKE: all check check-am install install-am install-strip
 
-.PHONY: CTAGS GTAGS TAGS all all-am all-local check check-am \
-	check-local clean clean-generic clean-libtool clean-local \
-	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES cscopelist-am \
-	ctags ctags-am distclean distclean-compile distclean-generic \
-	distclean-libtool distclean-local distclean-tags distdir dvi \
-	dvi-am html html-am info info-am install install-am \
-	install-data install-data-am install-data-local install-dvi \
-	install-dvi-am install-exec install-exec-am install-html \
-	install-html-am install-html-local install-info \
-	install-info-am install-libscitypes_la_etcDATA \
-	install-libscitypes_la_rootDATA \
+.PHONY: CTAGS GTAGS TAGS all all-am all-local check check-TESTS \
+	check-am check-local clean clean-checkPROGRAMS clean-generic \
+	clean-libtool clean-local clean-pkglibLTLIBRARIES \
+	cscopelist-am ctags ctags-am distclean distclean-compile \
+	distclean-generic distclean-libtool distclean-local \
+	distclean-tags distdir dvi dvi-am html html-am info info-am \
+	install install-am install-data install-data-am \
+	install-data-local install-dvi install-dvi-am install-exec \
+	install-exec-am install-html install-html-am \
+	install-html-local install-info install-info-am \
+	install-libscitypes_la_etcDATA install-libscitypes_la_rootDATA \
 	install-libscitypes_la_sci_gatewayDATA install-man install-pdf \
 	install-pdf-am install-pkglibLTLIBRARIES install-ps \
 	install-ps-am install-strip installcheck installcheck-am \
@@ -1288,7 +1709,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1297,7 +1718,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1306,11 +1727,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1331,7 +1752,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

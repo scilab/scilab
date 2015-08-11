@@ -1,17 +1,7 @@
                      Changes between version 5.5.2 and 5.5.3
                      =======================================
 
-Scilab Bug Fixes
-================
-
-* Bug #13829 fixed - mean and sum functions returned wrong results for hypermatrices.
-
-* Bug #13854 fixed - On some operating systems, SciNotes did not initialize a new document at startup.
-
-* Bug #13866 fixed - There were some issues with FFTW3 library.
-
-* Bug #13881 fixed - datatipRemoveAll did not work.
-
+*** MERGED IN CHANGES_6.0.X ***
 
 
                      Changes between version 5.5.1 and 5.5.2

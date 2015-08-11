@@ -64,7 +64,7 @@ function [tree]=%i2sci(tree)
             if bval then
                 varslist(index).infer.dims=allunknown(to.dims)
             end
-            insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,ind),list(to))),1)
+            m2sci_insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,ind),list(to))),1)
             // --- Insertion with just one index ---
         elseif type(ind)<>15 then
             if ind.vtype==String then
@@ -113,7 +113,7 @@ function [tree]=%i2sci(tree)
                                 break
                             end
                         end
-                        insert(Equal(list(to),list(from)))
+                        m2sci_insert(Equal(list(to),list(from)))
                     end
                 end
                 tree.out(1).dims=list(Unknown,1)
@@ -153,7 +153,7 @@ function [tree]=%i2sci(tree)
             if bval then
                 varslist(index).infer.dims=allunknown(to.dims)
             end
-            insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
+            m2sci_insert(Equal(list(to),Funcall("mtlb_is",1,Rhs_tlist(to,from,tree.operands(2),tree.operands(3)),list(to))),1)
         else
             tree.out(1).dims=list()
             for k=1:lstsize(tree.operands)-2

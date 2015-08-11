@@ -77,7 +77,8 @@
         <programlisting role="code_gateway">
             <![CDATA[ 
 #include "api_scilab.h"
-int hypermatExample(char *fname,unsigned long fname_len)
+
+int hypermatExample(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;

@@ -10,13 +10,10 @@
  *
  */
 
-#include "api_scilab.h"
-#include "Scierror.h"
+#include <api_scilab.h>
 #include "localization.h"
-#include "sciprint.h"
-#include "MALLOC.h"
 
-int hypermatIntExample(char *fname, unsigned long fname_len)
+int hypermatIntExample(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -153,6 +150,36 @@ int hypermatIntExample(char *fname, unsigned long fname_len)
                     }
 
                     sciErr = createHypermatOfUnsignedInteger32(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned int*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
+                case SCI_INT64:
+                    sciErr = getHypermatOfInteger64(pvApiCtx, piAddr, &dims, &ndims, (long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const long long*)data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+                    break;
+                case SCI_UINT64:
+                    sciErr = getHypermatOfUnsignedInteger64(pvApiCtx, piAddr, &dims, &ndims, (unsigned long long*)&data);
+                    if (sciErr.iErr)
+                    {
+                        printError(&sciErr, 0);
+                        return sciErr.iErr;
+                    }
+
+                    sciErr = createHypermatOfUnsignedInteger64(pvApiCtx, nbInputArgument(pvApiCtx) + 1, dims, ndims, (const unsigned long long*)data);
                     if (sciErr.iErr)
                     {
                         printError(&sciErr, 0);

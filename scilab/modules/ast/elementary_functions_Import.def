@@ -1,0 +1,14 @@
+LIBRARY    elementary_functions.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; elementary_functions
+; --------------------------------------- 
+dsqrts
+dsins
+dcoss
+dexps
+wlog
+dabss
+

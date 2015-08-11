@@ -27,25 +27,25 @@
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Utility</ConfigurationType>
     <UseOfMfc>false</UseOfMfc>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -123,7 +123,6 @@
     <rename_vc_extension_files Include="..\..\etc\modules.xml.vc" />
     <rename_vc_extension_files Include="..\..\scilab-lib-doc.properties.vc" />
     <rename_vc_extension_files Include="..\..\scilab-lib.properties.vc" />
-    <rename_vc_extension_files Include="..\..\modules\core\includes\stack.h.vc" />
     <rename_vc_extension_files Include="..\..\scilab.properties.vc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

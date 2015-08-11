@@ -14,19 +14,19 @@
 //
 // <-- Short Description -->
 //    Bug Report Id: 126632003824121343
-//     error messages are strange to say least, scilab gets stymied after the second attempt. 
+//     error messages are strange to say least, scilab gets stymied after the second attempt.
 //
 //    ps: I realize that execstr() is most likely responsible for all what I posted earlier today about ScilabEval on the newsgroup
 //
 //    On Scilab CVS with " execstr() " function
 //    The Error Messages are:
-//      -->execstr("function foo")             
-//     !--error    17 
+//      -->execstr("function foo")
+//     !--error    17
 //    stack size exceeded! (Use stacksize function to increase it)
 //    Memory used for variables :     17086
 //    Intermediate memory needed:    982925
 //    Total  memory available   :   1000001
-//    in  execstr instruction    called by :  
+//    in  execstr instruction    called by :
 //    execstr("function foo")
 //
 //
@@ -35,7 +35,6 @@
 //    -->execstr("function foo")
 // ...
 
-stacksize(2e6);
 execstr("function foo","errcatch");
 str = lasterror();
 if str<>msprintf(gettext("endfunction is missing.\n")) then pause,end

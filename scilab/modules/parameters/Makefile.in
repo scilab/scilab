@@ -112,9 +112,10 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/parameters
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -175,6 +176,10 @@ AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
+libsciparameters_la_LINK = $(LIBTOOL) $(AM_V_lt) --tag=CC \
+	$(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=link $(CCLD) \
+	$(libsciparameters_la_CFLAGS) $(CFLAGS) \
+	$(libsciparameters_la_LDFLAGS) $(LDFLAGS) -o $@
 @MAINTAINER_MODE_FALSE@am_libsciparameters_la_rpath =
 @MAINTAINER_MODE_TRUE@am_libsciparameters_la_rpath = -rpath \
 @MAINTAINER_MODE_TRUE@	$(pkglibdir)
@@ -290,6 +295,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -313,6 +319,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -349,6 +356,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -464,6 +474,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -519,22 +531,33 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 PARAMETERS_C_SOURCES = src/c/parameters.c
-libsciparameters_la_CPPFLAGS = -I$(srcdir)/includes/ \
--I$(srcdir)/src/c/ \
--I$(top_srcdir)/modules/api_scilab/includes/ \
--I$(top_srcdir)/modules/core/includes/ \
--I$(top_srcdir)/modules/output_stream/includes/ \
--I$(top_srcdir)/modules/localization/includes/ \
-$(AM_CPPFLAGS) 
+libsciparameters_la_CFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c/ \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/api_scilab/includes \
+    -I$(top_srcdir)/modules/core/includes \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes \
+    -I$(top_srcdir)/modules/string/includes
 
 @MAINTAINER_MODE_TRUE@pkglib_LTLIBRARIES = libsciparameters.la
 @MAINTAINER_MODE_FALSE@noinst_LTLIBRARIES = libsciparameters.la
+libsciparameters_la_LDFLAGS = -version-number $(SCILAB_LIBRARY_VERSION)
 libsciparameters_la_SOURCES = $(PARAMETERS_C_SOURCES)
 
 # For the code check (splint)
 CHECK_SRC = $(libsciparameters_la_SOURCES)
-INCLUDE_FLAGS = $(libsciparameters_la_CPPFLAGS) 
+INCLUDE_FLAGS = $(libsciparameters_la_CFLAGS)
 
 #### Target ######
 modulename = parameters
@@ -573,7 +596,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -615,7 +638,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -710,7 +733,7 @@ src/c/libsciparameters_la-parameters.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
 
 libsciparameters.la: $(libsciparameters_la_OBJECTS) $(libsciparameters_la_DEPENDENCIES) $(EXTRA_libsciparameters_la_DEPENDENCIES) 
-	$(AM_V_CCLD)$(LINK) $(am_libsciparameters_la_rpath) $(libsciparameters_la_OBJECTS) $(libsciparameters_la_LIBADD) $(LIBS)
+	$(AM_V_CCLD)$(libsciparameters_la_LINK) $(am_libsciparameters_la_rpath) $(libsciparameters_la_OBJECTS) $(libsciparameters_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -747,11 +770,11 @@ distclean-compile:
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LTCOMPILE) -c -o $@ $<
 
 src/c/libsciparameters_la-parameters.lo: src/c/parameters.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparameters_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libsciparameters_la-parameters.lo -MD -MP -MF src/c/$(DEPDIR)/libsciparameters_la-parameters.Tpo -c -o src/c/libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparameters_la_CFLAGS) $(CFLAGS) -MT src/c/libsciparameters_la-parameters.lo -MD -MP -MF src/c/$(DEPDIR)/libsciparameters_la-parameters.Tpo -c -o src/c/libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libsciparameters_la-parameters.Tpo src/c/$(DEPDIR)/libsciparameters_la-parameters.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/parameters.c' object='src/c/libsciparameters_la-parameters.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciparameters_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libsciparameters_la_CFLAGS) $(CFLAGS) -c -o src/c/libsciparameters_la-parameters.lo `test -f 'src/c/parameters.c' || echo '$(srcdir)/'`src/c/parameters.c
 
 mostlyclean-libtool:
 	-rm -f *.lo
@@ -1049,7 +1072,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1058,7 +1081,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1067,11 +1090,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1092,7 +1115,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

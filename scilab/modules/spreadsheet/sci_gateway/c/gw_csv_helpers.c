@@ -13,18 +13,18 @@
  *
  */
 #include <string.h>
+
 #include "api_scilab.h"
 #include "sci_types.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 #include "gw_csv_helpers.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "freeArrayOfString.h"
+
 // =============================================================================
-char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const char *fname,
+char *csv_getArgumentAsStringWithEmptyManagement(void* pvApiCtx, int _iVar, const char *fname,
         const char *defaultValue,
         int *iErr)
 {
@@ -58,7 +58,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
             if (defaultValue)
             {
                 *iErr = 0;
-                returnedValue = strdup(defaultValue);
+                returnedValue = os_strdup(defaultValue);
             }
             else
             {
@@ -104,7 +104,7 @@ char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar, const 
 }
 // =============================================================================
 
-char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
+char *csv_getArgumentAsString(void* pvApiCtx, int _iVar,
                               const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -161,7 +161,7 @@ char *csv_getArgumentAsString(void* _pvCtx, int _iVar,
     return returnedValue;
 }
 // =============================================================================
-double csv_getArgumentAsScalarDouble(void* _pvCtx, int _iVar,
+double csv_getArgumentAsScalarDouble(void* pvApiCtx, int _iVar,
                                      const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -206,7 +206,7 @@ double csv_getArgumentAsScalarDouble(void* _pvCtx, int _iVar,
     return dValue;
 }
 // =============================================================================
-int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
+int csv_getArgumentAsScalarBoolean(void* pvApiCtx, int _iVar,
                                    const char *fname, int *iErr)
 {
     SciErr sciErr;
@@ -251,7 +251,7 @@ int csv_getArgumentAsScalarBoolean(void* _pvCtx, int _iVar,
     return bValue;
 }
 // =============================================================================
-char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
+char **csv_getArgumentAsMatrixOfString(void* pvApiCtx, int _iVar,
                                        const char *fname,
                                        int *m, int *n, int *iErr)
 {
@@ -306,7 +306,7 @@ char **csv_getArgumentAsMatrixOfString(void* _pvCtx, int _iVar,
     return pStringValues;
 }
 // =============================================================================
-int csv_isRowVector(void* _pvCtx, int _iVar)
+int csv_isRowVector(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -318,7 +318,7 @@ int csv_isRowVector(void* _pvCtx, int _iVar)
     return isRowVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isColumnVector(void* _pvCtx, int _iVar)
+int csv_isColumnVector(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -330,7 +330,7 @@ int csv_isColumnVector(void* _pvCtx, int _iVar)
     return isColumnVector(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isScalar(void* _pvCtx, int _iVar)
+int csv_isScalar(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -342,7 +342,7 @@ int csv_isScalar(void* _pvCtx, int _iVar)
     return isScalar(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int csv_isDoubleScalar(void* _pvCtx, int _iVar)
+int csv_isDoubleScalar(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -353,7 +353,7 @@ int csv_isDoubleScalar(void* _pvCtx, int _iVar)
         return 0;
     }
 
-    if (csv_isScalar(_pvCtx, _iVar))
+    if (csv_isScalar(pvApiCtx, _iVar))
     {
         int iType = 0;
         sciErr = getVarType(pvApiCtx, piAddressVar, &iType);
@@ -370,7 +370,7 @@ int csv_isDoubleScalar(void* _pvCtx, int _iVar)
     return 0;
 }
 // =============================================================================
-int csv_isEmpty(void* _pvCtx, int _iVar)
+int csv_isEmpty(void* pvApiCtx, int _iVar)
 {
     SciErr sciErr;
     int *piAddressVar = NULL;
@@ -388,7 +388,7 @@ int csv_isEmpty(void* _pvCtx, int _iVar)
     return isEmptyMatrix(pvApiCtx, piAddressVar);
 }
 // =============================================================================
-int *csv_getArgumentAsMatrixofIntFromDouble(void* _pvCtx, int _iVar,
+int *csv_getArgumentAsMatrixofIntFromDouble(void* pvApiCtx, int _iVar,
         const char *fname,
         int *m, int *n, int *iErr)
 {

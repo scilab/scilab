@@ -2,76 +2,43 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{05ef4b36-4c2d-4bf3-8f24-584e5e3582db}</UniqueIdentifier>
+      <UniqueIdentifier>{4027f23d-fea7-417c-8388-fc7d9c57ed44}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{f6bf4dd2-40d2-4386-873d-a1b55184f5e0}</UniqueIdentifier>
+      <UniqueIdentifier>{053f37a7-bce3-4498-afd4-1bddcdda1e7c}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{816e684c-644d-4e86-b826-3dfe6c3de8f8}</UniqueIdentifier>
+      <UniqueIdentifier>{4c98da14-eeba-4ae9-95d7-df683fd0baf6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{0ff84f53-bdcb-4e1e-a91b-d3fc839bc408}</UniqueIdentifier>
+      <UniqueIdentifier>{5243c23e-16b7-4817-a75d-e7ef5dd6da36}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{2f42bca6-61fa-46d0-abff-a655dbfcecb6}</UniqueIdentifier>
+      <UniqueIdentifier>{98a4145d-6d10-4696-a17c-345bd0d7e735}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource File">
-      <UniqueIdentifier>{1f56de43-fc1c-4e6d-8c5d-0f91a3c34106}</UniqueIdentifier>
+      <UniqueIdentifier>{f14049e4-1dd1-43e4-a7a6-152c148c43d6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainData_structures.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_data_structures1.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\data_structures_gw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\gw_data_structures2.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_getfield.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="hmops.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_setfield.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_definedfields.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_rlist.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_getfield.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_glist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_list.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lsslist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstcat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_lstsize.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_mlist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_rlist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_setfield.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\c\sci_tlist.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="stcreate.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="strpos.c">
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_definedfields.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -91,11 +58,11 @@
     <ClInclude Include="stcreate.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\data_structures_gw.hxx">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <None Include="data_structures_f_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>

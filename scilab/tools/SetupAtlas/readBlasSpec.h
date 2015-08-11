@@ -17,15 +17,15 @@
 
 struct cpu_struct
 {
-    wchar_t *cpu_vendor;
-    int cpu_family;
-    int cpu_model;
-    wchar_t *dll_filename;
-    wchar_t *comments;
+	wchar_t *cpu_vendor;
+	int cpu_family;
+	int cpu_model;
+	wchar_t *dll_filename;
+	wchar_t *comments;
 };
 
 struct cpu_struct ** readBlasSpec(wchar_t *blasspec_filename,
-                                  int *sizeArrayReturned);
+								  int *sizeArrayReturned);
 
 #endif /* __READBLASSPEC_H__ */
 /*--------------------------------------------------------------------------*/

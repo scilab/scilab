@@ -6,10 +6,10 @@
 // =============================================================================
 
 //==========================================================================
-//==============================   det        ============================== 
+//==============================   det        ==============================
 //==========================================================================
 
-//Small dimension 
+//Small dimension
 //Real
 A=[1 1; 1 2];
 assert_checkalmostequal(det(A), 1);
@@ -28,7 +28,7 @@ assert_checkalmostequal(imag(m), 1);
 A=[1 1; 1 2];
 A=sparse(A);
 assert_checkalmostequal(det(A), 1);
-[e,m]=det(A)
+[e,m]=det(A);
 assert_checkalmostequal(e, 0);
 assert_checkalmostequal(m, 1);
 //Polynomials
@@ -70,7 +70,7 @@ assert_checktrue(abs(det(A) - prod(v)) < 1D-7);
 [e,m]=det(A);
 assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 //Polynomials
-v=rand(1,21)
+v=rand(1,21);
 v=v+%s;
 A=rand(21,21); A=(triu(A,1)+diag(v))*(tril(A,-1)+diag(ones(1,21)));
 assert_checktrue(abs(coeff(det(A)-prod(v))) < 1D-7);
@@ -92,7 +92,7 @@ assert_checktrue(abs(m*(10^e) - prod(v)) < 1d-7);
 
 //Error messages
 A=[1 1; 1 2];
-errmsg1 = msprintf(_("Wrong type for first argument: Square matrix expected.\n"));
+errmsg1 = msprintf(_("%s: Wrong type for input argument #%d: Square matrix expected.\n"), "det", 1);
 assert_checkerror("det([1,2;3,4;5,6])", errmsg1, 20);
 errmsg2 = msprintf(_("%s: Wrong number of input argument(s): %d expected.\n"), "det", 1);
 assert_checkerror("det(A,1)", errmsg2, 77);

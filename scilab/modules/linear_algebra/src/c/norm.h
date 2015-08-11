@@ -13,18 +13,21 @@
 #include <string.h>         // strcmp
 #include "core_math.h"      // Abs, pow, Min and Max
 #include "machine.h"        // C2F
-#include "localization.h"  // Translations
-#include "doublecomplex.h" // Type doublecomplex
+#include "localization.h"   // Translations
+#include "doublecomplex.h"  // Type doublecomplex
+#include "dynlib_linear_algebra.h"
 
-double normString (double *A, int iRows, int iCols, char *flag);
+LINEAR_ALGEBRA_IMPEXP double normString (double *A, int iRows, int iCols, char *flag);
 
-double normStringC (doublecomplex *A, int iRows, int iCols, char *flag);
+LINEAR_ALGEBRA_IMPEXP double normStringC (doublecomplex *A, int iRows, int iCols, char *flag);
 
-double normP (double *A, int iRows, int iCols, double p);
+LINEAR_ALGEBRA_IMPEXP double normP (double *A, int iRows, int iCols, double p);
 
-double normPC (doublecomplex *A, int iRows, int iCols, double p);
+LINEAR_ALGEBRA_IMPEXP double normPC (doublecomplex *A, int iRows, int iCols, double p);
 
 #ifdef _MSC_VER
-int isinf(double dbl);
+LINEAR_ALGEBRA_IMPEXP int la_isinf(double dbl);
+#else
+#define la_isinf isinf
 #endif
 

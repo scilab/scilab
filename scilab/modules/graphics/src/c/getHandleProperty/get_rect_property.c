@@ -27,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_rect_property(void* _pvCtx, int iObjUID)
+void* get_rect_property(void* _pvCtx, int iObjUID)
 {
     double * rect = NULL;
     double _rect[4];
@@ -37,7 +37,7 @@ int get_rect_property(void* _pvCtx, int iObjUID)
     if (rect == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "rect");
-        return -1;
+        return NULL;
     }
 
     _rect[0] = rect[0];
@@ -45,6 +45,6 @@ int get_rect_property(void* _pvCtx, int iObjUID)
     _rect[2] = rect[1];
     _rect[3] = rect[3];
 
-    return sciReturnRowVector(_pvCtx, _rect, 4);
+    return sciReturnRowVector(_rect, 4);
 }
 /*------------------------------------------------------------------------*/

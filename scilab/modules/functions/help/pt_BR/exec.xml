@@ -115,8 +115,7 @@
         <para>
             <code>exec(fun [,mode])</code> executa a função
             <varname>fun</varname> como um script: sem argumentos de entrada ou saída
-            nem ambientes de variáveis específicos. Esta forma é mais eficiente,
-            porque o código script pode se pré-compilado (ver <link linkend="comp">comp</link>). Este método
+            nem ambientes de variáveis específicos. Este método
             para avaliação de scripts permite armazenar scripts como funções em
             bibliotecas.
         </para>
@@ -175,9 +174,6 @@ whos -name "y "
             </member>
             <member>
                 <link linkend="evstr">evstr</link>
-            </member>
-            <member>
-                <link linkend="comp">comp</link>
             </member>
             <member>
                 <link linkend="mode">mode</link>

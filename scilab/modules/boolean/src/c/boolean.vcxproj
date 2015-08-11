@@ -28,23 +28,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
     <WholeProgramOptimization>false</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>MultiByte</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -80,7 +80,7 @@
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -99,9 +99,8 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;boolean_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>boolean_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -111,9 +110,8 @@ cd ..
     </Link>
     <PreBuildEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -122,7 +120,7 @@ lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     </Midl>
     <ClCompile>
       <Optimization>Disabled</Optimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;BOOLEAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <WarningLevel>Level3</WarningLevel>
@@ -141,9 +139,8 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;boolean_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>boolean_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <ImportLibrary>$(SolutionDir)bin\$(ProjectName).lib</ImportLibrary>
@@ -153,16 +150,15 @@ cd ..
     </Link>
     <PreBuildEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -183,9 +179,8 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;boolean_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>boolean_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -197,9 +192,8 @@ cd ..
     </Link>
     <PreBuildEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -209,7 +203,7 @@ lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
     <ClCompile>
       <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
       <WholeProgramOptimization>false</WholeProgramOptimization>
-      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.;../../includes;../../../localization/includes;../../../api_scilab/includes;../../../core/includes;../../../output_stream/includes;../../../fileio/includes;../../../windows_tools/includes;../../../../libs/intl;../../../ast/includes/operations;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;BOOLEAN_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
@@ -230,9 +224,8 @@ cd ..
 </Command>
     </PreLinkEvent>
     <Link>
-      <AdditionalDependencies>core.lib;boolean_f.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
       <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
-      <ModuleDefinitionFile>boolean_Export.def</ModuleDefinitionFile>
       <GenerateDebugInformation>false</GenerateDebugInformation>
       <SubSystem>Windows</SubSystem>
       <OptimizeReferences>true</OptimizeReferences>
@@ -244,31 +237,23 @@ cd ..
     </Link>
     <PreBuildEvent>
       <Message>Make dependencies</Message>
-      <Command>lib /DEF:"$(ProjectDir)core_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)boolean_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)boolean_f.lib" 1&gt;NUL 2&gt;NUL
-</Command>
+      <Command>
+      </Command>
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DllmainBoolean.c" />
-    <ClCompile Include="..\..\sci_gateway\c\gw_boolean.c" />
-    <ClCompile Include="matboolean.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_and.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_bool2s.c" />
-    <ClCompile Include="..\..\sci_gateway\c\sci_or.c" />
     <ClCompile Include="vect_and.c" />
     <ClCompile Include="vect_or.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_boolean.h" />
     <ClInclude Include="..\..\includes\gw_boolean.h" />
-    <ClInclude Include="..\..\includes\matboolean.h" />
-    <ClInclude Include="vect_and.h" />
-    <ClInclude Include="vect_or.h" />
+    <ClInclude Include="..\..\includes\vect_and.h" />
+    <ClInclude Include="..\..\includes\vect_or.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\locales\boolean.pot" />
-    <None Include="boolean_f_Import.def" />
-    <None Include="core_import.def" />
     <None Include="..\..\boolean.iss" />
     <None Include="..\..\Makefile.am" />
   </ItemGroup>

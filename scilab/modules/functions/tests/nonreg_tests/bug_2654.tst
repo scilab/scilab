@@ -15,12 +15,12 @@
 // <-- Short Description -->
 // exec returned a wrong error if line had more than 4096 characters
 
-ierr = exec('SCI/modules/functions/tests/nonreg_tests/bug_2654_test_NOK_1.sce','errcatch');
-if ierr <> 113 then pause, end
+ierr = exec("SCI/modules/functions/tests/nonreg_tests/bug_2654_test_NOK_1.sce","errcatch");
+if ierr <> 0 then pause, end
 
-ierr = exec('SCI/modules/functions/tests/nonreg_tests/bug_2654_test_NOK_2.sce','errcatch');
-if ierr <> 113 then pause, end
+ierr = exec("SCI/modules/functions/tests/nonreg_tests/bug_2654_test_NOK_2.sce","errcatch");
+if ierr <> 0 then pause, end
 
-ierr = exec('SCI/modules/functions/tests/nonreg_tests/bug_2654_test_OK.sce','errcatch');
+ierr = exec("SCI/modules/functions/tests/nonreg_tests/bug_2654_test_OK.sce","errcatch");
 if ierr <> 0 then pause, end
 

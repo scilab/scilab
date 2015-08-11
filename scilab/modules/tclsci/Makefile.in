@@ -106,9 +106,10 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/tclsci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
-	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
-	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
+	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
+	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
+	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -201,7 +202,7 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 	sci_gateway/c/sci_TCL_ExistVar.c \
 	sci_gateway/c/sci_TCL_DoOneEvent.c \
 	sci_gateway/c/sci_TCL_UnsetVar.c \
-	sci_gateway/c/sci_TCL_ExistInterp.c sci_gateway/c/gw_tclsci.c \
+	sci_gateway/c/sci_TCL_ExistInterp.c \
 	sci_gateway/c/sci_TCL_EvalStr.c \
 	sci_gateway/c/sci_TCL_DeleteInterp.c \
 	sci_gateway/c/sci_TCL_GetVersion.c \
@@ -216,7 +217,6 @@ am__libscitclsci_la_SOURCES_DIST = sci_gateway/c/sci_opentk.c \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_DoOneEvent.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_UnsetVar.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo \
-@TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-gw_tclsci.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_DeleteInterp.lo \
 @TCLTK_TRUE@	sci_gateway/c/libscitclsci_la-sci_TCL_GetVersion.lo \
@@ -345,6 +345,7 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
+EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -368,6 +369,7 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
+HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -404,6 +406,9 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
+LEX = @LEX@
+LEXLIB = @LEXLIB@
+LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -519,6 +524,8 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
+YACC = @YACC@
+YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -574,53 +581,66 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
+yacc_present = @yacc_present@
 @TCLTK_FALSE@TCLSCI_C_SOURCES = src/notclsci/notclsci.c
-@TCLTK_TRUE@TCLSCI_C_SOURCES = src/c/TCL_Global.c \
-@TCLTK_TRUE@src/c/InitTclTk.c \
-@TCLTK_TRUE@src/c/ScilabEval.c \
-@TCLTK_TRUE@src/c/setenvtcl.c \
-@TCLTK_TRUE@src/c/InitializeTclTk.c \
-@TCLTK_TRUE@src/c/TerminateTclTk.c \
-@TCLTK_TRUE@src/c/setvar.c \
-@TCLTK_TRUE@src/c/TCL_ArrayDim.c \
-@TCLTK_TRUE@src/c/TCL_ArrayExist.c \
-@TCLTK_TRUE@src/c/TCL_ArrayGetVar.c \
-@TCLTK_TRUE@src/c/TCL_ArraySize.c \
-@TCLTK_TRUE@src/c/TCL_Command.c \
-@TCLTK_TRUE@src/c/GlobalTclInterp.c \
-@TCLTK_TRUE@src/c/TCL_getErrorLine.c
+@TCLTK_TRUE@TCLSCI_C_SOURCES = \
+@TCLTK_TRUE@    src/c/TCL_Global.c \
+@TCLTK_TRUE@    src/c/InitTclTk.c \
+@TCLTK_TRUE@    src/c/ScilabEval.c \
+@TCLTK_TRUE@    src/c/setenvtcl.c \
+@TCLTK_TRUE@    src/c/InitializeTclTk.c \
+@TCLTK_TRUE@    src/c/TerminateTclTk.c \
+@TCLTK_TRUE@    src/c/setvar.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayDim.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayExist.c \
+@TCLTK_TRUE@    src/c/TCL_ArrayGetVar.c \
+@TCLTK_TRUE@    src/c/TCL_ArraySize.c \
+@TCLTK_TRUE@    src/c/TCL_Command.c \
+@TCLTK_TRUE@    src/c/GlobalTclInterp.c \
+@TCLTK_TRUE@    src/c/TCL_getErrorLine.c
 
 @TCLTK_FALSE@GATEWAY_C_SOURCES = 
-@TCLTK_TRUE@GATEWAY_C_SOURCES = sci_gateway/c/sci_opentk.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_SetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_DoOneEvent.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_UnsetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistInterp.c \
-@TCLTK_TRUE@sci_gateway/c/gw_tclsci.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_EvalStr.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_DeleteInterp.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_GetVersion.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_EvalFile.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_GetVar.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_ExistArray.c \
-@TCLTK_TRUE@sci_gateway/c/sci_TCL_UpVar.c
+@TCLTK_TRUE@GATEWAY_C_SOURCES = \
+@TCLTK_TRUE@    sci_gateway/c/sci_opentk.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_SetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_DoOneEvent.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_UnsetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistInterp.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_EvalStr.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_DeleteInterp.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_GetVersion.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_EvalFile.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_GetVar.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_ExistArray.c \
+@TCLTK_TRUE@    sci_gateway/c/sci_TCL_UpVar.c
 
 pkglib_LTLIBRARIES = libscitclsci.la
 noinst_LTLIBRARIES = libscitclsci-algo.la
 libscitclsci_la_LDFLAGS = $(AM_LDFLAGS)
-libscitclsci_la_CPPFLAGS = -I$(srcdir)/includes/ \
-			-I$(srcdir)/src/c \
-			-I$(srcdir)/sci_gateway/c/ \
-			$(TCL_INC_PATH) \
-			$(TK_INC_PATH) \
-			-I$(top_srcdir)/modules/action_binding/includes/ \
-			-I$(top_srcdir)/modules/fileio/includes/ \
-			-I$(top_srcdir)/modules/call_scilab/includes/ \
-			-I$(top_srcdir)/modules/output_stream/includes/ \
-			-I$(top_srcdir)/modules/api_scilab/includes/ \
-			-I$(top_srcdir)/modules/localization/includes/ \
-			$(AM_CPPFLAGS)
+libscitclsci_la_CPPFLAGS = \
+    -I$(srcdir)/includes/ \
+    -I$(srcdir)/src/c \
+    -I$(srcdir)/sci_gateway/c/ \
+    $(TCL_INC_PATH) \
+    $(TK_INC_PATH) \
+    -I$(top_srcdir)/modules/ast/includes/ast/ \
+    -I$(top_srcdir)/modules/ast/includes/exps/ \
+    -I$(top_srcdir)/modules/ast/includes/operations/ \
+    -I$(top_srcdir)/modules/ast/includes/parse/ \
+    -I$(top_srcdir)/modules/ast/includes/symbol/ \
+    -I$(top_srcdir)/modules/ast/includes/system_env/ \
+    -I$(top_srcdir)/modules/ast/includes/types/ \
+    -I$(top_srcdir)/modules/ast/includes/analysis/ \
+    -I$(top_srcdir)/modules/action_binding/includes/ \
+    -I$(top_srcdir)/modules/fileio/includes/ \
+    -I$(top_srcdir)/modules/call_scilab/includes/ \
+    -I$(top_srcdir)/modules/output_stream/includes/ \
+    -I$(top_srcdir)/modules/localization/includes/ \
+    -I$(top_srcdir)/modules/api_scilab/includes/ \
+    -I$(top_srcdir)/modules/threads/includes/ \
+    -I$(top_srcdir)/modules/string/includes/ \
+    $(AM_CPPFLAGS)
 
 libscitclsci_algo_la_SOURCES = $(TCLSCI_C_SOURCES)
 libscitclsci_la_SOURCES = $(GATEWAY_C_SOURCES)
@@ -635,15 +655,19 @@ modulename = tclsci
 
 #### tclsci : Conf files ####
 libscitclsci_la_rootdir = $(mydatadir)
-libscitclsci_la_root_DATA = license.txt 
+libscitclsci_la_root_DATA = license.txt
 
 #### tclsci : init scripts ####
 libscitclsci_la_etcdir = $(mydatadir)/etc
-libscitclsci_la_etc_DATA = etc/tclsci.quit etc/tclsci.start
+libscitclsci_la_etc_DATA = \
+    etc/tclsci.quit \
+    etc/tclsci.start
+
 
 ### TCL macros ###
 libscitclsci_la_tcldir = $(mydatadir)
-nobase_libscitclsci_la_tcl_DATA = tcl/utils/Notebook.tcl \
+nobase_libscitclsci_la_tcl_DATA = \
+tcl/utils/Notebook.tcl \
 tcl/utils/Balloon.tcl \
 tcl/utils/Combobox.tcl \
 tcl/sciGUI/data/initial.help \
@@ -715,7 +739,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci 
+SUFFIXES = .sci
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -757,7 +781,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file 
+# Chapter file
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -912,9 +936,6 @@ sci_gateway/c/libscitclsci_la-sci_TCL_UnsetVar.lo:  \
 sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscitclsci_la-gw_tclsci.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -952,7 +973,6 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_DeleteInterp.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_DoOneEvent.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_EvalFile.Plo@am__quote@
@@ -1152,13 +1172,6 @@ sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo: sci_gateway/c/sci_TCL_Exis
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_TCL_ExistInterp.c' object='sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitclsci_la-sci_TCL_ExistInterp.lo `test -f 'sci_gateway/c/sci_TCL_ExistInterp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_ExistInterp.c
-
-sci_gateway/c/libscitclsci_la-gw_tclsci.lo: sci_gateway/c/gw_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitclsci_la-gw_tclsci.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Tpo -c -o sci_gateway/c/libscitclsci_la-gw_tclsci.lo `test -f 'sci_gateway/c/gw_tclsci.c' || echo '$(srcdir)/'`sci_gateway/c/gw_tclsci.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Tpo sci_gateway/c/$(DEPDIR)/libscitclsci_la-gw_tclsci.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_tclsci.c' object='sci_gateway/c/libscitclsci_la-gw_tclsci.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscitclsci_la-gw_tclsci.lo `test -f 'sci_gateway/c/gw_tclsci.c' || echo '$(srcdir)/'`sci_gateway/c/gw_tclsci.c
 
 sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo: sci_gateway/c/sci_TCL_EvalStr.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscitclsci_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscitclsci_la-sci_TCL_EvalStr.Tpo -c -o sci_gateway/c/libscitclsci_la-sci_TCL_EvalStr.lo `test -f 'sci_gateway/c/sci_TCL_EvalStr.c' || echo '$(srcdir)/'`sci_gateway/c/sci_TCL_EvalStr.c
@@ -1564,7 +1577,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1573,7 +1586,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1582,11 +1595,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++ 
+# If the user request for the SWIG generation of the wrappers Java => C/C++
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1607,7 +1620,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

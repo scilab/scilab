@@ -14,13 +14,13 @@
 chdir(TMPDIR);
 t = [];
 for i=1:1000
-  t = [t string(i)];
+    t = [t string(i)];
 end
 t = t';
 warning("off");
-save(TMPDIR + filesep() + 'pb.dat',t);
+save(TMPDIR + filesep() + "pb.dat","t");
 clear t;
-load(TMPDIR + filesep() + 'pb.dat');
+load(TMPDIR + filesep() + "pb.dat");
 ierr = execstr("r = msscanf(-1,t,''%f\n'');","errcatch");
 if ierr <> 0 then bugmes();quit;end
-if size(r,'*') <> 500 then bugmes();quit;end
+if size(r,"*") <> 1000 then bugmes();quit;end

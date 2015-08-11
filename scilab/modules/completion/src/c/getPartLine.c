@@ -11,12 +11,10 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "getPartLine.h"
 #include "core_math.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 #define SPACE_CHAR ' '
 /*--------------------------------------------------------------------------*/
@@ -40,7 +38,7 @@ char *getPartLevel(char *line)
         }
     }
 
-    return strdup(&line[index + 1]);
+    return os_strdup(&line[index + 1]);
 }
 /*--------------------------------------------------------------------------*/
 char *getFilePartLevel(char *line)
@@ -116,7 +114,7 @@ char *getFilePartLevel(char *line)
                 index++;
             }
         }
-        returnedLine = strdup(&lineWithoutSpaceAtBeginning[index]);
+        returnedLine = os_strdup(&lineWithoutSpaceAtBeginning[index]);
     }
 
     FREE(lineWithoutSpaceAtBeginning);
@@ -146,7 +144,7 @@ static char *removeSpacesAtBeginning(char *line)
         }
         if (index != l)
         {
-            returnedLine = strdup(&line[index]);
+            returnedLine = os_strdup(&line[index]);
         }
     }
     return returnedLine;

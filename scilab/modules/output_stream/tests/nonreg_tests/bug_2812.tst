@@ -15,10 +15,7 @@
 //
 // <-- Short Description -->
 // I know the name of my function is too long but I should not have "ÿÿÿ" at the end.
-// 
+//
 // Processing file ilib_compile.sci
-// Warning :
-// The identifier : generatecompilationflags_unixÿÿÿ
-//  has been truncated to: generatecompilationflags
-
+// There should be no warning
 generatecompilationflags_unix = 1;

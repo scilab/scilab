@@ -14,7 +14,7 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{533c333a-f845-45cc-bc54-99ace7146883}</UniqueIdentifier>
+      <UniqueIdentifier>{702ea159-8b06-46a2-a740-813181af1474}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

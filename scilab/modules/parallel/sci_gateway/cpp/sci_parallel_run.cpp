@@ -18,17 +18,14 @@ extern "C" {
 #include "api_scilab.h"
 #include "gw_parallel.h"
 #include "dynamic_link.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "parameters.h"
 #include "Thread_Wrapper.h" /* locks for concurrency access */
-#include "stack-def.h" /* #define nlgh nsiz*4   */
-#include "stack-c.h"
 
 #ifdef _MSC_VER
 #include "mmapWindows.h"
-#include "strdup_windows.h"
 #else
 #include <sys/mman.h>
 #ifndef MAP_ANONYMOUS

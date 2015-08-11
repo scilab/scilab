@@ -11,7 +11,7 @@ mkdir(pathconvert(TMPDIR+"/sparseExample"));
 cd(pathconvert(TMPDIR+"/sparseExample"));
 copyfile(SCI+"/modules/api_scilab/tests/unit_tests/sparseExample.c",pathconvert(TMPDIR+"/sparseExample/sparseExample.c",%F));
 cflags = "-I"+SCI+"/modules/localization/includes";
-ilib_build("gwsparseExample",["sparseExample","sparseExample"],"sparseExample.c",[],"","",cflags);
+ilib_build("gw_sparseExample",["sparseExample","sparseExample"],"sparseExample.c",[],"","",cflags);
 exec("loader.sce");
 
 a = sparse([1,1;2,2;3,3], [1, 2, 3]);

@@ -1,4 +1,4 @@
-    <package name="org.scilab.modules.preferences">
+        <package name="org.scilab.modules.preferences">
     <object name="ScilabPreferences">
         <method name="addToolboxInfos" returnType="void" modifier="static">
             <parameter name="name" type="String"/>

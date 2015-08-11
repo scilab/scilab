@@ -30,9 +30,8 @@ Source: modules\{#TCLSCI}\demos\*.*; DestDir: {app}\modules\{#TCLSCI}\demos; Fla
 ;Source: modules\{#TCLSCI}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#TCLSCI}\includes; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#TCLSCI}\macros\lib; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TCLSCI}\macros\names; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
-Source: modules\{#TCLSCI}\macros\*.bin; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TCLSCI}\macros\*.sci; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
+Source: modules\{#TCLSCI}\macros\*.bin; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TCLSCI}\macros\buildmacros.sce; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TCLSCI}\macros\buildmacros.bat; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#TCLSCI}\macros\cleanmacros.bat; DestDir: {app}\modules\{#TCLSCI}\macros; Components: {#COMPN_SCILAB}

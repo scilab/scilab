@@ -38,7 +38,7 @@
             mot clé <literal>catch</literal> sont ignorées et les instructions
             comprises entre les mots clés <literal>catch</literal> et
             <literal>end</literal> sont exécutées en utilisant le mode de gestion des
-            erreurs par défaut (voir <link linkend="errcatch">errcatch</link>).
+            erreurs par défaut.
         </para>
         <para>L'erreur mémorisée peut être retrouvée en utilisant la fonction
             <link linkend="lasterror">lasterror</link>.
@@ -63,7 +63,7 @@ if execstr("<instructions du bloc try>","errcatch")<>0 then
 end
  ]]></programlisting>
         <para>
-            Il utilise le même mécanisme interne que <link linkend="errcatch">errcatch</link>. C'est pourquoi <link linkend="errcatch">errcatch</link> ou <emphasis>execstr(...,"errcatch")
+            Il utilise le même mécanisme interne que "errcatch". C'est pourquoi <emphasis>execstr(...,"errcatch")
             </emphasis>
             ne peut pas être utilisé à l'intérieur d'une structure
             <literal>try</literal>-<literal>catch</literal>. Un tel contexte est
@@ -131,9 +131,6 @@ nestedtry("une chaîne","une chaîne")
             </member>
             <member>
                 <link linkend="lasterror">lasterror</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
         </simplelist>
     </refsection>

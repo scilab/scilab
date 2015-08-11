@@ -1,0 +1,22 @@
+LIBRARY    differential_equations_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; differential_equations_f
+; --------------------------------------- 
+appsln_
+colnew_
+ddasrt_
+ddaskr_
+lsodi_
+twodq_
+dcutet_
+dqags_
+rksimp_
+rkf45_
+lsrgk_
+lsdisc_
+lsodar_
+lsode_
+lsoda_

@@ -13,7 +13,7 @@
 #include "noxcos.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 /*--------------------------------------------------------------------------*/
 int gw_xcos(void)
 {

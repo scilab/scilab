@@ -15,15 +15,14 @@
 // <-- Short Description -->
 // zeros() called with a number greater than 2**31 returns an empty matrix
 
-assert_checktrue(execstr("zeros(2**32, 1)", "errcatch") == 17);
-assert_checktrue(execstr("zeros(1, 2**32)", "errcatch") == 17);
+assert_checktrue(execstr("zeros(2**32, 1)", "errcatch") == 999);
+assert_checktrue(execstr("zeros(1, 2**32)", "errcatch") == 999);
 
 // the same with eye, rand, and ones
-assert_checktrue(execstr("eye(2**32, 1)", "errcatch") == 17);
-assert_checktrue(execstr("eye(1, 2**32)", "errcatch") == 17);
+assert_checktrue(execstr("eye(2**32, 1)", "errcatch") == 999);
+assert_checktrue(execstr("eye(1, 2**32)", "errcatch") == 999);
 
-assert_checktrue(execstr("ones(2**32, 1)", "errcatch") == 17);
-assert_checktrue(execstr("ones(2**32, 1)", "errcatch") == 17);
+assert_checktrue(execstr("ones(2**32, 1)", "errcatch") == 999);
+assert_checktrue(execstr("ones(2**32, 1)", "errcatch") == 999);
 
-assert_checktrue(execstr("rand(2**32, 1)", "errcatch") == 17);
-assert_checktrue(execstr("rand(2**32, 1)", "errcatch") == 17);
+assert_checktrue(execstr("rand(2**32, 1)", "errcatch") == 999);

@@ -17,6 +17,8 @@
 #ifndef __GETDATE_H__
 #define __GETDATE_H__
 
+#include "dynlib_time.h"
+
 #define NB_ELEMNT_ARRAY_GETDATE 10
 
 /**
@@ -24,13 +26,13 @@
 * @param[out] ierr 0 eqs. OK
 * return an array of double
 */
-double *getCurrentDateAsDoubleVector(int *iErr);
+TIME_IMPEXP double *getCurrentDateAsDoubleVector(int *iErr);
 
 /**
 * Get Current Date as Unix Time convention
 * return a double
 */
-double getCurrentDateAsUnixTimeConvention(void);
+TIME_IMPEXP double getCurrentDateAsUnixTimeConvention(void);
 
 /**
 * Convert a double (Unix Time Convention) to an human date
@@ -39,7 +41,7 @@ double getCurrentDateAsUnixTimeConvention(void);
 * @param[out] ierr 0 eqs. OK
 * return an array of double
 */
-double *getConvertedDateAsDoubleVector(double dDate, int *iErr);
+TIME_IMPEXP double *getConvertedDateAsDoubleVector(double dDate, int *iErr);
 
 /**
 * Convert doubles (Unix Time Convention) to an human dates
@@ -48,6 +50,6 @@ double *getConvertedDateAsDoubleVector(double dDate, int *iErr);
 * @param[out] ierr 0 eqs. OK
 * return an array of double
 */
-double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iErr);
+TIME_IMPEXP double *getConvertedDateAsMatrixOfDouble(double *dDates, int nbElements, int *iErr);
 
 #endif /* __GETDATE_H__ */

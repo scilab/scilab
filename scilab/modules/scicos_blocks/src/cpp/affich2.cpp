@@ -20,13 +20,11 @@ extern "C"
 {
 #include "machine.h"
 #include "dynlib_scicos_blocks.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "scicos_block4.h"
 #include "scicos.h"
 #include "core_math.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 
     double C2F(sciround) (double *x);
     SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag);
@@ -78,7 +76,7 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
                     sprintf(pstFormat, "%%%d.%df", iDigit, iPrec);
                     sprintf(pstConv, pstFormat, dblValue);
 #endif
-                    pstValue[i][j] = strdup(pstConv);
+                    pstValue[i][j] = os_strdup(pstConv);
                 }
             }
 
@@ -100,7 +98,7 @@ SCICOS_BLOCKS_IMPEXP void affich2(scicos_block * block, int flag)
 #else
                     sprintf(pstConv, "%0.2f", 0.0);
 #endif
-                    pstValue[i][j] = strdup(pstConv);
+                    pstValue[i][j] = os_strdup(pstConv);
                 }
             }
 

@@ -17,7 +17,7 @@ function f1=%r_x_p(f1,f2)
 
         f1=simp(f1)
     else
-        [num,den]=simp(f1.num.entries,f1.den.entries)
+        [num,den]=simp(f1.num(:),f1.den(:))
         f1.num=matrix(num,sz)
         f1.den=matrix(den,sz)
     end

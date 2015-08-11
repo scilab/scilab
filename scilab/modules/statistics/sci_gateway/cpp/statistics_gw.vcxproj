@@ -1,0 +1,205 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{EAE1009F-B967-43C4-9408-97A37EFA8678}</ProjectGuid>
+    <RootNamespace>statistics_gw</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;STATISTICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;STATISTICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;STATISTICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX86</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;STATISTICS_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <AdditionalIncludeDirectories>../../includes;../../../../libs/intl;../../../core/includes;../../../localization/includes;../../../api_scilab/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <OutputFile>$(SolutionDir)bin\$(ProjectName).dll</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <TargetMachine>MachineX64</TargetMachine>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\c\sci_cdfbet.c" />
+    <ClCompile Include="..\c\sci_cdfbin.c" />
+    <ClCompile Include="..\c\sci_cdfchi.c" />
+    <ClCompile Include="..\c\sci_cdfchn.c" />
+    <ClCompile Include="..\c\sci_cdff.c" />
+    <ClCompile Include="..\c\sci_cdffnc.c" />
+    <ClCompile Include="..\c\sci_cdfgam.c" />
+    <ClCompile Include="..\c\sci_cdfnbn.c" />
+    <ClCompile Include="..\c\sci_cdfnor.c" />
+    <ClCompile Include="..\c\sci_cdfpoi.c" />
+    <ClCompile Include="..\c\sci_cdft.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\dynlib_statistics_gw.h" />
+    <ClInclude Include="..\..\includes\gw_statistics.h" />
+    <ClInclude Include="..\..\includes\statistics_gw.hxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\c\statistics.vcxproj">
+      <Project>{fe9eb721-b3c1-41d8-b585-3fb3a0083cec}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\dcd_f.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

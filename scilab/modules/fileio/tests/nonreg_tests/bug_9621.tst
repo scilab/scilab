@@ -1,0 +1,31 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2014 - Scilab Enterprises - Paul Bignier
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+//
+// <-- CLI SHELL MODE -->
+//
+// <-- ENGLISH IMPOSED -->
+//
+// <-- Non-regression test for bug 9621 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=9621
+//
+// <-- Short Description -->
+// We could save a tlist with undefined fields.
+
+newobj = tlist(["MYTYPE"
+"a"
+"b"
+"c" ]);
+newobj.a = %t;
+newobj.c = 0.05;
+
+saved = newobj;
+save("TMPDIR/pb.dat", "newobj");
+clear newobj;
+load("TMPDIR/pb.dat");
+assert_checkequal(newobj, saved);

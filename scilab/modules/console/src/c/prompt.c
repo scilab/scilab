@@ -14,12 +14,10 @@
 #include <string.h>
 #include "prompt.h"
 #include "sciprint.h"
-#include "warningmode.h"
+#include "configvariable_interface.h"
 #include "localization.h"
-#include "MALLOC.h"
-#ifdef _MSC_VER
-#include "strdup_Windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------*/
 static char Sci_Prompt[PROMPT_SIZE_MAX];
@@ -32,7 +30,15 @@ void C2F(setprlev)( int *pause)
 {
     if ( *pause == 0 )
     {
-        sprintf(Sci_Prompt, SCIPROMPT);
+        if (temporaryPrompt != NULL)
+        {
+            strcpy(Sci_Prompt, temporaryPrompt);
+            ClearTemporaryPrompt();
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPT);
+        }
     }
     else if ( *pause > 0 )
     {
@@ -47,7 +53,7 @@ void C2F(setprlev)( int *pause)
         sprintf(Sci_Prompt, SCIPROMPT_INTERRUPT, *pause);
         // bug 5513
         // when we change prompt to a pause level, we change also temp. prompt
-        SetTemporaryPrompt(Sci_Prompt);
+        //SetTemporaryPrompt(Sci_Prompt);
     }
     else
     {
@@ -66,14 +72,10 @@ void GetCurrentPrompt(char *CurrentPrompt)
     }
 }
 /*------------------------------------------------------------------------*/
-void SetTemporaryPrompt(char *tempPrompt)
+void SetTemporaryPrompt(const char *tempPrompt)
 {
-    if (temporaryPrompt)
-    {
-        FREE(temporaryPrompt);
-        temporaryPrompt = NULL;
-    }
-    temporaryPrompt = strdup(tempPrompt);
+    ClearTemporaryPrompt();
+    temporaryPrompt = os_strdup(tempPrompt);
 }
 /*------------------------------------------------------------------------*/
 char *GetTemporaryPrompt(void)

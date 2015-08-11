@@ -109,9 +109,6 @@ deff('[x]=mymacro(y,z)',['a=3*y+1'; 'x=a*z+y'])
         <title>Смотрите также</title>
         <simplelist type="inline">
             <member>
-                <link linkend="comp">comp</link>
-            </member>
-            <member>
                 <link linkend="exec">exec</link>
             </member>
             <member>

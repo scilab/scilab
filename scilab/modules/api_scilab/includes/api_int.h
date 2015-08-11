@@ -20,6 +20,9 @@
 extern "C" {
 #endif
 
+#include "version.h"
+#include "dynlib_api_scilab.h"
+
     /* These values are also used in:
      * modules/core/includes/sci_types.h */
 #define SCI_INT8	1
@@ -31,6 +34,10 @@ extern "C" {
 #define SCI_UINT16	12
 #define SCI_UINT32	14
 #define SCI_UINT64	18
+
+#if SCI_VERSION_MAJOR > 5
+#define __SCILAB_INT64__
+#endif
 
     /********************************/
     /*   integer matrix functions   */
@@ -282,7 +289,7 @@ extern "C" {
      * @param[in] _pllData64 array of 64-bit integers
      * @return if the operation succeeded ( 0 ) or not ( !0 )
      */
-    SciErr createNamedMatrixOfInteger64(void* _pvCtx, cosnt char* _pstName, int _iRows, int _iCols, const long long* _pllData64);
+    SciErr createNamedMatrixOfInteger64(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, const long long* _pllData64);
 
     /**
      * Create named 64-bit unsigned integer variable

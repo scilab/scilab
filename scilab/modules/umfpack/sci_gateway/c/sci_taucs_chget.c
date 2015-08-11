@@ -59,7 +59,7 @@
 
 extern CellAdr *ListCholFactors;
 
-int sci_taucs_chget(char* fname, unsigned long l)
+int sci_taucs_chget(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int nnz = 0, i = 0, pl_miss = 0, it_flag = 0;

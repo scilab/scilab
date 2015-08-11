@@ -14,7 +14,7 @@
 // <-- Short Description -->
 //  save function used unsigned char to store length of string, now it is an integer
 
-oldMode = warning('query');
+oldMode = warning("query");
 warning("off");
 longstring = strcat(mgetl("SCI/COPYING-BSD")); //1639
 
@@ -23,7 +23,7 @@ longstring = strcat(mgetl("SCI/COPYING-BSD")); //1639
 f = gcf();
 f.info_message = longstring;
 f.figure_name = longstring;
-save(TMPDIR + "/savef.dat", f);
+save(TMPDIR + "/savef.dat", "f");
 delete(f);
 clear f;
 load(TMPDIR + "/savef.dat");
@@ -33,8 +33,8 @@ delete(f);
 clear f;
 
 //"uimenu".callback
-m = uimenu(gcf(),'label', 'test', 'callback', longstring); //no sense, just for test !
-save(TMPDIR + "/savef.dat", m);
+m = uimenu(gcf(),"label", "test", "callback", longstring); //no sense, just for test !
+save(TMPDIR + "/savef.dat", "m");
 delete(gcf());
 clear m;
 load(TMPDIR + "/savef.dat");
@@ -45,7 +45,7 @@ clear m;
 //"uicontrol".String
 //"uicontrol".callback
 m = uicontrol(gcf(), "Style", "text", "string",longstring, "callback", longstring);
-save(TMPDIR + "/savef.dat", m);
+save(TMPDIR + "/savef.dat", "m");
 delete(gcf());
 clear m;
 load(TMPDIR + "/savef.dat");

@@ -16,6 +16,7 @@ function h=generic_i_h(i,v,h)
     if and(type(i($))<>[1 2 4 8 129 15]) then
         i($+1)=:
     end
+
     n=lstsize(i)
     hdl=h;hind=[]
     for k=1:lstsize(i)// walk down in the handle tree

@@ -25,7 +25,7 @@
 #include "graphicObjectProperties.h"
 #include "LayoutType.h"
 /*------------------------------------------------------------------------*/
-int get_layout_property(void* _pvCtx, int iObjUID)
+void* get_layout_property(void* _pvCtx, int iObjUID)
 {
     int iLayout = 0;
     int* piLayout = &iLayout;
@@ -34,20 +34,20 @@ int get_layout_property(void* _pvCtx, int iObjUID)
     if (piLayout == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout");
-        return -1;
+        return NULL;
     }
 
     switch (iLayout)
     {
         default :
         case LAYOUT_NONE :
-            return sciReturnString(_pvCtx, "none");
+            return sciReturnString("none");
         case LAYOUT_GRIDBAG :
-            return sciReturnString(_pvCtx, "gridbag");
+            return sciReturnString("gridbag");
         case LAYOUT_GRID :
-            return sciReturnString(_pvCtx, "grid");
+            return sciReturnString("grid");
         case LAYOUT_BORDER :
-            return sciReturnString(_pvCtx, "border");
+            return sciReturnString("border");
     }
 }
 /*------------------------------------------------------------------------*/

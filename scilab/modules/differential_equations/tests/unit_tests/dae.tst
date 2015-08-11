@@ -8,7 +8,7 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
-
+funcprot(0);
 ilib_verbose(0);
 
 //DASSL

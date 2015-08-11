@@ -11,7 +11,7 @@
  */
 #include "isnum.h"
 #include "stringToComplex.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 // =============================================================================
 BOOL isNum(const char *pStr)
 {
@@ -36,6 +36,35 @@ BOOL *isNumMatrix(const char **pStrs, int nbRows, int nbCols)
             for (i = 0; i < nbRows * nbCols; i++)
             {
                 pResults[i] = isNum(pStrs[i]);
+            }
+        }
+    }
+    return pResults;
+}
+// =============================================================================
+BOOL isNumW(const wchar_t* pStr)
+{
+    if (pStr)
+    {
+        stringToComplexError ierr = STRINGTOCOMPLEX_NO_ERROR;
+        stringToComplexW(pStr, L".", FALSE, &ierr);
+        return (BOOL)(ierr == STRINGTOCOMPLEX_NO_ERROR);
+    }
+    return FALSE;
+}
+// =============================================================================
+BOOL *isNumMatrixW(const wchar_t** pStrs, int nbRows, int nbCols)
+{
+    BOOL *pResults = NULL;
+    if (pStrs)
+    {
+        pResults = (BOOL*)MALLOC(sizeof(BOOL) * (nbCols * nbRows));
+        if (pResults)
+        {
+            int i = 0;
+            for (i = 0; i < nbRows * nbCols; i++)
+            {
+                pResults[i] = isNumW(pStrs[i]);
             }
         }
     }

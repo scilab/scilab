@@ -9,7 +9,7 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-
+#include <string.h>
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -19,7 +19,7 @@
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_uigetfont(char *fname, unsigned long fname_len)
+int sci_uigetfont(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
 

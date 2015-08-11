@@ -11,16 +11,16 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "dynamic_tclsci.h"
-#include "callDynamicGateway.h"
+//#include "callDynamicGateway.h"
 #include "gw_dynamic_generic.h"
-#include "scilabmode.h"
+#include "configvariable_interface.h"
 #include "with_module.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 /* tclsci module */
 #define TCLSCI_MODULE_NAME "tclsci"
 static DynLibHandle hTclsciLib = NULL;
-static PROC_GATEWAY ptr_gw_tclsci = NULL;
+static void* ptr_gw_tclsci = NULL;
 static char* dynlibname_tclsci = NULL;
 static char* gatewayname_tclsci = NULL;
 /*--------------------------------------------------------------------------*/
@@ -34,11 +34,12 @@ static PROC_TERMINATETCLTK ptr_TerminatTclTk = NULL;
 /*--------------------------------------------------------------------------*/
 int gw_dynamic_tclsci(void)
 {
-    return gw_dynamic_generic(TCLSCI_MODULE_NAME,
-                              &dynlibname_tclsci,
-                              &gatewayname_tclsci,
-                              &hTclsciLib,
-                              &ptr_gw_tclsci);
+    //return gw_dynamic_generic(TCLSCI_MODULE_NAME,
+    //    &dynlibname_tclsci,
+    //    &gatewayname_tclsci,
+    //    &hTclsciLib,
+    //    &ptr_gw_tclsci);
+    return 0;
 }
 /*--------------------------------------------------------------------------*/
 int dynamic_setenvtcl(const char *string, const char *value)
@@ -75,10 +76,10 @@ BOOL dynamic_TerminateTclTk(void)
         }
         bResult = (ptr_TerminatTclTk)();
 
-        freeDynamicGateway(&dynlibname_tclsci,
-                           &gatewayname_tclsci,
-                           &hTclsciLib,
-                           &ptr_gw_tclsci);
+        //freeDynamicGateway(&dynlibname_tclsci,
+        //    &gatewayname_tclsci,
+        //    &hTclsciLib,
+        //    &ptr_gw_tclsci);
 
         return bResult;
     }

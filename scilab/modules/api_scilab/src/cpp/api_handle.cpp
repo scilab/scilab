@@ -13,14 +13,22 @@
  * still available and supported in Scilab 6.
  */
 
+#include "graphichandle.hxx"
+#include "function.hxx"
+#include "gatewaystruct.hxx"
+
+extern "C"
+{
 #include "api_scilab.h"
 #include "api_internal_common.h"
-#include "api_internal_handle.h"
 #include "localization.h"
 
 #include "Scierror.h"
 #include "call_scilab.h"
+}
 
+using namespace std;
+using namespace types;
 
 
 SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, long long** _pllHandle)
@@ -50,7 +58,7 @@ SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 
     if (_pllHandle)
     {
-        *_pllHandle = (long long*)(_piAddress + 4);
+        *_pllHandle = ((InternalType*)_piAddress)->getAs<types::GraphicHandle>()->get();
     }
     return sciErr;
 }
@@ -58,24 +66,33 @@ SciErr getMatrixOfHandle(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCo
 SciErr allocMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, long long** _pllHandle)
 {
     SciErr sciErr = sciErrInit();
-    int iNewPos = Top - Rhs + _iVar;
-    int iAddr = *Lstk(iNewPos);
-    int* piAddr = NULL;
 
-    int iMemSize = _iRows * _iCols + 2;
-    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
-    if (iMemSize > iFreeSpace)
+    if (_pvCtx == NULL)
     {
-        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+        addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "allocMatrixOfHandle");
         return sciErr;
     }
 
-    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
-    fillMatrixOfHandle(_pvCtx, piAddr, _iRows, _iCols, _pllHandle);
+    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
+    typed_list in = *pStr->m_pIn;
+    InternalType** out = pStr->m_pOut;
 
-    int iSCIAddress = sadr(iadr(iAddr) + 4);
-    updateInterSCI(_iVar, '$', iAddr, iSCIAddress);
-    updateLstk(iNewPos, sadr(iadr(iAddr) + 4), _iRows * _iCols);
+    GraphicHandle *pHandle = new GraphicHandle(_iRows, _iCols);
+    if (pHandle == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfHandle");
+        return sciErr;
+    }
+
+    int rhs = _iVar - *getNbInputArgument(_pvCtx);
+    out[rhs - 1] = pHandle;
+    *_pllHandle = pHandle->get();
+    if (*_pllHandle == NULL)
+    {
+        addErrorMessage(&sciErr, API_ERROR_NO_MORE_MEMORY, _("%s: No more memory to allocated variable"), "allocMatrixOfHandle");
+        return sciErr;
+    }
+
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -97,22 +114,11 @@ SciErr createMatrixOfHandle(void* _pvCtx, int _iVar, int _iRows, int _iCols, lon
     SciErr sciErr = allocMatrixOfHandle(_pvCtx, _iVar, _iRows, _iCols, &pllHandle);
     if (sciErr.iErr)
     {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_HANDLE, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfHandle");
+        addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN, _("%s: Unable to create variable in Scilab memory"), "createMatrixOfBoolean");
         return sciErr;
     }
 
     memcpy(pllHandle, _pllHandle, sizeof(long long) * _iRows * _iCols);
-    return sciErr;
-}
-/*--------------------------------------------------------------------------*/
-SciErr fillMatrixOfHandle(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, long long** _pllHandle)
-{
-    SciErr sciErr = sciErrInit();
-    _piAddress[0]	= sci_handles;
-    _piAddress[1] = Min(_iRows, _iRows * _iCols);
-    _piAddress[2] = Min(_iCols, _iRows * _iCols);
-
-    *_pllHandle = (long long*)(_piAddress + 4);
     return sciErr;
 }
 /*--------------------------------------------------------------------------*/
@@ -145,7 +151,7 @@ int getScalarHandle(void* _pvCtx, int* _piAddress, long long* _pllHandle)
 
     if (_pllHandle != NULL)
     {
-        *_pllHandle	= pllHandle[0];
+        *_pllHandle = pllHandle[0];
     }
 
     return 0;

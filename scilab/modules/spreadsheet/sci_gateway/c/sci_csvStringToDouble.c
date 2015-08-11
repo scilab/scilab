@@ -13,22 +13,20 @@
  *
  */
 #include <string.h>
+#include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "gw_csv_helpers.h"
 #include "complex_array.h"
 
 // =============================================================================
-int sci_csvStringToDouble(char *fname, unsigned long fname_len)
+int sci_csvStringToDouble(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int iErr = 0;

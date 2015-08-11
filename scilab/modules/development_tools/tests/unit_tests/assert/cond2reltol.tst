@@ -1,4 +1,5 @@
 // Copyright (C) 2010 - DIGITEO - Michael Baudin
+// Copyright (C) 2014 - Scilab Enterprises - Anais AUBERT
 //
 // This file must be used under the terms of the CeCILL.
 // This source file is licensed as described in the file COPYING, which
@@ -8,6 +9,8 @@
 
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
+
+funcprot(0);
 
 function flag = MY_assert_equal ( computed , expected )
   if computed==expected then
@@ -73,3 +76,4 @@ computed = assert_cond2reltol ( 1.e2 , [0 1 2 3] ) ;
 expected = [1.110223024625162220D-14    1.110223024625162260D-15    1.110223024625162210D-16    1.110223024625162210D-16];
 assert_checkalmostequal ( computed , expected , 100*%eps);
 
+funcprot(1);

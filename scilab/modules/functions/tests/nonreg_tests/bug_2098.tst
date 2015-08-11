@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=2098
 //
 // <-- Short Description -->
-//    showprofile(test) makes Scilab crash if the function 'test' has not 
+//    showprofile(test) makes Scilab crash if the function 'test' has not
 //    been prepared for profiling, as demonstrated by the following example:
 //
 //    -->function test
@@ -27,8 +27,8 @@
 //    -->showprofile(test)  // this line makes Scilab exit silently
 
 function test
-	disp('test');
+    disp("test");
 endfunction
 
-ierr = execstr('showprofile(test)','errcatch');
-if ierr <> 10000 then pause,end
+ierr = execstr("showprofile(test)","errcatch");
+if ierr <> 999 then pause,end

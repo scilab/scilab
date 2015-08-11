@@ -7,5 +7,11 @@
 
 //whereis
 
-if whereis("sci2exp") <> "stringlib" then pause,end
-if whereis('aaa')     <> []  then pause,end
+assert_checkequal(whereis("sci2exp"), "stringlib");
+assert_checkequal(whereis("aaa"), []);
+
+assert_checkequal(whereis("with_tk"), "corelib");
+a = corelib;
+assert_checkequal(whereis("with_tk"), ["a" ; "corelib"]);
+
+

@@ -12,21 +12,18 @@
 */
 #include <string.h>
 #include "api_scilab.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "os_string.h"
 #include "fprintfMat.h"
 
 static void freeVar(char** filename, char** expandedFilename, char*** textAdded, int m4n4, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
-int sci_fprintfMat(char *fname, unsigned long fname_len)
+int sci_fprintfMat(char *fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -48,7 +45,6 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     int m4n4 = 0;
     int i = 0;
 
-    Nbvars = 0;
     CheckRhs(2, 5);
     CheckLhs(1, 1);
 
@@ -82,7 +78,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     }
     else
     {
-        Format = strdup(DEFAULT_FPRINTFMAT_FORMAT);
+        Format = os_strdup(DEFAULT_FPRINTFMAT_FORMAT);
     }
 
     if ( Rhs >= 4 )
@@ -147,7 +143,7 @@ int sci_fprintfMat(char *fname, unsigned long fname_len)
     }
     else
     {
-        separator = strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
+        separator = os_strdup(DEFAULT_FPRINTFMAT_SEPARATOR);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);

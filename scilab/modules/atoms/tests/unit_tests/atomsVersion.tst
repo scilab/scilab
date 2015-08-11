@@ -6,4 +6,4 @@
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
-if atomsVersion() <> ["5.5"] then pause, end
+if atomsVersion() <> ["6.0"] then pause, end

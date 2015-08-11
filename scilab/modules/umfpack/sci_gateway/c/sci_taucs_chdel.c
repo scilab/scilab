@@ -53,12 +53,12 @@
 #include "gw_umfpack.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern CellAdr *ListCholFactors;
 /*--------------------------------------------------------------------------*/
-int sci_taucs_chdel(char* fname, unsigned long l)
+int sci_taucs_chdel(char* fname, void* pvApiCtx)
 {
     SciErr sciErr;
     int it_flag = 0;

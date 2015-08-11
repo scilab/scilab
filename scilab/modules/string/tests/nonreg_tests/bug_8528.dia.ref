@@ -16,10 +16,10 @@
 // length returned a wrong size for malformed characters.
 //
 if length(ascii(181)) <> 1 then bugmes();quit;end
-if length(ascii([83.    99.    105.    108.    97.    98.])) <> 6 then bugmes();quit;end
+if length(ascii([83 99 105 108 97 98])) <> 6 then bugmes();quit;end
 if length("Scilab") <> 6 then bugmes();quit;end
-if length(ascii([83.    99.    105.    181.   108.    97.    98.])) <> 7 then bugmes();quit;end
+if length(ascii([83 99 105 181 108 97 98])) <> 7 then bugmes();quit;end
 if length("Sciµlab") <> 7 then bugmes();quit;end
-for i=127:255 
-  if length(ascii(i)) <> 1 then bugmes();quit;end
+for i=127:255
+    if length(ascii(i)) <> 1 then bugmes();quit;end
 end

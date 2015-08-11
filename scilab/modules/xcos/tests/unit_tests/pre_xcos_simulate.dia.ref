@@ -15,15 +15,13 @@ endfunction
 // Register function
 pre_xcos_simulate = list("fail_pre_simulate");
 xcos_simulate(scs_m, 4);
- 
- Calling fail_pre_simulate   
+ Calling fail_pre_simulate
 assert_checkfalse(isdef('cumsum_r'));
 // Register function
 clear pre_xcos_simulate
 pre_xcos_simulate = fail_pre_simulate;
 xcos_simulate(scs_m, 4);
- 
- Calling fail_pre_simulate   
+ Calling fail_pre_simulate
 assert_checkfalse(isdef('cumsum_r'));
 function continueSimulation = analyze_pre_simulate(scs_m, needcompile)
 // Retrieve all objects
@@ -55,26 +53,18 @@ endfunction
 clear pre_xcos_simulate
 pre_xcos_simulate = list("analyze_pre_simulate");
 xcos_simulate(scs_m, 4);
- 
- Diagram Analysis:   
- 
- Found 24 Blocks.   
- 
- Found 22 Links.   
- 
- Found 0 Other component.   
+ Diagram Analysis:
+ Found 24 Blocks.
+ Found 22 Links.
+ Found 0 Other component.
 assert_checktrue(isdef('cumsum_r'));
 clear('cumsum_r');
 // Register function
 clear pre_xcos_simulate
 pre_xcos_simulate = analyze_pre_simulate;
 xcos_simulate(scs_m, 4);
- 
- Diagram Analysis:   
- 
- Found 24 Blocks.   
- 
- Found 22 Links.   
- 
- Found 0 Other component.   
+ Diagram Analysis:
+ Found 24 Blocks.
+ Found 22 Links.
+ Found 0 Other component.
 assert_checktrue(isdef('cumsum_r'));

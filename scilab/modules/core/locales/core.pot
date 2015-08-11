@@ -15,7 +15,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Revision-Date: 2015-03-27 13:54+0100\n"
+"Revision-Date: 2015-07-03 10:13+0100\n"
 
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 37
 # File: examples/capi/call_scifunction/sci_call_scifunc.c, line: 55
@@ -65,7 +65,6 @@ msgstr ""
 #
 # File: sci_gateway/c/sci_clearfun.c, line: 70
 # File: sci_gateway/c/sci_funptr.c, line: 49
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 60
 # File: sci_gateway/c/sci_getversion.c, line: 211
 # File: sci_gateway/c/sci_readgateway.c, line: 130
 # File: sci_gateway/c/sci_warning.c, line: 157
@@ -311,7 +310,6 @@ msgstr ""
 # File: sci_gateway/c/sci_format.c, line: 92
 # File: sci_gateway/c/sci_format.c, line: 121
 # File: sci_gateway/c/sci_format.c, line: 425
-# File: sci_gateway/c/sci_getvariablesonstack.c, line: 54
 # File: sci_gateway/c/sci_predef.c, line: 121
 #, c-format
 msgid "%s: Wrong value for input argument #%d: '%s' or '%s' expected.\n"
@@ -432,44 +430,6 @@ msgid "%s: Wrong type for input arguments #%d and #%d: Strings expected.\n"
 msgstr ""
 
 #
-# File: sci_gateway/c/sci_gstacksize.c, line: 140
-# File: sci_gateway/c/sci_gstacksize.c, line: 147
-# File: sci_gateway/c/sci_gstacksize.c, line: 202
-# File: sci_gateway/c/sci_gstacksize.c, line: 218
-# File: sci_gateway/c/sci_gstacksize.c, line: 285
-# File: sci_gateway/c/sci_stacksize.c, line: 205
-# File: sci_gateway/c/sci_stacksize.c, line: 220
-# File: sci_gateway/c/sci_stacksize.c, line: 282
-#, c-format
-msgid "%s: Cannot allocate memory.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 153
-# File: sci_gateway/c/sci_gstacksize.c, line: 158
-# File: sci_gateway/c/sci_stacksize.c, line: 156
-# File: sci_gateway/c/sci_stacksize.c, line: 161
-#, c-format
-msgid "%s: Out of bounds value. Not in [%lu,%lu].\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 163
-# File: sci_gateway/c/sci_stacksize.c, line: 166
-#, c-format
-msgid "%s: Wrong size for input argument #%d: Scalar expected.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_gstacksize.c, line: 182
-# File: sci_gateway/c/sci_gstacksize.c, line: 187
-# File: sci_gateway/c/sci_stacksize.c, line: 185
-# File: sci_gateway/c/sci_stacksize.c, line: 190
-#, c-format
-msgid "%s: Wrong type for input argument #%d: Scalar, '%s' or '%s'.\n"
-msgstr ""
-
-#
 # File: sci_gateway/c/sci_lasterror.c, line: 53
 #, c-format
 msgid "%s: Wrong size for input argument #%d: A boolean expected.\n"
@@ -531,40 +491,6 @@ msgstr ""
 # File: sci_gateway/c/sci_readgateway.c, line: 125
 #, c-format
 msgid "%s: Invalid module name : %s.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 143
-# File: sci_gateway/c/sci_stacksize.c, line: 150
-# File: sci_gateway/c/sci_stacksize.c, line: 273
-#, c-format
-msgid ""
-"%s: Cannot allocate memory.\n"
-"%s\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 359
-#, c-format
-msgid "%s: Cannot allocate this quantity of memory.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 362
-#, c-format
-msgid "%s: The requested size is smaller than the minimal one.\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 365
-#, c-format
-msgid "%s: Unable to create (or resize) the stack (probably a malloc error).\n"
-msgstr ""
-
-#
-# File: sci_gateway/c/sci_stacksize.c, line: 368
-#, c-format
-msgid "%s: Unknown error.\n"
 msgstr ""
 
 #

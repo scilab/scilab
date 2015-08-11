@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAppend(char *fname, unsigned long fname_len)
+int sci_xmlAppend(char *fname, void* pvApiCtx)
 {
     XMLElement *parent = 0;
     XMLElement *elem = 0;

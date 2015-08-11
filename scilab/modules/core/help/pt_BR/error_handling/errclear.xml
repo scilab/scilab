@@ -39,12 +39,6 @@
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
-            <member>
-                <link linkend="iserror">iserror</link>
-            </member>
-            <member>
                 <link linkend="lasterror">lasterror</link>
             </member>
         </simplelist>

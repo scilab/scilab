@@ -43,10 +43,6 @@ function %i_Matplot(z,strf,rect,nax,frameflag,axesflag)
         error(msprintf(gettext("%s: Wrong value for input argument: ''%s'', ''%s'', ''%s'', ''%s'' or ''%s'' expected.\n"),"%%i_Matplot","strf","rect","nax","frameflag","axesflag"));
     end
 
-
-
-    Max=stacksize();Max=int((Max(1)-Max(2))/3)
-    if Max<M*N+100 then stacksize(Max+M*N*1.5),end
     execstr("Matplot(double(z),"+strcat(opts,",")+")")
 
 endfunction

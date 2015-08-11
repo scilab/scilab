@@ -34,45 +34,21 @@ function isCLIType(): Boolean;
   end;
 //------------------------------------------------------------------------------
 function getExecNameForDesktop(Param: String): String;
-  begin
-    if (isCLIType() = true) then
-      begin
-        Result := ExpandConstant('{app}') + '\bin\scilex.exe';
-      end
-    else
-      begin
-        Result := ExpandConstant('{app}') + '\bin\wscilex.exe';
-      end;
-  end;
-//------------------------------------------------------------------------------
-function DoTaskInstall_MKL: Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
-      begin
-        Result := Install_commons_MKL();
-        if (Result = true) then
-          begin
-            Result := Install_MKL();
-          end
-      end;
-  end;
-//------------------------------------------------------------------------------
-function DoTaskInstall_MKL_FFTW: Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
-      begin
-        Result := Install_MKL_FFTW();
-      end;
-  end;
+    begin
+        if (isCLIType() = true) then
+            begin
+                Result := ExpandConstant('{app}') + '\bin\Scilex.exe';
+            end
+        else
+            begin
+                Result := ExpandConstant('{app}') + '\bin\WScilex.exe';
+            end;
+    end;
 //------------------------------------------------------------------------------
 function DoTasksJustAfterInstall: Boolean;
   begin
     Result := true;
     Result := CreateModulesFile();
-    Result := DoTaskInstall_MKL();
-    Result := DoTaskInstall_MKL_FFTW();
   end;
 //------------------------------------------------------------------------------
 function GetJREVersion(): String;
@@ -150,32 +126,6 @@ end;
       end;
   end;
 //------------------------------------------------------------------------------
-function NextButtonClick_Download_MKL(): Boolean;
-  Var
-    bRes : Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_MKL_CPU_LIBRARY}') ) = true) then
-      begin
-        bRes := Download_commons_MKL();
-        if ( bRes = true ) then
-          begin
-            bRes := Download_MKL();
-          end;
-      end;
-  end;
-//------------------------------------------------------------------------------
-function NextButtonClick_Download_MKL_FFTW(): Boolean;
-  Var
-    bRes : Boolean;
-  begin
-    Result := true;
-    if (IsComponentSelected( ExpandConstant('{#COMPN_FFTW_MKL_LIBRARY}') ) = true) then
-      begin
-        bRes := Download_MKL_FFTW();
-      end;
-  end;
-//------------------------------------------------------------------------------
 function NextButtonClick(CurPageID: Integer): Boolean;
   Var
     bRes : Boolean;
@@ -206,12 +156,6 @@ function NextButtonClick(CurPageID: Integer): Boolean;
         AboutModulesButton.Visible := true;
       end else begin
         AboutModulesButton.Visible := false;
-      end;
-
-    if (CurPageID =  wpReady) then
-      begin
-        bRes := NextButtonClick_Download_MKL();
-        bRes := NextButtonClick_Download_MKL_FFTW();
       end;
 
     if (CurPageId = wpSelectComponents) then
@@ -324,8 +268,6 @@ begin
   AboutModulesButton.OnClick := @ButtonAboutModulesOnClick;
   AboutModulesButton.Parent := CancelButton.Parent;
   AboutModulesButton.Visible := false;
-
-  CreateOfflineInstallationCheckBox;
 
   OriginalOnTypesComboChange := WizardForm.TypesCombo.OnChange;
   WizardForm.TypesCombo.OnChange := @OnTypesComboChange;

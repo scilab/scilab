@@ -19,14 +19,14 @@
 clear
 // reported problem test (loop expression removal)
 function y=test()
-  y=0
-  try
-    for j=1:3;
-      error(1001);
+    y=0
+    try
+        for j=1:3;
+            error(1001);
+        end
+    catch
+        y=1
     end
-  catch
-    y=1
-  end
 endfunction
 
 if test()<>1 then pause,end
@@ -37,18 +37,9 @@ function y=fii,y=3,error(1001),endfunction
 function y=foo(a,b,c),y=a+b+c,endfunction
 y=0;
 try
-  foo(1,fii(),2)
+    foo(1,fii(),2)
 catch
-  y=1;
+    y=1;
 end
 if y<>1 then pause,end
 
-//in errcatch continue mode
-function y=pipo()
-  errcatch(1001,"continue","nomessage")
-  y=foo(1,fii(),2);
-  errclear(-1)
-  errcatch()
-endfunction
-y=pipo();
-if y<>6 then pause,end

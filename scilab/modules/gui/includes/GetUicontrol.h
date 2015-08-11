@@ -26,36 +26,36 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
-GUI_IMPEXP int GetUicontrolIcon(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolBackgroundColor(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolFontAngle(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolFontName(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolFontSize(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolFontUnits(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolFontWeight(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolListboxTop(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolMax(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolMin(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolPosition(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolPosition(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolSliderStep(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolString(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolStyle(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolTooltipString(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolUnits(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolValue(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUimenuChecked(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUimenuLabel(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUiobjectEnable(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUiobjectForegroundColor(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolRelief(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID);
-GUI_IMPEXP int GetUicontrolTooltipString(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolIcon(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolBackgroundColor(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolFontAngle(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolFontName(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolFontSize(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolFontUnits(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolFontWeight(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolHorizontalAlignment(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolMax(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolMin(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolPosition(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolSliderStep(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolString(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolStyle(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolUnits(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolValue(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUimenuChecked(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUimenuLabel(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUiobjectEnable(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUiobjectForegroundColor(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolRelief(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID);
+GUI_IMPEXP void* GetUicontrolTooltipString(void* _pvCtx, int iObjUID);
 
-char *IntToStyle(int _iStyle);
+const char *IntToStyle(int _iStyle);
 
 #endif /* __GET_UICONTROL_H__ */

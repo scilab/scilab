@@ -20,14 +20,11 @@
 #include "GetXmlFileEncoding.h"
 #include "FileExist.h"
 #include "addToClasspath.h"
-#include "setgetSCIpath.h"
-#include "MALLOC.h"
+#include "sci_path.h"
+#include "sci_malloc.h"
 #include "localization.h"
-#include "scilabmode.h"
-#include "stricmp.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "configvariable_interface.h"
+#include "os_string.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
 /*--------------------------------------------------------------------------*/
@@ -65,7 +62,7 @@ BOOL LoadClasspath(char *xmlfilename)
             char *classpath = NULL;
             char *load = "";
             typeOfLoad eLoad = STARTUP;
-            char *currentMode = getScilabModeString();
+            const char *currentMode = getScilabModeString();
             /* Xpath Query :
              * Retrieve all the path which are not disabled in our mode
              */
@@ -143,7 +140,7 @@ BOOL LoadClasspath(char *xmlfilename)
                     if ( (classpath) && (strlen(classpath) > 0) && (strncmp(classpath, "@", 1) != 0) ) /* If it starts by a @ that means it hasn't been able to find it... which is normal... for example with the documentation */
                     {
 #define KEYWORDSCILAB "$SCILAB"
-                        char *sciPath = getSCIpath();
+                        char *sciPath = getSCI();
                         char *FullClasspath = NULL;
 
                         if (strncmp(classpath, KEYWORDSCILAB, strlen(KEYWORDSCILAB)) == 0)
@@ -157,7 +154,7 @@ BOOL LoadClasspath(char *xmlfilename)
                         }
                         else
                         {
-                            FullClasspath = strdup(classpath);
+                            FullClasspath = os_strdup(classpath);
                         }
 
                         if (FullClasspath)

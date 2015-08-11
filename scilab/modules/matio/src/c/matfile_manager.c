@@ -16,7 +16,7 @@
 #include "matfile_manager.h"
 
 #include "sciprint.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 
 static mat_t **openedMatfiles = NULL;
 static int numberOfMatfiles = 0;

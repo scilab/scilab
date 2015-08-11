@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "getshortpathname.h"
 #include "BOOL.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 static DynLibHandle hLibJVM = NULL;

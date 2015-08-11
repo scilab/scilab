@@ -30,7 +30,7 @@ function [tree]=sci_fseek(tree)
         case 1 then
             flag="end"
         else
-            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
+            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."), strcat(expression2code(origin), "")),1)
             flag=Funcall("fseek_origin",1,list(origin),list())
         end
     else
@@ -41,7 +41,7 @@ function [tree]=sci_fseek(tree)
                 end
             end
         else
-            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."),expression2code(origin)),1)
+            set_infos(msprintf(gettext("Not enough information on %s to set the proper flag."), strcat(expression2code(origin), "")),1)
             flag=Funcall("fseek_origin",1,list(origin),list())
         end
     end

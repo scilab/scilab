@@ -16,7 +16,7 @@
 #include "TCL_ArraySize.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 /*--------------------------------------------------------------------------*/
 int TCL_ArraySize(Tcl_Interp *TCLinterpreter, char *VarName)
 {

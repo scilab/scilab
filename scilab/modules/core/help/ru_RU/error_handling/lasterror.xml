@@ -68,7 +68,7 @@
             перед местом возникновения ошибки.
         </para>
         <para>
-            Эта функция особенно полезна при использовании <link linkend="errcatch">errcatch</link> или <link linkend="execstr">execstr</link>.
+            Эта функция особенно полезна при использовании <link linkend="execstr">execstr</link>.
         </para>
         <para>
             Записанное сообщение об ошибке может удерживаться для дальнейшего вызова <literal>lasterror</literal>, с помощью
@@ -87,9 +87,6 @@ end
     <refsection role="see also">
         <title>Смотрите также</title>
         <simplelist type="inline">
-            <member>
-                <link linkend="errcatch">errcatch</link>
-            </member>
             <member>
                 <link linkend="execstr">execstr</link>
             </member>

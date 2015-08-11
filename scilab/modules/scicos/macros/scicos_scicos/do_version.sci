@@ -978,27 +978,27 @@ function scs_m_new=do_version273(scs_m)
             T=getfield(1,omod)
             if T($)<>"equations" then
                 T($+1)="equations"
-                setfield(1,T,omod)
-                setfield($+1,list(),omod)
+                scicos_setfield(1,T,omod)
+                scicos_setfield($+1,list(),omod)
             end
             if omod.sim=="super"|omod.sim=="csuper" then
                 rpar=do_version273(omod.rpar)
-                setfield($+1,getfield($,omod),omod)
-                setfield($-1,0,omod)
+                scicos_setfield($+1,getfield($,omod),omod)
+                scicos_setfield($-1,0,omod)
                 omod.rpar=rpar
             elseif omod.sim(1)=="ifthel" then // |omod.sim(1)=='eselect' then
-                setfield($+1,getfield($,omod),omod)
-                setfield($-1,1,omod)
-                setfield($-2,1,omod)
+                scicos_setfield($+1,getfield($,omod),omod)
+                scicos_setfield($-1,1,omod)
+                scicos_setfield($-2,1,omod)
             else
-                setfield($+1,getfield($,omod),omod)
-                setfield($-1,0,omod)
+                scicos_setfield($+1,getfield($,omod),omod)
+                scicos_setfield($-1,0,omod)
             end
             xx=getfield(1,omod);
             yy=xx($);
             xx($)="nmode"
             xx($+1)=yy;
-            setfield(1,xx,omod)
+            scicos_setfield(1,xx,omod)
             o.model= omod
             scs_m_new.objs(i)=o
         elseif typeof(o)=="Link" then
@@ -1034,7 +1034,7 @@ function scs_m_new=do_version272(scs_m)
                 out_implicit=I(ones(grphic.pout(:)));
             end
 
-            scs_m_new.objs(i).graphics=mlist(["graphics","orig","sz","flip","exprs","pin",..
+            scs_m_new.objs(i).graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
             "pout","pein","peout","gr_i","id","in_implicit","out_implicit"],..
             grphic.orig,grphic.sz,grphic.flip,grphic.exprs,grphic.pin,..
             grphic.pout,grphic.pein,grphic.peout,grphic.gr_i,grphic.id,..
@@ -1057,18 +1057,18 @@ function scs_m_new=do_version271(scs_m)
             omod=o.model;
             if omod.sim=="super"|omod.sim=="csuper" then
                 rpar=do_version271(omod.rpar)
-                setfield($+1,0,omod)
+                scicos_setfield($+1,0,omod)
                 omod.rpar=rpar
             elseif omod.sim=="zcross" then
-                setfield($+1,omod.in,omod)
+                scicos_setfield($+1,omod.in,omod)
                 omod.sim=list(omod.sim,1)
             elseif omod.sim=="lusat" then
-                setfield($+1,2*omod.in,omod)
+                scicos_setfield($+1,2*omod.in,omod)
                 omod.sim=list(omod.sim,1)
             else
-                setfield($+1,0,omod)
+                scicos_setfield($+1,0,omod)
             end
-            setfield(1,[getfield(1,omod),"nzcross"],omod)
+            scicos_setfield(1,[getfield(1,omod),"nzcross"],omod)
             o.model= omod
             scs_m_new.objs(i)=o
         end
@@ -2175,7 +2175,7 @@ function scs_m_new=do_version27(scs_m)
             objsi.graphics.exprs=o(2)(4)
             scs_m_new.objs(i)=objsi
         elseif o(1)=="Deleted" then
-            scs_m_new.objs(i)=tlist("Deleted")
+            scs_m_new.objs(i)=mlist("Deleted")
         end
     end
 
@@ -2288,7 +2288,7 @@ endfunction
 
 
 function model=scicos_model27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13)
-    //initialisation de model mlist
+    //initialisation de model scicos_new
     if exists("sim","local")==0 then sim="",end
     if exists("in","local")==0 then in=[],end
     if exists("out","local")==0 then out=[],end
@@ -2303,14 +2303,14 @@ function model=scicos_model27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10,v11,v12,v13)
     if exists("dep_ut","local")==0 then dep_ut=[%f %f],end
     if exists("label","local")==0 then label="",end
 
-    model=mlist(["model","sim","in","out","evtin","evtout","state","dstate",..
+    model=scicos_new(["model","sim","in","out","evtin","evtout","state","dstate",..
     "rpar","ipar","blocktype","firing","dep_ut","label"],..
     sim,in,out,evtin,evtout,state,dstate,..
     rpar,ipar,blocktype,firing,dep_ut,label)
 endfunction
 
 function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
-    //initialisation de graphics mlist
+    //initialisation de graphics scicos_new
     if exists("orig","local")==0 then orig=[0 0],end
     if exists("sz","local")==0 then sz=[20 20],end
     if exists("flip","local")==0 then flip=%t,end
@@ -2322,7 +2322,7 @@ function graphics=scicos_graphics27(v1,v2,v3,v4,v5,v6,v7,v8,v9,v10)
     if exists("gr_i","local")==0 then gr_i=[],end
     if exists("id","local")==0 then id="",end
 
-    graphics=mlist(["graphics","orig","sz","flip","exprs","pin",..
+    graphics=scicos_new(["graphics","orig","sz","flip","exprs","pin",..
     "pout","pein","peout","gr_i","id"],..
     orig,sz,flip,exprs,pin,pout,pein,peout,gr_i,id)
 endfunction

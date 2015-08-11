@@ -12,7 +12,7 @@
 
 #include "api_scilab.h"
 
-int callOverload(char *fname, unsigned long fname_len)
+int callOverload(char *fname, void* pvApiCtx)
 {
     CheckRhs(1, 1);
     CheckLhs(0, 1);

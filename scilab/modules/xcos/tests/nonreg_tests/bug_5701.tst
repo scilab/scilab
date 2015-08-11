@@ -14,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5701
 //
 // <-- Short Description -->
-// The AFFICH_m block perform update of the view when simulated, validate it.
+// The AFFICH_m block performs update of the view when simulated, validate it.
 
 // xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_5701.zcos");
 // Launch simulation

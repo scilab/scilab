@@ -14,7 +14,7 @@
 #include "machine.h" /* SHARED_LIB_EXT */
 #include "JVM_commons.h"
 #include "JVM_functions.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "PATH_MAX.h"
 #include "FileExist.h"
 #include "GetWindowsVersion.h"

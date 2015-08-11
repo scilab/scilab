@@ -13,7 +13,7 @@ assert_checkfalse(h5isRef("42"));
 assert_checkfalse(h5isRef(42));
 
 w = "testing";
-x = list(1, "hello");
+x = struct("a", 1, "b", "hello");
 y = [1 2;3 4];
 z = 1;
 save(TMPDIR + "/w.sod", "w");
@@ -27,10 +27,11 @@ aw = a.root.w.data;
 assert_checkfalse(h5isRef(aw));
 h5close(a)
 
+save(TMPDIR + "/x.sod", "x");
 b = h5open(TMPDIR + "/x.sod", "r");
 assert_checkfalse(h5isRef(b));
-bx = b.root.x.data;
-assert_checktrue(h5isRef(bx));
+bxa = b.root.x.a.data;
+assert_checktrue(h5isRef(bxa));
 h5close(b)
 
 c = h5open(TMPDIR + "/y.sod", "r");

@@ -12,12 +12,12 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5630
 //
 // <-- Short Description -->
-// 5629: export_to_hdf5 overwrites an empty directory without warning
-// 5630: export_to_hdf5 on an existing directory with file in it mess with the permissions.
+// 5629: hdf5_save overwrites an empty directory without warning
+// 5630: hdf5_save on an existing directory with file in it mess with the permissions.
 commonName = pathconvert(TMPDIR+"/bug_5629",%F);
 myvar      = 1;
 mkdir(commonName);
 if ~isdir(commonName) then bugmes();quit;end
-if ~execstr("export_to_hdf5(commonName,""myvar"")","errcatch") then bugmes();quit;end
+if ~execstr("save(commonName,""myvar"")","errcatch") then bugmes();quit;end
 if ~isdir(commonName) then bugmes();quit;end
 if isfile(commonName) then bugmes();quit;end

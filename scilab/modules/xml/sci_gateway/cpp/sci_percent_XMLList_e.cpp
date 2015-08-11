@@ -15,6 +15,7 @@
 
 extern "C"
 {
+#include <string.h>
 #include <stdio.h>
 #include "gw_xml.h"
 #include "Scierror.h"
@@ -25,7 +26,7 @@ extern "C"
 
 using namespace org_modules_xml;
 
-int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
+int sci_percent_XMLList_e(char *fname, void* pvApiCtx)
 {
     XMLList *list = 0;
     const XMLObject *elem;
@@ -112,7 +113,7 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
         {
             pstStrings = list->getContentFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             // contents are created with xmlGetNodeContent which requires that the user free the himself the memory
             for (int i = 0; i < list->getSize(); i++)
@@ -134,7 +135,7 @@ int sci_percent_XMLList_e(char *fname, unsigned long fname_len)
         {
             pstStrings = list->getNameFromList();
 
-            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char *const *>(pstStrings));
+            err = createMatrixOfString(pvApiCtx, Rhs + 1, 1, list->getSize(), const_cast < const char * const *>(pstStrings));
 
             delete[]pstStrings;
             if (err.iErr)

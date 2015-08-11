@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{3419B733-85A2-4F66-BC04-A5A8DC8FA057}</ProjectGuid>
+    <RootNamespace>action_binding_gw</RootNamespace>
+    <Keyword>Win32Proj</Keyword>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <WholeProgramOptimization>false</WholeProgramOptimization>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.30319.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">false</LinkIncremental>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(SolutionDir)bin\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(ProjectDir)$(Configuration)\</IntDir>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">sci$(ProjectName)</TargetName>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">sci$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;_DEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <MinimalRebuild>true</MinimalRebuild>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <AdditionalOptions>%(AdditionalOptions)</AdditionalOptions>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../libs/intl;$(SCILAB_JDK32)/include;$(SCILAB_JDK32)/include/win32;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX86</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Midl>
+      <TargetEnvironment>X64</TargetEnvironment>
+    </Midl>
+    <ClCompile>
+      <Optimization>MaxSpeed</Optimization>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <FavorSizeOrSpeed>Speed</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <AdditionalIncludeDirectories>.;../../includes;../../src/c;../../src/jni;../../../../libs/intl;$(SCILAB_JDK64)/include;$(SCILAB_JDK64)/include/win32;../../../core/includes;../../../localization/includes;../../../output_stream/includes;../../../jvm/includes;../../../commons/src/jni;../../../dynamic_link/includes;../../../string/includes;../../../ast/includes/types;../../../ast/includes/ast;../../../ast/includes/analysis;../../../ast/includes/exps;../../../ast/includes/operations;../../../ast/includes/symbol;../../../ast/includes/system_env;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_CRT_SECURE_NO_DEPRECATE;FORDLL;NDEBUG;_WINDOWS;_USRDLL;ACTION_BINDING_GW_EXPORTS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <EnableEnhancedInstructionSet>NotSet</EnableEnhancedInstructionSet>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+    </ClCompile>
+    <PreLinkEvent>
+      <Message>Make dependencies</Message>
+      <Command>
+      </Command>
+    </PreLinkEvent>
+    <Link>
+      <AdditionalDependencies>
+      </AdditionalDependencies>
+      <OutputFile>$(SolutionDir)bin\sci$(ProjectName).dll</OutputFile>
+      <ModuleDefinitionFile>
+      </ModuleDefinitionFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+      <SubSystem>Windows</SubSystem>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <LinkTimeCodeGeneration>
+      </LinkTimeCodeGeneration>
+      <RandomizedBaseAddress>false</RandomizedBaseAddress>
+      <DataExecutionPrevention>
+      </DataExecutionPrevention>
+      <ImportLibrary>$(SolutionDir)bin\sci$(ProjectName).lib</ImportLibrary>
+      <TargetMachine>MachineX64</TargetMachine>
+      <CLRUnmanagedCodeCheck>true</CLRUnmanagedCodeCheck>
+    </Link>
+    <PostBuildEvent>
+      <Command>
+      </Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="sci_notify.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\includes\action_binding_gw.hxx" />
+    <ClInclude Include="..\..\includes\dynlib_action_binding_gw.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\ast\ast.vcxproj">
+      <Project>{0d3fa25b-8116-44ec-a45e-260789daa3d9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\commons\src\c\commons.vcxproj">
+      <Project>{eca09a1e-6d12-4a47-92e1-a671c181df77}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\core\src\c\core.vcxproj">
+      <Project>{c6e2bc17-34d8-46e4-85f3-6293cb21adcd}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\jvm\libjvm.vcxproj">
+      <Project>{8ba2dda8-bd04-4d4d-8ee6-6caa955f7470}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\localization\src\localization.vcxproj">
+      <Project>{ecffeb0c-1eda-45ee-9a10-b18143852e17}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\output_stream\src\c\output_stream.vcxproj">
+      <Project>{a5911cd7-f8e8-440c-a23e-4843a0636f3a}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\c\action_binding.vcxproj">
+      <Project>{8a654cc5-22c1-4972-a8cf-1b89f78b5383}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\..\..\bin\libintl.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

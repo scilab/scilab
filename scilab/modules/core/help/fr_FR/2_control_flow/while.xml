@@ -7,9 +7,9 @@
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
         <synopsis>
-            while expr ,instructions,...[,else instructions], end
-            while expr do instructions,...[,else instructions], end
-            while expr then instructions,...[,else instructions], end
+            while expr ,instructions,..., end
+            while expr do instructions,..., end
+            while expr then instructions,..., end
         </synopsis>
     </refsynopsisdiv>
     <refsection>
@@ -30,13 +30,6 @@
                     virgule.  Pour la compatibilité avec Matlab, il est aussi
                     possible, mais non recommendé de mettre un espace à la
                     place de ces séparateurs.
-                </para>
-            </listitem>
-            <listitem>
-                <para>
-                    La construction optionnelle <literal>,else instructions</literal> permet de spécifier
-                    des <literal>instructions</literal> à exécuter si l'expression <literal>expr</literal>
-                    est fausse.
                 </para>
             </listitem>
         </itemizedlist>
@@ -115,5 +108,16 @@ e,k
                 <link linkend="pause">pause</link>
             </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    La construction <literal>[,else instructions]</literal> n'est plus supportée.
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>

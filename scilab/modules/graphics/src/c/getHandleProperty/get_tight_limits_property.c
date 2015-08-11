@@ -27,15 +27,14 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#ifdef _MSC_VER
-#include "strdup_windows.h"
-#endif
+#include "sci_malloc.h"
+#include "os_string.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-int get_tight_limits_property(void* _pvCtx, int iObjUID)
+void* get_tight_limits_property(void* _pvCtx, int iObjUID)
 {
     char * tightLimits[3]  = { NULL, NULL, NULL };
     int const axesTightLimitsPropertiesNames[3] = {__GO_X_TIGHT_LIMITS__, __GO_Y_TIGHT_LIMITS__, __GO_Z_TIGHT_LIMITS__};
@@ -44,7 +43,7 @@ int get_tight_limits_property(void* _pvCtx, int iObjUID)
 
     int i = 0;
     int j = 0;
-    int status = -1;
+    void* status = NULL;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -58,18 +57,18 @@ int get_tight_limits_property(void* _pvCtx, int iObjUID)
 
         if (iTightLimits)
         {
-            tightLimits[i] = strdup("on");
+            tightLimits[i] = os_strdup("on");
         }
         else
         {
-            tightLimits[i] = strdup("off");
+            tightLimits[i] = os_strdup("off");
         }
 
         if (tightLimits[i] == NULL)
         {
             for (j = 0 ; j < i ; j++)
             {
-                free(tightLimits[j]);
+                FREE(tightLimits[j]);
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_tight_limits_property");
@@ -78,11 +77,11 @@ int get_tight_limits_property(void* _pvCtx, int iObjUID)
 
     }
 
-    status = sciReturnRowStringVector(_pvCtx, tightLimits, 3);
+    status = sciReturnRowStringVector(tightLimits, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {
-        free(tightLimits[i]);
+        FREE(tightLimits[i]);
     }
 
     return status;

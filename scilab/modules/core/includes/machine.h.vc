@@ -1,8 +1,8 @@
 /** machine.h version for vc++ **/
 /* Copyright INRIA/ENPC */
 
-#ifndef MACHINE_H 
-#define MACHINE_H 
+#ifndef MACHINE_H
+#define MACHINE_H
 
 #include <math.h>
 
@@ -24,15 +24,11 @@
 /* Define if have termcap library */
 #define HAVE_TERMCAP 1
 
-/* define if have _finite function */
-/* http://msdn.microsoft.com/en-us/library/aa246875(VS.60).aspx */
-#define HAVE_FINITE
-
 /* CNAME(x,y) ==> xy **/
 
 #if defined(USE_SHARP_SIGN)
 #define CNAME(name1,name2) name1##name2
-#else 
+#else
 #define CNAME(name1,name2) name1/**/name2
 #endif
 
@@ -41,7 +37,7 @@
 #if defined(USE_SHARP_SIGN)
 #define C2F(name) name##_
 #define F2C(name) name##_
-#else 
+#else
 #define C2F(name) name/**/_
 #define F2C(name) name/**/_
 #endif
@@ -63,9 +59,9 @@
 #define getwd(x) getcwd(x,1024) /* you must define char x[1024] */
 #endif
 
-/* 
+/*
    Define integer C type which must fit Fortran integer
-   For Scilab to work, the rule is: 
+   For Scilab to work, the rule is:
           size of Fortran double precision = 2 * size of Fortran integer
 
    At the present time, we suppose:
@@ -75,18 +71,24 @@
 */
 
 #define SHARED_LIB_EXT ".dll"
+#define SHARED_LIB_EXTW L".dll"
 
 /* PATH_SEPARATOR : Under Windows by default is ; */
 #define PATH_SEPARATOR ";"
 
 /* DIR_SEPARATOR : Under Windows by default is \ */
 #define DIR_SEPARATOR "\\"
+#define DIR_SEPARATORW L"\\"
 
 #define HAVE_LIBINTL_H
 
+#if defined( __INTEL_COMPILER) && !defined(_WIN64)
 #define va_copy(x,y) (x=(y))
+#endif
 
 #define SIZEOF_INT 4
 #define SIZEOF_LONG 4
+
+#define bsiz 4096
 
 #endif /* MACHINE_H  */

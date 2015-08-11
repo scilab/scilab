@@ -4,11 +4,11 @@
 /* ==================================================================== */
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include <localization.h>
 
 /* ==================================================================== */
-int sci_cerror(char *fname)
+int sci_cerror(char *fname, void* pvApiCtx)
 {
     int iRhs = nbInputArgument(pvApiCtx);
 

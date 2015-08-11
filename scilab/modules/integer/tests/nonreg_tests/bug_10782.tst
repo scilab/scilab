@@ -51,7 +51,7 @@ y = iconvert(B, 14); // uint32
 assert_checkequal(type(y), 8);
 assert_checkequal(typeof(y), "uint32");
 
-msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "iconvert", 2,"0, 1, 2, 4, 11, 12, 14");
+msgerr = msprintf(gettext("%s: Wrong value for input argument #%d: Must be in the set {%s}.\n"), "iconvert", 2,"0, 1, 2, 4, 8, 11, 12, 14, 18");
 assert_checkerror ("y = iconvert(B, 20);", msgerr);
 
 msgerr = msprintf(gettext("%s: Wrong type for argument #%d: Real matrix expected.\n"), "iconvert", 1);

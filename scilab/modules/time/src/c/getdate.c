@@ -19,7 +19,7 @@
 #include <time.h>
 #include <stdio.h>
 #include "getdate.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "transposeMatrix.h"
 /*--------------------------------------------------------------------------*/
 #define YEAR_INDEX 0

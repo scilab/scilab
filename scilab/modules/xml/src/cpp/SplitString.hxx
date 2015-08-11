@@ -18,34 +18,34 @@
 
 namespace org_modules_xml
 {
-    /**
-     * @file
-     * @author Calixte DENIZET <calixte.denizet@scilab.org>
-     *
-     * Split a string into lines
-     */
-    class SplitString
-    {
+/**
+ * @file
+ * @author Calixte DENIZET <calixte.denizet@scilab.org>
+ *
+ * Split a string into lines
+ */
+class SplitString
+{
 
 public:
-        /**
-         * Split string into lines
-         * @param str the string to split
-         * @param lines a vector which will contain lines
-         */
-        static void split(const std::string & str, std::vector < std::string > &lines)
-        {
-            std::string::size_type lastPos = str.find_first_not_of("\n", 0);
-            std::string::size_type pos = str.find_first_of("\n", lastPos);
+    /**
+     * Split string into lines
+     * @param str the string to split
+     * @param lines a vector which will contain lines
+     */
+    static void split(const std::string & str, std::vector < std::string > &lines)
+    {
+        std::string::size_type lastPos = str.find_first_not_of("\n", 0);
+        std::string::size_type pos = str.find_first_of("\n", lastPos);
 
-            while (std::string::npos != pos || std::string::npos != lastPos)
-            {
-                lines.push_back(str.substr(lastPos, pos - lastPos));
-                lastPos = str.find_first_not_of("\n", pos);
-                pos = str.find_first_of("\n", lastPos);
-            }
+        while (std::string::npos != pos || std::string::npos != lastPos)
+        {
+            lines.push_back(str.substr(lastPos, pos - lastPos));
+            lastPos = str.find_first_not_of("\n", pos);
+            pos = str.find_first_of("\n", lastPos);
         }
-    };
+    }
+};
 }
 
 #endif

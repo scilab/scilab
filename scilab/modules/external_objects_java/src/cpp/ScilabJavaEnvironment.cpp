@@ -31,7 +31,7 @@
 //#include "ScilabJavaObjectHelper.hxx"
 extern "C" {
 #include "getScilabJavaVM.h"
-#include "tmpdir.h"
+#include "sci_tmpdir.h"
 }
 
 namespace org_scilab_modules_external_objects_java

@@ -7,12 +7,8 @@ EXPORTS
 ; import required by f2C
 gethmat_
 ;
-recu_
 com_
-vstk_
 iop_
-cha1_
-stack_
 isanan_
 objvide_
 gettype_
@@ -24,14 +20,11 @@ getpoly_
 getmat_
 getwimat_
 getilist_
-namstr_
 getsmat_
 ;
-; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
 ;
 adre_
-intersci_
-errgst_
 ;
 
 

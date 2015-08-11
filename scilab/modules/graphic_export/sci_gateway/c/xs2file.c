@@ -20,13 +20,12 @@
 #include "xs2file.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
-#include "IsAScalar.h"
 #include "localization.h"
 #include "SetJavaProperty.h"
 #include "Scierror.h"
 #include "expandPathVariable.h"
 #include "PATH_MAX.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "FigureList.h"
 #include "freeArrayOfString.h"
 #include "../../../graphics/src/c/getHandleProperty/getPropertyAssignedValue.h"
@@ -37,7 +36,7 @@
 /*--------------------------------------------------------------------------*/
 static BOOL isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
-int xs2file(char * fname, ExportFileType fileType )
+int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
 {
     SciErr sciErr;
 

@@ -33,11 +33,11 @@ function vect=mulf_string(M,vec)
     for i=1:N
         line=[];
         for j=1:N
-            line=[line,mulf(M(i,j),vec(j))];
+            line=[line,"("+M(i,j) + ")*(" +vec(j)+")"];
         end
         som="";
         for i=1:N
-            som=addf(som,line(i));
+            som=som + "+" + line(i);
         end
         vect=[vect;som];
     end

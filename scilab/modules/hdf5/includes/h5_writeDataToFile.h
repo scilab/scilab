@@ -15,12 +15,14 @@
 
 #include "dynlib_hdf5_scilab.h"
 
+#include <hdf5.h>
+
 HDF5_SCILAB_IMPEXP int updateFileVersion(int _iFile);
 HDF5_SCILAB_IMPEXP int updateScilabVersion(int _iFile);
 
-HDF5_SCILAB_IMPEXP char* createGroupName(char* _pstGroupName);
+HDF5_SCILAB_IMPEXP char* createGroupName(const char* _pstGroupName);
 HDF5_SCILAB_IMPEXP char* createPathName(char* _pstGroupName, int _iIndex);
-HDF5_SCILAB_IMPEXP int deleteHDF5Var(int _iFile, char* _pstName);
+HDF5_SCILAB_IMPEXP int deleteHDF5Var(int _iFile, const char* _pstName);
 
 HDF5_SCILAB_IMPEXP int writeDoubleMatrix(int _iFile, char* _pstDatasetName, int _iDims, int* _piDims, double *_pdblData);
 HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix(int _iFile, char* _pstDatasetName, int _iDims, int* _piDims, double *_pdblReal, double *_pdblImg);
@@ -54,4 +56,19 @@ HDF5_SCILAB_IMPEXP void* openList(int _iFile, char* pstDatasetName, int _iNbItem
 HDF5_SCILAB_IMPEXP int addItemInList(int _iFile, void* _pvList, int _iPos, char* _pstItemName);
 HDF5_SCILAB_IMPEXP int closeList(int _iFile,  void* _pvList, char* _pstListName, int _iNbItem, int _iVarType);
 
+
+/*scilab 6*/
+
+HDF5_SCILAB_IMPEXP int writeDoubleMatrix6(int parent, const char* name, int dims, int* pdims, double* data);
+HDF5_SCILAB_IMPEXP int writeDoubleComplexMatrix6(int parent, const char* name, int dims, int* pdims, double* real, double* img);
+HDF5_SCILAB_IMPEXP int writeStringMatrix6(int parent, const char* name, int dims, int* pdims, char** data);
+HDF5_SCILAB_IMPEXP int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int* data);
+HDF5_SCILAB_IMPEXP int writeIntegerMatrix6(int parent, const char* name, int type, const char* prec, int dims, int* pdims, void* data);
+
+HDF5_SCILAB_IMPEXP int openList6(int parent, const char *name, const char* type);
+HDF5_SCILAB_IMPEXP int closeList6(int lst);
+HDF5_SCILAB_IMPEXP int addItemStruct6(int dataset, hobj_ref_t * refs, int pos, const char *name);
+HDF5_SCILAB_IMPEXP int writeStructField6(int parent, const char* name, int dims, int* pdims, hobj_ref_t * refs);
+HDF5_SCILAB_IMPEXP int writeVoid6(int parent, const char* name);
+HDF5_SCILAB_IMPEXP int writeUndefined6(int parent, const char* name);
 #endif /* !__H5_WRITEDATATOFILE_H__ */

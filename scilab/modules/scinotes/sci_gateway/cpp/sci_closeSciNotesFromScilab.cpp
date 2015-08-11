@@ -25,7 +25,7 @@ extern "C"
 using namespace org_scilab_modules_scinotes;
 
 /*--------------------------------------------------------------------------*/
-int sci_closeSciNotesFromScilab(char *fname, unsigned long fname_len)
+int sci_closeSciNotesFromScilab(char * fname, void* pvApiCtx)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

@@ -2,21 +2,21 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{5c5e1adc-2a57-45a2-9bcc-0d584f86aaf8}</UniqueIdentifier>
+      <UniqueIdentifier>{2a4b934a-8e57-44e8-972f-883f7d99a947}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{fe205ab9-974b-42cf-8f22-9886967a1c5c}</UniqueIdentifier>
+      <UniqueIdentifier>{1b36c1b3-c3d8-4470-9d9e-96efc2ccd8db}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{36da833f-eb67-489f-a609-9921cae3b997}</UniqueIdentifier>
+      <UniqueIdentifier>{3c9a8c5a-e989-4ab0-88d9-b31beaf8ae73}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c2601202-2c27-49e6-b2e5-500839247091}</UniqueIdentifier>
+      <UniqueIdentifier>{eeaf5ee1-68d8-49c6-85e7-c662901f9447}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{f93061bc-eb15-411c-883c-7d772d9c3eed}</UniqueIdentifier>
+      <UniqueIdentifier>{088f19d6-0377-45a6-8b6f-def4f1096ef0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -24,9 +24,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="console.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="console_main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ConvertSlash.c">
@@ -47,9 +44,6 @@
     <ClCompile Include="forbiddenToUseScilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="getScilabDirectory.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="InnosetupMutex.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -62,22 +56,13 @@
     <ClCompile Include="MutexClosingScilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="scilab_main.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="SetScilabEnvironmentVariables.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="spawncommand.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="strdup_windows.c">
+    <ClCompile Include="splashScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="TextToPrint.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="windows_main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="WindowShow.c">
@@ -98,15 +83,18 @@
     <ClCompile Include="splashScreen.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\cpp\scilab_windows\getScilabDirectory.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="buildMainWindowTitle_Windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="console_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\includes\ConvertSlash.h">
@@ -127,9 +115,6 @@
     <ClInclude Include="forbiddenToUseScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="getScilabDirectory.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="InnosetupMutex.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -142,13 +127,7 @@
     <ClInclude Include="..\..\..\includes\MutexClosingScilab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="scilab_main.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SetHeapOptions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="SetScilabEnvironmentVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="spawncommand.h">
@@ -157,13 +136,7 @@
     <ClInclude Include="splashScreen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\includes\strdup_windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TextToPrint.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="windows_main.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="WindowShow.h">
@@ -182,6 +155,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cpp\scilab_windows\getScilabDirectory.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\cpp\scilab_windows\SetScilabEnvironmentVariables.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

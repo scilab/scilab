@@ -24,6 +24,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
     end
 
     cmd = "";
+
+    ScilabTreeFound=%f;
     tbxFlag = " -D__SCILAB_TOOLBOX__ ";
     envFlag = "";
 
@@ -31,7 +33,8 @@ function cmd = gencompilationflags_unix(ldflags, cflags, fflags, cc, flagsType)
         envFlag = " -D__USE_DEPRECATED_STACK_FUNCTIONS__ ";
     end
 
-    if getenv("DEBUG_SCILAB_DYNAMIC_LINK","NO") == "YES" then
+    val = getenv("DEBUG_SCILAB_DYNAMIC_LINK", "");
+    if (val == "" & isDebug()) | val == "YES" then
         envFlag = envFlag + " -g ";
     end
 

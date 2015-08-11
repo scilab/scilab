@@ -17,7 +17,7 @@ function r=%p_x_r(p,r)
     if size(sz,"*")<=2 then
         r=simp(r)
     else
-        [num,den]=simp(r.num.entries,r.den.entries)
+        [num,den]=simp(r.num(:),r.den(:))
         r.num=matrix(num,sz)
         r.den=matrix(den,sz)
     end

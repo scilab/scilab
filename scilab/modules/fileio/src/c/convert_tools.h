@@ -17,7 +17,13 @@
 #define SIGNED          -1
 #define UNSIGNED        1
 
+#ifdef LITTLE_ENDIAN
+#undef LITTLE_ENDIAN
+#endif
 #define LITTLE_ENDIAN   1
+#ifdef BIG_ENDIAN
+#undef BIG_ENDIAN
+#endif
 #define BIG_ENDIAN      -1
 
 #define TYPE_LONG_LONG  8

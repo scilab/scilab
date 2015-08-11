@@ -44,7 +44,7 @@
             La fonction <literal>error</literal> permet d'envoyer à l'utilisateur un
             message d'erreur et de gérer cette erreur. Par défaut <literal>error</literal>
             termine l'éxecution courante et revient au niveau du prompt. Ce défaut
-            peut être changé en utilisant les fonctions <literal>errcatch</literal> et
+            peut être changé en utilisant la fonction
             <literal>execstr(...,'errcatch')</literal>.
         </para>
         <para>
@@ -80,9 +80,6 @@ lasterror()]]></programlisting>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

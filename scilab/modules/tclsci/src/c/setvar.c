@@ -11,7 +11,7 @@
  */
 
 #include "setvar.h"
-#include "MALLOC.h"
+#include "sci_malloc.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
@@ -27,7 +27,7 @@ BOOL SetVarMatrix(Tcl_Interp *TCLinterpreter, char *VarName, int ptrValues, int 
 
     for (i = 0; i < m * n; i++)
     {
-        MatrixDouble[i] = *stk(ptrValues++);
+        //MatrixDouble[i] = *stk(ptrValues++);
     }
 
 

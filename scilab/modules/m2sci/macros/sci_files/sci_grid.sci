@@ -42,10 +42,10 @@ function [tree]=sci_grid(tree)
         opt=tree.rhs(2)
         if typeof(opt)=="cste" then
             if opt.value=="on" then
-                insert(Equal(list(Operation("ins",list(ax,Cste("grid")),list())),on))
+                m2sci_insert(Equal(list(Operation("ins",list(ax,Cste("grid")),list())),on))
                 tree=list()
             elseif opt.value=="off" then
-                insert(Equal(list(Operation("ins",list(ax,Cste("grid")),list())),off))
+                m2sci_insert(Equal(list(Operation("ins",list(ax,Cste("grid")),list())),off))
                 tree=list()
             else
                 set_infos(gettext("No minor grid in Scilab."),2);

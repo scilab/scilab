@@ -49,7 +49,7 @@
             Функция <literal>error</literal> позволяет выдавать сообщение об ошибке и обрабатывать 
             ошибку. По умолчанию <literal>error</literal> прекращает текущее выполнение и возвращается 
             на уровень командной строки. Это поведение по умолчанию можно изменить с
-            помощью функций <literal>errcatch</literal> или <literal>execstr(...,'errcatch')</literal>.
+            помощью функций <literal>execstr(...,'errcatch')</literal>.
         </para>
         <para>
             <literal>error(message)</literal> выводит на экран символьную строку, содержащуюся в 
@@ -87,9 +87,6 @@ lasterror()]]></programlisting>
         <simplelist type="inline">
             <member>
                 <link linkend="warning">warning</link>
-            </member>
-            <member>
-                <link linkend="errcatch">errcatch</link>
             </member>
             <member>
                 <link linkend="execstr">execstr</link>

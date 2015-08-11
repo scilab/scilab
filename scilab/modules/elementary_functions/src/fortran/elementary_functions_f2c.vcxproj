@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -29,23 +29,23 @@
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <CharacterSet>Unicode</CharacterSet>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -93,7 +93,8 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <Optimization>Disabled</Optimization>
@@ -142,7 +143,8 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -194,7 +196,8 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <ClCompile>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -246,7 +249,8 @@ lib /DEF:"$(ProjectDir)linpack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platf
 lib /DEF:"$(ProjectDir)slatec_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)slatec_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)polynomials_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)polynomials_f.lib" 1&gt;NUL 2&gt;NUL
 lib /DEF:"$(ProjectDir)eispack_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)eispack_f.lib" 1&gt;NUL 2&gt;NUL
-lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL</Command>
+lib /DEF:"$(ProjectDir)core_f_Import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform) /OUT:"$(ProjectDir)core_f.lib" 1&gt;NUL 2&gt;NUL
+</Command>
     </PreBuildEvent>
     <Midl>
       <TargetEnvironment>X64</TargetEnvironment>
@@ -288,7 +292,6 @@ cd ..
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_find.c" />
     <ClCompile Include="arcosh.c" />
     <ClCompile Include="bdiag.c" />
     <ClCompile Include="cbal.c" />
@@ -298,12 +301,11 @@ cd ..
     <ClCompile Include="corth.c" />
     <ClCompile Include="cortr.c" />
     <ClCompile Include="coshin.c" />
-    <ClCompile Include="cupro.c" />
-    <ClCompile Include="cuproi.c" />
     <ClCompile Include="cusum.c" />
     <ClCompile Include="d1mach.c" />
     <ClCompile Include="dad.c" />
     <ClCompile Include="dadd.c" />
+    <ClCompile Include="danints.c" />
     <ClCompile Include="dclmat.c" />
     <ClCompile Include="ddif.c" />
     <ClCompile Include="ddpow.c" />
@@ -319,9 +321,7 @@ cd ..
     <ClCompile Include="dmmul.c" />
     <ClCompile Include="dmmul1.c" />
     <ClCompile Include="dmprod.c" />
-    <ClCompile Include="dmsum.c" />
     <ClCompile Include="drdiv.c" />
-    <ClCompile Include="dsearch.c" />
     <ClCompile Include="dset.c" />
     <ClCompile Include="dsort.c" />
     <ClCompile Include="dsum.c" />
@@ -334,11 +334,8 @@ cd ..
     <ClCompile Include="dwrdiv.c" />
     <ClCompile Include="entier.c" />
     <ClCompile Include="exch.c" />
-    <ClCompile Include="find.c" />
     <ClCompile Include="franck.c" />
     <ClCompile Include="gdcp2i.c" />
-    <ClCompile Include="getdimfromvar.c" />
-    <ClCompile Include="getorient.c" />
     <ClCompile Include="hilber.c" />
     <ClCompile Include="i1mach.c" />
     <ClCompile Include="imcopy.c" />
@@ -348,7 +345,6 @@ cd ..
     <ClCompile Include="isort.c" />
     <ClCompile Include="isova0.c" />
     <ClCompile Include="isoval.c" />
-    <ClCompile Include="israt.c" />
     <ClCompile Include="ivimp.c" />
     <ClCompile Include="iwamax.c" />
     <ClCompile Include="kronc.c" />
@@ -357,60 +353,13 @@ cd ..
     <ClCompile Include="magic.c" />
     <ClCompile Include="mtran.c" />
     <ClCompile Include="nearfloat.c" />
+    <ClCompile Include="old_pythag.c" />
     <ClCompile Include="orthes.c" />
     <ClCompile Include="ortran.c" />
-    <ClCompile Include="pythag.c" />
     <ClCompile Include="rat.c" />
     <ClCompile Include="rcopy.c" />
     <ClCompile Include="rcsort.c" />
     <ClCompile Include="round.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_abs.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_acos.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_asin.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_atan.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ceil.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_chinesehat.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_clean.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_conj.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cos.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cumprod.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_cumsum.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_diag.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_dsearch.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_exp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_expm.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_eye.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_floor.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_frexp.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_imag.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_imult.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_int.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isequal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_isreal.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_kron.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_log.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_log1p.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_matrix.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_maxi.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_nearfloat.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_number_properties.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_ones.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_prod.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rand.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_rat.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_real.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_round.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sign.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sin.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_size.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_spones.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sqrt.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_sum.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tan.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_testmatrix.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_tril.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_triu.c" />
-    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_zeros.c" />
     <ClCompile Include="simple.c" />
     <ClCompile Include="split.c" />
     <ClCompile Include="urand.c" />
@@ -455,7 +404,6 @@ cd ..
     <ClCompile Include="wwrdiv.c" />
   </ItemGroup>
   <ItemGroup>
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_find.f" />
     <f2c_rule Include="arcosh.f" />
     <f2c_rule Include="bdiag.f" />
     <f2c_rule Include="cbal.f" />
@@ -465,12 +413,11 @@ cd ..
     <f2c_rule Include="corth.f" />
     <f2c_rule Include="cortr.f" />
     <f2c_rule Include="coshin.f" />
-    <f2c_rule Include="cupro.f" />
-    <f2c_rule Include="cuproi.f" />
     <f2c_rule Include="cusum.f" />
     <f2c_rule Include="d1mach.f" />
     <f2c_rule Include="dad.f" />
     <f2c_rule Include="dadd.f" />
+    <f2c_rule Include="danints.f" />
     <f2c_rule Include="dclmat.f" />
     <f2c_rule Include="ddif.f" />
     <f2c_rule Include="ddpow.f" />
@@ -486,9 +433,7 @@ cd ..
     <f2c_rule Include="dmmul.f" />
     <f2c_rule Include="dmmul1.f" />
     <f2c_rule Include="dmprod.f" />
-    <f2c_rule Include="dmsum.f" />
     <f2c_rule Include="drdiv.f" />
-    <f2c_rule Include="dsearch.f" />
     <f2c_rule Include="dset.f" />
     <f2c_rule Include="dsort.f" />
     <f2c_rule Include="dsum.f" />
@@ -501,11 +446,8 @@ cd ..
     <f2c_rule Include="dwrdiv.f" />
     <f2c_rule Include="entier.f" />
     <f2c_rule Include="exch.f" />
-    <f2c_rule Include="find.f" />
     <f2c_rule Include="franck.f" />
     <f2c_rule Include="gdcp2i.f" />
-    <f2c_rule Include="getdimfromvar.f" />
-    <f2c_rule Include="getorient.f" />
     <f2c_rule Include="hilber.f" />
     <f2c_rule Include="i1mach.f" />
     <f2c_rule Include="imcopy.f" />
@@ -515,7 +457,6 @@ cd ..
     <f2c_rule Include="isort.f" />
     <f2c_rule Include="isova0.f" />
     <f2c_rule Include="isoval.f" />
-    <f2c_rule Include="israt.f" />
     <f2c_rule Include="ivimp.f" />
     <f2c_rule Include="iwamax.f" />
     <f2c_rule Include="kronc.f" />
@@ -524,60 +465,13 @@ cd ..
     <f2c_rule Include="magic.f" />
     <f2c_rule Include="mtran.f" />
     <f2c_rule Include="nearfloat.f" />
+    <f2c_rule Include="old_pythag.f" />
     <f2c_rule Include="orthes.f" />
     <f2c_rule Include="ortran.f" />
-    <f2c_rule Include="pythag.f" />
     <f2c_rule Include="rat.f" />
     <f2c_rule Include="rcopy.f" />
     <f2c_rule Include="rcsort.f" />
     <f2c_rule Include="round.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_abs.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_acos.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_asin.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_atan.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ceil.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_chinesehat.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_clean.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_conj.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cos.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cumprod.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_cumsum.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_diag.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_dsearch.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_exp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_expm.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_eye.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_floor.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_frexp.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_imag.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_imult.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_int.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isequal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_isreal.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_kron.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_log.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_log1p.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_matrix.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_maxi.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_nearfloat.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_number_properties.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_ones.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_prod.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rand.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_rat.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_real.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_round.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sign.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sin.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_size.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_spones.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sqrt.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_sum.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tan.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_testmatrix.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_tril.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_triu.f" />
-    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_zeros.f" />
     <f2c_rule Include="simple.f" />
     <f2c_rule Include="split.f" />
     <f2c_rule Include="urand.f" />

@@ -15,19 +15,19 @@
 // hang scilab
 
 
-if execstr('[1 %inf]\1 ','errcatch')<>229 then pause,end
-if execstr('[1 2]\%inf ','errcatch')<>229 then pause,end
+if execstr("[1 %inf]\1 ","errcatch")<>999 then pause,end
+if execstr("[1 2]\%inf ","errcatch")<>999 then pause,end
 
-if execstr('[1+%i %inf]\1 ','errcatch')<>229 then pause,end
-if execstr('[1+%i %inf]\%i ','errcatch')<>229 then pause,end
+if execstr("[1+%i %inf]\1 ","errcatch")<>999 then pause,end
+if execstr("[1+%i %inf]\%i ","errcatch")<>999 then pause,end
 
-if execstr('[1 %i]\%inf ','errcatch')<>229 then pause,end
+if execstr("[1 %i]\%inf ","errcatch")<>999 then pause,end
 
-if execstr('1/[1 %inf] ','errcatch')<>229 then pause,end
-if execstr('%inf/[1 2] ','errcatch')<>229 then pause,end
+if execstr("1/[1 %inf] ","errcatch")<>999 then pause,end
+if execstr("%inf/[1 2] ","errcatch")<>999 then pause,end
 
-if execstr('1/[1+%i %inf] ','errcatch')<>229 then pause,end
-if execstr('%i/[1+%i %inf] ','errcatch')<>229 then pause,end
+if execstr("1/[1+%i %inf] ","errcatch")<>999 then pause,end
+if execstr("%i/[1+%i %inf] ","errcatch")<>999 then pause,end
 
-if execstr('%inf/[1 %i] ','errcatch')<>229 then pause,end
+if execstr("%inf/[1 %i] ","errcatch")<>999 then pause,end
 

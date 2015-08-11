@@ -16,6 +16,7 @@
 /* desc : interface for xchange routine                                   */
 /*------------------------------------------------------------------------*/
 
+#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -25,7 +26,7 @@
 #define VIEWING_RECT_SIZE 4
 
 /*--------------------------------------------------------------------------*/
-int sci_xchange(char * fname, unsigned long fname_len)
+int sci_xchange(char * fname, void *pvApiCtx)
 {
     SciErr sciErr;
 

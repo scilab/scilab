@@ -13,6 +13,8 @@
 #ifndef __FINDFILES_H__
 #define __FINDFILES_H__
 
+#include <wchar.h>
+
 #include "dynlib_fileio.h"
 #include "BOOL.h"
 
@@ -25,7 +27,8 @@
 * @return all the files except '.' & '..'
 */
 
-FILEIO_IMPEXP char **findfiles(char *path, char *filespec, int *sizeListReturned,  BOOL warning);
+FILEIO_IMPEXP char** findfiles(const char* path, const char* filespec, int *sizeListReturned, BOOL warning);
+FILEIO_IMPEXP wchar_t** findfilesW(const wchar_t* path, const wchar_t* filespec, int *sizeListReturned, BOOL warning);
 
 #endif /* __FINDFILES_H__ */
 /*--------------------------------------------------------------------------*/
