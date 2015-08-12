@@ -22,7 +22,7 @@ function head_comments(name, %paths)
         error(msprintf(gettext("%s: Undefined variable %s.\n"),"head_comments",name )),
     end
 
-    if type(var) <> 11 then
+    if and(type(var) <> [11 13]) then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
     end
     t = macr2tree(var);

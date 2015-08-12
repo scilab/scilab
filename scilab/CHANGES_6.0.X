@@ -7,6 +7,7 @@ Scilab Bug Fixes
 
 * Bug #13709 fixed - unique function sometimes returned wrong index values.
 
+* Bug #14025 fixed - head_comments did not take into account compiled functions.
 
 
 
