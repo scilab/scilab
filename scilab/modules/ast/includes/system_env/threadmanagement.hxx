@@ -26,7 +26,6 @@ class EXTERN_AST ThreadManagement
 {
 private :
     static __threadLock m_RunnerLock;
-    static __threadLock m_StartLock;
     static __threadLock m_ParseLock;
     static __threadLock m_StoreCommandLock;
 
@@ -56,11 +55,15 @@ private :
     static bool m_CommandStoredWasSignalled;
     static bool m_RunMeWasSignalled;
 
+#ifdef DEBUG_THREAD
+    static __threadKey m_tkMain;
+    static __threadKey m_tkReadAndExec;
+    static __threadKey m_tkConsole;
+#endif // DEBUG_THREAD
+
 public :
     static void initialize(void);
 
-    static void LockStart(void);
-    static void UnlockStart(void);
     static void LockParser(void);
     static void UnlockParser(void);
     static void LockStoreCommand(void);
@@ -80,6 +83,14 @@ public :
     static void WaitForCommandStoredSignal(void);
     static void SendRunMeSignal(void);
     static void WaitForRunMeSignal(void);
+
+#ifdef DEBUG_THREAD
+    static void SetThreadKey(__threadKey tkMain, __threadKey tkReadAndExec, __threadKey tkConsole);
+    static void PrintDebugHead();
+private :
+    static void PrintDebug(const char* pcfunName);
+#endif // DEBUG_THREAD
+
 
 };
 

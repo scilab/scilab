@@ -298,7 +298,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         }
         else
         {
-            StoreConsoleCommand(_pSEI->pstExec);
+            StoreConsoleCommand(_pSEI->pstExec, 0);
         }
 
         if (parser.getTree())
@@ -315,7 +315,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
         char *pstCommand = (char *)MALLOC(sizeof(char) * (strlen("exec(\"\",-1)") + strlen(_pSEI->pstFile) + 1));
         sprintf(pstCommand, "exec(\"%s\",-1)", _pSEI->pstFile);
 
-        StoreConsoleCommand(pstCommand);
+        StoreConsoleCommand(pstCommand, 0);
         FREE(pstCommand);
         iMainRet = ConfigVariable::getExitStatus();
         _pSEI->pstExec = NULL;
@@ -348,8 +348,7 @@ int ExecExternalCommand(ScilabEngineInfo* _pSEI)
 {
     if (_pSEI->pstExec)
     {
-        StoreConsoleCommand(_pSEI->pstExec);
-        ThreadManagement::WaitForConsoleExecDoneSignal();
+        StoreConsoleCommand(_pSEI->pstExec, 1);
         return ConfigVariable::getExitStatus();
     }
 
@@ -561,8 +560,8 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
-    ThreadManagement::LockStart();
-    ThreadManagement::UnlockStart();
+    //    ThreadManagement::LockStart();
+    //    ThreadManagement::UnlockStart();
 
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
@@ -625,6 +624,9 @@ void* scilabReadAndStore(void* param)
                     command = NULL;
                     break;
                 }
+#ifdef DEBUG_THREAD
+                ThreadManagement::PrintDebugHead();
+#endif // DEBUG_THREAD
             }
             else
             {
@@ -669,12 +671,11 @@ void* scilabReadAndStore(void* param)
             continue;
         }
 
-        StoreConsoleCommand(command);
+        // store the command and wait for this execution ends.
+        StoreConsoleCommand(command, 1);
 
         FREE(command);
         command = NULL;
-
-        ThreadManagement::WaitForConsoleExecDoneSignal();
     }
 
     // Awake scilabReadAndExecCommand thread in case of scilab exit
@@ -729,7 +730,6 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
 
     if (_pSEI->iStartConsoleThread)
     {
-        ThreadManagement::LockStart();
         // thread to manage console command
         __CreateThreadWithParams(&threadIdConsole, &threadKeyConsole, &scilabReadAndStore, _pSEI);
 
@@ -743,19 +743,18 @@ static int interactiveMain(ScilabEngineInfo* _pSEI)
     __CreateThreadWithParams(&threadIdCommand, &threadKeyCommand, &scilabReadAndExecCommand, _pSEI);
 
 #ifdef DEBUG_THREAD
-    std::cout << std::endl << "------------ threads summary ------------" << std::endl;
-    std::cout << "Main Thread                       : " << __GetCurrentThreadKey() << std::endl;
-    if (_pSEI->iStartConsoleThread)
-    {
-        std::cout << "scilabReadAndStore Thread         : " << threadKeyConsole << std::endl;
-    }
-    std::cout << "scilabReadAndExecCommand Thread   : " << threadKeyCommand << std::endl;
-    std::cout << "-----------------------------------------" << std::endl;
+    ThreadManagement::SetThreadKey( __GetCurrentThreadKey(), threadKeyCommand, threadKeyConsole);
 #endif // DEBUG_THREAD
 
     do
     {
-        ThreadManagement::WaitForRunMeSignal();
+        // Some times, the signal "SendRunMeSignal" can be sent before the main thread is waiting for.
+        // If a Runner is available do not perform this wait.
+        if (StaticRunner::isRunnerAvailable() == false)
+        {
+            ThreadManagement::WaitForRunMeSignal();
+        }
+
         try
         {
             StaticRunner::launch();
@@ -829,54 +828,54 @@ static void stateShow(Parser::ControlStatus status)
 {
     switch (status)
     {
-        //case Parser::WithinFor:
-        //    SetTemporaryPrompt("-for       ->");
-        //    break;
-        //case Parser::WithinWhile:
-        //    SetTemporaryPrompt("-while     ->");
-        //    break;
-        //case Parser::WithinIf:
-        //    SetTemporaryPrompt("-if        ->");
-        //    break;
-        //case Parser::WithinElse:
-        //    SetTemporaryPrompt("-else      ->");
-        //    break;
-        //case Parser::WithinElseIf:
-        //    SetTemporaryPrompt("-elseif    ->");
-        //    break;
-        //case Parser::WithinTry:
-        //    SetTemporaryPrompt("-try       ->");
-        //    break;
-        //case Parser::WithinCatch:
-        //    SetTemporaryPrompt("-catch     ->");
-        //    break;
-        //case Parser::WithinFunction:
-        //    SetTemporaryPrompt("-function  ->");
-        //    break;
-        //case Parser::WithinSelect:
-        //    SetTemporaryPrompt("-select    ->");
-        //    break;
-        //case Parser::WithinCase:
-        //    SetTemporaryPrompt("-case      ->");
-        //    break;
-        //case Parser::WithinSwitch:
-        //    SetTemporaryPrompt("-switch    ->");
-        //    break;
-        //case Parser::WithinOtherwise:
-        //    SetTemporaryPrompt("-otherwise ->");
-        //    break;
-        //case Parser::WithinMatrix:
-        //    SetTemporaryPrompt("- [        ->");
-        //    break;
-        //case Parser::WithinCell:
-        //    SetTemporaryPrompt("- {        ->");
-        //    break;
-        //case Parser::WithinBlockComment:
-        //    SetTemporaryPrompt("- /*       ->");
-        //    break;
-        //case Parser::WithinDots:
-        //    SetTemporaryPrompt("- ...      ->");
-        //    break;
+            //case Parser::WithinFor:
+            //    SetTemporaryPrompt("-for       ->");
+            //    break;
+            //case Parser::WithinWhile:
+            //    SetTemporaryPrompt("-while     ->");
+            //    break;
+            //case Parser::WithinIf:
+            //    SetTemporaryPrompt("-if        ->");
+            //    break;
+            //case Parser::WithinElse:
+            //    SetTemporaryPrompt("-else      ->");
+            //    break;
+            //case Parser::WithinElseIf:
+            //    SetTemporaryPrompt("-elseif    ->");
+            //    break;
+            //case Parser::WithinTry:
+            //    SetTemporaryPrompt("-try       ->");
+            //    break;
+            //case Parser::WithinCatch:
+            //    SetTemporaryPrompt("-catch     ->");
+            //    break;
+            //case Parser::WithinFunction:
+            //    SetTemporaryPrompt("-function  ->");
+            //    break;
+            //case Parser::WithinSelect:
+            //    SetTemporaryPrompt("-select    ->");
+            //    break;
+            //case Parser::WithinCase:
+            //    SetTemporaryPrompt("-case      ->");
+            //    break;
+            //case Parser::WithinSwitch:
+            //    SetTemporaryPrompt("-switch    ->");
+            //    break;
+            //case Parser::WithinOtherwise:
+            //    SetTemporaryPrompt("-otherwise ->");
+            //    break;
+            //case Parser::WithinMatrix:
+            //    SetTemporaryPrompt("- [        ->");
+            //    break;
+            //case Parser::WithinCell:
+            //    SetTemporaryPrompt("- {        ->");
+            //    break;
+            //case Parser::WithinBlockComment:
+            //    SetTemporaryPrompt("- /*       ->");
+            //    break;
+            //case Parser::WithinDots:
+            //    SetTemporaryPrompt("- ...      ->");
+            //    break;
         default :
             SetTemporaryPrompt("  > ");
             break;

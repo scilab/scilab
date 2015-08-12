@@ -32,7 +32,7 @@ int StoreCommand(char *command);
  * @return <ReturnValue>
  */
 
-int StoreConsoleCommand(char *command);
+int StoreConsoleCommand(char *command, int iWaitFor);
 /**
  * Store a prioritary and non-interruptible command
  *

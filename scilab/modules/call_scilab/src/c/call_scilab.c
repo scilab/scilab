@@ -173,11 +173,11 @@ BOOL TerminateScilab(char *ScilabQuit)
         {
             if (pGlobalSEI->iNoStart)
             {
-                StoreConsoleCommand("exit(_errorCall_ScilabOpen)");
+                StoreConsoleCommand("exit(_errorCall_ScilabOpen)", 0);
             }
             else
             {
-                StoreConsoleCommand("exit()");
+                StoreConsoleCommand("exit()", 0);
             }
         }
 
