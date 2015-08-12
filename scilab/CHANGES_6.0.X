@@ -2,7 +2,10 @@
         =================================================================
 
 
-(please remove this line when adding the first changed item...)
+Scilab Bug Fixes
+================
+
+* Bug #13709 fixed - unique function sometimes returned wrong index values.
 
 
 
