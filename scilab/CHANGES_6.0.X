@@ -9,12 +9,13 @@ Scilab Bug Fixes
 
 * Bug #13872 fixed - Non regression test added for unique function (the indices returned were wrong)
 
+* Bug #13780 fixed - size with two input and output arguments did not return an error.
+
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
-
 
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
