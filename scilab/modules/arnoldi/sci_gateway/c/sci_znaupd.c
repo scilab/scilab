@@ -12,8 +12,6 @@
 
 #include <math.h>
 #include <string.h>
-
-#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -27,7 +25,7 @@ extern int C2F(znaupd)(int * ido, char * bmat, int * n, char * which,
                        doublecomplex * workl, int * lworkl, double * rwork,
                        int * info);
 /*--------------------------------------------------------------------------*/
-int sci_znaupd(char *fname, void *pvApiCtx)
+int sci_znaupd(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -64,7 +62,9 @@ int sci_znaupd(char *fname, void *pvApiCtx)
     doublecomplex* pWORKL   = NULL;
 
     int IDO,   mIDO,   nIDO;
+    int mBMAT,  nBMAT;
     int mN,     nN;
+    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -317,19 +317,19 @@ int sci_znaupd(char *fname, void *pvApiCtx)
     }
 
     /* Check some sizes */
-    if (mIPARAM * nIPARAM != 11)
+    if (mIPARAM*nIPARAM != 11)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPARAM", 11);
         return 0;
     }
 
-    if (mIPNTR * nIPNTR != 14)
+    if (mIPNTR*nIPNTR != 14)
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "IPNTR", 14);
         return 0;
     }
 
-    if (mRESID * nRESID != pN[0])
+    if (mRESID*nRESID != pN[0])
     {
         Scierror(999, _("%s: Wrong size for input argument %s: An array of size %d expected.\n"), fname, "RESID", pN[0]);
         return 0;
@@ -397,7 +397,7 @@ int sci_znaupd(char *fname, void *pvApiCtx)
 
     if (pINFO[0] < 0)
     {
-        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
+        C2F(errorinfo)("znaupd", pINFO, 6L);
         return 0;
     }
 

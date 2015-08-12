@@ -11,7 +11,7 @@
  */
 #include <string.h>
 #include "complex_array.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 // =============================================================================
 complexArray *createComplexArrayEmpty(int nbSize)
 {

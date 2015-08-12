@@ -4,13 +4,16 @@ LIBRARY    core.dll
 EXPORTS
  putlhsvar_
  createvar_
+ stack_
  com_
  getrhsvar_
  checklhs_
  checkrhs_
-  createvarfromptr_
+ intersci_
+ createvarfromptr_
  callFunctionFromGateway
  returnanan_
+ getTMPDIR
  vartype_
  freeArrayOfString
  ;

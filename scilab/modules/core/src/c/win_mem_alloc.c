@@ -14,7 +14,7 @@
 #include <string.h>
 #include <memory.h>
 #include <Windows.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "sciprint.h"
 /*-----------------------------------------------------------------------------------*/
 /* an interesting article about HeapAlloc,malloc, and OctAlloc */

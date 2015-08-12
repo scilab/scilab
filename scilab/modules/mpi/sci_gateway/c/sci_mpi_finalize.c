@@ -16,7 +16,7 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 static void mpi_finalize_internal()
 {
@@ -25,7 +25,7 @@ static void mpi_finalize_internal()
     FREE(request);
 }
 
-int sci_mpi_finalize(char *fname, void* pvApiCtx)
+int sci_mpi_finalize(char *fname, unsigned long fname_len)
 {
     int iRet = 0;
     CheckInputArgument(pvApiCtx, 0, 0);

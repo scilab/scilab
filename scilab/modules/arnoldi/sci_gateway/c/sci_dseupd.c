@@ -27,7 +27,7 @@ extern int C2F(dseupd)(int *rvec, char *howmny, int *select, double *d,
                        unsigned long howmany_length,
                        unsigned long bmat_length, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dseupd(char *fname, void *pvApiCtx)
+int sci_dseupd(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -71,11 +71,14 @@ int sci_dseupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int mRVEC,     nRVEC;
+    int mHOWMANY,  nHOWMANY;
     int mSELECT,   nSELECT;
     int D,        mD,        nD;
     int Z,        mZ,        nZ;
     int mSIGMA,    nSIGMA;
+    int mBMAT,     nBMAT;
     int mN,        nN;
+    int mWHICH,    nWHICH;
     int mNEV,      nNEV;
     int mTOL,      nTOL;
     int RESID,    mRESID,    nRESID;
@@ -489,7 +492,7 @@ int sci_dseupd(char *fname, void *pvApiCtx)
 
     if (pINFO[0] < 0)
     {
-        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
+        C2F(errorinfo)("dseupd", pINFO, 6L);
         return 0;
     }
 

@@ -1,17 +1,36 @@
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-// Copyright (C) 2014 - SCilab Enterprises - Antoine ELIAS
+// Copyright (C) 2008 - INRIA - Michael Baudin
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
 // <-- CLI SHELL MODE -->
 
-res(2,3,4) = 1;
-res(:) = 1;
-computed = list([], 1, 10, list(2,3), list(2,3,4));
-expected = list([], 1, 1, [1 1 1;1,1,1], res);
+// Without arguments
+computed=ones();
+expected=1.;
+if norm(computed-expected)>%eps then pause, end
+// With one integer value
+computed=ones(10);
+expected=[1. 1. 1. 1. 1. 1. 1. 1. 1. 1. 1.];
+if norm(computed-expected)>%eps then pause, end
+// With two integer values
+computed=ones(2,3);
+expected=[1. 1. 1.
+1. 1. 1.];
+if norm(computed-expected)>%eps then pause, end
+// With three integer values
+computed=ones(2,3,4);
+expected=[1. 1. 1.
+1. 1. 1.];
+if norm(computed(:,:,1)-expected)>%eps then pause, end
+if norm(computed(:,:,2)-expected)>%eps then pause, end
+if norm(computed(:,:,3)-expected)>%eps then pause, end
+if norm(computed(:,:,4)-expected)>%eps then pause, end
+// With one vector
+expected=[1. 1. 1.
+1. 1. 1.];
+computed=ones(expected);
+if norm(computed-expected)>%eps then pause, end
 
-for i = 1:size(computed)
-    assert_checkequal(ones(computed(i)(:)), expected(i));
-end

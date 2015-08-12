@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_H5Object_e(char * fname, int* pvApiCtx)
+int sci_percent_H5Object_e(char * fname, unsigned long fname_len)
 {
     H5Object * obj = 0;
     SciErr err;

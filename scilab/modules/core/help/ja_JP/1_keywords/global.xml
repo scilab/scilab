@@ -124,6 +124,12 @@ letsgo1()
             
             <member>
                 
+                <link linkend="gstacksize">gstacksize</link>
+                
+            </member>
+            
+            <member>
+                
                 <link linkend="resume">resume</link>
                 
             </member>

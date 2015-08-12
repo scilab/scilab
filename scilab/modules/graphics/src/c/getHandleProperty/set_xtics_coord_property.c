@@ -27,7 +27,7 @@
 #include "localization.h"
 #include "BasicAlgos.h"
 #include "Format.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
@@ -107,14 +107,14 @@ int set_xtics_coord_property(void* _pvCtx, int iObjUID, void* _pvData, int value
     {
         /* Something wrong happened */
         FREE(vector);
-        return SET_PROPERTY_ERROR;
+        return -1;
     }
 
     if (ComputeC_format(iObjUID, c_format) != 0)
     {
         /* Something wrong happened */
         FREE(vector);
-        return SET_PROPERTY_ERROR;
+        return -1;
     }
 
     stringVector = copyFormatedArray(vector, N, c_format, 256);

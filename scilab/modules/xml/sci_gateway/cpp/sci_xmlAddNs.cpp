@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlAddNs(char *fname, void* pvApiCtx)
+int sci_xmlAddNs(char *fname, unsigned long fname_len)
 {
     XMLElement *elem = 0;
     XMLNs *ns = 0;

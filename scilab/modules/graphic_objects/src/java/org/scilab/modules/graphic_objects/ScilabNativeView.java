@@ -9,36 +9,36 @@
 package org.scilab.modules.graphic_objects;
 
 public class ScilabNativeView {
-  public static void ScilabNativeView__createObject(int id) {
-    ScilabNativeViewJNI.ScilabNativeView__createObject(id);
-  }
+    public static void ScilabNativeView__createObject(int id) {
+        ScilabNativeViewJNI.ScilabNativeView__createObject(id);
+    }
 
-  public static void ScilabNativeView__deleteObject(int id) {
-    ScilabNativeViewJNI.ScilabNativeView__deleteObject(id);
-  }
+    public static void ScilabNativeView__deleteObject(int id) {
+        ScilabNativeViewJNI.ScilabNativeView__deleteObject(id);
+    }
 
-  public static void ScilabNativeView__updateObject(int id, int iProperty) {
-    ScilabNativeViewJNI.ScilabNativeView__updateObject(id, iProperty);
-  }
+    public static void ScilabNativeView__updateObject(int id, int iProperty) {
+        ScilabNativeViewJNI.ScilabNativeView__updateObject(id, iProperty);
+    }
 
-  public static void ScilabNativeView__setCurrentFigure(int id) {
-    ScilabNativeViewJNI.ScilabNativeView__setCurrentFigure(id);
-  }
+    public static void ScilabNativeView__setCurrentFigure(int id) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentFigure(id);
+    }
 
-  public static void ScilabNativeView__setCurrentSubWin(int id) {
-    ScilabNativeViewJNI.ScilabNativeView__setCurrentSubWin(id);
-  }
+    public static void ScilabNativeView__setCurrentSubWin(int id) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentSubWin(id);
+    }
 
-  public static void ScilabNativeView__setCurrentObject(int id) {
-    ScilabNativeViewJNI.ScilabNativeView__setCurrentObject(id);
-  }
+    public static void ScilabNativeView__setCurrentObject(int id) {
+        ScilabNativeViewJNI.ScilabNativeView__setCurrentObject(id);
+    }
 
-  public static int ScilabNativeView__getValidDefaultFigureId() {
-    return ScilabNativeViewJNI.ScilabNativeView__getValidDefaultFigureId();
-  }
+    public static int ScilabNativeView__getValidDefaultFigureId() {
+        return ScilabNativeViewJNI.ScilabNativeView__getValidDefaultFigureId();
+    }
 
-  public static int ScilabNativeView__getFigureFromIndex(int figNum) {
-    return ScilabNativeViewJNI.ScilabNativeView__getFigureFromIndex(figNum);
-  }
+    public static int ScilabNativeView__getFigureFromIndex(int figNum) {
+        return ScilabNativeViewJNI.ScilabNativeView__getFigureFromIndex(figNum);
+    }
 
 }

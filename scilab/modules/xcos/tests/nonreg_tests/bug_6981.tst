@@ -14,9 +14,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=6981
 //
 // <-- Short Description -->
-// The Xcos save dialog was ignored when using the Scilab exit() command.
+// the Xcos save dialog was ignored whne using the Scilab exit() command.
 
 xcos
 // Add any block (perform modifications)
 exit
-// Check that scilab don't exit before the end of the save.
+
+// Check that scilab don't exit before the and of the save.
+

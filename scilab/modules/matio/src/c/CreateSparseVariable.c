@@ -12,12 +12,12 @@
  */
 
 #include "CreateMatlabVariable.h"
+#include "stack-c.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "scisparse.h"
 
 /* Defined in SCI/modules/sparse/src/fortran/spt.f */
 extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *workArray,

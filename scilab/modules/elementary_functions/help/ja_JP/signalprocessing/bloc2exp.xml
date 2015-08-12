@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2exp" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>bloc2exp</refname>
+        
+        <refpurpose>ブロック図から数式に変換</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>[str]=bloc2exp(blocd)
+            
+            [str,names]=bloc2exp(blocd)
+            
+        </synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>パラメータ</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>blocd</term>
+                
+                <listitem>
+                    
+                    <para>リスト</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>str</term>
+                
+                <listitem>
+                    
+                    <para>文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+            <varlistentry>
+                
+                <term>names</term>
+                
+                <listitem>
+                    
+                    <para>文字列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            線形システムのブロック図表現を指定すると,
+            
+            <literal>bloc2exp</literal> はその記号評価を返します.
+            
+            リスト <literal>blocd</literal>の最初の要素は,
+            
+            文字列 <literal>'blocd'</literal>である必要があります.
+            
+            このリストのその他の各要素 <literal>(blocd(2),blocd(3),...)</literal>
+            
+            は,それ自体が以下の型のリストです:
+            
+        </para>
+        
+        <programlisting role=""><![CDATA[ 
+list('transfer','name_of_linear_system')
+ ]]></programlisting>
+        
+        <programlisting role=""><![CDATA[  
+list('link','name_of_link',
+               [number_of_upstream_box,upstream_box_port],
+               [downstream_box_1,downstream_box_1_portnumber],
+               [downstream_box_2,downstream_box_2_portnumber],
+               ...)
+ ]]></programlisting>
+        
+        <para>
+            
+            文字列 <literal>'transfer'</literal> および
+            
+            <literal>'link'</literal> はブロック図の中での要素の型を示す
+            
+            キーワードです.
+            
+        </para>
+        
+        <para>ケース1 : 
+            
+            リストの2番目のパラメータは,
+            
+            状態空間表現(<literal>syslin</literal> リスト)または伝達関数形式(有理数の行列)
+            
+            で指定される
+            
+            線形システムのScilab名を指す(またはそのように評価される)文字列
+            
+            です.
+            
+        </para>
+        
+        <para>
+            
+            各伝達関数ブロックには1つの整数値がふられます.
+            
+            伝達関数ブロックの各入力および出力にも整数値の番号がふられます.
+            
+            (例を参照)
+            
+        </para>
+        
+        <para>ケース2 : 
+            
+            ブロック図表現の2種類目の要素はリンクです.
+            
+            リンクは,
+            
+            対<literal>[number_of_upstream_box,upstream_box_port]</literal>で
+            
+            表されるブロックの出力と
+            
+            他のブロックの入力を結合します.
+            
+            この際,各入力は,対
+            
+            <literal>[downstream_box_i,downstream_box_i_portnumber]</literal>
+            
+            のように表されます.
+            
+        </para>
+        
+        <para>ブロックの異なる要素を任意の順序で
+            
+            定義できます.
+            
+        </para>
+        
+        <para>例えば,</para>
+        
+        <para>
+            
+            [1] ゲイン1のフィードバックを有する <literal>S1*S2</literal> .
+            
+        </para>
+        
+        <para>
+            
+            3つの伝達関数, <literal>S1</literal> (番号
+            
+            <literal>n_s1=2</literal>) , <literal>S2</literal> (番号
+            
+            <literal>n_s2=3</literal>) および伝達関す記号が<literal>['1','1']</literal>
+            
+            となる加算器  (番号
+            
+            <literal>n_add=4</literal>) があります.
+            
+        </para>
+        
+        <para>
+            
+            リンクは 4 つあります. 最初のリンク (名前は <literal>'U'</literal>)
+            
+            入力 を加算器のポート1に結合します.
+            
+            2番目と3番目のリンクはそれぞれ,
+            
+            加算器の(出力)ポート1をシステム<literal>S1</literal>の(入力)ポート1,
+            
+            <literal>S1</literal>の(出力)ポート1を<literal>S2</literal>の(入力)ポート1
+            
+            に結合します.
+            
+            (<literal>'Y'</literal>という名前の)4番目のリンクは,
+            
+            <literal>S2</literal>の出力ポート1を出力
+            
+            (仮想的なブロック -1 のポート0, 省略されている)
+            
+            および加算器の(入力)ポート2に結合します.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[ 
+//Initialization
+syst=list('blocd'); l=1;
+//Systems
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //System 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
+//Links
+// Inputs  -1 --> input 1
+l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
+// Internal 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+// Outputs // -1 -> output 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+//Evaluation call
+w=bloc2exp(syst);
+ ]]></programlisting>
+        
+        <para>結果は以下の文字列となります:
+            
+            <literal>w=-(s2*s1-eye())\s2*s1</literal>.
+            
+        </para>
+        
+        <para>
+            
+            出力引数を二つとして使用する場合,
+            
+            <literal>[str,names]=blocd(syst)</literal>は,
+            
+            <literal>names</literal>にリンク名の記号リストを返すことに注意してください.
+            
+            この機能は,入力と出力に名前を付けたい場合に有用です.
+            
+        </para>
+        
+        <programlisting role="example"><![CDATA[ 
+//Initialization
+syst=list('blocd'); l=1;
+//System (2x2 blocks plant)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);  
+//Controller
+l=l+1;n_k=l;syst(l)=list('transfer','k'); 
+//Links
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+//Evaluation call
+w=bloc2exp(syst);
+ ]]></programlisting>
+        
+        <para>この例では, 結果は一般的な式に等価な式となります:</para>
+        
+        <para>
+            
+            <literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal>
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="bloc2ss">bloc2ss</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

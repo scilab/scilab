@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolFontWeight(void* _pvCtx, int iObjUID)
+int GetUicontrolFontWeight(void* _pvCtx, int iObjUID)
 {
     char* fontWeight = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_FONTWEIGHT__, jni_string, (void**) &fontWeight);
 
     if (fontWeight == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontWeight");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnString(fontWeight);
+        status = sciReturnString(_pvCtx, fontWeight);
         delete[] fontWeight;
         return status;
     }

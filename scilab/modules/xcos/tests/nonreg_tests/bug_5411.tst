@@ -17,8 +17,11 @@
 // This test will check that a user-defined scicos block has a well defined
 // appearance.
 
-// cd(SCI + '/modules/xcos/demos');
+// cd(SCI + '/modules/scicos/demos');
 // getd('.');
-// xcos('pendulum_anim5.zcos');
+// xcos('pendulum_anim5.cosf');
 //
 // Check that the PENDULUM_ANIM block has a well defined appearance.
+
+
+

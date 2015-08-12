@@ -6,36 +6,36 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\cpp">
-      <UniqueIdentifier>{370374c6-bcb1-4fa4-9725-0209fdf9bcf3}</UniqueIdentifier>
+      <UniqueIdentifier>{f4ab7f90-5f5b-483d-8e92-7012c652b3ce}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\c">
-      <UniqueIdentifier>{8a0b7b63-fbdb-499b-acff-ef0b35352cb4}</UniqueIdentifier>
+      <UniqueIdentifier>{502e9a4c-bb06-455c-8d11-a4305274866b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="Header Files\h">
-      <UniqueIdentifier>{9e90cd8b-7bcc-437a-b731-25556f4c0916}</UniqueIdentifier>
+      <UniqueIdentifier>{5aff4dcd-99ac-4a5c-8e52-dbd9fb43a4b8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Header Files\hxx">
-      <UniqueIdentifier>{84101587-9f3b-4494-ab60-d5423f6df741}</UniqueIdentifier>
+      <UniqueIdentifier>{a7b0044a-2c69-410f-87cb-d993c38a3e6d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{9a2e3824-9298-44ee-9f5c-36c0a392610b}</UniqueIdentifier>
+      <UniqueIdentifier>{ecc8c744-a38e-4b5e-b756-8cd3db39149f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{9859a9a5-7f8c-47b3-971f-50e49405a6e8}</UniqueIdentifier>
+      <UniqueIdentifier>{bbdfe59c-b5ef-4aaf-85d0-9e740266cca4}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{87c5c9ab-8e4f-4128-a96c-4a57f79c3843}</UniqueIdentifier>
+      <UniqueIdentifier>{25023111-5ef7-4ca5-aefc-8e034eebac17}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{8c7d19d7-7aa6-4921-98df-9e6f9e69baa7}</UniqueIdentifier>
+      <UniqueIdentifier>{de518bb0-eaaf-4e2d-997b-55ec528f6b4c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +46,9 @@
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
     <ClCompile Include="src\c\DllmainGraphics_export.c">
+      <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_graphic_export.c">
       <Filter>Source Files\c</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xs2bmp.c">
@@ -108,9 +111,6 @@
       <Filter>Header Files\hxx</Filter>
     </ClInclude>
     <ClInclude Include="src\jni\Driver.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="includes\xs2file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

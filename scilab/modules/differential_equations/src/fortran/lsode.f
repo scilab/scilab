@@ -1,6 +1,8 @@
       subroutine lsode (f, neq, y, t, tout, itol, rtol, atol, itask,
      1            istate, iopt, rwork, lrw, iwork, liw, jac, mf)
-
+      
+      include 'stack.h'
+      
       external f, jac
       integer neq, itol, itask, istate, iopt, lrw, iwork, liw, mf
       double precision y, t, tout, rtol, atol, rwork
@@ -974,7 +976,6 @@ c lsode, intdy, stode, prepj, and solsy.  groups of variables are
 c replaced by dummy arrays in the common declarations in routines
 c where those variables are not used.
 c-----------------------------------------------------------------------
-cDEC$ ATTRIBUTES DLLIMPORT:: /ls0001/
       common /ls0001/ tret, rowns(209),
      1   ccmax, el0, h, hmin, hmxi, hu, rc, tn, uround,
      2   illin, init, lyh, lewt, lacor, lsavf, lwm, liwm,

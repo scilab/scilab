@@ -15,7 +15,6 @@
 
 #include "dynlib_fileio.h"
 #include "machine.h"
-#include "charEncoding.h"
 
 /**
 * Opens file given by file and return it's id
@@ -37,7 +36,7 @@ typedef enum
     MOPEN_INVALID_STATUS = 5
 } mopenError;
 
-FILEIO_IMPEXP int mopen(const wchar_t* _pstFilename, const wchar_t* _pstMode, int _iSwap, int* _piID);
+FILEIO_IMPEXP void C2F(mopen)(int *fd, char *file, char *status, int *f_swap, double *res, int *error);
 
 #endif  /* __MOPEN_H__ */
 /*--------------------------------------------------------------------------*/

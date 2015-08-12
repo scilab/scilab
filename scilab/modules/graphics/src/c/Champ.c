@@ -27,7 +27,7 @@
 #include "Axes.h"
 #include "Champ.h"
 
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "Plot2d.h"
 #include "Scierror.h"

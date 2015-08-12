@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_zoom_box_property(void* _pvCtx, int iObjUID)
+int get_zoom_box_property(void* _pvCtx, int iObjUID)
 {
     double dblTmp = 0;
     double* zoomBox = NULL;
@@ -44,7 +44,7 @@ void* get_zoom_box_property(void* _pvCtx, int iObjUID)
     if (zoomEnabled == NULL || zoomBox == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "zoom_box");
-        return NULL;
+        return -1;
     }
 
     if (iZoomEnabled)
@@ -55,11 +55,11 @@ void* get_zoom_box_property(void* _pvCtx, int iObjUID)
         dblTmp = zoomBox[2];
         zoomBox[2] = zoomBox[1];
         zoomBox[1] = dblTmp;
-        return sciReturnRowVector(zoomBox, 6);
+        return sciReturnRowVector(_pvCtx, zoomBox, 6);
     }
     else
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 }
 /*------------------------------------------------------------------------*/

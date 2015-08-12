@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_handle_visible_property(void* _pvCtx, int iObjUID)
+int get_handle_visible_property(void* _pvCtx, int iObjUID)
 {
     int handleVisible = 0;
     int *piHandleVisible = &handleVisible;
@@ -43,11 +43,11 @@ void* get_handle_visible_property(void* _pvCtx, int iObjUID)
 
     if (1 - handleVisible)      /* Handle visible is equivalent to not hidden */
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

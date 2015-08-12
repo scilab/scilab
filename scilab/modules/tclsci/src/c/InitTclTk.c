@@ -19,14 +19,14 @@
 #else
 #include <windows.h>
 #include "EnvTclTk.h"
+#include "strdup_windows.h"
 #endif
-#include "os_string.h"
 #include "InitTclTk.h"
-#include "sci_path.h"
+#include "setgetSCIpath.h"
 #include "sciprint.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "ScilabEval.h"
 #include "TCL_Command.h"
 #include "GlobalTclInterp.h"
@@ -216,7 +216,6 @@ static void *DaemonOpenTCLsci(void* in)
 /*--------------------------------------------------------------------------*/
 int OpenTCLsci(void)
 {
-    __threadKey key;
     __InitSignalLock(&InterpReadyLock);
     __InitSignal(&InterpReady);
     // Open TCL interpreter in a separated thread.
@@ -224,7 +223,7 @@ int OpenTCLsci(void)
     // Causes also Scilab let those application live their own lifes.
 
 
-    __CreateThread(&TclThread, &key, &DaemonOpenTCLsci);
+    __CreateThread(&TclThread, &DaemonOpenTCLsci);
     // Wait to be sure initialisation is complete.
     __LockSignal(&InterpReadyLock);
     __Wait(&InterpReady, &InterpReadyLock);
@@ -258,7 +257,7 @@ static char *GetSciPath(void)
     int i = 0;
     int lenPathUnix = 0;
 
-    SciPathTmp = getSCI();
+    SciPathTmp = getSCIpath();
 
     if (SciPathTmp)
     {

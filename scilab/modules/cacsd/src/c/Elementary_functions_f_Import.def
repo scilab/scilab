@@ -1,8 +1,0 @@
-LIBRARY    elementary_functions_f.dll
-
-
-EXPORTS
-dtild_
-wdiv_
-dmmul_
-dadd_

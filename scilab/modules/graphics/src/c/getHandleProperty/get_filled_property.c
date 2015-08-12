@@ -27,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_filled_property(void* _pvCtx, int iObjUID)
+int get_filled_property(void* _pvCtx, int iObjUID)
 {
     int iFilled = 0;
     int* piFilled = &iFilled;
@@ -37,16 +37,16 @@ void* get_filled_property(void* _pvCtx, int iObjUID)
     if (piFilled == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "filled");
-        return NULL;
+        return -1;
     }
 
     if (iFilled)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

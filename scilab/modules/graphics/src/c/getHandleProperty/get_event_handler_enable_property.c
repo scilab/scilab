@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_event_handler_enable_property(void* _pvCtx, int iObjUID)
+int get_event_handler_enable_property(void* _pvCtx, int iObjUID)
 {
     int iEventHandlerEnable = 0;
     int *piEventHandlerEnable = &iEventHandlerEnable;
@@ -40,14 +40,14 @@ void* get_event_handler_enable_property(void* _pvCtx, int iObjUID)
     if (piEventHandlerEnable == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler_enable");
-        return NULL;
+        return -1;
     }
 
     if (iEventHandlerEnable)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
-    return sciReturnString("off");
+    return sciReturnString(_pvCtx, "off");
 
 }
 /*------------------------------------------------------------------------*/

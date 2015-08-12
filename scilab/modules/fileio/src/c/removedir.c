@@ -2,7 +2,6 @@
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 * Copyright (C) 2007 - INRIA - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
-* Copyright (C) 2010 - DIGITEO - Antoine ELIAS
 *
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
@@ -29,9 +28,8 @@
 #include "sciprint.h"
 #include "removedir.h"
 #include "isdir.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "charEncoding.h"
-#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory);
@@ -90,7 +88,7 @@ BOOL removedirW(wchar_t *pathW)
 #ifdef _MSC_VER
 static int DeleteDirectory(wchar_t *refcstrRootDirectory)
 {
-#define DEFAULT_PATTERN L"%ls/*.*"
+#define DEFAULT_PATTERN L"%s/*.*"
     BOOL bDeleteSubdirectories = TRUE;
     BOOL bSubdirectory = FALSE;
     HANDLE hFile;
@@ -110,7 +108,7 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
     strPattern = (wchar_t*)MALLOC(sizeof(wchar_t) * len);
     if (strPattern)
     {
-        os_swprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
+        swprintf(strPattern, len, DEFAULT_PATTERN, refcstrRootDirectory);
     }
     else
     {
@@ -130,12 +128,12 @@ static int DeleteDirectory(wchar_t *refcstrRootDirectory)
         {
             if ( (wcscmp(FileInformation.cFileName, L".") != 0) && (wcscmp(FileInformation.cFileName, L"..") != 0) )
             {
-#define FORMAT_PATH_TO_REMOVE L"%ls\\%ls"
+#define FORMAT_PATH_TO_REMOVE L"%s\\%s"
                 int len = (int) (wcslen(refcstrRootDirectory) + wcslen(FORMAT_PATH_TO_REMOVE) + wcslen((wchar_t*)(FileInformation.cFileName)) + 1);
                 strFilePath = (wchar_t*) MALLOC(sizeof(wchar_t) * len);
                 if (strFilePath)
                 {
-                    os_swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
+                    swprintf(strFilePath, len, FORMAT_PATH_TO_REMOVE, refcstrRootDirectory, FileInformation.cFileName);
                 }
 
                 if (FileInformation.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA Francois DELEBECQUE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="trisolve" xml:lang="ja">
+    
+    <refnamediv>
+        
+        <refname>trisolve</refname>
+        
+        <refpurpose>シンボリックな線形システムソルバ</refpurpose>
+        
+    </refnamediv>
+    
+    <refsynopsisdiv>
+        
+        <title>呼び出し手順</title>
+        
+        <synopsis>[x [,sexp]] = trisolve(A,b [,sexp])</synopsis>
+        
+    </refsynopsisdiv>
+    
+    <refsection>
+        
+        <title>引数</title>
+        
+        <variablelist>
+            
+            <varlistentry>
+                
+                <term>A,b</term>
+                
+                <listitem>
+                    
+                    <para>文字列の行列</para>
+                    
+                </listitem>
+                
+            </varlistentry>
+            
+        </variablelist>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>説明</title>
+        
+        <para>
+            
+            <literal>A*x =b</literal>をシンボリックに解きます.
+            
+            <literal>A</literal>は上三角行列と仮定されます.
+            
+        </para>
+        
+        <para>
+            
+            <literal>sexp</literal> は,
+            
+            <literal>A, b, x</literal>の共通の副次式のベクトルです.
+            
+        </para>
+        
+    </refsection>
+    
+    <refsection>
+        
+        <title>例</title>
+        
+        <programlisting role="example"><![CDATA[ 
+A=['x','y';'0','z'];b=['0';'1'];
+w=trisolve(A,b)
+x=5;y=2;z=4;
+evstr(w)
+inv(evstr(A))*evstr(b)
+ ]]></programlisting>
+        
+    </refsection>
+    
+    <refsection role="see also">
+        
+        <title>参照</title>
+        
+        <simplelist type="inline">
+            
+            <member>
+                
+                <link linkend="trianfml">trianfml</link>
+                
+            </member>
+            
+            <member>
+                
+                <link linkend="solve">solve</link>
+                
+            </member>
+            
+        </simplelist>
+        
+    </refsection>
+    
+</refentry>
+

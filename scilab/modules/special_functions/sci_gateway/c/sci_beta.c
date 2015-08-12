@@ -19,7 +19,7 @@
 extern double C2F(dgammacody)(double *);
 extern double C2F(betaln)(double *, double *);
 /*--------------------------------------------------------------------------*/
-int sci_beta(char *fname, void* pvApiCtx)
+int sci_beta(char *fname, unsigned long fname_len)
 {
     /*
     *   z = beta(x, y)

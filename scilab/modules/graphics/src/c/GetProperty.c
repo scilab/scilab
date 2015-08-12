@@ -35,10 +35,10 @@
 #include "BasicAlgos.h"
 #include "localization.h"
 #include "Axes.h"
-#include "api_scilab.h"
+#include "stack-c.h"
 #include "HandleManagement.h"
 
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"

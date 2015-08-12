@@ -10,19 +10,18 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-#include <string.h>
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "scicurdir.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "isdir.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
-int sci_chdir(char *fname, void* pvApiCtx)
+int sci_chdir(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -33,6 +32,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
 
     wchar_t *expandedPath = NULL;
 
+    Rhs = Max(0, Rhs);
     CheckRhs(0, 1);
     CheckLhs(1, 1);
 
@@ -131,7 +131,6 @@ int sci_chdir(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        FREE(expandedPath);
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
     }
@@ -144,7 +143,7 @@ int sci_chdir(char *fname, void* pvApiCtx)
             wchar_t *currentDir = scigetcwdW(&ierr);
             if ( (ierr == 0) && currentDir)
             {
-                sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, (wchar_t const* const*) &currentDir);
+                sciErr = createMatrixOfWideString(pvApiCtx, Rhs + 1, 1, 1, &currentDir);
             }
             else
             {

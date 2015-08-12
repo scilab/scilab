@@ -17,11 +17,10 @@
 /*------------------------------------------------------------------------*/
 
 #include "api_scilab.h"
-#include <string.h>
-#include "gw_graphics.h"
 
-int sci_demo(char * fname, void* pvApiCtx)
+int sci_demo(char * fname, int fname_len)
 {
-    OverLoad(0);
+    int lw = 0;
+    C2F(overload)(&lw, fname, fname_len);
     return 0;
 }

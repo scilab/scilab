@@ -19,79 +19,139 @@
 #include "PATH_MAX.h"
 #include "fileinfo.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "returnanan.h"
-#include "os_string.h"
 #include "expandPathVariable.h"
+/*--------------------------------------------------------------------------*/
+#define FILEINFO_ARRAY_SIZE 13
 
+#define FILEINFO_TOTAL_SIZE_INDICE 0
+#define FILEINFO_MODE_INDICE       1
+#define FILEINFO_UID_INDICE        2
+#define FILEINFO_GID_INDICE        3
+#define FILEINFO_DEV_INDICE        4
+#define FILEINFO_MTIME_INDICE      5
+#define FILEINFO_CTIME_INDICE      6
+#define FILEINFO_ATIME_INDICE      7
+#define FILEINFO_RDEV_INDICE       8
+#define FILEINFO_BLKSIZE_INDICE    9
+#define FILEINFO_BLOCKS_INDICE    10
+#define FILEINFO_INO_INDICE       11
+#define FILEINFO_NLINK_INDICE     12
+
+#define FILEINFO_DEFAULT_ERROR    -1
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static double* fileinfo_WindowsW(wchar_t* _pwstFilename, int* _piErr);
+static double *fileinfo_Windows(char *filepathname, int *ierr);
 #else
-static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr);
+static double *fileinfo_Others(char *filepathname, int *ierr);
 #endif
 /*--------------------------------------------------------------------------*/
-double* filesinfoW(wchar_t** _pwstFilename, int _iSize, int* _piErr)
+double * fileinfo(char *filename, int *ierr)
 {
-    int i = 0, j = 0;
-    double *FILES_INFO_ARRAY = (double*)MALLOC(sizeof(double ) * _iSize * FILEINFO_ARRAY_SIZE);
-    for (i = 0 ; i < _iSize ; i++)
-    {
-        wchar_t* pwstExp = expandPathVariableW(_pwstFilename[i]);
+    char *expandedpath = NULL;
+    double *FILEINFO_ARRAY = NULL;
 
-        if (pwstExp)
-        {
-            double *FILEINFO_ARRAY = NULL;
+    if (filename == NULL)
+    {
+        *ierr = FILEINFO_DEFAULT_ERROR;
+        return NULL;
+    }
+
+    expandedpath = expandPathVariable(filename);
+    if (expandedpath)
+    {
 #ifdef _MSC_VER
-            FILEINFO_ARRAY = fileinfo_WindowsW(pwstExp, &_piErr[i]);
+        FILEINFO_ARRAY = fileinfo_Windows(expandedpath, ierr);
 #else
-            FILEINFO_ARRAY = fileinfo_OthersW(pwstExp, &_piErr[i]);
+        FILEINFO_ARRAY = fileinfo_Others(expandedpath, ierr);
 #endif
-            if (FILEINFO_ARRAY != NULL)
+        FREE(expandedpath);
+        expandedpath = NULL;
+    }
+
+    return FILEINFO_ARRAY;
+}
+/*--------------------------------------------------------------------------*/
+double * filesinfo(char **filenames, int dim_filenames, int *ierrs)
+{
+    double *FILES_INFO_ARRAY = NULL;
+
+    if (dim_filenames > 0)
+    {
+        int i = 0;
+        int j = 0;
+        FILES_INFO_ARRAY = (double*)MALLOC(sizeof(double ) * (dim_filenames * FILEINFO_ARRAY_SIZE));
+        if (FILES_INFO_ARRAY == NULL)
+        {
+            return NULL;
+        }
+
+        for (i = 0; i < dim_filenames; i++)
+        {
+            int k = 0;
+            int ierr = 0;
+            double * FILEINFO_ARRAY = fileinfo(filenames[i], &ierr);
+            if (FILEINFO_ARRAY == NULL)
             {
-                for (j = 0 ; j < FILEINFO_ARRAY_SIZE ; j++)
-                {
-                    FILES_INFO_ARRAY[i + j * _iSize] = FILEINFO_ARRAY[j];
-                }
+                FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);
+
+                FILEINFO_ARRAY[FILEINFO_TOTAL_SIZE_INDICE] = C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_MODE_INDICE] = C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_UID_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_GID_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_DEV_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_MTIME_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_CTIME_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_ATIME_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_RDEV_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_BLKSIZE_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_INO_INDICE] =  C2F(returnanan)();
+                FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] =  C2F(returnanan)();
             }
-            else
+
+            for (k = 0; k < FILEINFO_ARRAY_SIZE; k++)
             {
-                for (j = 0 ; j < FILEINFO_ARRAY_SIZE ; j++)
-                {
-                    FILES_INFO_ARRAY[i + j * _iSize] = C2F(returnanan)();
-                }
+                FILES_INFO_ARRAY[j + k] = FILEINFO_ARRAY[k];
             }
+            j = j + FILEINFO_ARRAY_SIZE;
             FREE(FILEINFO_ARRAY);
-            FREE(pwstExp);
+            FILEINFO_ARRAY = NULL;
+            ierrs[i] = ierr;
         }
     }
     return FILES_INFO_ARRAY;
 }
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
+static double *fileinfo_Windows(char *filepathname, int *ierr)
 {
     struct _stat buf;
+    wchar_t* wcpath = to_wide_string(filepathname);
     wchar_t DriveTemp[PATH_MAX + FILENAME_MAX + 1];
 
     double *FILEINFO_ARRAY = NULL;
     int result = 0;
 
-    *_piErr = 0;
+    *ierr = 0;
 
-    if (_pwstFilename == NULL)
+    if (wcpath == NULL)
     {
-        *_piErr = FILEINFO_DEFAULT_ERROR;
+        *ierr = FILEINFO_DEFAULT_ERROR;
         return NULL;
     }
 
-    os_swprintf(DriveTemp, PATH_MAX + FILENAME_MAX + 1, L"%ls", _pwstFilename);
+    swprintf(DriveTemp, wcslen(wcpath) + 1, L"%s", wcpath);
     if ( (DriveTemp[wcslen(DriveTemp) - 1] == L'/') || (DriveTemp[wcslen(DriveTemp) - 1] == L'\\') )
     {
         DriveTemp[wcslen(DriveTemp) - 1] = L'\0';
     }
 
     result = _wstat(DriveTemp, &buf );
+
+    FREE(wcpath);
+    wcpath = NULL;
 
     if ( result != 0 )
     {
@@ -100,7 +160,7 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
             UINT DriveType = GetDriveTypeW(DriveTemp);
             if ( (DriveType == DRIVE_UNKNOWN) || (DriveType == DRIVE_NO_ROOT_DIR) )
             {
-                *_piErr = result;
+                *ierr = result;
                 return NULL;
             }
             else
@@ -121,20 +181,18 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
                     FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] = 0;
                     FILEINFO_ARRAY[FILEINFO_INO_INDICE] = 0;
                     FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] = 0;
-                    *_piErr = result;
+                    *ierr = result;
                 }
                 else
                 {
-                    *_piErr = FILEINFO_DEFAULT_ERROR;
-                    FREE(FILEINFO_ARRAY);
+                    *ierr = FILEINFO_DEFAULT_ERROR;
                     return NULL;
                 }
             }
         }
         else
         {
-            *_piErr = result;
-            FREE(FILEINFO_ARRAY);
+            *ierr = result;
             return NULL;
         }
     }
@@ -156,12 +214,11 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
             FILEINFO_ARRAY[FILEINFO_BLOCKS_INDICE] = 0;/* number of blocks allocated */
             FILEINFO_ARRAY[FILEINFO_INO_INDICE] = (double) buf.st_ino;/* inode */
             FILEINFO_ARRAY[FILEINFO_NLINK_INDICE] = (double) buf.st_nlink;/* number of hard links */
-            *_piErr = result;
+            *ierr = result;
         }
         else
         {
-            *_piErr = FILEINFO_DEFAULT_ERROR;
-            FREE(FILEINFO_ARRAY);
+            *ierr = FILEINFO_DEFAULT_ERROR;
             return NULL;
         }
     }
@@ -169,17 +226,15 @@ static double *fileinfo_WindowsW(wchar_t* _pwstFilename, int *_piErr)
 }
 /*--------------------------------------------------------------------------*/
 #else
-static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr)
+static double *fileinfo_Others(char *filepathname, int *ierr)
 {
     struct stat buf;
     double *FILEINFO_ARRAY = NULL;
     int result = 0;
 
-    char* pstFilename = wide_string_to_UTF8(_pwstFilename);
-    *_piErr = 0;
+    *ierr = 0;
 
-    result = stat(pstFilename, &buf );
-    FREE(pstFilename);
+    result = stat(filepathname, &buf );
     if (result == 0)
     {
         FILEINFO_ARRAY = (double*)MALLOC(sizeof(double) * FILEINFO_ARRAY_SIZE);
@@ -201,11 +256,11 @@ static double* fileinfo_OthersW(wchar_t* _pwstFilename, int* _piErr)
         }
         else
         {
-            *_piErr = FILEINFO_DEFAULT_ERROR;
+            *ierr = FILEINFO_DEFAULT_ERROR;
             return NULL;
         }
     }
-    *_piErr = result;
+    *ierr = result;
     return FILEINFO_ARRAY;
 }
 #endif

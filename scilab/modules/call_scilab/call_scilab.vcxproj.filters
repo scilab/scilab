@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -14,19 +14,22 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{cb241620-e564-48f2-81fd-b834cd766c69}</UniqueIdentifier>
+      <UniqueIdentifier>{cb6c3980-becd-474d-a9be-ad13d240961f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{aaf0ee42-2f72-4b04-a02a-5646087b6e43}</UniqueIdentifier>
+      <UniqueIdentifier>{237fd786-8fb2-448f-94be-9fb11b7942e8}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{cb414876-d5c4-4634-b087-af627bbf4de4}</UniqueIdentifier>
+      <UniqueIdentifier>{8cde192d-5d2d-4366-b670-4b93651589cc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{3b2478df-114d-44b0-864c-72a26f7ea861}</UniqueIdentifier>
+      <UniqueIdentifier>{858cd422-bc61-47ce-b018-d9823fc8ed0e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\c\call_scilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\DllmainCall_scilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -36,6 +39,9 @@
     <ClCompile Include="src\c\fromjava.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_call_scilab.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_fromc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,9 +49,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\SendScilabJobs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\call_scilab.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

@@ -23,20 +23,19 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "BuildObjects.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "GetProperty.h"
 #include "elementary_functions.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "HandleManagement.h"
-#include "elem_common.h"
 
 #include "createGraphicObject.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_glue(char * fname, void *pvApiCtx)
+int sci_glue(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

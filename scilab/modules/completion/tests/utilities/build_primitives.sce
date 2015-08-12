@@ -50,7 +50,7 @@ table = ["completeline"    ,"sci_completeline"    ;
 "getfields"       ,"sci_getfields" ];
 
 
-ilib_build(ilib_name,table,files,libs,[],"",cflags);
+libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);
 
 cd(previous_dir);
 

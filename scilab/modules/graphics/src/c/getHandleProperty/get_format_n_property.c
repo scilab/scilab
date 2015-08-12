@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_format_n_property(void* _pvCtx, int iObjUID)
+int get_format_n_property(void* _pvCtx, int iObjUID)
 {
     char* formatn = NULL;
 
@@ -39,9 +39,9 @@ void* get_format_n_property(void* _pvCtx, int iObjUID)
     if (formatn == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "format_n");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(formatn);
+    return sciReturnString(_pvCtx, formatn);
 }
 /*------------------------------------------------------------------------*/

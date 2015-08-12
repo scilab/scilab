@@ -2,28 +2,84 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{6624f3b0-5889-4bfd-a9c4-cd6ef7238b68}</UniqueIdentifier>
+      <UniqueIdentifier>{1d690322-2fae-40c4-a31c-b41a7516809f}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{dbfecf40-2289-42b1-9c15-01b72d253466}</UniqueIdentifier>
+      <UniqueIdentifier>{94f9e428-7935-491d-8284-bd32c835573b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{f69f0b1f-d51d-4045-b91d-8eeb7768dfe0}</UniqueIdentifier>
+      <UniqueIdentifier>{a5f6aed8-c58f-469c-b078-9404d7a8c9b2}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{2ca2f5d6-9a53-484f-8019-4ba2b7146e69}</UniqueIdentifier>
+      <UniqueIdentifier>{a17607c6-f802-4c84-a9f1-ddca76f4aa8a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{89d0826d-fbaa-4269-8d55-74ab40a4ec5f}</UniqueIdentifier>
+      <UniqueIdentifier>{0edb7486-ea9b-43b0-bc43-5da2b2315a4c}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{1e5e4590-ba63-4019-92af-b5bc51a049b0}</UniqueIdentifier>
+      <UniqueIdentifier>{b6b33bea-52e4-4a55-8f6d-1053dedc7a72}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
-    <Filter Include="Resource File">
-      <UniqueIdentifier>{56d8800e-172f-46b8-a4d5-d9f6028b57f5}</UniqueIdentifier>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{1daa6384-ae22-4e62-ac89-c45f7f649300}</UniqueIdentifier>
     </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\includes\charEncoding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\dynlib_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLcidString.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLocaleInfo_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\gw_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\InitializeLocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\LanguagePreferences_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\LocaleNameToLCID_Windows.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\localizationJava.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\setgetlanguage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\defaultlanguage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getentrieshashtable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\getLocaleInfo_Apple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\hashtable_localization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\loadhashtableslocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="c\tableslanguages.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\TerminateLocalization.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="io_Import.def">
@@ -41,12 +97,6 @@
     <None Include="..\locales\localization.pot">
       <Filter>localization</Filter>
     </None>
-    <None Include="ast_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
-    <None Include="fileio_Import.def">
-      <Filter>Libraries Dependencies\Imports</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="c\charEncoding.c">
@@ -59,6 +109,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c\getLocaleInfo_Windows.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\gw_localization.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="c\InitializeLocalization.c">
@@ -76,6 +129,21 @@
     <ClCompile Include="jni\Messages_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_getdefaultlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_getlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_gettext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_setdefaultlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\sci_gateway\c\sci_setlanguage.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="c\setgetlanguage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -85,70 +153,13 @@
     <ClCompile Include="jni\setdefaultlanguage_wrap.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="cpp\localization.cpp">
+    <ClCompile Include="..\sci_gateway\c\sci_addlocalizationdomain.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\includes\charEncoding.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\defaultlanguage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\dynlib_localization_gw.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\gw_localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\InitializeLocalization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\LanguagePreferences_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\localization_gw.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\localizationJava.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\setgetlanguage.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\TerminateLocalization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\getentrieshashtable.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\getLcidString.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\getLocaleInfo_Apple.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\getLocaleInfo_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\hashtable_localization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\loadhashtableslocalization.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\LocaleNameToLCID_Windows.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="c\tableslanguages.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\includes\localization.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
+    <ResourceCompile Include="localization.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
 </Project>

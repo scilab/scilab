@@ -5,4 +5,8 @@ EXPORTS
 ;
 ;core_f
 ;
+funnam_
+indxg_
 indxgc_
+putid_
+ref2val_

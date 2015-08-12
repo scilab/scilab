@@ -16,11 +16,13 @@
 #include "gw_matio.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 
-int sci_matfile_listvar(char *fname, void* pvApiCtx)
+int sci_matfile_listvar(char *fname, unsigned long fname_len)
 {
     int nbRow = 0, nbCol = 0;
     mat_t *matfile = NULL;
@@ -95,7 +97,7 @@ int sci_matfile_listvar(char *fname, void* pvApiCtx)
             Scierror(999, _("%s: No more memory.\n"), "matfile_listvar");
             return FALSE;
         }
-        varnames[nbvar - 1] = os_strdup(matvar->name);
+        varnames[nbvar - 1] = strdup(matvar->name);
         varclasses = (double*) REALLOC(varclasses, nbvar * sizeof(double));
         if (varclasses  == NULL)
         {

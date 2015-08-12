@@ -85,12 +85,12 @@ public:
 
 #ifdef __SCILAB_INT64__
 
-class H5Bitfield8Data : public H5BasicData<unsigned long long>
+class H5Bitfield8Data : public H5BasicData<unsigned long>
 {
 
 public:
 
-    H5Bitfield8Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned long long * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned long long>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
+    H5Bitfield8Data(H5Object & _parent, const hsize_t _totalSize, const hsize_t _dataSize, const hsize_t _ndims, const hsize_t * _dims, unsigned long * _data, const hsize_t _stride, const size_t _offset, const bool _dataOwner) : H5BasicData<unsigned long>(_parent, _totalSize, _dataSize, _ndims, _dims, _data, _stride, _offset, _dataOwner)
     {
 
     }

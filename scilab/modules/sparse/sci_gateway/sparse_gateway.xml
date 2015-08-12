@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) XXXX-2008 - INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="sparse">
+    <!-- =================== -->
+    <!--
+ Scilab
+ Interface description. In this file, we define the list of the function which
+ will be available into Scilab and the link to the "native" function.
+
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
+ Don't touch if you do not know what you are doing
+-->
+    <!-- =================== -->
+    
+    <PRIMITIVE gatewayId="27" primitiveId="1" primitiveName="sparse" />
+    <PRIMITIVE gatewayId="27" primitiveId="2" primitiveName="spget" />
+    <PRIMITIVE gatewayId="27" primitiveId="3" primitiveName="full" />
+    <PRIMITIVE gatewayId="27" primitiveId="4" primitiveName="lufact" />
+    <PRIMITIVE gatewayId="27" primitiveId="5" primitiveName="lusolve" />
+    <PRIMITIVE gatewayId="27" primitiveId="6" primitiveName="ludel" />
+    <PRIMITIVE gatewayId="27" primitiveId="7" primitiveName="luget" />
+    <PRIMITIVE gatewayId="27" primitiveId="9" primitiveName="nnz" />
+    <PRIMITIVE gatewayId="27" primitiveId="13" primitiveName="spchol" />
+    <PRIMITIVE gatewayId="27" primitiveId="14" primitiveName="fadj2sp" />
+    <PRIMITIVE gatewayId="27" primitiveId="15" primitiveName="spcompack" />
+    <PRIMITIVE gatewayId="27" primitiveId="16" primitiveName="ordmmd" />
+    <PRIMITIVE gatewayId="27" primitiveId="17" primitiveName="blkfc1i" />
+    <PRIMITIVE gatewayId="27" primitiveId="18" primitiveName="blkslvi" />
+    <PRIMITIVE gatewayId="27" primitiveId="19" primitiveName="inpnvi" />
+    <PRIMITIVE gatewayId="27" primitiveId="20" primitiveName="sfinit" />
+    <PRIMITIVE gatewayId="27" primitiveId="21" primitiveName="symfcti" />
+    <PRIMITIVE gatewayId="27" primitiveId="22" primitiveName="bfinit" />
+    <PRIMITIVE gatewayId="27" primitiveId="23" primitiveName="mtlb_sparse" />
+    <PRIMITIVE gatewayId="27" primitiveId="24" primitiveName="%msp_spget" />
+    <PRIMITIVE gatewayId="27" primitiveId="25" primitiveName="%msp_full" />
+    <PRIMITIVE gatewayId="27" primitiveId="26" primitiveName="ta2lpd" />
+</GATEWAY>

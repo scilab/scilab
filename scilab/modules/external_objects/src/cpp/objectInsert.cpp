@@ -87,7 +87,7 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
         {
             env.setarrayelement(idObjA, tab, Rhs - 2, idObjB);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             delete[] tab;
             ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
@@ -127,7 +127,7 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
         {
             type = env.getfieldtype(idObjA, fieldName);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
             freeAllocatedSingleString(fieldName);
@@ -141,7 +141,7 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
         {
             env.setfield(idObjA, fieldName, idObjB);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
             freeAllocatedSingleString(fieldName);
@@ -179,7 +179,7 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
             {
                 args[i] = ScilabObjects::getArgumentId(laddr, tmpvar, false, false, envIdA, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
+            catch (ScilabAbstractEnvironmentException & e)
             {
                 ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
                 delete[] tmpvar;
@@ -194,7 +194,7 @@ int ScilabGateway::objectInsert(char * fname, const int envId, void * pvApiCtx)
         {
             env.insert(idObjA, args, Rhs - 1);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             ScilabObjects::removeTemporaryVars(envIdA, tmpvarB);
             ScilabObjects::removeTemporaryVars(envIdA, tmpvar);

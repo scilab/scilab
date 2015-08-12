@@ -14,8 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 
-int write_poly(char *fname, void* pvApiCtx)
+int write_poly(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     //output variable info : polinomial matrix 2 x 4

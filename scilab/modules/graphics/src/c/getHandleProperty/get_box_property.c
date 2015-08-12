@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_box_property(void* _pvCtx, int iObjUID)
+int get_box_property(void* _pvCtx, int iObjUID)
 {
     int type = -1;
     int *piType = &type;
@@ -42,7 +42,7 @@ void* get_box_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return NULL;
+        return -1;
     }
 
 
@@ -63,24 +63,24 @@ void* get_box_property(void* _pvCtx, int iObjUID)
             if (piBoxType == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-                return NULL;
+                return -1;
             }
 
             if (iBoxType == 0)
             {
-                return sciReturnString("off");
+                return sciReturnString(_pvCtx, "off");
             }
             else if (iBoxType == 1)
             {
-                return sciReturnString("on");
+                return sciReturnString(_pvCtx, "on");
             }
             else if (iBoxType == 2)
             {
-                return sciReturnString("hidden_axes");
+                return sciReturnString(_pvCtx, "hidden_axes");
             }
             else if (iBoxType == 3)
             {
-                return sciReturnString("back_half");
+                return sciReturnString(_pvCtx, "back_half");
             }
 
         }
@@ -95,16 +95,16 @@ void* get_box_property(void* _pvCtx, int iObjUID)
             if (piBox == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-                return NULL;
+                return -1;
             }
 
             if (iBox)
             {
-                return sciReturnString("on");
+                return sciReturnString(_pvCtx, "on");
             }
             else
             {
-                return sciReturnString("off");
+                return sciReturnString(_pvCtx, "off");
             }
 
         }
@@ -112,10 +112,10 @@ void* get_box_property(void* _pvCtx, int iObjUID)
         default :
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "box");
-            return NULL;
+            return -1;
         }
     }
 
-    return NULL;
+    return -1;
 }
 /*------------------------------------------------------------------------*/

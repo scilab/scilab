@@ -13,18 +13,23 @@
 // <-- Short Description -->
 // Error messages in modules/data_structures/src/c/hmops.c are not standard.
 M = hypermat([2 3 2 2],1:24)
-M  = 
+ M  =
+ 
 (:,:,1,1)
-    1.    3.    5.
-    2.    4.    6.
+ 
+    1.    3.    5.  
+    2.    4.    6.  
 (:,:,2,1)
-    7.    9.     11.
-    8.    10.    12.
+ 
+    7.    9.     11.  
+    8.    10.    12.  
 (:,:,1,2)
-    13.    15.    17.
-    14.    16.    18.
+ 
+    13.    15.    17.  
+    14.    16.    18.  
 (:,:,2,2)
-    19.    21.    23.
-    20.    22.    24.
-errmsg1=msprintf(_("Invalid index.\n"));
+ 
+    19.    21.    23.  
+    20.    22.    24.  
+errmsg1=msprintf(_("%s: Wrong number of input arguments: at most %d expected.\n"),"hmops",4);
 assert_checkerror("M(:,:,1,2,3)",errmsg1);

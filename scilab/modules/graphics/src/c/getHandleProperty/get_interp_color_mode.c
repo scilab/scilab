@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_interp_color_mode_property(void* _pvCtx, int iObjUID)
+int get_interp_color_mode_property(void* _pvCtx, int iObjUID)
 {
     int iInterpColorMode = 0;
     int* piInterpColorMode = &iInterpColorMode;
@@ -40,16 +40,16 @@ void* get_interp_color_mode_property(void* _pvCtx, int iObjUID)
     if (piInterpColorMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_color_mode");
-        return NULL;
+        return -1;
     }
 
     if (iInterpColorMode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

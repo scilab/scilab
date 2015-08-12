@@ -38,3 +38,12 @@ catch
   y=1;
 end
 if y<>1 then bugmes();quit;end
+//in errcatch continue mode
+function y=pipo()
+  errcatch(1001,"continue","nomessage")
+  y=foo(1,fii(),2);
+  errclear(-1)
+  errcatch()
+endfunction
+y=pipo();
+if y<>6 then bugmes();quit;end

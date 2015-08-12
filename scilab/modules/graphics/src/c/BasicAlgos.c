@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 #include <string.h>
 #include "BasicAlgos.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "core_math.h"
 #include "freeArrayOfString.h"
 #include "returnanan.h"

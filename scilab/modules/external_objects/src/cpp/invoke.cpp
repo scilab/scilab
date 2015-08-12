@@ -52,7 +52,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     {
         idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         delete[] tmpvar;
         throw;
@@ -81,7 +81,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
         {
             args[i] = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             delete[] args;
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -99,7 +99,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     {
         methName = ScilabObjects::getSingleString(2, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -111,7 +111,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.invoke(idObj, methName, args, nbArgs);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -132,8 +132,6 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             delete[] ret;
         }
 
-        createEmptyMatrix(pvApiCtx, Rhs + 1);
-        LhsVar(1) = Rhs + 1;
         PutLhsVar();
 
         return 0;
@@ -150,11 +148,11 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
                 {
                     ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, ret[i], envId, pvApiCtx);
                 }
-                catch (ScilabAbstractEnvironmentException & /*e*/)
+                catch (ScilabAbstractEnvironmentException & e)
                 {
                     if (!torem.empty())
                     {
-                        env.removeobject(&(torem[0]), static_cast<int>(torem.size()));
+                        env.removeobject(&(torem[0]), torem.size());
                     }
                     env.removeobject(ret + 1, *ret);
                     delete[] ret;
@@ -171,7 +169,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
 
         if (!torem.empty())
         {
-            env.removeobject(&(torem[0]), static_cast<int>(torem.size()));
+            env.removeobject(&(torem[0]), torem.size());
         }
     }
     else
@@ -182,7 +180,7 @@ int ScilabGateway::invoke(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, ret[i], envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
+            catch (ScilabAbstractEnvironmentException & e)
             {
                 env.removeobject(ret + 1, *ret);
                 delete[] ret;

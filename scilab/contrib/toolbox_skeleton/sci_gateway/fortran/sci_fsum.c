@@ -4,13 +4,13 @@
 /* ==================================================================== */
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include <localization.h>
 
 /* ==================================================================== */
 extern int F2C(fsum)(double *a, double *b, double *c);
 /* ==================================================================== */
-int sci_fsum(char *fname, void* pvApiCtx)
+int sci_fsum(char *fname)
 {
     SciErr sciErr;
 

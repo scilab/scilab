@@ -13,7 +13,6 @@
 #include "Palette.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
-#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -21,13 +20,13 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
 
 using namespace org_scilab_modules_xcos_palette;
 
-int sci_xcosPalGet(char *fname, void* pvApiCtx)
+int sci_xcosPalGet(char *fname, unsigned long fname_len)
 {
     CheckRhs(1, 1);
     CheckLhs(0, 1);
@@ -42,7 +41,6 @@ int sci_xcosPalGet(char *fname, void* pvApiCtx)
     }
 
     /* Call the java implementation */
-    set_loaded_status(XCOS_CALLED);
     try
     {
         Palette::get(getScilabJavaVM(), category, lenCategory);

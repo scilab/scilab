@@ -22,7 +22,7 @@
 * @param[in] It is typically set to a Shell verb such as open. Set this parameter to NULL if it is not used.
 * @return file associated
 */
-wchar_t* FindFileAssociation(const wchar_t* ptrFindStr, const wchar_t* Extra);
+char * FindFileAssociation (char *ptrFindStr, char *Extra);
 
 #endif /* __FINDFILEASSOCIATION_H__ */
 /*--------------------------------------------------------------------------*/

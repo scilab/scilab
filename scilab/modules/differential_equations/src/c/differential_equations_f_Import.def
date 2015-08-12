@@ -7,6 +7,10 @@ EXPORTS
 ; --------------------------------------- 
 cngu_
 ddassl_
+sciode_
+sciodc_
+scibvode_
+sciimpl_
 cndf_
 cnf_
 cng_
@@ -38,9 +42,13 @@ fcd_
 jex_
 loren_
 lcomp_
+fexab_
+fex3_
+fex2_
 fex_
 bcomp_
 dgbydy_
 aplusp_
 resid_
 daskri_
+

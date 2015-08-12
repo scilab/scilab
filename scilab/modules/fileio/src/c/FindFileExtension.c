@@ -15,13 +15,13 @@
 #include <Windows.h>
 #include <shlwapi.h>
 #pragma comment(lib, "shlwapi.lib")
+#include "strdup_windows.h"
 #else
 #include <string.h>
 #include <stdio.h>
 #endif
-#include "os_string.h"
 #include "FindFileExtension.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 char *FindFileExtension(char *filename)

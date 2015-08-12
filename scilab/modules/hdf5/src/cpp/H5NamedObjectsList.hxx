@@ -18,8 +18,9 @@
 #include "H5Link.hxx"
 #include "H5ListObject.hxx"
 
-#include "os_string.h"
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 namespace org_modules_hdf5
 {
 
@@ -150,7 +151,7 @@ public :
 
             if (opdata.u.count == 0)
             {
-                opdata.u.name = os_strdup(name);
+                opdata.u.name = strdup(name);
 
                 return (herr_t)1;
             }

@@ -14,15 +14,21 @@
 #define __GW_SIGNAL__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_signal_processing.h"
-#include "dynlib_signal_processing_gw.h"
 #include "machine.h"
-#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
 SIGNAL_PROCESSING_IMPEXP int gw_signal_processing(void);
 /*--------------------------------------------------------------------------*/
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_remez);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_amell);
-EXTERN_SIGNAL_PROCESSING_GW C_GATEWAY_PROTOTYPE(sci_conv2);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_ffir)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_fft)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_corr)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_fiir)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_rpem)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_amell)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_delip)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_remez)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int C2F(sci_syredi)(char *fname, unsigned long fname_len);
+SIGNAL_PROCESSING_IMPEXP int sci_conv2(char *fname, unsigned long fname_len);
+
 #endif /*  __GW_SIGNAL__ */
 /*--------------------------------------------------------------------------*/
 

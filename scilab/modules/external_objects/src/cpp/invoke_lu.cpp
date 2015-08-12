@@ -171,7 +171,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
         {
             args[i] = ScilabObjects::getArgumentId(child, tmpvar, false, false, *eId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             delete[] args;
             delete[] tmpvar;
@@ -188,7 +188,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
     {
         methName = ScilabObjects::getSingleString(3, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(*eId, tmpvar);
@@ -200,7 +200,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.invoke(idObj, methName, args, nbArgs);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         delete[] args;
         ScilabObjects::removeTemporaryVars(*eId, tmpvar);
@@ -236,11 +236,11 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, ret[i], *eId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
+            catch (ScilabAbstractEnvironmentException & e)
             {
                 if (!torem.empty())
                 {
-                    env.removeobject(&(torem[0]), static_cast<int>(torem.size()));
+                    env.removeobject(&(torem[0]), torem.size());
                 }
                 env.removeobject(ret + 1, *ret);
                 delete[] ret;
@@ -257,7 +257,7 @@ int ScilabGateway::invoke_lu(char * fname, const int envId, void * pvApiCtx)
 
     if (!torem.empty())
     {
-        env.removeobject(&(torem[0]), static_cast<int>(torem.size()));
+        env.removeobject(&(torem[0]), torem.size());
     }
 
     delete[] ret;

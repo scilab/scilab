@@ -25,7 +25,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatip_manager_mode(char *fname, void* pvApiCtx)
+int sci_datatip_manager_mode(char *fname, unsigned long fname_len)
 {
     int iFigureUID      = NULL;
 

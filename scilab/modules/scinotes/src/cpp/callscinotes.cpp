@@ -18,7 +18,7 @@ extern "C"
 #include "charEncoding.h"
 #include "getScilabJavaVM.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getFullFilename.h"
 }

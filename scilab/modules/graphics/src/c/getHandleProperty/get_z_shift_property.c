@@ -25,13 +25,13 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_z_shift_property(void* _pvCtx, int iObjUID)
+int get_z_shift_property(void* _pvCtx, int iObjUID)
 {
     double* shiftCoordinates = NULL;
     int iValue = 0;
@@ -42,19 +42,19 @@ void* get_z_shift_property(void* _pvCtx, int iObjUID)
     if (piValue == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_shift");
-        return NULL;
+        return -1;
     }
 
     if (iValue == 0)
     {
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
         getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_Z_COORDINATES_SHIFT__, jni_double_vector, (void **)&shiftCoordinates);
         getGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_NUM_ELEMENTS__, jni_int, (void**)&piValue);
 
-        return sciReturnRowVector(shiftCoordinates, iValue);
+        return sciReturnRowVector(_pvCtx, shiftCoordinates, iValue);
     }
 }
 /*------------------------------------------------------------------------*/

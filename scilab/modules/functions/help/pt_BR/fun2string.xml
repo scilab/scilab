@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) ????-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns3="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="fun2string" xml:lang="pt">
+    <refnamediv>
+        <refname>fun2string</refname>
+        <refpurpose>gera definição ASCII de uma função Scilab</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>txt = fun2string(fun, name)</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Parâmetros</title>
+        <variablelist>
+            <varlistentry>
+                <term>fun</term>
+                <listitem>
+                    <para>variável do tipo função</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>name</term>
+                <listitem>
+                    <para>string, o nome da função gerada</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>txt</term>
+                <listitem>
+                    <para>vetor coluna de strings, o texto fornecendo as instruções
+                        Scilab
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Dado um pseudo-código de função Scilab carregada <function>fun2string</function> permite
+            gerar novamente o código. O código gerado é identado e embelezado.
+        </para>
+        <para>
+            O mecanismo é similar, mas mais simples que o de <function>mfile2sci</function>. Também
+            pode ser adaptado para traduções de sintaxe.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[
+txt = fun2string(asinh,'foo');
+write(%io(2),txt,'(a)')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="edit">edit</link>
+            </member>
+            <member>
+                <link linkend="macrovar">macrovar</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

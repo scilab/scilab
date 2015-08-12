@@ -19,7 +19,7 @@
 #include "Scierror.h"
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_mdialog(char *fname, void* pvApiCtx)
+int sci_x_mdialog(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -80,7 +80,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
     freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LINE LABELS */
-    if (checkInputArgumentType(pvApiCtx, 2, sci_strings))
+    if (VarType(2) ==  sci_strings)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddrlineLabelsAdr);
         if (sciErr.iErr)
@@ -112,7 +112,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
     }
 
     /* READ THE COLUMN LABELS or DEFAULT VALUES */
-    if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
+    if (VarType(3) ==  sci_strings)
     {
         if (nbInputArgument(pvApiCtx) == 3)
         {
@@ -181,7 +181,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
     if (nbInputArgument(pvApiCtx) == 4)
     {
         /* READ  DEFAULT VALUES */
-        if (checkInputArgumentType(pvApiCtx, 4, sci_strings))
+        if (VarType(4) ==  sci_strings)
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 4, &piAddrdefaultValuesAdr);
             if (sciErr.iErr)
@@ -242,9 +242,7 @@ int sci_x_mdialog(char *fname, void* pvApiCtx)
         {
             nbColDefaultValues = nbColColumnLabels * nbRowColumnLabels;
         }
-
-        createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, nbRowDefaultValues, nbColDefaultValues, userValue);
-        freeArrayOfString(userValue, userValueSize);
+        CreateVarFromPtr(nbInputArgument(pvApiCtx) + 1, MATRIX_OF_STRING_DATATYPE, &nbRowDefaultValues, &nbColDefaultValues, userValue);
         /* TO DO : delete of userValue */
     }
 

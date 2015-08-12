@@ -16,7 +16,7 @@
 #include <string.h>
 #include "men_Sutils.h"
 #include "getfastcode.h"
-#include "sci_malloc.h"             /* MALLOC */
+#include "MALLOC.h"             /* MALLOC */
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 void ScilabStr2C(int *n, int *Scistring, char **strh, int *ierr)

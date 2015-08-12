@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 #include "CurrentObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_xrects(char *fname, void *pvApiCtx)
+int sci_xrects(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

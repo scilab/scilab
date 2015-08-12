@@ -22,7 +22,7 @@ extern "C" {
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;
 
-int sci_jgetfields(char * fname, void* pvApiCtx)
+int sci_jgetfields(char * fname, unsigned long fname_len)
 {
     try
     {

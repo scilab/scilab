@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_viewport_property(void* _pvCtx, int iObjUID)
+int get_viewport_property(void* _pvCtx, int iObjUID)
 {
     int* viewport = NULL;
     getGraphicObjectProperty(iObjUID, __GO_VIEWPORT__, jni_int_vector, (void **)&viewport);
@@ -39,9 +39,9 @@ void* get_viewport_property(void* _pvCtx, int iObjUID)
     if (viewport == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "viewport");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowIntVector(viewport , 2);
+    return sciReturnRowIntVector(_pvCtx, viewport , 2);
 }
 /*------------------------------------------------------------------------*/

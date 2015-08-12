@@ -91,7 +91,7 @@ extern "C" {
     /**
     * reset history manager
     */
-    HISTORY_MANAGER_IMPEXP BOOL resetScilabHistory(void);
+    HISTORY_MANAGER_IMPEXP void resetScilabHistory(void);
 
     /**
     * Get all lines in history

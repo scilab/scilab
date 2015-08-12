@@ -20,7 +20,8 @@ function list_keywords = getscilabkeywords()
     [scilab_primitives, scilab_commands] = what();
 
     // predefined variables
-    predef_variables = predef("names");
+    names = who("get");
+    predef_variables = names(($-predef())+1:$);
 
     //library functions
     libvar = librarieslist();

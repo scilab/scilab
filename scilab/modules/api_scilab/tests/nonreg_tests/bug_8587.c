@@ -5,9 +5,9 @@
 #include <api_scilab.h>
 #include <BOOL.h>
 #include <Scierror.h>
-#include <sci_malloc.h>
+#include <MALLOC.h>
 /* ========================================================================== */
-int sci_readDoubles(char *fname, void* pvApiCtx)
+int sci_readDoubles(char *fname)
 {
 #define NAME_MATRIX_TO_READ "REF_TEST_MATRIX"
 #define REF_SIZE_COLS 3

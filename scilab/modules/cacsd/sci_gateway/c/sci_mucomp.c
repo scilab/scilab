@@ -9,9 +9,8 @@
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
-#include "gw_cacsd.h"
 
-#include "doublecomplex.h"
+#include "gw_slicot.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -22,7 +21,7 @@ extern int C2F(ab13md)();
 //     [bound,D] = mucomp(Z,K,T)
 //     bound = mucomp(Z,K,T)
 
-int sci_mucomp(char *fname, void* pvApiCtx)
+int sci_mucomp(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -37,9 +36,9 @@ int sci_mucomp(char *fname, void* pvApiCtx)
     int* lIWORK     = NULL;
     double* lRWORK  = NULL;
 
-    int* piAddrlZ               = NULL;
-    doublecomplex* lZ           = NULL;
-    const doublecomplex* lZWORK = NULL;
+    int* piAddrlZ           = NULL;
+    doublecomplex* lZ       = NULL;
+    doublecomplex* lZWORK   = NULL;
 
     int LRWORK = 0, LZWRKMIN = 0;
     int M  = 0, N  = 0;
@@ -276,6 +275,5 @@ int sci_mucomp(char *fname, void* pvApiCtx)
         AssignOutputVariable(pvApiCtx, 3) = 6;
     }
 
-    ReturnArguments(pvApiCtx);
     return 0;
 }

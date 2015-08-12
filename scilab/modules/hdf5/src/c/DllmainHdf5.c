@@ -10,62 +10,26 @@
  *
  */
 
-#include "gw_hdf5.h"
-
-#ifdef _MSC_VER
 #include <windows.h>
-/*--------------------------------------------------------------------------*/
-//for Visual Leak Detector in debug compilation mode
-#if defined(DEBUG_VLD) && defined(_DEBUG)
-#include <vld.h>
-#endif
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 #pragma comment(lib,"../../../../bin/hdf5dll.lib")
 #pragma comment(lib,"../../../../bin/hdf5_hldll.lib")
 /*--------------------------------------------------------------------------*/
-int WINAPI DllMain(HINSTANCE hinstDLL, DWORD flag, LPVOID reserved)
+int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
-    switch (flag)
+    switch (reason)
     {
-        case DLL_PROCESS_ATTACH :
-        {
-            Initialize();
+        case DLL_PROCESS_ATTACH:
             break;
-        }
-        case DLL_PROCESS_DETACH :
-        {
-            Finalize();
+        case DLL_PROCESS_DETACH:
             break;
-        }
-        case DLL_THREAD_ATTACH :
-        {
+        case DLL_THREAD_ATTACH:
             break;
-        }
-        case DLL_THREAD_DETACH :
-        {
+        case DLL_THREAD_DETACH:
             break;
-        }
-        default :
-        {
-            return 0;
-        }
     }
     return 1;
 }
-#else
-void __attribute__ ((constructor)) load(void);
-void __attribute__ ((destructor)) unload(void);
-
-void load(void)
-{
-    Initialize();
-}
-
-void unload(void)
-{
-    Finalize();
-}
-#endif
 /*--------------------------------------------------------------------------*/
 

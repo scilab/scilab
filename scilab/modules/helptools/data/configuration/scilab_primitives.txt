@@ -297,11 +297,14 @@ TCL_SetVar
 TCL_UnsetVar
 TCL_UpVar
 _
+_code2str
 _d
+_str2code
 about
 abs
 acos
 addModulePreferences
+addf
 addhistory
 addinter
 addlocalizationdomain
@@ -363,6 +366,7 @@ clearglobal
 closeEditor
 closeEditvar
 closeXcos
+code2str
 coeff
 comp
 completion
@@ -390,6 +394,7 @@ ctree4
 cumprod
 cumsum
 curblock
+curblockc
 daskr
 dasrt
 dassl
@@ -456,6 +461,7 @@ exists
 exp
 expm
 exportUI
+export_to_hdf5
 eye
 fadj2sp
 fec
@@ -524,6 +530,7 @@ getscicosvars
 getscilabmode
 getshortpathname
 gettext
+getvariablesonstack
 getversion
 glist
 global
@@ -533,6 +540,7 @@ graphicfunction
 grayplot
 grep
 gsort
+gstacksize
 h5attr
 h5close
 h5cp
@@ -578,6 +586,7 @@ ieee
 ilib_verbose
 imag
 impl
+import_from_hdf5
 imult
 inpnvi
 int
@@ -642,6 +651,7 @@ jwrapinfloat
 kron
 lasterror
 ldiv
+ldivf
 legendre
 length
 lib
@@ -674,6 +684,7 @@ ludel
 lufact
 luget
 lusolve
+macr2lst
 macr2tree
 matfile_close
 matfile_listvar
@@ -682,6 +693,7 @@ matfile_varreadnext
 matfile_varwrite
 matrix
 max
+maxfiles
 mclearerr
 mclose
 meof
@@ -712,6 +724,7 @@ mtell
 mtlb_mode
 mtlb_sparse
 mucomp
+mulf
 nearfloat
 newaxes
 newest
@@ -765,10 +778,12 @@ rand
 rankqr
 rat
 rcond
+rdivf
 read
 read4b
 read_csv
 readb
+readgateway
 readmps
 real
 realtime
@@ -844,6 +859,8 @@ splitURL
 spones
 sprintf
 sqrt
+stacksize
+str2code
 strcat
 strchr
 strcmp
@@ -861,6 +878,7 @@ strstr
 strsubst
 strtod
 strtok
+subf
 sum
 svd
 swap_handles

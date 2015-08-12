@@ -35,7 +35,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_newaxes(char * fname, void *pvApiCtx)
+int sci_newaxes(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

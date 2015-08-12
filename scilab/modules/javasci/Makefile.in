@@ -114,10 +114,9 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@am__append_2 = java
 subdir = modules/javasci
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
-	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -297,7 +296,6 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
-EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -321,7 +319,6 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
-HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -358,9 +355,6 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LEX = @LEX@
-LEXLIB = @LEXLIB@
-LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -476,8 +470,6 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
-YACC = @YACC@
-YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -533,7 +525,6 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-yacc_present = @yacc_present@
 
 #### Target ######
 modulename = javasci
@@ -544,18 +535,15 @@ libjavasci2_la_root_DATA = license.txt
 
 #### javasci : init scripts ####
 libjavasci2_la_etcdir = $(mydatadir)/etc
-libjavasci2_la_etc_DATA = \
-    etc/javasci.quit \
-    etc/javasci.start
-
+libjavasci2_la_etc_DATA = etc/javasci.quit etc/javasci.start
 
 ### All the compilation process of java is deleguated to ant
 
 #### Javasci : sources ####
 @JAVASCI_TRUE@JAVASCI_V2_C_SOURCES = \
-@JAVASCI_TRUE@    src/jni/call_scilab_wrap.c \
-@JAVASCI_TRUE@    src/jni/putLists.c \
-@JAVASCI_TRUE@    src/c/javasci2_helper.c
+@JAVASCI_TRUE@src/jni/call_scilab_wrap.c \
+@JAVASCI_TRUE@src/jni/putLists.c \
+@JAVASCI_TRUE@src/c/javasci2_helper.c
 
 @JAVASCI_TRUE@pkglib_LTLIBRARIES = libjavasci2.la
 @JAVASCI_TRUE@libjavasci2_la_SOURCES = $(JAVASCI_V2_C_SOURCES)
@@ -563,28 +551,18 @@ libjavasci2_la_etc_DATA = \
 # For the code check (splint)
 @JAVASCI_TRUE@CHECK_SRC = $(JAVASCI_C_SOURCES)
 @JAVASCI_TRUE@INCLUDE_FLAGS = $(libjavasci2_la_CPPFLAGS)
-@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = \
-@JAVASCI_TRUE@    -I$(srcdir)/includes/ \
-@JAVASCI_TRUE@    -I$(srcdir)/src/c/ \
-@JAVASCI_TRUE@    $(JAVA_JNI_INCLUDE) \
-@JAVASCI_TRUE@    $(TCL_INC_PATH) \
-@JAVASCI_TRUE@    $(TK_INC_PATH) \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/ast/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/exps/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/operations/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/parse/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/symbol/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/system_env/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/types/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/ast/includes/analysis/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/tclsci/includes \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/graphic_objects/includes \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/call_scilab/includes \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/api_scilab/includes \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/fileio/includes/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/localization/includes/ \
-@JAVASCI_TRUE@    -I$(top_srcdir)/modules/output_stream/includes/ \
-@JAVASCI_TRUE@    $(AM_CPPFLAGS)
+@JAVASCI_TRUE@libjavasci2_la_CPPFLAGS = -I$(srcdir)/includes/ \
+@JAVASCI_TRUE@			-I$(srcdir)/src/c/ \
+@JAVASCI_TRUE@			$(JAVA_JNI_INCLUDE) \
+@JAVASCI_TRUE@			$(TCL_INC_PATH) \
+@JAVASCI_TRUE@			$(TK_INC_PATH) \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/tclsci/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/call_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/api_scilab/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/fileio/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/localization/includes/ \
+@JAVASCI_TRUE@			-I$(top_srcdir)/modules/output_stream/includes/ \
+@JAVASCI_TRUE@			$(AM_CPPFLAGS)
 
 @JAVASCI_TRUE@libjavasci2_la_LIBADD = \
 @JAVASCI_TRUE@	$(top_builddir)/modules/api_scilab/libsciapi_scilab.la \
@@ -624,7 +602,7 @@ libjavasci2_la_etc_DATA = \
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-@JAVASCI_TRUE@SUFFIXES = .sci
+@JAVASCI_TRUE@SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -666,7 +644,7 @@ libjavasci2_la_etc_DATA = \
 @JAVASCI_TRUE@JARDIR = jar/
 # JAR files mask
 @JAVASCI_TRUE@JARMASK = *.jar
-# Chapter file
+# Chapter file 
 @JAVASCI_TRUE@HELP_CHAPTERDIR = help/
 @JAVASCI_TRUE@HELP_CHAPTERFILE = addchapter.sce
 @JAVASCI_TRUE@HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -1001,8 +979,8 @@ maintainer-clean-generic:
 	@echo "This command is intended for maintainers to use"
 	@echo "it deletes files that may require special tools to rebuild."
 	-test -z "$(BUILT_SOURCES)" || rm -f $(BUILT_SOURCES)
-@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@install-data-local:
+@JAVASCI_FALSE@install-html-local:
 @JAVASCI_FALSE@distclean-local:
 @JAVASCI_FALSE@clean-local:
 clean: clean-am
@@ -1128,7 +1106,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@		$(ANT) clean; \
 @JAVASCI_TRUE@@NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @JAVASCI_TRUE@@SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1137,7 +1115,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 
@@ -1146,11 +1124,11 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @JAVASCI_TRUE@@SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @JAVASCI_TRUE@@SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @JAVASCI_TRUE@@SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
+@JAVASCI_TRUE@@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @JAVASCI_TRUE@@SWIG_TRUE@		done; \
 @JAVASCI_TRUE@@SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@@JAVASCI_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1171,7 +1149,7 @@ uninstall-am: uninstall-libjavasci2_la_etcDATA \
 @GIWS_TRUE@@JAVASCI_TRUE@giws-exception:
 @GIWS_TRUE@@JAVASCI_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@@JAVASCI_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@@JAVASCI_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
+@GIWS_TRUE@@JAVASCI_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 @JAVASCI_TRUE@macros:
 @JAVASCI_TRUE@	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -2,28 +2,31 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{94432686-b323-4bfd-b65c-ffcb047689a1}</UniqueIdentifier>
+      <UniqueIdentifier>{03fbdde8-2541-40ee-b83f-7bda6ed23378}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{c1267f4f-d04f-4c63-a5fd-b1a3274cee05}</UniqueIdentifier>
+      <UniqueIdentifier>{55490fa8-9302-4001-9210-cbc2aa6747ec}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{227035ee-6a9b-4562-9f91-f1ee86de315a}</UniqueIdentifier>
+      <UniqueIdentifier>{7ed96ca6-802f-40a5-910e-a6881cf98c3d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{97ee0208-8b7d-40b5-9b30-d57ee2e50f84}</UniqueIdentifier>
+      <UniqueIdentifier>{a56ef58c-a5d4-410e-b230-a14d884ad982}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{33fb5793-e89b-497e-86e5-6c794a65e365}</UniqueIdentifier>
+      <UniqueIdentifier>{e60d124f-f2a9-42ae-9bd7-2d37894651db}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{2dda7dd9-8a5e-47a5-830c-1e6a617396a6}</UniqueIdentifier>
+      <UniqueIdentifier>{abf739f5-063b-407b-a7a1-8b18fdebd6ca}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainXCOS.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_xcos.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\Modelica.cpp">
@@ -89,12 +92,6 @@
     <ClCompile Include="..\..\sci_gateway\cpp\sci_xcosSimulationStarted.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\cpp\loadStatus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\jni\JavaController_wrap.cxx">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\includes\dynlib_xcos.h">
@@ -113,9 +110,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\..\includes\xcosUtilities.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\cpp\loadStatus.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

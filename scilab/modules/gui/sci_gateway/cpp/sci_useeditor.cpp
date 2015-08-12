@@ -29,7 +29,7 @@ extern "C"
 using namespace org_scilab_modules_gui_editor;
 
 /*--------------------------------------------------------------------------*/
-int sci_useeditor(char *fname, void* pvApiCtx)
+int sci_useeditor(char *fname, unsigned long fname_len)
 {
     int iFigureUid  = 0;
     int* piAddr     = NULL;

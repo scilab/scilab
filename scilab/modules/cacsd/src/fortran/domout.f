@@ -63,7 +63,6 @@ C!
 
       integer neq(*)
       external feq, jacl2
-cDEC$ ATTRIBUTES DLLIMPORT:: /sortie/
       common /sortie/ io,info,ll
 C
       nq=neq(1)

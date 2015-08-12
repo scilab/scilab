@@ -30,7 +30,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlIsValidObject(char *fname, void* pvApiCtx)
+int sci_xmlIsValidObject(char *fname, unsigned long fname_len)
 {
     int id;
     SciErr err;

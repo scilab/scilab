@@ -15,7 +15,8 @@
             variáveis de saída e<literal> (e_1,e_2,...,e_rhs)</literal> asão as
             variáveis de entrada. Para inserir este comando no Scilab, é necessário
             escrever algumas linhas na subrotina FORTRAN <literal>user</literal> do
-            Scilab.
+            Scilab. Ver <link linkend="intersci">intersci</link> ou a documentação do Scilab para
+            mais .
         </para>
     </refsection>
     <refsection>
@@ -26,6 +27,9 @@
             </member>
             <member>
                 <link linkend="link">link</link>
+            </member>
+            <member>
+                <link linkend="intersci">intersci</link>
             </member>
         </simplelist>
     </refsection>

@@ -14,12 +14,13 @@
 #include <stdio.h>
 #include <signal.h>
 
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "cliPrompt.h"
 #include "cliDisplayManagement.h"
 #include "HistoryManager.h"
 #include "initConsoleMode.h"
 #include "suspendProcess.h"
+#include "scilabmode.h"
 
 /*
  * Function called by signal when signum is caught.

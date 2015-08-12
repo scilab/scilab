@@ -9,10 +9,7 @@
 
 // Test 1
 
-function z=f(x,y,t)
-    z=x^2+y^2+t;
-endfunction
-
+deff("[z]=f(x,y,t)","z=x^2+y^2+t");
 res  = feval(1:10,1:5,list(f,10));
 res1 = [];
 for j=1:5
@@ -22,10 +19,7 @@ if res<>res1 then pause,end
 
 // Test 2
 
-function z=g(x,y)
-    z=x+%i*y;
-endfunction
-
+deff("[z]=g(x,y)","z=x+%i*y");
 res  =feval(1:10,1:5,g);
 res1 =[];
 for j=1:5

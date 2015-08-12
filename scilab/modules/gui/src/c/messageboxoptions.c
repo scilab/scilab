@@ -11,7 +11,7 @@
  */
 
 #include "messageboxoptions.h"
-#include "os_string.h"
+#include "stricmp.h"
 
 /*--------------------------------------------------------------------------*/
 

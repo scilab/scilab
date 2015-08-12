@@ -9,4 +9,4 @@ jimport java.lang.Double;
 d = Double.new("1.23456");
 assert_checktrue(jexists(d));
 jremove d;
-assert_checkequal(exists("d"),0);
+assert_checkerror("jexists(d)",[],4);

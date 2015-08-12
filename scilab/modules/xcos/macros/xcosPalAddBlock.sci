@@ -40,9 +40,9 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
     //  bigSomPath = TMPDIR + "/sum.sod";
     //
     //  scs_m = SUM_f("define");
-    //  save(sumPath, "scs_m");
+    //  export_to_hdf5(sumPath, "scs_m");
     //  scs_m = BIGSOM_f("define");
-    //  save(bigSomPath, "scs_m");
+    //  export_to_hdf5(bigSomPath, "scs_m");
     //
     //  pal = xcosPalAddBlock(pal, sumPath);
     //  pal = xcosPalAddBlock(pal, bigSomPath);
@@ -84,9 +84,8 @@ function pal = xcosPalAddBlock(pal, block, pal_block_img, style)
         mclose(fd);
 
         // store the block instance
-        try
-            load(block);
-        catch
+        status = import_from_hdf5(block);
+        if ~status then
             error(msprintf(gettext("%s: Unable to load block from ""%s"": hdf5 file expected.\n"), "xcosPalAddBlock", block));
         end
 

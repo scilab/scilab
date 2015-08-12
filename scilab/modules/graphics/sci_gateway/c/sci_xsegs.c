@@ -29,7 +29,7 @@
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 /*--------------------------------------------------------------------------*/
-int sci_xsegs(char *fname, void *pvApiCtx)
+int sci_xsegs(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

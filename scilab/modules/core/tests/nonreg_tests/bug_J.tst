@@ -10,9 +10,11 @@
 // <-- OLD BUG -->
 //
 // crash Scilab
-
+	
 function toto()
-    N
+	N
 endfunction
 
-assert_checkequal(execstr("toto()","errcatch"), 999);
+result = execstr('toto()','errcatch');
+
+if result <> 4 then pause,end

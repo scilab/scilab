@@ -13,14 +13,15 @@
 #include <stdio.h>
 #include <string.h>
 #include "call_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
+#include "scirun.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-#include "InitScilab.h"
-
 /*--------------------------------------------------------------------------*/
 static BOOL RemoveCharsFromEOL(char *line, char CharToRemove);
 static BOOL RemoveComments(char *line);
@@ -37,8 +38,8 @@ int SendScilabJob(char *job)
     int retCode = -1;
     char *command = NULL;
 
-#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\");"
-#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;"
+#define COMMAND_EXECSTR  "Err_Job = execstr(TMP_EXEC_STRING,\"errcatch\",\"n\");quit;"
+#define COMMAND_CLEAR "clear TMP_EXEC_STRING;clear Err_Job;quit;"
 
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STOP)
     {
@@ -46,18 +47,20 @@ int SendScilabJob(char *job)
         return retCode;
     }
 
-    command = os_strdup(job);
+    command = strdup(job);
 
     if (command)
     {
         double Err_Job = 0.;
         int m = 0, n = 0;
-        ScilabEngineInfo* pSEI = InitScilabEngineInfo();
+
+        /* clear prev. Err , TMP_EXEC_STRING scilab variables */
+        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
 
         SetLastJob(command);
 
         /* Creation of a temp variable in Scilab which contains the command */
-        sciErr = createNamedMatrixOfString(NULL, "TMP_EXEC_STRING", 1, 1, (char const * const*) &command);
+        sciErr = createNamedMatrixOfString(pvApiCtx, "TMP_EXEC_STRING", 1, 1, &command);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -71,15 +74,12 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
-            FREE(pSEI);
             return retCode;
         }
 
         /* Run the command within an execstr */
-        pSEI->pstExec = COMMAND_EXECSTR;
-        ExecExternalCommand(pSEI);
-
-        sciErr = getNamedVarDimension(NULL, "Err_Job", &m, &n);
+        C2F(scirun) (COMMAND_EXECSTR, (long int)strlen(COMMAND_EXECSTR));
+        sciErr = getNamedVarDimension(pvApiCtx, "Err_Job", &m, &n);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -92,7 +92,6 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
-            FREE(pSEI);
             return retCode;
         }
 
@@ -107,11 +106,10 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
-            FREE(pSEI);
             return retCode;
         }
 
-        sciErr = readNamedMatrixOfDouble(NULL, "Err_Job", &m, &n, &Err_Job);
+        sciErr = readNamedMatrixOfDouble(pvApiCtx, "Err_Job", &m, &n, &Err_Job);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -124,7 +122,6 @@ int SendScilabJob(char *job)
                 command = NULL;
             }
 
-            FREE(pSEI);
             return retCode;
         }
 
@@ -137,9 +134,7 @@ int SendScilabJob(char *job)
         retCode = (int)Err_Job;
 
         /* clear prev. Err , TMP_EXEC_STRING scilab variables */
-        pSEI->pstExec = COMMAND_CLEAR;
-        ExecExternalCommand(pSEI);
-        FREE(pSEI);
+        C2F(scirun) (COMMAND_CLEAR, (long int)strlen(COMMAND_CLEAR));
     }
     else
     {
@@ -161,7 +156,7 @@ static BOOL SetLastJob(char *JOB)
 
     if (JOB)
     {
-        lastjob = os_strdup(JOB);
+        lastjob = strdup(JOB);
         if (lastjob)
         {
             return TRUE;

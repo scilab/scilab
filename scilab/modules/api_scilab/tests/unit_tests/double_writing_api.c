@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
-int write_double(char *fname, void* pvApiCtx)
+int write_double(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i, j;
@@ -35,7 +35,7 @@ int write_double(char *fname, void* pvApiCtx)
     ************************/
 
     //alloc array of data in OS memory
-    pdblReal1 = (double*)MALLOC(sizeof(double) * iRows1 * iCols1);
+    pdblReal1 = (double*)malloc(sizeof(double) * iRows1 * iCols1);
     //fill array with incremental values
     //[ 0   1   2   3
     //  4   5   6   7
@@ -56,13 +56,13 @@ int write_double(char *fname, void* pvApiCtx)
     //create a variable from a existing data array
 
     sciErr = createMatrixOfDouble(pvApiCtx, nbInputArgument(pvApiCtx) + 1, iRows1, iCols1, pdblReal1);
-    //after creation, we can free memory.
-    FREE(pdblReal1);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return 0;
     }
+    //after creation, we can free memory.
+    free(pdblReal1);
 
 
     /*************************

@@ -26,8 +26,6 @@
 * all opened file if *id = -2
 */
 FILEIO_IMPEXP void C2F(mclose) (int *fd, double *res);
-FILEIO_IMPEXP int mclose(int _iID);
-FILEIO_IMPEXP int mcloseAll();
-FILEIO_IMPEXP int mcloseCurrentFile();
+
 #endif /* __MCLOSE_H__ */
 /*--------------------------------------------------------------------------*/

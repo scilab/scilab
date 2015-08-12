@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tics_style_property(void* _pvCtx, int iObjUID)
+int get_tics_style_property(void* _pvCtx, int iObjUID)
 {
     int iTicksStyle = 0;
     int* piTicksStyle = &iTicksStyle;
@@ -41,7 +41,7 @@ void* get_tics_style_property(void* _pvCtx, int iObjUID)
     if (piTicksStyle == NULL)
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_direction");
-        return NULL;
+        return -1;
     }
 
     if (iTicksStyle == 0)
@@ -59,9 +59,9 @@ void* get_tics_style_property(void* _pvCtx, int iObjUID)
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "tics_style");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnChar(ticksStyle);
+    return sciReturnChar(_pvCtx, ticksStyle);
 }
 /*------------------------------------------------------------------------*/

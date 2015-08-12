@@ -19,7 +19,7 @@
 * returns user locale string
 * @return Locale user example fr_FR or en_US
 */
-wchar_t* getLocaleUserInfo(void);
+char* getLocaleUserInfo(void);
 
 /**
 * returns system locale string

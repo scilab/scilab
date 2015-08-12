@@ -112,10 +112,9 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/mpi
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
-	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -176,6 +175,7 @@ am__objects_1 = sci_gateway/c/libscimpi_la-sci_mpi_init.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_finalize.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo \
+	sci_gateway/c/libscimpi_la-gw_mpi.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_recv.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_send.lo \
 	sci_gateway/c/libscimpi_la-sci_mpi_irecv.lo \
@@ -311,7 +311,6 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
-EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -335,7 +334,6 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
-HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -372,9 +370,6 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LEX = @LEX@
-LEXLIB = @LEXLIB@
-LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -490,8 +485,6 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
-YACC = @YACC@
-YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -547,7 +540,6 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-yacc_present = @yacc_present@
 MPI_C_SOURCES = src/c/serialization.c \
     src/c/deserialization.c
 
@@ -558,6 +550,7 @@ GATEWAY_C_SOURCES = \
     sci_gateway/c/sci_mpi_finalize.c \
     sci_gateway/c/sci_mpi_comm_size.c \
     sci_gateway/c/sci_mpi_comm_rank.c \
+    sci_gateway/c/gw_mpi.c \
     sci_gateway/c/sci_mpi_recv.c \
     sci_gateway/c/sci_mpi_send.c \
     sci_gateway/c/sci_mpi_irecv.c \
@@ -569,19 +562,14 @@ GATEWAY_C_SOURCES = \
 libscimpi_la_CFLAGS = -Iincludes/ \
 	-Isrc/c/ \
 	-I$(top_srcdir)/libs/MALLOC/includes/ \
-	-I$(top_srcdir)/modules/ast/includes/ast \
-	-I$(top_srcdir)/modules/ast/includes/operations \
-	-I$(top_srcdir)/modules/ast/includes/types \
 	-I$(top_srcdir)/modules/output_stream/includes \
 	-I$(top_srcdir)/modules/localization/includes \
-	-I$(top_srcdir)/modules/api_scilab/includes \
-	-I$(top_srcdir)/modules/elementary_functions/includes
-
+	-I$(top_srcdir)/modules/api_scilab/includes
 
 # libscimpi_la_LDFLAGS = $(LAMPI_LDFLAGS)
 libscimpi_la_LIBADD = $(OPENMPI_LIBS)
 
-# Name of the future library (.la will be replace by .so, .a, etc regarding
+# Name of the future library (.la will be replace by .so, .a, etc regarding 
 # the system)
 pkglib_LTLIBRARIES = libscimpi.la
 
@@ -596,11 +584,11 @@ modulename = mpi
 libscimpi_la_rootdir = $(mydatadir)
 libscimpi_la_root_DATA = readme.txt
 
-#### mpi : init scripts ####
+#### mpi : init scripts #### 
 libscimpi_la_etcdir = $(mydatadir)/etc
 libscimpi_la_etc_DATA = etc/mpi.quit etc/mpi.start
 
-#### mpi : gateway declaration ####
+#### mpi : gateway declaration #### 
 libscimpi_la_sci_gatewaydir = $(mydatadir)/sci_gateway
 libscimpi_la_sci_gateway_DATA = sci_gateway/mpi_gateway.xml
 
@@ -634,7 +622,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -676,7 +664,7 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file
+# Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
@@ -768,6 +756,8 @@ sci_gateway/c/libscimpi_la-sci_mpi_comm_size.lo:  \
 sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscimpi_la-sci_mpi_recv.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -813,6 +803,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_bcast.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_rank.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_comm_size.Plo@am__quote@
@@ -878,6 +869,13 @@ sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo: sci_gateway/c/sci_mpi_comm_rank
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_mpi_comm_rank.c' object='sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-sci_mpi_comm_rank.lo `test -f 'sci_gateway/c/sci_mpi_comm_rank.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_comm_rank.c
+
+sci_gateway/c/libscimpi_la-gw_mpi.lo: sci_gateway/c/gw_mpi.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-gw_mpi.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Tpo sci_gateway/c/$(DEPDIR)/libscimpi_la-gw_mpi.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_mpi.c' object='sci_gateway/c/libscimpi_la-gw_mpi.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscimpi_la-gw_mpi.lo `test -f 'sci_gateway/c/gw_mpi.c' || echo '$(srcdir)/'`sci_gateway/c/gw_mpi.c
 
 sci_gateway/c/libscimpi_la-sci_mpi_recv.lo: sci_gateway/c/sci_mpi_recv.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(libscimpi_la_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscimpi_la-sci_mpi_recv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscimpi_la-sci_mpi_recv.Tpo -c -o sci_gateway/c/libscimpi_la-sci_mpi_recv.lo `test -f 'sci_gateway/c/sci_mpi_recv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_mpi_recv.c
@@ -1291,7 +1289,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1300,7 +1298,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1309,11 +1307,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1334,7 +1332,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

@@ -23,14 +23,14 @@ function [tree]=sci_colordef(tree)
     if rhs==1 then
         if typeof(tree.rhs(1))=="cste" then
             if or(tree.rhs(1).value==["black","none"]) then
-                m2sci_insert(Equal(list(f),Funcall("gcf",1,list(),list())))
+                insert(Equal(list(f),Funcall("gcf",1,list(),list())))
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-1)))
+                insert(Equal(list(LHS),Cste(-1)))
                 tree=list()
             elseif tree.rhs(1).value=="white" then
-                m2sci_insert(Equal(list(f),Funcall("gcf",1,list(),list())))
+                insert(Equal(list(f),Funcall("gcf",1,list(),list())))
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-2)))
+                insert(Equal(list(LHS),Cste(-2)))
                 tree=list()
             else
                 no_equiv(expression2code(tree))
@@ -45,14 +45,14 @@ function [tree]=sci_colordef(tree)
             max_funcall=Funcall("max",1,list(winsid_funcall),list())
             addition=Operation("+",list(max_funcall,Cste(1)),list())
             scf_funcall=Funcall("scf",1,list(addition),list())
-            m2sci_insert(Equal(list(f),scf_funcall))
+            insert(Equal(list(f),scf_funcall))
             if or(tree.rhs(2).value==["black","none"]) then
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-1)))
+                insert(Equal(list(LHS),Cste(-1)))
                 tree=list()
             elseif tree.rhs(2).value=="white" then
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-2)))
+                insert(Equal(list(LHS),Cste(-2)))
                 tree=list()
             else
                 no_equiv(expression2code(tree))
@@ -63,16 +63,16 @@ function [tree]=sci_colordef(tree)
             f=tree.rhs(1)
             if or(tree.rhs(2).value==["black","none"]) then
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-1)))
+                insert(Equal(list(LHS),Cste(-1)))
                 if tree.lhs(1).name<>"ans" then
-                    m2sci_insert(Equal(list(tree.lhs(1)),f))
+                    insert(Equal(list(tree.lhs(1)),f))
                 end
                 tree=list()
             elseif tree.rhs(2).value=="white" then
                 LHS=Operation("ins",list(f,Cste("background")),list())
-                m2sci_insert(Equal(list(LHS),Cste(-2)))
+                insert(Equal(list(LHS),Cste(-2)))
                 if tree.lhs(1).name<>"ans" then
-                    m2sci_insert(Equal(list(tree.lhs(1)),f))
+                    insert(Equal(list(tree.lhs(1)),f))
                 end
                 tree=list()
             else

@@ -226,7 +226,7 @@ function [helppart,txt,batch]=m2sci_syntax(txt)
                 end
                 com=";m2scideclare("+quote+part(com,13:length(com))+quote+")"
             else
-                com=" //"+com
+                com=";//"+com
             end
             tkbeg=part(tk,1:kc-1)
 

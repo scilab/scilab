@@ -13,11 +13,6 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
-//for Visual Leak Detector in debug compilation mode
-#if defined(DEBUG_VLD) && defined(_DEBUG)
-#include <vld.h>
-#endif
-/*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../bin/libintl.lib")
 #pragma comment(lib,"../../bin/libxml2.lib")
 #pragma comment(lib,"../../bin/libcurl.lib")

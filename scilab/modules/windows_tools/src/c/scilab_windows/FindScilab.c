@@ -14,9 +14,9 @@
 #include <string.h>
 #include "FindScilab.h"
 #include "version.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "WndThread.h"
-#include "os_string.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 #define LineMax 255
 #define NumberScilabMax 10
@@ -65,11 +65,11 @@ BOOL HaveAnotherWindowScilab(void)
 /*--------------------------------------------------------------------------*/
 char * getLastScilabFound(void)
 {
-    return os_strdup(ListHiddenScilabName[0]);
+    return strdup(ListHiddenScilabName[0]);
 }
 /*--------------------------------------------------------------------------*/
 char * getFirstScilabFound(void)
 {
-    return os_strdup(ListHiddenScilabName[NumberScilab - 1]);
+    return strdup(ListHiddenScilabName[NumberScilab - 1]);
 }
 /*--------------------------------------------------------------------------*/

@@ -14,6 +14,7 @@ function ret = who_user(%__bPrint__)
     //get user variables
     [nams,mem]=who("get"); //get all variables
     p=predef(); //number of system variable
+    st=stacksize()
     nams=nams(1:$-p+1);mem=mem(1:$-p+1);
     //modifiable system variables
     excluded=["demolist","%helps","%helps_modules","home","who_user", "%__bPrint__"];
@@ -62,6 +63,6 @@ function ret = who_user(%__bPrint__)
     "";
     txt;
     "";
-    msprintf(gettext("Using %s elements"),string(sum(mem)))]
+    msprintf(gettext("Using %s elements out of %s"),string(sum(mem)), string(st(1)-(st(2)-sum(mem))))]
     write(%io(2),txt,"(1x,a)")
 endfunction

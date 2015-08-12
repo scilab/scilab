@@ -28,7 +28,7 @@
 *
 */
 /*--------------------------------------------------------------------------*/
-int sci_fftw_forget_wisdom(char *fname, void* pvApiCtx)
+int sci_fftw_forget_wisdom(char *fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 

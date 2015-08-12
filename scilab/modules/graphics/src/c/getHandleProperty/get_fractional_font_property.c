@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_fractional_font_property(void* _pvCtx, int iObjUID)
+int get_fractional_font_property(void* _pvCtx, int iObjUID)
 {
     int iFractionalFont = 0;
     int* fractionalFont = &iFractionalFont;
@@ -38,16 +38,16 @@ void* get_fractional_font_property(void* _pvCtx, int iObjUID)
     if (fractionalFont == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "fractional_font");
-        return NULL;
+        return -1;
     }
 
     if (iFractionalFont)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

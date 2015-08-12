@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_anti_aliasing_property(void* _pvCtx, int iObjUID)
+int get_anti_aliasing_property(void* _pvCtx, int iObjUID)
 {
     int iAntialiasing = 0;
     int* piAntialiasing = &iAntialiasing;
@@ -37,32 +37,32 @@ void* get_anti_aliasing_property(void* _pvCtx, int iObjUID)
     if (piAntialiasing == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "anti_aliasing");
-        return NULL;
+        return -1;
     }
 
     switch (iAntialiasing)
     {
         case 0:
-            return sciReturnString("off");
+            return sciReturnString(_pvCtx, "off");
             break;
         case 1:
-            return sciReturnString("2x");
+            return sciReturnString(_pvCtx, "2x");
             break;
         case 2:
-            return sciReturnString("4x");
+            return sciReturnString(_pvCtx, "4x");
             break;
         case 3:
-            return sciReturnString("8x");
+            return sciReturnString(_pvCtx, "8x");
             break;
         case 4:
-            return sciReturnString("16x");
+            return sciReturnString(_pvCtx, "16x");
             break;
         default:
             Scierror(999, _("Wrong value for '%s' property.\n"), "anti_aliasing");
-            return NULL;
+            return -1;
             break;
     }
 
-    return sciReturnString("off");
+    return sciReturnString(_pvCtx, "off");
 }
 /*------------------------------------------------------------------------*/

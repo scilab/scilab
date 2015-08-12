@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_H5Object_p(char * fname, int* pvApiCtx)
+int sci_percent_H5Object_p(char * fname, unsigned long fname_len)
 {
     H5Object * obj = 0;
     int id;

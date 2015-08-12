@@ -84,7 +84,7 @@ jmethodID jintgetScilabVariablesRefreshIdID; // cache method id
 jobject instance;
 jclass instanceClass; // cache class
 
-
+                       
 // Caching (if any)
 
 
@@ -111,9 +111,9 @@ ScilabVariablesRefresh(JavaVM * jvm_);
 ScilabVariablesRefresh(JavaVM * jvm_, jobject JObj);
 
 
-/**
+/** 
 * This is a fake constructor to avoid the constructor
-* chaining when dealing with extended giws classes
+* chaining when dealing with extended giws classes 
 */
 #ifdef FAKEGIWSDATATYPE
 ScilabVariablesRefresh(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
@@ -146,18 +146,18 @@ static int getScilabVariablesRefreshId(JavaVM * jvm_);
                         * Get class name to use for static methods
                         * @return class name to use for static methods
                         */
-
+                        
                 static const std::string className()
                 {
                 return "org/scilab/modules/types/ScilabVariablesRefresh";
                 }
-
+                
 
                         /**
                         * Get class to use for static methods
                         * @return class to use for static methods
                         */
-
+                        
                 static jclass initClass(JNIEnv * curEnv)
                 {
                     static jclass cls = 0;
@@ -173,7 +173,7 @@ static int getScilabVariablesRefreshId(JavaVM * jvm_);
 
                     return cls;
                  }
-
+                
 };
 
 

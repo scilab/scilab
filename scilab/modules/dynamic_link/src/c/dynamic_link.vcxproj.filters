@@ -2,43 +2,67 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{994598f8-f89a-4b48-b1ad-b09a77498cb6}</UniqueIdentifier>
+      <UniqueIdentifier>{1908c64b-306b-4895-b2bf-e6bb67b7ef8c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{271884dd-3512-4e11-bebf-cf8b58ab9a34}</UniqueIdentifier>
+      <UniqueIdentifier>{aec3120c-99cc-4123-a6a8-92b4104f96a3}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{e7bb2319-c37e-482a-bdc2-665cefcf9c9a}</UniqueIdentifier>
+      <UniqueIdentifier>{c194a197-da99-42ca-a4f4-8257b4138067}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{c7b5cb80-85a3-4a77-97de-ea0f9bae1c8d}</UniqueIdentifier>
+      <UniqueIdentifier>{472545a1-64bf-478f-9ace-2dbcec3ada7a}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{e55fd728-a13d-4f13-8785-7874632c36e8}</UniqueIdentifier>
+      <UniqueIdentifier>{30d3cba2-6407-4ffb-bf82-3222d75f5884}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="addinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="dl_genErrorMessage.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="DllmainDynamic_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="dynamic_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GetFunctionByName.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_dynamic_link.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ilib_verbose.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_addinter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_c_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_call.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_getdynlibext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_ilib_verbose.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_link.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_ulink.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="dllinfo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\addinter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\dynamic_link.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="dynamiclibrary_windows.c">
@@ -70,15 +94,24 @@
     <ClInclude Include="dllinfo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\dynamiclibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="..\..\includes\dynamiclibrary_windows.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <None Include="dynamic_link_f_Import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
     <None Include="Io_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="core_import.def">
+      <Filter>Libraries Dependencies</Filter>
+    </None>
+    <None Include="scilab_windows_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
     <None Include="..\..\dynamic_link.iss" />
@@ -88,9 +121,6 @@
       <Filter>localization</Filter>
     </None>
     <None Include="Core_f_Import.def">
-      <Filter>Libraries Dependencies</Filter>
-    </None>
-    <None Include="scilab_windows_Import.def">
       <Filter>Libraries Dependencies</Filter>
     </None>
   </ItemGroup>

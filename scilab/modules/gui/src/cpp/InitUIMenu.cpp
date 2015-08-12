@@ -16,6 +16,7 @@
 #include "CallScilabBridge.hxx"
 extern "C"
 {
+#include "stack-c.h"
 #include "sci_types.h"
 #include "BOOL.h"
 #include "getScilabJavaVM.h"
@@ -31,7 +32,7 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "CurrentFigure.h"
 #include "BuildObjects.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "createGraphicObject.h"
 }
 

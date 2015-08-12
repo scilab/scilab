@@ -15,12 +15,12 @@
 #include "gw_mpi.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "serialization.h"
 
 #define TAG 0
 
-int sci_mpi_send(char *fname, void* pvApiCtx)
+int sci_mpi_send(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iRet = 0;

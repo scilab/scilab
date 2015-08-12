@@ -17,7 +17,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolMax(void* _pvCtx, int iObjUID)
+int GetUicontrolMax(void* _pvCtx, int iObjUID)
 {
     double maxValue = 0;
     double* pdblMaxValue = &maxValue;
@@ -27,10 +27,10 @@ void* GetUicontrolMax(void* _pvCtx, int iObjUID)
     if (pdblMaxValue == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Max");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        return sciReturnDouble(maxValue);
+        return sciReturnDouble(_pvCtx, maxValue);
     }
 }

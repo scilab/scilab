@@ -22,11 +22,14 @@
 #include "expandPathVariable.h"
 #include "FileExist.h"
 #include "mclose.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "core_math.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "strsubst.h"
 #include "csvDefault.h"
 #include "utftolatin.h"
-#include "strsubst.h"
 // =============================================================================
 #define DEFAULT_CSV_WRITE_STRING_FORMAT "%s"
 #define DEFAULT_CSV_WRITE_DOUBLE_FORMAT "%.lg"

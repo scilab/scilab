@@ -22,10 +22,10 @@
 #include <shlwapi.h>
 #include "version.h"
 #include "FilesAssociations.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "FindScilab.h"
 #include "wmcopydata.h"
-#include "os_string.h"
+#include "strdup_windows.h"
 #include "MutexClosingScilab.h"
 #include "with_module.h"
 #include "FileExist.h"
@@ -152,7 +152,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
             {
                 if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                 {
-                    if (with_module(L"scinotes"))
+                    if (with_module("scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                     }
@@ -166,7 +166,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                 {
                     char *ScilabDestination = NULL;
 
-                    if (with_module(L"scinotes"))
+                    if (with_module("scinotes"))
                     {
                         wsprintf(Cmd, MSG_SCIMSG6_EDITOR, FinalFileName);
                     }
@@ -185,7 +185,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                     }
                     else
                     {
-                        if (with_module(L"scinotes"))
+                        if (with_module("scinotes"))
                         {
                             wsprintf(Cmd, MSG_SCIMSG5_EDITOR, PathWScilex, FinalFileName);
                         }
@@ -213,7 +213,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         ExtensionFileIntoLowerCase(FinalFileName);
                         if (!HaveAnotherWindowScilab() || haveMutexClosingScilab())
                         {
-                            if (with_module(L"xcos"))
+                            if (with_module("xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                             }
@@ -227,7 +227,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                         {
                             char *ScilabDestination = NULL;
 
-                            if (with_module(L"xcos"))
+                            if (with_module("xcos"))
                             {
                                 wsprintf(Cmd, MSG_SCIMSG3_XCOS, FinalFileName);
                             }
@@ -246,7 +246,7 @@ int CommandByFileExtension(char *fichier, int OpenCode, char *Cmd)
                             }
                             else
                             {
-                                if (with_module(L"xcos"))
+                                if (with_module("xcos"))
                                 {
                                     wsprintf(Cmd, MSG_SCIMSG2_XCOS, PathWScilex, FinalFileName);
                                 }
@@ -285,7 +285,7 @@ static void ExtensionFileIntoLowerCase(char *fichier)
     char *lastdot = NULL;
     char *ext = NULL;
 
-    tmpfile = os_strdup(fichier);
+    tmpfile = strdup(fichier);
     buffer = strtok(tmpfile, ".");
     while (buffer = strtok(NULL, "."))
     {

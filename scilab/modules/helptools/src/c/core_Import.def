@@ -5,8 +5,8 @@ EXPORTS
 
 ; core
 callFunctionFromGateway
+getScilabMode
 com_
 getSCIpath
 MyHeapAlloc
 MyHeapFree
-

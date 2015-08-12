@@ -22,7 +22,7 @@
 #include "getGraphicObjectProperty.h"
 #include "FigureList.h"
 /*--------------------------------------------------------------------------*/
-int sci_exportUI(char * fname, void* pvApiCtx)
+int sci_exportUI(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -61,7 +61,7 @@ int sci_exportUI(char * fname, void* pvApiCtx)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return 0;
+            return FALSE;
         }
 
         iFigureUID = getObjectFromHandle((unsigned long) * stackPointer);
@@ -70,7 +70,7 @@ int sci_exportUI(char * fname, void* pvApiCtx)
         if (iHandleType != __GO_FIGURE__)
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return 0;
+            return FALSE;
         }
 
         getGraphicObjectProperty(iFigureUID, __GO_ID__, jni_int, (void **)&piFigureId);
@@ -91,7 +91,7 @@ int sci_exportUI(char * fname, void* pvApiCtx)
         if (iRows * iCols != 1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-            return 0;
+            return FALSE;
         }
 
         iFigureId = (int) * stackPointer;
@@ -99,13 +99,13 @@ int sci_exportUI(char * fname, void* pvApiCtx)
     else
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: A Real Scalar or a 'Figure' handle expected.\n"), fname, 1);
-        return 0;
+        return FALSE;
     }
 
     if (getFigureFromIndex(iFigureId) == 0)
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid figure identifier expected.\n"), fname, 1);
-        return 0;
+        return FALSE;
     }
 
     // call the export function

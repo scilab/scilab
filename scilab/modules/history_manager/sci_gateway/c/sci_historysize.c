@@ -19,7 +19,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*--------------------------------------------------------------------------*/
-int sci_historysize(char *fname, int* pvApiCtx)
+int sci_historysize(char *fname, unsigned long fname_len)
 {
     int iReturnedValue = 0;
 

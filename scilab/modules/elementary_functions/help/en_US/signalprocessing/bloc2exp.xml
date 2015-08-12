@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2exp" xml:lang="en">
+    <refnamediv>
+        <refname>bloc2exp</refname>
+        <refpurpose>Conversion of a block-diagram to its symbolic expression</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>[str]=bloc2exp(blocd)
+            [str,names]=bloc2exp(blocd)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>blocd</term>
+                <listitem>
+                    <para>list</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>string</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>given a block-diagram representation of a linear system
+            <literal>bloc2exp</literal> returns its symbolic evaluation. The first
+            element of the list <literal>blocd</literal> must be the string
+            <literal>'blocd'</literal>. Each other element of this list
+            <literal>(blocd(2),blocd(3),...)</literal> is itself a list of one the
+            following types :
+        </para>
+        <programlisting><![CDATA[
+list('transfer','name_of_linear_system')
+ ]]></programlisting>
+        <programlisting><![CDATA[
+list('link','name_of_link',
+               [number_of_upstream_box,upstream_box_port],
+               [downstream_box_1,downstream_box_1_portnumber],
+               [downstream_box_2,downstream_box_2_portnumber],
+               ...)
+ ]]></programlisting>
+        <para>
+            The strings <literal>'transfer'</literal> and
+            <literal>'link'</literal> are keywords which indicate the type of element
+            in the block diagram.
+        </para>
+        <para>Case 1 : the second parameter of the list is a character string
+            which may refer (for a possible further evaluation) to the Scilab name of
+            a linear system given in state-space representation
+            (<literal>syslin</literal> list) or in transfer form (matrix of
+            rationals).
+        </para>
+        <para>To each transfer block is associated an integer. To each input and
+            output of a transfer block is also associated its number, an integer (see
+            examples)
+        </para>
+        <para>Case 2 : the second kind of element in a block-diagram
+            representation is a link. A link links one output of a block represented
+            by the pair <literal>[number_of_upstream_box,upstream_box_port]</literal>,
+            to different inputs of other blocks. Each such input is represented by the
+            pair
+            <literal>[downstream_box_i,downstream_box_i_portnumber]</literal>.
+        </para>
+        <para>The different elements of a block-diagram can be defined in an
+            arbitrary order.
+        </para>
+        <para>For example</para>
+        <para>
+            [1] <literal>S1*S2</literal> with unit feedback.
+        </para>
+        <para>
+            There are 3 transfers <literal>S1</literal> (number
+            <literal>n_s1=2</literal>) , <literal>S2</literal> (number
+            <literal>n_s2=3</literal>) and an adder (number
+            <literal>n_add=4</literal>) with symbolic transfer function
+            <literal>['1','1']</literal>.
+        </para>
+        <para>
+            There are 4 links. The first one (named <literal>'U'</literal>)
+            links the input (port 0 of fictitious block -1, omitted) to port 1 of the
+            adder. The second and third one link respectively (output)port 1 of the
+            adder to (input)port 1 of system <literal>S1</literal>, and (output)port 1
+            of <literal>S1</literal> to (input)port 1 of <literal>S2</literal>. The
+            fourth link (named <literal>'Y'</literal>) links (output) port 1 of
+            <literal>S2</literal> to the output (port 0 of fictitious block -1,
+            omitted) and to (input)port 2 of the adder.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//Initialization
+syst=list('blocd'); l=1;
+
+//Systems
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //System 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //System 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //adder
+
+//Links
+
+// Inputs  -1 --> input 1
+l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
+// Internal 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+
+// Outputs // -1 -> output 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+
+//Evaluation call
+w=bloc2exp(syst);
+ ]]></programlisting>
+        <para>The result is the character string:
+            <literal>w=-(s2*s1-eye())\s2*s1</literal>.
+        </para>
+        <para>
+            Note that invoked with two output arguments, <literal>[str,names]=
+                blocd(syst)
+            </literal>
+            returns in <literal>names</literal> the list of
+            symbolic names of named links. This is useful to set names to inputs and
+            outputs.
+        </para>
+        <programlisting role="example"><![CDATA[ 
+//Initialization
+syst=list('blocd'); l=1;
+
+//System (2x2 blocks plant)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);  
+
+//Controller
+l=l+1;n_k=l;syst(l)=list('transfer','k'); 
+
+//Links
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+
+//Evaluation call
+w=bloc2exp(syst);
+ ]]></programlisting>
+        <para>In this case the result is a formula equivalent to the usual
+            one:
+        </para>
+        <para>
+            <literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bloc2ss">bloc2ss</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

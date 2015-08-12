@@ -18,14 +18,14 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
-int sci_xcosSimulationStarted(char *fname, void* pvApiCtx)
+int sci_xcosSimulationStarted(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);

@@ -101,7 +101,7 @@ public abstract class CommonCallBack extends AbstractAction {
                 callback = JavaCallBack.createOutOfXclickAndXgetmouse(command);
                 break;
             case CallBack.SCILAB_INSTRUCTION_WITHOUT_GCBO :
-                callback = ScilabCallBack.create(command, false);
+                callback = ScilabCallBack.create(command);
                 break;
             case CallBack.SCILAB_OUT_OF_XCLICK_AND_XGETMOUSE :
                 callback = ScilabCallBack.createOutOfXclickAndXgetmouse(command);

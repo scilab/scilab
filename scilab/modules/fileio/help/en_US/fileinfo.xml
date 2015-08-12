@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) XXXX-2008 - INRIA
- *
+ * 
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at
+ * are also available at    
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -25,22 +25,25 @@
             <varlistentry>
                 <term>files</term>
                 <listitem>
-                    <para>
-                        a character string or a string vector, file pathname.
+                    <para>a character string or a string column vector, file
+                        pathname.
                     </para>
                 </listitem>
             </varlistentry>
             <varlistentry>
                 <term>x</term>
                 <listitem>
-                    <para>
-                        an integer vector of size 13 containing information or an empty matrix if file does not exist.
+                    <para>an integer vector of size 13 containing information or an
+                        empty matrix if file does not exist.
                     </para>
                     <para>
-                        If <varname>files</varname> is a string 1 x m or m x 1 vector, <varname>x</varname> will be a matrix of size <literal>m x 13</literal>.
+                        If <varname>files</varname> is a string column vector, <varname>x</varname> will be a matrix of
+                        size <literal>m x 13</literal>.
                     </para>
                     <para>
-                        If a filename does not exist, it will return as output information a line of size 13 with <constant>Nan</constant> in each element of this line.
+                        If a filename does not exist, it will return as output
+                        information a line of size 13 with <constant>Nan</constant>
+                        in each element of this line.
                     </para>
                 </listitem>
             </varlistentry>
@@ -218,16 +221,5 @@ FILES = [SCI;SCIHOME;'not_exist_file';TMPDIR]
                 <link linkend="isdir">isdir</link>
             </member>
         </simplelist>
-    </refsection>
-    <refsection>
-        <title>History</title>
-        <revhistory>
-            <revision>
-                <revnumber>6.0.0</revnumber>
-                <revremark>
-                    <literal>files</literal> can now be a row vector.
-                </revremark>
-            </revision>
-        </revhistory>
     </refsection>
 </refentry>

@@ -20,26 +20,22 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include <stdio.h>
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sci_malloc.h"
-#include "api_scilab.h"
+#include "MALLOC.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "setGraphicObjectProperty.h"
-
 
 /*------------------------------------------------------------------------*/
-void* get_user_data_property(void* _pvCtx, int iObjUID)
+int get_user_data_property(void* _pvCtx, int iObjUID)
 {
     int iUserDataSize = 0;
     int *piUserDataSize = &iUserDataSize;
     int *piUserData = NULL;
 
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_USER_DATA_SIZE__, jni_int, (void **)&piUserDataSize);
 
@@ -47,15 +43,11 @@ void* get_user_data_property(void* _pvCtx, int iObjUID)
 
     if ((piUserData == NULL) || (piUserDataSize == NULL))
     {
-        int iSize = sizeof(void*) / sizeof(int);
-        status = sciReturnEmptyMatrix();
-        //force user_data to have something and not create each time a new variable
-        setGraphicObjectProperty(iObjUID, __GO_USER_DATA__, &status, jni_int_vector, iSize);
-        increaseValRef(_pvCtx, (int*)status);
+        status = sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
-        status = sciReturnUserData(piUserData, iUserDataSize);
+        status = sciReturnUserData(_pvCtx, piUserData, iUserDataSize);
     }
 
     return status;

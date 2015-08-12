@@ -18,7 +18,7 @@
 #include "Scierror.h"
 #include "getPropertyAssignedValue.h"
 /*--------------------------------------------------------------------------*/
-int sci_x_choose(char *fname, void* pvApiCtx)
+int sci_x_choose(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -103,7 +103,7 @@ int sci_x_choose(char *fname, void* pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) == 3)
     {
-        if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
+        if (VarType(3) ==  sci_strings)
         {
             sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrbuttonLabelAdr);
             if (sciErr.iErr)

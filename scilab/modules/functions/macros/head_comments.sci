@@ -22,28 +22,17 @@ function head_comments(name, %paths)
         error(msprintf(gettext("%s: Undefined variable %s.\n"),"head_comments",name )),
     end
 
-    if type(var) <> 11 then
+    if type(var) == 11 then comp(var); end
+    if type(var) <> 13 then
         error(msprintf(gettext("%s: Wrong value for input argument #%d: Name of a Scilab function expected.\n"),"head_comments",1))
     end
-    t = macr2tree(var);
-    outputs = [];
-    for k=1:size(t.outputs)
-        outputs=[outputs,expression2code(t.outputs(k))]
-    end
-    inputs = [];
-    for k=1:size(t.inputs)
-        inputs=[inputs,expression2code(t.inputs(k))]
-    end
-    syntax = "function ["+strcat(outputs,",")+"] = "+name+"("+strcat(inputs,",")+")";
+    ops = macr2lst(var);
+    syntax = "function ["+strcat(ops(2),",")+"] = "+name+"("+strcat(ops(3),",")+")";
 
     comm = [];
-    statements = t.statements
-    k = 1;
-    if statements(1) == list("EOL") then
-        k = k+1;
-    end
-    while typeof(statements(k))=="comment" then
-        comm = [comm; statements(k).text];
+    k = 4; if ops(4) == "15" then k = k+1; end
+    while ops(k)(1)=="31" then
+        comm = [comm; ops(k)(2)];
         k = k+2;
     end
     if comm == [] then

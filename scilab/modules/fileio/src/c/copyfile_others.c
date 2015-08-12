@@ -24,13 +24,12 @@
 #include "copyfile.h"
 #include "BOOL.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "isdir.h"
 #include "FileExist.h"
 #include "createdirectory.h"
 #include "PATH_MAX.h"
 #include "fullpath.h"
-#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 static int CopyFileFunction_others(wchar_t *DestinationFilename, wchar_t *SourceFilename);
 static int CopyDirectoryFunction_others(wchar_t *DestinationDirectory, wchar_t *SourceDirectory);
@@ -38,7 +37,7 @@ static int RecursiveCopyDirectory(char *DestinationDir, char *SourceDir);
 /*--------------------------------------------------------------------------*/
 int CopyFileFunction(wchar_t *DestinationFilename, wchar_t *SourceFilename)
 {
-    if (os_wcsicmp(DestinationFilename, SourceFilename) == 0)
+    if (wcsicmp(DestinationFilename, SourceFilename) == 0)
     {
         return EPERM;
     }

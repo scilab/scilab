@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="comp">
+    <refnamediv>
+        <refname>comp</refname>
+        <refpurpose>pré-interprétation ou "compilation" de fonctions Scilab  </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>comp(function [,opt])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>function  </term>
+                <listitem>
+                    <para>une fonction non "compilée" (type 11)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>opt</term>
+                <listitem>
+                    <para>flag with value 0 (default) or 2.</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <literal>comp(function)</literal> "compile" la fonction
+            <literal>function</literal>.  Les fonctions "compilées" et
+            interprétées sont équivalentes mais les fonctions
+            "compilées" sont plus rapides.  Les fonctions fournies dans les
+            bibliothèques standard de Scilab sont "compilées".
+        </para>
+        <para>La définition en line des fonction ainsi que la forme
+            courte des fonctions <literal>exec</literal> et
+            <literal>deff</literal> produisent des fonctions
+            compilées. L'usage de la fonction <literal>comp</literal> est
+            donc réservé a des usages très particuliers. Pour
+            générer des fonction non compilées, il faut appeler les
+            fonctions <link linkend="exec">exec</link> ou <link linkend="deff">deff</link> avec l'option
+            <literal>"n"</literal>.
+        </para>
+        <para>L'option opt==2 requiert que la compilation produise aussi
+            les instructions de profilage..  A noter qu'il est possible
+            d'ajouter ces instructions de profilage à une fonction
+            déjà compileée en utilisant la fonction <link linkend="add_profiling">add_profiling</link>.
+        </para>
+        <para>L'option opt==1 est obsolete est équivalente à
+            opt==0.
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="function">function</link>
+            </member>
+            <member>
+                <link linkend="add_profiling">add_profiling</link>
+            </member>
+            <member>
+                <link linkend="profile">profile</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

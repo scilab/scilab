@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="stacksize">
+    <refnamediv>
+        <refname>stacksize</refname>
+        <refpurpose>change la taille de la pile
+            Scilab
+        </refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>stacksize(n)
+            sz=stacksize()
+            stacksize('min')
+            stacksize('max')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Paramètres</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>entier, la taille de pile désirée, en nombre de mots
+                        double-précision (8 octets chacun)
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>vecteur à  deux composantes [taille_totale taille_utilisée]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Scilab stocke les variables usuelles dans une pile <literal>stk</literal>
+            (pour les variables globales voir <literal>gstacksize</literal>).
+        </para>
+        <para>
+            <literal>stacksize(n)</literal> permet d'augmenter ou de diminuer la taille
+            de cette pile. La taille maximum dépend de la mémoire (physique ou
+            virtuelle) restante.
+        </para>
+        <para>
+            <literal>stacksize('max')</literal> permet d'augmenter la taille au maximum de
+            la pile scilab.
+        </para>
+        <para>
+            <literal>stacksize('min')</literal> permet de diminuer la taille au minimum de
+            la pile scilab.
+        </para>
+        <para>
+            <literal>sz=stacksize()</literal> renvoie un vecteur à  deux composantes
+            contenant la taille totale de la pile et la taille actuellement
+            utilisée.
+        </para>
+        <para>Par défault, la taille de la pile est de 10 000 000 (~76 Mo).</para>
+        <para>Pour les plateformes 64 bit, la taille maximale de la pile est limitée à 268 435 454.</para>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="gstacksize">gstacksize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -20,18 +20,20 @@ extern "C"
 #include <stdio.h>
 #include "gw_xml.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "xml_mlist.h"
 #include "localization.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 }
 
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
+int sci_percent_foo_i_XMLList(char *fname, unsigned long fname_len)
 {
     XMLNodeList *a;
     int lhsid;
@@ -92,7 +94,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    prefix = os_strdup(fname);
+    prefix = strdup(fname);
     underscore = strchr(prefix, '_');
     *underscore = '\0';
     format = (char *)MALLOC(sizeof(char *) * (strlen(prefix) + strlen("_xmlFormat") + 1));
@@ -101,8 +103,7 @@ int sci_percent_foo_i_XMLList(char *fname, void* pvApiCtx)
 
     if (isNamedVarExist(pvApiCtx, format))
     {
-        //Call function directly in scilab 6 C++ api
-        //        SciString(&iBegin, format, &mlhs, &mrhs);
+        SciString(&iBegin, format, &mlhs, &mrhs);
         FREE(format);
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)

@@ -5,55 +5,28 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
+
 fptr_cos = funptr("cos");
 newfun("cosAlias",fptr_cos);
 
-assert_checkequal(cos(2*%pi), cosAlias(2*%pi));
-assert_checktrue(clearfun("cosAlias"));
+if cos(2*%pi) <> cosAlias(2*%pi)                then pause,end
+if clearfun("cosAlias") <> %T                   then pause,end
 if execstr("cosAlias(2*%pi)","errcatch") ==  0  then pause,end
 
-errmsg =  msprintf(gettext("%s: Wrong value for input argument #%d: Valid function name expected.\n"), "newfun", 1);
-assert_checkerror('newfun(''1_function_name'',fptr_cos)', errmsg);
+ierr = execstr('newfun(''more_than_twenty_four_characters_function_name'',fptr_cos)','errcatch');
+if ierr <> 999 then pause,end
 
-errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 2);
-assert_checkerror('newfun(''new_function_name'',[fptr_cos,fptr_cos])', errmsg);
+ierr = execstr('newfun(''1_function_name'',fptr_cos)','errcatch');
+if ierr <> 999 then pause,end
 
-errmsg =  msprintf(gettext("%s: Wrong size for input argument #%d: A string expected.\n"), "newfun", 1);
-assert_checkerror('newfun([''new_function_name'',''new_function_name''],[fptr_cos,fptr_cos])', errmsg);
+ierr = execstr('newfun(''new_function_name'',[fptr_cos,fptr_cos])','errcatch');
+if ierr <> 999 then pause,end
 
-errmsg =  msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "newfun", 1);
-assert_checkerror('newfun(1,[fptr_cos,fptr_cos])', errmsg);
+ierr = execstr('newfun([''new_function_name'',''new_function_name''],[fptr_cos,fptr_cos])','errcatch');
+if ierr <> 999 then pause,end
 
-function test_1(x)
-    newfun(x, "cos");
-    assert_checkequal(eval(x + "(1)"), cos(1));
-endfunction
+ierr = execstr('newfun(1,[fptr_cos,fptr_cos])','errcatch');
+if ierr <> 999 then pause,end
 
-test_1("cosAlias");
-assert_checkequal(cosAlias(1), cos(1));
-assert_checktrue(clearfun("cosAlias"));
-
-function test_2(x)
-    test_1(x);
-    assert_checkequal(eval(x + "(1)"), cos(1));
-endfunction
-
-test_2("cosAlias");
-assert_checkequal(cosAlias(1), cos(1));
-assert_checktrue(clearfun("cosAlias"));
-
-function test_3(x)
-    test_2(x);
-    assert_checkequal(eval(x + "(1)"), cos(1));
-endfunction
-
-test_3("cosAlias");
-assert_checkequal(cosAlias(1), cos(1));
-assert_checktrue(clearfun("cosAlias"));
-
-
-myvar = 3;
-newfun("myvar", fptr_cos);
-assert_checkequal(myvar, 3);
-clear myvar
-assert_checkequal(myvar(0), cos(0));
+ierr = execstr('newfun(1,''fptr_cos'')','errcatch');
+if ierr <> 999 then pause,end

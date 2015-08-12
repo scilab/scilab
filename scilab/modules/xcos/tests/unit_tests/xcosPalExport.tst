@@ -13,20 +13,18 @@ path = TMPDIR + "/palette.sod";
 
 pal = xcosPal();
 
-assert_checktrue(xcosPalExport(pal, path));
+xcosPalExport(pal, path)
 if ~isfile(path) then pause, end
 deletefile(path);
 
-[status, msg] = xcosPalExport(pal, path);
-assert_checkequal(msg, "Success");
-assert_checktrue(status);
+[status, msg] = xcosPalExport(pal, path)
 if ~isfile(path) then pause, end
 deletefile(path);
 
 savedPal = pal;
-assert_checktrue(xcosPalExport(pal, path));
+xcosPalExport(pal, path)
 
 clear pal;
-load(path);
-assert_checktrue(and(savedPal == pal));
+import_from_hdf5(path);
+if ~and(savedPal == pal) then pause, end
 

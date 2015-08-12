@@ -36,8 +36,6 @@
  * knowledge of the CeCILL license and that you accept its terms.
  *
  */
-
-#include <string.h> // memset
 #include "api_scilab.h"
 #include "gw_umfpack.h"
 #include "sciumfpack.h"
@@ -45,9 +43,9 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
-int sci_res_with_prec(char* fname, void* pvApiCtx)
+int sci_res_with_prec(char* fname, unsigned long l)
 {
     SciErr sciErr;
 

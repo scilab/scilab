@@ -16,7 +16,7 @@
 #include "getClasspath.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 char **getClasspath(int *sizeClasspathArray)
 {

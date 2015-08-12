@@ -1,0 +1,9 @@
+	LIBRARY    elementary_functions_f.dll
+
+
+EXPORTS
+;
+;elementary_functions_f
+entier_
+lnblnk_
+mtran_

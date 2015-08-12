@@ -23,10 +23,10 @@
 #endif
 #include "sciprint.h"
 #include "scicurdir.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "charEncoding.h"
-#include "configvariable_interface.h"
+#include "warningmode.h"
 #include "PATH_MAX.h"
 /*--------------------------------------------------------------------------*/
 int scichdirW(wchar_t *wcpath)

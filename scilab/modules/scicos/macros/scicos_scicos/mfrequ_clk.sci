@@ -55,8 +55,9 @@ function [m,den,off,count,m1,fir,frequ,offset,ok]=mfrequ_clk(frequ,offset)
         // if two outputs are called at the same time they are replaced by an other output; the intersection of the two.
         if size(mat,1)>10000 then
             num=messagebox(["Warning: Your system is too hard to synchronize it will take some time";
-            " A Scilab crash may occur";
-            "Do you want me to continue?"],"modal",["No","Yes"])
+            "And the stacksize has to be increase";
+            " A scilab crash may occur";
+            "Do You want me to continue?"],"modal",["No","Yes"])
             if num==1 then
                 ok=%f;
                 return

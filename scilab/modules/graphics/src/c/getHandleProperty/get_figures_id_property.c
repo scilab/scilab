@@ -20,23 +20,23 @@
 
 #include "getHandleProperty.h"
 #include "returnProperty.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "FigureList.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figures_id_property(void* _pvCtx, int iObjUID)
+int get_figures_id_property(void* _pvCtx, int iObjUID)
 {
-    int nbFig = 0;
-    int* ids = NULL;
-    void* status = NULL;
+    int   nbFig  = 0   ;
+    int * ids    = NULL;
+    int   status = -1  ;
 
     if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figures_id");
-        return NULL;
+        return -1;
     }
 
     nbFig = sciGetNbFigure() ; /* get the number of opened windows */
@@ -45,12 +45,12 @@ void* get_figures_id_property(void* _pvCtx, int iObjUID)
     if (ids == NULL)
     {
         Scierror(999, _("%s: No more memory.\n"), "get_figures_id_property");
-        return NULL;
+        return -1;
     }
 
     sciGetFiguresId(ids);
 
-    status = sciReturnRowIntVector(ids, nbFig);
+    status = sciReturnRowIntVector(_pvCtx, ids, nbFig);
 
     FREE(ids);
 

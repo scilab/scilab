@@ -15,7 +15,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
+int GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
 {
     int iShowHiddenHandles = 0;
     int *piShowHiddenHandles = &iShowHiddenHandles;
@@ -26,20 +26,20 @@ void* GetConsoleShowHiddenHandles(void* _pvCtx, int iObjUID)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenHandles");
 
-        return NULL;
+        return FALSE;
     }
 
     if (iShowHiddenHandles == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
-void* GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
+int GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
 {
     int iShowHiddenProperties = 0;
     int *piShowHiddenProperties = &iShowHiddenProperties;
@@ -49,20 +49,21 @@ void* GetConsoleShowHiddenProperties(void* _pvCtx, int iObjUID)
     if (piShowHiddenProperties == NULL)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "ShowHiddenProperties");
-        return NULL;
+
+        return FALSE;
     }
 
     if (iShowHiddenProperties == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
-void* GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
+int GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
 {
     int iUseDeprecatedLF = 0;
     int *piUseDeprecatedLF = &iUseDeprecatedLF;
@@ -72,15 +73,16 @@ void* GetConsoleUseDeprecatedLF(void* _pvCtx, int iObjUID)
     if (piUseDeprecatedLF == NULL)
     {
         Scierror(999, const_cast < char *>(_("'%s' property does not exist for this handle.\n")), "UseDeprecatedSkin");
-        return NULL;
+
+        return FALSE;
     }
 
     if (iUseDeprecatedLF == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }

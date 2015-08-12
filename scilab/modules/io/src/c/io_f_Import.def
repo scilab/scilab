@@ -8,6 +8,7 @@ EXPORTS
 
 intsave_
 intfile_
+intload_
 intread_
 intread4b_ 
 intreadb_ 

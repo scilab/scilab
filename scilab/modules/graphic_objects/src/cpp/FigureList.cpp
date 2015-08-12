@@ -15,7 +15,11 @@
 extern "C"
 {
 #include "FigureList.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#else
+#include <string.h>
+#endif
 #include "FigureList.h"
 }
 

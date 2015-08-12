@@ -14,14 +14,55 @@
 #include <string.h>
 #include "GetFunctionByName.h"
 #include "dynamic_link.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ());
 static void Emptyfunc(void) {}
 /*--------------------------------------------------------------------------*/
 voidf GetFunctionByName (char *name, int *rep, FTAB *table)
 {
-    return NULL;
+    void (*loc)();
+    if (name)
+    {
+        int length_name = 0;
+        char *s = name;
+        char *buf = name;
+        while ( *s != ' ' && *s != '\0')
+        {
+            s++;
+            length_name++;
+        };
+
+        buf = (char*)MALLOC(sizeof(char) * (length_name + 1));
+        if (buf)
+        {
+            strncpy(buf, name, length_name);
+            buf[length_name] = '\0';
+
+            /* search name in functions table */
+            if ( ( SearchComp(table, buf, &loc) == TRUE) || ( SearchInDynLinks(buf, &loc) >= 0 ) )
+            {
+                *rep = 0;
+            }
+            else
+            {
+                loc = Emptyfunc;
+                *rep = 1;
+            }
+
+            FREE(buf);
+            buf = NULL;
+        }
+        else
+        {
+            *rep = 0;
+        }
+    }
+    else
+    {
+        *rep = 0;
+    }
+    return(loc);
 }
 /*--------------------------------------------------------------------------*/
 static BOOL SearchComp(FTAB *Ftab, char *op, void (**realop) ())

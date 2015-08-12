@@ -16,8 +16,8 @@
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xs2gif(char * fname, void* pvApiCtx)
+int sci_xs2gif( char * fname, unsigned long fname_len )
 {
-    return xs2file(fname, GIF_EXPORT, pvApiCtx);
+    return xs2file( fname, GIF_EXPORT ) ;
 }
 /*--------------------------------------------------------------------------*/

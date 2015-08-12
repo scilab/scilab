@@ -5,11 +5,12 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-assert_checktrue(execstr("a = javalibrarypath(2);","errcatch")==999);
+ierr = execstr('a = javalibrarypath(2);','errcatch');
+if ierr <> 999 then pause,end
 
 result = javalibrarypath();
-assert_checktrue(size(result,"*") > 1);
+if size(result,"*") < 1 then pause, end
 
 // Does not return anything
-assert_checktrue(execstr("javalibrarypath(TMPDIR);","errcatch")==0);
-
+ierr = execstr('javalibrarypath(TMPDIR);;','errcatch');
+if ierr <> 0 then pause,end

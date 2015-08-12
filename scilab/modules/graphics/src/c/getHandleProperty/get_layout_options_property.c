@@ -30,7 +30,7 @@
 #include "AnchorType.h"
 #include "returnPropertyList.h"
 /*------------------------------------------------------------------------*/
-void* get_layout_options_property(void* _pvCtx, int iObjUID)
+int get_layout_options_property(void* _pvCtx, int iObjUID)
 {
     int iLayout = 0;
     int* piLayout = &iLayout;
@@ -39,7 +39,7 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
     if (piLayout == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-        return NULL;
+        return -1;
     }
 
     switch (iLayout)
@@ -48,14 +48,14 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
         case LAYOUT_NONE :
         {
             char * variable_tlist[] = {"OptNoLayout"};
-            void * tList = createReturnedList(0, variable_tlist);
-            return tList;
+            returnedList * tList = createReturnedList(0, variable_tlist);
+            destroyReturnedList(tList);
         }
         break;
         case LAYOUT_GRID :
         {
             char * variable_tlist[] = {"OptGrid", "grid", "padding"};
-            void * tList = createReturnedList(2, variable_tlist);
+            returnedList * tList = createReturnedList(2, variable_tlist);
             double pdblGrid[2];
             double pdblPadding[2];
             int* piGrid = NULL;
@@ -65,14 +65,14 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
             if (piGrid == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return NULL;
+                return -1;
             }
 
             getGraphicObjectProperty(iObjUID, __GO_GRID_OPT_PADDING__, jni_int_vector, (void **)&piPadding);
             if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return NULL;
+                return -1;
             }
 
             //convert to double
@@ -85,13 +85,13 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
             //add to TList
             addRowVectorToReturnedList(tList, pdblGrid, 2);
             addRowVectorToReturnedList(tList, pdblPadding, 2);
-            return tList;
+            destroyReturnedList(tList);
         }
         break;
         case LAYOUT_BORDER :
         {
             char * variable_tlist[] = {"OptBorder", "padding"};
-            void * tList = createReturnedList(1, variable_tlist);
+            returnedList * tList = createReturnedList(1, variable_tlist);
             double pdblPadding[2] = {0, 0};
             int* piPadding = NULL;
 
@@ -99,7 +99,7 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
             if (piPadding == NULL)
             {
                 Scierror(999, _("'%s' property does not exist for this handle.\n"), "layout_options");
-                return NULL;
+                return -1;
             }
 
             //convert to double
@@ -108,14 +108,14 @@ void* get_layout_options_property(void* _pvCtx, int iObjUID)
 
             //add to TList
             addRowVectorToReturnedList(tList, pdblPadding, 2);
-            return tList;
+            destroyReturnedList(tList);
         }
         break;
         case LAYOUT_GRIDBAG :
         {
             char * variable_tlist[] = {"OptGridBag"};
-            void * tList = createReturnedList(0, variable_tlist);
-            return tList;
+            returnedList * tList = createReturnedList(0, variable_tlist);
+            destroyReturnedList(tList);
         }
         break;
     }

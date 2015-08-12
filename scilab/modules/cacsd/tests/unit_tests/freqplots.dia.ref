@@ -36,11 +36,11 @@ Args=list(..
 	  list(frq,db,phi),..
 	  list(frq,db,phi,['h';'h1']),..
 	  list([frq;frq],db,phi,['h';'h1']));
-warning('off');
+warning('off');	
 for p=plots
   mprintf("-------- %s ---------------\n",p)
   for args=Args
-    clf()   
+    clf()
     if execstr(p+'(args(:))','errcatch')<>0 then bugmes();quit;end
   end
 end
@@ -48,4 +48,4 @@ end
 -------- black ---------------
 -------- nyquist ---------------
 -------- gainplot ---------------
-warning('on');
+warning('on');	

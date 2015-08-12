@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_log_flags_property(void* _pvCtx, int iObjUID)
+int get_log_flags_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
     int iLogFlag = 0;
@@ -42,7 +42,7 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return NULL;
+        return -1;
     }
 
     logFlags[0] = iLogFlag;
@@ -51,7 +51,7 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return NULL;
+        return -1;
     }
 
     logFlags[1] = iLogFlag;
@@ -60,7 +60,7 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
     if (piLogFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "log_flag");
-        return NULL;
+        return -1;
     }
 
     logFlags[2] = iLogFlag;
@@ -79,6 +79,6 @@ void* get_log_flags_property(void* _pvCtx, int iObjUID)
 
     /* 0 terminating character */
     logFlagsString[3] = 0;
-    return sciReturnString(logFlagsString);
+    return sciReturnString(_pvCtx, logFlagsString);
 }
 /*------------------------------------------------------------------------*/

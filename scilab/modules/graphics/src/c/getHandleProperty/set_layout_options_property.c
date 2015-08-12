@@ -11,20 +11,18 @@
  */
 
 /*------------------------------------------------------------------------*/
-/* file:  set_layout_options_property.c                                   */
-/* desc : function to modify in Scilab the layout_options field of        */
+/* file: set_figure_name_property.c                                       */
+/* desc : function to modify in Scilab the figure_name field of           */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-
-#include <string.h>
-
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
+#include "stricmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

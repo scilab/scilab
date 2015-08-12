@@ -7,16 +7,16 @@
 // <-- CLI SHELL MODE -->
 // =============================================================================
 curprompt = prompt();
-if curprompt <> ascii([45.    45.    62.    32.]) then bugmes();quit;end
+if curprompt <> ascii([45.    45.    62.]) then bugmes();quit;end
 [curprompt, pause_level] = prompt();
-if curprompt <> ascii([45.    45.    62.    32.]) then bugmes();quit;end
+if curprompt <> ascii([45.    45.    62.]) then bugmes();quit;end
 if pause_level <> 0 then bugmes();quit;end
-prompt("-- My Prompt -->");
-1+1;
-ierr = execstr("[a,b,c] = prompt();","errcatch");
+prompt('-- My Prompt -->');
+-- My Prompt -->1+1;
+ierr = execstr('[a,b,c] = prompt();','errcatch');
+if ierr <> 78 then bugmes();quit;end
+ierr = execstr('[a,b] = prompt(1);','errcatch');
 if ierr <> 999 then bugmes();quit;end
-ierr = execstr("[a,b] = prompt(1);","errcatch");
-if ierr <> 999 then bugmes();quit;end
-ierr = execstr("[a,b] = prompt(''1'');","errcatch");
+ierr = execstr('[a,b] = prompt(''1'');','errcatch');
 if ierr <> 999 then bugmes();quit;end
 // =============================================================================

@@ -15,7 +15,6 @@
 #ifndef __STRSUBST_H__
 #define __STRSUBST_H__
 
-#include <wchar.h>
 #include "dynlib_string.h"
 
 /**
@@ -26,8 +25,8 @@
 * @param[in] replacement_string
 * @return substituted string matrix
 */
-STRING_IMPEXP char **strsubst(const char **strings_input, int strings_dim, const char *string_to_search, const char *replacement_string);
-STRING_IMPEXP char **strsubst_reg(const char **strings_input, int strings_dim, const char *string_to_search, const char *replacement_string, int *ierr);
+STRING_IMPEXP char **strsubst(char **strings_input, int strings_dim, char *string_to_search, char *replacement_string);
+STRING_IMPEXP char **strsubst_reg(char **strings_input, int strings_dim, char *string_to_search, char *replacement_string, int *ierr);
 
 /**
 * substitute a character string by another in a character string
@@ -37,14 +36,7 @@ STRING_IMPEXP char **strsubst_reg(const char **strings_input, int strings_dim, c
 * @param[out] error returned by pcre_private
 * @return substituted string
 */
-STRING_IMPEXP char *strsub(const char* input_string, const char* string_to_search, const char* replacement_string);
-STRING_IMPEXP char *strsub_reg(const char* input_string, const char* string_to_search, const char* replacement_string, int *ierr);
-
-
-STRING_IMPEXP wchar_t **wcssubst(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace);
-STRING_IMPEXP wchar_t **wcssubst_reg(const wchar_t** _pwstInput, int _iInputSize, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr);
-
-STRING_IMPEXP wchar_t *wcssub(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace);
-STRING_IMPEXP wchar_t *wcssub_reg(const wchar_t* _pwstInput, const wchar_t* _pwstSearch, const wchar_t* _pwstReplace, int* _piErr);
+STRING_IMPEXP char *strsub(char* input_string, const char* string_to_search, const char* replacement_string);
+STRING_IMPEXP char *strsub_reg(char* input_string, const char* string_to_search, const char* replacement_string, int *ierr);
 
 #endif /* __STRSUBST_H__ */

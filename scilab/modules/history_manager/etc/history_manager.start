@@ -9,12 +9,14 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function startModule()
-    if sciargs() <> "-nouserstartup" then
-        //enable history manager
-        historymanager("on");
-        // load history file
-        loadhistory();
-    end
+
+  if (sciargs() <> "-nouserstartup") & ~fromjava() & ~fromc() then
+    // enable history manager
+    historymanager("on");
+    // load history file
+    loadhistory();
+  end
+
 endfunction
 
 startModule();

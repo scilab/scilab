@@ -16,13 +16,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "dropFiles.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "storeCommand.h" /* storecommand */
 #include "FindFileExtension.h"
 #include "URIFileToFilename.h"
-#include "with_module.h"
-#include "os_string.h"
-#include "charEncoding.h"
+#include "../../../string/includes/stricmp.h"
+#include "../../../core/src/c/with_module.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define BIN_EXTENSION_FILE ".bin"
 #define SAV_EXTENSION_FILE ".sav"
@@ -120,13 +122,13 @@ static char *getCommandByFileExtension(char *File, char *FileExtension)
                   (stricmp(FileExtension, ZCOS_EXTENSION_FILE) == 0) ||
                   (stricmp(FileExtension, XCOS_EXTENSION_FILE) == 0))
         {
-            if (with_module(L"xcos"))
+            if (with_module("xcos"))
             {
                 command = buildCommand(FORMAT_COS_COSF_XCOS_EXTENSION_FILES, File);
             }
             else
             {
-                command = os_strdup(XCOS_NOT_INSTALLED);
+                command = strdup(XCOS_NOT_INSTALLED);
             }
         }
         else if (stricmp(FileExtension, SCI_EXTENSION_FILE) == 0)

@@ -8,14 +8,14 @@
 #include <stdlib.h>
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 
 // =============================================================================
 // The aim of this function is just to retrieve from the stack an array of strings
 // to test the speed of the function getMatrixOfString.
 // =============================================================================
-int sci_bug9264(char *fname, void* pvApiCtx)
+int sci_bug9264(char *fname)
 {
     SciErr err;
     int *piAddressVarOne = NULL;

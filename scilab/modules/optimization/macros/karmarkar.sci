@@ -33,7 +33,7 @@
 // exitflag = -%inf on internal error.
 
 function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
-    function argin = optim_argindefault ( rhs , vararglist , ivar , default )
+    function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -57,15 +57,15 @@ function [xopt,fopt,exitflag,iter,yopt]=karmarkar(varargin)
     Aeq = varargin(1)
     beq = varargin(2)
     c = varargin(3)
-    x0 = optim_argindefault ( rhs , varargin , 4 , [] )
-    rtolf = optim_argindefault ( rhs , varargin , 5 , 1.d-5 )
-    gam = optim_argindefault ( rhs , varargin , 6 , 1/2 )
-    maxiter = optim_argindefault ( rhs , varargin , 7 , 200 )
-    __karmarkar_outfun__ = optim_argindefault ( rhs , varargin , 8 , [] )
-    A = optim_argindefault ( rhs , varargin , 9 , [] )
-    b = optim_argindefault ( rhs , varargin , 10 , [] )
-    lb = optim_argindefault ( rhs , varargin , 11 , [] )
-    ub = optim_argindefault ( rhs , varargin , 12 , [] )
+    x0 = argindefault ( rhs , varargin , 4 , [] )
+    rtolf = argindefault ( rhs , varargin , 5 , 1.d-5 )
+    gam = argindefault ( rhs , varargin , 6 , 1/2 )
+    maxiter = argindefault ( rhs , varargin , 7 , 200 )
+    __karmarkar_outfun__ = argindefault ( rhs , varargin , 8 , [] )
+    A = argindefault ( rhs , varargin , 9 , [] )
+    b = argindefault ( rhs , varargin , 10 , [] )
+    lb = argindefault ( rhs , varargin , 11 , [] )
+    ub = argindefault ( rhs , varargin , 12 , [] )
     //
     // Check input arguments
     //

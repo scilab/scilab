@@ -14,7 +14,6 @@
 #include <mpi.h>                        // for MPI_Error_string, MPI_Init, etc
 #include <stddef.h>                     // for NULL
 #include "localization.h"               // for _
-#include "initMPI.h"
 
 MPI_Errhandler errhdl;
 

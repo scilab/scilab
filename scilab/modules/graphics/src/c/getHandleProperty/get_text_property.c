@@ -34,17 +34,17 @@
 #include <string.h>
 
 /*------------------------------------------------------------------------*/
-void* get_text_property(void* _pvCtx, int iObjUID)
+int get_text_property(void* _pvCtx, int iObjUID)
 {
-    int* dimensions = NULL;
-    char** textMatrix = NULL;
+    int* dimensions;
+    char** textMatrix;
 
     getGraphicObjectProperty(iObjUID, __GO_TEXT_ARRAY_DIMENSIONS__, jni_int_vector, (void **) &dimensions);
 
     if (dimensions == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
-        return NULL;
+        return -1;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_TEXT_STRINGS__, jni_string_vector, (void **) &textMatrix);
@@ -52,9 +52,9 @@ void* get_text_property(void* _pvCtx, int iObjUID)
     if (textMatrix == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "text");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnStringMatrix(textMatrix, dimensions[0], dimensions[1]);
+    return sciReturnStringMatrix(_pvCtx, textMatrix, dimensions[0], dimensions[1]);
 }
 /*------------------------------------------------------------------------*/

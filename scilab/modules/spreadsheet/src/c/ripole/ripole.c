@@ -14,7 +14,11 @@
 
 #undef WITHMAIN
 
-#include "sci_malloc.h"
+#include "MALLOC.h"
+
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #define ROLE_VERSION "0.2.0"
 

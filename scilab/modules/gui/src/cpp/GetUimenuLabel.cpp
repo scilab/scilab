@@ -17,21 +17,21 @@ extern "C"
 }
 
 /* Get the label of an uimenu */
-void* GetUimenuLabel(void* _pvCtx, int iOobjUID)
+int GetUimenuLabel(void* _pvCtx, int iOobjUID)
 {
     char *label = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iOobjUID, __GO_UI_LABEL__, jni_string, (void **)&label);
 
     if (label == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "Label");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnString(label);
+        status = sciReturnString(_pvCtx, label);
         free(label);
         return status;
     }

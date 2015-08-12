@@ -1,4 +1,4 @@
-        <package name="org.scilab.modules.helptools">
+    <package name="org.scilab.modules.helptools">
     <object name="BuildDocObject">
         
         <method name="setOutputDirectory" returnType="boolean">

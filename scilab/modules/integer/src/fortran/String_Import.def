@@ -1,0 +1,7 @@
+	LIBRARY    string.dll
+
+
+EXPORTS
+;
+;string
+cvstr_

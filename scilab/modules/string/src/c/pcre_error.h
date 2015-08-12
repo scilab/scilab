@@ -15,7 +15,6 @@
 #ifndef __PCRE_ERROR_H__
 #define __PCRE_ERROR_H__
 
-#include "dynlib_string.h"
 
 /**
  *
@@ -23,7 +22,7 @@
  * @param fname the name of the Scilab function
  * @param errorCode the error code returned by the pcre function
  */
-STRING_IMPEXP void pcre_error(char const * fname, int errorCode);
+void pcre_error(char *fname, int errorCode);
 
 #endif
 

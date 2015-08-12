@@ -15,13 +15,8 @@
 
 namespace org_modules_hdf5
 {
-std::vector<H5Object *> H5VariableScope::scope;
-std::stack<int> H5VariableScope::freePlaces;
-
-void H5VariableScope::initScope()
-{
-    scope.reserve(1024);
-}
+std::vector<H5Object *> & H5VariableScope::scope = *initScope();
+std::stack<int> & H5VariableScope::freePlaces = *new std::stack<int>();
 
 void H5VariableScope::clearScope()
 {
@@ -29,6 +24,12 @@ void H5VariableScope::clearScope()
     {
         delete scope[i];
     }
+
+    delete &scope;
+    scope = *initScope();
+
+    delete &freePlaces;
+    freePlaces = *new std::stack<int>();
 }
 
 int H5VariableScope::getVariableId(H5Object & obj)
@@ -80,5 +81,4 @@ void H5VariableScope::removeId(const int id)
     }
 }
 }
-
 

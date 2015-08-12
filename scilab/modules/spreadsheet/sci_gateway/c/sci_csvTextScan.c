@@ -16,23 +16,25 @@
 #include "gw_spreadsheet.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "stringToComplex.h"
 #include "csvDefault.h"
 #include "csvRead.h"
 #include "getRange.h"
 #include "gw_csv_helpers.h"
-#include "os_string.h"
 
 static void freeVar(char*** text, int sizeText, int** lengthText, char** separator, char** decimal, char** conversion, int** iRange);
 // =============================================================================
 #define CONVTOSTR "string"
 #define CONVTODOUBLE "double"
 // =============================================================================
-int sci_csvTextScan(char *fname, void* pvApiCtx)
+int sci_csvTextScan(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iErr = 0;
@@ -115,7 +117,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     }
     else
     {
-        conversion = os_strdup(getCsvDefaultConversion());
+        conversion = strdup(getCsvDefaultConversion());
     }
 
     if (Rhs >= 3)
@@ -136,7 +138,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     }
     else
     {
-        decimal = os_strdup(getCsvDefaultDecimal());
+        decimal = strdup(getCsvDefaultDecimal());
     }
 
     if (Rhs >= 2)
@@ -150,7 +152,7 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
     }
     else
     {
-        separator = os_strdup(getCsvDefaultSeparator());
+        separator = strdup(getCsvDefaultSeparator());
     }
 
     if (!csv_isRowVector(pvApiCtx, 1) &&
@@ -317,9 +319,6 @@ int sci_csvTextScan(char *fname, void* pvApiCtx)
 
             case CSV_READ_READLINES_ERROR:
             case CSV_READ_ERROR:
-            case CSV_READ_MOPEN_ERROR:
-            case CSV_READ_FILE_NOT_EXIST:
-            case CSV_READ_REGEXP_ERROR:
             {
                 Scierror(999, _("%s: can not read text.\n"), fname);
             }

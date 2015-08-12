@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include "TerminateWindows_tools.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "console.h"
 #include "InnosetupMutex.h"
 /*--------------------------------------------------------------------------*/
@@ -25,9 +25,7 @@ BOOL TerminateWindows_tools(void)
     {
         case SCILAB_STD:
         {
-            //Since Scilab 6 All scilab mode are launch in console mode
-            //So we cannot close owner console
-            //CloseScilabConsole();
+            CloseScilabConsole();
             closeInnosetupMutex();
             bOK = TRUE;
         }

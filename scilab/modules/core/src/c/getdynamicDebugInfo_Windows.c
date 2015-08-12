@@ -18,13 +18,13 @@
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getDynamicDebugInfo_Windows.h"
 #include "localization.h"
 #include "getos.h"
 #include "api_scilab.h"
 #include "charEncoding.h"
-#include "os_string.h"
+#include "strdup_windows.h"
 #include "getVideoAdapters.h"
 #include "freeArrayOfString.h"
 #include "GetWindowsVersion.h"
@@ -40,6 +40,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
 #define WIDTH 7
 #define BUFFER_LEN 255
 
+    SciErr sciErr;
     int nb_info = 0;
     char *str_info = NULL;
     char **outputDynamicList = NULL;
@@ -261,7 +262,6 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
     }
 
-    /*
     sciErr = getNamedVarType(pvApiCtx, "TMPDIR", &iType);
     if ((sciErr.iErr == 0) && (iType == sci_strings))
     {
@@ -272,18 +272,18 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
         if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
         {
-            TMPDIR_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(TMPDIR_length + 1));
+            TMPDIR_value = (wchar_t*)MALLOC(sizeof(wchar_t) * (TMPDIR_length + 1));
             if (TMPDIR_value)
             {
                 sciErr = readNamedMatrixOfWideString(pvApiCtx, "TMPDIR", &m, &n, &TMPDIR_length, &TMPDIR_value);
-                if(sciErr.iErr == 0)
+                if (sciErr.iErr == 0)
                 {
                     char *utfstr = wide_string_to_UTF8(TMPDIR_value);
                     if (utfstr)
                     {
-                        str_info = (char*)MALLOC( sizeof(char)*(strlen("TMPDIR") + strlen("%s : %s") + strlen(utfstr) + 1) );
-                        sprintf(str_info,"%s: %s", "TMPDIR", utfstr);
-                        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                        str_info = (char*)MALLOC( sizeof(char) * (strlen("TMPDIR") + strlen("%s : %s") + strlen(utfstr) + 1) );
+                        sprintf(str_info, "%s: %s", "TMPDIR", utfstr);
+                        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
                         FREE(utfstr);
                         utfstr = NULL;
                     }
@@ -304,18 +304,18 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         sciErr = readNamedMatrixOfWideString(pvApiCtx, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
         if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
         {
-            WSCI_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(WSCI_length + 1));
+            WSCI_value = (wchar_t*)MALLOC(sizeof(wchar_t) * (WSCI_length + 1));
             if (WSCI_value)
             {
                 sciErr = readNamedMatrixOfWideString(pvApiCtx, "WSCI", &m, &n, &WSCI_length, &WSCI_value);
-                if(sciErr.iErr == 0)
+                if (sciErr.iErr == 0)
                 {
                     char *utfstr = wide_string_to_UTF8(WSCI_value);
                     if (utfstr)
                     {
-                        str_info = (char*)MALLOC( sizeof(char)*(strlen("WSCI") + strlen("%s : %s") + strlen(utfstr) + 1) );
-                        sprintf(str_info,"%s: %s", "WSCI", utfstr);
-                        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                        str_info = (char*)MALLOC( sizeof(char) * (strlen("WSCI") + strlen("%s : %s") + strlen(utfstr) + 1) );
+                        sprintf(str_info, "%s: %s", "WSCI", utfstr);
+                        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
                         FREE(utfstr);
                         utfstr = NULL;
                     }
@@ -336,18 +336,18 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
         sciErr = readNamedMatrixOfWideString(pvApiCtx, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
         if ( (sciErr.iErr == 0) && ((m == 1) && (n == 1)) )
         {
-            SCIHOME_value = (wchar_t*)MALLOC(sizeof(wchar_t)*(SCIHOME_length + 1));
+            SCIHOME_value = (wchar_t*)MALLOC(sizeof(wchar_t) * (SCIHOME_length + 1));
             if (SCIHOME_value)
             {
                 sciErr = readNamedMatrixOfWideString(pvApiCtx, "SCIHOME", &m, &n, &SCIHOME_length, &SCIHOME_value);
-                if(sciErr.iErr == 0)
+                if (sciErr.iErr == 0)
                 {
                     char *utfstr = wide_string_to_UTF8(SCIHOME_value);
                     if (utfstr)
                     {
-                        str_info = (char*)MALLOC( sizeof(char)*(strlen("SCIHOME") + strlen("%s : %s") + strlen(utfstr) + 1) );
-                        sprintf(str_info,"%s: %s", "SCIHOME", utfstr);
-                        outputDynamicList = appendStringDebugInfo(outputDynamicList,&nb_info,str_info);
+                        str_info = (char*)MALLOC( sizeof(char) * (strlen("SCIHOME") + strlen("%s : %s") + strlen(utfstr) + 1) );
+                        sprintf(str_info, "%s: %s", "SCIHOME", utfstr);
+                        outputDynamicList = appendStringDebugInfo(outputDynamicList, &nb_info, str_info);
                         FREE(utfstr);
                         utfstr = NULL;
                     }
@@ -357,7 +357,7 @@ char **getDynamicDebugInfo_Windows(int *sizeArray)
             }
         }
     }
-    */
+
     *sizeArray = nb_info;
     return outputDynamicList;
 }

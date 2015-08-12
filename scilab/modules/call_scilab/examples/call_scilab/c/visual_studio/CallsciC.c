@@ -9,6 +9,7 @@
 #include <string.h>
 #include "call_scilab.h"
 #include "api_scilab.h"
+#include "stack-c.h"
 /*--------------------------------------------------------------------------*/
 /* See SCI/modules/core/includes/call_scilab.h */
 /* See SCI/modules/core/includes/api_scilab.h */
@@ -24,14 +25,14 @@ static int example1(void)
     int mb = 2, nb = 1;
 
     /* Create Scilab matrices A and b */
-    sciErr = createNamedMatrixOfDouble(NULL, "A", mA, nA, A);
+    sciErr = createNamedMatrixOfDouble(pvApiCtx, "A", mA, nA, A);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
         return -1;
     }
 
-    sciErr = createNamedMatrixOfDouble(NULL, "b", mb, nb, b);
+    sciErr = createNamedMatrixOfDouble(pvApiCtx, "b", mb, nb, b);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
@@ -55,7 +56,7 @@ static int example1(void)
         int i = 0;
 
         /* Get m and n dimensions of x */
-        sciErr = readNamedMatrixOfDouble(NULL, "x", &m, &n, NULL);
+        sciErr = readNamedMatrixOfDouble(pvApiCtx, "x", &m, &n , NULL);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -63,7 +64,7 @@ static int example1(void)
         }
 
         cxtmp = (double*)malloc((m * n) * sizeof(double));
-        sciErr = readNamedMatrixOfDouble(NULL, "x", &m, &n, cxtmp);
+        sciErr = readNamedMatrixOfDouble(pvApiCtx, "x", &m, &n , cxtmp);
         if (sciErr.iErr)
         {
             printError(&sciErr, 0);
@@ -88,7 +89,10 @@ static int example2(void)
 {
     SendScilabJob("plot3d();");
     printf("\nClose Graphical Windows to close this example.\n");
-    while (ScilabHaveAGraph());
+    while ( ScilabHaveAGraph() )
+    {
+        ScilabDoOneEvent();
+    }
     return 1;
 }
 /*--------------------------------------------------------------------------*/
@@ -148,10 +152,10 @@ int main(void)
     printf("\nexample 1\n");
     example1();
     system("pause");
-    //printf("\nexample 2\n");
+    printf("\nexample 2\n");
     example2();
     system("pause");
-    //printf("\nexample 3\n");
+    printf("\nexample 3\n");
     example3();
     system("pause");
 

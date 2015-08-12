@@ -104,7 +104,7 @@ function [tree]=sci_eye(tree)
             tmp=n
             if typeof(n)<>"variable" then
                 tmp=gettempvar()
-                m2sci_insert(Equal(list(tmp),n))
+                insert(Equal(list(tmp),n))
             end
             newrhs=list()
             for k=1:size(n.dims)

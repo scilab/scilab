@@ -24,11 +24,11 @@ function [tree]=sci_fileparts(tree)
         tree=Operation("+",list(tree,pathconvert_funcall),tree.lhs)
     else
         add=Operation("+",list(tree.lhs(1),pathconvert_funcall),list())
-        m2sci_insert(Equal(list(tree.lhs(1)),add),1)
+        insert(Equal(list(tree.lhs(1)),add),1)
     end
 
     if lhs==4 then
-        m2sci_insert(Equal(list(tree.lhs(4)),Cste("")),1)
+        insert(Equal(list(tree.lhs(4)),Cste("")),1)
         tree.lhs(4)=null()
     end
 endfunction

@@ -68,7 +68,6 @@ public class Mark {
         mode = false;
         style = 0;
         markSizeUnit = MarkSizeUnitType.POINT;
-        size = 0;
         foreground = 0;
         background = 0;
     }

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_color_mode_property(void* _pvCtx, int iObjUID)
+int get_color_mode_property(void* _pvCtx, int iObjUID)
 {
     int iColorMode = 0;
     int* piColorMode = &iColorMode;
@@ -40,9 +40,9 @@ void* get_color_mode_property(void* _pvCtx, int iObjUID)
     if (piColorMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_mode");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iColorMode);
+    return sciReturnDouble(_pvCtx, iColorMode);
 }
 /*------------------------------------------------------------------------*/

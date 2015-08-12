@@ -13,15 +13,15 @@
 #include <stdio.h>
 #include <stdlib.h> /* _MAX_ENV */
 #include "gw_io.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "api_scilab.h"
 #include "getenvc.h"
 #include "PATH_MAX.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_getenv(char *fname, void* pvApiCtx)
+int sci_getenv(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int ierr = 0;
@@ -36,12 +36,12 @@ int sci_getenv(char *fname, void* pvApiCtx)
 
     int iflag = 0;
 
-    int iRhs = nbInputArgument(pvApiCtx);
+    Rhs = Max(Rhs, 0);
 
     CheckRhs(1, 2);
     CheckLhs(1, 1);
 
-    if (iRhs == 2)
+    if (Rhs == 2)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 2, &piAddressVarTwo);
         if (sciErr.iErr)
@@ -99,12 +99,14 @@ int sci_getenv(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    getenvc(&ierr, pStVarOne, NULL, &length_env, &iflag);
+
+    C2F(getenvc)(&ierr, pStVarOne, NULL, &length_env, &iflag);
+
     if (ierr)
     {
         if (pStVarTwo)
         {
-            if (createSingleString(pvApiCtx, iRhs + 1, pStVarTwo))
+            if (createSingleString(pvApiCtx, Rhs + 1, pStVarTwo))
             {
                 freeAllocatedSingleString(pStVarOne);
                 freeAllocatedSingleString(pStVarTwo);
@@ -113,10 +115,8 @@ int sci_getenv(char *fname, void* pvApiCtx)
             }
             else
             {
-                freeAllocatedSingleString(pStVarOne);
-                freeAllocatedSingleString(pStVarTwo);
-                LhsVar(1) = iRhs + 1;
-                ReturnArguments(pvApiCtx);
+                LhsVar(1) = Rhs + 1;
+                PutLhsVar();
                 return 0;
             }
         }
@@ -139,11 +139,10 @@ int sci_getenv(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    getenvc(&ierr, pStVarOne, env_value, &length_env, &iflag);
-    freeAllocatedSingleString(pStVarOne);
+    C2F(getenvc)(&ierr, pStVarOne, env_value, &length_env, &iflag);
 
     //create variable on stack and return it.
-    if (createSingleString(pvApiCtx, iRhs + 1, env_value))
+    if (createSingleString(pvApiCtx, Rhs + 1, env_value))
     {
         FREE(env_value);
         printError(&sciErr, 0);
@@ -152,8 +151,8 @@ int sci_getenv(char *fname, void* pvApiCtx)
     }
 
     FREE(env_value);
-    AssignOutputVariable(pvApiCtx, 1) = iRhs + 1;
-    ReturnArguments(pvApiCtx);
+    LhsVar(1) = Rhs + 1;
+    PutLhsVar();
 
 
     return 0;

@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="errcatch">
+    <refnamediv>
+        <refname>errcatch</refname>
+        <refpurpose>перехват ошибок</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            errcatch(n [,'action'] [,'option'])
+            errcatch()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>целое число</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>action, option</term>
+                <listitem>
+                    <para>строковые значения</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <function>errcatch</function> указывает действие <literal>"action"</literal>
+            (реакцию на ошибку), которое будет выполнено в случае возникновения ошибки типа  
+            <varname>n</varname>.      
+        </para>
+        <para>
+            <varname>n</varname> имеет следующие значения:
+        </para>
+        <para>
+            если <varname>n</varname><literal>&gt;0</literal>, то <varname>n</varname> является номером ошибки, которую
+            требуется перехватить;
+        </para>
+        <para>
+            если <varname>n</varname><literal>&lt;0</literal>, то будут перехватываться все ошибки.
+        </para>
+        <para>
+            <varname>action</varname> может быть одной из следующих символьных строк:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"pause"</term>
+                <listitem>
+                    <para>
+                        пауза, выполняемая во время перехвата ошибки. Эта опция полезна в целях отладки. Используйте <code>whereami()</code> для получения информации о текущем контексте.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"continue"</term>
+                <listitem>
+                    <para>
+                        будет выполняться следующая инструкция в функции либо будут исполнены исполняемые 
+                        файлы, текущие  инструкции будут игнорироваться. Можно проверить произошла ли ошибка с 
+                        помощью функции <link linkend="iserror">iserror</link>. Не забудьте очистить ошибку с 
+                        помощью функции <link linkend="errclear">errclear</link> как можно скорее. Эта опция 
+                        полезна для обнаружения ошибок. Во многих случаях использование  
+                        <literal>errcatch(n,"continue",..)</literal> может быть заменено использованием 
+                        функции <link linkend="execstr">execstr</link> или структуры управления 
+                        <link linkend="try">try</link>.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"kill"</term>
+                <listitem>
+                    <para>
+                        режим по умолчанию; все промежуточные функции уничтожаются, Scilab возвращается на уровень 0 командной строки.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"stop"</term>
+                <listitem>
+                    <para>
+                        прерывает текущую сессию Scilab (полезна, когда Scilab вызван из внешней программы).
+                    </para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <varname>option</varname> символьная строка <literal>'nomessage'</literal> для уничтожения
+            сообщения об ошибке.
+        </para>
+        <para>
+            Для возврата в режим по умолчанию введите  <code>errcatch(-1,"kill")</code> или, аналогичное, <code>errcatch(-1)</code>. <code>errcatch()</code> является устаревшим эквивалентом для <code>errcatch(-1)</code>.
+        </para>
+        <para>
+            Действия <function>errcatch</function> применимы в контексте текущего выполнения
+            (<literal>function</literal>, <literal>exec</literal>, <literal>pause</literal>) и всех 
+            подуровней. Второй вызов <function>errcatch</function> на подуровнях скрывает исходный вызов
+            для этого подуровня. Если второй вызов <function>errcatch</function> сделан на том же самом
+            уровне, то действие первого вызова удаляется.
+        </para>
+        <para>
+            При вызове в контексте функции Scilab или <function>exec</function>
+            <function>errcatch</function> автоматически сбрасывается при выходе из функции.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+errcatch(144,"continue")
+2/"foo"
+disp(a) // Без перехвата ошибки эта строка не будет выполнена
+
+errcatch(-1,"kill") // Возвращение обратно в нормальный режим
+errcatch(144,"pause")
+2/"foo" // Вход в режим "пауза"
+
+errcatch(27,'continue','nomessage')
+b=2/0 // Сообщения об ошибке нет, но b не будет существовать
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="try">try</link>
+            </member>
+            <member>
+                <link linkend="errclear">errclear</link>
+            </member>
+            <member>
+                <link linkend="iserror">iserror</link>
+            </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -6,7 +6,7 @@
 // =============================================================================
 
 // <-- Non-regression test for bug 577 -->
-// <-- ENGLISH IMPOSED -->
+//
 // <-- Bugzilla URL -->
 // http://bugzilla.scilab.org/show_bug.cgi?id=577
 //
@@ -17,15 +17,13 @@
 //    I can reproduce the bug with integers data type not with imaginary
 
 // 2009-01-09 mtlb_save is removed => savematfile
-// 2015-04-13 savematfile allows double of any dimension
 
 my_mat_file = TMPDIR+"/bug_577.mat";
 
-x=rand(5,5,100)+%i*rand(5,5,100);
-savematfile(my_mat_file,"x");
+x=rand(5,5,100)+%i;
+warning('off');
+ierr = execstr("savematfile(my_mat_file,""x"")","errcatch");
+warning('on');
 
-ref = x;
-clear x;
-
-loadmatfile(my_mat_file);
-assert_checkequal(x,ref);
+if ierr == 0 then pause,end
+if lasterror()<>msprintf(gettext("%s: Mlists of type %s can not be written to Matlab binary files.\n"), "GetMlistVariable", "hm") then pause,end

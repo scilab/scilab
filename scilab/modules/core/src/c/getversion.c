@@ -13,34 +13,33 @@
 #include <string.h>
 #include "getversion.h"
 #include "version.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "scilabDefaults.h"
 #include "getenvc.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "with_module.h"
 #include "loadversion.h"
 #include "freeArrayOfString.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "../../../io/includes/getenvc.h"
-#include "charEncoding.h"
-
 /*--------------------------------------------------------------------------*/
-/*wide char*/
-#define TCLSCI_MODULE_NAME L"tclsci"
-#define TCLTK_OPTION_STRING L"tk"
-#define MODELICAC_OPTION_STRING L"modelicac"
-#define X86_STRING L"x86"
-#define X64_STRING L"x64"
-#define ICC_STRING L"ICC"
-#define VC_STRING L"VC++"
-#define GCC_STRING L"GCC"
-#define PGI_STRING L"PGI"
-#define SUN_STRING L"SUN"
-#define UNKNOW_STRING L"UKN"
-#define RELEASE_STRING L"release"
-#define DEBUG_STRING L"debug"
+#define TCLSCI_MODULE_NAME "tclsci"
+#define TCLTK_OPTION_STRING "tk"
+#define MODELICAC_OPTION_STRING "modelicac"
+#define X86_STRING "x86"
+#define X64_STRING "x64"
+#define ICC_STRING "ICC"
+#define VC_STRING "VC++"
+#define GCC_STRING "GCC"
+#define PGI_STRING "PGI"
+#define SUN_STRING "SUN"
+#define UNKNOW_STRING "UKN"
+#define RELEASE_STRING "release"
+#define DEBUG_STRING "debug"
 #define DEFAULT_VERSION_ARRAY_SIZE 4
-#define SCILAB_STRING L"scilab"
+#define SCILAB_STRING "scilab"
 /*--------------------------------------------------------------------------*/
 int *getScilabVersion(int *sizeArrayReturned)
 {
@@ -56,16 +55,6 @@ int *getScilabVersion(int *sizeArrayReturned)
         *sizeArrayReturned = DEFAULT_VERSION_ARRAY_SIZE;
     }
     return returnedArray;
-}
-/*--------------------------------------------------------------------------*/
-char* getScilabVersionAsString(void)
-{
-    return os_strdup(SCI_VERSION);
-}
-/*--------------------------------------------------------------------------*/
-wchar_t *getScilabVersionAsWideString(void)
-{
-    return os_wcsdup(SCI_VERSION_WIDE_STRING);
 }
 /*--------------------------------------------------------------------------*/
 int getScilabVersionMajor()
@@ -88,29 +77,34 @@ int getScilabVersionTimestamp()
     return (int)SCI_VERSION_TIMESTAMP;
 }
 /*--------------------------------------------------------------------------*/
-int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
+char *getScilabVersionAsString(void)
+{
+    return strdup(SCI_VERSION_STRING);
+}
+/*--------------------------------------------------------------------------*/
+int* getModuleVersion(char *modulename, int *sizeArrayReturned)
 {
     int *returnedArray = NULL;
 
-    if (_pwstModule)
+    if (modulename)
     {
-        if (wcscmp(_pwstModule, SCILAB_STRING) == 0)
+        if (strcmp(modulename, SCILAB_STRING) == 0)
         {
             returnedArray = getScilabVersion(sizeArrayReturned);
             return returnedArray;
         }
     }
 
-    if (with_module(_pwstModule))
+    if (with_module(modulename))
     {
 #define LineMax 1024
-        wchar_t versionstring[LineMax];
+        char versionstring[LineMax];
         int version_module_major = 0;
         int version_module_minor = 0;
         int version_module_maintenance = 0;
         int version_module_revision = 0;
 
-        if (getversionmodule(_pwstModule, &version_module_major, &version_module_minor,
+        if (getversionmodule(modulename, &version_module_major, &version_module_minor,
                              &version_module_maintenance, versionstring,
                              &version_module_revision))
         {
@@ -136,44 +130,44 @@ int* getModuleVersion(wchar_t* _pwstModule, int *sizeArrayReturned)
     return returnedArray;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getModuleVersionInfoAsString(wchar_t* _pwstModule)
+char *getModuleVersionInfoAsString(char *modulename)
 {
-    wchar_t* infoString = NULL;
+    char *infoString = NULL;
 
-    if (_pwstModule)
+    if (modulename)
     {
-        if (wcscmp(_pwstModule, SCILAB_STRING) == 0)
+        if (strcmp(modulename, SCILAB_STRING) == 0)
         {
-            infoString = getScilabVersionAsWideString();
+            infoString = getScilabVersionAsString();
             return infoString;
         }
     }
 
-    if (with_module(_pwstModule))
+    if (with_module(modulename))
     {
 #define LineMax 1024
-        wchar_t versionstring[LineMax];
+        char versionstring[LineMax];
         int version_module_major = 0;
         int version_module_minor = 0;
         int version_module_maintenance = 0;
         int version_module_revision = 0;
-        if (getversionmodule(_pwstModule, &version_module_major, &version_module_minor,
+        if (getversionmodule(modulename, &version_module_major, &version_module_minor,
                              &version_module_maintenance, versionstring,
                              &version_module_revision))
         {
-            infoString = os_wcsdup(versionstring);
+            infoString = strdup(versionstring);
         }
     }
     return infoString;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
+char **getScilabVersionOptions(int *sizeArrayReturned)
 {
-    wchar_t** options = NULL;
+    char **options = NULL;
     int nbOptions = 2;
     *sizeArrayReturned = 0;
 
-    options = (wchar_t**)MALLOC(sizeof(wchar_t*) * nbOptions);
+    options = (char**)MALLOC(sizeof(char*) * nbOptions);
     if (options)
     {
         options[0] = getCompilerUsedToBuildScilab();
@@ -181,35 +175,35 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
 
         if (with_tk())
         {
-            options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
+            options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
             if (options)
             {
-                options[nbOptions] = os_wcsdup(TCLTK_OPTION_STRING);
+                options[nbOptions] = strdup(TCLTK_OPTION_STRING);
                 nbOptions++;
             }
             else
             {
-                freeArrayOfWideString(options, nbOptions);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
 
         if (with_modelica_compiler())
         {
-            options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
+            options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
             if (options)
             {
-                options[nbOptions] = os_wcsdup(MODELICAC_OPTION_STRING);
+                options[nbOptions] = strdup(MODELICAC_OPTION_STRING);
                 nbOptions++;
             }
             else
             {
-                freeArrayOfWideString(options, nbOptions);
+                freeArrayOfString(options, nbOptions);
                 return NULL;
             }
         }
 
-        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
+        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseMode();
@@ -217,11 +211,11 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
-        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
+        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseDate();
@@ -229,11 +223,11 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
-        options = (wchar_t**)REALLOC(options, sizeof(wchar_t*) * (nbOptions + 1));
+        options = REALLOC(options, sizeof(char*) * (nbOptions + 1));
         if (options)
         {
             options[nbOptions] = getReleaseTime();
@@ -241,7 +235,7 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
         }
         else
         {
-            freeArrayOfWideString(options, nbOptions);
+            freeArrayOfString(options, nbOptions);
             return NULL;
         }
 
@@ -250,43 +244,43 @@ wchar_t** getScilabVersionOptions(int *sizeArrayReturned)
     return options;
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getReleaseMode(void)
+char *getReleaseMode(void)
 {
 #ifdef NDEBUG
-    return os_wcsdup(RELEASE_STRING);
+    return strdup(RELEASE_STRING);
 #else
-    return os_wcsdup(DEBUG_STRING);
+    return strdup(DEBUG_STRING);
 #endif
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getReleaseDate(void)
+char *getReleaseDate(void)
 {
-    return to_wide_string(__DATE__);
+    return strdup(__DATE__);
 }
 /*--------------------------------------------------------------------------*/
-wchar_t *getReleaseTime(void)
+char *getReleaseTime(void)
 {
-    return to_wide_string(__TIME__);
+    return strdup(__TIME__);
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getCompilerUsedToBuildScilab(void)
+char *getCompilerUsedToBuildScilab(void)
 {
 #ifdef __INTEL_COMPILER
-    return os_wcsdup(ICC_STRING);
+    return strdup(ICC_STRING);
 #else
 #ifdef _MSC_VER
-    return os_wcsdup(VC_STRING);
+    return strdup(VC_STRING);
 #else
 #ifdef __GNUC__
-    return os_wcsdup(GCC_STRING);
+    return strdup(GCC_STRING);
 #else
 #ifdef __PGI
-    return os_wcsdup(PGI_STRING);
+    return strdup(PGI_STRING);
 #else
 #if defined(__SUNPRO_C) || defined(__SUNPRO_CC)
-    return os_wcsdup(SUN_STRING);
+    return strdup(SUN_STRING);
 #else
-    return os_wcsdup(UNKNOW_STRING);
+    return strdup(UNKNOW_STRING);
 #endif
 #endif
 #endif
@@ -294,19 +288,19 @@ wchar_t* getCompilerUsedToBuildScilab(void)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-wchar_t* getCompilerArchitecture(void)
+char *getCompilerArchitecture(void)
 {
 #ifdef _MSC_VER
 #ifdef _WIN64
-    return os_wcsdup(X64_STRING);
+    return strdup(X64_STRING);
 #else
-    return os_wcsdup(X86_STRING);
+    return strdup(X86_STRING);
 #endif
 #else
 #ifdef _LP64
-    return os_wcsdup(X64_STRING);
+    return strdup(X64_STRING);
 #else
-    return os_wcsdup(X86_STRING);
+    return strdup(X86_STRING);
 #endif
 #endif
 }

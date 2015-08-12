@@ -14,15 +14,24 @@
 /*--------------------------------------------------------------------------*/
 #include "Scierror.h"
 #include "gw_jvm.h"
+#include "dynlib_jvm.h"
+#include "InitializeJVM.h"
+#include "TerminateJVM.h"
+#include "loadBackGroundClassPath.h"
+#include "loadOnUseClassPath.h"
 #include "localization.h"
 
 #ifdef _MSC_VER
+#include "getScilabJNIEnv.h"
+#include "getScilabJavaVM.h"
 #include "getScilabObject.h"
 #include "addToClasspath.h"
+#include "addToLibrarypath.h"
+#include "catchIfJavaException.h"
 #endif
 
 /*--------------------------------------------------------------------------*/
-int gw_jvm(void)
+JVM_IMPEXP int gw_jvm(void)
 {
     Scierror(999, _("Scilab Java module not installed.\n"));
     return 0;
@@ -60,25 +69,25 @@ BOOL catchIfJavaException(char *errorMsg)
 }
 #endif
 /*--------------------------------------------------------------------------*/
-BOOL InitializeJVM(void)
+JVM_IMPEXP BOOL InitializeJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL TerminateJVM(void)
+JVM_IMPEXP BOOL TerminateJVM(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL loadBackGroundClassPath(void)
+JVM_IMPEXP BOOL loadBackGroundClassPath(void)
 {
     return FALSE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL loadOnUseClassPath(char const* tag)
+JVM_IMPEXP BOOL loadOnUseClassPath(char const* tag)
 {
     return FALSE;
 }
@@ -97,13 +106,13 @@ void forceCloseMainScilabObject(void)
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL ExecuteInitialHooks(void)
+JVM_IMPEXP BOOL ExecuteInitialHooks(void)
 {
     return TRUE;
 }
 
 /*--------------------------------------------------------------------------*/
-BOOL isItTheDisabledLib(void)
+JVM_IMPEXP BOOL isItTheDisabledLib(void)
 {
     return TRUE;
 }

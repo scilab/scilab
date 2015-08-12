@@ -13,7 +13,6 @@
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
 #include "xcosUtilities.hxx"
-#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -21,13 +20,13 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getScilabJavaVM.h"
 }
 
 using namespace org_scilab_modules_xcos;
 
-int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx)
+int sci_xcosAddToolsMenu(char *fname, unsigned long fname_len)
 {
     CheckRhs(2, 2);
     CheckLhs(0, 1);
@@ -46,7 +45,6 @@ int sci_xcosAddToolsMenu(char *fname, void *pvApiCtx)
     }
 
     /* Call the java implementation */
-    set_loaded_status(XCOS_CALLED);
     try
     {
         Xcos::addToolsMenu(getScilabJavaVM(), label, callback);

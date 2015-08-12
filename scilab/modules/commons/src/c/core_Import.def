@@ -5,7 +5,11 @@ EXPORTS
 ;
 ;core
 ;
+getSCIHOME
+getTMPDIR
+setieee
 setformat
+getieee
 getformat
 getformatwidth
 getScilabVersionMajor
@@ -15,4 +19,3 @@ getScilabVersionTimestamp
 getScilabVersionAsString
 MyHeapAlloc
 MyHeapFree
-

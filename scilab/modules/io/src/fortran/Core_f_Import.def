@@ -1,0 +1,20 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+basin_
+clunit_
+copyvar_
+dbasin_
+funnam_
+ptover_
+putid_
+stackp_
+
+
+
+
+

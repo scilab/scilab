@@ -7,9 +7,8 @@
 // are also available at    
 // http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
 
-function polyLine = scatter(varargin)
+function scatter(varargin)
 
-    polyLine = 0;
     [lhs,rhs] = argn(0);
 
     if ~rhs
@@ -17,23 +16,23 @@ function polyLine = scatter(varargin)
         t = linspace(0,25,200);
         x = t.*cos(t);
         y = t.*sin(t);
-        polyLine = scatter(x,y,t,t,"fill","markerEdgeColor","darkblue")
+        scatter(x,y,t,t,"fill","markerEdgeColor","darkblue")
         return;
     end
 
-    //detect and set the current axes now:
-    n = size(varargin);
+   //detect and set the current axes now:
     if type(varargin(1)) == 9 then // graphic handle
         hdle = varargin(1);
         if hdle.type == "Axes" then
-            if n < 3 then
+            if size(varargin) < 3 then
                 warning("Not enough input arguments.")
                 return;
             else
+                 disp("Graphic handle specified!")
                 axesHandle = varargin(1);
                 X = varargin(2);
                 Y = varargin(3);
-                polyLine = scatter3(axesHandle,X,Y,[],varargin(4:n));
+                nextArgin = 4;
             end
         else
             warning("Handle should be an Axes handle.")
@@ -44,10 +43,46 @@ function polyLine = scatter(varargin)
             warning("Not enough input arguments.")
             return;
         else
+            axesHandle = [];
             X = varargin(1);
             Y = varargin(2);
-            polyLine = scatter3(X,Y,[],varargin(3:n));
+            nextArgin = 3;
         end
     end
+
+    if (isempty(X) & isempty(Y)) then
+        // nothing has to be done
+        return;
+    end
     
+    if (~isvector(X) | ~isvector(Y) | size(X) ~= size(Y)) then
+        warning("X and Y must be vectors of the same length.")
+        return;
+    end
+    
+    n = length(X);
+    [S,C,thickness,markStyle,markFg,markBg,fill,scanFailed] = scatterScanVargin(varargin,nextArgin,n);
+    if (scanFailed) then
+        return;
+    end
+
+    drawlater();
+ 
+    if isempty(axesHandle) then
+       plot(X,Y);
+    else
+       plot(axesHandle,X,Y);
+    end
+    
+    currentEntity = gce();
+    polyLine = currentEntity.children;
+    if polyLine.Type <> "Polyline" then
+        warning("Handle should be a Polyline handle.");
+        return;
+    end
+
+    scatterSetPolyline(polyLine,S,C,thickness,markStyle,markFg,markBg,fill);
+    
+    drawnow();
+
 endfunction

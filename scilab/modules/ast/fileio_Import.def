@@ -1,8 +1,0 @@
-LIBRARY    fileio.dll
-
-
-EXPORTS
-removedir
-getshortpathname
-FileExistW
-getfile_filename

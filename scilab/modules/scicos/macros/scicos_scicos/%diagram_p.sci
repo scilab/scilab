@@ -21,12 +21,14 @@
 
 function %diagram_p(scs_m)
     %params_p(scs_m.props)
-
-    i = 1;
+    nams=[]
     for o=scs_m.objs
         if typeof(o)=="Block" then
-            mprintf("%s%s\n", part(string(i), 1:6), o.gui)
-            i = i + 1;
+            nams=[nams;o.gui]
         end
+    end
+    if nams <> [] then
+        nums=part(string(1:size(nams,"*"))',1:6)
+        write(%io(2),nums+nams,"(a)")
     end
 endfunction

@@ -18,28 +18,33 @@
 #include "Scierror.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-BOOL winopen(wchar_t *scilabfilename)
+BOOL winopen(char *scilabfilename)
 {
     BOOL bOK = FALSE;
+    char *filename = NULL;
     wchar_t *wcfilename = NULL;
     HINSTANCE error = NULL;
 
-    wcfilename = expandPathVariableW(scilabfilename);
-    if (wcfilename)
+    filename = expandPathVariable(scilabfilename);
+    if (filename)
     {
-        error = ShellExecuteW(NULL, L"open", wcfilename, NULL, NULL, SW_SHOWNORMAL);
-        if ( error <= (HINSTANCE)32)
+        wcfilename = to_wide_string(filename);
+        FREE(filename);
+        filename = NULL;
+        if (wcfilename)
         {
-            bOK = FALSE;
+            error = ShellExecuteW(NULL, L"open", wcfilename, NULL, NULL, SW_SHOWNORMAL);
+            if ( error <= (HINSTANCE)32)
+            {
+                bOK = FALSE;
+            }
+            else
+            {
+                bOK = TRUE;
+            }
         }
-        else
-        {
-            bOK = TRUE;
-        }
-
-        FREE(wcfilename);
     }
     return bOK;
 }

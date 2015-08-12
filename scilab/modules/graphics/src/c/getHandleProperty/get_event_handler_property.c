@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_event_handler_property(void* _pvCtx, int iObjUID)
+int get_event_handler_property(void* _pvCtx, int iObjUID)
 {
     char* eventHandler = NULL;
     getGraphicObjectProperty(iObjUID, __GO_EVENTHANDLER_NAME__, jni_string, (void **)&eventHandler);
@@ -38,9 +38,9 @@ void* get_event_handler_property(void* _pvCtx, int iObjUID)
     if (eventHandler == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "event_handler");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(eventHandler);
+    return sciReturnString(_pvCtx, eventHandler);
 }
 /*------------------------------------------------------------------------*/

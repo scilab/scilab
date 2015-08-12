@@ -27,7 +27,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_grid_position_property(void* _pvCtx, int iObjUID)
+int get_grid_position_property(void* _pvCtx, int iObjUID)
 {
     int iGridPosition = 0;
     int* piGridPosition = &iGridPosition;
@@ -37,16 +37,16 @@ void* get_grid_position_property(void* _pvCtx, int iObjUID)
     if (piGridPosition == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid_position");
-        return NULL;
+        return -1;
     }
 
     if (iGridPosition)
     {
-        return sciReturnString("foreground");
+        return sciReturnString(_pvCtx, "foreground");
     }
     else
     {
-        return sciReturnString("background");
+        return sciReturnString(_pvCtx, "background");
     }
 }
 /*------------------------------------------------------------------------*/

@@ -20,9 +20,10 @@
 #include <sys/utsname.h>
 #endif
 #include "getos.h"
-#include "sci_malloc.h"
-#include "os_string.h"
-
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char *getOSFullName(void)
 {
@@ -30,9 +31,9 @@ char *getOSFullName(void)
     struct utsname uname_pointer;
     uname(&uname_pointer);
 
-    return os_strdup(uname_pointer.sysname);
+    return strdup(uname_pointer.sysname);
 #else
-    return os_strdup("Windows");
+    return strdup("Windows");
 #endif
 }
 /*--------------------------------------------------------------------------*/
@@ -42,82 +43,82 @@ char *getOSRelease(void)
     struct utsname uname_pointer;
     uname(&uname_pointer);
 
-    return os_strdup(uname_pointer.release);
+    return strdup(uname_pointer.release);
 #else
     switch (GetWindowsVersion())
     {
         case OS_ERROR :
         default :
-            return os_strdup("Unknow");
+            return strdup("Unknow");
             break;
         case OS_WIN32_WINDOWS_NT_3_51 :
-            return os_strdup("NT 3.51");
+            return strdup("NT 3.51");
             break;
         case OS_WIN32_WINDOWS_NT_4_0 :
-            return os_strdup("NT 4.0");
+            return strdup("NT 4.0");
             break;
         case OS_WIN32_WINDOWS_95 :
-            return os_strdup("95");
+            return strdup("95");
             break;
         case OS_WIN32_WINDOWS_98 :
-            return os_strdup("98");
+            return strdup("98");
             break;
         case OS_WIN32_WINDOWS_Me :
-            return os_strdup("ME");
+            return strdup("ME");
             break;
         case OS_WIN32_WINDOWS_2000 :
-            return os_strdup("2000");
+            return strdup("2000");
             break;
         case OS_WIN32_WINDOWS_XP :
-            return os_strdup("XP");
+            return strdup("XP");
             break;
         case OS_WIN32_WINDOWS_XP_64 :
-            return os_strdup("XP x64");
+            return strdup("XP x64");
             break;
         case OS_WIN32_WINDOWS_SERVER_2003 :
-            return os_strdup("Server 2003");
+            return strdup("Server 2003");
             break;
         case OS_WIN32_WINDOWS_SERVER_2003_R2 :
-            return os_strdup("Server 2003 R2");
+            return strdup("Server 2003 R2");
             break;
         case OS_WIN32_WINDOWS_SERVER_2003_64 :
-            return os_strdup("Server 2003 x64");
+            return strdup("Server 2003 x64");
             break;
         case OS_WIN32_WINDOWS_VISTA :
-            return os_strdup("Vista");
+            return strdup("Vista");
             break;
         case OS_WIN32_WINDOWS_VISTA_64 :
-            return os_strdup("Vista x64");
+            return strdup("Vista x64");
             break;
         case OS_WIN32_WINDOWS_SERVER_2008 :
-            return os_strdup("Server 2008");
+            return strdup("Server 2008");
             break;
         case OS_WIN32_WINDOWS_SERVER_2008_64 :
-            return os_strdup("Server 2008 x64");
+            return strdup("Server 2008 x64");
             break;
         case OS_WIN32_WINDOWS_SEVEN :
-            return os_strdup("Seven");
+            return strdup("Seven");
             break;
         case OS_WIN32_WINDOWS_SEVEN_64 :
-            return os_strdup("Seven x64");
+            return strdup("Seven x64");
             break;
         case OS_WIN32_WINDOWS_SEVEN_SERVER :
-            return os_strdup("Seven Server");
+            return strdup("Seven Server");
             break;
         case OS_WIN32_WINDOWS_SEVEN_SERVER_64 :
-            return os_strdup("Seven Server x64");
+            return strdup("Seven Server x64");
             break;
         case OS_WIN32_WINDOWS_EIGHT:
-            return os_strdup("8");
+            return strdup("8");
             break;
         case OS_WIN32_WINDOWS_EIGHT_64:
-            return os_strdup("8 x64");
+            return strdup("8 x64");
             break;
         case OS_WIN32_WINDOWS_EIGHT_SERVER:
-            return os_strdup("8 Server");
+            return strdup("8 Server");
             break;
         case OS_WIN32_WINDOWS_EIGHT_SERVER_64:
-            return os_strdup("8 Server x64");
+            return strdup("8 Server x64");
             break;
     }
 #endif

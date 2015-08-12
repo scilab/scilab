@@ -16,10 +16,10 @@
 #include "sci_mpi.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "deserialization.h"
 
-int sci_mpi_irecv(char *fname, void* pvApiCtx)
+int sci_mpi_irecv(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iRet = 0;

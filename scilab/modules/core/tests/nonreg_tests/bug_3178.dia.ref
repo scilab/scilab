@@ -1,0 +1,23 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2005-2008 - INRIA - Allan CORNET
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+// <-- Non-regression test for bug 3178 -->
+//
+// <-- Bugzilla URL -->
+// http://bugzilla.scilab.org/show_bug.cgi?id=3178
+//
+// <-- Short Description -->
+//The 'error' function doesn't display the correct error message when passing an error number stored in a variable.
+ierr = execstr('error(38)','errcatch');
+if ierr <> 38 then bugmes();quit;end
+n = 38;
+ierr = execstr('error(n)','errcatch');
+if ierr <> 38 then bugmes();quit;end
+ierr = execstr('error('''',n)','errcatch');
+if ierr <> 38 then bugmes();quit;end
+ierr = execstr('error(''test'',988)','errcatch');
+if ierr <> 988 then bugmes();quit;end
+if lasterror(%t) <> 'test' bugmes();quit;end

@@ -20,7 +20,7 @@
 #include "api_scilab.h"
 #include "gw_gui.h"
 /*--------------------------------------------------------------------------*/
-int sci_getcallbackobject(char *fname, void* pvApiCtx)
+int sci_getcallbackobject(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

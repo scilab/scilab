@@ -1,8 +1,8 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Cong WU
  * Copyright (C) INRIA - 2008 - Allan CORNET
- * Copyright (C) Digiteo - 2011 - Cedric DELAMARRE
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -24,10 +24,8 @@
 * @param[out] sizeOutputs size of matrix of string returned
 * @return matrix of string tokens
 */
-#include <wchar.h>
-#include "dynlib_string.h"
 
-STRING_IMPEXP wchar_t** stringTokens(wchar_t* str, wchar_t* delim, int* sizeOutputs);
+char** stringTokens(char *str, char **delim, int sizedelim, int *sizeOutputs);
 
 #endif /* __TOKENS_H__ */
 /*------------------------------------------------------------------------*/

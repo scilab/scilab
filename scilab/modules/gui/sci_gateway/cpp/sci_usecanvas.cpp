@@ -21,13 +21,13 @@ extern "C"
 #include "Scierror.h"
 #include "gw_gui.h"
 #include "BOOL.h"
-#include"sci_malloc.h"
+#include"MALLOC.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_usecanvas(char *fname, void* pvApiCtx)
+int sci_usecanvas(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

@@ -20,25 +20,25 @@
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isDll(const char* _pstDLLName);
+BOOL isDll(const char *dllfilename);
 
 /**
 *  check if it is a valid x64 dll
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isX64Dll(const char* _pstDLLName);
+BOOL isX64Dll(const char *dllfilename);
 
 /**
 *  check if it is a valid x64 dll
 * @param[in] dll filename
 * @return TRUE or FALSE
 */
-BOOL isX86Dll(const char* _pstDLLName);
+BOOL isX86Dll(const char *dllfilename);
 
 /* wide char version */
-BOOL isDllW(const wchar_t* _pwstDLLName);
-BOOL isX64DllW(const wchar_t* _pwstDLLName);
-BOOL isX86DllW(const wchar_t* _pwstDLLName);
+BOOL isDllW(const wchar_t *dllfilename);
+BOOL isX64DllW(const wchar_t *dllfilename);
+BOOL isX86DllW(const wchar_t *dllfilename);
 
 #endif

@@ -22,7 +22,7 @@
 /**
  * Get the direction property of the handle.
  */
-void* get_direction_property(void* _pvCtx, int iObjUID)
+int get_direction_property(void* _pvCtx, int iObjUID)
 {
     double* direction = NULL;
 
@@ -31,8 +31,9 @@ void* get_direction_property(void* _pvCtx, int iObjUID)
     if (direction == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "direction");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowVector(direction, 3);
+    return sciReturnRowVector(_pvCtx, direction, 3);
+
 }

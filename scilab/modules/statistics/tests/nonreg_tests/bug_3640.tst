@@ -37,4 +37,3 @@ assert_checkequal(size(r), [250 1]);
 test = rand(250,1,166);
 assert_checkfalse(execstr("r = mean(test,3);"   ,"errcatch") <> 0);
 assert_checkequal(size(r), [250 1]);
-

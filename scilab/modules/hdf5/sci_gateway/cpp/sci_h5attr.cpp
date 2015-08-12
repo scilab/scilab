@@ -31,7 +31,7 @@ using namespace org_modules_hdf5;
   - h5attr(filename, location, name, data, targetType)
 */
 
-int sci_h5attr(char *fname, int* pvApiCtx)
+int sci_h5attr(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

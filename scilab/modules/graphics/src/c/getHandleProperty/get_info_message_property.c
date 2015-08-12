@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_info_message_property(void* _pvCtx, int iObjUID)
+int get_info_message_property(void* _pvCtx, int iObjUID)
 {
     char *infoMessage = NULL;
     getGraphicObjectProperty(iObjUID, __GO_INFO_MESSAGE__, jni_string, (void **)&infoMessage);
@@ -38,9 +38,9 @@ void* get_info_message_property(void* _pvCtx, int iObjUID)
     if (infoMessage == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "info_message");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(infoMessage);
+    return sciReturnString(_pvCtx, infoMessage);
 }
 /*------------------------------------------------------------------------*/

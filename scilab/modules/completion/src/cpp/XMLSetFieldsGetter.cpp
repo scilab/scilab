@@ -26,7 +26,7 @@ namespace org_modules_completion
 
 const char ** XMLSetFieldsGetter::getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const
 {
-    int id = getXMLObjectId(mlist, NULL);
+    int id = getXMLObjectId(mlist, pvApiCtx);
     XMLNodeSet * s = XMLObject::getFromId<XMLNodeSet>(id);
 
     return getFieldsName(s, fieldPath + 1, fieldPathLen - 1, fieldsSize);

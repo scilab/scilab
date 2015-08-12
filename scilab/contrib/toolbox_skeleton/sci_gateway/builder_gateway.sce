@@ -3,7 +3,7 @@
 function builder_gateway()
 
     sci_gateway_dir = get_absolute_file_path("builder_gateway.sce");
-    languages       = ["c" "fortran" "cpp"];
+    languages       = ["fortran" "c" "cpp"];
 
     tbx_builder_gateway_lang(languages,sci_gateway_dir);
     tbx_build_gateway_loader(languages,sci_gateway_dir);

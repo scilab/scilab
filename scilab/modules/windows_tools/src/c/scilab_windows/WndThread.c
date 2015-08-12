@@ -15,12 +15,11 @@
 #include <Windows.h>
 #include <windowsx.h>
 #include "WndThread.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "version.h"
 #include "wmcopydata.h"
 #include "storeCommand.h"
-#include "os_string.h"
-#include "charEncoding.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static HWND hWndScilab = NULL;
 HANDLE HandleThreadWnd = NULL;
@@ -138,7 +137,7 @@ static BOOL ON_WND_HIDDEN_WM_COPYDATA(HWND hwnd, HWND hWndSend, PCOPYDATASTRUCT 
 
     if ( GetCommandFromAnotherScilab(TitleWndSend, Command) )
     {
-        StoreCommand(Command);
+        StoreCommand (Command);
     }
 
     return TRUE;
@@ -149,7 +148,7 @@ char *getCurrentTitleScilabHiddenWindow(void)
     char *currentTitle = NULL;
     if ( strcmp(titleHiddenScilabWindow, "") )
     {
-        currentTitle = os_strdup(titleHiddenScilabWindow);
+        currentTitle = strdup(titleHiddenScilabWindow);
     }
     return currentTitle;
 }

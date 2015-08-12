@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_cube_scaling_property(void* _pvCtx, int iObjUID)
+int get_cube_scaling_property(void* _pvCtx, int iObjUID)
 {
     int iCubeScaling = 0;
     int* piCubeScaling = &iCubeScaling;
@@ -40,16 +40,16 @@ void* get_cube_scaling_property(void* _pvCtx, int iObjUID)
     if (piCubeScaling == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "cube_scaling");
-        return NULL;
+        return -1;
     }
 
     if (iCubeScaling)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

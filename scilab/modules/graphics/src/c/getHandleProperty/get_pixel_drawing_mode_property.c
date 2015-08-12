@@ -33,7 +33,7 @@
 
 /*------------------------------------------------------------------------*/
 
-void* get_pixel_drawing_mode_property(void* _pvCtx, int iObjUID)
+int get_pixel_drawing_mode_property(void* _pvCtx, int iObjUID)
 {
     int iPixelDrawingMode = 0;
     int* pixelDrawingMode = &iPixelDrawingMode;
@@ -42,10 +42,10 @@ void* get_pixel_drawing_mode_property(void* _pvCtx, int iObjUID)
     if (pixelDrawingMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "pixel_drawing_mode");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(getPixelMode (*pixelDrawingMode));
+    return sciReturnString(_pvCtx, getPixelMode (*pixelDrawingMode));
 
 }
 

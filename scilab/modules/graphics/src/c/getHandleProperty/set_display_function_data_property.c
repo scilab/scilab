@@ -11,7 +11,6 @@
  */
 
 #include "setHandleProperty.h"
-#include "getHandleProperty.h"
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -22,23 +21,15 @@
 /*------------------------------------------------------------------------*/
 int set_display_function_data_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
-    void* pPrevious = NULL;
-    //temporary, try to write address of user_data in int array
-    int iSize = sizeof(void*) / sizeof(int);
+    /*NOT COMPATIBLE WITH SCILAB 6*/
+    int iRhs = getRhsFromAddress(pvApiCtx, (int*)_pvData);
+    int iDisplayDataSize = GetDataSize(iRhs) * 2; /* GetDataSize returns the size of the variable in double words */
+    int *piDisplayData = (int*)GetData(iRhs);
 
-    //increase before decrease to not delete new val in case fo in and out are the same
-    increaseValRef(_pvCtx, (int*)_pvData);
+    BOOL status = FALSE;
 
-    pPrevious = get_display_function_data_property(_pvCtx, iObjUID);
-    if (pPrevious)
+    if (setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION__, piDisplayData, jni_int_vector, iDisplayDataSize) == FALSE)
     {
-        decreaseValRef(_pvCtx, (int*)pPrevious);
-    }
-
-    if (setGraphicObjectProperty(iObjUID, __GO_DATA_MODEL_DISPLAY_FUNCTION__, &_pvData, jni_int_vector, iSize) == FALSE)
-    {
-        //don't need to keep _pvData, operation failed.
-        decreaseValRef(_pvCtx, (int*)_pvData);
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_function_data");
         return SET_PROPERTY_ERROR;
     }

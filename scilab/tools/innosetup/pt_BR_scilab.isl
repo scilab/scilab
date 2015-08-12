@@ -27,6 +27,10 @@ pt_BR.MsgBoxDevToolsRequired1 =You choose to install toolbox_skeleton module but
 pt_BR.MsgBoxDevToolsRequired2 =Please install development_tools module.
 pt_BR.MsgBoxDevToolsRequired3 =You choose to install tests module but development_tools module is not selected.
 pt_BR.MsgBoxTclsciRequired2 =Please install tclsci module.
+pt_BR.MsgBoxFftw1 =You choose to install FFTW module for Scilab.
+pt_BR.MsgBoxFftw2 =This module requires to download FFTW library (GPL).
+pt_BR.MsgBoxFftw3 =Do you want to open a web page about this add-on ?
+pt_BR.MsgBoxFftw4 =Can not open web page.
 pt_BR.MsgBoxWinVer =Windows 2000 is required.
 pt_BR.MsgBoxScicosRequired1 =You choose to install Xcos module but Scicos module is not selected.
 pt_BR.MsgBoxScicosRequired2 =Please also install Scicos module.
@@ -62,7 +66,7 @@ pt_BR.DescriptionSpreadsheet =Spreadsheet Toolbox
 pt_BR.DescriptionJVM =Java Runtime
 pt_BR.DescriptionAtlas =Atlas library 3.8.0 CPU optimized
 pt_BR.DescriptionFftwModule =FFTW interface for Scilab
-pt_BR.DescriptionMKLFftwLibrary =FFTW library optimized by Intel Math Kernel Library
+pt_BR.DescriptionFftwMKLDownload =Download FFTW library optimized by Intel Math Kernel Library
 pt_BR.DescriptionRefFftwLibrary =Reference FFTW library
 pt_BR.DescriptionParametersTlbx =Parameters Toolbox
 pt_BR.DescriptionGeneticTlbx =Genetic Algorithms Toolbox
@@ -115,10 +119,18 @@ pt_BR.DescriptionCLIInstall =Command Line Minimal Installation (no gui)
 pt_BR.DescriptionCPUOptimization =CPU Optimization for Scilab
 pt_BR.DescriptionATLASLibrary =Atlas Library for Scilab
 pt_BR.DescriptionRefBlasLibrary =Blas, Lapack Reference libraries for Scilab
-pt_BR.DescriptionMKLLibrary =Intel Math Kernel Library for Scilab
+pt_BR.DescriptionMKLLibrary =Download Intel Math Kernel Library for Scilab
+;
+pt_BR.DownloadMKLLabel =Downloading Intel Math Kernel Library files for Scilab
+pt_BR.DownloadMKLDescription =Please wait while Setup is downloading extra files to your computer.
+;
+pt_BR.DownloadMKLFFTWLabel =Downloading FFTW3 library optimized by Intel Math Kernel.
 ;
 pt_BR.DoTasksJustAfterInstallMsg2 =BLAS, LAPACK reference libraries will be installed and used.
 pt_BR.DoTasksJustAfterInstallMsg3 =FFTW3 reference library will be installed and used.
+;
+pt_BR.NextButtonClickwpReadyMsg1 =Impossible to download Intel Math Kernel Library files for Scilab (Default library will be used).
+pt_BR.NextButtonClickwpReadyMsg2 =Impossible to download FFTW3 library optimized by Intel Math Kernel Library (Default library will be used).
 ;
 pt_BR.DescriptionAtoms =ATOMS
 ;------------------------------------------------------------------------------

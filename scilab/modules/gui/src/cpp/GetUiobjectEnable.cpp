@@ -17,7 +17,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUiobjectEnable(void* _pvCtx, int iObjUID)
+int GetUiobjectEnable(void* _pvCtx, int iObjUID)
 {
     int enable = 0;
     int* piEnable = &enable;
@@ -27,16 +27,16 @@ void* GetUiobjectEnable(void* _pvCtx, int iObjUID)
     if (piEnable == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Enable");
-        return NULL;
+        return FALSE;
     }
 
     if (enable == TRUE)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 

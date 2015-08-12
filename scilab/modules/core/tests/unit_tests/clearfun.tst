@@ -13,7 +13,8 @@ if clearfun('myfunctionname') <> %F then pause,end
 ptr = funptr('pwd');
 newfun("MY_PWD",ptr);
 
-assert_checktrue(clearfun("MY_PWD"));
+if clearfun("MY_PWD") <> %T then pause,end
 //================================================
-errmsg =  msprintf(gettext("%s: Wrong type for input argument #%d: String expected.\n"), "clearfun", 1);
-assert_checkerror('a = clearfun(2);', errmsg);
+
+ierr = execstr('a = clearfun(2);','errcatch');
+if ierr <> 999 then pause,end

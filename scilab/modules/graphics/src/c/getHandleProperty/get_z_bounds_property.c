@@ -31,7 +31,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_z_bounds_property(void* _pvCtx, int iObjUID)
+int get_z_bounds_property(void* _pvCtx, int iObjUID)
 {
     double* zBounds = NULL;
 
@@ -40,9 +40,9 @@ void* get_z_bounds_property(void* _pvCtx, int iObjUID)
     if (zBounds == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_bounds");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowVector(zBounds, 2);
+    return sciReturnRowVector(_pvCtx, zBounds, 2);
 }
 /*------------------------------------------------------------------------*/

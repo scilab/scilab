@@ -12,9 +12,9 @@
 
 #include <stdlib.h>
 #include "InitializeGUI.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "setMainWindowTitle.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "buildMainWindowTitle.h"
 #ifdef _MSC_VER
 #include "WindowShow.h"

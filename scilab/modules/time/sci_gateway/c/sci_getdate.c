@@ -14,13 +14,13 @@
 #include <stdio.h>
 #include <string.h>
 #include "gw_time.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getdate.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_getdate(char *fname, void* pvApiCtx)
+int sci_getdate(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

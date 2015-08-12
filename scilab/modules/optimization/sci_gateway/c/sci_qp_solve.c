@@ -15,12 +15,11 @@
 #include <string.h>
 #include "gw_optimization.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
+#include "warningmode.h"
 #include "localization.h"
-#include "scisparse.h"
 /*--------------------------------------------------------------------------*/
 /* fortran subroutines */
 extern int C2F(qpgen2)(double *dmat, double *dvec, int *fddmat, int *n,
@@ -35,7 +34,7 @@ extern int C2F(spt)(int *m, int *n, int *nel, int *it, int *ptr,
                     double *A_R,  double *A_I, int *mnel,  int *A_icol,
                     double *At_R, double *At_I, int *At_mnel, int *At_icol);
 /*--------------------------------------------------------------------------*/
-int sci_qp_solve(char *fname,  void* pvApiCtx)
+int sci_qp_solve(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     static int un = 1, deux = 2;

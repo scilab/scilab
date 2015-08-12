@@ -22,7 +22,7 @@
 #include "getHandleProperty.h"
 #include "GetProperty.h"
 #include "returnProperty.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "HandleManagement.h"
@@ -32,10 +32,10 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-void* get_children_property(void* _pvCtx, int iObjUID)
+int get_children_property(void* _pvCtx, int iObjUID)
 {
     int i = 0;
-    void* status = NULL;
+    int status = 0;
     long *plChildren = NULL;
     int* piChildrenUID = NULL;
     int iHidden = 0;
@@ -56,7 +56,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
     if (piChildrenCount == NULL || piChildrenCount[0] == 0)
     {
         // No Child
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
 
     getGraphicObjectProperty(iObjUID, __GO_CHILDREN__, jni_int_vector, (void **)&piChildrenUID);
@@ -82,7 +82,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
-            return sciReturnEmptyMatrix();
+            return sciReturnEmptyMatrix(_pvCtx);
         }
     }
     else
@@ -100,7 +100,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
-            return sciReturnEmptyMatrix();
+            return sciReturnEmptyMatrix(_pvCtx);
         }
 
     }
@@ -120,7 +120,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         }
     }
 
-    status = sciReturnColHandleVector(plChildren, childrenNumber);
+    status = sciReturnColHandleVector(_pvCtx, plChildren, childrenNumber);
     FREE(plChildren);
 
     return status;

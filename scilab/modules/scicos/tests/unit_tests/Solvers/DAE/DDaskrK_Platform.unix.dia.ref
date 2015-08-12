@@ -41,18 +41,22 @@ for i=1:2  // 'max step size' = 10^-i, precision
 end
 --------------------------------------------\
  Main Modelica : TMPDIR/Platform_im.mo
+
  Flat Modelica : TMPDIR/Platform_imf.mo
  Simulation C code :TMPDIR/Platform_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/Platform_im.mo
+
  Flat Modelica : TMPDIR/Platform_imf.mo
  Simulation C code :TMPDIR/Platform_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/Platform_im.mo
+
  Flat Modelica : TMPDIR/Platform_imf.mo
  Simulation C code :TMPDIR/Platform_im.c
 --------------------------------------------\
  Main Modelica : TMPDIR/Platform_im.mo
+
  Flat Modelica : TMPDIR/Platform_imf.mo
  Simulation C code :TMPDIR/Platform_im.c
 funcprot(prot);

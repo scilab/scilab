@@ -26,14 +26,16 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_ticks_property(void* _pvCtx, int iObjUID)
+int get_auto_ticks_property(void* _pvCtx, int iObjUID)
 {
     char * auto_ticks[3]  = { NULL, NULL, NULL };
     int const axesAutoTicksPropertiesNames[3] = {__GO_X_AXIS_AUTO_TICKS__, __GO_Y_AXIS_AUTO_TICKS__, __GO_Z_AXIS_AUTO_TICKS__};
@@ -42,7 +44,7 @@ void* get_auto_ticks_property(void* _pvCtx, int iObjUID)
 
     int i = 0;
     int j = 0;
-    void* status = NULL;
+    int status = -1;
 
     for (i = 0 ; i < 3 ; i++)
     {
@@ -51,16 +53,16 @@ void* get_auto_ticks_property(void* _pvCtx, int iObjUID)
         if (piAutoTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_ticks");
-            return NULL;
+            return -1;
         }
 
         if (iAutoTicks)
         {
-            auto_ticks[i] = os_strdup("on");
+            auto_ticks[i] = strdup("on");
         }
         else
         {
-            auto_ticks[i] = os_strdup("off");
+            auto_ticks[i] = strdup("off");
         }
 
         if (auto_ticks[i] == NULL)
@@ -71,12 +73,12 @@ void* get_auto_ticks_property(void* _pvCtx, int iObjUID)
             }
 
             Scierror(999, _("%s: No more memory.\n"), "get_auto_ticks_property");
-            return NULL;
+            return -1;
         }
 
     }
 
-    status = sciReturnRowStringVector(auto_ticks, 3);
+    status = sciReturnRowStringVector(_pvCtx, auto_ticks, 3);
 
     for (i = 0 ; i < 3 ; i++)
     {

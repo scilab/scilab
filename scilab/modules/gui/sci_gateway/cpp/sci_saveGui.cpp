@@ -23,7 +23,7 @@ extern "C" {
 #include "expandPathVariable.h"
 }
 
-int sci_saveGui(char *fname, void* pvApiCtx)
+int sci_saveGui(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr1 = NULL;

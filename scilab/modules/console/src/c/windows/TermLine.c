@@ -15,14 +15,16 @@
 #include <wincon.h>
 #include <stdio.h>
 #include <string.h>
+#include "stack-def.h"
 #include "TermLine.h"
 #include "HistoryManager.h"
 #include "TermConsole.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
+#include "strdup_windows.h"
 #include "TermPosition.h"
 #include "../../../windows_tools/src/c/scilab_windows/console.h"
-#include "os_string.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static int CURRENT_MAX_LINE_SIZE = bsiz;
 static char *cur_line = NULL;	/* current contents of the line */
@@ -418,7 +420,7 @@ char *getCurrentLine(void)
     reallocLineBuffer();
 
     cur_line[max_pos + 1] = '\0';
-    line = os_strdup(cur_line);
+    line = strdup_windows(cur_line);
     if (line)
     {
         OemToChar(cur_line, line);
@@ -431,7 +433,7 @@ char *getLineBeforeCaret(void)
     char *line = NULL;
 
     reallocLineBuffer();
-    line = os_strdup(cur_line);
+    line = strdup_windows(cur_line);
     line[cur_pos] = '\0';
     return line;
 }
@@ -443,12 +445,12 @@ char *getLineAfterCaret(void)
     reallocLineBuffer();
     if (cur_pos != max_pos)
     {
-        line = os_strdup(&cur_line[cur_pos]);
+        line = strdup_windows(&cur_line[cur_pos]);
         line[(max_pos - cur_pos) + 1] = '\0';
     }
     else
     {
-        line = os_strdup("");
+        line = strdup_windows("");
     }
     return line;
 }
@@ -542,11 +544,3 @@ void pasteClipBoard(void)
     CloseClipboard ();
 }
 /*--------------------------------------------------------------------------*/
-void finalizeLineBuffer(void)
-{
-    if (cur_line)
-    {
-        FREE(cur_line);
-        cur_line = NULL;
-    }
-}

@@ -1,3 +1,4 @@
+
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Allan CORNET
@@ -17,8 +18,10 @@ extern "C" {
 #include <stdlib.h>
 #include "getScilabJavaVM.h"
 #include "RendererFontManager.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 using namespace org_scilab_modules_renderer_utils_textRendering;
@@ -50,7 +53,7 @@ char **getInstalledFontsName(int *sizeArray)
             returnedinstalledfontsname = (char**)MALLOC(sizeof(char*) * (*sizeArray));
             for ( i = 0; i < *sizeArray; i++)
             {
-                returnedinstalledfontsname[i] = os_strdup(installedfontsname[i]);
+                returnedinstalledfontsname[i] = strdup(installedfontsname[i]);
                 delete [] installedfontsname[i];
             }
             delete [] installedfontsname;
@@ -80,7 +83,7 @@ char **getAvailableFontsName(int *sizeArray)
             returnedavailablefontsname = (char**)MALLOC(sizeof(char*) * (*sizeArray));
             for ( i = 0; i < *sizeArray; i++)
             {
-                returnedavailablefontsname[i] = os_strdup(availablefontsname[i]);
+                returnedavailablefontsname[i] = strdup(availablefontsname[i]);
                 delete [] availablefontsname[i];
             }
             delete [] availablefontsname;

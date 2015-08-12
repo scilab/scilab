@@ -25,7 +25,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_ticks_st_property(void* _pvCtx, int iObjUID)
+int get_ticks_st_property(void* _pvCtx, int iObjUID)
 {
     int const propr[3] = {__GO_X_AXIS_ST_FACTORS__, __GO_Y_AXIS_ST_FACTORS__, __GO_Z_AXIS_ST_FACTORS__};
     double factors[] = {1., 0., 1., 0., 1., 0.};
@@ -38,12 +38,12 @@ void* get_ticks_st_property(void* _pvCtx, int iObjUID)
         if (dbls == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "ticks_st");
-            return NULL;
+            return -1;
         }
         factors[2 * i] = dbls[0];
         factors[2 * i + 1] = dbls[1];
     }
 
-    return sciReturnMatrix(factors, 2, 3);
+    return sciReturnMatrix(_pvCtx, factors, 2, 3);
 }
 /*------------------------------------------------------------------------*/

@@ -16,11 +16,14 @@
 #include <libxml/xmlreader.h>
 #include "getJvmOptions.h"
 #include "GetXmlFileEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "machine.h"
+#include "stricmp.h"
 #include "FileExist.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "strsubst.h"
 #include "getos.h"
 #include "getshortpathname.h"
@@ -106,7 +109,7 @@ JavaVMOption * getJvmOptions(char *SCI_PATH, char *filename_xml_conf, int *size_
                             }
                             else
                             {
-                                jvm_option_string = os_strdup(str);
+                                jvm_option_string = strdup(str);
                             }
                         }
                         attrib = attrib->next;

@@ -1,0 +1,12 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+intstr_
+factf_
+expsum_
+;
+

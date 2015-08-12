@@ -6854,7 +6854,8 @@ public final class ScilabLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 51 : {
+                case 51 :
+                {
                     handler.handleDefault(", ");
                 }
                 case 77:

@@ -25,21 +25,21 @@
 #include "CurrentObject.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-void* get_current_entity_property(void* _pvCtx, int iObjUID)
+int get_current_entity_property(void* _pvCtx, int iObjUID)
 {
     if (iObjUID != 0)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_entity");
-        return NULL;
+        return -1;
     }
     /* To be sure that there is at least one opened figure */
     getOrCreateDefaultSubwin();
 
-    return sciReturnHandle(getHandle(getCurrentObject()));
+    return sciReturnHandle(_pvCtx, getHandle(getCurrentObject()));
 }
 /*--------------------------------------------------------------------------*/

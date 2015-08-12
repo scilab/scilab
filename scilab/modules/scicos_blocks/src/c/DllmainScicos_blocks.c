@@ -21,11 +21,6 @@
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
-//for Visual Leak Detector in debug compilation mode
-#if defined(DEBUG_VLD) && defined(_DEBUG)
-#include <vld.h>
-#endif
-/*--------------------------------------------------------------------------*/
 int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
 {
     switch (reason)

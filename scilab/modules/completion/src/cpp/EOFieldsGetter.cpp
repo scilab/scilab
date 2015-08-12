@@ -20,7 +20,7 @@
 extern "C"
 {
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 }
 
 using namespace org_modules_external_objects;
@@ -30,10 +30,10 @@ namespace org_modules_completion
 
 const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * mlist, char ** fieldPath, const int fieldPathLen, int * fieldsSize) const
 {
-    int envId = ScilabObjects::getEnvironmentId(mlist, NULL);
-    int idObj = ScilabObjects::getExternalId(mlist, NULL);
+    int envId = ScilabObjects::getEnvironmentId(mlist, pvApiCtx);
+    int idObj = ScilabObjects::getExternalId(mlist, pvApiCtx);
     ScilabAbstractEnvironment & env = ScilabEnvironments::getEnvironment(envId);
-    ScilabObjects::initialization(env, NULL);
+    ScilabObjects::initialization(env, pvApiCtx);
     std::vector<std::string> fields;
     const char ** ret = 0;
 
@@ -41,7 +41,7 @@ const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * 
     {
         fields = env.getCompletion(idObj, fieldPath, fieldPathLen);
     }
-    catch (const std::exception & /*e*/)
+    catch (const std::exception & e)
     {
         return 0;
     }
@@ -51,7 +51,7 @@ const char ** EOFieldsGetter::getFieldsName(const std::string & typeName, int * 
 
     for (int i = 0; i < *fieldsSize; i++)
     {
-        ret[i] = os_strdup(fields.at(i).c_str());
+        ret[i] = strdup(fields.at(i).c_str());
     }
 
     return ret;

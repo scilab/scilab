@@ -23,17 +23,17 @@ extern "C"
 #include "xml_mlist.h"
 #include "libxml/tree.h"
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #ifdef _MSC_VER
-#include "os_string.h"
+#include "strdup_windows.h"
 #endif
 }
 
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_htmlWrite(char *fname, void* pvApiCtx)
+int sci_htmlWrite(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc = 0;
     xmlDoc *document = 0;

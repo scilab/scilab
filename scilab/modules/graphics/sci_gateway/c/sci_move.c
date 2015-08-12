@@ -18,7 +18,7 @@
 /*------------------------------------------------------------------------*/
 
 #include <stdio.h>
-#include <string.h>
+
 #include "api_scilab.h"
 #include "gw_graphics.h"
 #include "Interaction.h"
@@ -28,7 +28,7 @@
 #include "getPropertyAssignedValue.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_move(char * fname, void *pvApiCtx)
+int sci_move(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

@@ -5,9 +5,15 @@ EXPORTS
 ;
 ;core
 ;
+recu_
 com_
+stack_
+vstk_
 iop_
+errgst_
+cha1_ 
 adre_
+intersci_
 mexerrmsgtxt_
 mxgetm_
 mxisnumeric_
@@ -15,6 +21,7 @@ mxiscomplex_
 mxgetpr_
 mxgetn_
 mxcopyptrtoreal8_
+createvar_
 mxcreatefull_
 mxcopyreal8toptr_
 mexprintf_

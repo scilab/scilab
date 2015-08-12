@@ -12,19 +12,10 @@
 
 /*------------------------------------------------------------------------*/
 #include <list>
-#include <vector>
-#include <string>
-extern "C"
-{
-#include "dynlib_history_manager.h"
-#include "BOOL.h"
-}
-
-//disable warnings about exports STL items
-#pragma warning (disable : 4251)
-
+#include "CommandLine.hxx"
+using namespace std;
 /*------------------------------------------------------------------------*/
-class HISTORY_MANAGER_IMPEXP HistorySearch
+class HistorySearch
 {
 public:
     /**
@@ -39,17 +30,17 @@ public:
 
     /**
     * set History to search
-    * @param a list of std::string
+    * @param a list of CommandLine
     * @return TRUE or FALSE
     */
-    BOOL setHistory(std::list<std::string> _lstCommands);
+    BOOL setHistory(list<CommandLine> commands);
 
     /**
     * set new token to search in history
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(std::string _stToken);
+    BOOL setToken(std::string token);
 
     /**
     * get token searched in history
@@ -83,11 +74,19 @@ public:
 protected:
 
 private:
-    std::list<std::string> m_Commands;
-    std::string m_stToken;
-    std::vector<std::string> m_vstLines;
-    int m_iPosition;
+    list<CommandLine> Commands;
+    std::string my_token;
+    char **my_lines;
+    int *my_linenumbers;
+    int my_sizearray;
+    int current_position;
+    BOOL moveOnNext;
 
     BOOL search(void);
+
+    BOOL freeMyToken(void);
+    BOOL freeMylines(void);
+    BOOL freeMylinenumbers(void);
+
 };
 /*------------------------------------------------------------------------*/

@@ -1,0 +1,12 @@
+ext13c	a
+a 	matrix	m n
+o	matrix  n m
+
+ext13c   a m n 
+m	integer 
+n	integer 
+a	double 
+
+out	sequence	o
+o	a
+***********************

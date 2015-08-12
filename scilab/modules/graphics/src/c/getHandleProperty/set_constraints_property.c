@@ -16,13 +16,13 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sci_types.h"
-#include "os_string.h"
+#include "stricmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"

@@ -2,37 +2,43 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{6a16af6d-e387-4bcc-9a69-10bdcea3d112}</UniqueIdentifier>
+      <UniqueIdentifier>{0a53d2ee-3c0a-431e-8bbc-50b812749ed2}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{ba6df28b-5f3f-4023-822a-765bc5cb2a8d}</UniqueIdentifier>
+      <UniqueIdentifier>{bea0c999-6c43-45fa-873c-c822263fb099}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{98dbe76a-957f-4156-a65f-835aaf879bc6}</UniqueIdentifier>
+      <UniqueIdentifier>{5dfcddc8-0e12-4f9c-ad6a-5291605bd86b}</UniqueIdentifier>
     </Filter>
     <Filter Include="Swig Files">
-      <UniqueIdentifier>{eefdf268-fc93-4af2-9976-eaab76bc90f7}</UniqueIdentifier>
+      <UniqueIdentifier>{bfad1cc7-79c7-4e63-8050-67eaccf094fe}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{a345158f-a934-47fd-915e-eedd5846f70e}</UniqueIdentifier>
+      <UniqueIdentifier>{800a2d87-a89d-44e6-bc3c-5d8aad6d6ce5}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{db78c0a1-43b8-431e-8dab-6e63a3b047d2}</UniqueIdentifier>
+      <UniqueIdentifier>{a63c62cf-50de-46df-a0dc-2d7100025b21}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{54ff4103-4b71-438b-b634-6a04209db556}</UniqueIdentifier>
+      <UniqueIdentifier>{32afd315-25a6-43f5-902a-3c811427d62a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="DllmainAction_Binding.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_action_binding.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="InterpreterManagement.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\InterpreterManagement_wrap.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\cpp\sci_notify.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\jni\Signal.cpp">
@@ -49,6 +55,9 @@
     <ClInclude Include="..\jni\Signal.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\includes\gw_action_binding.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\jni\InterpreterManagement.i">
@@ -62,6 +71,9 @@
     <None Include="..\..\Makefile.am" />
     <None Include="..\..\locales\action_binding.pot">
       <Filter>localization</Filter>
+    </None>
+    <None Include="core_f_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

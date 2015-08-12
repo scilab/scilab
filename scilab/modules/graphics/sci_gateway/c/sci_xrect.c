@@ -18,7 +18,6 @@
 /* desc : interface for xrect routine                                     */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
@@ -34,7 +33,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xrect(char *fname, void *pvApiCtx)
+int sci_xrect(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

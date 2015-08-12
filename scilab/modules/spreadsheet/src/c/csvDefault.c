@@ -11,8 +11,10 @@
  */
 #include <string.h>
 #include "csvDefault.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "checkCsvWriteFormat.h"
 // =============================================================================
 #define DEFAULT_CSV_SEPARATOR ","
@@ -115,7 +117,7 @@ int setCsvDefaultSeparator(const char *separator)
     {
         FREE(defaultCsvSeparator);
     }
-    defaultCsvSeparator = os_strdup(separator);
+    defaultCsvSeparator = strdup(separator);
     if (defaultCsvSeparator == NULL)
     {
         return 1;
@@ -143,7 +145,7 @@ int setCsvDefaultDecimal(const char *decimal)
         {
             FREE(defaultCsvDecimal);
         }
-        defaultCsvDecimal = os_strdup(decimal);
+        defaultCsvDecimal = strdup(decimal);
         if (defaultCsvDecimal)
         {
             return 0;
@@ -170,7 +172,7 @@ int setCsvDefaultConversion(const char *conversion)
         {
             FREE(defaultCsvConversion);
         }
-        defaultCsvConversion = os_strdup(conversion);
+        defaultCsvConversion = strdup(conversion);
         if (defaultCsvConversion)
         {
             return 0;
@@ -196,7 +198,7 @@ int setCsvDefaultPrecision(const char *precision)
         {
             FREE(defaultCsvPrecision);
         }
-        defaultCsvPrecision = os_strdup(precision);
+        defaultCsvPrecision = strdup(precision);
         if (defaultCsvPrecision)
         {
             return 0;
@@ -222,7 +224,7 @@ int setCsvDefaultCsvIgnoreBlankLine(const char *blankMode)
         {
             FREE(defaultCsvIgnoreBlankLine);
         }
-        defaultCsvIgnoreBlankLine = os_strdup(blankMode);
+        defaultCsvIgnoreBlankLine = strdup(blankMode);
         if (defaultCsvIgnoreBlankLine)
         {
             return 0;
@@ -235,42 +237,42 @@ static int initializeCsvDefaultValues(void)
 {
     if (defaultCsvSeparator == NULL)
     {
-        defaultCsvSeparator = os_strdup(DEFAULT_CSV_SEPARATOR);
+        defaultCsvSeparator = strdup(DEFAULT_CSV_SEPARATOR);
     }
 
     if (defaultCsvDecimal == NULL)
     {
-        defaultCsvDecimal = os_strdup(DEFAULT_CSV_DECIMAL);
+        defaultCsvDecimal = strdup(DEFAULT_CSV_DECIMAL);
     }
 
     if (defaultCsvConversion == NULL)
     {
-        defaultCsvConversion = os_strdup(DEFAULT_CSV_CONVERSION);
+        defaultCsvConversion = strdup(DEFAULT_CSV_CONVERSION);
     }
 
     if (defaultCsvPrecision == NULL)
     {
-        defaultCsvPrecision = os_strdup(DEFAULT_CSV_PRECISION);
+        defaultCsvPrecision = strdup(DEFAULT_CSV_PRECISION);
     }
 
     if (defaultCsvCommentsRegExp == NULL)
     {
-        defaultCsvCommentsRegExp = os_strdup(DEFAULT_CSV_COMMENTS_REGEXP);
+        defaultCsvCommentsRegExp = strdup(DEFAULT_CSV_COMMENTS_REGEXP);
     }
 
     if (defaultCsvEOL == NULL)
     {
-        defaultCsvEOL = os_strdup(DEFAULT_CSV_EOL);
+        defaultCsvEOL = strdup(DEFAULT_CSV_EOL);
     }
 
     if (defaultCsvEncoding == NULL)
     {
-        defaultCsvEncoding = os_strdup(DEFAULT_CSV_ENCODING);
+        defaultCsvEncoding = strdup(DEFAULT_CSV_ENCODING);
     }
 
     if (defaultCsvIgnoreBlankLine == NULL)
     {
-        defaultCsvIgnoreBlankLine =  os_strdup(DEFAULT_IGNORE_BLANK_LINE);
+        defaultCsvIgnoreBlankLine =  strdup(DEFAULT_IGNORE_BLANK_LINE);
     }
 
     if ((defaultCsvSeparator == NULL) ||
@@ -355,7 +357,7 @@ int setCsvDefaultCommentsRegExp(const char *commentsRegExp)
         defaultCsvCommentsRegExp = NULL;
     }
 
-    defaultCsvCommentsRegExp = os_strdup(commentsRegExp);
+    defaultCsvCommentsRegExp = strdup(commentsRegExp);
 
     if (defaultCsvDecimal == NULL)
     {
@@ -387,7 +389,7 @@ int setCsvDefaultEOL(const char *eol)
         defaultCsvEOL = NULL;
     }
 
-    defaultCsvEOL = os_strdup(eol);
+    defaultCsvEOL = strdup(eol);
 
     if (defaultCsvEOL == NULL)
     {
@@ -425,7 +427,7 @@ int setCsvDefaultEncoding(const char *encoding)
         defaultCsvEncoding = NULL;
     }
 
-    defaultCsvEncoding = os_strdup(encoding);
+    defaultCsvEncoding = strdup(encoding);
 
     if (defaultCsvEncoding == NULL)
     {

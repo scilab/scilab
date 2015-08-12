@@ -25,18 +25,17 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BasicAlgos.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_y_ticks_property(void* _pvCtx, int iObjUID)
+int get_y_ticks_property(void* _pvCtx, int iObjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
-    void* tList = NULL;
 
     /* retrieve number of ticks */
     getGraphicObjectProperty(iObjUID, __GO_Y_AXIS_NUMBER_TICKS__, jni_int, (void **) &piNbTicks);
@@ -44,13 +43,13 @@ void* get_y_ticks_property(void* _pvCtx, int iObjUID)
     if (piNbTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_ticks");
-        return NULL;
+        return -1;
     }
 
     if (iNbTicks == 0)
     {
         /* return empty matrices */
-        tList = buildTListForTicks(NULL, NULL, 0);
+        buildTListForTicks(NULL, NULL, 0);
     }
     else
     {
@@ -64,10 +63,10 @@ void* get_y_ticks_property(void* _pvCtx, int iObjUID)
         if (positions == NULL || labels == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_ticks");
-            return NULL;
+            return -1;
         }
 
-        tList = buildTListForTicks(positions, labels, iNbTicks);
+        buildTListForTicks(positions, labels, iNbTicks);
 
         /* free arrays */
 #if 0
@@ -76,7 +75,7 @@ void* get_y_ticks_property(void* _pvCtx, int iObjUID)
 #endif
     }
 
-    return tList;
+    return 0;
 
 }
 /*------------------------------------------------------------------------*/

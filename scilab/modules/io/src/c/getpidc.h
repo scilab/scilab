@@ -13,12 +13,12 @@
 #ifndef __GETPIDC_H__
 #define __GETPIDC_H__
 
-#include "dynlib_io.h"
+#include "machine.h"
 /**
 * Retrieve the pid (process id)
 * @param[out] id1 the id of the process
 */
-IO_IMPEXP int getpidc(int *id1);
+int C2F(getpidc)(int *id1);
 
 
 #endif /* __GETPIDC_H__ */

@@ -15,13 +15,17 @@
 #define __GW_SPREADSHEET_H__
 /*--------------------------------------------------------------------------*/
 #include "dynlib_spreadsheet.h"
-#include "c_gateway_prototype.h"
 /*--------------------------------------------------------------------------*/
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvDefault);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvRead);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvStringToDouble);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvTextScan);
-SPREADSHEET_IMPEXP C_GATEWAY_PROTOTYPE(sci_csvWrite);
+SPREADSHEET_IMPEXP int gw_spreadsheet(void);
+/*--------------------------------------------------------------------------*/
+SPREADSHEET_IMPEXP int sci_xls_read(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_xls_open(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_csvDefault(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_csvRead(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_csvStringToDouble(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_csvTextScan(char *fname, unsigned long fname_len);
+SPREADSHEET_IMPEXP int sci_csvWrite(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_SPREADSHEET_H__ */
 /*--------------------------------------------------------------------------*/

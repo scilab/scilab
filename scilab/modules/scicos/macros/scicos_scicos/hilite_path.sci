@@ -44,14 +44,14 @@ function hilite_path(path,mess,with_intermediates)
             o = diagram.objs(index);
 
             // masked superblock case
-            if isempty(o.model.uid) then
+            if isempty(o.doc) then
                 // we abort because blocks do not have uuid inside
                 // masked superblocks
                 break;
             end
 
             // normal case
-            uid($+1) = diagram.objs(index).model.uid + "";
+            uid($+1) = diagram.objs(index).doc(1) + "";
 
             if diagram.objs(index).model.sim == "super" then
                 diagram = diagram.objs(index).model.rpar;

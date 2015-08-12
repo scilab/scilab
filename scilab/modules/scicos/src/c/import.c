@@ -46,9 +46,9 @@ ScicosImport scicos_imp =
     (int *) NULL,      /* mod        */
     (int *) NULL,      /* nmod       */
     (int *) NULL,      /* modptr **  */
-    (char **) NULL,      /* iz         */
+    (int *) NULL,      /* iz         */
     (int *) NULL,      /* izptr      */
-    (char **) NULL,      /* uid        */
+    (int *) NULL,      /* uid        */
     (int *) NULL,      /* uidptr     */
     (int *) NULL,      /* inpptr **  */
     (int *) NULL,      /* inplnk **  */
@@ -121,7 +121,7 @@ void makescicosimport(double *x, int *nx,
                       int *noz, void **oz, int *ozsz, int *oztyp, int *ozptr,
                       double *g, int *ng,
                       int *mod, int *nmod, int *modptr,
-                      char **iz, int *izptr, char **uid, int *uidptr, int *inpptr, int *inplnk,
+                      int *iz, int *izptr, int *uid, int *uidptr, int *inpptr, int *inplnk,
                       int *outptr, int *outlnk, void **outtbptr, int *outtbsz, int *outtbtyp,
                       outtb_el *outtb_elem, int *nelem,
                       int *nlnk, double *rpar, int *rpptr, int *ipar, int *ipptr,
@@ -245,9 +245,9 @@ void C2F(clearscicosimport)()
     scicos_imp.mod = (int *) NULL;
     scicos_imp.nmod = (int *) NULL;
     scicos_imp.modptr = (int *) NULL;
-    scicos_imp.iz = (char **) NULL;
+    scicos_imp.iz = (int *) NULL;
     scicos_imp.izptr = (int *) NULL;
-    scicos_imp.uid = (char **) NULL;
+    scicos_imp.uid = (int *) NULL;
     scicos_imp.uidptr = (int *) NULL;
 
     scicos_imp.inpptr = (int *) NULL;
@@ -479,7 +479,7 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
         /* iz - label integer code of blocks array */
         *nv = (int)(scicos_imp.izptr[nblk] - scicos_imp.izptr[0]);
         *mv = 1;
-        *v  = (char **) (scicos_imp.iz);
+        *v  = (int *) (scicos_imp.iz);
     }
     else if (strcmp(what, "izptr") == 0)
     {
@@ -493,7 +493,7 @@ int getscicosvarsfromimport(char *what, void **v, int *nv, int *mv)
         /* uid */
         *nv = (int)(scicos_imp.uidptr[nblk] - scicos_imp.uidptr[0]);
         *mv = 1;
-        *v  = (char **) (scicos_imp.uid);
+        *v  = (int *) (scicos_imp.uid);
     }
     else if (strcmp(what, "uidptr") == 0)
     {
@@ -889,7 +889,7 @@ void C2F(getlabel)(int *kfun, char *label, int *n)
     }
     if (*n > 0 )
     {
-        strcpy(label, scicos_imp.iz[k]);
+        F2C(cvstr)(n, &(scicos_imp.iz[scicos_imp.izptr[k - 1] - 1]), label, &job, *n);
     }
 }
 
@@ -898,42 +898,9 @@ void C2F(getblockbylabel)(int *kfun, char **label, int *n)
 {
     int k, i, i0, nblk, n1;
     int job = 0;
+    int lab[40];
 
     nblk = scicos_imp.nblk[0];
-
-    *kfun = 0;
-    for (k = 0; k < nblk; k++)
-    {
-        n1 = (int)(scicos_imp.izptr[k] - scicos_imp.izptr[k - 1]);
-        if (n1 == *n)
-        {
-            i0 = scicos_imp.izptr[k - 1] - 1;
-            i = 0;
-            while ((label[i] == scicos_imp.iz[i0 + i]) & (i < n1))
-            {
-                i++;
-            }
-            if (i == n1)
-            {
-                *kfun = k + 1;
-                return;
-            }
-        }
-    }
-}
-/*--------------------------------------------------------------------------*/
-/*never used, never interfaced */
-int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
-{
-    int k, i, i0, nblk, n1;
-    int job = 1;
-    char* lab[100];
-    if (scicos_imp.x == (double *)NULL)
-    {
-        return (2); /* undefined import table scicos is not running */
-    }
-    nblk = scicos_imp.nblk[0];
-
     F2C(cvstr)(n, lab, *label, &job, *n);
 
     *kfun = 0;
@@ -951,6 +918,37 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
             if (i == n1)
             {
                 *kfun = k + 1;
+                return;
+            }
+        }
+    }
+}
+/*--------------------------------------------------------------------------*/
+/*never used, never interfaced */
+int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
+{
+    int k, i, i0, nblk, n1;
+    if (scicos_imp.x == (double *)NULL)
+    {
+        return (2); /* undefined import table scicos is not running */
+    }
+    nblk = scicos_imp.nblk[0];
+
+    *kfun = 0;
+    for (k = 0; k < nblk; k++)
+    {
+        n1 = (int)(scicos_imp.izptr[k] - scicos_imp.izptr[k - 1]);
+        if (n1 == *n)
+        {
+            i0 = scicos_imp.izptr[k - 1] - 1;
+            i = 0;
+            while ((label[i] == scicos_imp.iz[i0 + i]) & (i < n1))
+            {
+                i++;
+            }
+            if (i == n1)
+            {
+                *kfun = k + 1;
                 return 0;
             }
         }
@@ -958,28 +956,27 @@ int C2F(getsciblockbylabel)(int*kfun, int label[], int *n)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int getscilabel(int *kfun, char *label, int *n)
+int C2F(getscilabel)(int *kfun, int label[], int *n)
 {
     int k, i;
     int *u, *y;
 
     if (scicos_imp.x == (double *)NULL)
     {
-        return 2; /* undefined import table scicos is not running */
+        return (2); /* undefined import table scicos is not running */
     }
     k = *kfun;
-
     *n = (int)(scicos_imp.izptr[k] - scicos_imp.izptr[k - 1]);
     if (*n > 0 )
     {
-        u = (char **) & (scicos_imp.iz[scicos_imp.izptr[k - 1] - 1]);
-        y = &label;
+        u = (int *) & (scicos_imp.iz[scicos_imp.izptr[k - 1] - 1]);
+        y = label;
         for (i = 0; i < *n; i++)
         {
             *(y++) = *(u++);
         }
     }
-    return 0;
+    return (0);
 }
 /*--------------------------------------------------------------------------*/
 int C2F(getcurblock)()

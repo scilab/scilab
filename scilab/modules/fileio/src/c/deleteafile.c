@@ -20,9 +20,9 @@
 #include <Windows.h>
 #endif
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-BOOL deleteafile(const char *filename)
+BOOL deleteafile(char *filename)
 {
 #ifndef _MSC_VER
     {
@@ -64,7 +64,7 @@ BOOL deleteafile(const char *filename)
 #endif
 }
 /*--------------------------------------------------------------------------*/
-BOOL deleteafileW(const wchar_t *filenameW)
+BOOL deleteafileW(wchar_t *filenameW)
 {
     BOOL bOK = FALSE;
 #ifndef _MSC_VER

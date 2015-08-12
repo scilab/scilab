@@ -12,7 +12,14 @@
 /*--------------------------------------------------------------------------*/
 #ifndef __PROCESS_DNEUPD_H__
 #define __PROCESS_DNEUPD_H__
-#include "elem_common.h"
+#include "doublecomplex.h"
+#include <string.h>
+#include <math.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "sciprint.h"
 
 /**
  * @TODO add comment

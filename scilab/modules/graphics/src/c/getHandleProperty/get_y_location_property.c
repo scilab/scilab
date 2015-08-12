@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_y_location_property(void* _pvCtx, int iObjUID)
+int get_y_location_property(void* _pvCtx, int iObjUID)
 {
     int iLocation = 0;
     int* piLocation = &iLocation;
@@ -42,29 +42,29 @@ void* get_y_location_property(void* _pvCtx, int iObjUID)
     if (piLocation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "y_location");
-        return NULL;
+        return -1;
     }
 
     if (iLocation == 4)
     {
-        return sciReturnString("left");
+        return sciReturnString(_pvCtx, "left");
     }
     else if (iLocation == 5)
     {
-        return sciReturnString("right");
+        return sciReturnString(_pvCtx, "right");
     }
     else if (iLocation == 2)
     {
-        return sciReturnString("middle");
+        return sciReturnString(_pvCtx, "middle");
     }
     else if (iLocation == 3)
     {
-        return sciReturnString("origin");
+        return sciReturnString(_pvCtx, "origin");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "y_location");
-        return NULL;
+        return -1;
     }
 
 }

@@ -22,8 +22,10 @@
 
 extern "C"
 {
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 using namespace org_modules_xml;

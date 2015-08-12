@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-void* get_color_map_property(void* _pvCtx, int iObjUID)
+int get_color_map_property(void* _pvCtx, int iObjUID)
 {
     double *pdblColorMap = NULL;
 
@@ -42,9 +42,9 @@ void* get_color_map_property(void* _pvCtx, int iObjUID)
     if (pdblColorMap == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_map");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnMatrix(pdblColorMap, iCmapSize, 3);
+    return sciReturnMatrix(_pvCtx, pdblColorMap, iCmapSize, 3);
 }
 /*--------------------------------------------------------------------------*/

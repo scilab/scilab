@@ -25,7 +25,7 @@
 #include "SetProperty.h"
 #include "GetProperty.h"
 #include "Scierror.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "localization.h"
 #include "JavaInteraction.h"
 #include "axesScale.h"

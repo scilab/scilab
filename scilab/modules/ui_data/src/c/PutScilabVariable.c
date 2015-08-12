@@ -15,20 +15,22 @@
 #include "ui_data.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 
-void putScilabVariable(const char* name, const char* const* lines, int rows, int cols)
+void putScilabVariable(char * name, char ** lines, int rows, int cols)
 {
     SciErr sciErr;
 
     if (rows != 0 && cols != 0)
     {
-        sciErr = createNamedMatrixOfString(NULL, name, rows, cols, lines);
+        sciErr = createNamedMatrixOfString(pvApiCtx, name, rows, cols, lines);
     }
     else
     {
-        sciErr = createNamedMatrixOfDouble(NULL, name, 0, 0, NULL);
+        sciErr = createNamedMatrixOfDouble(pvApiCtx, name, 0, 0, NULL);
     }
 
     if (sciErr.iErr)
@@ -46,7 +48,7 @@ char * getUnnamedVariable(void)
     {
         sprintf(buffer, "%s%i", "unnamed", i++);
     }
-    while (isNamedVarExist(NULL, buffer));
+    while (isNamedVarExist(pvApiCtx, buffer));
 
-    return os_strdup(buffer);
+    return strdup(buffer);
 }

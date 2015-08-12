@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="gstacksize">
+    <refnamediv>
+        <refname>gstacksize</refname>
+        <refpurpose>set/get scilab global stack size</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>gstacksize(n)
+            gstacksize('max')
+            gstacksize('min')
+            sz=gstacksize()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer, the required global stack size given in number of double precision words</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>2-vector [total used]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Scilab stores global variables in a stack.
+        </para>
+        <para>
+            <code>gstacksize(n)</code> allows the user to increase or decrease the size of
+            this stack. The maximum allowed size depends on the amount of
+            free memory and swap space available at the time.
+        </para>
+        <para>
+            <note>
+                Note that Scilab can increase automatically the global stacksize when needed.
+            </note>
+        </para>
+        <para>
+            <code>sz=gstacksize()</code> returns a 2-vector which contains  the current
+            total and used global stack size.
+        </para>
+        <para>
+            <code>gstacksize('max')</code> allows the user to increase the size of
+            this global stack to the maximum.
+        </para>
+        <para>
+            <code>gstacksize('min')</code> allows the user to decrease the size of
+            this global stack to the minimum.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+currentStackSize = gstacksize();
+disp("Maximum stacksize: " + string(currentStackSize(1)))
+disp("Current usage: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="stacksize">stacksize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

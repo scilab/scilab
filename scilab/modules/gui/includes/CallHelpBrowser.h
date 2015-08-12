@@ -14,7 +14,9 @@
  */
 
 #include "BOOL.h"
-#include "dynlib_gui.h"
+#include "localization.h"
+#include "Scierror.h"
+
 /**
  * Launch a Scilab Help Browser
  *
@@ -22,7 +24,7 @@
  * @param helpsSize number of entries in helps
  * @param language Scilab current locale
  */
-GUI_IMPEXP int launchHelpBrowser(char **helps, int helpsSize, char *language);
+int launchHelpBrowser(char **helps, int helpsSize, char *language);
 
 /**
  * Search a keyword in Scilab Help Browser
@@ -33,7 +35,7 @@ GUI_IMPEXP int launchHelpBrowser(char **helps, int helpsSize, char *language);
  * @param language Scilab current locale
  * @param fullText true to execute a full-text search
  */
-GUI_IMPEXP int searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
+int searchKeyword(char **helps, int helpsSize, char *keyword, char *language, BOOL fullText);
 
 #endif /* !__CALLHELPBROWSER_H__ */
 

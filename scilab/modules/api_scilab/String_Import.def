@@ -1,0 +1,6 @@
+LIBRARY    string.dll
+
+
+EXPORTS
+code2str
+str2code

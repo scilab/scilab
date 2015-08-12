@@ -24,9 +24,6 @@
     <ClCompile Include="nojvm.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="nojvm_gw.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="nojvm.rc">
@@ -37,10 +34,5 @@
     <None Include="nolibjvm_export.def">
       <Filter>Libraries Dependencies\Exports</Filter>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\includes\jvm_gw.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
   </ItemGroup>
 </Project>

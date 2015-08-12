@@ -29,10 +29,10 @@ using namespace org_modules_hdf5;
   Scilab prototype:
   - h5get(obj, name)
   - h5get(obj, name, isAttr)
-*/
+/*
 
 /*--------------------------------------------------------------------------*/
-int sci_h5get(char * fname, int* pvApiCtx)
+int sci_h5get(char * fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

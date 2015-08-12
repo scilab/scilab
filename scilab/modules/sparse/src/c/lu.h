@@ -21,7 +21,7 @@
 #include "cerro.h"
 #include "machine.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "dynlib_sparse.h"
 
 SPARSE_IMPEXP int addluptr (char *ptr); /* */

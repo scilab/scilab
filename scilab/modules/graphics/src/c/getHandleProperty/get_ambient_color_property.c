@@ -22,7 +22,7 @@
 /**
  * Gets the ambient color of the light/material.
  */
-void* get_ambient_color_property(void* _pvCtx, int iObjUID)
+int get_ambient_color_property(void* _pvCtx, int iObjUID)
 {
     double* color = NULL;
 
@@ -31,8 +31,9 @@ void* get_ambient_color_property(void* _pvCtx, int iObjUID)
     if (color == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "ambient_color");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnMatrix(color, 1, 3);
+    return sciReturnMatrix(_pvCtx, color, 1, 3);
+
 }

@@ -19,13 +19,13 @@ function [tree]=sci_hankel(tree)
     if rhs==1 then
         if typeof(tree.rhs(1))<>"variable" then
             c=gettempvar();
-            m2sci_insert(Equal(list(c),tree.rhs(1)))
+            insert(Equal(list(c),tree.rhs(1)))
         else
             c=tree.rhs(1);
         end
 
         n=gettempvar()
-        m2sci_insert(Equal(list(n),Funcall("size",1,Rhs_tlist(c,"*"),list())));
+        insert(Equal(list(n),Funcall("size",1,Rhs_tlist(c,"*"),list())));
 
         if is_a_scalar(tree.rhs(1)) then
             v=c
@@ -54,22 +54,22 @@ function [tree]=sci_hankel(tree)
     else
         if typeof(tree.rhs(1))<>"variable" then
             c=gettempvar();
-            m2sci_insert(Equal(list(c),tree.rhs(1)))
+            insert(Equal(list(c),tree.rhs(1)))
         else
             c=tree.rhs(1);
         end
 
         if typeof(tree.rhs(2))<>"variable" then
             r=gettempvar();
-            m2sci_insert(Equal(list(r),tree.rhs(2)))
+            insert(Equal(list(r),tree.rhs(2)))
         else
             r=tree.rhs(2);
         end
 
         m=gettempvar();
         n=gettempvar();
-        m2sci_insert(Equal(list(m),Funcall("size",1,Rhs_tlist(c,"*"),list())));
-        m2sci_insert(Equal(list(n),Funcall("size",1,Rhs_tlist(r,"*"),list())));
+        insert(Equal(list(m),Funcall("size",1,Rhs_tlist(c,"*"),list())));
+        insert(Equal(list(n),Funcall("size",1,Rhs_tlist(r,"*"),list())));
 
 
         // v=[matrix(c,1,-1),matrix(r(2:$),1,-1)]

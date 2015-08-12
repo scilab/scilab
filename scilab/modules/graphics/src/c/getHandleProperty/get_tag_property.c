@@ -26,10 +26,10 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tag_property(void* _pvCtx, int iObjUID)
+int get_tag_property(void* _pvCtx, int iObjUID)
 {
     char* tag = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID,  __GO_TAG__, jni_string, (void**) &tag);
 
@@ -40,7 +40,7 @@ void* get_tag_property(void* _pvCtx, int iObjUID)
     }
     else
     {
-        status = sciReturnString(tag);
+        status = sciReturnString(_pvCtx, tag);
         free(tag);
         return status;
     }

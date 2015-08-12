@@ -19,7 +19,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_menubar_property(void* _pvCtx, int iObjUID)
+int get_menubar_property(void* _pvCtx, int iObjUID)
 {
     int iMenu = 0;
     int* piMenu = &iMenu;
@@ -28,20 +28,20 @@ void* get_menubar_property(void* _pvCtx, int iObjUID)
     if (piMenu == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "menubar");
-        return NULL;
+        return -1;
     }
 
     switch (iMenu)
     {
         default :
         case NONE :
-            return sciReturnString("none");
+            return sciReturnString(_pvCtx, "none");
         case FIGURE :
-            return sciReturnString("figure");
+            return sciReturnString(_pvCtx, "figure");
     }
 }
 /*------------------------------------------------------------------------*/
-void* get_menubar_visible_property(void* _pvCtx, int iObjUID)
+int get_menubar_visible_property(void* _pvCtx, int iObjUID)
 {
     int iVisible = 0;
     int* piVisible = &iVisible;
@@ -50,16 +50,16 @@ void* get_menubar_visible_property(void* _pvCtx, int iObjUID)
     if (piVisible == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "menubar_visible");
-        return NULL;
+        return FALSE;
     }
 
     if (iVisible == 0)
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
     else
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
 }
 /*------------------------------------------------------------------------*/

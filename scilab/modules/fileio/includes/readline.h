@@ -47,7 +47,7 @@ FILEIO_IMPEXP int LineRead(int fd, char buf[], int n, int *cnt, int *nr);
 
 /**
 * read a line from a text file
-* used by exec to read a .sce file
+* used by exec to read a .sce file (see getlin.f)
 * @param[in] fd : a int file descriptor to open
 * @param[in/out] buf : string buffer returned
 * @param[in] *n : bsiz (4096)

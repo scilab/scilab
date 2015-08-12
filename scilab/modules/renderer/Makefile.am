@@ -47,7 +47,6 @@ libscirenderer_la_CPPFLAGS = $(JAVA_JNI_INCLUDE) \
 				-I$(top_srcdir)/modules/elementary_functions/includes/ \
 				-I$(top_srcdir)/modules/api_scilab/includes/ \
 				-I$(top_srcdir)/modules/gui/includes/ \
-				-I$(top_srcdir)/modules/string/includes/ \
 				$(AM_CPPFLAGS)
 
 # All the sources needed by libscirenderer.la

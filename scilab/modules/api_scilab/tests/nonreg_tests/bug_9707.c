@@ -8,10 +8,10 @@
 #include <stdlib.h>
 #include <api_scilab.h>
 #include <Scierror.h>
-#include <sci_malloc.h>
+#include <MALLOC.h>
 #include <localization.h>
 // =============================================================================
-int sci_bug_9707_1(char *fname, void* pvApiCtx)
+int sci_bug_9707_1(char *fname)
 {
     SciErr sciErr;
     const char varname[] = "1";
@@ -26,7 +26,7 @@ int sci_bug_9707_1(char *fname, void* pvApiCtx)
     return 0;
 }
 // =============================================================================
-int sci_bug_9707_2(char *fname, void* pvApiCtx)
+int sci_bug_9707_2(char *fname)
 {
     SciErr sciErr;
     const char varname[] = "";
@@ -40,7 +40,7 @@ int sci_bug_9707_2(char *fname, void* pvApiCtx)
     return 0;
 }
 // =============================================================================
-int sci_bug_9707_3(char *fname, void* pvApiCtx)
+int sci_bug_9707_3(char *fname)
 {
     SciErr sciErr;
     const char varname[] = " ";
@@ -54,7 +54,7 @@ int sci_bug_9707_3(char *fname, void* pvApiCtx)
     return 0;
 }
 // =============================================================================
-int sci_bug_9707_4(char *fname, void* pvApiCtx)
+int sci_bug_9707_4(char *fname)
 {
     SciErr sciErr;
     const char varname[] = "Scilab Variable";
@@ -68,7 +68,7 @@ int sci_bug_9707_4(char *fname, void* pvApiCtx)
     return 0;
 }
 // =============================================================================
-int sci_bug_9707_OK(char *fname, void* pvApiCtx)
+int sci_bug_9707_OK(char *fname)
 {
     SciErr sciErr;
     const char varname[] = "VAR_9707";

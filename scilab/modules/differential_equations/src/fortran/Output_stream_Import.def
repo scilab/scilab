@@ -6,6 +6,8 @@ EXPORTS
 ;output_stream
 ;
 basout_
+error_
 msgs_
 msgstxt_
 erro_
+errmds_

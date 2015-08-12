@@ -37,6 +37,6 @@ public class ClearConsoleAction extends AbstractConsoleAction {
      * @see java.awt.event.ActionListener#actionPerformed(java.awt.event.ActionEvent)
      */
     public void actionPerformed(ActionEvent e) {
-        InterpreterManagement.requestScilabExec("clc();");
+        InterpreterManagement.putCommandInScilabQueue("clc();");
     }
 }

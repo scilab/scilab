@@ -13,12 +13,11 @@
 
 #ifndef _MSC_VER
 #include <errno.h>
-#include <string.h>
 #else
 #include <windows.h>
 #endif
 #include "gw_fileio.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "api_scilab.h"
 #include "Scierror.h"
@@ -30,10 +29,10 @@
 #include "charEncoding.h"
 #include "expandPathVariable.h"
 /*--------------------------------------------------------------------------*/
-static wchar_t *getFilenameWithExtension(wchar_t* wcFullFilename);
-static int returnCopyFileResultOnStack(int ierr, char *fname , void* pvApiCtx);
+static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename);
+static int returnCopyFileResultOnStack(int ierr, char *fname);
 /*--------------------------------------------------------------------------*/
-int sci_copyfile(char *fname, void* pvApiCtx)
+int sci_copyfile(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -186,7 +185,7 @@ int sci_copyfile(char *fname, void* pvApiCtx)
                 FREE(pStVarOneExpanded);
                 FREE(pStVarTwoExpanded);
                 Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
-                return 1;
+                return 0;
             }
         }
         else
@@ -197,12 +196,11 @@ int sci_copyfile(char *fname, void* pvApiCtx)
             return 0;
         }
 
-        returnCopyFileResultOnStack(ierrCopy, fname, pvApiCtx);
+        returnCopyFileResultOnStack(ierrCopy, fname);
     }
     else
     {
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
-        return 1;
     }
 
     FREE(pStVarOneExpanded);
@@ -248,7 +246,7 @@ static wchar_t *getFilenameWithExtension(wchar_t * wcFullFilename)
     return wcfilename;
 }
 /*--------------------------------------------------------------------------*/
-static int returnCopyFileResultOnStack(int ierr, char *fname, void* pvApiCtx)
+static int returnCopyFileResultOnStack(int ierr, char *fname)
 {
     double dError = 0.;
     wchar_t *sciError = NULL;

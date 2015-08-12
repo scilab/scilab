@@ -20,13 +20,13 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 #include "gw_graphic_export.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xinit(char * fname, void *pvApiCtx)
+int sci_xinit(char * fname, unsigned long fname_len)
 {
     SciErr err;
     int * addr = 0;

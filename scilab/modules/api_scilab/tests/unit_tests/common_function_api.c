@@ -14,10 +14,11 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 
 SciErr printf_info(void* _pvCtx, int _iVar);
 
-int common_function(char *fname, void *pvApiCtx )
+int common_function(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i;

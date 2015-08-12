@@ -20,7 +20,9 @@
 #include <tk.h>
 
 #include "dynlib_tclsci.h"
-#include "sci_malloc.h"
+#include "stack-c.h"
+
+#include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
 extern Tk_Window TKmainWindow;

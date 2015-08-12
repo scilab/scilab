@@ -38,7 +38,7 @@ int ScilabGateway::operation(char * fname, const int envId, const OperatorsType 
     {
         eId = ScilabObjects::getEnvironmentId(addr, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         err = getVarAddressFromPosition(pvApiCtx, 2, &addr);
         if (err.iErr)
@@ -71,7 +71,7 @@ int ScilabGateway::operation(char * fname, const int envId, const OperatorsType 
         {
             idObjB = ScilabObjects::getArgumentId(addr, tmpvar, false, false, eId, pvApiCtx);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             throw;
         }
@@ -81,7 +81,7 @@ int ScilabGateway::operation(char * fname, const int envId, const OperatorsType 
     {
         ret = env.operation(idObjA, idObjB, type);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         ScilabObjects::removeTemporaryVars(eId, tmpvar);
         throw;
@@ -97,7 +97,7 @@ int ScilabGateway::operation(char * fname, const int envId, const OperatorsType 
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
+            catch (ScilabAbstractEnvironmentException & e)
             {
                 env.removeobject(ret);
                 throw;
@@ -114,7 +114,7 @@ int ScilabGateway::operation(char * fname, const int envId, const OperatorsType 
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             env.removeobject(ret);
             throw;

@@ -13,9 +13,5 @@
 /**
  * Initialize the MPI features
  */
-#ifndef __INITMPI__
-#define __INITMPI__
 int initScilabMPI(void);
-#endif // __INITMPI__
-
 

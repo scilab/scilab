@@ -15,12 +15,11 @@
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects.h"
-#include "sciprint.h"
 }
 
 using namespace org_modules_external_objects;
 
-int sci_percent_EObj_e(char * fname, void* pvApiCtx)
+int sci_percent_EObj_e(char * fname, unsigned long fname_len)
 {
     try
     {

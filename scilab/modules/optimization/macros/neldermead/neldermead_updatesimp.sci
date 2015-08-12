@@ -132,13 +132,6 @@ function this = neldermead_updatesimp ( this )
     this.simplex0 = optimsimplex_sort ( this.simplex0 )
 endfunction
 //
-// _strvec --
-//  Returns a string for the given vector.
-//
-function str = _strvec ( x )
-    str = strcat(string(x)," ")
-endfunction
-//
 // costf_transposex --
 //   Call the cost function and return the value.
 //   Transpose the value of x, so that the input row vector,
@@ -148,69 +141,5 @@ endfunction
 function [ f , this ] = costf_transposex ( x , this )
     xt = x.'
     [ f , this ] = neldermead_costf ( xt , this )
-endfunction
-//
-// _scaleinconstraints --
-//   Given a point to scale and a reference point which satisfies the constraints,
-//   scale the point towards the reference point until it satisfies all the constraints.
-//   Returns isscaled = %T if the procedure has succeded before -boxnbnlloops
-//   Returns isscaled = %F if the procedure has failed after -boxnbnlloops
-//   iterations.
-// Arguments
-//   x : the point to scale
-//   xref : the reference point
-//   isscaled : %T or %F
-//   p : scaled point
-//
-function [ this , isscaled , p ] = _scaleinconstraints ( this , x , xref )
-    p = x
-    [ this.optbase , hasbounds ] = optimbase_hasbounds ( this.optbase );
-    nbnlc = optimbase_cget ( this.optbase , "-nbineqconst" )
-    //
-    // 1. No bounds, no nonlinear inequality constraints
-    // => no problem
-    //
-    if ( ( hasbounds == %f ) & ( nbnlc == 0 ) ) then
-        isscaled = %T
-        return;
-    end
-    //
-    // 2. Scale into bounds
-    //
-    if ( hasbounds ) then
-        [ this.optbase , p ] = optimbase_proj2bnds ( this.optbase ,  p );
-        this = neldermead_log (this,sprintf(" > After projection into bounds p = [%s]" , ..
-        _strvec(p)));
-    end
-    //
-    // 3. Scale into non linear constraints
-    // Try the current point and see if the constraints are satisfied.
-    // If not, move the point "halfway" to the centroid,
-    // which should satisfy the constraints, if
-    // the constraints are convex.
-    // Perform this loop until the constraints are satisfied.
-    // If all loops have been performed without success, the scaling
-    // has failed.
-    //
-    isscaled = %F
-    alpha = 1.0
-    p0 = p
-    while ( alpha > this.guinalphamin )
-        [ this.optbase , feasible ] = optimbase_isinnonlincons ( this.optbase , p );
-        if ( feasible ) then
-            isscaled = %T;
-            break;
-        end
-        alpha = alpha * this.boxineqscaling
-        this = neldermead_log (this,sprintf("Scaling inequality constraint with alpha = %s", ..
-        string(alpha)));
-        p = ( 1.0 - alpha ) * xref + alpha * p0;
-    end
-    this = neldermead_log (this,sprintf(" > After scaling into inequality constraints p = [%s]" , ..
-    _strvec(p) ) );
-    if ( ~isscaled ) then
-        this = neldermead_log (this,sprintf(" > Impossible to scale into constraints after %d loops" , ..
-        this.optbase.nbineqconst ));
-    end
 endfunction
 

@@ -45,8 +45,8 @@ begin
     ModulesXmlFileLines[i] := '<modules>'; i := i + 1;
 
     ModulesXmlFileLines[i] := '<module name="core" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="double" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="api_scilab" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="ast" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="differential_equations" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="elementary_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="functions" activate="yes"/>'; i := i + 1;
@@ -61,6 +61,7 @@ begin
     ModulesXmlFileLines[i] := '<module name="integer" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="io" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="output_stream" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="intersci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="linear_algebra" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="localization" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="interpolation" activate="yes"/>'; i := i + 1;
@@ -71,6 +72,7 @@ begin
     ModulesXmlFileLines[i] := '<module name="sparse" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="special_functions" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="string" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="symbolic" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="time" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="windows_tools" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="statistics" activate="yes"/>'; i := i + 1;
@@ -91,13 +93,12 @@ begin
     ModulesXmlFileLines[i] := '<module name="matio" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="atoms" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="xml" activate="yes"/>'; i := i + 1;
-    //ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="tclsci" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="hdf5" activate="yes"/>'; i := i + 1;
-    ModulesXmlFileLines[i] := '<module name="types" activate="yes"/>'; i := i + 1;
     ModulesXmlFileLines[i] := '<module name="fftw" activate="yes"/>'; i := i + 1;
 
 #ifndef SCILAB_F2C
-    //ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
+    ModulesXmlFileLines[i] := '<module name="parallel" activate="yes"/>'; i := i + 1;
 #endif
 
 

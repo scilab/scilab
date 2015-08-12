@@ -86,19 +86,19 @@ template < class T > int sci_xmlValidationFile(char *fname, void *pvApiCtx)
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlDTD(char *fname, void* pvApiCtx)
+int sci_xmlDTD(char *fname, unsigned long fname_len)
 {
     return sci_xmlValidationFile < XMLValidationDTD > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlRelaxNG(char *fname, void* pvApiCtx)
+int sci_xmlRelaxNG(char *fname, unsigned long fname_len)
 {
     return sci_xmlValidationFile < XMLValidationRelaxNG > (fname, pvApiCtx);
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlSchema(char *fname, void* pvApiCtx)
+int sci_xmlSchema(char *fname, unsigned long fname_len)
 {
     return sci_xmlValidationFile < XMLValidationSchema > (fname, pvApiCtx);
 }

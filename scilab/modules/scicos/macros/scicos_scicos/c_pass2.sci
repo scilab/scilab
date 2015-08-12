@@ -521,7 +521,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
     //testing event algebraic loops
     ok=is_alg_event_loop(typ_l,clkconnect)
     if ~ok then
-        disp(msprintf("%s: alg_event_loop failed", "c_pass2"));
+        disp(mprintf("%s: alg_event_loop failed", "c_pass2"));
         messagebox(_("Algebraic loop on events."),"modal","error");
         return
     end
@@ -562,7 +562,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
 
                     [balg,vec]=ini_ordo3(primary)
                     if balg then
-                        disp(msprintf("%s: ini_ordo (3) failed", "c_pass2"));
+                        disp(mprintf("%s: ini_ordo (3) failed", "c_pass2"));
                         messagebox(_("Algebraic loop."),"modal","error"),
                         ok=%f
                         return
@@ -597,7 +597,7 @@ function [ordclk,ordptr,cord,typ_l,clkconnect,connectmat,bllst,dep_t,dep_u,dep_u
                             if show_comment then mprintf("found non convergence\n"),pause,end
                             i=lp(1)  // first typ_l
                             if i==[] then
-                                disp(msprintf("%s: ini_ordo (2) failed", "c_pass2"));
+                                disp(mprintf("%s: ini_ordo (2) failed", "c_pass2"));
                                 messagebox(_("Algebraic loop."),"modal","error")
                                 ok=%f
                                 return
@@ -989,7 +989,7 @@ function [ordclk,iord,oord,zord,typ_z,ok]=scheduler(inpptr,outptr,clkptr,execlk_
     end
     //
     if ~ok then
-        disp(msprintf("%s: scheduling failed", "c_pass2"));
+        disp(mprintf("%s: scheduling failed", "c_pass2"));
         messagebox(_("Algebraic loop."),"modal","error");
         iord=[],oord=[],zord=[],critev=[]
         return,
@@ -1093,7 +1093,7 @@ function [ord,ok]=tree3(vec,dep_ut,typ_l)
         for i=1:nb
             if vec(i)==j-1&typ_l(i)<>-1 then
                 if j==nb+2 then
-                    disp(msprintf("%s: tree (3) failed", "c_pass2"));
+                    disp(mprintf("%s: tree (3) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 if typ_l(i)==1 then
@@ -1269,7 +1269,11 @@ function [lnksz,lnktyp,inplnk,outlnk,clkptr,cliptr,inpptr,outptr,xptr,zptr,..
         end
 
         //real paramaters
-        rpark=ll.rpar(:)
+        if (funtyp(i,1)==3 | funtyp(i,1)==5 | funtyp(i,1)==10005) then //sciblocks
+            if ll.rpar==[] then rpark=[]; else rpark=var2vec(ll.rpar);end
+        else
+            rpark=ll.rpar(:)
+        end
         rpar=[rpar;rpark]
         rpptr(i+1)=rpptr(i)+size(rpark,"*")
 
@@ -1476,7 +1480,7 @@ function [ord,ok]=tree2(vec,outoin,outoinptr,dep_ut)
         for i=1:nb
             if vec(i)==j-1 then
                 if j==nb+2 then
-                    disp(msprintf("%s: tree (2) failed", "c_pass2"));
+                    disp(mprintf("%s: tree (2) failed", "c_pass2"));
                     messagebox(_("Algebraic loop."),"modal","error");ok=%f;ord=[];return;
                 end
                 for k=outoinptr(i):outoinptr(i+1)-1
@@ -2046,8 +2050,8 @@ function id = getBlockIds(path)
     k = path(:);
     for i = k
         b = scs_m.objs(i);
-        if typeof(b) == "Block" &  length(scs_m.objs(i).model.uid) >= 1 then
-            id($ + 1) = scs_m.objs(i).model.uid;
+        if typeof(b) == "Block" &  size(scs_m.objs(i).doc) >= 1 then
+            id($ + 1) = scs_m.objs(i).doc(1);
         end
         if typeof(b.model.rpar) == "diagram" then
             scs_m = b.model.rpar;

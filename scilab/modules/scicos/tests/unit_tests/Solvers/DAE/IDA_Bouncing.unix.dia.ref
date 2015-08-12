@@ -50,6 +50,7 @@ scs_m.props.context = "per = 0.5"; // Period, to get more varied results
 scicos_simulate(scs_m);   // IDA
 --------------------------------------------\
  Main Modelica : TMPDIR/Bouncing_im.mo
+
  Flat Modelica : TMPDIR/Bouncing_imf.mo
  Simulation C code :TMPDIR/Bouncing_im.c
 assert_checkalmostequal(res.values(1:26), IDA_val_ref, [], 1d-7);

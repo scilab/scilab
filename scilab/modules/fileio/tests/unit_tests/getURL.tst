@@ -14,16 +14,16 @@ function checkFile(filePath, expectedFilePath, minimalFileSize)
 endfunction
 
 function checkFileAndContent(filePath, expectedFilePath, minimalFileSize, keywordToFind)
-    fd = mopen(filePath, "r");
-    assert_checktrue(grep(mgetl(fd), keywordToFind) <> []);
-    mclose(fd);
-    checkFile(filePath, expectedFilePath, minimalFileSize);
+	fd = mopen(filePath, "r");
+	assert_checktrue(grep(mgetl(fd), keywordToFind) <> []);
+	mclose(fd);
+	checkFile(filePath, expectedFilePath, minimalFileSize);
 endfunction
 
 function checkContent(filePath, content, keyword, keywordToFind)
-    assert_checktrue(length(content) > 10);
-    assert_checktrue(grep(content, keywordToFind) <> []);
-    deletefile(filePath);
+	assert_checktrue(length(content) > 10);
+	assert_checktrue(grep(content, keywordToFind) <> []);
+	deletefile(filePath);
 endfunction
 
 curdir = pwd();
@@ -38,14 +38,14 @@ checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 filePath = getURL("http://www.scilab.org/");
 checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 
-filePath = getURL("http://www.scilab.org/product/man/numderivative.html");
-checkFile(filePath, fullfile(destdir, "numderivative.html"), 1000);
+filePath = getURL("http://www.scilab.org/product/man/derivative.html");
+checkFile(filePath, fullfile(destdir, "derivative.html"), 1000);
 
 filePath = getURL("www.scilab.org");
 checkFile(filePath, fullfile(destdir, "index.html"), 1000);
 
-filePath = getURL("www.scilab.org/product/man/numderivative.html");
-checkFile(filePath, fullfile(destdir, "numderivative.html"), 1000);
+filePath = getURL("www.scilab.org/product/man/derivative.html");
+checkFile(filePath, fullfile(destdir, "derivative.html"), 1000);
 
 filePath = getURL("ftp://ftp.free.fr/pub/Distributions_Linux/debian/README");
 checkFile(filePath, fullfile(destdir, "README"), 10);

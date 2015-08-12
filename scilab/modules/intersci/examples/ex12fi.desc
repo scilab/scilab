@@ -1,0 +1,10 @@
+ccalc12
+a 	matrix m n 
+
+ccalc12  a m n err
+a	ccalc12f 
+m	integer 
+n	integer 
+
+out	sequence a
+***********************

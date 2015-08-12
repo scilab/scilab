@@ -18,21 +18,22 @@
 #include <string.h>
 #include "setenvc.h"
 #include "../../../core/src/c/dynamic_tclsci.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "charEncoding.h"
-#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 BOOL setenvc(const char *stringIn, const char *valueIn)
 {
+    BOOL ret = TRUE;
+    int len_env = 0;
+    wchar_t* env;
 #ifdef _MSC_VER
-    wchar_t* wstringIn = to_wide_string(stringIn);
-    wchar_t* wvalueIn = to_wide_string(valueIn);
-    BOOL ret = 0;
-
-    ret = setenvcW(wstringIn, wvalueIn);
-    FREE(wstringIn);
-    FREE(wvalueIn);
-    return ret;
+    {
+        wchar_t* wstringIn = to_wide_string(stringIn);
+        wchar_t* wvalueIn = to_wide_string(valueIn);
+        ret = SetEnvironmentVariableW(wstringIn, wvalueIn);
+        FREE(wstringIn);
+        FREE(wvalueIn);
+    }
 #else
     /* linux and Mac OS X */
     /* setenv() function is strongly preferred to putenv() */
@@ -42,39 +43,26 @@ BOOL setenvc(const char *stringIn, const char *valueIn)
 #define _MAX_ENV 32767
 #endif
 
-    int len_env = (int)(strlen(stringIn) + strlen(valueIn) + 1);
+    len_env = (int)(strlen(stringIn) + strlen(valueIn) + 1);
     if (len_env < _MAX_ENV)
     {
         if ( setenv(stringIn, valueIn, 1) )
         {
-            return FALSE;
-        }
-        else
-        {
-            return TRUE;
+            ret = FALSE;
         }
     }
     else
     {
-        return FALSE;
+        ret = FALSE;
     }
+
 #endif
-}
-/*--------------------------------------------------------------------------*/
-BOOL setenvcW(const wchar_t *wstringIn, const wchar_t *wvalueIn)
-{
-    BOOL ret = TRUE;
-    int len_env = 0;
-#ifdef _MSC_VER
-    return SetEnvironmentVariableW(wstringIn, wvalueIn);
-#else
-    char * stringIn = wide_string_to_UTF8(wstringIn);
-    char * valueIn = wide_string_to_UTF8(wvalueIn);
-    ret = setenvc(stringIn, valueIn);
-    FREE(stringIn);
-    FREE(valueIn);
+
+    if (ret)
+    {
+        dynamic_setenvtcl(stringIn, valueIn);
+    }
 
     return ret;
-#endif
 }
 /*--------------------------------------------------------------------------*/

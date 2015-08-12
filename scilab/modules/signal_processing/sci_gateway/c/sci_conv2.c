@@ -10,16 +10,15 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include <string.h>
 #include "core_math.h"
 #include "gw_signal.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "conv2.h"
 /*--------------------------------------------------------------------------*/
-int sci_conv2(char *fname, void *pvApiCtx)
+int sci_conv2(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddr = NULL;

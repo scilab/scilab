@@ -1283,7 +1283,8 @@ public final class XMLLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 15 : {
+                case 15 :
+                {
                     yypushback(1);
                     yybegin(YYINITIAL);
                 }

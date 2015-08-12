@@ -21,7 +21,7 @@ extern "C"
     * @param[in] fname the name of the file for the error messages
     * @return 0 if successful, a negative value otherwise
     */
-    int sci_empty_test(char *fname, void* pvApiCtx)
+    int sci_empty_test(char *fname)
     {
         SciErr sciErr;
 

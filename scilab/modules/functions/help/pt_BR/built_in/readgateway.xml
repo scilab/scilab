@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns4="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="readgateway" xml:lang="en">
+    <refnamediv>
+        <refname>readgateway</refname>
+        <refpurpose>retorna a lista de primitivas de um módulo</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>readgateway(module_name)
+            primitives = readgateway(module_name);
+            [primitives,primitivesID] = readgateway(module_name);
+            [primitives,primitivesID,gatewayID] = readgateway(module_name);
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>Retorna a lista de primitivas de um módulo.</para>
+        <para>Primitives : lista de primitivas de um módulo.</para>
+        <para>primitivesID : lista de identificadores das primitivas.</para>
+        <para>gatewayID : lista de identificadores de portas de ligaçãos
+            associados ao módulo.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+[primitives,primitivesID,gatewayID] = readgateway('core');
+primitives(1) // primitiva 'debug' primitive
+primitivesID(1) // 1 é o ID de 'debug' na porta de ligação de 'core'
+gatewayID(1) // 13 é o ID da porta de ligação de 'core' no Scilab
+ ]]></programlisting>
+    </refsection>
+    <refsection>
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="getmodules">getmodules</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

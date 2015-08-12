@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_grid_property(void* _pvCtx, int iObjUID)
+int get_grid_property(void* _pvCtx, int iObjUID)
 {
     double grid[3];
     int iGridColor = 0;
@@ -44,7 +44,7 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return NULL;
+        return -1;
     }
 
     grid[0] = (double) iGridColor;
@@ -53,7 +53,7 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return NULL;
+        return -1;
     }
 
     grid[1] = (double) iGridColor;
@@ -62,7 +62,7 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
     if (piGridColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "grid");
-        return NULL;
+        return -1;
     }
 
     grid[2] = (double) iGridColor;
@@ -71,11 +71,11 @@ void* get_grid_property(void* _pvCtx, int iObjUID)
 
     if (iView)
     {
-        return sciReturnRowVector(grid, 3);
+        return sciReturnRowVector(_pvCtx, grid, 3);
     }
     else
     {
-        return sciReturnRowVector(grid, 2);
+        return sciReturnRowVector(_pvCtx, grid, 2);
     }
 
 }

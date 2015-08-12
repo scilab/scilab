@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "BOOL.h"
 }
@@ -36,9 +36,12 @@ XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):
         FREE(expandedPath);
         if (!pctxt)
         {
-            errorBuffer.clear();
-            errorBuffer.append(gettext("Cannot create a validation context"));
-            *error = errorBuffer;
+            if (errorBuffer)
+            {
+                delete errorBuffer;
+            }
+            errorBuffer = new std::string(gettext("Cannot create a validation context"));
+            *error = *errorBuffer;
         }
         else
         {
@@ -46,9 +49,12 @@ XMLValidationSchema::XMLValidationSchema(const char *path, std::string * error):
             xmlSchemaFreeParserCtxt(pctxt);
             if (!validationFile)
             {
-                errorBuffer.clear();
-                errorBuffer.append(gettext("Cannot parse the schema"));
-                *error = errorBuffer;
+                if (errorBuffer)
+                {
+                    delete errorBuffer;
+                }
+                errorBuffer = new std::string(gettext("Cannot parse the schema"));
+                *error = *errorBuffer;
             }
             else
             {
@@ -78,7 +84,12 @@ XMLValidationSchema::~XMLValidationSchema()
         }
     }
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+
+        errorBuffer = 0;
+    }
 }
 
 bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error) const
@@ -86,12 +97,16 @@ bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error)
     bool ret;
     xmlSchemaValidCtxt *vctxt = xmlSchemaNewValidCtxt((xmlSchema *) validationFile);
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string("");
 
     if (!vctxt)
     {
-        errorBuffer.append(gettext("Cannot create a validation context"));
-        *error = errorBuffer;
+        errorBuffer->append(gettext("Cannot create a validation context"));
+        *error = *errorBuffer;
         return false;
     }
 
@@ -104,7 +119,7 @@ bool XMLValidationSchema::validate(const XMLDocument & doc, std::string * error)
 
     if (ret)
     {
-        *error = errorBuffer;
+        *error = *errorBuffer;
     }
 
     return ret == 0;
@@ -116,20 +131,24 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
     int last;
     int valid;
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string();
 
     if (!reader)
     {
-        errorBuffer.append(gettext("Cannot read the stream"));
-        *error = errorBuffer;
+        errorBuffer->append(gettext("Cannot read the stream"));
+        *error = *errorBuffer;
         return false;
     }
 
     vctxt = xmlSchemaNewValidCtxt(getValidationFile < xmlSchema > ());
     if (!vctxt)
     {
-        errorBuffer.append(gettext("Cannot create a validation context"));
-        *error = errorBuffer;
+        errorBuffer->append(gettext("Cannot create a validation context"));
+        *error = *errorBuffer;
         return false;
     }
 
@@ -137,10 +156,7 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
     xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
     xmlTextReaderSchemaValidateCtxt(reader, vctxt, 0);
 
-    while ((last = xmlTextReaderRead(reader)) == 1)
-    {
-        ;
-    }
+    while ((last = xmlTextReaderRead(reader)) == 1) ;
     valid = xmlTextReaderIsValid(reader);
 
     xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -150,7 +166,7 @@ bool XMLValidationSchema::validate(xmlTextReader * reader, std::string * error) 
 
     if (last == -1 || valid != 1)
     {
-        *error = errorBuffer;
+        *error = *errorBuffer;
         return false;
     }
 
@@ -171,4 +187,3 @@ const std::string XMLValidationSchema::toString() const
 }
 
 }
-

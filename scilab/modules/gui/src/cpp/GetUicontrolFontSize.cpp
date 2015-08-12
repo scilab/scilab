@@ -17,7 +17,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolFontSize(void* _pvCtx, int iObjUID)
+int GetUicontrolFontSize(void* _pvCtx, int iObjUID)
 {
     double fontSize = 0;
     double* pdblFontSize = &fontSize;
@@ -27,10 +27,10 @@ void* GetUicontrolFontSize(void* _pvCtx, int iObjUID)
     if (pdblFontSize == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontSize");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        return sciReturnDouble(fontSize);
+        return sciReturnDouble(_pvCtx, fontSize);
     }
 }

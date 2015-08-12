@@ -12,72 +12,71 @@
 // <-- Short Description -->
 // there were wrong results for matrix/hypermatrix with bitset function
 //
-// <-- JVM NOT MANDATORY -->
 clear "checkBitset"
 function checkBitset(x, pos, v, isOne, typeOfx)
     if isOne then
         select typeOfx
-        case 0 // double
-            assert_checkequal(bitset(x, pos), dbRefOne);
-            assert_checkequal(bitset(x, pos, v), dbRefOne);
-        case 8 // uint8
-            assert_checkequal(bitset(x, pos), uint8RefOne);
-            assert_checkequal(bitset(x, pos, v), uint8RefOne);
-        case 16 // uint16
-            assert_checkequal(bitset(x, pos), uint16RefOne);
-            assert_checkequal(bitset(x, pos, v), uint16RefOne);
-        case 32 // uint32
-            assert_checkequal(bitset(x, pos), uint32RefOne);
-            assert_checkequal(bitset(x, pos, v), uint32RefOne);
+            case 0 // double
+                assert_checkequal(bitset(x, pos), dbRefOne);
+                assert_checkequal(bitset(x, pos, v), dbRefOne);
+            case 8 // uint8
+                assert_checkequal(bitset(x, pos), uint8RefOne);
+                assert_checkequal(bitset(x, pos, v), uint8RefOne);
+            case 16 // uint16
+                assert_checkequal(bitset(x, pos), uint16RefOne);
+                assert_checkequal(bitset(x, pos, v), uint16RefOne);
+            case 32 // uint32
+                assert_checkequal(bitset(x, pos), uint32RefOne);
+                assert_checkequal(bitset(x, pos, v), uint32RefOne);
         end
     else
-        select typeOfx
-        case 0
-            assert_checkequal(bitset(x, pos, v), dbRefZero);
-        case 8
-            assert_checkequal(bitset(x, pos, v), uint8RefZero);
-        case 16
-            assert_checkequal(bitset(x, pos, v), uint16RefZero);
-        case 32
-            assert_checkequal(bitset(x, pos, v), uint32RefZero);
+         select typeOfx
+            case 0
+                assert_checkequal(bitset(x, pos, v), dbRefZero);
+            case 8
+                assert_checkequal(bitset(x, pos, v), uint8RefZero);
+            case 16
+                assert_checkequal(bitset(x, pos, v), uint16RefZero);
+            case 32
+                assert_checkequal(bitset(x, pos, v), uint32RefZero);
         end
     end
 endfunction
 clear "createValues"
 function [dbValue, dbPos, dbBitValue, ...
-    uint8Value, uint8Pos, uint8BitValue, ...
-    uint16Value, uint16Pos, uint16BitValue, ...
-    uint32Value, uint32Pos, uint32BitValue] = createValues(value, pos, bitValue)
-    // double
-    dbValue = value;
-    dbPos = pos;
-    dbBitValue = bitValue
-    // uint8
-    uint8Value = uint8(value);
-    uint8Pos = uint8(pos);
-    uint8BitValue = uint8(bitValue);
-    // uint16
-    uint16Value = uint16(value);
-    uint16Pos = uint16(pos);
-    uint16BitValue = uint16(bitValue);
-    // uint32
-    uint32Value = uint32(value);
-    uint32Pos = uint32(pos);
-    uint32BitValue = uint32(bitValue);
+          uint8Value, uint8Pos, uint8BitValue, ...
+          uint16Value, uint16Pos, uint16BitValue, ...
+          uint32Value, uint32Pos, uint32BitValue] = createValues(value, pos, bitValue)
+            // double
+            dbValue = value;
+            dbPos = pos;
+            dbBitValue = bitValue
+            // uint8
+            uint8Value = uint8(value);
+            uint8Pos = uint8(pos);
+            uint8BitValue = uint8(bitValue);
+            // uint16 
+            uint16Value = uint16(value);
+            uint16Pos = uint16(pos);
+            uint16BitValue = uint16(bitValue);
+            // uint32
+            uint32Value = uint32(value);
+            uint32Pos = uint32(pos);
+            uint32BitValue = uint32(bitValue);
 endfunction
 clear "createReference";
 function [dbRefOne, dbRefZero, ...
-    uint8RefOne, uint8RefZero, ...
-    uint16RefOne, uint16RefZero, ...
-    uint32RefOne, uint32RefZero] = createReference(refOne, refZero)
-    dbRefOne = refOne;
-    dbRefZero = refZero;
-    uint8RefOne = uint8(dbRefOne);
-    uint16RefOne = uint16(dbRefOne);
-    uint32RefOne = uint32(dbRefOne);
-    uint8RefZero = uint8(dbRefZero);
-    uint16RefZero = uint16(dbRefZero);
-    uint32RefZero = uint32(dbRefZero);
+          uint8RefOne, uint8RefZero, ...
+          uint16RefOne, uint16RefZero, ...
+          uint32RefOne, uint32RefZero] = createReference(refOne, refZero)
+            dbRefOne = refOne;
+            dbRefZero = refZero;
+            uint8RefOne = uint8(dbRefOne);
+            uint16RefOne = uint16(dbRefOne);
+            uint32RefOne = uint32(dbRefOne);
+            uint8RefZero = uint8(dbRefZero);
+            uint16RefZero = uint16(dbRefZero);
+            uint32RefZero = uint32(dbRefZero);
 endfunction
 // check input arguments
 lstr = gettext("%s: Wrong number of input argument(s): At least %d expected.\n");
@@ -136,16 +135,16 @@ value = [9, 10, 11, 12, 13, 14, 15];
 position = [2, 3, 4, 5, 6, 7, 8];
 bitValue = zeros(1:7);
 [dbValue, dbPos, dbBitValue, ...
-uint8Value, uint8Pos, uint8BitValue, ...
-uint16Value, uint16Pos, uint16BitValue, ...
-uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
+ uint8Value, uint8Pos, uint8BitValue, ...
+ uint16Value, uint16Pos, uint16BitValue, ...
+ uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
 // create references
 refOne = [11, 14, 11, 28, 45, 78, 143];
 refZero = [9, 10, 3, 12, 13, 14, 15];
 [dbRefOne, dbRefZero, ...
-uint8RefOne, uint8RefZero, ...
-uint16RefOne, uint16RefZero, ...
-uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
+ uint8RefOne, uint8RefZero, ...
+ uint16RefOne, uint16RefZero, ...
+ uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
 // check only the same types
 // only double
 checkBitset(dbValue, dbPos, dbBitValue + 1, %t, 0);
@@ -195,16 +194,16 @@ value = [4; 5; 6];
 position = [1; 2; 3];
 bitValue = zeros(1:3)';
 [dbValue, dbPos, dbBitValue, ...
-uint8Value, uint8Pos, uint8BitValue, ...
-uint16Value, uint16Pos, uint16BitValue, ...
-uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
+ uint8Value, uint8Pos, uint8BitValue, ...
+ uint16Value, uint16Pos, uint16BitValue, ...
+ uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
 // create references
 refOne = [5; 7; 6];
 refZero = [4; 5; 2];
 [dbRefOne, dbRefZero, ...
-uint8RefOne, uint8RefZero, ...
-uint16RefOne, uint16RefZero, ...
-uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
+ uint8RefOne, uint8RefZero, ...
+ uint16RefOne, uint16RefZero, ...
+ uint32RefOne, uint32RefZero] = createReference(refOne, refZero); 
 // check values
 // double
 checkBitset(dbValue, dbPos, dbBitValue + 1, %t, 0);
@@ -223,16 +222,16 @@ value = [1, 2, 3; 4, 5, 6];
 position = [2, 2, 2; 3, 3, 3];
 bitValue = zeros(2, 3);
 [dbValue, dbPos, dbBitValue, ...
-uint8Value, uint8Pos, uint8BitValue, ...
-uint16Value, uint16Pos, uint16BitValue, ...
-uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
+ uint8Value, uint8Pos, uint8BitValue, ...
+ uint16Value, uint16Pos, uint16BitValue, ...
+ uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
 // create references
 refOne = [3, 2, 3; 4, 5, 6];
 refZero = [1, 0, 1; 0, 1, 2];
 [dbRefOne, dbRefZero, ...
-uint8RefOne, uint8RefZero, ...
-uint16RefOne, uint16RefZero, ...
-uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
+ uint8RefOne, uint8RefZero, ...
+ uint16RefOne, uint16RefZero, ...
+ uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
 // check values
 // double
 checkBitset(dbValue, dbPos, dbBitValue + 1, %t, 0);
@@ -252,18 +251,18 @@ position = ones(value)*3;
 position(1:6) = 4;
 bitValue = hypermat(size(value), zeros(1:12));
 [dbValue, dbPos, dbBitValue, ...
-uint8Value, uint8Pos, uint8BitValue, ...
-uint16Value, uint16Pos, uint16BitValue, ...
-uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
+ uint8Value, uint8Pos, uint8BitValue, ...
+ uint16Value, uint16Pos, uint16BitValue, ...
+ uint32Value, uint32Pos, uint32BitValue] = createValues(value, position, bitValue);
 // create references
 refOne = [9, 10, 11, 12, 13, 14, 7, 12, 13, 14, 15, 12];
 refZero = [1, 2, 3, 4, 5, 6, 3, 8, 9, 10, 11, 8];
 refOne = hypermat([2 3 1 2], refOne);
 refZero = hypermat([2 3 1 2], refZero);
 [dbRefOne, dbRefZero, ...
-uint8RefOne, uint8RefZero, ...
-uint16RefOne, uint16RefZero, ...
-uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
+ uint8RefOne, uint8RefZero, ...
+ uint16RefOne, uint16RefZero, ...
+ uint32RefOne, uint32RefZero] = createReference(refOne, refZero);
 // check values
 // double
 checkBitset(dbValue, dbPos, dbBitValue + 1, %t, 0);

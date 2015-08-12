@@ -24,7 +24,7 @@
 /**
  * Get the datatip orientation.
  */
-void* get_tip_orientation_property(void* _pvCtx, int iObjUID)
+int get_tip_orientation_property(void* _pvCtx, int iObjUID)
 {
     int tip_orientation;
     int *piTipOrientation = &tip_orientation;
@@ -34,16 +34,16 @@ void* get_tip_orientation_property(void* _pvCtx, int iObjUID)
     if (piTipOrientation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "orientation");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnInt(tip_orientation);
+    return sciReturnInt(_pvCtx, tip_orientation);
 }
 
 /**
  * Get the status if the Z component is displayed.
  */
-void* get_tip_3component_property(void* _pvCtx, int iObjUID)
+int get_tip_3component_property(void* _pvCtx, int iObjUID)
 {
     int tip_3component;
     int *piTip_3component = &tip_3component;
@@ -53,23 +53,23 @@ void* get_tip_3component_property(void* _pvCtx, int iObjUID)
     if (piTip_3component == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_component");
-        return NULL;
+        return -1;
     }
 
     if (tip_3component)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
 /**
  * Get the status if the auto-orientation is enabled.
  */
-void* get_tip_auto_orientation_property(void* _pvCtx, int iObjUID)
+int get_tip_auto_orientation_property(void* _pvCtx, int iObjUID)
 {
     int tip_auto_orientation;
     int *piTip_auto_orientation = &tip_auto_orientation;
@@ -79,23 +79,23 @@ void* get_tip_auto_orientation_property(void* _pvCtx, int iObjUID)
     if (piTip_auto_orientation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_orientation");
-        return NULL;
+        return -1;
     }
 
     if (tip_auto_orientation)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
 /**
  * Get the datatip interpolation mode (on/off).
  */
-void* get_tip_interp_mode_property(void* _pvCtx, int iObjUID)
+int get_tip_interp_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_interp_mode;
     int *piTip_interp_mode = &tip_interp_mode;
@@ -105,23 +105,23 @@ void* get_tip_interp_mode_property(void* _pvCtx, int iObjUID)
     if (piTip_interp_mode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "interp_mode");
-        return NULL;
+        return -1;
     }
 
     if (tip_interp_mode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
 /**
  * Get the datatip box mode (true or false).
  */
-void* get_tip_box_mode_property(void* _pvCtx, int iObjUID)
+int get_tip_box_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_box_mode;
     int *piTip_box_mode = &tip_box_mode;
@@ -131,23 +131,23 @@ void* get_tip_box_mode_property(void* _pvCtx, int iObjUID)
     if (piTip_box_mode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "box_mode");
-        return NULL;
+        return -1;
     }
 
     if (tip_box_mode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
 /**
  * Get the datatip label mode (true or false).
  */
-void* get_tip_label_mode_property(void* _pvCtx, int iObjUID)
+int get_tip_label_mode_property(void* _pvCtx, int iObjUID)
 {
     int tip_label_mode;
     int *piTip_label_mode = &tip_label_mode;
@@ -157,16 +157,16 @@ void* get_tip_label_mode_property(void* _pvCtx, int iObjUID)
     if (piTip_label_mode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "label_mode");
-        return NULL;
+        return -1;
     }
 
     if (tip_label_mode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 
@@ -174,7 +174,7 @@ void* get_tip_label_mode_property(void* _pvCtx, int iObjUID)
 /**
  * Get the datatip display function.
  */
-void* get_tip_disp_function_property(void* _pvCtx, int iObjUID)
+int get_tip_disp_function_property(void* _pvCtx, int iObjUID)
 {
     char *tip_disp_function = NULL;
     getGraphicObjectProperty(iObjUID, __GO_DATATIP_DISPLAY_FNC__, jni_string, (void **)&tip_disp_function);
@@ -182,8 +182,8 @@ void* get_tip_disp_function_property(void* _pvCtx, int iObjUID)
     if (tip_disp_function == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "display_function");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(tip_disp_function);
+    return sciReturnString(_pvCtx, tip_disp_function);
 }

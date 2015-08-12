@@ -23,11 +23,13 @@ extern "C"
 #include "deleteGraphicObject.h"
 
 #include "gw_graphic_export.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xend(char * fname, void *pvApiCtx)
+int sci_xend(char * fname, unsigned long fname_len)
 {
     CheckInputArgument(pvApiCtx, 0, 0);
 

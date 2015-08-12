@@ -1,0 +1,9 @@
+	LIBRARY    boolean_f.dll
+
+
+EXPORTS
+;
+;boolean_f
+;
+intsbool2s_
+intfind_ 

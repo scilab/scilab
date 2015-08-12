@@ -41,7 +41,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5read(char *fname, int* pvApiCtx)
+int sci_h5read(char *fname, unsigned long fname_len)
 {
     SciErr err;
     H5Object * hobj = 0;

@@ -8,7 +8,7 @@
 #include <localization.h>
 
 /* ==================================================================== */
-int sci_foo(char *fname, void* pvApiCtx)
+int sci_foo(char *fname, unsigned long fname_len)
 {
     // Error management variable
     SciErr sciErr;

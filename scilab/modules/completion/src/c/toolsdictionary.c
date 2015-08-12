@@ -12,7 +12,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "toolsdictionary.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 /**
 * merge two strings array

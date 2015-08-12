@@ -24,10 +24,10 @@
 #include "createGraphicObject.h"
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
-#include "configvariable_interface.h"
+#include "warningmode.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_mpopup(char *fname, void* pvApiCtx)
+int sci_mpopup(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;

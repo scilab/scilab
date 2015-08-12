@@ -12,9 +12,9 @@
 /*--------------------------------------------------------------------------*/
 #include <Windows.h>
 #include "getVideoAdapters.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BOOL.h"
-#include "os_string.h"
+#include "strdup_windows.h"
 /*--------------------------------------------------------------------------*/
 static int getNumberOfAdapters(BOOL *multiDriver);
 static void RemoveDuplicateStrings(char **Strings, int *SizeStrings);
@@ -47,7 +47,7 @@ char **getVideoAdapters(int *returnedNbAdapters)
                 else
                 {
                     EnumDisplaySettings(displayDevice.DeviceName, ENUM_CURRENT_SETTINGS, &devMode);
-                    StringNames[(int)deviceNum] = os_strdup(displayDevice.DeviceString);
+                    StringNames[(int)deviceNum] = strdup(displayDevice.DeviceString);
                     ++deviceNum;
                 }
                 ++i;

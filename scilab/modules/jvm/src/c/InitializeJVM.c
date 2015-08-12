@@ -20,16 +20,18 @@
 #include "InitializeJVM.h"
 #include "loadClasspath.h"
 #include "loadLibrarypath.h"
-#include "sci_path.h"
+#include "setgetSCIpath.h"
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "JVM.h"
 #include "createMainScilabObject.h"
 #include "scilabDefaults.h"
 #include "localization.h"
 #include "fromjava.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "catchIfJavaException.h"
 /*--------------------------------------------------------------------------*/
 static void DoLoadClasspathInEtc(char *sciPath);
@@ -40,7 +42,7 @@ BOOL InitializeJVM(void)
     BOOL bOK = FALSE;
     char *sciPath = NULL;
 
-    sciPath = getSCI();
+    sciPath = getSCIpath();
 
     if (!startJVM(sciPath))
     {
@@ -57,7 +59,7 @@ BOOL InitializeJVM(void)
 
         if (!createMainScilabObject())
         {
-            char *errorMsg = os_strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
+            char *errorMsg = strdup(gettext("\nScilab cannot create Scilab Java Main-Class (we have not been able to find the main Scilab class. Check if the Scilab and thirdparty packages are available).\n"));
 
             if (IsFromJava())
             {

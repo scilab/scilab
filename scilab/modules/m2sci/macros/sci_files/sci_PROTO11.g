@@ -26,17 +26,17 @@ if lhs==1 then
   else
     tree.lhs=list(V,S)
   end
-  m2sci_insert(Equal(tree.lhs,tree))
+  insert(Equal(tree.lhs,tree))
   tree=list()
   
   if rhs==2 then
-    m2sci_insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
+    insert(Equal(list(),Funcall("disp",1,list(S),list())),1)
   end
 else
   tree.lhs=list(tree.lhs($:-1:1))
 
   if rhs==2 then
-    m2sci_insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
+    insert(Equal(list(),Funcall("disp",1,list(tree.lhs(1),tree.lhs(2)),list())),1)
   end
 
   tree.lhs(1).dims=list(Unknown,Unknown)

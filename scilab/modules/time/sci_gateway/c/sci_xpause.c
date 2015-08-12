@@ -19,38 +19,27 @@
 #include <unistd.h>
 #endif
 #include "gw_time.h"
-#include "api_scilab.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_xpause(char *fname, void* pvApiCtx)
+int sci_xpause(char *fname, unsigned long fname_len)
 {
-    SciErr sciErr;
-    int m1 = 0, n1 = 0, sec = 0;
-    int * p1_in_address = NULL;
-    double * pDblReal = NULL;
+    int m1 = 0, n1 = 0, l1 = 0, sec = 0;
 
     CheckLhs(0, 1);
     CheckRhs(1, 1);
-
     if (Rhs == 1)
     {
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &p1_in_address);
-        sciErr = getMatrixOfDouble(pvApiCtx, p1_in_address, &m1, &n1, &pDblReal);
-
-        if (isScalar(pvApiCtx, p1_in_address) == 0)
-        {
-            Scierror(999, _("%s: Wrong type for input argument #%d: A real scalar expected.\n"), fname, 1);
-            return 0;
-        }
-
-        sec = (int)  * pDblReal;
-
+        GetRhsVar(1, MATRIX_OF_DOUBLE_DATATYPE, &m1, &n1, &l1);
+        CheckScalar(1, m1, n1);
+        sec = (int)  * stk(l1);
         if (sec <= 0)
         {
             Scierror(999, _("%s: Wrong values for input argument #%d: Non-negative integers expected.\n"), fname, 1);
             return 0;
         }
+
 #ifdef _MSC_VER
         {
             int ms = (sec) / 1000; /** time is specified in milliseconds in scilab**/
@@ -78,11 +67,8 @@ int sci_xpause(char *fname, void* pvApiCtx)
         }
 #endif
     }
-
     LhsVar(1) = 0;
     PutLhsVar();
-
     return 0;
-
 }
 /*--------------------------------------------------------------------------*/

@@ -27,7 +27,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_s_i_XMLList(char *fname, void* pvApiCtx)
+int sci_percent_s_i_XMLList(char *fname, unsigned long fname_len)
 {
     XMLNodeList *a;
     int lhsid;
@@ -102,13 +102,10 @@ int sci_percent_s_i_XMLList(char *fname, void* pvApiCtx)
     }
     else if (isNamedVarExist(pvApiCtx, "%s_xmlFormat"))
     {
-        callScilabFunction(pvApiCtx, "%s_xmlFormat", iBegin, mlhs, mrhs);
-        //Call function directly in scilab 6 C++ api
-        //Nbvars = std::max(Nbvars, Lhs + Rhs);
-        //SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
-        //Nbvars = std::max(Nbvars, Lhs + Rhs + mlhs + mrhs);
+        Nbvars = Max(Nbvars, Lhs + Rhs);
+        SciString(&iBegin, (char *)"%s_xmlFormat", &mlhs, &mrhs);
+        Nbvars = Max(Nbvars, Lhs + Rhs + mlhs + mrhs);
 
-        iBegin = nbInputArgument(pvApiCtx) + mrhs + 1;
         err = getVarAddressFromPosition(pvApiCtx, iBegin, &retaddr);
         if (err.iErr)
         {

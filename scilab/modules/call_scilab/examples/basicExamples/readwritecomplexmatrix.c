@@ -16,7 +16,6 @@
 /*------------------------------------------------------------*/
 int main(void)
 {
-    void* pvApiCtx = NULL;
 #ifdef _MSC_VER
     if ( StartScilab(NULL, NULL, 0) == FALSE )
 #else
@@ -102,7 +101,7 @@ int main(void)
 
         /* Alloc the memory */
         matrixOfComplex = (double*)malloc((rowA_ * colA_ * 2) * sizeof(double));
-        matrixOfComplex_img = matrixOfComplex + (rowA_ * colA_);
+        matrixOfComplex_img = (double*)malloc((rowA_ * colA_ * 2) * sizeof(double));
 
         /* Load the matrix */
         sciErr = readNamedComplexMatrixOfDouble(pvApiCtx, variableToBeRetrieved, &rowA_, &colA_, matrixOfComplex, matrixOfComplex_img);

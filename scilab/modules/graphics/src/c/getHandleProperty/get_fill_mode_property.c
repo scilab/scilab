@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_fill_mode_property(void* _pvCtx, int iObjUID)
+int get_fill_mode_property(void* _pvCtx, int iObjUID)
 {
     int iFillMode = 0;
     int* piFillMode = &iFillMode;
@@ -40,16 +40,16 @@ void* get_fill_mode_property(void* _pvCtx, int iObjUID)
     if (piFillMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "fill_mode");
-        return NULL;
+        return -1;
     }
 
     if (iFillMode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

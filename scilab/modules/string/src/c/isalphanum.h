@@ -19,13 +19,12 @@
 #include <wchar.h>
 #include "BOOL.h"
 
-#include "dynlib_string.h"
 /**
 * array elements that are alphabetic letters or digits
 * @param[in] a string
 * @return BOOL array
 */
-STRING_IMPEXP BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
+BOOL *isalphanumW(wchar_t *input_string, int *returnedSize);
 
 #endif /* __ISALPHANUM_H__ */
 /*--------------------------------------------------------------------------*/

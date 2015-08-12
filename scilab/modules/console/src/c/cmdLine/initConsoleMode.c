@@ -17,7 +17,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <errno.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "initConsoleMode.h"
 
 static void canonicMode(struct termios *t)

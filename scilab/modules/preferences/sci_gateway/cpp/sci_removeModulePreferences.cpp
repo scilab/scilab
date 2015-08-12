@@ -12,10 +12,10 @@
 
 #include "ScilabPreferences.hxx"
 #include "GiwsException.hxx"
-#include "preferences_gw.hxx"
 
 extern "C"
 {
+#include "gw_preferences.h"
 #include "Scierror.h"
 #include "api_scilab.h"
 #include "localization.h"
@@ -25,7 +25,7 @@ extern "C"
 using namespace org_scilab_modules_preferences;
 
 /*--------------------------------------------------------------------------*/
-int sci_removeModulePreferences(char * fname, void *pvApiCtx)
+int sci_removeModulePreferences(char * fname, unsigned long fname_len)
 {
     SciErr err;
     int * addr = 0;

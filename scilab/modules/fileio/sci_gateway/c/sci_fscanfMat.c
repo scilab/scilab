@@ -13,19 +13,22 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "gw_fileio.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
 #include "expandPathVariable.h"
-#include "os_string.h"
+
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "fscanfMat.h"
 
 /*--------------------------------------------------------------------------*/
 static void freeVar(char** filename, char** expandedFilename, char** Format, char** separator);
 /*--------------------------------------------------------------------------*/
-int sci_fscanfMat(char *fname, void* pvApiCtx)
+int sci_fscanfMat(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddressVarOne = NULL;
@@ -40,6 +43,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
 
     fscanfMatResult *results = NULL;
 
+    Nbvars = 0;
     CheckRhs(1, 3);
     CheckLhs(1, 2);
 
@@ -113,7 +117,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
     }
     else
     {
-        Format = os_strdup(DEFAULT_FSCANFMAT_FORMAT);
+        Format = strdup(DEFAULT_FSCANFMAT_FORMAT);
     }
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
@@ -204,7 +208,7 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             {
                 if (results->text)
                 {
-                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, (char const * const*) results->text);
+                    sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, results->sizeText, 1, results->text);
                     if (sciErr.iErr)
                     {
                         FREE(filename);

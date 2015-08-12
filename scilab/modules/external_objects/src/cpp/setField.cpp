@@ -44,7 +44,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         fieldName = ScilabObjects::getSingleString(2, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         throw;
@@ -62,7 +62,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         arg = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         freeAllocatedSingleString(fieldName);
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
@@ -73,7 +73,7 @@ int ScilabGateway::setField(char * fname, const int envId, void * pvApiCtx)
     {
         env.setfield(idObj, fieldName, arg);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         freeAllocatedSingleString(fieldName);
         ScilabObjects::removeTemporaryVars(envId, tmpvar);

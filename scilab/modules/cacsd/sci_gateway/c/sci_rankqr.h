@@ -15,8 +15,8 @@
 #ifndef __SCI_RANKQR__
 #define __SCI_RANKQR__
 
-int sci_rrankqr(char* fname, void* pvApiCtx);
-int sci_zrankqr(char* fname, void* pvApiCtx);
+int sci_rrankqr(char* fname, unsigned long fname_len);
+int sci_zrankqr(char* fname, unsigned long fname_len);
 
 #endif /* __SCI_RANKQR__ */
 /*--------------------------------------------------------------------------*/

@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_marks_count_property(void* _pvCtx, int iObjUID)
+int get_marks_count_property(void* _pvCtx, int iObjUID)
 {
     int iMarksCount = 0;
     int* piMarksCount = &iMarksCount;
@@ -38,9 +38,9 @@ void* get_marks_count_property(void* _pvCtx, int iObjUID)
     if (piMarksCount == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "marks_count");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iMarksCount);
+    return sciReturnDouble(_pvCtx, iMarksCount);
 }
 /*------------------------------------------------------------------------*/

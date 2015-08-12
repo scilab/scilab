@@ -17,7 +17,7 @@
 #include "getScilabJNIEnv.h"
 #include "getScilabJavaVM.h"
 #include "catchIfJavaException.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 static jobject ScilabObject = NULL;

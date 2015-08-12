@@ -14,7 +14,7 @@
 #include "completeLine_wrap_java.h"
 #include "completeLine.h"
 #include "getPartLine.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 char *completelineforjava(char *currentLine, char *stringToAdd, BOOL isFile, char *postCaretLine)
 {

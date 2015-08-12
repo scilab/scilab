@@ -17,6 +17,6 @@
 * returns user locale string
 * @return Locale user example fr_FR or en_US
 */
-wchar_t *getLocaleUserInfo(void);
+char *getLocaleUserInfo(void);
 
 #endif __GETLOCALEINFO_APPLE_H__

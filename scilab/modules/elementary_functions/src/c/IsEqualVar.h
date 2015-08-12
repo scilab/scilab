@@ -16,7 +16,9 @@
 #define __ISEQUALVAR__
 
 #include <string.h>
-#include "sci_malloc.h"
+#include "stack-c.h"
+#include "MALLOC.h"
+#include "stack-def.h"
 
 static int IsEqualDoubleMat(double *d1, double *d2);
 static int IsEqualPolyMat(double *d1, double *d2);

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_font_size_property(void* _pvCtx, int iObjUID)
+int get_font_size_property(void* _pvCtx, int iObjUID)
 {
     double dblFontSize = 0;
     double* pdblFontSize = &dblFontSize;
@@ -40,9 +40,9 @@ void* get_font_size_property(void* _pvCtx, int iObjUID)
     if (pdblFontSize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_size");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(dblFontSize);
+    return sciReturnDouble(_pvCtx, dblFontSize);
 }
 /*------------------------------------------------------------------------*/

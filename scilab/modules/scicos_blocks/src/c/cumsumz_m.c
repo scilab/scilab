@@ -20,7 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include "scicos_block4.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
 /*--------------------------------------------------------------------------*/
 SCICOS_BLOCKS_IMPEXP void cumsumz_m(scicos_block *block, int flag)

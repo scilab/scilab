@@ -1,0 +1,88 @@
+spt1	a
+a 	sparse ma na nela ita
+
+ext14ca  a
+a	double
+
+out	sequence a
+***********************
+spt2	a
+a 	sparse ma na nela ita
+
+ext14cc  a
+a	int
+
+out	sequence a
+***********************
+spt3	a
+a 	sparse ma na nela ita
+
+ext14ca  a
+a	double
+
+out	list a
+***********************
+spt4	a
+a 	sparse ma na nela ita
+b 	sparse ma na nela ita
+
+ext14cb  a b 
+a	double
+b	double 
+
+out	sequence b
+***********************
+spt5	a
+a 	sparse ma na nela ita
+b 	sparse ma na nela ita
+
+ext14cd  a b 
+a	double
+b	int
+
+out	sequence b
+***********************
+spt6	a
+a 	sparse ma na nela ita
+b 	sparse ma na nela ita
+
+ext14cb  a b 
+a	double
+b	double 
+
+out	list b
+***********************
+spt7	a
+a	list 	ex14fi-l
+
+ext14ca	mat(a)
+mat(a)	double 
+
+out	sequence	mat(a)
+***********************
+spt8	a
+a	list 	ex14fi-l
+
+ext14cc	mat(a)
+mat(a)	int
+
+out	sequence	mat(a)
+***********************
+spt9	a
+a	list 	ex14fi-l
+
+ext14ca	mat(a)
+mat(a)	double 
+
+out	list	mat(a)
+***********************
+spt10	a
+a	sparse ma na nela ita 
+b	sparse mb nb nelb itb 
+
+ext14ce a b mb nb nelb itb err
+a	double 
+b	csparsef
+
+out	sequence	b
+***********************

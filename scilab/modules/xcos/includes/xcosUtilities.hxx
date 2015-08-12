@@ -22,7 +22,7 @@
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleBoolean(void* pvApiCtx, int rhsPosition, bool* out, const char* fname);
+int readSingleBoolean(void* _pvCtx, int rhsPosition, bool* out, const char* fname);
 
 /**
  * Read a single string on the stack.
@@ -33,7 +33,7 @@ int readSingleBoolean(void* pvApiCtx, int rhsPosition, bool* out, const char* fn
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readSingleString(void* pvApiCtx, int rhsPosition, char** out, const char* fname);
+int readSingleString(void* _pvCtx, int rhsPosition, char** out, const char* fname);
 
 /**
  * Read a vector of string on the stack.
@@ -45,6 +45,6 @@ int readSingleString(void* pvApiCtx, int rhsPosition, char** out, const char* fn
  * @param fname the function name used for the call.
  * @return status of the operation (<> 0 on error)
  */
-int readVectorString(void* pvApiCtx, int rhsPosition, char*** out, int* vectorLength, char* fname);
+int readVectorString(void* _pvCtx, int rhsPosition, char*** out, int* vectorLength, char* fname);
 
 #endif /* !__XCOS_UTILITIES_HXX__ */

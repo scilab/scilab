@@ -2,7 +2,6 @@
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - INRIA - Sylvestre LEDRU
  * Copyright (C) 2007 - INRIA - Allan CORNET
- * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -15,28 +14,27 @@
 #ifndef __SETGETLANGUAGE_H__
 #define __SETGETLANGUAGE_H__
 
-#include <wchar.h>
 #include "BOOL.h"
 
 /**
  * change language
  * @param lang
  */
-BOOL setlanguage(const wchar_t *lang);
+BOOL setlanguage(char *lang);
 
 
 /**
  * returns current language
  * @return
  */
-const wchar_t *getlanguage(void);
+char *getlanguage(void);
 
 /**
  * returns current alias
  * example : en_US --> en
  * @return
  */
-const wchar_t *getlanguagealias(void);
+char *getlanguagealias(void);
 
 /**
  * return internal code associated with a language
@@ -49,28 +47,28 @@ int getcurrentlanguagecode(void);
  * @param code
  * @return
  */
-const wchar_t *getlanguagefromcode(int code);
+char *getlanguagefromcode(int code);
 
 /**
  * get code of a language
  * @param language
  * @return
  */
-int getcodefromlanguage(const wchar_t *language);
+int getcodefromlanguage(char *language);
 
 /**
 * try to convert strlanguage (alias) to a good language string
 * @param language
 * @return
 */
-const wchar_t *convertlanguagealias(const wchar_t *strlanguage);
+char *convertlanguagealias(char *strlanguage);
 
 /**
 * test if lang is defined language
 * @param lang
 * @return TRUE or FALSE
 */
-BOOL LanguageIsOK(const wchar_t *lang);
+BOOL LanguageIsOK(char *lang);
 
 /**
  * Check if the current language is the same we are trying to switch to
@@ -78,7 +76,7 @@ BOOL LanguageIsOK(const wchar_t *lang);
  * @param language The language we want to switch to
  * @return If we need to change the language or not
  */
-BOOL needtochangelanguage(const wchar_t *language);
+BOOL needtochangelanguage(char *language);
 
 
 /**
@@ -87,19 +85,19 @@ BOOL needtochangelanguage(const wchar_t *language);
  * @param the locale we want to export
  * @return if is worked
  */
-BOOL exportLocaleToSystem(const wchar_t *locale);
+BOOL exportLocaleToSystem(char *locale);
 
 /**
  * Set the default language and save it in the registry (Windows)
  * @param lang the new language
  */
-void setdefaultlanguage(const char * lang);
+void setdefaultlanguage(char * lang);
 
 /**
  * Get the default language from the registry (Windows)
  * @return the default language
  */
-const char * getdefaultlanguage();
+char * getdefaultlanguage();
 
 
 #endif /* __SETGETLANGUAGE_H__ */

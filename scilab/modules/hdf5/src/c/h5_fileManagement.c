@@ -20,11 +20,13 @@
 #include "isdir.h"
 #include "splitpath.h"
 #include "scicurdir.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
-static char *getPathFilename(const char *fullfilename);
-static char *getFilenameWithExtension(const char *fullfilename);
+static char *getPathFilename(char *fullfilename);
+static char *getFilenameWithExtension(char *fullfilename);
 /*--------------------------------------------------------------------------*/
 extern void H5_term_library(void);
 void HDF5cleanup(void)
@@ -41,12 +43,7 @@ void HDF5cleanup(void)
     H5_term_library();
 }
 /*--------------------------------------------------------------------------*/
-void HDF5ErrorCleanup()
-{
-    H5Eclear(H5Eget_current_stack());
-}
-/*--------------------------------------------------------------------------*/
-int createHDF5File(const char *name)
+int createHDF5File(char *name)
 {
     hid_t       file;
     hid_t fapl = H5Pcreate(H5P_FILE_ACCESS);
@@ -98,7 +95,7 @@ int createHDF5File(const char *name)
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int openHDF5File(const char *name, int _iAppendMode)
+int openHDF5File(char *name, int _iAppendMode)
 {
     hid_t           file;
     char *pathdest = getPathFilename(name);
@@ -158,7 +155,7 @@ int openHDF5File(const char *name, int _iAppendMode)
     return file;
 }
 /*--------------------------------------------------------------------------*/
-int isHDF5File(const char* _pstFilename)
+int isHDF5File(char* _pstFilename)
 {
     int iRet = 0;
     char *pathdest = getPathFilename(_pstFilename);
@@ -173,22 +170,18 @@ int isHDF5File(const char* _pstFilename)
     /* and return in previous place */
     /* see BUG 6440 */
     currentpath = scigetcwd(&ierr);
-
-    //prevent error msg to change directory to ""
-    if (strcmp(pathdest, "") != 0)
     {
-        scichdir(pathdest);
+
+        //prevent error msg to change directory to ""
+        if (strcmp(pathdest, "") != 0)
+        {
+            scichdir(pathdest);
+        }
+        FREE(pathdest);
+
+        iRet = H5Fis_hdf5(filename);
+        FREE(filename);
     }
-    FREE(pathdest);
-
-    iRet = H5Fis_hdf5(filename);
-    if (iRet == 0)
-    {
-        HDF5ErrorCleanup();
-    }
-
-    FREE(filename);
-
     scichdir(currentpath);
     FREE(currentpath);
 
@@ -197,15 +190,14 @@ int isHDF5File(const char* _pstFilename)
 
 void closeHDF5File(int file)
 {
-    herr_t status = 0;
+    herr_t status					= 0;
 
-#ifdef _DEBUG
-    //printf("Open groups: %d\n", H5Fget_obj_count(file, H5F_OBJ_GROUP));
-    //printf("Open datasets: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATASET));
-    //printf("Open datatypes: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATATYPE));
-    //printf("Open attributes: %d\n", H5Fget_obj_count(file, H5F_OBJ_ATTR));
-    //printf("Open all (except the file itself): %d\n", H5Fget_obj_count(file, H5F_OBJ_ALL)  - 1);
-#endif
+    /* printf("Open groups: %d\n", H5Fget_obj_count(file, H5F_OBJ_GROUP));
+    printf("Open datasets: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATASET));
+    printf("Open datatypes: %d\n", H5Fget_obj_count(file, H5F_OBJ_DATATYPE));
+    printf("Open attributes: %d\n", H5Fget_obj_count(file, H5F_OBJ_ATTR));
+    printf("Open all (except the file itself): %d\n", H5Fget_obj_count(file, H5F_OBJ_ALL)  - 1);*/
+
     //	H5Fflush(file, H5F_SCOPE_GLOBAL);
     status = H5Fclose(file);
     if (status < 0)
@@ -214,17 +206,17 @@ void closeHDF5File(int file)
     }
 }
 /*--------------------------------------------------------------------------*/
-static char *getPathFilename(const char *fullfilename)
+static char *getPathFilename(char *fullfilename)
 {
     char *path = NULL;
     if (fullfilename)
     {
-        char* drv  = os_strdup(fullfilename);
-        char* dir  = os_strdup(fullfilename);
-        char* name = os_strdup(fullfilename);
-        char* ext  = os_strdup(fullfilename);
+        char* drv  = strdup(fullfilename);
+        char* dir  = strdup(fullfilename);
+        char* name = strdup(fullfilename);
+        char* ext  = strdup(fullfilename);
 
-        path = os_strdup(fullfilename);
+        path = strdup(fullfilename);
 
         if (drv && dir && name && ext && path)
         {
@@ -265,17 +257,17 @@ static char *getPathFilename(const char *fullfilename)
     return path;
 }
 /*--------------------------------------------------------------------------*/
-static char *getFilenameWithExtension(const char *fullfilename)
+static char *getFilenameWithExtension(char *fullfilename)
 {
     char *filename = NULL;
     if (fullfilename)
     {
-        char* drv  = os_strdup(fullfilename);
-        char* dir  = os_strdup(fullfilename);
-        char* name = os_strdup(fullfilename);
-        char* ext  = os_strdup(fullfilename);
+        char* drv  = strdup(fullfilename);
+        char* dir  = strdup(fullfilename);
+        char* name = strdup(fullfilename);
+        char* ext  = strdup(fullfilename);
 
-        filename = os_strdup(fullfilename);
+        filename = strdup(fullfilename);
 
         if (drv && dir && name && ext && filename)
         {

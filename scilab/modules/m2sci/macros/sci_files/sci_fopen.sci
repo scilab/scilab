@@ -30,7 +30,7 @@ function [tree]=sci_fopen(tree)
             return
         end
     elseif filename.vtype==Double then
-        no_equiv(msprintf(gettext("%s (See fileinfo() function)."), strcat(expression2code(tree), "")))
+        no_equiv(msprintf(gettext("%s (See fileinfo() function)."),expression2code(tree)))
         return
     end
 

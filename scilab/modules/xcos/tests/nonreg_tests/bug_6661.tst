@@ -18,6 +18,8 @@
 
 
 // xcos(SCI + '/modules/xcos/demos/Discrete-KalmanFilter.zcos');
-// Right click on superblock
-// Select "Code generation"
-// Check that the code has been generated
+// rigth click on superblock
+// changes Created file Path
+// code must be generated
+
+

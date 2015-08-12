@@ -11,6 +11,8 @@
 
 // <-- BENCH NB RUN : 10 -->
 
+stacksize("max");
+
 data = tlist(["mydata" "foo1" "foo2" "foo3"], [], [], []);
 
 data.foo1 = zeros(4096,4096);

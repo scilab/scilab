@@ -61,9 +61,7 @@ int ScilabGateway::unwrap(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, *id, envId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
-            {
-            }
+            catch (ScilabAbstractEnvironmentException & e) { }
         }
 
         LhsVar(i) = Rhs + i;

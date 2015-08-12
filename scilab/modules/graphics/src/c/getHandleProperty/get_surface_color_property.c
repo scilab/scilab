@@ -24,14 +24,14 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
-void* get_surface_color_property(void* _pvCtx, int iObjUID)
+int get_surface_color_property(void* _pvCtx, int iObjUID)
 {
     //
     // FIXME
     //
-    return NULL;
+    return -1;
 
 }
 /*------------------------------------------------------------------------*/

@@ -15,13 +15,13 @@
 #include "gw_special_functions.h"
 #include "Scierror.h"
 #include "msgs.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
 extern void  C2F(dbesiv) (double *x, int* nx, double *alpha, int *na, int *kode, double *r, double *w, int *ierr);
 extern void  C2F(zbesiv) (double *xr, double *xi, int* nx, double *alpha, int *na, int *kode, double *rr, double *ri, double *wr, double *wi, int *ierr);
 /*--------------------------------------------------------------------------*/
-int sci_besseli(char *fname, void* pvApiCtx)
+int sci_besseli(char *fname, unsigned long fname_len)
 {
     int m1 = 0, n1 = 0, m2 = 0, n2 = 0;
     int mr = 0, nr = 0, itr = 0, nw = 0;
@@ -277,17 +277,16 @@ int sci_besseli(char *fname, void* pvApiCtx)
 
     if (ierr == 2)
     {
-        // FIX ME
-        //        if ( C2F(errgst).ieee == 0)
-        //        {
-        //            ierr = 69;
-        //            SciError(ierr);
-        //        }
-        //        else if ( C2F(errgst).ieee == 1)
-        //        {
-        //            ierr = 63;
-        //            C2F(msgs)(&ierr, &un);
-        //        }
+        if ( C2F(errgst).ieee == 0)
+        {
+            ierr = 69;
+            SciError(ierr);
+        }
+        else if ( C2F(errgst).ieee == 1)
+        {
+            ierr = 63;
+            C2F(msgs)(&ierr, &un);
+        }
     }
     else if (ierr == 3)
     {
@@ -297,17 +296,16 @@ int sci_besseli(char *fname, void* pvApiCtx)
     }
     else if (ierr == 4 || ierr == 5)
     {
-        // FIX ME
-        //        if ( C2F(errgst).ieee == 0)
-        //        {
-        //            ierr = 69;
-        //            SciError(ierr);
-        //        }
-        //        else if ( C2F(errgst).ieee == 1)
-        //        {
-        //            ierr = 107;
-        //            C2F(msgs)(&ierr, &un);
-        //        }
+        if ( C2F(errgst).ieee == 0)
+        {
+            ierr = 69;
+            SciError(ierr);
+        }
+        else if ( C2F(errgst).ieee == 1)
+        {
+            ierr = 107;
+            C2F(msgs)(&ierr, &un);
+        }
     }
 
     AssignOutputVariable(pvApiCtx, 1) = nbInputArg + 1;

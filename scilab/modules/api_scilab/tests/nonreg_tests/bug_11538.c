@@ -15,7 +15,7 @@
 
 #include "api_scilab.h"
 
-int sci_bug_11538(char* fname, void* pvApiCtx)
+int sci_bug_11538(char* fname, int length)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -44,5 +44,6 @@ int sci_bug_11538(char* fname, void* pvApiCtx)
         return 1;
     }
 
+    LhsVar(0) = 1;
     return 0;
 }

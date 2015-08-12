@@ -11,9 +11,12 @@
  */
 
 #include "api_scilab.h"
+#include "Scierror.h"
 #include "localization.h"
+#include "sciprint.h"
+#include "MALLOC.h"
 
-int hypermatExample(char *fname, void* pvApiCtx)
+int hypermatExample(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;

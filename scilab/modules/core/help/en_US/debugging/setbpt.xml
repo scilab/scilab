@@ -50,9 +50,11 @@
             </note>
         </para>
         <para>When reaching a breakpoint, Scilab evaluates the specified physical
-            line and stops the execution flow. Then Scilab goes into a <link linkend="pause">pause</link>
-            mode in which the user can check current values. The <link linkend="pause">pause</link>
-            is exited with <link linkend="resume">resume</link> or <link linkend="abort">abort</link>.
+            line and stops the execution flow. If the function is not compiled (see
+            <link linkend="comp">comp</link>) the line is printed on the screen. Then
+            Scilab goes into a <link linkend="pause">pause</link> mode in which the
+            user can check current values. The <link linkend="pause">pause</link> is
+            exited with <link linkend="resume">resume</link> or <link linkend="abort">abort</link>.
         </para>
         <para>Redefining the function does not clear the breakpoints, the user
             must explicitly delete breakpoints using <link linkend="delbpt">delbpt</link>. The maximum number of functions with
@@ -62,7 +64,7 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 setbpt('foo')
 setbpt('foo',10)
 dispbpt()

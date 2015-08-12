@@ -26,7 +26,9 @@ extern "C" {
 #include "backtrace.h"
 #include "backtrace_print.h"
 #include "localization.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 #ifdef _MSC_VER
@@ -107,5 +109,5 @@ const char * backtrace_print(int niv_debut, int unmangle)
         }
     }
 
-    return os_strdup(ss.str().c_str());
+    return strdup(ss.str().c_str());
 }

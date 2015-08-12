@@ -1,0 +1,72 @@
+ext16ca	a
+a 	bmatrix ma na 
+
+ext16ca  a ma na
+a	int 
+
+out	sequence a
+***********************
+ext16cb	a
+a 	bmatrix ma na 
+
+ext16ca  a ma na
+a	int 
+
+out	list a
+***********************
+ext16cc	a
+a 	bmatrix ma na 
+b 	bmatrix ma na 
+
+ext16cb  a b  ma na
+a	int
+b	int
+
+out	sequence b
+***********************
+ext16cd	a
+a 	bmatrix ma na 
+b 	bmatrix ma na 
+
+ext16cb  a b  ma na
+a	int
+b	int
+
+out	list b
+***********************
+ext16ce	a
+a	list 	ex16fi-l
+
+ext16ca	mat(a)  ma(a) na(a)
+mat(a)	int
+
+out	sequence	mat(a)
+***********************
+ext16cf	a
+a	list 	ex16fi-l
+
+ext16ca	mat(a)  ma(a) na(a)
+mat(a)	int 
+
+out	list	mat(a)
+***********************
+ext16cg
+a	bmatrix ma na 
+
+ext16ce	a ma na err
+a	cboolf
+ma	int 
+na	int 
+
+out	sequence a
+***********************
+ext16ch
+a	bmatrix ma na 
+
+ext16ce	a ma na err
+a	cboolf
+ma	int 
+na	int 
+
+out	list a
+***********************

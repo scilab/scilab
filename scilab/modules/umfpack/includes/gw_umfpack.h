@@ -17,18 +17,18 @@
 /*--------------------------------------------------------------------------*/
 UMFPACK_IMPEXP int gw_umfpack(void);
 /*--------------------------------------------------------------------------*/
-UMFPACK_IMPEXP int sci_umfpack(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_umf_lufact(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_umf_lusolve(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_umf_ludel(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_umf_luinfo(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_umf_luget(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_taucs_chfact(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_taucs_chsolve(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_taucs_chdel(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_taucs_chinfo(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_taucs_chget(char* fname, void* pvApiCtx);
-UMFPACK_IMPEXP int sci_res_with_prec(char* fname, void* pvApiCtx);
+UMFPACK_IMPEXP int sci_umfpack(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_lufact(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_lusolve(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_ludel(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_luinfo(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_umf_luget(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chfact(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chsolve(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chdel(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chinfo(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_taucs_chget(char* fname, unsigned long l);
+UMFPACK_IMPEXP int sci_res_with_prec(char* fname, unsigned long l);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_UMFPACK__ */
 /*--------------------------------------------------------------------------*/

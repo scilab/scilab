@@ -5,8 +5,6 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 
-// <-- NOT FIXED -->
-//
 // <-- CLI SHELL MODE -->
 
 // <-- Non-regression test for bug 2509 -->

@@ -11,10 +11,7 @@
  */
 
 #include "ScilabGateway.hxx"
-extern "C"
-{
-#include "os_string.h"
-}
+
 namespace org_modules_external_objects
 {
 
@@ -39,7 +36,7 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
 
     if (Rhs == 1)
     {
-        className = os_strdup("");
+        className = strdup("");
     }
     else
     {
@@ -89,7 +86,7 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.compilecode(className, code, row != 1 ? row : col);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         freeAllocatedSingleString(className);
         freeAllocatedMatrixOfString(row, col, code);
@@ -109,7 +106,7 @@ int ScilabGateway::compile(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_CLASS, Rhs + 1, ret, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             env.removeobject(ret);
             throw;

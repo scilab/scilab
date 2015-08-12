@@ -130,12 +130,12 @@
 //   Adapted from the Slicot Matlab Mexfile by S. Steer Oct 2001
 //
 // **********************************************************************
-#include "gw_cacsd.h"
+
+#include "gw_slicot.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "elem_common.h"
 
 extern int C2F(lsame)();
 extern int C2F(dlacpy)();
@@ -151,7 +151,7 @@ extern int C2F(sb04py)();
 extern int C2F(sb04qd)();
 extern int C2F(sb04rd)();
 
-int sci_linmeq(char *fname, void* pvApiCtx)
+int sci_linmeq(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -179,6 +179,8 @@ int sci_linmeq(char *fname, void* pvApiCtx)
     double* lWR  = NULL;
     double* lCC  = NULL;
     double* lSEP = NULL;
+
+    char* tmpbuf[bsiz];
 
     // .. Parameters ..
     double ONE  = 1.;
@@ -1059,7 +1061,7 @@ int sci_linmeq(char *fname, void* pvApiCtx)
     }
 
     // form output
-    PERTRB =  (TASK == 1 && (INFO == N + M + 1 || (FLAG[1] * FLAG[2] == 1 && INFO == 1))) ||
+    PERTRB =  (TASK == 1 && (INFO == N + M + 1 || (FLAG[1] * FLAG[2] == 1 & INFO == 1))) ||
               (TASK == 2 && INFO == N + 1) || (TASK == 3 && INFO == 1);
 
     if (INFO == 0 || PERTRB)
@@ -1228,6 +1230,5 @@ int sci_linmeq(char *fname, void* pvApiCtx)
         sciprint(_("%s: Warning: the equation is (almost) singular. Perturbed values have been used.\n"), fname);
     }
 
-    ReturnArguments(pvApiCtx);
     return 0;
 }

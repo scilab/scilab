@@ -23,10 +23,6 @@
 #include "ScilabObjects.hxx"
 #include "dynlib_external_objects_scilab.h"
 
-extern "C" {
-#include "api_scilab.h"
-}
-
 namespace org_modules_external_objects
 {
 
@@ -37,7 +33,7 @@ class EXTERNAL_OBJECTS_SCILAB_IMPEXP ScilabAutoCleaner
     static std::stack< _MapIds > stack;
 
 public:
-    static void goDown(void* _pvCtx);
+    static void goDown();
     static void registerVariable(const int envId, const int varId);
     static void unregisterVariable(const int envId, const int varId);
     static void unregisterVariable(const int envId, const int * varId, const int length);

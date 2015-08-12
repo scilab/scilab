@@ -5,6 +5,7 @@ EXPORTS
 msgs_
 error_
 basout_
+errmds_
 linestore_
 funnamestore_
 msgstxt_

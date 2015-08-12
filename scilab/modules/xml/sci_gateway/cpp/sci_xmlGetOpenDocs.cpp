@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlGetOpenDocs(char *fname, void* pvApiCtx)
+int sci_xmlGetOpenDocs(char *fname, unsigned long fname_len)
 {
     int j = 1;
     SciErr err;

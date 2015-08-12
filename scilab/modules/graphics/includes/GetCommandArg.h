@@ -21,7 +21,7 @@
 #define _GET_COMMAND_ARG_H_
 
 #include "dynlib_graphics.h"
-#include "api_scilab.h"
+#include "stack-c.h"
 #include "BOOL.h"
 
 /*------------------------------------------------------------------------*/

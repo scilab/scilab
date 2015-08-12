@@ -144,6 +144,7 @@ c     threshold value may be larger.
 c
       implicit none
 c
+      include 'stack.h'
 c
       double precision xr, xi, yr, yi
 

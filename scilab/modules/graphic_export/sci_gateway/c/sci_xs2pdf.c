@@ -15,8 +15,8 @@
 #include "xs2file.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xs2pdf(char * fname, void* pvApiCtx)
+int sci_xs2pdf( char * fname, unsigned long fname_len )
 {
-    return xs2file(fname, PDF_EXPORT, pvApiCtx);
+    return xs2file( fname, PDF_EXPORT ) ;
 }
 /*--------------------------------------------------------------------------*/

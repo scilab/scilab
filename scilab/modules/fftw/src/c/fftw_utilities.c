@@ -12,7 +12,7 @@
  *
  */
 #include "fftw_utilities.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "callfftw.h"
 #include <math.h>
 int check_1D_symmetry(double *Ar, double *Ai, int nA, int iA);
@@ -102,7 +102,6 @@ int FreeFFTWPlan(FFTW_Plan_struct *Sci_Plan)
         FREE(Sci_Plan->gdim.howmany_dims);
         Sci_Plan->gdim.howmany_dims = NULL;
     }
-
     return (1);
 }
 /*--------------------------------------------------------------------------*/
@@ -176,7 +175,6 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
             }
         }
     }
-
     if (gdim->howmany_rank != 0)
     {
         Sci_Plan->gdim.howmany_rank = gdim->howmany_rank;
@@ -234,7 +232,6 @@ fftw_plan GetFFTWPlan(enum Plan_Type type, guru_dim_struct *gdim,
     {
         *errflag = 2;
     }
-
     return (Sci_Plan->p);
 }
 /*--------------------------------------------------------------------------*/
@@ -332,7 +329,7 @@ void ExecuteFFTWPlan(enum Plan_Type type, const fftw_plan p, double *ri, double 
     switch (type)
     {
         case C2C_PLAN:
-                call_fftw_execute_split_dft(p, ri, ii, ro, io);
+            call_fftw_execute_split_dft(p, ri, ii, ro, io);
             break;
         case C2R_PLAN:
             call_fftw_execute_split_dft_c2r(p, ri, ii, ro);

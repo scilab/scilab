@@ -22,7 +22,7 @@
 #include <stdlib.h> /* for size_t */
 #include "dynlib_graphics.h"
 #include "sci_types.h"
-#include "api_scilab.h"
+#include "stack-c.h"
 #include "BOOL.h"
 /*------------------------------------------------------------------------------*/
 /* Basic type parameters */
@@ -43,7 +43,7 @@ GRAPHICS_IMPEXP char ** createCopyStringMatrixFromStack(void* _pvData, int nbEle
  *         FALSE if the given parameter is 'off', %F, 'F', 0, ...
  *         NOT_A_BOOLEAN_VALUE otherwise
  */
-GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(void* _pvData, int valueType, int nbRow, int nbCol, const char* propertyName);
+GRAPHICS_IMPEXP int tryGetBooleanValueFromStack(void* _pvData, int valueType, int nbRow, int nbCol, char* propertyName);
 // with that we are sure to be nether equal to TRUE nor FALSE
 #define NOT_A_BOOLEAN_VALUE (2*FALSE) - TRUE
 

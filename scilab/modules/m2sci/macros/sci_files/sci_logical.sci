@@ -22,7 +22,7 @@ function [tree]=sci_logical(tree)
     end
 
     if is_empty(X) then
-        set_infos(msprintf(gettext("%s is an empty matrix, so result is set to []."), strcat(expression2code(X), "")),0);
+        set_infos(msprintf(gettext("%s is an empty matrix, so result is set to []."),expression2code(X)),0);
         tree=Cste([])
     elseif not_empty(X) then
         if X.vtype==Boolean then

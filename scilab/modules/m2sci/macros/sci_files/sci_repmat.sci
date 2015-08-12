@@ -57,7 +57,7 @@ function [tree]=sci_repmat(tree)
             tmp=m
             if typeof(m)<>"variable" then
                 tmp=gettempvar()
-                m2sci_insert(Equal(list(tmp),m))
+                insert(Equal(list(tmp),m))
             end
             newrhs=list()
             for k=1:size(m.dims)

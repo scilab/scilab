@@ -19,12 +19,12 @@ function [tree]=sci_clock(tree)
     row=Operation("rc",list(elt1,elt2),list())
 
     // w = getdate();
-    m2sci_insert(Equal(list(w),Funcall("getdate",1,list(),list())))
+    insert(Equal(list(w),Funcall("getdate",1,list(),list())))
 
     // w(3:5)=[] (then w with 7 values)
     imp=Operation(":",list(Cste(3),Cste(5)),list())
     w35=Operation("ins",list(w,imp),list())
-    m2sci_insert(Equal(list(w35),Cste([])))
+    insert(Equal(list(w35),Cste([])))
 
     // w(6)=w(6)+w(7)/1000
     w7=Operation("ext",list(w,Cste(7)),list())
@@ -32,7 +32,7 @@ function [tree]=sci_clock(tree)
     w6ins=Operation("ext",list(w,Cste(6)),list())
     div=Operation("/",list(w7,Cste(1000)),list())
     add=Operation("+",list(w6ext,div),list())
-    m2sci_insert(Equal(list(w6ins),add))
+    insert(Equal(list(w6ins),add))
 
     // c= w(1:6)
     imp=Operation(":",list(Cste(1),Cste(6)),list())

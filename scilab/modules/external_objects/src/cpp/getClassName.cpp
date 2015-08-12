@@ -51,7 +51,7 @@ int ScilabGateway::getClassName(char * fname, const int envId, void * pvApiCtx)
         {
             idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             delete[] tmpvar;
             delete[] classNames;
@@ -62,7 +62,7 @@ int ScilabGateway::getClassName(char * fname, const int envId, void * pvApiCtx)
         {
             classNames[i - 1] = env.getclassname(idObj);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;

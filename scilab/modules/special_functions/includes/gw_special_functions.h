@@ -18,21 +18,21 @@
 /*--------------------------------------------------------------------------*/
 SPECIAL_FUNCTIONS_IMPEXP int gw_special_functions(void);
 /*--------------------------------------------------------------------------*/
-SPECIAL_FUNCTIONS_IMPEXP int sci_besselh(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_besseli(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_besselj(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_besselk(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_bessely(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_beta(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_legendre(char *fname, void* pvApiCtx);
-//SPECIAL_FUNCTIONS_IMPEXP int sci_gamma(char *fname, void* pvApiCtx);
-//SPECIAL_FUNCTIONS_IMPEXP int sci_lgamma(char *fname, void* pvApiCtx);
-//SPECIAL_FUNCTIONS_IMPEXP int sci_dlgamma(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erf(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfc(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfcx(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_erfi(char *fname, void* pvApiCtx);
-SPECIAL_FUNCTIONS_IMPEXP int sci_Faddeeva_dawson(char *fname, void* pvApiCtx);
+int sci_besselh(char *fname, unsigned long fname_len);
+int sci_besseli(char *fname, unsigned long fname_len);
+int sci_besselj(char *fname, unsigned long fname_len);
+int sci_besselk(char *fname, unsigned long fname_len);
+int sci_bessely(char *fname, unsigned long fname_len);
+int sci_beta(char *fname, unsigned long fname_len);
+int sci_legendre(char *fname, unsigned long fname_len);
+int sci_gamma(char *fname, unsigned long fname_len);
+int sci_lgamma(char *fname, unsigned long fname_len);
+int sci_dlgamma(char *fname, unsigned long fname_len);
+int sci_Faddeeva_erf(char *fname, unsigned long fname_len);
+int sci_Faddeeva_erfc(char *fname, unsigned long fname_len);
+int sci_Faddeeva_erfcx(char *fname, unsigned long fname_len);
+int sci_Faddeeva_erfi(char *fname, unsigned long fname_len);
+int sci_Faddeeva_dawson(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_SPECIAL_FUNCTIONS_H__ */
 /*--------------------------------------------------------------------------*/

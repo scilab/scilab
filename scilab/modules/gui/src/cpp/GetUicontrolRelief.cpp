@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolRelief(void* _pvCtx, int iObjUID)
+int GetUicontrolRelief(void* _pvCtx, int iObjUID)
 {
     char* relief = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_RELIEF__, jni_string, (void**) &relief);
 
     if (relief == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Relief");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnString(relief);
+        status = sciReturnString(_pvCtx, relief);
         delete[] relief;
         return status;
     }

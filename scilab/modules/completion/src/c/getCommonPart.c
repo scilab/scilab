@@ -15,12 +15,14 @@
 #include <stdlib.h>
 #include "getCommonPart.h"
 #include "core_math.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 static int cmp( const void *a , const void *b)
 {
-    return strcmp(*(char**)a, *(char**)b );
+    return strcmp(*(const char **)a, *(const char **)b );
 }
 /*--------------------------------------------------------------------------*/
 static int cmpPos(char *str1, char *str2)
@@ -66,7 +68,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
 
     if (sizeDictionary == 1)
     {
-        return os_strdup(dictionary[0]);
+        return strdup(dictionary[0]);
     }
 
     if (sizeDictionary >= 2)
@@ -87,7 +89,7 @@ char *getCommonPart(char **dictionary, int sizeDictionary)
             }
         }
 
-        commonpart = os_strdup(currentstr);
+        commonpart = strdup(currentstr);
         commonpart[r] = '\0';
     }
     return commonpart;

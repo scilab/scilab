@@ -7782,7 +7782,8 @@ public final class CLexer {
             zzMarkedPos = zzMarkedPosL;
 
             switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-                case 21 : {
+                case 21 :
+                {
                     handler.handleComment("*");
                     handler.handleNothing("\n");
                     saveLexState = COMMENT;

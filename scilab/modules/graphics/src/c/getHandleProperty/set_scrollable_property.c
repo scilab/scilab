@@ -17,6 +17,8 @@
 #include "SetPropertyStatus.h"
 #include "GetProperty.h"
 #include "BOOL.h"
+#include "stricmp.h"
+
 #include "setGraphicObjectProperty.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

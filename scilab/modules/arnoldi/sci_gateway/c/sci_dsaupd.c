@@ -23,7 +23,7 @@ extern int C2F(dsaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
                        int *ldv, int *iparam, int *ipntr, double *workd,
                        double *workl, int *lworkl, int *info);
 /*--------------------------------------------------------------------------*/
-int sci_dsaupd(char *fname, void *pvApiCtx)
+int sci_dsaupd(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -57,7 +57,9 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int IDO,   mIDO,   nIDO;
+    int mBMAT,  nBMAT;
     int mN,     nN;
+    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -373,7 +375,7 @@ int sci_dsaupd(char *fname, void *pvApiCtx)
 
     if (pINFO[0] < 0)
     {
-        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
+        C2F(errorinfo)("dsaupd", (int*)(pINFO), 6L);
         return 0;
     }
 

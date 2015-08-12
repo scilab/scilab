@@ -189,7 +189,7 @@
                     <varlistentry>
                         <term>insert</term>
                         <listitem>
-                            <para>permet d'insérer des instruction. Séquence d'appel : m2sci_insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</para>
+                            <para>permet d'insérer des instruction. Séquence d'appel : insert(Equal(...),opt) avec opt~=1 pour insérer avan tl'instruction courante et opt=1 pour insérer après celle-ci.</para>
                         </listitem>
                     </varlistentry>
                     <varlistentry>

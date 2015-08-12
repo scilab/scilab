@@ -50,14 +50,13 @@ mfile2sci(MFILE,TMPDIR);
 SCIFILECONTENTS=mgetl(SCIFILE);
 
 SCIFILECONTENTSREF=["";
-"// Display mode";
-"mode(0);";
-"";
-"// Display warning for floating point exception";
-"ieee(1);";
-"";
-"for i = 1:5";
-"";
-"end;"]
+        "// Display mode";
+        "mode(0);";
+        "";
+        "// Display warning for floating point exception";
+        "ieee(1);";
+        "";
+        "for i = 1:5";
+        "end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

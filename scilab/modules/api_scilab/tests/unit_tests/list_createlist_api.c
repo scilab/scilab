@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
-int list_createlist(char *fname, void* pvApiCtx)
+int list_createlist(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddr             = NULL;
@@ -116,7 +116,7 @@ int list_createlist(char *fname, void* pvApiCtx)
         return 0;
     }
 
-    pdblDataPtr     = (double*)MALLOC(sizeof(double) * 4);
+    pdblDataPtr     = (double*)malloc(sizeof(double) * 4);
     pdblDataPtr[0]  = 1;
     pdblDataPtr[1]  = 2;
     pdblDataPtr[2]  = 3;

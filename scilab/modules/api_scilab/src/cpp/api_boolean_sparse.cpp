@@ -13,32 +13,22 @@
  * still available and supported in Scilab 6.
  */
 
-#include "sparse.hxx"
-#include "context.hxx"
-#include "gatewaystruct.hxx"
-
-extern "C"
-{
-#include <string.h>
-#include "sci_malloc.h"
 #include "api_scilab.h"
-#include "call_scilab.h"
-#include "core_math.h"
 #include "api_internal_common.h"
 #include "api_boolean_sparse.h"
 #include "api_internal_boolean_sparse.h"
 #include "localization.h"
-}
 
-using namespace std;
-using namespace types;
+
+#include "call_scilab.h"
+#include "MALLOC.h"
 
 SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* _piCols, int* _piNbItem, int** _piNbItemRow, int** _piColPos)
 {
     SciErr sciErr = sciErrInit();
     int iType = 0;
 
-    if (_piAddress == NULL)
+    if (	_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "getBooleanSparseMatrix");
         return sciErr;
@@ -58,24 +48,19 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
         return sciErr;
     }
 
-    SparseBool* pSpBool = ((InternalType*)_piAddress)->getAs<SparseBool>();
-    *_piNbItem = (int)pSpBool->nbTrue();
+    *_piNbItem = _piAddress[4];
 
     if (_piNbItemRow == NULL)
     {
         return sciErr;
     }
-
-    int* piNbItemRows = (int*)MALLOC(sizeof(int) **_piRows);
-    *_piNbItemRow = pSpBool->getNbItemByRow(piNbItemRows);
+    *_piNbItemRow = _piAddress + 5;//4 for header + 1 for NbItem
 
     if (_piColPos == NULL)
     {
         return sciErr;
     }
-
-    int* piColPos = (int*)MALLOC(sizeof(int) **_piNbItem);
-    *_piColPos = pSpBool->getColPos(piColPos);
+    *_piColPos = *_piNbItemRow + *_piRows;
 
     return sciErr;
 }
@@ -83,40 +68,71 @@ SciErr getBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows, int* 
 SciErr allocBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
     SciErr sciErr = sciErrInit();
-    // We cant rewrite this function in YaSp
-    // because sparses are not stored like scilab 5.
-    // We cant return pointer to _piNbItemRow and
-    // _piColPos and let user fill it.
+    int iNewPos = Top - Rhs + _iVar;
+    int iAddr   = *Lstk(iNewPos);
+    int iPos    = 5 + _iRows + _iNbItem;
+    int* piAddr = NULL;
+
+    //return empty matrix
+    if (_iRows == 0 && _iCols == 0)
+    {
+        double dblReal = 0;
+        sciErr = createMatrixOfDouble(_pvCtx, _iVar, 0, 0, &dblReal);
+        if (sciErr.iErr)
+        {
+            addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Unable to create variable in Scilab memory"), "createEmptyMatrix");
+        }
+        return sciErr;
+    }
+
+    int iMemSize = (int)( ( (double)iPos / 2 ) + 0.5);
+    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(iAddr));
+    if (iMemSize > iFreeSpace)
+    {
+        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+        return sciErr;
+    }
+
+    getNewVarAddressFromPosition(_pvCtx, iNewPos, &piAddr);
+    sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+    if (sciErr.iErr)
+    {
+        addErrorMessage(&sciErr, API_ERROR_ALLOC_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "allocBooleanSparseMatrix");
+        return sciErr;
+    }
+
+    iPos += iAddr;
+    updateInterSCI(_iVar, '$', iAddr, iPos);
+    updateLstk(iNewPos, iPos, 0);
     return sciErr;
 }
 
-SciErr fillBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
+SciErr fillBooleanSparseMatrix(void* _pvCtx, int *_piAddress, int _iRows, int _iCols, int _iNbItem, int** _piNbItemRow, int** _piColPos)
 {
     SciErr sciErr = sciErrInit();
-
     if (_piAddress == NULL)
     {
         addErrorMessage(&sciErr, API_ERROR_INVALID_POINTER, _("%s: Invalid argument address"), "fillBooleanSparseMatrix");
         return sciErr;
     }
 
-    SparseBool* pSparse = (SparseBool*)_piAddress;
+    _piAddress[0]		= sci_boolean_sparse;
+    _piAddress[1]		= Min(_iRows, _iRows * _iCols);
+    _piAddress[2]		= Min(_iCols, _iRows * _iCols);
+    _piAddress[3]		= 0;
 
-    for (int i = 0; i < _iRows; i++)
-    {
-        for (int j = 0; j < _piNbItemRow[i]; j++)
-        {
-            int iIndex = (*_piColPos++ - 1) * _iRows + i;
-            pSparse->set(iIndex, true);
-        }
-    }
+    _piAddress[4]		= _iNbItem;
 
+    *_piNbItemRow	= _piAddress + 5;//4 for header + 1 for NbItem
+    *_piColPos		= *_piNbItemRow + _iRows;
     return sciErr;
 }
 
 SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
     SciErr sciErr = sciErrInit();
+    int* piNbItemRow    = NULL;
+    int* piColPos       = NULL;
 
     if (_iRows == 0 && _iCols == 0)
     {
@@ -129,33 +145,29 @@ SciErr createBooleanSparseMatrix(void* _pvCtx, int _iVar, int _iRows, int _iCols
         return sciErr;
     }
 
-    GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    InternalType** out = pStr->m_pOut;
-
-    types::SparseBool* pSparse = new SparseBool(_iRows, _iCols);
-    if (pSparse == NULL)
+    sciErr = allocBooleanSparseMatrix(_pvCtx, _iVar, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+    if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_BOOLEAN_SPARSE, _("%s: Unable to create variable in Scilab memory"), "createBooleanSparseMatrix");
         return sciErr;
     }
 
-    int rhs = _iVar - *getNbInputArgument(_pvCtx);
-    out[rhs - 1] = pSparse;
-
-    sciErr = fillBooleanSparseMatrix(_pvCtx, (int*)pSparse, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+    memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
+    memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
     return sciErr;
 }
 
 SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _iRows, int _iCols, int _iNbItem, const int* _piNbItemRow, const int* _piColPos)
 {
     SciErr sciErr = sciErrInit();
+    int iVarID[nsiz];
+    int iSaveRhs        = Rhs;
+    int iSaveTop        = Top;
+    int iPos            = 0;
 
-    // check variable name
-    if (checkNamedVarFormat(_pvCtx, _pstName) == 0)
-    {
-        addErrorMessage(&sciErr, API_ERROR_CREATE_EMPTY_MATRIX, _("%s: Invalid variable name: %s."), "createNamedMatrixOfBoolean", _pstName);
-        return sciErr;
-    }
+    int* piAddr         = NULL;
+    int* piNbItemRow    = NULL;
+    int* piColPos       = NULL;
 
     //return named empty matrix
     if (_iRows == 0 && _iCols == 0)
@@ -175,37 +187,50 @@ SciErr createNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int _i
         return sciErr;
     }
 
-    types::SparseBool* pSparse = new SparseBool(_iRows, _iCols);
-    if (pSparse == NULL)
+    C2F(str2name)(_pstName, iVarID, (int)strlen(_pstName));
+    Top = Top + Nbvars + 1;
+
+    int iMemSize = (int)( ( (double)iPos / 2) + 0.5);
+    int iFreeSpace = iadr(*Lstk(Bot)) - (iadr(Top));
+    if (iMemSize > iFreeSpace)
+    {
+        addStackSizeError(&sciErr, ((StrCtx*)_pvCtx)->pstName, iMemSize);
+        return sciErr;
+    }
+
+    getNewVarAddressFromPosition(_pvCtx, Top, &piAddr);
+    sciErr = fillBooleanSparseMatrix(_pvCtx, piAddr, _iRows, _iCols, _iNbItem, &piNbItemRow, &piColPos);
+    if (sciErr.iErr)
     {
         addErrorMessage(&sciErr, API_ERROR_CREATE_NAMED_BOOLEAN_SPARSE, _("%s: Unable to create %s named \"%s\""), "createNamedBooleanSparseMatrix", _("boolean sparse matrix"), _pstName);
         return sciErr;
     }
 
-    sciErr = fillBooleanSparseMatrix(_pvCtx, (int*)pSparse, _iRows, _iCols, _iNbItem, _piNbItemRow, _piColPos);
+    memcpy(piNbItemRow, _piNbItemRow, _iRows * sizeof(int));
+    memcpy(piColPos, _piColPos, _iNbItem * sizeof(int));
 
-    wchar_t* pwstName = to_wide_string(_pstName);
-    symbol::Context* ctx = symbol::Context::getInstance();
-    symbol::Symbol sym = symbol::Symbol(pwstName);
-    FREE(pwstName);
-    if (ctx->isprotected(sym) == false)
-    {
-        ctx->put(sym, pSparse);
-    }
-    else
-    {
-        delete pSparse;
-        addErrorMessage(&sciErr, API_ERROR_REDEFINE_PERMANENT_VAR, _("Redefining permanent variable.\n"));
-    }
+    iPos	= 5;//4 for header + 1 for NbItem
+    iPos += _iRows + _iNbItem;
+
+    //update "variable index"
+    updateLstk(Top, *Lstk(Top) + iPos, 0);
+
+    Rhs = 0;
+    //Add name in stack reference list
+    createNamedVariable(iVarID);
+
+    Top = iSaveTop;
+    Rhs = iSaveRhs;
+
     return sciErr;
 }
 
 SciErr readNamedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int* _piRows, int* _piCols, int* _piNbItem, int* _piNbItemRow, int* _piColPos)
 {
-    SciErr sciErr       = sciErrInit();
-    int* piAddr         = NULL;
-    int* piNbItemRow    = 0;
-    int* piColPos       = 0;
+    SciErr sciErr = sciErrInit();
+    int* piAddr				= NULL;
+    int* piNbItemRow	= 0;
+    int* piColPos			= 0;
 
     sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr)
@@ -261,11 +286,11 @@ int getAllocatedBooleanSparseMatrix(void* _pvCtx, int* _piAddress, int* _piRows,
         return sciErr.iErr;
     }
 
-    *_piNbItemRow		= (int*)MALLOC(sizeof(int) **_piRows);
-    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) **_piRows);
+    *_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+    memcpy(*_piNbItemRow, piNbItemRow, sizeof(int) * *_piRows);
 
-    *_piColPos			= (int*)MALLOC(sizeof(int) **_piNbItem);
-    memcpy(*_piColPos, piColPos, sizeof(int) **_piNbItem);
+    *_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
+    memcpy(*_piColPos, piColPos, sizeof(int) * *_piNbItem);
 
     return 0;
 }
@@ -281,8 +306,8 @@ int getNamedAllocatedBooleanSparseMatrix(void* _pvCtx, const char* _pstName, int
         return sciErr.iErr;
     }
 
-    *_piNbItemRow		= (int*)MALLOC(sizeof(int) **_piRows);
-    *_piColPos			= (int*)MALLOC(sizeof(int) **_piNbItem);
+    *_piNbItemRow		= (int*)MALLOC(sizeof(int) * *_piRows);
+    *_piColPos			= (int*)MALLOC(sizeof(int) * *_piNbItem);
 
     sciErr = readNamedBooleanSparseMatrix(_pvCtx, _pstName, _piRows, _piCols, _piNbItem, *_piNbItemRow, *_piColPos);
     if (sciErr.iErr)

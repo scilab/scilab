@@ -1,0 +1,8 @@
+LIBRARY    data_structures.dll
+
+
+EXPORTS
+intihm_
+intehm_
+ishm_
+strpos_

@@ -1,0 +1,14 @@
+som	a	b
+a	row	m
+b	row	n
+c	column	n
+
+fsom	a	n	b	m	c
+a	real
+n	integer
+b	real
+m	integer
+c	real
+
+out	sequence	c
+***********************

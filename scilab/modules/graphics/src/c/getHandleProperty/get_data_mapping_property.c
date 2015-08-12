@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_data_mapping_property(void* _pvCtx, int iObjUID)
+int get_data_mapping_property(void* _pvCtx, int iObjUID)
 {
     int iDataMapping = 0;
     int* piDataMapping = &iDataMapping;
@@ -40,21 +40,21 @@ void* get_data_mapping_property(void* _pvCtx, int iObjUID)
     if (piDataMapping == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "data_mapping");
-        return NULL;
+        return -1;
     }
 
     if (iDataMapping == 0)
     {
-        return sciReturnString("scaled");
+        return sciReturnString(_pvCtx, "scaled");
     }
     else if (iDataMapping == 1)
     {
-        return sciReturnString("direct");
+        return sciReturnString(_pvCtx, "direct");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "data_mapping");
-        return NULL;
+        return -1;
     }
 }
 /*------------------------------------------------------------------------*/

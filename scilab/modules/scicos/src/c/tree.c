@@ -21,7 +21,7 @@
 #include <stdio.h>
 #include <memory.h>
 #include "machine.h"
-#include "sci_malloc.h"  /* malloc */
+#include "MALLOC.h"  /* malloc */
 #include "tree.h"
 
 extern int C2F(isort)();

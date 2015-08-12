@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_view_property(void* _pvCtx, int iObjUID)
+int get_view_property(void* _pvCtx, int iObjUID)
 {
     int iView = 0;
     int* piView = &iView;
@@ -39,18 +39,18 @@ void* get_view_property(void* _pvCtx, int iObjUID)
     if (piView == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-        return NULL;
+        return -1;
     }
 
     if (iView == 0)
     {
-        return sciReturnString("2d");
+        return sciReturnString(_pvCtx, "2d");
     }
     else if (iView == 1)
     {
-        return sciReturnString("3d");
+        return sciReturnString(_pvCtx, "3d");
     }
 
-    return NULL;
+    return -1;
 }
 /*------------------------------------------------------------------------*/

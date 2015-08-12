@@ -14,7 +14,6 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "GiwsException.hxx"
-#include "loadStatus.hxx"
 
 extern "C"
 {
@@ -22,22 +21,22 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 
 /*--------------------------------------------------------------------------*/
-int sci_closeXcosFromScilab(char *fname, void* pvApiCtx)
+int sci_closeXcosFromScilab(char *fname, unsigned long fname_len)
 {
     CheckRhs(0, 0);
     CheckLhs(0, 1);
 
     // only if xcos was already opened and with supported mode
-    if ((getScilabMode() != SCILAB_NWNI) && get_loaded_status() == XCOS_CALLED)
+    if ((getScilabMode() != SCILAB_NWNI) && xcosStarted())
     {
         try
         {

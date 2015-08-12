@@ -16,11 +16,14 @@
 #include <string.h>
 #include <ctype.h>
 #include "completeLine.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "getPartLine.h"
 #include "splitpath.h"
 #include "PATH_MAX.h"
+#include "stricmp.h"
 #include "stristr.h"
 
 /*--------------------------------------------------------------------------*/
@@ -39,7 +42,8 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
     size_t stringLength = 0;
 
     //get a working copy of find
-    pointerOnFindCopy = os_strdup(find);
+    pointerOnFindCopy = strdup(find);
+
     //last character of string
     lastchar = *(string + strlen(string) - 1);
     stringLength = strlen(string);
@@ -54,6 +58,7 @@ static int findMatchingPrefixSuffix(const char* string, const char* find, BOOL s
     }
 
     //Tips : no infinite loop there, tmpfind string length is always reduced at each iteration
+
     movingPointerOnFindCopy = strrchr(pointerOnFindCopy, toupper(lastchar));
 
     while ( movingPointerOnFindCopy )
@@ -99,18 +104,18 @@ char *completeLine(char *currentline, char *stringToAdd, char *filePattern,
 
     if (currentline == NULL)
     {
-        return  os_strdup("");
+        return  strdup("");
     }
     lencurrentline = (int)strlen(currentline);
 
     if (postCaretLine == NULL)
     {
-        stringToAddAtTheEnd = os_strdup("");
+        stringToAddAtTheEnd = strdup("");
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
     else
     {
-        stringToAddAtTheEnd = os_strdup(postCaretLine);
+        stringToAddAtTheEnd = strdup(postCaretLine);
         lenstringToAddAtTheEnd = (int)strlen(stringToAddAtTheEnd);
     }
 

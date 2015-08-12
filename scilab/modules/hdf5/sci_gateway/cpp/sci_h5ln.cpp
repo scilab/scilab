@@ -40,7 +40,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5ln(char *fname, int* pvApiCtx)
+int sci_h5ln(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     H5Object * targetObj = 0;

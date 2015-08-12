@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="gstacksize">
+    <refnamediv>
+        <refname>gstacksize</refname>
+        <refpurpose>установить/получить размер стека глобальных переменных Scilab'а</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            gstacksize(n)
+            gstacksize('max')
+            gstacksize('min')
+            sz=gstacksize()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>
+                        целое число, требуемый размер стека глобальных переменных; указывается в числах двойной точности
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>двухэлементный вектор [общий используемый]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Scilab хранит глобальные переменные в стеке.
+        </para>
+        <para>
+            <code>gstacksize(n)</code> позволяет пользователю увеличить или уменьшить размер этого стека. Максимально разрешённый размер зависит от количества свободной памяти и размера подкачки, доступной в данный момент. Заметьте, что Scilab может автоматически увеличивать размер стека глобальных переменных в случае необходимости.
+        </para>
+        <para>
+            <code>sz=gstacksize()</code> возвращает двухэлементный вектор, который содержит общий и используемый размер стека глобальных переменных.
+        </para>
+        <para>
+            <code>gstacksize('max')</code> позволяет увеличить размер стека глобальных переменных до максимума.
+        </para>
+        <para>
+            <code>gstacksize('min')</code> позволяет увеличить размер стека глобальных переменных до  минимума.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+currentStackSize = gstacksize();
+disp("Максимальный размер стека: " + string(currentStackSize(1)))
+disp("В настоящий момент используется: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="stacksize">stacksize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

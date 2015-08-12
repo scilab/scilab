@@ -16,10 +16,12 @@
 // Hypermatrix insertion with a negative (or null) index gives a wrong error message.
 
 A=rand(2,2,2);
-errmsg = msprintf(gettext("Invalid index.\n"));
+errmsg = msprintf(gettext("%s: Invalid index #%d in hypermatrix insertion.\n"),"hmops",3);
 execstr("A(:,:,0)=[1,2;3,4]","errcatch");
 assert_checktrue(lasterror()==errmsg);
+errmsg = msprintf(gettext("%s: Invalid index #%d in hypermatrix insertion.\n"),"hmops",2);
 execstr("A(:,0,1)=[1;2]", "errcatch");
 assert_checktrue(lasterror()==errmsg);
+errmsg = msprintf(gettext("%s: Invalid index #%d in hypermatrix insertion.\n"),"hmops",1);
 execstr("A(0,:,1)=[1 2]", "errcatch");
 assert_checktrue(lasterror()==errmsg);

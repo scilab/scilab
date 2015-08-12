@@ -10,15 +10,6 @@
  *
  */
 
-#include "SetHashTable.h"
-#include "GetHashTable.h"
-
-#ifdef _MSC_VER
-/*--------------------------------------------------------------------------*/
-//for Visual Leak Detector in debug compilation mode
-#if defined(DEBUG_VLD) && defined(_DEBUG)
-#include <vld.h>
-#endif
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
@@ -31,8 +22,6 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
         case DLL_PROCESS_ATTACH:
             break;
         case DLL_PROCESS_DETACH:
-            destroyScilabSetHashTable();
-            destroyScilabGetHashTable();
             break;
         case DLL_THREAD_ATTACH:
             break;
@@ -41,15 +30,5 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
     }
     return 1;
 }
-#else
-__attribute__((constructor)) static void load(void);
-__attribute__((destructor)) static void unload(void);
-
-void unload(void)
-{
-    destroyScilabSetHashTable();
-    destroyScilabGetHashTable();
-}
-#endif
 /*--------------------------------------------------------------------------*/
 

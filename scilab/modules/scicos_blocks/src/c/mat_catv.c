@@ -22,7 +22,7 @@
 #include <string.h>
 #include <stdio.h>
 #include "scicos_block4.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "dynlib_scicos_blocks.h"
 #include "matz_catv.h"
 /*--------------------------------------------------------------------------*/

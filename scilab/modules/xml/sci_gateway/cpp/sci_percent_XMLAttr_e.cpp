@@ -28,7 +28,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_percent_XMLAttr_e(char *fname, void* pvApiCtx)
+int sci_percent_XMLAttr_e(char *fname, unsigned long fname_len)
 {
     XMLAttr *attr;
     int id;

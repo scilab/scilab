@@ -22,7 +22,7 @@
 #include <stdio.h>
 #endif
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "createdirectory.h"
 #include "isdir.h"
 #include "splitpath.h"

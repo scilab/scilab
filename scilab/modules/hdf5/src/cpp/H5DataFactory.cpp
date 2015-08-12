@@ -281,9 +281,6 @@ void H5DataFactory::getNativeData(const hid_t obj, const hid_t space, hsize_t * 
                     *totalSize *= (*dims)[i];
                 }
                 hyperslab = true;
-                break;
-            default:
-                break;
         }
     }
 

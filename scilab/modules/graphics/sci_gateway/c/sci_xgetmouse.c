@@ -34,7 +34,7 @@
 #include "graphicObjectProperties.h"
 #include "getGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_xgetmouse(char *fname, void *pvApiCtx)
+int sci_xgetmouse(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

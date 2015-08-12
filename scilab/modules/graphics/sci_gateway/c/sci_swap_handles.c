@@ -14,7 +14,7 @@
 /* file: sci_swap_handles.c                                               */
 /* desc : interface for swap_handles routine                              */
 /*------------------------------------------------------------------------*/
-#include <string.h>
+
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "HandleManagement.h"
@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_swap_handles(char * fname, void *pvApiCtx)
+int sci_swap_handles(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

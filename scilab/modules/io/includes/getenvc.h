@@ -14,7 +14,6 @@
 #ifndef __GETENVC_H__
 #define __GETENVC_H__
 
-#include <wchar.h>
 #include "dynlib_io.h"
 #include "machine.h"
 
@@ -26,7 +25,7 @@
  * @param[out] buflen  the length of the variable
  * @param[in] iflag
  */
-IO_IMPEXP void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *iflag);
+IO_IMPEXP void C2F(getenvc)(int *ierr, char *var, char *buf, int *buflen, int *iflag);
 
 /**
 * Searches for a file using environment paths
@@ -35,8 +34,6 @@ IO_IMPEXP void getenvc(int *ierr, const char *var, char *buf, int *buflen, int *
 * @return path found
 */
 IO_IMPEXP char *searchEnv(const char *name, const char *env_var);
-IO_IMPEXP wchar_t* searchEnvW(const wchar_t* _pwstName, const wchar_t* _pwstEnv);
-
 
 
 #endif /* __GETENVC_H__ */

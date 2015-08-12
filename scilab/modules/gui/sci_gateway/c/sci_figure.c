@@ -13,7 +13,7 @@
 
 #include <stdio.h>
 #include "gw_gui.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -28,7 +28,11 @@
 #include "FigureModel.h"
 #include "HandleManagement.h"
 #include "SetHashTable.h"
-#include "os_string.h"
+#include "stricmp.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+
 #include "sciprint.h"
 #include "addColor.h"
 
@@ -37,7 +41,7 @@ int setDefaultProperties(int _iFig, BOOL bDefaultAxes);
 int getStackArgumentAsBoolean(void* _pvCtx, int* _piAddr);
 void initBar(int iFig, BOOL menubar, BOOL toolbar, BOOL infobar);
 /*--------------------------------------------------------------------------*/
-int sci_figure(char * fname, void* pvApiCtx)
+int sci_figure(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -466,7 +470,6 @@ int sci_figure(char * fname, void* pvApiCtx)
         {
             // Already set creating new figure
             // but let the set_ function fail if figure already exists
-            freeAllocatedSingleString(pstProName);
             continue;
         }
 
@@ -474,7 +477,6 @@ int sci_figure(char * fname, void* pvApiCtx)
         sciErr = getVarAddressFromPosition(pvApiCtx, i + 1, &piAddrData);
         if (sciErr.iErr)
         {
-            freeAllocatedSingleString(pstProName);
             Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, i + 1);
             return 1;
         }
@@ -513,7 +515,6 @@ int sci_figure(char * fname, void* pvApiCtx)
                     {
                         if (getAllocatedSingleString(pvApiCtx, piAddrData, (char**)&_pvData))
                         {
-                            freeAllocatedSingleString(pstProName);
                             Scierror(999, _("%s: Wrong size for input argument #%d: A single string expected.\n"), fname, 3);
                             return 1;
                         }
@@ -552,7 +553,6 @@ int sci_figure(char * fname, void* pvApiCtx)
             setGraphicObjectProperty(iAxes, __GO_BACKGROUND__, piBackground, jni_int, 1);
         }
 
-        freeAllocatedSingleString(pstProName);
         if (iType == sci_strings)
         {
             //free allacted data
@@ -588,7 +588,6 @@ int sci_figure(char * fname, void* pvApiCtx)
         int* piAxesSize = NULL;
         getGraphicObjectProperty(getFigureModel(), __GO_AXES_SIZE__, jni_int_vector, (void **)&piAxesSize);
         setGraphicObjectProperty(iFig, __GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
-        releaseGraphicObjectProperty(__GO_AXES_SIZE__, piAxesSize, jni_int_vector, 2);
     }
 
     initBar(iFig, bMenuBar, bToolBar, bInfoBar);

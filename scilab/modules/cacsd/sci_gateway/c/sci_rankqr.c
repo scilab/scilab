@@ -13,20 +13,17 @@
 
 /*--------------------------------------------------------------------------*/
 #include <string.h>
-#include "gw_cacsd.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "sci_rankqr.h"
+#include "gw_slicot.h"
 /*--------------------------------------------------------------------------*/
-int sci_rankqr(char* fname, void* pvApiCtx)
+int sci_rankqr(char* fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = 0;
     int ret = 0;
-
-    CheckInputArgument(pvApiCtx, 1, 3);
-    CheckOutputArgument(pvApiCtx, 1, 5);
 
     sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddr);
     if (sciErr.iErr)
@@ -37,12 +34,12 @@ int sci_rankqr(char* fname, void* pvApiCtx)
 
     if (isVarComplex(pvApiCtx, piAddr))
     {
-        ret = sci_zrankqr("rankqr", pvApiCtx);
+        ret = sci_zrankqr("rankqr", 6L);
         return ret;
     }
     else
     {
-        ret = sci_rrankqr("rankqr", pvApiCtx);
+        ret = sci_rrankqr("rankqr", 6L);
         return ret;
     }
 }

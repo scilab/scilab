@@ -85,9 +85,7 @@ function tbx_build_blocks(module, names, macros_path)
 
         // export the instance
         execstr(msprintf("scs_m = %s (''define'');", names(i)));
-        try
-            save(h5Files(i), "scs_m");
-        catch
+        if ~export_to_hdf5(h5Files(i), "scs_m") then
             error(msprintf(gettext("%s: Unable to export %s to %s.\n"),"tbx_build_blocks",names(i), h5Files(i)));
         end
 

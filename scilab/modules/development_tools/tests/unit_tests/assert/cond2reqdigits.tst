@@ -9,8 +9,6 @@
 // <-- CLI SHELL MODE -->
 // <-- ENGLISH IMPOSED -->
 
-funcprot(0);
-
 function flag = MY_assert_equal ( computed , expected )
   if computed==expected then
     flag = 1;
@@ -122,4 +120,3 @@ expected = [
 ];
 MY_assert_equal ( computed , expected );
 
-funcprot(1);

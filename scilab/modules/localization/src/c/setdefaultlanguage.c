@@ -14,19 +14,17 @@
 #include "setgetlanguage.h"
 #include "LanguagePreferences_Windows.h"
 #include "string.h"
-#include "charEncoding.h"
 #endif
 
 /*--------------------------------------------------------------------------*/
-void setdefaultlanguage(const char * lang)
+void setdefaultlanguage(char * lang)
 {
 
 #ifdef _MSC_VER
-    wchar_t *savedLanguage = getLanguagePreferences();
-    wchar_t* pwstLang = to_wide_string(lang);
-    if (wcscmp(pwstLang, savedLanguage))
+    char *savedLanguage = getLanguagePreferences();
+    if (strcmp(lang, savedLanguage))
     {
-        if (setlanguage(pwstLang))
+        if (setlanguage(lang))
         {
             setLanguagePreferences();
         }
@@ -35,11 +33,11 @@ void setdefaultlanguage(const char * lang)
 
 }
 /*--------------------------------------------------------------------------*/
-const char* getdefaultlanguage(void)
+char * getdefaultlanguage(void)
 {
 
 #ifdef _MSC_VER
-    return wide_string_to_UTF8(getLanguagePreferences());
+    return getLanguagePreferences();
 #else
     return "";
 #endif

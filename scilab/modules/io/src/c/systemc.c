@@ -1,6 +1,8 @@
 /*
 * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+* Copyright (C) 2005 - INRIA - Allan CORNET
 * Copyright (C) 2010 - DIGITEO - Allan CORNET
+*
 * This file must be used under the terms of the CeCILL.
 * This source file is licensed as described in the file COPYING, which
 * you should have received as part of this distribution.  The terms
@@ -18,31 +20,15 @@
 #include "spawncommand.h"
 #else
 #include <sys/wait.h>
-#include "sci_malloc.h"
 #endif
-#include "charEncoding.h"
 #include "systemc.h"
 /*--------------------------------------------------------------------------*/
-int systemc(char *command, int *stat)
+int C2F(systemc)(char *command, int *stat)
 {
 #ifdef _MSC_VER
     *stat = CallWindowsShell(command);
 #else
     int status = system(command);
-    /* provide exit value of the child */
-    *stat = WEXITSTATUS(status);
-#endif
-    return  0;
-}
-/*--------------------------------------------------------------------------*/
-int systemcW(wchar_t* _pstCommand, int *stat)
-{
-#ifdef _MSC_VER
-    *stat = CallWindowsShellW(_pstCommand);
-#else
-    char* pstTemp = wide_string_to_UTF8(_pstCommand);
-    int status = system(pstTemp);
-    FREE(pstTemp);
     /* provide exit value of the child */
     *stat = WEXITSTATUS(status);
 #endif

@@ -1,0 +1,98 @@
+mat1	a
+a 	matrix ma na 
+
+ext15ca  a ma na
+a	double
+
+out	sequence a
+***********************
+mat2	a
+a 	matrix ma na 
+
+ext15cc  a ma na
+a	int
+
+out	sequence a
+***********************
+mat3	a
+a 	matrix ma na 
+
+ext15ca  a ma na
+a	double
+
+out	list a
+***********************
+mat4	a
+a 	matrix ma na 
+b 	matrix ma na 
+
+ext15cb  a b  ma na
+a	double
+b	double 
+
+out	sequence b
+***********************
+mat5	a
+a 	matrix ma na 
+b 	matrix ma na 
+
+ext15cd  a b  ma na
+a	int
+b	int
+
+out	sequence b
+***********************
+mat6	a
+a 	matrix ma na 
+b 	matrix ma na 
+
+ext15cb  a b  ma na
+a	double
+b	double 
+
+out	list b
+***********************
+mat7	a
+a	list 	ex15fi-l
+
+ext15ca	mat(a)  ma(a) na(a)
+mat(a)	double 
+
+out	sequence	mat(a)
+***********************
+mat8	a
+a	list 	ex15fi-l
+
+ext15cc	mat(a)  ma(a) na(a)
+mat(a)	int
+
+out	sequence	mat(a)
+***********************
+mat9	a
+a	list 	ex15fi-l
+
+ext15ca	mat(a)  ma(a) na(a)
+mat(a)	double 
+
+out	list	mat(a)
+***********************
+mat10	
+a	matrix ma na 
+
+ext15ce	a ma na err
+a	cintf
+ma	int 
+na	int 
+
+out	sequence a
+***********************
+mat11
+a	matrix ma na 
+
+ext15ce	a ma na err
+a	cintf
+ma	int 
+na	int 
+
+out	list a
+***********************

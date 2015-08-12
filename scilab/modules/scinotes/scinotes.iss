@@ -31,8 +31,9 @@ Source: modules\{#SCINOTES}\etc\*.xml; DestDir: {app}\modules\{#SCINOTES}\etc; C
 Source: modules\{#SCINOTES}\etc\*.xsl; DestDir: {app}\modules\{#SCINOTES}\etc; Components: {#COMPN_SCINOTES}
 ;
 Source: modules\{#SCINOTES}\macros\lib; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
-Source: modules\{#SCINOTES}\macros\*.sci; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\macros\names; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\*.bin; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
+Source: modules\{#SCINOTES}\macros\*.sci; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\buildmacros.sce; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\buildmacros.bat; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}
 Source: modules\{#SCINOTES}\macros\cleanmacros.bat; DestDir: {app}\modules\{#SCINOTES}\macros; Components: {#COMPN_SCINOTES}

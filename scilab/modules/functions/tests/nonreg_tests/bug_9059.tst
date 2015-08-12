@@ -7,6 +7,8 @@
 //
 // <-- CLI SHELL MODE -->
 //
+// <-- ENGLISH IMPOSED -->
+//
 // <-- Non-regression test for bug 9059 -->
 //
 // <-- Bugzilla URL -->
@@ -16,13 +18,11 @@
 // tbx_build_macros and genlib do not stop on error
 
 cd TMPDIR;
-mkdir("bug_9059");
-
-f = ["function [t] = macrobug(z)"; "t=z/"; "endfunction"];
-mputl(f,TMPDIR+"/bug_9059/macrobug.sci");
-
-cd("bug_9059");
+mkdir('bug_9059');
+f = ['function [t] = macrobug(z)'; 't=z/'; 'endfunction'];
+mputl(f,TMPDIR+'/bug_9059/macrobug.sci');
+cd('bug_9059');
 exec("macrobug.sci","errcatch");
-
-errmsg=msprintf(gettext("%s: Error in file %s.\n"), "genlib", pathconvert("TMPDIR" +"/bug_9059/macrobug.sci", %f));
-assert_checkerror("genlib(""bug_9059lib"",""TMPDIR/bug_9059"",%f,%t)",errmsg);
+str=lasterror();
+msgerr="%s: Error in file %s : %s.\n";
+assert_checkerror("genlib(''bug_9059lib'',''TMPDIR/bug_9059'',%f,%t)",msgerr,[],"genlib",pathconvert("TMPDIR" +"/bug_9059/macrobug.sci", %f),str);

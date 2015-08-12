@@ -322,9 +322,9 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-        //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then //no have librarieslist in scilab 6 yet
+    elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
         // It's an ATOMS module
-        //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
+        module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
     elseif isdir(name(1)) then
         // It's an external module
         module.path = pathconvert(name(1), %F);
@@ -512,8 +512,7 @@ function status = test_single(_module, _testPath, _testName)
     execMode      = "";
     platform      = "all";
     language      = "any";
-    //try_catch     = %T; // Scilab 5.4.0
-    try_catch     = %f; // see comment about "dia(find(dia == '')) = [];" (~line 890)
+    try_catch     = %T;
     error_output  = "check";
     reference     = "check";
     xcosNeeded    = %F;
@@ -691,7 +690,7 @@ function status = test_single(_module, _testPath, _testName)
     sciFile = strsubst(sciFile, "pause; end", "bugmes();quit;end");
 
     //to avoid suppression of input --> with prompts
-    sciFile = strsubst(sciFile, "--> ", "@#> ");
+    sciFile = strsubst(sciFile, "-->", "@#>");
     //remove halt calls
     sciFile = strsubst(sciFile, "halt();", "");
 
@@ -765,15 +764,12 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     //mode
-    winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
-        winbin = "scilex.exe";
         mode_arg = "-nwni";
     else
         if execMode == "NWNI" then
-            winbin = "scilex.exe";
             mode_arg = "-nwni";
         elseif execMode == "NW" then
             mode_arg = "-nw";
@@ -803,9 +799,9 @@ function status = test_single(_module, _testPath, _testName)
     // Build final command
     if getos() == "Windows" then
         if (isdir(_module.moduleName) & isfile(loader_path)) // external module not in Scilab
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + loader_path + """"");exec(""""" + tmp_tst + """"");"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         else // standard module
-            test_cmd = "( """ + SCI_BIN + "\bin\" + winbin + """" + " " + mode_arg + " " + language_arg + " -nb -e ""exec(""""" + tmp_tst + """"", -1);"" > """ + tmp_res + """ ) 2> """ + tmp_err + """";
+            test_cmd = "( """ + SCI_BIN + "\bin\scilex.exe" + """" + " " + mode_arg + " " + language_arg + " -nb -f """ + tmp_tst + """ > """ + tmp_res + """ ) 2> """ + tmp_err + """";
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
@@ -848,12 +844,11 @@ function status = test_single(_module, _testPath, _testName)
     if (error_output == "check") & (_module.error_output == "check") then
         if getos() == "Darwin" then
             tmp_errfile_info = fileinfo(tmp_err);
-            msg = "Picked up _JAVA_OPTIONS:"; // When -Djava.awt.headless=false is forced for example
+            msg = "JavaVM: requested Java version (1.5) not available. Using Java at ""/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"" instead."
 
             if ~isempty(tmp_errfile_info) then
                 txt = mgetl(tmp_err);
-                toRemove = grep(txt, msg);
-                txt(toRemove) = [];
+                txt(txt==msg) = [];
                 if isempty(txt) then
                     deletefile(tmp_err);
                 else // Remove messages due to JOGL2 RC8
@@ -953,17 +948,6 @@ function status = test_single(_module, _testPath, _testName)
     // Remove Header and Footer
     dia = remove_headers(dia);
 
-    // Remove empty lines
-    // In scilab 5, the test is executed in a try/catch
-    // which remove empty lines.
-    // In scilab 6, we can't execute the test in a try/catch
-    // because it will be parsed first then executed
-    // so the diary will contain all the script followed by the display
-    // of the execution.
-    // The try/catch is desactived ~line 513 by "try_catch     = %f;"
-    // and the following line remove empty lines to reproduce the old operation.
-    dia(find(dia == "")) = [];
-
     //Check for execution errors
     dia_tmp = dia;
 
@@ -1019,7 +1003,7 @@ function status = test_single(_module, _testPath, _testName)
     if ( (reference=="check") & (_module.reference=="check") ) | (_module.reference=="create") then
         //  Do some modification in  dia file
 
-        dia(grep(dia, "printf(''%s\n'',tmpdirToPrint);")) = [];
+        dia(grep(dia, "write(%io(2), tmpdirToPrint")) = [];
         dia(grep(dia, "TMPDIR1")) = [];
         dia(grep(dia, "diary(0)")) = [];
 
@@ -1051,9 +1035,9 @@ function status = test_single(_module, _testPath, _testName)
         end
 
         //suppress the prompts
-        dia = strsubst(dia, "--> ", "");
-        dia = strsubst(dia, "@#> ", "--> ");
-        dia = strsubst(dia, "-1-> ", "");
+        dia = strsubst(dia, "-->", "");
+        dia = strsubst(dia, "@#>", "-->");
+        dia = strsubst(dia, "-1->", "");
 
         //standardise  number display
 
@@ -1123,7 +1107,6 @@ function msg = checkthefile( filename )
     if params.show_error == %t then
         msg=[msg; mgetl(filename)]
     end
-
 endfunction
 
 // launchthecommand

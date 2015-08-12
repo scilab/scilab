@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_color_range_property(void* _pvCtx, int iObjUID)
+int get_color_range_property(void* _pvCtx, int iObjUID)
 {
     int* range = NULL;
 
@@ -38,9 +38,9 @@ void* get_color_range_property(void* _pvCtx, int iObjUID)
     if (range == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_range");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowVectorFromInt(range, 2);
+    return sciReturnRowVectorFromInt(_pvCtx, range, 2);
 }
 /*------------------------------------------------------------------------*/

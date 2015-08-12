@@ -102,7 +102,10 @@ norm(dy-cos(t(1:$-1)),%inf)
         <title>Ver Também</title>
         <simplelist type="inline">
             <member>
-                <link linkend="numderivative">numderivative</link>
+                <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="numdiff">numdiff</link>
             </member>
         </simplelist>
     </refsection>

@@ -29,7 +29,9 @@ extern "C"
 #include "xml_mlist.h"
 #include "xml_constants.h"
 #include "localization.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 }
 
 using namespace org_modules_xml;
@@ -54,7 +56,7 @@ int createStringOnStack(char * fname, const char * str, int pos, void* pvApiCtx)
 
     if (strchr(str, '\n'))
     {
-        char * tok = os_strdup(str);
+        char * tok = strdup(str);
         char * stok = tok;
         std::vector<char *> vector = std::vector<char *>();
 
@@ -234,7 +236,7 @@ int createVariableOnStack(char * fname, XMLNs & ns, const char * field, int pos,
  * @param fname_len the function name length
  */
 template<class T>
-int sci_extraction(char * fname, void* pvApiCtx)
+int sci_extraction(char * fname, void *pvApiCtx)
 {
     T * t;
     int id;

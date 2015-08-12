@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="trianfml" xml:lang="fr">
+    <refnamediv>
+        <refname>trianfml</refname>
+        <refpurpose>triangularisation symbolique</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Séquence d'appel</title>
+        <synopsis>[f [,sexp]]=trianfml(f [,sexp])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Triangularisation symbolique de la matrice <literal>f</literal>. La
+            triangularisation est faite par manipulations élémentaires de lignes et de
+            colonnes. <literal>sexp</literal> est un ensemble d'expressions communes
+            stockées par l'algorithme.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemples</title>
+        <programlisting role="example"><![CDATA[ 
+A=['1','2';'a','b']
+W=trianfml([A,string(eye(2,2))])
+U=W(:,3:4)
+a=5;b=6;
+A=evstr(A)
+U=evstr(U)
+U*A
+evstr(W(:,1:2))
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Voir aussi</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="addf">addf</link>
+            </member>
+            <member>
+                <link linkend="mulf">mulf</link>
+            </member>
+            <member>
+                <link linkend="solve">solve</link>
+            </member>
+            <member>
+                <link linkend="trisolve">trisolve</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

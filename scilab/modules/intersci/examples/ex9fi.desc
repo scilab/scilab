@@ -1,0 +1,14 @@
+calc9	a {b  bb} [c tutu] [d (4)/1,2,3,4/]
+a	scalar 
+b	scalar 
+c	string	l
+d	matrix	1 l1
+
+fcalc9	a b c l d l1
+a	integer
+b	double 
+c	char 
+d	integer 
+
+out	sequence	a b c d
+***********************

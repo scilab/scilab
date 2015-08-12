@@ -15,7 +15,7 @@
 #include <string.h>
 #include "cluni0.h"
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 int C2F(cluni0)(char *in_name, char *out_name, int *out_n, long int lin, long int lout)
 {

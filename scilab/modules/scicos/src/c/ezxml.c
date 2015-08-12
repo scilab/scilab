@@ -43,9 +43,11 @@
 #include <sys/stat.h>
 #include "ezxml.h"
 
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 #ifdef _MSC_VER
 #define snprintf _snprintf
@@ -472,7 +474,7 @@ void ezxml_proc_inst(ezxml_root_t root, char *s, size_t len)
         root->pi[i] = MALLOC(sizeof(char *) * 3);
         root->pi[i][0] = target;
         root->pi[i][1] = (char *)(root->pi[i + 1] = NULL); // terminate pi list
-        root->pi[i][2] = os_strdup(""); // empty document position list
+        root->pi[i][2] = strdup(""); // empty document position list
     }
 
     while (root->pi[i][j])
@@ -1499,7 +1501,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
         if (xml->attr == EZXML_NIL)   // first attribute
         {
             xml->attr = MALLOC(4 * sizeof(char *));
-            xml->attr[1] = os_strdup(""); // empty list of malloced names/vals
+            xml->attr[1] = strdup(""); // empty list of malloced names/vals
         }
         else
         {
@@ -1517,7 +1519,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
     }
     else if (xml->flags & EZXML_DUP)
     {
-        FREE((char *)name);    // name was os_strduped
+        FREE((char *)name);    // name was strduped
     }
 
     for (c = l; xml->attr[c]; c += 2)
@@ -1552,7 +1554,7 @@ ezxml_t ezxml_set_attr(ezxml_t xml, const char *name, char *value)
         memmove(xml->attr[c + 1] + (l / 2), xml->attr[c + 1] + (l / 2) + 1,
                 (c / 2) - (l / 2)); // fix list of which name/vals are malloced
     }
-    xml->flags &= ~EZXML_DUP; // clear os_strdup() flag
+    xml->flags &= ~EZXML_DUP; // clear strdup() flag
     return xml;
 }
 

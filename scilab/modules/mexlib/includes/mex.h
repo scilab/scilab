@@ -1,17 +1,16 @@
 
 /*
-* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
-* Copyright (C) INRIA
-* Copyright (C) ENPC
-*  Copyright (C) 2011-2011 - DIGITEO - Bruno JOFRET
-*
-* This file must be used under the terms of the CeCILL.
-* This source file is licensed as described in the file COPYING, which
-* you should have received as part of this distribution.  The terms
-* are also available at
-* http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
-*
-*/
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * Copyright (C) ENPC
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ */
 
 #ifdef __cplusplus
 extern "C" {
@@ -20,222 +19,338 @@ extern "C" {
 #ifndef SCI_MEX
 #define SCI_MEX
 
-#include <stdio.h>
-#include "machine.h"
-#include <assert.h>
+#ifdef WIN32
+#include <stddef.h> /*for LCC */
+#endif
 
-//define mxAssert in order to benefit user compilation flag ( debug or not )
-#define mxAssert(/* int */expr, /*char* */error_message) if (!expr){mexPrintf("Assertion Error: %s\n", error_message); assert(expr);}
-#define mxAssertS(/* int */expr, /*char* */error_msesage) assert(expr);
+#define __MEX_INCLUDE__
+#include "stack-c.h"
+#undef __MEX_INCLUDE__
 
+    typedef int Matrix;
+    typedef unsigned long int vraiptrst;
+#ifndef __DEF_MXARRAY__
+#define __DEF_MXARRAY__
+    typedef int mxArray;
+    typedef int Gatefunc (int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
+#endif
+
+    typedef int (*GatefuncH) (int nlhs, mxArray *plhs[], int nrhs, mxArray *prhs[]);
+
+    typedef int (*FGatefuncH) (int *nlhs, mxArray *plhs[], int *nrhs, mxArray *prhs[]);
+
+    typedef int (*Myinterfun) (char *, GatefuncH F);
+
+    typedef int (*GT) ();
+
+#ifndef __DEF_TABLE_STRUCT__
+#define __DEF_TABLE_STRUCT__
+    typedef struct table_struct
+    {
+        Myinterfun f;    /** interface **/
+        GT F;     /** function **/
+        char *name;      /** its name **/
+    } GenericTable;
+#endif
+
+#define mxLOGICAL int
+#define mxLogical int
+
+#define REAL    0
+#define COMPLEX 1
+
+#ifndef NULL
+#define NULL 0
+#endif
+
+#define mxCreateFull mxCreateDoubleMatrix
 
 #ifndef __cplusplus
-typedef int bool;
+#ifndef bool
+#define bool int
+#endif
 #endif
 
-typedef int mxArray;
+    /* mexGetMatrixPtr - mexGetArrayPtr : NOT IN MATLAB API - V6.4 compatible*/
+#define mexGetMatrixPtr(name) mexGetArrayPtr(name, "caller")
 
-typedef int mwSize;
-typedef int mwIndex;
-typedef int mwSignedIndex;
+    /* mexGetArray : NOT IN MATLAB API - V6.4 compatible*/
+#define mexGetArrayPtr(name,type) mexGetArray(name,type)
 
-typedef char mxChar;
-typedef int mxLogical;
+    void mexPrintf(const char *fmt, ...);
+    void C2F(mexprintf)(char *error_msg, int len);
 
-typedef enum
-{
-    mxUNKNOWN_CLASS,
-    mxCELL_CLASS,
-    mxSTRUCT_CLASS,
-    mxLOGICAL_CLASS,
-    mxCHAR_CLASS,
-    mxVOID_CLASS,
-    mxDOUBLE_CLASS,
-    mxSINGLE_CLASS,
-    mxINT8_CLASS,
-    mxUINT8_CLASS,
-    mxINT16_CLASS,
-    mxUINT16_CLASS,
-    mxINT32_CLASS,
-    mxUINT32_CLASS,
-    mxINT64_CLASS,
-    mxUINT64_CLASS,
-    mxFUNCTION_CLASS
-} mxClassID;
+    /* mexPutFull: NOT IN MATLAB API - V4 compatible */
+    /** Put a matrix in Scilab Workspace */
+#define mexPutFull(name,m,n,ptrM,tag)					\
+  if ( ! C2F(cwritemat)(name,(c_local=m,&c_local),(c1_local=n,&c1_local),ptrM,strlen(name))) { \
+      mexErrMsgTxt(_("mexPutFull failed\n"));return; }
 
-typedef enum
-{
-    mxREAL = 0, mxCOMPLEX
-} mxComplexity;
+    /* prototypes */
 
-//Create or Delete Array
-mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it);
-mxArray *mxCreateDoubleScalar(double value);
-mxArray *mxCreateNumericMatrix(int m, int n, mxClassID classid, mxComplexity flag);
-mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID classid, mxComplexity flag);
-mxArray *mxCreateUninitNumericMatrix(size_t m, size_t n, mxClassID classid, mxComplexity ComplexFlag);
-mxArray *mxCreateUninitNumericArray(size_t ndim, size_t *dims, mxClassID classid, mxComplexity ComplexFlag);
+    /* mexInfo: NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    void mexInfo (char *);
 
-mxArray *mxCreateString(const char *string);
-mxArray *mxCreateCharMatrixFromStrings(int m, const char **str);
-mxArray *mxCreateCharArray(int ND, const int *size);
+    /* mexCheck: NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    int mexCheck (char *, int );
 
-mxArray *mxCreateLogicalScalar(mxLogical value);
-mxArray *mxCreateLogicalMatrix(int m, int n);
-mxArray *mxCreateLogicalArray(mwSize ndim, const mwSize *dims);
-mxArray *mxCreateSparseLogicalMatrix(mwSize m, mwSize n, mwSize nzmax);
+    mxArray *mxCreateCharMatrixFromStrings (int m, const char **str);
+    mxArray *mxCreateString (const char *string);
+    mxArray *C2F(mxcreatestring)  (char *string, long int l);
+    /* mxcreatefull : NOT IN MATLAB API - v4 compatible */
+    mxArray *C2F(mxcreatefull)  (int *m, int *n, int *it);
+    mxArray *mxCreateCharArray (int ND, const int *size);
 
-mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx);
+    mxArray *mxCreateCellArray (int ND, const int *size);
+    mxArray *mxCreateCellMatrix (int m, int n);
 
-mxArray *mxCreateStructMatrix(int m, int n, int nfields, const char **field_names);
-mxArray *mxCreateStructArray(int ndim, const int *dims, int nfields, const char **field_names);
+    mxArray *mxCreateStructArray (int ndim, const int *dims, int nfields, const char **field_names);
+    mxArray *mxCreateStructMatrix (int m, int n, int nfields, const char **field_names);
 
-mxArray *mxCreateCellArray(int ND, const int *size);
-mxArray *mxCreateCellMatrix(int m, int n);
+    mxArray *mxGetCell (const mxArray *ptr, int index);
 
-void mxDestroyArray(mxArray *ptr);
-mxArray *mxDuplicateArray(const mxArray *ptr);
+    double mxGetScalar (const mxArray *ptr);
+    double C2F(mxgetscalar)  (mxArray *ptr);
+    double *mxGetPi (const mxArray *ptr);
+    double * C2F(mxgetpi)  (mxArray *ptr);
+    double *mxGetPr (const mxArray *ptr);
+    double * C2F(mxgetpr)  (mxArray *ptr);
+    double mxGetInf (void);
+    double mxGetNaN (void);
+    double mxGetEps (void);
+    bool mxIsNaN (double x);
+    bool mxIsInf (double x);
+    bool mxIsFinite (double x);
+    int *mxGetDimensions (const mxArray *ptr);
+    int mxCalcSingleSubscript (const mxArray *ptr, int nsubs, const int *subs);
+    int mxGetNumberOfElements (const mxArray *ptr);
+    int mxGetNumberOfDimensions(const mxArray *ptr);
+    int mxGetNumberOfFields(const mxArray *ptr);
+    void *mxGetData(const mxArray *ptr);
+    void *mxGetImagData(const mxArray *ptr);
 
-void *mxCalloc(size_t n, size_t size);
-void *mxMalloc(size_t nsize);
-void *mxRealloc(void *ptr, mwSize size);
-void mxFree(void *ptr);
+    void clear_mex(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs);
 
-//Validate Data
-int mxIsDouble(const mxArray *ptr);
-int mxIsSingle(const mxArray *ptr);
-int mxIsComplex(const mxArray *ptr);
-int mxIsNumeric(const mxArray *ptr);
-int mxIsInt64(const mxArray *ptr);
-int mxIsUint64(const mxArray *ptr);
-int mxIsInt32(const mxArray *ptr);
-int mxIsUint32(const mxArray *ptr);
-int mxIsInt16(const mxArray *ptr);
-int mxIsUint16(const mxArray *ptr);
-int mxIsInt8(const mxArray *ptr);
-int mxIsUint8(const mxArray *ptr);
-int mxIsScalar(const mxArray *array_ptr);
+    extern void errjump ();
 
-int mxIsChar(const mxArray *ptr);
+    int mxGetM (const mxArray *ptr);
+    int  C2F(mxgetm)  (mxArray *ptr);
+    int mxGetN (const mxArray *ptr);
+    int  C2F(mxgetn)  (mxArray *ptr);
+    int mxGetString (const mxArray *ptr, char *str, int strl);
+    int  C2F(mxgetstring)  (mxArray *ptr, char *str, int *strl);
+    bool mxIsComplex (const mxArray *ptr);
+    int  C2F(mxiscomplex)  (mxArray *ptr);
+    /* mxisfull : NOT IN MATLAB API - v4 compatible */
+    bool mxIsFull (const mxArray *ptr);
+    int  C2F(mxisfull)  (mxArray *ptr);
+    bool mxIsNumeric (const mxArray *ptr);
+    int  C2F(mxisnumeric)  (mxArray *ptr);
+    bool mxIsSparse (const mxArray *ptr);
+    int  C2F(mxissparse)  (mxArray *ptr);
+    /* mxisstring : NOT IN MATLAB API - v6.0 compatible */
+    bool mxIsString (const mxArray *ptr);
+    int  C2F(mxisstring)  (mxArray *ptr);
+    int *mxGetIr (const mxArray *ptr);
+    int *mxGetJc (const mxArray *ptr);
 
-int mxIsLogical(const mxArray *ptr);
-int mxIsLogicalScalar(const mxArray *ptr);
-int mxIsLogicalScalarTrue(const mxArray *ptr);
+    /**
+     * TODO : comment
+     * @param type
+     * @param m
+     * @param n
+     * @param it
+     * @param lr
+     * @param ptr
+     * @param type_len
+     * @return
+     */
+    int C2F(createptr)  (char *type, int *m, int *n, int *it, int *lr, int *ptr, long int type_len);
 
-int mxIsStruct(const mxArray *ptr);
+    /**
+     * TODO : comment
+     * @param m
+     * @param ptr
+     * @return
+     */
+    int C2F(createstkptr)  (int *m, vraiptrst *ptr);
 
-int mxIsCell(const mxArray *ptr);
 
-int mxIsClass(const mxArray *ptr, const char *name);
+    /**
+     * TODO : comment
+     * @param nlhs
+     * @param plhs
+     * @param nrhs
+     * @param prhs
+     * @return
+     */
+    int C2F(endmex)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs);
 
-int mxIsInf(double x);
-int mxIsFinite(double x);
-int mxIsNaN(double x);
-int mxIsEmpty(const mxArray *ptr);
-int mxIsSparse(const mxArray *ptr);
 
-int mxIsFromGlobalWS(const mxArray *pm);
+    /**
+     * TODO : comment
+     * @param nlhs
+     * @param plhs
+     * @param nrhs
+     * @param prhs
+     * @return
+     */
+    int C2F(initmex)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs);
 
-//Convert Data Types
-char *mxArrayToString(const mxArray *array_ptr);
-char *mxArrayToUTF8String(const mxArray *array_ptr);
-int mxGetString(const mxArray *ptr, char *str, int strl);
+    int C2F(mexcallscilab)  (int *nlhs, mxArray **plhs, int *nrhs, mxArray **prhs, char *name, int namelen);
+    int C2F(mxcopyptrtoreal8)  (mxArray *ptr, double *y, int *n);
+    int C2F(mxcopyreal8toptr)  (double *y, mxArray *ptr, int *n);
+    int fortran_mex_gateway (char *fname, FGatefuncH F);
+    int mexAtExit (mxArray *ptr);
+    int mexCallSCILAB (int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
+    int mexCallMATLAB (int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
+    int mex_gateway (char *fname, GatefuncH F);
+    int mxGetElementSize (const mxArray *ptr);
+    int mxGetNzmax (const mxArray *ptr);
+    char *mxArrayToString (const mxArray *array_ptr);
+    bool mxIsDouble (const mxArray *ptr);
+    bool mxIsSingle (const mxArray *ptr);
+    bool mxIsLogical (const mxArray *ptr);
+    bool mexIsGlobal(const mxArray *ptr);
+    /* mxsetlogical: NOT IN MATLAB API - v6.5 compatible */
+    void mxSetLogical (mxArray *ptr);
+    /* mxclearlogical: NOT IN MATLAB API - v6.5 compatible */
+    void mxClearLogical (mxArray *ptr);
+    bool mxIsChar (const mxArray *ptr);
+    bool mxIsEmpty (const mxArray *ptr);
+    bool mxIsClass (const mxArray *ptr, const char *name);
+    bool mxIsCell (const mxArray *ptr);
+    bool mxIsStruct (const mxArray *ptr);
 
-int mxSetClassName(mxArray *array_ptr, const char *classname);
+    bool mxIsInt8(const mxArray *ptr);
+    bool mxIsInt16(const mxArray *ptr);
+    bool mxIsInt32(const mxArray *ptr);
+    bool mxIsUint8(const mxArray *ptr);
+    bool mxIsUint16(const mxArray *ptr);
+    bool mxIsUint32(const mxArray *ptr);
+    /* mxIsUint64 missing */
 
-//Access Data
-int mxGetNumberOfDimensions(const mxArray *ptr);
-int mxGetElementSize(const mxArray *ptr);
-mwSize *mxGetDimensions(const mxArray *pm);
-int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim);
-int mxGetNumberOfElements(const mxArray *ptr);
-int mxCalcSingleSubscript(const mxArray *ptr, int nsubs, const int *subs);
-int mxGetM(const mxArray *ptr);
-void mxSetM(mxArray *ptr, int m);
-int mxGetN(const mxArray *ptr);
-void mxSetN(mxArray *ptr, int n);
+    void mxSetM(mxArray *ptr, int m);
+    void mxSetN(mxArray *ptr, int n);
+    void mxSetJc(mxArray *array_ptr, int *jc_data);
+    void mxSetIr(mxArray *array_ptr, int *ir_data);
+    void mxSetNzmax(mxArray *array_ptr, int nzmax);
+    void mxSetCell(mxArray *pa, int i, mxArray *value);
 
-double mxGetScalar(const mxArray *ptr);
-double *mxGetPr(const mxArray *ptr);
-void mxSetPr(mxArray *array_ptr, double *pr);
-double *mxGetPi(const mxArray *ptr);
-void mxSetPi(mxArray *array_ptr, double *pi);
-void *mxGetData(const mxArray *ptr);
-void mxSetData(mxArray *array_ptr, void *pr);
-void *mxGetImagData(const mxArray *ptr);
-void mxSetImagData(mxArray *array_ptr, void *data_ptr);
+    /* mexGetArray: NOT IN MATLAB API - v6.5 compatible */
+    mxArray *mexGetArray(char *name, char *workspace);
+    mxArray *mexGetVariable(const char *workspace, const char *name);
+    const mxArray *mexGetVariablePtr(const char *workspace, const char *name);
 
-mxChar *mxGetChars(mxArray *array_ptr);
+    unsigned long int C2F(mxcalloc)(unsigned int *n, unsigned int *size);
+    void *mxCalloc(size_t n, size_t size);
+    void *mxMalloc(size_t nsize);
+    void mxFree(void *ptr);
+    void mxDestroyArray(mxArray *ptr);
 
-mxLogical *mxGetLogicals(const mxArray *ptr);
+    /* mxCalloc_m : NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    void *mxCalloc_m(unsigned int n, unsigned int size);
+    /* mxMalloc_m : NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    void *mxMalloc_m(unsigned int nsize);
+    /* mxFree_m : NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    void  mxFree_m(void *);
+    /* mxfreematrix: NOT IN MATLAB API - v6.0 compatible */
+    void mxFreeMatrix(mxArray *ptr);
+    void C2F(mxfreematrix)(mxArray *ptr);
 
-mxClassID mxGetClassID(const mxArray *ptr);
-const char *mxGetClassName(const mxArray *ptr);
-//mxSetClassName is already defined early
+    void mexErrMsgTxt(const char *error_msg);
+    void C2F(mexerrmsgtxt)(char *error_msg, int len);
+    int  mexEvalString(const char *name);
+    void mexWarnMsgTxt(const char *error_msg);
+    /* mexprint: NOT IN MATLAB API - SCILAB SPECIFIC ?*/
+    void mexprint(char* fmt, ...);
 
-mxArray *mxGetProperty(const mxArray *pa, mwIndex index, const char *propname);
-void mxSetProperty(mxArray *pa, mwIndex index, const char *propname, const mxArray *value);
+    int mxGetFieldNumber(const mxArray *ptr, const char *string);
+    mxArray *mxGetField(const mxArray *pa, int i, const char *fieldname);
+    void  mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value);
+    void mxSetField (mxArray *pa, int i, const char *fieldname, mxArray *value);
 
-mxArray *mxGetField(const mxArray *pa, int i, const char *fieldname);
-void mxSetField(mxArray *pa, int i, const char *fieldname, mxArray *value);
-int mxGetNumberOfFields(const mxArray *ptr);
-const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number);
-int mxGetFieldNumber(const mxArray *ptr, const char *string);
-mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number);
-void mxSetFieldByNumber(mxArray *array_ptr, int index, int field_number, mxArray *value);
-int mxAddField(mxArray *pm, const char *fieldname);
-void mxRemoveField(mxArray *pm, int fieldnumber);
+    mxArray *mxGetFieldByNumber(const mxArray *ptr, int index, int field_number);
+    const char *mxGetFieldNameByNumber(const mxArray *array_ptr, int field_number);
+    mxLOGICAL *mxGetLogicals (const mxArray *array_ptr);
 
-mxArray *mxGetCell(const mxArray *ptr, int index);
-void mxSetCell(mxArray *pa, int i, mxArray *value);
+    /**
+     * TODO : comment
+     * @param x
+     * @return
+     */
+    vraiptrst C2F(locptr)(void *x);
 
-int mxGetNzmax(const mxArray *ptr);
-void mxSetNzmax(mxArray *array_ptr, int nzmax);
-int *mxGetIr(const mxArray *ptr);
-void mxSetIr(mxArray *array_ptr, int *ir_data);
-int *mxGetJc(const mxArray *ptr);
-void mxSetJc(mxArray *array_ptr, int *jc_data);
+    typedef enum
+    {
+        mxCELL_CLASS = 1,
+        mxSTRUCT_CLASS,
+        mxOBJECT_CLASS,
+        mxCHAR_CLASS,
+        mxSPARSE_CLASS,
+        mxDOUBLE_CLASS,
+        mxSINGLE_CLASS,
+        mxINT8_CLASS,
+        mxUINT8_CLASS,
+        mxINT16_CLASS,
+        mxUINT16_CLASS,
+        mxINT32_CLASS,
+        mxUINT32_CLASS,
+        mxUNKNOWN_CLASS = 0
+    } mxClassID;
 
-//MEX Library
+    typedef enum { mxREAL, mxCOMPLEX } mxComplexity;
+
+    mxClassID mxGetClassID(const mxArray *ptr);
+    /* mxGetName: NOT IN MATLAB API - v6.4 compatible */
+    const char *mxGetName(const mxArray *array_ptr);
+    /* mxSetName: NOT IN MATLAB API - v6.4 compatible */
+    void mxSetName( mxArray    *pa,    const char *s );
+    void mxSetPr(mxArray *array_ptr, double *pr);
+    void mxSetPi(mxArray *array_ptr, double *pi);
+    void mxSetData(mxArray *array_ptr, void *pr);
+    mxArray *mxCreateNumericArray(int ndim, const int *dims, mxClassID classid, mxComplexity flag);
+    mxArray *mxCreateNumericMatrix(int m, int n, mxClassID classid, int cmplx_flag);
+    int mxSetDimensions(mxArray *array_ptr, const int *dims, int ndim);
+    mxArray *mxCreateDoubleMatrix(int m, int n, mxComplexity it);
+    mxArray *mxCreateDoubleScalar(double value);
+    mxArray *mxCreateSparse(int m, int n, int nzmax, mxComplexity cmplx);
+    mxArray *mxDuplicateArray(const mxArray *ptr);
+
+    /* typedef uint16_T mxChar; */
+
+    /* typedef short int mxChar; */
+    typedef unsigned short mxChar;
+
+#define INT8_T   char
+#define UINT8_T  unsigned char
+#define INT16_T  short
+#define UINT16_T unsigned short
+#define INT32_T  int
+#define UINT32_T unsigned int
+#define REAL32_T float
+
+    typedef INT8_T   int8_T;
+    typedef UINT8_T  uint8_T;
+    typedef INT16_T  int16_T;
+    typedef UINT16_T uint16_T;
+    typedef INT32_T  int32_T;
+    typedef UINT32_T uint32_T;
+    typedef REAL32_T real32_T;
+
+    typedef int       mwSize;
+    typedef int       mwIndex;
+    typedef mxArray * mwPointer;
+
+#endif /* SCI_MEX  */
+
 #ifdef __cplusplus
-extern "C" void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]);
+}
 #endif
-//not a real mex function, just used to set caller name
-void setmexFunctionName(const char* name);
-const char *mexFunctionName(void);
-int mexAtExit(void(*func)(void));
 
-int mexCallMATLAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, const char *name);
-mxArray *mexCallMATLABWithTrap(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[], const char *functionName);
-int mexEvalString(const char *name);
-mxArray *mexEvalStringWithTrap(const char *command);
-
-const mxArray *mexGet(double handle, const char *property);
-int mexSet(double handle, const char *property, mxArray *value);
-mxArray *mexGetVariable(const char *workspace, const char *name);
-const mxArray *mexGetVariablePtr(const char *workspace, const char *name);
-int mexPutVariable(const char *workspace, const char *varname, const mxArray *pm);
-int mexIsGlobal(const mxArray *ptr);
-
-int mexPrintf(const char *format, ...);
-
-void mexSetTrapFlag(int trapflag);
-void mexErrMsgIdAndTxt(const char *errorid, const char *errormsg, ...);
-void mexWarnMsgIdAndTxt(const char *warningid, const char *warningmsg, ...);
-void mexErrMsgTxt(const char *error_msg);
-void mexWarnMsgTxt(const char *error_msg);
-
-int mexIsLocked(void);
-void mexLock(void);
-void mexUnlock(void);
-void mexMakeArrayPersistent(mxArray *pm);
-void mexMakeMemoryPersistent(void *ptr);
-
-//Data Types
-double mxGetInf(void);
-double mxGetNaN(void);
-double mxGetEps(void);
-#endif
+/* generic mexfunction name */
 #ifdef __cplusplus
+extern "C" {
+    void mexFunction(int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[]);
 }
 #endif

@@ -1,0 +1,10 @@
+calc8
+a	matrix m n 
+
+ccalc8	a m n err
+a	cintf 
+m	integer
+n	integer
+
+out	sequence	a
+***********************

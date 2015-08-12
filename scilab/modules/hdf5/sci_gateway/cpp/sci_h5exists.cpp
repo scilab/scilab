@@ -37,7 +37,7 @@ using namespace org_modules_hdf5;
 */
 
 /*--------------------------------------------------------------------------*/
-int sci_h5exists(char *fname, int* pvApiCtx)
+int sci_h5exists(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

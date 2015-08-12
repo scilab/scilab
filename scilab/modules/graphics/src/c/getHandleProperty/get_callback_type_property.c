@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_callback_type_property(void* _pvCtx, int iObjUID)
+int get_callback_type_property(void* _pvCtx, int iObjUID)
 {
     int iCallbackType = 0;
     int *piCallbackType = &iCallbackType;
@@ -41,6 +41,6 @@ void* get_callback_type_property(void* _pvCtx, int iObjUID)
         return FALSE;
     }
 
-    return sciReturnDouble(iCallbackType);
+    return sciReturnDouble(_pvCtx, iCallbackType);
 }
 /*------------------------------------------------------------------------*/

@@ -8,63 +8,6 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function order = assert_comparecomplex ( varargin )
-    function order = assert_compdata ( a , b , reltol , abstol )
-        if ( a == %inf ) then
-            if ( isnan(b) ) then
-                order = -1
-            elseif ( b == %inf ) then
-                order = 0
-            else
-                order = 1
-            end
-        elseif ( a == -%inf ) then
-            if ( b == -%inf ) then
-                order = 0
-            else
-                order = -1
-            end
-        elseif ( isnan(a) ) then
-            if ( isnan(b) ) then
-                order = 0
-            else
-                order = 1
-            end
-        else
-            if ( isnan(b) ) then
-                order = -1
-            elseif ( b == -%inf ) then
-                order = 1
-            elseif ( b == %inf ) then
-                order = -1
-            else
-                areequal = abs ( a - b ) <= reltol * max ( abs(a) , abs(b) ) + abstol
-                if ( areequal ) then
-                    order = 0
-                elseif ( a < b ) then
-                    order = -1
-                else
-                    order = 1
-                end
-            end
-        end
-    endfunction
-
-
-    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
-        // Returns the value of the input argument #ivar.
-        // If this argument was not provided, or was equal to the
-        // empty matrix, returns the default value.
-        if ( rhs < ivar ) then
-            argin = default
-        else
-            if ( vararglist(ivar) <> [] ) then
-                argin = vararglist(ivar)
-            else
-                argin = default
-            end
-        end
-    endfunction
-
     // Compare complex numbers with a tolerance.
 
     [lhs,rhs]=argn()
@@ -76,8 +19,8 @@ function order = assert_comparecomplex ( varargin )
     // Get arguments
     a = varargin(1)
     b = varargin(2)
-    reltol = assert_argindefault ( rhs , varargin , 3 , sqrt(%eps) )
-    abstol = assert_argindefault ( rhs , varargin , 4 , 0 )
+    reltol = argindefault ( rhs , varargin , 3 , sqrt(%eps) )
+    abstol = argindefault ( rhs , varargin , 4 , 0 )
     //
     // Check types of variables
     if ( typeof(a) <> "constant" ) then
@@ -143,3 +86,61 @@ function order = assert_comparecomplex ( varargin )
         order = 1
     end
 endfunction
+
+function order = assert_compdata ( a , b , reltol , abstol )
+    if ( a == %inf ) then
+        if ( isnan(b) ) then
+            order = -1
+        elseif ( b == %inf ) then
+            order = 0
+        else
+            order = 1
+        end
+    elseif ( a == -%inf ) then
+        if ( b == -%inf ) then
+            order = 0
+        else
+            order = -1
+        end
+    elseif ( isnan(a) ) then
+        if ( isnan(b) ) then
+            order = 0
+        else
+            order = 1
+        end
+    else
+        if ( isnan(b) ) then
+            order = -1
+        elseif ( b == -%inf ) then
+            order = 1
+        elseif ( b == %inf ) then
+            order = -1
+        else
+            areequal = abs ( a - b ) <= reltol * max ( abs(a) , abs(b) ) + abstol
+            if ( areequal ) then
+                order = 0
+            elseif ( a < b ) then
+                order = -1
+            else
+                order = 1
+            end
+        end
+    end
+endfunction
+
+
+function argin = argindefault ( rhs , vararglist , ivar , default )
+    // Returns the value of the input argument #ivar.
+    // If this argument was not provided, or was equal to the
+    // empty matrix, returns the default value.
+    if ( rhs < ivar ) then
+        argin = default
+    else
+        if ( vararglist(ivar) <> [] ) then
+            argin = vararglist(ivar)
+        else
+            argin = default
+        end
+    end
+endfunction
+

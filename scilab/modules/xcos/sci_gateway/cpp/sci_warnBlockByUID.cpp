@@ -13,22 +13,20 @@
 /*--------------------------------------------------------------------------*/
 #include "Xcos.hxx"
 #include "xcosUtilities.hxx"
-#include "loadStatus.hxx"
-
 extern "C"
 {
 #include "gw_xcos.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "getScilabJavaVM.h"
 }
 /*--------------------------------------------------------------------------*/
 using namespace org_scilab_modules_xcos;
 /*--------------------------------------------------------------------------*/
-int sci_warnBlockByUID(char *fname, void* pvApiCtx)
+int sci_warnBlockByUID(char *fname, unsigned long fname_len)
 {
     int i;
 
@@ -58,7 +56,6 @@ int sci_warnBlockByUID(char *fname, void* pvApiCtx)
     }
 
     /* call the implementation */
-    set_loaded_status(XCOS_CALLED);
     Xcos::warnCellByUID(getScilabJavaVM(), path, pathLength, msg);
 
     for (i = 0; i < pathLength; i++)

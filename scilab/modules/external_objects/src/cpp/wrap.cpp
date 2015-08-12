@@ -52,7 +52,7 @@ int ScilabGateway::wrap(char * fname, const int envId, void * pvApiCtx)
         {
             idObj = ScilabObjects::getArgumentId(addr, tmpvar, false, false, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             delete[] tmpvar;
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Cannot wrap argument %d."), i);
@@ -62,7 +62,7 @@ int ScilabGateway::wrap(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + i, idObj, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             ScilabObjects::removeTemporaryVars(envId, tmpvar);
             delete[] tmpvar;

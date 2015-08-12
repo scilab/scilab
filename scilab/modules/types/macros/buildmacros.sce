@@ -8,5 +8,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
-genlib("typeslib","SCI/modules/types/macros",%f,%t);
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
+end
+
+//genlib("typeslib","SCI/modules/types/macros",%f,%t);
 

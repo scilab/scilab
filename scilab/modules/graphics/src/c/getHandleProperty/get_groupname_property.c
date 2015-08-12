@@ -25,7 +25,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_groupname_property(void* _pvCtx, int iObjUID)
+int get_groupname_property(void* _pvCtx, int iObjUID)
 {
     char *pstGroupName = NULL;
     getGraphicObjectProperty(iObjUID, __GO_UI_GROUP_NAME__, jni_string, (void **)&pstGroupName);
@@ -33,9 +33,9 @@ void* get_groupname_property(void* _pvCtx, int iObjUID)
     if (pstGroupName == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "groupname");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnString(pstGroupName);
+    return sciReturnString(_pvCtx, pstGroupName);
 }
 /*------------------------------------------------------------------------*/

@@ -54,8 +54,6 @@
   |                                                             |
   |                                                             |
   +------------------------------------------------------------*/
-
-#include <string.h> // memset
 #include "api_scilab.h"
 #include "gw_umfpack.h"
 #include "sciumfpack.h"
@@ -63,11 +61,11 @@
 #include "common_umfpack.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 extern CellAdr *ListNumeric;
 
-int sci_umf_lusolve(char* fname, void* pvApiCtx)
+int sci_umf_lusolve(char* fname, unsigned long l)
 {
     SciErr sciErr;
 

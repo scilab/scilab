@@ -1,0 +1,19 @@
+	LIBRARY    core_f.dll
+
+
+EXPORTS
+;
+;core_f
+;
+indxg_
+putid_
+eptover_
+createref_
+ptover_
+createref1_
+mklist_
+copyvar_
+stackp_
+defmat_
+lst2vars_
+setref_

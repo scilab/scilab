@@ -28,7 +28,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "CheckTicksProperty.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BasicAlgos.h"
 #include "DrawObjects.h"
 #include "freeArrayOfString.h"

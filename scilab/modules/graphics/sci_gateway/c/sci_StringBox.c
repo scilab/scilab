@@ -36,9 +36,9 @@
 #define DEFAULT_ANGLE 0.0
 
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double* res, void* pvApiCtx);
+static int getScalarFromStack(int paramIndex, char * funcName, double* res);
 /*--------------------------------------------------------------------------*/
-static int getScalarFromStack(int paramIndex, char * funcName, double* res, void* pvApiCtx)
+static int getScalarFromStack(int paramIndex, char * funcName, double* res)
 {
     SciErr sciErr;
     int m = 0;
@@ -79,7 +79,7 @@ static int getScalarFromStack(int paramIndex, char * funcName, double* res, void
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-int sci_stringbox(char * fname, void *pvApiCtx)
+int sci_stringbox(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddrstackPointer = NULL;
@@ -223,13 +223,13 @@ int sci_stringbox(char * fname, void *pvApiCtx)
         text = strStackPointer;
 
         /* Second and third arguments should be scalars */
-        if (getScalarFromStack(2, fname, &xPos, pvApiCtx) < 0)
+        if (getScalarFromStack(2, fname, &xPos) < 0)
         {
             freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
             return 0;
         }
 
-        if (getScalarFromStack(3, fname, &yPos, pvApiCtx) < 0)
+        if (getScalarFromStack(3, fname, &yPos) < 0)
         {
             freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
             return 0;
@@ -238,7 +238,7 @@ int sci_stringbox(char * fname, void *pvApiCtx)
         if (nbInputArgument(pvApiCtx) >= 4)
         {
             /* angle is defined */
-            if (getScalarFromStack(4, fname, &angle, pvApiCtx) < 0)
+            if (getScalarFromStack(4, fname, &angle) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
@@ -249,7 +249,7 @@ int sci_stringbox(char * fname, void *pvApiCtx)
         {
             double fontIdD;
             /* font style is defined */
-            if (getScalarFromStack(5, fname, &fontIdD, pvApiCtx) < 0)
+            if (getScalarFromStack(5, fname, &fontIdD) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;
@@ -260,7 +260,7 @@ int sci_stringbox(char * fname, void *pvApiCtx)
         if (nbInputArgument(pvApiCtx) >= 6)
         {
             /* font size is defined */
-            if (getScalarFromStack(6, fname, &fontSize, pvApiCtx) < 0)
+            if (getScalarFromStack(6, fname, &fontSize) < 0)
             {
                 freeAllocatedMatrixOfString(textNbRow, textNbCol, strStackPointer);
                 return 0;

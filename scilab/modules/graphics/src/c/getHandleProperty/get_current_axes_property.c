@@ -24,7 +24,7 @@
 #include "CurrentSubwin.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 #include "createGraphicObject.h"
 #include "BuildObjects.h"
@@ -33,7 +33,7 @@
 #include "CurrentSubwin.h"
 
 /*------------------------------------------------------------------------*/
-void* get_current_axes_property(void* _pvCtx, int iObjUID)
+int get_current_axes_property(void* _pvCtx, int iObjUID)
 {
     int iFigureUID = 0;
     int iSubWinUID = 0;
@@ -42,10 +42,10 @@ void* get_current_axes_property(void* _pvCtx, int iObjUID)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_axes");
-        return NULL;
+        return -1;
     }
 
     iSubWinUID = getOrCreateDefaultSubwin();
-    return sciReturnHandle(getHandle(getCurrentSubWin()));
+    return sciReturnHandle(_pvCtx, getHandle(getCurrentSubWin()));
 }
 /*------------------------------------------------------------------------*/

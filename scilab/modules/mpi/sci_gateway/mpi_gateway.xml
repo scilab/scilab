@@ -1,33 +1,36 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE module SYSTEM "../../functions/mpi/gateway.dtd">
-<!--
-/*
- *  Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- *  Copyright (C) 2015 - Scilab Enterprises - Cedric DELAMARRE
- *
- *  This file must be used under the terms of the CeCILL.
- *  This source file is licensed as described in the file COPYING, which
- *  you should have received as part of this distribution.  The terms
- *  are also available at
- *  http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
- *
- */
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="mpi">
+    <!-- =================== -->
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
 
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
+ @author Allan CORNET
+ @author Sylvestre LEDRU
+ @date INRIA 2007
+ ===================
  Don't touch if you do not know what you are doing
 -->
-<module name="mpi">
-    <gateway name="sci_mpi_init"                function="MPI_Init"                 type="0" />
-    <gateway name="sci_mpi_finalize"            function="MPI_Finalize"             type="0" />
-    <gateway name="sci_mpi_comm_size"           function="MPI_Comm_size"            type="0" />
-    <gateway name="sci_mpi_comm_rank"           function="MPI_Comm_rank"            type="0" />
-    <gateway name="sci_mpi_recv"                function="MPI_Recv"                 type="0" />
-    <gateway name="sci_mpi_send"                function="MPI_Send"                 type="0" />
-    <gateway name="sci_mpi_get_processor_name"  function="MPI_Get_processor_name"   type="0" />
-    <gateway name="sci_mpi_bcast"               function="MPI_Bcast"                type="0" />
-    <gateway name="sci_mpi_irecv"               function="MPI_Irecv"                type="0" />
-    <gateway name="sci_mpi_isend"               function="MPI_Isend"                type="0" />
-    <gateway name="sci_mpi_wait"                function="MPI_Wait"                 type="0" />
-</module>
+    <!-- =================== -->
+    <PRIMITIVE gatewayId="73" primitiveId="1" primitiveName="MPI_Init"/>
+    <PRIMITIVE gatewayId="73" primitiveId="2" primitiveName="MPI_Finalize"/>
+    <PRIMITIVE gatewayId="73" primitiveId="3" primitiveName="MPI_Comm_size"/>
+    <PRIMITIVE gatewayId="73" primitiveId="4" primitiveName="MPI_Comm_rank"/>
+    <PRIMITIVE gatewayId="73" primitiveId="5" primitiveName="MPI_Recv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="6" primitiveName="MPI_Send"/>
+    <PRIMITIVE gatewayId="73" primitiveId="7" primitiveName="MPI_Get_processor_name"/>
+    <PRIMITIVE gatewayId="73" primitiveId="8" primitiveName="MPI_Bcast"/>
+    <PRIMITIVE gatewayId="73" primitiveId="9" primitiveName="MPI_Irecv"/>
+    <PRIMITIVE gatewayId="73" primitiveId="10" primitiveName="MPI_Isend"/>
+    <PRIMITIVE gatewayId="73" primitiveId="11" primitiveName="MPI_Wait"/>
+</GATEWAY>

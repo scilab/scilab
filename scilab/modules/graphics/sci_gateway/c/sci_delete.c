@@ -18,7 +18,7 @@
 /* desc : interface for delete routine                                    */
 /*------------------------------------------------------------------------*/
 
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "DestroyObjects.h"
@@ -45,9 +45,11 @@
 #include "sciprint.h"
 #include "createGraphicObject.h"
 
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
-int sci_delete(char *fname, void* pvApiCtx)
+int sci_delete(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -56,7 +58,7 @@ int sci_delete(char *fname, void* pvApiCtx)
     int* piAddrl2 = NULL;
     char* l2 = NULL;
 
-    int m1 = 0, n1 = 0;
+    int m1 = 0, n1 = 0, lw = 0;
     unsigned long hdl = 0;
     int nb_handles = 0, i = 0, dont_overload = 0;
     int iObjUID = 0;
@@ -211,7 +213,8 @@ int sci_delete(char *fname, void* pvApiCtx)
                 break;
             default:
                 // Overload
-                OverLoad(1);
+                lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
+                C2F(overload) (&lw, "delete", 6);
                 return 0;
         }
     }
@@ -254,6 +257,7 @@ int sci_delete(char *fname, void* pvApiCtx)
             return 0;
         }
 
+        //bug #11485 : duplicate pobjUID before delete it.
         iTemp = iObjUID;
         deleteGraphicObject(iObjUID);
 
@@ -305,7 +309,8 @@ int sci_delete(char *fname, void* pvApiCtx)
     if (!dont_overload)
     {
         // Overload
-        OverLoad(1);
+        lw = 1 + nbArgumentOnStack(pvApiCtx) - nbInputArgument(pvApiCtx);
+        C2F(overload) (&lw, "delete", 6);
     }
     else
     {

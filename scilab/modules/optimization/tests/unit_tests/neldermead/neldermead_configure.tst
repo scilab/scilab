@@ -16,7 +16,7 @@
 
 
 function [ y , index ] = rosenbrock ( x , index )
-    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 
 //
@@ -93,7 +93,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-method'',''foo'')";
 alloptions = """fixed"" or ""variable"" or ""box"" or ""mine""";
 assert_checkerror(cmd,"%s: Expected value [%s] for input argument %s at input #%d, but got ""%s"" instead.",[],..
-"neldermead_configure",alloptions,"value",3,"foo");
+  "neldermead_configure",alloptions,"value",3,"foo");
 nm = neldermead_destroy(nm);
 
 // Wrong -simplex0method flag
@@ -101,7 +101,7 @@ nm = neldermead_new ();
 cmd = "nm = neldermead_configure(nm,''-simplex0method'',''foo'')";
 alloptions = """given"" or ""axes"" or ""spendley"" or ""pfeffer"" or ""randbounds""";
 assert_checkerror(cmd,"%s: Expected value [%s] for input argument %s at input #%d, but got ""%s"" instead.",[],..
-"neldermead_configure",alloptions,"value",3,"foo");
+  "neldermead_configure",alloptions,"value",3,"foo");
 nm = neldermead_destroy(nm);
 
 // Wrong -tolsimplexizemethod flag
@@ -152,7 +152,7 @@ cmd = "nm = neldermead_configure(nm,''-restartstep'',[1 2 3]);";
 assert_checkerror(cmd,"%s: The restartstep vector is expected to have %d x %d shape, but current shape is %d x %d",[],"neldermead_configure",2,1,1,3);
 cmd = "nm = neldermead_configure(nm,''-restartstep'',[-1 2]'');";
 assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
-"neldermead_configure","value",3,string(number_properties("tiny")),1,"-1");
+  "neldermead_configure","value",3,"2.22D-308",1,"-1");
 nm = neldermead_destroy(nm);
 
 //
@@ -161,10 +161,10 @@ nm = neldermead_new ();
 nm = neldermead_configure(nm,"-numberofvariables",2);
 cmd = "nm = neldermead_configure(nm,''-restarteps'',[1 2]);";
 assert_checkerror(cmd,"%s: Wrong size for input argument #%d: %d-by-%d matrix expected.\n",[], ..
-"neldermead_configure",3,1,1);
+  "neldermead_configure",3,1,1);
 cmd = "nm = neldermead_configure(nm,''-restarteps'',-1);";
 assert_checkerror(cmd,"%s: Expected that all entries of input argument %s at input #%d are greater or equal than %s, but entry #%d is equal to %s.",[],..
-"neldermead_configure","value",3,string(number_properties("tiny")),1,"-1");
+  "neldermead_configure","value",3,"2.22D-308",1,"-1");
 nm = neldermead_destroy(nm);
 
 //

@@ -17,11 +17,11 @@
 #include "localization.h"
 #include "Scierror.h"
 #include "InitUIMenu.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "FigureList.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
-int sci_unsetmenu(char *fname, void* pvApiCtx)
+int sci_unsetmenu(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

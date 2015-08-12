@@ -56,15 +56,16 @@ c for a different run-abort command, change the statement following
 c statement 100 at the end.
 c!
 c-----------------------------------------------------------------------
-cDEC$ ATTRIBUTES DLLIMPORT:: /eh0001/
-      common /eh0001/ mesflg, lunit
+      include 'stack.h'
       integer num, imess, imode
+      common /eh0001/ mesflg, lunit
       character*80 str
 c-----------------------------------------------------------------------
       if (mesflg .eq. 0) go to 100
 c get logical unit number. ---------------------------------------------
+
 cstd      lun = lunit
-      lun = 6
+      lun = wte
 c get number of words in message. --------------------------------------
       nch = min(len(msg),80)
 c write the message. ---------------------------------------------------

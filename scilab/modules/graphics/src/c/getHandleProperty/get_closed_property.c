@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_closed_property(void* _pvCtx, int iObjUID)
+int get_closed_property(void* _pvCtx, int iObjUID)
 {
     int iClosed = 0;
     int* piClosed = &iClosed;
@@ -40,16 +40,16 @@ void* get_closed_property(void* _pvCtx, int iObjUID)
     if (piClosed == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "closed");
-        return NULL;
+        return -1;
     }
 
     if (iClosed)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

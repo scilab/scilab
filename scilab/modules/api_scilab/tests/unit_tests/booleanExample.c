@@ -11,8 +11,9 @@
  */
 
 #include "api_scilab.h"
+#include "MALLOC.h"
 
-int booleanExample(char *fname, void* pvApiCtx)
+int booleanExample(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;

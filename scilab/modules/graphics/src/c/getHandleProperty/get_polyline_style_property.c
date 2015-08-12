@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_polyline_style_property(void* _pvCtx, int iObjUID)
+int get_polyline_style_property(void* _pvCtx, int iObjUID)
 {
     int iPolylineStyle = 0;
     int *piPolylineStyle = &iPolylineStyle;
@@ -40,9 +40,9 @@ void* get_polyline_style_property(void* _pvCtx, int iObjUID)
     if (piPolylineStyle == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "polyline_style");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iPolylineStyle);
+    return sciReturnDouble(_pvCtx, iPolylineStyle);
 }
 /*------------------------------------------------------------------------*/

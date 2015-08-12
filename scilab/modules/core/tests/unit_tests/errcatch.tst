@@ -1,0 +1,468 @@
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
+
+// <-- NO TRY CATCH -->
+
+// <-- ENGLISH IMPOSED -->
+
+funcprot(0);
+
+clear;
+
+errcatch(4,'continue','nomessage')
+a
+if iserror(4)==1 then errclear(-1),else pause,end
+a;b=1;
+errclear(-1),if b<>1 then pause,end
+b=[];for k=1:3,b(1,k)=k;a,end
+errclear(-1),if or(b<>(1:3)) then pause,end
+
+deff('foo()','x=a','n')
+foo();if iserror(4)==1 then errclear(-1),else pause,end
+deff('foo()','x=a')
+foo();if iserror(4)==1 then errclear(-1),else pause,end
+
+deff('b=foo()','x=a;b=1','n')
+b=foo();errclear(-1),if b<>1 then pause,end
+
+
+deff('b=foo()','x=a;b=1');b=foo();errclear(-1)
+
+
+deff('b=foo()',['x=a';'b=1'])
+b=foo();errclear(-1),if b<>1 then pause,end
+
+deff('b=foo()','b=[];for k=1:3,b(1,k)=k;a,end','n')
+b=foo();errclear(-1),if  or(b<>(1:3)) then pause,end
+
+deff('b=foo()',['b=[]';'for k=1:3';'b(1,k)=k;a';'end'])
+//b=foo();errclear(-1),if  or(b<>(1:3)) then pause,end
+
+
+errcatch(47,'continue','nomessage')
+deff('b=foo()','if %t then b=1')
+if iserror(47)<>1 then pause,else errclear(-1);end
+
+errcatch(37,'continue','nomessage')
+deff('b=foo(','if %t then b=1')
+if iserror(37)<>1 then pause,else errclear(-1);end
+
+
+clear
+errcatch()
+if execstr('a','errcatch')<>4 then pause,end
+ierr=execstr('a;b=1','errcatch');if ierr<>4 then pause,end
+ierr=execstr(['b=[]';'for k=1:3';'b(1,k)=k';'end';'a'],'errcatch');
+if ierr<>4|or(b<>(1:3)) then pause,end
+
+clear;errcatch(4,'continue','nomessage')
+execstr('a;if iserror(4)==1 then errclear(-1),else pause,end')
+clear;errcatch()
+
+deff('b=foo()',['b=[]';
+                'errcatch(4,''continue'',''nomessage'')'
+                'for k=1:3'
+                '  b(1,k)=k'
+                '  a'
+                '  if iserror(4)==1 then errclear(-1),end'
+                'end'
+                'errclear(-1)'],'n')
+b=foo();if or(b<>(1:3)) then pause,end
+
+deff('b=foo()',['b=[]';
+                'errcatch(4,''continue'',''nomessage'')'
+                'for k=1:3'
+                '  b(1,k)=k'
+                '  a'
+                '  if iserror(4)==1 then errclear(-1),end'
+                'end'
+		'errclear(-1)'])
+//b=foo();if or(b<>(1:3)) then pause,end
+
+clear N
+function foo(),N,endfunction
+ierr=execstr('foo()','errcatch');
+if ierr<>4 then pause,end
+ierr=exec(foo,'errcatch');
+if ierr<>4 then pause,end
+
+//=====================================================
+path=TMPDIR+'/errcatchtst.sce';
+clear a;
+txt='a=1';
+mputl(txt,path);
+exec(path)
+if a<>1 then pause,end
+exec(path,-1)
+if a<>1 then pause,end
+
+clear a;
+txt=['a=1;';'return';'a=2'];
+mputl(txt,path);
+exec(path)
+if a<>1 then pause,end
+exec(path,-1)
+if a<>1 then pause,end
+
+if exec(path,'errcatch')<>0 then pause,end
+if a<>1 then pause,end
+clear a
+if exec(path,'errcatch',-1)<>0 then pause,end
+if a<>1 then pause,end
+clear a
+if execstr(txt,'errcatch')<>0 then pause,end
+if a<>1 then pause,end
+
+
+clear a x;
+txt=['a=1';'b=x'];
+mputl(txt,path);
+of=file();
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+if or(file()<>of) then pause,end
+
+clear a x;
+if exec(path,'errcatch',-1)<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+
+clear a x;
+txt=['a=1';'b=sin()';'a=2;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>42  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+
+clear a x;
+errclear(-1);errcatch()
+txt=['a=1';
+     'if %t then';
+     '  disp hello'
+     '  sin()'
+     'end'
+     'a=2;'];
+mputl(txt,path);
+of=file();
+if exec(path,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+if or(file()<>of) then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>42  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+
+clear a x;
+txt=['a=1';
+	'if %t then';
+	'  disp hello'
+	'  x'
+	'end'
+	'a=2;'];
+mputl(txt,path);of=file();
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+if or(file()<>of) then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>4  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+clear a x;
+txt=['for a=1:3 ';
+	'  x'
+	'end'
+	'a=2;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>4  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+
+
+clear a x;
+function a=foo,  for a=1:3,x,end,  a=2;endfunction
+txt=['a=1';'a=foo();';'a=5;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>4  then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(foo,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+
+
+clear a x;
+function a=foo 
+  for a=1:3,
+    x,
+  end,  
+  a=2;
+endfunction
+txt=['a=1';'a=foo();';'a=5;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>4  then pause,end
+if a<>1 then pause,end
+clear a x;
+if exec(foo,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+
+
+clear a x foo;
+txt=['for a=1:3 ';
+	'  sin()'
+	'end'
+	'a=2;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+clear a x 
+if exec(path,'errcatch',-1)<>42  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+
+
+
+clear a x foo;
+function a=foo,  
+  for a=1:3,
+    sin()
+  end,  
+  a=2;
+endfunction
+txt=['a=1';'a=foo();';'a=5;'];
+mputl(txt,path);
+if exec(path,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+clear a x 
+if exec(path,'errcatch',-1)<>42  then pause,end
+if a<>1 then pause,end
+clear a x 
+if exec(foo,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+clear a x 
+if execstr(txt,'errcatch')<>42 then pause,end
+if a<>1 then pause,end
+
+
+clear a foo;
+txt=['for a=1:3 ';
+	'  sin()'
+	'end'
+	'a=2;'];
+mputl(txt,path);
+function [a,ierr]=foo,ierr=exec(path,'errcatch'),endfunction
+[a,ierr]=foo()
+if a<>1|ierr<>42 then pause,end
+clear a
+if execstr('[a,ierr]=foo()','errcatch')<>0 then pause,end
+if a<>1|ierr<>42 then pause,end
+
+
+clear a
+function [a]=foo,exec(path),endfunction
+ierr=execstr(['a=1';'[a]=foo()'],'errcatch')
+if a<>1|ierr<>42 then pause,end
+
+
+path=TMPDIR+'/errcatchtst.sce';
+path2=TMPDIR+'/errcatchtst2.sce';
+
+clear a x;
+txt=['a=1';
+     'if %t then';
+     '  exec(path2)'
+     'end'
+     'a=3;'];
+mputl(txt,path);
+txt2=['for a=1:3 ';
+	'  x'
+	'end'
+	'a=2;'];
+mputl(txt2,path2);
+of=file();
+if exec(path,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+if or(file()<>of) then pause,end
+clear a x;
+if exec(path,'errcatch',-1)<>4  then pause,end
+if a<>1 then pause,end
+clear a x;
+if execstr(txt,'errcatch')<>4 then pause,end
+if a<>1 then pause,end
+
+clear a x;
+txt=['a=1';
+     'if %t then';
+     '  ierr=exec(path2,''errcatch'')'
+     'end'
+     'a=3;'];
+mputl(txt,path);
+txt2=['for a=1:3 ';
+	'  x'
+	'end'
+	'a=2;'];
+mputl(txt2,path2);
+of=file();
+if exec(path,'errcatch')<>0 then pause,end
+if a<>3 then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+clear a x ierr;
+if exec(path,'errcatch',-1)<>0  then pause,end
+if a<>3 then pause,end
+if ierr<>4 then pause,end
+clear a x ierr;
+if execstr(txt,'errcatch')<>0 then pause,end
+if a<>3 then pause,end
+if ierr<>4 then pause,end
+
+clear a x ierr foo;
+txt=['a=1;';
+     'if %t then';
+     '  ierr=exec(path2,''errcatch'');'
+     'end'
+     'a=a+3;'];
+mputl(txt,path);
+txt2=['errcatch(-1,''continue'')'
+      'for a=1:3 ';
+      '  x'
+      'end'
+      'a=2;'
+      'errcatch()'];
+mputl(txt2,path2);
+of=file();
+if exec(path,'errcatch')<>0 then pause,end
+if a<>5 then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+clear a x ierr;
+if exec(path,'errcatch',-1)<>0  then pause,end
+if a<>5 then pause,end
+if ierr<>4 then pause,end
+clear a x ierr;
+if execstr(txt,'errcatch')<>0 then pause,end
+if a<>5 then pause,end
+if ierr<>4 then pause,end
+function [ierr,ierr2]=foo(),ierr2=exec(path,'errcatch');endfunction
+[ierr,ierr2]=foo()
+if ierr<>4|ierr2<>0 then pause,end
+exec(foo)
+if a<>5 then pause,end
+if ierr<>4|ierr2<>0 then pause,end
+exec(foo,'errcatch')
+if a<>5 then pause,end
+if ierr<>4|ierr2<>0 then pause,end
+
+clear a x ierr foo;
+txt=['a=1;';
+     'if %t then';
+     '  a=foo()'
+     'end'
+     'a=a+3;'];
+mputl(txt,path);
+function a=foo()
+  errcatch(-1,'continue')
+  for a=1:3 
+    x
+  end
+  a=2;
+  errcatch();errclear()
+endfunction
+of=file();
+if exec(path,'errcatch')<>0 then pause,end
+if a<>5 then pause,end
+if or(file()<>of) then pause,end
+
+
+path=TMPDIR+'/errcatchtst.sce';
+clear a x ierr foo iii1;
+txt=['a=1;';
+     'if %t then';
+     '  ierr=execstr(''a=foo()'',''errcatch'')'
+     '  disp hello'
+     'end'
+     'a=a+3';
+     'disp(a)'
+    ];
+function iii1=foo()
+  for iii1=1:3 
+    x
+  end
+  iii1=2;
+endfunction
+
+mputl(txt,path);
+of=file();
+exec(path)
+
+if a<>4 then pause,end
+if  exists('iii1')<>0  then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+
+if exec(path,'errcatch')<>0 then pause,end
+if a<>4 then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+
+clear a x ierr foo;
+txt=['a=1;';
+     'if %t then';
+     '  ierr=exec(foo,''errcatch'')'
+     'end'
+     'a=a+3;'];
+mputl(txt,path);
+function a=foo()
+  for a=1:3 
+    x
+  end
+  a=2;
+endfunction
+of=file();
+exec(path)
+if a<>4 then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+
+if exec(path,'errcatch')<>0 then pause,end
+if a<>4 then pause,end
+if ierr<>4 then pause,end
+if or(file()<>of) then pause,end
+

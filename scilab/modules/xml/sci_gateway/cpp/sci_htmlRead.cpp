@@ -26,7 +26,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_htmlRead(char *fname, void* pvApiCtx)
+int sci_htmlRead(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc;
     SciErr err;

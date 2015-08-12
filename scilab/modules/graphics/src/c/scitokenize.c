@@ -14,7 +14,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "scitokenize.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "freeArrayOfString.h"
 /*--------------------------------------------------------------------------*/
 int scitokenize(char * legend, char *** Strptr, int *n)

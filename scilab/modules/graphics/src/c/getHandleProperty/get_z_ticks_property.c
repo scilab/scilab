@@ -25,27 +25,26 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "get_ticks_utils.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BasicAlgos.h"
 
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_z_ticks_property(void* _pvCtx, int iObjUID)
+int get_z_ticks_property(void* _pvCtx, int iObjUID)
 {
     int iNbTicks = 0;
     int *piNbTicks = &iNbTicks;
     int iView = 0;
     int* piView = &iView;
-    void* tList = NULL;
 
     /* retrieve number of ticks */
     getGraphicObjectProperty(iObjUID, __GO_Z_AXIS_NUMBER_TICKS__, jni_int, (void**)&piNbTicks);
     if (piNbTicks == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
-        return NULL;
+        return -1;
     }
 
     /* retrieve view: 0 -> 2d // 1 -> 3d */
@@ -53,13 +52,13 @@ void* get_z_ticks_property(void* _pvCtx, int iObjUID)
     if (piView == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-        return NULL;
+        return -1;
     }
 
     if (iNbTicks == 0 || iView == 0)
     {
         /* return empty matrices */
-        tList = buildTListForTicks(NULL, NULL, 0);
+        buildTListForTicks(NULL, NULL, 0);
     }
     else
     {
@@ -73,10 +72,10 @@ void* get_z_ticks_property(void* _pvCtx, int iObjUID)
         if (positions == NULL || labels == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "z_ticks");
-            return NULL;
+            return -1;
         }
 
-        tList = buildTListForTicks(positions, labels, iNbTicks);
+        buildTListForTicks(positions, labels, iNbTicks);
 
         /* free arrays */
 #if 0
@@ -85,7 +84,7 @@ void* get_z_ticks_property(void* _pvCtx, int iObjUID)
 #endif
     }
 
-    return tList;
+    return 0;
 
 }
 /*------------------------------------------------------------------------*/

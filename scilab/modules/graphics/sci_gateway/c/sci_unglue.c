@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 #include "deleteGraphicObject.h"
 /*--------------------------------------------------------------------------*/
-int sci_unglue(char *fname, void *pvApiCtx)
+int sci_unglue(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

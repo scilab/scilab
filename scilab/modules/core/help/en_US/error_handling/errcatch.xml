@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="errcatch">
+    <refnamediv>
+        <refname>errcatch</refname>
+        <refpurpose>error trapping</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>errcatch(n [,'action'] [,'option'])
+            errcatch()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>integer</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>action, option</term>
+                <listitem>
+                    <para>strings</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            <function>errcatch</function> gives an "action" (error-handler)  to be
+            performed when an error of type <varname>n</varname> occurs.
+        </para>
+        <para>
+            <varname>n</varname> has the following meanings:
+        </para>
+        <para>
+            if <varname>n</varname><literal>&gt;0</literal>, <varname>n</varname> is the error number to trap;
+        </para>
+        <para>
+            if <varname>n</varname><literal>&lt;0</literal> all errors are to be trapped.
+        </para>
+        <para>
+            <varname>action</varname> is one of the following character strings:
+        </para>
+        <variablelist>
+            <varlistentry>
+                <term>"pause"</term>
+                <listitem>
+                    <para>a pause is executed when trapping the error. This option is
+                        useful for debugging purposes. Use <code>whereami()</code> to get information
+                        on the current context.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"continue"</term>
+                <listitem>
+                    <para>next instruction in the function or exec files is executed,
+                        current instruction is ignored. It is possible to check if an error has occurred
+                        using the <link linkend="iserror">iserror</link> function. Do not forget to clear the  
+                        error using the <link linkend="errclear">errclear</link> function as soon as possible.  
+                        This option is useful for error recovery. In many cases, usage of 
+                        <literal> errcatch(n,"continue",..)</literal> can be replaced by the use of
+                        <link linkend="execstr">execstr</link> function or <link linkend="try">try</link> 
+                        control structure.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"kill"</term>
+                <listitem>
+                    <para>default mode, all intermediate functions are killed, Scilab goes
+                        back to the level 0 prompt.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>"stop"</term>
+                <listitem>
+                    <para>interrupts the current Scilab session (useful when Scilab is called from an external program).</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+        <para>
+            <varname>option</varname> is the character string <literal>'nomessage'</literal> for killing
+            error message.
+        </para>
+        <para>
+            To set back default mode, enter <code>errcatch(-1,"kill")</code> or similarly
+            <code>errcatch(-1)</code>. <code>errcatch()</code> is an obsolete equivalent of <code>errcatch(-1)</code>.
+        </para>
+        <para/>
+        <para>
+            The <function>errcatch</function> actions apply to the current evaluation
+            context (<literal>function</literal>, <literal>exec</literal>, <literal>pause</literal>) and all the sub-levels. A  second <function>errcatch</function> call in a sub-level hides the initial one for this sub-level. If a second <function>errcatch</function> call is made at the
+            same level, the effect of the first one is removed.
+        </para>
+        <para>
+            When called in the context of  a Scilab function or exec the <function>errcatch</function> is automatically reset  when the function returns.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+errcatch(144,"continue")
+2/"foo"
+disp(a) // Without the errcatch, this line would not be executed
+
+errcatch(-1,"kill") // Come back in the normal mode
+errcatch(144,"pause")
+2/"foo" // Enter in "pause" mode
+
+errcatch(27,'continue','nomessage')
+b=2/0 // No error message but b will not exist
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="try">try</link>
+            </member>
+            <member>
+                <link linkend="errclear">errclear</link>
+            </member>
+            <member>
+                <link linkend="iserror">iserror</link>
+            </member>
+            <member>
+                <link linkend="whereami">whereami</link>
+            </member>
+            <member>
+                <link linkend="execstr">execstr</link>
+            </member>
+            <member>
+                <link linkend="exec">exec</link>
+            </member>
+            <member>
+                <link linkend="pause">pause</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

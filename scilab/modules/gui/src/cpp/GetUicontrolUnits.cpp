@@ -17,23 +17,20 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolUnits(void* _pvCtx, int iObjUID)
+int GetUicontrolUnits(void* _pvCtx, int iObjUID)
 {
     char* units = NULL;
     int type = -1;
     int *piType = &type;
-    void* ret = NULL;
 
     /* Handle must be a uicontrol */
     getGraphicObjectProperty(iObjUID, __GO_TYPE__, jni_int, (void**) &piType);
     if (type != __GO_UICONTROL__)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Units");
-        return NULL;
+        return FALSE;
     }
 
     getGraphicObjectProperty(iObjUID, __GO_UI_UNITS__, jni_string, (void**) &units);
-    ret = sciReturnString(units);
-    releaseGraphicObjectProperty(__GO_UI_UNITS__, units, jni_string, 1);
-    return ret;
+    return sciReturnString(_pvCtx, units);
 }

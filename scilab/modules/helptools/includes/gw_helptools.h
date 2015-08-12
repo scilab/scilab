@@ -17,8 +17,10 @@
 #include "dynlib_helptools.h"
 /*--------------------------------------------------------------------------*/
 HELPTOOLS_IMPEXP int gw_helptools(void);
+
 /*--------------------------------------------------------------------------*/
-HELPTOOLS_IMPEXP int sci_buildDoc(char *fname, void* pvApiCtx);
+HELPTOOLS_IMPEXP int sci_buildDoc(char *fname, unsigned long fname_len);
+
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_HELPTOOLS__ */
 /*--------------------------------------------------------------------------*/

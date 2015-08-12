@@ -20,6 +20,7 @@ int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
 
     /* To be sure isComplex is 0 or 1 */
     matVariable->isComplex =  matVariable->isComplex != 0;
+
     switch (matVariable->class_type)
     {
         case MAT_C_CELL: /* 1 */
@@ -39,7 +40,7 @@ int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             CreateDoubleVariable(pvApiCtx, iVar, matVariable, parent, item_position);
             break;
         case MAT_C_INT8: /* 8 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_INT8, matVariable, parent, item_position);
+            CreateIntegerVariable(pvApiCtx, iVar, I_CHAR, matVariable, parent, item_position);
             break;
         case MAT_C_UINT8: /* 9 */
             if (matVariable->isLogical != 0)
@@ -48,33 +49,24 @@ int CreateMatlabVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * 
             }
             else
             {
-                CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT8, matVariable, parent, item_position);
+                CreateIntegerVariable(pvApiCtx, iVar, I_UCHAR, matVariable, parent, item_position);
             }
             break;
         case MAT_C_INT16: /* 10 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_INT16, matVariable, parent, item_position);
+            CreateIntegerVariable(pvApiCtx, iVar, I_INT16, matVariable, parent, item_position);
             break;
         case MAT_C_UINT16: /* 11 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT16, matVariable, parent, item_position);
+            CreateIntegerVariable(pvApiCtx, iVar, I_UINT16, matVariable, parent, item_position);
             break;
         case MAT_C_INT32: /* 12 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_INT32, matVariable, parent, item_position);
+            CreateIntegerVariable(pvApiCtx, iVar, I_INT32, matVariable, parent, item_position);
             break;
         case MAT_C_UINT32: /* 13 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT32, matVariable, parent, item_position);
+            CreateIntegerVariable(pvApiCtx, iVar, I_UINT32, matVariable, parent, item_position);
             break;
-#ifdef __SCILAB_INT64__
-        case MAT_C_INT64: /* 14 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT64, matVariable, parent, item_position);
-            break;
-        case MAT_C_UINT64: /* 15 */
-            CreateIntegerVariable(pvApiCtx, iVar, SCI_UINT64, matVariable, parent, item_position);
-            break;
-#else
+        case MAT_C_OBJECT: /* 3 to be written */
         case MAT_C_INT64: /* 14: no Scilab equivalent */
         case MAT_C_UINT64: /* 15: no Scilab equivalent */
-#endif
-        case MAT_C_OBJECT: /* 3 to be written */
         case MAT_C_FUNCTION: /* 16 to be written */
         default:
             /* Empty matrix returned */

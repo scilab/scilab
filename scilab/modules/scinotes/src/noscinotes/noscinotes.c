@@ -13,7 +13,7 @@
 #include "noscinotes.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
 int gw_scinotes(void)
 {

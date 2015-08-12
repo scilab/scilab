@@ -22,13 +22,13 @@ if or([1 1]<>[uno uno]) then pause,end
 if or([uno uno]<>1)     then pause,end
 if or([uno uno]<>[1 1]) then pause,end
 
-if execstr("uint8(1) & %t" ,"errcatch")  <> 999 then pause,end
-if execstr("%t&uint8(1)"   ,"errcatch")  <> 999 then pause,end
-if execstr("int32(1) & %t" ,"errcatch")  <> 999 then pause,end
-if execstr("%t&int32(1)"   ,"errcatch")  <> 999 then pause,end
-if execstr("uint32(1) & %t","errcatch")  <> 999 then pause,end
-if execstr("%t&uint32(1)"  ,"errcatch")  <> 999 then pause,end
-if execstr("int16(1) & %t" ,"errcatch")  <> 999 then pause,end
-if execstr("%t&int16(1)"   ,"errcatch")  <> 999 then pause,end
-if execstr("int8(1) & %f " ,"errcatch")  <> 999 then pause,end
-if execstr("%t&int8(1)"    ,"errcatch")  <> 999 then pause,end
+if execstr("uint8(1) & %t" ,"errcatch")  <> 144 then pause,end
+if execstr("%t&uint8(1)"   ,"errcatch")  <> 144 then pause,end
+if execstr("int32(1) & %t" ,"errcatch")  <> 144 then pause,end
+if execstr("%t&int32(1)"   ,"errcatch")  <> 144 then pause,end
+if execstr("uint32(1) & %t","errcatch")  <> 144 then pause,end
+if execstr("%t&uint32(1)"  ,"errcatch")  <> 144 then pause,end
+if execstr("int16(1) & %t" ,"errcatch")  <> 144 then pause,end
+if execstr("%t&int16(1)"   ,"errcatch")  <> 144 then pause,end
+if execstr("int8(1) & %f " ,"errcatch")  <> 144 then pause,end
+if execstr("%t&int8(1)"    ,"errcatch")  <> 144 then pause,end

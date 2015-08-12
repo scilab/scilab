@@ -12,7 +12,7 @@
  */
 
 #include "gw_gui.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "CallMessageBox.h"
@@ -21,7 +21,7 @@
 #include "freeArrayOfString.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_x_choice(char *fname, void* pvApiCtx)
+int sci_x_choice(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -51,7 +51,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
     CheckOutputArgument(pvApiCtx, 0, 1);
 
     /* READ THE DEFAULT VALUES */
-    if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
+    if (VarType(1) ==  sci_matrix)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddrdefaultValuesAdr);
         if (sciErr.iErr)
@@ -117,7 +117,7 @@ int sci_x_choice(char *fname, void* pvApiCtx)
     freeAllocatedMatrixOfString(nbRow, nbCol, labelsAdr);
 
     /* READ THE LABELS */
-    if (checkInputArgumentType(pvApiCtx, 3, sci_strings))
+    if (VarType(3) ==  sci_strings)
     {
         sciErr = getVarAddressFromPosition(pvApiCtx, 3, &piAddrlineLabelsAdr);
         if (sciErr.iErr)

@@ -17,8 +17,7 @@
 #include <windows.h>
 #endif
 #include "gw_sound.h"
-#include "os_string.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "Scierror.h"
 #include "localization.h"
 #include "api_scilab.h"
@@ -31,7 +30,7 @@ static BOOL beepON = TRUE;
 /*--------------------------------------------------------------------------*/
 void doBeep(void);
 /*--------------------------------------------------------------------------*/
-int sci_beep(char *fname, void* pvApiCtx)
+int sci_beep(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     char *output = NULL;
@@ -131,14 +130,14 @@ int sci_beep(char *fname, void* pvApiCtx)
 
     if (beepON)
     {
-        output = os_strdup(BEEP_ON);
+        output = strdup(BEEP_ON);
     }
     else
     {
-        output = os_strdup(BEEP_OFF);
+        output = strdup(BEEP_OFF);
     }
 
-    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, (const char * const*) &output);
+    sciErr = createMatrixOfString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, m_out, n_out, &output);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

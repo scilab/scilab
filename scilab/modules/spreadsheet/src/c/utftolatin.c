@@ -11,8 +11,10 @@
  */
 #include <string.h>
 #include "utftolatin.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 // =============================================================================
 char *utftolatin(char *utfString)
 {
@@ -89,7 +91,7 @@ char *utftolatin(char *utfString)
                         {
                             /* error */
                             FREE(latinString);
-                            return os_strdup(utfString);
+                            return strdup(utfString);
                         }
                         break;
                     case 1:

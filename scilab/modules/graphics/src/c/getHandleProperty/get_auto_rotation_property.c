@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_rotation_property(void* _pvCtx, int iObjUID)
+int get_auto_rotation_property(void* _pvCtx, int iObjUID)
 {
     int iAutoRotation = 0;
     int* piAutoRotation = &iAutoRotation;
@@ -40,16 +40,16 @@ void* get_auto_rotation_property(void* _pvCtx, int iObjUID)
     if (piAutoRotation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_rotation");
-        return NULL;
+        return -1;
     }
 
     if (iAutoRotation)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

@@ -20,7 +20,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "sciCall.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -33,7 +33,7 @@
 #include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xstring(char *fname, void *pvApiCtx)
+int sci_xstring(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

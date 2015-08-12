@@ -1,6 +1,7 @@
       SUBROUTINE DDAINI (X, Y, YPRIME, NEQ, RES, JAC, H, WT, IDID, RPAR,
      +   IPAR, PHI, DELTA, E, WM, IWM, HMIN, UROUND, NONNEG, NTEMP)
 
+      include 'stack.h'
 C***BEGIN PROLOGUE  DDAINI
 C***SUBSIDIARY
 C***PURPOSE  Initialization routine for DDASSL.
@@ -267,6 +268,7 @@ C-------------END OF SUBROUTINE DDAINI----------------------
       SUBROUTINE DDAJAC (NEQ, X, Y, YPRIME, DELTA, CJ, H,
      +   IER, WT, E, WM, IWM, RES, IRES, UROUND, JAC, RPAR,
      +   IPAR, NTEMP)
+      include 'stack.h'
 
 C***BEGIN PROLOGUE  DDAJAC
 C***SUBSIDIARY
@@ -553,6 +555,7 @@ C------END OF SUBROUTINE DDASLV------
       END
       SUBROUTINE DDASSL (RES, NEQ, T, Y, YPRIME, TOUT, INFO, RTOL, ATOL,
      +   IDID, RWORK, LRW, IWORK, LIW, RPAR, IPAR, JAC)
+      include 'stack.h'
 C***BEGIN PROLOGUE  DDASSL
 C***PURPOSE  This code solves a system of differential/algebraic
 C            equations of the form G(T,Y,YPRIME) = 0.
@@ -2164,6 +2167,8 @@ C-----------END OF SUBROUTINE DDASSL------------------------------------
      +   IDID, RPAR, IPAR, PHI, DELTA, E, WM, IWM, ALPHA, BETA, GAMMA,
      +   PSI, SIGMA, CJ, CJOLD, HOLD, S, HMIN, UROUND, IPHASE, JCALC,
      +   K, KOLD, NS, NONNEG, NTEMP)
+
+      include 'stack.h'
 
 C***BEGIN PROLOGUE  DDASTP
 C***SUBSIDIARY

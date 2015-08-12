@@ -14,11 +14,13 @@
 #ifndef __GW_BOOLEAN__
 #define __GW_BOOLEAN__
 /*--------------------------------------------------------------------------*/
-#include "c_gateway_prototype.h"
-#include "dynlib_boolean.h"
+#include "machine.h"
 /*--------------------------------------------------------------------------*/
-//C_GATEWAY_PROTOTYPE(sci_and);
-//C_GATEWAY_PROTOTYPE(sci_or);
+int gw_boolean(void);
+/*--------------------------------------------------------------------------*/
+int sci_or(char *fname, unsigned long fname_len);
+int sci_and(char *fname, unsigned long fname_len);
+int C2F(sci_bool2s)(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_BOOLEAN__ */
 /*--------------------------------------------------------------------------*/

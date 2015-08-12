@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2008 - INRIA - Serge STEER
+ * Copyright (C) 2008 - INRIA - Francois DELEBECQUE
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="bloc2exp" xml:lang="ru">
+    <refnamediv>
+        <refname>bloc2exp</refname>
+        <refpurpose>преобразование блок-схемы в символьное выражение</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>[str]=bloc2exp(blocd)
+            [str,names]=bloc2exp(blocd)
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>blocd</term>
+                <listitem>
+                    <para>список</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>str</term>
+                <listitem>
+                    <para>строка</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>names</term>
+                <listitem>
+                    <para>строка</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Для указанной блок-схемы элемента линейной системы списка     <literal>bloc2exp</literal> возвращает её символьное вычисление. Первый элемент 
+            списка <literal>blocd</literal> должен быть строкой <literal>'blocd'</literal>.
+            Остальные элементы этого списка 
+            <literal>(blocd(2),blocd(3),...)</literal> сами по себе являются списком одного из следующих типов:
+        </para>
+        <programlisting><![CDATA[ 
+list('transfer','name_of_linear_system')
+ ]]></programlisting>
+        <programlisting><![CDATA[  
+list('link','name_of_link',
+               [number_of_upstream_box,upstream_box_port],
+               [downstream_box_1,downstream_box_1_portnumber],
+               [downstream_box_2,downstream_box_2_portnumber],
+               ...)
+ ]]></programlisting>
+        <para>
+            Строки <literal>'transfer'</literal> и <literal>'link'</literal> являются
+            ключевыми словами, которые указывают тип элемента в блок-схеме.
+        </para>
+        <para>
+            Случай 1: второй параметр списка является символьной строкой, которая может 
+            ссылаться (для возможного последующего выполнения) на Scilab-имя линейной системы, 
+            заданной в представлении пространства состояний (<literal>syslin</literal> список) 
+            или передаточную форму (матрица рациональных дробей).
+        </para>
+        <para>
+            Каждому передаточному блоку присвоено целое число. Каждому входу и выходу передаточного блока также присвоено целое число (см. примеры).
+        </para>
+        <para>
+            Случай 2: второй вид элемента в представлении блок-схемы - это связь (link).
+            Связь связывает один выход блока, представленного парой 
+            <literal>[number_of_upstream_box,upstream_box_port]</literal> (т.е. 
+            <literal>[номер_предшествующего_блока,порт_предшествующего_блока]</literal>) с
+            различными другими блоками. Каждый такой вход представлен парой 
+            <literal>[downstream_box_i,downstream_box_i_portnumber]</literal> 
+            (т.е. <literal>[последующий_блок_i,номер_порта_последующего_блока_i]</literal>).
+        </para>
+        <para>
+            Различные элементы блок-схемы могут быть определены в произвольном порядке.
+        </para>
+        <para>Например</para>
+        <para>
+            [1] <literal>S1*S2</literal> с обратной связью блока.
+        </para>
+        <para>
+            Есть 3 передаточных звена <literal>S1</literal> (число <literal>n_s1=2</literal>),
+            <literal>S2</literal> (число <literal>n_s2=3</literal>) и сумматор 
+            (число <literal>n_add=4</literal>) с символьной передаточной функцией 
+            <literal>['1','1']</literal>.
+        </para>
+        <para>
+            Есть 4 связи. Первая (названная <literal>'U'</literal>) связывает вход (порт 0 условного блока -1 не рассматривается) с портом 1 сумматора. Вторая и третья связи 
+            соответственно (выходной) порт 1 сумматора с (входным) портом 1 системы 
+            <literal>S1</literal>, а (выходной) порт 1  <literal>S1</literal> с (входным) портом 
+            1 <literal>S2</literal>. Четвёртая связь (названная <literal>'Y'</literal>) 
+            связывает (выходной) порт 1 <literal>S2</literal> с выходом (порт 0 условного блока 
+            -1 не рассматривается) и с (входным) портом 2 сумматора.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[ 
+//Инициализация
+syst=list('blocd'); l=1;
+ 
+//Системы
+l=l+1;n_s1=l;syst(l)=list('transfer','S1');  //Система 1
+l=l+1;n_s2=l;syst(l)=list('transfer','S2');  //Система 2
+l=l+1;n_adder=l;syst(l)=list('transfer',['1','1']);  //сумматор
+ 
+//Связи
+ 
+// входы  -1 --> вход 1
+l=l+1;syst(l)=list('link','U',[-1],[n_adder,1]);
+
+// Внутренние 
+l=l+1;syst(l)=list('link',' ',[n_adder,1],[n_s1,1]);
+l=l+1;syst(l)=list('link',' ',[n_s1,1],[n_s2,1]);
+ 
+// Выходы // -1 -> выход 1
+l=l+1;syst(l)=list('link','Y',[n_s2,1],[-1],[n_adder,2]);
+ 
+//Вызов выполнения
+w=bloc2exp(syst);
+ ]]></programlisting>
+        <para>
+            Результатом является символьная строка: <literal>w=-(s2*s1-eye())\s2*s1</literal>.
+        </para>
+        <para>
+            Заметим, что вызов с двумя выходными аргументами <literal>[str,names]=blocd(syst)</literal>
+            возвращает в <literal>names</literal> список символьных имён наименованных связей. 
+            Это полезно для установки имён входам и выходам.
+        </para>
+        <para>[2] второй пример</para>
+        <programlisting role="example"><![CDATA[ 
+//Инициализация
+syst=list('blocd'); l=1;
+ 
+//Система (установка блоков 2x2)
+l=l+1;n_s=l;syst(l)=list('transfer',['P11','P12';'P21','P22']);  
+ 
+//Контроллер
+l=l+1;n_k=l;syst(l)=list('transfer','k'); 
+ 
+//Связи
+l=l+1;syst(l)=list('link','w',[-1],[n_s,1]);
+l=l+1;syst(l)=list('link','z',[n_s,1],[-1]);
+l=l+1;syst(l)=list('link','u',[n_k,1],[n_s,2]);
+l=l+1;syst(l)=list('link','y',[n_s,2],[n_k,1]);
+ 
+//Вызов вычисления
+w=bloc2exp(syst);
+ ]]></programlisting>
+        <para>
+            В этом случае результатом является формула, эквивалентная обычной формуле:
+        </para>
+        <para>
+            <literal>P11+P12*invr(eye()-K*P22)*K*P21;</literal>
+        </para>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="bloc2ss">bloc2ss</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

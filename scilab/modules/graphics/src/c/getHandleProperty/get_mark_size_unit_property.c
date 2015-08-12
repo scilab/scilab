@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_mark_size_unit_property(void* _pvCtx, int iObjUID)
+int get_mark_size_unit_property(void* _pvCtx, int iObjUID)
 {
     int iMarkSizeUnit = 0;
     int* piMarkSizeUnit = &iMarkSizeUnit;
@@ -40,21 +40,21 @@ void* get_mark_size_unit_property(void* _pvCtx, int iObjUID)
     if (piMarkSizeUnit == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_size_unit");
-        return NULL;
+        return -1;
     }
 
     if (iMarkSizeUnit == 0)
     {
-        return sciReturnString("point");
+        return sciReturnString(_pvCtx, "point");
     }
     else if (iMarkSizeUnit == 1)
     {
-        return sciReturnString("tabulated");
+        return sciReturnString(_pvCtx, "tabulated");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "mark_size_unit");
-        return NULL;
+        return -1;
     }
 
 }

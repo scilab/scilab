@@ -17,7 +17,7 @@
 
 extern "C"
 {
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "api_scilab.h"
 #include "localization.h"
 #include "getScilabJavaVM.h"
@@ -28,7 +28,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_printsetupbox(char *fname, void* pvApiCtx)
+int sci_printsetupbox(char *fname, unsigned long l)
 {
     int paramoutINT = 0;
 

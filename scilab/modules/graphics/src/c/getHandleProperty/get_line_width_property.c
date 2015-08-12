@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_line_width_property(void* _pvCtx, int iObjUID)
+int get_line_width_property(void* _pvCtx, int iObjUID)
 {
     double dblLineWidth = 0.0;
     double *pdblLineWidth = &dblLineWidth;
@@ -36,9 +36,9 @@ void* get_line_width_property(void* _pvCtx, int iObjUID)
     if (pdblLineWidth == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "line_width");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(dblLineWidth);
+    return sciReturnDouble(_pvCtx, dblLineWidth);
 }
 /*------------------------------------------------------------------------*/

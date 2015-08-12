@@ -15,9 +15,7 @@
 #define __GETMATLABVARIABLE_H__
 
 #include "matfile_manager.h"
-#include "dynlib_matio.h"
-
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -36,7 +34,7 @@
  *
  * @return Matlab variable (See MATIO library)
  */
-MATIO_IMPEXP matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
+matvar_t *GetMatlabVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Integer variable from stack
@@ -65,10 +63,6 @@ matvar_t *GetIntegerVariable(void *pvApiCtx, int iVar, const char *name, int * p
  */
 matvar_t *GetMlistVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 /*
  * Get a Matlab Struct variable from stack
  *
@@ -83,9 +77,7 @@ extern "C" {
  *
  * @return Matlab variable (See MATIO library)
  */
-// MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
-MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
-
+matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, char **fieldNames, int nbFields, int * parent, int item_position);
 
 /*
  * Get a Matlab Cell variable from stack
@@ -99,11 +91,7 @@ MATIO_IMPEXP matvar_t *GetStructVariable(void *pvApiCtx, int iVar, const char *n
  *
  * @return Matlab variable (See MATIO library)
  */
-MATIO_IMPEXP matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
-
-#ifdef __cplusplus
-}
-#endif
+matvar_t *GetCellVariable(void *pvApiCtx, int iVar, const char *name, int matfile_version, int * parent, int item_position);
 
 /*
  * Get a Matlab Char variable from stack

@@ -42,9 +42,10 @@ end
 
 // name known in scilab , C function called
 table = ["completecommandline"    ,"sci_completecommandline"];
-ilib_build(ilib_name,table,files,libs,[],"",cflags);
+libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);
 
 clear ilib_build;
+clear libname;
 clear table;
 clear libs;
 clear files;

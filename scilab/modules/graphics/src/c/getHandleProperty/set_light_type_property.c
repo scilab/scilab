@@ -16,7 +16,7 @@
 #include "SetPropertyStatus.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "os_string.h"
+#include "stricmp.h"
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"

@@ -4,4 +4,5 @@ LIBRARY    output_stream.dll
 EXPORTS
 basout_
 msgs_
+error_
 msgstxt_

@@ -14,7 +14,6 @@
 #define __FSCANFMAT_H__
 
 #include "BOOL.h"
-#include "dynlib_fileio.h"
 
 typedef enum
 {
@@ -44,9 +43,9 @@ typedef struct
 /**
 *
 */
-FILEIO_IMPEXP fscanfMatResult *fscanfMat(char *filename, char *format, char *separator);
+fscanfMatResult *fscanfMat(char *filename, char *format, char *separator);
 
-FILEIO_IMPEXP void freeFscanfMatResult(fscanfMatResult *resultStruct);
+void freeFscanfMatResult(fscanfMatResult *resultStruct);
 
 #endif /* __FSCANFMAT_H__ */
 /*--------------------------------------------------------------------------*/

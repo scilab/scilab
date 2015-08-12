@@ -214,7 +214,7 @@
                         <term>insert</term>
                         <listitem>
                             <para>
-                                allows to insert instructions. Calling sequence:<literal> m2sci_insert(Equal(...),opt)</literal> with <literal>opt~=1</literal>  to insert before current instruction and <literal> opt=1</literal>  to insert after it.
+                                allows to insert instructions. Calling sequence:<literal> insert(Equal(...),opt)</literal> with <literal>opt~=1</literal>  to insert before current instruction and <literal> opt=1</literal>  to insert after it.
                             </para>
                         </listitem>
                     </varlistentry>

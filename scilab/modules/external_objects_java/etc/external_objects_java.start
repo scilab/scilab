@@ -8,7 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 // TODO : make this '72' more dynamic (with a funptr)
-intppty("external_objects_java");
+intppty(72);
 jvoid = evoid;
 jnull = enull;
 //load("SCI/modules/external_objects_java/macros/lib");

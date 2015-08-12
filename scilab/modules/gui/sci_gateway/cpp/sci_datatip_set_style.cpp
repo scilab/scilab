@@ -28,7 +28,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatip_set_style(char *fname, void* pvApiCtx)
+int sci_datatip_set_style(char *fname, unsigned long fname_len)
 {
     int* piAddr                 = NULL;
     int iPolylineUID            = 0;

@@ -16,7 +16,7 @@
 #include <stdlib.h>
 #include "hashtable.h"
 #include "BOOL.h" /* BOOL */
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
 struct key_string
 {

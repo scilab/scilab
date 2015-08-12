@@ -46,7 +46,7 @@ int ScilabGateway::getField(char * fname, const int envId, void * pvApiCtx)
     {
         fieldName = ScilabObjects::getSingleString(2, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         throw;
@@ -78,7 +78,7 @@ int ScilabGateway::getField(char * fname, const int envId, void * pvApiCtx)
     {
         ret = env.getfield(idObj, fieldName);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         ScilabObjects::removeTemporaryVars(envId, tmpvar);
         freeAllocatedSingleString(fieldName);
@@ -98,7 +98,7 @@ int ScilabGateway::getField(char * fname, const int envId, void * pvApiCtx)
         {
             ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, envId, pvApiCtx);
         }
-        catch (ScilabAbstractEnvironmentException & /*e*/)
+        catch (ScilabAbstractEnvironmentException & e)
         {
             env.removeobject(ret);
             throw;

@@ -10,11 +10,6 @@ getScilabJNIEnv
 addToClasspath
 addToLibrarypath
 getScilabObject
-ExecuteInitialHooks
-TerminateJVM
-InitializeJVM
-loadBackGroundClassPath
-loadOnUseClassPath
 ; --------------------------------------- 
 canCloseMainScilabObject
 forceCloseMainScilabObject

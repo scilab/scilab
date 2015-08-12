@@ -1,6 +1,0 @@
-LIBRARY    sparse_f.dll
-
-
-EXPORTS
-ordmmd_
-

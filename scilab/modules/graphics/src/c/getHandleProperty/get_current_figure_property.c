@@ -26,7 +26,7 @@
 #include "returnProperty.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 #include "createGraphicObject.h"
 #include "BuildObjects.h"
@@ -34,7 +34,7 @@
 #include "HandleManagement.h"
 
 /*--------------------------------------------------------------------------*/
-void* get_current_figure_property(void* _pvCtx, int iObjUID)
+int get_current_figure_property(void* _pvCtx, int iObjUID)
 {
     int iCurrentFigureId = 0;
 
@@ -42,7 +42,7 @@ void* get_current_figure_property(void* _pvCtx, int iObjUID)
     {
         /* This property should not be called on an handle */
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "current_figure");
-        return NULL;
+        return -1;
     }
 
     iCurrentFigureId = getCurrentFigure();
@@ -54,5 +54,6 @@ void* get_current_figure_property(void* _pvCtx, int iObjUID)
         setCurrentFigure(iCurrentFigureId);
     }
 
-    return sciReturnHandle(getHandle(iCurrentFigureId));
+    return sciReturnHandle(_pvCtx, getHandle(iCurrentFigureId));
+
 }

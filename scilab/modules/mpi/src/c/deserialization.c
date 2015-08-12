@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include "api_scilab.h"
 #include "BOOL.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "deserialization.h"
 
 static int deserialize_double(void *_pvCtx, int *_piBuffer, int _iBufferSize)
@@ -290,17 +290,17 @@ int deserialize_from_mpi(void *_pvCtx, int *_piBuffer, int _iBufferSize)
     switch (*_piBuffer)
     {
         case sci_matrix:
-            return deserialize_double(_pvCtx, _piBuffer, _iBufferSize);
+            return deserialize_double(pvApiCtx, _piBuffer, _iBufferSize);
         case sci_strings:
-            return deserialize_string(_pvCtx, _piBuffer, _iBufferSize);
+            return deserialize_string(pvApiCtx, _piBuffer, _iBufferSize);
         case sci_boolean:
-            return deserialize_boolean(_pvCtx, _piBuffer, _iBufferSize);
+            return deserialize_boolean(pvApiCtx, _piBuffer, _iBufferSize);
         case sci_sparse:
-            return deserialize_sparse(_pvCtx, _piBuffer, _iBufferSize, TRUE);
+            return deserialize_sparse(pvApiCtx, _piBuffer, _iBufferSize, TRUE);
         case sci_boolean_sparse:
-            return deserialize_sparse(_pvCtx, _piBuffer, _iBufferSize, FALSE);
+            return deserialize_sparse(pvApiCtx, _piBuffer, _iBufferSize, FALSE);
         case sci_ints:
-            return deserialize_int(_pvCtx, _piBuffer, _iBufferSize);
+            return deserialize_int(pvApiCtx, _piBuffer, _iBufferSize);
         default:
             return -1; //unknow type
     }

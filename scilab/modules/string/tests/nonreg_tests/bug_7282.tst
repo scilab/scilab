@@ -13,12 +13,13 @@
 //
 // <-- Short Description -->
 // eval failed on some functions without output arguments.
-errmsg = msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\n"), "realtimeinit", 0);
+
 str = "realtimeinit(60)";
-assert_checkerror("eval(str)", errmsg);
+r = eval(str);
+if r <> [] then pause, end
 
 function o = blabla()
-    o = 3;
+ o = 3;
 endfunction
 
 r = eval("blabla()");

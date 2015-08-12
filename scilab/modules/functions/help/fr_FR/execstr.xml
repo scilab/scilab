@@ -141,6 +141,9 @@ end
                 <link linkend="errclear">errclear</link>
             </member>
             <member>
+                <link linkend="iserror">iserror</link>
+            </member>
+            <member>
                 <link linkend="whereami">whereami</link>
             </member>
             <member>

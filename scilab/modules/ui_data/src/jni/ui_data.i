@@ -9,7 +9,7 @@
 
 %module UI_data
 %{
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "../../includes/ui_data.h"
 %}
 

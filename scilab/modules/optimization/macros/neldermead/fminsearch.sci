@@ -21,166 +21,6 @@
 //  options : an optional struct, as provided by optimset
 //
 function [x,fval,exitflag,output] = fminsearch ( varargin )
-    //
-    // The output function called back by fminsearch
-    //
-    // Arguments
-    //  state : the current state of the algorithm
-    //    "init", "iter", "done"
-    //  data : the data at the current state
-    //    This is a tlist with the following entries:
-    //    * x : the optimal vector of parameters
-    //    * fval : the minimum function value
-    //    * simplex : the simplex, as a simplex object
-    //    * iteration : the number of iterations performed
-    //    * funccount : the number of function evaluations
-    //    * step : the type of step in the previous iteration
-    //  fmsdata : this is a tlist which contains specific data of the
-    //    fminsearch algorithm
-    //    * Display : what to display
-    //    * OutputFcn : the array of output functions
-    //
-    function stop = fminsearch_outputfun ( state , data , fmsdata )
-        //
-        // Compute procedure
-        //
-        select data.step
-        case "init" then
-            if ( data.iteration == 0 ) then
-                procedure = "";
-            else
-                procedure = "initial simplex";
-            end
-        case "done" then
-            procedure = ""
-        case "reflection" then
-            procedure = "reflect"
-        case "expansion" then
-            procedure = "expand"
-        case "insidecontraction" then
-            procedure = "contract inside"
-        case "outsidecontraction" then
-            procedure = "contract outside"
-        case "shrink" then
-            procedure = "shrink"
-        else
-            errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
-            error(errmsg)
-        end
-        //
-        // Display a message
-        //
-        if ( fmsdata.Display == "iter" ) then
-            if ( data.step <> "done" ) then
-                mprintf ( "%6s        %5s     %12s         %-20s\n", ...
-                string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
-            else
-                mprintf ( "\n" )
-            end
-        end
-        //
-        // Process output functions
-        //
-        stop = %f
-        optimValues = struct(...
-        "funccount" ,data.funccount , ...
-        "fval" ,data.fval , ...
-        "iteration" , data.iteration , ...
-        "procedure" , procedure ...
-        );
-        if ( fmsdata.OutputFcn <> [] ) then
-            if (or(type ( fmsdata.OutputFcn ) == [11 13])) then
-                // The output function is a macro
-                stop = fmsdata.OutputFcn ( data.x , optimValues , state );
-                //
-                // Backward-compatibility: define the stop variable
-                //
-                if ( exists("stop")==0 ) then
-                    fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
-                    stop = %f
-                end
-            elseif ( type ( fmsdata.OutputFcn ) == 15 ) then
-                // The output function is a list of macros
-                for i = 1:length(fmsdata.OutputFcn)
-                    stop = fmsdata.OutputFcn(i) ( data.x , optimValues , state );
-                end
-                //
-                // Backward-compatibility: define the stop variable
-                //
-                if ( exists("stop")==0 ) then
-                    fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
-                    stop = %f
-                end
-            else
-                // The user did something wrong...
-                errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
-                error(errmsg)
-            end
-        end
-        // Process plot functions
-        if ( fmsdata.PlotFcns <> [] ) then
-            if (or(type ( fmsdata.PlotFcns ) == [11 13] )) then
-                // The output function is a macro
-                fmsdata.PlotFcns ( data.x , optimValues , state );
-            elseif ( type ( fmsdata.PlotFcns ) == 15 ) then
-                // The output function is a list of macros
-                for i = 1:length(fmsdata.PlotFcns)
-                    fmsdata.PlotFcns(i) ( data.x , optimValues , state );
-                end
-            else
-                // The user did something wrong...
-                errmsg = msprintf(gettext("%s: The value of the ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
-                error(errmsg)
-            end
-        end
-    endfunction
-    //
-    // fminsearch_function --
-    //   Calls the cost function and make it match
-    //   neldermead requirements.
-    //
-    function [ f , index , fmsfundata ] = fminsearch_function ( x , index , fmsfundata )
-        funtype = typeof(fmsfundata.Fun)
-        if ( funtype == "function" ) then
-            __fminsearch_f__ = fmsfundata.Fun
-            __fminsearch_args__ = list()
-        else
-            __fminsearch_f__ = fmsfundata.Fun(1)
-            __fminsearch_args__ = list(fmsfundata.Fun(2:$))
-        end
-        f = __fminsearch_f__ ( x , __fminsearch_args__(:))
-    endfunction
-
-    function fms_warnheaderobsolete ( oldheader , newheader , removedVersion )
-        warnMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
-        warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newheader)]
-        warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), removedVersion)]
-        warning(warnMessage);
-    endfunction
-
-
-    function assert_typecallable ( var , varname , ivar )
-        // Check that var is a function or a list
-        if ( and ( type ( var ) <> [11 13 15] ) ) then
-            errmsg = msprintf(gettext("%s: Expected function or list for variable %s at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
-            error(errmsg);
-        end
-        if ( type ( var ) == 15 ) then
-            // Check that var(1) is a function
-            if ( and ( type ( var(1) ) <> [11 13] ) ) then
-                errmsg = msprintf(gettext("%s: Expected function for variable %s(1) at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
-                error(errmsg);
-            end
-        end
-    endfunction
-    // Generates an error if the given variable is not of type real
-    function assert_typereal ( var , varname , ivar )
-        if ( type ( var ) <> 1 ) then
-            errmsg = msprintf(gettext("%s: Expected real variable for variable %s at input #%d, but got %s instead."),"assert_typereal", varname , ivar , typeof(var) );
-            error(errmsg);
-        end
-    endfunction
-
     [lhs,rhs]=argn();
     if rhs<>2 & rhs<>3 then
         errmsg = msprintf(gettext("%s: Wrong number of input arguments: %d or %d expected.\n"), "fminsearch", 2,3);
@@ -327,4 +167,163 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
         end
     end
     nm = neldermead_destroy(nm);
+endfunction
+//
+// The output function called back by fminsearch
+//
+// Arguments
+//  state : the current state of the algorithm
+//    "init", "iter", "done"
+//  data : the data at the current state
+//    This is a tlist with the following entries:
+//    * x : the optimal vector of parameters
+//    * fval : the minimum function value
+//    * simplex : the simplex, as a simplex object
+//    * iteration : the number of iterations performed
+//    * funccount : the number of function evaluations
+//    * step : the type of step in the previous iteration
+//  fmsdata : this is a tlist which contains specific data of the
+//    fminsearch algorithm
+//    * Display : what to display
+//    * OutputFcn : the array of output functions
+//
+function stop = fminsearch_outputfun ( state , data , fmsdata )
+    //
+    // Compute procedure
+    //
+    select data.step
+    case "init" then
+        if ( data.iteration == 0 ) then
+            procedure = "";
+        else
+            procedure = "initial simplex";
+        end
+    case "done" then
+        procedure = ""
+    case "reflection" then
+        procedure = "reflect"
+    case "expansion" then
+        procedure = "expand"
+    case "insidecontraction" then
+        procedure = "contract inside"
+    case "outsidecontraction" then
+        procedure = "contract outside"
+    case "shrink" then
+        procedure = "shrink"
+    else
+        errmsg = msprintf(gettext("%s: Unknown step %s"), "fminsearch", data.step)
+        error(errmsg)
+    end
+    //
+    // Display a message
+    //
+    if ( fmsdata.Display == "iter" ) then
+        if ( data.step <> "done" ) then
+            mprintf ( "%6s        %5s     %12s         %-20s\n", ...
+            string(data.iteration) , string(data.funccount) , string(data.fval) , procedure )
+        else
+            mprintf ( "\n" )
+        end
+    end
+    //
+    // Process output functions
+    //
+    stop = %f
+    optimValues = struct(...
+    "funccount" ,data.funccount , ...
+    "fval" ,data.fval , ...
+    "iteration" , data.iteration , ...
+    "procedure" , procedure ...
+    );
+    if ( fmsdata.OutputFcn <> [] ) then
+        if ( type ( fmsdata.OutputFcn ) == 13 ) then
+            // The output function is a macro
+            stop = fmsdata.OutputFcn ( data.x , optimValues , state );
+            //
+            // Backward-compatibility: define the stop variable
+            //
+            if ( exists("stop")==0 ) then
+                fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
+                stop = %f
+            end
+        elseif ( type ( fmsdata.OutputFcn ) == 15 ) then
+            // The output function is a list of macros
+            for i = 1:length(fmsdata.OutputFcn)
+                stop = fmsdata.OutputFcn(i) ( data.x , optimValues , state );
+            end
+            //
+            // Backward-compatibility: define the stop variable
+            //
+            if ( exists("stop")==0 ) then
+                fms_warnheaderobsolete ( "outputfun(x,optimValues , state )" , "stop=outputfun(x,optimValues , state )", "5.4.1" )
+                stop = %f
+            end
+        else
+            // The user did something wrong...
+            errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch")
+            error(errmsg)
+        end
+    end
+    // Process plot functions
+    if ( fmsdata.PlotFcns <> [] ) then
+        if ( type ( fmsdata.PlotFcns ) == 13 ) then
+            // The output function is a macro
+            fmsdata.PlotFcns ( data.x , optimValues , state );
+        elseif ( type ( fmsdata.PlotFcns ) == 15 ) then
+            // The output function is a list of macros
+            for i = 1:length(fmsdata.PlotFcns)
+                fmsdata.PlotFcns(i) ( data.x , optimValues , state );
+            end
+        else
+            // The user did something wrong...
+            errmsg = msprintf(gettext("%s: The value of the ''PlotFcns'' option is neither a function nor a list."), "fminsearch")
+            error(errmsg)
+        end
+    end
+endfunction
+//
+// fminsearch_function --
+//   Calls the cost function and make it match
+//   neldermead requirements.
+//
+function [ f , index , fmsfundata ] = fminsearch_function ( x , index , fmsfundata )
+    funtype = typeof(fmsfundata.Fun)
+    if ( funtype == "function" ) then
+        __fminsearch_f__ = fmsfundata.Fun
+        __fminsearch_args__ = list()
+    else
+        __fminsearch_f__ = fmsfundata.Fun(1)
+        __fminsearch_args__ = list(fmsfundata.Fun(2:$))
+    end
+    f = __fminsearch_f__ ( x , __fminsearch_args__(:))
+endfunction
+
+function fms_warnheaderobsolete ( oldheader , newheader , removedVersion )
+    warnMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
+    warnMessage = [warnMessage, msprintf(_("Please use %s instead."),newheader)]
+    warnMessage = [warnMessage, msprintf(_("This feature will be permanently removed in Scilab %s"), removedVersion)]
+    warning(warnMessage);
+endfunction
+
+
+function assert_typecallable ( var , varname , ivar )
+    // Check that var is a function or a list
+    if ( and ( type ( var ) <> [11 13 15] ) ) then
+        errmsg = msprintf(gettext("%s: Expected function or list for variable %s at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
+        error(errmsg);
+    end
+    if ( type ( var ) == 15 ) then
+        // Check that var(1) is a function
+        if ( and ( type ( var(1) ) <> [11 13] ) ) then
+            errmsg = msprintf(gettext("%s: Expected function for variable %s(1) at input #%d, but got %s instead."),"assert_typecallable", varname , ivar , typeof(var) );
+            error(errmsg);
+        end
+    end
+endfunction
+// Generates an error if the given variable is not of type real
+function assert_typereal ( var , varname , ivar )
+    if ( type ( var ) <> 1 ) then
+        errmsg = msprintf(gettext("%s: Expected real variable for variable %s at input #%d, but got %s instead."),"assert_typereal", varname , ivar , typeof(var) );
+        error(errmsg);
+    end
 endfunction

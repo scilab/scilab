@@ -106,10 +106,9 @@ DIST_COMMON = $(top_srcdir)/Makefile.incl.am $(srcdir)/Makefile.in \
 @NEED_JAVA_TRUE@am__append_1 = java
 subdir = modules/optimization
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_cxx_compile_stdcxx_11.m4 \
-	$(top_srcdir)/m4/backtrace.m4 $(top_srcdir)/m4/compiler.m4 \
-	$(top_srcdir)/m4/curl.m4 $(top_srcdir)/m4/docbook.m4 \
-	$(top_srcdir)/m4/doxygen.m4 $(top_srcdir)/m4/eigen.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/backtrace.m4 \
+	$(top_srcdir)/m4/compiler.m4 $(top_srcdir)/m4/curl.m4 \
+	$(top_srcdir)/m4/docbook.m4 $(top_srcdir)/m4/doxygen.m4 \
 	$(top_srcdir)/m4/fftw.m4 $(top_srcdir)/m4/fortran.m4 \
 	$(top_srcdir)/m4/giws.m4 $(top_srcdir)/m4/hdf5.m4 \
 	$(top_srcdir)/m4/intel_compiler.m4 \
@@ -164,12 +163,11 @@ am__installdirs = "$(DESTDIR)$(pkglibdir)" \
 LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscioptimization_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
-am__objects_1 = src/c/libscioptimization_algo_la-sp.lo
-am__objects_2 =  \
-	src/cpp/libscioptimization_algo_la-optimizationfunctions.lo \
-	src/cpp/libscioptimization_algo_la-checkoptimerror.lo \
-	src/cpp/libscioptimization_algo_la-scioptimfunctions.lo
-am__objects_3 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
+am__objects_1 = src/c/libscioptimization_algo_la-sp.lo \
+	src/c/libscioptimization_algo_la-fsolvetable.lo \
+	src/c/libscioptimization_algo_la-lsqrsolvtable.lo \
+	src/c/libscioptimization_algo_la-optimtable.lo
+am__objects_2 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
 	src/fortran/n1qn2a.lo src/fortran/fuclid.lo \
 	src/fortran/fmc11b.lo src/fortran/ql0001.lo \
 	src/fortran/shanph.lo src/fortran/fajc1.lo \
@@ -198,8 +196,9 @@ am__objects_3 = src/fortran/gcbd.lo src/fortran/qpgen2.lo \
 	src/fortran/calmaj.lo src/fortran/calbx.lo \
 	src/fortran/rednor.lo src/fortran/zgcbd.lo \
 	src/fortran/writebuf.lo src/fortran/qpgen1sci.lo \
-	src/fortran/rdmps1.lo src/fortran/rdmpsz.lo
-am__objects_4 = src/fortran/minpack/lmdif.lo \
+	src/fortran/intreadmps.lo src/fortran/rdmps1.lo \
+	src/fortran/rdmpsz.lo
+am__objects_3 = src/fortran/minpack/lmdif.lo \
 	src/fortran/minpack/qrfac.lo src/fortran/minpack/hybrj1.lo \
 	src/fortran/minpack/dogleg.lo src/fortran/minpack/lmder.lo \
 	src/fortran/minpack/hybrd.lo src/fortran/minpack/dpmpar.lo \
@@ -209,7 +208,7 @@ am__objects_4 = src/fortran/minpack/lmdif.lo \
 	src/fortran/minpack/fdjac1.lo src/fortran/minpack/hybrd1.lo \
 	src/fortran/minpack/fdjac2.lo src/fortran/minpack/r1mpyq.lo
 am_libscioptimization_algo_la_OBJECTS = $(am__objects_1) \
-	$(am__objects_2) $(am__objects_3) $(am__objects_4)
+	$(am__objects_2) $(am__objects_3)
 libscioptimization_algo_la_OBJECTS =  \
 	$(am_libscioptimization_algo_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
@@ -217,18 +216,25 @@ am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
 am__v_lt_0 = --silent
 am__v_lt_1 = 
 libscioptimization_la_DEPENDENCIES = libscioptimization-algo.la
-am__objects_5 = sci_gateway/cpp/libscioptimization_la-sci_optim.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_semidef.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo \
-	sci_gateway/cpp/libscioptimization_la-sci_readmps.lo
-am__objects_6 = sci_gateway/c/libscioptimization_la-sci_qld.lo \
-	sci_gateway/c/libscioptimization_la-sci_qp_solve.lo
-am__objects_7 = sci_gateway/fortran/Ex-optim.lo \
+am__objects_4 = sci_gateway/c/libscioptimization_la-sci_semidef.lo \
+	sci_gateway/c/libscioptimization_la-sci_qld.lo \
+	sci_gateway/c/libscioptimization_la-gw_optimization.lo \
+	sci_gateway/c/libscioptimization_la-sci_optim.lo \
+	sci_gateway/c/libscioptimization_la-sci_fsolv.lo \
+	sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo \
+	sci_gateway/c/libscioptimization_la-sci_qp_solve.lo \
+	sci_gateway/c/libscioptimization_la-sci_readmps.lo
+am__objects_5 = sci_gateway/fortran/sci_f_semidef.lo \
+	sci_gateway/fortran/sci_f_fsolve.lo \
+	sci_gateway/fortran/sci_f_optim.lo \
+	sci_gateway/fortran/boptim.lo sci_gateway/fortran/bsolv.lo \
+	sci_gateway/fortran/bjlsqrsolv.lo \
+	sci_gateway/fortran/blsqrsolv.lo sci_gateway/fortran/bjsolv.lo \
+	sci_gateway/fortran/intlsqrsolve.lo \
+	sci_gateway/fortran/Ex-optim.lo \
 	sci_gateway/fortran/Ex-fsolve.lo \
 	sci_gateway/fortran/Ex-lsqrsolve.lo
-am_libscioptimization_la_OBJECTS = $(am__objects_5) $(am__objects_6) \
-	$(am__objects_7)
+am_libscioptimization_la_OBJECTS = $(am__objects_4) $(am__objects_5)
 libscioptimization_la_OBJECTS = $(am_libscioptimization_la_OBJECTS)
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
@@ -264,24 +270,6 @@ AM_V_CCLD = $(am__v_CCLD_@AM_V@)
 am__v_CCLD_ = $(am__v_CCLD_@AM_DEFAULT_V@)
 am__v_CCLD_0 = @echo "  CCLD    " $@;
 am__v_CCLD_1 = 
-CXXCOMPILE = $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) \
-	$(AM_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS)
-LTCXXCOMPILE = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) \
-	$(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) \
-	$(AM_CXXFLAGS) $(CXXFLAGS)
-AM_V_CXX = $(am__v_CXX_@AM_V@)
-am__v_CXX_ = $(am__v_CXX_@AM_DEFAULT_V@)
-am__v_CXX_0 = @echo "  CXX     " $@;
-am__v_CXX_1 = 
-CXXLD = $(CXX)
-CXXLINK = $(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) \
-	$(LIBTOOLFLAGS) --mode=link $(CXXLD) $(AM_CXXFLAGS) \
-	$(CXXFLAGS) $(AM_LDFLAGS) $(LDFLAGS) -o $@
-AM_V_CXXLD = $(am__v_CXXLD_@AM_V@)
-am__v_CXXLD_ = $(am__v_CXXLD_@AM_DEFAULT_V@)
-am__v_CXXLD_0 = @echo "  CXXLD   " $@;
-am__v_CXXLD_1 = 
 F77COMPILE = $(F77) $(AM_FFLAGS) $(FFLAGS)
 LTF77COMPILE = $(LIBTOOL) $(AM_V_lt) --tag=F77 $(AM_LIBTOOLFLAGS) \
 	$(LIBTOOLFLAGS) --mode=compile $(F77) $(AM_FFLAGS) $(FFLAGS)
@@ -379,7 +367,6 @@ ECHO_N = @ECHO_N@
 ECHO_T = @ECHO_T@
 ECJ = @ECJ@
 EGREP = @EGREP@
-EIGEN_CPPFLAGS = @EIGEN_CPPFLAGS@
 EXEEXT = @EXEEXT@
 F77 = @F77@
 FFLAGS = @FFLAGS@
@@ -403,7 +390,6 @@ GMSGFMT_015 = @GMSGFMT_015@
 GRAPHICS_ENABLE = @GRAPHICS_ENABLE@
 GREP = @GREP@
 GUI_ENABLE = @GUI_ENABLE@
-HAVE_CXX11 = @HAVE_CXX11@
 HDF5_CFLAGS = @HDF5_CFLAGS@
 HDF5_LIBS = @HDF5_LIBS@
 HELP_ENABLE = @HELP_ENABLE@
@@ -440,9 +426,6 @@ LAPACK_LIBS = @LAPACK_LIBS@
 LCOV = @LCOV@
 LD = @LD@
 LDFLAGS = @LDFLAGS@
-LEX = @LEX@
-LEXLIB = @LEXLIB@
-LEX_OUTPUT_ROOT = @LEX_OUTPUT_ROOT@
 LIBICONV = @LIBICONV@
 LIBINTL = @LIBINTL@
 LIBM = @LIBM@
@@ -558,8 +541,6 @@ X_CFLAGS = @X_CFLAGS@
 X_EXTRA_LIBS = @X_EXTRA_LIBS@
 X_LIBS = @X_LIBS@
 X_PRE_LIBS = @X_PRE_LIBS@
-YACC = @YACC@
-YFLAGS = @YFLAGS@
 abs_builddir = @abs_builddir@
 abs_srcdir = @abs_srcdir@
 abs_top_builddir = @abs_top_builddir@
@@ -615,151 +596,139 @@ target_alias = @target_alias@
 top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
-yacc_present = @yacc_present@
-OPTIMIZATION_C_SOURCES = \
-    src/c/sp.c
+OPTIMIZATION_C_SOURCES = src/c/sp.c \
+src/c/fsolvetable.c \
+src/c/lsqrsolvtable.c \
+src/c/optimtable.c
 
-OPTIMIZATION_FORTRAN_SOURCES = \
-    src/fortran/gcbd.f \
-    src/fortran/qpgen2.f \
-    src/fortran/n1qn2a.f \
-    src/fortran/fuclid.f \
-    src/fortran/fmc11b.f \
-    src/fortran/ql0001.f \
-    src/fortran/shanph.f \
-    src/fortran/fajc1.f \
-    src/fortran/majysa.f \
-    src/fortran/icsei.f \
-    src/fortran/majour.f \
-    src/fortran/n1qn1.f \
-    src/fortran/n1qn1a.f \
-    src/fortran/n1qn3.f \
-    src/fortran/fmc11z.f \
-    src/fortran/icse0.f \
-    src/fortran/icse2.f \
-    src/fortran/fmuls1.f \
-    src/fortran/icsec2.f \
-    src/fortran/gcp.f \
-    src/fortran/n1fc1a.f \
-    src/fortran/n1gc2.f \
-    src/fortran/proj.f \
-    src/fortran/n1gc2a.f \
-    src/fortran/ddd2.f \
-    src/fortran/fremf2.f \
-    src/fortran/dcube.f \
-    src/fortran/fcube.f \
-    src/fortran/bfgsd.f \
-    src/fortran/fcomp1.f \
-    src/fortran/fmulb1.f \
-    src/fortran/n1fc1o.f \
-    src/fortran/relvar.f \
-    src/fortran/satur.f \
-    src/fortran/strang.f \
-    src/fortran/fmc11a.f \
-    src/fortran/fmani1.f \
-    src/fortran/fmc11e.f \
-    src/fortran/zqnbd.f \
-    src/fortran/ajour.f \
-    src/fortran/qnbd.f \
-    src/fortran/nlis0.f \
-    src/fortran/nlis2.f \
-    src/fortran/n1qn2.f \
-    src/fortran/majz.f \
-    src/fortran/n1qn3a.f \
-    src/fortran/frdf1.f \
-    src/fortran/icse1.f \
-    src/fortran/ctonb.f \
-    src/fortran/icscof.f \
-    src/fortran/fmlag1.f \
-    src/fortran/n1fc1.f \
-    src/fortran/ffinf1.f \
-    src/fortran/ctcab.f \
-    src/fortran/n1gc2b.f \
-    src/fortran/fprf2.f \
-    src/fortran/icse.f \
-    src/fortran/rlbd.f \
-    src/fortran/calmaj.f \
-    src/fortran/calbx.f \
-    src/fortran/rednor.f \
-    src/fortran/zgcbd.f \
-    src/fortran/writebuf.f \
-    src/fortran/qpgen1sci.f \
-    src/fortran/rdmps1.f \
-    src/fortran/rdmpsz.f
+OPTIMIZATION_FORTRAN_SOURCES = src/fortran/gcbd.f \
+src/fortran/qpgen2.f \
+src/fortran/n1qn2a.f \
+src/fortran/fuclid.f \
+src/fortran/fmc11b.f \
+src/fortran/ql0001.f \
+src/fortran/shanph.f \
+src/fortran/fajc1.f \
+src/fortran/majysa.f \
+src/fortran/icsei.f \
+src/fortran/majour.f \
+src/fortran/n1qn1.f \
+src/fortran/n1qn1a.f \
+src/fortran/n1qn3.f \
+src/fortran/fmc11z.f \
+src/fortran/icse0.f \
+src/fortran/icse2.f \
+src/fortran/fmuls1.f \
+src/fortran/icsec2.f \
+src/fortran/gcp.f \
+src/fortran/n1fc1a.f \
+src/fortran/n1gc2.f \
+src/fortran/proj.f \
+src/fortran/n1gc2a.f \
+src/fortran/ddd2.f \
+src/fortran/fremf2.f \
+src/fortran/dcube.f \
+src/fortran/fcube.f \
+src/fortran/bfgsd.f \
+src/fortran/fcomp1.f \
+src/fortran/fmulb1.f \
+src/fortran/n1fc1o.f \
+src/fortran/relvar.f \
+src/fortran/satur.f \
+src/fortran/strang.f \
+src/fortran/fmc11a.f \
+src/fortran/fmani1.f \
+src/fortran/fmc11e.f \
+src/fortran/zqnbd.f \
+src/fortran/ajour.f \
+src/fortran/qnbd.f \
+src/fortran/nlis0.f \
+src/fortran/nlis2.f \
+src/fortran/n1qn2.f \
+src/fortran/majz.f \
+src/fortran/n1qn3a.f \
+src/fortran/frdf1.f \
+src/fortran/icse1.f \
+src/fortran/ctonb.f \
+src/fortran/icscof.f \
+src/fortran/fmlag1.f \
+src/fortran/n1fc1.f \
+src/fortran/ffinf1.f \
+src/fortran/ctcab.f \
+src/fortran/n1gc2b.f \
+src/fortran/fprf2.f \
+src/fortran/icse.f \
+src/fortran/rlbd.f \
+src/fortran/calmaj.f \
+src/fortran/calbx.f \
+src/fortran/rednor.f \
+src/fortran/zgcbd.f \
+src/fortran/writebuf.f \
+src/fortran/qpgen1sci.f \
+src/fortran/intreadmps.f \
+src/fortran/rdmps1.f \
+src/fortran/rdmpsz.f
 
-MINPACK_SOURCES = \
-    src/fortran/minpack/lmdif.f \
-    src/fortran/minpack/qrfac.f \
-    src/fortran/minpack/hybrj1.f \
-    src/fortran/minpack/dogleg.f \
-    src/fortran/minpack/lmder.f \
-    src/fortran/minpack/hybrd.f \
-    src/fortran/minpack/dpmpar.f \
-    src/fortran/minpack/lmpar.f \
-    src/fortran/minpack/hybrj.f \
-    src/fortran/minpack/r1updt.f \
-    src/fortran/minpack/enorm.f \
-    src/fortran/minpack/qform.f \
-    src/fortran/minpack/qrsolv.f \
-    src/fortran/minpack/fdjac1.f \
-    src/fortran/minpack/hybrd1.f \
-    src/fortran/minpack/fdjac2.f \
-    src/fortran/minpack/r1mpyq.f
+MINPACK_SOURCES = src/fortran/minpack/lmdif.f \
+src/fortran/minpack/qrfac.f \
+src/fortran/minpack/hybrj1.f \
+src/fortran/minpack/dogleg.f \
+src/fortran/minpack/lmder.f \
+src/fortran/minpack/hybrd.f \
+src/fortran/minpack/dpmpar.f \
+src/fortran/minpack/lmpar.f \
+src/fortran/minpack/hybrj.f \
+src/fortran/minpack/r1updt.f \
+src/fortran/minpack/enorm.f \
+src/fortran/minpack/qform.f \
+src/fortran/minpack/qrsolv.f \
+src/fortran/minpack/fdjac1.f \
+src/fortran/minpack/hybrd1.f \
+src/fortran/minpack/fdjac2.f \
+src/fortran/minpack/r1mpyq.f
 
-OPTIMIZATION_CPP_SOURCES = \
-    src/cpp/optimizationfunctions.cpp \
-    src/cpp/checkoptimerror.cpp \
-    src/cpp/scioptimfunctions.cpp
+GATEWAY_C_SOURCES = sci_gateway/c/sci_semidef.c \
+sci_gateway/c/sci_qld.c \
+sci_gateway/c/gw_optimization.c \
+sci_gateway/c/sci_optim.c \
+sci_gateway/c/sci_fsolv.c \
+sci_gateway/c/sci_sqrsolve.c \
+sci_gateway/c/sci_qp_solve.c \
+sci_gateway/c/sci_readmps.c
 
-GATEWAY_CPP_SOURCES = \
-    sci_gateway/cpp/sci_optim.cpp \
-    sci_gateway/cpp/sci_fsolve.cpp \
-    sci_gateway/cpp/sci_semidef.cpp \
-    sci_gateway/cpp/sci_lsqrsolve.cpp \
-    sci_gateway/cpp/sci_readmps.cpp
+GATEWAY_FORTRAN_SOURCES = sci_gateway/fortran/sci_f_semidef.f \
+sci_gateway/fortran/sci_f_fsolve.f \
+sci_gateway/fortran/sci_f_optim.f \
+sci_gateway/fortran/boptim.f \
+sci_gateway/fortran/bsolv.f \
+sci_gateway/fortran/bjlsqrsolv.f \
+sci_gateway/fortran/blsqrsolv.f \
+sci_gateway/fortran/bjsolv.f \
+sci_gateway/fortran/intlsqrsolve.f \
+sci_gateway/fortran/Ex-optim.f \
+sci_gateway/fortran/Ex-fsolve.f \
+sci_gateway/fortran/Ex-lsqrsolve.f
 
-GATEWAY_C_SOURCES = \
-    sci_gateway/c/sci_qld.c \
-    sci_gateway/c/sci_qp_solve.c
-
-GATEWAY_FORTRAN_SOURCES = \
-    sci_gateway/fortran/Ex-optim.f \
-    sci_gateway/fortran/Ex-fsolve.f \
-    sci_gateway/fortran/Ex-lsqrsolve.f
-
-libscioptimization_la_CPPFLAGS = \
-    -I$(srcdir)/includes/ \
-    -I$(top_srcdir)/modules/ast/includes/ast/ \
-    -I$(top_srcdir)/modules/ast/includes/exps/ \
-    -I$(top_srcdir)/modules/ast/includes/operations/ \
-    -I$(top_srcdir)/modules/ast/includes/parse/ \
-    -I$(top_srcdir)/modules/ast/includes/symbol/ \
-    -I$(top_srcdir)/modules/ast/includes/system_env/ \
-    -I$(top_srcdir)/modules/ast/includes/types/ \
-    -I$(top_srcdir)/modules/ast/includes/analysis/ \
-    -I$(top_srcdir)/modules/api_scilab/includes/ \
-    -I$(top_srcdir)/modules/localization/includes/ \
-    -I$(top_srcdir)/modules/output_stream/includes/ \
-    -I$(top_srcdir)/modules/dynamic_link/includes/ \
-    -I$(top_srcdir)/modules/threads/includes/ \
-    -I$(top_srcdir)/modules/string/includes/ \
-    -I$(top_srcdir)/modules/console/includes/ \
-    -I$(top_srcdir)/modules/elementary_functions/includes/ \
-    $(AM_CPPFLAGS)
+libscioptimization_la_CPPFLAGS = -I$(srcdir)/includes/ \
+-I$(top_srcdir)/modules/api_scilab/includes/ \
+-I$(top_srcdir)/modules/localization/includes/ \
+-I$(top_srcdir)/modules/output_stream/includes/ \
+-I$(top_srcdir)/modules/dynamic_link/includes/ \
+$(AM_CPPFLAGS)
 
 pkglib_LTLIBRARIES = libscioptimization.la
 noinst_LTLIBRARIES = libscioptimization-algo.la
-libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_CPP_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
-libscioptimization_la_SOURCES = $(GATEWAY_CPP_SOURCES) $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES)
+libscioptimization_algo_la_SOURCES = $(OPTIMIZATION_C_SOURCES) $(OPTIMIZATION_FORTRAN_SOURCES) $(MINPACK_SOURCES)
+libscioptimization_la_SOURCES = $(GATEWAY_C_SOURCES) $(GATEWAY_FORTRAN_SOURCES) 
 libscioptimization_algo_la_CPPFLAGS = $(libscioptimization_la_CPPFLAGS)
-libscioptimization_la_LIBADD = libscioptimization-algo.la
+libscioptimization_la_LIBADD = libscioptimization-algo.la 
 
 #### Target ######
 modulename = optimization
 
 #### optimization : Conf files ####
 libscioptimization_la_rootdir = $(mydatadir)
-libscioptimization_la_root_DATA = license.txt
+libscioptimization_la_root_DATA = license.txt 
 
 #### m2sci : Macros ####
 MACROSDIRSEXT = macros/neldermead \
@@ -801,7 +770,7 @@ TARGETS_ALL = $(am__append_1)
 ################ MACROS ######################
 # Rule to build a macro
 # NOT USED  AT THE MOMENT
-SUFFIXES = .sci
+SUFFIXES = .sci 
 
 ########### INSTALL DOCUMENTATION ###################
 
@@ -843,14 +812,14 @@ EXAMPLES_DIR = examples
 JARDIR = jar/
 # JAR files mask
 JARMASK = *.jar
-# Chapter file
+# Chapter file 
 HELP_CHAPTERDIR = help/
 HELP_CHAPTERFILE = addchapter.sce
 HELP_CHAPTERLANG = en_US fr_FR pt_BR
 all: all-am
 
 .SUFFIXES:
-.SUFFIXES: .sci .bin .c .cpp .f .lo .o .obj
+.SUFFIXES: .sci .bin .c .f .lo .o .obj
 $(srcdir)/Makefile.in: @MAINTAINER_MODE_TRUE@ $(srcdir)/Makefile.am $(top_srcdir)/Makefile.incl.am $(am__configure_deps)
 	@for dep in $?; do \
 	  case '$(am__configure_deps)' in \
@@ -936,18 +905,12 @@ src/c/$(DEPDIR)/$(am__dirstamp):
 	@: > src/c/$(DEPDIR)/$(am__dirstamp)
 src/c/libscioptimization_algo_la-sp.lo: src/c/$(am__dirstamp) \
 	src/c/$(DEPDIR)/$(am__dirstamp)
-src/cpp/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp
-	@: > src/cpp/$(am__dirstamp)
-src/cpp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) src/cpp/$(DEPDIR)
-	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscioptimization_algo_la-optimizationfunctions.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscioptimization_algo_la-checkoptimerror.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
-src/cpp/libscioptimization_algo_la-scioptimfunctions.lo:  \
-	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/c/libscioptimization_algo_la-fsolvetable.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscioptimization_algo_la-lsqrsolvtable.lo:  \
+	src/c/$(am__dirstamp) src/c/$(DEPDIR)/$(am__dirstamp)
+src/c/libscioptimization_algo_la-optimtable.lo: src/c/$(am__dirstamp) \
+	src/c/$(DEPDIR)/$(am__dirstamp)
 src/fortran/$(am__dirstamp):
 	@$(MKDIR_P) src/fortran
 	@: > src/fortran/$(am__dirstamp)
@@ -1082,6 +1045,8 @@ src/fortran/writebuf.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/qpgen1sci.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
+src/fortran/intreadmps.lo: src/fortran/$(am__dirstamp) \
+	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rdmps1.lo: src/fortran/$(am__dirstamp) \
 	src/fortran/$(DEPDIR)/$(am__dirstamp)
 src/fortran/rdmpsz.lo: src/fortran/$(am__dirstamp) \
@@ -1128,38 +1093,35 @@ src/fortran/minpack/r1mpyq.lo: src/fortran/minpack/$(am__dirstamp) \
 	src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
 
 libscioptimization-algo.la: $(libscioptimization_algo_la_OBJECTS) $(libscioptimization_algo_la_DEPENDENCIES) $(EXTRA_libscioptimization_algo_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK)  $(libscioptimization_algo_la_OBJECTS) $(libscioptimization_algo_la_LIBADD) $(LIBS)
-sci_gateway/cpp/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/cpp
-	@: > sci_gateway/cpp/$(am__dirstamp)
-sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp):
-	@$(MKDIR_P) sci_gateway/cpp/$(DEPDIR)
-	@: > sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_optim.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_semidef.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/cpp/libscioptimization_la-sci_readmps.lo:  \
-	sci_gateway/cpp/$(am__dirstamp) \
-	sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
+	$(AM_V_F77LD)$(F77LINK)  $(libscioptimization_algo_la_OBJECTS) $(libscioptimization_algo_la_LIBADD) $(LIBS)
 sci_gateway/c/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c
 	@: > sci_gateway/c/$(am__dirstamp)
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_semidef.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscioptimization_la-sci_qld.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-gw_optimization.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_optim.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_fsolv.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscioptimization_la-sci_qp_solve.lo:  \
+	sci_gateway/c/$(am__dirstamp) \
+	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/c/libscioptimization_la-sci_readmps.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/$(am__dirstamp):
@@ -1168,6 +1130,29 @@ sci_gateway/fortran/$(am__dirstamp):
 sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/fortran/$(DEPDIR)
 	@: > sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/sci_f_semidef.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/sci_f_fsolve.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/sci_f_optim.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/boptim.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/bsolv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/bjlsqrsolv.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/blsqrsolv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/bjsolv.lo: sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
+sci_gateway/fortran/intlsqrsolve.lo:  \
+	sci_gateway/fortran/$(am__dirstamp) \
+	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/Ex-optim.lo: sci_gateway/fortran/$(am__dirstamp) \
 	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/fortran/Ex-fsolve.lo: sci_gateway/fortran/$(am__dirstamp) \
@@ -1177,20 +1162,16 @@ sci_gateway/fortran/Ex-lsqrsolve.lo:  \
 	sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 
 libscioptimization.la: $(libscioptimization_la_OBJECTS) $(libscioptimization_la_DEPENDENCIES) $(EXTRA_libscioptimization_la_DEPENDENCIES) 
-	$(AM_V_CXXLD)$(CXXLINK) -rpath $(pkglibdir) $(libscioptimization_la_OBJECTS) $(libscioptimization_la_LIBADD) $(LIBS)
+	$(AM_V_F77LD)$(F77LINK) -rpath $(pkglibdir) $(libscioptimization_la_OBJECTS) $(libscioptimization_la_LIBADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
 	-rm -f sci_gateway/c/*.$(OBJEXT)
 	-rm -f sci_gateway/c/*.lo
-	-rm -f sci_gateway/cpp/*.$(OBJEXT)
-	-rm -f sci_gateway/cpp/*.lo
 	-rm -f sci_gateway/fortran/*.$(OBJEXT)
 	-rm -f sci_gateway/fortran/*.lo
 	-rm -f src/c/*.$(OBJEXT)
 	-rm -f src/c/*.lo
-	-rm -f src/cpp/*.$(OBJEXT)
-	-rm -f src/cpp/*.lo
 	-rm -f src/fortran/*.$(OBJEXT)
 	-rm -f src/fortran/*.lo
 	-rm -f src/fortran/minpack/*.$(OBJEXT)
@@ -1199,17 +1180,18 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-gw_optimization.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_fsolv.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_sqrsolve.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-fsolvetable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-lsqrsolvtable.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-optimtable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/c/$(DEPDIR)/libscioptimization_algo_la-sp.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo@am__quote@
 
 .c.o:
 @am__fastdepCC_TRUE@	$(AM_V_CC)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
@@ -1242,12 +1224,68 @@ src/c/libscioptimization_algo_la-sp.lo: src/c/sp.c
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioptimization_algo_la-sp.lo `test -f 'src/c/sp.c' || echo '$(srcdir)/'`src/c/sp.c
 
+src/c/libscioptimization_algo_la-fsolvetable.lo: src/c/fsolvetable.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioptimization_algo_la-fsolvetable.lo -MD -MP -MF src/c/$(DEPDIR)/libscioptimization_algo_la-fsolvetable.Tpo -c -o src/c/libscioptimization_algo_la-fsolvetable.lo `test -f 'src/c/fsolvetable.c' || echo '$(srcdir)/'`src/c/fsolvetable.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioptimization_algo_la-fsolvetable.Tpo src/c/$(DEPDIR)/libscioptimization_algo_la-fsolvetable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/fsolvetable.c' object='src/c/libscioptimization_algo_la-fsolvetable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioptimization_algo_la-fsolvetable.lo `test -f 'src/c/fsolvetable.c' || echo '$(srcdir)/'`src/c/fsolvetable.c
+
+src/c/libscioptimization_algo_la-lsqrsolvtable.lo: src/c/lsqrsolvtable.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioptimization_algo_la-lsqrsolvtable.lo -MD -MP -MF src/c/$(DEPDIR)/libscioptimization_algo_la-lsqrsolvtable.Tpo -c -o src/c/libscioptimization_algo_la-lsqrsolvtable.lo `test -f 'src/c/lsqrsolvtable.c' || echo '$(srcdir)/'`src/c/lsqrsolvtable.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioptimization_algo_la-lsqrsolvtable.Tpo src/c/$(DEPDIR)/libscioptimization_algo_la-lsqrsolvtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/lsqrsolvtable.c' object='src/c/libscioptimization_algo_la-lsqrsolvtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioptimization_algo_la-lsqrsolvtable.lo `test -f 'src/c/lsqrsolvtable.c' || echo '$(srcdir)/'`src/c/lsqrsolvtable.c
+
+src/c/libscioptimization_algo_la-optimtable.lo: src/c/optimtable.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT src/c/libscioptimization_algo_la-optimtable.lo -MD -MP -MF src/c/$(DEPDIR)/libscioptimization_algo_la-optimtable.Tpo -c -o src/c/libscioptimization_algo_la-optimtable.lo `test -f 'src/c/optimtable.c' || echo '$(srcdir)/'`src/c/optimtable.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) src/c/$(DEPDIR)/libscioptimization_algo_la-optimtable.Tpo src/c/$(DEPDIR)/libscioptimization_algo_la-optimtable.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/c/optimtable.c' object='src/c/libscioptimization_algo_la-optimtable.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/c/libscioptimization_algo_la-optimtable.lo `test -f 'src/c/optimtable.c' || echo '$(srcdir)/'`src/c/optimtable.c
+
+sci_gateway/c/libscioptimization_la-sci_semidef.lo: sci_gateway/c/sci_semidef.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_semidef.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/c/sci_semidef.c' || echo '$(srcdir)/'`sci_gateway/c/sci_semidef.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_semidef.c' object='sci_gateway/c/libscioptimization_la-sci_semidef.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/c/sci_semidef.c' || echo '$(srcdir)/'`sci_gateway/c/sci_semidef.c
+
 sci_gateway/c/libscioptimization_la-sci_qld.lo: sci_gateway/c/sci_qld.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_qld.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
 @am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qld.Plo
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_qld.c' object='sci_gateway/c/libscioptimization_la-sci_qld.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_qld.lo `test -f 'sci_gateway/c/sci_qld.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qld.c
+
+sci_gateway/c/libscioptimization_la-gw_optimization.lo: sci_gateway/c/gw_optimization.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-gw_optimization.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-gw_optimization.Tpo -c -o sci_gateway/c/libscioptimization_la-gw_optimization.lo `test -f 'sci_gateway/c/gw_optimization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_optimization.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-gw_optimization.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-gw_optimization.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/gw_optimization.c' object='sci_gateway/c/libscioptimization_la-gw_optimization.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-gw_optimization.lo `test -f 'sci_gateway/c/gw_optimization.c' || echo '$(srcdir)/'`sci_gateway/c/gw_optimization.c
+
+sci_gateway/c/libscioptimization_la-sci_optim.lo: sci_gateway/c/sci_optim.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_optim.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/c/sci_optim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_optim.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_optim.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_optim.c' object='sci_gateway/c/libscioptimization_la-sci_optim.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/c/sci_optim.c' || echo '$(srcdir)/'`sci_gateway/c/sci_optim.c
+
+sci_gateway/c/libscioptimization_la-sci_fsolv.lo: sci_gateway/c/sci_fsolv.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_fsolv.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_fsolv.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_fsolv.lo `test -f 'sci_gateway/c/sci_fsolv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fsolv.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_fsolv.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_fsolv.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_fsolv.c' object='sci_gateway/c/libscioptimization_la-sci_fsolv.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_fsolv.lo `test -f 'sci_gateway/c/sci_fsolv.c' || echo '$(srcdir)/'`sci_gateway/c/sci_fsolv.c
+
+sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo: sci_gateway/c/sci_sqrsolve.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_sqrsolve.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo `test -f 'sci_gateway/c/sci_sqrsolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrsolve.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_sqrsolve.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_sqrsolve.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_sqrsolve.c' object='sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_sqrsolve.lo `test -f 'sci_gateway/c/sci_sqrsolve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_sqrsolve.c
 
 sci_gateway/c/libscioptimization_la-sci_qp_solve.lo: sci_gateway/c/sci_qp_solve.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_qp_solve.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_qp_solve.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
@@ -1256,85 +1294,12 @@ sci_gateway/c/libscioptimization_la-sci_qp_solve.lo: sci_gateway/c/sci_qp_solve.
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_qp_solve.lo `test -f 'sci_gateway/c/sci_qp_solve.c' || echo '$(srcdir)/'`sci_gateway/c/sci_qp_solve.c
 
-.cpp.o:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.o$$||'`;\
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ $<
-
-.cpp.obj:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.obj$$||'`;\
-@am__fastdepCXX_TRUE@	$(CXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ `$(CYGPATH_W) '$<'` &&\
-@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Po
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=no @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXXCOMPILE) -c -o $@ `$(CYGPATH_W) '$<'`
-
-.cpp.lo:
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)depbase=`echo $@ | sed 's|[^/]*$$|$(DEPDIR)/&|;s|\.lo$$||'`;\
-@am__fastdepCXX_TRUE@	$(LTCXXCOMPILE) -MT $@ -MD -MP -MF $$depbase.Tpo -c -o $@ $< &&\
-@am__fastdepCXX_TRUE@	$(am__mv) $$depbase.Tpo $$depbase.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='$<' object='$@' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LTCXXCOMPILE) -c -o $@ $<
-
-src/cpp/libscioptimization_algo_la-optimizationfunctions.lo: src/cpp/optimizationfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-optimizationfunctions.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo -c -o src/cpp/libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-optimizationfunctions.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/optimizationfunctions.cpp' object='src/cpp/libscioptimization_algo_la-optimizationfunctions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-optimizationfunctions.lo `test -f 'src/cpp/optimizationfunctions.cpp' || echo '$(srcdir)/'`src/cpp/optimizationfunctions.cpp
-
-src/cpp/libscioptimization_algo_la-checkoptimerror.lo: src/cpp/checkoptimerror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-checkoptimerror.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo -c -o src/cpp/libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-checkoptimerror.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/checkoptimerror.cpp' object='src/cpp/libscioptimization_algo_la-checkoptimerror.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-checkoptimerror.lo `test -f 'src/cpp/checkoptimerror.cpp' || echo '$(srcdir)/'`src/cpp/checkoptimerror.cpp
-
-src/cpp/libscioptimization_algo_la-scioptimfunctions.lo: src/cpp/scioptimfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscioptimization_algo_la-scioptimfunctions.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo -c -o src/cpp/libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Tpo src/cpp/$(DEPDIR)/libscioptimization_algo_la-scioptimfunctions.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/scioptimfunctions.cpp' object='src/cpp/libscioptimization_algo_la-scioptimfunctions.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscioptimization_algo_la-scioptimfunctions.lo `test -f 'src/cpp/scioptimfunctions.cpp' || echo '$(srcdir)/'`src/cpp/scioptimfunctions.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_optim.lo: sci_gateway/cpp/sci_optim.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_optim.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_optim.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_optim.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_optim.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_optim.lo `test -f 'sci_gateway/cpp/sci_optim.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_optim.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo: sci_gateway/cpp/sci_fsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_fsolve.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_fsolve.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_fsolve.lo `test -f 'sci_gateway/cpp/sci_fsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_fsolve.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_semidef.lo: sci_gateway/cpp/sci_semidef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_semidef.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_semidef.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_semidef.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_semidef.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_semidef.lo `test -f 'sci_gateway/cpp/sci_semidef.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_semidef.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo: sci_gateway/cpp/sci_lsqrsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_lsqrsolve.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_lsqrsolve.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_lsqrsolve.lo `test -f 'sci_gateway/cpp/sci_lsqrsolve.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_lsqrsolve.cpp
-
-sci_gateway/cpp/libscioptimization_la-sci_readmps.lo: sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT sci_gateway/cpp/libscioptimization_la-sci_readmps.lo -MD -MP -MF sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
-@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo sci_gateway/cpp/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='sci_gateway/cpp/sci_readmps.cpp' object='sci_gateway/cpp/libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o sci_gateway/cpp/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/cpp/sci_readmps.cpp' || echo '$(srcdir)/'`sci_gateway/cpp/sci_readmps.cpp
+sci_gateway/c/libscioptimization_la-sci_readmps.lo: sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscioptimization_la-sci_readmps.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo -c -o sci_gateway/c/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
+@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_readmps.Tpo sci_gateway/c/$(DEPDIR)/libscioptimization_la-sci_readmps.Plo
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/sci_readmps.c' object='sci_gateway/c/libscioptimization_la-sci_readmps.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscioptimization_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscioptimization_la-sci_readmps.lo `test -f 'sci_gateway/c/sci_readmps.c' || echo '$(srcdir)/'`sci_gateway/c/sci_readmps.c
 
 .f.o:
 	$(AM_V_F77)$(F77COMPILE) -c -o $@ $<
@@ -1351,10 +1316,8 @@ mostlyclean-libtool:
 clean-libtool:
 	-rm -rf .libs _libs
 	-rm -rf sci_gateway/c/.libs sci_gateway/c/_libs
-	-rm -rf sci_gateway/cpp/.libs sci_gateway/cpp/_libs
 	-rm -rf sci_gateway/fortran/.libs sci_gateway/fortran/_libs
 	-rm -rf src/c/.libs src/c/_libs
-	-rm -rf src/cpp/.libs src/cpp/_libs
 	-rm -rf src/fortran/.libs src/fortran/_libs
 	-rm -rf src/fortran/minpack/.libs src/fortran/minpack/_libs
 install-libscioptimization_la_etcDATA: $(libscioptimization_la_etc_DATA)
@@ -1539,14 +1502,10 @@ distclean-generic:
 	-test . = "$(srcdir)" || test -z "$(CONFIG_CLEAN_VPATH_FILES)" || rm -f $(CONFIG_CLEAN_VPATH_FILES)
 	-rm -f sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/c/$(am__dirstamp)
-	-rm -f sci_gateway/cpp/$(DEPDIR)/$(am__dirstamp)
-	-rm -f sci_gateway/cpp/$(am__dirstamp)
 	-rm -f sci_gateway/fortran/$(DEPDIR)/$(am__dirstamp)
 	-rm -f sci_gateway/fortran/$(am__dirstamp)
 	-rm -f src/c/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/c/$(am__dirstamp)
-	-rm -f src/cpp/$(DEPDIR)/$(am__dirstamp)
-	-rm -f src/cpp/$(am__dirstamp)
 	-rm -f src/fortran/$(DEPDIR)/$(am__dirstamp)
 	-rm -f src/fortran/$(am__dirstamp)
 	-rm -f src/fortran/minpack/$(DEPDIR)/$(am__dirstamp)
@@ -1561,7 +1520,7 @@ clean-am: clean-generic clean-libtool clean-local \
 	clean-noinstLTLIBRARIES clean-pkglibLTLIBRARIES mostlyclean-am
 
 distclean: distclean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 distclean-am: clean-am distclean-compile distclean-generic \
 	distclean-local distclean-tags
@@ -1610,7 +1569,7 @@ install-ps-am:
 installcheck-am:
 
 maintainer-clean: maintainer-clean-am
-	-rm -rf sci_gateway/c/$(DEPDIR) sci_gateway/cpp/$(DEPDIR) src/c/$(DEPDIR) src/cpp/$(DEPDIR)
+	-rm -rf sci_gateway/c/$(DEPDIR) src/c/$(DEPDIR)
 	-rm -f Makefile
 maintainer-clean-am: distclean-am maintainer-clean-generic
 
@@ -1686,7 +1645,7 @@ check-code:
 @NEED_JAVA_TRUE@		$(ANT) clean; \
 @NEED_JAVA_TRUE@	fi;
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @SWIG_TRUE@swig: $(SWIG_WRAPPERS)
@@ -1695,7 +1654,7 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Java) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) $(SWIG_OPTIONS) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_JAVA) -package $$SWIG_PACKAGENAME  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
@@ -1704,11 +1663,11 @@ check-code:
 @SWIG_TRUE@	if test -n "$(SWIG_SCILAB_WRAPPERS)"; then \
 @SWIG_TRUE@		for file in $(SWIG_SCILAB_WRAPPERS) ; do \
 @SWIG_TRUE@			echo "Swig process of $$file (Scilab) ..."; \
-@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB) $(SWIG_OPTIONS) -outdir $$SWIG_OUTDIR $$file; \
+@SWIG_TRUE@			$(SWIG_BIN) $(SWIG_SCILAB)  -outdir $$SWIG_OUTDIR $$file; \
 @SWIG_TRUE@		done; \
 @SWIG_TRUE@	fi
 
-# If the user request for the SWIG generation of the wrappers Java => C/C++
+# If the user request for the SWIG generation of the wrappers Java => C/C++ 
 # We call the target swig-build on the variable SWIG_WRAPPERS
 
 @GIWS_TRUE@giws: $(GIWS_WRAPPERS)
@@ -1729,7 +1688,7 @@ check-code:
 @GIWS_TRUE@giws-exception:
 @GIWS_TRUE@	@GIWS_OUTPUTDIR=src/jni/;\
 @GIWS_TRUE@	echo "GIWS: Generation of exception class ..."; \
-@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR
+@GIWS_TRUE@	$(GIWS_BIN) --generate-exception-class --output-dir $$GIWS_OUTPUTDIR 
 
 macros:
 	-@( if test ! -x $(top_builddir)/scilab-bin; then \

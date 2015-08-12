@@ -35,7 +35,7 @@
  */
 
 /*------------------------------------------------------------------------*/
-void* get_labels_font_color_property(void* _pvCtx, int iObjUID)
+int get_labels_font_color_property(void* _pvCtx, int iObjUID)
 {
     int iFontColor = 0;
     int* piFontColor = &iFontColor;
@@ -45,9 +45,9 @@ void* get_labels_font_color_property(void* _pvCtx, int iObjUID)
     if (piFontColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "labels_font_color");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iFontColor);
+    return sciReturnDouble(_pvCtx, iFontColor);
 }
 /*------------------------------------------------------------------------*/

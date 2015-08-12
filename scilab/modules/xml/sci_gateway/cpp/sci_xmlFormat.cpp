@@ -12,13 +12,12 @@
 
 extern "C"
 {
-#include <string.h>
 #include "gw_xml.h"
 #include "api_scilab.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_xmlFormat(char *fname, void* pvApiCtx)
+int sci_xmlFormat(char *fname, unsigned long fname_len)
 {
     CheckRhs(1, 1);
     CheckLhs(1, 1);

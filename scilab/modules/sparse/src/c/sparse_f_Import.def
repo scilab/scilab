@@ -1,0 +1,31 @@
+LIBRARY    sparse_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; sparse_f
+; --------------------------------------- 
+scita2lpd_
+wspt_
+dspt_
+intbfinit_
+intblkfc1i_
+intblkslvi_
+intfadj2sp_
+intfull_
+intinpnvi_
+intludel_
+intlufact_
+intluget_
+intlusolve_
+intnnz_
+intordmmd_
+intsfinit_
+intsparse_
+intspchol_
+intspclean_
+intspcompa_
+intspget_
+intspmatrix_
+intspmax_
+intsymfcti_

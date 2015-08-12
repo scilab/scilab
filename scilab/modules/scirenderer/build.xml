@@ -1,4 +1,4 @@
-        <project name="scirenderer" default="jar">
+    <project name="scirenderer" default="jar">
     
     
     
@@ -111,6 +111,8 @@
        verbose="off"
        listfiles="on"
        includeAntRuntime="no"
+       source="6"
+       target="6"
        >
             <compilerarg value="-Xlint"/>
         </javac>
@@ -127,6 +129,8 @@
        verbose="off"
        listfiles="on"
        includeAntRuntime="no"
+       source="6"
+       target="6"
        >
             <compilerarg value="-Xlint"/>
         </javac>
@@ -151,6 +155,7 @@
        verbose="off"
        listfiles="on"
        includeAntRuntime="no"
+       source="5"
        >
             <classpath>
                 <path refid="compile.classpath" />

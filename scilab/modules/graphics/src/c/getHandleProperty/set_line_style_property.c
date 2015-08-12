@@ -26,7 +26,7 @@
 #include "localization.h"
 #include "SetPropertyStatus.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
+#include "warningmode.h"
 
 /*------------------------------------------------------------------------*/
 int set_line_style_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)

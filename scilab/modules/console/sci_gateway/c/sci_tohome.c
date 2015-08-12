@@ -18,7 +18,7 @@
 #include "tohome.h"
 #include "sciprint.h"
 /*--------------------------------------------------------------------------*/
-int sci_tohome(char *fname, void* pvApiCtx)
+int sci_tohome(char *fname, unsigned long fname_len)
 {
 
     CheckRhs(0, 0);

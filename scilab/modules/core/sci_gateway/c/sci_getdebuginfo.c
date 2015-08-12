@@ -12,9 +12,9 @@
 #include <string.h>
 #include <stdio.h>
 #include "gw_core.h"
-#include "api_scilab.h"
+#include "stack-c.h"
 #include "version.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #ifdef _MSC_VER
 #include "getdynamicDebugInfo_Windows.h"
@@ -24,9 +24,8 @@
 #include "getdynamicdebuginfo.h"
 #endif
 /*--------------------------------------------------------------------------*/
-int sci_getdebuginfo(char *fname, void* pvApiCtx)
+int C2F(sci_getdebuginfo)(char *fname, unsigned long fname_len)
 {
-    SciErr sciErr;
     char **outputDynamicList = NULL;
     char **outputStaticList = NULL;
     static int n1 = 1, m1 = 0;
@@ -39,30 +38,19 @@ int sci_getdebuginfo(char *fname, void* pvApiCtx)
     outputDynamicList = getDynamicDebugInfo_Windows(&m1);
     outputStaticList = getStaticDebugInfo_Windows(&m2);
 #else
-    outputDynamicList = getDynamicDebugInfo(&m1, pvApiCtx);
+    outputDynamicList = getDynamicDebugInfo(&m1);
     outputStaticList = getStaticDebugInfo(&m2);
 #endif
 
-    sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, m1, n1, (char const* const*) outputDynamicList);
-    if (sciErr.iErr)
-    {
-        printError(&sciErr, 0);
-        return 0;
-    }
-
+    CreateVarFromPtr(Rhs + 1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, outputDynamicList);
     LhsVar(1) = Rhs + 1;
 
     if (Lhs == 2)
     {
-        sciErr = createMatrixOfString(pvApiCtx, Rhs + 2, m2, n2, (char const* const*) outputStaticList);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            return 0;
-        }
-
+        CreateVarFromPtr(Rhs + 2, MATRIX_OF_STRING_DATATYPE, &m2, &n2, outputStaticList);
         LhsVar(2) = Rhs + 2;
     }
+
     freeArrayOfString(outputDynamicList, m1);
     freeArrayOfString(outputStaticList, m2);
 

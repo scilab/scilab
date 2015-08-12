@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_clip_box_property(void* _pvCtx, int iObjUID)
+int get_clip_box_property(void* _pvCtx, int iObjUID)
 {
     int iClipState = 0;
     int* piClipState = &iClipState;
@@ -41,7 +41,7 @@ void* get_clip_box_property(void* _pvCtx, int iObjUID)
     if (piClipState == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
-        return NULL;
+        return -1;
     }
 
     if (iClipState > 1)
@@ -53,20 +53,20 @@ void* get_clip_box_property(void* _pvCtx, int iObjUID)
         if (clipBox == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "clip_box");
-            return NULL;
+            return -1;
         }
 
-        return sciReturnRowVector(clipBox, 4);
+        return sciReturnRowVector(_pvCtx, clipBox, 4);
     }
     else if (iClipState == 0 || iClipState == 1)
     {
         /* clip state off or clipgrf */
-        return sciReturnEmptyMatrix();
+        return sciReturnEmptyMatrix(_pvCtx);
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "clip_state");
-        return NULL;
+        return -1;
     }
 }
 /*------------------------------------------------------------------------*/

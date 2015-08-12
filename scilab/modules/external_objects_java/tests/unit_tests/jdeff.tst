@@ -14,8 +14,3 @@
 jdeff("java.lang.Double", "parseDouble", "str2number");
 PI = str2number("3.141592653589");
 assert_checkalmostequal(PI,%pi);
-clear str2number;
-
-jdeff("java.lang.Double", ["parseDouble", "toString"], ["str2dbl", "dbl2str"]);
-assert_checkalmostequal(str2dbl(dbl2str(%pi)), %pi);
-clear str2dbl dbl2str;

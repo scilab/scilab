@@ -30,6 +30,11 @@
 
 #define __INTERNAL_API_SCILAB__
 
+//do not include stack-c.h for external modules without __USE_DEPRECATED_STACK_FUNCTIONS__ flag
+#if !defined(__SCILAB_TOOLBOX__) || defined(__USE_DEPRECATED_STACK_FUNCTIONS__)
+#include "stack-c.h"
+#endif
+
 #include "api_common.h"
 #include "api_double.h"
 #include "api_string.h"
@@ -42,25 +47,11 @@
 #include "api_list.h"
 #include "api_error.h"
 #include "api_handle.h"
-#include "api_hypermat.h"
 #include "api_optional.h"
-
+#include "api_hypermat.h"
 #undef __INTERNAL_API_SCILAB__
 
 #include "core_math.h"
 #include "sci_types.h"
-#include "BOOL.h"
-#include "sci_malloc.h"
-
-/*Constants*/
-#define ROW_LETTER		'r'
-#define COL_LETTER		'c'
-#define STAR_LETTER		'*'
-#define MTLB_LETTER		'm'
-
-#define BY_ROWS			1
-#define BY_COLS			2
-#define BY_ALL			0
-#define	BY_MTLB			-1
 
 #endif /* __VARIABLE_API__ */

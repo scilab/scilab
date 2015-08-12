@@ -19,7 +19,6 @@
 /*        graphic routines.                                               */
 /*------------------------------------------------------------------------*/
 
-#include <string.h>
 #include "GetCommandArg.h"
 #include "GetProperty.h"
 #include "DefaultCommandArg.h"
@@ -28,7 +27,7 @@
 #include "Scierror.h"
 #include "BuildObjects.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 static char logFlagsCpy[3] ; /* real logflags may use either this or the stack */
 
@@ -37,7 +36,7 @@ static char logFlagsCpy[3] ; /* real logflags may use either this or the stack *
 /*--------------------------------------------------------------------------*/
 int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], int ** style)
 {
-    int m = 0, n = 0, first_opt = FirstOpt(_pvCtx), kopt = 0, un = 1, ix = 0, i = 0, l1 = 0;
+    int m = 0, n = 0, first_opt = FirstOpt(), kopt = 0, un = 1, ix = 0, i = 0, l1 = 0;
 
     if ( pos < first_opt ) /* regular argument  */
     {
@@ -83,12 +82,14 @@ int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], i
             }
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "style", opts)) >= 0)
+    else if ((kopt = FindOpt("style", opts)))
     {
         /* optinal argument: style=value */
+        int* piAddr = 0;
         int* piData = NULL;
 
-        getMatrixOfDoubleAsInteger(_pvCtx, opts[kopt].piAddr, &m, &n, &piData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDoubleAsInteger(_pvCtx, piAddr, &m, &n, &piData);
         if (m * n < n1)
         {
             Scierror(999, _("%s: Wrong size for input argument #%d: %d < %d expected.\n"), fname, kopt, m * n, n1);
@@ -129,7 +130,7 @@ int get_style_arg(void* _pvCtx, char *fname, int pos, int n1, rhs_opts opts[], i
 /*--------------------------------------------------------------------------*/
 int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** rect)
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt, i;
+    int m, n, first_opt = FirstOpt(), kopt, i;
 
     if (pos < first_opt)
     {
@@ -167,10 +168,12 @@ int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** 
             *rect = getDefRect();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "rect", opts)) >= 0) /* named argument: rect=value */
+    else if ((kopt = FindOpt("rect", opts))) /* named argument: rect=value */
     {
+        int* piAddr = 0;
         double* pdblData = NULL;
-        getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDouble(_pvCtx, piAddr, &m, &n, &pdblData);
         if (m * n != 4)
         {
             Scierror(999, "%s: Wrong size for input argument #%d: %d expected\n", fname, kopt, 4);
@@ -201,7 +204,7 @@ int get_rect_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** 
 /*--------------------------------------------------------------------------*/
 int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** strf)
 {
-    int first_opt = FirstOpt(_pvCtx), kopt;
+    int first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -229,10 +232,12 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
             *strf = getDefStrf();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "strf", opts)) >= 0)
+    else if ((kopt = FindOpt("strf", opts)))
     {
+        int* piAddr = 0;
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getAllocatedSingleString(_pvCtx, piAddr, &pstData);
         if ((int)strlen(pstData) != 3)
         {
             freeAllocatedSingleString(pstData);
@@ -253,7 +258,7 @@ int get_strf_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** st
 /*--------------------------------------------------------------------------*/
 int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** legend)
 {
-    int first_opt = FirstOpt(_pvCtx), kopt;
+    int first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -273,10 +278,12 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
             *legend = getDefLegend();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
+    else if ((kopt = FindOpt("leg", opts)))
     {
+        int* piAddr = 0;
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getAllocatedSingleString(_pvCtx, piAddr, &pstData);
         *legend = pstData;
     }
     else
@@ -291,7 +298,7 @@ int get_legend_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
  */
 int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** labels)
 {
-    int first_opt = FirstOpt(_pvCtx), kopt;
+    int first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -320,10 +327,12 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
             }
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "leg", opts)) >= 0)
+    else if ((kopt = FindOpt("leg", opts)))
     {
+        int* piAddr = 0;
         char* pstData = NULL;
-        getAllocatedSingleString(_pvCtx, opts[kopt].piAddr, &pstData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getAllocatedSingleString(_pvCtx, piAddr, &pstData);
         *labels = pstData;
     }
     else
@@ -345,7 +354,7 @@ int get_labels_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char ** 
 /*--------------------------------------------------------------------------*/
 int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagNax)
 {
-    int i, m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int i, m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -377,11 +386,13 @@ int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagN
             *flagNax = FALSE;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "nax", opts)) >= 0)
+    else if ((kopt = FindOpt("nax", opts)))
     {
+        int* piAddr = 0;
         int* piData = NULL;
 
-        getMatrixOfDoubleAsInteger(_pvCtx, opts[kopt].piAddr, &m, &n, &piData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDoubleAsInteger(_pvCtx, piAddr, &m, &n, &piData);
         if (m * n != 4)
         {
             return 1;
@@ -407,7 +418,7 @@ int get_nax_arg(void* _pvCtx, int pos, rhs_opts opts[], int ** nax, BOOL * flagN
 /*--------------------------------------------------------------------------*/
 int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double ** zminmax)
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -435,10 +446,12 @@ int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double 
             *zminmax = getDefZminMax();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "zminmax", opts)) >= 0) /* named argument: rect=value */
+    else if ((kopt = FindOpt("zminmax", opts))) /* named argument: rect=value */
     {
+        int* piAddr = 0;
         double* pdblData = NULL;
-        getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDouble(_pvCtx, piAddr, &m, &n, &pdblData);
         if (m * n != 2)
         {
             Scierror(999, "%s: Wrong size for input argument #%d: %d expected\n", fname, kopt, 2);
@@ -460,7 +473,7 @@ int get_zminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], double 
 /*--------------------------------------------------------------------------*/
 int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colminmax)
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -487,11 +500,13 @@ int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int *
             *colminmax = getDefColMinMax();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "colminmax", opts)) >= 0)
+    else if ((kopt = FindOpt("colminmax", opts)))
     {
+        int* piAddr = 0;
         int* piData = NULL;
 
-        getMatrixOfDoubleAsInteger(_pvCtx, opts[kopt].piAddr, &m, &n, &piData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDoubleAsInteger(_pvCtx, piAddr, &m, &n, &piData);
         if (m * n != 2)
         {
             return 1;
@@ -511,7 +526,7 @@ int get_colminmax_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int *
 /*--------------------------------------------------------------------------*/
 int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** colout)
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -538,11 +553,13 @@ int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** c
             *colout = getDefColOut();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "colout", opts)) >= 0)
+    else if ((kopt = FindOpt("colout", opts)))
     {
+        int* piAddr = 0;
         int* piData = NULL;
 
-        getMatrixOfDoubleAsInteger(_pvCtx, opts[kopt].piAddr, &m, &n, &piData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDoubleAsInteger(_pvCtx, piAddr, &m, &n, &piData);
         if (m * n != 2)
         {
             return 1;
@@ -561,7 +578,7 @@ int get_colout_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], int ** c
 /*--------------------------------------------------------------------------*/
 int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], BOOL * withMesh)
 {
-    int first_opt = FirstOpt(_pvCtx), kopt;
+    int first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -583,11 +600,13 @@ int get_with_mesh_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], BOOL 
             *withMesh = getDefWithMesh();
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, "mesh", opts)) >= 0)
+    else if ((kopt = FindOpt("mesh", opts)))
     {
+        int* piAddr = 0;
         int iData = 0;
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
 
-        getScalarBoolean(_pvCtx, opts[kopt].piAddr, &iData);
+        getScalarBoolean(_pvCtx, piAddr, &iData);
         *withMesh = iData;
     }
     else
@@ -607,7 +626,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
 
     int iLog = 0;
     char* pstLog = NULL;
-    if (pos < FirstOpt(_pvCtx)) //input argument  */
+    if (pos < FirstOpt()) //input argument  */
     {
         //no idea of the real goal of this, how input var can have type == 0 Oo
         if (getInputArgumentType(_pvCtx, pos) == 0)
@@ -618,9 +637,9 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
 
         getVarAddressFromPosition(_pvCtx, pos, &piAddr);
     }
-    else if ((kopt = FindOpt(_pvCtx, "logflag", opts)) >= 0)//optional argument
+    else if ((kopt = FindOpt("logflag", opts))) //optional argument
     {
-        piAddr = opts[kopt].piAddr;
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
     }
     else
     {
@@ -641,7 +660,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
     {
         if ((pstLog[0] != 'l' && pstLog[0] != 'n') || (pstLog[1] != 'l' && pstLog[1] != 'n'))
         {
-            //Err = pos;
+            Err = pos;
             SciError(116);
             return 0;
         }
@@ -657,7 +676,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
                 (pstLog[1] != 'l' && pstLog[1] != 'n') ||
                 (pstLog[2] != 'l' && pstLog[2] != 'n'))
         {
-            //Err = pos;
+            Err = pos;
             SciError(116);
             return 0;
         }
@@ -670,7 +689,7 @@ int get_logflags_arg(void* _pvCtx, char *fname, int pos, rhs_opts opts[], char *
 /*--------------------------------------------------------------------------*/
 int get_optional_double_arg(void* _pvCtx, char* fname, int pos, char* name, double** value, int sz, rhs_opts opts[])
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -690,10 +709,12 @@ int get_optional_double_arg(void* _pvCtx, char* fname, int pos, char* name, doub
             *value = pdblData;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, name, opts)) >= 0)
+    else if ((kopt = FindOpt(name, opts)))
     {
+        int* piAddr = 0;
         double* pdblData = NULL;
-        getMatrixOfDouble(_pvCtx, opts[kopt].piAddr, &m, &n, &pdblData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDouble(_pvCtx, piAddr, &m, &n, &pdblData);
         if (m * n != sz)
         {
             Scierror(999, "%s: Wrong size for input argument #%d: %d expected\n", fname, kopt, 4);
@@ -707,7 +728,7 @@ int get_optional_double_arg(void* _pvCtx, char* fname, int pos, char* name, doub
 /*--------------------------------------------------------------------------*/
 int get_optional_int_arg(void* _pvCtx, char* fname, int pos, char* name, int** value, int sz, rhs_opts opts[])
 {
-    int m, n, first_opt = FirstOpt(_pvCtx), kopt;
+    int m, n, first_opt = FirstOpt(), kopt;
 
     if (pos < first_opt)
     {
@@ -727,11 +748,13 @@ int get_optional_int_arg(void* _pvCtx, char* fname, int pos, char* name, int** v
             *value = piData;
         }
     }
-    else if ((kopt = FindOpt(_pvCtx, name, opts)) >= 0)
+    else if ((kopt = FindOpt(name, opts)))
     {
+        int* piAddr = 0;
         int* piData = NULL;
 
-        getMatrixOfDoubleAsInteger(_pvCtx, opts[kopt].piAddr, &m, &n, &piData);
+        getVarAddressFromPosition(_pvCtx, kopt, &piAddr);
+        getMatrixOfDoubleAsInteger(_pvCtx, piAddr, &m, &n, &piData);
         if (m * n < 1)
         {
             return 1;

@@ -24,7 +24,7 @@ extern int C2F(dnaupd)(int *ido, char *bmat, int *n, char *which, int *nev,
                        double *workl, int *lworkl, int *info,
                        unsigned long bmat_len, unsigned long which_len);
 /*--------------------------------------------------------------------------*/
-int sci_dnaupd(char *fname, void *pvApiCtx)
+int sci_dnaupd(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -58,7 +58,9 @@ int sci_dnaupd(char *fname, void *pvApiCtx)
     int* pINFO          = NULL;
 
     int IDO,   mIDO,   nIDO;
+    int mBMAT,  nBMAT;
     int mN,     nN;
+    int mWHICH, nWHICH;
     int mNEV,   nNEV;
     int mTOL,   nTOL;
     int RESID, mRESID, nRESID;
@@ -373,7 +375,7 @@ int sci_dnaupd(char *fname, void *pvApiCtx)
 
     if (*pINFO < 0)
     {
-        Scierror(998, _("%s: internal error, info=%d.\n"), fname, *pINFO);
+        C2F(errorinfo)("dnaupd", (int*)(pINFO), 6L);
         return 0;
     }
 

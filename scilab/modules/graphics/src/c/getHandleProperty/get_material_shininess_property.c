@@ -23,7 +23,7 @@
 /**
  * Gets the shininess level of the surface.
  */
-void* get_material_shininess_property(void* _pvCtx, int iObjUID)
+int get_material_shininess_property(void* _pvCtx, int iObjUID)
 {
     double shininess = 0;
     double* pShininess = &shininess;
@@ -33,8 +33,9 @@ void* get_material_shininess_property(void* _pvCtx, int iObjUID)
     if (pShininess == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "material_shininess");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(shininess);
+    return sciReturnDouble(_pvCtx, shininess);
+
 }

@@ -24,7 +24,7 @@ function [tree]=%i2sci_r(tree)
     else
         if ~isdefinedvar(from) then
             w=gettempvar()
-            m2sci_insert(Equal(list(w),from))
+            insert(Equal(list(w),from))
         else
             w=from
         end

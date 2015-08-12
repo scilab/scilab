@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_hidden_axis_color_property(void* _pvCtx, int iObjUID)
+int get_hidden_axis_color_property(void* _pvCtx, int iObjUID)
 {
     int iHiddenAxisColor = 0;
     int* piHiddenAxisColor = &iHiddenAxisColor;
@@ -39,9 +39,9 @@ void* get_hidden_axis_color_property(void* _pvCtx, int iObjUID)
     if (piHiddenAxisColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "hidden_axis_color");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnInt(iHiddenAxisColor);
+    return sciReturnInt(_pvCtx, iHiddenAxisColor);
 }
 /*------------------------------------------------------------------------*/

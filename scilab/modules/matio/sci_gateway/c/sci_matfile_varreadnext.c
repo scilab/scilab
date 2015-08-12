@@ -14,7 +14,7 @@
 #include "gw_matio.h"
 
 #include "CreateMatlabVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 #include "sciprint.h"
@@ -25,7 +25,7 @@ enum matfile_errors
     UNKNOWN_VARIABLE_TYPE = 0
 };
 
-int sci_matfile_varreadnext(char *fname, void* pvApiCtx)
+int sci_matfile_varreadnext(char *fname, unsigned long fname_len)
 {
     mat_t *matfile = NULL;
     matvar_t *matvar = NULL;

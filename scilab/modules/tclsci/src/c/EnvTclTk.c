@@ -16,13 +16,13 @@
 #include <tk.h>
 
 #include "PATH_MAX.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "EnvTclTk.h"
 #include "setenvtcl.h"
 #include "GlobalTclInterp.h"
 #include "localization.h"
 #include "ConvertSlash.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 /*--------------------------------------------------------------------------*/
 extern void	TclSetLibraryPath(Tcl_Obj * pathPtr);
 /*--------------------------------------------------------------------------*/

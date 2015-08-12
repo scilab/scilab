@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_colored_property(void* _pvCtx, int iObjUID)
+int get_colored_property(void* _pvCtx, int iObjUID)
 {
     int colored = 0;
     int* piColored = &colored;
@@ -40,16 +40,16 @@ void* get_colored_property(void* _pvCtx, int iObjUID)
     if (piColored == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "colored");
-        return NULL;
+        return -1;
     }
 
     if (colored)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

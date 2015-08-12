@@ -64,14 +64,14 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "localization.h"
-#include "configvariable_interface.h"
+#include "warningmode.h"
 
 CellAdr *ListNumeric = NULL;
 CellAdr *ListCholFactors = NULL;
 
 /* RAJOUTER un controle sur la taille du pivot */
 
-int sci_umf_lufact(char* fname, void* pvApiCtx)
+int sci_umf_lufact(char* fname, unsigned long l)
 {
     SciErr sciErr;
     int stat = 0;

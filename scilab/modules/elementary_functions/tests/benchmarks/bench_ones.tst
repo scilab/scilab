@@ -11,6 +11,7 @@
 
 // <-- BENCH NB RUN : 10 -->
 
+stacksize(30000000);
 a = 2250;
 
 // <-- BENCH START -->

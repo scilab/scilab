@@ -27,7 +27,7 @@ extern "C"
 using namespace org_scilab_modules_gui_bridge;
 
 /*--------------------------------------------------------------------------*/
-int sci_raise_window(char *fname, void* pvApiCtx)
+int sci_raise_window(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int m1 = 0, n1 = 0;

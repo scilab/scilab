@@ -14,8 +14,6 @@
 #include "InterpreterManagement.h"
 #include "storeCommand.h"
 #include "sigbas.h"
-#include "sci_malloc.h"
-#include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 int putCommandInScilabQueue(char *command)
 {
@@ -23,20 +21,20 @@ int putCommandInScilabQueue(char *command)
 }
 /*--------------------------------------------------------------------------*/
 /*
-* requestScilabExec
-*
-* WARNING : if the command is taking some time, scilab will not do anything else
-* before the command returns.
-*/
+ * requestScilabExec
+ *
+ * WARNING : if the command is taking some time, scilab will not do anything else
+ * before the command returns.
+ */
 int requestScilabExec(char *command)
 {
-    return StorePrioritaryCommand(command);
+    return StoreCommandWithFlag(command, 1);
 }
 /*--------------------------------------------------------------------------*/
 int interruptScilab(void)
 {
     int scilabSignal = SIGINT;
-    //C2F(sigbas)(&scilabSignal);
+    C2F(sigbas)(&scilabSignal);
     return 0;
 }
 /*--------------------------------------------------------------------------*/

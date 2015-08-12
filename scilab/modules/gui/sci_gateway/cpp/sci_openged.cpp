@@ -29,7 +29,7 @@ extern "C"
 using namespace org_scilab_modules_gui_ged;
 
 /*--------------------------------------------------------------------------*/
-int sci_openged(char *fname, void* pvApiCtx)
+int sci_openged(char *fname, unsigned long fname_len)
 {
     int iFigureUid  = 0;
     int* piAddr     = NULL;

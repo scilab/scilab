@@ -14,8 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 
-int read_double(char *fname, void* pvApiCtx)
+int read_double(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i;

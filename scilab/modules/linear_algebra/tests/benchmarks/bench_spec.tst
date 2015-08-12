@@ -11,10 +11,12 @@
 
 // <-- BENCH NB RUN : 10 -->
 
+stacksize(30000000);
+
 a = 0;
 b = 0;
 
-a = rand(320,320,"n");
+a = rand(320,320,'n');
 
 // <-- BENCH START -->
 b = spec(a);

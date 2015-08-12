@@ -95,16 +95,12 @@ for i=1:size(macros_error_type_3, "*")
     assert_checkerror (macros_error_type_3(i) + "()" , msg_error_ref_3 , [] , macros_error_type_3(i) , 1, 2);
 end
 // =============================================================================
-macros_error_type_4 = ["system"];
+macros_error_type_4 = ["max"; ..
+"min"; ..
+"system"];
 msg_error_ref_4 = _("%s: Wrong number of input argument(s).\n");
 for i=1:size(macros_error_type_4, "*")
     assert_checkerror (macros_error_type_4(i) + "()" , msg_error_ref_4 , [] , macros_error_type_4(i));
-end
-// =============================================================================
-macros_error_type_6 = ["max", "min"];
-msg_error_ref_6 = _("%s: Wrong number of input argument(s): At least %d expected.\n");
-for i=1:size(macros_error_type_6, "*")
-    assert_checkerror (macros_error_type_6(i) + "()" , msg_error_ref_6 , [] , macros_error_type_6(i), 1);
 end
 // =============================================================================
 macros_error_type_5 = ["flipdim"];

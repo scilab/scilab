@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "clc.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "ClearConsole.h"
 #include "ClearConsolePart.h"
 #ifdef _MSC_VER

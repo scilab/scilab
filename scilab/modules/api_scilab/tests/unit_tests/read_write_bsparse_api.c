@@ -14,9 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
-int read_write_bsparse(char *fname, void* pvApiCtx)
+int read_write_bsparse(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i                   = 0;

@@ -16,7 +16,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "core_math.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "sciprint.h"
 #include "returnanan.h"
 #include "xls.h"
@@ -35,7 +35,7 @@ extern int ripole(char *inputfile, char *outputfile, int debug, int verbose);
 /*------------------------------------------------------------------*/
 /*Prototype*/
 static double NumFromRk2(long rk);
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, long long *cur_pos, int *err);
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err);
 static void getSST(int *fd, short Len, int BIFF, int *ns, char ***sst, int *err);
 static void getBOF(int *fd , int* Data, int *err);
 static void getString(int *fd, short *count, short *Len, int flag, char **str, int *err);
@@ -50,7 +50,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     /*---------------Declaration Des Variables*--------------------*/
     unsigned short Opcode = 0, Len = 0;   /*Code Operationnel et Longueur du tag a lire*/
     double *valeur = NULL;    /*Tableau Recapitulatif (Final) des valeurs de la feuille Excel*/
-    long long pos = 0;
+    double pos = 0;
 
     int one = 1;
     int three = 3;
@@ -84,7 +84,8 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
     *chainesind = (int *) NULL;
     *err = 0;
 
-    *err = mseek(*fd, (long long) * cur_pos, SEEK_SET);
+    pos = (double)(*cur_pos);
+    C2F(mseek) (fd, &pos, "set", err);
     if (*err > 0)
     {
         goto ErrL;
@@ -108,7 +109,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
         return;
     }
 
-    pos = mtell(*fd);
+    C2F(mtell) (fd, &pos, err);
     if (*err > 0)
     {
         goto ErrL;
@@ -116,7 +117,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
     while (1)
     {
-        *err = mseek(*fd, pos, SEEK_SET);
+        C2F(mseek) (fd, &pos, "set", err);
         if (*err > 0)
         {
             goto ErrL;
@@ -138,8 +139,8 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
                 *N = hauteur;
                 *M = longueur;
                 *data = valeur;
-                pos = pos + 4 + Len;
                 *cur_pos = (int)pos;
+                *cur_pos = *cur_pos + 4 + Len;
                 return;
             case 638: /*RK*/
                 C2F(mgetnc) (fd, (void*)&row, &one, typ_ushort, err);
@@ -363,6 +364,7 @@ void xls_read(int *fd, int *cur_pos, double **data, int **chainesind, int *N, in
 
                 break;
         }
+
         pos = pos + 4 + Len;
     }
 
@@ -407,7 +409,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
      */
     /*---------------D�claration Des Variables*--------------------*/
     int k, one = 1;
-    long long cur_pos, init_pos;
+    double cur_pos, init_pos;
     unsigned short Opcode, Len;
     /*BOF data*/
     int BOFData[7]; /*[BIFF  Version DataType Identifier Year HistoryFlags LowestXlsVersion]*/
@@ -419,7 +421,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
       *err=1;
       return;
       }*/
-    cur_pos = mtell(*fd);
+    C2F(mtell) (fd, &cur_pos, err);
     init_pos = cur_pos;
 
     /* first record should be a BOF */
@@ -440,7 +442,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
         return;
     }
 
-    cur_pos = mtell(*fd);
+    C2F(mtell) (fd, &cur_pos, err);
     if (*err > 0)
     {
         goto Err2;
@@ -449,7 +451,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
     /* loops on records till an EOF is found */
     while (1)
     {
-        *err = mseek(*fd, cur_pos, SEEK_SET);
+        C2F(mseek) (fd, &cur_pos, "set", err);
         if (*err > 0)
         {
             goto Err2;
@@ -475,7 +477,7 @@ void xls_open(int *err, int *fd, char ***sst, int *ns, char ***Sheetnames, int**
                 getBoundsheets(fd, Sheetnames, Abspos, nsheets, &cur_pos, err);
                 for (k = 0; k < *nsheets; k++)
                 {
-                    (*Abspos)[k] += (int)init_pos;
+                    (*Abspos)[k] += init_pos;
                 }
                 if (*err > 0)
                 {
@@ -933,14 +935,14 @@ static void getString(int *fd, short *PosInRecord, short *RecordLen, int flag, c
     l1 = 4 * rt;
     if (richString)
     {
-        long long lll1 = (long long)l1;
-        *err = mseek(*fd, lll1, SEEK_CUR);
+        double dl1 = (double)l1;
+        C2F(mseek) (fd, &dl1, "cur", err);
         *PosInRecord += (short)l1;
     }
     if (extendedString)
     {
-        long long llsz = (long long)sz;
-        *err = mseek(*fd, llsz, SEEK_CUR);
+        double dsz = (double)sz;
+        C2F(mseek) (fd, &dsz, "cur", err);
         *PosInRecord += (short)sz;
     }
 
@@ -972,13 +974,13 @@ ErrL:
     }
 }
 
-static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, long long *cur_pos, int *err)
+static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nsheets, double *cur_pos, int *err)
 {
     /* the global workbook contains a sequence of boudsheets this procedure reads all
     * the sequence and returns a vector o sheetnames, a vector of absolute sheet positions*/
     int abspos; /* Absolute stream position of BoF*/
     char visibility, sheettype; /*Visiblity , Sheet type*/
-    long long pos;
+    double pos;
     unsigned short Opcode;
     unsigned short Len;
     int one = 1;
@@ -994,7 +996,7 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     ns = 0;
     while (1)
     {
-        *err = mseek(*fd, *cur_pos, SEEK_SET);
+        C2F(mseek) (fd, cur_pos, "set", err);
         if (*err > 0)
         {
             goto ErrL;
@@ -1051,7 +1053,7 @@ static void getBoundsheets(int * fd, char ***Sheetnames, int** Abspos, int *nshe
     i = -1;
     while (1)
     {
-        *err = mseek(*fd, *cur_pos, SEEK_SET);
+        C2F(mseek) (fd, cur_pos, "set", err);
         if (*err > 0)
         {
             goto ErrL;

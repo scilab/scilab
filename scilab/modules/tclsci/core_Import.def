@@ -2,13 +2,27 @@ LIBRARY    core.dll
 
 
 EXPORTS
-callFunctionFromGateway
+getScilabMode
+callFunctionFromGateway 
 com_
+getSCIpath
+putlhsvar_
+intersci_
+checklhs_
+checkrhs_
+stack_
+getrhsvar_
+gettype_
+vstk_
 iop_
+createvarfromptr_
+createvar_
+GetData
 StoreCommand
-GetCommand
+StoreCommandWithFlag
+GetCommand 
 ismenu
-StorePrioritaryCommand
+StorePrioritaryCommandWithFlag
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree

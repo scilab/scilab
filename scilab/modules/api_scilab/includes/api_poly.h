@@ -20,7 +20,6 @@
 extern "C" {
 #endif
 
-#include "dynlib_api_scilab.h"
 
     /*****************************/
     /*   poly matrix functions   */

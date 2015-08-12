@@ -15,13 +15,13 @@
 #include "Scierror.h"
 #include "localization.h"
 #ifndef _MSC_VER
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #endif
 /*--------------------------------------------------------------------------*/
 int gw_graphic_export(void)
 {
 #ifndef _MSC_VER
-    if (getScilabMode() == SCILAB_NWNI)
+	if (getScilabMode() == SCILAB_NWNI)
     {
         Scierror(999, _("Scilab '%s' module disabled in -nogui or -nwni mode.\n"), "graphic_export");
     }

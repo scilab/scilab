@@ -13,7 +13,6 @@
 #ifndef __ASSEMBLEEIGENVECTORS__
 #define __ASSEMBLEEIGENVECTORS__
 
-#include "doublecomplex.h"
 int assembleEigenvectorsSourceToTarget(int iRows, double * eigenvaluesImg,
                                        double * EVRealSource,
                                        double * EVRealTarget, double * EVImgTarget);

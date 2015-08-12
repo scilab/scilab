@@ -26,11 +26,11 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "InitObjects.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "HandleManagement.h"
 #include "AxesModel.h"
 /*--------------------------------------------------------------------------*/
-void* get_default_axes_property(void* _pvCtx, int iObjUID)
+int get_default_axes_property(void* _pvCtx, int iObjUID)
 {
 
     if (iObjUID != 0)
@@ -49,15 +49,15 @@ void* get_default_axes_property(void* _pvCtx, int iObjUID)
 
         if (iVisible == 0)
         {
-            return sciReturnString("off");
+            return sciReturnString(_pvCtx, "off");
         }
         else
         {
-            return sciReturnString("on");
+            return sciReturnString(_pvCtx, "on");
         }
     }
 
     /* Return default axes (gda()) */
-    return sciReturnHandle(getHandle(getAxesModel()));
+    return sciReturnHandle(_pvCtx, getHandle(getAxesModel()));
 }
 /*--------------------------------------------------------------------------*/

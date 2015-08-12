@@ -18,9 +18,11 @@
 /* file: sci_get.c                                                        */
 /* desc : interface for sci_get routine                                   */
 /*------------------------------------------------------------------------*/
-#include <string.h>
 #include "gw_graphics.h"
+/*--------------------------------------------------------------------------*/
+
 #include "HandleManagement.h"
+
 #include "GetHashTable.h"
 #include "BuildObjects.h"
 #include "localization.h"
@@ -40,7 +42,15 @@
 #include "MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_get(char *fname, void *pvApiCtx)
+int sciGet(void* _pvCtx, int iObjUID, char *marker)
+{
+    /* find the function in the hashtable relative to the property name */
+    /* and call it */
+    return callGetProperty(_pvCtx, iObjUID, marker);
+}
+
+/*--------------------------------------------------------------------------*/
+int sci_get(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -100,7 +110,7 @@ int sci_get(char *fname, void *pvApiCtx)
                 char *stkAdr = NULL;
                 if (nbInputArgument(pvApiCtx) == 1)
                 {
-                    if (sciReturnHandle(getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
+                    if (sciReturnHandle(pvApiCtx, getHandle(getConsoleIdentifier())) != 0)    /* Get Console handle */
                     {
                         ReturnArguments(pvApiCtx);
                         return 0;
@@ -285,7 +295,7 @@ int sci_get(char *fname, void *pvApiCtx)
     if (hdl == 0)
     {
         /* No handle specified */
-        if (callGetProperty(pvApiCtx, 0, (l2)) != 0)
+        if (sciGet(pvApiCtx, 0, (l2)) != 0)
         {
             /* An error has occurred */
             freeAllocatedSingleString(l2);
@@ -299,7 +309,7 @@ int sci_get(char *fname, void *pvApiCtx)
         if (iObjUID != 0)
         {
 
-            if (callGetProperty(pvApiCtx, iObjUID, (l2)) != 0)
+            if (sciGet(pvApiCtx, iObjUID, (l2)) != 0)
             {
                 /* An error has occurred */
                 freeAllocatedSingleString(l2);

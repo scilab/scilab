@@ -13,11 +13,12 @@
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "freeArrayOfString.h"
+#include "MALLOC.h"
 #include "completion.h"
 #include "getPartLine.h"
 /*--------------------------------------------------------------------------*/
-int sci_getfields(char *fname, void *pvApiCtx)
+int sci_getfields(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int *piAddr = NULL;
@@ -79,7 +80,7 @@ int sci_getfields(char *fname, void *pvApiCtx)
         sciErr = createMatrixOfString(pvApiCtx, Rhs + 1, 1, 1, &emptystr);
     }
 
-    freeAllocatedMatrixOfString(sizefields, 1, fields);
+    freeArrayOfString(fields, sizefields);
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);

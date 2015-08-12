@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_sub_tics_property(void* _pvCtx, int iObjUID)
+int get_sub_tics_property(void* _pvCtx, int iObjUID)
 {
     int iType = -1;
     int *piType = &iType;
@@ -46,7 +46,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "type");
-        return NULL;
+        return -1;
     }
 
     /*
@@ -60,10 +60,10 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return NULL;
+            return -1;
         }
 
-        return sciReturnDouble(iSubTicks);
+        return sciReturnDouble(_pvCtx, iSubTicks);
     }
     else if (iType == __GO_AXES__)
     {
@@ -75,7 +75,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return NULL;
+            return -1;
         }
 
         sub_ticks[0] = iSubTicks;
@@ -84,7 +84,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return NULL;
+            return -1;
         }
 
         sub_ticks[1] = iSubTicks;
@@ -93,7 +93,7 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piSubTicks == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-            return NULL;
+            return -1;
         }
 
         sub_ticks[2] = iSubTicks;
@@ -102,22 +102,22 @@ void* get_sub_tics_property(void* _pvCtx, int iObjUID)
         if (piView == NULL)
         {
             Scierror(999, _("'%s' property does not exist for this handle.\n"), "view");
-            return NULL;
+            return -1;
         }
 
         if (iView == 1)
         {
-            return sciReturnRowVector(sub_ticks, 3);
+            return sciReturnRowVector(_pvCtx, sub_ticks, 3);
         }
         else
         {
-            return sciReturnRowVector(sub_ticks, 2);
+            return sciReturnRowVector(_pvCtx, sub_ticks, 2);
         }
     }
     else
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "sub_ticks");
-        return NULL;
+        return -1;
     }
 }
 /*------------------------------------------------------------------------*/

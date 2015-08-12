@@ -20,7 +20,7 @@
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "axesScale.h"
 #include "localization.h"
 #include "Scierror.h"
@@ -32,7 +32,7 @@
 #include "getGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_unzoom(char *fname, void *pvApiCtx)
+int sci_unzoom(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

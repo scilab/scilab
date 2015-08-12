@@ -23,7 +23,7 @@
 /**
  * Gets the type of the light.
  */
-void* get_light_type_property(void* _pvCtx, int iObjUID)
+int get_light_type_property(void* _pvCtx, int iObjUID)
 {
     int type = 0;
     int* piType = &type;
@@ -33,15 +33,16 @@ void* get_light_type_property(void* _pvCtx, int iObjUID)
     if (piType == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "light_type");
-        return NULL;
+        return -1;
     }
 
     if (type == 0)
     {
-        return sciReturnString("directional");
+        return sciReturnString(_pvCtx, "directional");
     }
     else
     {
-        return sciReturnString("point");
+        return sciReturnString(_pvCtx, "point");
     }
+
 }

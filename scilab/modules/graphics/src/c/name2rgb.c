@@ -10,7 +10,7 @@
  *
  */
 #include "name2rgb.h"
-#include "os_string.h"
+#include "stricmp.h"
 
 static char* colorName[] =
 {

@@ -94,7 +94,6 @@ jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArra
 jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
 jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_IntBufferjava_lang_IntBufferjintintjintintjintintID; // cache method id
 jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID; // cache method id
-jmethodID voidsendUnsignedDatajstringjava_lang_StringjintArray_intintjobjectArray__longlongjbooleanbooleanjintintID; // cache method id
 jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
 jmethodID voidsendUnsignedDataAsBufferjstringjava_lang_StringjintArray_intintjobject_java_lang_LongBufferjava_lang_LongBufferjintintjintintjintintID; // cache method id
 jmethodID voidsendDatajstringjava_lang_StringjintArray_intintjobjectArray__booleanbooleanjbooleanbooleanjintintID; // cache method id
@@ -115,7 +114,7 @@ jmethodID voidsendDataAsBufferjstringjava_lang_StringjintArray_intintjintintjint
 jobject instance;
 jclass instanceClass; // cache class
 
-
+                       
 // Caching (if any)
 
                 // Cache of the bytebuffer stuff
@@ -131,7 +130,7 @@ jclass instanceClass; // cache class
                 static jmethodID asdbIDIntBuffer;
                 static jmethodID asdbIDLongBuffer;
                 static jmethodID asdbIDShortBuffer;
-
+                
 
 /**
 * Get the environment matching to the current thread.
@@ -156,9 +155,9 @@ ScilabVariables(JavaVM * jvm_);
 ScilabVariables(JavaVM * jvm_, jobject JObj);
 
 
-/**
+/** 
 * This is a fake constructor to avoid the constructor
-* chaining when dealing with extended giws classes
+* chaining when dealing with extended giws classes 
 */
 #ifdef FAKEGIWSDATATYPE
 ScilabVariables(fakeGiwsDataType::fakeGiwsDataType /* unused */) {}
@@ -218,8 +217,6 @@ static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int con
 
 static void sendData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
 
-static void sendUnsignedData(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* const* data, int dataSize, int dataSizeCol, bool swaped, int handlerId);
-
 static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
 
 static void sendUnsignedDataAsBuffer(JavaVM * jvm_, char const* varName, int const* indexes, int indexesSize, long long const* data, int dataSize, int rows, int cols, int handlerId);
@@ -251,18 +248,18 @@ static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* inde
                         * Get class name to use for static methods
                         * @return class name to use for static methods
                         */
-
+                        
                 static const std::string className()
                 {
                 return "org/scilab/modules/types/ScilabVariables";
                 }
-
+                
 
                         /**
                         * Get class to use for static methods
                         * @return class to use for static methods
                         */
-
+                        
                 static jclass initClass(JNIEnv * curEnv)
                 {
                     static jclass cls = 0;
@@ -278,7 +275,7 @@ static void sendDataAsBuffer(JavaVM * jvm_, char const* varName, int const* inde
 
                     return cls;
                  }
-
+                
 };
 
 

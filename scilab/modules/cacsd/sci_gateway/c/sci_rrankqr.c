@@ -19,7 +19,7 @@ extern int C2F(dcopy)();
 extern int C2F(mb03od)();
 extern int C2F(dorgqr)();
 
-int sci_rrankqr(char *fname, void* pvApiCtx)
+int sci_rrankqr(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -312,6 +312,5 @@ int sci_rrankqr(char *fname, void* pvApiCtx)
     AssignOutputVariable(pvApiCtx, 4) = RANK;
     AssignOutputVariable(pvApiCtx, 5) = SVAL;
 
-    ReturnArguments(pvApiCtx);
     return 0;
 }

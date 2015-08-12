@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_font_foreground_property(void* _pvCtx, int iObjUID)
+int get_font_foreground_property(void* _pvCtx, int iObjUID)
 {
     int iFontColor = 0;
     int* fontColor = &iFontColor;
@@ -40,9 +40,9 @@ void* get_font_foreground_property(void* _pvCtx, int iObjUID)
     if (fontColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "font_foreground");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnInt(*fontColor);
+    return sciReturnInt(_pvCtx, *fontColor);
 }
 /*------------------------------------------------------------------------*/

@@ -21,9 +21,11 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "getDictionarySetProperties.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
 #include "BOOL.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 /**
 * use for the singleton to know if the hashtable has already be created.
@@ -253,7 +255,8 @@ static setHashTableCouple propertySetTable[] =
     {"marks_count", set_marks_count_property},
     {"ticks_format", set_ticks_format_property},
     {"ticks_st", set_ticks_st_property},
-    {"colors", set_colors_property}
+    {"colors", set_colors_property},
+    {"sizes", set_sizes_property}
 };
 
 /*--------------------------------------------------------------------------*/
@@ -289,14 +292,14 @@ SetPropertyHashTable *createScilabSetHashTable(void)
 }
 
 /*--------------------------------------------------------------------------*/
-int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, const char *propertyName)
+int callSetProperty(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol, char *propertyName)
 {
     setPropertyFunc accessor = searchSetHashtable(setHashTable, propertyName);
 
     if (accessor == NULL)
     {
         Scierror(999, _("Unknown property: %s.\n"), propertyName);
-        return NULL;
+        return -1;
     }
     return accessor(_pvCtx, iObjUID, _pvData, valueType, nbRow, nbCol);
 }
@@ -328,7 +331,7 @@ char **getDictionarySetProperties(int *sizearray)
         *sizearray = propertyCount;
         for (i = 0; i < propertyCount ; i++)
         {
-            dictionary[i] = os_strdup(propertySetTable[i].key);
+            dictionary[i] = strdup(propertySetTable[i].key);
         }
     }
     return dictionary;

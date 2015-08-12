@@ -14,33 +14,37 @@
 #include <shlwapi.h>
 #include <stdio.h>
 #include "FindFileAssociation.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#include "strdup_windows.h"
 #include "PATH_MAX.h"
 #include "charEncoding.h"
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"shlwapi.lib") /* AssocQueryString */
 /*--------------------------------------------------------------------------*/
-wchar_t* FindFileAssociation (const wchar_t* ptrFindStr, const wchar_t* Extra)
+char *FindFileAssociation (char *ptrFindStr, char *Extra)
 {
-    if (ptrFindStr)
+    char *ptrResult = NULL ;
+
+    if ( ptrFindStr )
     {
+        wchar_t *wcptrFindStr = to_wide_string(ptrFindStr);
+        wchar_t *wcExtra = to_wide_string(Extra);
         wchar_t szDefault[PATH_MAX + FILENAME_MAX];
         DWORD ccDefault = PATH_MAX + FILENAME_MAX;
 
-        if (ptrFindStr)
+        if (wcptrFindStr)
         {
-            HRESULT rc = AssocQueryStringW(0, ASSOCSTR_EXECUTABLE, ptrFindStr, Extra, szDefault, &ccDefault);
+            HRESULT rc = AssocQueryStringW (0, ASSOCSTR_EXECUTABLE, wcptrFindStr, wcExtra, szDefault, &ccDefault);
             if (ccDefault)
             {
                 if (rc == S_OK)
                 {
-                    return os_wcsdup(szDefault);
+                    ptrResult = wide_string_to_UTF8(szDefault);
                 }
             }
         }
     }
-    return NULL;
+    return ptrResult;
 }
 /*--------------------------------------------------------------------------*/
 

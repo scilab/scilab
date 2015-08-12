@@ -26,7 +26,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_margins_property(void* _pvCtx, int iObjUID)
+int get_auto_margins_property(void* _pvCtx, int iObjUID)
 {
     int iAutoMargins = 0;
     int* piAutoMargins = &iAutoMargins;
@@ -36,16 +36,16 @@ void* get_auto_margins_property(void* _pvCtx, int iObjUID)
     if (piAutoMargins == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_margins");
-        return NULL;
+        return -1;
     }
 
     if (iAutoMargins)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 
 }

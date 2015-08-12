@@ -12,8 +12,7 @@
 
 #include <math.h>
 #include <string.h>
-
-#include "doublecomplex.h"
+#include "stack-c.h"
 #include "isanan.h"
 #include "core_math.h"
 #include "gw_arnoldi.h"
@@ -24,10 +23,10 @@
 #include "stdlib.h"
 #include "sciprint.h"
 #include "doublecomplex.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "eigs.h"
 
-int sci_eigs(char *fname, void* pvApiCtx)
+int sci_eigs(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -416,6 +415,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
         if (isVarComplex(pvApiCtx, piAddressVarSeven))
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar.\n"), "eigs", 7, "opts.ncv");
+            0;
         }
         else
         {
@@ -457,7 +457,7 @@ int sci_eigs(char *fname, void* pvApiCtx)
     }
 
     sciErr = getVarType(pvApiCtx, piAddressVarEight, &iTypeVarEight);
-    if (sciErr.iErr || (iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean))
+    if (sciErr.iErr || iTypeVarEight != sci_matrix && iTypeVarEight != sci_boolean)
     {
         Scierror(999, _("%s: Wrong type for input argument #%d: %s must be an integer scalar or a boolean.\n"), "eigs", 8, "opts.cholB");
         return 1;

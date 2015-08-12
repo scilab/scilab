@@ -19,7 +19,7 @@
 /* desc : function to modify in Scilab the callback field of              */
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
-#include <string.h>
+#include "sci_types.h"
 #include "setHandleProperty.h"
 #include "getPropertyAssignedValue.h"
 #include "Scierror.h"
@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*------------------------------------------------------------------------*/
 int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)
 {
@@ -60,7 +60,7 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfDoubleInList(_pvCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
+        getMatrixOfDoubleInList(pvApiCtx, (int*)_pvData, 1, &iRows, &iCols, &pdblData);
         if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A real expected.\n"), "callback_type");
@@ -72,16 +72,16 @@ int set_callback_property(void* _pvCtx, int iObjUID, void* _pvData, int valueTyp
         }
 
 
-        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, NULL, NULL);
         if (iRows * iCols != 1)
         {
             Scierror(999, _("Wrong size for '%s' property: A string expected.\n"), "Callback");
             return SET_PROPERTY_ERROR;
         }
 
-        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, NULL);
         cbString = (char*)MALLOC(sizeof(char) * (iLen + 1));
-        getMatrixOfStringInList(_pvCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
+        getMatrixOfStringInList(pvApiCtx, (int*)_pvData, 2, &iRows, &iCols, &iLen, &cbString);
     }
     else
     {

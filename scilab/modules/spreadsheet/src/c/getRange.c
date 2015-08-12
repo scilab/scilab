@@ -10,9 +10,11 @@
  *
  */
 #include <string.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getRange.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 // =============================================================================
 #define SIZE_ARRAY_RANGE 4
 // =============================================================================
@@ -102,7 +104,7 @@ char **getRangeAsString(const char **pStrsValues,
                 {
                     for (i = R1 - 1 ; i < R2 ; i++ )
                     {
-                        newStrArray[k] = os_strdup(pStrsValues[i + nbRows * j]);
+                        newStrArray[k] = strdup(pStrsValues[i + nbRows * j]);
                         k++;
                     }
                 }

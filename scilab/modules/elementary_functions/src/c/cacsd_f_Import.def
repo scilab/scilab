@@ -1,8 +1,0 @@
-	LIBRARY    cacsd_f.dll
-
-
-EXPORTS
-;
-;cacsd_f
-;
-shrslv_

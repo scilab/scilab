@@ -106,7 +106,7 @@ H5Object & H5CompoundData::getData(const unsigned int size, const unsigned int *
     return *new H5CompoundData(*const_cast<H5CompoundData *>(this), 1, dataSize, 1, _dims, static_cast<char *>(data) + offset + pos * (dataSize + stride), type, 0, 0, false);
 }
 
-void H5CompoundData::getFieldNames(const int position, void * pvApiCtx)
+void H5CompoundData::getFieldNames(const int position, void * vApiCtx)
 {
     std::vector<std::string> names;
     names.reserve(nfields);

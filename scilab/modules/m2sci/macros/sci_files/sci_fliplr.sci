@@ -25,7 +25,7 @@ function [tree]=sci_fliplr(tree)
     else
         if typeof(tree.rhs(1))<>"variable" then
             tmp=gettempvar()
-            m2sci_insert(Equal(list(tmp),tree.rhs(1)))
+            insert(Equal(list(tmp),tree.rhs(1)))
         else
             tmp=tree.rhs(1)
         end

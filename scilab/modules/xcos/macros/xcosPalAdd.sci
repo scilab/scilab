@@ -78,7 +78,7 @@ function [status, msg] = xcosPalAdd(pal, category)
         path = pal;
 
         clear pal
-        load(path);
+        import_from_hdf5(path);
         if ~exists("pal", "l") then
             error(msprintf(gettext("%s: Wrong type for input argument ""%s"": palette type or path expected.\n"), "xcosPalAdd", "pal"));
         end

@@ -52,9 +52,7 @@ function s = getTestsSize()
         files_unit = [];
         for j = 1:size(files_module, "*")
             info = fileinfo(files_module(j));
-            if ~isnan(info(1)) then
-                total = total + info(1);
-            end
+            total = total + info(1);
         end
     end
     s = total / 10;
@@ -103,6 +101,18 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
     else
         [SciFile, err] = FindAndReplace(SciFile,"#define ScilabName","#define ScilabName """+ scilab_version_vstr +"""");
     end
+    if err == %F then
+        ret = err;
+        return;
+    end;
+
+    if (scilab_version(3) == 0) then
+        HTTP_MKL = "http://fileexchange.scilab.org/toolboxes/MKL/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "/files";
+    else
+        HTTP_MKL = "http://fileexchange.scilab.org/toolboxes/MKL/" + string(scilab_version(1)) + "." + string(scilab_version(2)) + "." + string(scilab_version(3)) + "/files";
+    end
+
+    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_DOWNLOAD_HTTP ", "#define MKL_DOWNLOAD_HTTP """ + HTTP_MKL + """");
     if err == %F then
         ret = err;
         return;
@@ -175,6 +185,40 @@ function ret = Update_Script_Innosetup(ISSFilenameSource)
         end;
     end
 
+    if (scilab_version(3) == 0) then
+        ver_str = string(scilab_version(1)) + "." + string(scilab_version(2));
+    else
+        ver_str = string(scilab_version(1)) + "." + string(scilab_version(2)) + "." + string(scilab_version(3));
+    end
+
+    if win64() then
+        arch_str = "win64";
+    else
+        arch_str = "win32";
+    end
+
+    MKL_BLASLAPACK_NAME = "blas-lapack-mkl-" + ver_str + "-" + arch_str + ".zip";
+    MKL_COMMONS_NAME = "commons-mkl-" + ver_str + "-" + arch_str + ".zip";
+    MKL_FFTW_NAME = "fftw-mkl-" + ver_str + "-" + arch_str + ".zip";
+
+    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_BLASLAPACK_PACKAGENAME","#define MKL_BLASLAPACK_PACKAGENAME ''" + MKL_BLASLAPACK_NAME + "''");
+    if err == %F then
+        ret = err;
+        return;
+    end;
+
+    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_COMMONS_PACKAGENAME","#define MKL_COMMONS_PACKAGENAME ''" + MKL_COMMONS_NAME + "''");
+    if err == %F then
+        ret = err;
+        return;
+    end;
+
+    [SciFile,err] = FindAndReplace(SciFile,"#define MKL_FFTW_PACKAGENAME","#define MKL_FFTW_PACKAGENAME ''" + MKL_FFTW_NAME + "''");
+    if err == %F then
+        ret = err;
+        return;
+    end;
+
     if isdir(SCI + "/.atoms") <> %F then
         err = generateAdditionnalIss();
         if err == %F then
@@ -210,10 +254,10 @@ function bOK = generateAdditionnalIss()
 endfunction
 //------------------------------------------------------------------------------
 // Main
-[units,typs,nams] = file()
-path = fileparts(string(nams(2)),"path");
-filename = fileparts(string(nams(2)),"fname");
-extension = fileparts(string(nams(2)),"extension");
+[units,typs,nams] = file();
+path = fileparts(string(nams(1)),"path");
+filename = fileparts(string(nams(1)),"fname");
+extension = fileparts(string(nams(1)),"extension");
 
 fileAndExt = filename+extension;
 
@@ -227,7 +271,6 @@ if or(fileAndExt == ["Create_ISS.sce","Create_ISS_nojre.sce"]) then
         printf("\nScript aborted.\n");
     end
     chdir(SaveCurrentPath);
-
 
 else
     printf("Error: name of this file isn""t ""Create_ISS.sce"" but %s\n",(filename+extension));

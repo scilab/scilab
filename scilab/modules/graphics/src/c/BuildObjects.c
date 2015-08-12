@@ -45,7 +45,7 @@
 #include "HandleManagement.h"
 #include "loadTextRenderingAPI.h"
 
-#include "sci_malloc.h"             /* MALLOC */
+#include "MALLOC.h"             /* MALLOC */
 #include "Scierror.h"
 
 #include "Format.h"             // computeDefaultTicsLabels

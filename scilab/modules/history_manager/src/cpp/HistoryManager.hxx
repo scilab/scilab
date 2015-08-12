@@ -19,26 +19,27 @@
 /*------------------------------------------------------------------------*/
 extern "C"
 {
-#include "dynlib_history_manager.h"
 #include <time.h>
 };
 /*------------------------------------------------------------------------*/
 #include <list>
+#include "CommandLine.hxx"
 #include "HistoryFile.hxx"
 #include "HistorySearch.hxx"
-
-//disable warnings about exports STL items
-#pragma warning (disable : 4251)
-
+using namespace std;
 /*------------------------------------------------------------------------*/
-class HISTORY_MANAGER_IMPEXP HistoryManager
+class HistoryManager
 {
 public:
+    /**
+    * Constructor
+    */
+    HistoryManager();
 
-    static HistoryManager* getInstance(void);
-    static void killInstance(void);
-
-    static BOOL historyIsEnabled(void);
+    /**
+    * Destructor
+    */
+    ~HistoryManager();
 
     /*
     * add a line to History manager
@@ -46,7 +47,7 @@ public:
     * line isn't added if it is the same as previous (FALSE)
     * @return TRUE or FALSE
     */
-    BOOL appendLine(char *_pstLine);
+    BOOL appendLine(char *cline);
 
     /**
     * append lines to History manager
@@ -54,7 +55,7 @@ public:
     * @param size of the array of string
     * @return TRUE or FALSE
     */
-    BOOL appendLines(char **_pstLines, int _iLines);
+    BOOL appendLines(char **lines, int nbrlines);
 
     /**
     * Display history
@@ -65,14 +66,14 @@ public:
     * get filename of history
     * @return a filename
     */
-    char* getFilename(void);
+    char *getFilename(void);
 
     /**
     * set filename of history
     * @param filename of history
     * @return TRUE or FALSE
     */
-    BOOL setFilename(char* _pstFilename);
+    void setFilename(char *filename);
 
     /**
     * set default filename of history
@@ -83,42 +84,40 @@ public:
     /**
     * save history in a file
     * @param a filename if NULL saves in default filename
-    * default filename --> SCIHOME/history.scilab
     * @return TRUE or FALSE
     */
-    BOOL writeToFile(char* _pstFilename);
+    BOOL writeToFile(char *filename);
 
     /**
     * load history from a file
     * @param a filename if NULL load from default filename
-    * default filename --> SCIHOME/<scilab version>history.scilab
     * @return TRUE or FALSE
     */
-    BOOL loadFromFile(char* _pstFilename);
+    BOOL loadFromFile(char *filename);
 
     /**
     * reset history manager
     */
-    BOOL reset(void);
+    void reset(void);
 
     /**
     * Get all lines in history
     * @param output size of the array of string
     * @return an array of strings
     */
-    char** getAllLines(int* _iLines);
+    char **getAllLines(int *numberoflines);
 
     /**
     * returns the first line in history
     * @return a string
     */
-    char* getFirstLine(void);
+    char *getFirstLine(void);
 
     /**
     * returns the last line in history
     * @return a string
     */
-    char* getLastLine(void);
+    char *getLastLine(void);
 
     /**
     * get number of lines of history
@@ -131,20 +130,20 @@ public:
     * @param N
     * @return the Nth Line
     */
-    char* getNthLine(int _iLine);
+    char *getNthLine(int N);
 
     /**
     * delete the Nth Line in history
     * @param N
     * @return TRUE or FALSE
     */
-    BOOL deleteNthLine(int _iLine);
+    BOOL deleteNthLine(int N);
 
     /**
     * Allow to save consecutive duplicate lines
     * @param doit : TRUE (to allow) or FALSE
     */
-    void setSaveConsecutiveDuplicateLines(BOOL _bAllow);
+    void setSaveConsecutiveDuplicateLines(BOOL doit);
 
     /**
     * get state about to save consecutive duplicate lines
@@ -156,7 +155,7 @@ public:
     * set after how many lines history is saved
     * @param num : number of lines
     */
-    void setAfterHowManyLinesHistoryIsSaved(int _iNum);
+    void setAfterHowManyLinesHistoryIsSaved(int num);
 
     /**
     * get after how many lines history is saved
@@ -169,13 +168,13 @@ public:
     * @param token (a string)
     * @return TRUE or FALSE
     */
-    BOOL setToken(const char* _pstToken);
+    BOOL setToken(char *token);
 
     /**
     * get token searched in history
     * @return token (a string)
     */
-    char* getToken(void);
+    char *getToken(void);
 
     /**
     * resettoken searched in history
@@ -187,14 +186,14 @@ public:
     * Get the previous line in search
     * @return a line
     */
-    char* getPreviousLine(void);
+    char *getPreviousLine(void);
 
     /**
     * Get the next line in Scilab history
     * @return a line or NULL
     * after an appendLine iterator go to end
     */
-    char* getNextLine(void);
+    char *getNextLine(void);
 
     /**
     * get info about history file was truncated
@@ -205,49 +204,43 @@ public:
     /**
     *
     */
-    BOOL setNumberOfLinesMax(int _iMaxLines);
+    BOOL setNumberOfLinesMax(int nbLinesMax);
 
     /**
     *
     */
     int getNumberOfLinesMax(void);
 
-    /**
-    * search if line is a beginning of a session
-    * @return TRUE or FALSE
-    */
-    BOOL isBeginningSessionLine(char* _pstLine);
-
 protected:
 
 private:
+    HistoryFile my_file;
+    HistorySearch my_search;
+
+    list<CommandLine> CommandsList;
+
+    BOOL saveconsecutiveduplicatelines;
+    int afterhowmanylineshistoryissaved;
+    int numberoflinesbeforehistoryissaved;
 
     /**
-    * Constructor
+    * indicates if command line is a beginning of a session
+    * @return TRUE or FALSE
     */
-    HistoryManager();
+    BOOL isBeginningSessionLine(CommandLine& line);
 
     /**
-    * Destructor
+    * indicates if a string has the pattern "beginning of a session"
+    * @return TRUE or FALSE
     */
-    ~HistoryManager();
-
-    static HistoryManager* m_pHM;
-    HistoryFile m_HF;
-    HistorySearch m_HS;
-
-    std::list<std::string> m_Commands;
-
-    BOOL m_bAllowConsecutiveCommand;
-    int m_iSaveLimit;
-    int m_iSavedLines;
+    BOOL isBeginningSessionLine(const char *line);
 
     /**
     * add as first line  beginning session info
     */
     void fixHistorySession(void);
 
-    BOOL m_bTruncated;
+    BOOL bTruncated;
 
 };
 /*------------------------------------------------------------------------*/

@@ -14,7 +14,3 @@ mputstr("Scilab",fd);
 mclose(fd);
 
 if mgetl(this_file) <> "Scilab" then pause,end
-
-ierr = execstr('mputstr(""Scilab"",5)','errcatch');
-if ierr <> 999 then pause,end
-

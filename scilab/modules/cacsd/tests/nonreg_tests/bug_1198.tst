@@ -11,11 +11,11 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=1198
 //
 // <-- Short Description -->
-//    For the latest version of Scilab scilab-3.0-u-20050128 on a
+//    For the latest version of Scilab scilab-3.0-u-20050128 on a 
 //    Windows 2000 platform.
 //
 //    The program crashes instead of reporting a syntax error.
 
-G   = syslin("c", [1 0 ; 0 1], [ 1; 1], [1 1]);
+G   = syslin('c', [1 0 ; 0 1], [ 1; 1], [1 1]);
 err = execstr("minss(G)(""A"");","errcatch");
-if err <> 0 then pause,end
+if err <> 250 then pause,end

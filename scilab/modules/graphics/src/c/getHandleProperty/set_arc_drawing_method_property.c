@@ -18,7 +18,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "os_string.h"
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "GetProperty.h"

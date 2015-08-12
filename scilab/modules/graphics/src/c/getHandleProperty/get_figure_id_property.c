@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_figure_id_property(void* _pvCtx, int iObjUID)
+int get_figure_id_property(void* _pvCtx, int iObjUID)
 {
     int iFigureId = 0;
     int *piFigureId = &iFigureId;
@@ -39,9 +39,9 @@ void* get_figure_id_property(void* _pvCtx, int iObjUID)
     if (piFigureId == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "figure_id");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnInt(iFigureId);
+    return sciReturnInt(_pvCtx, iFigureId);
 }
 /*------------------------------------------------------------------------*/

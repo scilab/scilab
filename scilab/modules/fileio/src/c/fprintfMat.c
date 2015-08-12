@@ -19,13 +19,17 @@
 #include <string.h>
 #include "fprintfMat.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "core_math.h"
 #include "strsubst.h"
 #include "BOOL.h"
-#include "os_string.h"
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+#define finite(x) _finite(x)
+#endif
 #define EOL "\n"
 #define NanString "Nan"
 #define InfString "Inf"
@@ -233,7 +237,7 @@ static char *getCleanedFormat(char *format)
                 if (token)
                 {
                     int nbcharacters = (int)(strlen(percent) - strlen(token));
-                    cleanedFormat = os_strdup(percent);
+                    cleanedFormat = strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
                             (cleanedFormat[nbcharacters - 1]) == '.') ||

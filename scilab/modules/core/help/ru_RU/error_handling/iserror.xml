@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="iserror">
+    <refnamediv>
+        <refname>iserror</refname>
+        <refpurpose>проверка возникновения ошибки</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>iserror([n])</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>целое число, номер ошибки</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            Проверяет - возникла ли ошибка с номером <varname>n</varname> (после вызова
+            <function>errcatch</function>). <function>iserror</function> возвращает <literal>1</literal>,
+            если ошибка возникла, в противном случае - <literal>0</literal>.
+        </para>
+        <para>
+            <varname>n</varname><literal>&gt;0</literal> - это номер ошибки; все ошибки проверяются с помощью <varname>n</varname><literal>&lt;0</literal>.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[
+errcatch(4,'continue') // отлавливание неопределённой переменной
+unknown
+iserror() // 1
+errclear()
+iserror() // 0
+        ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="error">error</link>
+            </member>
+            <member>
+                <link linkend="error_table">error_table</link>
+            </member>
+            <member>
+                <link linkend="errcatch">errcatch</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

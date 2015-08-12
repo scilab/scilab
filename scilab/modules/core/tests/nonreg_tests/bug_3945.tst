@@ -16,8 +16,8 @@ ref=sinm(1);
 prot=funcprot();funcprot(0);
 //redefine the sinm function
 function y=sinm(x),y=x+1,endfunction
-assert_checkequal(sinm(1),2);
+if sinm(1)<>2 then pause,end
 //restore it
-sinm = elementary_functionslib.sinm;
-assert_checkequal(sinm(1),ref);
+sinm = elementary_functionslib.sinm
+if sinm(1)<>ref then pause,end
 funcprot(prot);

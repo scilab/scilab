@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) INRIA
+ * 
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at    
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:ns5="http://www.w3.org/1999/xhtml" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:id="ldivf" xml:lang="en">
+    <refnamediv>
+        <refname>ldivf</refname>
+        <refpurpose>divisão simbólica esquerda (invertida)</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Seqüência de Chamamento</title>
+        <synopsis>ldivf('d','c')</synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Descrição</title>
+        <para>
+            Retorna o string <literal>'c\d'</literal> Simplificações triviais
+            como <literal>'1\c' = 'c'</literal> são realizadas.
+        </para>
+    </refsection>
+    <refsection>
+        <title>Exemplos</title>
+        <programlisting role="example"><![CDATA[ 
+ldivf('1','1')
+ldivf('a','0')
+ldivf('a','x')
+ldivf('2','4')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Ver Também</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="rdivf">rdivf</link>
+            </member>
+            <member>
+                <link linkend="addf">addf</link>
+            </member>
+            <member>
+                <link linkend="mulf">mulf</link>
+            </member>
+            <member>
+                <link linkend="evstr">evstr</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

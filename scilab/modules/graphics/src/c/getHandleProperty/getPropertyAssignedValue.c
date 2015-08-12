@@ -19,11 +19,14 @@
 #include "getPropertyAssignedValue.h"
 #include "api_scilab.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BasicAlgos.h"
 #include "freeArrayOfString.h"
 #include "Scierror.h"
-#include "os_string.h"
+#include "stricmp.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 void copyDoubleVectorToIntFromStack(void* _pvData, int* _piDest, int _iNbItem)
 {
@@ -48,14 +51,14 @@ char ** createCopyStringMatrixFromStack(void* _pvData, int _iNbItem)
 
     for (i = 0 ; i < _iNbItem ; i++)
     {
-        res[i] = os_strdup(values[i]);
+        res[i] = strdup(values[i]);
     }
 
     return res;
 
 }
 /*--------------------------------------------------------------------------*/
-int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char const* _pstPropertyName)
+int tryGetBooleanValueFromStack(void* _pvData, int _iType, int _iRows, int _iCols, char* _pstPropertyName)
 {
     if (_iType == sci_strings)
     {

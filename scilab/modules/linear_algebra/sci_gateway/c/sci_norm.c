@@ -10,17 +10,15 @@
  *
  */
 #include <stdio.h>
-
-#include "doublecomplex.h"
 #include "api_scilab.h"
 #include "gw_linear_algebra2.h"
 #include "Scierror.h"
 #include "localization.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "norm.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_norm(char *fname, void* pvApiCtx)
+int C2F(intnorm)(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     // Arguments' addresses
@@ -76,7 +74,7 @@ int sci_norm(char *fname, void* pvApiCtx)
         isComplex = 1;
         for (i = 0; i < iRows * iCols; ++i) // Checking A for %inf, which is not supported by Lapack.
         {
-            if (la_isinf(pAC[i].r) != 0 || la_isinf(pAC[i].i) != 0 || ISNAN(pAC[i].r) || ISNAN(pAC[i].i))
+            if (isinf(pAC[i].r) != 0 || isinf(pAC[i].i) != 0 || ISNAN(pAC[i].r) || ISNAN(pAC[i].i))
             {
                 Scierror(264, _("%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"), fname, 1);
                 return 0;
@@ -95,7 +93,7 @@ int sci_norm(char *fname, void* pvApiCtx)
 
         for (i = 0 ; i < iRows * iCols ; i++) // Checking A for %inf, which is not supported by Lapack.
         {
-            if (la_isinf(pA[i]) != 0 || ISNAN(pA[i]))
+            if (isinf(pA[i]) != 0 || ISNAN(pA[i]))
             {
                 Scierror(264, _("%s: Wrong value for argument #%d: Must not contain NaN or Inf.\n"), fname, 1);
                 return 0;
@@ -206,7 +204,7 @@ int sci_norm(char *fname, void* pvApiCtx)
         }
 
         // Call the norm functions.
-        if (la_isinf(flagVal) == 1 && flagVal > 0) // flag = %inf
+        if (isinf(flagVal) == 1 && flagVal > 0) // flag = %inf
         {
             if (isComplex)
             {
@@ -223,7 +221,7 @@ int sci_norm(char *fname, void* pvApiCtx)
         }
         else
         {
-            if (isMat == 1 && flagVal != 1 && flagVal != 2 && la_isinf(flagVal) == 0)
+            if (isMat == 1 && flagVal != 1 && flagVal != 2 && isinf(flagVal) == 0)
             {
                 Scierror(116, _("%s: Wrong value for input argument #%d: %s, %s, %s or %s expected.\n"), fname, 2, "1", "2", "inf", "-inf");
                 return 0;

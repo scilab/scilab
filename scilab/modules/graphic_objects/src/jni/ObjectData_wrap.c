@@ -192,7 +192,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "math.h"
 
 double * getChampX(int uid)

@@ -20,7 +20,7 @@
 */
 /*--------------------------------------------------------------------------*/
 #include <math.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "scicos_block.h"
 #include "scicos_free.h"
 #include "scicos_malloc.h"

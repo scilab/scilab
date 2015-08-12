@@ -20,7 +20,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_title_scroll_property(void* _pvCtx, int iObjUID)
+int get_title_scroll_property(void* _pvCtx, int iObjUID)
 {
     int scroll = 0;
     int* piScroll = &scroll;
@@ -34,15 +34,15 @@ void* get_title_scroll_property(void* _pvCtx, int iObjUID)
 
     if (scroll)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/
-void* get_title_position_property(void* _pvCtx, int iObjUID)
+int get_title_position_property(void* _pvCtx, int iObjUID)
 {
     int iPos = 0;
     int* piPos = &iPos;
@@ -51,19 +51,19 @@ void* get_title_position_property(void* _pvCtx, int iObjUID)
     if (piPos == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "title_position");
-        return NULL;
+        return -1;
     }
 
     switch (iPos)
     {
         default :
         case TITLE_TOP :
-            return sciReturnString("top");
+            return sciReturnString(_pvCtx, "top");
         case TITLE_LEFT :
-            return sciReturnString("left");
+            return sciReturnString(_pvCtx, "left");
         case TITLE_BOTTOM :
-            return sciReturnString("bottom");
+            return sciReturnString(_pvCtx, "bottom");
         case TITLE_RIGHT :
-            return sciReturnString("right");
+            return sciReturnString(_pvCtx, "right");
     }
 }

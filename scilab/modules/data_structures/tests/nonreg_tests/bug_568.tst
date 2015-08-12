@@ -21,6 +21,9 @@
 //
 //    fixed in CVS version
 
+
+// exec( "/home/huynh/poubelle/testNonReg/bug568.sce");
+// exec("e:\testNonReg\bug568.sce");
+
 aa=zeros(4,4,11);
-bb(1,1,:)=aa(1,1,:);
-assert_checkequal(aa(1,1,:), bb);
+if execstr('bb(1,1,:)=aa(1,1,:)','errcatch') <> 15 then pause,end

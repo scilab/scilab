@@ -9,5 +9,5 @@
 //
 
 function %_EVoid_p(x)
-    printf("External Objects: void wrapper\n")
+    write(%io(2), "External Objects: void wrapper")
 endfunction

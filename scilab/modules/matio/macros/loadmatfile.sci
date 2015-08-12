@@ -123,14 +123,9 @@ function loadmatfile(varargin)
 
         // Remove comments
         rowIndexes = grep(txt, "%")
-        emptyLines = [];
         for k = rowIndexes
             txt(k) = part(txt(k), 1:(strindex(txt(k), "%") - 1));
-            if isempty(stripblanks(txt(k))) then
-                emptyLines($+1) = k;
-            end
         end
-        txt(emptyLines) = []; // Remove empty lines
 
         // Values read
         mat = evstr(txt);

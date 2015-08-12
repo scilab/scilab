@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-#include "sci_malloc.h"
+#include "../../modules/core/includes/MALLOC.h"
 
 /*--------------------------------------------------------------------------*/
 /* hashtable_change

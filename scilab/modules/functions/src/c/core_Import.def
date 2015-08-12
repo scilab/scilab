@@ -1,0 +1,25 @@
+	LIBRARY    core.dll
+
+
+EXPORTS
+;core
+freeArrayOfString
+getLocalVariablesName
+callFunctionFromGateway
+com_
+getRecursionFunctionToCall
+isRecursionCallToFunction
+funtab_
+stack_
+vstk_
+objptr_
+getLocalNamefromId
+getvariablesinfo_
+putlhsvar_
+intersci_
+createvarfromptr_
+checklhs_
+checkrhs_
+MyHeapAlloc
+MyHeapFree
+MyHeapRealloc

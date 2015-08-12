@@ -21,64 +21,66 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 #include "GiwsException.hxx"
-}
-
-/*--------------------------------------------------------------------------*/
-int sci_getlookandfeel(char *fname, void* pvApiCtx)
-{
-    CheckInputArgument(pvApiCtx, 0, 0);
-    CheckOutputArgument(pvApiCtx, 1, 1);
-
-    org_scilab_modules_gui_utils::LookAndFeelManager * lnf = 0;
-    try
+    /*--------------------------------------------------------------------------*/
+    int sci_getlookandfeel(char *fname, unsigned long fname_len)
     {
-        lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
-    }
-    catch (const GiwsException::JniException & e)
-    {
-        Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
-        return 1;
-    }
+        CheckInputArgument(pvApiCtx, 0, 0);
+        CheckOutputArgument(pvApiCtx, 1, 1);
 
-    if (lnf)
-    {
-        static int n1 = 0, m1 = 0;
-        char *look = lnf->getCurrentLookAndFeel();
-
-        if (look)
+        org_scilab_modules_gui_utils::LookAndFeelManager * lnf = 0;
+        try
         {
-            m1 = (int)strlen(look);
-            n1 = 1;
+            lnf = new org_scilab_modules_gui_utils::LookAndFeelManager(getScilabJavaVM());
+        }
+        catch (const GiwsException::JniException & e)
+        {
+            Scierror(999, _("%s: A Java exception arisen:\n%s"), fname, e.whatStr().c_str());
+            return 1;
+        }
 
-            if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, look))
-            {
-                Scierror(999, _("%s: Memory allocation error.\n"), fname);
-                return 1;
-            }
+        if (lnf)
+        {
+            static int n1 = 0, m1 = 0;
+            char *look = lnf->getCurrentLookAndFeel();
 
             if (look)
             {
-                delete[]look;
-                look = NULL;
-            }
-            delete lnf;
+                m1 = (int)strlen(look);
+                n1 = 1;
 
-            AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
-            returnArguments(pvApiCtx);
+                if (createSingleString(pvApiCtx, nbInputArgument(pvApiCtx) + 1, look))
+                {
+                    Scierror(999, _("%s: Memory allocation error.\n"), fname);
+                    return 1;
+                }
+
+                if (look)
+                {
+                    delete[]look;
+                    look = NULL;
+                }
+                delete lnf;
+
+                AssignOutputVariable(pvApiCtx, 1) = nbInputArgument(pvApiCtx) + 1;
+                returnArguments(pvApiCtx);
+            }
+            else
+            {
+                delete lnf;
+                Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("Impossible to get current look and feel"));
+                return 1;
+            }
         }
         else
         {
-            delete lnf;
-            Scierror(999, _("%s: An error occurred: %s.\n"), fname, _("Impossible to get current look and feel"));
+            Scierror(999, _("%s: No more memory.\n"), fname);
             return 1;
         }
-    }
-    else
-    {
-        Scierror(999, _("%s: No more memory.\n"), fname);
-        return 1;
-    }
 
-    return 0;
-}
+        return 0;
+    }
+    /*--------------------------------------------------------------------------*/
+
+}                               /* END OF extern "C" */
+
 /*--------------------------------------------------------------------------*/

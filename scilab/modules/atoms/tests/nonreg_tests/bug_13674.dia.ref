@@ -31,7 +31,8 @@ mclose(fd);
 status = atomsGetConfig("useProxy");
 atomsSetConfig("useProxy", "False");
 atomsSystemUpdate();
-Scanning repository http://atoms.scilab.org/6.0 ... Done
+Scanning repository http://atoms.scilab.org/5.5 ... Done
+
 // Restore values
 atomsSetConfig("useProxy", status);
 if restoreUserConfig then

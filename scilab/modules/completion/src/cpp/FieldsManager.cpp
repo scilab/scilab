@@ -24,7 +24,7 @@
 extern "C" {
 #include "api_scilab.h"
 #include "Scierror.h"
-    //#include "code2str.h"
+#include "code2str.h"
 }
 
 #include <iostream>
@@ -53,10 +53,9 @@ const char ** FieldsManager::getFieldsForType(const std::string & typeName, int 
 
 const char ** FieldsManager::getFields(int * addr, char ** fieldPath, const int fieldPathLen, int * fieldsSize)
 {
-    int type = 0;
+    int type;
     const char ** fields = 0;
-#if 0
-    SciErr sciErr = getVarType(NULL, addr, &type);
+    SciErr sciErr = getVarType(pvApiCtx, addr, &type);
     if (sciErr.iErr)
     {
         return 0;
@@ -66,7 +65,7 @@ const char ** FieldsManager::getFields(int * addr, char ** fieldPath, const int 
     {
         int * strs = 0;
         const int nbItem = addr[1];
-        sciErr = getListItemAddress(NULL, addr, 1, &strs);
+        sciErr = getListItemAddress(pvApiCtx, addr, 1, &strs);
         if (sciErr.iErr)
         {
             return 0;
@@ -86,7 +85,7 @@ const char ** FieldsManager::getFields(int * addr, char ** fieldPath, const int 
         HandleFieldsGetter getter;
         fields = getter.getFieldsName("", addr, fieldPath, fieldPathLen, fieldsSize);
     }
-#endif
+
     return fields;
 }
 
@@ -134,18 +133,10 @@ finish :
         ret = (char **) malloc(sizeof(char *) **len);
         for (int i = 0; i < *len; i++)
         {
-            ret[i] = os_strdup(v.at(*len - i - 1).c_str());
+            ret[i] = strdup(v.at(*len - i - 1).c_str());
         }
     }
 
     return ret;
-}
-
-void FieldsManager::clearFieldsGetter()
-{
-    for (auto field : typeToFieldsGetter)
-    {
-        delete field.second;
-    }
 }
 }

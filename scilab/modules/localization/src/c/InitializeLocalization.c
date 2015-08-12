@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA - Sylvestre LEDRU
- * Copyright (C) 2011 - 2011 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -28,28 +27,27 @@
 #include <locale.h>
 #endif
 
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "InitializeLocalization.h"
 #include "localization.h"
-#include "sci_path.h"
+#include "setgetSCIpath.h"
+#include "inisci-c.h"
 #include "scilabDefaults.h"
 #include "setgetlanguage.h"
 #include "isdir.h"
-#include "os_string.h"
 #ifdef _MSC_VER
+#include "strdup_windows.h"
 #include "LanguagePreferences_Windows.h"
 #endif
 
-//#define FORCE_LOCALE_EN_US
 /*--------------------------------------------------------------------------*/
 
 BOOL InitializeLocalization(void)
 {
 #ifdef HAVE_LIBINTL_H
 
-    char *SCIpath = getSCI();
-    char *pathLocales = NULL;
-    char *previousPathLocales = NULL;
+    char *SCIpath = getSCIpath();
+    char *pathLocales = NULL, *previousPathLocales = NULL;
     char *ret = NULL;
 
     /* set directory containing message catalogs */
@@ -60,7 +58,7 @@ BOOL InitializeLocalization(void)
     if (bindtextdomain(NAMELOCALIZATIONDOMAIN, pathLocales) == NULL || !isdir(pathLocales))
     {
         /* source tree and classic build */
-        previousPathLocales = os_strdup(pathLocales);
+        previousPathLocales = strdup(pathLocales);
         if (pathLocales)
         {
             FREE(pathLocales);
@@ -80,12 +78,12 @@ BOOL InitializeLocalization(void)
             textdomain(NAMELOCALIZATIONDOMAIN);
             bind_textdomain_codeset (NAMELOCALIZATIONDOMAIN, "UTF-8");
 #ifndef _MSC_VER
-            setlanguage(L"");
+            setlanguage("");
 #else
             /* We look if registry value LANGUAGE exists */
             /* If not exists the "" means that we will try to use the language of the system.*/
             {
-                wchar_t* loadLanguage = getLanguagePreferences();
+                char *loadLanguage = getLanguagePreferences();
                 setlanguage(loadLanguage);
                 if (loadLanguage)
                 {
@@ -142,26 +140,18 @@ BOOL InitializeLocalization(void)
 #ifndef _MSC_VER
     /* Here, the "" means that we will try to use the language of the system
      * first. If it doesn't work, we switch back to default (English) */
-#ifdef FORCE_LOCALE_EN_US
-    setlanguage(L"C");
-#else
-    setlanguage(L"");
-#endif
+    setlanguage("");
 #else
     /* We look if registry value LANGUAGE exists */
     /* If not exists the "" means that we will try to use the language of the system.*/
     {
-#ifdef FORCE_LOCALE_EN_US
-        setlanguage(L"en_US");
-#else
-        wchar_t *loadLanguage = getLanguagePreferences();
+        char *loadLanguage = getLanguagePreferences();
         setlanguage(loadLanguage);
         if (loadLanguage)
         {
             FREE(loadLanguage);
             loadLanguage = NULL;
         }
-#endif
     }
 #endif
 

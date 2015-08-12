@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="stacksize">
+    <refnamediv>
+        <refname>stacksize</refname>
+        <refpurpose>set scilab stack size</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Calling Sequence</title>
+        <synopsis>stacksize(n)
+            stacksize('max')
+            stacksize('min')
+            sz = stacksize()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Arguments</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>an integer, the required stack size given in number of double precision words (8 bytes each)</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>a 2-vector [total used]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Description</title>
+        <para>
+            Scilab stores "usual" variables in a stack <literal>stk</literal> (for global variables see  <link linkend="gstacksize">gstacksize</link>).
+        </para>
+        <para>
+            <code>stacksize(n)</code> allows the user to increase or decrease the size of
+            this stack. The maximum allowed size depends on the amount of
+            free memory and swap space available at the time.
+        </para>
+        <para>
+            <code>stacksize('max')</code> allows the user to increase the size of
+            this stack to the maximum.
+        </para>
+        <para>
+            <code>stacksize('min')</code> allows the user to decrease the size of
+            this stack to the minimum.
+        </para>
+        <para>
+            This function with the <code>n</code> argument can now be used everywhere.
+        </para>
+        <para>
+            <code>sz = stacksize()</code> returns a 2-vector which contains  the current
+            total and used stack size.
+        </para>
+        <para>By default, the size of the stack is 10 000 000 (~76 Mb).</para>
+        <para>On 64 bit platforms, maximum size of the stack is limited to 268 435 454.</para>
+    </refsection>
+    <refsection>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+currentStackSize = stacksize();
+disp("Maximum stacksize: " + string(currentStackSize(1)))
+disp("Current usage: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="gstacksize">gstacksize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -14,12 +14,14 @@
 #define __GW_OUTPUT_STREAM_H__
 
 #include "dynlib_output_stream.h"
-#include "c_gateway_prototype.h"
-
 /*--------------------------------------------------------------------------*/
 OUTPUT_STREAM_IMPEXP int gw_output_stream(void);
 /*--------------------------------------------------------------------------*/
-C_GATEWAY_PROTOTYPE(sci_diary);
+OUTPUT_STREAM_IMPEXP int sci_print(char *fname, unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_mprintf(char *fname, unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_msprintf(char *fname, unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_disp(char *fname, unsigned long fname_len);
+OUTPUT_STREAM_IMPEXP int sci_diary(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /* __GW_OUTPUT_STREAM_H__ */
 /*--------------------------------------------------------------------------*/

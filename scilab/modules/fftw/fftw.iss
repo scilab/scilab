@@ -18,15 +18,17 @@
 ;
 #define FFTW "fftw"
 ;
-Source: bin\{#FFTW}\libfftw3-3.dll; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
-Source: bin\{#FFTW}\COPYRIGHT; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
-Source: bin\{#FFTW}\COPYING; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW} and not {#COMPN_FFTW_MKL_LIBRARY}
+Source: bin\{#FFTW}\lib{#FFTW}3-3.dll; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
+Source: bin\{#FFTW}\COPYRIGHT; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
+Source: bin\{#FFTW}\COPYING; DestDir: {app}\bin\{#FFTW}; Components: {#COMPN_FFTW}
 
 Source: bin\{#FFTW}.dll; DestDir: {app}\bin; DestName: {#FFTW}.dll; Components: {#COMPN_FFTW}
 Source: bin\no{#FFTW}.dll; DestDir: {app}\bin; DestName: {#FFTW}.dll; Components: not ({#COMPN_FFTW})
 ;
 
 Source: modules\{#FFTW}\license.txt; DestDir: {app}\modules\{#FFTW}; Components: {#COMPN_FFTW}
+;
+Source: modules\{#FFTW}\sci_gateway\{#FFTW}_gateway.xml; DestDir: {app}\modules\{#FFTW}\sci_gateway; Components: {#COMPN_FFTW}
 ;
 Source: modules\{#FFTW}\etc\{#FFTW}.quit; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; Components: {#COMPN_FFTW}
@@ -36,6 +38,8 @@ Source: modules\{#FFTW}\etc\{#FFTW}.start; DestDir: {app}\modules\{#FFTW}\etc; C
 ;Source: modules\{#FFTW}\includes\*.h; Flags: recursesubdirs; DestDir: {app}\modules\{#FFTW}\includes; Components: {#COMPN_FFTW}
 ;
 ;Source: modules\{#FFTW}\macros\lib; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
+;Source: modules\{#FFTW}\macros\names; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
+;Source: modules\{#FFTW}\macros\*.bin; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 ;Source: modules\{#FFTW}\macros\*.sci; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\macros\buildmacros.sce; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}
 Source: modules\{#FFTW}\macros\buildmacros.bat; DestDir: {app}\modules\{#FFTW}\macros; Components: {#COMPN_FFTW}

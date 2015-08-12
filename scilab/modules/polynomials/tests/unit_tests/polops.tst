@@ -7,6 +7,7 @@
 
 // <-- CLI SHELL MODE -->
 
+mode(5)
 lines(0)
 s=poly(0,'s');
 //polynomial operations

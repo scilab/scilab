@@ -12,6 +12,7 @@
 #include <stdio.h>
 #include "gw_mpi.h"
 #include "sci_mpi.h"
+#include "stack-c.h"
 #include "api_scilab.h"
 #include "Scierror.h"
 #include "localization.h"
@@ -19,7 +20,7 @@
 /**
  * This function returns the rank of a process
  */
-int sci_mpi_get_processor_name(char *fname, void* pvApiCtx)
+int sci_mpi_get_processor_name(char *fname, unsigned long fname_len)
 {
     int iSizeProcessorName;
     char processorName[MPI_MAX_PROCESSOR_NAME];

@@ -32,10 +32,10 @@ using namespace org_modules_hdf5;
   - h5ls(obj)
   - h5ls(obj, name)
   - h5ls(filename, name)
-*/
+/*
 
 /*--------------------------------------------------------------------------*/
-int sci_h5ls(char *fname, int* pvApiCtx)
+int sci_h5ls(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

@@ -10,20 +10,13 @@
  *
  */
 
+#include "ScilabObjects.hxx"
 #include <cstring>
+
 #include <cstdio>
 #include <vector>
 
-#include "internal.hxx"
-#include "EOType.hxx"
-#include "mlist.hxx"
-#include "ScilabObjects.hxx"
-#include "context.hxx"
-#include "function.hxx"
-#include "execvisitor.hxx"
-#include "gatewaystruct.hxx"
 extern "C" {
-#include "api_scilab.h"
     extern int C2F(varfunptr)(int *, int *, int *);
 }
 
@@ -33,10 +26,7 @@ bool ScilabObjects::isInit = false;
 const char * ScilabObjects::_EOBJ[] = {"_EObj", "_EnvId", "_id"};
 const char * ScilabObjects::_ECLASS[] = {"_EClass", "_EnvId", "_id"};
 const char * ScilabObjects::_EVOID[] = {"_EVoid", "_EnvId", "_id"};
-const wchar_t * ScilabObjects::_INVOKE_ = L"!!_invoke_";
-const wchar_t pwstEClass[] = {L"_EClass"};
-const wchar_t pwstEObj[] = {L"_EObj"};
-const wchar_t pwstEVoid[] = {L"_EVoid"};
+const char * ScilabObjects::_INVOKE_ = "!!_invoke_";
 
 void ScilabObjects::initialization(ScilabAbstractEnvironment & env, void * pvApiCtx)
 {
@@ -157,12 +147,38 @@ void ScilabObjects::createEnvironmentObjectAtPos(int type, int pos, int id, cons
     }
 }
 
-void ScilabObjects::copyInvocationMacroToStack(int pos, const int envId, bool isNew, void * pvApiCtx)
+void ScilabObjects::copyInvocationMacroToStack(int pos, ScilabAbstractEnvironment & env, void * pvApiCtx)
 {
-    EOType* invoke = new EOType(envId, isNew);
-    GatewayStruct* str = (GatewayStruct*)pvApiCtx;
-    //assign function as return value
-    str->m_pOut[pos - str->m_iIn - 1 /*0*/] = invoke;
+    static bool init = false;
+    static int id[nsiz];
+    static int interf = 0;
+    static int funnumber = 0;
+
+    if (!init)
+    {
+        init = true;
+        C2F(str2name)(const_cast<char *>(_INVOKE_), id, strlen(_INVOKE_));
+        int fins = Fin;
+        int funs = C2F(com).fun;
+        Fin = -1;
+        C2F(funs)(id);
+        funnumber = Fin;
+        interf = C2F(com).fun;
+        C2F(com).fun = funs;
+        Fin = fins;
+    }
+
+    int tops = Top;
+    // Remove 1 since varfunptr will increment Top
+    Top = Top - Rhs + pos - 1;
+
+    // Create a function pointer variable
+    C2F(varfunptr)(id, &interf, &funnumber);
+    C2F(intersci).ntypes[pos - 1] = '$';
+
+    Top = tops;
+
+    OptionsHelper::setCopyOccurred(true);
 }
 
 void ScilabObjects::removeTemporaryVars(const int envId, int * tmpvar)
@@ -772,43 +788,41 @@ int ScilabObjects::getArgumentId(int * addr, int * tmpvars, const bool isRef, co
 
 int ScilabObjects::getMListType(int * mlist, void * pvApiCtx)
 {
-    types::InternalType* pVar = (types::InternalType*) mlist;
+    char * mlist_type[3];
+    char * mtype = 0;
+    int lengths[3];
+    int rows, cols;
+    int type;
 
-    //if (mlist[0] == 0)
-    //{
-    //    return EXTERNAL_VOID;
-    //}
+    // OK it's crappy... but it works and it is performant...
 
-    if (!pVar->isMList())
+    if (mlist[0] == 0)
+    {
+        return EXTERNAL_VOID;
+    }
+
+    if (mlist[0] != sci_mlist || mlist[1] != 3)
     {
         return EXTERNAL_INVALID;
     }
 
-    types::MList* pMlist = pVar->getAs<types::MList>();
-    if (pMlist->getSize() != 3)
-    {
-        return EXTERNAL_INVALID;
-    }
-
-    types::String* pStrFieldNames = pMlist->getFieldNames();
-    if (pStrFieldNames->getSize() != 3)
+    if (mlist[6] != sci_strings || mlist[7] != 1 || mlist[8] != 3)
     {
         // first field is not a matrix 1x3 of strings
         return EXTERNAL_INVALID;
     }
 
-    wchar_t* pwstMlistType = pStrFieldNames->get(0);
-    if (wcslen(pwstMlistType) == strlen("_EClass") && wcscmp(pwstMlistType, L"_EClass") == 0)
+    if (mlist[11] - 1 == strlen("_EClass") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -12 && mlist[17] == 21 && mlist[18] == 10 && mlist[19] == 28 && mlist[20] == 28)
     {
         return EXTERNAL_CLASS;
     }
 
-    if (wcslen(pwstMlistType) == strlen("_EObj") && wcscmp(pwstMlistType, L"_EObj") == 0)
+    if (mlist[11] - 1 == strlen("_EObj") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -24 && mlist[17] == 11 && mlist[18] == 19)
     {
         return EXTERNAL_OBJECT;
     }
 
-    if (wcslen(pwstMlistType) == strlen("_EVoid") && wcscmp(pwstMlistType, L"_EVoid") == 0)
+    if (mlist[11] - 1 == strlen("_EVoid") && mlist[14] == 36 && mlist[15] == -14 && mlist[16] == -31 && mlist[17] == 24 && mlist[18] == 18 && mlist[19] == 13)
     {
         return EXTERNAL_VOID;
     }

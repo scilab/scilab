@@ -340,11 +340,6 @@ function C=expression2code(e)
         // -----
     case "equal"
         C=instruction2code(e)
-        // ------
-        // INLINE
-        // ------
-    case "inline"
-        C=["function " + e.prototype;"  " + e.definition;"endfunction"];
         // -------
         // COMMENT (inside a matrix declaration for example)
         // -------

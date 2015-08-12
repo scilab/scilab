@@ -7,4 +7,9 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
+if (isdef("genlib") == %f) then
+    exec(SCI+"/modules/functions/scripts/buildmacros/loadgenlib.sce");
+end
+//------------------------------------
 genlib("iolib","SCI/modules/io/macros",%f,%t);
+//------------------------------------

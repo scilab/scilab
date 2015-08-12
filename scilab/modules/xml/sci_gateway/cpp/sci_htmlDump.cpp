@@ -32,7 +32,7 @@ extern "C"
 using namespace org_modules_xml;
 
 /*--------------------------------------------------------------------------*/
-int sci_htmlDump(char *fname, void* pvApiCtx)
+int sci_htmlDump(char *fname, unsigned long fname_len)
 {
     org_modules_xml::XMLDocument * doc = 0;
     int id;

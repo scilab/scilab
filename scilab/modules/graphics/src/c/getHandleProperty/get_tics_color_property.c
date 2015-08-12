@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tics_color_property(void* _pvCtx, int iObjUID)
+int get_tics_color_property(void* _pvCtx, int iObjUID)
 {
     int iTicksColor = 0;
     int* piTicksColor = &iTicksColor;
@@ -40,9 +40,9 @@ void* get_tics_color_property(void* _pvCtx, int iObjUID)
     if (piTicksColor == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_color");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iTicksColor);
+    return sciReturnDouble(_pvCtx, iTicksColor);
 }
 /*------------------------------------------------------------------------*/

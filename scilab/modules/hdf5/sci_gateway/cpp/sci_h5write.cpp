@@ -51,7 +51,7 @@ using namespace org_modules_hdf5;
   - h5write(filename, name, data, targetType, start, count, stride, block, maxdims)
 */
 
-int sci_h5write(char *fname, int* pvApiCtx)
+int sci_h5write(char *fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

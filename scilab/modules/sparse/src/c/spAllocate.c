@@ -66,7 +66,7 @@
 #include "spDefs.h"
 #include "spmalloc.h"
 #include "spAllocate.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 static int InitializeElementBlocks( MatrixPtr  Matrix, int InitialNumberOfElements, int NumberOfFillinsExpected );
 

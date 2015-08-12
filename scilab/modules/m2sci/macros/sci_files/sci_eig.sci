@@ -66,7 +66,7 @@ function [tree]=sci_eig(tree)
         if lhs==1 then
             al=gettempvar(1)
             be=gettempvar(2)
-            m2sci_insert(Equal(list(al,be),Funcall("spec",1,tree.rhs,list(al,be))))
+            insert(Equal(list(al,be),Funcall("spec",1,tree.rhs,list(al,be))))
             tree=Operation("./",list(al,be),tree.lhs)
 
             tree.out(1).dims=list(m,1)
@@ -75,7 +75,7 @@ function [tree]=sci_eig(tree)
             al=gettempvar(1)
             be=gettempvar(2)
 
-            m2sci_insert(Equal(list(al,be,tree.lhs(1)),Funcall("eig",1,tree.rhs,list(al,be,tree.lhs(1)))))
+            insert(Equal(list(al,be,tree.lhs(1)),Funcall("eig",1,tree.rhs,list(al,be,tree.lhs(1)))))
 
             tree=Operation("./",list(al,be),list(tree.lhs(1)))
             tree=Funcall("diag",1,list(tree),tree.out)
@@ -87,7 +87,7 @@ function [tree]=sci_eig(tree)
         end
         // eig(A,B,flag)
     else
-        no_equiv(msprintf(gettext("%s, flag IGNORED."), strcat(expression2code(tree), "")))
+        no_equiv(msprintf(gettext("%s, flag IGNORED."),expression2code(tree)))
 
         tree.rhs(3)=null()
 

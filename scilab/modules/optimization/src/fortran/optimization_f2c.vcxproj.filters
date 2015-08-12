@@ -27,6 +27,21 @@
     <ClCompile Include="bfgsd.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bjlsqrsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bjsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\blsqrsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\boptim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\bsolv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="calbx.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -156,6 +171,12 @@
     <ClCompile Include="icsei.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\intlsqrsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intreadmps.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="minpack\lmder.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -264,6 +285,15 @@
     <ClCompile Include="satur.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_fsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_optim.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\fortran\sci_f_semidef.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="shanph.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -285,6 +315,21 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="bfgsd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjlsqrsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bjsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\blsqrsolv.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\boptim.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\bsolv.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="calbx.f">
@@ -416,6 +461,9 @@
     <f2c_rule Include="icsei.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\intlsqrsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="minpack\lmder.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -524,6 +572,15 @@
     <f2c_rule Include="satur.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_fsolve.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_optim.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="..\..\sci_gateway\fortran\sci_f_semidef.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
     <f2c_rule Include="shanph.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
@@ -537,6 +594,9 @@
       <Filter>Fortran files</Filter>
     </f2c_rule>
     <f2c_rule Include="zqnbd.f">
+      <Filter>Fortran files</Filter>
+    </f2c_rule>
+    <f2c_rule Include="intreadmps.f">
       <Filter>Fortran files</Filter>
     </f2c_rule>
   </ItemGroup>

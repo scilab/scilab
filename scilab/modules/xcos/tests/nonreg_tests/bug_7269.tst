@@ -23,7 +23,7 @@
 pal = xcosPal("My pal");
 scs_m = SUM_f("define");
 blockPath = TMPDIR + "/SUM_f.sod";
-save(blockPath, "scs_m"),
+export_to_hdf5(blockPath, "scs_m"),
 
 pal = xcosPalAddBlock(pal, blockPath);
 xcosPalAdd(pal);

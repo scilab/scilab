@@ -14,19 +14,19 @@
 /*--------------------------------------------------------------------------*/
 wchar_t * GetPathOfThisExe(void)
 {
-	wchar_t *pathexe = NULL;
-	wchar_t *tail;
-	wchar_t wcfullfilename[MAX_PATH * 2];
+    wchar_t *pathexe = NULL;
+    wchar_t *tail;
+    wchar_t wcfullfilename[MAX_PATH * 2];
 
-	GetModuleFileNameW(GetModuleHandleW(NULL), wcfullfilename, MAX_PATH * 2);
+    GetModuleFileNameW(GetModuleHandleW(NULL), wcfullfilename, MAX_PATH * 2);
 
-	if ((tail = wcsrchr (wcfullfilename, L'\\')) != NULL)
-	{
-		tail++;
-		*tail = L'\0';
-		pathexe = _wcsdup(wcfullfilename);
-	}
+    if ((tail = wcsrchr (wcfullfilename, L'\\')) != NULL)
+    {
+        tail++;
+        *tail = L'\0';
+        pathexe = _wcsdup(wcfullfilename);
+    }
 
-	return (wchar_t *)pathexe;
+    return (wchar_t *)pathexe;
 }
 /*--------------------------------------------------------------------------*/

@@ -12,8 +12,10 @@
 #include <string.h>
 #include <ctype.h>
 #include "csvDefault.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "checkCsvWriteFormat.h"
 // =============================================================================
 #define NB_FORMAT_SUPPORTED 7
@@ -52,7 +54,7 @@ static char *replaceInFormat(const char *format)
         {
             FREE(cleanedFormat);
             cleanedFormat = NULL;
-            return os_strdup("%s");
+            return strdup("%s");
         }
     }
 
@@ -74,7 +76,7 @@ static char *getCleanedFormat(const char *format)
                 if (token)
                 {
                     size_t nbcharacters = strlen(percent) - strlen(token);
-                    cleanedFormat = os_strdup(percent);
+                    cleanedFormat = strdup(percent);
                     cleanedFormat[nbcharacters] = 0;
                     if ( ((nbcharacters - 1 > 0) && (isdigit(cleanedFormat[nbcharacters - 1])) ||
                             (cleanedFormat[nbcharacters - 1]) == '.') ||

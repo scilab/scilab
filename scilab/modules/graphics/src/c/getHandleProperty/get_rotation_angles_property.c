@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_rotation_angles_property(void* _pvCtx, int iObjUID)
+int get_rotation_angles_property(void* _pvCtx, int iObjUID)
 {
     double* angles = NULL;
 
@@ -38,9 +38,9 @@ void* get_rotation_angles_property(void* _pvCtx, int iObjUID)
     if (angles == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "rotation_angles");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowVector(angles, 2);
+    return sciReturnRowVector(_pvCtx, angles, 2);
 }
 /*------------------------------------------------------------------------*/

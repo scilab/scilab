@@ -109,37 +109,30 @@ function importScicosPal(palFiles, outPath)
             if isfile(blockFile) then
                 //if the file already exists try to load data and compare
                 out2 = out;
-                try
-                    load(blockFile);
-                    //data are identical
-                    if isequal(out, out2) then
-                        doExport = %f;
-                    else
-                        out = out2;
-                    end
-                catch
+                bImport = import_from_hdf5(blockFile);
+
+                //data are identical
+                if bImport == %t & isequal(out, out2) then
+                    doExport = %f;
+                else
+                    out = out2;
                 end
             end
 
             if doExport == %t then
                 mprintf("%d: %s\n", i, block_name);
-                try
-                    save(blockFile, "out");
-                catch
+                bexport = export_to_hdf5(blockFile, "out");
+                if (~bexport) then
                     mprintf("FAILED TO EXPORT: %s\n", out.gui);
                 end
 
                 out2 = out;
-                try
-                    load(blockFile);
+                bImport = import_from_hdf5(blockFile);
 
-                    if or(out2 <> out) then
-                        mprintf("FAILED TO EXPORT: %s\n", out.gui);
-                    end
-                    exportedBlocks = exportedBlocks + 1;
-                catch
+                if bImport == %f | or(out2 <> out) then
                     mprintf("FAILED TO EXPORT: %s\n", out.gui);
                 end
+                exportedBlocks = exportedBlocks + 1;
             end
         end
     end

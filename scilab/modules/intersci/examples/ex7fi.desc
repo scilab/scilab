@@ -1,0 +1,10 @@
+calc	str
+str 	string	l
+a	scalar
+
+fcalc	str	a
+str	char
+a	integer
+
+out	sequence	a
+***********************

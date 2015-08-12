@@ -17,7 +17,7 @@ extern "C"
 {
 #include "freeArrayOfString.h"
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 }
 
 namespace org_modules_completion
@@ -42,7 +42,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
 
     *fieldsSize = 0;
 
-    sciErr = getListItemNumber(NULL, mlist, &nbItem);
+    sciErr = getListItemNumber(pvApiCtx, mlist, &nbItem);
     if (sciErr.iErr)
     {
         return 0;
@@ -53,13 +53,13 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
         return 0;
     }
 
-    sciErr = getListItemAddress(NULL, mlist, 1, &fieldsAddr);
+    sciErr = getListItemAddress(pvApiCtx, mlist, 1, &fieldsAddr);
     if (sciErr.iErr)
     {
         return 0;
     }
 
-    if (getAllocatedMatrixOfString(NULL, fieldsAddr, &rows, &cols, &pstData))
+    if (getAllocatedMatrixOfString(pvApiCtx, fieldsAddr, &rows, &cols, &pstData))
     {
         return 0;
     }
@@ -89,7 +89,7 @@ const char ** StructFieldsGetter::getFieldsName(int * mlist, char ** fieldPath, 
         {
             freeArrayOfString(pstData, rc);
             int * itemAddr = 0;
-            sciErr = getListItemAddress(NULL, mlist, i + 1, &itemAddr);
+            sciErr = getListItemAddress(pvApiCtx, mlist, i + 1, &itemAddr);
             if (sciErr.iErr)
             {
                 return 0;

@@ -16,6 +16,7 @@
 #ifndef __GW_CSV_HELPERS_H__
 #define __GW_CSV_HELPERS_H__
 
+
 char *csv_getArgumentAsStringWithEmptyManagement(void* _pvCtx, int _iVar,
         const char *fname, const char *defaultValue,
         int *iErr);
@@ -43,6 +44,7 @@ int csv_isColumnVector(void* _pvCtx, int _iVar);
 int csv_isScalar(void* _pvCtx, int _iVar);
 int csv_isDoubleScalar(void* _pvCtx, int _iVar);
 int csv_isEmpty(void* _pvCtx, int _iVar);
+
 #endif /* __GW_CSV_HELPERS_H__ */
 // =============================================================================
 

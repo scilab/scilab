@@ -15,22 +15,25 @@
 #include <stdio.h>
 #include <libxml/xpath.h>
 #include <libxml/xmlreader.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "scilabDefaults.h"
 #include "getScilabJNIEnv.h"
 #include "localization.h"
-#include "sci_path.h"
+#include "setgetSCIpath.h"
+#include "stricmp.h"
 #include "addToClasspath.h"
 #include "loadOnUseClassPath.h"
 #include "loadClasspath.h"
 #include "FileExist.h"
 #include "GetXmlFileEncoding.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 BOOL loadOnUseClassPath(char const* tag)
 {
     BOOL bOK = FALSE;
-    char *sciPath = getSCI();
+    char *sciPath = getSCIpath();
 
     char *classpathfile = (char*)MALLOC(sizeof(char) * (strlen(sciPath) + strlen(XMLCLASSPATH) + 1));
 
@@ -63,14 +66,6 @@ BOOL loadOnUseClassPath(char const* tag)
                 FREE(XPath);
                 XPath = NULL;
             }
-
-            if (classpathfile)
-            {
-                FREE(classpathfile);
-                classpathfile = NULL;
-            }
-
-            FREE(sciPath);
             return bOK;
         }
 
@@ -107,7 +102,7 @@ BOOL loadOnUseClassPath(char const* tag)
                         }
                         else
                         {
-                            FullClasspath = os_strdup(classpath);
+                            FullClasspath = strdup(classpath);
                         }
                         addToClasspath(FullClasspath, STARTUP);
                         FREE(FullClasspath);

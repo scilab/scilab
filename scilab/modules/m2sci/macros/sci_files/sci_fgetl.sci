@@ -18,7 +18,7 @@ function [tree]=sci_fgetl(tree)
 
     if typeof(tree.lhs(1))=="variable" & tree.lhs(1).name=="ans" then
         out=gettempvar()
-        m2sci_insert(Equal(list(out),tree))
+        insert(Equal(list(out),tree))
         tree=out
     else
         out=tree.lhs(1)
@@ -33,9 +33,9 @@ function [tree]=sci_fgetl(tree)
     EQ=Equal(list(out),Cste(-1))
 
     if typeof(tree)=="variable" then
-        m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],neq,list(EQ),list(),list()));
+        insert(tlist(["ifthenelse","expression","then","elseifs","else"],neq,list(EQ),list(),list()));
     else
-        m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],neq,list(EQ),list(),list()),1);
+        insert(tlist(["ifthenelse","expression","then","elseifs","else"],neq,list(EQ),list(),list()),1);
     end
 
     if typeof(tree)<>"variable" then

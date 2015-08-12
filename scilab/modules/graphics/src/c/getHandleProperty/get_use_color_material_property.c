@@ -23,7 +23,7 @@
 /**
  * Returns if the diffuse color is used (on/off).
  */
-void* get_use_color_material_property(void* _pvCtx, int iObjUID)
+int get_use_color_material_property(void* _pvCtx, int iObjUID)
 {
     int iColorMaterial = 0;
     int *piColorMaterial = &iColorMaterial;
@@ -33,15 +33,15 @@ void* get_use_color_material_property(void* _pvCtx, int iObjUID)
     if (piColorMaterial == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "use_color_material");
-        return NULL;
+        return -1;
     }
 
     if (iColorMaterial)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }

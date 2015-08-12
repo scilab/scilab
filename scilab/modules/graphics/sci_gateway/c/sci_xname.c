@@ -30,7 +30,7 @@
 #include "setGraphicObjectProperty.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xname(char *fname, void *pvApiCtx)
+int sci_xname(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

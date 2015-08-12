@@ -10,4 +10,4 @@
 *
 */
 
-int sci_listvar_in_hdf5_v1(char *fname, int* pvCtx);
+int sci_listvar_in_hdf5_v1(char *fname, unsigned long fname_len);

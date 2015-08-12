@@ -20,90 +20,90 @@
 /*--------------------------------------------------------------------------*/
 int sci_TCL_UpVar (char *fname, unsigned long l)
 {
-    /*    CheckRhs(2, 3);
-        CheckLhs(0, 1);
+    CheckRhs(2, 3);
+    CheckLhs(0, 1);
 
-        if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+    if ( (GetType(1) == sci_strings) && (GetType(2) == sci_strings) )
+    {
+        int m1 = 0, n1 = 0, l1 = 0;
+        int m2 = 0, n2 = 0, l2 = 0;
+
+        Tcl_Interp *TCLinterpreter = NULL;
+        char *sourceName = NULL, *destName = NULL;
+        int *paramoutINT = (int*)MALLOC(sizeof(int));
+
+        GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
+        sourceName = cstk(l1);
+
+        GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
+        destName = cstk(l2);
+
+        if (getTclInterp() == NULL)
         {
-            int m1 = 0, n1 = 0, l1 = 0;
-            int m2 = 0, n2 = 0, l2 = 0;
-
-            Tcl_Interp *TCLinterpreter = NULL;
-            char *sourceName = NULL, *destName = NULL;
-            int *paramoutINT = (int*)MALLOC(sizeof(int));
-
-            GetRhsVar(1, STRING_DATATYPE, &m1, &n1, &l1);
-            sourceName = cstk(l1);
-
-            GetRhsVar(2, STRING_DATATYPE, &m2, &n2, &l2);
-            destName = cstk(l2);
-
-            if (getTclInterp() == NULL)
-            {
-                releaseTclInterp();
-                Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
-                return 0;
-            }
             releaseTclInterp();
+            Scierror(999, _("%s: Error main TCL interpreter not initialized.\n"), fname);
+            return 0;
+        }
+        releaseTclInterp();
 
-            if (Rhs == 3)
+        if (Rhs == 3)
+        {
+            int m3 = 0, n3 = 0, l3 = 0;
+            /* three arguments given - get a pointer on the slave interpreter */
+            if (GetType(3) == sci_strings)
             {
-                int m3 = 0, n3 = 0, l3 = 0;
-                // three arguments given - get a pointer on the slave interpreter
-                if (GetType(3) == sci_strings)
+                GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
+                TCLinterpreter = Tcl_GetSlave(getTclInterp() , cstk(l3));
+                releaseTclInterp();
+                if (TCLinterpreter == NULL)
                 {
-                    GetRhsVar(3, STRING_DATATYPE, &m3, &n3, &l3);
-                    TCLinterpreter = Tcl_GetSlave(getTclInterp() , cstk(l3));
-                    releaseTclInterp();
-                    if (TCLinterpreter == NULL)
-                    {
-                        Scierror(999, _("%s: No such slave interpreter.\n"), fname);
-                        return 0;
-                    }
-                }
-                else
-                {
-                    Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+                    Scierror(999, _("%s: No such slave interpreter.\n"), fname);
                     return 0;
                 }
             }
             else
             {
-                // only two arguments given - use the main interpreter
-                TCLinterpreter = getTclInterp();
-                releaseTclInterp();
+                Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 3);
+                return 0;
             }
-
-            if ( Tcl_GetVar(TCLinterpreter, sourceName, TCL_GLOBAL_ONLY) )
-            {
-                if ( Tcl_UpVar(TCLinterpreter, "#0", sourceName, destName, TCL_GLOBAL_ONLY) == TCL_ERROR )
-                {
-                    *paramoutINT = (int)(FALSE);
-                }
-                else
-                {
-                    *paramoutINT = (int)(TRUE);
-                }
-            }
-            else
-            {
-                *paramoutINT = (int)(FALSE);
-            }
-
-            n1 = 1;
-            CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
-            LhsVar(1) = Rhs + 1;
-            if (paramoutINT)
-            {
-                FREE(paramoutINT);
-                paramoutINT = NULL;
-            }
-            PutLhsVar();
         }
         else
         {
-            Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
+            /* only two arguments given - use the main interpreter */
+            TCLinterpreter = getTclInterp();
+            releaseTclInterp();
         }
-    */    return 0;
+
+        if ( Tcl_GetVar(TCLinterpreter, sourceName, TCL_GLOBAL_ONLY) )
+        {
+            if ( Tcl_UpVar(TCLinterpreter, "#0", sourceName, destName, TCL_GLOBAL_ONLY) == TCL_ERROR )
+            {
+                *paramoutINT = (int)(FALSE);
+            }
+            else
+            {
+                *paramoutINT = (int)(TRUE);
+            }
+        }
+        else
+        {
+            *paramoutINT = (int)(FALSE);
+        }
+
+        n1 = 1;
+        CreateVarFromPtr(Rhs + 1, MATRIX_OF_BOOLEAN_DATATYPE, &n1, &n1, &paramoutINT);
+        LhsVar(1) = Rhs + 1;
+        if (paramoutINT)
+        {
+            FREE(paramoutINT);
+            paramoutINT = NULL;
+        }
+        PutLhsVar();
+    }
+    else
+    {
+        Scierror(999, _("%s: Wrong type for input argument #%d or #%d: String expected.\n"), fname, 1, 2);
+    }
+    return 0;
 }
 /*--------------------------------------------------------------------------*/

@@ -50,7 +50,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
     {
         fieldName = ScilabObjects::getSingleString(1, pvApiCtx);
     }
-    catch (ScilabAbstractEnvironmentException & /*e*/)
+    catch (ScilabAbstractEnvironmentException & e)
     {
         ScilabObjects::removeTemporaryVars(eId, tmpvar);
         throw;
@@ -66,7 +66,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
         {
             type = env.getfieldtype(idObj, fieldName);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             ScilabObjects::removeTemporaryVars(eId, tmpvar);
             freeAllocatedSingleString(fieldName);
@@ -82,8 +82,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
         options.setMethodName(fieldName);
         options.setObjId(idObj);
         OptionsHelper::setEnvId(eId);
-        OptionsHelper::setCopyOccurred(true);
-        ScilabObjects::copyInvocationMacroToStack(Rhs + 1, eId, options.getIsNew(), pvApiCtx);
+        ScilabObjects::copyInvocationMacroToStack(Rhs + 1, env, pvApiCtx);
 
         LhsVar(1) = Rhs + 1;
         PutLhsVar();
@@ -96,7 +95,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
         {
             ret = env.getfield(idObj, fieldName);
         }
-        catch (std::exception & /*e*/)
+        catch (std::exception & e)
         {
             freeAllocatedSingleString(fieldName);
             throw;
@@ -112,7 +111,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
                 {
                     ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
                 }
-                catch (ScilabAbstractEnvironmentException & /*e*/)
+                catch (ScilabAbstractEnvironmentException & e)
                 {
                     env.removeobject(ret);
                     throw;
@@ -129,7 +128,7 @@ int ScilabGateway::classExtract(char * fname, const int envId, void * pvApiCtx)
             {
                 ScilabObjects::createEnvironmentObjectAtPos(EXTERNAL_OBJECT, Rhs + 1, ret, eId, pvApiCtx);
             }
-            catch (ScilabAbstractEnvironmentException & /*e*/)
+            catch (ScilabAbstractEnvironmentException & e)
             {
                 env.removeobject(ret);
                 throw;

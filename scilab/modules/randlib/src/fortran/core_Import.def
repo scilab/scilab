@@ -8,9 +8,15 @@ EXPORTS
 iop_
 
 ;
-; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol
+; explicit imports (COMMON) to fix warning LNK4049: locally defined symbol 
 ;
+stack_
 adre_
+vstk_
+recu_
+errgst_
 com_
+cha1_
+intersci_
 ;
 

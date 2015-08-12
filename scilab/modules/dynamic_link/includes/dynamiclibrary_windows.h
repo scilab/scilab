@@ -12,8 +12,6 @@
 #ifndef __DYNAMICLIBRARY_WINDOWS_H__
 #define __DYNAMICLIBRARY_WINDOWS_H__
 
-//avoid declaration on macro min/max
-#define NOMINMAX
 #include <Windows.h>
 #include "dynlib_dynamic_link.h"
 
@@ -50,41 +48,13 @@ DYNAMIC_LINK_IMPEXP BOOL FreeDynLibrary(DynLibHandle hInstance);
 * @param string that specifies the function
 * @return
 */
-DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, const char *funcName);
+DYNAMIC_LINK_IMPEXP DynLibFuncPtr GetDynLibFuncPtr(DynLibHandle hInstance, char *funcName);
 
 /**
 * return last dynamic linking error
 * @return a string
 */
 DYNAMIC_LINK_IMPEXP char * GetLastDynLibError(void);
-
-typedef int (*PROC_GATEWAY) (void);
-
-typedef enum { DYN_GW_NO_ERROR = 0,
-               DYN_GW_LOAD_LIBRARY_ERROR = 1,
-               DYN_GW_PTR_FUNCTION_ERROR = 2,
-               DYN_GW_CALL_FUNCTION_ERROR = 3
-
-             } dynamic_gateway_error_code;
-
-typedef enum { DYNLIB_NAME_FORMAT_AUTO = 0,
-               DYNLIB_NAME_FORMAT_1 = 1,
-               DYNLIB_NAME_FORMAT_2 = 2,
-               DYNLIB_NAME_FORMAT_3 = 3
-             } dynlib_name_format;
-
-#define FORMATGATEWAYLIBNAME_1 L"%ls%ls"
-#define FORMATGATEWAYLIBNAME_2 L"sci%ls%ls"
-#define FORMATGATEWAYLIBNAME_3 L"libsci%ls%ls"
-
-/**
-* Build name of dynamic library based on module name
-* @param[in] module name
-* @param[in] generated dynamic lib name type
-* @return name of dynamic library
-*/
-DYNAMIC_LINK_IMPEXP wchar_t* buildModuleDynLibraryNameW(const wchar_t* _pwstModuleName, dynlib_name_format _iType);
-DYNAMIC_LINK_IMPEXP char* buildModuleDynLibraryName(const char* _pstModuleName, dynlib_name_format _iType);
 
 #endif /* __DYNAMICLIBRARY_WINDOWS_H__ */
 

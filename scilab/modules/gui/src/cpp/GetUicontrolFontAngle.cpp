@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolFontAngle(void* _pvCtx, int iObjUID)
+int GetUicontrolFontAngle(void* _pvCtx, int iObjUID)
 {
     char* fontAngle = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_FONTANGLE__, jni_string, (void**) &fontAngle);
 
     if (fontAngle == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "FontAngle");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnString(fontAngle);
+        status = sciReturnString(_pvCtx, fontAngle);
         delete[] fontAngle;
         return status;
     }

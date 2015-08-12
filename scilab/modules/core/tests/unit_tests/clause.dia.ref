@@ -36,6 +36,7 @@ if t(1)<>0 then bugmes();quit;end
 if t(-1)<>1 then bugmes();quit;end
 //
 t1=t;
+comp(t1)
 if t(0)-t1(0)<>0 then bugmes();quit;end
 if t(1)-t1(1)<>0 then bugmes();quit;end
 if t(-1)-t1(-1)<>0 then bugmes();quit;end
@@ -95,7 +96,7 @@ deff('[k]=tt1()',[
 if tt1()<>4 then bugmes();quit;end
 if tt1()<>4 then bugmes();quit;end
 //
-// keyboard mode
+// keyboard mode 
 //------------------------
 k=0;while k<10 ,k=k+1;if k==3 then break,end,end,k=k+1;
 if k<>4 then bugmes();quit;end
@@ -132,6 +133,9 @@ if or(c<>[1 2 3 4]) then bugmes();quit;end
 deff('c=foo(n)','c=[];for k=1:5,if k==n then continue,end,c=[c,k],end','n')
 if or(foo(3)<>[1 2 4 5]) then bugmes();quit;end
 if or(foo(5)<>[1 2 3 4]) then bugmes();quit;end
+comp(foo)
+if or(foo(3)<>[1 2 4 5]) then bugmes();quit;end
+if or(foo(5)<>[1 2 3 4]) then bugmes();quit;end
 n=3;
 c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
@@ -139,6 +143,9 @@ n=4;
 c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
 deff('c=foo(n)','c=[];for i=1:3,for k=1:4,if k==n&i==2 then continue,end,c=[c,k];end;end','n')
+if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
+if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
+comp(foo)
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
 //in a while
@@ -153,6 +160,9 @@ if or(c<>[1 2 3 4]) then bugmes();quit;end
 deff('c=foo(n)','c=[];k=0;while k<5,k=k+1;if k==n then continue,end,c=[c,k],end','n')
 if or(foo(3)<>[1 2 4 5]) then bugmes();quit;end
 if or(foo(5)<>[1 2 3 4]) then bugmes();quit;end
+comp(foo)
+if or(foo(3)<>[1 2 4 5]) then bugmes();quit;end
+if or(foo(5)<>[1 2 3 4]) then bugmes();quit;end
 n=3;
 c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end
 if or(c<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
@@ -161,5 +171,8 @@ c=[];for i=1:3,k=0;while k<4,k=k+1;,if k==n&i==2 then continue,end,c=[c,k];end;e
 if or(c<> [1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
 clear foo
 deff('c=foo(n)','c=[];for i=1:3,k=0;while k<4,k=k+1;if k==n&i==2 then continue,end,c=[c,k];end;end','n')
+if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
+if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end
+comp(foo)
 if or(foo(3)<>[1,2,3,4, 1,2,4, 1,2,3,4]) then bugmes();quit;end
 if or(foo(4)<>[1,2,3,4, 1,2,3, 1,2,3,4]) then bugmes();quit;end

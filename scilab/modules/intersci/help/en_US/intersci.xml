@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Copyright (C) 2006-2008 - INRIA
+ *
+ * This file must be used under the terms of the CeCILL.
+ * This source file is licensed as described in the file COPYING, which
+ * you should have received as part of this distribution.  The terms
+ * are also available at
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+ *
+ -->
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" scilab:needs-examples="no" xml:id="intersci">
+    <refnamediv>
+        <refname>intersci</refname>
+        <refpurpose>Scilab tool to interface C or Fortran functions with scilab. Deprecated: Please use SWIG</refpurpose>
+    </refnamediv>
+    <refsection>
+        <title>Description</title>
+        <para>
+            All scilab primitive functions are defined in a set of interface
+            routines. For each function the interfacing code checks first number of
+            rhs and lhs arguments. Then it get pointers on input arguments in the
+            Scilab data base and checks their types. After that it calls procedure
+            associated with Scilab functions, checks returned errors flags and set
+            the results in the data base.
+        </para>
+        <para>
+            <literal>intersci</literal> is a program which permits to interface automatically FORTRAN
+            subroutines or C functions to Scilab
+        </para>
+        <para>
+            With <literal>intersci</literal>, a user can group all his FORTRAN or C code into a same set,
+            called an interface, and use them in Scilab as Scilab functions. The interfacing
+            is made by creating a FORTRAN subroutine which has to be linked to
+            Scilab  together
+            with the user code. This complex FORTRAN subroutine is automatically generated
+            by <literal>intersci</literal> from a description file of the interface.
+        </para>
+        <para>Refer to intersci documentation for more details.</para>
+        <para>Note that this feature is obsolete and unsupported and will be replaced by a Scilab SWIG wrapper in an upcoming version.</para>
+    </refsection>
+    <refsection role="see also">
+        <title>See Also</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="fort">fort</link>
+            </member>
+            <member>
+                <link linkend="external">external</link>
+            </member>
+            <member>
+                <link linkend="addinter">addinter</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

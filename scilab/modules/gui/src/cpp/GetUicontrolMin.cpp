@@ -17,7 +17,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolMin(void* _pvCtx, int iObjUID)
+int GetUicontrolMin(void* _pvCtx, int iObjUID)
 {
     double minValue = 0;
     double* pdblMinValue = &minValue;
@@ -27,10 +27,10 @@ void* GetUicontrolMin(void* _pvCtx, int iObjUID)
     if (pdblMinValue == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Min");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        return sciReturnDouble(minValue);
+        return sciReturnDouble(_pvCtx, minValue);
     }
 }

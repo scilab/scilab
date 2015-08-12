@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ru" xml:id="getvariablesonstack">
+    <refnamediv>
+        <refname>getvariablesonstack</refname>
+        <refpurpose>получение имён переменных в стеке Scilab'а</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>Последовательность вызова</title>
+        <synopsis>
+            s=getvariablesonstack()
+            s=getvariablesonstack('local')
+            s=getvariablesonstack('global')
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>Аргументы</title>
+        <variablelist>
+            <varlistentry>
+                <term>s</term>
+                <listitem>
+                    <para>матрица строк</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>Описание</title>
+        <para>
+            <literal>getvariablesonstack()</literal> возвращает в <literal>s</literal> 
+            имена переменных в стеке Scilab'а. 
+        </para>
+        <para>
+            <literal>getvariablesonstack('local')</literal> возвращает локальные переменные в стеке 
+            Scilab'а.
+        </para>
+        <para>
+            <literal>getvariablesonstack('global')</literal> возвращает локальные переменные в стеке 
+            Scilab'а.
+        </para>
+        <para>Переменные отсортированы в алфавитном порядке.</para>
+    </refsection>
+    <refsection>
+        <title>Примеры</title>
+        <programlisting role="example"><![CDATA[ 
+getvariablesonstack()
+getvariablesonstack('local')
+getvariablesonstack('global')
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>Смотрите также</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="whos">whos</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_color_flag_property(void* _pvCtx, int iObjUID)
+int get_color_flag_property(void* _pvCtx, int iObjUID)
 {
     int iColorFlag = 0;
     int* piColorFlag = &iColorFlag;
@@ -40,9 +40,9 @@ void* get_color_flag_property(void* _pvCtx, int iObjUID)
     if (piColorFlag == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "color_flag");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnDouble(iColorFlag);
+    return sciReturnDouble(_pvCtx, iColorFlag);
 }
 /*------------------------------------------------------------------------*/

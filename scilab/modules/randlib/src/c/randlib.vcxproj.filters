@@ -1,25 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
-      <UniqueIdentifier>{b15886d4-0a73-48c9-ba31-5a59ec8fd7f5}</UniqueIdentifier>
+      <UniqueIdentifier>{c589a035-8331-47ce-8175-bf82bc45db6c}</UniqueIdentifier>
       <Extensions>cpp;c;cxx;rc;def;r;odl;idl;hpj;bat</Extensions>
     </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{41852aef-218e-4453-9b9c-be1e12c61b00}</UniqueIdentifier>
+      <UniqueIdentifier>{253e7969-1685-4fd5-8faf-1470ebdfc965}</UniqueIdentifier>
       <Extensions>h;hpp;hxx;hm;inl</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{53fafc8e-e736-4d87-bf93-de534129cbb6}</UniqueIdentifier>
+      <UniqueIdentifier>{74fcaecf-1f1b-4912-91dc-8f3691c8ccbd}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{4b543df2-d2b2-433b-a725-aafcf2b4fa97}</UniqueIdentifier>
+      <UniqueIdentifier>{14ef7e69-e958-4e76-b571-8506b4b6b686}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{80c06748-e7c5-4eb6-b326-e72efd192340}</UniqueIdentifier>
+      <UniqueIdentifier>{c9c3e3ae-b75a-4d06-92ed-0de6e36c209d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{adf6d867-b3fe-4f4b-8902-d47fedc5bff5}</UniqueIdentifier>
+      <UniqueIdentifier>{a9c4d8a1-69fb-4b02-ae40-124cd3fda1bd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -38,6 +38,9 @@
     <ClCompile Include="genbet.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\gw_randlib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="ignbin.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -53,6 +56,9 @@
     <ClCompile Include="mt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\sci_gateway\c\sci_grand.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sexpo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -60,12 +66,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="urand.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\sci_gateway\cpp\sci_grand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\cpp\grand.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,10 +79,10 @@
     <ClInclude Include="..\..\includes\grand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\others_generators.h">
+    <ClInclude Include="..\..\includes\gw_randlib.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\includes\randlib_gw.hxx">
+    <ClInclude Include="..\..\includes\others_generators.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

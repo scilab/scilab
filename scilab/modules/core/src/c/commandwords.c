@@ -11,10 +11,11 @@
  */
 #include <string.h>
 #include "commandwords.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BOOL.h"
-#include "os_string.h"
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 
 /*--------------------------------------------------------------------------*/
 /* if you update command.f , please update this file too ... */
@@ -53,7 +54,7 @@ char **getcommandkeywords(int *sizearray)
         int i = 0;
         for (i = 0; i < nbrCommands; i++)
         {
-            keywords[i] = os_strdup(CommandWords[i]);
+            keywords[i] = strdup(CommandWords[i]);
         }
         *sizearray =  nbrCommands;
 

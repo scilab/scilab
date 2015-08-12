@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID)
+int GetUicontrolVerticalAlignment(void* _pvCtx, int iObjUID)
 {
     char* alignment = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_VERTICALALIGNMENT__, jni_string, (void**) &alignment);
 
     if (alignment == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "VerticalAlignment");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnString(alignment);
+        status = sciReturnString(_pvCtx, alignment);
         delete[] alignment;
         return status;
     }

@@ -17,11 +17,6 @@ function [%val, %ierr] = evstr(%str)
 
     case 10 then
         // matrix of character strings
-        if isempty(%str) then
-            %val = [];
-            %ierr =  0;
-            return;
-        end
 
         // bug 7003
         if ~isdef("Nan") then

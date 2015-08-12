@@ -28,7 +28,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_arc_drawing_method_property(void* _pvCtx, int iObjUID)
+int get_arc_drawing_method_property(void* _pvCtx, int iObjUID)
 {
     int iArcDrawingMethod = 0;
     int* piArcDrawingMethod = &iArcDrawingMethod;
@@ -38,22 +38,23 @@ void* get_arc_drawing_method_property(void* _pvCtx, int iObjUID)
     if (piArcDrawingMethod == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "arc_drawing_method");
-        return NULL;
+        return -1;
     }
 
     /* 0: nurbs, 1: lines */
     if (iArcDrawingMethod == 0)
     {
-        return sciReturnString("nurbs");
+        return sciReturnString(_pvCtx, "nurbs");
     }
     else if (iArcDrawingMethod == 1)
     {
-        return sciReturnString("lines");
+        return sciReturnString(_pvCtx, "lines");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "arc_drawing_method");
-        return NULL;
+        return -1;
     }
+
 }
 /*------------------------------------------------------------------------*/

@@ -18,17 +18,7 @@ function r=is_a_scalar(A)
     for k=1:n
         if A.dims(k)<>1 then
             r=%F
-            //return
+            return
         end
     end
-endfunction
-
-
-function a = toto()
-a = %T;
-if 1 then
-a = %F;
-return
-end
-a = %T;
 endfunction

@@ -13,7 +13,7 @@
 /*--------------------------------------------------------------------------*/
 #include <string.h>
 #include "TermReadAndProcess.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "prompt.h"
 #include "TermConsole.h"
 /*--------------------------------------------------------------------------*/

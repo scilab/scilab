@@ -11,7 +11,7 @@
  */
 #include <stdio.h>                      // for NULL, fprintf, stderr
 #include <mpi.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "BOOL.h"                       // for ::TRUE, ::FALSE, BOOL
 #include "api_scilab.h"                 // for pvApiCtx, etc
 
@@ -61,7 +61,7 @@ static void mpi_init_internal()
 
 }
 
-int sci_mpi_init(char *fname, void* pvApiCtx)
+int sci_mpi_init(char *fname, unsigned long fname_len)
 {
     int flag;
 

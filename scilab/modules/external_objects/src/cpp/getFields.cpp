@@ -50,7 +50,7 @@ int ScilabGateway::getFields(char * fname, const int envId, void * pvApiCtx)
     {
         env.getaccessiblefields(idObj, *allocator);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         delete allocator;
         throw;

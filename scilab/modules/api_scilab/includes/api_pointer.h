@@ -20,7 +20,6 @@
 extern "C" {
 #endif
 
-#include "dynlib_api_scilab.h"
 
     /**
      * Get pointer variable
@@ -29,6 +28,14 @@ extern "C" {
      * @return if the operation succeeded ( 0 ) or not ( !0 )
      */
     SciErr getPointer(void* _pvCtx, int* _piAddress, void** _pvPtr);
+
+    /**
+     * Allocate a pointer variable
+     * @param[in] _iVar variable number
+     * @param[out] _pvPtr return pointer
+     * @return if the operation succeeded ( 0 ) or not ( !0 )
+     */
+    SciErr allocPointer(void* _pvCtx, int _iVar, void** _pvPtr);
 
     /**
      * Create pointer variable

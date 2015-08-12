@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_mark_mode_property(void* _pvCtx, int iObjUID)
+int get_mark_mode_property(void* _pvCtx, int iObjUID)
 {
     int iMarkMode = 0;
     int *piMarkMode = &iMarkMode;
@@ -40,16 +40,16 @@ void* get_mark_mode_property(void* _pvCtx, int iObjUID)
     if (piMarkMode == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "mark_mode");
-        return NULL;
+        return -1;
     }
 
     if (iMarkMode)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

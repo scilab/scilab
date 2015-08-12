@@ -22,11 +22,11 @@
 #include "get_ticks_utils.h"
 #include "returnPropertyList.h"
 /*--------------------------------------------------------------------------------*/
-void* buildTListForTicks(const double* locations, char * labels[], int nbTics)
+int buildTListForTicks(const double* locations, char * labels[], int nbTics)
 {
     char * variable_tlist[] = {"ticks", "locations", "labels"};
 
-    void* tList = createReturnedList(2, variable_tlist);
+    returnedList * tList = createReturnedList(2, variable_tlist);
 
     if (nbTics == 0)
     {
@@ -40,6 +40,8 @@ void* buildTListForTicks(const double* locations, char * labels[], int nbTics)
         addStringColVectorToReturnedList(tList, labels, nbTics);
     }
 
-    return tList;
+    destroyReturnedList(tList);
+
+    return 0;
 }
 /*--------------------------------------------------------------------------------*/

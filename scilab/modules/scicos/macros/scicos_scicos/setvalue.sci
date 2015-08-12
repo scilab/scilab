@@ -255,8 +255,8 @@ function [%ok,%1,%2,%3,%4,%5,...
         if %noooo>0 then
             str = gettext("%s: Wrong size for block parameter ''%s'': %s expected, getting %s");
             mess = msprintf(str, arg1.gui + "(''set'')", %lables(%noooo), %ssss, %ini(%noooo));
-            if length(arg1.model.uid) > 0 then
-                warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
+            if length(arg1.doc) > 0 then
+                warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
             else
                 disp(mess);
             end
@@ -265,8 +265,8 @@ function [%ok,%1,%2,%3,%4,%5,...
         elseif %noooo<0 then
             str = gettext("%s: Wrong type for block parameter ''%s'': %s(%s) expected, getting %s");
             mess = msprintf(str, arg1.gui + "(''set'')", %lables(-%noooo), %typ(-2*%noooo-1), strcat(string(%typ(-2*%noooo))," by "), %ini(-%noooo));
-            if length(arg1.model.uid) > 0 then
-                warnBlockByUID(arg1.model.uid, mess); // arg1 is from the block interface function
+            if length(arg1.doc) > 0 then
+                warnBlockByUID(arg1.doc(1), mess); // arg1 is from the block interface function
             else
                 disp(mess);
             end

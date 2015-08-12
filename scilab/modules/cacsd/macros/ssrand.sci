@@ -108,12 +108,7 @@ function [sl,U]=ssrand(nout,nin,nstate,flag)
     //         row dimension C2.= row dimension of D2. =rk
     //***************************************************************
 
-    function [w]=st_able(w,margin)
-        if w~=[] then
-            w=w-(max(real(spec(w)))+margin)*eye();
-        end
-    endfunction
-
+    deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
     margin=0.5;  //M "stable"  will mean real-part(M) < -margin
     [lhs,rhs]=argn(0)
     //rand('seed',0)
@@ -248,13 +243,7 @@ function w=imag_axis(ns,nn,nu,flag);
     [LHS,RHS]=argn(0);
     if RHS==3 then flag="siu";end
     if flag=="siu" then
-
-        function [w]=st_able(w,margin)
-            if w~=[] then
-                w=w-(max(real(spec(w)))+margin)*eye();
-            end
-        endfunction
-
+        deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
         margin=0.5;  //M "stable"  will mean real-part(M) < -margin
         w=[];k=int(nn/2);
         rand("normal");
@@ -270,13 +259,7 @@ function w=imag_axis(ns,nn,nu,flag);
         return
     end
     if flag=="uis" then
-
-        function [w]=st_able(w,margin)
-            if w~=[] then
-                w=w-(max(real(spec(w)))+margin)*eye();
-            end
-        endfunction
-
+        deff("[w]=st_able(w,margin)","if w~=[] then w=w-(max(real(spec(w)))+margin)*eye();end")
         w=[];k=int(nn/2);
         rand("normal");
         //rand('seed',0);

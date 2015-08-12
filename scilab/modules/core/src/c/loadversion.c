@@ -17,37 +17,38 @@
 #include <libxml/xmlreader.h>
 #include "loadversion.h"
 #include "with_module.h"
-#include "sci_path.h"
-#include "sci_malloc.h"
+#include "setgetSCIpath.h"
+#include "MALLOC.h"
 #include "GetXmlFileEncoding.h"
 #include "scilabDefaults.h"
 #include "localization.h"
+#include "stricmp.h"
 #include "FileExist.h"
-#include "os_string.h"
-#include "getshortpathname.h"
-#include "charEncoding.h"
 #include "version.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "getshortpathname.h"
 /*--------------------------------------------------------------------------*/
-BOOL getversionmodule(wchar_t* _pwstModule,
+BOOL getversionmodule(char *modulename,
                       int *sci_version_major,
                       int *sci_version_minor,
                       int *sci_version_maintenance,
-                      wchar_t* _pwstSciVersionString,
+                      char *sci_version_string,
                       int *sci_version_revision)
 {
     BOOL bOK = FALSE;
 
-    if (with_module(_pwstModule))
+    if (with_module(modulename))
     {
-        char* filename_VERSION_module = NULL;
-        char* pstModule = wide_string_to_UTF8(_pwstModule);
-        char* SciPath = NULL;
+        char *filename_VERSION_module = NULL;
+        char *SciPath = NULL;
         int len = 0;
 
-        SciPath = getSCI();
-        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(pstModule) + 1;
+        SciPath = getSCIpath();
+        len = (int)strlen(FORMATVERSIONFILENAME) + (int)strlen(SciPath) + (int)strlen(modulename) + 1;
         filename_VERSION_module = (char*)MALLOC(sizeof(char) * len);
-        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, pstModule);
+        sprintf(filename_VERSION_module, FORMATVERSIONFILENAME, SciPath, modulename);
         if (SciPath)
         {
             FREE(SciPath);
@@ -72,7 +73,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                 int version_minor = 0;
                 int version_maintenance = 0;
                 int version_revision = 0;
-                wchar_t *pwstSciVersionString = 0;
+                char *version_string = 0;
 
                 {
                     BOOL bConvert = FALSE;
@@ -128,7 +129,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                         {
                             /* we found <string> */
                             const char *str = (const char*)attrib->children->content;
-                            pwstSciVersionString = to_wide_string(str);
+                            version_string = strdup(str);
                         }
 
                         attrib = attrib->next;
@@ -138,11 +139,11 @@ BOOL getversionmodule(wchar_t* _pwstModule,
                     *sci_version_minor = version_minor;
                     *sci_version_maintenance = version_maintenance;
                     *sci_version_revision = version_revision;
-                    wcscpy(_pwstSciVersionString, pwstSciVersionString);
-                    if (pwstSciVersionString)
+                    strncpy(sci_version_string, version_string, 1024);
+                    if (version_string)
                     {
-                        FREE(pwstSciVersionString);
-                        pwstSciVersionString = NULL;
+                        FREE(version_string);
+                        version_string = NULL;
                     }
                 }
                 else
@@ -179,7 +180,7 @@ BOOL getversionmodule(wchar_t* _pwstModule,
             *sci_version_minor = SCI_VERSION_MINOR;
             *sci_version_maintenance = SCI_VERSION_MAINTENANCE;
             *sci_version_revision = SCI_VERSION_TIMESTAMP;
-            wcscpy(_pwstSciVersionString, L"");
+            strcpy(sci_version_string, "");
             bOK = TRUE;
         }
 

@@ -21,12 +21,11 @@
 #include <dirent.h>
 #endif
 
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
 
 #include "PATH_MAX.h"
 #include "scicurdir.h"
-
+#include "warningmode.h"
 
 #include "fileutils.h"
 
@@ -41,7 +40,7 @@ int isEmptyDirectory(char *dirName)
     int ret = 1;
 
     wcpath = to_wide_string(dirName);
-    os_swprintf(wdirpath, wcslen(wcpath) + 2 + 1, L"%s\\*", wcpath);
+    swprintf(wdirpath, wcslen(wcpath) + 2 + 1, L"%s\\*", wcpath);
     FREE(wcpath);
 
     hFile = FindFirstFileW(wdirpath, &FileInformation);

@@ -1,4 +1,0 @@
-LIBRARY    ast.dll
-
-EXPORTS
-getSCI

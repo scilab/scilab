@@ -27,7 +27,9 @@
 #include <stdio.h>
 #include <string.h>
 
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_Windows.h"
+#endif
 
 #include "InitObjects.h"
 #include "SetProperty.h"
@@ -39,7 +41,7 @@
 #include "HandleManagement.h"
 #include "BasicAlgos.h"
 
-#include "sci_malloc.h"             /* MALLOC */
+#include "MALLOC.h"             /* MALLOC */
 #include "localization.h"
 
 #include "createGraphicObject.h"
@@ -166,7 +168,6 @@ void InitFigureModel(int iFiguremdlUID)
     }
     // ColorMap
     setGraphicObjectProperty(iFiguremdlUID, __GO_COLORMAP__, pdblColorMap, jni_double_vector, 3 * m);
-    FREE(pdblColorMap);
 
     // Parent
     {
@@ -462,7 +463,7 @@ int InitAxesModel()
     for (i = 0; i < defaultNumberTicks; i++)
     {
         sprintf(labelBuffer, "%.1f", tab[i]);
-        stringVector[i] = os_strdup(labelBuffer);
+        stringVector[i] = strdup(labelBuffer);
 
         if (stringVector[i] == NULL)
         {
@@ -487,7 +488,7 @@ int InitAxesModel()
         FREE(stringVector[i]);
 
         sprintf(labelBuffer, "%.1f", tabZTicksLocations[i]);
-        stringVector[i] = os_strdup(labelBuffer);
+        stringVector[i] = strdup(labelBuffer);
 
         if (stringVector[i] == NULL)
         {

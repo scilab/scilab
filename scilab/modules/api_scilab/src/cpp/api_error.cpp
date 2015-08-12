@@ -13,16 +13,54 @@
  * still available and supported in Scilab 6.
  */
 
-extern "C"
-{
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include <stdio.h>
 #include "api_scilab.h"
 #include "sciprint.h"
 #include "Scierror.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "localization.h"
-#include "configvariable_interface.h"
+extern "C"
+{
+#include "stackinfo.h"
+#include "mode_exec.h"
+}
+
+int addStackSizeError(SciErr* _psciErr, char* _pstCaller, int _iNeeded)
+{
+    char pstMsg1[bsiz];
+    char pstMsg2[bsiz];
+    char pstMsg3[bsiz];
+    char pstMsg4[bsiz];
+    char pstMsg5[bsiz];
+
+    int Memory_used_for_variables = 0;
+    int Total_Memory_available = 0;
+
+    C2F(getstackinfo)(&Total_Memory_available, &Memory_used_for_variables);
+
+#ifdef _MSC_VER
+    sprintf_s(pstMsg1, bsiz, "%s\n%s", _pstCaller, _("stack size exceeded!\n"));
+    sprintf_s(pstMsg2, bsiz, _("Use stacksize function to increase it.\n"));
+    sprintf_s(pstMsg3, bsiz, _("Memory used for variables: %d\n"), Memory_used_for_variables);
+    sprintf_s(pstMsg4, bsiz, _("Intermediate memory needed: %d\n"), _iNeeded);
+    sprintf_s(pstMsg5, bsiz, _("Total memory available: %d\n"), Total_Memory_available);
+#else
+    sprintf(pstMsg1, _("stack size exceeded!\n"));
+    sprintf(pstMsg2, _("Use stacksize function to increase it.\n"));
+    sprintf(pstMsg3, _("Memory used for variables: %d\n"), Memory_used_for_variables);
+    sprintf(pstMsg4, _("Intermediate memory needed: %d\n"), _iNeeded);
+    sprintf(pstMsg5, _("Total memory available: %d\n"), Total_Memory_available);
+#endif
+
+    strcat(pstMsg1, pstMsg2);
+    strcat(pstMsg1, pstMsg3);
+    strcat(pstMsg1, pstMsg4);
+    strcat(pstMsg1, pstMsg5);
+
+    return addErrorMessage(_psciErr, 17, pstMsg1);
 }
 
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
@@ -47,11 +85,11 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
         {
             _psciErr->pstMsg[i - 1] = _psciErr->pstMsg[i];
         }
-        _psciErr->pstMsg[MESSAGE_STACK_SIZE - 1] = os_strdup(pstMsg);
+        _psciErr->pstMsg[MESSAGE_STACK_SIZE - 1] = strdup(pstMsg);
     }
     else
     {
-        _psciErr->pstMsg[_psciErr->iMsgCount++] = os_strdup(pstMsg);
+        _psciErr->pstMsg[_psciErr->iMsgCount++] = strdup(pstMsg);
     }
 
     _psciErr->iErr = _iErr;
@@ -60,6 +98,8 @@ int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
 
 int printError(SciErr* _psciErr, int _iLastMsg)
 {
+    int iMode = getExecMode();
+
     if (_psciErr->iErr == 0)
     {
         return 0;
@@ -67,7 +107,7 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (getPromptMode() == PROMPTMODE_SILENT || getSilentError() != VERBOSE_ERROR)
+    if (iMode == SILENT_EXEC_MODE)
     {
         return 0;
     }

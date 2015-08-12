@@ -17,25 +17,25 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolValue(void* _pvCtx, int iObjUID)
+int GetUicontrolValue(void* _pvCtx, int iObjUID)
 {
     int valueSize = 0;
     int* piValueSize = &valueSize;
     double* pdblValue = NULL;
-    void* status = NULL;
+    int status = 0;
 
     getGraphicObjectProperty(iObjUID, __GO_UI_VALUE_SIZE__, jni_int, (void**) &piValueSize);
 
     if (piValueSize == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
-        return NULL;
+        return FALSE;
     }
     else
     {
         if (valueSize == 0)
         {
-            return sciReturnEmptyMatrix();
+            return sciReturnEmptyMatrix(_pvCtx);
         }
         else
         {
@@ -44,11 +44,11 @@ void* GetUicontrolValue(void* _pvCtx, int iObjUID)
             if (pdblValue == NULL)
             {
                 Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Value");
-                return NULL;
+                return FALSE;
             }
             else
             {
-                status = sciReturnRowVector(pdblValue, valueSize);
+                status = sciReturnRowVector(_pvCtx, pdblValue, valueSize);
                 delete[] pdblValue;
                 return status;
             }

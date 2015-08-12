@@ -13,7 +13,7 @@
 extern "C" {
 #include "Scierror.h"
 #include "gw_external_objects_java.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 }
 
 #include "ScilabJavaEnvironment.hxx"
@@ -21,7 +21,7 @@ extern "C" {
 using namespace org_scilab_modules_external_objects_java;
 using namespace org_modules_external_objects;
 
-int sci_jcreatejar(char *fname, void* pvApiCtx)
+int sci_jcreatejar(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int res = 1;

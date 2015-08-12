@@ -14,8 +14,9 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=8867
 //
 // <-- Short Description -->
-// Exceptions are produced when deleting non-connected links.
+// Exception are produced when deleting non-connected links.
 
 xcos(SCI + "/modules/xcos/tests/nonreg_tests/bug_8867.zcos");
 
 // Delete all the links
+

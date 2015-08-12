@@ -12,12 +12,12 @@
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #include <windows.h>
+#include "strdup_windows.h"
 #endif
 #include <string.h>
 #include "getlongpathname.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "charEncoding.h"
-#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
 #ifndef MAX_PATH_LONG
@@ -41,13 +41,13 @@ char *getlongpathname(char *shortpathname, BOOL *convertok)
         }
         else
         {
-            LongName = os_strdup(shortpathname);
+            LongName = strdup(shortpathname);
             *convertok = FALSE;
         }
     }
     else
     {
-        LongName = os_strdup(shortpathname);
+        LongName = strdup(shortpathname);
         *convertok = FALSE;
     }
     return LongName;

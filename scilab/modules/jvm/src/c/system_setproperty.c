@@ -15,9 +15,11 @@
 #include <string.h>
 #include "system_setproperty.h"
 #include "getScilabJNIEnv.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "catchIfJavaException.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 char * system_setproperty(char *property, char *value)
 {
@@ -54,7 +56,7 @@ char * system_setproperty(char *property, char *value)
                         strPreviousValue = (*currentENV)->GetStringUTFChars(currentENV, jstrPreviousValue, 0);
                         if (strPreviousValue)
                         {
-                            retValue = os_strdup(strPreviousValue);
+                            retValue = strdup(strPreviousValue);
                         }
                         (*currentENV)->ReleaseStringUTFChars(currentENV, jstrPreviousValue , strPreviousValue);
                     }

@@ -23,7 +23,7 @@
 #include "graphicObjectProperties.h"
 #include "setGraphicObjectProperty.h"
 /*--------------------------------------------------------------------------*/
-int sci_progressionbar(char *fname, void* pvApiCtx)
+int sci_progressionbar(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

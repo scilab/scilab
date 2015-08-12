@@ -37,7 +37,7 @@
 #include "CurrentSubwin.h"
 #include "sci_types.h"
 /*--------------------------------------------------------------------------*/
-int sci_show_window(char *fname, void *pvApiCtx)
+int sci_show_window(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

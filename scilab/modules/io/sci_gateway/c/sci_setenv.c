@@ -16,11 +16,11 @@
 #include "gw_io.h"
 #include "api_scilab.h"
 #include "setenvc.h"
-#include "sci_malloc.h" /* MALLOC */
+#include "MALLOC.h" /* MALLOC */
 #include "Scierror.h"
 #include "localization.h"
 /*--------------------------------------------------------------------------*/
-int sci_setenv(char *fname, void* pvApiCtx)
+int sci_setenv(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 
@@ -32,6 +32,7 @@ int sci_setenv(char *fname, void* pvApiCtx)
 
     int ret = 0;
 
+    Rhs = Max(0, Rhs);
     CheckRhs(2, 2);
     CheckLhs(0, 1);
 

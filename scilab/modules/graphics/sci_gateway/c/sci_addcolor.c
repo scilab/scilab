@@ -38,7 +38,7 @@ int checkValues(double* pdblValues, int iRows)
     return 1;
 }
 /*--------------------------------------------------------------------------*/
-int sci_addcolor(char *fname, void* pvApiCtx)
+int sci_addcolor(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int i = 0;

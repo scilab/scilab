@@ -16,6 +16,6 @@
 
 #include "dynlib_external_objects_scilab.h"
 
-EXTERNAL_OBJECTS_SCILAB_IMPEXP void ExternalObjects_goDown(void* _pvCtx);
+EXTERNAL_OBJECTS_SCILAB_IMPEXP void ExternalObjects_goDown();
 
 #endif // __EXTERNALOBJECTSFUNCTION_H__

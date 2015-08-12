@@ -25,7 +25,6 @@ Source: modules\{#COMMONS}\license.txt; DestDir: {app}\modules\{#COMMONS}; Compo
 ;
 Source: modules\{#COMMONS}\etc\{#COMMONS}.quit; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
 Source: modules\{#COMMONS}\etc\{#COMMONS}.start; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
-Source: modules\{#COMMONS}\etc\*.xsl; DestDir: {app}\modules\{#COMMONS}\etc; Components: {#COMPN_SCILAB}
 ;
 Source: modules\{#COMMONS}\macros\buildmacros.sce; DestDir: {app}\modules\{#COMMONS}\macros; Components: {#COMPN_SCILAB}
 Source: modules\{#COMMONS}\macros\buildmacros.bat; DestDir: {app}\modules\{#COMMONS}\macros; Components: {#COMPN_SCILAB}

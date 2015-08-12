@@ -10,50 +10,67 @@
 * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 *
 */
-
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#endif
 #include "BOOL.h"
 #include "call_scilab.h"
 #include "lasterror.h"          /* clearInternalLastError, getInternalLastErrorValue */
-#include "sci_malloc.h"
-#include "configvariable_interface.h"
+#include "MALLOC.h"
+#include "scilabmode.h"
 #include "fromc.h"
+#include "LaunchScilabSignal.h"
+#include "localization.h"
 #include "isdir.h"
-#include "sci_path.h"
+#include "setgetSCIpath.h"
 #include "scilabDefaults.h"
-#include "sci_tmpdir.h"
-#include "Thread_Wrapper.h"
+#include "tmpdir.h"
+#include "inisci-c.h"
+#include "scirun.h"
+#include "scilabmode.h"
+#include "sciquit.h"
 #include "storeCommand.h"
 #include "FigureList.h"
+#include "../../core/src/c/TerminateCore.h"
 #include "api_scilab.h"
 #include "call_scilab_engine_state.h"
-#include "os_string.h"
-#include "charEncoding.h"
-#include "InitScilab.h"
-#include "scilabRead.h"
-#include "scilabWrite.hxx"
+
 
 #ifdef _MSC_VER
 #include "SetScilabEnvironmentVariables.h"
 #include "getScilabDirectory.h"
-#include <Windows.h>
+#include "strdup_windows.h"
 #endif
-
-extern char *getCmdLine(void);
-
-static void TermPrintf(const char *text)
-{
-    //std::cout << text;
-    printf("%s", text);
-}
-
-static ScilabEngineInfo* pGlobalSEI = NULL;
-static __threadId threadIdScilab;
-
 /*--------------------------------------------------------------------------*/
 static CALL_SCILAB_ENGINE_STATE csEngineState = CALL_SCILAB_ENGINE_STOP;
+
+/*--------------------------------------------------------------------------*/
+#ifdef _MSC_VER
+static void SetSciEnv(void)
+{
+    char *ScilabDirectory = NULL;
+
+    ScilabDirectory = getScilabDirectory(TRUE);
+
+    if (ScilabDirectory == NULL)
+    {
+        // This message must never occur, but ...
+        MessageBox (NULL, "ERROR" , "Cannot determine the Scilab directory (SCI).", MB_ICONSTOP | MB_OK);
+        exit(1);
+    }
+    SetScilabEnvironmentVariables(ScilabDirectory);
+
+    if (ScilabDirectory)
+    {
+        FREE(ScilabDirectory);
+        ScilabDirectory = NULL;
+    }
+
+}
+#endif
 /*--------------------------------------------------------------------------*/
 void DisableInteractiveMode(void)
 {
@@ -78,17 +95,20 @@ BOOL StartScilab(char *SCIpath, char *ScilabStartup, int Stacksize)
 * -1: already running
 * -2: Could not find SCI
 * -3: No existing directory
+* 10001: Stacksize failed (not enought memory ?).
 * Any other positive integer: A Scilab internal error
 */
-
-#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1);"
-
 int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int Stacksize)
 {
-    __threadKey threadKeyScilab;
+#define FORMAT_SCRIPT_STARTUP "_errorCall_ScilabOpen = exec(\"%s\", \"errcatch\", -1); exit(_errorCall_ScilabOpen);"
+    char *ScilabStartupUsed = NULL;
     char *InitStringToScilab = NULL;
+    int StacksizeUsed = 0;
+    int lengthStringToScilab = 0;
+
     static int iflag = -1, ierr = 0;
 
+    setScilabMode(SCILAB_API);
     if (advancedMode == FALSE)
     {
         DisableInteractiveMode();
@@ -101,9 +121,13 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     SetFromCToON();
 
+    InitializeLaunchScilabSignal();
+
     if (SCIpath == NULL)        /* No SCIpath provided... */
     {
-#ifndef _MSC_VER
+#ifdef _MSC_VER
+        SetSciEnv();            /* Windows has a way to detect it */
+#else
         /* Other doesn't */
         fprintf(stderr, "StartScilab: Could not find SCI\n");
         return -2;
@@ -117,34 +141,65 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
             fprintf(stderr, "StartScilab: Could not find the directory %s\n", SCIpath);
             return -3;
         }
+        else
+        {
+#ifdef _MSC_VER
+            char env[2048];
+
+            sprintf(env, "SCI=%s", SCIpath);
+            _putenv(env);
+#else
+            setenv("SCI", SCIpath, 0);
+#endif
+            setSCIpath(SCIpath);
+        }
     }
 
-    pGlobalSEI = InitScilabEngineInfo();
-    if (ScilabStartup)
+    if (ScilabStartup == NULL)
     {
-        int lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartup) + 1);
-        InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
-        sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartup);
-        pGlobalSEI->iNoStart = 1;
+        ScilabStartupUsed = strdup(DEFAULTSCILABSTARTUP);
+    }
+    else
+    {
+        ScilabStartupUsed = strdup(ScilabStartup);
     }
 
-    setScilabInputMethod(&getCmdLine);
-    setScilabOutputMethod(&TermPrintf);
+    if (Stacksize == 0 || Stacksize == -1)
+    {
+        StacksizeUsed = DEFAULTSTACKSIZE;
+    }
+    else
+    {
+        StacksizeUsed = Stacksize;
+    }
+
+    /* creates TMPDIR */
+    C2F(settmpdir) ();
 
     /* Scilab Initialization */
-    pGlobalSEI->pstFile = InitStringToScilab;
-    pGlobalSEI->iConsoleMode = 1;
-    pGlobalSEI->iStartConsoleThread = 0;
+    C2F(inisci) (&iflag, &StacksizeUsed, &ierr);
 
-    if (getScilabMode() != SCILAB_NWNI)
+    if (ierr > 0)
     {
-        pGlobalSEI->iNoJvm = 1;
+        if (ScilabStartupUsed)
+        {
+            FREE(ScilabStartupUsed);
+            ScilabStartupUsed = NULL;
+        }
+        return ierr;
     }
 
-    pGlobalSEI->iNoJvm = 0;
+    lengthStringToScilab = (int)(strlen(FORMAT_SCRIPT_STARTUP) + strlen(ScilabStartupUsed + 1));
+    InitStringToScilab = (char *)MALLOC(lengthStringToScilab * sizeof(char));
+    sprintf(InitStringToScilab, FORMAT_SCRIPT_STARTUP, ScilabStartupUsed);
 
-    ierr = StartScilabEngine(pGlobalSEI);
+    ierr = C2F(scirun) (InitStringToScilab, (long int)strlen(InitStringToScilab));
 
+    if (ScilabStartupUsed)
+    {
+        FREE(ScilabStartupUsed);
+        ScilabStartupUsed = NULL;
+    }
     if (InitStringToScilab)
     {
         FREE(InitStringToScilab);
@@ -153,11 +208,8 @@ int Call_ScilabOpen(char *SCIpath, BOOL advancedMode, char *ScilabStartup, int S
 
     if (ierr)
     {
-        FREE(pGlobalSEI);
         return ierr;
     }
-
-    __CreateThreadWithParams(&threadIdScilab, &threadKeyScilab, &RunScilabEngine, pGlobalSEI);
 
     setCallScilabEngineState(CALL_SCILAB_ENGINE_STARTED);
 
@@ -169,29 +221,23 @@ BOOL TerminateScilab(char *ScilabQuit)
 {
     if (getCallScilabEngineState() == CALL_SCILAB_ENGINE_STARTED)
     {
-        if (getForceQuit() == 0)
+        if (getScilabMode() != SCILAB_NWNI)
         {
-            if (pGlobalSEI->iNoStart)
-            {
-                StoreConsoleCommand("exit(_errorCall_ScilabOpen)");
-            }
-            else
-            {
-                StoreConsoleCommand("exit()");
-            }
+            ExitScilab();
+        }
+        else
+        {
+            TerminateCorePart2();
         }
 
-        __WaitThreadDie(threadIdScilab);
-        pGlobalSEI->pstFile = ScilabQuit;
-        StopScilabEngine(pGlobalSEI);
+        /* Make sure that the error management is reset. See bug #8830 */
+        clearInternalLastError();
 
+        ReleaseLaunchScilabSignal();
         setCallScilabEngineState(CALL_SCILAB_ENGINE_STOP);
 
         /* restore default mode */
         setScilabMode(SCILAB_API);
-
-        FREE(pGlobalSEI);
-        pGlobalSEI = NULL;
 
         return TRUE;
     }
@@ -208,9 +254,7 @@ void ScilabDoOneEvent(void)
     {
         if (getScilabMode() != SCILAB_NWNI)
         {
-#if 0
             C2F(scirun) ("quit;", (int)strlen("quit;"));
-#endif
         }
     }
 }
@@ -242,17 +286,17 @@ CALL_SCILAB_ENGINE_STATE getCallScilabEngineState(void)
 sci_types getVariableType(char *varName)
 {
     int iSciType = -1;
-    SciErr sciErr = getNamedVarType(NULL, (char*)varName, &iSciType);
+    SciErr sciErr = getNamedVarType(pvApiCtx, (char *)varName, &iSciType);
 
     if (sciErr.iErr == API_ERROR_NAMED_UNDEFINED_VAR)
     {
-        return (sci_types) - 2;
+        return -2;
     }
 
     if (sciErr.iErr)
     {
         printError(&sciErr, 0);
-        return (sci_types) - 1;
+        return -1;
     }
     return (sci_types) iSciType;
 }
@@ -266,13 +310,27 @@ sci_types getVariableType(char *varName)
 */
 char *getLastErrorMessageSingle(void)
 {
-    return wide_string_to_UTF8(getLastErrorMessage());
+    int iNbLines, i, nbChar = 0;
+    const char **msgs = getInternalLastErrorMessage(&iNbLines);
+    char *concat;
+
+    for (i = 0; i < iNbLines; i++)
+    {
+        nbChar += (int)strlen(msgs[i]);
+    }
+    concat = (char *)malloc((nbChar + 1) * sizeof(char));
+    strcpy(concat, "");
+    for (i = 0; i < iNbLines; i++)
+    {
+        strcat(concat, msgs[i]);
+    }
+    return concat;
 }
 
 /*--------------------------------------------------------------------------*/
 int getLastErrorValue(void)
 {
     /* defined in lasterror.h */
-    return getLastErrorNumber();
+    return getInternalLastErrorValue();
 }
 /*--------------------------------------------------------------------------*/

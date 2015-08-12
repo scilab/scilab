@@ -21,7 +21,7 @@
 * @return strings found in dictionary
 */
 char **completion_generic(char **dictionary, int sizedictionary,
-                          const char *somechars, int *sizeArrayReturned);
+                          char *somechars, int *sizeArrayReturned);
 
 #endif /* __COMPLETION_GENERIC_H__ */
 /*--------------------------------------------------------------------------*/

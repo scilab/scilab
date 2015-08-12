@@ -14,8 +14,10 @@
 #include <string.h>
 #include <stdio.h>
 #include "TCL_ArrayGetVar.h"
-#include "sci_malloc.h"
-#include "os_string.h"
+#include "MALLOC.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
 #define TCL_NOT_DEFINE "#NOT DEF.#"
 /*--------------------------------------------------------------------------*/
@@ -30,7 +32,7 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index)
 
     if (index == NULL)
     {
-        return os_strdup(TCL_NOT_DEFINE);
+        return strdup(TCL_NOT_DEFINE);
     }
 
     sprintf(ArrayName, "%s(%s)", VarName, index);
@@ -39,11 +41,11 @@ char *TCL_ArrayGetVar(Tcl_Interp *TCLinterpreter, char *VarName, char *index)
 
     if (RetStr)
     {
-        return os_strdup(RetStr);
+        return strdup(RetStr);
     }
     else
     {
-        return os_strdup(TCL_NOT_DEFINE);
+        return strdup(TCL_NOT_DEFINE);
     }
 }
 /*--------------------------------------------------------------------------*/

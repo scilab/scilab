@@ -14,7 +14,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include "TermCompletion.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 #include "localization.h"
 #include "TermLine.h"
@@ -23,7 +23,9 @@
 #include "getCommonPart.h"
 #include "completion.h"
 #include "scilines.h"
-#include "os_string.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "completeLine.h"
 /*--------------------------------------------------------------------------*/
 static void displayCompletionDictionary(char **dictionary, int sizedictionary, char *namedictionary);
@@ -82,7 +84,6 @@ static void TermCompletionOnFiles(char **dictionaryFiles, int sizedictionaryFile
                 {
                     clearCurrentLine();
                     copyLine(newline);
-                    FREE(common);
                     FREE(newline);
                     return;
                 }
@@ -210,7 +211,7 @@ static void TermCompletionOnAll(char *lineBeforeCaret, char *lineAfterCaret, cha
                     {
                         if (sizecommonsDictionary == 1)
                         {
-                            commonAll = os_strdup(commonsDictionary[0]);
+                            commonAll = strdup(commonsDictionary[0]);
                         }
                         else
                         {
@@ -315,7 +316,7 @@ static void displayCompletionDictionary(char **dictionary, int sizedictionary, c
         for (i = 0; i < sizedictionary; i++)
         {
             int newlenLine = lenCurrentLine + (int)strlen(dictionary[i]) + (int)strlen(" ");
-            if ( newlenLine >= (getConsoleWidth() - 10) )
+            if ( newlenLine >= (getColumnsSize() - 10) )
             {
                 TerminalPrintf("\n");
                 lenCurrentLine = 0;

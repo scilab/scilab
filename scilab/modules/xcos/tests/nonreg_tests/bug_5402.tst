@@ -14,10 +14,10 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=5402
 //
 // <-- Short Description -->
-// When "Save as" is canceled, status bar still displays "Saving diagram ...".
+// When "Saving as" is canceled, status bar still displays "Saving diagram ...".
 
 // start xcos
 
 // File >> Save as >> Cancel
 
-// Check that the status bar content is empty
+// Check that the status bar contents in empty

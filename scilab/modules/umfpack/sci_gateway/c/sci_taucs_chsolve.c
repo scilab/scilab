@@ -59,12 +59,12 @@
 #include "taucs_scilab.h"
 #include "common_umfpack.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 
 extern CellAdr *ListCholFactors;
 
-int sci_taucs_chsolve(char* fname, void* pvApiCtx)
+int sci_taucs_chsolve(char* fname, unsigned long l)
 {
     SciErr sciErr;
 

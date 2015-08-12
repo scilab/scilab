@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -8,12 +9,11 @@
 
 #include "logger.h"
 #include "pldstr.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 
-#include "os_string.h"
-
 #ifdef _MSC_VER
+#include "strdup_windows.h"
 #define vsnprintf _vsnprintf
 #endif
 
@@ -44,9 +44,9 @@ char *PLD_strstr(char *haystack, char *needle, int insensitive)
 
     if (insensitive > 0)
     {
-        hs = os_strdup(haystack);
+        hs = strdup(haystack);
         PLD_strlower((unsigned char*) hs);
-        ne = os_strdup(needle);
+        ne = strdup(needle);
         PLD_strlower((unsigned char*) ne);
     }
     else

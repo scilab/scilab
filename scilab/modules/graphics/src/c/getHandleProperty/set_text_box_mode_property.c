@@ -19,7 +19,7 @@
 /*        a handle                                                        */
 /*------------------------------------------------------------------------*/
 
-#include "os_string.h"
+#include "stricmp.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"
@@ -30,7 +30,7 @@
 
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 
 /*------------------------------------------------------------------------*/
 int set_text_box_mode_property(void* _pvCtx, int iObjUID, void* _pvData, int valueType, int nbRow, int nbCol)

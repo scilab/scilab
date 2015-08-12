@@ -31,7 +31,7 @@ extern "C"
 
 using namespace org_scilab_modules_gui_datatip;
 
-int sci_datatipremove(char *fname, void* pvApiCtx)
+int sci_datatipremove(char *fname, unsigned long fname_len)
 {
     int iFigureUID      = 0;
     int iDatatipUID     = 0;

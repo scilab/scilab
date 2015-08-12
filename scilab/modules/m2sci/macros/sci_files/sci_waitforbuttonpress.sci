@@ -19,7 +19,7 @@ function [tree]=sci_waitforbuttonpress(tree)
     win=gettempvar()
     str=gettempvar()
 
-    m2sci_insert(Equal(list(btn,xc,yc,win,str),Funcall("xclick",1,list(),list())))
+    insert(Equal(list(btn,xc,yc,win,str),Funcall("xclick",1,list(),list())))
 
     comp=Operation(">",list(btn,Cste(64)),list())
 

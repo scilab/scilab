@@ -47,7 +47,7 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    E a recompila para o tipo
+                    Esta função compila reversamente uma variável função via <link linkend="fun2string">fun2string</link>, e a recompila para o tipo
                     desejado através de <link linkend="deff">deff</link>.
                 </para>
             </listitem>
@@ -55,10 +55,10 @@
     </refsection>
     <refsection>
         <title>Exemplos</title>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 recompilefunction("asinh","p")
 for i=1:100; asinh(rand(100,100)); end
-showprofile(asinh)
+showprofile(asinh)   
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -72,6 +72,12 @@ showprofile(asinh)
             </member>
             <member>
                 <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="fun2string">fun2string</link>
             </member>
             <member>
                 <link linkend="profile">profile</link>

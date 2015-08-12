@@ -342,9 +342,6 @@
     <ClCompile Include="..\ZB03OD.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\fortran\voiddummy.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <f2c_rule Include="..\ab01nd.f">
@@ -663,9 +660,6 @@
       <Filter>Fortran Files</Filter>
     </f2c_rule>
     <f2c_rule Include="..\ZB03OD.f">
-      <Filter>Fortran Files</Filter>
-    </f2c_rule>
-    <f2c_rule Include="..\..\fortran\voiddummy.f">
       <Filter>Fortran Files</Filter>
     </f2c_rule>
   </ItemGroup>

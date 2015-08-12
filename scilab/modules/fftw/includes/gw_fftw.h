@@ -16,13 +16,16 @@
 #include "dynlib_fftw.h"
 /*--------------------------------------------------------------------------*/
 FTTW_SCILAB_IMPEXP int gw_fftw(void);
-FTTW_SCILAB_IMPEXP int sci_disposefftwlibrary(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_fftw_flags(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_fftw_forget_wisdom(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_fftwlibraryisloaded(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_get_fftw_wisdom(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_loadfftwlibrary(char *fname, void* pvApiCtx);
-FTTW_SCILAB_IMPEXP int sci_set_fftw_wisdom(char *fname, void* pvApiCtx);
+FTTW_SCILAB_IMPEXP int sci_disposefftwlibrary(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw_flags(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftw_forget_wisdom(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_fftwlibraryisloaded(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_get_fftw_wisdom(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_loadfftwlibrary(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_set_fftw_wisdom(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_dct(char *fname, unsigned long fname_len);
+FTTW_SCILAB_IMPEXP int sci_dst(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_FFTW__ */
 /*--------------------------------------------------------------------------*/

@@ -8,5 +8,7 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function M=%st_i_h(varargin)
-    M=generic_i_h(varargin(1),varargin(2),varargin(3))
+    //set(handle, property_name, value)
+    set(varargin(3), varargin(1), varargin(2));
+    M=varargin(3);
 endfunction

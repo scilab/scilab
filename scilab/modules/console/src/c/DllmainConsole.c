@@ -12,12 +12,6 @@
 
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
-#include "../../src/c/windows/TermLine.h"
-/*--------------------------------------------------------------------------*/
-//for Visual Leak Detector in debug compilation mode
-#if defined(DEBUG_VLD) && defined(_DEBUG)
-#include <vld.h>
-#endif
 /*--------------------------------------------------------------------------*/
 #pragma comment(lib,"../../../../bin/libintl.lib")
 /*--------------------------------------------------------------------------*/
@@ -28,7 +22,6 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
         case DLL_PROCESS_ATTACH:
             break;
         case DLL_PROCESS_DETACH:
-            finalizeLineBuffer();
             break;
         case DLL_THREAD_ATTACH:
             break;

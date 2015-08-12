@@ -14,11 +14,11 @@
 #include "api_scilab.h"
 #include "gw_mpi.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "deserialization.h"
 
-int sci_mpi_recv(char *fname, void* pvApiCtx)
+int sci_mpi_recv(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int iRet = 0;

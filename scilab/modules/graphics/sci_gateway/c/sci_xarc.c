@@ -16,7 +16,7 @@
 /* file: sci_xarc.h                                                       */
 /* desc : interface for xarc routine                                      */
 /*------------------------------------------------------------------------*/
-#include <string.h>
+
 #include "gw_graphics.h"
 #include "sciCall.h"
 #include "GetProperty.h"
@@ -30,7 +30,7 @@
 #include "BuildObjects.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xarc(char *fname, void *pvApiCtx)
+int sci_xarc(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

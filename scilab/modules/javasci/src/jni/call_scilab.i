@@ -1,4 +1,3 @@
-
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2010 - DIGITEO - Sylvestre LEDRU
@@ -25,13 +24,13 @@
 #include "BOOL.h"
 #define ENABLE_HELPERS
 #include "javasci2_helper.h"
-#include "sci_malloc.h"
-#include "call_scilab.h"
-#include "fromjava.h"
-#include "api_scilab.h"
-#include "lasterror.h"
-#include "FigureList.h"
-#include "sci_types.h"
+#include "MALLOC.h"
+#include "../../../call_scilab/includes/call_scilab.h"
+#include "../../../call_scilab/includes/fromjava.h"
+#include "../../../api_scilab/includes/api_scilab.h"
+#include "../../../output_stream/includes/lasterror.h"
+#include "../../../modules/graphic_objects/includes/FigureList.h"
+#include "../../../core/includes/sci_types.h"
 %}
 %include "../../../jvm/src/jni/scilab_typemaps.i"
 
@@ -122,13 +121,13 @@ void SetFromJavaToON(void);
 BOOL sciHasFigures( void );
 
 // Direct access to the Scilab function (no helper)
-%rename(GetLastErrorCode) getLastErrorNumber;
-int getLastErrorNumber(void);
+%rename(GetLastErrorCode) getLastErrorValue;
+int getLastErrorValue(void);
 
 BOOL isExistingVariable(char* varname);
 
-%rename(getLastErrorMessage) getLastErrorMessage;
-const char* getLastErrorMessage();
+%rename(getLastErrorMessage) getLastErrorMessageSingle;
+const char* getLastErrorMessageSingle();
 
 sci_types getVariableType(char *varname);
 

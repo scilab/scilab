@@ -16,7 +16,7 @@
 /* file: sci_grayplot.c                                                   */
 /* desc : interface for grayplot routine                                  */
 /*------------------------------------------------------------------------*/
-#include <string.h>
+
 #include "gw_graphics.h"
 #include "api_scilab.h"
 #include "GetCommandArg.h"
@@ -27,7 +27,7 @@
 #include "Scierror.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_grayplot(char *fname, void *pvApiCtx)
+int sci_grayplot(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int frame_def = 8;
@@ -63,7 +63,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, pvApiCtx);
+        sci_demo(fname, fname_len);
         return 0;
     }
     CheckInputArgument(pvApiCtx, 3, 7);
@@ -74,7 +74,7 @@ int sci_grayplot(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (FirstOpt(pvApiCtx) < 4)
+    if (FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"),
                  fname, 1, 4);

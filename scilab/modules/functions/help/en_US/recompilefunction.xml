@@ -2,7 +2,7 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="en" xml:id="recompilefunction">
     <refnamediv>
         <refname>recompilefunction</refname>
-        <refpurpose>recompiles a scilab function,
+        <refpurpose>recompiles a scilab function, 
             changing its type
         </refpurpose>
     </refnamediv>
@@ -24,8 +24,8 @@
                 <term>kind</term>
                 <listitem>
                     <para>
-                        string: <emphasis role="bold">"n"</emphasis> (noncompiled, type 11), <emphasis role="bold">"c"</emphasis>
-                        (compiled, type 13) or <emphasis role="bold">"p"</emphasis> (compiled, type 13, with
+                        string: <emphasis role="bold">"n"</emphasis> (noncompiled, type 11), <emphasis role="bold">"c"</emphasis> 
+                        (compiled, type 13) or <emphasis role="bold">"p"</emphasis> (compiled, type 13, with 
                         provision for profiling). Default "c".
                     </para>
                 </listitem>
@@ -46,17 +46,18 @@
         <itemizedlist>
             <listitem>
                 <para>
-                    This function recompiles a function variable to the desired kind with <link linkend="deff">deff</link>.
+                    This function reverse-compiles a function variable via <link linkend="fun2string">fun2string</link>,
+                    and recompiles it to the desired kind with <link linkend="deff">deff</link>.
                 </para>
             </listitem>
         </itemizedlist>
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[
+        <programlisting role="example"><![CDATA[ 
 recompilefunction("asinh","p")
 for i=1:100; asinh(rand(100,100)); end
-showprofile(asinh)
+showprofile(asinh)   
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -67,6 +68,12 @@ showprofile(asinh)
             </member>
             <member>
                 <link linkend="deff">deff</link>
+            </member>
+            <member>
+                <link linkend="comp">comp</link>
+            </member>
+            <member>
+                <link linkend="fun2string">fun2string</link>
             </member>
             <member>
                 <link linkend="profile">profile</link>

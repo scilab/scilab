@@ -19,7 +19,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_infobar_visible_property(void* _pvCtx, int iObjUID)
+int get_infobar_visible_property(void* _pvCtx, int iObjUID)
 {
     int visible = 0;
     int* piVisible = &visible;
@@ -34,11 +34,11 @@ void* get_infobar_visible_property(void* _pvCtx, int iObjUID)
 
     if (visible)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!DOCTYPE module SYSTEM "../../functions/xml/gateway.dtd">
 <!--
-/* Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+ * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2012 - Scilab Enterprises - Calixte Denizet
  *
  * This file must be used under the terms of the CeCILL.
@@ -9,39 +8,52 @@
  * you should have received as part of this distribution.  The terms
  * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
- */
+ *
+ -->
+<!DOCTYPE GATEWAY SYSTEM "../../functions/xml/gateway.dtd">
+<GATEWAY name="external_objects_java">
+    
+    <!--
  Scilab
  Interface description. In this file, we define the list of the function which
  will be available into Scilab and the link to the "native" function.
 
+ gatewayId is the position in the hashtable 'Interfaces' defined in the
+ file SCI/modules/core/src/c/callinterf.h
+
+ primitiveId is the position in the hashtable '<module>Table Tab[]' defined
+ in the file modules/<module>/sci_gateway/c/gw_<module>.c
+
+ primitiveName is the name of the Scilab function
+
  Don't touch if you do not know what you are doing
+
 -->
-<module name="external_objects_java">
-    <gateway name="sci_jimport"              function="jimport"              type="0" />
-    <gateway name="sci_jgetclassname"        function="jgetclassname"        type="0" />
-    <gateway name="sci_jwrap"                function="jwrap"                type="0" />
-    <gateway name="sci_jgetmethods"          function="jgetmethods"          type="0" />
-    <gateway name="sci_jgetfields"           function="jgetfields"           type="0" />
-    <gateway name="sci_jgetfield"            function="jgetfield"            type="0" />
-    <gateway name="sci_jcompile"             function="jcompile"             type="0" />
-    <gateway name="sci_jnewInstance"         function="jnewInstance"         type="0" />
-    <gateway name="sci_jremove"              function="jremove"              type="0" />
-    <gateway name="sci_jexists"              function="jexists"              type="0" />
-    <gateway name="sci_junwrap"              function="junwrap"              type="0" />
-    <gateway name="sci_junwraprem"           function="junwraprem"           type="0" />
-    <gateway name="sci_jenableTrace"         function="jenableTrace"         type="0" />
-    <gateway name="sci_jdisableTrace"        function="jdisableTrace"        type="0" />
-    <gateway name="sci_jdeff"                function="jdeff"                type="0" />
-    <gateway name="sci_jarray"               function="jarray"               type="0" />
-    <gateway name="sci_jcast"                function="jcast"                type="0" />
-    <gateway name="sci_jallowClassReloading" function="jallowClassReloading" type="0" />
-    <gateway name="sci_jwrapinfloat"         function="jwrapinfloat"         type="0" />
-    <gateway name="sci_jsetfield"            function="jsetfield"            type="0" />
-    <gateway name="sci_jautoUnwrap"          function="jautoUnwrap"          type="0" />
-    <gateway name="sci_jautoTranspose"       function="jautoTranspose"       type="0" />
-    <gateway name="sci_jinvoke"              function="jinvoke"              type="0" />
-    <gateway name="sci_jconvMatrixMethod"    function="jconvMatrixMethod"    type="0" />
-    <gateway name="sci_jgetinfo"             function="jgetinfo"             type="0" />
-    <gateway name="sci_jinvoke_db"           function="jinvoke_db"           type="0" />
-    <gateway name="sci_jcreatejar"           function="jcreatejar"           type="0" />
-</module>
+    <PRIMITIVE gatewayId="72" primitiveId="1" primitiveName="jimport" />
+    <PRIMITIVE gatewayId="72" primitiveId="2" primitiveName="jgetclassname" />
+    <PRIMITIVE gatewayId="72" primitiveId="3" primitiveName="jwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="4" primitiveName="jgetmethods" />
+    <PRIMITIVE gatewayId="72" primitiveId="5" primitiveName="jgetfields" />
+    <PRIMITIVE gatewayId="72" primitiveId="6" primitiveName="jgetfield" />
+    <PRIMITIVE gatewayId="72" primitiveId="7" primitiveName="jcompile" />
+    <PRIMITIVE gatewayId="72" primitiveId="8" primitiveName="jnewInstance" />
+    <PRIMITIVE gatewayId="72" primitiveId="9" primitiveName="jremove" />
+    <PRIMITIVE gatewayId="72" primitiveId="10" primitiveName="jexists" />
+    <PRIMITIVE gatewayId="72" primitiveId="11" primitiveName="junwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="12" primitiveName="junwraprem" />
+    <PRIMITIVE gatewayId="72" primitiveId="13" primitiveName="jenableTrace" />
+    <PRIMITIVE gatewayId="72" primitiveId="14" primitiveName="jdisableTrace" />
+    <PRIMITIVE gatewayId="72" primitiveId="15" primitiveName="jdeff" />
+    <PRIMITIVE gatewayId="72" primitiveId="16" primitiveName="jarray" />
+    <PRIMITIVE gatewayId="72" primitiveId="17" primitiveName="jcast" />
+    <PRIMITIVE gatewayId="72" primitiveId="18" primitiveName="jallowClassReloading" />
+    <PRIMITIVE gatewayId="72" primitiveId="19" primitiveName="jwrapinfloat" />
+    <PRIMITIVE gatewayId="72" primitiveId="20" primitiveName="jsetfield" />
+    <PRIMITIVE gatewayId="72" primitiveId="21" primitiveName="jautoUnwrap" />
+    <PRIMITIVE gatewayId="72" primitiveId="22" primitiveName="jautoTranspose" />
+    <PRIMITIVE gatewayId="72" primitiveId="23" primitiveName="jinvoke" />
+    <PRIMITIVE gatewayId="72" primitiveId="24" primitiveName="jconvMatrixMethod" />
+    <PRIMITIVE gatewayId="72" primitiveId="25" primitiveName="jgetinfo" />
+    <PRIMITIVE gatewayId="72" primitiveId="26" primitiveName="jinvoke_db" />
+    <PRIMITIVE gatewayId="72" primitiveId="27" primitiveName="jcreatejar" />
+</GATEWAY>

@@ -24,12 +24,12 @@ extern "C"
 #include "api_scilab.h"
 #include "localization.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "freeArrayOfString.h"
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_scinotes(char * fname, void* pvApiCtx)
+int sci_scinotes(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

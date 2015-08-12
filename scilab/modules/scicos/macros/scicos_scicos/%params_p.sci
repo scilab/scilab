@@ -20,10 +20,7 @@
 //
 
 function %params_p(par)
-    txt = params2txt(par);
-    for i = 1:size(txt, 'r')
-        mprintf("%s\n", txt(i))
-    end
+    write(%io(2),params2txt(par),"(a)")
 endfunction
 
 function txt=params2txt(par)
@@ -34,3 +31,4 @@ function txt=params2txt(par)
         sci2exp(par(fn(k)),fn(k))]
     end
 endfunction
+

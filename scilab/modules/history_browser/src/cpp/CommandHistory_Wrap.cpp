@@ -17,19 +17,19 @@ extern "C"
 #include "getScilabJavaVM.h"
 #include "loadOnUseClassPath.h"
 #include "BOOL.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 };
 /*------------------------------------------------------------------------*/
 using namespace org_scilab_modules_history_browser;
 static BOOL alreadyLoadedJava = FALSE;
 /*------------------------------------------------------------------------*/
-void CommandHistoryAppendLine (char* _pstLine)
+void CommandHistoryAppendLine (char * lineToAppend)
 {
     if (getScilabMode() == SCILAB_STD)
     {
-        if (strlen(_pstLine) != 0)
+        if (strcmp(lineToAppend, "") != 0)
         {
-            CommandHistory::appendLine(getScilabJavaVM(), _pstLine);
+            CommandHistory::appendLine(getScilabJavaVM(), lineToAppend);
         }
     }
 }

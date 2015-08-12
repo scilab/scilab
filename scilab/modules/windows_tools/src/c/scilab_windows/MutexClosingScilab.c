@@ -12,7 +12,7 @@
 
 /*--------------------------------------------------------------------------*/
 #include <windows.h>
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "MutexClosingScilab.h"
 #include "version.h"
 /*--------------------------------------------------------------------------*/

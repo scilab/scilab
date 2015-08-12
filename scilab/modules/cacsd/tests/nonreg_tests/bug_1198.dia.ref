@@ -14,6 +14,6 @@
 //    Windows 2000 platform.
 //
 //    The program crashes instead of reporting a syntax error.
-G   = syslin("c", [1 0 ; 0 1], [ 1; 1], [1 1]);
+G   = syslin('c', [1 0 ; 0 1], [ 1; 1], [1 1]);
 err = execstr("minss(G)(""A"");","errcatch");
-if err <> 0 then bugmes();quit;end
+if err <> 250 then bugmes();quit;end

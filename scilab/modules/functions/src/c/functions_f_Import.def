@@ -1,0 +1,12 @@
+LIBRARY    functions_f.dll
+
+
+EXPORTS
+; --------------------------------------- 
+; functions_f
+; --------------------------------------- 
+intlib_
+whereismacro_
+intdeff_
+intexec_
+intexecstr_

@@ -1,8 +1,0 @@
-LIBRARY    functions_manager.dll
-
-EXPORTS
-LoadModules
-UnloadModules
-StartModules
-EndModules
-destroyfunctionManagerInstance

@@ -24,7 +24,7 @@
 #include "localization.h"
 #include "Scierror.h"
 /*------------------------------------------------------------------------*/
-int sci_param3d(char * fname, void *pvApiCtx)
+int sci_param3d(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int izcol = 0, isfac = 0;
@@ -59,7 +59,7 @@ int sci_param3d(char * fname, void *pvApiCtx)
 
     if (nbInputArgument(pvApiCtx) <= 0)
     {
-        sci_demo(fname, pvApiCtx);
+        sci_demo(fname, fname_len);
         return 0;
     }
 
@@ -70,7 +70,7 @@ int sci_param3d(char * fname, void *pvApiCtx)
         ReturnArguments(pvApiCtx);
         return 0;
     }
-    if (FirstOpt(pvApiCtx) < 4)
+    if (FirstOpt() < 4)
     {
         Scierror(999, _("%s: Misplaced optional argument: #%d must be at position %d.\n"), fname, 1, 4);
         return(0);

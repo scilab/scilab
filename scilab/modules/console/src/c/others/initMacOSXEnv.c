@@ -1,16 +1,16 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2007 - DIGITEO - Sylvestre LEDRU
- * Copyright (C) 2010 - DIGITEO - Bruno JOFRET
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
  * are also available at
- * http://www.cecill.info/licences/Licence_CeCILL_V2-en.txt
+ * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  */
 #include <stdlib.h>
+#include "scilabmode.h"
 #include "realmain.h"
 #include "initMacOSXEnv.h"
 
@@ -23,6 +23,14 @@
 
 
 #if defined(__APPLE__) && !defined(WITHOUT_GUI)
+
+typedef struct
+{
+    int   no_startup_flag_l;
+    char  *initial_script;
+    InitScriptType initial_script_type;
+    int memory;
+} thread_parm_t;
 
 /*
 Some parts of the next three functions have been taken from simpleJavaLauncher.
@@ -84,11 +92,9 @@ static void setAppName(const char * name)
  * @param param The structure containing the missing argument mandatory for realmain
  * @return the result of the operation (0 if OK ...)
  */
-static int launchMacOSXEnv(ScilabEngineInfo* _pSEI)
+static int launchMacOSXEnv(thread_parm_t *param)
 {
-
-#undef JVM_DETECTION
-#ifdef JVM_DETECTION
+    thread_parm_t *p = (thread_parm_t *)param;
     int ret = -1;
     {
         CFStringRef targetJVM = CFSTR("1.5");
@@ -182,30 +188,15 @@ static int launchMacOSXEnv(ScilabEngineInfo* _pSEI)
             fprintf(stderr, "Error: cant find bundle: com.apple.JavaVM.\n");
         }
     }
-#else
-    int ret = 0;
-    /*
-     * This piece of code is mandatory because Mac OS X implementation of Java has a bug here.
-     * Cocoa does not know how to handle the new window created this way.
-     * See: http://lists.apple.com/archives/Java-dev/2009/Jan/msg00062.html
-     * Or Mac Os X bug #6484319
-     * Thanks to Mike Swingler
-     */
-    ProcessSerialNumber psn;
-    GetCurrentProcess(&psn);
-    TransformProcessType(&psn, kProcessTransformToForegroundApplication);
-    /* End of the workaround */
-#endif
 
     if (ret == 0)
     {
-        StartScilabEngine(_pSEI);
-        ret = RunScilabEngine(_pSEI);
-        StopScilabEngine(_pSEI);
+        /* Call the actual startup script of Scilab */
+        ret = realmain(p->no_startup_flag_l, p->initial_script, p->initial_script_type, p->memory);
+        free(p);
         exit(ret);
     }
-
-
+    free(p);
     return ret;
 
 }
@@ -217,12 +208,21 @@ static void sourceCallBack (  void *info  ) {}
 /* Specific wrapper for mac os X which is going to call realmin in a specific thread.
  * Takes the same args as realmain
  */
-int initMacOSXEnv(ScilabEngineInfo* _pSEI)
+int initMacOSXEnv(int no_startup_flag_l, char *initial_script, InitScriptType initial_script_type, int memory)
 {
+
     CFRunLoopSourceContext sourceContext;
     /* Start the thread that runs the VM. */
     pthread_t vmthread;
     setAppName("Scilab");
+
+    /* Create the structure which is going to be giving to the function inside the thread */
+    thread_parm_t         *param = NULL;
+    param = malloc(sizeof(thread_parm_t));
+    param->no_startup_flag_l = no_startup_flag_l;
+    param->initial_script = initial_script;
+    param->initial_script_type = initial_script_type;
+    param->memory = memory;
 
     /* create a new pthread copying the stack size of the primordial pthread */
     struct rlimit limit;
@@ -245,10 +245,10 @@ int initMacOSXEnv(ScilabEngineInfo* _pSEI)
     }
 
     /* Start the thread that we will start the JVM on. */
-    pthread_create(&vmthread, &thread_attr,  launchMacOSXEnv, _pSEI);
+    pthread_create(&vmthread, &thread_attr,  launchMacOSXEnv, (void*)param);
     pthread_attr_destroy(&thread_attr);
 
-    /* Create a a sourceContext to be used by our source that makes */
+    /* Create a sourceContext to be used by our source that makes */
     /* sure the CFRunLoop doesn't exit right away */
     sourceContext.version = 0;
     sourceContext.info = NULL;

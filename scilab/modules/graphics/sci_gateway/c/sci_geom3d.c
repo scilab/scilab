@@ -47,7 +47,7 @@ int geom3d(double *x, double *y, double *z, int n)
 }
 
 /*--------------------------------------------------------------------------*/
-int sci_geom3d(char * fname, void *pvApiCtx)
+int sci_geom3d(char * fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int ix1 = 0, m1 = 0, n1 = 0, m2 = 0, n2 = 0, m3 = 0, n3 = 0;

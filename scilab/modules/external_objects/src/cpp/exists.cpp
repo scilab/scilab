@@ -55,14 +55,14 @@ int ScilabGateway::exists(char * fname, const int envId, void * pvApiCtx)
     {
         exists = env.isvalidobject(*id);
     }
-    catch (std::exception & /*e*/)
+    catch (std::exception & e)
     {
         throw;
     }
 
-    createScalarBoolean(pvApiCtx, Rhs + 1, exists ? 1 : 0);
+    createScalarBoolean(pvApiCtx, 1, exists ? 1 : 0);
 
-    LhsVar(1) = Rhs + 1;
+    LhsVar(1) = 1;
     PutLhsVar();
 
     return 0;

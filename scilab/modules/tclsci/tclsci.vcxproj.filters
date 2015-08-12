@@ -14,13 +14,13 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{003e7ad2-38ba-4dc1-9955-6671023e6c8b}</UniqueIdentifier>
+      <UniqueIdentifier>{1c6aeb18-3198-4656-b960-cb3d7fc9080d}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{2fc360db-a74e-4658-8eac-70387483e4fd}</UniqueIdentifier>
+      <UniqueIdentifier>{78213cf4-3476-4551-95d2-eb86a7265195}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{0b461200-71af-4e2e-a467-603d0e29b74b}</UniqueIdentifier>
+      <UniqueIdentifier>{259830e8-8029-4548-8595-ea3408564627}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -31,6 +31,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\GlobalTclInterp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_tclsci.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\InitializeTclTk.c">

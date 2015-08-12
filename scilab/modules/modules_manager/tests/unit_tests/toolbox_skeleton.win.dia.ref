@@ -16,6 +16,9 @@ assert_checkequal(status, 1);
 exec("TMPDIR/toolbox_skeleton/builder.sce");
 Building macros...
 -- Creation of [toolbox_skeletonlib] (Macros) --
+genlib: Processing file: scilab_error.sci
+genlib: Processing file: scilab_sum.sci
+genlib: Regenerate names and lib
 Building sources...
    Generate a loader file
    Generate a Makefile
@@ -41,24 +44,20 @@ Building gateway...
    Generate a loader file
    Generate a Makefile
    Running the makefile
-   Compilation of sci_cerror.c
-   Compilation of sci_csub.c
-   Compilation of sci_csum.c
-   Compilation of sci_foo.c
-   Compilation of sci_multiplybypi.c
-   Compilation of skeleton_c.cpp
-   Compilation of skeleton_c.h
-   Compilation of skeleton_c.hxx
+   Compilation of sci_fsum.c
+   Compilation of skeleton_fortran.c
    Building shared library (be patient)
    Generate a cleaner file
    Generate a gateway file
    Generate a loader file
    Generate a Makefile
    Running the makefile
-   Compilation of sci_fsum.c
-   Compilation of skeleton_fortran.cpp
-   Compilation of skeleton_fortran.h
-   Compilation of skeleton_fortran.hxx
+   Compilation of sci_cerror.c
+   Compilation of sci_csub.c
+   Compilation of sci_csum.c
+   Compilation of sci_foo.c
+   Compilation of sci_multiplybypi.c
+   Compilation of skeleton_c.c
    Building shared library (be patient)
    Generate a cleaner file
    Generate a gateway file
@@ -66,14 +65,7 @@ Building gateway...
    Generate a Makefile
    Running the makefile
    Compilation of sci_cpp_find.cxx
-   Compilation of sci_cpperror.cpp
-   Compilation of sci_cppfoo.cpp
-   Compilation of sci_cppmultiplybypi.cpp
-   Compilation of sci_cppsub.cpp
-   Compilation of sci_cppsum.cpp
-   Compilation of skeleton_cpp.cpp
-   Compilation of skeleton_cpp.h
-   Compilation of skeleton_cpp.hxx
+   Compilation of skeleton_cpp.c
    Building shared library (be patient)
    Generate a cleaner file
 Generating loader_gateway.sce...
@@ -82,16 +74,26 @@ Generating localization
 -- Building for "en_US" --
 -- Building for "fr_FR" --
 Building help...
+
 Building the master document:
 	TMPDIR\toolbox_skeleton\help\en_US
+
 Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\en_US.
-Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
-Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xml
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_en_US_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
+
 Building the master document:
 	TMPDIR\toolbox_skeleton\help\fr_FR
+
 Building the manual file [javaHelp] in TMPDIR\toolbox_skeleton\help\fr_FR.
-Generate image ./c_sub_1.png from Scilab code from file c_sub.xml
-Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xml
+ 
+ Generate image ./c_sub_1.png from Scilab code from file c_sub.xml   
+ 
+ Generate image ./c_sub_fr_FR_2.png from Scilab code from file c_sub.xm 
+      l                                                                 
 Generating loader.sce...
 Generating unloader.sce...
 Generating cleaner.sce...
@@ -104,10 +106,13 @@ Start Toolbox Skeleton
 	Load demos
 test_run("TMPDIR/toolbox_skeleton/", [], "short_summary");
    001/001 - [TMPDIR/toolbox_skeleton/] : 
+
    001/004 - [TMPDIR/toolbox_skeleton/] c_sum...................passed
    002/004 - [TMPDIR/toolbox_skeleton/] fortran_sum.............passed
    003/004 - [TMPDIR/toolbox_skeleton/] java_sum................passed
    004/004 - [TMPDIR/toolbox_skeleton/] scilab_sum..............passed
+
+
    --------------------------------------------------------------------------
    Tests:    4,    Passed:    4,    Failed:    0,    Skipped:    0
    --------------------------------------------------------------------------

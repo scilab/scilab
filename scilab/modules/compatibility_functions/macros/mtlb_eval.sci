@@ -48,7 +48,6 @@ function r=mtlb_eval(%s1,%s2)
     margin="  "
     verbose_mode = 0;
     logfile=file("open",res_path+"m2sci_fun.log","unknown")
-    global("varslist")
     varslist=m2sci_init()
 
     // Define a function which contains expression/instruction to eval and convert it

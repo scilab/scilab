@@ -1,7 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) INRIA - Allan CORNET
- * Copyright (C) Scilab Enterprises - 2015 - Vincent COUVERT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -13,84 +12,63 @@
 
 /*--------------------------------------------------------------------------*/
 #include "gw_jvm.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
+#include "stack-c.h"
 #include "Scierror.h"
 #include "addToLibrarypath.h"
 #include "getLibrarypath.h"
 #include "localization.h"
 #include "freeArrayOfString.h"
-#include "api_scilab.h"
 /*--------------------------------------------------------------------------*/
-int sci_javalibrarypath(char *fname, void* pvApiCtx)
+int sci_javalibrarypath(char *fname, unsigned long fname_len)
 {
-    int *piAddressVarOne = NULL;
-    int iType = 0;
-    SciErr sciErr;
-
+    Rhs = Max(Rhs, 0);
     CheckRhs(0, 1);
     CheckLhs(0, 1);
 
     if (Rhs == 0)
     {
-        int iRows = 0;
-        int iCols = 1;
-        char **pstLibrarypath = NULL;
+        int nbRow = 0;
+        int nbCol = 1;
+        char **Strings = NULL;
 
-        pstLibrarypath = getLibrarypath(&iRows);
-        createMatrixOfString(pvApiCtx, Rhs + 1, iRows, iCols, pstLibrarypath);
+        Strings = getLibrarypath(&nbRow);
+        CreateVarFromPtr( Rhs + 1, MATRIX_OF_STRING_DATATYPE, &nbRow, &nbCol, Strings );
 
         LhsVar(1) = Rhs + 1;
+        freeArrayOfString(Strings, nbRow * nbCol);
         PutLhsVar();
-        freeArrayOfString(pstLibrarypath, iRows * iCols);
     }
     else
     {
-        sciErr = getVarAddressFromPosition(pvApiCtx, 1, &piAddressVarOne);
-        if (sciErr.iErr)
+        if ( GetType(1) == sci_strings )
         {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        sciErr = getVarType(pvApiCtx, piAddressVarOne, &iType);
-        if (sciErr.iErr)
-        {
-            printError(&sciErr, 0);
-            Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-            return 0;
-        }
-
-        if ( iType == sci_strings )
-        {
-            char **pStVarOne = NULL;
-            static int iCols = 0, iRows = 0;
+            static int n1 = 0, m1 = 0;
             int i = 0;
+            BOOL bOK = FALSE;
+            char **libraryPaths = NULL;
 
-            if (getAllocatedMatrixOfString(pvApiCtx, piAddressVarOne, &iRows, &iCols, &pStVarOne))
+            GetRhsVar(1, MATRIX_OF_STRING_DATATYPE, &m1, &n1, &libraryPaths);
+
+            for (i = 0; i < m1 * n1 ; i++)
             {
-                Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
-                return 0;
-            }
-            for (i = 0; i < iRows * iCols ; i++)
-            {
-                if (!addToLibrarypath(pStVarOne[i]))
+                bOK = addToLibrarypath(libraryPaths[i]);
+                if (!bOK)
                 {
-                    Scierror(999, _("%s: Could not add path to java.library.path: %s.\n"), fname, pStVarOne[i]);;
-                    freeArrayOfString(pStVarOne, iRows * iCols);
+                    Scierror(999, _("%s: Could not add path to java.library.path: %s.\n"), fname, libraryPaths[i]);
+                    freeArrayOfString(libraryPaths, m1 * n1);
                     return 0;
                 }
             }
             LhsVar(1) = 0;
+            freeArrayOfString(libraryPaths, m1 * n1);
             PutLhsVar();
-            freeArrayOfString(pStVarOne, iRows * iCols);
         }
         else
         {
             Scierror(999, _("%s: Wrong type for input argument #%d: String expected.\n"), fname, 1);
         }
     }
-
     return 0;
 }
 /*--------------------------------------------------------------------------*/

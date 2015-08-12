@@ -1,5 +1,10 @@
 LIBRARY    io.dll
 
+
 EXPORTS
-setenvc
-setenvcW
+ setenvc
+ 
+ 
+ 
+ 
+ 

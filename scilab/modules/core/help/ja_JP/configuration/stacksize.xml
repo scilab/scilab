@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="ja" xml:id="stacksize">
+    <refnamediv>
+        <refname>stacksize</refname>
+        <refpurpose>scilab スタックの大きさを設定</refpurpose>
+    </refnamediv>
+    <refsynopsisdiv>
+        <title>呼出し手順</title>
+        <synopsis>stacksize(n)
+            stacksize('max')
+            stacksize('min')
+            sz=stacksize()
+        </synopsis>
+    </refsynopsisdiv>
+    <refsection>
+        <title>引数</title>
+        <variablelist>
+            <varlistentry>
+                <term>n</term>
+                <listitem>
+                    <para>整数, 倍精度ワード単位で指定したスタックの大きさ</para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>sz</term>
+                <listitem>
+                    <para>要素数2のベクトル [total used]</para>
+                </listitem>
+            </varlistentry>
+        </variablelist>
+    </refsection>
+    <refsection>
+        <title>説明</title>
+        <para>
+          Scilab は, "通常の"変数をスタック <literal>stk</literal> に保存します
+          (グローバル変数の場合は,
+	  <link linkend="gstacksize">gstacksize</link>参照).
+        </para>
+        <para>
+          <code>stacksize(n)</code>により
+          ユーザはこのスタックの大きさを増減させることができます.
+          その最大値は,
+          その時点で利用可能な空きメモリおよびスワップ空間大きさに依存します.
+        </para>
+        <para>
+          <code>stacksize('max')</code> により,ユーザは
+          このスタックの大きさを最大値に増加させることができます.
+        </para>
+        <para>
+          <code>stacksize('min')</code>により,ユーザは
+          このスタックの大きさを最小値に減少させることができます.
+        </para>
+        <para>
+          引数<code>n</code>を指定したこの関数は,
+          任意の場所で使用可能です.
+        </para>
+        <para>
+          <code>sz = stacksize()</code>は, カレントの全スタックの大きさと
+          使用中のスタックの大きさを含む要素数2のベクトルを返します.
+        </para>
+	<para>デフォルトで, スタックの大きさは 10 000 000 (~76 Mb)です.</para>
+        <para>64ビットプラットフォームの場合,
+	  スタックの最大値は 268 435 454に制限されます.</para>
+    </refsection>
+    <refsection>
+        <title>例</title>
+        <programlisting role="example"><![CDATA[
+currentStackSize = stacksize();
+disp("Maximum stacksize: " + string(currentStackSize(1)))
+disp("Current usage: "+ string(currentStackSize(2)))
+
+ ]]></programlisting>
+    </refsection>
+    <refsection role="see also">
+        <title>参照</title>
+        <simplelist type="inline">
+            <member>
+                <link linkend="who">who</link>
+            </member>
+            <member>
+                <link linkend="gstacksize">gstacksize</link>
+            </member>
+        </simplelist>
+    </refsection>
+</refentry>

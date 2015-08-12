@@ -14,8 +14,9 @@
 #include "Scierror.h"
 #include "localization.h"
 #include "sciprint.h"
+#include "MALLOC.h"
 
-int stringExample(char *fname, void* pvApiCtx)
+int stringExample(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
     int* piAddr = NULL;

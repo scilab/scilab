@@ -5,8 +5,11 @@ EXPORTS
 
 ; core
 com_
+stack_
+vstk_
 getrhsvar_
 putlhsvar_
+intersci_
 gettype_
 checkrhs_
 checklhs_
@@ -15,4 +18,3 @@ callFunctionFromGateway
 getScilabMode
 MyHeapAlloc
 MyHeapFree
-

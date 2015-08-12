@@ -11,9 +11,11 @@
 
 // <-- BENCH NB RUN : 10 -->
 
+stacksize(30000000);
+
 a = 0;
 b = 0;
-a = abs(rand(800, 800, "n")/2);
+a = abs(rand(800, 800, 'n')/2);
 
 // <-- BENCH START -->
 b = a.^1000;

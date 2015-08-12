@@ -36,8 +36,6 @@ SCIFILECONTENTSREF=["";
 "// Display warning for floating point exception";
 "ieee(1);";
 "";
-"if %t then";
-"  t = 1;"
-"end;"];
+"if %t then t = 1;end;"]
 
 if or(SCIFILECONTENTSREF<>SCIFILECONTENTS) then pause,end

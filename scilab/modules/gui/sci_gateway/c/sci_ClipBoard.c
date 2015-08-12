@@ -18,17 +18,19 @@
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "sciprint.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "localization.h"
+#include "IsAScalar.h"
 #include "freeArrayOfString.h"
 #include "CallClipboard.h"
-#include "os_string.h"
 #include "FigureList.h"
-
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
 /*--------------------------------------------------------------------------*/
-int sci_ClipBoard(char *fname, void* pvApiCtx)
+int sci_ClipBoard(char *fname, unsigned long l)
 {
     SciErr sciErr;
 
@@ -250,7 +252,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
                                 for (j = 0; j < n2; j++)
                                 {
                                     SizeofTextToSendInClipboard = SizeofTextToSendInClipboard + (int)strlen(Str[j * m2 + i]) + (int)strlen("\n") + (int)strlen(" ");
-                                    buffer[i * n2 + j] = os_strdup(Str[j * m2 + i]);
+                                    buffer[i * n2 + j] = strdup(Str[j * m2 + i]);
                                 }
                             }
 
@@ -341,7 +343,7 @@ int sci_ClipBoard(char *fname, void* pvApiCtx)
 
                 num_win = pil1[0];
 
-                if (m1 * n1 != 1)
+                if (m1*n1 != 1)
                 {
                     Scierror(999, _("%s: Wrong size for input argument #%d: A real expected.\n"), fname, 1);
                     return FALSE;

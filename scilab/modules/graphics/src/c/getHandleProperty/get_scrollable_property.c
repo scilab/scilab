@@ -19,7 +19,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_scrollable_property(void* _pvCtx, int iObjUID)
+int get_scrollable_property(void* _pvCtx, int iObjUID)
 {
     int iScrollable = 0;
     int* piScrollable = &iScrollable;
@@ -27,15 +27,15 @@ void* get_scrollable_property(void* _pvCtx, int iObjUID)
     if (piScrollable == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "scrollable");
-        return NULL;
+        return -1;
     }
 
     if (iScrollable)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }

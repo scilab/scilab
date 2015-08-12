@@ -68,13 +68,13 @@ function [tree]=sci_sparse(tree)
         else
             if typeof(i)<>"variable" then
                 V1=gettempvar(1)
-                m2sci_insert(Equal(list(V1),i))
+                insert(Equal(list(V1),i))
             else
                 V1=i
             end
             if typeof(j)<>"variable" then
                 V2=gettempvar(2)
-                m2sci_insert(Equal(list(V2),j))
+                insert(Equal(list(V2),j))
             else
                 V2=j
             end
@@ -105,13 +105,13 @@ function [tree]=sci_sparse(tree)
         else
             if typeof(i)<>"variable" then
                 V1=gettempvar(1)
-                m2sci_insert(Equal(list(V1),i))
+                insert(Equal(list(V1),i))
             else
                 V1=i
             end
             if typeof(j)<>"variable" then
                 V2=gettempvar(2)
-                m2sci_insert(Equal(list(V2),j))
+                insert(Equal(list(V2),j))
             else
                 V2=j
             end

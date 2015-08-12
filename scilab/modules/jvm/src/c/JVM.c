@@ -17,7 +17,7 @@
 #include "dynamiclibrary.h"
 #include "JVM.h"
 #include "JVM_functions.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "getScilabJavaVM.h"
 #include "getScilabJNIEnv.h"
 #include "fromjava.h"
@@ -46,8 +46,6 @@ static void freeJavaVMOption(void)
             }
         }
         nOptions = 0;
-        FREE(jvm_options);
-        jvm_options = NULL;
     }
 }
 
@@ -246,10 +244,8 @@ BOOL startJVM(char *SCI_PATH)
                         fprintf(stderr, _("Options:\n"));
                         for (j = 0; j < vm_args.nOptions; j++)
                         {
-                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j].optionString);
+                            fprintf(stderr, "%d: %s\n", j, vm_args.options[j]);
                         }
-
-                        freeJavaVMOption();
                     }
                     return FALSE;
                 }
@@ -271,9 +267,10 @@ BOOL startJVM(char *SCI_PATH)
         freeJavaVMOption();
         return FALSE;
     }
-
-    freeJavaVMOption();
-    return TRUE;
+    else
+    {
+        return TRUE;
+    }
 }
 /*--------------------------------------------------------------------------*/
 BOOL finishJVM(void)

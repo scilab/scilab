@@ -17,21 +17,21 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolPosition(void* _pvCtx, int iObjUID)
+int GetUicontrolPosition(void* _pvCtx, int iObjUID)
 {
     double* position = NULL;
-    void* status = NULL;
+    int status = FALSE;
 
     getGraphicObjectProperty(iObjUID, __GO_POSITION__, jni_double_vector, (void**) &position);
 
     if (position == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "Position");
-        return NULL;
+        return FALSE;
     }
     else
     {
-        status = sciReturnRowVector(position, 4);
+        status = sciReturnRowVector(_pvCtx, position, 4);
         delete[] position;
         return status;
     }

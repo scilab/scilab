@@ -18,9 +18,9 @@
 #endif
 #include "FileExist.h"
 #include "charEncoding.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 /*--------------------------------------------------------------------------*/
-BOOL FileExist(const char *filename)
+BOOL FileExist(char *filename)
 {
 #ifdef _MSC_VER
     wchar_t *wcFilename = to_wide_string(filename);
@@ -46,7 +46,7 @@ BOOL FileExist(const char *filename)
 
 }
 /*--------------------------------------------------------------------------*/
-BOOL FileExistW(const wchar_t *wcfilename)
+BOOL FileExistW(wchar_t *wcfilename)
 {
 #ifdef _MSC_VER
     if (wcfilename)

@@ -19,7 +19,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "BOOL.h"
 }
@@ -36,9 +36,12 @@ XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error
         FREE(expandedPath);
         if (!pctxt)
         {
-            errorBuffer.clear();
-            errorBuffer.append(gettext("Cannot create a validation context"));
-            *error = errorBuffer;
+            if (errorBuffer)
+            {
+                delete errorBuffer;
+            }
+            errorBuffer = new std::string(gettext("Cannot create a validation context"));
+            *error = *errorBuffer;
         }
         else
         {
@@ -46,9 +49,12 @@ XMLValidationRelaxNG::XMLValidationRelaxNG(const char *path, std::string * error
             xmlRelaxNGFreeParserCtxt(pctxt);
             if (!validationFile)
             {
-                errorBuffer.clear();
-                errorBuffer.append(gettext("Cannot parse the Relax NG grammar"));
-                *error = errorBuffer;
+                if (errorBuffer)
+                {
+                    delete errorBuffer;
+                }
+                errorBuffer = new std::string(gettext("Cannot parse the Relax NG grammar"));
+                *error = *errorBuffer;
             }
             else
             {
@@ -79,7 +85,12 @@ XMLValidationRelaxNG::~XMLValidationRelaxNG()
         }
     }
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+
+        errorBuffer = 0;
+    }
 }
 
 bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error) const
@@ -87,12 +98,16 @@ bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error
     bool ret;
     xmlRelaxNGValidCtxt *vctxt = xmlRelaxNGNewValidCtxt((xmlRelaxNG *) validationFile);
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string("");
 
     if (!vctxt)
     {
-        errorBuffer.append(gettext("Cannot create a validation context"));
-        *error = errorBuffer;
+        errorBuffer->append(gettext("Cannot create a validation context"));
+        *error = *errorBuffer;
         return false;
     }
 
@@ -105,7 +120,7 @@ bool XMLValidationRelaxNG::validate(const XMLDocument & doc, std::string * error
 
     if (ret)
     {
-        *error = errorBuffer;
+        *error = *errorBuffer;
     }
 
     return ret == 0;
@@ -116,15 +131,16 @@ bool XMLValidationRelaxNG::validate(xmlTextReader * reader, std::string * error)
     int last;
     int valid;
 
-    errorBuffer.clear();
+    if (errorBuffer)
+    {
+        delete errorBuffer;
+    }
+    errorBuffer = new std::string();
 
     xmlTextReaderSetErrorHandler(reader, (xmlTextReaderErrorFunc) XMLValidation::errorReaderFunction, 0);
     xmlTextReaderRelaxNGSetSchema(reader, getValidationFile < xmlRelaxNG > ());
 
-    while ((last = xmlTextReaderRead(reader)) == 1)
-    {
-        ;
-    }
+    while ((last = xmlTextReaderRead(reader)) == 1) ;
     valid = xmlTextReaderIsValid(reader);
 
     xmlTextReaderSetErrorHandler(reader, 0, 0);
@@ -132,7 +148,7 @@ bool XMLValidationRelaxNG::validate(xmlTextReader * reader, std::string * error)
 
     if (last == -1 || valid != 1)
     {
-        *error = errorBuffer;
+        *error = *errorBuffer;
         return false;
     }
 
@@ -144,4 +160,3 @@ const std::string XMLValidationRelaxNG::toString() const
     return std::string("XML Relax NG\nNo public information");
 }
 }
-

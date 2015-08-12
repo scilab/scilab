@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_tics_segment_property(void* _pvCtx, int iObjUID)
+int get_tics_segment_property(void* _pvCtx, int iObjUID)
 {
     int iTicksSegment = 0;
     int* piTicksSegment = &iTicksSegment;
@@ -40,16 +40,16 @@ void* get_tics_segment_property(void* _pvCtx, int iObjUID)
     if (piTicksSegment == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "tics_segment");
-        return NULL;
+        return -1;
     }
 
     if (iTicksSegment)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 
 }

@@ -4,8 +4,3 @@
 src/c/scilab_windows/scilab_windows.def
 src/c/windows_tools.def
 src/nowindows_tools/nowindows_tools.def
-#memory leaks tools configuration files
-src/c/CScilex/vld.ini
-src/c/WScilex/vld.ini
-src/c/CScilex/memory_leak_report.txt
-

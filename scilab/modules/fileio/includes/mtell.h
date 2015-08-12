@@ -1,6 +1,6 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
- * Copyright (C) 2011 - Digiteo - Cedric DELAMARRE
+ * Copyright (C) 2007 - INRIA
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -18,8 +18,7 @@
 /**
 * tell function
 */
-
-FILEIO_IMPEXP long long mtell(int fd);
+FILEIO_IMPEXP void C2F(mtell) (int *fd, double *offset, int *err);
 
 #endif /* __MTELL_H__ */
 /*--------------------------------------------------------------------------*/

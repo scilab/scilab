@@ -2,13 +2,18 @@ LIBRARY    core.dll
 
 
 EXPORTS
+setScilabMode
 scirun_
 settmpdir_
+setSCIpath
+InitializeLaunchScilabSignal
 ReleaseLaunchScilabSignal
 TerminateCorePart2
 ExitScilab
+getScilabMode
 callFunctionFromGateway
 putlhsvar_
+intersci_
 createvarfromptr_
 checklhs_
 checkrhs_
@@ -16,9 +21,3 @@ com_
 freeArrayOfString
 MyHeapAlloc
 MyHeapFree
-StartScilabEngine
-ExecExternalCommand
-StopScilabEngine
-InitScilabEngineInfo
-StoreConsoleCommand
-RunScilabEngine

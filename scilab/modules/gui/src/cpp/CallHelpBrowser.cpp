@@ -11,12 +11,7 @@
  */
 
 #include "CallHelpBrowser.hxx"
-extern "C"
-{
 #include "BOOL.h"
-#include "Scierror.h"
-#include "localization.h"
-}
 
 using namespace org_scilab_modules_gui_bridge;
 

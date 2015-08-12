@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="Source Files">
@@ -10,16 +10,16 @@
       <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{e736f282-59df-4c68-af4f-335a1c3ac2f7}</UniqueIdentifier>
+      <UniqueIdentifier>{00d01199-4da0-4dcb-8abf-1f17c663ec44}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{3121e62a-5a7d-4fdf-b467-a092a4c57a84}</UniqueIdentifier>
+      <UniqueIdentifier>{1a287cd0-8c67-4a0e-8773-fac00ae79703}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{220e4d17-cc59-4d47-9b19-da2def0b1aa8}</UniqueIdentifier>
+      <UniqueIdentifier>{6468d872-6934-4cec-ae2d-718c8fb2c7d9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Resource Files">
-      <UniqueIdentifier>{f0ef4dd3-39bd-452a-a735-25ed69770789}</UniqueIdentifier>
+      <UniqueIdentifier>{0dea5d13-b6ce-4d7e-9f23-529a3fd8f5d3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +165,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_colored_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_cube_scaling_property.c">
@@ -359,6 +362,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_segs_color_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_sizes_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_sub_tics_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -494,6 +500,9 @@
     <ClCompile Include="src\c\Gray.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_graphics.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\InitObjects.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -545,6 +554,9 @@
     <ClCompile Include="sci_gateway\c\sci_geom3d.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_get.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_glue.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -555,6 +567,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_Legend.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_matplot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_matplot1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_move.c">
@@ -602,6 +620,9 @@
     <ClCompile Include="sci_gateway\c\sci_unzoom.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_winsid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xarc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -627,6 +648,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xfpolys.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xget.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xgetmouse.c">
@@ -657,6 +681,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xsegs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xstring.c">
@@ -782,6 +809,9 @@
     <ClCompile Include="src\c\getHandleProperty\set_colored_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_cube_scaling_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -798,6 +828,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_data_mapping_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_data_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_default_values_property.c">
@@ -959,6 +995,9 @@
     <ClCompile Include="src\c\getHandleProperty\set_segs_color_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_sizes_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_sub_tics_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1002,6 +1041,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_triangles_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\set_user_data_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_view_property.c">
@@ -1106,9 +1148,6 @@
     <ClCompile Include="src\c\getHandleProperty\set_figure_closerequestfcn_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_user_data_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_ambient_color_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1143,9 +1182,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\get_image_type_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\configgraphicvariable.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_light.c">
@@ -1247,6 +1283,9 @@
     <ClCompile Include="src\c\getHandleProperty\get_layout_options_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\c\getHandleProperty\get_border_property.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\getHandleProperty\set_border_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -1299,21 +1338,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\cpp\ContourOnMesh.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_border_property.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\cpp\set_data_property.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_datatip_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\get_colors_property.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\c\getHandleProperty\set_colors_property.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -1459,9 +1483,6 @@
     <ClInclude Include="src\c\loadTextRenderingAPI.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\cpp\configgraphicvariable.hxx">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="includes\Light.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -1503,23 +1524,18 @@
     <None Include="core_import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
+    <None Include="scilab_windows_Import.def">
+      <Filter>Libraries Dependencies\Imports</Filter>
+    </None>
     <None Include="graphics.iss" />
     <None Include="sci_gateway\graphics_gateway.xml" />
     <None Include="Makefile.am" />
+    <None Include="locales\graphics.pot">
+      <Filter>localization</Filter>
+    </None>
     <None Include="Elementary_functions_f_Import.def">
       <Filter>Libraries Dependencies\Imports</Filter>
     </None>
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
-    <None Include="locales\graphics.pot" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="graphic.rc">

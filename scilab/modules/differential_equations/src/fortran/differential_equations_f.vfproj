@@ -60,8 +60,25 @@
 		<File RelativePath=".\differential_equations_f.rc"/></Filter>
 		<Filter Name="Source Files" Filter="f90;for;f;fpp;ftn;def;odl;idl">
 		<File RelativePath=".\ainvg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\badd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bbvode.f"/>
 		<File RelativePath=".\bcomp.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bfeval.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bint2d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bint3d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bintg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bj2.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjac.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bjacd.f"/>
 		<File RelativePath=".\bnorm.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bpjacd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bpsold.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bresd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bresid.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bsurf.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bsurfd.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bydot.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\bydot2.f"/>
 		<File RelativePath=".\cfode.f"/>
 		<File RelativePath=".\colnew.f">
 			<FileConfiguration Name="Release|x64">
@@ -77,8 +94,6 @@
 		<File RelativePath=".\dqags.f"/>
 		<File RelativePath=".\dqagse.f"/>
 		<File RelativePath=".\dqelg.f"/>
-		<File RelativePath=".\dqk21.f"/>
-		<File RelativePath=".\dqpsrt.f"/>
 		<File RelativePath=".\ewset.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-bvode.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-dasrt.f"/>
@@ -87,11 +102,16 @@
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-int2d.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-int3d.f"/>
 		<File RelativePath="..\..\sci_gateway\fortran\Ex-intg.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-ode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\Ex-odedc.f"/>
 		<File RelativePath=".\fnorm.f"/>
 		<File RelativePath=".\greatr.f"/>
 		<File RelativePath=".\hpdel.f"/>
 		<File RelativePath=".\hpins.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\int2d.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\int3d.f"/>
 		<File RelativePath=".\intdy.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\intg.f"/>
 		<File RelativePath=".\lcomp.f"/>
 		<File RelativePath=".\loren.f"/>
 		<File RelativePath=".\lsdisc.f"/>
@@ -101,9 +121,11 @@
 		<File RelativePath=".\lsodi.f"/>
 		<File RelativePath=".\lsrgk.f"/>
 		<File RelativePath=".\odeint.f"/>
+		<File RelativePath=".\dqpsrt.f"/>
 		<File RelativePath=".\prepj.f"/>
 		<File RelativePath=".\prepji.f"/>
 		<File RelativePath=".\prja.f"/>
+		<File RelativePath=".\dqk21.f"/>
 		<File RelativePath=".\rchek.f"/>
 		<File RelativePath=".\rchek2.f"/>
 		<File RelativePath=".\rkf45.f"/>
@@ -114,6 +136,18 @@
 		<File RelativePath=".\rscar1.f"/>
 		<File RelativePath=".\rscma1.f"/>
 		<File RelativePath=".\rscom1.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_bvode.f">
+			<FileConfiguration Name="Release|x64">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration>
+			<FileConfiguration Name="Release|Win32">
+				<Tool Name="VFFortranCompilerTool" Optimization="optimizeDisabled"/></FileConfiguration></File>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_daskr.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dasrt.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_dassl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_feval.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_impl.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_ode.f"/>
+		<File RelativePath="..\..\sci_gateway\fortran\sci_f_odedc.f"/>
 		<File RelativePath=".\solsy.f"/>
 		<File RelativePath=".\stoda.f"/>
 		<File RelativePath=".\stode.f"/>

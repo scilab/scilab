@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_legend_location_property(void* _pvCtx, int iObjUID)
+int get_legend_location_property(void* _pvCtx, int iObjUID)
 {
     int iLegendLocation = 0;
     int* piLegendLocation = &iLegendLocation;
@@ -42,58 +42,58 @@ void* get_legend_location_property(void* _pvCtx, int iObjUID)
     if (piLegendLocation == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "legend_location");
-        return NULL;
+        return -1;
     }
 
     if (iLegendLocation == 0)
     {
-        return sciReturnString("in_upper_right");
+        return sciReturnString(_pvCtx, "in_upper_right");
     }
     else if (iLegendLocation == 1)
     {
-        return sciReturnString("in_upper_left");
+        return sciReturnString(_pvCtx, "in_upper_left");
     }
     else if (iLegendLocation == 2)
     {
-        return sciReturnString("in_lower_right");
+        return sciReturnString(_pvCtx, "in_lower_right");
     }
     else if (iLegendLocation == 3)
     {
-        return sciReturnString("in_lower_left");
+        return sciReturnString(_pvCtx, "in_lower_left");
     }
     else if (iLegendLocation == 4)
     {
-        return sciReturnString("out_upper_right");
+        return sciReturnString(_pvCtx, "out_upper_right");
     }
     else if (iLegendLocation == 5)
     {
-        return sciReturnString("out_upper_left");
+        return sciReturnString(_pvCtx, "out_upper_left");
     }
     else if (iLegendLocation == 6)
     {
-        return sciReturnString("out_lower_right");
+        return sciReturnString(_pvCtx, "out_lower_right");
     }
     else if (iLegendLocation == 7)
     {
-        return sciReturnString("out_lower_left");
+        return sciReturnString(_pvCtx, "out_lower_left");
     }
     else if (iLegendLocation == 8)
     {
-        return sciReturnString("upper_caption");
+        return sciReturnString(_pvCtx, "upper_caption");
     }
     else if (iLegendLocation == 9)
     {
-        return sciReturnString("lower_caption");
+        return sciReturnString(_pvCtx, "lower_caption");
     }
     else if (iLegendLocation == 10)
     {
-        return sciReturnString("by_coordinates");
+        return sciReturnString(_pvCtx, "by_coordinates");
     }
     else
     {
         Scierror(999, _("Wrong value for '%s' property.\n"), "legend_location");
     }
 
-    return NULL;
+    return -1;
 }
 /*------------------------------------------------------------------------*/

@@ -15,7 +15,7 @@
 /* desc : function to modify in Scilab he polylines colors                */
 /*------------------------------------------------------------------------*/
 
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "setHandleProperty.h"
 #include "SetProperty.h"
 #include "getPropertyAssignedValue.h"

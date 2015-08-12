@@ -1,0 +1,6 @@
+	LIBRARY    io_f.dll
+
+
+EXPORTS
+; io_f
+v2cunit_

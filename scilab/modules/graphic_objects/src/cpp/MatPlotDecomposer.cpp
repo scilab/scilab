@@ -139,10 +139,6 @@ int MatPlotDecomposer::fillTextureData(int id, unsigned char* buffer, int buffer
             }
             break;
         }
-        default:
-        {
-            break;
-        }
     }
 
     releaseGraphicObjectProperty(__GO_COLORMAP__, colormap, jni_double_vector, colormapSize);

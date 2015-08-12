@@ -99,7 +99,7 @@ function d = assert_cond2reqdigits ( varargin )
         end
     endfunction
 
-    function argin = assert_argindefault ( rhs , vararglist , ivar , default )
+    function argin = argindefault ( rhs , vararglist , ivar , default )
         // Returns the value of the input argument #ivar.
         // If this argument was not provided, or was equal to the
         // empty matrix, returns the default value.
@@ -123,8 +123,8 @@ function d = assert_cond2reqdigits ( varargin )
     //
     // Get arguments
     condition = varargin ( 1 )
-    offset = assert_argindefault ( rhs , varargin , 2 , 0 )
-    b = assert_argindefault ( rhs , varargin , 3 , 10 )
+    offset = argindefault ( rhs , varargin , 2 , 0 )
+    b = argindefault ( rhs , varargin , 3 , 10 )
     //
     // Check types of variables
     if ( typeof(condition) <> "constant" ) then

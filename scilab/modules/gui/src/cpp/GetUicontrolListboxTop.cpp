@@ -18,7 +18,7 @@ extern "C"
 #include "GetUicontrol.h"
 }
 
-void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
+int GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
 {
     int listboxTopSize = 0;
     int* piListboxTopSize = &listboxTopSize;
@@ -29,13 +29,13 @@ void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
     if (piListboxTopSize == NULL)
     {
         Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ListboxTop");
-        return NULL;
+        return FALSE;
     }
     else
     {
         if (listboxTopSize == 0)
         {
-            return sciReturnEmptyMatrix();
+            return sciReturnEmptyMatrix(_pvCtx);
         }
         else
         {
@@ -44,11 +44,11 @@ void* GetUicontrolListboxTop(void* _pvCtx, int iObjUID)
             if (piListboxTop == NULL)
             {
                 Scierror(999, const_cast<char*>(_("'%s' property does not exist for this handle.\n")), "ListboxTop");
-                return NULL;
+                return FALSE;
             }
             else
             {
-                return sciReturnRowVectorFromInt(piListboxTop, listboxTopSize);
+                return sciReturnRowVectorFromInt(_pvCtx, piListboxTop, listboxTopSize);
             }
         }
     }

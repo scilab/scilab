@@ -69,18 +69,11 @@ function t=sci2exp(a,nom,lmax)
     case 10 then
         t=str2exp(a,lmax)
     case 13 then
-        tree=macr2tree(a);
-        strfun=tree2code(tree);
-        name="%fun";
         if named then
-            name=nom;
+            t=fun2string(a,nom)
+        else
+            t=fun2string(a,"%fun")
         end
-        idx=strindex(strfun(1), "=");
-        idx2=strindex(part(strfun(1), idx:$), "(") + idx - 1;
-        str=part(strfun(1), 1:idx) + " "+ name + part(strfun(1), idx2:length(strfun(1)));
-        strfun(1)=str;
-        strfun($)=[];
-        t=strfun;
         t(1)=part(t(1),10:length(t(1)))
         t($)=[]
         t=sci2exp(t,lmax)
@@ -415,8 +408,6 @@ function t=mlist2exp(l,lmax)
             t1=mlist2exp(lk,lmax)
         elseif type(lk)==9 then
             t1=h2exp(lk,lmax)
-        elseif type(lk)==128 then
-            t1=mlist2exp(user2mlist(lk),lmax)
         else
             t1=sci2exp(lk,lmax)
         end
@@ -687,10 +678,15 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 named=%f
             elseif type(a.userdata) == 13 then
                 if named then
-                    f28_strg=sci2exp(a.userdata,nom)
+                    t=fun2string(a,nom)
                 else
-                    f28_strg=sci2exp(a.userdata,"%fun")
+                    t=fun2string(a,"%fun")
                 end
+                t(1)=part(t(1),10:length(t(1)))
+                t($)=[]
+                t=sci2exp(t,lmax)
+                t(1)="createfun("+t(1)
+                t($)=t($)+")"
             elseif type(a.userdata) == 15 then
                 f28_strg=list2exp(a.userdata);
             elseif type(a.userdata) == 16 then
@@ -773,10 +769,15 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
                 named=%f
             elseif type(a.userdata) == 13 then
                 if named then
-                    f47_strg=sci2exp(a.userdata,nom)
+                    t=fun2string(a,nom)
                 else
-                    f47_strg=sci2exp(a.userdata,"%fun")
+                    t=fun2string(a,"%fun")
                 end
+                t(1)=part(t(1),10:length(t(1)))
+                t($)=[]
+                t=sci2exp(t,lmax)
+                t(1)="createfun("+t(1)
+                t($)=t($)+")"
             elseif type(a.userdata) == 15 then
                 f47_strg=list2exp(a.userdata);
             elseif type(a.userdata) == 16 then
@@ -812,17 +813,6 @@ function t=h2exp(a,lmax) //Only for figure and uicontrol
         end
     else
         error(msprintf(gettext("%s: This feature has not been implemented: Variable translation of type %s.\n"),"sci2exp",string(a.type)));
-    end
-
-endfunction
-
-function ml = user2mlist(u)
-
-    fn = getfield(1, u);
-    ml = mlist(fn);
-
-    for k=1:size(fn,"*")
-        ml(k) = eval("u."+fn(k));
     end
 
 endfunction

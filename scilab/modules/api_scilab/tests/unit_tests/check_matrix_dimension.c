@@ -1,7 +1,7 @@
 #include "api_scilab.h"
 #include "sciprint.h"
 
-int check_matrix_dimension(char * fname, void *pvApiCtx)
+int check_matrix_dimension(char * fname)
 {
     SciErr sciErr;
     int* piAddr = NULL;
@@ -64,6 +64,6 @@ int check_matrix_dimension(char * fname, void *pvApiCtx)
     }
 
     //no return value
-    AssignOutputVariable(pvApiCtx, 0) = 0;
+    AssignOutputVariable(pvApiCtx, 0) = 1;
     return 0;
 }

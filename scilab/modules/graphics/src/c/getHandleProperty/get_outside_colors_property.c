@@ -29,7 +29,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_outside_colors_property(void* _pvCtx, int iObjUID)
+int get_outside_colors_property(void* _pvCtx, int iObjUID)
 {
     int* colors = NULL;
 
@@ -38,9 +38,9 @@ void* get_outside_colors_property(void* _pvCtx, int iObjUID)
     if (colors == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "outside_colors");
-        return NULL;
+        return -1;
     }
 
-    return sciReturnRowVectorFromInt(colors, 2);
+    return sciReturnRowVectorFromInt(_pvCtx, colors, 2);
 }
 /*------------------------------------------------------------------------*/

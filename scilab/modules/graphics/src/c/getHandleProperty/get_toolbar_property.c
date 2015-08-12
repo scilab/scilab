@@ -19,7 +19,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_toolbar_property(void* _pvCtx, int iObjUID)
+int get_toolbar_property(void* _pvCtx, int iObjUID)
 {
     int itool = 0;
     int* pitool = &itool;
@@ -28,20 +28,20 @@ void* get_toolbar_property(void* _pvCtx, int iObjUID)
     if (pitool == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "toolbar");
-        return NULL;
+        return -1;
     }
 
     switch (itool)
     {
         default :
         case NONE :
-            return sciReturnString("none");
+            return sciReturnString(_pvCtx, "none");
         case FIGURE :
-            return sciReturnString("figure");
+            return sciReturnString(_pvCtx, "figure");
     }
 }
 /*------------------------------------------------------------------------*/
-void* get_toolbar_visible_property(void* _pvCtx, int iObjUID)
+int get_toolbar_visible_property(void* _pvCtx, int iObjUID)
 {
     int iVisible = 0;
     int* piVisible = &iVisible;
@@ -55,11 +55,11 @@ void* get_toolbar_visible_property(void* _pvCtx, int iObjUID)
 
     if (iVisible == 0)
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
     else
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
 }
 /*------------------------------------------------------------------------*/

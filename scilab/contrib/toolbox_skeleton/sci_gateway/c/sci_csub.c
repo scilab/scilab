@@ -4,12 +4,12 @@
 /* ==================================================================== */
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "csub.h"
 #include <localization.h>
 
 /* ==================================================================== */
-int sci_csub(char *fname, void* pvApiCtx)
+int sci_csub(char *fname)
 {
     SciErr sciErr;
 

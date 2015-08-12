@@ -1,8 +1,0 @@
-LIBRARY    polynomials_f.dll
-
-
-EXPORTS
-idegre_
-residu_
-horner_
-

@@ -13,9 +13,6 @@
 #ifndef __SCILABENVIRONMENTS_HXX__
 #define __SCILABENVIRONMENTS_HXX__
 
-//disable warnings about exports STL items
-#pragma warning (disable : 4251)
-
 #include <vector>
 
 #include "ScilabAbstractEnvironmentException.hxx"

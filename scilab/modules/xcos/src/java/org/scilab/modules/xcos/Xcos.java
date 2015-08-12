@@ -251,22 +251,7 @@ public final class Xcos {
      */
     private static synchronized Xcos getInstance(final XcosTabFactory factory) {
         if (sharedInstance == null) {
-            try {
-                if (!SwingUtilities.isEventDispatchThread()) {
-                    SwingUtilities.invokeAndWait(new Runnable() {
-                        @Override
-                        public void run() {
-                            sharedInstance = new Xcos(factory);
-                        }
-                    });
-                } else {
-                    sharedInstance = new Xcos(factory);
-                }
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            sharedInstance = new Xcos(factory);
 
             LOG.finest("Session started");
         }

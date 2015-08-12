@@ -34,8 +34,8 @@ function [tree]=%g2sci(tree)
             varslist($+1)=M2scivar(tree.out(1).name,tree.out(1).name,Infer(list(1,1),Type(Boolean,Real)))
             tree=list()
         end
-        m2sci_insert(Equal(list(tmp),Cste(%T)))
-        m2sci_insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
+        insert(Equal(list(tmp),Cste(%T)))
+        insert(tlist(["ifthenelse","expression","then","elseifs","else"],Operation("~",list(A.operands(1)),list()),list(Equal(list(tmp),A.operands(2))),list(),list()))
         return
     end
 

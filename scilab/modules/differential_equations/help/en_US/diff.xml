@@ -114,6 +114,12 @@ norm(dy-cos(t(1:$-1)),%inf)
                 <link linkend="eval_cshep2d">eval_cshep2d</link>
             </member>
             <member>
+                <link linkend="derivative">derivative</link>
+            </member>
+            <member>
+                <link linkend="numdiff">numdiff</link>
+            </member>
+            <member>
                 <link linkend="numderivative">numderivative</link>
             </member>
         </simplelist>

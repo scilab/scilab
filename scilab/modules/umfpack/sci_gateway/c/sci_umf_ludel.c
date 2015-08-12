@@ -48,7 +48,7 @@
 |                                                             |
 +------------------------------------------------------------*/
 #include "api_scilab.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "sciumfpack.h"
 #include "gw_umfpack.h"
 #include "Scierror.h"
@@ -58,7 +58,7 @@
 /*--------------------------------------------------------------------------*/
 extern CellAdr *ListNumeric;
 /*--------------------------------------------------------------------------*/
-int sci_umf_ludel(char* fname, void* pvApiCtx)
+int sci_umf_ludel(char* fname, unsigned long l)
 {
     SciErr sciErr;
     int it_flag     = 0;

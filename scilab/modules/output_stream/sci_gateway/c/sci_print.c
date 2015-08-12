@@ -17,8 +17,7 @@ extern int C2F(intprint)(); /* fortran subroutine */
 /*--------------------------------------------------------------------------*/
 int sci_print(char *fname, unsigned long fname_len)
 {
-    // FIXME : implement this.
-    //C2F(intprint)();
+    C2F(intprint)();
     return 0;
 }
 /*--------------------------------------------------------------------------*/

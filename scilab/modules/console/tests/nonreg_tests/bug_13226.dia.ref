@@ -12,7 +12,7 @@
 //
 // <-- Short Description -->
 // Completion with accentued chars could lead to a a crash
-//
+// 
 // <-- LINUX ONLY -->
 file_path = SCI + "/modules/console/tests/nonreg_tests/";
 mkdir(TMPDIR + "/console");
@@ -36,8 +36,9 @@ else
 end
 // name known in scilab , C function called
 table = ["completecommandline"    ,"sci_completecommandline"];
-ilib_build(ilib_name,table,files,libs,[],"",cflags);
+libname = ilib_build(ilib_name,table,files,libs,[],"",cflags);
 clear ilib_build;
+clear libname;
 clear table;
 clear libs;
 clear files;

@@ -14,16 +14,16 @@
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
     </Filter>
     <Filter Include="localization">
-      <UniqueIdentifier>{16ef4b40-8741-4793-a2a6-a00e81752ef0}</UniqueIdentifier>
+      <UniqueIdentifier>{60ed7a50-028b-4c50-b452-1f55bbd73b30}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies">
-      <UniqueIdentifier>{9eae4bc3-9151-469e-9dff-b69ca28e5781}</UniqueIdentifier>
+      <UniqueIdentifier>{f63b9538-b5e7-47bc-b711-1bf065ee6623}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Imports">
-      <UniqueIdentifier>{0c9c37c5-0fb2-4512-b90f-d955beee26f2}</UniqueIdentifier>
+      <UniqueIdentifier>{a18067d4-a625-4998-a983-82dadeac2186}</UniqueIdentifier>
     </Filter>
     <Filter Include="Libraries Dependencies\Export">
-      <UniqueIdentifier>{94481dc4-f4fa-46ad-9f14-61f3e5b2e9d2}</UniqueIdentifier>
+      <UniqueIdentifier>{79cde9b0-abed-43dd-ac60-dc612938cdc9}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -33,7 +33,28 @@
     <ClCompile Include="src\c\getdate.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="sci_gateway\c\gw_time.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="src\c\realtime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_calendar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_getdate.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_realtime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_sleep.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_timer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sci_gateway\c\sci_xpause.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\c\timer.c">

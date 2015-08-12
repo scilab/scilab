@@ -15,7 +15,7 @@
 extern "C"
 {
 #include "expandPathVariable.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 }
 
 namespace org_modules_external_objects
@@ -65,7 +65,7 @@ int ScilabGateway::addToClasspath(char * fname, const int envId, void * pvApiCtx
                 {
                     env.addtoclasspath(expandedPath);
                 }
-                catch (std::exception & /*e*/)
+                catch (std::exception & e)
                 {
                     FREE(expandedPath);
                     freeAllocatedMatrixOfString(rows, cols, className);

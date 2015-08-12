@@ -17,7 +17,7 @@
 // The Editor does not undo properly after a find/replace.
 
 
-//editor(SCI+"\modules\optimization\macros\numderivative.sci")
+//editor(SCI+"\modules\optimization\macros\derivative.sci")
 //* Search> Find/Replace
 //Find: Copyright
 //Replace With: Copyleft

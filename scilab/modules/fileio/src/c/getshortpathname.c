@@ -12,13 +12,15 @@
  */
 /*--------------------------------------------------------------------------*/
 #include <string.h>
+#ifdef _MSC_VER
+#include <windows.h>
+#include "strdup_windows.h"
+#endif
 #include "getshortpathname.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "charEncoding.h"
-#include "os_string.h"
 /*--------------------------------------------------------------------------*/
 #ifdef _MSC_VER
-#include <Windows.h> /* GetShortPathNameW */
 #ifndef MAX_PATH_SHORT
 #define MAX_PATH_SHORT 260
 #endif
@@ -44,7 +46,7 @@ int C2F(getshortpathname)(char *pathname, int *len)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-char *getshortpathname(const char *longpathname, BOOL *convertok)
+char *getshortpathname(char *longpathname, BOOL *convertok)
 {
     char *ShortName = NULL;
 
@@ -74,7 +76,7 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
             else
             {
                 /* FAILED */
-                ShortName = os_strdup(longpathname);
+                ShortName = strdup(longpathname);
                 *convertok = FALSE;
             }
             if (ptwShortName)
@@ -86,7 +88,7 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
         else
         {
             /* FAILED */
-            ShortName = os_strdup(longpathname);
+            ShortName = strdup(longpathname);
             *convertok = FALSE;
         }
         if (ptwlongpathname)
@@ -111,53 +113,5 @@ char *getshortpathname(const char *longpathname, BOOL *convertok)
         *convertok = FALSE;
     }
     return ShortName;
-}
-/*--------------------------------------------------------------------------*/
-wchar_t* getshortpathnameW(wchar_t* _pwstLongPathName, BOOL* _pbOK)
-{
-    wchar_t* pwstOutput = NULL;
-    if (_pwstLongPathName)
-    {
-#ifdef _MSC_VER
-        int iLen = GetShortPathNameW(_pwstLongPathName, NULL, 0);
-
-        if (iLen <= 0)
-        {
-            iLen = MAX_PATH_SHORT;
-        }
-
-        pwstOutput = (wchar_t*)MALLOC((iLen + 1) * sizeof(wchar_t));
-
-        if (pwstOutput)
-        {
-            /* second converts path */
-            if (GetShortPathNameW(_pwstLongPathName, pwstOutput, iLen))
-            {
-                *_pbOK = TRUE;
-            }
-            else
-            {
-                FREE(pwstOutput);
-                pwstOutput = os_wcsdup(_pwstLongPathName);
-                *_pbOK = FALSE;
-            }
-        }
-        else
-        {
-            /* FAILED */
-            pwstOutput = os_wcsdup(_pwstLongPathName);
-            *_pbOK = FALSE;
-        }
-#else
-        /* Linux and MacOS*/
-        pwstOutput = os_wcsdup(_pwstLongPathName);
-        *_pbOK = FALSE;
-#endif
-    }
-    else
-    {
-        *_pbOK = FALSE;
-    }
-    return pwstOutput;
 }
 /*--------------------------------------------------------------------------*/

@@ -23,7 +23,7 @@ extern "C"
 using namespace org_modules_hdf5;
 
 template <typename U>
-int h5create(char * fname, int* pvApiCtx)
+int h5create(char * fname, unsigned long fname_len)
 {
     H5Object * hobj = 0;
     SciErr err;

@@ -30,7 +30,7 @@
 #include "graphicObjectProperties.h"
 
 /*--------------------------------------------------------------------------*/
-int sci_xgrid(char *fname, void *pvApiCtx)
+int sci_xgrid(char *fname, unsigned long fname_len)
 {
     SciErr sciErr;
 

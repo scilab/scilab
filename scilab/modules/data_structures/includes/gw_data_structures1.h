@@ -17,13 +17,18 @@
 #include "machine.h"
 #include "dynlib_data_structures.h"
 /*--------------------------------------------------------------------------*/
+/* it can be called by fortran mklist.f & mkindx.f */
 DATA_STRUCTURES_IMPEXP int C2F(gwdatastructures1)(void);
 DATA_STRUCTURES_IMPEXP int gw_data_structures1(void);
 /*--------------------------------------------------------------------------*/
+int sci_glist(char *fname, unsigned long fname_len);
 int sci_scilist(char *fname, unsigned long fname_len);
+int sci_lsslist(char *fname, unsigned long fname_len);
+int sci_rlist(char *fname, unsigned long fname_len);
 int sci_scitlist(char *fname, unsigned long fname_len);
 int sci_lstcat(char *fname, unsigned long fname_len);
 int sci_scimlist(char *fname, unsigned long fname_len);
+int sci_definedfields(char *fname, unsigned long fname_len);
 int sci_lstsize(char *fname, unsigned long fname_len);
 /*--------------------------------------------------------------------------*/
 #endif /*  __GW_DATA_STRUCTURES1__ */

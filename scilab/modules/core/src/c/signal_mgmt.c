@@ -36,13 +36,9 @@
 #include "signal_mgmt.h"
 #include "Scierror.h"
 #include "suspendProcess.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
 #include "backtrace_print.h"
-#include "cliDisplayManagement.h"
-#include "initConsoleMode.h"
-#include "exit_status.hxx"
-
-jmp_buf ScilabJmpEnv;
+extern jmp_buf jmp_env;
 
 /*----------------------------------------------------------------------------
  * Handle a fatal signal (such as SIGFPE or SIGSEGV)
@@ -410,22 +406,17 @@ static void sig_fatal(int signum, siginfo_t * info, void *p)
              PACKAGE_BUGREPORT, print_buffer, bt);
 
     free(bt);
-
-    if (getScilabMode() == SCILAB_NWNI || getScilabMode() == SCILAB_NW)
-    {
-        /* Reset termcaps and Characters display. */
-        setAttr(ATTR_RESET);
-        setCharDisplay(DISP_RESET);
-    }
-
-    longjmp(ScilabJmpEnv, HUGE_ERROR);
+    longjmp(&jmp_env, 1);
 }
 
 void base_error_init(void)
 {
     struct sigaction act;
+
     int j;
+
     struct sigaction ToSuspend;
+
     struct sigaction ToContinue;
     int signals[] =
     {

@@ -38,8 +38,8 @@
 #include "createGraphicObject.h"
 
 /*--------------------------------------------------------------------------*/
-static int getZoomedObject(void* pvApiCtx, const char * fname);
-static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, double rect[4]);
+static int getZoomedObject(const char * fname);
+static BOOL getZoomRect(const char * fname, int attribPos, double rect[4]);
 /*--------------------------------------------------------------------------*/
 /**
  * Get the [xmin, ymin, xmax, ymax] vector specified as input argument
@@ -48,7 +48,7 @@ static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, doubl
  * @param[out] rect retrieved rectangle
  * @return TRUE if the rect could be retrieved, false otherwise
  */
-static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, double rect[4])
+static BOOL getZoomRect(const char * fname, int attribPos, double rect[4])
 {
     SciErr sciErr;
     int nbRow = 0;
@@ -103,7 +103,7 @@ static BOOL getZoomRect(void* pvApiCtx, const char * fname, int attribPos, doubl
  * @return NULL if the input argument is not correct,
  *              the object to zoom otherwise
  */
-static int getZoomedObject(void* pvApiCtx, const char * fname)
+static int getZoomedObject(const char * fname)
 {
     SciErr sciErr;
     int nbRow  = 0;
@@ -159,7 +159,7 @@ static int getZoomedObject(void* pvApiCtx, const char * fname)
 
 }
 /*--------------------------------------------------------------------------*/
-int sci_zoom_rect(char *fname, void *pvApiCtx)
+int sci_zoom_rect(char *fname, unsigned long fname_len)
 {
     int iFigureUID = 0;
     int* piChildrenUID = NULL;
@@ -187,7 +187,7 @@ int sci_zoom_rect(char *fname, void *pvApiCtx)
         /* with handle a figure or subwindow */
         if (checkInputArgumentType(pvApiCtx, 1, sci_handles))
         {
-            int iZoomedObject = getZoomedObject(pvApiCtx, fname);
+            int iZoomedObject = getZoomedObject(fname);
             if (iZoomedObject == 0)
             {
                 return -1;
@@ -197,7 +197,7 @@ int sci_zoom_rect(char *fname, void *pvApiCtx)
         else if (checkInputArgumentType(pvApiCtx, 1, sci_matrix))
         {
             double rect[4];
-            if (getZoomRect(pvApiCtx, fname, 1, rect))
+            if (getZoomRect(fname, 1, rect))
             {
                 /* rectangle found */
                 //int status = sciZoom2D(getCurrentSubWin(), rect);
@@ -248,8 +248,8 @@ int sci_zoom_rect(char *fname, void *pvApiCtx)
             return -1;
         }
 
-        iZoomedObject = getZoomedObject(pvApiCtx, fname);
-        if (iZoomedObject == 0 || !getZoomRect(pvApiCtx, fname, 2, rect))
+        iZoomedObject = getZoomedObject(fname);
+        if (iZoomedObject == 0 || !getZoomRect(fname, 2, rect))
         {
             return -1;
         }

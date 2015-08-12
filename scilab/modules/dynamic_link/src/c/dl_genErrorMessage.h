@@ -19,5 +19,5 @@
  * @param errorCode the code of error
  * @param SharedLibraryName name of the library
  */
-DYNAMIC_LINK_IMPEXP void dl_genErrorMessage(const wchar_t* _pwstCallerName, int _iErr, const wchar_t* _pwstLibraryName);
+void dl_genErrorMessage(char* fname, int errorCode, char* SharedLibraryName);
 /*--------------------------------------------------------------------------*/

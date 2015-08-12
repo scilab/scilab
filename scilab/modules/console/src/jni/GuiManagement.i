@@ -18,7 +18,7 @@
 */
 %module GuiManagement
 %{
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "../c/GuiManagement.h"
 %}
 

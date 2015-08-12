@@ -15,20 +15,22 @@
 #include "gw_gui.h"
 #include "api_scilab.h"
 #include "Scierror.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "localization.h"
 #include "FigureList.h"
 #include "HandleManagement.h"
 #include "GetProperty.h"
 #include "freeArrayOfString.h"
-#include "os_string.h"
-#include "configvariable_interface.h"
+#include "scilabmode.h"
+#if _MSC_VER
+#include "strdup_windows.h"
+#endif
 #include "getGraphicObjectProperty.h"
 #include "setGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
 #include "getConsoleIdentifier.h"
 /*--------------------------------------------------------------------------*/
-int sci_toolbar(char *fname, void* pvApiCtx)
+int sci_toolbar(char *fname, unsigned long l)
 {
     SciErr sciErr;
 
@@ -203,11 +205,11 @@ int sci_toolbar(char *fname, void* pvApiCtx)
     getGraphicObjectProperty(iParentUID, __GO_TOOLBAR_VISIBLE__, jni_bool, (void **)&piIsVisible);
     if (iIsVisible)
     {
-        Output = os_strdup("on");
+        Output = strdup("on");
     }
     else
     {
-        Output = os_strdup("off");
+        Output = strdup("off");
     }
 
     nbCol = 1;

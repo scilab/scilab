@@ -37,7 +37,7 @@
 #include <string.h>
 #include "math_graphics.h"
 #include "Format.h"
-#include "sci_malloc.h"
+#include "MALLOC.h"
 #include "GetProperty.h"
 #include "BasicAlgos.h"
 #include "sciprint.h"
@@ -49,6 +49,10 @@
 #include "graphicObjectProperties.h"
 
 #define MAX(A,B) ((A<B)?B:A)
+
+static double spans[18] = {10, 12, 14, 15, 16, 18, 20, 25, 30, 35, 40, 45, 50, 60, 70, 80, 90, 100};
+static int ticks[18] = {11, 7, 8, 4, 9, 10, 11, 6, 7, 8, 9, 10, 11, 7, 8, 9, 10, 11};
+static double width[18] = {1, 2, 2, 5, 2, 2, 2, 5, 5, 5, 5, 5, 5, 10, 10, 10, 10, 10};
 
 /** Maximum of ticks for log mode */
 #define MAX_LOG_TICKS 15
@@ -691,7 +695,7 @@ static void GradFixedlog(double minVal, double maxVal, double* outTicks, int nbG
         /* i=0..nbReg-1 should do the thing */
         for (i = 0 ; i < nbRemove ; i++)
         {
-            int remIndex = 1 + (int) scilab_round( i  * ((double) initSize - 2) / ((double) nbRemove));
+            int remIndex = 1 + (int) round( i  * ((double) initSize - 2) / ((double) nbRemove));
             removedTicks[remIndex] = TRUE;
         }
 

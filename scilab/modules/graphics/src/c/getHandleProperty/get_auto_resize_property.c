@@ -32,7 +32,7 @@
 #include "graphicObjectProperties.h"
 
 /*------------------------------------------------------------------------*/
-void* get_auto_resize_property(void* _pvCtx, int iObjUID)
+int get_auto_resize_property(void* _pvCtx, int iObjUID)
 {
     int iAutoResize = 0;
     int* piAutoResize =  &iAutoResize;
@@ -41,16 +41,16 @@ void* get_auto_resize_property(void* _pvCtx, int iObjUID)
     if (piAutoResize == NULL)
     {
         Scierror(999, _("'%s' property does not exist for this handle.\n"), "auto_resize");
-        return NULL;
+        return -1;
     }
 
     if (iAutoResize)
     {
-        return sciReturnString("on");
+        return sciReturnString(_pvCtx, "on");
     }
     else
     {
-        return sciReturnString("off");
+        return sciReturnString(_pvCtx, "off");
     }
 }
 /*------------------------------------------------------------------------*/

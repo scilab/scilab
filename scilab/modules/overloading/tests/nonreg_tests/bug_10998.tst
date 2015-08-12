@@ -7,8 +7,6 @@
 //
 // <-- CLI SHELL MODE -->
 //
-// <-- NOT FIXED -->
-//
 // <-- Non-regression test for bug 10998 -->
 //
 // <-- Bugzilla URL -->

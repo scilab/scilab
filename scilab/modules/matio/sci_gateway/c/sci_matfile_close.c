@@ -23,7 +23,7 @@
 Interface for MATIO function called Mat_Close
 Scilab function name : matfile_close
 *******************************************************************************/
-int sci_matfile_close(char *fname, void* pvApiCtx)
+int sci_matfile_close(char *fname, unsigned long fname_len)
 {
     mat_t * matfile = NULL;
     int fileIndex = 0;

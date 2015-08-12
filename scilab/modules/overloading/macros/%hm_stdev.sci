@@ -17,9 +17,9 @@ function x = %hm_stdev(m, d, ms)
     end
     if argn(2) == 1 | d == "*" then
         if argn(2) == 3 then
-            x = stdev(m(:), "*", ms);
+            x = stdev(m.entries, "*", ms);
         else
-            x = stdev(m(:), "*");
+            x = stdev(m.entries, "*");
         end
         return
     elseif d == "r" then
@@ -27,7 +27,7 @@ function x = %hm_stdev(m, d, ms)
     elseif d == "c" then
         d = 2;
     end
-    dims = size(m);
+    dims = double(m.dims);
     if d > size(m,d) then
         x = zeros(m);
         return
@@ -44,12 +44,12 @@ function x = %hm_stdev(m, d, ms)
 
     if argn(2) == 3 then
         if isscalar(ms) then
-            x = stdev(matrix(m(I),dims(d),-1), 1, ms);
+            x = stdev(matrix(m.entries(I),dims(d),-1), 1, ms);
         else
-            x = stdev(matrix(m(I),dims(d),-1), 1, ms(:)');
+            x = stdev(matrix(m.entries(I),dims(d),-1), 1, ms.entries');
         end
     else
-        x = stdev(matrix(m(I),dims(d),-1), 1);
+        x = stdev(matrix(m.entries(I),dims(d),-1), 1);
     end
     dims(d) = 1;
     if d == N then

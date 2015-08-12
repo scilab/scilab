@@ -18,7 +18,6 @@
 #endif
 #define NULL 0
 
-#define NOMINMAX
 #include <crtdefs.h>
 
 

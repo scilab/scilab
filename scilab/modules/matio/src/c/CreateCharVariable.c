@@ -15,8 +15,10 @@
 #include "api_scilab.h"
 #include "CreateMatlabVariable.h"
 #include "freeArrayOfString.h"
-#include "os_string.h"
-#include "sci_malloc.h"
+#ifdef _MSC_VER
+#include "strdup_windows.h"
+#endif
+#include "MALLOC.h"
 #include "localization.h"
 #include "Scierror.h"
 
@@ -92,7 +94,7 @@ int CreateCharVariable(void *pvApiCtx, int iVar, matvar_t *matVariable, int * pa
             else
             {
                 char ** tmp_char = (char **)MALLOC(sizeof(char *));
-                tmp_char[0] = os_strdup("\0");
+                tmp_char[0] = strdup("\0");
                 sciErr = createMatrixOfStringInList(pvApiCtx, iVar, parent, item_position, 1, 1, tmp_char);
                 if (sciErr.iErr)
                 {
