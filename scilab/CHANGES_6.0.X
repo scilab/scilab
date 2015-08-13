@@ -19,6 +19,8 @@ Scilab Bug Fixes
 
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
 
+* Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.
+
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
 

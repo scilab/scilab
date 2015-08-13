@@ -1104,6 +1104,8 @@ function %h_p(h)
             "ambient_color = "+sci2exp(h.ambient_color)
             "diffuse_color = "+sci2exp(h.diffuse_color)
             "specular_color= "+sci2exp(h.specular_color)
+            "user_data = "+fmtuser_data(h.userdata)
+            "tag = "+sci2exp(h.tag)
             ]
         end
     end

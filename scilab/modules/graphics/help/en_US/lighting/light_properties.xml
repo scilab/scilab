@@ -122,6 +122,19 @@
                     </para>
                 </listitem>
             </varlistentry>
+            <varlistentry>
+                <term>user_data: </term>
+                <listitem>
+                    <para>This field can be use to store any scilab variable and to retreive it.
+                    </para>
+                </listitem>
+            </varlistentry>
+            <varlistentry>
+                <term>tag: </term>
+                <listitem>
+                    <para>This field can be use to store a character string generally used to identify the light entity. It allows to give it a "name". Mainly used in conjontion with findobj() and get()/set() functions.</para>
+                </listitem>
+            </varlistentry>
         </variablelist>
     </refsection>
     <refsection>
