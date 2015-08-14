@@ -27,6 +27,7 @@
 #include "threadmanagement.hxx"
 #include "macro.hxx"
 #include "macrofile.hxx"
+#include "filemanager.hxx"
 
 #include <iostream>
 #include <fstream>
@@ -173,7 +174,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 ConfigVariable::setLastErrorMessage(parser.getErrorMessage());
                 ConfigVariable::setLastErrorNumber(999);
                 delete parser.getTree();
-                mclose(iID);
+                // Check if file has not already been closed (for ex mclose('all') in function)
+                if (FileManager::isOpened(pwstFile) == true)
+                {
+                    mclose(iID);
+                }
                 ThreadManagement::UnlockParser();
                 return Function::OK;
             }
@@ -183,7 +188,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             FREE(pst);
 
             delete parser.getTree();
-            mclose(iID);
+            // Check if file has not already been closed (for ex mclose('all') in function)
+            if (FileManager::isOpened(pwstFile) == true)
+            {
+                mclose(iID);
+            }
             ThreadManagement::UnlockParser();
             return Function::Error;
         }
@@ -363,7 +372,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                     if (file)
                     {
                         delete pExp;
-                        mclose(iID);
+                        // Check if file has not already been closed (for ex mclose('all') in function)
+                        if (FileManager::isOpened(pwstFile) == true)
+                        {
+                            mclose(iID);
+                        }
                         file->close();
                         delete file;
                         FREE(pstFile);
@@ -416,7 +429,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     if (file)
     {
         delete pExp;
-        mclose(iID);
+        // Check if file has not already been closed (for ex mclose('all') in function)
+        if (FileManager::isOpened(pwstFile) == true)
+        {
+            mclose(iID);
+        }
         file->close();
         delete file;
         FREE(pstFile);

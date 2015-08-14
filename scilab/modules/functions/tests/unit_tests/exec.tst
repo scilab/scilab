@@ -53,3 +53,8 @@ if isdef("y")<> %t then pause,end
 if isdef("a")<> %t then pause,end
 assert_checkequal(y, 25);
 
+// no warning must be displayed when
+// exec a file with mclose("all") inside
+filename = TMPDIR + filesep() + "testmclose.sce";
+mputl("mclose(""all"");",filename);
+exec(filename);
