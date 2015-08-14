@@ -27,7 +27,7 @@ File::File()
     m_iSwap = 0;
     m_pstMode = L"";
     m_iFortranMode = -1; // see clunit.f
-    m_iType = 0; // 1 : fortran open   2 : c open
+    m_iType = 0; // 1 : fortran open   2 : c open   3 : std::err std::out std::in
     m_stFilename = L"";
 }
 
@@ -158,6 +158,9 @@ std::wstring File::getFileTypeAsString()
             break;
         case 2 :
             return L"C";
+            break;
+        case 3 :
+            return L"STD";
             break;
         default :
             return L"Error";
