@@ -57,6 +57,8 @@ public final class PaletteBlockKeyListener implements KeyListener {
             final XcosDiagram theDiagram = allDiagrams.get(size - 1);
             BasicBlock current = control.getBlock();
             theDiagram.addCell(current);
+
+            PaletteManagerView.get().getPanel().addRecentltyUsedBlock(control.getModel());
             return;
         }
 

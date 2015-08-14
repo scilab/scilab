@@ -39,7 +39,9 @@ import org.scilab.modules.xcos.palette.actions.ZoomAction;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerMouseListener;
 import org.scilab.modules.xcos.palette.listener.PaletteManagerTreeSelectionListener;
 import org.scilab.modules.xcos.palette.listener.PaletteTreeTransferHandler;
+import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
+import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.utils.XcosConstants;
@@ -50,6 +52,9 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
  */
 @SuppressWarnings(value = { "serial" })
 public class PaletteManagerPanel extends JSplitPane {
+
+    /** Name of tree node for recently used blocks **/
+    public static final String RECENTLY_USED_BLOCKS = "Recently Used Blocks";
 
     private static XcosConstants.PaletteBlockSize currentSize;
     private PaletteManager controller;
@@ -117,6 +122,49 @@ public class PaletteManagerPanel extends JSplitPane {
      */
     public PaletteBlockSize getCurrentSize() {
         return currentSize;
+    }
+
+    /**
+     * Adds a PaletteBlock to the list of recently used blocks. 
+     * @param block PaletteBlock
+     */
+    public void addRecentltyUsedBlock(PaletteBlock block) {
+        PaletteNode currentNode = (PaletteNode) tree.getLastSelectedPathComponent();
+        if (currentNode.getName().equals(RECENTLY_USED_BLOCKS)) {
+            return;
+        }
+
+        final Category root = PaletteManager.getInstance().getRoot();
+        List<PaletteNode> nodes = root.getNode();
+
+        PreLoaded p = null;
+        for (PaletteNode n : nodes) {
+            if (n.getName().equals(RECENTLY_USED_BLOCKS) && n instanceof PreLoaded) {
+                p = (PreLoaded) n;
+                break;
+            }
+        }
+
+        if (p == null) {
+            p = new PreLoaded();
+            p.setName(RECENTLY_USED_BLOCKS);
+            p.setEnable(true);
+            root.getNode().add(p);
+            p.setParent(root);
+            PaletteNode.refreshView(root, currentNode);
+        }
+
+        List<PaletteBlock> blocks = p.getBlock();
+        for (PaletteBlock b : blocks) {
+            if (b.getName().equals(block.getName())) {
+                return;
+            }
+        }
+
+        if (blocks.size() >= XcosConstants.MAX_RECENTLY_USED_BLOCKS) {
+            blocks.remove(XcosConstants.MAX_RECENTLY_USED_BLOCKS - 1);
+        }
+        blocks.add(0, block);
     }
 
     /**

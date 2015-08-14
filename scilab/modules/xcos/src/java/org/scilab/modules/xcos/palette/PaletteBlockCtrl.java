@@ -318,6 +318,7 @@ public final class PaletteBlockCtrl {
 
                     if (transfer != null) {
                         event.startDrag(null, null, new Point(), transfer, null);
+                        PaletteManagerView.get().getPanel().addRecentltyUsedBlock(model);
                     } else {
                         throw new InvalidDnDOperationException();
                     }

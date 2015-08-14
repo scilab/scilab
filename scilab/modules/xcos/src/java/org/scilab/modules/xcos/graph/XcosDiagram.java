@@ -105,7 +105,6 @@ import com.mxgraph.model.mxGraphModel.Filter;
 import com.mxgraph.model.mxGraphModel.mxChildChange;
 import com.mxgraph.model.mxGraphModel.mxStyleChange;
 import com.mxgraph.model.mxICell;
-import com.mxgraph.model.mxIGraphModel;
 import com.mxgraph.model.mxIGraphModel.mxAtomicGraphModelChange;
 import com.mxgraph.util.mxEvent;
 import com.mxgraph.util.mxEventObject;
@@ -919,7 +918,6 @@ public class XcosDiagram extends ScilabGraph {
      */
     @Override
     public Object addCell(Object cell, Object parent, Integer index, Object source, Object target) {
-
         // already connected edge or normal block
         if (source == null && target == null) {
             return super.addCell(cell, parent, index, source, target);
