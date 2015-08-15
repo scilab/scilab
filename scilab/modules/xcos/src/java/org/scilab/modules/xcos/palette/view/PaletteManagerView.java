@@ -161,14 +161,29 @@ public class PaletteManagerView extends SwingScilabDockablePanel implements Simp
         /* Create the menu bar */
         final MenuBar menuBar = ScilabMenuBar.createMenuBar();
 
-        final Menu menu = ScilabMenu.createMenu();
-        menu.setText(XcosMessages.PALETTES);
-        menu.setMnemonic('P');
-        menuBar.add(menu);
+        // Palettes
+        final Menu palettes = ScilabMenu.createMenu();
+        palettes.setText(XcosMessages.PALETTES);
+        palettes.setMnemonic('P');
+        menuBar.add(palettes);
 
-        menu.add(LoadAsPalAction.createMenu(null));
-        menu.addSeparator();
-        menu.add(ClosePalettesAction.createMenu(null));
+        palettes.add(LoadAsPalAction.createMenu(null));
+        palettes.addSeparator();
+        palettes.add(ClosePalettesAction.createMenu(null));
+
+        // View
+        final Menu view = ScilabMenu.createMenu();
+        view.setText(XcosMessages.VIEW);
+        view.setMnemonic('V');
+        menuBar.add(view);
+
+        view.add(ZoomAction.createMenuZoomIn());
+        view.addSeparator();
+        view.add(ZoomAction.createMenuZoomOut());
+        view.addSeparator();
+        view.add(NavigationAction.createMenuPrev());
+        view.addSeparator();
+        view.add(NavigationAction.createMenuNext());
 
         setMenuBar(menuBar);
 

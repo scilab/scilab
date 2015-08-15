@@ -20,7 +20,10 @@ import javax.swing.JButton;
 
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabLAF;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -33,13 +36,13 @@ public class NavigationAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
 
-    private static final String LABEL_NEXT = XcosMessages.NEXT;
-    private static final String LABEL_PREV = XcosMessages.PREVIOUS;
     private static final String ICON_NEXT = FindIconHelper.findIcon("go-next");
     private static final String ICON_PREV = FindIconHelper.findIcon("go-previous");
 
     private static JButton btnNEXT;
     private static JButton btnPREV;
+    private static MenuItem miNEXT;
+    private static MenuItem miPREV;
 
     /**
      * Constructor
@@ -55,8 +58,9 @@ public class NavigationAction extends CommonCallBack {
     public static JButton createButtonNext() {
         btnNEXT = new JButton();
         ScilabLAF.setDefaultProperties(btnNEXT);
+        btnNEXT.setName(XcosMessages.NEXT);
         btnNEXT.setIcon(new ImageIcon(ICON_NEXT));
-        btnNEXT.setToolTipText(LABEL_NEXT);
+        btnNEXT.setToolTipText(XcosMessages.NEXT);
         btnNEXT.addActionListener(getCallBack());
         btnNEXT.setFocusable(true);
         setEnabledNext(false);
@@ -70,12 +74,39 @@ public class NavigationAction extends CommonCallBack {
     public static JButton createButtonPrev() {
         btnPREV = new JButton();
         ScilabLAF.setDefaultProperties(btnPREV);
+        btnPREV.setName(XcosMessages.PREVIOUS);
         btnPREV.setIcon(new ImageIcon(ICON_PREV));
-        btnPREV.setToolTipText(LABEL_PREV);
+        btnPREV.setToolTipText(XcosMessages.PREVIOUS);
         btnPREV.addActionListener(getCallBack());
         btnPREV.setFocusable(true);
         setEnabledPrev(false);
         return btnPREV;
+    }
+
+    /**
+     * Creates a menu item associated with the 'next' action
+     * @return the menuitem
+     */
+    public static MenuItem createMenuNext() {
+        miNEXT = ScilabMenuItem.createMenuItem();
+        miNEXT.setText(XcosMessages.NEXT);
+        miNEXT.setMnemonic('N');
+        miNEXT.setCallback(getCallBack());
+        ((SwingScilabMenuItem) miNEXT.getAsSimpleMenuItem()).setIcon(new ImageIcon(ICON_NEXT));
+        return miNEXT;
+    }
+
+    /**
+     * Creates a menu item associated with the 'previous' action
+     * @return the menuitem
+     */
+    public static MenuItem createMenuPrev() {
+        miPREV = ScilabMenuItem.createMenuItem();
+        miPREV.setText(XcosMessages.PREVIOUS);
+        miPREV.setMnemonic('P');
+        miPREV.setCallback(getCallBack());
+        ((SwingScilabMenuItem) miPREV.getAsSimpleMenuItem()).setIcon(new ImageIcon(ICON_PREV));
+        return miPREV;
     }
 
     /**
@@ -107,10 +138,14 @@ public class NavigationAction extends CommonCallBack {
      * @param e ActionEvent
      */
     public void actionPerformed(ActionEvent e) {
-        Object src = e.getSource();
-        if (btnNEXT != null && src.equals(btnNEXT)) {
+        String cmd = e.getActionCommand();
+        if (cmd.isEmpty()) {
+            cmd = ((JButton) e.getSource()).getName();
+        }
+
+        if (cmd.equals(XcosMessages.NEXT)) {
             PaletteManagerView.get().getPanel().goNext();
-        } else if (btnPREV != null && src.equals(btnPREV)) {
+        } else if (cmd.equals(XcosMessages.PREVIOUS)) {
             PaletteManagerView.get().getPanel().goPrevious();
         }
     }
@@ -121,6 +156,7 @@ public class NavigationAction extends CommonCallBack {
      */
     public static void setEnabledNext(boolean enabled) {
         btnNEXT.setEnabled(enabled);
+        miNEXT.setEnabled(enabled);
     }
 
     /**
@@ -129,6 +165,7 @@ public class NavigationAction extends CommonCallBack {
      */
     public static void setEnabledPrev(boolean enabled) {
         btnPREV.setEnabled(enabled);
+        miPREV.setEnabled(enabled);
     }
 
     @Override

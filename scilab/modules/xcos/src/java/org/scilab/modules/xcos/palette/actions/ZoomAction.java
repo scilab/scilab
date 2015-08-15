@@ -28,7 +28,10 @@ import javax.swing.KeyStroke;
 import org.scilab.modules.commons.OS;
 import org.scilab.modules.commons.gui.FindIconHelper;
 import org.scilab.modules.commons.gui.ScilabLAF;
+import org.scilab.modules.gui.bridge.menuitem.SwingScilabMenuItem;
 import org.scilab.modules.gui.events.callback.CommonCallBack;
+import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.gui.menuitem.ScilabMenuItem;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
@@ -39,9 +42,7 @@ import org.scilab.modules.xcos.utils.XcosMessages;
 public class ZoomAction extends CommonCallBack {
 
     private static final long serialVersionUID = 1L;
-    
-    private static final String LABEL_ZOOMIN = XcosMessages.ZOOM_IN;
-    private static final String LABEL_ZOOMOUT = XcosMessages.ZOOM_OUT;
+
     private static final String ICON_ZOOMIN = FindIconHelper.findIcon("zoom-in");
     private static final String ICON_ZOOMOUT = FindIconHelper.findIcon("zoom-out");
 
@@ -51,6 +52,8 @@ public class ZoomAction extends CommonCallBack {
 
     private static JButton btnZoomIn;
     private static JButton btnZoomOut;
+    private static MenuItem miZoomIn;
+    private static MenuItem miZoomOut;
 
     /**
      * Constructor
@@ -114,8 +117,9 @@ public class ZoomAction extends CommonCallBack {
     public static JButton createButtonZoomIn() {
         btnZoomIn = new JButton();
         ScilabLAF.setDefaultProperties(btnZoomIn);
+        btnZoomIn.setName(XcosMessages.ZOOM_IN);
         btnZoomIn.setIcon(new ImageIcon(ICON_ZOOMIN));
-        btnZoomIn.setToolTipText(LABEL_ZOOMIN);
+        btnZoomIn.setToolTipText(XcosMessages.ZOOM_IN);
         btnZoomIn.addActionListener(getCallBack());
         btnZoomIn.setFocusable(true);
         setEnabledZoomIn(true);
@@ -129,12 +133,41 @@ public class ZoomAction extends CommonCallBack {
     public static JButton createButtonZoomOut() {
         btnZoomOut = new JButton();
         ScilabLAF.setDefaultProperties(btnZoomOut);
+        btnZoomOut.setName(XcosMessages.ZOOM_OUT);
         btnZoomOut.setIcon(new ImageIcon(ICON_ZOOMOUT));
-        btnZoomOut.setToolTipText(LABEL_ZOOMOUT);
+        btnZoomOut.setToolTipText(XcosMessages.ZOOM_OUT);
         btnZoomOut.addActionListener(getCallBack());
         btnZoomOut.setFocusable(true);
         setEnabledZoomOut(true);
         return btnZoomOut;
+    }
+
+    /**
+     * Creates a menu item associated with the 'zoom in' action
+     * @return the menuitem
+     */
+    public static MenuItem createMenuZoomIn() {
+        miZoomIn = ScilabMenuItem.createMenuItem();
+        miZoomIn.setText(XcosMessages.ZOOM_IN);
+        miZoomIn.setCallback(getCallBack());
+        SwingScilabMenuItem menu = ((SwingScilabMenuItem) miZoomIn.getAsSimpleMenuItem());
+        menu.setIcon(new ImageIcon(ICON_ZOOMIN));
+        menu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ADD, ACCELERATOR_KEY));
+        return miZoomIn;
+    }
+
+    /**
+     * Creates a menu item associated with the 'zoom out' action
+     * @return the menuitem
+     */
+    public static MenuItem createMenuZoomOut() {
+        miZoomOut = ScilabMenuItem.createMenuItem();
+        miZoomOut.setText(XcosMessages.ZOOM_OUT);
+        miZoomOut.setCallback(getCallBack());
+        SwingScilabMenuItem menu = ((SwingScilabMenuItem) miZoomOut.getAsSimpleMenuItem());
+        menu.setIcon(new ImageIcon(ICON_ZOOMOUT));
+        menu.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_SUBTRACT, ACCELERATOR_KEY));
+        return miZoomOut;
     }
 
     /**
@@ -168,24 +201,17 @@ public class ZoomAction extends CommonCallBack {
     public void actionPerformed(ActionEvent e) {
         String cmd = e.getActionCommand();
         if (cmd.isEmpty()) {
-            Object src = e.getSource();
-            if (btnZoomIn != null && src.equals(btnZoomIn)) {
-                PaletteManagerView.get().getPanel().zoomIn();
-            } else if (btnZoomOut != null && src.equals(btnZoomOut)) {
-                PaletteManagerView.get().getPanel().zoomOut();
-            }
-        } else if (OS.get() == MAC) {
-            if (cmd.equals("/")) {
-                PaletteManagerView.get().getPanel().zoomIn();
-            } else if (cmd.equals("=")) {
-                PaletteManagerView.get().getPanel().zoomOut();
-            }
-        } else {
-            if (cmd.equals("+") || cmd.equals("=")) {
-                PaletteManagerView.get().getPanel().zoomIn();
-            } else if (cmd.equals("-") || cmd.equals("_")) {
-                PaletteManagerView.get().getPanel().zoomOut();
-            }
+            cmd = ((JButton) e.getSource()).getName();
+        } else if ((OS.get() == MAC && cmd.equals("=")) || cmd.equals("-") || cmd.equals("_")) {
+            cmd = XcosMessages.ZOOM_OUT;
+        } else if (cmd.equals("/") || cmd.equals("+") || cmd.equals("=")) {
+            cmd = XcosMessages.ZOOM_IN;
+        }
+
+        if (cmd.equals(XcosMessages.ZOOM_IN)) {
+            PaletteManagerView.get().getPanel().zoomIn();
+        } else if (cmd.equals(XcosMessages.ZOOM_OUT)) {
+            PaletteManagerView.get().getPanel().zoomOut();
         }
     }
 
@@ -195,6 +221,7 @@ public class ZoomAction extends CommonCallBack {
      */
     public static void setEnabledZoomIn(boolean enabled) {
         btnZoomIn.setEnabled(enabled);
+        miZoomIn.setEnabled(enabled);
     }
 
     /**
@@ -203,6 +230,7 @@ public class ZoomAction extends CommonCallBack {
      */
     public static void setEnabledZoomOut(boolean enabled) {
         btnZoomOut.setEnabled(enabled);
+        miZoomOut.setEnabled(enabled);
     }
 
     @Override
