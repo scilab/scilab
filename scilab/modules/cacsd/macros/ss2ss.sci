@@ -84,10 +84,11 @@ function [Sl1,right,left]=ss2ss(Sl,T,F,G,flag)
             // We have then the following property
             // Sl1 equiv left*sysdiag(sys*right,eye(p,p)))
             //
+            p = size(C,"r");
             A1=A+B*F+G*C+G*D*F;
+            B1=[B+G*D,-G];
             C1=C+ D*F;
             D1=[D,zeros(p,p)];
-            B1=[B+G*D,-G];
             A1=inv(T)*A1*T;B1=inv(T)*B1;C1=C1*T;D1=D1
             Sl1=syslin(Sl(7),A1,B1,C1,D1);
             right=syslin(Sl(7),A+B*F,B,F,eye(F*B));
