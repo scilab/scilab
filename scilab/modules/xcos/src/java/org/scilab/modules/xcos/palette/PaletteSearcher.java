@@ -56,7 +56,12 @@ public final class PaletteSearcher {
             IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true);
 
             IndexSearcher searcher = new IndexSearcher(reader);
-            Query query = parser.parse(str);
+
+            // escape special characters (only on the first character)
+            String escaped = QueryParser.escape(str.substring(0, 1));
+            escaped += str.substring(1);
+
+            Query query = parser.parse(escaped);
 
             TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
