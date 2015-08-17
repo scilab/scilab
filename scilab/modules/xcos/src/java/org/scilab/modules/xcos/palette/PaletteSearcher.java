@@ -54,7 +54,6 @@ public final class PaletteSearcher {
         List<String> blockPaths = new ArrayList<String>();
         try {
             IndexReader reader = DirectoryReader.open(mgr.getIndexWriter(), true);
-
             IndexSearcher searcher = new IndexSearcher(reader);
 
             // escape special characters (only on the first character)
@@ -62,9 +61,15 @@ public final class PaletteSearcher {
             escaped += str.substring(1);
 
             Query query = parser.parse(escaped);
-
             TopDocs results  = searcher.search(query, XcosConstants.MAX_HITS);
             ScoreDoc[] hits = results.scoreDocs;
+
+            if (hits.length == 0 && !str.endsWith("*")) {
+                escaped += "*";
+                query = parser.parse(escaped);
+                results  = searcher.search(query, XcosConstants.MAX_HITS);
+                hits = results.scoreDocs;
+            }
 
             for (int i = 0; i < hits.length; i++) {
                 Document doc = searcher.doc(hits[i].doc);
