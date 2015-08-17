@@ -2359,11 +2359,13 @@ int writeBooleanMatrix6(int parent, const char* name, int dims, int* pdims, int*
     iSpace = H5Screate_simple(dims, piDims, NULL);
     if (iSpace < 0)
     {
+        FREE(piDims);
         return -1;
     }
 
     //Create the dataset and write the array data to it.
     iCompress = enableCompression(9, dims, piDims);
+    FREE(piDims);
 
     dprop = H5Pcreate(H5P_DATASET_CREATE);
     H5Pset_obj_track_times(dprop, 0);

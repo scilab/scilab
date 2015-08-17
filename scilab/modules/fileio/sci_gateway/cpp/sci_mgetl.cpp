@@ -26,6 +26,7 @@ extern "C"
 #include "mopen.h"
 #include "mclose.h"
 #include "expandPathVariable.h"
+#include "freeArrayOfString.h"
 }
 
 using namespace types;
@@ -147,20 +148,15 @@ Function::ReturnValue sci_mgetl(typed_list &in, int _iRetCount, typed_list &out)
         String *pS = new String(iLinesRead, 1);
         pS->set(wcReadedStrings);
         out.push_back(pS);
+        freeArrayOfWideString(wcReadedStrings, iLinesRead);
     }
     else
     {
         out.push_back(types::Double::Empty());
-    }
-
-    if (wcReadedStrings)
-    {
-        for (int i = 0; i < iLinesRead; i++)
+        if (wcReadedStrings)
         {
-            FREE(wcReadedStrings[i]);
+            FREE(wcReadedStrings);
         }
-
-        FREE(wcReadedStrings);
     }
 
     if (bCloseFile)

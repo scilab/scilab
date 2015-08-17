@@ -128,9 +128,10 @@ types::Function::ReturnValue sci_hdf5_listvar_v3(types::typed_list &in, int _iRe
         for (int i = 0; i < items; i++)
         {
             info[i].name = vars[i];
+            FREE(vars[i]);
             info[i].size = 0;
 
-            int dset = getDataSetIdFromName(iFile, vars[i]);
+            int dset = getDataSetIdFromName(iFile, info[i].name.data());
             if (dset == 0)
             {
                 break;

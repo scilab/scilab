@@ -79,14 +79,9 @@ Function::ReturnValue sci_mgetstr(types::typed_list &in, int _iRetCount, types::
         Scierror(999, _("%s: Unable to read file %d.\n"), "mgetstr", iFile);
         return types::Function::Error;
     }
-    else
-    {
-        pOutString = new types::String(iDims, iDimsArray);
-        pOutString->set(0, pwstOut);
-    }
 
+    out.push_back(new types::String(pwstOut));
     FREE(pwstOut);
-    out.push_back(pOutString);
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

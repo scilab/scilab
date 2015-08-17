@@ -36,7 +36,6 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     char* pstType   = os_strdup("l");//default type value : long
     int iSize       = 0;
     int iFile       = -1; //default file : last opened file
-    double* pData   = NULL;
     int iErr        = 0;
 
     if (in.size() < 1 || in.size() > 3)
@@ -85,9 +84,6 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
         iFile = static_cast<int>(in[2]->getAs<Double>()->get(0));
     }
 
-    Double* pD = new Double(1, iSize);
-    pData = pD->getReal();
-
     switch (iFile)
     {
         case 0: // stderr
@@ -107,6 +103,8 @@ Function::ReturnValue sci_mget(typed_list &in, int _iRetCount, typed_list &out)
     }
 
 
+    Double* pD = new Double(1, iSize);
+    double* pData = pD->get();
     C2F(mget)(&iFile, pData, &iSize, pstType, &iErr);
     FREE(pstType);
     if (iErr > 0)

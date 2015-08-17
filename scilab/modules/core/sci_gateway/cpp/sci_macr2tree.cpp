@@ -81,19 +81,26 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     types::List* o = new types::List();
     for (auto p : *outputs)
     {
-        o->append(ast::TreeVisitor::createVar(p->getSymbol().getName()));
+        types::List* var = ast::TreeVisitor::createVar(p->getSymbol().getName());
+        o->append(var);
+        delete var;
     }
 
     l->append(o);
+    o->killMe();
 
     //inputs
     types::List* i = new types::List();
     for (auto p : *inputs)
     {
-        i->append(ast::TreeVisitor::createVar(p->getSymbol().getName()));
+        types::List* var = ast::TreeVisitor::createVar(p->getSymbol().getName());
+        i->append(var);
+        var->killMe();
     }
 
     l->append(i);
+    i->killMe();
+
     //statement
     ast::TreeVisitor v;
     body->accept(v);
@@ -108,11 +115,22 @@ types::Function::ReturnValue sci_macr2tree(types::typed_list &in, int _iRetCount
     sf->set(3, L"lhsnb");
 
     funcall->append(sf);
-    funcall->append(types::Double::Empty());
-    funcall->append(new types::String(L"return"));
-    funcall->append(new types::Double(0));
+    sf->killMe();
+
+    types::InternalType* tmp = types::Double::Empty();
+    funcall->append(tmp);
+    tmp->killMe();
+
+    tmp = new types::String(L"return");
+    funcall->append(tmp);
+    tmp->killMe();
+
+    tmp = new types::Double(0);
+    funcall->append(tmp);
+    tmp->killMe();
 
     statement->append(funcall);
+    funcall->killMe();
 
     statement->append(v.getEOL());
 

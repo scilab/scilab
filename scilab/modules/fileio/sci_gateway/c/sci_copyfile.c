@@ -201,6 +201,8 @@ int sci_copyfile(char *fname, void* pvApiCtx)
     }
     else
     {
+        FREE(pStVarOneExpanded);
+        FREE(pStVarTwoExpanded);
         Scierror(999, _("%s: Wrong value for input argument #%d: A valid filename or directory expected.\n"), fname, 1);
         return 1;
     }

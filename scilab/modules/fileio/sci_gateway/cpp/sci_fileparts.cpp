@@ -72,7 +72,6 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
     }
 
     pStrPath = in[0]->getAs<types::String>();
-    pStrOut = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
 
     if (in.size() == 2)
     {
@@ -107,6 +106,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
             return Function::Error;
         }
 
+        pStrOut = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
         for (int i = 0; i < pStrPath->getSize(); i++)
         {
             wchar_t* pPath = pStrPath->get(i);
@@ -152,6 +152,7 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
     }
     else
     {
+        pStrOut = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
         pStrOut2 = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
         pStrOut3 = new types::String(pStrPath->getDims(), pStrPath->getDimsArray());
 
@@ -188,14 +189,14 @@ Function::ReturnValue sci_fileparts(typed_list &in, int _iRetCount, typed_list &
             }
             else
             {
-                delete(pStrOut3);
+                delete pStrOut3;
 
             }
         }
         else
         {
-            delete(pStrOut2);
-            delete(pStrOut3);
+            delete pStrOut2;
+            delete pStrOut3;
         }
     }
 

@@ -157,6 +157,10 @@ Function::ReturnValue sci_hdf5_load(typed_list &in, int _iRetCount, typed_list& 
 
         vars->killMe();
     }
+    else
+    {
+        out.push_back(out1.front());
+    }
 
     return ret;
 }

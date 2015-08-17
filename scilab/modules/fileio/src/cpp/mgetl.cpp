@@ -128,6 +128,7 @@ wchar_t **mgetl(int fd, int nbLinesIn, int *nbLinesOut, int *ierr)
                     wchar_t* tmpLine = os_wcsdup(Line);
                     memset(Line, 0x00, LINE_MAX * iLineSizeMult);
                     wcscpy(Line, &tmpLine[1]);
+                    FREE(tmpLine);
                 }
 
                 nbLines++;

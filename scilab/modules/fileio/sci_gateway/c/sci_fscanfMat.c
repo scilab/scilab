@@ -156,6 +156,8 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             {
                 break;
             }
+
+            freeFscanfMatResult(results);
         }
     }
     else
@@ -233,33 +235,37 @@ int sci_fscanfMat(char *fname, void* pvApiCtx)
             PutLhsVar();
             return 0;
         }
-        break;
         case FSCANFMAT_MOPEN_ERROR:
         {
             Scierror(999, _("%s: can not open file %s.\n"), fname, filename);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_READLINES_ERROR:
         {
             Scierror(999, _("%s: can not read file %s.\n"), fname, filename);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_FORMAT_ERROR:
         {
             Scierror(999, _("%s: Invalid format.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
         case FSCANFMAT_MEMORY_ALLOCATION:
         {
             Scierror(999, _("%s: Memory allocation error.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
         default:
         case FSCANFMAT_ERROR:
         {
             Scierror(999, _("%s: error.\n"), fname);
+            FREE(filename);
+            return 0;
         }
-        break;
     }
 
     FREE(filename);

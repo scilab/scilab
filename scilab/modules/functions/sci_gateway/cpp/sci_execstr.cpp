@@ -217,6 +217,7 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     {
         if (bErrCatch == false && bMute == false)
         {
+            delete pExp;
             ConfigVariable::macroFirstLine_end();
             ConfigVariable::setPromptMode(iPromptMode);
             throw ie;

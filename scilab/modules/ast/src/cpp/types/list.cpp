@@ -65,13 +65,14 @@ List::~List()
 List::List(List *_oListCopyMe)
 {
     m_plData = new std::vector<InternalType *>;
-
-    for (int i = 0 ; i < (int)_oListCopyMe->getData()->size() ; i++)
+    std::vector<InternalType *>* lData = _oListCopyMe->getData();
+    int size = lData->size();
+    for (int i = 0 ; i < size ; i++)
     {
-        append((*_oListCopyMe->getData())[i]);
+        append((*lData)[i]);
     }
 
-    m_iSize = static_cast<int>(m_plData->size());
+    m_iSize = static_cast<int>(size);
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif

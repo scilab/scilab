@@ -241,6 +241,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 {
                     if (itPos == inPos.end())
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -250,6 +251,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     int c = (*itPos).second;
                     if (in[p]->getType() != InternalType::ScilabDouble)
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -268,6 +270,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 {
                     if (itPos == inPos.end())
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -277,6 +280,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     int c = (*itPos).second;
                     if (in[p]->getType() != InternalType::ScilabDouble)
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -296,6 +300,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 {
                     if (itPos == inPos.end())
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -305,6 +310,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     int c = (*itPos).second;
                     if (in[p]->getType() != InternalType::ScilabDouble)
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -321,6 +327,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                 {
                     if (itPos == inPos.end())
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -330,6 +337,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     int c = (*itPos).second;
                     if (in[p]->getType() != InternalType::ScilabString)
                     {
+                        FREE(pwstFirstOutput);
                         Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                         *_piOutputRows = 0;
                         return nullptr;
@@ -347,6 +355,7 @@ wchar_t** scilab_sprintf(const std::string& funcname, const wchar_t* _pwstInput,
                     break;
                 }
                 default:
+                    FREE(pwstFirstOutput);
                     Scierror(999, _("%s: Wrong number of input arguments: data doesn't fit with format.\n"), funcname.data());
                     *_piOutputRows = 0;
                     return nullptr;

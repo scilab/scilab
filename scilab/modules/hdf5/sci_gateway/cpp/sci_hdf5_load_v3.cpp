@@ -139,9 +139,10 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
             for (auto &var : vars)
             {
                 std::string s(var);
+                FREE(var);
                 if (import_variable(iFile, s) == false)
                 {
-                    Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), var);
+                    Scierror(999, _("%s: Unable to load \'%s\'.\n"), fname.data(), s.data());
                     return types::Function::Error;
                 }
             }
