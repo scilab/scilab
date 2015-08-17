@@ -46,7 +46,7 @@ saved_ldflags="$LDFLAGS"
 
 if test "$with_blas_library" != no -a "$with_blas_library" != ""; then
 LDFLAGS="$LDFLAGS -L$with_blas_library"
-fi
+fi	
 
 # Get fortran linker names of BLAS functions to check for.
 AC_F77_FUNC(sgemm)
@@ -78,13 +78,16 @@ fi
 
 # BLAS in OpenBlas library (http://www.openblas.net/)
 if test $acx_blas_ok = no; then
-    AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
+	AC_CHECK_LIB(openblas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="OpenBLAS"; BLAS_LIBS="-lopenblas"])
 fi
 
 # BLAS in ATLAS library (http://math-atlas.sourceforge.net/)
 if test $acx_blas_ok = no; then
 	AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas"], [
 		AC_CHECK_LIB(f77blas, $sgemm, [acx_blas_ok=yes; BLAS_TYPE="Atlas"; BLAS_LIBS="-lf77blas -latlas"], [], [-latlas])])
+fi
+if test $acx_blas_ok = no; then
+	PKG_CHECK_MODULES(BLAS, atlas, [acx_blas_ok=yes; BLAS_TYPE="Atlas"])
 fi
 
 # BLAS in Intel MKL libraries (http://software.intel.com/en-us/articles/a-new-linking-model-single-dynamic-library-mkl_rt-since-intel-mkl-103)
