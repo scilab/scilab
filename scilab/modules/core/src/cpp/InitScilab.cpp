@@ -560,9 +560,6 @@ void* scilabReadAndExecCommand(void* param)
 //Thread used to parse and set console commands in storeCommand
 void* scilabReadAndStore(void* param)
 {
-    //    ThreadManagement::LockStart();
-    //    ThreadManagement::UnlockStart();
-
     Parser::ControlStatus controlStatus = Parser::AllControlClosed;
 
     char *command = NULL;
@@ -613,8 +610,17 @@ void* scilabReadAndStore(void* param)
             //set prompt value
             C2F(setprlev) (&pause);
 
-            char *pstRead = scilabRead();
+            ConfigVariable::setScilabCommand(1);
+            scilabRead();
+            if (ConfigVariable::isScilabCommand() == 0)
+            {
+                // happens when the return of scilabRead is used
+                // in other thread (ie: call mscanf in a callback)
+                ThreadManagement::WaitForConsoleExecDoneSignal();
+                continue;
+            }
 
+            char* pstRead = ConfigVariable::getConsoleReadStr();
             if (command == NULL)
             {
                 command = pstRead;

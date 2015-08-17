@@ -444,6 +444,20 @@ public:
     static void setExecutedFileID(int _iFileID);
     static int getExecutedFileID();
 
+    // string read from console by scilabRead
+private:
+    static char* m_pcConsoleReadStr;
+public:
+    static void setConsoleReadStr(char* _pcConsoleReadStr);
+    static char* getConsoleReadStr();
+
+    // tell if the command return by scilabRead is a scilab command or not
+private:
+    static int m_isScilabCommand;
+public:
+    static void setScilabCommand(int _isciCmd);
+    static int isScilabCommand();
+
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */

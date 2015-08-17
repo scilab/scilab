@@ -26,6 +26,7 @@ __threadKey ThreadManagement::m_tkConsole;
 __threadLock ThreadManagement::m_RunnerLock;
 __threadLock ThreadManagement::m_ParseLock;
 __threadLock ThreadManagement::m_StoreCommandLock;
+__threadLock ThreadManagement::m_ScilabReadLock;
 
 __threadSignal ThreadManagement::m_ConsoleExecDone;
 __threadSignalLock ThreadManagement::m_ConsoleExecDoneLock;
@@ -57,6 +58,7 @@ void ThreadManagement::initialize()
     __InitLock(&m_RunnerLock);
     __InitLock(&m_ParseLock);
     __InitLock(&m_StoreCommandLock);
+    __InitLock(&m_ScilabReadLock);
 
     __InitSignal(&m_AwakeRunner);
     __InitSignalLock(&m_AwakeRunnerLock);
@@ -135,6 +137,27 @@ void ThreadManagement::UnlockRunner(void)
     PrintDebug("UnlockRunner");
 #endif // DEBUG_THREAD
     __UnLock(&m_RunnerLock);
+}
+
+/***
+    [ScilabRead Lock]
+    Used to manage scilabRead output wich can be used by Console thread or
+    main thread through mscanf function.
+***/
+void ThreadManagement::LockScilabRead(void)
+{
+#ifdef DEBUG_THREAD
+    PrintDebug("LockScilabRead");
+#endif // DEBUG_THREAD
+    __Lock(&m_ScilabReadLock);
+}
+
+void ThreadManagement::UnlockScilabRead(void)
+{
+#ifdef DEBUG_THREAD
+    PrintDebug("UnlockScilabRead");
+#endif // DEBUG_THREAD
+    __UnLock(&m_ScilabReadLock);
 }
 
 /***

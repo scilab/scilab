@@ -1402,3 +1402,44 @@ int ConfigVariable::getExecutedFileID()
 {
     return m_iFileID;
 }
+
+/*
+** string read from console by scilabRead
+** \{
+*/
+char* ConfigVariable::m_pcConsoleReadStr = NULL;
+void ConfigVariable::setConsoleReadStr(char* _pcConsoleReadStr)
+{
+    m_pcConsoleReadStr = _pcConsoleReadStr;
+}
+
+char* ConfigVariable::getConsoleReadStr()
+{
+    ThreadManagement::LockScilabRead();
+    char* tmp = m_pcConsoleReadStr;
+    m_pcConsoleReadStr = NULL;
+    ThreadManagement::UnlockScilabRead();
+    return tmp;
+}
+/*
+** \}
+*/
+
+/*
+** Tell to the console thread if the scilabRead return
+** is a scilab command or not.
+** \{
+*/
+int ConfigVariable::m_isScilabCommand = 1;
+void ConfigVariable::setScilabCommand(int _isciCmd)
+{
+    m_isScilabCommand = _isciCmd;
+}
+
+int ConfigVariable::isScilabCommand()
+{
+    return m_isScilabCommand;
+}
+/*
+** \}
+*/
