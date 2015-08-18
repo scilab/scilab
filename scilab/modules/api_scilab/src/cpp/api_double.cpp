@@ -230,7 +230,6 @@ SciErr allocCommonMatrixOfDouble(void* _pvCtx, int _iVar, char _cType, int _iCom
     }
 
     GatewayStruct* pStr = (GatewayStruct*)_pvCtx;
-    typed_list in = *pStr->m_pIn;
     InternalType** out = pStr->m_pOut;
 
     Double* pDbl = NULL;
