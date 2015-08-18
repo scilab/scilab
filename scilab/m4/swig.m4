@@ -16,14 +16,14 @@
 # value of the argument.  It should have the format: N[.N[.N]] (N is a
 # number between 0 and 999.  Only the first N is mandatory.)
 AC_DEFUN([SWIG_PROG],[
-    SWIG_BIN="$with_build_swig"
+    SWIG_BIN="$enable_build_swig"
     if test -x "$SWIG_BIN"; then
        AC_MSG_RESULT([$SWIG_BIN])
     else
        AC_PATH_PROG([SWIG_BIN],[swig])
     fi
 	if test -z "$SWIG_BIN" ; then
-		AC_MSG_ERROR([Cannot find swig. Please install it (package swig under Debian) or remove the option --with-build-swig])
+		AC_MSG_ERROR([Cannot find swig. Please install it (package swig under Debian) or remove the option --enable-build-swig])
 	elif test -n "$1" ; then
 		AC_MSG_CHECKING([for SWIG version])
 		[swig_version=`$SWIG_BIN -version 2>&1 | grep 'SWIG Version' | sed 's/.*\([0-9]\+\.[0-9]\+\.[0-9]\+\).*/\1/g'`]

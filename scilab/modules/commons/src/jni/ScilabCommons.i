@@ -23,7 +23,7 @@
 #include "createtempfilename.h"
 #include "setgetlanguage.h"
 #include "getversion.h"
-#include "setieee.h"
+#include "configvariable_interface.h"
 #include "setformat.h"
 %}
 

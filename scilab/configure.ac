@@ -147,10 +147,7 @@ AC_ARG_WITH(gui,
     AS_HELP_STRING([--without-gui],[Disable the Scilab Graphical User Interface (GUI). Intended for embedded/clustering/grid Scilab ]))
 
 AC_ARG_ENABLE(build-swig,
-    AS_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]),
-    [with_build_swig=$withval],
-    [with_build_swig=no]
-    )
+    AS_HELP_STRING([--enable-build-swig=path],[Regenerate Java => C and Scilab => C wrappers produces by Swig]))
 
 
 AC_ARG_ENABLE(build-giws,
@@ -1188,7 +1185,7 @@ Unit tests],"yes")
     fi
     AC_SUBST(JAVAC_DEBUG)
 
-    if test "$with_build_swig" != no -a "$with_build_swig" != ""; then
+    if test "$enable_build_swig" != no -a "$enable_build_swig" != ""; then
         SWIG_PROG()
         SWIG_ENABLE_JAVA()
         SWIG_ENABLE_SCILAB()
@@ -1218,7 +1215,7 @@ AC_SUBST(JAVA_ENABLE)
 AM_CONDITIONAL(NEED_JAVA, [test "$with_jdk" != no -a \( "$with_javasci" != no -o "$with_gui" != no -o "$enable_build_help" != no \)])
 AM_CONDITIONAL(GUI, [test "$with_jdk" != no -a "$with_gui" != no])
 AM_CONDITIONAL(JAVASCI, [test "$with_jdk" != no -a "$with_javasci" != no])
-AM_CONDITIONAL(SWIG, [test "$with_jdk" != no -a "$with_build_swig" != no -a "$with_build_swig" != ""])
+AM_CONDITIONAL(SWIG, [test "$with_jdk" != no -a "$enable_build_swig" != no -a "$enable_build_swig" != ""])
 AM_CONDITIONAL(GIWS, [test "$with_jdk" != no -a "$enable_build_giws" != no -a "$enable_build_giws" != ""])
 
 ##############################################################
