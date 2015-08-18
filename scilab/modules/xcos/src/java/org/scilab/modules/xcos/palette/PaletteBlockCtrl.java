@@ -49,7 +49,6 @@ import org.scilab.modules.xcos.palette.view.PaletteBlockView;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.utils.BlockPositioning;
-import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 import com.mxgraph.swing.handler.mxGraphTransferHandler;
@@ -86,12 +85,11 @@ public final class PaletteBlockCtrl {
 
     /**
      * Default constructor
-     * @param palBlockSize palette block size
      * @param model the block data
      */
-    public PaletteBlockCtrl(PaletteBlockSize palBlockSize, PaletteBlock model) {
+    public PaletteBlockCtrl(PaletteBlock model) {
         this.model = model;
-        this.view = new PaletteBlockView(palBlockSize, this);
+        this.view = new PaletteBlockView(this);
         installListeners(this.view);
     }
 

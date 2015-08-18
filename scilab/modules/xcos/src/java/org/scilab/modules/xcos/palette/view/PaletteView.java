@@ -92,7 +92,6 @@ public class PaletteView extends JPanel implements Scrollable {
         if (!b) {
             removeAll();
         }
-
         isLoaded = b;
     }
 

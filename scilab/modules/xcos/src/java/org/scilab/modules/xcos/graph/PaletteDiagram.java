@@ -26,6 +26,7 @@ import org.scilab.modules.xcos.block.TextBlock;
 import org.scilab.modules.xcos.io.XcosFileType;
 import org.scilab.modules.xcos.link.BasicLink;
 import org.scilab.modules.xcos.palette.view.PaletteComponent;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
@@ -41,14 +42,12 @@ public class PaletteDiagram extends XcosDiagram {
     private String name;
     private String fileName;
     private double windowWidth;
-    private PaletteBlockSize palBlockSize;
 
     /**
      * Constructor
      */
     public PaletteDiagram() {
         super();
-        setPaletteBlockSize(PaletteBlockSize.NORMAL);
         setComponent(new PaletteComponent(this));
         installStylesheet();
 
@@ -63,10 +62,9 @@ public class PaletteDiagram extends XcosDiagram {
 
     /**
      * @param diagramFileName Palette file
-     * @param palBlockSize PaletteBlockSize
      * @return status
      */
-    public boolean openDiagramAsPal(PaletteBlockSize palBlockSize, String diagramFileName) {
+    public boolean openDiagramAsPal(String diagramFileName) {
         File theFile = new File(diagramFileName);
 
         if (theFile.exists()) {
@@ -76,7 +74,6 @@ public class PaletteDiagram extends XcosDiagram {
             } catch (Exception e) {
                 return false;
             }
-            setPaletteBlockSize(palBlockSize);
             setName(theFile.getName());
             setFileName(theFile.getAbsolutePath());
             getRubberBand().setEnabled(false);
@@ -109,7 +106,9 @@ public class PaletteDiagram extends XcosDiagram {
             return;
         }
 
-        int blockWidth = palBlockSize.getBlockDimension().width + XcosConstants.PALETTE_HMARGIN;
+        int blockWidth = PaletteManagerPanel.getCurrentSize().getBlockDimension().width
+                       + XcosConstants.PALETTE_HMARGIN;
+
         int oldRowItem = (int) (newWidth / blockWidth);
         int maxRowItem = (int) (windowWidth / blockWidth);
 
@@ -144,7 +143,7 @@ public class PaletteDiagram extends XcosDiagram {
      * @return new geometry
      */
     private mxGeometry getNewBlockPosition(mxGeometry geom, int blockCount) {
-
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
         Dimension blockD = palBlockSize.getBlockDimension();
         int blockWidthAndMargin = blockD.width + XcosConstants.PALETTE_HMARGIN;
         int blockHeightAndMargin = blockD.height + XcosConstants.PALETTE_VMARGIN;
@@ -186,20 +185,6 @@ public class PaletteDiagram extends XcosDiagram {
      */
     public void setName(String name) {
         this.name = name;
-    }
-
-    /**
-     * @return PaletteBlockSize
-     */
-    public PaletteBlockSize getPaletteBlockSize() {
-        return this.palBlockSize;
-    }
-
-    /**
-     * @param pbs PaletteBlockSize
-     */
-    public void setPaletteBlockSize(PaletteBlockSize pbs) {
-        this.palBlockSize = pbs;
     }
 
     /**

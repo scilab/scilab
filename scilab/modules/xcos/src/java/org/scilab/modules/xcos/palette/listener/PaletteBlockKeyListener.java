@@ -24,6 +24,7 @@ import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerView;
 import org.scilab.modules.xcos.palette.view.PaletteSearchView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
@@ -92,7 +93,7 @@ public final class PaletteBlockKeyListener implements KeyListener {
 
         // get position of the next block
         PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
-        PaletteBlockSize blockSize = currentBlockView.getPaletteBlockSize();
+        PaletteBlockSize blockSize = PaletteManagerPanel.getCurrentSize();
 
         x *= blockSize.getBlockDimension().width + XcosConstants.PALETTE_HMARGIN;
         x += currentBlockView.getLocation().x;

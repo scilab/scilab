@@ -120,7 +120,7 @@ public class PaletteManagerPanel extends JSplitPane {
      * Get the current PaletteBlockSize
      * @return current PaletteBlockSize
      */
-    public PaletteBlockSize getCurrentSize() {
+    public static PaletteBlockSize getCurrentSize() {
         return currentSize;
     }
 
@@ -176,6 +176,8 @@ public class PaletteManagerPanel extends JSplitPane {
             return;
         }
 
+        currentSize = newSize;
+
         try {
             JScrollPane jspR = (JScrollPane) this.getRightComponent();
             final Dimension dimension = jspR.getPreferredSize();
@@ -199,11 +201,11 @@ public class PaletteManagerPanel extends JSplitPane {
                 Component[] blockViews = pview.getComponents();
                 for (Component component : blockViews) {
                     PaletteBlockView bview = (PaletteBlockView) component;
-                    bview.initComponents(newSize);
+                    bview.initComponents();
                 }
                 pview.revalidate();
             } else if (node instanceof Custom) {
-                jspR = openDiagramAsPal(newSize, node);
+                jspR = openDiagramAsPal(node);
                 jspR.setPreferredSize(dimension);
                 this.setRightComponent(jspR);
             } else {
@@ -224,7 +226,6 @@ public class PaletteManagerPanel extends JSplitPane {
                 ZoomAction.setEnabledZoomOut(true);
             }
 
-            currentSize = newSize;
             jspR.revalidate();
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -243,14 +244,13 @@ public class PaletteManagerPanel extends JSplitPane {
 
     /**
      * Open a diagram as a palette.
-     * @param pbs PaletteBlockSize
      * @param node PaletteNode
      * @return a JScrollPane with the diagram
      */
-    public JScrollPane openDiagramAsPal(PaletteBlockSize pbs, PaletteNode node) {
+    public JScrollPane openDiagramAsPal(PaletteNode node) {
         String path = ((Custom) node).getPath().getEvaluatedPath();
         this.diagramInstance = new PaletteDiagram();
-        this.diagramInstance.openDiagramAsPal(pbs, path);
+        this.diagramInstance.openDiagramAsPal(path);
         return this.diagramInstance.getAsComponent();
     }
 

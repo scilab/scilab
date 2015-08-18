@@ -42,7 +42,6 @@ public final class PaletteBlockView extends JLabel {
             .createEmptyBorder();
 
     private PaletteBlockCtrl controller;
-    private PaletteBlockSize palBlockSize;
 
     /**
      * UI states
@@ -58,25 +57,21 @@ public final class PaletteBlockView extends JLabel {
 
     /**
      * Default constructor
-     * @param palBlockSize The PaletteBlockSize
      * @param controller The associated controller
      */
-    public PaletteBlockView(PaletteBlockSize palBlockSize, PaletteBlockCtrl controller) {
-        super(controller.getModel().getName(),
-              controller.getModel().getLoadedIcon(palBlockSize.getMaxIconWidth(),
-                                                  palBlockSize.getMaxIconHeight()),
-              SwingConstants.CENTER);
+    public PaletteBlockView(PaletteBlockCtrl controller) {
+        super(controller.getModel().getName(), SwingConstants.CENTER);
         this.controller = controller;
-        this.palBlockSize = palBlockSize;
         ZoomAction.registerKeyAction(getActionMap(), getInputMap());
-        initComponents(palBlockSize);
+        initComponents();
     }
 
     /**
      * Set up the graphical properties
-     * @param palBlockSize The PaletteBlockSize
      */
-    public void initComponents(PaletteBlockSize palBlockSize) {
+    public void initComponents() {
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
+
         // adjust the jlabel size
         setPreferredSize(palBlockSize.getBlockDimension());
 
@@ -94,8 +89,6 @@ public final class PaletteBlockView extends JLabel {
         final String text = controller.getModel().getName();
         setToolTipText(text);
         setText(text);
-
-        this.palBlockSize = palBlockSize;
     }
 
     /**
@@ -116,14 +109,6 @@ public final class PaletteBlockView extends JLabel {
         } else {
             setBorder(NON_SELECTED_BORDER);
         }
-    }
-
-    /**
-     * Get the paletteBlockSize
-     * @return PaletteBlockSize
-     */
-    public PaletteBlockSize getPaletteBlockSize() {
-        return this.palBlockSize;
     }
 
     /**

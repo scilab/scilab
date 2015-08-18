@@ -19,7 +19,6 @@ import javax.swing.JLabel;
 
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
-import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement a view to show the search results.
@@ -68,7 +67,6 @@ public class PaletteSearchView extends PaletteView {
      * @param block PaletteBlock
      */
     public void addBlock(PaletteBlock block) {
-        PaletteBlockSize pbs = PaletteManagerView.get().getPanel().getCurrentSize();
-        paletteview.add(new PaletteBlockCtrl(pbs, block).getView());
+        paletteview.add(new PaletteBlockCtrl(block).getView());
     }
 }

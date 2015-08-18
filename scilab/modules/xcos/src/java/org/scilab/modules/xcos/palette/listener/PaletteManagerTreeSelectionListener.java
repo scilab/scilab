@@ -33,7 +33,6 @@ import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.palette.view.PaletteView;
-import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement the tree selection listener
@@ -71,7 +70,6 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
             return;
         }
 
-        PaletteBlockSize palBlockSize = paletteManagerPanel.getCurrentSize();
         JScrollPane nodeView = null;
         final Dimension dimension = splitPanel.getRightComponent().getPreferredSize();
 
@@ -84,13 +82,13 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
 
             final PaletteView view = new PaletteView();
             for (PaletteBlock b : palette.getBlock()) {
-                view.add(new PaletteBlockCtrl(palBlockSize, b).getView());
+                view.add(new PaletteBlockCtrl(b).getView());
             }
 
             panel.setViewportView(view);
             nodeView = panel;
         } else if (node instanceof Custom) {
-            nodeView = paletteManagerPanel.openDiagramAsPal(palBlockSize, node);
+            nodeView = paletteManagerPanel.openDiagramAsPal(node);
         } else {
             Logger.getLogger(PaletteManagerTreeSelectionListener.class.getName()).severe("tree selection is not handled");
             return;
