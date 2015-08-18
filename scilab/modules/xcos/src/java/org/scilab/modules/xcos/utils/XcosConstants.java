@@ -49,27 +49,37 @@ public final class XcosConstants extends ScilabGraphConstants {
 
     /** the size of the palette block **/
     public enum PaletteBlockSize {
+        /** tiny **/
+        TINY,
         /** small size **/
         SMALL,
         /** normal size **/
         NORMAL,
         /** large size **/
-        LARGE;
+        LARGE,
+        /** Extra large size **/
+        XLARGE;
 
+        private static final Dimension DIM_TINY = new Dimension(50, 50);
         private static final Dimension DIM_SMALL = new Dimension(75, 75);
         private static final Dimension DIM_NORMAL = new Dimension(100, 100);
         private static final Dimension DIM_LARGE = new Dimension(120, 120);
+        private static final Dimension DIM_XLARGE = new Dimension(140, 140);
 
         /**
          * @return font size
          */
         public int getFontSize() {
             switch (this) {
+                case TINY:
+                    return 10;
                 case SMALL:
                     return 11;
                 case NORMAL:
                     return 12;
                 case LARGE:
+                    return 13;
+                case XLARGE:
                     return 13;
                 default:
                     return 12;
@@ -97,12 +107,16 @@ public final class XcosConstants extends ScilabGraphConstants {
          */
         public Dimension getBlockDimension() {
             switch (this) {
+                case TINY:
+                    return DIM_TINY;
                 case SMALL:
                     return DIM_SMALL;
                 case NORMAL:
                     return DIM_NORMAL;
                 case LARGE:
                     return DIM_LARGE;
+                case XLARGE:
+                    return DIM_XLARGE;
                 default:
                     return DIM_NORMAL;
             }
