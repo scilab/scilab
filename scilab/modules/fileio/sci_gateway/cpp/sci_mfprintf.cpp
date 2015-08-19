@@ -160,8 +160,8 @@ Function::ReturnValue sci_mfprintf(types::typed_list &in, int _iRetCount, types:
             {
                 scilabForcedWriteW(wcsStringToWrite[i]);
             }
+            scilabForcedWriteW(L"\n");
         }
-        scilabForcedWriteW(L"\n");
     }
     else
     {
