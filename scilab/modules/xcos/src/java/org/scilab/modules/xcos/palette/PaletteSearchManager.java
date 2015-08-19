@@ -97,6 +97,7 @@ public final class PaletteSearchManager {
         }
         view.setText(queryLabel + blockPaths.size() + " " + XcosMessages.MATCHES);
         view.revalidate();
+        scrollPane.revalidate();
     }
 
     /**
