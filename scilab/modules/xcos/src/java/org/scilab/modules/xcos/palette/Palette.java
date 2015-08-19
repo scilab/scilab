@@ -12,6 +12,7 @@
 
 package org.scilab.modules.xcos.palette;
 
+import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -43,6 +44,7 @@ import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 import org.scilab.modules.xcos.palette.model.PaletteNode;
 import org.scilab.modules.xcos.palette.model.PreLoaded;
+import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
 import org.scilab.modules.xcos.utils.BlockPositioning;
 import org.scilab.modules.xcos.utils.XcosConstants;
 
@@ -520,12 +522,20 @@ public final class Palette {
         }
     }
 
+    /**
+     * Generate icon
+     * @param block BasicBlock
+     * @param iconPath the icon path
+     * @throws IOException error
+     */
     private static void generateIcon(BasicBlock block, final String iconPath) throws IOException {
         if (block == null || block.getGeometry() == null) {
             return;
         }
-        block.getGeometry().setX(XcosConstants.PALETTE_BLOCK_WIDTH);
-        block.getGeometry().setY(XcosConstants.PALETTE_BLOCK_HEIGHT);
+
+        Dimension blockSize = PaletteManagerPanel.getCurrentSize().getBlockDimension();
+        block.getGeometry().setX(blockSize.width);
+        block.getGeometry().setY(blockSize.height);
 
         final XcosDiagram graph = new XcosDiagram();
         graph.installListeners();
@@ -541,19 +551,22 @@ public final class Palette {
         final mxGraphComponent graphComponent = graph.getAsComponent();
         graphComponent.refresh();
 
-        final mxRectangle bounds = graph.getPaintBounds(new Object[] { block });
+        final mxRectangle bounds = graph.getPaintBounds(new Object[] {block});
         final double width = bounds.getWidth();
         final double height = bounds.getHeight();
 
-        final double scale;
-        if (width > XcosConstants.PALETTE_BLOCK_WIDTH || height > XcosConstants.PALETTE_BLOCK_HEIGHT) {
-            scale = Math.min(XcosConstants.PALETTE_BLOCK_WIDTH / width, XcosConstants.PALETTE_BLOCK_HEIGHT / height) / XcosConstants.PALETTE_BLOCK_ICON_RATIO;
+        double scale;
+        if (width > blockSize.width || height > blockSize.height) {
+            scale = Math.min(blockSize.width / width, blockSize.height / height);
+            scale /= XcosConstants.PALETTE_BLOCK_ICON_RATIO;
         } else {
             scale = 1.0;
         }
 
-        final BufferedImage image = mxCellRenderer.createBufferedImage(graph, null, scale, graphComponent.getBackground(), graphComponent.isAntiAlias(), null,
-                                    graphComponent.getCanvas());
+        final BufferedImage image = mxCellRenderer.createBufferedImage(
+                graph, null, scale, graphComponent.getBackground(),
+                graphComponent.isAntiAlias(), null, graphComponent.getCanvas()
+        );
 
         final String extension = iconPath.substring(iconPath.lastIndexOf('.') + 1);
         ImageIO.write(image, extension, new File(iconPath));

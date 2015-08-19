@@ -22,11 +22,6 @@ import org.scilab.modules.graph.utils.ScilabGraphConstants;
  */
 public final class XcosConstants extends ScilabGraphConstants {
 
-    /** Define the default block width on the palette */
-    public static final int PALETTE_BLOCK_WIDTH = 100;
-    /** Define the default block height on the palette */
-    public static final int PALETTE_BLOCK_HEIGHT = 100;
-
     /** Define the default block height on the palette */
     public static final double PALETTE_BLOCK_ICON_RATIO = 1.5;
 

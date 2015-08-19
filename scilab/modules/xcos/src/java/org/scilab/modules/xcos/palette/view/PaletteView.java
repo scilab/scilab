@@ -25,6 +25,7 @@ import javax.swing.Scrollable;
 import javax.swing.SwingConstants;
 
 import org.scilab.modules.xcos.utils.XcosConstants;
+import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
 
 /**
  * Implement a view of a block category.
@@ -53,10 +54,6 @@ public class PaletteView extends JPanel implements Scrollable {
         setLayout(new ModifiedFlowLayout(FlowLayout.LEADING,
                                          XcosConstants.PALETTE_HMARGIN,
                                          XcosConstants.PALETTE_VMARGIN));
-
-        setMinimumSize(new Dimension(
-                XcosConstants.PALETTE_BLOCK_WIDTH + XcosConstants.PALETTE_HMARGIN,
-                XcosConstants.PALETTE_BLOCK_HEIGHT + XcosConstants.PALETTE_VMARGIN));
 
         setFocusable(true);
         addFocusListener(new FocusListener() {
@@ -120,11 +117,12 @@ public class PaletteView extends JPanel implements Scrollable {
     @Override
     public int getScrollableBlockIncrement(Rectangle visibleRect,
                                            int orientation, int direction) {
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
         if (orientation == SwingConstants.VERTICAL) {
-            return XcosConstants.PALETTE_BLOCK_HEIGHT
+            return palBlockSize.getBlockDimension().height
                    + XcosConstants.PALETTE_VMARGIN;
         } else {
-            return XcosConstants.PALETTE_BLOCK_WIDTH
+            return palBlockSize.getBlockDimension().width
                    + XcosConstants.PALETTE_HMARGIN;
         }
     }
@@ -163,10 +161,11 @@ public class PaletteView extends JPanel implements Scrollable {
     @Override
     public int getScrollableUnitIncrement(Rectangle visibleRect,
                                           int orientation, int direction) {
+        PaletteBlockSize palBlockSize = PaletteManagerPanel.getCurrentSize();
         if (orientation == SwingConstants.VERTICAL) {
-            return XcosConstants.PALETTE_BLOCK_HEIGHT;
+            return palBlockSize.getBlockDimension().height;
         } else {
-            return XcosConstants.PALETTE_BLOCK_WIDTH;
+            return palBlockSize.getBlockDimension().width;
         }
     }
 }
