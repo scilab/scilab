@@ -24,8 +24,8 @@ extern "C"
 
 using namespace ast;
 
-Runner* StaticRunner::m_RunMe = NULL;
-bool StaticRunner::m_bInterruptibleCommand = true;
+std::atomic<Runner*> StaticRunner::m_RunMe(nullptr);
+std::atomic<bool> StaticRunner::m_bInterruptibleCommand(true);
 
 void StaticRunner::launch()
 {
@@ -105,35 +105,25 @@ void StaticRunner::setRunner(Runner* _RunMe)
 
 Runner* StaticRunner::getRunner(void)
 {
-    ThreadManagement::LockRunner();
     Runner* tmp = m_RunMe;
     m_RunMe = NULL;
-    ThreadManagement::UnlockRunner();
     ThreadManagement::SendAvailableRunnerSignal();
     return tmp;
 }
 
 bool StaticRunner::isRunnerAvailable(void)
 {
-    ThreadManagement::LockRunner();
-    bool bOut = m_RunMe != NULL;
-    ThreadManagement::UnlockRunner();
-    return bOut;
+    return m_RunMe != NULL;
 }
 
 void StaticRunner::setInterruptibleCommand(bool _bInterruptibleCommand)
 {
-    ThreadManagement::LockRunner();
     m_bInterruptibleCommand = _bInterruptibleCommand;
-    ThreadManagement::UnlockRunner();
 }
 
 bool StaticRunner::isInterruptibleCommand()
 {
-    ThreadManagement::LockRunner();
-    bool bIsInterruptibleCommand = m_bInterruptibleCommand;
-    ThreadManagement::UnlockRunner();
-    return bIsInterruptibleCommand;
+    return m_bInterruptibleCommand;
 }
 
 void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
@@ -157,10 +147,8 @@ void StaticRunner::execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor
 
 void StaticRunner::exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
 {
-    ThreadManagement::LockRunner();
     Runner *runMe = new Runner(_theProgram, _visitor);
     setRunner(runMe);
-    ThreadManagement::UnlockRunner();
     launch();
 }
 

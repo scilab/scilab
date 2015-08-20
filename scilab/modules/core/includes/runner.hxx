@@ -14,6 +14,8 @@
 #ifndef __RUNNER_HXX__
 #define __RUNNER_HXX__
 
+#include <atomic>
+
 #include "exp.hxx"
 #include "execvisitor.hxx"
 
@@ -30,6 +32,7 @@ public :
         m_theProgram = _theProgram;
         m_visitor = _visitor;
         m_isConsoleCommand = false;
+        m_isInterruptible = true;
     }
 
     Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible)
@@ -89,8 +92,8 @@ public:
     static void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
 
 private:
-    static Runner* m_RunMe;
-    static bool m_bInterruptibleCommand;
+    static std::atomic<Runner*> m_RunMe;
+    static std::atomic<bool> m_bInterruptibleCommand;
 };
 
 extern "C"
