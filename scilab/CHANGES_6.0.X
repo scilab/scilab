@@ -41,6 +41,8 @@ Scilab Bug Fixes
 
 * Bug #14058 fixed - Scilab crashed with 'file("close", file())' instruction
 
+* Bug #14093 fixed - atanh returns NaN for values with an absolute value greater than 1
+
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
 
 
