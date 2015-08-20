@@ -16,21 +16,20 @@ package org.scilab.modules.xcos.actions;
 
 import java.awt.event.ActionEvent;
 
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement;
-import org.scilab.modules.action_binding.highlevel.ScilabInterpreterManagement.InterpreterException;
 import org.scilab.modules.graph.ScilabComponent;
 import org.scilab.modules.graph.ScilabGraph;
-import org.scilab.modules.graph.actions.base.OneBlockDependantAction;
+import org.scilab.modules.graph.actions.base.DefaultAction;
 import org.scilab.modules.gui.menuitem.MenuItem;
+import org.scilab.modules.xcos.Xcos;
+import org.scilab.modules.xcos.explorer.BrowserTab;
 import org.scilab.modules.xcos.graph.XcosDiagram;
-import org.scilab.modules.xcos.io.scicos.ScilabDirectHandler;
 import org.scilab.modules.xcos.utils.XcosMessages;
 
 /**
  * View the diagram as a scilab tree
  */
 @SuppressWarnings(value = { "serial" })
-public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
+public final class ViewDiagramBrowserAction extends DefaultAction {
     /** Name of the action */
     public static final String NAME = XcosMessages.DIAGRAM_BROWSER;
     /** Icon name of the action */
@@ -76,19 +75,6 @@ public final class ViewDiagramBrowserAction extends OneBlockDependantAction {
             return;
         }
 
-        final ScilabDirectHandler handler = ScilabDirectHandler.acquire();
-        if (handler == null) {
-            return;
-        }
-
-        handler.writeDiagram(graph);
-        try {
-            final String cmd = "tree_show(scs_m); ";
-            ScilabInterpreterManagement.synchronousScilabExec(cmd);
-        } catch (InterpreterException e2) {
-            e2.printStackTrace();
-        } finally {
-            handler.release();
-        }
+        BrowserTab.restore(Xcos.getInstance().getBrowser(), null);
     }
 }

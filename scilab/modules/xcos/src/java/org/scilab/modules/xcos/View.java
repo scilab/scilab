@@ -55,24 +55,24 @@ public class View {
     JavaControllerJNI.View_director_connect(this, swigCPtr, swigCMemOwn, true);
   }
 
-  public void objectCreated(long uid, Kind k) {
-    JavaControllerJNI.View_objectCreated(swigCPtr, this, uid, k.ordinal());
+  public void objectCreated(long uid, Kind kind) {
+    JavaControllerJNI.View_objectCreated(swigCPtr, this, uid, kind.ordinal());
   }
 
-  public void objectDeleted(long uid, Kind k) {
-    JavaControllerJNI.View_objectDeleted(swigCPtr, this, uid, k.ordinal());
+  public void objectReferenced(long uid, Kind kind) {
+    JavaControllerJNI.View_objectReferenced(swigCPtr, this, uid, kind.ordinal());
   }
 
-  public void objectUpdated(long uid, Kind k) {
-    JavaControllerJNI.View_objectUpdated(swigCPtr, this, uid, k.ordinal());
+  public void objectUnreferenced(long uid, Kind kind) {
+    JavaControllerJNI.View_objectUnreferenced(swigCPtr, this, uid, kind.ordinal());
   }
 
-  public void propertyUpdated(long uid, Kind k, ObjectProperties p) {
-    JavaControllerJNI.View_propertyUpdated__SWIG_0(swigCPtr, this, uid, k.ordinal(), p.ordinal());
+  public void objectDeleted(long uid, Kind kind) {
+    JavaControllerJNI.View_objectDeleted(swigCPtr, this, uid, kind.ordinal());
   }
 
-  public void propertyUpdated(long arg0, Kind arg1, ObjectProperties arg2, UpdateStatus arg3) {
-    JavaControllerJNI.View_propertyUpdated__SWIG_1(swigCPtr, this, arg0, arg1.ordinal(), arg2.ordinal(), arg3.ordinal());
+  public void propertyUpdated(long uid, Kind kind, ObjectProperties property, UpdateStatus status) {
+    JavaControllerJNI.View_propertyUpdated(swigCPtr, this, uid, kind.ordinal(), property.ordinal(), status.ordinal());
   }
 
 }

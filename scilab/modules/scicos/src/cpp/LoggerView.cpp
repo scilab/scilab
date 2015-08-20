@@ -409,6 +409,16 @@ void LoggerView::objectCreated(const ScicosID& uid, kind_t k)
     log(LOG_DEBUG, ss);
 }
 
+void LoggerView::objectReferenced(const ScicosID& uid, kind_t k)
+{
+    // NOT LOGGED YET
+}
+
+void LoggerView::objectUnreferenced(const ScicosID& uid, kind_t k)
+{
+    // NOT LOGGED YET
+}
+
 void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
 {
     std::stringstream ss;
@@ -416,20 +426,7 @@ void LoggerView::objectDeleted(const ScicosID& uid, kind_t k)
     log(LOG_DEBUG, ss);
 }
 
-void LoggerView::objectUpdated(const ScicosID& uid, kind_t k)
-{
-    std::stringstream ss;
-    ss << __FUNCTION__ << "( " << uid << " , " << k << " )" << std::endl;
-    log(LOG_DEBUG, ss);
-}
-
-void LoggerView::propertyUpdated(const ScicosID& /*uid*/, kind_t /*k*/, object_properties_t /*p*/)
-{
-    // do not log anything on success; the message has already been logged
-}
-
-void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p,
-                                 update_status_t u)
+void LoggerView::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u)
 {
     std::stringstream ss;
     ss << __FUNCTION__ << "( " << uid << " , " << k << " , " << p << " ) : " << u << std::endl;

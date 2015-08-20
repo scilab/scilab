@@ -17,16 +17,17 @@ public:
     void swig_connect_director(JNIEnv *jenv, jobject jself, jclass jcls, bool swig_mem_own, bool weak_global);
     SwigDirector_View(JNIEnv *jenv);
     virtual ~SwigDirector_View();
-    virtual void objectCreated(ScicosID const &uid, kind_t k);
-    virtual void objectDeleted(ScicosID const &uid, kind_t k);
-    virtual void objectUpdated(ScicosID const &uid, kind_t k);
-    virtual void propertyUpdated(ScicosID const &uid, kind_t k, object_properties_t p);
+    virtual void objectCreated(ScicosID const &uid, kind_t kind);
+    virtual void objectReferenced(ScicosID const &uid, kind_t kind);
+    virtual void objectUnreferenced(ScicosID const &uid, kind_t kind);
+    virtual void objectDeleted(ScicosID const &uid, kind_t kind);
+    virtual void propertyUpdated(ScicosID const &uid, kind_t kind, object_properties_t property, update_status_t status);
 public:
     bool swig_overrides(int n) {
-      return (n < 4 ? swig_override[n] : false);
+      return (n < 5 ? swig_override[n] : false);
     }
 protected:
-    Swig::BoolArray<4> swig_override;
+    Swig::BoolArray<5> swig_override;
 };
 
 

@@ -655,7 +655,7 @@ namespace Swig {
 namespace Swig {
   namespace {
     jclass jclass_JavaControllerJNI = NULL;
-    jmethodID director_method_ids[4];
+    jmethodID director_method_ids[5];
   }
 }
 
@@ -748,7 +748,10 @@ SWIGINTERN void std_vector_Sl_ScicosID_Sg__set(std::vector< ScicosID > *self,int
             }
 
 static void register_view(const std::string& name, org_scilab_modules_scicos::View* view) {
-	org_scilab_modules_scicos::Controller::register_view(name, view);
+  org_scilab_modules_scicos::Controller::register_view(name, view);
+};
+static void unregister_view(org_scilab_modules_scicos::View* view) {
+  org_scilab_modules_scicos::Controller::unregister_view(view);
 };
 
 
@@ -767,12 +770,12 @@ SwigDirector_View::~SwigDirector_View() {
 }
 
 
-void SwigDirector_View::objectCreated(ScicosID const &uid, kind_t k) {
+void SwigDirector_View::objectCreated(ScicosID const &uid, kind_t kind) {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   jlong juid = 0 ;
-  jint jk  ;
+  jint jkind  ;
   
   if (!swig_override[0]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::objectCreated.");
@@ -781,8 +784,8 @@ void SwigDirector_View::objectCreated(ScicosID const &uid, kind_t k) {
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     juid = (jlong)uid;
-    jk = (jint) k;
-    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[0], swigjobj, juid, jk);
+    jkind = (jint) kind;
+    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[0], swigjobj, juid, jkind);
     jthrowable swigerror = jenv->ExceptionOccurred();
     if (swigerror) {
       jenv->ExceptionClear();
@@ -795,22 +798,78 @@ void SwigDirector_View::objectCreated(ScicosID const &uid, kind_t k) {
   if (swigjobj) jenv->DeleteLocalRef(swigjobj);
 }
 
-void SwigDirector_View::objectDeleted(ScicosID const &uid, kind_t k) {
+void SwigDirector_View::objectReferenced(ScicosID const &uid, kind_t kind) {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   jlong juid = 0 ;
-  jint jk  ;
+  jint jkind  ;
   
   if (!swig_override[1]) {
+    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::objectReferenced.");
+    return;
+  }
+  swigjobj = swig_get_self(jenv);
+  if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
+    juid = (jlong)uid;
+    jkind = (jint) kind;
+    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[1], swigjobj, juid, jkind);
+    jthrowable swigerror = jenv->ExceptionOccurred();
+    if (swigerror) {
+      jenv->ExceptionClear();
+      throw Swig::DirectorException(jenv, swigerror);
+    }
+    
+  } else {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in org_scilab_modules_scicos::View::objectReferenced ");
+  }
+  if (swigjobj) jenv->DeleteLocalRef(swigjobj);
+}
+
+void SwigDirector_View::objectUnreferenced(ScicosID const &uid, kind_t kind) {
+  JNIEnvWrapper swigjnienv(this) ;
+  JNIEnv * jenv = swigjnienv.getJNIEnv() ;
+  jobject swigjobj = (jobject) NULL ;
+  jlong juid = 0 ;
+  jint jkind  ;
+  
+  if (!swig_override[2]) {
+    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::objectUnreferenced.");
+    return;
+  }
+  swigjobj = swig_get_self(jenv);
+  if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
+    juid = (jlong)uid;
+    jkind = (jint) kind;
+    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[2], swigjobj, juid, jkind);
+    jthrowable swigerror = jenv->ExceptionOccurred();
+    if (swigerror) {
+      jenv->ExceptionClear();
+      throw Swig::DirectorException(jenv, swigerror);
+    }
+    
+  } else {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in org_scilab_modules_scicos::View::objectUnreferenced ");
+  }
+  if (swigjobj) jenv->DeleteLocalRef(swigjobj);
+}
+
+void SwigDirector_View::objectDeleted(ScicosID const &uid, kind_t kind) {
+  JNIEnvWrapper swigjnienv(this) ;
+  JNIEnv * jenv = swigjnienv.getJNIEnv() ;
+  jobject swigjobj = (jobject) NULL ;
+  jlong juid = 0 ;
+  jint jkind  ;
+  
+  if (!swig_override[3]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::objectDeleted.");
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     juid = (jlong)uid;
-    jk = (jint) k;
-    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[1], swigjobj, juid, jk);
+    jkind = (jint) kind;
+    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[3], swigjobj, juid, jkind);
     jthrowable swigerror = jenv->ExceptionOccurred();
     if (swigerror) {
       jenv->ExceptionClear();
@@ -823,52 +882,26 @@ void SwigDirector_View::objectDeleted(ScicosID const &uid, kind_t k) {
   if (swigjobj) jenv->DeleteLocalRef(swigjobj);
 }
 
-void SwigDirector_View::objectUpdated(ScicosID const &uid, kind_t k) {
+void SwigDirector_View::propertyUpdated(ScicosID const &uid, kind_t kind, object_properties_t property, update_status_t status) {
   JNIEnvWrapper swigjnienv(this) ;
   JNIEnv * jenv = swigjnienv.getJNIEnv() ;
   jobject swigjobj = (jobject) NULL ;
   jlong juid = 0 ;
-  jint jk  ;
+  jint jkind  ;
+  jint jproperty  ;
+  jint jstatus  ;
   
-  if (!swig_override[2]) {
-    SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::objectUpdated.");
-    return;
-  }
-  swigjobj = swig_get_self(jenv);
-  if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
-    juid = (jlong)uid;
-    jk = (jint) k;
-    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[2], swigjobj, juid, jk);
-    jthrowable swigerror = jenv->ExceptionOccurred();
-    if (swigerror) {
-      jenv->ExceptionClear();
-      throw Swig::DirectorException(jenv, swigerror);
-    }
-    
-  } else {
-    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null upcall object in org_scilab_modules_scicos::View::objectUpdated ");
-  }
-  if (swigjobj) jenv->DeleteLocalRef(swigjobj);
-}
-
-void SwigDirector_View::propertyUpdated(ScicosID const &uid, kind_t k, object_properties_t p) {
-  JNIEnvWrapper swigjnienv(this) ;
-  JNIEnv * jenv = swigjnienv.getJNIEnv() ;
-  jobject swigjobj = (jobject) NULL ;
-  jlong juid = 0 ;
-  jint jk  ;
-  jint jp  ;
-  
-  if (!swig_override[3]) {
+  if (!swig_override[4]) {
     SWIG_JavaThrowException(JNIEnvWrapper(this).getJNIEnv(), SWIG_JavaDirectorPureVirtual, "Attempted to invoke pure virtual method org_scilab_modules_scicos::View::propertyUpdated.");
     return;
   }
   swigjobj = swig_get_self(jenv);
   if (swigjobj && jenv->IsSameObject(swigjobj, NULL) == JNI_FALSE) {
     juid = (jlong)uid;
-    jk = (jint) k;
-    jp = (jint) p;
-    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[3], swigjobj, juid, jk, jp);
+    jkind = (jint) kind;
+    jproperty = (jint) property;
+    jstatus = (jint) status;
+    jenv->CallStaticVoidMethod(Swig::jclass_JavaControllerJNI, Swig::director_method_ids[4], swigjobj, juid, jkind, jproperty, jstatus);
     jthrowable swigerror = jenv->ExceptionOccurred();
     if (swigerror) {
       jenv->ExceptionClear();
@@ -891,13 +924,16 @@ void SwigDirector_View::swig_connect_director(JNIEnv *jenv, jobject jself, jclas
       "objectCreated", "(JLorg/scilab/modules/xcos/Kind;)V", NULL 
     },
     {
+      "objectReferenced", "(JLorg/scilab/modules/xcos/Kind;)V", NULL 
+    },
+    {
+      "objectUnreferenced", "(JLorg/scilab/modules/xcos/Kind;)V", NULL 
+    },
+    {
       "objectDeleted", "(JLorg/scilab/modules/xcos/Kind;)V", NULL 
     },
     {
-      "objectUpdated", "(JLorg/scilab/modules/xcos/Kind;)V", NULL 
-    },
-    {
-      "propertyUpdated", "(JLorg/scilab/modules/xcos/Kind;Lorg/scilab/modules/xcos/ObjectProperties;)V", NULL 
+      "propertyUpdated", "(JLorg/scilab/modules/xcos/Kind;Lorg/scilab/modules/xcos/ObjectProperties;Lorg/scilab/modules/xcos/UpdateStatus;)V", NULL 
     }
   };
   
@@ -910,12 +946,17 @@ void SwigDirector_View::swig_connect_director(JNIEnv *jenv, jobject jself, jclas
       baseclass = (jclass) jenv->NewGlobalRef(baseclass);
     }
     bool derived = (jenv->IsSameObject(baseclass, jcls) ? false : true);
-    for (int i = 0; i < 4; ++i) {
+    for (int i = 0; i < 5; ++i) {
       if (!methods[i].base_methid) {
         methods[i].base_methid = jenv->GetMethodID(baseclass, methods[i].mname, methods[i].mdesc);
         if (!methods[i].base_methid) return;
       }
-      swig_override[i] = derived;
+      swig_override[i] = false;
+      if (derived) {
+        jmethodID methid = jenv->GetMethodID(jcls, methods[i].mname, methods[i].mdesc);
+        swig_override[i] = (methid != methods[i].base_methid);
+        jenv->ExceptionClear();
+      }
     }
   }
 }
@@ -965,6 +1006,40 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1obj
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1objectReferenced(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
+  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
+  ScicosID *arg2 = 0 ;
+  kind_t arg3 ;
+  ScicosID temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
+  temp2 = (ScicosID)jarg2; 
+  arg2 = &temp2; 
+  arg3 = (kind_t)jarg3; 
+  (arg1)->objectReferenced((ScicosID const &)*arg2,arg3);
+}
+
+
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1objectUnreferenced(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
+  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
+  ScicosID *arg2 = 0 ;
+  kind_t arg3 ;
+  ScicosID temp2 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
+  temp2 = (ScicosID)jarg2; 
+  arg2 = &temp2; 
+  arg3 = (kind_t)jarg3; 
+  (arg1)->objectUnreferenced((ScicosID const &)*arg2,arg3);
+}
+
+
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1objectDeleted(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
   org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
   ScicosID *arg2 = 0 ;
@@ -982,43 +1057,7 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1obj
 }
 
 
-SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1objectUpdated(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3) {
-  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
-  ScicosID *arg2 = 0 ;
-  kind_t arg3 ;
-  ScicosID temp2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
-  temp2 = (ScicosID)jarg2; 
-  arg2 = &temp2; 
-  arg3 = (kind_t)jarg3; 
-  (arg1)->objectUpdated((ScicosID const &)*arg2,arg3);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1propertyUpdated_1_1SWIG_10(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4) {
-  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
-  ScicosID *arg2 = 0 ;
-  kind_t arg3 ;
-  object_properties_t arg4 ;
-  ScicosID temp2 ;
-  
-  (void)jenv;
-  (void)jcls;
-  (void)jarg1_;
-  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
-  temp2 = (ScicosID)jarg2; 
-  arg2 = &temp2; 
-  arg3 = (kind_t)jarg3; 
-  arg4 = (object_properties_t)jarg4; 
-  (arg1)->propertyUpdated((ScicosID const &)*arg2,arg3,arg4);
-}
-
-
-SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1propertyUpdated_1_1SWIG_11(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jint jarg5) {
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1propertyUpdated(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jint jarg5) {
   org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
   ScicosID *arg2 = 0 ;
   kind_t arg3 ;
@@ -1056,6 +1095,28 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_View_1cha
   if (director) {
     director->swig_java_change_ownership(jenv, jself, jtake_or_release ? true : false);
   }
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1look_1for_1view(JNIEnv *jenv, jclass jcls, jstring jarg1) {
+  jlong jresult = 0 ;
+  std::string *arg1 = 0 ;
+  org_scilab_modules_scicos::View *result = 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  if(!jarg1) {
+    SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "null string");
+    return 0;
+  }
+  const char *arg1_pstr = (const char *)jenv->GetStringUTFChars(jarg1, 0); 
+  if (!arg1_pstr) return 0;
+  std::string arg1_str(arg1_pstr);
+  arg1 = &arg1_str;
+  jenv->ReleaseStringUTFChars(jarg1, arg1_pstr); 
+  result = (org_scilab_modules_scicos::View *)org_scilab_modules_scicos::Controller::look_for_view((std::string const &)*arg1);
+  *(org_scilab_modules_scicos::View **)&jresult = result; 
+  return jresult;
 }
 
 
@@ -1143,6 +1204,40 @@ SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controll
   arg3 = jarg3 ? true : false; 
   result = (ScicosID)(arg1)->cloneObject(arg2,arg3);
   jresult = (jlong)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getKind(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2) {
+  jint jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  ScicosID arg2 ;
+  kind_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = (ScicosID)jarg2; 
+  result = (kind_t)((org_scilab_modules_scicos::Controller const *)arg1)->getKind(arg2);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jlong JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getAll(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jint jarg2) {
+  jlong jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  kind_t arg2 ;
+  std::vector< ScicosID > result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = (kind_t)jarg2; 
+  result = ((org_scilab_modules_scicos::Controller const *)arg1)->getAll(arg2);
+  *(std::vector< ScicosID > **)&jresult = new std::vector< ScicosID >((const std::vector< ScicosID > &)result); 
   return jresult;
 }
 
@@ -2513,24 +2608,38 @@ SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_register_
 }
 
 
+SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_unregister_1view(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_) {
+  org_scilab_modules_scicos::View *arg1 = (org_scilab_modules_scicos::View *) 0 ;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::View **)&jarg1; 
+  unregister_view(arg1);
+}
+
+
 SWIGEXPORT void JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_swig_1module_1init(JNIEnv *jenv, jclass jcls) {
   int i;
   
   static struct {
     const char *method;
     const char *signature;
-  } methods[4] = {
+  } methods[5] = {
     {
       "SwigDirector_View_objectCreated", "(Lorg/scilab/modules/xcos/View;JI)V" 
+    },
+    {
+      "SwigDirector_View_objectReferenced", "(Lorg/scilab/modules/xcos/View;JI)V" 
+    },
+    {
+      "SwigDirector_View_objectUnreferenced", "(Lorg/scilab/modules/xcos/View;JI)V" 
     },
     {
       "SwigDirector_View_objectDeleted", "(Lorg/scilab/modules/xcos/View;JI)V" 
     },
     {
-      "SwigDirector_View_objectUpdated", "(Lorg/scilab/modules/xcos/View;JI)V" 
-    },
-    {
-      "SwigDirector_View_propertyUpdated__SWIG_0", "(Lorg/scilab/modules/xcos/View;JII)V" 
+      "SwigDirector_View_propertyUpdated", "(Lorg/scilab/modules/xcos/View;JIII)V" 
     }
   };
   Swig::jclass_JavaControllerJNI = (jclass) jenv->NewGlobalRef(jcls);

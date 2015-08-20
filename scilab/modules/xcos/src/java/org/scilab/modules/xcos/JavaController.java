@@ -12,16 +12,26 @@ import java.util.ArrayList;
 
 public class JavaController extends Controller {
 
-    // will contains all registered JavaViews to prevent garbage-collection 
-    private static ArrayList<View> references = new ArrayList<View>();
-    
-    private static long add_reference(View v) {
-        references.add(v);
-        return View.getCPtr(v);
-    }
+  // will contains all registered JavaViews to prevent garbage-collection 
+  private static ArrayList<View> references = new ArrayList<View>();
+  
+  private static long add_reference(View v) {
+    references.add(v);
+    return View.getCPtr(v);
+  }
+
+  private static View remove_reference(View v) {
+    references.remove(v);
+    return v;
+  }
 
   public static void register_view(String name, View view) {
     JavaControllerJNI.register_view(name, add_reference(view), view);
+  }
+
+  public static void unregister_view(View view) {
+    JavaControllerJNI.unregister_view(View.getCPtr(view), view);
+    remove_reference(view);
   }
 
 }

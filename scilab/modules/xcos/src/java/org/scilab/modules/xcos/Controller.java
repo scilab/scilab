@@ -35,6 +35,11 @@ public class Controller {
     }
   }
 
+  public static View look_for_view(String name) {
+    long cPtr = JavaControllerJNI.Controller_look_for_view(name);
+    return (cPtr == 0) ? null : new View(cPtr, false);
+  }
+
   public Controller() {
     this(JavaControllerJNI.new_Controller(), true);
   }
@@ -53,6 +58,14 @@ public class Controller {
 
   public long cloneObject(long uid, boolean cloneChildren) {
     return JavaControllerJNI.Controller_cloneObject(swigCPtr, this, uid, cloneChildren);
+  }
+
+  public Kind getKind(long uid) {
+    return Kind.class.getEnumConstants()[JavaControllerJNI.Controller_getKind(swigCPtr, this, uid)];
+  }
+
+  public VectorOfScicosID getAll(Kind k) {
+    return new VectorOfScicosID(JavaControllerJNI.Controller_getAll(swigCPtr, this, k.ordinal()), true);
   }
 
   public boolean getObjectProperty(long uid, Kind k, ObjectProperties p, int[] v) {

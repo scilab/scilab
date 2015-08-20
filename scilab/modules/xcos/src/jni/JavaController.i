@@ -28,7 +28,7 @@
 
 %include <enums.swg>
 %include <typemaps.i>
-	%include <std_vector.i>
+%include <std_vector.i>
 %include <std_string.i>
 
 /*
@@ -92,8 +92,7 @@
 /*
  * Generate the View interface
  */
-%feature("director", assumeoverride=1) org_scilab_modules_scicos::View;
-%feature("nodirector") org_scilab_modules_scicos::View::propertyUpdated(const ScicosID& uid, kind_t k, object_properties_t p, update_status_t u);
+%feature("director", assumeoverride=0) org_scilab_modules_scicos::View;
 %include "../scicos/includes/View.hxx";
 
 
@@ -104,8 +103,6 @@
 %ignore org_scilab_modules_scicos::Controller::getObject;
 %ignore org_scilab_modules_scicos::Controller::unregister_view;
 %ignore org_scilab_modules_scicos::Controller::register_view;
-%ignore org_scilab_modules_scicos::Controller::look_for_view;
-%ignore org_scilab_modules_scicos::Controller::delete_all_instances;
 %include "../scicos/includes/Controller.hxx";
 
 // Instanciate templates mapped to Java
@@ -142,7 +139,10 @@
  */
 %{
 static void register_view(const std::string& name, org_scilab_modules_scicos::View* view) {
-	org_scilab_modules_scicos::Controller::register_view(name, view);
+  org_scilab_modules_scicos::Controller::register_view(name, view);
+};
+static void unregister_view(org_scilab_modules_scicos::View* view) {
+  org_scilab_modules_scicos::Controller::unregister_view(view);
 };
 %}
 
@@ -153,18 +153,27 @@ import java.util.ArrayList;
 %pragma(java) modulebase="Controller"
 
 %pragma(java) modulecode=%{
-    // will contains all registered JavaViews to prevent garbage-collection 
-    private static ArrayList<View> references = new ArrayList<View>();
-    
-    private static long add_reference(View v) {
-        references.add(v);
-        return View.getCPtr(v);
-    }
+  // will contains all registered JavaViews to prevent garbage-collection 
+  private static ArrayList<View> references = new ArrayList<View>();
+  
+  private static long add_reference(View v) {
+    references.add(v);
+    return View.getCPtr(v);
+  }
+
+  private static View remove_reference(View v) {
+    references.remove(v);
+    return v;
+  }
 %}
 
 %typemap(javain) org_scilab_modules_scicos::View* "add_reference($javainput)"
-
 void register_view(const std::string& name, org_scilab_modules_scicos::View* view);
+%typemap(javaout) void "{
+    JavaControllerJNI.unregister_view(View.getCPtr(view), view);
+    remove_reference(view);
+  }"
+void unregister_view(org_scilab_modules_scicos::View* view);
 
 /*
  * Static load of library
