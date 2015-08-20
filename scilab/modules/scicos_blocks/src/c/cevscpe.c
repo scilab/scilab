@@ -140,9 +140,10 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints);
  * Set the axes bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  * \param periodCounter number of past periods since startup
  */
-static BOOL setBounds(scicos_block * block, int periodCounter);
+static BOOL setBounds(scicos_block * block, int iAxeUID, int periodCounter);
 
 /*****************************************************************************
  * Simulation function
@@ -427,7 +428,7 @@ static void appendData(scicos_block * block, int input, double t)
         {
             sco->internal.numberOfPoints[i] = 0;
         }
-        if (setBounds(block, sco->scope.periodCounter) == FALSE)
+        if (setBounds(block, getAxe(getFigure(block), block), sco->scope.periodCounter) == FALSE)
         {
             set_block_error(-5);
             freeScoData(block);
@@ -619,7 +620,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
         setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-        setBounds(block, 0);
+        setBounds(block, iAxe, 0);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -795,11 +796,8 @@ static BOOL setSegsBuffers(scicos_block * block, int maxNumberOfPoints)
     return result;
 }
 
-static BOOL setBounds(scicos_block * block, int periodCounter)
+static BOOL setBounds(scicos_block * block, int iAxeUID, int periodCounter)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
     double period = block->rpar[0];
 
@@ -810,7 +808,5 @@ static BOOL setBounds(scicos_block * block, int periodCounter)
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
 
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

@@ -189,10 +189,11 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints);
  * Set the polylines bounds
  *
  * \param block the block
- * \param input the input port index
+ * \param iAxeUID the axe id
+ * \param input the input number
  * \param periodCounter number of past periods since startup
  */
-static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter);
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID, int input, int periodCounter);
 
 /*****************************************************************************
  * Simulation function
@@ -620,7 +621,7 @@ static void appendData(scicos_block * block, int input, double t, double *data)
         }
 
         // configure scope setting
-        if (setPolylinesBounds(block, input, sco->scope.periodCounter[input]) == FALSE)
+        if (setPolylinesBounds(block, getAxe(getFigure(block), block, input), input, sco->scope.periodCounter[input]) == FALSE)
         {
             set_block_error(-5);
             freeScoData(block);
@@ -840,7 +841,7 @@ static int getFigure(scicos_block * block)
             setGraphicObjectProperty(iAxe, __GO_X_AXIS_VISIBLE__, &i__1, jni_bool, 1);
             setGraphicObjectProperty(iAxe, __GO_Y_AXIS_VISIBLE__, &i__1, jni_bool, 1);
 
-            setPolylinesBounds(block, i, 0);
+            setPolylinesBounds(block, iAxe, i, 0);
         }
     }
     else
@@ -1083,11 +1084,8 @@ static BOOL pushHistory(scicos_block * block, int input, int maxNumberOfPoints)
     return result;
 }
 
-static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounter)
+static BOOL setPolylinesBounds(scicos_block * block, int iAxeUID, int input, int periodCounter)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
     int nin = block->nin;
     double period = block->rpar[block->nrpar - 3 * nin + input];
@@ -1101,7 +1099,5 @@ static BOOL setPolylinesBounds(scicos_block * block, int input, int periodCounte
 
     LOG("%s: %s at %d to %f\n", "cmscope", "setPolylinesBounds", input, dataBounds[1]);
 
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block, input);
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }

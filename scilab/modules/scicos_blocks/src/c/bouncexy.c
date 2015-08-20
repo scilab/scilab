@@ -129,8 +129,9 @@ static int getArc(int iAxeUID, scicos_block * block, int row);
  * Set the bounds
  *
  * \param block the block
+ * \param iAxeUID the axe id
  */
-static BOOL setBounds(scicos_block * block);
+static BOOL setBounds(scicos_block * block, int iAxeUID);
 
 /*****************************************************************************
  * Simulation function
@@ -407,7 +408,7 @@ static int getFigure(scicos_block * block)
         setGraphicObjectProperty(iAxe, __GO_BOX_TYPE__, &i__1, jni_int, 1);
         setGraphicObjectProperty(iAxe, __GO_ISOVIEW__, &b_true, jni_bool, 1);
 
-        setBounds(block);
+        setBounds(block, iAxe);
     }
 
     if (sco->scope.cachedFigureUID == 0)
@@ -539,11 +540,8 @@ static int getArc(int iAxeUID, scicos_block * block, int row)
     return sco->scope.cachedArcsUIDs[row];
 }
 
-static BOOL setBounds(scicos_block * block)
+static BOOL setBounds(scicos_block * block, int iAxeUID)
 {
-    int iFigureUID;
-    int iAxeUID;
-
     double dataBounds[6];
 
     dataBounds[0] = block->rpar[0]; // xMin
@@ -552,9 +550,6 @@ static BOOL setBounds(scicos_block * block)
     dataBounds[3] = block->rpar[3]; // yMax
     dataBounds[4] = -1.0;       // zMin
     dataBounds[5] = 1.0;        // zMax
-
-    iFigureUID = getFigure(block);
-    iAxeUID = getAxe(iFigureUID, block);
 
     return setGraphicObjectProperty(iAxeUID, __GO_DATA_BOUNDS__, dataBounds, jni_double_vector, 6);
 }
