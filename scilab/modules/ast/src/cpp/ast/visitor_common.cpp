@@ -1222,19 +1222,21 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                 {
                     InternalType* pExtract = NULL;
 
-                    for (int i = 0; i < pArgs->size(); i++)
+                    if (pArgs->size() == 1 && (*pArgs)[0]->isImplicitList() == false)
                     {
-                        if ((*pArgs)[i]->isImplicitList())
-                        {
-                            pExtract = pGH->extract(pArgs);
-                            break;
-                        }
+                        // call overload
+                        pExtract = callOverload(*pEH->getExp(), L"e", pArgs, pITCurrent, NULL);
+                    }
+                    else
+                    {
+                        pExtract = pGH->extract(pArgs);
                     }
 
                     if (pExtract == NULL)
                     {
-                        // call overload
-                        pExtract = callOverload(*pEH->getExp(), L"e", pArgs, pITCurrent, NULL);
+                        std::wostringstream os;
+                        os << _W("Invalid index.");
+                        throw ast::InternalError(os.str(), 999, _pExp->getLocation());
                     }
 
                     if ((*iterFields)->getExp() == NULL)
