@@ -65,8 +65,9 @@ InternalType* CreateMatlabTreeVariable(matvar_t *matVariable)
                 pOut = new Cell(iRank, piDims);
 
                 matvar_t** allData = (matvar_t**)(matVariable->data);
-                InternalType** ppIT = new InternalType*[matVariable->data_size];
-                for (int i = 0; i < matVariable->data_size; i++)
+                int iSize = pOut->getAs<types::Cell>()->getSize();
+                InternalType** ppIT = new InternalType*[iSize];
+                for (int i = 0; i < iSize; i++)
                 {
                     ppIT[i] = CreateMatlabTreeVariable(allData[i]);
                 }

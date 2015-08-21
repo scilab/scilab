@@ -29,6 +29,8 @@ Scilab Bug Fixes
 
 * Bug #14058 fixed - Scilab crashed with 'file("close", file())' instruction
 
+* Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
