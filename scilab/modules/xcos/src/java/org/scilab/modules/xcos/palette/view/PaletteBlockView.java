@@ -40,7 +40,7 @@ public final class PaletteBlockView extends JLabel {
             .createEtchedBorder(EtchedBorder.LOWERED);
     private static final Border NON_SELECTED_BORDER = BorderFactory
             .createEmptyBorder();
-
+    private StatusUI statusUI;
     private PaletteBlockCtrl controller;
 
     /**
@@ -62,6 +62,7 @@ public final class PaletteBlockView extends JLabel {
     public PaletteBlockView(PaletteBlockCtrl controller) {
         super(controller.getModel().getName(), SwingConstants.CENTER);
         this.controller = controller;
+        setStatusUI(StatusUI.NON_SELECTED);
         ZoomAction.registerKeyAction(getActionMap(), getInputMap());
         initComponents();
     }
@@ -99,9 +100,17 @@ public final class PaletteBlockView extends JLabel {
     }
 
     /**
+     * @return border status
+     */
+    public StatusUI getStatusUI() {
+        return statusUI;
+    }
+
+    /**
      * @param status Border status
      */
     public void setStatusUI(StatusUI status) {
+        statusUI = status;
         if (status == StatusUI.SELECTED) {
             setBorder(SELECTED_BORDER);
         } else if (status == StatusUI.HOVER) {

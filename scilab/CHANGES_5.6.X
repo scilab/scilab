@@ -16,6 +16,7 @@ Xcos
 * Palette browser handles the action of going forward or backward.
 * Palette browser enable users to add blocks to the most recent diagram by using the ENTER key.
 * Palette browser includes a palette of blocks you have used most recently.
+* Palette browser is now able to select multiple blocks by holding down the ctrl key.
 
 * Bug #13906 fixed - It is now possible to navigate through the Palette browser with the arrow keys.
 

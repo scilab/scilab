@@ -71,6 +71,10 @@ public final class XcosMessages {
     public static final String ZOOM_IN = Messages.gettext("Zoom In");
     public static final String ZOOM_OUT = Messages.gettext("Zoom Out");
 
+    public static final String UNABLE_TO_LOAD_BLOCK = Messages.gettext("Unable to load block from %s .");
+    public static final String UNABLE_TO_LOAD_SELECTED_BLOCKS = Messages.gettext("Unable to load the selected blocks.");
+    public static final String LOADING_BLOCKS = Messages.gettext("Loading blocks") + DOTS;
+
     /* Palette menu in palette browser */
     public static final String LOAD_AS_PAL = Messages.gettext("Load as palette") + DOTS;
     public static final String USER_DEFINED = Messages.gettext("User-Defined");
@@ -318,7 +322,9 @@ public final class XcosMessages {
      * @return true if Java 1.5 and MacOS and mouse clic and ctrl activated
      */
     public static boolean isMacOsPopupTrigger(MouseEvent e) {
-        return (SwingUtilities.isLeftMouseButton(e) && e.isControlDown() && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1) && (System
-                .getProperty("java.specification.version").equals("1.5")));
+        return (SwingUtilities.isLeftMouseButton(e)
+                && e.isControlDown()
+                && (System.getProperty("os.name").toLowerCase().indexOf("mac") != -1)
+                && (System.getProperty("java.specification.version").equals("1.5")));
     }
 }

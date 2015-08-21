@@ -18,6 +18,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JLabel;
 
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.PaletteCtrl;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
 
 /**
@@ -28,7 +29,7 @@ import org.scilab.modules.xcos.palette.model.PaletteBlock;
 public class PaletteSearchView extends PaletteView {
 
     private JLabel header;
-    private PaletteView paletteview;
+    private PaletteCtrl paletteCtrl;
 
     /**
      * Default constructor
@@ -36,22 +37,23 @@ public class PaletteSearchView extends PaletteView {
     public PaletteSearchView() {
         setName("PaletteSearchView");
         this.header = new JLabel();
-        this.paletteview = new PaletteView();
+        this.paletteCtrl = new PaletteCtrl();
     }
 
     /**
      * Setup component
      */
     public void initComponents() {
-        paletteview.removeAll();
+        paletteCtrl.clear();
         removeAll();
 
+        PaletteView view = paletteCtrl.getView();
         header.setAlignmentX(Component.LEFT_ALIGNMENT);
-        paletteview.setAlignmentX(Component.LEFT_ALIGNMENT);
+        view.setAlignmentX(Component.LEFT_ALIGNMENT);
 
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         add(header);
-        add(paletteview);
+        add(view);
     }
 
     /**
@@ -67,6 +69,6 @@ public class PaletteSearchView extends PaletteView {
      * @param block PaletteBlock
      */
     public void addBlock(PaletteBlock block) {
-        paletteview.add(new PaletteBlockCtrl(block).getView());
+        new PaletteBlockCtrl(paletteCtrl, block);
     }
 }

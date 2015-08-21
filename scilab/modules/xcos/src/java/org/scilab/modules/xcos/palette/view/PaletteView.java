@@ -55,6 +55,7 @@ public class PaletteView extends JPanel implements Scrollable {
                                          XcosConstants.PALETTE_HMARGIN,
                                          XcosConstants.PALETTE_VMARGIN));
 
+        // if this panel gains focus, try to select the first block!
         setFocusable(true);
         addFocusListener(new FocusListener() {
             @Override

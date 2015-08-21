@@ -12,21 +12,17 @@
 
 package org.scilab.modules.xcos.palette.listener;
 
-import java.awt.Component;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.List;
 
-import javax.swing.JScrollPane;
-
 import org.scilab.modules.xcos.Xcos;
-import org.scilab.modules.xcos.block.BasicBlock;
 import org.scilab.modules.xcos.graph.XcosDiagram;
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.PaletteCtrl;
 import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteBlockView.StatusUI;
 import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
-import org.scilab.modules.xcos.palette.view.PaletteManagerView;
-import org.scilab.modules.xcos.palette.view.PaletteSearchView;
 import org.scilab.modules.xcos.palette.view.PaletteView;
 import org.scilab.modules.xcos.utils.XcosConstants;
 import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
@@ -56,42 +52,44 @@ public final class PaletteBlockKeyListener implements KeyListener {
             assert size != 0;
 
             final XcosDiagram theDiagram = allDiagrams.get(size - 1);
-            BasicBlock current = control.getBlock();
-            theDiagram.addCell(current);
+            control.getPaletteCtrl().addSelectedBlocks(theDiagram);
 
-            PaletteManagerView.get().getPanel().addRecentltyUsedBlock(control.getModel());
-            return;
-        }
-
-        /** deselects block and loses focus **/
-        if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_TAB) {
+        /** deselects blocks and loses focus **/
+        } else if (e.getKeyCode() == KeyEvent.VK_ESCAPE || e.getKeyCode() == KeyEvent.VK_TAB) {
+            PaletteCtrl.clearSelections();
             PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
-            currentBlockView.getController().setSelected(false);
             currentBlockView.transferFocusUpCycle();
-            return;
-        }
+
+        /** toggle selection **/
+        } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
+            boolean isSelected = currentBlockView.getController().isSelected();
+            if ((e.getModifiers() & KeyEvent.CTRL_MASK) == 0) {
+                PaletteCtrl.clearSelections();
+            }
+            currentBlockView.getController().setSelected(!isSelected); // toggle
+            currentBlockView.requestFocus();
 
         /** move selection (arrow keys) **/
-        int x = 0;
-        int y = 0;
-        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
-            x = 0;
-            y = 1;
+        } else if (e.getKeyCode() == KeyEvent.VK_DOWN) {
+            getNextBlock(e, 0, 1);
         } else if (e.getKeyCode() == KeyEvent.VK_UP) {
-            x = 0;
-            y = -1;
+            getNextBlock(e, 0, -1);
         } else if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            x = 1;
-            y = 0;
+            getNextBlock(e, 1, 0);
         } else if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            x = -1;
-            y = 0;
-        } else {
-            // nothing to do!
-            return;
+            getNextBlock(e, -1, 0);
         }
+    }
 
-        // get position of the next block
+    /**
+     * Get the next block position and handle the selection status
+     * @param e KeyEvent
+     * @param x Initialize x
+     * @param y Initialize y
+     */
+    // CSOFF: ParameterAssignment
+    private void getNextBlock(KeyEvent e, int x, int y) {
         PaletteBlockView currentBlockView = ((PaletteBlockView) e.getSource());
         PaletteBlockSize blockSize = PaletteManagerPanel.getCurrentSize();
 
@@ -105,22 +103,29 @@ public final class PaletteBlockKeyListener implements KeyListener {
             return;
         }
 
-        // select the block
         try {
-            JScrollPane jsp = (JScrollPane) PaletteManagerView.get().getPanel().getRightComponent();
-            Component c = jsp.getViewport().getComponent(0);
-            String cName = c.getName();
-            PaletteView pview;
-            if (cName.equals("PaletteView")) {
-                pview = (PaletteView) c;
-            } else if (cName.equals("PaletteSearchView")) {
-                PaletteSearchView sview = (PaletteSearchView) c;
-                pview = (PaletteView) sview.getComponent(1);
-            } else {
-                return;
+            // gets the current palette view
+            PaletteView pview = currentBlockView.getController().getPaletteCtrl().getView();
+
+            // gets the next PaletteBlockView
+            PaletteBlockView nextBlockView = (PaletteBlockView) pview.getComponentAt(x, y);
+
+            // handle keys to decide the selection type
+            boolean ctrlIsDown = (e.getModifiers() & KeyEvent.CTRL_MASK) != 0;
+            boolean isSelected = nextBlockView.getController().isSelected();
+            if (!ctrlIsDown) {
+                PaletteCtrl.clearSelections();
+                nextBlockView.getController().setSelected(!isSelected); // toggle
+            } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                nextBlockView.getController().setSelected(!isSelected); // toggle
+            } else if (!isSelected) { 
+                nextBlockView.setStatusUI(StatusUI.HOVER);
             }
-            PaletteBlockView bview = (PaletteBlockView) pview.getComponentAt(x, y);
-            bview.getController().setSelected(true);
+
+            nextBlockView.requestFocus();
+            if (currentBlockView.getStatusUI().equals(StatusUI.HOVER)) {
+                currentBlockView.setStatusUI(StatusUI.NON_SELECTED);
+            }
         } catch (ClassCastException err) {
         } catch (NullPointerException err) {
         }

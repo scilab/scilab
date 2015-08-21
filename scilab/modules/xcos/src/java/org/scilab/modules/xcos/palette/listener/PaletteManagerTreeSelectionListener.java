@@ -24,6 +24,7 @@ import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 
 import org.scilab.modules.xcos.palette.PaletteBlockCtrl;
+import org.scilab.modules.xcos.palette.PaletteCtrl;
 import org.scilab.modules.xcos.palette.model.Category;
 import org.scilab.modules.xcos.palette.model.Custom;
 import org.scilab.modules.xcos.palette.model.PaletteBlock;
@@ -32,7 +33,6 @@ import org.scilab.modules.xcos.palette.model.PreLoaded;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView;
 import org.scilab.modules.xcos.palette.view.PaletteConfiguratorListView.PaletteListModel;
 import org.scilab.modules.xcos.palette.view.PaletteManagerPanel;
-import org.scilab.modules.xcos.palette.view.PaletteView;
 
 /**
  * Implement the tree selection listener
@@ -80,12 +80,12 @@ public class PaletteManagerTreeSelectionListener implements TreeSelectionListene
         } else if (node instanceof PreLoaded) {
             final PreLoaded palette = (PreLoaded) node;
 
-            final PaletteView view = new PaletteView();
+            final PaletteCtrl ctrl = new PaletteCtrl();
             for (PaletteBlock b : palette.getBlock()) {
-                view.add(new PaletteBlockCtrl(b).getView());
+                new PaletteBlockCtrl(ctrl, b);
             }
 
-            panel.setViewportView(view);
+            panel.setViewportView(ctrl.getView());
             nodeView = panel;
         } else if (node instanceof Custom) {
             nodeView = paletteManagerPanel.openDiagramAsPal(node);
