@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.
 
+* Bug #14057 fixed - grand(m,n) returned a wrong error and grand(m,n,p) called an overloading function instead of returning an error.
+
 * Bug #14058 fixed - Scilab crashed with 'file("close", file())' instruction
 
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
