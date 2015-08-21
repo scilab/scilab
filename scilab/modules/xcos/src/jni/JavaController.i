@@ -107,6 +107,7 @@
 
 // Instanciate templates mapped to Java
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<int>;
+%template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<bool>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<double>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<std::string>;
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty<ScicosID>;
@@ -116,6 +117,7 @@
 %template(getObjectProperty) org_scilab_modules_scicos::Controller::getObjectProperty< std::vector<ScicosID> >;
 
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<int>;
+%template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<bool>;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<double>;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<std::string>;
 %template(setObjectProperty) org_scilab_modules_scicos::Controller::setObjectProperty<ScicosID>;

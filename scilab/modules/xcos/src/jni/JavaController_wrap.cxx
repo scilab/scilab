@@ -1282,7 +1282,47 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jdoubleArray jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jbooleanArray jarg5) {
+  jboolean jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  ScicosID arg2 ;
+  kind_t arg3 ;
+  object_properties_t arg4 ;
+  bool *arg5 = 0 ;
+  bool temp5 ;
+  bool result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = (ScicosID)jarg2; 
+  arg3 = (kind_t)jarg3; 
+  arg4 = (object_properties_t)jarg4; 
+  {
+    if (!jarg5) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaNullPointerException, "array null");
+      return 0;
+    }
+    if (jenv->GetArrayLength(jarg5) == 0) {
+      SWIG_JavaThrowException(jenv, SWIG_JavaIndexOutOfBoundsException, "Array must contain at least 1 element");
+      return 0;
+    }
+    temp5 = false;
+    arg5 = &temp5; 
+  }
+  result = (bool)((org_scilab_modules_scicos::Controller const *)arg1)->SWIGTEMPLATEDISAMBIGUATOR getObjectProperty< bool >(arg2,arg3,arg4,*arg5);
+  jresult = (jboolean)result; 
+  {
+    jboolean jvalue = (jboolean)temp5;
+    jenv->SetBooleanArrayRegion(jarg5, 0, 1, &jvalue);
+  }
+  
+  return jresult;
+}
+
+
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jdoubleArray jarg5) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1322,7 +1362,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jobjectArray jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jobjectArray jarg5) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1364,7 +1404,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlongArray jarg5) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlongArray jarg5) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1404,7 +1444,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1432,7 +1472,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1460,7 +1500,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1488,7 +1528,7 @@ SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Contr
 }
 
 
-SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jboolean JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1getObjectProperty_1_1SWIG_19(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jboolean jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1539,7 +1579,30 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jdouble jarg5) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_12(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jboolean jarg5) {
+  jint jresult = 0 ;
+  org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
+  ScicosID arg2 ;
+  kind_t arg3 ;
+  object_properties_t arg4 ;
+  bool arg5 ;
+  update_status_t result;
+  
+  (void)jenv;
+  (void)jcls;
+  (void)jarg1_;
+  arg1 = *(org_scilab_modules_scicos::Controller **)&jarg1; 
+  arg2 = (ScicosID)jarg2; 
+  arg3 = (kind_t)jarg3; 
+  arg4 = (object_properties_t)jarg4; 
+  arg5 = jarg5 ? true : false; 
+  result = (update_status_t)(arg1)->SWIGTEMPLATEDISAMBIGUATOR setObjectProperty< bool >(arg2,arg3,arg4,arg5);
+  jresult = (jint)result; 
+  return jresult;
+}
+
+
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jdouble jarg5) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1562,7 +1625,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_13(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jstring jarg5) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jstring jarg5) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1592,7 +1655,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_14(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1615,7 +1678,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_15(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1645,7 +1708,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_16(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1675,7 +1738,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_17(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
@@ -1705,7 +1768,7 @@ SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controlle
 }
 
 
-SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_18(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
+SWIGEXPORT jint JNICALL Java_org_scilab_modules_xcos_JavaControllerJNI_Controller_1setObjectProperty_1_1SWIG_19(JNIEnv *jenv, jclass jcls, jlong jarg1, jobject jarg1_, jlong jarg2, jint jarg3, jint jarg4, jlong jarg5, jobject jarg5_) {
   jint jresult = 0 ;
   org_scilab_modules_scicos::Controller *arg1 = (org_scilab_modules_scicos::Controller *) 0 ;
   ScicosID arg2 ;
