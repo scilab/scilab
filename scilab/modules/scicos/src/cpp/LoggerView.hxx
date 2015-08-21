@@ -60,8 +60,7 @@ public:
     void log(enum LogLevel level, const std::stringstream& msg);
     void log(enum LogLevel level, const std::string& msg);
     void log(enum LogLevel level, const char* msg, ...);
-    void log(enum LogLevel level, const char* msg);
-    void log(enum LogLevel level, const wchar_t* msg);
+    void log(enum LogLevel level, const wchar_t* msg, ...);
 
     /*
      * Implement the Logger as a View
