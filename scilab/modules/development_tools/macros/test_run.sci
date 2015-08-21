@@ -78,6 +78,9 @@ function test_run_result = test_run(varargin)
         params.wanted_mode  = assign_option(option_mat, "mode_nwni", "NWNI", params.wanted_mode);
         option_mat          = clean_option(option_mat, "mode_nwni");
 
+        params.wanted_mode  = assign_option(option_mat, "mode_nwni_profiling", ["NWNI" "PROFILING"], params.wanted_mode);
+        option_mat          = clean_option(option_mat, "mode_nwni_profiling");
+
         // Reference
         params.reference    = assign_option(option_mat, "no_check_ref", "skip", params.reference);
         option_mat          = clean_option(option_mat, "no_check_ref");
@@ -524,6 +527,7 @@ function status = test_single(_module, _testPath, _testName)
     tmp_res     = pathconvert( TMPDIR + "/" + _testName + ".res", %F);
     tmp_err     = pathconvert( TMPDIR + "/" + _testName + ".err", %F);
     path_dia    = pathconvert( TMPDIR + "/" + _testName + ".dia", %F);
+    tmp_prof    = pathconvert( TMPDIR + "/" + _testName + ".prof", %F);
 
     path_dia_ref  = _testPath + _testName + ".dia.ref";
     // Reference file management OS by OS
@@ -618,7 +622,7 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     if ~isempty(grep(sciFile, "<-- TEST WITH GRAPHIC -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with graphic";
             return;
@@ -648,7 +652,7 @@ function status = test_single(_module, _testPath, _testName)
     clear MPITestPos
 
     if ~isempty(grep(sciFile, "<-- XCOS TEST -->")) then
-        if _module.wanted_mode == "NWNI" then
+        if or(_module.wanted_mode == "NWNI") then
             status.id = 10;
             status.message = "skipped: Test with xcos";
             return;
@@ -765,12 +769,17 @@ function status = test_single(_module, _testPath, _testName)
     end
 
     //mode
+    valgrind_opt = "";
     winbin = "wscilex.exe";
     if _module.wanted_mode == "NW" then
         mode_arg = "-nw";
     elseif _module.wanted_mode == "NWNI" then
         winbin = "scilex.exe";
         mode_arg = "-nwni";
+    elseif _module.wanted_mode == ["NWNI" "PROFILING"] && getos() == "Linux" then
+        winbin = "scilex.exe";
+        mode_arg = "-nwni -profiling";
+        valgrind_opt = "SCILAB_VALGRIND_OPT=""--log-file=" + tmp_prof + " """;
     else
         if execMode == "NWNI" then
             winbin = "scilex.exe";
@@ -809,9 +818,9 @@ function status = test_single(_module, _testPath, _testName)
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 
@@ -909,6 +918,19 @@ function status = test_single(_module, _testPath, _testName)
                 end
             end
         end
+
+        if isfile(tmp_prof) then
+            txt = mgetl(tmp_prof);
+            if grep(txt($), "ERROR SUMMARY: 0 errors from 0 contexts") then
+                deletefile(tmp_prof);
+            else
+                status.id = 5;
+                status.message = "failed: Valgrind error detected";
+                status.details = checkthefile(tmp_prof);
+                return;
+            end
+        end
+
 
         tmp_errfile_info = fileinfo(tmp_err);
 

@@ -120,6 +120,12 @@
                             </listitem>
                         </varlistentry>
                         <varlistentry>
+                            <term>mode_nwni_profiling</term>
+                            <listitem>
+                                <para>Add the "-nwni -profiling" option to the launch</para>
+                            </listitem>
+                        </varlistentry>
+                        <varlistentry>
                             <term>nonreg_tests</term>
                             <listitem>
                                 <para>runs only the non-regression tests, skipping unit tests</para>
