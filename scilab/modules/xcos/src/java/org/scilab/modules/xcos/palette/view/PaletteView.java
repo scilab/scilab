@@ -13,12 +13,16 @@
 
 package org.scilab.modules.xcos.palette.view;
 
+import java.awt.AlphaComposite;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.geom.Rectangle2D;
 
 import javax.swing.JPanel;
 import javax.swing.Scrollable;
@@ -37,6 +41,8 @@ import org.scilab.modules.xcos.utils.XcosConstants.PaletteBlockSize;
  */
 @SuppressWarnings(value = { "serial" })
 public class PaletteView extends JPanel implements Scrollable {
+
+    private static Rectangle2D.Double selectionRect;
     private boolean isLoaded;
 
     /**
@@ -70,6 +76,15 @@ public class PaletteView extends JPanel implements Scrollable {
                 }
             }
         });
+    }
+
+    /**
+     * Sets the selection rectangle
+     * @param rect Rectangle2D
+     */
+    public void setSelectionRectangle(Rectangle2D.Double rect) {
+        selectionRect = rect;
+        this.repaint();
     }
 
     /**
@@ -168,5 +183,27 @@ public class PaletteView extends JPanel implements Scrollable {
         } else {
             return palBlockSize.getBlockDimension().width;
         }
+    }
+
+    /**
+     * Paints the selection rectangle.
+     * @param g Graphics
+     */
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+        if (selectionRect == null) {
+            return;
+        }
+
+        Graphics2D g2d = (Graphics2D) g;
+        final float alpha = 0.1f;
+        AlphaComposite ta = AlphaComposite.getInstance(AlphaComposite.SRC_OVER, alpha);
+        g2d.setComposite(ta);
+        g2d.setColor(Color.BLUE);
+        g2d.fill(selectionRect);
+        g2d.setComposite(AlphaComposite.SrcOver);
+        g2d.setColor(Color.BLACK);
+        g2d.draw(selectionRect);
     }
 }

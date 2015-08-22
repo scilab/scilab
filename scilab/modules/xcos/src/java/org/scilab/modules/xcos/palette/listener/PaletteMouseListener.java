@@ -12,59 +12,87 @@
 
 package org.scilab.modules.xcos.palette.listener;
 
+import java.awt.Component;
+import java.awt.Point;
+import java.awt.Rectangle;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.geom.Rectangle2D;
+
+import javax.swing.SwingUtilities;
 
 import org.scilab.modules.xcos.palette.PaletteCtrl;
+import org.scilab.modules.xcos.palette.view.PaletteBlockView;
+import org.scilab.modules.xcos.palette.view.PaletteView;
 
 /**
  * Implement the default mouse listener for the palette view
  * @author Marcos CARDINOT <mcardinot@gmail.com>
  */
-public final class PaletteMouseListener implements MouseListener {
+public final class PaletteMouseListener extends MouseAdapter {
+
+    private Point startPoint;
 
     /** Default constructor */
     public PaletteMouseListener() {
+        super();
     }
 
     /**
-     * Clear selection when mouse is pressed
+     * Clear selections when palette view is clicked
      * @param e MouseEvent
      */
     @Override
-    public void mousePressed(MouseEvent e) {
+    public void mouseClicked(MouseEvent e) {
+        super.mouseClicked(e);
         PaletteCtrl.clearSelections();
     }
 
     /**
-     * Invoked when the mouse enters a palette view.
+     * Invoked when the mouse is pressed
      * @param e MouseEvent
      */
     @Override
-    public void mouseEntered(MouseEvent e) {
+    public void mousePressed(MouseEvent e) {
+        super.mousePressed(e);
+        this.startPoint = e.getPoint();
     }
 
     /**
-     * Invoked when the mouse exits a palette view.
+     * Select blocks by dragging the mouse pointer
      * @param e MouseEvent
      */
     @Override
-    public void mouseExited(MouseEvent e) {
+    public void mouseDragged(MouseEvent e) {
+        super.mouseDragged(e);
+        if (!SwingUtilities.isLeftMouseButton(e)) {
+            return;
+        }
+
+        Point endPoint = e.getPoint();
+        double x = Math.min(startPoint.getX(), endPoint.getX());
+        double y = Math.min(startPoint.getY(), endPoint.getY());
+        double w = Math.abs(startPoint.getX() - endPoint.getX());
+        double h = Math.abs(startPoint.getY() - endPoint.getY());
+
+        Rectangle2D.Double rect = new Rectangle2D.Double(x, y, w, h);
+        PaletteView view = (PaletteView) e.getSource();
+        view.setSelectionRectangle(rect);
+
+        Component[] blocks = view.getComponents();
+        for (Component block : blocks) {
+            Rectangle b = block.getBounds();
+            boolean selected = rect.contains(b.getCenterX(), b.getCenterY());
+            ((PaletteBlockView) block).getController().setSelected(selected);
+        }
     }
 
     /**
-     * Not used
-     * @param e Not used
+     * @param e MouseEvent
      */
     @Override
     public void mouseReleased(MouseEvent e) {
-    }
-
-    /**
-     * Not used
-     * @param e Not used
-     */
-    @Override
-    public void mouseClicked(MouseEvent e) {
+        super.mouseReleased(e);
+        ((PaletteView) e.getSource()).setSelectionRectangle(null);
     }
 }

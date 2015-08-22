@@ -44,7 +44,7 @@ public final class PaletteCtrl {
         internalGraph.installListeners();
     }
 
-    private static final MouseListener MOUSE_LISTENER = new PaletteMouseListener();
+    private static final PaletteMouseListener MOUSE_LISTENER = new PaletteMouseListener();
 
     private static final int BLOCKS_BY_ROW = 5;
     private static final Dimension BLOCK_POSITION = XcosConstants.PaletteBlockSize.NORMAL.getBlockDimension();
@@ -60,6 +60,7 @@ public final class PaletteCtrl {
 
         // install listeners
         this.view.addMouseListener(MOUSE_LISTENER);
+        this.view.addMouseMotionListener(MOUSE_LISTENER);
     }
 
     /**
