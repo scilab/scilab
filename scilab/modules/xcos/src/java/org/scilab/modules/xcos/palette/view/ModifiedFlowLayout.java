@@ -1,6 +1,7 @@
 /*
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2009 - DIGITEO - Clement DAVID
+ * Copyright (C) 2015 - Marcos CARDINOT
  *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
@@ -79,8 +80,8 @@ public class ModifiedFlowLayout extends FlowLayout {
             for (int i = 0; i < n; i++) {
                 Component c = target.getComponent(i);
                 if (c.isVisible()) {
-                    Dimension d = minimum ? c.getMinimumSize() : c
-                                  .getPreferredSize();
+                    Dimension d = minimum ? c.getMinimumSize()
+                                          : c.getPreferredSize();
                     if ((x == 0) || ((x + d.width) <= maxwidth)) {
                         if (x > 0) {
                             x += hgap;
@@ -96,8 +97,13 @@ public class ModifiedFlowLayout extends FlowLayout {
                 }
             }
             y += rowHeight;
-            return new Dimension(reqdWidth + insets.left + insets.right, y
-                                 + vgap);
+
+            // fill up the empty space
+            int emptySpace = target.getParent().getParent().getHeight() - y;
+            emptySpace = emptySpace < 0 ? 0 : emptySpace;
+            y += emptySpace - 2;
+
+            return new Dimension(reqdWidth + insets.left + insets.right, y);
         }
     }
 }
