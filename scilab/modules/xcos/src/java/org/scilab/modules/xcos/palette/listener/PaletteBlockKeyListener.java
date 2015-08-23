@@ -118,10 +118,11 @@ public final class PaletteBlockKeyListener implements KeyListener {
                 nextBlockView.getController().setSelected(!isSelected); // toggle
             } else if (e.getKeyCode() == KeyEvent.VK_SPACE) {
                 nextBlockView.getController().setSelected(!isSelected); // toggle
-            } else if (!isSelected) { 
+            } else if (!isSelected) {
                 nextBlockView.setStatusUI(StatusUI.HOVER);
             }
 
+            pview.scrollRectToVisible(nextBlockView.getBounds());
             nextBlockView.requestFocus();
             if (currentBlockView.getStatusUI().equals(StatusUI.HOVER)) {
                 currentBlockView.setStatusUI(StatusUI.NON_SELECTED);

@@ -132,8 +132,8 @@ public final class PaletteBlockMouseListener implements MouseListener {
      */
     @Override
     public void mouseClicked(MouseEvent e) {
-        final PaletteBlockCtrl blockCtrl = ((PaletteBlockView) e.getSource()).getController();
-        boolean ctrlIsDown = (e.getModifiers() & MouseEvent.CTRL_MASK) != 0;
+        final PaletteBlockView blockView = (PaletteBlockView) e.getSource();
+        final PaletteBlockCtrl blockCtrl = blockView.getController();
 
         if ((e.getClickCount() == 1 && SwingUtilities.isRightMouseButton(e))
                 || e.isPopupTrigger() || XcosMessages.isMacOsPopupTrigger(e)) {
@@ -143,14 +143,17 @@ public final class PaletteBlockMouseListener implements MouseListener {
             ((SwingScilabContextMenu) menu.getAsSimpleContextMenu())
             .setLocation(MouseInfo.getPointerInfo().getLocation().x,
                          MouseInfo.getPointerInfo().getLocation().y);
-            if (!ctrlIsDown) {
+
+            // ctrl is not down ? clear selections
+            if ((e.getModifiers() & MouseEvent.CTRL_MASK) == 0) {
                 PaletteCtrl.clearSelections();
             }
             blockCtrl.setSelected(true);
         } else if (SwingUtilities.isLeftMouseButton(e)) {
             if (e.getClickCount() == 1) {
                 boolean isSelected = blockCtrl.isSelected();
-                if (!ctrlIsDown) {
+                // ctrl is not down ? clear selections
+                if ((e.getModifiers() & MouseEvent.CTRL_MASK) == 0) {
                     PaletteCtrl.clearSelections();
                 }
                 blockCtrl.setSelected(!isSelected); // toggle
@@ -161,7 +164,12 @@ public final class PaletteBlockMouseListener implements MouseListener {
                 XcosDiagram theDiagram = allDiagrams.get(allDiagrams.size() - 1);
                 blockCtrl.getPaletteCtrl().addSelectedBlocks(theDiagram);
             }
+        } else {
+            return;
         }
+
+        // make sure it is visible
+        blockCtrl.getPaletteCtrl().getView().scrollRectToVisible(blockView.getBounds());
     }
 
     /**

@@ -85,6 +85,9 @@ public final class PaletteMouseListener extends MouseAdapter {
             boolean selected = rect.contains(b.getCenterX(), b.getCenterY());
             ((PaletteBlockView) block).getController().setSelected(selected);
         }
+
+        // makes the scrollbar follow the selection
+        view.scrollRectToVisible(new Rectangle(endPoint));
     }
 
     /**
