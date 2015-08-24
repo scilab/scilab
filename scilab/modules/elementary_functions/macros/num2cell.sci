@@ -12,7 +12,7 @@ function  y=num2cell(x,dimens)
     // NUM2CELL function converts an array of double or string or boolean into a cell array
     // if there is just one input argument x, then it returns a cell which has the same size and the same components than x.
     // if there are two input arguments x and dimens, y is obtained after reduction to 1 of the x dimensions sizes contained in the vector dimens.
-    // The dimensions sizes of components of y (i.e y(i).entries) are equal to the dimensions sizes of x whose the numbers are in dimens vector
+    // The dimensions sizes of components of y (i.e y{i}) are equal to the dimensions sizes of x whose the numbers are in dimens vector
     // if size(x)=[2 3 4 5 6] and dimens=[2 4] -> size(y)=[2 1 4 1 6] , the sizes of the second (=dimens(1)) and the fourth (=dimens(2)) dimensions of x are reduced to 1 to obtain y. And size(y(i))=[1,3,1,5,1], the sizes of the second (=dimens(1)) and the fourth (=dimens(2)) dimensions of y(i) are equal to the sizes of the second and the fourth dimensions of x (i.e 3 and 5), the others dimensions are equal to 1
     //
     // Output
@@ -33,7 +33,7 @@ function  y=num2cell(x,dimens)
         error(msprintf(gettext("%s: Wrong number of input arguments: At least %d expected.\n"),"num2cell",1));
     elseif argn(2)==1 then
         for i=1:size(x,"*")
-            y(i).entries=x(i)
+            y{i}=x(i)
         end
         y=matrix(y,xsize)
         return
@@ -80,7 +80,7 @@ function  y=num2cell(x,dimens)
 
     // fill the cell y
     for i=1:prod(ydims)
-        y(i).entries=matrix(x(1+(i-1)*prodxdimens:prodxdimens*i),ycpdims)
+        y{i}=matrix(x(1+(i-1)*prodxdimens:prodxdimens*i),ycpdims)
     end
     y=matrix(y,ydims)
 
