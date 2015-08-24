@@ -286,6 +286,9 @@ endfunction
 st.l.c = 24;
 assert_checkequal(st.l, struct("c", 24));
 clear st;
+// check error overload
+errmsg = msprintf(gettext("%s: Affection of a string in a matrix of numbers is not implemented.\n"), "%c_i_s");
+assert_checkerror("a=1;a(1,1)=""d""", errmsg);
 // list delete
 tl = tlist(["toto" "gg" "ff" "uu"], 45, 89, 87);
 tl(2) = null();
