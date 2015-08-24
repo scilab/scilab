@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #13843 fixed - Scilab crashed when polarplot and plot2d were called with wrong strf value.
 
+* Bug #13853 fixed - plzr() returned wrong results for discrete-time systems with a numeric time step.
+
 * Bug #13872 fixed - Non regression test added for unique function (the indices returned were wrong)
 
 * Bug #13890 fixed - getd did not return loaded symbols in previous scope.

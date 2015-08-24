@@ -107,7 +107,7 @@ function plzr(a,b,c,d)
         legs=[gettext("Poles");legs]
         lhandle=[e;lhandle]
     end
-    if dt == "d" then
+    if dt == "d" | type(dt) == 1 then
         ax.grid=ones(1,3)*color("gray")
         ax.box = "on";
         xarc(-1,1,2,2,0,360*64)
