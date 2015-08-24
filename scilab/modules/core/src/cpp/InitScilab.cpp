@@ -144,7 +144,7 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     // ignore -quit if -e or -f are not given
     _pSEI->iForceQuit = _pSEI->iForceQuit && (_pSEI->pstExec || _pSEI->pstFile);
-    ConfigVariable::setForceQuit(_pSEI->iForceQuit);
+    ConfigVariable::setForceQuit(_pSEI->iForceQuit == 1);
 
     /* This bug only occurs under Linux 32 bits
      * See: http://wiki.scilab.org/Scilab_precision
@@ -834,54 +834,54 @@ static void stateShow(Parser::ControlStatus status)
 {
     switch (status)
     {
-            //case Parser::WithinFor:
-            //    SetTemporaryPrompt("-for       ->");
-            //    break;
-            //case Parser::WithinWhile:
-            //    SetTemporaryPrompt("-while     ->");
-            //    break;
-            //case Parser::WithinIf:
-            //    SetTemporaryPrompt("-if        ->");
-            //    break;
-            //case Parser::WithinElse:
-            //    SetTemporaryPrompt("-else      ->");
-            //    break;
-            //case Parser::WithinElseIf:
-            //    SetTemporaryPrompt("-elseif    ->");
-            //    break;
-            //case Parser::WithinTry:
-            //    SetTemporaryPrompt("-try       ->");
-            //    break;
-            //case Parser::WithinCatch:
-            //    SetTemporaryPrompt("-catch     ->");
-            //    break;
-            //case Parser::WithinFunction:
-            //    SetTemporaryPrompt("-function  ->");
-            //    break;
-            //case Parser::WithinSelect:
-            //    SetTemporaryPrompt("-select    ->");
-            //    break;
-            //case Parser::WithinCase:
-            //    SetTemporaryPrompt("-case      ->");
-            //    break;
-            //case Parser::WithinSwitch:
-            //    SetTemporaryPrompt("-switch    ->");
-            //    break;
-            //case Parser::WithinOtherwise:
-            //    SetTemporaryPrompt("-otherwise ->");
-            //    break;
-            //case Parser::WithinMatrix:
-            //    SetTemporaryPrompt("- [        ->");
-            //    break;
-            //case Parser::WithinCell:
-            //    SetTemporaryPrompt("- {        ->");
-            //    break;
-            //case Parser::WithinBlockComment:
-            //    SetTemporaryPrompt("- /*       ->");
-            //    break;
-            //case Parser::WithinDots:
-            //    SetTemporaryPrompt("- ...      ->");
-            //    break;
+        //case Parser::WithinFor:
+        //    SetTemporaryPrompt("-for       ->");
+        //    break;
+        //case Parser::WithinWhile:
+        //    SetTemporaryPrompt("-while     ->");
+        //    break;
+        //case Parser::WithinIf:
+        //    SetTemporaryPrompt("-if        ->");
+        //    break;
+        //case Parser::WithinElse:
+        //    SetTemporaryPrompt("-else      ->");
+        //    break;
+        //case Parser::WithinElseIf:
+        //    SetTemporaryPrompt("-elseif    ->");
+        //    break;
+        //case Parser::WithinTry:
+        //    SetTemporaryPrompt("-try       ->");
+        //    break;
+        //case Parser::WithinCatch:
+        //    SetTemporaryPrompt("-catch     ->");
+        //    break;
+        //case Parser::WithinFunction:
+        //    SetTemporaryPrompt("-function  ->");
+        //    break;
+        //case Parser::WithinSelect:
+        //    SetTemporaryPrompt("-select    ->");
+        //    break;
+        //case Parser::WithinCase:
+        //    SetTemporaryPrompt("-case      ->");
+        //    break;
+        //case Parser::WithinSwitch:
+        //    SetTemporaryPrompt("-switch    ->");
+        //    break;
+        //case Parser::WithinOtherwise:
+        //    SetTemporaryPrompt("-otherwise ->");
+        //    break;
+        //case Parser::WithinMatrix:
+        //    SetTemporaryPrompt("- [        ->");
+        //    break;
+        //case Parser::WithinCell:
+        //    SetTemporaryPrompt("- {        ->");
+        //    break;
+        //case Parser::WithinBlockComment:
+        //    SetTemporaryPrompt("- /*       ->");
+        //    break;
+        //case Parser::WithinDots:
+        //    SetTemporaryPrompt("- ...      ->");
+        //    break;
         default :
             SetTemporaryPrompt("  > ");
             break;

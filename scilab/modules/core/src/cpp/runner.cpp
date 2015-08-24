@@ -105,15 +105,15 @@ void StaticRunner::setRunner(Runner* _RunMe)
 
 Runner* StaticRunner::getRunner(void)
 {
-    Runner* tmp = m_RunMe;
-    m_RunMe = NULL;
+    Runner* tmp = m_RunMe.exchange(nullptr);
     ThreadManagement::SendAvailableRunnerSignal();
     return tmp;
 }
 
+// return true if a Runner is already set in m_RunMe.
 bool StaticRunner::isRunnerAvailable(void)
 {
-    return m_RunMe != NULL;
+    return m_RunMe.load() != nullptr;
 }
 
 void StaticRunner::setInterruptibleCommand(bool _bInterruptibleCommand)
