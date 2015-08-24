@@ -101,39 +101,44 @@
             <literal>cell(0)</literal>に等しくなりです.
         </para>
         <para>A がセル配列の場合, 
-            <literal>A(m1, m2, ..., mn).entries</literal>により
+            <literal>A{m1, m2, ..., mn}</literal>により
             Aの要素の内容にアクセスすることができます.
             式 <literal>A(1,1) = zeros(2,2)</literal> は有効ではなく,
-            <literal>A(1,1).entries = zeros(2,2)</literal>が正しい構文となります.
-        </para>
-        <para>A がセル配列の場合, 
-            <literal>A.dims</literal>によりその次元を得ることができます.
+            <literal>A{1,1} = zeros(2,2)</literal>が正しい構文となります.
         </para>
     </refsection>
     <refsection>
         <title>例</title>
         <programlisting role="example"><![CDATA[ 
-a=cell(3)
-b=cell(3,1)
-c=cell([2,3,4])
+a = cell(3)
+b = cell(3,1)
+c = cell([2,3,4])
+ 
 // Assigning cell entries
-b=cell(3,1);
-// Assigning the first element of b using the 'entries' field
-b(1).entries=1:3
-// Assigning the second element of b using the 'entries' field
-b(2).entries='Scilab'
+b = cell(3,1);
+ 
+// Assigning the first element of b using {}
+b{1} = 1:3
+ 
+// Assigning the second element of b using {}
+b{2} = 'Scilab'
+ 
 // Assigning the third element of b using the 'entries' field
-b(3).entries=poly(1:3,'s')
+b{3} = poly(1:3,'s')
+ 
 // Assigning sub-cells
-X=cell(3,2);
-X(:,1)=b
+X = cell(3,2);
+X{:,1} = b
+ 
 // Extracting a sub-cell: result is a cell
-b(1)
-b(1:2)
+b{1}
+b{1:2}
+ 
 // Extracting a sub-cell value: result is an array
-b(1).entries
-// Dimensions of b
-b.dims
+b{1}
+ 
+// Dimensions of b as a double value
+size(b)
  ]]></programlisting>
     </refsection>
     <refsection role="see also">
@@ -148,6 +153,22 @@ b.dims
             <member>
                 <link linkend="zeros">zeros</link>
             </member>
+            <member>
+                <link linkend="iscell">iscell</link>
+            </member>
         </simplelist>
+    </refsection>
+    <refsection>
+        <title>History</title>
+        <revhistory>
+            <revision>
+                <revnumber>6.0.0</revnumber>
+                <revremark>
+                    <para>
+                        Fields "entries" and "dims" do not exist anymore. To assign or extract an element, use {}.
+                    </para>
+                </revremark>
+            </revision>
+        </revhistory>
     </refsection>
 </refentry>
