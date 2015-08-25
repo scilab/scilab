@@ -53,5 +53,6 @@ int StringModule::Load()
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isdigit", &sci_isdigit, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isascii", &sci_isascii, MODULE_NAME));
     symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"isnum", &sci_isnum, MODULE_NAME));
+    symbol::Context::getInstance()->addFunction(types::Function::createFunction(L"csvIsnum", &sci_isnum, MODULE_NAME));
     return 1;
 }
