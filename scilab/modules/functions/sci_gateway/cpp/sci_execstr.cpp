@@ -215,12 +215,17 @@ Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, types::
     }
     catch (const ast::InternalError& ie)
     {
-        if (bErrCatch == false && bMute == false)
+        if (bErrCatch == false)
         {
             delete pExp;
             ConfigVariable::macroFirstLine_end();
             ConfigVariable::setPromptMode(iPromptMode);
             throw ie;
+        }
+
+        if (bMute == false)
+        {
+            scilabForcedWriteW(ie.GetErrorMessage().c_str());
         }
 
         ConfigVariable::resetWhereError();
