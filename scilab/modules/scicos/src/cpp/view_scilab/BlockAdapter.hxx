@@ -14,11 +14,13 @@
 #define BLOCKADAPTER_HXX_
 
 #include <string>
+#include <vector>
 
 #include "internal.hxx"
+#include "list.hxx"
 
 #include "BaseAdapter.hxx"
-#include "DiagramAdapter.hxx"
+#include "adapters_utilities.hxx"
 #include "model/Block.hxx"
 
 namespace org_scilab_modules_scicos
@@ -41,16 +43,32 @@ public:
     std::wstring getTypeStr();
     std::wstring getShortTypeStr();
 
-    DiagramAdapter* getDiagram() const;
-    void setDiagram(DiagramAdapter* newDiagram);
-
     types::InternalType* getDocContent() const;
     void setDocContent(types::InternalType* v);
 
-private:
-    DiagramAdapter* diagramAdapter;
+    types::List* getListObjects() const;
+    void setListObjects(types::List* blocks);
 
+    std::vector<link_t> getFrom() const;
+    void setFrom(const std::vector<link_t>& from);
+    std::vector<link_t> getTo() const;
+    void setTo(const std::vector<link_t>& to);
+
+    types::InternalType* getContribContent() const;
+    void setContribContent(types::InternalType* contrib);
+
+private:
     types::InternalType* doc_content;
+
+    // The following content represents the child diagram (in 'model.rpar')
+    // Child elements info
+    types::List* list_objects;
+
+    // Child links info
+    std::vector<link_t> from_vec;
+    std::vector<link_t> to_vec;
+    // child diagram info
+    types::InternalType* contrib_content;
 };
 
 } /* namespace view_scilab */

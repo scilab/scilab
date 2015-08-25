@@ -223,13 +223,24 @@ types::InternalType* get_ports_property(const Adaptor& adaptor, const object_pro
             double* v;
             types::Double* o = new types::Double((int)ids.size(), 1, &v);
 
-            ScicosID diagram;
-            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, diagram);
+            ScicosID parentDiagram;
+            controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
 
             std::vector<ScicosID> children;
-            if (diagram != 0)
+            if (parentDiagram != 0)
             {
-                controller.getObjectProperty(diagram, DIAGRAM, CHILDREN, children);
+                // Adding to a diagram
+                controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+            }
+            else
+            {
+                ScicosID parentBlock;
+                controller.getObjectProperty(adaptee, BLOCK, PARENT_BLOCK, parentBlock);
+                if (parentBlock != 0)
+                {
+                    // Adding to a superblock
+                    controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
+                }
             }
 
             for (std::vector<ScicosID>::iterator it = ids.begin(); it != ids.end(); ++it, ++i)
@@ -646,10 +657,12 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
     std::vector<ScicosID> children;
     if (parentBlock != 0)
     {
+        // Adding to a superblock
         controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
     }
     if (parentDiagram != 0 && children.empty())
     {
+        // Adding to a diagram
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
     }
 
@@ -772,6 +785,14 @@ bool update_ports_property(const Adaptor& adaptor, const object_properties_t por
             controller.referenceObject(id);
         }
         controller.setObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+    }
+    else if (parentBlock != 0)
+    {
+        for (const ScicosID & id : children)
+        {
+            controller.referenceObject(id);
+        }
+        controller.setObjectProperty(parentBlock, BLOCK, CHILDREN, children);
     }
     for (std::vector<ScicosID>::iterator it = deletedObjects.begin(); it != deletedObjects.end(); ++it)
     {

@@ -319,13 +319,25 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
 
         // Looking for the block number among the block IDs
         ScicosID parentDiagram;
-        controller.getObjectProperty(adaptee, BLOCK, PARENT_DIAGRAM, parentDiagram);
+        controller.getObjectProperty(adaptee, LINK, PARENT_DIAGRAM, parentDiagram);
         std::vector<ScicosID> children;
         if (parentDiagram == 0)
         {
-            return ret;
+            ScicosID parentBlock;
+            controller.getObjectProperty(adaptee, LINK, PARENT_BLOCK, parentBlock);
+            if (parentBlock == 0)
+            {
+                return ret;
+            }
+            // Added to a superblock
+            controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
         }
-        controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+        else
+        {
+            // Added to a diagram
+            controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+        }
+
         ret.block = static_cast<int>(std::distance(children.begin(), std::find(children.begin(), children.end(), sourceBlock)) + 1);
 
         // To find the port index from its 'endID' ID, search through all the block's ports lists
@@ -449,7 +461,18 @@ void setLinkEnd(const ScicosID id, Controller& controller, const object_properti
     std::vector<ScicosID> children;
     if (parentDiagram != 0)
     {
+        // Adding to a diagram
         controller.getObjectProperty(parentDiagram, DIAGRAM, CHILDREN, children);
+    }
+    else
+    {
+        ScicosID parentBlock;
+        controller.getObjectProperty(id, LINK, PARENT_BLOCK, parentBlock);
+        if (parentBlock != 0)
+        {
+            // Adding to a superblock
+            controller.getObjectProperty(parentBlock, BLOCK, CHILDREN, children);
+        }
     }
 
     // Connect the new one
@@ -874,8 +897,10 @@ void LinkAdapter::setFromInModel(const link_t& v, Controller& controller)
 
     ScicosID parentDiagram;
     controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_DIAGRAM, parentDiagram);
+    ScicosID parentBlock;
+    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
 
-    if (parentDiagram != 0)
+    if (parentDiagram != 0 || parentBlock != 0)
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts
@@ -899,8 +924,10 @@ void LinkAdapter::setToInModel(const link_t& v, Controller& controller)
 
     ScicosID parentDiagram;
     controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_DIAGRAM, parentDiagram);
+    ScicosID parentBlock;
+    controller.getObjectProperty(getAdaptee()->id(), LINK, PARENT_BLOCK, parentBlock);
 
-    if (parentDiagram != 0)
+    if (parentDiagram != 0 || parentBlock != 0)
     {
         // If the Link has been added to a diagram, do the linking at model-level
         // If the provided values are wrong, the model is not updated but the info is stored in the Adapter for future attempts

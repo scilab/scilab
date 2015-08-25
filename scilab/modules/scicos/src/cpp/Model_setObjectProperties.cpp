@@ -588,6 +588,8 @@ update_status_t Model::setObjectProperty(ScicosID uid, kind_t k, object_properti
         {
             case EQUATIONS:
                 return o->setEquations(v);
+            case DIAGRAM_CONTEXT:
+                return o->setContext(v);
             default:
                 break;
         }

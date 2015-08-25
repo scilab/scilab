@@ -643,6 +643,9 @@ bool Model::getObjectProperty(ScicosID uid, kind_t k, object_properties_t p, std
             case EQUATIONS:
                 o->getEquations(v);
                 return true;
+            case DIAGRAM_CONTEXT:
+                o->getContext(v);
+                return true;
             default:
                 break;
         }
