@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<toolConfiguration toolConfigurationId="" toolName="slint" toolVersion="0.0">
+    <ruleLink standardRuleId="CNES0001" analysisRuleId="GlobalKeyword" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0002" analysisRuleId="Redefinition" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0003" analysisRuleId="Variables" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0004" analysisRuleId="FunctionName" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0005" analysisRuleId="FunctionArgs" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0006" analysisRuleId="UselessArg" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0007" analysisRuleId="UselessRet" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0008" analysisRuleId="VariableName" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0009" analysisRuleId="SingleInstr" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0010" analysisRuleId="EmptyBlock" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0011" analysisRuleId="SemicolonAtEOL" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0012" analysisRuleId="MopenMclose" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0013" analysisRuleId="McCabe" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0014" analysisRuleId="Decimal" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0015" analysisRuleId="Printf" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0016" analysisRuleId="LineLength" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0017" analysisRuleId="LinesCount" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0018" analysisRuleId="Todo" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0019" analysisRuleId="NaN" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0020" analysisRuleId="EqEq" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0021" analysisRuleId="UselessOp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0022" analysisRuleId="UnreachableCode" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0023" analysisRuleId="Deprecated" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0024" analysisRuleId="Select" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0025" analysisRuleId="ImplicitList" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0026" analysisRuleId="Struct" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0027" analysisRuleId="LoadSave" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0028" analysisRuleId="OldNot" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0029" analysisRuleId="SpacesAroundOp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0030" analysisRuleId="SpacesInArgs" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0031" analysisRuleId="BreaksInLoop" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0032" analysisRuleId="NestedBlocks" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0033" analysisRuleId="StatInCond" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0034" analysisRuleId="BracketedExp" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0035" analysisRuleId="NotNot" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0036" analysisRuleId="IllegalCalls" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0037" analysisRuleId="CommentRatio" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0038" analysisRuleId="FunctionArgsOrder" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0039" analysisRuleId="FunctionTestReturn" ruleCoverage="Complete" standardId=""/>
+    <ruleLink standardRuleId="CNES0040" analysisRuleId="ReturnsCount" ruleCoverage="Complete" standardId=""/>
+</toolConfiguration>

@@ -55,4 +55,5 @@
 #include "../../ui_data/includes/ui_data_gw.hxx"
 #include "../../preferences/includes/preferences_gw.hxx"
 #include "../../tclsci/includes/tclsci_gw.hxx"
+#include "../../slint/includes/slint_gw.hxx"
 #endif /* !__MODULE_DECLARATION_HXX__ */

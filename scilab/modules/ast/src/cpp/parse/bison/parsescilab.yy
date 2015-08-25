@@ -806,11 +806,13 @@ comparison :
 variable rightComparable		{
 					  delete &($2->getLeft());
 					  $2->setLeft(*$1);
+					  $2->setLocation(@$);
 					  $$ = $2;
 					}
 | functionCall rightComparable		{
 					  delete &($2->getLeft());
 					  $2->setLeft(*$1);
+					  $2->setLocation(@$);
 					  $$ = $2;
 					}
 ;

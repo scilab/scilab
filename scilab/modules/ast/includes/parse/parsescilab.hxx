@@ -1,8 +1,8 @@
-/* A Bison parser, made by GNU Bison 3.0.2.  */
+/* A Bison parser, made by GNU Bison 3.0.4.  */
 
 /* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989-1990, 2000-2013 Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015 Free Software Foundation, Inc.
 
    This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
@@ -43,8 +43,8 @@ extern int yydebug;
 /* Token type.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-enum yytokentype
-{
+  enum yytokentype
+  {
     YYEOF = 0,
     DOTS = 258,
     EOL = 259,
@@ -127,7 +127,7 @@ enum yytokentype
     CONTROLBREAK = 336,
     UMINUS = 337,
     FUNCTIONCALL = 338
-};
+  };
 #endif
 /* Tokens.  */
 #define YYEOF 0
@@ -215,12 +215,12 @@ enum yytokentype
 
 /* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE YYSTYPE;
+
 union YYSTYPE
 {
 
 
-    /* Tokens. */
+  /* Tokens. */
     double                      number;
     std::wstring*               str;
     std::wstring*               path;
@@ -275,6 +275,8 @@ union YYSTYPE
 
 
 };
+
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
 # define YYSTYPE_IS_DECLARED 1
 #endif
@@ -284,10 +286,10 @@ union YYSTYPE
 typedef struct YYLTYPE YYLTYPE;
 struct YYLTYPE
 {
-    int first_line;
-    int first_column;
-    int last_line;
-    int last_column;
+  int first_line;
+  int first_column;
+  int last_line;
+  int last_column;
 };
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1
