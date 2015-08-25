@@ -693,7 +693,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
                 EntryPointStr* pEP = *it;
                 m_EntryPointList.remove(*it);
                 FREE(pEP->pwstEntryPointName);
-                delete pEP;
+                FREE(pEP);
                 if (m_EntryPointList.size() == 0)
                 {
                     break;
@@ -703,7 +703,7 @@ void ConfigVariable::removeDynamicLibrary(int _iDynamicLibraryIndex)
         }
         //remove dynamic library
         FREE(m_DynLibList[_iDynamicLibraryIndex]->pwstLibraryName);
-        delete m_DynLibList[_iDynamicLibraryIndex];
+        FREE(m_DynLibList[_iDynamicLibraryIndex]);
         m_DynLibList[_iDynamicLibraryIndex] = NULL;
     }
 

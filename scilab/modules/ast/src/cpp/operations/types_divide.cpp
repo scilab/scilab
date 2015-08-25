@@ -566,9 +566,9 @@ int RDivideSparseByDouble(types::Sparse* _pSp, types::Double* _pDouble, Internal
         }
     }
 
-    delete Col;
-    delete Row;
-    delete iPositVal;
+    delete[] Col;
+    delete[] Row;
+    delete[] iPositVal;
 
     for (int i = 0; i < iSize; ++i)
     {
