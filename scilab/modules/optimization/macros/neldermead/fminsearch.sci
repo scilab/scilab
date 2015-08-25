@@ -161,6 +161,11 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
         warning(warnMessage);
     endfunction
 
+    function errMessage = fms_errheaderobsolete (oldheader, newheader)
+        errMessage = msprintf(_("Calling sequence %s is obsolete."),oldheader)
+        errMessage = [errMessage, msprintf(_("Please use %s instead."),newheader)]
+    endfunction
+
 
     function assert_typecallable ( var , varname , ivar )
         // Check that var is a function or a list
@@ -235,6 +240,29 @@ function [x,fval,exitflag,output] = fminsearch ( varargin )
     end
     if ( Display == "iter" ) then
         mprintf ( "%10s   %10s   %10s %17s\n" , "Iteration", "Func-count" , "min f(x)" , "Procedure" );
+    end
+
+    //check OutputFcn format
+    if or(type(OutputFcn) == [11 13]) then
+        macroInfo = macrovar(OutputFcn);
+        if size(macroInfo(2), "*") <> 1 then
+            errMessage = fms_errheaderobsolete("outputfun(x,optimValues , state )", "stop=outputfun(x,optimValues , state )");
+            error(errMessage);
+        end
+    elseif type(OutputFcn) == 15 then
+        for i = 1 : size(OutputFcn)
+            if or(type(OutputFcn(i)) == [11 13]) then
+                macroInfo = macrovar(OutputFcn(i));
+                if size(macroInfo(2), "*") <> 1 then
+                    errMessage = fms_errheaderobsolete("outputfun(x,optimValues , state )", "stop=outputfun(x,optimValues , state )");
+                    error(errMessage);
+                end
+            end
+        end
+    elseif (OutputFcn <> [])
+        // The user did something wrong...
+        errmsg = msprintf(gettext("%s: The value of the ''OutputFcn'' option is neither a function nor a list."), "fminsearch");
+        error(errmsg)
     end
     //
     // Check input arguments

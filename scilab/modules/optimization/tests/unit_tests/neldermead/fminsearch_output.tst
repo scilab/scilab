@@ -14,7 +14,7 @@
 // <-- ENGLISH IMPOSED -->
 
 function y = rosenbrock ( x )
-  y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
+    y = 100*(x(2)-x(1)^2)^2 + (1-x(1))^2;
 endfunction
 //
 // Use output function
@@ -32,42 +32,42 @@ endfunction
 //    "init", "iter", "done"
 //
 function stop = outfun ( x , optimValues , state )
-  plot( x(1),x(2),'.');
-  // Unload all fields and check consistent values
-  fc = optimValues.funccount;
-  fv = optimValues.fval;
-  it = optimValues.iteration;
-  pr = optimValues.procedure;
-  select pr
-  case "initial simplex"
-    // OK
-  case "expand"
-    // OK
-  case "reflect"
-    // OK
-  case "shrink"
-    // OK
-  case "contract inside"
-    // OK
-  case "contract outside"
-    // OK
-  case ""
-    // OK
-  else
-    error ( sprintf ( "Unknown procedure %s." , pr ) )
-  end
-  select state
-  case "init"
-    // OK
-  case "iter"
-    // OK
-  case "done"
-    // OK
-  else
-    error ( sprintf ( "Unknown state %s." , state ) )
-  end
-  mprintf ( "%d %s %d -%s- %s\n" , fc , string(fv) , it , pr , state )
-  stop = %f
+    plot( x(1),x(2),".");
+    // Unload all fields and check consistent values
+    fc = optimValues.funccount;
+    fv = optimValues.fval;
+    it = optimValues.iteration;
+    pr = optimValues.procedure;
+    select pr
+    case "initial simplex"
+        // OK
+    case "expand"
+        // OK
+    case "reflect"
+        // OK
+    case "shrink"
+        // OK
+    case "contract inside"
+        // OK
+    case "contract outside"
+        // OK
+    case ""
+        // OK
+    else
+        error ( sprintf ( "Unknown procedure %s." , pr ) )
+    end
+    select state
+    case "init"
+        // OK
+    case "iter"
+        // OK
+    case "done"
+        // OK
+    else
+        error ( sprintf ( "Unknown state %s." , state ) )
+    end
+    mprintf ( "%d %s %d -%s- %s\n" , fc , string(fv) , it , pr , state )
+    stop = %f
 endfunction
 opt = optimset ( "OutputFcn" , outfun);
 opt = optimset ( opt , "MaxIter" , 10 );
@@ -77,16 +77,16 @@ close(gcf());
 // Use several output functions
 //
 function stop = outfun2 ( x , optimValues , state )
-  global __fig1__
-  scf ( __fig1__ );
-  plot( x(1),x(2),'.');
-  stop = %f
+    global __fig1__
+    scf ( __fig1__ );
+    plot( x(1),x(2),".");
+    stop = %f
 endfunction
 function stop = outfun3 ( x , optimValues , state )
-  global __fig2__
-  scf ( __fig2__ );
-  plot( x(1),x(2),'o');
-  stop = %f
+    global __fig2__
+    scf ( __fig2__ );
+    plot( x(1),x(2),"o");
+    stop = %f
 endfunction
 myfunctions = list ( outfun2 , outfun3 );
 global __fig1__
@@ -115,7 +115,7 @@ close(__fig2__);
 //    "init", "iter", "done"
 //
 function plotfun ( x , optimValues , state )
-  plot(x(1),x(2),'.');
+    plot(x(1),x(2),".");
 endfunction
 opt = optimset ( "PlotFcns" , plotfun);
 opt = optimset ( opt , "MaxIter" , 10 );
@@ -125,14 +125,14 @@ close(gcf());
 // Use several plot functions
 //
 function plotfun2 ( x , optimValues , state )
-  global __fig1__
-  scf ( __fig1__ );
-  plot( x(1),x(2),'.');
+    global __fig1__
+    scf ( __fig1__ );
+    plot( x(1),x(2),".");
 endfunction
 function plotfun3 ( x , optimValues , state )
-  global __fig2__
-  scf ( __fig2__ );
-  plot( x(1),x(2),'o');
+    global __fig2__
+    scf ( __fig2__ );
+    plot( x(1),x(2),"o");
 endfunction
 myfunctions = list ( plotfun2 , plotfun3 );
 global __fig1__
@@ -180,9 +180,9 @@ close(gcf());
 //
 // Use output function to stop the algorithm.
 // This sets the exitflag to -1.
-function stop = outfunStop ( x , optimValues , state )  
-  fv = optimValues.fval;
-  stop = ( fv < 1.e-5 )
+function stop = outfunStop ( x , optimValues , state )
+    fv = optimValues.fval;
+    stop = ( fv < 1.e-5 )
 endfunction
 opt = optimset ( "OutputFcn" , outfunStop);
 [x , fval , exitflag , output] = fminsearch ( rosenbrock , [-1.2 1] , opt );

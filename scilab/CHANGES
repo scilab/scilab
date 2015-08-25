@@ -89,6 +89,13 @@ Other feature changes
   cause any error. The previous behavior can be recalled by simply
   calling: ieee(0)
 
+* Function without output argument cannot be call in assignation expression
+
+    function foo()
+        //...
+    endfunction
+
+    val = foo() //return error
 
 Other feature additions
 =======================
