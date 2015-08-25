@@ -37,7 +37,6 @@
         </module>
         
         <module name="data_structures">
-            <test>fieldnames</test>
             <test>hypermat</test>
             <test>isfield</test>
             <test>listextraction</test>

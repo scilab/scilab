@@ -368,6 +368,8 @@ Sparse::Sparse(RealSparse_t* realSp, CplxSparse_t* cplxSp):  matrixReal(realSp),
     m_iDims = 2;
     m_piDims[0] = m_iRows;
     m_piDims[1] = m_iCols;
+
+    finalize();
 #ifndef NDEBUG
     Inspector::addItem(this);
 #endif
