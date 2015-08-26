@@ -122,6 +122,11 @@ SciErr getCommonSparseMatrix(void* _pvCtx, int* _piAddress, int _iComplex, int* 
     {
         *_pdblImg = pI;
     }
+    else
+    {
+        FREE(pI);
+    }
+
     return sciErr;
 }
 

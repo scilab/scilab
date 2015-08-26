@@ -40,94 +40,100 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
 
         //get function arguments
         exps_t args = e.getArgs();
-        for (auto arg : args)
+        try
         {
-            if (arg->isAssignExp())
+            for (auto arg : args)
             {
-                AssignExp* pAssign = static_cast<AssignExp*>(arg);
-                //optional parameter
-                Exp* pL = &pAssign->getLeftExp();
-                if (!pL->isSimpleVar())
+                if (arg->isAssignExp())
                 {
-                    clearResult();
-                    cleanOpt(opt);
-                    cleanIn(in, out);
+                    AssignExp* pAssign = static_cast<AssignExp*>(arg);
+                    //optional parameter
+                    Exp* pL = &pAssign->getLeftExp();
+                    if (!pL->isSimpleVar())
+                    {
+                        std::wostringstream os;
+                        os << _W("left side of optional parameter must be a variable") << std::endl;
+                        throw ast::InternalError(os.str(), 999, e.getLocation());
+                    }
 
-                    std::wostringstream os;
-                    os << _W("left side of optional parameter must be a variable") << std::endl;
-                    throw ast::InternalError(os.str(), 999, e.getLocation());
+                    SimpleVar* pVar = pL->getAs<SimpleVar>();
+                    Exp* pR = &pAssign->getRightExp();
+                    pR->accept(*this);
+                    InternalType* pITR = getResult();
+                    // IncreaseRef to protect opt argument of scope_end delete
+                    // It will be deleted by clear_opt
+                    pITR->IncreaseRef();
+
+                    if (pIT->hasInvokeOption())
+                    {
+                        opt.push_back(std::pair<std::wstring, InternalType*>(pVar->getSymbol().getName(), pITR));
+                        //in case of macro/macrofile, we have to shift input param
+                        //so add NULL item in in list to keep initial order
+                        if (pIT->isMacro() || pIT->isMacroFile())
+                        {
+                            in.push_back(NULL);
+                        }
+                    }
+                    else
+                    {
+                        in.push_back(pITR);
+                    }
+
+                    clearResult();
+                    continue;
                 }
 
-                SimpleVar* pVar = pL->getAs<SimpleVar>();
-                Exp* pR = &pAssign->getRightExp();
-                pR->accept(*this);
-                InternalType* pITR = getResult();
-                // IncreaseRef to protect opt argument of scope_end delete
-                // It will be deleted by clear_opt
-                pITR->IncreaseRef();
+                int iSize = getExpectedSize();
+                setExpectedSize(-1);
+                arg->accept(*this);
+                setExpectedSize(iSize);
 
-                if (pIT->hasInvokeOption())
+                if (getResult() == NULL)
                 {
-                    opt.push_back(std::pair<std::wstring, InternalType*>(pVar->getSymbol().getName(), pITR));
-                    //in case of macro/macrofile, we have to shift input param
-                    //so add NULL item in in list to keep initial order
-                    if (pIT->isMacro() || pIT->isMacroFile())
+                    //special case for empty extraction of list ( list()(:) )
+                    continue;
+                }
+
+                //extract implicit list for call()
+                if (pIT->isCallable() || pIT->isUserType())
+                {
+                    InternalType * pITArg = getResult();
+                    if (pITArg->isImplicitList())
                     {
-                        in.push_back(NULL);
+                        types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
+                        if (pIL->isComputable())
+                        {
+                            setResult(pIL->extractFullMatrix());
+                            pITArg->killMe();
+                        }
                     }
+                }
+
+                if (isSingleResult())
+                {
+                    in.push_back(getResult());
+                    getResult()->IncreaseRef();
+                    clearResult();
                 }
                 else
                 {
-                    in.push_back(pITR);
-                }
-
-                clearResult();
-                continue;
-            }
-
-            int iSize = getExpectedSize();
-            setExpectedSize(-1);
-            arg->accept(*this);
-            setExpectedSize(iSize);
-
-            if (getResult() == NULL)
-            {
-                //special case for empty extraction of list ( list()(:) )
-                continue;
-            }
-
-            //extract implicit list for call()
-            if (pIT->isCallable() || pIT->isUserType())
-            {
-                InternalType * pITArg = getResult();
-                if (pITArg->isImplicitList())
-                {
-                    types::ImplicitList* pIL = pITArg->getAs<types::ImplicitList>();
-                    if (pIL->isComputable())
+                    for (int i = 0 ; i < getResultSize() ; i++)
                     {
-                        setResult(pIL->extractFullMatrix());
-                        pITArg->killMe();
+                        InternalType * pITArg = getResult(i);
+                        pITArg->IncreaseRef();
+                        in.push_back(pITArg);
                     }
+
+                    clearResult();
                 }
             }
-
-            if (isSingleResult())
-            {
-                in.push_back(getResult());
-                getResult()->IncreaseRef();
-                clearResult();
-            }
-            else
-            {
-                for (int i = 0 ; i < getResultSize() ; i++)
-                {
-                    InternalType * pITArg = getResult(i);
-                    pITArg->IncreaseRef();
-                    in.push_back(pITArg);
-                }
-
-                clearResult();
-            }
+        }
+        catch (const InternalError& ie)
+        {
+            clearResult();
+            cleanOpt(opt);
+            cleanIn(in, out);
+            throw ie;
         }
 
         try

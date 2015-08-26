@@ -195,7 +195,7 @@ int sci_hdf5_load_v2(char *fn, int* pvApiCtx)
         createEmptyMatrix(pvApiCtx, nbIn + 1);
     }
 
-    for (auto& i : varList)
+    for (auto & i : varList)
     {
         FREE(i);
     }
@@ -369,7 +369,6 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
         if (iDims > 2)
         {
             //hypermatrix
-            FREE(piDims);
             return false;
         }
 
@@ -403,15 +402,15 @@ static bool import_double(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piAd
 
     if (iDims == 0 || iSize == 0) //empty matrix
     {
+        if (piDims)
+        {
+            FREE(piDims);
+        }
+
         /*bug 7224 : to close dataset */
         iRet = readEmptyMatrix(_iDatasetId);
         if (iRet)
         {
-            if (piDims)
-            {
-                FREE(piDims);
-            }
-
             return false;
         }
 
@@ -564,6 +563,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfInteger8InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pcData);
             }
+
+            FREE(pcData);
         }
         break;
         case SCI_UINT8:
@@ -586,6 +587,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfUnsignedInteger8InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pucData);
             }
+
+            FREE(pucData);
         }
         break;
         case SCI_INT16:
@@ -608,6 +611,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfInteger16InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], psData);
             }
+
+            FREE(psData);
         }
         break;
         case SCI_UINT16:
@@ -630,6 +635,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfUnsignedInteger16InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pusData);
             }
+
+            FREE(pusData);
         }
         break;
         case SCI_INT32:
@@ -652,6 +659,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfInteger32InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], piData);
             }
+
+            FREE(piData);
         }
         break;
         case SCI_UINT32:
@@ -674,6 +683,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfUnsignedInteger32InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], puiData);
             }
+
+            FREE(puiData);
         }
         break;
         case SCI_INT64:
@@ -697,6 +708,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfInteger64InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pllData);
             }
+
+            FREE(pllData);
 #else
             FREE(piDims);
             return false;
@@ -724,6 +737,8 @@ static bool import_integer(int* pvCtx, int _iDatasetId, int _iItemPos, int *_piA
             {
                 sciErr = createMatrixOfUnsignedInteger64InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, piDims[0], piDims[1], pullData);
             }
+
+            FREE(pullData);
 #else
             FREE(piDims);
             return false;
@@ -1176,6 +1191,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = getListItemReferences(_iDatasetId, &piItemRef);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1184,6 +1200,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
     if (iRet || iItemDataset == 0)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1191,6 +1208,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     int iItemType = getScilabTypeFromDataSet(iItemDataset);
     if (iItemType != sci_strings)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1198,6 +1216,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1205,6 +1224,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     int iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (iSize != 3)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         return false;
     }
@@ -1217,6 +1237,8 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = readStringMatrix(iItemDataset, pstData);
     if (iRet || strcmp(pstData[0], "hm") != 0)
     {
+        // if not the good type, do not h5close (deleteListItemReferences)
+        FREE(piItemRef);
         freeStringMatrix(iItemDataset, pstData);
         delete[] pstData;
         return false;
@@ -1230,12 +1252,14 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = getListItemDataset(_iDatasetId, piItemRef, 1, &iItemDataset);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1243,6 +1267,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (piDims[0] != 1)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         return false;
     }
@@ -1251,6 +1276,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     iRet = readInteger32Matrix(iItemDataset, piDimsArray);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         delete[] piDimsArray;
         return false;
@@ -1262,6 +1288,7 @@ static bool import_hypermat(int* pvCtx, int _iDatasetId, int _iVarType, int _iIt
     bool bRet = import_data(pvCtx, iItemDataset, _iItemPos, _piAddress, _pstVarname);
     if (bRet == false)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         delete[] piDimsArray;
         return false;
@@ -1329,6 +1356,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = getListItemReferences(_iDatasetId, &piItemRef);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1337,6 +1365,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
     if (iRet || iItemDataset == 0)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1344,6 +1373,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     int iItemType = getScilabTypeFromDataSet(iItemDataset);
     if (iItemType != sci_strings)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1351,6 +1381,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1358,6 +1389,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     int iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (iSize != iItems)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         return false;
     }
@@ -1371,6 +1403,8 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = readStringMatrix(iItemDataset, pstData);
     if (iRet || strcmp(pstData[0], "st") != 0)
     {
+        // if not the good type, do not h5close (deleteListItemReferences)
+        FREE(piItemRef);
         freeStringMatrix(iItemDataset, pstData);
         delete[] pstData;
         delete[] pstDataSave;
@@ -1391,6 +1425,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = getListItemDataset(_iDatasetId, piItemRef, 1, &iItemDataset);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         for (int i = 0; i < (-2 + iItems); ++i)
         {
             delete pstDataSave[i];
@@ -1403,6 +1438,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         for (int i = 0; i < (-2 + iItems); ++i)
         {
             delete pstDataSave[i];
@@ -1416,6 +1452,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (piDims[0] != 1)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         for (int i = 0; i < (-2 + iItems); ++i)
         {
             delete pstDataSave[i];
@@ -1430,6 +1467,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
     iRet = readInteger32Matrix(iItemDataset, piDimsArray);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         for (int i = 0; i < (-2 + iItems); ++i)
         {
             delete pstDataSave[i];
@@ -1471,6 +1509,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             iRet = getListItemDataset(_iDatasetId, piItemRef, i + 2, &iItemDataset);
             if (iRet || iItemDataset == 0)
             {
+                deleteListItemReferences(_iDatasetId, piItemRef);
                 delete pList;
                 delete pStruct;
                 return false;
@@ -1482,6 +1521,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, pcName);
             if (bRet == false)
             {
+                deleteListItemReferences(_iDatasetId, piItemRef);
                 delete pList;
                 delete pStruct;
                 return false;
@@ -1500,6 +1540,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             iRet = getListItemDataset(_iDatasetId, piItemRef, i + 2, &iItemDataset);
             if (iRet || iItemDataset == 0)
             {
+                deleteListItemReferences(_iDatasetId, piItemRef);
                 delete pList;
                 delete pStruct;
                 return false;
@@ -1511,6 +1552,7 @@ static bool import_struct(int* pvCtx, int _iDatasetId, int _iVarType, int _iItem
             bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, pcName);
             if (bRet == false)
             {
+                deleteListItemReferences(_iDatasetId, piItemRef);
                 delete pList;
                 delete pStruct;
                 return false;
@@ -1580,6 +1622,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = getListItemReferences(_iDatasetId, &piItemRef);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1588,6 +1631,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = getListItemDataset(_iDatasetId, piItemRef, 0, &iItemDataset);
     if (iRet || iItemDataset == 0)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1595,6 +1639,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     int iItemType = getScilabTypeFromDataSet(iItemDataset);
     if (iItemType != sci_strings)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1602,6 +1647,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1609,6 +1655,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     int iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (iSize != 3)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         return false;
     }
@@ -1621,6 +1668,8 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = readStringMatrix(iItemDataset, pstData);
     if (iRet || strcmp(pstData[0], "ce") != 0)
     {
+        // if not the good type, do not h5close (deleteListItemReferences)
+        FREE(piItemRef);
         freeStringMatrix(iItemDataset, pstData);
         delete[] pstData;
         return false;
@@ -1634,12 +1683,14 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = getListItemDataset(_iDatasetId, piItemRef, 1, &iItemDataset);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
     iRet = getDatasetInfo(iItemDataset, &iComplex, &iDims, NULL);
     if (iRet < 0 || iDims != 2)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         return false;
     }
 
@@ -1647,6 +1698,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iSize = getDatasetInfo(iItemDataset, &iComplex, &iDims, piDims);
     if (piDims[0] != 1)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         return false;
     }
@@ -1655,6 +1707,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = readInteger32Matrix(iItemDataset, piDimsArray);
     if (iRet)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete[] piDims;
         delete[] piDimsArray;
         return false;
@@ -1667,6 +1720,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     iRet = getListItemDataset(_iDatasetId, piItemRef, 2, &iItemDataset);
     if (iRet || iItemDataset == 0)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete pList;
         delete pCell;
         return false;
@@ -1675,6 +1729,7 @@ static bool import_cell(int* pvCtx, int _iDatasetId, int _iVarType, int _iItemPo
     bool bRet = import_data(pvCtx, iItemDataset, 1, (int*)pList, NULL);
     if (bRet == false)
     {
+        deleteListItemReferences(_iDatasetId, piItemRef);
         delete pList;
         delete pCell;
         return false;

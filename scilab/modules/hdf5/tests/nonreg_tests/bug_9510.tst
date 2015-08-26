@@ -25,3 +25,4 @@ lusparse = umf_lufact(A);
 err = execstr("save(TMPDIR + ""/lusparse.sod"",""lusparse"")", "errcatch");
 assert_checktrue(err <> 0);
 if ls(TMPDIR+"/lusparse.sod") <> [] then pause end
+umf_ludel(lusparse);

@@ -31,6 +31,7 @@ using namespace types;
 Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
     bool bStringMode = false;
+    char* pstPath = NULL;
 
     if (_iRetCount != 1)
     {
@@ -79,7 +80,8 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
 
         if (bStringMode)
         {
-            pstMD5 = to_wide_string(md5_str(wide_string_to_UTF8(wcsCurrentIn)));
+            pstPath = wide_string_to_UTF8(wcsCurrentIn);
+            pstMD5 = to_wide_string(md5_str(pstPath));
         }
         else
         {
@@ -88,42 +90,45 @@ Function::ReturnValue sci_getmd5(types::typed_list &in, int _iRetCount, types::t
 
             /* Replaces SCI, ~, HOME, TMPDIR by the real path */
             real_path = expandPathVariableW(wcsCurrentIn);
+            pstPath = wide_string_to_UTF8(real_path);
 
             /* bug 4469 */
             if (isdirW(real_path))
             {
-                char* pstPath = wide_string_to_UTF8(real_path);
-                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
-                FREE(pstPath);
-                delete pOutput;
-                delete real_path;
-                return Function::Error;
-            }
-
-            wcfopen(fp, wide_string_to_UTF8(real_path), "rb");
-
-            if (fp)
-            {
-                pstMD5 = to_wide_string(md5_file(fp));
-                fclose(fp);
-            }
-            else
-            {
-                char* pstPath = wide_string_to_UTF8(real_path);
                 Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
                 FREE(pstPath);
                 delete pOutput;
                 FREE(real_path);
                 return Function::Error;
             }
+
+            wcfopen(fp, pstPath, "rb");
+
+            if (fp)
+            {
+                char* pstrFile = md5_file(fp);
+                pstMD5 = to_wide_string(pstrFile);
+                fclose(fp);
+                FREE(pstrFile);
+            }
+            else
+            {
+                Scierror(999, _("%s: The file %s does not exist.\n"), "getmd5", pstPath);
+                FREE(pstPath);
+                delete pOutput;
+                FREE(real_path);
+                return Function::Error;
+            }
+
+            FREE(pstPath);
+            FREE(real_path);
         }
 
         pOutput->set(i, pstMD5);
-
+        FREE(pstMD5);
     }
 
     out.push_back(pOutput);
-
     return Function::OK;
 }
 /*--------------------------------------------------------------------------*/

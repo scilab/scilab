@@ -129,6 +129,13 @@ int sci_umf_lufact(char* fname, void* pvApiCtx)
 
     if (sciErr.iErr)
     {
+        FREE(piNbItemRow);
+        FREE(piColPos);
+        FREE(pdblSpReal);
+        if (pdblSpImg)
+        {
+            FREE(pdblSpImg);
+        }
         printError(&sciErr, 0);
         return 1;
     }
@@ -145,11 +152,26 @@ int sci_umf_lufact(char* fname, void* pvApiCtx)
 
     if (nA <= 0 || mA <= 0)
     {
+        FREE(piNbItemRow);
+        FREE(piColPos);
+        FREE(pdblSpReal);
+        if (pdblSpImg)
+        {
+            FREE(pdblSpImg);
+        }
         Scierror(999, _("%s: Wrong size for input argument #%d.\n"), fname, 1);
         return 1;
     }
 
     SciSparseToCcsSparse(&AA, &A);
+
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblSpReal);
+    if (pdblSpImg)
+    {
+        FREE(pdblSpImg);
+    }
 
     /* symbolic factorization */
     if (A.it == 1)

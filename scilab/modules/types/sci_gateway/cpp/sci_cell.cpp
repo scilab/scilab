@@ -81,7 +81,7 @@ types::Function::ReturnValue sci_cell(types::typed_list &in, int _iRetCount, typ
             piDimsArray[i] = (int)in[i]->getAs<types::Double>()->get(0);
         }
         pRetVal = new types::Cell(in.size(), piDimsArray);
-        delete piDimsArray;
+        delete[] piDimsArray;
     }
 
     if (pRetVal == NULL)

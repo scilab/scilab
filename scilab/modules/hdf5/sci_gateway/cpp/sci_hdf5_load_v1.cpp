@@ -179,7 +179,7 @@ int sci_hdf5_load_v1(char *fn, int* pvApiCtx)
         createEmptyMatrix(pvApiCtx, nbIn + 1);
     }
 
-    for (auto& i : varList)
+    for (auto & i : varList)
     {
         FREE(i);
     }
@@ -567,6 +567,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfInteger8InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pcData);
             }
+
+            FREE(pcData);
         }
         break;
         case SCI_UINT8:
@@ -588,6 +590,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfUnsignedInteger8InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pucData);
             }
+
+            FREE(pucData);
         }
         break;
         case SCI_INT16:
@@ -609,6 +613,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfInteger16InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, psData);
             }
+
+            FREE(psData);
         }
         break;
         case SCI_UINT16:
@@ -630,6 +636,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfUnsignedInteger16InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pusData);
             }
+
+            FREE(pusData);
         }
         break;
         case SCI_INT32:
@@ -651,6 +659,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfInteger32InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, piData);
             }
+
+            FREE(piData);
         }
         break;
         case SCI_UINT32:
@@ -672,6 +682,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfUnsignedInteger32InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, puiData);
             }
+
+            FREE(puiData);
         }
         break;
         case SCI_INT64:
@@ -694,6 +706,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfInteger64InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pllData);
             }
+
+            FREE(pllData);
 #else
             return false;
 #endif
@@ -719,6 +733,8 @@ static bool import_integer_v1(int* pvCtx, int _iDatasetId, int _iItemPos, int *_
             {
                 sciErr = createMatrixOfUnsignedInteger64InNamedList(pvCtx, _pstVarname, _piAddress, _iItemPos, iRows, iCols, pullData);
             }
+
+            FREE(pullData);
 #else
             return false;
 #endif
@@ -1252,12 +1268,19 @@ static bool import_hypermat_v1(int* pvCtx, int _iDatasetId, int _iVarType, int _
     iRet = readStringMatrix_v1(iItemDataset, iRows, iCols, pstData);
     if (iRet || strcmp(pstData[0], "hm") != 0)
     {
-        //freeStringMatrix_v1(iItemDataset, pstData);
+        FREE(piItemRef);
+        for (int i = 0; i < iRows * iCols; i++)
+        {
+            FREE(pstData[i]);
+        }
         delete[] pstData;
         return false;
     }
 
-    //freeStringMatrix_v1(iItemDataset, pstData);
+    for (int i = 0; i < iRows * iCols; i++)
+    {
+        FREE(pstData[i]);
+    }
     delete[] pstData;
     pstData = NULL;
 

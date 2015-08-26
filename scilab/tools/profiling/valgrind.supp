@@ -38,4 +38,11 @@
    fun:_dl_allocate_tls
    ...
 }
+{
+   hdf5/H5_build_extpath
+   Memcheck:Addr4
+   fun:H5_build_extpath
+   fun:H5F_open
+   ...
+}
 

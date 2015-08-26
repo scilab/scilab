@@ -497,7 +497,6 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
     //save fields list in vector to keep order
     export_string(dset, "__fields__", fields);
 
-
     std::vector<hobj_ref_t> vrefs(size);
     //fill main group with struct field name
     for (int i = 0; i < fieldCount; ++i)
@@ -516,6 +515,7 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
             ret = addItemStruct6(refs, vrefs.data(), j, refname.data());
             if (ret)
             {
+                delete fields;
                 return -1;
             }
         }
@@ -524,9 +524,12 @@ static int export_struct(int parent, const std::string& name, types::Struct* dat
         FREE(cfield);
         if (ret < 0)
         {
+            delete fields;
             return -1;
         }
     }
+
+    delete fields;
 
     if (closeList6(refs) == -1)
     {

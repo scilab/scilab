@@ -134,13 +134,22 @@ int sci_h5rm(char *fname, int* pvApiCtx)
     }
     catch (const std::exception & e)
     {
+        if (strs)
+        {
+            freeAllocatedMatrixOfString(row, col, strs);
+        }
+
         Scierror(999, _("%s: %s\n"), fname, e.what());
         return 0;
     }
 
+    if (strs)
+    {
+        freeAllocatedMatrixOfString(row, col, strs);
+    }
+
     AssignOutputVariable(pvApiCtx, 1) = 0;
     ReturnArguments(pvApiCtx);
-
     return 0;
 }
 

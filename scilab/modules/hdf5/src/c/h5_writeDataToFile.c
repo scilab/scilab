@@ -201,6 +201,8 @@ int updateScilabVersion(int _iFile)
     char* pstScilabVersion = getScilabVersionAttribute(_iFile);
     if (pstScilabVersion)
     {
+        FREE(pstScilabVersion);
+
         //delete before write
         status = H5Adelete(_iFile, g_SCILAB_CLASS_SCI_VERSION);
         if (status < 0)
@@ -2009,7 +2011,7 @@ static int deleteHDF5group(int _iFile, const char* _pstName)
             }
             ////unlink child
             //status = H5Ldelete(groupID, pstChildName, H5P_DEFAULT);
-            //FREE(pstChildName);
+            FREE(pstChildName);
 
             //if (status < 0)
             //{

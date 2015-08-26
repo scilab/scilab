@@ -136,7 +136,7 @@ types::Function::ReturnValue sci_hdf5_load_v3(types::typed_list &in, int _iRetCo
         {
             std::vector<char*> vars(iNbItem);
             iNbItem = getVariableNames6(iFile, vars.data());
-            for (auto &var : vars)
+            for (auto & var : vars)
             {
                 std::string s(var);
                 FREE(var);
@@ -522,6 +522,10 @@ static types::InternalType* import_list(int dataset, types::List* lst)
         }
 
         lst->append(child);
+        if (child->isList())
+        {
+            child->killMe();
+        }
     }
 
     closeList6(dataset);
@@ -569,6 +573,7 @@ static types::InternalType* import_struct(int dataset)
     {
         //empty struct
         closeList6(dataset);
+        delete str;
         return new types::Struct();
     }
 
@@ -596,7 +601,7 @@ static types::InternalType* import_struct(int dataset)
     //open __refs__ node
     int refs = getDataSetIdFromName(dataset, "__refs__");
 
-    for (const auto& name : fields)
+    for (const auto & name : fields)
     {
         wchar_t* field = to_wide_string(name);
         str->addField(field);
@@ -606,6 +611,7 @@ static types::InternalType* import_struct(int dataset)
         {
             closeList6(dataset);
             freeStringMatrix(dfield, fields.data());
+            delete str;
             return nullptr;
         }
 
@@ -618,6 +624,7 @@ static types::InternalType* import_struct(int dataset)
         if (ret < 0)
         {
             freeStringMatrix(dfield, fields.data());
+            delete str;
             return nullptr;
         }
 
@@ -629,6 +636,7 @@ static types::InternalType* import_struct(int dataset)
             if (data < 0)
             {
                 freeStringMatrix(dfield, fields.data());
+                delete str;
                 return nullptr;
             }
 
@@ -636,6 +644,7 @@ static types::InternalType* import_struct(int dataset)
             if (val == nullptr)
             {
                 freeStringMatrix(dfield, fields.data());
+                delete str;
                 return nullptr;
             }
 
@@ -936,7 +945,7 @@ static types::InternalType* import_handles(int dataset)
     if (Links::count())
     {
         std::list<int> legends = Links::legends();
-        for (auto& i : legends)
+        for (auto & i : legends)
         {
             Links::PathList paths = Links::get(i);
             update_link_path(i, paths);
@@ -968,7 +977,7 @@ static types::InternalType* import_macro(int dataset)
     {
         readStringMatrix(inputNode, inputNames.data());
 
-        for (auto& input : inputNames)
+        for (auto & input : inputNames)
         {
             wchar_t* winput = to_wide_string(input);
             symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(winput));
@@ -992,7 +1001,7 @@ static types::InternalType* import_macro(int dataset)
     {
         readStringMatrix(outputNode, outputNames.data());
 
-        for (auto& output : outputNames)
+        for (auto & output : outputNames)
         {
             wchar_t* woutput = to_wide_string(output);
             symbol::Variable* var = ctx->getOrCreate(symbol::Symbol(woutput));
@@ -1082,7 +1091,7 @@ static types::InternalType* import_usertype(int dataset)
 
     if (out.size() != 1)
     {
-        for (auto& i : out)
+        for (auto & i : out)
         {
             i->killMe();
         }
