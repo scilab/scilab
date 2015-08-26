@@ -9,7 +9,7 @@
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 function checkCallOverload(mat)
     assert_checkerror(mat, [], 999);

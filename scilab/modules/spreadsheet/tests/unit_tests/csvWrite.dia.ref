@@ -3,7 +3,7 @@
 // Copyright (C) 2010 - 2011 - INRIA - Allan CORNET
 // Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 path = SCI+"/modules/spreadsheet/tests/unit_tests/";
 // =============================================================================
 M = eye(3, 5);

@@ -6,7 +6,7 @@
 // ============================================================================
 
 // <-- NOT FIXED -->
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 out = testGVN("a=1;b=1");
 assert_checkequal(out.a, out.b);

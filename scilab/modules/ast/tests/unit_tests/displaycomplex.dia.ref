@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 // Test display of complex matrix, leave each line without semicolon
 complex(ones(1,5), ones(1,5))
  ans  =

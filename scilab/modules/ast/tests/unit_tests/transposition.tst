@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 S = 123;
 C = [1 2;3 4];

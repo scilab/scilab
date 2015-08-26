@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // ============================================================================
 //
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 //
 
 // Try to take all the branches in run_MatrixExp code...

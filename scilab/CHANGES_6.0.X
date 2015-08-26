@@ -1,6 +1,16 @@
         Changes between version 6.0.0-alpha-1 and 6.0.0-alpha-2 of Scilab
         =================================================================
 
+New Features
+=============
+
+* valgrind error detection added to test_run (Linux Only)
+
+Deprecated Behaviors
+=====================
+
+* <-- JVM NOT MANDATORY --> is obsolete, use <-- CLI SHELL MODE --> instead.
+
 
 Scilab Bug Fixes
 ================

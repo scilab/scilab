@@ -9,7 +9,7 @@
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 oldFuncProt = funcprot(0);
 ref = [0 0 0 ; 0 1 4 ; 0 2 5];

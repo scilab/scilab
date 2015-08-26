@@ -9,7 +9,7 @@
 //
 //
 
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 scalar = 5;
 vect = 1:5;

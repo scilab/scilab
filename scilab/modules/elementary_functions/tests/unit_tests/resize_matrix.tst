@@ -4,7 +4,7 @@
 //
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
-// <-- JVM NOT MANDATORY -->
+// <-- CLI SHELL MODE -->
 
 myMat =[     0.6029980    4.2470508    3.2442814    3.7427533
 1.4276821    2.6285304    4.9615955    2.0520295

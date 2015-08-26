@@ -451,6 +451,7 @@ function status = test_module(_params)
         result = test_single(_params, tests(i,1), tests(i,2));
         elapsedTimeAfter=toc();
 
+
         testsuite.tests = testsuite.tests + 1
 
         testsuite.testcase(i).name=tests(i,2);
@@ -483,6 +484,10 @@ function status = test_module(_params)
                 // skipped
                 test_skipped_count = test_skipped_count + 1;
             end
+        end
+
+        if ~isempty(result.warning) then
+            warning(result.warning);
         end
     end
 
@@ -561,6 +566,7 @@ function status = test_single(_module, _testPath, _testName)
     status.id = 0;
     status.message = "";
     status.details = "";
+    status.warning = "";
 
     //Reset standard globals
     rand("seed",0);
@@ -633,7 +639,13 @@ function status = test_single(_module, _testPath, _testName)
         execMode = "NW";
     end
 
-    if (~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) | ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->"))) then
+    if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
+        status.warning = _("option ""JVM NOT MANDATORY"" is deprecated, please use ""CLI SHELL MODE"" instead");
+        jvm = %F;
+        execMode = "NWNI";
+    end
+
+    if ~isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
         jvm = %F;
         execMode = "NWNI";
     end
