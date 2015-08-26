@@ -8,3 +8,4 @@ StaticRunner_launch
 StaticRunner_isRunnerAvailable
 StaticRunner_isInterruptibleCommand
 StaticRunner_setInterruptibleCommand
+StoreConsoleCommand

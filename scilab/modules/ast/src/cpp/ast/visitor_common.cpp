@@ -27,6 +27,11 @@
 
 #include "alltypes.hxx"
 
+extern "C"
+{
+#include "storeCommand.h"
+}
+
 size_t ast::Ast::globalNodeNumber = 0;
 
 /*
@@ -2397,7 +2402,6 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
 void callOnPrompt(void)
 {
     static symbol::Variable* onPrompt = NULL;
-
     if (onPrompt == NULL)
     {
         onPrompt = symbol::Context::getInstance()->getOrCreate(symbol::Symbol(L"%onprompt"));
@@ -2407,11 +2411,7 @@ void callOnPrompt(void)
     pOnPrompt = onPrompt->get();
     if (pOnPrompt != NULL && pOnPrompt->isCallable())
     {
-        typed_list in;
-        typed_list out;
-        optional_list opt;
-        ast::ExecVisitor execCall;
-        pOnPrompt->getAs<Callable>()->call(in, opt, 1, out, &execCall);
+        StoreConsoleCommand("%onprompt()", 1);
     }
 }
 
