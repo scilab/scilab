@@ -29,10 +29,6 @@ assert_checkequal(typeof(sparse([0,1,0,1:1,0,1,0])),"sparse");
 // boolean sparse
 assert_checkequal(typeof(sparse([1,1;2,2;3,3],[%t,%t,%t])),"boolean sparse");
 
-// Matlab sparse
-X=sparse(rand(2,2)); Y=mtlb_sparse(X);
-assert_checkequal(typeof(Y),"Matlab sparse");
-
 // int
 assert_checkequal(typeof(int8(1:4)),"int8");
 assert_checkequal(typeof(uint8(1:4)),"uint8");
@@ -76,7 +72,7 @@ ludel(h);
 assert_checkequal(typeof(h),"pointer");
 
 // size implicit
-assert_checkequal(typeof(1:1:$), "size implicit");
+assert_checkequal(typeof(1:1:$), "implicitlist");
 
 // list
 assert_checkequal(typeof(list(1,2)),"list");
@@ -100,12 +96,6 @@ l1 = uiCreateNode("CONST_m","default","");
 assert_checkequal(typeof(l1),"uitree");
 tree = uiCreateTree(l1);
 assert_checkequal(typeof(tree),"uitree");
-
-// hypermat
-assert_checkequal(typeof(hypermat([2 3 2 2],1:24)),"hypermat");
-A=[1,2,3;4,5,6];
-A(:,:,2)=[1,2,3;4,5,6];
-assert_checkequal(typeof(A),"hypermat");
 
 // fptr
 assert_checkequal(typeof(abs),"fptr");

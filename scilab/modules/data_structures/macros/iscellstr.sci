@@ -21,7 +21,7 @@ function   bool=iscellstr(c)
             if typeof(c)=="ce"
                 bool=%T;
                 for i=1:size(c,"*")
-                    if typeof(c(i).entries)<>"string" then
+                    if typeof(c{i})<>"string" then
                         bool=%F;
                         break
                     end

@@ -131,14 +131,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"hypermat"</term>
-                <listitem>
-                    <para>
-                        если <varname>object</varname> - <link linkend="hypermatrices">гиперматрица</link> (<literal>N</literal>-мерный массив <literal><![CDATA[N<=3]]></literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>"st"</term>
                 <listitem>
                     <para>
@@ -171,7 +163,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"size implicit"</term>
+                <term>"implicitlist"</term>
                 <listitem>
                     <para>
                         если <varname>object</varname> - размер неявного полинома, используемый для индексации. Это чисто внутреннее значение.

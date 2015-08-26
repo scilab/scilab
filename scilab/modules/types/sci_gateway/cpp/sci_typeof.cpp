@@ -35,15 +35,25 @@ types::Function::ReturnValue sci_typeof(types::typed_list &in, int _iRetCount, t
     // Old typeof call
     if (in.size() == 1)
     {
-        // calls the overload if it exists.
-        if (in[0]->isList())
+        // for compatibilities with scilab 5 (cell and struct was tlist)
+        if (in[0]->isStruct() || in[0]->isCell())
         {
-            std::wstring wstFuncName = L"%"  + in[0]->getShortTypeStr() + L"_typeof";
-            types::InternalType *pIT = symbol::Context::getInstance()->get(symbol::Symbol(wstFuncName));
-            if (pIT)
+            out.push_back(new types::String(in[0]->getShortTypeStr().c_str()));
+            return types::Function::OK;
+        }
+
+        // Special cases for rational and state-space list
+        if (in[0]->isTList())
+        {
+            if (in[0]->getShortTypeStr() == L"r")
             {
-                ast::ExecVisitor exec;
-                return Overload::call(wstFuncName, in, _iRetCount, out, &exec);
+                out.push_back(new types::String(L"rational"));
+                return types::Function::OK;
+            }
+            else if (in[0]->getShortTypeStr() == L"lss")
+            {
+                out.push_back(new types::String(L"state-space"));
+                return types::Function::OK;
             }
         }
 

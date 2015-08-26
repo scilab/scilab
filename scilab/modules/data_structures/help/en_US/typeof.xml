@@ -2,11 +2,11 @@
 <!--
  * Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
  * Copyright (C) 2008 - INRIA
- * 
+ *
  * This file must be used under the terms of the CeCILL.
  * This source file is licensed as described in the file COPYING, which
  * you should have received as part of this distribution.  The terms
- * are also available at    
+ * are also available at
  * http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
  *
  -->
@@ -132,14 +132,6 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"hypermat"</term>
-                <listitem>
-                    <para>
-                        if <varname>object</varname> is a <link linkend="hypermatrices">hypermatrix</link> (<literal>N</literal>-dimension array with <literal><![CDATA[N<=3]]></literal>.
-                    </para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
                 <term>"st"</term>
                 <listitem>
                     <para>
@@ -172,7 +164,7 @@
                 </listitem>
             </varlistentry>
             <varlistentry>
-                <term>"size implicit"</term>
+                <term>"implicitlist"</term>
                 <listitem>
                     <para>
                         if <varname>object</varname> is a size implicit polynomial used for indexing. This a purely internal value.
@@ -204,23 +196,23 @@
     </refsection>
     <refsection>
         <title>Examples</title>
-        <programlisting role="example"><![CDATA[ 
+        <programlisting role="example"><![CDATA[
 typeof(1)
 typeof(poly(0,'x'))
- 
+
 typeof(1/poly(0,'x'))
 typeof(%t)
- 
+
 w=sprand(100,100,0.001);
 typeof(w)
 typeof(w==w)
- 
+
 deff('y=f(x)','y=2*x');
 typeof(f)
- 
+
 L=tlist(['V','a','b'],18,'Scilab');
 typeof(L)
- 
+
 typeof(corelib)
  ]]></programlisting>
     </refsection>

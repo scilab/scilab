@@ -36,7 +36,7 @@ function varargout = %_sodload(%__varnameList__)
 
     function varValue = parseList(varValue)
 
-        if or(typeof(varValue)==["cell","st"]) then
+        if or(typeof(varValue)==["ce","st"]) then
             if typeof(varValue)=="st" then
                 fieldNames = fieldnames(varValue);
             else
