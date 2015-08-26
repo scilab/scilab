@@ -515,11 +515,11 @@ Callable::ReturnValue DynamicFunction::Init()
 
             if (hLib == 0)
             {
-                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstLibName, pstError);
+                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstLibName, pstError);
                 FREE(pstError);
 
                 pstError = GetLastDynLibError();
-                Scierror(999, _("A error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
+                Scierror(999, _("An error has been detected while loading %s: %s\n"), pstPathToLib, pstError);
 
                 FREE(pstLibName);
                 FREE(pstPathToLib);
