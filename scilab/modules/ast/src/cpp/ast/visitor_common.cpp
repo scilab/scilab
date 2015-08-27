@@ -1489,10 +1489,10 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             typed_list* pArgs = pEH->getArgs();
 
             // should never occured
-            if (pArgs == NULL)
+            if (pArgs == NULL || pArgs->size() == 0)
             {
                 std::wostringstream os;
-                os << _W("evaluateFields : Cannot insert without arguments.");
+                os << _W("Wrong insertion : Cannot insert without arguments.");
                 throw ast::InternalError(os.str(), 999, _pExp->getLocation());
             }
 

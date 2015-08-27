@@ -519,3 +519,8 @@ assert_checktrue(err <> 0);
 st=initst();
 err=execstr("st(1:2).f(1:4).e = 5;", "errcatch");
 assert_checktrue(err <> 0);
+
+// insert without arguments
+errmsg = msprintf(gettext("Wrong insertion : Cannot insert without arguments."));
+assert_checkerror("a()=1;", errmsg);
+assert_checkerror("a{}=1;", errmsg);
