@@ -799,6 +799,9 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
     std::list<ExpHistory*> evalFields;
     std::list<ExpHistory*> workFields;
 
+    bool bPutInCtx = false;
+    InternalType* pITMain = NULL;
+
     try
     {
         //*** get main variable ***//
@@ -813,12 +816,14 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             throw ast::InternalError(os.str(), 999, _pExp->getLocation());
         }
 
-        InternalType* pIT = ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
 
-        if (pIT == NULL)
+        ast::SimpleVar* spMainExp = pFirstField->getExp();
+        pITMain = ctx->getCurrentLevel(spMainExp->getSymbol());
+
+        if (pITMain == NULL)
         {
             // check if we not redefined a protected variable. (ie: sin(2) = 12 without redefine sin before)
-            symbol::Variable* var = ctx->getOrCreate(pFirstField->getExp()->getSymbol());
+            symbol::Variable* var = ctx->getOrCreate(spMainExp->getSymbol());
             if (var->empty() == false && var->top()->m_iLevel == 0)
             {
                 std::wostringstream os;
@@ -829,28 +834,31 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             if (pFirstField->isCellExp())
             {
                 // a{x}, where "a" doesn't exists
-                pIT = new Cell(1, 1);
-                ctx->put(pFirstField->getExp()->getStack(), pIT);
+                pITMain = new Cell(1, 1);
+                pITMain->IncreaseRef();
+                bPutInCtx = true;
             }
             else if (fields.size() > 1)
             {
                 // is a field exp
                 //"a" does not exist or it is another type, create it with size 1,1 and return it
                 //create new structure variable
-                pIT = new Struct(1, 1);
-                ctx->put(pFirstField->getExp()->getStack(), pIT);
+                pITMain = new Struct(1, 1);
+                pITMain->IncreaseRef();
+                bPutInCtx = true;
             }
             // else
             // is a call exp
             // a(x) = "something" and a does not exist
             // a will be create in insertionCall
         }
-        else if (pIT->getRef() > 1 && pIT->isHandle() == false)
+        else if (pITMain->getRef() > 1 && pITMain->isHandle() == false)
         {
-            pIT = pIT->clone();
-            ctx->put(pFirstField->getExp()->getStack(), pIT);
+            bPutInCtx = true;
+            pITMain = pITMain->clone();
+            pITMain->IncreaseRef();
         }
-        else if (pIT == _pAssignValue)
+        else if (pITMain == _pAssignValue)
         {
             // clone me before insert me in myself.
             // ie : a.b = 2; a.b.c.d = a;
@@ -864,7 +872,7 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
                                             pFirstField->getArgs(),
                                             pFirstField->getLevel(),
                                             pFirstField->isCellExp(),
-                                            pIT));
+                                            pITMain));
 
         //*** evaluate fields ***//
         while (iterFields != fields.end())
@@ -1537,7 +1545,15 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
 
                 if (pEHParent == NULL)
                 {
-                    ctx->put(pEH->getExp()->getStack(), pEH->getCurrent());
+                    if (bPutInCtx)
+                    {
+                        pITMain->DecreaseRef();
+                        pITMain->killMe();
+                    }
+
+                    bPutInCtx = true;
+                    pITMain = pEH->getCurrent();
+                    pITMain->IncreaseRef();
                     break;
                 }
 
@@ -1648,6 +1664,12 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             delete pEH;
         }
 
+        if (bPutInCtx)
+        {
+            pITMain->DecreaseRef();
+            ctx->put(spMainExp->getStack(), pITMain);
+        }
+
         if (!evalFields.empty())
         {
             for (std::list<ExpHistory*>::const_iterator i = evalFields.begin(), end = evalFields.end(); i != end; i++)
@@ -1656,10 +1678,15 @@ InternalType* evaluateFields(const ast::Exp* _pExp, std::list<ExpHistory*>& fiel
             }
         }
 
-        return ctx->getCurrentLevel(pFirstField->getExp()->getSymbol());
+        return pITMain;
     }
     catch (const ast::InternalError error)
     {
+        if (bPutInCtx)
+        {
+            pITMain->DecreaseRef();
+        }
+
         for (std::list<ExpHistory*>::reverse_iterator i = workFields.rbegin(); i != workFields.rend(); ++i)
         {
             (*i)->setDeleteCurrent(true);

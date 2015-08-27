@@ -257,7 +257,21 @@ namespace ast {
                         pITR->IncreaseRef();
 
                         typed_list* currentArgs = GetArgumentList(pCall->getArgs());
-                        pOut = insertionCall(e, currentArgs, pIT, pITR);
+
+                        try
+                        {
+                            pOut = insertionCall(e, currentArgs, pIT, pITR);
+                        }
+                        catch (const InternalError& error)
+                        {
+                            pITR->DecreaseRef();
+                            // call killMe on all arguments
+                            cleanOut(*currentArgs);
+                            delete currentArgs;
+                            // insertion have done, call killMe on pITR
+                            pITR->killMe();
+                            throw error;
+                        }
 
                         pITR->DecreaseRef();
 
