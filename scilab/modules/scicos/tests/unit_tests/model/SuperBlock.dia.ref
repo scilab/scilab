@@ -355,7 +355,7 @@ Xcos trace: propertyUpdated( 8 , BLOCK , EVENT_OUTPUTS ) : NO_CHANGES
 Xcos debug: objectDeleted( 9 , PORT )
 Xcos debug: objectDeleted( 8 , BLOCK )
 Xcos debug: objectDeleted( 1 , DIAGRAM )
-sb  = 
+ sb  = 
 GUI     : SUPER_f
 Graphics: 
           orig = [0,0]
@@ -1581,7 +1581,7 @@ Xcos trace: propertyUpdated( 23 , BLOCK , EVENT_INPUTS ) : NO_CHANGES
 Xcos trace: propertyUpdated( 23 , BLOCK , EVENT_OUTPUTS ) : SUCCESS
 Xcos debug: objectDeleted( 26 , PORT )
 Xcos debug: objectDeleted( 23 , BLOCK )
-clk  = 
+ clk  = 
 GUI     : CLOCK_c
 Graphics: 
           orig = [0,0]

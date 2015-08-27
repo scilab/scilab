@@ -16,11 +16,11 @@
 //
 // =============================================================================
 function myFunc
-  disp("myFunc called");
+    disp("myFunc called");
 endfunction
 ref_txt = [" "; ..
-           "disp(""myFunc called"");"; ..
-           " "];
+"disp(""myFunc called"");"; ..
+" "];
 [in, out, txt] = string(myFunc);
 assert_checkequal(out, []);
 assert_checkequal(in, []);
@@ -33,23 +33,23 @@ assert_checkequal(in2, in);
 assert_checkequal(txt2, ref_txt);
 // =============================================================================
 function [x, y, z] = myFunc1(a,b,c,d)
-  x = [];
-  y = [];
-  z = [];
-  function k = myFunc2(x)
-   k = x + 1;
-  endfunction
-  y = myFunc2(a);
+    x = [];
+    y = [];
+    z = [];
+    function k = myFunc2(x)
+        k = x + 1;
+    endfunction
+    y = myFunc2(a);
 endfunction
 ref_text = [" "; ..
-            "x = [];"; ..
-            "y = [];"; ..
-            "z = [];"; ..
-            "function k = myFunc2(x)"; ..
-            "    k = x + 1;"; ..
-            "endfunction"; ..
-            "y = myFunc2(a);"; ..
-            " "];
+"x = [];"; ..
+"y = [];"; ..
+"z = [];"; ..
+"function k = myFunc2(x)"; ..
+"    k = x + 1;"; ..
+"endfunction"; ..
+"y = myFunc2(a);"; ..
+" "];
 [in, out, txt] = string(myFunc1);
 assert_checkequal(out, ["a","b","c","d"]);
 assert_checkequal(in, ["x","y","z"]);

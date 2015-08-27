@@ -310,6 +310,8 @@ assert_checkalmostequal(rd1(1), 2.64d-01, 1d-4);
 [yout2,rd2,w,iw] = ode("root", y, t0, tout, "fex1", 2, "gex", w, iw);
 assert_checkalmostequal(rd2(1), 2.0795776d+07, 4d-5);
 err = execstr("[yout3,rd,w,iw] = ode(""root"", y, t0, tout, ""fex1"", 2, ""gex"", w, iw);","errcatch");
+intdy--  t (=r1) illegal      
+      where r1 is :   0.4000000000000D+00                                       
       t n est pas entre tcur - hu (= r1) et tcur (=r2)
       where r1 is :   0.2033607066275D+08   and r2 :   0.2109164231072D+08      
 Illegal input detected (see printed message).

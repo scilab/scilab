@@ -1,3 +1,10 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) 2008 - INRIA - Pierre MARECHAL <pierre.marechal@inria.fr>
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 2647 -->
 //
 // <-- Bugzilla URL -->
@@ -16,19 +23,15 @@
 //    a^2+b^2 is returned.
 //
 //    In Scilab-4.1.2 under Windows-XP the bug is not manifesting itself.
-// Copyright INRIA
-// Scilab Project - Pierre MARECHAL
-// Copyright INRIA 2008
-// Date : 8 janvier 2008
 // a=cos(3);
 // b=sin(3);
-//
-//
+// 
+// 
 // my_log_file = TMPDIR+"/bug_2647.log"
-//
+// 
 // diary(my_log_file);
 // disp(a^2+b^2);
-//
+// 
 // c = mgetl(my_log_file);
-//
+// 
 // if stripblanks(c(4))<>"2." then bugmes();quit;end

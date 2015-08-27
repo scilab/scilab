@@ -118,7 +118,6 @@ coords = [
 s1 = optimsimplex_new ( coords , rosenbrock );
 string(s1)
  ans  =
- 
 !Optim Simplex Object:  !
 !                       !
 !=====================  !
@@ -131,8 +130,7 @@ string(s1)
 !                       !
 !fv: 5-by-1 matrix      !
 s1
- s1  =
- 
+s1  = 
 Optim Simplex Object:
 =====================
 nbve: 5
@@ -150,8 +148,7 @@ coords = [
 ];
 s1 = optimsimplex_new ( coords );
 s1
- s1  =
- 
+s1  = 
 Optim Simplex Object:
 =====================
 nbve: 5
@@ -168,8 +165,7 @@ coords = [
     2.    2.  
 ];
 s1 = optimsimplex_new ( coords , [] )
- s1  =
- 
+ s1  = 
 Optim Simplex Object:
 =====================
 nbve: 5

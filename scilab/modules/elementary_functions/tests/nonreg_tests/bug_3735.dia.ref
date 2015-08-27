@@ -12,7 +12,7 @@
 A = ["First Row";"Second Row"];
 B = ["Third Row";"Fourth Row"];
 result = cat(1,A,B)
-result  = 
+ result  = 
 !First Row   !
 !            !
 !Second Row  !

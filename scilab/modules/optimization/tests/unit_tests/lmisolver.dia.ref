@@ -24,7 +24,6 @@ X = lmisolver(list(zeros(A1)), evalf);
 lmisolver: Construction of canonical representation.
 lmisolver: Basis Construction.
 lmisolver:     FEASIBILITY PHASE.
-
     primal obj.  dual obj.  dual. gap 
      6.66e-01    -5.03e+02   5.03e+02
      8.37e+01    -4.99e+02   5.83e+02
@@ -35,7 +34,6 @@ lmisolver:     FEASIBILITY PHASE.
 lmisolver: Target value reached.
 lmisolver: feasible solution found.
 lmisolver:       OPTIMIZATION PHASE.
-
     primal obj.  dual obj.  dual. gap 
     -2.76e+00    -3.62e+00   8.56e-01
     -3.13e+00    -3.27e+00   1.35e-01

@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) ????-2008 - INRIA
@@ -16,7 +17,7 @@ for xx=x
 	y1=[y1,intg(0,xx,chi1)];
 end
 y2 = cdfchi("PQ",x,ones(x));
-if norm(y1-y2) > prec then bugmes();quit;end 
+if norm(y1-y2) > prec then bugmes();quit;end
 df       = [1,2,3,4,5,6];
 [P,Q]    = cdfchi("PQ",x,df);
 [x1]     = cdfchi("X",df,P,Q);

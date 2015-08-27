@@ -58,7 +58,7 @@ Xcos trace: propertyUpdated( 1 , BLOCK , INTERFACE_FUNCTION ) : SUCCESS
 l = list(Sum);
 // Copy the list content (no duplicate)
 Sum2 = l(1)
-Sum2  = 
+ Sum2  = 
 GUI     : BIGSOM_f
 Graphics: 
           orig = [0,0]

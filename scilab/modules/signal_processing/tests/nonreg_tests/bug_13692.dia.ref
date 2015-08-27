@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13205
 //
 // <-- Short Description -->
-// group returned an error for a discrete dynamical system with a specified 
+// group returned an error for a discrete dynamical system with a specified
 // sample time.
 S = syslin(0.5, 1/%z);
 [tg, fr] = group(10, S);

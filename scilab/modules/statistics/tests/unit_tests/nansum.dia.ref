@@ -5,7 +5,7 @@
 //  This file is distributed under the same license as the Scilab package.
 // =============================================================================
 // <-- CLI SHELL MODE -->
-// unit tests for nansum function 
+// unit tests for nansum function
 // =============================================================================
 assert_checkfalse(execstr("nansum()"   ,"errcatch") == 0);
 refMsg = msprintf(_("%s: Wrong number of input argument(s): %d to %d expected.\n"), "nansum", 1, 2);

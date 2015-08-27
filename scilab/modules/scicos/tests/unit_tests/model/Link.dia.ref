@@ -16,7 +16,7 @@ Xcos trace: propertyUpdated( 1 , LINK , LABEL ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , LINK , THICK ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , LINK , COLOR ) : NO_CHANGES
 Xcos trace: propertyUpdated( 1 , LINK , KIND ) : NO_CHANGES
-lnk  = 
+ lnk  = 
 Link    :
           xx: []
           yy: []

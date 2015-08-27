@@ -1,3 +1,10 @@
+//<-- CLI SHELL MODE -->
+// =============================================================================
+// Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
+// Copyright (C) ????-2008 - INRIA
+//
+//  This file is distributed under the same license as the Scilab package.
+// =============================================================================
 // <-- Non-regression test for bug 608 -->
 //
 // <-- Bugzilla URL -->
@@ -15,12 +22,6 @@
 //    for <=,<,==,<>,>= or >
 //    The function is called by SCI/modules/integer/src/fortran/i_logic.f
 a = uint8(zeros(4,4));
-b = (a<=uint8(0))
- b  =
- 
-  T T T T  
-  T T T T  
-  T T T T  
-  T T T T  
+b = (a<=uint8(0));
 c = [ %T %T %T %T  ; %T %T %T %T ; %T %T %T %T ; %T %T %T %T  ];
 if or(c <> b) then bugmes();quit;end

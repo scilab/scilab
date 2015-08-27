@@ -11,7 +11,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=4321
 //
 // Short description:
-// [a,b]=(1,1); strcat(a,"x",b) Seg fault
+// [a,b]=(1,1); strcat(a,"x",b) Seg fault 
 //
 //==============================================================
 [a,b]=(1,1);

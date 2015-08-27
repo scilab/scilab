@@ -16,7 +16,7 @@ errmsg = msprintf(gettext("%s: Wrong number of output argument(s): %d expected.\
 str = "realtimeinit(60)";
 assert_checkerror("eval(str)", errmsg);
 function o = blabla()
- o = 3;
+    o = 3;
 endfunction
 r = eval("blabla()");
 if r <> 3 then bugmes();quit;end

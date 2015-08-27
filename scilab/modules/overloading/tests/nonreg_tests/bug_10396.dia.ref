@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2011 - Scilab Enterprises - Sylvestre Ledru
@@ -16,9 +17,8 @@ a.toto = zeros(1,100000);
 a.titi = zeros(1,100000);
 tic();
 a
- a  =
- 
-   toto: [1x100000 constant]
-   titi: [1x100000 constant]
+a  = 
+  toto: [1x100000 constant]
+  titi: [1x100000 constant]
 timeSpent=toc();
 assert_checktrue(timeSpent<1);

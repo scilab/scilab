@@ -9,7 +9,7 @@ myMat =[     0.6029980    4.2470508    3.2442814    3.7427533
 1.4276821    2.6285304    4.9615955    2.0520295
 4.3037573    4.9656049    0.2502099    3.0422632  ];
 myMat = resize_matrix( myMat, 3, 3 ) // reduce the matrix size
-myMat  = 
+ myMat  = 
     0.6029980    4.2470508    3.2442814
     1.4276821    2.6285304    4.9615955
     4.3037573    4.9656049    0.2502099
@@ -23,7 +23,7 @@ refMat=int32([0,4,3,0;
 4,4,0,0;
 0,0,0,0]);
 myMatInteger = resize_matrix( myMat, 4, 4, "int32" ) // create an integer matrix
-myMatInteger  = 
+ myMatInteger  = 
   0  4  3  0
   1  2  4  0
   4  4  0  0

@@ -29,7 +29,7 @@ lp=ilib_for_link('mytest','mytest.c',[],'c');
    ilib_gen_Make: Modification of the Makefile in TMPDIR.
    Running the Makefile
    Generate a cleaner file
-link(lp,'mytest','c'); 
+link(lp,'mytest','c');
 Shared archive loaded.
 Link done.
 //run it

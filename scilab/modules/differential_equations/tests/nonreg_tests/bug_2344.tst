@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // <-- Non-regression test for bug 2344 -->
 //
 // <-- Bugzilla URL -->

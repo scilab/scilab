@@ -18,8 +18,7 @@ function mytestfunc()
 endfunction
 // =============================================================================
 exec(mytestfunc);
- 
- mytestfunc: called ok   
+ mytestfunc: called ok
 // =============================================================================
 mputl("a=1;b=2;",TMPDIR+"/myscript");
 ierr = execstr("exec(TMPDIR+''/myscript'',''toto'',''tata'');","errcatch");

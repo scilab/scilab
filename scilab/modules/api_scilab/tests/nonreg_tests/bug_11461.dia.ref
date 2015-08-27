@@ -12,7 +12,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=11461
 //
 // <-- Short Description -->
-//  
+//
 //  api_list was not able to create lists and sub lists with undefined items
 listRef = list();
 listRef(1) = 1;

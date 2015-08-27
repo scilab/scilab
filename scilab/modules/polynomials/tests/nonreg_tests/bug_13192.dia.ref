@@ -13,7 +13,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=13192
 //
 // <-- Short Description -->
-// Horner function returned an error message when the input arguments did not 
+// Horner function returned an error message when the input arguments did not
 // have the same size.
 s = %s;
 H = [1/s; 1/s; 1/(s+1)];

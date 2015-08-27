@@ -639,6 +639,12 @@ function status = test_single(_module, _testPath, _testName)
         execMode = "NW";
     end
 
+    if or(_module.wanted_mode == "NWNI") & isempty(grep(sciFile, "<-- CLI SHELL MODE -->")) then
+        status.id = 10;
+        status.message = "skipped: not CLI SHELL MODE test";
+        return;
+    end
+
     if ~isempty(grep(sciFile, "<-- JVM NOT MANDATORY -->")) then
         status.warning = _("option ""JVM NOT MANDATORY"" is deprecated, please use ""CLI SHELL MODE"" instead");
         jvm = %F;

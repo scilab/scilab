@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2008 - INRIA - Allan CORNET
@@ -16,7 +17,7 @@ write(%io(2),'toto');
 toto
 A = 1;
 write(%io(2),A);
-  1.0000000000D+00
+   1.0000000000D+00                                                     
 B = [1 2];
 write(%io(2),B);
-  1.0000000000D+00  2.0000000000D+00
+   1.0000000000D+00  2.0000000000D+00                                   

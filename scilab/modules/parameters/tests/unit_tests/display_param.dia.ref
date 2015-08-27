@@ -7,11 +7,10 @@
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 //
-// <-- JVM_NOT_MANDATORY -->
+//<-- CLI SHELL MODE -->
 // Forcing display
 test_list = init_param()
- test_list  =
- 
+ test_list  = 
 Parameters list:
 ================
 Number of fields = 0

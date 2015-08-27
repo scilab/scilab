@@ -1,3 +1,4 @@
+//<-- CLI SHELL MODE -->
 // =============================================================================
 // Scilab ( http://www.scilab.org/ ) - This file is part of Scilab
 // Copyright (C) 2013 - Scilab Enterprises - Simon MARCHETTO
@@ -13,7 +14,7 @@
 // http://bugzilla.scilab.org/show_bug.cgi?id=12393
 //
 // <-- Short Description -->
-// Replacment by common part during completion does not work
+// During completion replacment by common part of suggested words does not work
 ilib_verbose(0);
 ierr = exec(SCI + "/modules/completion/tests/utilities/build_primitives.sce", ..
     "errcatch", -1);

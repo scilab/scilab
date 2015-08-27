@@ -22,8 +22,8 @@ A = [
 -0.5434953999999999618709 -0.3191552999999999751246 0.8207168000000000240846  -1.0325953999999999410875 -1.1262562000000000406175
 ];
 function c = cond1 ( A )
-  SA = sparse ( A );
-  c = condestsp ( SA );
+    SA = sparse ( A );
+    c = condestsp ( SA );
 endfunction
 refCond = 7.0462354;
 Cond = cond1 ( A );

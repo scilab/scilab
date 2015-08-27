@@ -41,7 +41,6 @@ computed = optimsimplex_getfv( s1 , 3);
 assert_checkequal ( computed , 14.0 );
 // Print the simplex
 disp ( s1 );
- 
 Optim Simplex Object:
 =====================
 nbve: 3

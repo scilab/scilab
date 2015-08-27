@@ -6,6 +6,7 @@
 // you should have received as part of this distribution.  The terms
 // are also available at
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
+// <-- CLI SHELL MODE -->
 pop_in = list();
 pop_in(1) = 2;
 pop_out = coding_ga_identity(pop_in,'code',[]);
