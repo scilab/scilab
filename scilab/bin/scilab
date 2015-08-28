@@ -674,7 +674,7 @@ export GTK_MODULES
 # libEGL may be partially supported by the closed-source NVIDIA driver.
 # Until they release an EGL driver, we force the egl_glx driver.
 # http://bugzilla.scilab.org/show_bug.cgi?id=12940
-if test -x /usr/bin/glxinfo; then
+if test $SCILAB_MODE != "nwni" -a -x /usr/bin/glxinfo; then
     NVIDIA_GLX_VENDOR=$(/usr/bin/glxinfo |grep "NVIDIA Corporation")
     if test ! -z "$NVIDIA_GLX_VENDOR"; then
         EGL_DRIVER=egl_glx
