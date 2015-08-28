@@ -149,15 +149,15 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         pwstFile = expandPathVariableW(pS->get(0));
         pstFile = wide_string_to_UTF8(pwstFile);
         stFile = pstFile;
-        wstFile = pwstFile;
         file = new std::ifstream(pstFile);
 
         FREE(pstFile);
-        FREE(pwstFile);
 
         wchar_t* pwstTemp = (wchar_t*)MALLOC(sizeof(wchar_t) * (PATH_MAX * 2));
-        get_full_pathW(pwstTemp, wstFile.data(), PATH_MAX * 2);
+        get_full_pathW(pwstTemp, pwstFile, PATH_MAX * 2);
+        wstFile = pwstTemp;
 
+        FREE(pwstFile);
         /*fake call to mopen to show file within file()*/
         if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
@@ -371,7 +371,11 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
                 if (file)
                 {
                     delete pExp;
-                    mclose(iID);
+                    // Check if file has not already been closed (for ex mclose('all') in function)
+                    if (FileManager::isOpened(wstFile.data()) == true)
+                    {
+                        mclose(iID);
+                    }
                     file->close();
                     delete file;
                 }
