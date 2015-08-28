@@ -133,3 +133,13 @@ TL=tlist("x",1:$,2)
 list(TL)
 list(list(TL))
 TL(2)=TL
+
+// boolean
+%t
+%f
+b=[%t %t %t]
+~b
+bp=b'
+~bp
+bb=[b; b; b]
+~bb

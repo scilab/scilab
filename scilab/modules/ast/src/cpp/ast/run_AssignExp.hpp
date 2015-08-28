@@ -115,7 +115,7 @@ namespace ast {
                 {
                     std::wstring wstrName = pVar->getSymbol().getName();
                     std::wostringstream ostr;
-                    ostr << wstrName << L"  = " << std::endl << std::endl;
+                    ostr << L" " << wstrName << L"  = " << std::endl << std::endl;
                     scilabWriteW(ostr.str().c_str());
                     std::wostringstream ostrName;
                     ostrName << wstrName;
@@ -195,7 +195,7 @@ namespace ast {
                     if (e.isVerbose() && ConfigVariable::isPromptShow())
                     {
                         std::wostringstream ostr;
-                        ostr << *getStructNameFromExp(pCell) << L"  = " << std::endl;
+                        ostr << L" " << *getStructNameFromExp(pCell) << L"  = " << std::endl;
                         ostr << std::endl;
                         scilabWriteW(ostr.str().c_str());
 
@@ -356,7 +356,7 @@ namespace ast {
                 if (e.isVerbose() && ConfigVariable::isPromptShow())
                 {
                     std::wostringstream ostr;
-                    ostr << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
+                    ostr << L" " << *getStructNameFromExp(&pCall->getName()) << L"  = " << std::endl;
                     ostr << std::endl;
                     scilabWriteW(ostr.str().c_str());
 
@@ -496,7 +496,7 @@ namespace ast {
 
                     types::InternalType* pPrint = ctx->get(symbol::Symbol(*pstName));
                     std::wostringstream ostr;
-                    ostr << *pstName << L"  = " << std::endl << std::endl;
+                    ostr << L" " << *pstName << L"  = " << std::endl << std::endl;
                     scilabWriteW(ostr.str().c_str());
 
                     std::wostringstream ostrName;
