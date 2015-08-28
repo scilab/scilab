@@ -200,6 +200,7 @@ static void SWIGUNUSED SWIG_JavaThrowException(JNIEnv *jenv, SWIG_JavaExceptionC
 #define SWIG_contract_assert(nullreturn, expr, msg) if (!(expr)) {SWIG_JavaThrowException(jenv, SWIG_JavaIllegalArgumentException, msg); return nullreturn; } else
 
 
+#include "sci_malloc.h"
 #include "sci_home.h"
 #include "sci_tmpdir.h"
 #include "createtempfilename.h"
@@ -220,7 +221,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getS
   (void)jenv;
   (void)jcls;
   result = (char *)getSCIHOME();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   return jresult;
 }
 
@@ -232,7 +237,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getT
   (void)jenv;
   (void)jcls;
   result = (char *)getTMPDIR();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   return jresult;
 }
 
@@ -244,7 +253,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getl
   (void)jenv;
   (void)jcls;
   result = (char *)getlanguage();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   return jresult;
 }
 
@@ -264,7 +277,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_crea
   }
   arg2 = (int)jarg2; 
   result = (char *)createtempfilename((char const *)arg1,arg2);
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   if (arg1) (*jenv)->ReleaseStringUTFChars(jenv, jarg1, (const char *)arg1);
   return jresult;
 }
@@ -316,7 +333,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getf
   (void)jenv;
   (void)jcls;
   result = (char *)getformat();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   return jresult;
 }
 
@@ -388,7 +409,11 @@ SWIGEXPORT jstring JNICALL Java_org_scilab_modules_commons_ScilabCommonsJNI_getS
   (void)jenv;
   (void)jcls;
   result = (char *)getScilabVersionAsString();
-  if (result) jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+  if (result)
+  {
+    jresult = (*jenv)->NewStringUTF(jenv, (const char *)result);
+    FREE(result);
+  }
   return jresult;
 }
 
