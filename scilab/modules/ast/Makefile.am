@@ -56,7 +56,9 @@ src/cpp/parse/parsescilab.cpp \
 src/cpp/parse/printerror.cpp \
 src/cpp/parse/scanscilab.cpp \
 src/cpp/symbol/context.cpp \
+src/cpp/symbol/libraries.cpp \
 src/cpp/symbol/symbol.cpp \
+src/cpp/symbol/variables.cpp \
 src/cpp/system_env/configvariable.cpp \
 src/cpp/system_env/configvariable_interface.cpp \
 src/cpp/system_env/context_get.cpp \

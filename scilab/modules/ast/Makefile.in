@@ -209,7 +209,8 @@ am__libsciast_la_SOURCES_DIST = src/c/operations/doublecomplex.c \
 	src/cpp/operations/types_subtraction.cpp \
 	src/cpp/parse/parser.cpp src/cpp/parse/parsescilab.cpp \
 	src/cpp/parse/printerror.cpp src/cpp/parse/scanscilab.cpp \
-	src/cpp/symbol/context.cpp src/cpp/symbol/symbol.cpp \
+	src/cpp/symbol/context.cpp src/cpp/symbol/libraries.cpp \
+	src/cpp/symbol/symbol.cpp src/cpp/symbol/variables.cpp \
 	src/cpp/system_env/configvariable.cpp \
 	src/cpp/system_env/configvariable_interface.cpp \
 	src/cpp/system_env/context_get.cpp \
@@ -286,7 +287,9 @@ am_libsciast_la_OBJECTS =  \
 	src/cpp/parse/libsciast_la-printerror.lo \
 	src/cpp/parse/libsciast_la-scanscilab.lo \
 	src/cpp/symbol/libsciast_la-context.lo \
+	src/cpp/symbol/libsciast_la-libraries.lo \
 	src/cpp/symbol/libsciast_la-symbol.lo \
+	src/cpp/symbol/libsciast_la-variables.lo \
 	src/cpp/system_env/libsciast_la-configvariable.lo \
 	src/cpp/system_env/libsciast_la-configvariable_interface.lo \
 	src/cpp/system_env/libsciast_la-context_get.lo \
@@ -746,7 +749,8 @@ libsciast_la_SOURCES = src/c/operations/doublecomplex.c \
 	src/cpp/operations/types_subtraction.cpp \
 	src/cpp/parse/parser.cpp src/cpp/parse/parsescilab.cpp \
 	src/cpp/parse/printerror.cpp src/cpp/parse/scanscilab.cpp \
-	src/cpp/symbol/context.cpp src/cpp/symbol/symbol.cpp \
+	src/cpp/symbol/context.cpp src/cpp/symbol/libraries.cpp \
+	src/cpp/symbol/symbol.cpp src/cpp/symbol/variables.cpp \
 	src/cpp/system_env/configvariable.cpp \
 	src/cpp/system_env/configvariable_interface.cpp \
 	src/cpp/system_env/context_get.cpp \
@@ -1319,7 +1323,13 @@ src/cpp/symbol/$(DEPDIR)/$(am__dirstamp):
 src/cpp/symbol/libsciast_la-context.lo:  \
 	src/cpp/symbol/$(am__dirstamp) \
 	src/cpp/symbol/$(DEPDIR)/$(am__dirstamp)
+src/cpp/symbol/libsciast_la-libraries.lo:  \
+	src/cpp/symbol/$(am__dirstamp) \
+	src/cpp/symbol/$(DEPDIR)/$(am__dirstamp)
 src/cpp/symbol/libsciast_la-symbol.lo: src/cpp/symbol/$(am__dirstamp) \
+	src/cpp/symbol/$(DEPDIR)/$(am__dirstamp)
+src/cpp/symbol/libsciast_la-variables.lo:  \
+	src/cpp/symbol/$(am__dirstamp) \
 	src/cpp/symbol/$(DEPDIR)/$(am__dirstamp)
 src/cpp/system_env/$(am__dirstamp):
 	@$(MKDIR_P) src/cpp/system_env
@@ -1522,7 +1532,9 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-printerror.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/parse/$(DEPDIR)/libsciast_la-scanscilab.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/symbol/$(DEPDIR)/libsciast_la-context.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/symbol/$(DEPDIR)/libsciast_la-libraries.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/symbol/$(DEPDIR)/libsciast_la-symbol.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/symbol/$(DEPDIR)/libsciast_la-variables.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable_interface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/system_env/$(DEPDIR)/libsciast_la-context_get.Plo@am__quote@
@@ -1914,12 +1926,26 @@ src/cpp/symbol/libsciast_la-context.lo: src/cpp/symbol/context.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/symbol/libsciast_la-context.lo `test -f 'src/cpp/symbol/context.cpp' || echo '$(srcdir)/'`src/cpp/symbol/context.cpp
 
+src/cpp/symbol/libsciast_la-libraries.lo: src/cpp/symbol/libraries.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/symbol/libsciast_la-libraries.lo -MD -MP -MF src/cpp/symbol/$(DEPDIR)/libsciast_la-libraries.Tpo -c -o src/cpp/symbol/libsciast_la-libraries.lo `test -f 'src/cpp/symbol/libraries.cpp' || echo '$(srcdir)/'`src/cpp/symbol/libraries.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/symbol/$(DEPDIR)/libsciast_la-libraries.Tpo src/cpp/symbol/$(DEPDIR)/libsciast_la-libraries.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/symbol/libraries.cpp' object='src/cpp/symbol/libsciast_la-libraries.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/symbol/libsciast_la-libraries.lo `test -f 'src/cpp/symbol/libraries.cpp' || echo '$(srcdir)/'`src/cpp/symbol/libraries.cpp
+
 src/cpp/symbol/libsciast_la-symbol.lo: src/cpp/symbol/symbol.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/symbol/libsciast_la-symbol.lo -MD -MP -MF src/cpp/symbol/$(DEPDIR)/libsciast_la-symbol.Tpo -c -o src/cpp/symbol/libsciast_la-symbol.lo `test -f 'src/cpp/symbol/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol/symbol.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/symbol/$(DEPDIR)/libsciast_la-symbol.Tpo src/cpp/symbol/$(DEPDIR)/libsciast_la-symbol.Plo
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/symbol/symbol.cpp' object='src/cpp/symbol/libsciast_la-symbol.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/symbol/libsciast_la-symbol.lo `test -f 'src/cpp/symbol/symbol.cpp' || echo '$(srcdir)/'`src/cpp/symbol/symbol.cpp
+
+src/cpp/symbol/libsciast_la-variables.lo: src/cpp/symbol/variables.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/symbol/libsciast_la-variables.lo -MD -MP -MF src/cpp/symbol/$(DEPDIR)/libsciast_la-variables.Tpo -c -o src/cpp/symbol/libsciast_la-variables.lo `test -f 'src/cpp/symbol/variables.cpp' || echo '$(srcdir)/'`src/cpp/symbol/variables.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/symbol/$(DEPDIR)/libsciast_la-variables.Tpo src/cpp/symbol/$(DEPDIR)/libsciast_la-variables.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/symbol/variables.cpp' object='src/cpp/symbol/libsciast_la-variables.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/symbol/libsciast_la-variables.lo `test -f 'src/cpp/symbol/variables.cpp' || echo '$(srcdir)/'`src/cpp/symbol/variables.cpp
 
 src/cpp/system_env/libsciast_la-configvariable.lo: src/cpp/system_env/configvariable.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libsciast_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/system_env/libsciast_la-configvariable.lo -MD -MP -MF src/cpp/system_env/$(DEPDIR)/libsciast_la-configvariable.Tpo -c -o src/cpp/system_env/libsciast_la-configvariable.lo `test -f 'src/cpp/system_env/configvariable.cpp' || echo '$(srcdir)/'`src/cpp/system_env/configvariable.cpp

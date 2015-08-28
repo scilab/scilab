@@ -465,7 +465,9 @@ lib /DEF:"$(ProjectDir)string_import.def" /SUBSYSTEM:WINDOWS /MACHINE:$(Platform
     <ClCompile Include="src\cpp\parse\printerror.cpp" />
     <ClCompile Include="src\cpp\parse\scanscilab.cpp" />
     <ClCompile Include="src\cpp\symbol\context.cpp" />
+    <ClCompile Include="src\cpp\symbol\libraries.cpp" />
     <ClCompile Include="src\cpp\symbol\symbol.cpp" />
+    <ClCompile Include="src\cpp\symbol\variables.cpp" />
     <ClCompile Include="src\cpp\system_env\configvariable.cpp" />
     <ClCompile Include="src\cpp\system_env\configvariable_interface.cpp" />
     <ClCompile Include="src\cpp\system_env\context_get.cpp" />

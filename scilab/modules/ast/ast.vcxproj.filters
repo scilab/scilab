@@ -882,5 +882,11 @@
     <ClCompile Include="src\cpp\system_env\numericconstants_interface.cpp">
       <Filter>Source Files\system_env</Filter>
     </ClCompile>
+    <ClCompile Include="src\cpp\symbol\libraries.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\symbol\variables.cpp">
+      <Filter>Source Files\symbol</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

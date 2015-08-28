@@ -28,6 +28,9 @@ namespace types
 Library::Library(const std::wstring& _wstPath) :
     m_wstPath(_wstPath)
 {
+#ifndef NDEBUG
+    Inspector::addItem(this);
+#endif
 }
 
 Library::~Library()
@@ -44,6 +47,9 @@ Library::~Library()
     }
 
     m_macros.clear();
+#ifndef NDEBUG
+    Inspector::removeItem(this);
+#endif
 }
 
 bool Library::toString(std::wostringstream& ostr)
