@@ -99,6 +99,8 @@ wchar_t *getLanguagePreferences(void)
             {
                 return LanguageAllUsers;
             }
+
+            FREE(LanguageAllUsers);
         }
     }
     else
@@ -107,6 +109,8 @@ wchar_t *getLanguagePreferences(void)
         {
             return LanguageUser;
         }
+
+        FREE(LanguageUser);
     }
     return os_wcsdup(L"");
 }
