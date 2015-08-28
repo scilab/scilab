@@ -29,6 +29,8 @@ Scilab Bug Fixes
 
 * Bug #14020 fixed - Incorrect carriage return ascii code.
 
+* Bug #14023 fixed - It was not possible to concatenate cells.
+
 * Bug #14025 fixed - head_comments did not take into account compiled functions.
 
 * Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.

@@ -8,15 +8,9 @@
 // http://www.cecill.info/licences/Licence_CeCILL_V2.1-en.txt
 
 function R=%ce_t(M)
-    D=double(M.dims)
-    if size(D,"*")>2 then
+    D = size(M);
+    if size(D,"*") > 2 then
         error(msprintf(_("%s: Wrong size for input argument #%d: Transpose can not be defined.\n"),"%ce_t",1));
     end
-    NewInd=matrix(matrix(1:prod(D),D)',1,-1)
-    F=getfield(1,M)
-    R=mlist(F,int32([D(2) D(1)]))
-    for k=3:size(F,"*")
-        v=getfield(k,M)
-        setfield(k,list(v(NewInd)),R)
-    end
+    R = makecell([D(2) D(1)], M{:}(:));
 endfunction
