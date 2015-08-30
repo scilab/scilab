@@ -107,6 +107,19 @@
         }                                                       \
     }
 
+#define SetTree(PTR)					\
+    {									\
+        if(ParserSingleInstance::getExitStatus() == Parser::Failed)	\
+        {								\
+            delete PTR;							\
+	    ParserSingleInstance::setTree(nullptr);			\
+        }								\
+	else								\
+	{								\
+	    ParserSingleInstance::setTree(PTR);				\
+	}								\
+    }
+
 
 
 
@@ -710,48 +723,48 @@ static const yytype_uint8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint16 yyrline[] =
 {
-    0,   319,   319,   320,   321,   329,   343,   346,   351,   357,
-    363,   377,   387,   395,   404,   422,   423,   424,   425,   426,
-    427,   435,   436,   437,   438,   439,   440,   441,   442,   443,
-    444,   445,   446,   447,   448,   449,   462,   467,   483,   484,
-    489,   494,   499,   500,   501,   502,   503,   509,   510,   511,
-    512,   520,   522,   533,   534,   535,   536,   559,   563,   567,
-    571,   575,   580,   585,   590,   595,   600,   604,   608,   612,
-    616,   635,   646,   654,   663,   672,   683,   691,   700,   709,
-    720,   728,   737,   746,   757,   765,   774,   783,   794,   802,
-    811,   820,   831,   839,   848,   864,   872,   873,   874,   882,
-    887,   899,   900,   901,   902,   903,   911,   916,   930,   931,
-    939,   944,   957,   958,   959,   961,   962,   963,   965,   966,
-    967,   969,   970,   971,   973,   974,   975,   977,   978,   979,
-    981,   982,   983,   985,   986,   987,   989,   990,   991,   993,
-    994,   995,  1003,  1009,  1015,  1016,  1017,  1018,  1019,  1020,
-    1021,  1022,  1023,  1024,  1025,  1026,  1027,  1028,  1029,  1030,
-    1039,  1040,  1042,  1043,  1045,  1046,  1047,  1048,  1049,  1050,
-    1051,  1052,  1054,  1055,  1056,  1057,  1058,  1059,  1060,  1061,
-    1063,  1064,  1065,  1066,  1067,  1068,  1069,  1070,  1078,  1079,
-    1087,  1088,  1089,  1097,  1098,  1099,  1100,  1101,  1106,  1107,
-    1108,  1113,  1117,  1121,  1122,  1123,  1124,  1125,  1126,  1127,
-    1128,  1129,  1130,  1131,  1132,  1133,  1134,  1135,  1136,  1144,
-    1148,  1152,  1157,  1162,  1167,  1178,  1179,  1180,  1184,  1188,
-    1193,  1198,  1199,  1208,  1209,  1210,  1214,  1218,  1223,  1228,
-    1229,  1237,  1241,  1254,  1255,  1256,  1257,  1265,  1266,  1274,
-    1278,  1282,  1286,  1290,  1294,  1298,  1302,  1313,  1314,  1322,
-    1323,  1324,  1325,  1327,  1328,  1330,  1331,  1340,  1341,  1342,
-    1347,  1348,  1349,  1354,  1355,  1356,  1357,  1364,  1373,  1374,
-    1384,  1392,  1397,  1411,  1416,  1432,  1433,  1434,  1435,  1436,
-    1444,  1445,  1446,  1447,  1448,  1449,  1457,  1458,  1459,  1460,
-    1461,  1462,  1470,  1475,  1488,  1503,  1504,  1514,  1515,  1533,
-    1534,  1542,  1543,  1544,  1545,  1546,  1547,  1548,  1556,  1557,
-    1565,  1566,  1567,  1568,  1569,  1577,  1581,  1585,  1589,  1593,
-    1597,  1604,  1609,  1623,  1624,  1625,  1626,  1627,  1628,  1629,
-    1630,  1631,  1632,  1633,  1634,  1642,  1643,  1651,  1652,  1661,
-    1662,  1663,  1664,  1665,  1666,  1667,  1668,  1672,  1677,  1691,
-    1699,  1704,  1718,  1719,  1720,  1721,  1722,  1723,  1724,  1725,
-    1726,  1727,  1728,  1729,  1730,  1731,  1732,  1733,  1734,  1735,
-    1743,  1744,  1758,  1763,  1768,  1773,  1778,  1785,  1799,  1800,
-    1801,  1808,  1809,  1817,  1818,  1826,  1827,  1828,  1829,  1830,
-    1831,  1832,  1833,  1834,  1835,  1836,  1837,  1838,  1839,  1840,
-    1841,  1842,  1843,  1844,  1845
+    0,   339,   339,   340,   341,   349,   363,   366,   371,   377,
+    383,   397,   407,   415,   424,   442,   443,   444,   445,   446,
+    447,   455,   456,   457,   458,   459,   460,   461,   462,   463,
+    464,   465,   466,   467,   468,   469,   482,   487,   503,   504,
+    509,   514,   519,   520,   521,   522,   523,   529,   530,   531,
+    532,   540,   542,   553,   554,   555,   556,   579,   583,   587,
+    591,   595,   600,   605,   610,   615,   620,   624,   628,   632,
+    636,   655,   666,   674,   683,   692,   703,   711,   720,   729,
+    740,   748,   757,   766,   777,   785,   794,   803,   814,   822,
+    831,   840,   851,   859,   868,   884,   892,   893,   894,   902,
+    907,   919,   920,   921,   922,   923,   931,   936,   950,   951,
+    959,   964,   977,   978,   979,   981,   982,   983,   985,   986,
+    987,   989,   990,   991,   993,   994,   995,   997,   998,   999,
+    1001,  1002,  1003,  1005,  1006,  1007,  1009,  1010,  1011,  1013,
+    1014,  1015,  1023,  1029,  1035,  1036,  1037,  1038,  1039,  1040,
+    1041,  1042,  1043,  1044,  1045,  1046,  1047,  1048,  1049,  1050,
+    1059,  1060,  1062,  1063,  1065,  1066,  1067,  1068,  1069,  1070,
+    1071,  1072,  1074,  1075,  1076,  1077,  1078,  1079,  1080,  1081,
+    1083,  1084,  1085,  1086,  1087,  1088,  1089,  1090,  1098,  1099,
+    1107,  1108,  1109,  1117,  1118,  1119,  1120,  1121,  1126,  1127,
+    1128,  1133,  1137,  1141,  1142,  1143,  1144,  1145,  1146,  1147,
+    1148,  1149,  1150,  1151,  1152,  1153,  1154,  1155,  1156,  1164,
+    1168,  1172,  1177,  1182,  1187,  1198,  1199,  1200,  1204,  1208,
+    1213,  1218,  1219,  1228,  1229,  1230,  1234,  1238,  1243,  1248,
+    1249,  1257,  1261,  1274,  1275,  1276,  1277,  1285,  1286,  1294,
+    1298,  1302,  1306,  1310,  1314,  1318,  1322,  1333,  1334,  1342,
+    1343,  1344,  1345,  1347,  1348,  1350,  1351,  1360,  1361,  1362,
+    1367,  1368,  1369,  1374,  1375,  1376,  1377,  1384,  1393,  1394,
+    1404,  1412,  1417,  1431,  1436,  1452,  1453,  1454,  1455,  1456,
+    1464,  1465,  1466,  1467,  1468,  1469,  1477,  1478,  1479,  1480,
+    1481,  1482,  1490,  1495,  1508,  1523,  1524,  1534,  1535,  1553,
+    1554,  1562,  1563,  1564,  1565,  1566,  1567,  1568,  1576,  1577,
+    1585,  1586,  1587,  1588,  1589,  1597,  1601,  1605,  1609,  1613,
+    1617,  1624,  1629,  1643,  1644,  1645,  1646,  1647,  1648,  1649,
+    1650,  1651,  1652,  1653,  1654,  1662,  1663,  1671,  1672,  1681,
+    1682,  1683,  1684,  1685,  1686,  1687,  1688,  1692,  1697,  1711,
+    1719,  1724,  1738,  1739,  1740,  1741,  1742,  1743,  1744,  1745,
+    1746,  1747,  1748,  1749,  1750,  1751,  1752,  1753,  1754,  1755,
+    1763,  1764,  1778,  1783,  1788,  1793,  1798,  1805,  1819,  1820,
+    1821,  1828,  1829,  1837,  1838,  1846,  1847,  1848,  1849,  1850,
+    1851,  1852,  1853,  1854,  1855,  1856,  1857,  1858,  1859,  1860,
+    1861,  1862,  1863,  1864,  1865
 };
 #endif
 
@@ -2238,7 +2251,7 @@ yytnamerr (char *yyres, const char *yystr)
                     {
                         goto do_not_strip_quotes;
                     }
-                    /* Fall through.  */
+                /* Fall through.  */
                 default:
                     if (yyres)
                     {
@@ -2425,7 +2438,490 @@ yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, YYLTYPE *yylocatio
     YY_SYMBOL_PRINT (yymsg, yytype, yyvaluep, yylocationp);
 
     YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
-    YYUSE (yytype);
+    switch (yytype)
+    {
+        case 70: /* "string"  */
+
+        {
+            delete ((*yyvaluep).str);
+        }
+
+        break;
+
+        case 71: /* "identifier"  */
+
+        {
+            delete ((*yyvaluep).str);
+        }
+
+        break;
+
+        case 72: /* "integer"  */
+
+        { }
+
+        break;
+
+        case 73: /* "float"  */
+
+        { }
+
+        break;
+
+        case 74: /* "number"  */
+
+        { }
+
+        break;
+
+        case 75: /* "path"  */
+
+        {
+            delete ((*yyvaluep).path);
+        }
+
+        break;
+
+        case 76: /* "line comment"  */
+
+        {
+            delete ((*yyvaluep).comment);
+        }
+
+        break;
+
+        case 77: /* "block comment"  */
+
+        {
+            delete ((*yyvaluep).comment);
+        }
+
+        break;
+
+        case 87: /* expressions  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 88: /* recursiveExpression  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_exp))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_exp);
+        }
+
+        break;
+
+        case 89: /* expressionLineBreak  */
+
+        {
+            delete ((*yyvaluep).mute);
+        }
+
+        break;
+
+        case 90: /* expression  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 91: /* implicitFunctionCall  */
+
+        {
+            delete ((*yyvaluep).t_call_exp);
+        }
+
+        break;
+
+        case 92: /* implicitCallable  */
+
+        {
+            delete ((*yyvaluep).t_string_exp);
+        }
+
+        break;
+
+        case 93: /* functionCall  */
+
+        {
+            delete ((*yyvaluep).t_call_exp);
+        }
+
+        break;
+
+        case 94: /* simpleFunctionCall  */
+
+        {
+            delete ((*yyvaluep).t_call_exp);
+        }
+
+        break;
+
+        case 95: /* functionArgs  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_exp))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_exp);
+        }
+
+        break;
+
+        case 96: /* functionDeclaration  */
+
+        {
+            delete ((*yyvaluep).t_function_dec);
+        }
+
+        break;
+
+        case 97: /* functionDeclarationReturns  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_var))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_var);
+        }
+
+        break;
+
+        case 98: /* functionDeclarationArguments  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_var))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_var);
+        }
+
+        break;
+
+        case 99: /* idList  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_var))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_var);
+        }
+
+        break;
+
+        case 101: /* functionBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 102: /* condition  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 103: /* comparison  */
+
+        {
+            delete ((*yyvaluep).t_op_exp);
+        }
+
+        break;
+
+        case 104: /* rightComparable  */
+
+        {
+            delete ((*yyvaluep).t_op_exp);
+        }
+
+        break;
+
+        case 105: /* operation  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 106: /* rightOperand  */
+
+        {
+            delete ((*yyvaluep).t_op_exp);
+        }
+
+        break;
+
+        case 107: /* listableBegin  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 108: /* listableEnd  */
+
+        {
+            delete ((*yyvaluep).t_implicit_list);
+        }
+
+        break;
+
+        case 109: /* variable  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 110: /* variableFields  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_exp))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_exp);
+        }
+
+        break;
+
+        case 111: /* cell  */
+
+        {
+            delete ((*yyvaluep).t_cell_exp);
+        }
+
+        break;
+
+        case 112: /* matrix  */
+
+        {
+            delete ((*yyvaluep).t_matrix_exp);
+        }
+
+        break;
+
+        case 113: /* matrixOrCellLines  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_mline))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_mline);
+        }
+
+        break;
+
+        case 115: /* matrixOrCellLine  */
+
+        {
+            delete ((*yyvaluep).t_matrixline_exp);
+        }
+
+        break;
+
+        case 116: /* matrixOrCellColumns  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_exp))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_exp);
+        }
+
+        break;
+
+        case 118: /* variableDeclaration  */
+
+        {
+            delete ((*yyvaluep).t_assign_exp);
+        }
+
+        break;
+
+        case 119: /* assignable  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 120: /* multipleResults  */
+
+        {
+            delete ((*yyvaluep).t_assignlist_exp);
+        }
+
+        break;
+
+        case 121: /* ifControl  */
+
+        {
+            delete ((*yyvaluep).t_if_exp);
+        }
+
+        break;
+
+        case 122: /* thenBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 123: /* elseBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 127: /* elseIfControl  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 128: /* selectControl  */
+
+        {
+            delete ((*yyvaluep).t_select_exp);
+        }
+
+        break;
+
+        case 131: /* selectable  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 133: /* casesControl  */
+
+        {
+            for (auto e : * ((*yyvaluep).t_list_case))
+            {
+                delete e;
+            }
+            delete ((*yyvaluep).t_list_case);
+        }
+
+        break;
+
+        case 134: /* caseBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 136: /* forControl  */
+
+        {
+            delete ((*yyvaluep).t_for_exp);
+        }
+
+        break;
+
+        case 137: /* forIterator  */
+
+        {
+            delete ((*yyvaluep).t_exp);
+        }
+
+        break;
+
+        case 139: /* forBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 140: /* whileControl  */
+
+        {
+            delete ((*yyvaluep).t_while_exp);
+        }
+
+        break;
+
+        case 141: /* whileBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 143: /* tryControl  */
+
+        {
+            delete ((*yyvaluep).t_try_exp);
+        }
+
+        break;
+
+        case 144: /* catchBody  */
+
+        {
+            delete ((*yyvaluep).t_seq_exp);
+        }
+
+        break;
+
+        case 145: /* returnControl  */
+
+        {
+            delete ((*yyvaluep).t_return_exp);
+        }
+
+        break;
+
+        case 148: /* keywords  */
+
+        {
+            delete ((*yyvaluep).t_simple_var);
+        }
+
+        break;
+
+
+        default:
+            break;
+    }
     YY_IGNORE_MAYBE_UNINITIALIZED_END
 }
 
@@ -2729,7 +3225,7 @@ yyreduce:
         case 2:
 
         {
-            ParserSingleInstance::setTree((yyvsp[0].t_seq_exp));
+            SetTree((yyvsp[0].t_seq_exp));
         }
 
         break;
@@ -2737,7 +3233,7 @@ yyreduce:
         case 3:
 
         {
-            ParserSingleInstance::setTree((yyvsp[0].t_seq_exp));
+            SetTree((yyvsp[0].t_seq_exp));
         }
 
         break;
@@ -2749,7 +3245,7 @@ yyreduce:
 #ifdef BUILD_DEBUG_AST
             tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body");
 #endif
-                                               ParserSingleInstance::setTree(new ast::SeqExp((yyloc), *tmp));
+                                               SetTree(new ast::SeqExp((yyloc), *tmp));
                                                delete (yyvsp[0].mute);
         }
 
@@ -2762,7 +3258,7 @@ yyreduce:
 #ifdef BUILD_DEBUG_AST
             tmp->push_back(new ast::CommentExp((yyloc), new std::wstring(L"Empty body")));
 #endif
-            ParserSingleInstance::setTree(new ast::SeqExp((yyloc), *tmp));
+            SetTree(new ast::SeqExp((yyloc), *tmp));
         }
 
         break;
@@ -6713,6 +7209,7 @@ void yyerror(std::string msg)
         wchar_t* pstMsg = to_wide_string(msg.c_str());
         ParserSingleInstance::PrintError(pstMsg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
+        delete ParserSingleInstance::getTree();
         FREE(pstMsg);
     }
 }

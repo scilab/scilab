@@ -42,6 +42,19 @@
         }                                                       \
     }
 
+#define SetTree(PTR)					\
+    {									\
+        if(ParserSingleInstance::getExitStatus() == Parser::Failed)	\
+        {								\
+            delete PTR;							\
+	    ParserSingleInstance::setTree(nullptr);			\
+        }								\
+	else								\
+	{								\
+	    ParserSingleInstance::setTree(PTR);				\
+	}								\
+    }
+ 
 
 %}
 
@@ -106,6 +119,13 @@
 
     ast::SimpleVar*             t_simple_var;
 }
+
+%destructor { delete $$; } <*>
+%destructor { } <number>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_var>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_exp>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_case>
+%destructor { for (auto e : *$$) delete e; delete $$; } <t_list_mline>
 
 %token YYEOF    0	"end of file"
 
@@ -316,22 +336,22 @@
 */
 /* Root of the Abstract Syntax Tree */
 program:
-expressions                     { ParserSingleInstance::setTree($1); }
-| EOL expressions 				{ ParserSingleInstance::setTree($2); }
+expressions                     { SetTree($1); }
+| EOL expressions 		{ SetTree($2); }
 | expressionLineBreak           {
                                   ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
                                       tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body");
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
-				  delete $1;
+                                  SetTree(new ast::SeqExp(@$, *tmp));
+				  delete $1; 
                                 }
 | /* Epsilon */                 {
                                   ast::exps_t* tmp = new ast::exps_t;
                                   #ifdef BUILD_DEBUG_AST
                                       tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body")));
                                   #endif
-                                  ParserSingleInstance::setTree(new ast::SeqExp(@$, *tmp));
+                                  SetTree(new ast::SeqExp(@$, *tmp));
                                 }
 ;
 
@@ -446,7 +466,7 @@ functionDeclaration				{ $$ = $1; }
 | CONTINUE					{ $$ = new ast::ContinueExp(@$); }
 | returnControl					{ $$ = $1; }
 | COMMENT					{ $$ = new ast::CommentExp(@$, $1); }
-| error						{
+| error					        {
   $$ = new ast::CommentExp(@$, new std::wstring(L"@@ ERROR RECOVERY @@"));
   StopOnError();
   }
@@ -1853,6 +1873,7 @@ void yyerror(std::string msg) {
         wchar_t* pstMsg = to_wide_string(msg.c_str());
         ParserSingleInstance::PrintError(pstMsg);
         ParserSingleInstance::setExitStatus(Parser::Failed);
+	delete ParserSingleInstance::getTree();
         FREE(pstMsg);
     }
 }

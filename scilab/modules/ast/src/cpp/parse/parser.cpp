@@ -98,6 +98,7 @@ void ParserSingleInstance::parseFile(const std::wstring& fileName, const std::ws
     ParserSingleInstance::setFileName(fileName);
     ParserSingleInstance::setProgName(progName);
 
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -135,6 +136,12 @@ void Parser::parse(const char *command)
     {
         //set parser last token to EOF
         scan_throw(YYEOF);
+    }
+
+    if (getExitStatus() != Parser::Succeded)
+    {
+        delete ParserSingleInstance::getTree();
+        ParserSingleInstance::setTree(nullptr);
     }
 
     // FIXME : UNLOCK
@@ -207,6 +214,7 @@ void ParserSingleInstance::parse(const char *command)
 
     ParserSingleInstance::disableStrictMode();
     ParserSingleInstance::setFileName(L"prompt");
+    ParserSingleInstance::setTree(nullptr);
     ParserSingleInstance::setExitStatus(Parser::Succeded);
     ParserSingleInstance::resetControlStatus();
     ParserSingleInstance::resetErrorMessage();
@@ -271,8 +279,8 @@ std::wstring ParserSingleInstance::_prog_name;
 std::wstring ParserSingleInstance::_error_message;
 bool ParserSingleInstance::_strict_mode = false;
 bool ParserSingleInstance::_stop_on_first_error = false;
-ast::Exp* ParserSingleInstance::_the_program = NULL;
+ast::Exp* ParserSingleInstance::_the_program = nullptr;
 Parser::ParserStatus ParserSingleInstance::_exit_status = Parser::Succeded;
 std::list<Parser::ControlStatus> ParserSingleInstance::_control_status;
-FILE* ParserSingleInstance::fileLocker = NULL;
+FILE* ParserSingleInstance::fileLocker = nullptr;
 
