@@ -795,7 +795,6 @@ function status = test_single(_module, _testPath, _testName)
         winbin = "scilex.exe";
         mode_arg = "-nwni";
     elseif _module.wanted_mode == ["NWNI" "PROFILING"] && getos() == "Linux" then
-        winbin = "scilex.exe";
         mode_arg = "-nwni -profiling";
         valgrind_opt = "SCILAB_VALGRIND_OPT=""--log-file=" + tmp_prof + " """;
     else
@@ -819,10 +818,8 @@ function status = test_single(_module, _testPath, _testName)
     //language
     if language == "any" then
         language_arg = "";
-    elseif getos() == "Windows" then
-        language_arg = "-l "+ language;
     else
-        language_arg = "LANG=" + language + " ";
+        language_arg = "-l "+ language;
     end
 
     loader_path = pathconvert(fullfile(_module.moduleName, "loader.sce"), %f);
@@ -836,9 +833,9 @@ function status = test_single(_module, _testPath, _testName)
         end
     else
         if (isdir(_module.moduleName) & isfile(loader_path))
-            test_cmd = "( " + valgrind_opt + language_arg + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -e ""exec(''" + loader_path + "'');exec(''" + tmp_tst +"'');""" + " > " + tmp_res + " ) 2> " + tmp_err;
         else
-            test_cmd = "( " + valgrind_opt + language_arg + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
+            test_cmd = "( " + valgrind_opt + " " + prefix_bin + " " + SCI_BIN + "/bin/scilab " + mode_arg + " " + language_arg + " -nb -f " + tmp_tst + " > " + tmp_res + " ) 2> " + tmp_err;
         end
     end
 
