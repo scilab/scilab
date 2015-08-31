@@ -58,6 +58,9 @@ function test_run_result = test_run(varargin)
     if rhs >= 3 then
 
         option_mat = varargin(3);
+        if (option_mat == "[]")
+            option_mat = [];
+        end
         if (check_option(option_mat, "unit_tests") & check_option(option_mat, "nonreg_tests")) | check_option(option_mat, "all_tests") then
             params.testTypes = "all_tests";
         elseif check_option(option_mat, "unit_tests") then
@@ -141,8 +144,8 @@ function test_run_result = test_run(varargin)
     // Management of the tests to run
     // =======================================================
     if (rhs == 0) ..
-        | ((rhs == 1) & (varargin(1)==[])) ..
-        | (((rhs == 2)|(rhs == 3)|(rhs == 4)) & (varargin(1)==[]) & (varargin(2)==[])) then
+        | ((rhs == 1) & (varargin(1)==[] | varargin(1)=="[]")) ..
+        | (rhs >= 2 & rhs <= 4) & ( varargin(1)==[]|varargin(1)=="[]") & (varargin(2)==[]|varargin(2)=="[]") then
 
 
         // No input argument
@@ -182,9 +185,9 @@ function test_run_result = test_run(varargin)
         end
 
     elseif (rhs == 1) ..
-        | ((rhs == 2) & (varargin(2)==[])) ..
-        | ((rhs == 3) & (varargin(2)==[])) ..
-        | ((rhs == 4) & (varargin(2)==[])) ..
+        | ((rhs == 2) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 3) & (varargin(2)==[] || varargin(2)=="[]")) ..
+        | ((rhs == 4) & (varargin(2)==[] || varargin(2)=="[]")) ..
         | ( ~ isempty(params.skip_mat)) then
 
         // One input argument

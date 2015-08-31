@@ -38,7 +38,7 @@
                 <term>module</term>
                 <listitem>
                     <para>
-                        A String array or <literal>[]</literal>. Name of the modules or directory for the tests, all internal modules if <literal>[]</literal>
+                        A String array or <literal>[]</literal> (or equivalently <literal>"[]"</literal>). Name of the modules or directory for the tests, all internal modules if <literal>[]</literal>
                     </para>
                     <itemizedlist>
                         <listitem>
@@ -63,7 +63,7 @@
                 <term>test_name</term>
                 <listitem>
                     <para>
-                        A string array or []. The names of the tests to execute during this run. If <literal>[]</literal> executes all tests found.
+                        A string array or <literal>[]</literal> (or equivalently <literal>"[]"</literal>). The names of the tests to execute during this run. If <literal>[]</literal> executes all tests found.
                     </para>
                 </listitem>
             </varlistentry>
@@ -71,7 +71,7 @@
                 <term>options</term>
                 <listitem>
                     <para>
-                        A string array or <literal>[]</literal>. The options for the tests during this run, default options if <literal>[]</literal>.
+                        A string array or <literal>[]</literal> or <literal>"[]"</literal>. The options for the tests during this run, default options if <literal>[]</literal> or <literal>"[]"</literal>.
                     </para>
                     <variablelist> or
                         <varlistentry>
@@ -392,11 +392,14 @@
         <title>Examples</title>
         <programlisting role="example"><![CDATA[
 // Launch all tests
+// This may take some time
 // =============================================
 
-test_run();
-test_run([]);
-test_run([],[]);
+// test_run();
+// test_run([]);
+// test_run([],[]);
+// test_run("[]","[]");
+// test_run [] [];
 
 // Test one or several module
 // =============================================
@@ -453,13 +456,16 @@ test_run('boolean','bug_2799','no_check_error_output');
 
 // Combine several options
 test_run([],[],['no_check_ref','mode_nw']);
+
+// Console mode
+test_run time [] no_check_ref //tests time module with no_check_ref option
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Run unitary tests of an external module (with his path)
 test_run('SCI/contrib/toolbox_skeleton')
  ]]></programlisting>
-        
+
         <programlisting role="example"><![CDATA[
 // Export to a XML Xunit file
 test_run('boolean',[],[],TMPDIR+"/boolean_test_run.xml");

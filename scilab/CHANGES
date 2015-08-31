@@ -267,6 +267,7 @@ Modified Functions
 * ode: y0 is restricted to a column vector.
 * pppdiv: Return a scalar of type 'constant' when the rank is 0.
 * pdiv: Return a matrix of type 'constant' when all the rank are 0.
+* test_run can now take "[]" as argument to be used on console; for instance: test_run string [] no_check_ref
 
 
 Syntax Modifications
