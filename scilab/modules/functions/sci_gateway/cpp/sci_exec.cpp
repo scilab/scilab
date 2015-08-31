@@ -161,6 +161,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         /*fake call to mopen to show file within file()*/
         if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
+            delete file;
             FREE(pwstTemp);
             Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
             return Function::Error;

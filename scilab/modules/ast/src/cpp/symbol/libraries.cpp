@@ -172,8 +172,6 @@ bool Libraries::remove(const Symbol& _key, int _iLevel)
             if (it->second->top()->m_iLevel == _iLevel)
             {
                 ScopedLibrary * pSL = it->second->top();
-                types::Library* pIT = pSL->m_pLib;
-                pIT->killMe();
                 it->second->pop();
                 delete pSL;
                 return true;
