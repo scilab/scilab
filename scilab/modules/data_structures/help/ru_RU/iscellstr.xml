@@ -54,9 +54,9 @@ iscellstr(cell())
 iscellstr(cell(3))
  
 strcell = cell(3,1);
-strcell(1).entries="Scilab";
-strcell(2).entries="iscellstr";
-strcell(3).entries="help";
+strcell{1} = "Scilab";
+strcell{2} = "iscellstr";
+strcell{3} = "help";
 iscellstr(strcell)
  ]]></programlisting>
     </refsection>
