@@ -524,3 +524,5 @@ assert_checktrue(err <> 0);
 errmsg = msprintf(gettext("Wrong insertion : Cannot insert without arguments."));
 assert_checkerror("a()=1;", errmsg);
 assert_checkerror("a{}=1;", errmsg);
+a=1;
+assert_checkerror("a()=1;", errmsg);

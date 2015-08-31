@@ -1956,6 +1956,14 @@ InternalType* insertionCall(const ast::Exp& e, typed_list* _pArgs, InternalType*
         //call type insert function
         InternalType* pRet = NULL;
 
+        // case m=x; m()=x;
+        if (_pArgs == NULL || _pArgs->size() == 0)
+        {
+            std::wostringstream os;
+            os << _W("Wrong insertion : Cannot insert without arguments.");
+            throw ast::InternalError(os.str(), 999, e.getLocation());
+        }
+
         //check types compatibilties
         if (_pVar->isDouble() && _pInsert->isDouble())
         {
