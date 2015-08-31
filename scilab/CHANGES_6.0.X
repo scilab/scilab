@@ -49,6 +49,8 @@ Scilab Bug Fixes
 
 * Bug #14095 fixed - Scilab crashed when a .fig file was loaded with loadmatfile function.
 
+* Bug #14107 fixed - lstcat of a string and a list did not produce consistent results.
+
 
             Changes between version 5.5.2 and 6.0.0-alpha-1 of Scilab
             =========================================================
