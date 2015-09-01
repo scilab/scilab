@@ -60,7 +60,7 @@ int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    if (iRows1 * iCols1 != 1)
+    if (iRows1 != 1 || iCols1 != 1)
     {
         Scierror(999, _("%s: Can not read input argument #%d.\n"), fname, 1);
     }
@@ -74,7 +74,7 @@ int sci_xcosDiagramToScilab(char *fname, void *pvApiCtx)
         return 0;
     }
 
-    pstXcosFile = (char *)MALLOC(sizeof(char *) * (iLen1 + 1)); //+ 1 for null termination
+    pstXcosFile = (char*) MALLOC(sizeof(char) * (iLen1 + 1)); //+ 1 for null termination
     //get xcos filename
     sciErr = getMatrixOfString(pvApiCtx, piAddr1, &iRows1, &iCols1, &iLen1, &pstXcosFile);
     if (sciErr.iErr)

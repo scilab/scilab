@@ -140,6 +140,7 @@ int decode(const double* const tab, const int tabSize, const int iDims, const in
     if (tabSize < iElements * 2 + 2 + iDims)
     {
         // Error case: the input doesn't have enough elements
+        delete[] pDims;
         Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, iElements * 2 + 2 + iDims + offset, 1);
         return -1;
     }
@@ -410,6 +411,7 @@ static bool readElement(const double* const input, const int iType, const int iD
             {
                 if (inputRows < 2 + offset)
                 {
+                    delete pList;
                     Scierror(999, _("%s: Wrong size for input argument #%d: At least %dx%d expected.\n"), vec2varName.c_str(), 1, offset + 2, 1);
                     return false;
                 }
@@ -419,6 +421,7 @@ static bool readElement(const double* const input, const int iType, const int iD
                 types::InternalType* element;
                 if (!readElement(input + offset, elementType, elementDims, inputRows - offset, offset, element))
                 {
+                    delete pList;
                     return false;
                 }
                 pList->append(element);

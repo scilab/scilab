@@ -33,6 +33,7 @@ public:
         m_id(0), m_kind(b.m_kind)
     {
     }
+    virtual ~BaseObject() = default;
 
     inline bool operator<(BaseObject o) const
     {

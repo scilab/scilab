@@ -164,7 +164,16 @@ void Model::deleteObject(ScicosID uid)
 
 kind_t Model::getKind(ScicosID uid) const
 {
-    return getObject(uid)->kind();
+    model::BaseObject* o = getObject(uid);
+    if (o != nullptr)
+    {
+        return o->kind();
+    }
+    else
+    {
+        // return the first kind, it will be always ignored as the object is no more valid
+        return ANNOTATION;
+    }
 }
 
 std::vector<ScicosID> Model::getAll(kind_t k) const

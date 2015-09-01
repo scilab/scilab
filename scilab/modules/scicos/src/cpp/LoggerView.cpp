@@ -152,6 +152,7 @@ void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
     {
         const int N = 1024;
         wchar_t* str = new wchar_t[N];
+
         va_list opts;
         va_start(opts, msg);
         vswprintf(str, N, msg, opts);
@@ -167,6 +168,8 @@ void LoggerView::log(enum LogLevel level, const wchar_t* msg, ...)
             std::cerr << LoggerView::toDisplay(level);
             std::wcerr << str;
         }
+
+        delete[] str;
     }
 }
 

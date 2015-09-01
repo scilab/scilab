@@ -295,7 +295,7 @@ link_t getLinkEnd(const LinkAdapter& adaptor, const Controller& controller, cons
 {
     ScicosID adaptee = adaptor.getAdaptee()->id();
 
-    link_t ret; // Initialize a {0, 0, Start} Link
+    link_t ret {0, 0, Start};
 
     ScicosID endID;
     controller.getObjectProperty(adaptee, LINK, end, endID);

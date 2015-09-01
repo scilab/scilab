@@ -67,15 +67,30 @@ int sci_xcosPalLoad(char *fname, void* pvApiCtx)
     }
     catch (GiwsException::JniCallMethodException &exception)
     {
+        if (category != NULL)
+        {
+            releaseVectorString(category, lenCategory);
+        }
+        FREE(name);
         Scierror(999, "%s: %s\n", fname, exception.getJavaDescription().c_str());
         return 0;
     }
     catch (GiwsException::JniException &exception)
     {
+        if (category != NULL)
+        {
+            releaseVectorString(category, lenCategory);
+        }
+        FREE(name);
         Scierror(999, "%s: %s\n", fname, exception.whatStr().c_str());
         return 0;
     }
 
+    if (category != NULL)
+    {
+        releaseVectorString(category, lenCategory);
+    }
+    FREE(name);
     PutLhsVar();
     return 0;
 }

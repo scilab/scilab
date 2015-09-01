@@ -78,14 +78,13 @@ types::Function::ReturnValue sci_scicos_log(types::typed_list &in, int _iRetCoun
     if (logLevel < 0)
     {
         std::wstringstream buffer;
-        for (int i = 0; i <= LOG_TRACE; i++)
+        for (int i = LOG_TRACE; i < LOG_FATAL; i++)
         {
             buffer << LoggerView::toString(static_cast<enum LogLevel>(i));
-            if (i != LOG_TRACE)
-            {
-                buffer << L", ";
-            }
+            buffer << L", ";
         }
+        buffer << LoggerView::toString(LOG_FATAL);
+
         Scierror(999, _("%s: Wrong value for input argument #%d: Must be in the set  {%ls}.\n"), funame.data(), 1, buffer.str().data());
         return types::Function::Error;
     }

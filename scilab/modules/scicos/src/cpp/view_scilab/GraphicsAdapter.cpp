@@ -254,6 +254,7 @@ struct exprs
         if (v->getType() == types::InternalType::ScilabString)
         {
             types::String* current = v->getAs<types::String>();
+            // FIXME: find a test case and check for this case
         }
         else if (v->getType() == types::InternalType::ScilabDouble)
         {
@@ -306,6 +307,7 @@ struct exprs
                 {
                     types::String* second_string = initial_list->get(1)->getAs<types::String>();
                     // List coming from a "user-defined function" block
+                    // FIXME: why retrieve and not used ?
                 }
                 else if (initial_list->get(1)->getType() == types::InternalType::ScilabList)
                 {
@@ -455,6 +457,7 @@ struct exprs
                         return false;
                     }
                     types::String* last_string = ParamsPDE->get(nParams)->getAs<types::String>();
+                    // FIXME: find a related test case
 
                     // Next comes some code
                     if (initial_list->get(1)->getType() == types::InternalType::ScilabDouble)
@@ -468,6 +471,7 @@ struct exprs
                     else if (initial_list->get(1)->getType() == types::InternalType::ScilabString)
                     {
                         types::String* code = initial_list->get(1)->getAs<types::String>();
+                        // FIXME: find a related test case
                     }
                     else
                     {
@@ -652,7 +656,7 @@ struct exprs
                 return false;
             }
             types::String* outField = current->get(3)->getAs<types::String>();
-            if (!inField->isScalar())
+            if (!outField->isScalar())
             {
                 return false;
             }
@@ -732,6 +736,7 @@ struct exprs
                     return false;
                 }
                 types::String* funtxtField = current->get(9)->getAs<types::String>();
+                // FIXME: find a related test-case
             }
         }
         else

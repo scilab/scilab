@@ -1451,10 +1451,13 @@ struct equations
         std::istringstream inputsSizeStr (equations[1]);
         int inputsSize;
         inputsSizeStr >> inputsSize;
-        if (inputsSize == 0)
+        if (inputsSize <= 0 || inputsSize > equations.size() - 2)
         {
             types::Double* inputsField = types::Double::Empty();
             o->set(2, inputsField);
+
+            // fall back to a safe value for future indexing
+            inputsSize = 0;
         }
         else
         {
@@ -1470,10 +1473,13 @@ struct equations
         std::istringstream outputsSizeStr (equations[2 + inputsSize]);
         int outputsSize;
         outputsSizeStr >> outputsSize;
-        if (outputsSize == 0)
+        if (outputsSize <= 0 || outputsSize > equations.size() - 3 - inputsSize)
         {
             types::Double* outputsField = types::Double::Empty();
             o->set(3, outputsField);
+
+            // fall back to a safe value for future indexing
+            outputsSize = 0;
         }
         else
         {
@@ -1492,10 +1498,13 @@ struct equations
         std::istringstream parametersSizeStr (equations[3 + inputsSize + outputsSize]);
         int parametersSize;
         parametersSizeStr >> parametersSize;
-        if (parametersSize == 0)
+        if (parametersSize <= 0 || parametersSize > equations.size() - 4 - inputsSize - outputsSize)
         {
             types::Double* parametersNames = types::Double::Empty();
             parametersField->set(0, parametersNames);
+
+            // fall back to a safe value for future indexing
+            parametersSize = 0;
         }
         else
         {
