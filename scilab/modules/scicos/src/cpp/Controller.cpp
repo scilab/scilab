@@ -241,6 +241,10 @@ void Controller::unlinkVector(ScicosID uid, kind_t k, object_properties_t uid_pr
     if (v != 0)
     {
         auto o = getObject(v);
+        if (o == nullptr)
+        {
+            return;
+        }
 
         std::vector<ScicosID> children;
         getObjectProperty(o->id(), o->kind(), ref_prop, children);
@@ -264,6 +268,11 @@ void Controller::unlink(ScicosID uid, kind_t k, object_properties_t uid_prop, ob
         if (id != 0)
         {
             auto o = getObject(id);
+            if (o == nullptr)
+            {
+                continue;
+            }
+
             // Find which end of the link is connected to the port
             ScicosID oppositeRef;
             getObjectProperty(o->id(), o->kind(), ref_prop, oppositeRef);
