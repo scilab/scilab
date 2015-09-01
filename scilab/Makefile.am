@@ -89,6 +89,10 @@ scilab_bin_CPPFLAGS = \
 # (causing issues on some platform)
 COMMON_LIBS = $(LTLIBINTL)
 
+# Link against valgrind library as on some systems (eg. Fedora) it should be 
+# link on the final binary
+COMMON_LIBS += $(VALGRIND_LIBS)
+
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp
 
 # the scilab-bin object file itself uses symbols from at least libscilab-cli.la,

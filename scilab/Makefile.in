@@ -264,7 +264,7 @@ am_scilab_bin_OBJECTS =  \
 	$(am__objects_1)
 scilab_bin_OBJECTS = $(am_scilab_bin_OBJECTS)
 am__DEPENDENCIES_1 =
-am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1)
+am__DEPENDENCIES_2 = $(am__DEPENDENCIES_1) $(am__DEPENDENCIES_1)
 scilab_bin_DEPENDENCIES = $(top_builddir)/modules/libscilab.la \
 	$(top_builddir)/modules/libscilab-cli.la $(am__DEPENDENCIES_1) \
 	$(am__DEPENDENCIES_1) $(am__DEPENDENCIES_2) \
@@ -729,6 +729,8 @@ UMFPACK_CFLAGS = @UMFPACK_CFLAGS@
 UMFPACK_ENABLE = @UMFPACK_ENABLE@
 UMFPACK_LIB = @UMFPACK_LIB@
 USE_NLS = @USE_NLS@
+VALGRIND_CFLAGS = @VALGRIND_CFLAGS@
+VALGRIND_LIBS = @VALGRIND_LIBS@
 VERSION = @VERSION@
 WITH_OCAML = @WITH_OCAML@
 WITH_TKSCI = @WITH_TKSCI@
@@ -852,7 +854,10 @@ scilab_bin_CPPFLAGS = -I$(top_srcdir)/modules/ast/includes/ast/ \
 
 # Localization dep already exists because of the `exportLocaleToSystem' symbol
 # (causing issues on some platform)
-COMMON_LIBS = $(LTLIBINTL)
+
+# Link against valgrind library as on some systems (eg. Fedora) it should be 
+# link on the final binary
+COMMON_LIBS = $(LTLIBINTL) $(VALGRIND_LIBS)
 scilab_bin_SOURCES = modules/startup/src/cpp/scilab.cpp \
 	$(am__append_9)
 
