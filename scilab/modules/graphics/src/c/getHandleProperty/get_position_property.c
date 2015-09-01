@@ -69,7 +69,10 @@ void* get_position_property(void* _pvCtx, int iObjUID)
         position[2] = (double) figureSize[0];
         position[3] = (double) figureSize[1];
 
-        return sciReturnRowVector(position, 4);
+        ret = sciReturnRowVector(position, 4);
+        releaseGraphicObjectProperty(__GO_POSITION__, figurePosition, jni_int_vector, 2);
+        releaseGraphicObjectProperty(__GO_AXES_SIZE__, figureSize, jni_int_vector, 2);
+        return ret;
     }
 
     /* Special label and legend case : only 2 values for position */
@@ -85,7 +88,9 @@ void* get_position_property(void* _pvCtx, int iObjUID)
             return NULL;
         }
 
-        return sciReturnRowVector(position, 2);
+        ret = sciReturnRowVector(position, 2);
+        releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 2);
+        return ret;
     }
 
     if (iType == __GO_LIGHT__)
@@ -100,7 +105,9 @@ void* get_position_property(void* _pvCtx, int iObjUID)
             return NULL;
         }
 
-        return sciReturnRowVector(position, 3);
+        ret = sciReturnRowVector(position, 3);
+        releaseGraphicObjectProperty(__GO_POSITION__, position, jni_double_vector, 3);
+        return ret;
     }
 
     /* Generic case : position is a 4 row vector */

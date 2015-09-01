@@ -82,6 +82,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
+            releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
             return sciReturnEmptyMatrix();
         }
     }
@@ -100,6 +101,7 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         if (childrenNumber == 0)
         {
             // No Child
+            releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
             return sciReturnEmptyMatrix();
         }
 
@@ -112,17 +114,17 @@ void* get_children_property(void* _pvCtx, int iObjUID)
         getGraphicObjectProperty(piChildrenUID[i], __GO_HIDDEN__, jni_bool, (void **)&piHidden);
         if (iHidden == 0 || iShowHiddenHandles == 1)
         {
-	    getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**) &piType);
-	    if (type != __GO_DATATIP__)
-	    {
+            getGraphicObjectProperty(piChildrenUID[i], __GO_TYPE__, jni_int, (void**)&piType);
+            if (type != __GO_DATATIP__)
+            {
                 plChildren[iChildIndex++] = getHandle(piChildrenUID[i]);
-	    }
+            }
         }
     }
 
     status = sciReturnColHandleVector(plChildren, childrenNumber);
     FREE(plChildren);
-
+    releaseGraphicObjectProperty(__GO_CHILDREN__, piChildrenUID, jni_int_vector, iChildrenCount);
     return status;
 }
 

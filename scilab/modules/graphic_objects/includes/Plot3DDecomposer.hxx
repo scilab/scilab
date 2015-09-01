@@ -88,6 +88,14 @@ public :
         return decomposer;
     }
 
+    static void destroy()
+    {
+        if (decomposer)
+        {
+            delete decomposer;
+            decomposer = NULL;
+        }
+    }
     /**
      * Fills the given buffer with vertex data from the given object.
      * @param[in] the id of the given object.

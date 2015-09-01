@@ -372,6 +372,11 @@ int get_sparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
         }
     }
 
+    FREE(piNbRow);
+    FREE(piColPos);
+    FREE(pdblReal);
+    FREE(pdblImg);
+
     insert_indent();
     sciprint("Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
     return 0;;
@@ -401,6 +406,9 @@ int get_bsparse_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int 
         printError(&sciErr, 0);
         return 0;
     }
+
+    FREE(piNbRow);
+    FREE(piColPos);
 
     insert_indent();
     sciprint("Boolean Sparse (%d x %d), Item(s) : %d \n", iRows, iCols, iItem);
@@ -581,6 +589,14 @@ int get_string_info(void* _pvCtx, int _iRhs, int* _piParent, int *_piAddr, int _
         printError(&sciErr, 0);
         return 0;
     }
+
+    for (i = 0 ; i < iRows * iCols ; i++)
+    {
+        FREE(pstData[i]);
+    }
+
+    FREE(pstData);
+    FREE(piLen);
 
     insert_indent();
     sciprint("Strings (%d x %d)\n", iRows, iCols);

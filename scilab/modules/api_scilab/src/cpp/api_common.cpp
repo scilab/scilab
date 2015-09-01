@@ -1495,6 +1495,7 @@ int isNamedVarExist(void *_pvCtx, const char *_pstName)
     sciErr = getVarAddressFromName(_pvCtx, _pstName, &piAddr);
     if (sciErr.iErr || piAddr == NULL)
     {
+        sciErrClean(&sciErr);
         return 0;
     }
 
@@ -1611,3 +1612,14 @@ SciErr sciErrInit()
     return sciErr;
 }
 
+void sciErrClean(SciErr* _psciErr)
+{
+    //reset error
+    for (int i = _psciErr->iMsgCount - 1; i >= 0; i--)
+    {
+        FREE(_psciErr->pstMsg[i]);
+    }
+
+    _psciErr->iMsgCount = 0;
+    _psciErr->iErr = 0;
+}

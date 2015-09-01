@@ -70,6 +70,11 @@ int read_sparse(char *fname, void* pvApiCtx)
         }
     }
 
+    FREE(piNbItemRow);
+    FREE(piColPos);
+    FREE(pdblReal);
+    FREE(pdblImg);
+
     //assign allocated variables to Lhs position
     AssignOutputVariable(pvApiCtx, 1) = 0;
     return 0;

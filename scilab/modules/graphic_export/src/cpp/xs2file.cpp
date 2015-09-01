@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+extern "C"
+{
 #include "xs2file.h"
 #include "api_scilab.h"
 #include "GetProperty.h"
@@ -32,9 +34,10 @@
 #include "HandleManagement.h"
 #include "getGraphicObjectProperty.h"
 #include "graphicObjectProperties.h"
+}
 
 /*--------------------------------------------------------------------------*/
-static BOOL isVectorialExport(ExportFileType fileType);
+static bool isVectorialExport(ExportFileType fileType);
 /*--------------------------------------------------------------------------*/
 int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
 {
@@ -279,8 +282,11 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
             if (strlen(status) != 0)
             {
                 Scierror(999, _("%s: %s\n"), fname, status);
+                delete[] status;
                 return 1;
             }
+
+            delete[] status;
         }
         else
         {
@@ -301,7 +307,7 @@ int xs2file(char * fname, ExportFileType fileType, void* pvApiCtx)
     return 0;
 }
 /*--------------------------------------------------------------------------*/
-static BOOL isVectorialExport(ExportFileType fileType)
+static bool isVectorialExport(ExportFileType fileType)
 {
     return fileType == EPS_EXPORT
            || fileType == PS_EXPORT

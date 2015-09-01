@@ -38,11 +38,14 @@ int sci_bug_11538(char* fname, void* pvApiCtx)
         return 1;
     }
 
+    FREE(pstData);
+
     if (getAllocatedSingleWideString(pvApiCtx, piAddr, &pwstData))
     {
         Scierror(999, "Failed to get data as wide string");
         return 1;
     }
 
+    FREE(pwstData);
     return 0;
 }

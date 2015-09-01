@@ -87,11 +87,11 @@
     <ClCompile Include="sci_gateway\cpp\sci_xinit.cpp">
       <Filter>Source Files\cpp</Filter>
     </ClCompile>
-    <ClCompile Include="sci_gateway\c\xs2file.c">
-      <Filter>Source Files\c</Filter>
-    </ClCompile>
     <ClCompile Include="sci_gateway\c\sci_xs2emf.c">
       <Filter>Source Files\c</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cpp\xs2file.cpp">
+      <Filter>Source Files\cpp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -110,7 +110,7 @@
     <ClInclude Include="src\jni\Driver.hxx">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="includes\xs2file.h">
+    <ClInclude Include="src\cpp\xs2file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

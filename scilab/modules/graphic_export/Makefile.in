@@ -182,6 +182,7 @@ LTLIBRARIES = $(noinst_LTLIBRARIES) $(pkglib_LTLIBRARIES)
 libscigraphic_export_algo_la_LIBADD =
 am__dirstamp = $(am__leading_dot)dirstamp
 am__objects_1 = src/cpp/libscigraphic_export_algo_la-exportToFile.lo \
+	src/cpp/libscigraphic_export_algo_la-xs2file.lo \
 	src/jni/libscigraphic_export_algo_la-FileExporter.lo \
 	src/jni/libscigraphic_export_algo_la-Driver.lo
 am_libscigraphic_export_algo_la_OBJECTS = $(am__objects_1)
@@ -197,8 +198,7 @@ am_libscigraphic_export_disable_la_OBJECTS = src/nographic_export/libscigraphic_
 libscigraphic_export_disable_la_OBJECTS =  \
 	$(am_libscigraphic_export_disable_la_OBJECTS)
 libscigraphic_export_la_DEPENDENCIES = libscigraphic_export-algo.la
-am__objects_2 = sci_gateway/c/libscigraphic_export_la-xs2file.lo \
-	sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo \
+am__objects_2 = sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2gif.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2ppm.lo \
 	sci_gateway/c/libscigraphic_export_la-sci_xs2ps.lo \
@@ -606,13 +606,13 @@ libscigraphic_export_la_etc_DATA = \
 # List of the c files
 GRAPHIC_EXPORT_CXX_SOURCES = \
     src/cpp/exportToFile.cpp \
+    src/cpp/xs2file.cpp \
     src/jni/FileExporter.cpp \
     src/jni/Driver.cpp
 
 
 # List of the gateway c files
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/xs2file.c \
     sci_gateway/c/sci_xs2bmp.c \
     sci_gateway/c/sci_xs2gif.c \
     sci_gateway/c/sci_xs2ppm.c \
@@ -861,6 +861,8 @@ src/cpp/$(DEPDIR)/$(am__dirstamp):
 	@: > src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/cpp/libscigraphic_export_algo_la-exportToFile.lo:  \
 	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
+src/cpp/libscigraphic_export_algo_la-xs2file.lo:  \
+	src/cpp/$(am__dirstamp) src/cpp/$(DEPDIR)/$(am__dirstamp)
 src/jni/$(am__dirstamp):
 	@$(MKDIR_P) src/jni
 	@: > src/jni/$(am__dirstamp)
@@ -892,9 +894,6 @@ sci_gateway/c/$(am__dirstamp):
 sci_gateway/c/$(DEPDIR)/$(am__dirstamp):
 	@$(MKDIR_P) sci_gateway/c/$(DEPDIR)
 	@: > sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
-sci_gateway/c/libscigraphic_export_la-xs2file.lo:  \
-	sci_gateway/c/$(am__dirstamp) \
-	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
 sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo:  \
 	sci_gateway/c/$(am__dirstamp) \
 	sci_gateway/c/$(DEPDIR)/$(am__dirstamp)
@@ -970,11 +969,11 @@ distclean-compile:
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2ppm.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2ps.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2svg.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-xs2file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphic_export_la-sci_driver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphic_export_la-sci_xend.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@sci_gateway/cpp/$(DEPDIR)/libscigraphic_export_la-sci_xinit.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_export_algo_la-exportToFile.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@src/cpp/$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_export_algo_la-Driver.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/jni/$(DEPDIR)/libscigraphic_export_algo_la-FileExporter.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@src/nographic_export/$(DEPDIR)/libscigraphic_export_disable_la-nographic_export.Plo@am__quote@
@@ -1009,13 +1008,6 @@ src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo: src/no
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='src/nographic_export/nographic_export.c' object='src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_disable_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o src/nographic_export/libscigraphic_export_disable_la-nographic_export.lo `test -f 'src/nographic_export/nographic_export.c' || echo '$(srcdir)/'`src/nographic_export/nographic_export.c
-
-sci_gateway/c/libscigraphic_export_la-xs2file.lo: sci_gateway/c/xs2file.c
-@am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphic_export_la-xs2file.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-xs2file.Tpo -c -o sci_gateway/c/libscigraphic_export_la-xs2file.lo `test -f 'sci_gateway/c/xs2file.c' || echo '$(srcdir)/'`sci_gateway/c/xs2file.c
-@am__fastdepCC_TRUE@	$(AM_V_at)$(am__mv) sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-xs2file.Tpo sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-xs2file.Plo
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	$(AM_V_CC)source='sci_gateway/c/xs2file.c' object='sci_gateway/c/libscigraphic_export_la-xs2file.lo' libtool=yes @AMDEPBACKSLASH@
-@AMDEP_TRUE@@am__fastdepCC_FALSE@	DEPDIR=$(DEPDIR) $(CCDEPMODE) $(depcomp) @AMDEPBACKSLASH@
-@am__fastdepCC_FALSE@	$(AM_V_CC@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -c -o sci_gateway/c/libscigraphic_export_la-xs2file.lo `test -f 'sci_gateway/c/xs2file.c' || echo '$(srcdir)/'`sci_gateway/c/xs2file.c
 
 sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo: sci_gateway/c/sci_xs2bmp.c
 @am__fastdepCC_TRUE@	$(AM_V_CC)$(LIBTOOL) $(AM_V_lt) --tag=CC $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CC) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_la_CPPFLAGS) $(CPPFLAGS) $(AM_CFLAGS) $(CFLAGS) -MT sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo -MD -MP -MF sci_gateway/c/$(DEPDIR)/libscigraphic_export_la-sci_xs2bmp.Tpo -c -o sci_gateway/c/libscigraphic_export_la-sci_xs2bmp.lo `test -f 'sci_gateway/c/sci_xs2bmp.c' || echo '$(srcdir)/'`sci_gateway/c/sci_xs2bmp.c
@@ -1117,6 +1109,13 @@ src/cpp/libscigraphic_export_algo_la-exportToFile.lo: src/cpp/exportToFile.cpp
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/exportToFile.cpp' object='src/cpp/libscigraphic_export_algo_la-exportToFile.lo' libtool=yes @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_export_algo_la-exportToFile.lo `test -f 'src/cpp/exportToFile.cpp' || echo '$(srcdir)/'`src/cpp/exportToFile.cpp
+
+src/cpp/libscigraphic_export_algo_la-xs2file.lo: src/cpp/xs2file.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/cpp/libscigraphic_export_algo_la-xs2file.lo -MD -MP -MF src/cpp/$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Tpo -c -o src/cpp/libscigraphic_export_algo_la-xs2file.lo `test -f 'src/cpp/xs2file.cpp' || echo '$(srcdir)/'`src/cpp/xs2file.cpp
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) src/cpp/$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Tpo src/cpp/$(DEPDIR)/libscigraphic_export_algo_la-xs2file.Plo
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='src/cpp/xs2file.cpp' object='src/cpp/libscigraphic_export_algo_la-xs2file.lo' libtool=yes @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -c -o src/cpp/libscigraphic_export_algo_la-xs2file.lo `test -f 'src/cpp/xs2file.cpp' || echo '$(srcdir)/'`src/cpp/xs2file.cpp
 
 src/jni/libscigraphic_export_algo_la-FileExporter.lo: src/jni/FileExporter.cpp
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(LIBTOOL) $(AM_V_lt) --tag=CXX $(AM_LIBTOOLFLAGS) $(LIBTOOLFLAGS) --mode=compile $(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(libscigraphic_export_algo_la_CPPFLAGS) $(CPPFLAGS) $(AM_CXXFLAGS) $(CXXFLAGS) -MT src/jni/libscigraphic_export_algo_la-FileExporter.lo -MD -MP -MF src/jni/$(DEPDIR)/libscigraphic_export_algo_la-FileExporter.Tpo -c -o src/jni/libscigraphic_export_algo_la-FileExporter.lo `test -f 'src/jni/FileExporter.cpp' || echo '$(srcdir)/'`src/jni/FileExporter.cpp

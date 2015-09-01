@@ -40,6 +40,7 @@ int sci_deleteNamedVariable(char *fname, void* pvApiCtx)
         iRet = deleteNamedVariable(pvApiCtx, pstVarName);
     }
 
+    freeAllocatedSingleString(pstVarName);
     createScalarBoolean(pvApiCtx, Rhs + 1, iRet);
     AssignOutputVariable(pvApiCtx, 1) = Rhs + 1;
     return 0;

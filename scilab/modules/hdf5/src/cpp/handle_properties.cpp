@@ -859,6 +859,7 @@ static int import_handle_uicontrol(int dataset, int parent)
     setGraphicObjectProperty(uic, __GO_UI_STRING_COLNB__, &col, jni_int, 1);
     setGraphicObjectProperty(uic, __GO_UI_STRING__, string, jni_string_vector, row * col);
     freeStringMatrix(node, string);
+    delete[] string;
 
     //border
     int dborder = getDataSetIdFromName(dataset, "border");
@@ -938,7 +939,7 @@ static int import_handle_text(int dataset, int parent)
     setGraphicObjectProperty(t, __GO_TEXT_ARRAY_DIMENSIONS__, dims, jni_int_vector, 2);
     setGraphicObjectProperty(t, __GO_TEXT_STRINGS__, text, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(textnode, text);
-
+    delete[] text;
     closeList6(dataset);
     return t;
 }
@@ -958,7 +959,7 @@ static int import_handle_legend(int dataset, int parent)
     setGraphicObjectProperty(legend, __GO_TEXT_ARRAY_DIMENSIONS__, dims, jni_int_vector, 2);
     setGraphicObjectProperty(legend, __GO_TEXT_STRINGS__, text, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(textnode, text);
-
+    delete[] text;
     //links
 
     //to retore links we need to have the entire hierarchie loaded.
@@ -1472,6 +1473,7 @@ static int import_handle_label(int dataset, int uid)
     setGraphicObjectProperty(uid, __GO_TEXT_ARRAY_DIMENSIONS__, dims.data(), jni_int_vector, 2);
     setGraphicObjectProperty(uid, __GO_TEXT_STRINGS__, data, jni_string_vector, dims[0] * dims[1]);
     freeStringMatrix(node, data);
+    delete[] data;
 
     closeList6(dataset);
     return uid;

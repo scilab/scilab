@@ -11,6 +11,7 @@
  */
 
 #include "DataModel.hxx"
+#include "Plot3DDecomposer.hxx"
 #ifdef _MSC_VER
 #include <windows.h>
 /*--------------------------------------------------------------------------*/
@@ -35,6 +36,7 @@ int WINAPI DllMain (HINSTANCE hInstance , DWORD reason, PVOID pvReserved)
             break;
         case DLL_PROCESS_DETACH:
             DataModel::destroy();
+            Plot3DDecomposer::destroy();
             break;
         case DLL_THREAD_ATTACH:
             break;
@@ -54,6 +56,7 @@ void load(void)
 void unload(void)
 {
     DataModel::destroy();
+    Plot3DDecomposer::destroy();
 }
 #endif
 /*--------------------------------------------------------------------------*/

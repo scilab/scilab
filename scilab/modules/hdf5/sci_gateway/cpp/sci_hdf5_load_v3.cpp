@@ -1027,7 +1027,7 @@ static types::InternalType* import_macro(int dataset)
 
     //wname+1 is to remove "/" at the start of the var name from HDF5
     types::Macro* macro = new types::Macro(L"", *inputList, *outputList, *body->getAs<ast::SeqExp>(), L"script");
-
+    delete body;
     closeList6(dataset);
     return macro;
 }

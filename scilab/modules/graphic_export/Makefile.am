@@ -28,12 +28,12 @@ libscigraphic_export_la_etc_DATA = \
 # List of the c files
 GRAPHIC_EXPORT_CXX_SOURCES = \
     src/cpp/exportToFile.cpp \
+    src/cpp/xs2file.cpp \
     src/jni/FileExporter.cpp \
     src/jni/Driver.cpp
-
+    
 # List of the gateway c files
 GATEWAY_C_SOURCES = \
-    sci_gateway/c/xs2file.c \
     sci_gateway/c/sci_xs2bmp.c \
     sci_gateway/c/sci_xs2gif.c \
     sci_gateway/c/sci_xs2ppm.c \

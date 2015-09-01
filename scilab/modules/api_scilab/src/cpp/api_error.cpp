@@ -23,6 +23,7 @@ extern "C"
 #include "os_string.h"
 #include "localization.h"
 #include "configvariable_interface.h"
+#include "api_internal_common.h"
 }
 
 int addErrorMessage(SciErr* _psciErr, int _iErr, const char* _pstMsg, ...)
@@ -67,25 +68,25 @@ int printError(SciErr* _psciErr, int _iLastMsg)
 
     SciStoreError(_psciErr->iErr);
 
-    if (getPromptMode() == PROMPTMODE_SILENT || getSilentError() != VERBOSE_ERROR)
+    if (getPromptMode() != PROMPTMODE_SILENT && getSilentError() == VERBOSE_ERROR)
     {
-        return 0;
-    }
-
-    if (_iLastMsg)
-    {
-        sciprint(_("API Error:\n"));
-        sciprint(_("\tin %s\n"), _psciErr->pstMsg[0]);
-    }
-    else
-    {
-        sciprint(_("API Error:\n"));
-
-        for (int i = _psciErr->iMsgCount - 1 ;  i >= 0 ; i--)
+        if (_iLastMsg)
         {
-            sciprint(_("\tin %s\n"), _psciErr->pstMsg[i]);
+            sciprint(_("API Error:\n"));
+            sciprint(_("\tin %s\n"), _psciErr->pstMsg[0]);
+        }
+        else
+        {
+            sciprint(_("API Error:\n"));
+
+            for (int i = _psciErr->iMsgCount - 1; i >= 0; i--)
+            {
+                sciprint(_("\tin %s\n"), _psciErr->pstMsg[i]);
+            }
         }
     }
+
+    sciErrClean(_psciErr);
     return 0;
 }
 
