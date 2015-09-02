@@ -54,7 +54,7 @@
 	    ParserSingleInstance::setTree(PTR);				\
 	}								\
     }
- 
+
 
 %}
 
@@ -344,7 +344,7 @@ expressions                     { SetTree($1); }
                                       tmp->push_back(new ast::CommentExp(@$, new std::wstring(L"Empty body");
                                   #endif
                                   SetTree(new ast::SeqExp(@$, *tmp));
-				  delete $1; 
+				  delete $1;
                                 }
 | /* Epsilon */                 {
                                   ast::exps_t* tmp = new ast::exps_t;
@@ -495,7 +495,6 @@ implicitFunctionCall implicitCallable		{
 /*
 ** -*- IMPLICIT CALLABLE -*-
 */
-/* FIXME : Must be improved */
 /* Bash-like : foo bar titi <=> foo('bar', 'titi').
 ** Describe 'bar', 'titi' that can be more complex.
 */
@@ -526,9 +525,6 @@ ID						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 						  $$ = new ast::StringExp(@$, tmp.str());
 						  delete $3;
 						}
-| implicitCallable DOT functionCall		{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable DOT functionCall !!")); }
-| simpleFunctionCall				{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable simpleFunctionCall !!")); }
-| implicitCallable rightOperand			{ $$ = new ast::StringExp(@$, std::wstring(L"!! FIXME : implicitCallable implicitCallable rightOperand !!")); }
 | PATH						{ $$ = new ast::StringExp(@$, *$1); delete $1;}
 ;
 
