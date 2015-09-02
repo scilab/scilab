@@ -1893,7 +1893,7 @@ static int exit_status = PARSE_ERROR;
 static std::string current_file;
 static std::string program_name;
 
-static std::string *pstBuffer;
+static std::string pstBuffer;
 
 #define YY_USER_ACTION                          \
  yylloc.first_column = yylloc.last_column;yylloc.last_column += yyleng;
@@ -2882,14 +2882,14 @@ do_action:	/* This label is used only to access EOF actions. */
                 case 78:
                     YY_RULE_SETUP
                     {
-                        pstBuffer = new std::string();
+                        pstBuffer.clear();
                         yy_push_state(LINECOMMENT);
                     }
                     YY_BREAK
                 case 79:
                     YY_RULE_SETUP
                     {
-                        pstBuffer = new std::string();
+                        pstBuffer.clear();
                         yy_push_state(DOUBLESTRING);
                     }
                     YY_BREAK
@@ -2914,7 +2914,7 @@ do_action:	/* This label is used only to access EOF actions. */
                         }
                         else
                         {
-                            pstBuffer = new std::string();
+                            pstBuffer.clear();
                             yy_push_state(SIMPLESTRING);
                         }
                     }
@@ -3115,7 +3115,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_RULE_SETUP
                     {
                         /* Just do nothing */
-                        pstBuffer = new std::string();
+                        pstBuffer.clear();
                         yy_push_state(LINECOMMENT);
                         scan_throw(DOTS);
                     }
@@ -3148,7 +3148,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_RULE_SETUP
                     {
                         scan_throw(DOTS);
-                        pstBuffer = new std::string();
+                        pstBuffer.clear();
                         yy_push_state(LINECOMMENT);
                     }
                     YY_BREAK
@@ -3196,41 +3196,41 @@ do_action:	/* This label is used only to access EOF actions. */
                         {
                             //std::cerr << "pstBuffer = {" << *pstBuffer << "}" << std::endl;
                             //std::cerr << "pstBuffer->c_str() = {" << pstBuffer->c_str() << "}" << std::endl;
-                            wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
+                            wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
                             //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
-                            if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+                            if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
                             {
                                 std::string str = "can not convert'";
-                                str += pstBuffer->c_str();
+                                str += pstBuffer.c_str();
                                 str += "' to UTF-8";
                                 exit_status = SCAN_ERROR;
                                 scan_error("can not convert string to UTF-8");
                             }
                             yylval.comment = new std::wstring(pwstBuffer);
-                            delete pstBuffer;
+                            pstBuffer.clear();
                             FREE (pwstBuffer);
                             return scan_throw(COMMENT);
                         }
                         else
                         {
-                            delete pstBuffer;
+                            pstBuffer.clear();
                         }
                     }
                     YY_BREAK
                 case YY_STATE_EOF(LINECOMMENT):
                 {
                     yy_pop_state();
-                    wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
-                    if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+                    wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
+                    if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
                     {
                         std::string str = "can not convert'";
-                        str += pstBuffer->c_str();
+                        str += pstBuffer.c_str();
                         str += "' to UTF-8";
                         exit_status = SCAN_ERROR;
                         scan_error("can not convert string to UTF-8");
                     }
                     yylval.comment = new std::wstring(pwstBuffer);
-                    delete pstBuffer;
+                    pstBuffer.clear();
                     FREE (pwstBuffer);
                     return scan_throw(COMMENT);
                 }
@@ -3240,7 +3240,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     {
                         // Put the char in a temporary CHAR buffer to go through UTF-8 trouble
                         // only translate to WCHAR_T when popping state.
-                        *pstBuffer += yytext;
+                        pstBuffer += yytext;
                     }
                     YY_BREAK
 
@@ -3294,25 +3294,25 @@ do_action:	/* This label is used only to access EOF actions. */
                 case 114:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "\"";
+                        pstBuffer += "\"";
                     }
                     YY_BREAK
                 case 115:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "'";
+                        pstBuffer += "'";
                     }
                     YY_BREAK
                 case 116:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "\"";
+                        pstBuffer += "\"";
                     }
                     YY_BREAK
                 case 117:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "'";
+                        pstBuffer += "'";
                     }
                     YY_BREAK
                 case 118:
@@ -3320,17 +3320,17 @@ do_action:	/* This label is used only to access EOF actions. */
                     {
                         yy_pop_state();
                         scan_step();
-                        wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
-                        if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+                        wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
+                        if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
                         {
                             std::string str = "can not convert'";
-                            str += pstBuffer->c_str();
+                            str += pstBuffer.c_str();
                             str += "' to UTF-8";
                             exit_status = SCAN_ERROR;
                             scan_error("can not convert string to UTF-8");
                         }
                         yylval.str = new std::wstring(pwstBuffer);
-                        delete pstBuffer;
+                        pstBuffer.clear();
                         FREE(pwstBuffer);
                         return scan_throw(STR);
                     }
@@ -3338,6 +3338,7 @@ do_action:	/* This label is used only to access EOF actions. */
                 case 119:
                     YY_RULE_SETUP
                     {
+                        pstBuffer.clear();
                         std::string str = "Heterogeneous string detected, starting with ' and ending with \".";
                         exit_status = SCAN_ERROR;
                         scan_error(str);
@@ -3354,6 +3355,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     /* rule 121 can match eol */
                     YY_RULE_SETUP
                     {
+                        pstBuffer.clear();
                         std::string str = "unexpected end of line in a string.";
                         exit_status = SCAN_ERROR;
                         scan_error(str);
@@ -3363,6 +3365,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_BREAK
                 case YY_STATE_EOF(SIMPLESTRING):
                 {
+                    pstBuffer.clear();
                     std::string str = "unexpected end of file in a string.";
                     exit_status = SCAN_ERROR;
                     scan_error(str);
@@ -3373,32 +3376,32 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_RULE_SETUP
                     {
                         scan_step();
-                        *pstBuffer += yytext;
+                        pstBuffer += yytext;
                     }
                     YY_BREAK
 
                 case 124:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "\"";
+                        pstBuffer += "\"";
                     }
                     YY_BREAK
                 case 125:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "'";
+                        pstBuffer += "'";
                     }
                     YY_BREAK
                 case 126:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "\"";
+                        pstBuffer += "\"";
                     }
                     YY_BREAK
                 case 127:
                     YY_RULE_SETUP
                     {
-                        *pstBuffer += "'";
+                        pstBuffer += "'";
                     }
                     YY_BREAK
                 case 128:
@@ -3406,17 +3409,17 @@ do_action:	/* This label is used only to access EOF actions. */
                     {
                         yy_pop_state();
                         scan_step();
-                        wchar_t *pwstBuffer = to_wide_string(pstBuffer->c_str());
-                        if (pstBuffer->c_str() != NULL && pwstBuffer == NULL)
+                        wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
+                        if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
                         {
                             std::string str = "can not convert'";
-                            str += pstBuffer->c_str();
+                            str += pstBuffer.c_str();
                             str += "' to UTF-8";
                             exit_status = SCAN_ERROR;
                             scan_error("can not convert string to UTF-8");
                         }
                         yylval.str = new std::wstring(pwstBuffer);
-                        delete pstBuffer;
+                        pstBuffer.clear();
                         FREE(pwstBuffer);
                         return scan_throw(STR);
                     }
@@ -3424,6 +3427,7 @@ do_action:	/* This label is used only to access EOF actions. */
                 case 129:
                     YY_RULE_SETUP
                     {
+                        pstBuffer.clear();
                         std::string str = "Heterogeneous string detected, starting with \" and ending with '.";
                         exit_status = SCAN_ERROR;
                         scan_error(str);
@@ -3440,6 +3444,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     /* rule 131 can match eol */
                     YY_RULE_SETUP
                     {
+                        pstBuffer.clear();
                         std::string str = "unexpected end of line in a string";
                         exit_status = SCAN_ERROR;
                         scan_error(str);
@@ -3449,6 +3454,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_BREAK
                 case YY_STATE_EOF(DOUBLESTRING):
                 {
+                    pstBuffer.clear();
                     std::string str = "unexpected end of file in a string";
                     exit_status = SCAN_ERROR;
                     scan_error(str);
@@ -3459,7 +3465,7 @@ do_action:	/* This label is used only to access EOF actions. */
                     YY_RULE_SETUP
                     {
                         scan_step();
-                        *pstBuffer += yytext;
+                        pstBuffer += yytext;
                     }
                     YY_BREAK
 
