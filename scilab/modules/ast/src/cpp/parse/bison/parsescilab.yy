@@ -211,6 +211,8 @@
 %token CATCH		"catch"
 %token RETURN		"return"
 
+%token FLEX_ERROR
+
 %token <str>		STR	"string"
 %token <str>		ID	"identifier"
 %token <number>		VARINT	"integer"
@@ -1862,8 +1864,19 @@ IF              { $$ = new ast::SimpleVar(@$, symbol::Symbol(L"if")); }
 ;
 
 %%
+
+bool endsWith(const std::string & str, const std::string & end)
+{
+    if (end.size() > str.size())
+    {
+	return false;
+    }
+    
+    return std::equal(end.rbegin(), end.rend(), str.rbegin());
+}
+
 void yyerror(std::string msg) {
-    if(!ParserSingleInstance::isStrictMode()
+    if (!endsWith(msg, "FLEX_ERROR") && !ParserSingleInstance::isStrictMode()
        || ParserSingleInstance::getExitStatus() == Parser::Succeded)
     {
         wchar_t* pstMsg = to_wide_string(msg.c_str());

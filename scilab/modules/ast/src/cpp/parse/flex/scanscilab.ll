@@ -25,11 +25,12 @@ extern "C"
 static int comment_level = 0;
 static int paren_level = 0;
 static int last_token = 0;
-static int exit_status = PARSE_ERROR;
 static std::string current_file;
 static std::string program_name;
 
 static std::string pstBuffer;
+
+extern void yyerror(std::string);
 
 #define YY_USER_ACTION                          \
  yylloc.first_column = yylloc.last_column;yylloc.last_column += yyleng;
@@ -367,11 +368,12 @@ assign			"="
         wchar_t *pwText = to_wide_string(yytext);
         if (yytext != NULL && pwText == NULL)
         {
-            std::string str = "can not convert'";
-            str += yytext;
-            str += "' to UTF-8";
-            exit_status = SCAN_ERROR;
-            scan_error("can not convert string to UTF-8");
+	    std::string str = "Can\'t convert \'";
+	    str += yytext;
+	    str += "\' to UTF-8";
+	    BEGIN(INITIAL);
+	    yyerror(str);
+	    return scan_throw(FLEX_ERROR);
         }
         yylval.str = new std::wstring(pwText);
 	FREE(pwText);
@@ -611,11 +613,12 @@ assign			"="
     wchar_t *pwText = to_wide_string(yytext);
     if (yytext != NULL && pwText == NULL)
     {
-        std::string str = "can not convert'";
-        str += yytext;
-        str += "' to UTF-8";
-        exit_status = SCAN_ERROR;
-        scan_error("can not convert string to UTF-8");
+	std::string str = "Can\'t convert \'";
+	str += yytext;
+	str += "\' to UTF-8";
+	BEGIN(INITIAL);
+	yyerror(str);
+	return scan_throw(FLEX_ERROR);
     }
     yylval.str = new std::wstring(pwText);
     FREE(pwText);
@@ -711,11 +714,12 @@ assign			"="
   scan_throw(EOL);
 }
 .					{
-    std::string str = "unexpected token '";
+    std::string str = "Unexpected token \'";
     str += yytext;
-    str += "'";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    str += "\'";
+    BEGIN(INITIAL);
+    yyerror(str);
+    return scan_throw(FLEX_ERROR);
 }
 
 
@@ -811,11 +815,12 @@ assign			"="
   }
 
   .					{
-    std::string str = "unexpected token '";
+    std::string str = "Unexpected token \'";
     str += yytext;
-    str += "' within a matrix.";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    str += "\' within a matrix.";
+    BEGIN(INITIAL);
+    yyerror(str);
+    return scan_throw(FLEX_ERROR);
   }
 
   {next}{spaces}*{newline}          {
@@ -867,11 +872,12 @@ assign			"="
       yy_pop_state();
   }
   .					{
-    std::string str = "unexpected token '";
+    std::string str = "Unexpected token \'";
     str += yytext;
-    str += "' after line break with .. or ...";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    str += "\' after line break with .. or ...";
+    BEGIN(INITIAL);
+    yyerror(str);
+    return scan_throw(FLEX_ERROR);
   }
 }
 
@@ -901,11 +907,13 @@ assign			"="
         //std::wcerr << L"pwstBuffer = W{" << pwstBuffer << L"}" << std::endl;
         if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
         {
-            std::string str = "can not convert'";
-            str += pstBuffer.c_str();
-            str += "' to UTF-8";
-            exit_status = SCAN_ERROR;
-            scan_error("can not convert string to UTF-8");
+	    pstBuffer.clear();
+	    std::string str = "Can\'t convert \'";
+	    str += pstBuffer.c_str();
+	    str += "\' to UTF-8";
+	    BEGIN(INITIAL);
+	    yyerror(str);
+	    return scan_throw(FLEX_ERROR);
         }
         yylval.comment = new std::wstring(pwstBuffer);
 	pstBuffer.clear();
@@ -923,11 +931,13 @@ assign			"="
     wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
     if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
     {
-        std::string str = "can not convert'";
-        str += pstBuffer.c_str();
-        str += "' to UTF-8";
-        exit_status = SCAN_ERROR;
-        scan_error("can not convert string to UTF-8");
+	pstBuffer.clear();
+	std::string str = "Can\'t convert \'";
+	str += pstBuffer.c_str();
+	str += "\' to UTF-8";
+	BEGIN(INITIAL);
+	yyerror(str);
+	return scan_throw(FLEX_ERROR);
     }
     yylval.comment = new std::wstring(pwstBuffer);
     pstBuffer.clear();
@@ -976,7 +986,6 @@ assign			"="
  <<EOF>>					{
       yy_pop_state();
 //    std::string str = "unexpected end of file in a comment";
-//    exit_status = SCAN_ERROR;
 //    scan_error(str);
   }
 }
@@ -1006,11 +1015,13 @@ assign			"="
     wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
     if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
     {
-        std::string str = "can not convert'";
+	pstBuffer.clear();
+	std::string str = "Can\'t convert \'";
         str += pstBuffer.c_str();
-        str += "' to UTF-8";
-        exit_status = SCAN_ERROR;
-        scan_error("can not convert string to UTF-8");
+        str += "\' to UTF-8";
+	BEGIN(INITIAL);
+	yyerror(str);
+	return scan_throw(FLEX_ERROR);
     }
     yylval.str = new std::wstring(pwstBuffer);
     pstBuffer.clear();
@@ -1020,9 +1031,9 @@ assign			"="
 
   {dquote}                  {
     pstBuffer.clear();
-    std::string str = "Heterogeneous string detected, starting with ' and ending with \".";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    BEGIN(INITIAL);
+    yyerror("Heterogeneous string detected, starting with \' and ending with \".");
+    return scan_throw(FLEX_ERROR);
   }
 
   {next}{newline}           {
@@ -1031,18 +1042,18 @@ assign			"="
 
   {newline}					{
     pstBuffer.clear();
-    std::string str = "unexpected end of line in a string.";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
+    BEGIN(INITIAL);
+    yyerror("Unexpected end of line in a string.");
+    return scan_throw(FLEX_ERROR);
   }
 
   <<EOF>>					{
     pstBuffer.clear();
-    std::string str = "unexpected end of file in a string.";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    BEGIN(INITIAL);
+    yyerror("Unexpected end of file in a string.");
+    return scan_throw(FLEX_ERROR);    
   }
 
   {in_string}						|
@@ -1077,11 +1088,13 @@ assign			"="
     wchar_t *pwstBuffer = to_wide_string(pstBuffer.c_str());
     if (pstBuffer.c_str() != NULL && pwstBuffer == NULL)
     {
-        std::string str = "can not convert'";
+	pstBuffer.clear();
+        std::string str = "Can\'t convert \'";
         str += pstBuffer.c_str();
-        str += "' to UTF-8";
-        exit_status = SCAN_ERROR;
-        scan_error("can not convert string to UTF-8");
+        str += "\' to UTF-8";
+	BEGIN(INITIAL);
+	yyerror(str);
+	return scan_throw(FLEX_ERROR);
     }
     yylval.str = new std::wstring(pwstBuffer);
     pstBuffer.clear();
@@ -1091,9 +1104,9 @@ assign			"="
 
   {quote}                  {
     pstBuffer.clear();
-    std::string str = "Heterogeneous string detected, starting with \" and ending with '.";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    BEGIN(INITIAL);
+    yyerror("Heterogeneous string detected, starting with \" and ending with \'.");
+    return scan_throw(FLEX_ERROR);
   }
 
   {next}{newline}           {
@@ -1102,18 +1115,18 @@ assign			"="
 
   {newline} {
     pstBuffer.clear();
-    std::string str = "unexpected end of line in a string";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
     yylloc.last_line += 1;
     yylloc.last_column = 1;
+    BEGIN(INITIAL);
+    yyerror("Unexpected end of line in a string.");
+    return scan_throw(FLEX_ERROR);
   }
 
   <<EOF>>   {
     pstBuffer.clear();
-    std::string str = "unexpected end of file in a string";
-    exit_status = SCAN_ERROR;
-    scan_error(str);
+    BEGIN(INITIAL);
+    yyerror("Unexpected end of file in a string.");
+    return scan_throw(FLEX_ERROR);    
   }
 
   {in_string}         |
@@ -1260,19 +1273,6 @@ int get_last_token() {
 void scan_step() {
   yylloc.first_line = yylloc.last_line;
   yylloc.first_column = yylloc.last_column;
-}
-
-void scan_error(std::string msg)
-{
-    wchar_t* pstMsg = to_wide_string(msg.c_str());
-
-    //std::wcerr << pstMsg << std::endl;
-    ParserSingleInstance::PrintError(pstMsg);
-    ParserSingleInstance::setExitStatus(Parser::Failed);
-    ParserSingleInstance::resetControlStatus();
-    FREE(pstMsg);
-    last_token = YYEOF;
-    BEGIN(INITIAL);
 }
 
 /*
