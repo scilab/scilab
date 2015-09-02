@@ -37,6 +37,8 @@ Scilab Bug Fixes
 
 * Bug #14036 fixed - tag and user_data properties were not displayed and not documented for light entity.
 
+* Bug #14038 fixed - Encoded integers were no longer accepted for list extraction.
+
 * Bug #14040 fixed - graphic property setting fails when using array of handles
 
 * Bug #14049 fixed - genlib hangs if an unexpected endfunction occurs.

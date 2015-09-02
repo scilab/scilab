@@ -40,6 +40,19 @@ double getIndex(T* val)
     return static_cast<double>(p[0]);
 }
 
+template<typename T>
+Double* convertIndex(T* pI)
+{
+    int size = pI->getSize();
+    Double* pCurrentArg = new Double(1, size);
+    double* pdbl = pCurrentArg->get();
+    for (int l = 0; l < size; l++)
+    {
+        pdbl[l] = static_cast<double>(pI->get(l));
+    }
+    return pCurrentArg;
+}
+
 double getIndex(InternalType* val)
 {
     switch (val->getType())
@@ -588,6 +601,52 @@ int checkIndexesArguments(InternalType* _pRef, typed_list* _pArgsIn, typed_list*
                 }
             }
             pCurrentArg = pDbl;
+        }
+        else if (pIT->isInt())
+        {
+            switch (pIT->getType())
+            {
+                case InternalType::ScilabInt8:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int8>());
+                    break;
+                }
+                case InternalType::ScilabInt16:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int16>());
+                    break;
+                }
+                case InternalType::ScilabInt32:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int32>());
+                    break;
+                }
+                case InternalType::ScilabInt64:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<Int64>());
+                    break;
+                }
+                case InternalType::ScilabUInt8:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt8>());
+                    break;
+                }
+                case InternalType::ScilabUInt16:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt16>());
+                    break;
+                }
+                case InternalType::ScilabUInt32:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt32>());
+                    break;
+                }
+                case InternalType::ScilabUInt64:
+                {
+                    pCurrentArg = convertIndex(pIT->getAs<UInt64>());
+                    break;
+                }
+            }
         }
 
         if (bDeleteNeeded)
