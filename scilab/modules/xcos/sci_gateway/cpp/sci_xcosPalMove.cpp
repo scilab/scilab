@@ -47,7 +47,7 @@ int sci_xcosPalMove(char *fname, void* pvApiCtx)
     /* target setup */
     if (readVectorString(pvApiCtx, 2, &target, &targetLength, fname))
     {
-        releaseVectorString(target, targetLength);
+        releaseVectorString(source, sourceLength);
         return 0;
     }
 
