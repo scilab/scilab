@@ -25,8 +25,10 @@ extern "C"
 #include "graphicObjectProperties.h"
 #include "createGraphicObject.h"
 #include "FigureList.h"
+#include "CurrentFigure.h"
 #include "BuildObjects.h"
 #include "Matplot.h"
+#include "HandleManagement.h"
 }
 
 extern types::InternalType* import_data(int dataset);
@@ -1483,7 +1485,7 @@ static int import_handle_axes(int dataset, int parent)
 {
     //how to manage call by %h_copy ?
 
-    int axes = getOrCreateDefaultSubwin();
+    int axes = createSubWin(parent);
 
     //hide current axes
     int visible = 0;
@@ -3327,4 +3329,28 @@ static bool export_handle_children(int parent, int uid)
     releaseGraphicObjectProperty(__GO_CHILDREN__, children, jni_int_vector, count);
     closeList6(node);
     return true;
+}
+
+int add_current_entity(int dataset)
+{
+    int type = 0;
+    getHandleInt(dataset, "type", &type);
+
+    switch (type)
+    {
+        case __GO_FIGURE__:
+            return import_handle(dataset, -1);
+            break;
+        case __GO_AXES__:
+        {
+            //add handle to current figure
+            getOrCreateDefaultSubwin();
+            int iCurrentFigure = getCurrentFigure();
+            return import_handle(dataset, iCurrentFigure);
+            break;
+        }
+        default:
+            //add handle as child of current axes ( take care of compound ! )
+            return -1;
+    }
 }

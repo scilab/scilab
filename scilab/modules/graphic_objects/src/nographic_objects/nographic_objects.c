@@ -113,4 +113,14 @@ int getValidDefaultFigureId(void)
 {
     return 0;
 }
+
+int getCurrentFigure(void)
+{
+    return 0;
+}
+
+int createSubWin(int iParent)
+{
+    return 0;
+}
 /*--------------------------------------------------------------------------*/

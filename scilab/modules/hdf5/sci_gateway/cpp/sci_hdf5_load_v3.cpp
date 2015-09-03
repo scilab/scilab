@@ -925,18 +925,33 @@ static types::InternalType* import_handles(int dataset)
     int refs = getDataSetIdFromName(dataset, "__refs__");
     types::GraphicHandle* handles = new types::GraphicHandle(static_cast<int>(pdims.size()), pdims.data());
     long long* h = handles->get();
-    for (int i = 0; i < size; ++i)
+
+    if (size == 1)
     {
-        int ref = getDataSetIdFromName(refs, std::to_string(i).data());
-        int val = import_handle(ref, -1);
+        //%h_copy
+        int ref = getDataSetIdFromName(refs, std::to_string(0).data());
+        int val = add_current_entity(ref);
         if (val < 0)
         {
             return nullptr;
         }
 
-        h[i] = getHandle(val);
+        h[0] = getHandle(val);
     }
+    else
+    {
+        for (int i = 0; i < size; ++i)
+        {
+            int ref = getDataSetIdFromName(refs, std::to_string(i).data());
+            int val = import_handle(ref, -1);
+            if (val < 0)
+            {
+                return nullptr;
+            }
 
+            h[i] = getHandle(val);
+        }
+    }
     closeList6(refs);
     closeList6(dataset);
 
@@ -951,8 +966,8 @@ static types::InternalType* import_handles(int dataset)
             update_link_path(i, paths);
         }
     }
-    return handles;
 
+    return handles;
 }
 
 static types::InternalType* import_macro(int dataset)

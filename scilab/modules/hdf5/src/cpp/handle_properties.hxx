@@ -833,3 +833,4 @@ struct UicontrolHandle
 void update_link_path(int legend, Links::PathList& paths);
 int import_handle(int dataset, int parent);
 bool export_handle(int parent, const std::string& name, int uid);
+int add_current_entity(int handle);
