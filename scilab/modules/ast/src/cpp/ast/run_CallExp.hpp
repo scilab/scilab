@@ -197,7 +197,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                 }
                 else
                 {
-                    ret = pIT->invoke(in, opt, iRetCount, out, *this, e);
+                    ret = pIT->invoke(in, opt, iRetCount, out, e);
                     if(ret == false && pIT->isUserType())
                     {
                         // call overload
@@ -213,7 +213,7 @@ void RunVisitorT<T>::visitprivate(const CallExp &e)
                         if(pIT->isCallable())
                         {
                             char* strFName = wide_string_to_UTF8(pIT->getAs<types::Callable>()->getName().c_str());
-                            os_sprintf(szError,  _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
+                            os_sprintf(szError, _("%s: Wrong number of output argument(s): %d expected.\n"), strFName, out.size());
                             FREE(strFName);
                         }
                         else

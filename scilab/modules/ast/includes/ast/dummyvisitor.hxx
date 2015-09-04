@@ -30,6 +30,11 @@ class EXTERN_AST DummyVisitor : public ConstVisitor
 protected:
     DummyVisitor() {}
 
+    DummyVisitor* clone()
+    {
+        return new DummyVisitor();
+    }
+    
     virtual void visit(const MatrixExp &e)
     {
         exps_t lines = e.getLines();

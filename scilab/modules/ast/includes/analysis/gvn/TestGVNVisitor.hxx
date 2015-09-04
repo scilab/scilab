@@ -44,6 +44,11 @@ public:
     {
     }
 
+    virtual TestGVNVisitor* clone()
+    {
+        return new TestGVNVisitor();
+    }
+
     inline void print_info()
     {
         //stop_chrono();

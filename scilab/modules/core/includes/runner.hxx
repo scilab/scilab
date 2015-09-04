@@ -17,7 +17,7 @@
 #include <atomic>
 
 #include "exp.hxx"
-#include "execvisitor.hxx"
+#include "runvisitor.hxx"
 
 extern "C"
 {
@@ -27,7 +27,7 @@ extern "C"
 class CORE_IMPEXP Runner
 {
 public :
-    Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor)
+    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor)
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
@@ -35,7 +35,7 @@ public :
         m_isInterruptible = true;
     }
 
-    Runner(ast::Exp* _theProgram, ast::ExecVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible)
+    Runner(ast::Exp* _theProgram, ast::RunVisitor *_visitor, bool _isConsoleCommand, bool _isInterruptible)
     {
         m_theProgram = _theProgram;
         m_visitor = _visitor;
@@ -49,7 +49,7 @@ public :
         delete m_visitor;
     }
 
-    ast::ExecVisitor *getVisitor()
+    ast::RunVisitor *getVisitor()
     {
         return m_visitor;
     }
@@ -71,7 +71,7 @@ public :
 
 private :
     ast::Exp* m_theProgram;
-    ast::ExecVisitor* m_visitor;
+    ast::RunVisitor* m_visitor;
     bool m_isConsoleCommand;
     bool m_isInterruptible;
 
@@ -87,9 +87,9 @@ public:
     static bool isRunnerAvailable(void);
     static bool isInterruptibleCommand(void);
     static void setInterruptibleCommand(bool _isInterruptible);
-    static void execAndWait(ast::Exp* _theProgram, ast::ExecVisitor *_visitor,
+    static void execAndWait(ast::Exp* _theProgram, ast::RunVisitor *_visitor,
                             bool _isInterruptible, bool _isPrioritary, bool _isConsoleCommand);
-    static void exec(ast::Exp* _theProgram, ast::ExecVisitor *_visitor);
+    static void exec(ast::Exp* _theProgram, ast::RunVisitor *_visitor);
 
 private:
     static std::atomic<Runner*> m_RunMe;

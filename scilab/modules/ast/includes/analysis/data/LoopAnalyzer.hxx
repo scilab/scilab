@@ -50,6 +50,12 @@ public:
     {
     }
 
+    virtual LoopAnalyzer* clone()
+    {
+        return new LoopAnalyzer(seq->clone());
+    }
+
+
     inline bool isAssigned(ast::Exp * e, const symbol::Symbol & sym) const
     {
         if (e)

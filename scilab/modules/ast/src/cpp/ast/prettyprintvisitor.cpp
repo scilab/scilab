@@ -11,7 +11,7 @@
  *
  */
 
-#include "debugvisitor.hxx"
+#include "prettyprintvisitor.hxx"
 
 #ifdef _MSC_VER
 
@@ -57,7 +57,7 @@ static int level = -1;
 #ifdef _MSC_VER
 std::wostream& operator<<(std::wostream& os, const TermColor& c)
 {
-    if (DebugVisitor::colored == false)
+    if (PrettyPrintVisitor::colored == false)
     {
         return os;
     }
@@ -126,7 +126,7 @@ std::wostream& operator<<(std::wostream& os, const TermColor& c)
 #else
 std::wostream& operator<<(std::wostream& os, const TermColor& c)
 {
-    if (DebugVisitor::colored == false)
+    if (PrettyPrintVisitor::colored == false)
     {
         return os;
     }
@@ -167,21 +167,21 @@ std::wostream& operator<<(std::wostream& os, const TermColor& c)
 
 #endif
 
-bool DebugVisitor::colored = false;
+bool PrettyPrintVisitor::colored = false;
 
-void DebugVisitor::START_NODE(const ast::Ast & e)
+void PrettyPrintVisitor::START_NODE(const ast::Ast & e)
 {
     *ostr << NORMAL << L"(" << e.getNodeNumber() << L") ";
     ++level;
 }
 
-void DebugVisitor::END_NODE(void)
+void PrettyPrintVisitor::END_NODE(void)
 {
     --level;
     *ostr << RESET;
 }
 
-void DebugVisitor::print(const TermColor& c, const std::wstring & str)
+void PrettyPrintVisitor::print(const TermColor& c, const std::wstring & str)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -194,13 +194,13 @@ void DebugVisitor::print(const TermColor& c, const std::wstring & str)
     *ostr << str << std::endl;
 }
 
-void DebugVisitor::print(const Location & loc)
+void PrettyPrintVisitor::print(const Location & loc)
 {
     *ostr << L"@(" << YELLOW << loc.first_line << L"." << BLUE << loc.first_column << NORMAL << L" -> "
           << YELLOW << loc.last_line << L"." << BLUE << loc.last_column << NORMAL << L")";
 }
 
-void DebugVisitor::print(const TermColor& cpre, const std::wstring & pre, const Location & loc, const TermColor& cpost, const std::wstring & post, const TermColor& cdeco, const std::wstring & deco)
+void PrettyPrintVisitor::print(const TermColor& cpre, const std::wstring & pre, const Location & loc, const TermColor& cpost, const std::wstring & post, const TermColor& cdeco, const std::wstring & deco)
 {
     for (int i = 0 ; i < level; ++i)
     {
@@ -225,7 +225,7 @@ void DebugVisitor::print(const TermColor& cpre, const std::wstring & pre, const 
     *ostr << std::endl;
 }
 
-void DebugVisitor::print(const TermColor& c, const std::wstring & str, const Exp & e)
+void PrettyPrintVisitor::print(const TermColor& c, const std::wstring & str, const Exp & e)
 {
     std::wstring expType;
     expType = e.getTypeString();
@@ -242,12 +242,12 @@ void DebugVisitor::print(const TermColor& c, const std::wstring & str, const Exp
     }
 }
 
-void DebugVisitor::print(const Exp & e)
+void PrettyPrintVisitor::print(const Exp & e)
 {
     print(NORMAL, L"", e);
 }
 
-void DebugVisitor::visit(const MatrixExp & e)
+void PrettyPrintVisitor::visit(const MatrixExp & e)
 {
     START_NODE(e);
     print(e);
@@ -259,7 +259,7 @@ void DebugVisitor::visit(const MatrixExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const MatrixLineExp & e)
+void PrettyPrintVisitor::visit(const MatrixLineExp & e)
 {
     START_NODE(e);
     print(e);
@@ -271,7 +271,7 @@ void DebugVisitor::visit(const MatrixLineExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const CellExp & e)
+void PrettyPrintVisitor::visit(const CellExp & e)
 {
     START_NODE(e);
     print(e);
@@ -283,7 +283,7 @@ void DebugVisitor::visit(const CellExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const StringExp & e)
+void PrettyPrintVisitor::visit(const StringExp & e)
 {
     START_NODE(e);
     std::wostringstream stream;
@@ -300,14 +300,14 @@ void DebugVisitor::visit(const StringExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const CommentExp & e)
+void PrettyPrintVisitor::visit(const CommentExp & e)
 {
     START_NODE(e);
     print(GREEN, e.getComment(), e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const DoubleExp & e)
+void PrettyPrintVisitor::visit(const DoubleExp & e)
 {
     START_NODE(e);
     std::wostringstream stream;
@@ -335,7 +335,7 @@ void DebugVisitor::visit(const DoubleExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const BoolExp & e)
+void PrettyPrintVisitor::visit(const BoolExp & e)
 {
     START_NODE(e);
     std::wostringstream stream;
@@ -352,14 +352,14 @@ void DebugVisitor::visit(const BoolExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const NilExp & e)
+void PrettyPrintVisitor::visit(const NilExp & e)
 {
     START_NODE(e);
     print(e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const SimpleVar & e)
+void PrettyPrintVisitor::visit(const SimpleVar & e)
 {
     START_NODE(e);
     std::wstring str;
@@ -386,21 +386,21 @@ void DebugVisitor::visit(const SimpleVar & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const ColonVar & e)
+void PrettyPrintVisitor::visit(const ColonVar & e)
 {
     START_NODE(e);
     print(e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const DollarVar & e)
+void PrettyPrintVisitor::visit(const DollarVar & e)
 {
     START_NODE(e);
     print(e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const ArrayListVar & e)
+void PrettyPrintVisitor::visit(const ArrayListVar & e)
 {
     START_NODE(e);
     print(e);
@@ -412,7 +412,7 @@ void DebugVisitor::visit(const ArrayListVar & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const FieldExp & e)
+void PrettyPrintVisitor::visit(const FieldExp & e)
 {
     START_NODE(e);
     print(e);
@@ -421,7 +421,7 @@ void DebugVisitor::visit(const FieldExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const OpExp & e)
+void PrettyPrintVisitor::visit(const OpExp & e)
 {
     START_NODE(e);
     print(e);
@@ -430,7 +430,7 @@ void DebugVisitor::visit(const OpExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const LogicalOpExp & e)
+void PrettyPrintVisitor::visit(const LogicalOpExp & e)
 {
     START_NODE(e);
     print(e);
@@ -439,7 +439,7 @@ void DebugVisitor::visit(const LogicalOpExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const AssignExp & e)
+void PrettyPrintVisitor::visit(const AssignExp & e)
 {
     START_NODE(e);
     print(e);
@@ -448,7 +448,7 @@ void DebugVisitor::visit(const AssignExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const CellCallExp & e)
+void PrettyPrintVisitor::visit(const CellCallExp & e)
 {
     START_NODE(e);
     print(e);
@@ -463,7 +463,7 @@ void DebugVisitor::visit(const CellCallExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const CallExp & e)
+void PrettyPrintVisitor::visit(const CallExp & e)
 {
     START_NODE(e);
     print(e);
@@ -478,7 +478,7 @@ void DebugVisitor::visit(const CallExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const IfExp & e)
+void PrettyPrintVisitor::visit(const IfExp & e)
 {
     START_NODE(e);
     print(e);
@@ -491,7 +491,7 @@ void DebugVisitor::visit(const IfExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const TryCatchExp & e)
+void PrettyPrintVisitor::visit(const TryCatchExp & e)
 {
     START_NODE(e);
     print(e);
@@ -500,7 +500,7 @@ void DebugVisitor::visit(const TryCatchExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const WhileExp & e)
+void PrettyPrintVisitor::visit(const WhileExp & e)
 {
     START_NODE(e);
     print(e);
@@ -509,7 +509,7 @@ void DebugVisitor::visit(const WhileExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const ForExp & e)
+void PrettyPrintVisitor::visit(const ForExp & e)
 {
     START_NODE(e);
     print(e);
@@ -518,21 +518,21 @@ void DebugVisitor::visit(const ForExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const ContinueExp & e)
+void PrettyPrintVisitor::visit(const ContinueExp & e)
 {
     START_NODE(e);
     print(e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const BreakExp & e)
+void PrettyPrintVisitor::visit(const BreakExp & e)
 {
     START_NODE(e);
     print(e);
     END_NODE();
 }
 
-void DebugVisitor::visit(const ReturnExp & e)
+void PrettyPrintVisitor::visit(const ReturnExp & e)
 {
     START_NODE(e);
     print(e);
@@ -543,7 +543,7 @@ void DebugVisitor::visit(const ReturnExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const SelectExp & e)
+void PrettyPrintVisitor::visit(const SelectExp & e)
 {
     START_NODE(e);
     print(e);
@@ -562,7 +562,7 @@ void DebugVisitor::visit(const SelectExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const CaseExp & e)
+void PrettyPrintVisitor::visit(const CaseExp & e)
 {
     START_NODE(e);
     print(e);
@@ -571,7 +571,7 @@ void DebugVisitor::visit(const CaseExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const SeqExp & e)
+void PrettyPrintVisitor::visit(const SeqExp & e)
 {
     START_NODE(e);
     print(e);
@@ -582,7 +582,7 @@ void DebugVisitor::visit(const SeqExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const ArrayListExp & e)
+void PrettyPrintVisitor::visit(const ArrayListExp & e)
 {
     START_NODE(e);
     print(e);
@@ -593,7 +593,7 @@ void DebugVisitor::visit(const ArrayListExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const AssignListExp & e)
+void PrettyPrintVisitor::visit(const AssignListExp & e)
 {
     START_NODE(e);
     print(e);
@@ -604,7 +604,7 @@ void DebugVisitor::visit(const AssignListExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const NotExp & e)
+void PrettyPrintVisitor::visit(const NotExp & e)
 {
     START_NODE(e);
     print(e);
@@ -612,7 +612,7 @@ void DebugVisitor::visit(const NotExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const TransposeExp & e)
+void PrettyPrintVisitor::visit(const TransposeExp & e)
 {
     START_NODE(e);
     print(e);
@@ -620,7 +620,7 @@ void DebugVisitor::visit(const TransposeExp & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const VarDec & e)
+void PrettyPrintVisitor::visit(const VarDec & e)
 {
     std::wstring sym, name;
     sym = L"Symbol";
@@ -635,7 +635,7 @@ void DebugVisitor::visit(const VarDec & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const FunctionDec & e)
+void PrettyPrintVisitor::visit(const FunctionDec & e)
 {
     START_NODE(e);
     print(e);
@@ -656,7 +656,7 @@ void DebugVisitor::visit(const FunctionDec & e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const ListExp &e)
+void PrettyPrintVisitor::visit(const ListExp &e)
 {
     START_NODE(e);
     print(e);
@@ -666,12 +666,12 @@ void DebugVisitor::visit(const ListExp &e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const OptimizedExp &e)
+void PrettyPrintVisitor::visit(const OptimizedExp &e)
 {
     e.getOriginal()->accept(*this);
 }
 
-void DebugVisitor::visit(const MemfillExp &e)
+void PrettyPrintVisitor::visit(const MemfillExp &e)
 {
     START_NODE(e);
     print(e);
@@ -686,7 +686,7 @@ void DebugVisitor::visit(const MemfillExp &e)
     END_NODE();
 }
 
-void DebugVisitor::visit(const DAXPYExp &e)
+void PrettyPrintVisitor::visit(const DAXPYExp &e)
 {
     START_NODE(e);
     print(e);
@@ -698,12 +698,12 @@ void DebugVisitor::visit(const DAXPYExp &e)
     //e.getOriginal()->accept(*this);
 }
 
-void DebugVisitor::visit(const IntSelectExp & e)
+void PrettyPrintVisitor::visit(const IntSelectExp & e)
 {
     e.getOriginal()->accept(*this);
 }
 
-void DebugVisitor::visit(const StringSelectExp & e)
+void PrettyPrintVisitor::visit(const StringSelectExp & e)
 {
     e.getOriginal()->accept(*this);
 }

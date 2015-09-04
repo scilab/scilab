@@ -63,6 +63,11 @@ public:
         }
     }
 
+    inline bool isControlExp() const
+    {
+        return true;
+    }
+
 };
 } // namespace ast
 #endif /* !AST_CONTROLEXP_HXX */

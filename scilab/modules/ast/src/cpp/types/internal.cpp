@@ -68,7 +68,7 @@ bool InternalType::isFieldExtractionOverloadable() const
     return false;
 }
 
-bool InternalType::invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/)
+bool InternalType::invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, const ast::Exp & /*e*/)
 {
     return false;
 }

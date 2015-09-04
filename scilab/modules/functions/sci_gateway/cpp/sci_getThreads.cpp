@@ -13,6 +13,7 @@
 #include "functions_gw.hxx"
 #include "configvariable.hxx"
 #include "function.hxx"
+#include "cell.hxx"
 
 extern "C"
 {

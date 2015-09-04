@@ -113,14 +113,13 @@ types::Function::ReturnValue sci_poly(types::typed_list &in, int _iRetCount, typ
         bool bDeleteInput = false;
         if (pDblIn->getSize() != 1 && pDblIn->getCols() == pDblIn->getRows())
         {
-            ast::ExecVisitor exec;
             //call spec
             types::typed_list tlInput;
             types::typed_list tlOutput;
             types::optional_list tlOpt;
             tlInput.push_back(pDblIn);
             types::Function *funcSpec = symbol::Context::getInstance()->get(symbol::Symbol(L"spec"))->getAs<types::Function>();
-            funcSpec->call(tlInput, tlOpt, 1, tlOutput, &exec);
+            funcSpec->call(tlInput, tlOpt, 1, tlOutput);
             pDblIn = tlOutput[0]->getAs<types::Double>();
             bDeleteInput = true;
         }

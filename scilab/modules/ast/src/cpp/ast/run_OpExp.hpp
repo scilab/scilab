@@ -368,7 +368,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
         in.push_back(_paramR);
         try
         {
-            Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+            Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
         }
         catch (const ast::InternalError& e)
         {
@@ -387,7 +387,7 @@ types::InternalType* RunVisitorT<T>::callOverloadOpExp(OpExp::Oper _oper, types:
 
     try
     {
-        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, this, true);
+        Overload::generateNameAndCall(Overload::getNameFromOper(_oper), in, 1, out, true);
     }
     catch (const ast::InternalError& e)
     {

@@ -307,7 +307,7 @@ public :
     virtual bool transpose(InternalType *& /*out*/);
     virtual bool adjoint(InternalType *& out);
     virtual bool isFieldExtractionOverloadable() const;
-    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, ast::ConstVisitor & /*execFunc*/, const ast::Exp & /*e*/);
+    virtual bool invoke(typed_list & /*in*/, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & /*out*/, const ast::Exp & /*e*/);
     virtual bool isInvokable() const;
     virtual bool hasInvokeOption() const;
     virtual int getInvokeNbIn();

@@ -14,10 +14,6 @@
 //#include "AnalysisVisitor.hxx"
 #include "parser.hxx"
 #include "functions_gw.hxx"
-//#include "debugvisitor.hxx"
-#include "execvisitor.hxx"
-#include "mutevisitor.hxx"
-#include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
 #include "configvariable.hxx"
@@ -207,8 +203,9 @@ types::Function::ReturnValue sci_execstr(types::typed_list &in, int _iRetCount, 
 
     try
     {
-        ast::ExecVisitor execExps;
-        pSeqExp->accept(execExps);
+        ast::ConstVisitor* run = ConfigVariable::getDefaultVisitor();
+        pSeqExp->accept(*run);
+        delete run;
     }
     catch (const ast::InternalError& ie)
     {

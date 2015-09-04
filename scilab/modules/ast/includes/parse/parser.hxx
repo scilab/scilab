@@ -154,7 +154,10 @@ public:
     {
         _stop_on_first_error = false;
     }
+
+    void releaseTmpFile();
     /** \} */
+
 
 private :
     const std::wstring _file_name;

@@ -28,7 +28,19 @@ static char *temporaryPrompt = NULL;
 /*------------------------------------------------------------------------*/
 void C2F(setprlev)( int *pause)
 {
-    if ( *pause == 0 )
+    //debugger prompt first !
+    if (isEnableDebug())
+    {
+        if (isDebugInterrupted())
+        {
+            sprintf(Sci_Prompt, SCIPROMPTBREAK);
+        }
+        else
+        {
+            sprintf(Sci_Prompt, SCIPROMPTDEBUG);
+        }
+    }
+    else if ( *pause == 0 )
     {
         if (temporaryPrompt != NULL)
         {

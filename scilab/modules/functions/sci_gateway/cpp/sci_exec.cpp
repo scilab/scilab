@@ -16,8 +16,6 @@
 #include "parser.hxx"
 #include "funcmanager.hxx"
 #include "context.hxx"
-#include "execvisitor.hxx"
-#include "mutevisitor.hxx"
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"
@@ -232,11 +230,6 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
     }
     else if (in[0]->isMacro() || in[0]->isMacroFile())
     {
-        types::typed_list input;
-        types::optional_list optional;
-        types::typed_list output;
-        ast::ExecVisitor execFunc;
-
         if (in[0]->isMacroFile())
         {
             //1st argument is a macro name, parse and execute it in the current environnement
@@ -296,8 +289,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
 
         try
         {
-            ast::ExecVisitor execExps;
-            pSeqExp->accept(execExps);
+            ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
+            pSeqExp->accept(*exec);
+            delete exec;
         }
         catch (const ast::InternalAbort& ia)
         {
@@ -381,8 +375,9 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
             try
             {
                 // execute printed exp
-                ast::ExecVisitor execExps;
-                seqExp.accept(execExps);
+                ast::ConstVisitor* exec = ConfigVariable::getDefaultVisitor();
+                seqExp.accept(*exec);
+                delete exec;
             }
             catch (const ast::InternalAbort& ia)
             {

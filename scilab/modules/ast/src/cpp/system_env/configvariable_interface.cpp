@@ -11,6 +11,7 @@
 */
 
 #include "configvariable.hxx"
+#include "debugmanager.hxx"
 
 extern "C"
 {
@@ -148,28 +149,17 @@ const char * getScilabModeString(void)
 
 int getWarningMode(void)
 {
-    if (ConfigVariable::getWarningMode())
-    {
-        return 1;
-    }
-    return 0;
+    return ConfigVariable::getWarningMode() ? 1 : 0;
 }
 
 void setWarningMode(int _iMode)
 {
-    if (_iMode == 0)
-    {
-        ConfigVariable::setWarningMode(false);
-    }
-    else
-    {
-        ConfigVariable::setWarningMode(true);
-    }
+    ConfigVariable::setWarningMode(_iMode != 0);
 }
 
 int checkReferenceModule(const wchar_t* _module)
 {
-    return (ConfigVariable::checkReferenceModule(_module) ? 1 : 0);
+    return ConfigVariable::checkReferenceModule(_module) ? 1 : 0;
 }
 
 void addReferenceModule(const wchar_t* _module)
@@ -195,4 +185,14 @@ dynlib_ptr getEntryPointFromPosition(int position)
 int getForceQuit()
 {
     return ConfigVariable::getForceQuit();
+}
+
+int isEnableDebug()
+{
+    return ConfigVariable::getEnableDebug() ? 1 : 0;
+}
+
+int isDebugInterrupted()
+{
+    return debugger::DebuggerMagager::getInstance()->isInterrupted() ? 1 : 0;
 }

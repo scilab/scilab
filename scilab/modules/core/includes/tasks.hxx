@@ -49,7 +49,7 @@ void printAstTask(ast::Exp *tree, bool timed);
 ** Execute the stored AST.
 */
 void execAstTask(ast::Exp *tree, bool serialize, bool timed, bool ASTtimed, bool execVerbose,
-                 bool _isInterruptibleThread, bool _isPrioritaryThread, bool _isConsoleCommand);
+    bool _isInterruptibleThread, bool _isPrioritaryThread, bool _isConsoleCommand);
 
 /*
 ** Exec Tree with original visitor ( without template )
@@ -71,4 +71,13 @@ void dumpStackTask(bool timed);
 */
 void execScilabStartTask(bool _bSerialize);
 void execScilabQuitTask(bool _bSerialize);
+
+#ifdef __cplusplus
+extern "C"
+{
+    ast::Exp* parseCommand(std::wstring _command);
+}
+#endif
+
+
 #endif /* !__TASKS_HXX__ */

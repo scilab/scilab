@@ -18,14 +18,14 @@
 
 #include <string>
 
-#include "runvisitor.hxx"
 #include "execvisitor.hxx"
 #include "stepvisitor.hxx"
 #include "timedvisitor.hxx"
 #include "shortcutvisitor.hxx"
 #include "printvisitor.hxx"
-#include "mutevisitor.hxx"
 //#include "AnalysisVisitor.hxx"
+#include "debuggervisitor.hxx"
+#include "debugmanager.hxx"
 
 #include "visitor_common.hxx"
 
@@ -37,6 +37,7 @@
 
 #include "macrofile.hxx"
 #include "macro.hxx"
+#include "cell.hxx"
 #include "filemanager_interface.h"
 
 #include "runner.hxx"
@@ -609,6 +610,12 @@ void RunVisitorT<T>::visitprivate(const ReturnExp &e)
 {
     if (e.isGlobal())
     {
+        if (ConfigVariable::getEnableDebug() == true)
+        {
+            sciprint(_("%s: function is disable in debug mode.\n"), "resume");
+            return;
+        }
+
         if (ConfigVariable::getPauseLevel() != 0 && symbol::Context::getInstance()->getScopeLevel() == ConfigVariable::getActivePauseLevel())
         {
             //return or resume
@@ -964,7 +971,7 @@ void RunVisitorT<T>::visitprivate(const SeqExp  &e)
                         int iSaveExpectedSize = getExpectedSize();
                         setExpectedSize(1);
 
-                        pCall->invoke(in, opt, getExpectedSize(), out, *this, e);
+                        pCall->invoke(in, opt, getExpectedSize(), out, e);
                         setExpectedSize(iSaveExpectedSize);
 
                         if (out.size() == 0)
@@ -1334,7 +1341,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             in.push_back(piStep);
             piEnd->IncreaseRef();
             in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, this, true);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piStep->getShortTypeStr(), in, 1, out, true);
         }
         else
         {
@@ -1343,7 +1350,7 @@ void RunVisitorT<T>::visitprivate(const ListExp &e)
             piStep->killMe();
             piEnd->IncreaseRef();
             in.push_back(piEnd);
-            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, this, true);
+            Ret = Overload::call(L"%" + piStart->getShortTypeStr() + L"_b_" + piEnd->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)
@@ -1564,3 +1571,4 @@ void RunVisitorT<T>::visitprivate(const DAXPYExp &e)
 template EXTERN_AST class ast::RunVisitorT<ast::ExecVisitor>;
 template EXTERN_AST class ast::RunVisitorT<ast::StepVisitor>;
 template EXTERN_AST class ast::RunVisitorT<ast::TimedVisitor>;
+template EXTERN_AST class ast::RunVisitorT<ast::DebuggerVisitor>;

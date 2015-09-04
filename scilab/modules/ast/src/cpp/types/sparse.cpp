@@ -1793,7 +1793,7 @@ Sparse* Sparse::extract(int nbCoords, int SPARSE_CONST* coords, int SPARSE_CONST
     return pSp;
 }
 
-bool Sparse::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+bool Sparse::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {
@@ -3719,7 +3719,7 @@ InternalType* SparseBool::extract(typed_list* _pArgs)
     return pOut;
 }
 
-bool SparseBool::invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+bool SparseBool::invoke(typed_list & in, optional_list &/*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {

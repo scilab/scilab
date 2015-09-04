@@ -144,6 +144,7 @@ public :
         _error_message.clear();
     }
 
+    static void releaseTmpFile();
     /*
     ** \brief This funnction returns the parsed code written
     ** at the given line.

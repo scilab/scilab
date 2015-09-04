@@ -21,6 +21,7 @@
 #include "double.hxx"
 #include "function.hxx"
 #include "int.hxx"
+#include "list.hxx"
 
 extern "C"
 {

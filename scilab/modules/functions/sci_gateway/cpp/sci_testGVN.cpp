@@ -16,9 +16,7 @@
 
 #include "parser.hxx"
 #include "functions_gw.hxx"
-#include "execvisitor.hxx"
-#include "mutevisitor.hxx"
-#include "debugvisitor.hxx"
+#include "prettyprintvisitor.hxx"
 #include "printvisitor.hxx"
 #include "visitor_common.hxx"
 #include "scilabWrite.hxx"

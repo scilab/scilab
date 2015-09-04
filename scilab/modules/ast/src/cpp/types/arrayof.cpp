@@ -1617,7 +1617,7 @@ bool ArrayOf<T>::neg(InternalType *& out)
 }
 
 template<typename T>
-bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, ast::ConstVisitor & /*execFunc*/, const ast::Exp & e)
+bool ArrayOf<T>::invoke(typed_list & in, optional_list & /*opt*/, int /*_iRetCount*/, typed_list & out, const ast::Exp & e)
 {
     if (in.size() == 0)
     {

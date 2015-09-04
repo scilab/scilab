@@ -32,7 +32,6 @@
 #include "list.hxx"
 #include "double.hxx"
 #include "function.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -118,13 +117,12 @@ void sciblk2(int* flag, int* nevprt, double* t, double xd[], double x[], int* nx
     /***********************
     * Call Scilab function *
     ***********************/
-    ast::ExecVisitor exec;
     types::Callable* pCall = static_cast<types::Callable*>(scsptr);
 
     try
     {
         types::optional_list opt;
-        if (pCall->call(in, opt, 5, out, &exec) != types::Function::OK)
+        if (pCall->call(in, opt, 5, out) != types::Function::OK)
         {
             setErrAndFree(-1, out);
             return;

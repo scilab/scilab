@@ -20,7 +20,6 @@
 #include "ScilabObjects.hxx"
 #include "context.hxx"
 #include "function.hxx"
-#include "execvisitor.hxx"
 #include "gatewaystruct.hxx"
 extern "C" {
 #include "api_scilab.h"

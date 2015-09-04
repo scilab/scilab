@@ -42,6 +42,11 @@ public:
 
     virtual ~GlobalsCollector() { }
 
+    virtual GlobalsCollector* clone()
+    {
+        return new GlobalsCollector(macrodef);
+    }
+
     static void collect(MacroDef & macrodef);
     const tools::SymbolOrdSet & getGlobals() const;
     void print_info();

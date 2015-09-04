@@ -256,12 +256,11 @@ types::Function::ReturnValue sci_roots(types::typed_list &in, int _iRetCount, ty
         if (pSpec && pSpec->isFunction())
         {
             types::Function *funcSpec = pSpec->getAs<types::Function>();
-            ast::ExecVisitor exec;
             types::typed_list tlInput;
             types::optional_list tlOpt;
             tlInput.push_back(pDblOut);
 
-            ret = funcSpec->call(tlInput, tlOpt, 1, out, &exec);
+            ret = funcSpec->call(tlInput, tlOpt, 1, out);
             pDblOut->killMe();
         }
         else

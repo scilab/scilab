@@ -417,11 +417,11 @@ types::InternalType* RunVisitorT<T>::callOverloadMatrixExp(const std::wstring& s
     {
         if (_paramR->isGenericType() && _paramR->getAs<types::GenericType>()->getDims() > 2)
         {
-            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, this, true);
+            Ret = Overload::call(L"%hm_" + strType + L"_hm", in, 1, out, true);
         }
         else
         {
-            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, this, true);
+            Ret = Overload::call(L"%" + _paramL->getAs<types::List>()->getShortTypeStr() + L"_" + strType + L"_" + _paramR->getAs<types::List>()->getShortTypeStr(), in, 1, out, true);
         }
     }
     catch (const InternalError& error)

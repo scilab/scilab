@@ -120,8 +120,8 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
 
     double* pdblG   = pDblOut->get();
     double* pdblZ   = new double[iSizeP * iSizeP];
-    int iSizeWork   = (std::max)(iSizeP * iColB + 3 * iColB,
-                                 iColB * iColB + iColB * (std::max)(2, iColB) + 3 * iColB + 2 * iSizeP);
+    int iSizeWork   = std::max(iSizeP * iColB + 3 * iColB,
+                               iColB * iColB + iColB * std::max(2, iColB) + 3 * iColB + 2 * iSizeP);
     double* pdblW   = new double[iSizeWork];
     int* piW        = new int[iSizeP];
 
@@ -161,7 +161,7 @@ types::Function::ReturnValue sci_ppol(types::typed_list &in, int _iRetCount, typ
     }
 
     double* pdblW1 = pdblW  + iColB + iColB * iColB;
-    double* pdblW2 = pdblW1 + iColB * (std::max)(2, iColB);
+    double* pdblW2 = pdblW1 + iColB * std::max(2, iColB);
     double* pdblW3 = pdblW2 + iSizeP;
     double* pdblW4 = pdblW3 + iSizeP;
     double* pdblW5 = pdblW4 + iColB;

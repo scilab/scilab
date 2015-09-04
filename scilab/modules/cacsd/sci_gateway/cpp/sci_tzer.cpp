@@ -86,8 +86,8 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     // input
     int iSize1  = iCols[0] + iRows[2];
     int iSize2  = iCols[0] + iCols[1];
-    int iNwrk1  = (std::max)(iCols[1], iRows[2]);
-    int iNwrk2  = (std::max)(iNwrk1, iCols[0] + 1);
+    int iNwrk1  = std::max(iCols[1], iRows[2]);
+    int iNwrk2  = std::max(iNwrk1, iCols[0] + 1);
 
     // output
     int iNu     = 0;
@@ -143,14 +143,14 @@ types::Function::ReturnValue sci_tzer(types::typed_list &in, int _iRetCount, typ
     }
 
     /*** retrun output arguments ***/
-    types::Double* pDblOut1 = new types::Double(iNu, (std::min)(iNu, 1), true);
+    types::Double* pDblOut1 = new types::Double(iNu, std::min(iNu, 1), true);
     double* pdblReal = pDblOut1->get();
     double* pdblImg  = pDblOut1->getImg();
     C2F(dcopy)(&iNu, pdblR, &iOne, pdblReal, &iOne);
     C2F(dcopy)(&iNu, pdblI, &iOne, pdblImg, &iOne);
     out.push_back(pDblOut1);
 
-    types::Double* pDblOut2 = new types::Double(iNu, (std::min)(iNu, 1));
+    types::Double* pDblOut2 = new types::Double(iNu, std::min(iNu, 1));
     pdblReal = pDblOut2->get();
     C2F(dcopy)(&iNu, pdblWork2, &iOne, pdblReal, &iOne);
     out.push_back(pDblOut2);

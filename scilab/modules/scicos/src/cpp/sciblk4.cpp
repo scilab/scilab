@@ -30,7 +30,6 @@
 #include "double.hxx"
 #include "int.hxx"
 #include "function.hxx"
-#include "execvisitor.hxx"
 
 extern "C"
 {
@@ -251,12 +250,11 @@ void sciblk4(scicos_block* Blocks, const int flag)
     /***********************
     * Call Scilab function *
     ***********************/
-    ast::ExecVisitor exec;
     types::Callable* pCall = static_cast<types::Callable*>(Blocks->scsptr);
 
     try
     {
-        if (pCall->call(in, opt, 1, out, &exec) != types::Function::OK)
+        if (pCall->call(in, opt, 1, out) != types::Function::OK)
         {
             set_block_error(-1);
             return;

@@ -11,6 +11,7 @@
 *
 */
 
+#include <algorithm>
 #include <sstream>
 #include <math.h>
 #include "symbol.hxx"

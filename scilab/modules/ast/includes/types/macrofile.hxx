@@ -48,7 +48,7 @@ public :
 
     bool                    toString(std::wostringstream& ostr);
 
-    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out, ast::ConstVisitor* execFunc);
+    Callable::ReturnValue   call(typed_list &in, optional_list &opt, int _iRetCount, typed_list &out) override;
     bool                    parse(void);
 
     Macro*                  getMacro(void);

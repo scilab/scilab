@@ -22,10 +22,18 @@ extern "C"
 #include "charEncoding.h"
 #include "localization.h"
 #include "Scierror.h"
+#include "sciprint.h"
 }
 
 types::Function::ReturnValue sci_pause(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {
+    if (ConfigVariable::getEnableDebug() == true)
+    {
+        sciprint(_("%s: function is disable in debug mode.\n"), "pause");
+        return types::Function::OK;
+    }
+    
+
     if (in.size() != 0)
     {
         Scierror(77, _("%s: Wrong number of input argument(s): %d expected.\n"), "pause", 0);

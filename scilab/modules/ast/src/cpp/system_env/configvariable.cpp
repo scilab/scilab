@@ -16,6 +16,10 @@
 #include "configvariable.hxx"
 #include "macrofile.hxx"
 #include "threadmanagement.hxx"
+#include "execvisitor.hxx"
+#include "threadId.hxx"
+#include "cell.hxx"
+#include "callable.hxx"
 
 extern "C"
 {
@@ -1102,8 +1106,8 @@ int ConfigVariable::getFuncprot()
 ** \{
 */
 
-std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_Where;
-std::vector<ConfigVariable::WhereEntry> ConfigVariable::m_WhereError;
+ConfigVariable::WhereVector ConfigVariable::m_Where;
+ConfigVariable::WhereVector ConfigVariable::m_WhereError;
 std::vector<int> ConfigVariable::m_FirstMacroLine;
 void ConfigVariable::where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall)
 {
@@ -1129,7 +1133,7 @@ void ConfigVariable::where_end()
     m_Where.pop_back();
 }
 
-const std::vector<ConfigVariable::WhereEntry>& ConfigVariable::getWhere()
+const ConfigVariable::WhereVector& ConfigVariable::getWhere()
 {
     return m_Where;
 }
@@ -1178,7 +1182,7 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
             continue;
         }
 
-        iLenName = (std::max)((int)where.m_name.length(), iLenName);
+        iLenName = std::max((int)where.m_name.length(), iLenName);
 
         // in case of bin file, the file path and line is displayed only if the associated .sci file exists
         if (where.m_file_name != L"" && where.m_file_name.find(L".bin") != std::wstring::npos)
@@ -1203,15 +1207,15 @@ void ConfigVariable::whereErrorToString(std::wostringstream &ostr)
 
     // compute max size between "at line xxx of function" and "in builtin "
     // +1 : line number is pad to 5. length of "% 5d" + 1 == 5
-    int iMaxLen = (std::max)(wstrAtLine.length() + 1, wstrBuiltin.length());
+    int iMaxLen = std::max(wstrAtLine.length() + 1, wstrBuiltin.length());
     if (isExecstr)
     {
-        iMaxLen = (std::max)(((int)wstrExecStr.length()) + 1, iMaxLen);
+        iMaxLen = std::max(((int)wstrExecStr.length()) + 1, iMaxLen);
     }
 
     if (isExecstr)
     {
-        iMaxLen = (std::max)(((int)wstrExecFile.length()) + 1, iMaxLen);
+        iMaxLen = std::max(((int)wstrExecFile.length()) + 1, iMaxLen);
     }
 
     // print call stack
@@ -1443,3 +1447,36 @@ int ConfigVariable::isScilabCommand()
 /*
 ** \}
 */
+
+//debugger information
+bool ConfigVariable::m_bEnabledebug = false;
+ast::ConstVisitor* ConfigVariable::m_defaultvisitor = NULL;
+
+bool ConfigVariable::getEnableDebug()
+{
+    return m_bEnabledebug;
+}
+
+void ConfigVariable::setEnableDebug(bool _enable)
+{
+    m_bEnabledebug = _enable;
+}
+
+void ConfigVariable::setDefaultVisitor(ast::ConstVisitor* _default)
+{
+    if (m_defaultvisitor)
+    {
+        delete m_defaultvisitor;
+    }
+
+    m_defaultvisitor = _default;
+}
+
+ast::ConstVisitor* ConfigVariable::getDefaultVisitor()
+{
+    if (m_defaultvisitor == NULL)
+    {
+        m_defaultvisitor = new ast::ExecVisitor();
+    }
+    return m_defaultvisitor->clone();
+}

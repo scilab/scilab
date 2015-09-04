@@ -18,7 +18,6 @@ extern "C" {
 #include "function.hxx"
 #include "string.hxx"
 #include "context.hxx"
-#include "execvisitor.hxx"
 #include "ScilabGateway.hxx"
 
 namespace org_modules_external_objects
@@ -150,8 +149,7 @@ int ScilabGateway::deff(char * fname, const int envId, void * pvApiCtx)
         os << "y=invoke_lu(int32(" << ret << "),int32(" << envId << "),\"" << names[1][i] << "\",varargin)" << std::flush;
         in.push_back(new types::String(os.str().c_str()));
 
-        ast::ExecVisitor exec;
-        if (pCall->call(in, opt, 0, out, &exec) != types::Function::OK)
+        if (pCall->call(in, opt, 0, out) != types::Function::OK)
         {
             throw ScilabAbstractEnvironmentException(__LINE__, __FILE__, gettext("Invalid variable: cannot create the data"));
         }

@@ -40,16 +40,20 @@ enum TermColor
 
 namespace ast
 {
-class EXTERN_AST DebugVisitor : public GenVisitor<const_kind>
+class EXTERN_AST PrettyPrintVisitor : public GenVisitor<const_kind>
 {
 public:
-    DebugVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false, const bool _colored = false) :
+    PrettyPrintVisitor(std::wostream & my_ostr = std::wcerr, const bool _printDecoration = false, const bool _colored = false) :
         ostr(&my_ostr),
         printDecoration(_printDecoration)
     {
         colored = _colored;
     }
 
+    PrettyPrintVisitor* clone()
+    {
+        return new PrettyPrintVisitor(*ostr);
+    }
     /** \name Visit Matrix Expressions nodes.
      ** \{ */
 public :

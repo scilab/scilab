@@ -108,7 +108,7 @@ static int mexCallSCILAB(int nlhs, mxArray **plhs, int nrhs, mxArray **prhs, con
         in.push_back((types::InternalType*)prhs[i]);
     }
 
-    func->call(in, opt, nlhs, out, NULL);
+    func->call(in, opt, nlhs, out);
 
     for (int i = 0; i < nlhs; i++)
     {

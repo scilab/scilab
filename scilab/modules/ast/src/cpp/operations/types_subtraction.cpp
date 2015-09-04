@@ -11,7 +11,7 @@
 *
 */
 
-#include <stdio.h>
+#include <algorithm>
 
 #include "types_subtraction.hxx"
 #include "types_opposite.hxx"

@@ -19,7 +19,6 @@
 #include "elem_func_gw.hxx"
 #include "context.hxx"
 #include "overload.hxx"
-#include "execvisitor.hxx"
 #include "Scierror.h"
 #include "localization.h"
 #include "charEncoding.h"

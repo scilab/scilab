@@ -2,58 +2,147 @@
 <refentry xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svg="http://www.w3.org/2000/svg" xmlns:mml="http://www.w3.org/1998/Math/MathML" xmlns:db="http://docbook.org/ns/docbook" xmlns:scilab="http://www.scilab.org" xml:lang="fr" xml:id="debug">
     <refnamediv>
         <refname>debug</refname>
-        <refpurpose>niveau de débogage</refpurpose>
+        <refpurpose>Environnement de déboggage dans Scilab</refpurpose>
     </refnamediv>
     <refsynopsisdiv>
         <title>Séquence d'appel</title>
-        <synopsis>debug(level_int)
-            level_int=debug()
-            previous_level_int = debug(level_int)
+        <synopsis>
+            debug()
         </synopsis>
     </refsynopsisdiv>
     <refsection>
-        <title>Paramètres</title>
-        <variablelist>
-            <varlistentry>
-                <term>level_int</term>
-                <listitem>
-                    <para>valeur entiere (entre -1 et 4)</para>
-                </listitem>
-            </varlistentry>
-            <varlistentry>
-                <term>previous_level_int</term>
-                <listitem>
-                    <para>précédente valeur</para>
-                </listitem>
-            </varlistentry>
-        </variablelist>
-    </refsection>
-    <refsection>
         <title>Description</title>
         <para>
-            Pour les valeurs 0,1,2,3,4 de <literal>level-int</literal> ,
-            <literal>debug</literal> définit différents niveaux de débogage. Ces niveaux
-            sont ciblés sur le débogage de l'interpréteur et non des scripts Scilab,
-            et sont dédiés aux experts de Scilab.
+        Cet environnement sert a débogger un cript Scilab.
+        Après l'appel a <literal>debug()</literal>, vous entrez en mode debug.
+        Ce mode vous permet de manipuler des points d'arrêts,
+        de lancer des exécutions avec arrêt sur erreur,
+        d'exécuter des scripts en mode pas à pas ...
+
+        Une fois que ce mode est actif, l'invite devient <literal>debug> </literal>.
         </para>
-    </refsection>
-    <refsection role="see also">
-        <title>Voir aussi</title>
-        <simplelist type="inline">
-            <member>
-                <link linkend="ScilabEval">ScilabEval</link>
-            </member>
-            <member>
-                <link linkend="editor">editor</link>
-            </member>
-        </simplelist>
+        <term>Commandes: </term>
+        <listitem>
+            <variablelist>
+                <varlistentry>
+                    <term>(h)elp: </term>
+                    <para>Affiche l'aide dans la console</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(q)uit: </term>
+                    <para>Quitte l'environnement de déboggage et revient au mode normal de Scilab.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(w)here or bt: </term>
+                    <para>Affiche la pile d'appel.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(e)xec: </term>
+                    <term>(r)un: </term>
+                    <para>Exécute une commande.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(c)ontinue: </term>
+                    <para>Poursuit l'éxécution.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(a)bort: </term>
+                    <para>Annule l'éxécution.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(n)ext or (n)ext: </term>
+                    <para>Poursuit l'éxécution jusqu'a l'expression suivante.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(i)n or (i)n: </term>
+                    <para>Poursuit l'éxécution dans la sous fonction.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>step(o)ut or (o)ut: </term>
+                    <para>Poursuit l'éxécution jusqu'a revenir dans la fonction appelante.</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(b)reakpoint or (b)reak: </term>
+                    <synopsis>breakpoint function [line [condition]]</synopsis>
+                    <para>Ajoute un point d'arrêt dans une fonction a une ligne <literal>line</literal></para>
+                    <para>Si une condition est spécifiée, le point d'arrêt ne devient active que si la condition est <literal>%t</literal></para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(del)ete: </term>
+                    <synopsis>delete [n]</synopsis>
+                    <para>Supprime tous les points d'arrêt.</para>
+                    <para>Si n est spécifié, supprime le point d'arrêt #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>enable: </term>
+                    <synopsis>enable [n]</synopsis>
+                    <para>Active tous les points d'arrêt.</para>
+                    <para>Si n est spécifié, active le point d'arrêt #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>disable: </term>
+                    <synopsis>disable [n]</synopsis>
+                    <para>Désactive tous les points d'arrêt.</para>
+                    <para>Si n est spécifié, désavtive le point d'arrêt #n</para>
+                </varlistentry>
+                <varlistentry>
+                    <term>(s)how: </term>
+                    <synopsis>show [n]</synopsis>
+                    <para>Affiche tous les information sur les points d'arrêt.</para>
+                    <para>Si n est spécifié, affiche les information du point d'arrêt #n</para>
+                </varlistentry>
+            </variablelist>
+        </listitem>
     </refsection>
     <refsection>
-        <title>Historique</title>
+        <title>Examples</title>
+        <programlisting role="example"><![CDATA[
+//fonction de surcharge de la fonction cosinus pour les chaînes de caractères
+function v = %c_cos(val)
+    printf("val : %s\n", val);
+    v = cos(evstr(val));
+endfunction
+
+//appelant
+function a = test_debug()
+    b = cos("%pi");
+    a = b * 3;
+endfunction
+
+debug
+break test_debug
+exec test_debug
+where
+stepin
+disp val
+continue
+quit
+ ]]></programlisting>
+        <programlisting role="example"><![CDATA[
+function v = compute(val)
+    v = 1;
+    for i=1:val
+        v = v * i;
+    end
+endfunction
+
+debug
+break compute 4 "i == 5"
+exec compute(10)
+disp val
+disp i
+disp v
+continue
+quit
+ ]]></programlisting>
+    </refsection>
+    
+    <refsection>
+        <title>History</title>
         <revhistory>
             <revision>
-                <revnumber>5.4.0</revnumber>
-                <revremark>La valeur précédente est retournée comme argument de sortie lorsque vous définissez une nouvelle valeur.</revremark>
+                <revnumber>6.0.0</revnumber>
+                <revremark>Nouvelle version: Interface console avec le debugger de Scilab 6.</revremark>
             </revision>
         </revhistory>
     </refsection>

@@ -13,7 +13,7 @@
 
 #include "configvariable.hxx"
 #include "callable.hxx"
-#include "execvisitor.hxx"
+#include "double.hxx"
 
 extern "C"
 {

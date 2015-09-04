@@ -10,6 +10,11 @@
  *
  */
 
+#include "functions_gw.hxx"
+#include "configvariable.hxx"
+#include "function.hxx"
+#include "threadId.hxx"
+
 extern "C"
 {
 #define NOMINMAX
@@ -17,10 +22,6 @@ extern "C"
 #include "Scierror.h"
 #include "localization.h"
 }
-
-#include "functions_gw.hxx"
-#include "configvariable.hxx"
-#include "function.hxx"
 
 types::Function::ReturnValue sci_getCurrentThreadId(types::typed_list &in, int _iRetCount, types::typed_list &out)
 {

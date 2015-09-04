@@ -19,7 +19,12 @@ namespace ast
 {
 class EXTERN_AST ExecVisitor : public RunVisitorT<ExecVisitor>
 {
-    void visit (const SeqExp  &e)
+    ExecVisitor* clone()
+    {
+        return new ExecVisitor();
+    }
+        
+    void visit(const SeqExp  &e)
     {
         visitprivate(e);
     }

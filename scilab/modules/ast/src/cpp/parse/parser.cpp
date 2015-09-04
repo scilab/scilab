@@ -176,6 +176,7 @@ void ParserSingleInstance::parse(const char *command)
     if (fileLocker)
     {
         fclose(fileLocker);
+        fileLocker = nullptr;
     }
 
     errno_t err;
@@ -205,6 +206,7 @@ void ParserSingleInstance::parse(const char *command)
     if (fileLocker)
     {
         fclose(fileLocker);
+        fileLocker = nullptr;
     }
     yyin = fopen(szFile, "w");
     fwrite(command, 1, len, yyin);
@@ -279,6 +281,20 @@ void ParserSingleInstance::enableParseTrace(void)
 void ParserSingleInstance::disableParseTrace(void)
 {
     yydebug = 0;
+}
+
+void Parser::releaseTmpFile()
+{
+    ParserSingleInstance::releaseTmpFile();
+}
+
+void ParserSingleInstance::releaseTmpFile()
+{
+    if (fileLocker)
+    {
+        //fclose(fileLocker);
+        //fileLocker = nullptr;
+    }
 }
 
 std::wstring ParserSingleInstance::_file_name;

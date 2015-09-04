@@ -340,14 +340,14 @@ types::Function::ReturnValue sci_arl2_ius(types::typed_list &in, int _iRetCount,
     else
     {
         // look for a solution
-        int iSizeNum = (std::max)(iN, iRankDen);
+        int iSizeNum = std::max(iN, iRankDen);
         double* pdblNum = new double[iSizeNum];
         int iWorkSize = 32 + 32 * iN + 7 * iNg + iN * iNg + iN * iN * (iNg + 2);
         double* pdblWork = new double[iWorkSize];
         iWorkSize = 29 + iN * iN + 4 * iN;
         int* piWork = new int[iWorkSize];
 
-        int iSizeTemp = (std::max)(iRankDen, iN) + 1;
+        int iSizeTemp = std::max(iRankDen, iN) + 1;
         double* pDblDenTemp = new double[iSizeTemp];
         memset(pDblDenTemp, 0x00, iSizeTemp * sizeof(double));
         C2F(dcopy)(&iSize, pdblDen, &iOne, pDblDenTemp, &iOne);

@@ -10,10 +10,11 @@
  *
  */
 /*--------------------------------------------------------------------------*/
-#include "execvisitor.hxx"
 #include "string.hxx"
 #include "double.hxx"
 #include "optimizationfunctions.hxx"
+#include "configvariable.hxx"
+#include "commentexp.hxx"
 
 extern "C"
 {
@@ -29,6 +30,7 @@ extern "C"
 
 OptimizationFunctions* Optimization::m_OptimizationFunctions;
 
+using namespace types;
 void Optimization::addOptimizationFunctions(OptimizationFunctions* _opFunction)
 {
     m_OptimizationFunctions = _opFunction;
@@ -359,8 +361,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
-
+    
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
     C2F(dcopy)(n, x, &one, pDblX->get(), &one);
@@ -382,7 +383,7 @@ void OptimizationFunctions::callCostfMacro(int *ind, int *n, double *x, double *
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallOptimCostfFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallOptimCostfFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -514,7 +515,6 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
@@ -533,7 +533,7 @@ void OptimizationFunctions::callFsolveFctMacro(int *n, double *x, double *v, int
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -604,7 +604,6 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
@@ -623,7 +622,7 @@ void OptimizationFunctions::callFsolveJacMacro(int *n, double *x, double *v, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -696,7 +695,6 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
@@ -718,7 +716,7 @@ void OptimizationFunctions::callLsqrsolveFctMacro(int *m, int *n, double *x, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveFctFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {
@@ -794,7 +792,6 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     types::typed_list in;
     types::typed_list out;
     types::optional_list opt;
-    ast::ExecVisitor execFunc;
 
     // create input args
     types::Double* pDblX = new types::Double(m_iXRows, m_iXCols);
@@ -816,7 +813,7 @@ void OptimizationFunctions::callLsqrsolveJacMacro(int *m, int *n, double *x, dou
     try
     {
         // new std::wstring(L"") is delete in destructor of ast::CommentExp
-        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, execFunc, ast::CommentExp(Location(), new std::wstring(L"")));
+        m_pCallFsolveJacFunction->invoke(in, opt, iRetCount, out, ast::CommentExp(Location(), new std::wstring(L"")));
     }
     catch (const ast::InternalError& ie)
     {

@@ -28,12 +28,12 @@ public:
                       Exp& select,
                       exps_t& cases,
                       Exp& defaultCase,
-                      const std::vector<int64_t> & _keys, const int64_t _min, const int64_t _max) : IntSelectExp(location, select, cases, defaultCase), min(_min), max(_max), table(_max - _min + 1, &defaultCase), keys(_keys)
+                      const std::vector<int64_t> & _keys, const int64_t min, const int64_t max) : IntSelectExp(location, select, cases, defaultCase), _min(min), _max(max), table(_max - _min + 1, &defaultCase), keys(_keys)
     {
         exps_t::iterator i = std::next(_exps.begin());
         for (const auto & key : keys)
         {
-            table[key - min] = *i;
+            table[key - _min] = *i;
             ++i;
         }
     }
@@ -41,12 +41,12 @@ public:
     TableIntSelectExp(const Location& location,
                       Exp& select,
                       exps_t& cases,
-                      const std::vector<int64_t> & _keys, const int64_t _min, const int64_t _max) : IntSelectExp(location, select, cases), min(_min), max(_max), table(_max - _min + 1, nullptr), keys(_keys)
+                      const std::vector<int64_t> & _keys, const int64_t min, const int64_t max) : IntSelectExp(location, select, cases), _min(min), _max(max), table(_max - _min + 1, nullptr), keys(_keys)
     {
         exps_t::iterator i = std::next(_exps.begin());
         for (const auto & key : keys)
         {
-            table[key - min] = *i;
+            table[key - _min] = *i;
             ++i;
         }
     }
@@ -61,11 +61,11 @@ public:
         TableIntSelectExp * cloned = nullptr;
         if (_hasDefault)
         {
-            cloned = new TableIntSelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone(), keys, min, max);
+            cloned = new TableIntSelectExp(getLocation(), *getSelect()->clone(), *cases, *getDefaultCase()->clone(), keys, _min, _max);
         }
         else
         {
-            cloned = new TableIntSelectExp(getLocation(), *getSelect()->clone(), *cases, keys, min, max);
+            cloned = new TableIntSelectExp(getLocation(), *getSelect()->clone(), *cases, keys, _min, _max);
         }
 
         cloned->setVerbose(isVerbose());
@@ -74,9 +74,9 @@ public:
 
     inline Exp * getExp(const int64_t key) const
     {
-        if (key >= min && key <= max)
+        if (key >= _min && key <= _max)
         {
-            return table[key - min];
+            return table[key - _min];
         }
 
         return getDefaultCase();
@@ -94,12 +94,12 @@ public:
 
     inline int64_t getMin() const
     {
-        return min;
+        return _min;
     }
 
     inline int64_t getMax() const
     {
-        return max;
+        return _max;
     }
 
     inline const std::vector<Exp *> & getTable() const
@@ -109,7 +109,7 @@ public:
 
 private:
 
-    int64_t min, max;
+    int64_t _min, _max;
     std::vector<Exp *> table;
     std::vector<int64_t> keys;
 

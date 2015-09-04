@@ -10,6 +10,7 @@
  *
  */
 
+#include <algorithm>
 #include "configvariable.hxx"
 
 extern "C"
@@ -20,7 +21,7 @@ extern "C"
 /*--------------------------------------------------------------------------*/
 void setlines(int lines, int columns)
 {
-    ConfigVariable::setConsoleLines((std::max)(0, lines));
-    ConfigVariable::setConsoleWidth((std::max)(25, columns));
+    ConfigVariable::setConsoleLines(std::max(0, lines));
+    ConfigVariable::setConsoleWidth(std::max(25, columns));
 }
 /*--------------------------------------------------------------------------*/

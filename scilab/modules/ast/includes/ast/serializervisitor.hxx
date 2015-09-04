@@ -606,6 +606,11 @@ private :
 public :
     SerializeVisitor(Exp* _ast) : ast(_ast), buf(NULL), buflen(0), bufsize(0), saveNodeNumber(true) {}
 
+    SerializeVisitor* clone()
+    {
+        return new SerializeVisitor(ast);
+    }
+
     unsigned char* serialize(bool _saveNodeNumber = true, bool _saveLocation = true)
     {
         saveNodeNumber = _saveNodeNumber;

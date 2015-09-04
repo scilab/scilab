@@ -35,6 +35,11 @@ public:
     }
     ~MacrovarVisitor() {}
 
+    MacrovarVisitor* clone()
+    {
+        return new MacrovarVisitor();
+    }
+
     void visit (const MatrixLineExp &e);
     void visit (const SimpleVar &e);
     void visit(const OpExp &e);

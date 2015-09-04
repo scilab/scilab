@@ -644,6 +644,12 @@ void PrintVisitor::visit (const IfExp  &e)
     }
     *ostr << SCI_CLOSE_TEST << " ";
     *ostr << SCI_THEN << std::endl;
+
+    if (headerOnly)
+    {
+        return;
+    }
+
     ++indent;
     if (displayOriginal)
     {
@@ -676,6 +682,12 @@ void PrintVisitor::visit (const IfExp  &e)
 void PrintVisitor::visit (const TryCatchExp  &e)
 {
     *ostr << SCI_TRY << std::endl;
+
+    if (headerOnly)
+    {
+        return;
+    }
+
     ++indent;
     if (displayOriginal)
     {
@@ -715,6 +727,12 @@ void PrintVisitor::visit (const WhileExp  &e)
         e.getTest().accept(*this);
     }
     *ostr << SCI_CLOSE_TEST << " " << SCI_DO << std::endl;
+
+    if (headerOnly)
+    {
+        return;
+    }
+
     ++indent;
     if (displayOriginal)
     {
@@ -743,6 +761,12 @@ void PrintVisitor::visit (const ForExp  &e)
     }
     *ostr << SCI_CLOSE_TEST << " ";
     *ostr << SCI_DO << std::endl;
+
+    if (headerOnly)
+    {
+        return;
+    }
+
     ++indent;
     if (displayOriginal)
     {

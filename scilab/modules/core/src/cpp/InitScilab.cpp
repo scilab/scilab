@@ -31,8 +31,10 @@
 #include "operations.hxx"
 #include "threadmanagement.hxx"
 #include "numericconstants.hxx"
-
 #include "expandPathVariable.h"
+#include "execvisitor.hxx"
+#include "debugmanager.hxx"
+#include "consoledebugger.hxx"
 
 extern "C"
 {
@@ -64,7 +66,6 @@ extern "C"
 #include "scicurdir.h"
 #include "FileBrowserChDir.h"
 #include "InitializePreferences.h"
-
 #ifdef _MSC_VER
 #include "InitializeWindows_tools.h"
 #include "TerminateWindows_tools.h"
@@ -328,6 +329,9 @@ int StartScilabEngine(ScilabEngineInfo* _pSEI)
 
     InitializePreferences(iScript);
 
+
+    //register console debugger as debugger
+    debugger::DebuggerMagager::getInstance()->addDebugger(new debugger::ConsoleDebugger());
     return iMainRet;
 }
 
@@ -649,6 +653,65 @@ void* scilabReadAndStore(void* param)
                 FREE(pstRead);
                 FREE(command);
                 command = pstNewCommand;
+            }
+
+            if (ConfigVariable::getEnableDebug())
+            {
+                char* tmpCommand = NULL;
+
+                //all commands must be prefixed by debug except e(xec) (r)un or p(rint) "something" that become "something" or disp("someting")
+                if (strncmp(command, "e ", 2) == 0 || strncmp(command, "r ", 2) == 0)
+                {
+                    tmpCommand = os_strdup(command + 2);
+                }
+                else if (strncmp(command, "exec ", 5) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+                else if (strncmp(command, "run ", 4) == 0)
+                {
+                    tmpCommand = os_strdup(command + 5);
+                }
+
+                if (tmpCommand)
+                {
+                    if (debugger::DebuggerMagager::getInstance()->isInterrupted())
+                    {
+                        sciprint(_("Debugger is on a breakpoint\n"));
+                        sciprint(_("(c)ontinue or (a)bort current execution before execute a new command\n"));
+                        continue;
+                    }
+                }
+                else if ((command[0] == 'p') && command[1] == ' ')
+                {
+                    std::string s("disp(");
+                    s += command + 2;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                }
+                else if (strncmp(command, "disp ", 5) == 0)
+                {
+                    std::string s("disp(");
+                    s += command + 5;
+                    s += ")";
+                    tmpCommand = os_strdup(s.data());
+                }
+                else
+                {
+                    int iLen = (int)strlen(command) + (int)strlen("debug ") + 1;
+                    tmpCommand = (char*)MALLOC(sizeof(char) * iLen);
+#ifdef _MSC_VER
+                    os_sprintf(tmpCommand, iLen, "%s %s", "debug", command);
+#else
+                    os_sprintf(tmpCommand, "%s %s", "debug", command);
+#endif
+                    //disable debugger time to exec debug command
+                    //it will be enable in debuggervisitor, after execution
+                    ConfigVariable::setEnableDebug(false);
+                }
+
+                FREE(command);
+                command = tmpCommand;
             }
 
             ThreadManagement::LockParser();

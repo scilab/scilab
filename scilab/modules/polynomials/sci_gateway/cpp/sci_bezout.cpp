@@ -88,8 +88,8 @@ types::Function::ReturnValue sci_bezout(types::typed_list &in, int _iRetCount, t
     }
 
     // perform operation
-    int iMaxRank     = (std::max)(piDegree[0], piDegree[1]) + 1;
-    int iMinRank     = (std::min)(piDegree[0], piDegree[1]) + 1;
+    int iMaxRank     = std::max(piDegree[0], piDegree[1]) + 1;
+    int iMinRank     = std::min(piDegree[0], piDegree[1]) + 1;
     double* pdblWork = new double[10 * iMaxRank + 3 * iMaxRank * iMaxRank];
     double* pdblOut  = new double[2 * (piDegree[0] + piDegree[1] + 2) + iMinRank + 3];
     int ipb[6];

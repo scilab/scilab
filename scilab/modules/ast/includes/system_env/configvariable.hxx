@@ -22,9 +22,7 @@
 #include <list>
 #include <map>
 #include <string>
-#include "callable.hxx"
-#include "threadId.hxx"
-#include "cell.hxx"
+#include "visitor.hxx"
 
 extern "C"
 {
@@ -36,6 +34,13 @@ extern "C"
 // Minimal values for iConsoleLines & iConsoleWidth
 #define ICONSOLELINES_MIN 0
 #define ICONSOLEWIDTH_MIN 10
+
+namespace types
+{
+class Cell;
+class ThreadId;
+class Callable;
+}
 
 class EXTERN_AST ConfigVariable
 {
@@ -390,9 +395,11 @@ public :
         WhereEntry(int line, int absolute_line, const std::wstring& name, int first_line, const std::wstring& file_name) :
             m_line(line), m_absolute_line(absolute_line), m_name(name), m_macro_first_line(first_line), m_file_name(file_name) {}
     };
+    typedef std::vector<WhereEntry> WhereVector;
+        
     static void where_begin(int _iLineNum, int _iLineLocation, types::Callable* _pCall);
     static void where_end();
-    static const std::vector<WhereEntry>& getWhere();
+    static const WhereVector& getWhere();
     static void fillWhereError(int _iErrorLine);
     static void resetWhereError();
 
@@ -402,10 +409,9 @@ public :
     static void setFileNameToLastWhere(const std::wstring& _fileName);
     static void whereErrorToString(std::wostringstream &ostr);
 private :
-    static std::vector<WhereEntry> m_Where;
-    static std::vector<WhereEntry> m_WhereError;
+    static WhereVector m_Where;
+    static WhereVector m_WhereError;
     static std::vector<int> m_FirstMacroLine;
-
     //module called with variable by reference
 private :
     static std::list<std::wstring> m_ReferenceModules;
@@ -458,6 +464,16 @@ public:
     static void setScilabCommand(int _isciCmd);
     static int isScilabCommand();
 
+
+    //debugger information
+    static bool m_bEnabledebug;
+    static ast::ConstVisitor* m_defaultvisitor;
+
+    static bool getEnableDebug();
+    static void setEnableDebug(bool _enable);
+
+    static void setDefaultVisitor(ast::ConstVisitor* _default);
+    static ast::ConstVisitor* getDefaultVisitor();
 };
 
 #endif /* !__CONFIGVARIABLE_HXX__ */
