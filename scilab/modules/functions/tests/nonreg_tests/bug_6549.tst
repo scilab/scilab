@@ -36,26 +36,26 @@ if genlib("bug_6549lib",TMPDIR + "/bug_6549") <> %t then pause,end;
 ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
 ierr = execstr("titi","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 ierr = execstr("tata","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================
 load(TMPDIR + "/bug_6549/lib");
 ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
 ierr = execstr("titi","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 ierr = execstr("tata","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================
 bug_6549lib = lib(TMPDIR + "/bug_6549");
 ierr = execstr("toto","errcatch");
 if ierr <> 0 then pause,end
 ierr = execstr("titi","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 ierr = execstr("tata","errcatch");
-if ierr <> 0 then pause,end
+if ierr == 0 then pause,end
 clear bug_6549lib titi toto tata ierr;
 // =============================================================================
