@@ -161,6 +161,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         /*fake call to mopen to show file within file()*/
         if (mopen(pwstTemp, L"r", 0, &iID) != MOPEN_NO_ERROR)
         {
+            file->close();
             delete file;
             FREE(pwstTemp);
             Scierror(999, _("%s: Cannot open file %s.\n"), "exec", stFile.data());
@@ -172,6 +173,8 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         FREE(pwstTemp);
         if (parser.getExitStatus() !=  Parser::Succeded)
         {
+            file->close();
+            delete file;
             if (bErrCatch)
             {
                 out.push_back(new Double(999));
@@ -299,13 +302,26 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         }
         catch (const ast::InternalAbort& ia)
         {
-            delete pExp;
+            if (file)
+            {
+                file->close();
+                delete file;
+                delete pExp;
+            }
+
             throw ia;
         }
         catch (const ast::InternalError& ie)
         {
             if (bErrCatch == false)
             {
+                if (file)
+                {
+                    file->close();
+                    delete file;
+                    delete pExp;
+                }
+
                 ConfigVariable::setPromptMode(oldVal);
                 ConfigVariable::setExecutedFileID(0);
                 throw ie;
@@ -469,6 +485,7 @@ types::Function::ReturnValue sci_exec(types::typed_list &in, int _iRetCount, typ
         {
             mclose(iID);
         }
+
         file->close();
         delete file;
     }

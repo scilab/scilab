@@ -11,25 +11,26 @@
 //
 // <-- Short Description -->
 // lib(".") used relative path in library variable created
+// <-- CLI SHELL MODE -->
 // =============================================================================
 function z = myplus(x, y), z = x + y,endfunction
 function z = yourplus(x, y), x = x - y,endfunction
 // =============================================================================
 cd TMPDIR;
-mkdir('bug_6550');
-libdir = TMPDIR + '/bug_6550';
+mkdir("bug_6550");
+libdir = TMPDIR + "/bug_6550";
 warning("off");
-save(libdir + '/myplus.bin', myplus);
-save(libdir + '/yourplus.bin', yourplus);
+save(libdir + "/myplus.bin", "myplus");
+save(libdir + "/yourplus.bin", "yourplus");
 //create the name file
-mputl(['myplus';'yourplus'], libdir + '/names');
+mputl(["myplus";"yourplus"], libdir + "/names");
 // =============================================================================
 cd(libdir);
-AAlib = lib('.');
-[f, p] = libraryinfo('AAlib');
+AAlib = lib(".");
+[f, p] = libraryinfo("AAlib");
 if pathconvert(p, %f, %f) <> pathconvert(libdir, %f, %f) then pause,end
 // =============================================================================
-BBlib = lib(libdir + '/../bug_6550/../bug_6550');
-[f, p] = libraryinfo('BBlib');
+BBlib = lib(libdir + "/../bug_6550/../bug_6550");
+[f, p] = libraryinfo("BBlib");
 if pathconvert(p, %f, %f) <> pathconvert(libdir, %f, %f) then pause,end
 // =============================================================================

@@ -117,7 +117,9 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
     else
     {
         int ierr = 0;
-        pIT = new String(scigetcwd(&ierr));
+        char* pstr = scigetcwd(&ierr);
+        pIT = new String(pstr);
+        FREE(pstr);
     }
 
     pS = pIT->getAs<String>();
@@ -146,6 +148,11 @@ Function::ReturnValue sci_genlib(typed_list &in, int _iRetCount, typed_list &out
 
     wchar_t* pstFile = pS->get(0);
     pstParsePath = expandPathVariableW(pstFile);
+
+    if (in.size() == 1)
+    {
+        delete pS;
+    }
 
     os_swprintf(pstParseFile, PATH_MAX + FILENAME_MAX, L"%ls%lslib", pstParsePath, FILE_SEPARATOR);
 
