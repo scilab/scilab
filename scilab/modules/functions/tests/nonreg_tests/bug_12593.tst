@@ -22,6 +22,5 @@ my_file     = my_dir+"test.sci";
 mkdir(my_dir);
 mputl(my_function,my_file);
 
-errmsg=msprintf(gettext("%s: Error in file %s.\n"), "genlib", my_file);
-assert_checkerror("genlib(""bug_12593_dir"", TMPDIR+""/bug12593_dir"",%T)",errmsg);
-
+[a,b,c,d]=genlib("bug_12593_dir", TMPDIR+"/bug12593_dir",%T);
+assert_checkequal(my_file,d);
