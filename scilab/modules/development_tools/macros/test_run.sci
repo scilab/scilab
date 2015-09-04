@@ -325,9 +325,9 @@ function status = test_module(_params)
     if with_module(name(1)) then
         // It's a scilab internal module
         module.path = pathconvert(SCI + "/modules/" + name(1), %F);
-        //elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then //no have librarieslist in scilab 6 yet
+    elseif or(librarieslist() == "atomslib") & atomsIsLoaded(name(1)) then
         // It's an ATOMS module
-        //module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
+        module.path = pathconvert(atomsGetLoadedPath(name(1)) , %F, %T);
     elseif isdir(name(1)) then
         // It's an external module
         module.path = pathconvert(name(1), %F);
