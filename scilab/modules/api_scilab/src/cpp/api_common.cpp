@@ -1621,5 +1621,4 @@ void sciErrClean(SciErr* _psciErr)
     }
 
     _psciErr->iMsgCount = 0;
-    _psciErr->iErr = 0;
 }
